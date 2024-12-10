@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -62,7 +62,7 @@ import (
 //				ShardNumber:          pulumi.Int(3),
 //				StorageSpaceGb:       pulumi.Int(20),
 //				SubnetId:             fooSubnet.ID(),
-//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:               pulumi.String(fooZones.Zones[0].Id),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -90,9 +90,7 @@ import (
 // mongodb ssl state can be imported using the ssl:instanceId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
-//
+// $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
 // ```
 type SslState struct {
 	pulumi.CustomResourceState

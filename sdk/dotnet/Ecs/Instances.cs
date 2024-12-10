@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of ecs instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -101,17 +99,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -197,8 +191,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
@@ -217,6 +209,18 @@ namespace Pulumi.Volcengine.Ecs
         {
             get => _deploymentSetIds ?? (_deploymentSetIds = new List<string>());
             set => _deploymentSetIds = value;
+        }
+
+        [Input("eipAddresses")]
+        private List<string>? _eipAddresses;
+
+        /// <summary>
+        /// A list of Eip addresses.
+        /// </summary>
+        public List<string> EipAddresses
+        {
+            get => _eipAddresses ?? (_eipAddresses = new List<string>());
+            set => _eipAddresses = value;
         }
 
         /// <summary>
@@ -248,6 +252,42 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("instanceName")]
         public string? InstanceName { get; set; }
+
+        [Input("instanceTypeFamilies")]
+        private List<string>? _instanceTypeFamilies;
+
+        /// <summary>
+        /// A list of instance type families.
+        /// </summary>
+        public List<string> InstanceTypeFamilies
+        {
+            get => _instanceTypeFamilies ?? (_instanceTypeFamilies = new List<string>());
+            set => _instanceTypeFamilies = value;
+        }
+
+        [Input("instanceTypeIds")]
+        private List<string>? _instanceTypeIds;
+
+        /// <summary>
+        /// A list of instance type IDs.
+        /// </summary>
+        public List<string> InstanceTypeIds
+        {
+            get => _instanceTypeIds ?? (_instanceTypeIds = new List<string>());
+            set => _instanceTypeIds = value;
+        }
+
+        [Input("ipv6Addresses")]
+        private List<string>? _ipv6Addresses;
+
+        /// <summary>
+        /// A list of ipv6 addresses.
+        /// </summary>
+        public List<string> Ipv6Addresses
+        {
+            get => _ipv6Addresses ?? (_ipv6Addresses = new List<string>());
+            set => _ipv6Addresses = value;
+        }
 
         /// <summary>
         /// The key pair name of ECS instance.
@@ -329,6 +369,18 @@ namespace Pulumi.Volcengine.Ecs
             set => _deploymentSetIds = value;
         }
 
+        [Input("eipAddresses")]
+        private InputList<string>? _eipAddresses;
+
+        /// <summary>
+        /// A list of Eip addresses.
+        /// </summary>
+        public InputList<string> EipAddresses
+        {
+            get => _eipAddresses ?? (_eipAddresses = new InputList<string>());
+            set => _eipAddresses = value;
+        }
+
         /// <summary>
         /// The hpc cluster ID of ECS instance.
         /// </summary>
@@ -358,6 +410,42 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
+
+        [Input("instanceTypeFamilies")]
+        private InputList<string>? _instanceTypeFamilies;
+
+        /// <summary>
+        /// A list of instance type families.
+        /// </summary>
+        public InputList<string> InstanceTypeFamilies
+        {
+            get => _instanceTypeFamilies ?? (_instanceTypeFamilies = new InputList<string>());
+            set => _instanceTypeFamilies = value;
+        }
+
+        [Input("instanceTypeIds")]
+        private InputList<string>? _instanceTypeIds;
+
+        /// <summary>
+        /// A list of instance type IDs.
+        /// </summary>
+        public InputList<string> InstanceTypeIds
+        {
+            get => _instanceTypeIds ?? (_instanceTypeIds = new InputList<string>());
+            set => _instanceTypeIds = value;
+        }
+
+        [Input("ipv6Addresses")]
+        private InputList<string>? _ipv6Addresses;
+
+        /// <summary>
+        /// A list of ipv6 addresses.
+        /// </summary>
+        public InputList<string> Ipv6Addresses
+        {
+            get => _ipv6Addresses ?? (_ipv6Addresses = new InputList<string>());
+            set => _ipv6Addresses = value;
+        }
 
         /// <summary>
         /// The key pair name of ECS instance.
@@ -430,6 +518,7 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class InstancesResult
     {
         public readonly ImmutableArray<string> DeploymentSetIds;
+        public readonly ImmutableArray<string> EipAddresses;
         public readonly string? HpcClusterId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -444,10 +533,16 @@ namespace Pulumi.Volcengine.Ecs
         /// The name of ECS instance.
         /// </summary>
         public readonly string? InstanceName;
+        public readonly ImmutableArray<string> InstanceTypeFamilies;
+        public readonly ImmutableArray<string> InstanceTypeIds;
         /// <summary>
         /// The collection of ECS instance query.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesInstanceResult> Instances;
+        /// <summary>
+        /// The  IPv6 address list of the ECS instance.
+        /// </summary>
+        public readonly ImmutableArray<string> Ipv6Addresses;
         /// <summary>
         /// The ssh key name of ECS instance.
         /// </summary>
@@ -487,6 +582,8 @@ namespace Pulumi.Volcengine.Ecs
         private InstancesResult(
             ImmutableArray<string> deploymentSetIds,
 
+            ImmutableArray<string> eipAddresses,
+
             string? hpcClusterId,
 
             string id,
@@ -497,7 +594,13 @@ namespace Pulumi.Volcengine.Ecs
 
             string? instanceName,
 
+            ImmutableArray<string> instanceTypeFamilies,
+
+            ImmutableArray<string> instanceTypeIds,
+
             ImmutableArray<Outputs.InstancesInstanceResult> instances,
+
+            ImmutableArray<string> ipv6Addresses,
 
             string? keyPairName,
 
@@ -520,12 +623,16 @@ namespace Pulumi.Volcengine.Ecs
             string? zoneId)
         {
             DeploymentSetIds = deploymentSetIds;
+            EipAddresses = eipAddresses;
             HpcClusterId = hpcClusterId;
             Id = id;
             Ids = ids;
             InstanceChargeType = instanceChargeType;
             InstanceName = instanceName;
+            InstanceTypeFamilies = instanceTypeFamilies;
+            InstanceTypeIds = instanceTypeIds;
             Instances = instances;
+            Ipv6Addresses = ipv6Addresses;
             KeyPairName = keyPairName;
             NameRegex = nameRegex;
             OutputFile = outputFile;

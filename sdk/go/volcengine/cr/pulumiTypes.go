@@ -618,7 +618,7 @@ func (o RegistriesRegistryDomainArrayOutput) Index(i pulumi.IntInput) Registries
 type RegistriesRegistryStatus struct {
 	// The condition of registry.
 	Conditions []string `pulumi:"conditions"`
-	// The phase of status.
+	// The phase status of registry.
 	Phase string `pulumi:"phase"`
 }
 
@@ -636,7 +636,7 @@ type RegistriesRegistryStatusInput interface {
 type RegistriesRegistryStatusArgs struct {
 	// The condition of registry.
 	Conditions pulumi.StringArrayInput `pulumi:"conditions"`
-	// The phase of status.
+	// The phase status of registry.
 	Phase pulumi.StringInput `pulumi:"phase"`
 }
 
@@ -671,7 +671,7 @@ func (o RegistriesRegistryStatusOutput) Conditions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RegistriesRegistryStatus) []string { return v.Conditions }).(pulumi.StringArrayOutput)
 }
 
-// The phase of status.
+// The phase status of registry.
 func (o RegistriesRegistryStatusOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistriesRegistryStatus) string { return v.Phase }).(pulumi.StringOutput)
 }

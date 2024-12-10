@@ -118,7 +118,7 @@ class NetworkAclAssociate(pulumi.CustomResource):
         NetworkAcl associate can be imported using the network_acl_id:resource_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/networkAclAssociate:NetworkAclAssociate default nacl-172leak37mi9s4d1w33pswqkh:subnet-637jxq81u5mon3gd6ivc7rj
+        $ pulumi import volcengine:vpc/networkAclAssociate:NetworkAclAssociate default nacl-172leak37mi9s4d1w33pswqkh:subnet-637jxq81u5mon3gd6ivc7rj
         ```
 
         :param str resource_name: The name of the resource.
@@ -153,7 +153,7 @@ class NetworkAclAssociate(pulumi.CustomResource):
         NetworkAcl associate can be imported using the network_acl_id:resource_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/networkAclAssociate:NetworkAclAssociate default nacl-172leak37mi9s4d1w33pswqkh:subnet-637jxq81u5mon3gd6ivc7rj
+        $ pulumi import volcengine:vpc/networkAclAssociate:NetworkAclAssociate default nacl-172leak37mi9s4d1w33pswqkh:subnet-637jxq81u5mon3gd6ivc7rj
         ```
 
         :param str resource_name: The name of the resource.

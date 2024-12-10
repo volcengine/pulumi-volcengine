@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cen
     {
         /// <summary>
         /// Use this data source to query detailed information of cen bandwidth packages
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -57,17 +55,13 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BandwidthPackagesResult> InvokeAsync(BandwidthPackagesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BandwidthPackagesResult>("volcengine:cen/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen bandwidth packages
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -109,8 +103,6 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BandwidthPackagesResult> Invoke(BandwidthPackagesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BandwidthPackagesResult>("volcengine:cen/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesInvokeArgs(), options.WithDefaults());

@@ -476,7 +476,7 @@ func (o BandwidthPackagesPackageEipAddressArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type BandwidthPackagesPackageTag struct {
-	// The key of the tag.
+	// The Key of Tags.
 	Key string `pulumi:"key"`
 	// The Value of Tags.
 	Value string `pulumi:"value"`
@@ -494,7 +494,7 @@ type BandwidthPackagesPackageTagInput interface {
 }
 
 type BandwidthPackagesPackageTagArgs struct {
-	// The key of the tag.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
 	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -551,7 +551,7 @@ func (o BandwidthPackagesPackageTagOutput) ToBandwidthPackagesPackageTagOutputWi
 	return o
 }
 
-// The key of the tag.
+// The Key of Tags.
 func (o BandwidthPackagesPackageTagOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v BandwidthPackagesPackageTag) string { return v.Key }).(pulumi.StringOutput)
 }

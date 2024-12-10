@@ -79,7 +79,7 @@ namespace Pulumi.Volcengine.Rds_mssql
     /// Rds Mssql Instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
+    /// $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mssql/instance:Instance")]

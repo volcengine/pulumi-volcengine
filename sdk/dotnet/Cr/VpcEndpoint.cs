@@ -47,7 +47,7 @@ namespace Pulumi.Volcengine.Cr
     /// CR Vpc endpoint can be imported using the crVpcEndpoint:registry, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
+    /// $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/vpcEndpoint:VpcEndpoint")]

@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Nas
     /// Nas Snapshot can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
+    /// $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nas/snapshot:Snapshot")]

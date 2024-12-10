@@ -184,7 +184,7 @@ class RouteTable(pulumi.CustomResource):
         Route table can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+        $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
         ```
 
         :param str resource_name: The name of the resource.
@@ -220,7 +220,7 @@ class RouteTable(pulumi.CustomResource):
         Route table can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+        $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
         ```
 
         :param str resource_name: The name of the resource.

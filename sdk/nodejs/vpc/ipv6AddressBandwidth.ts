@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * Ipv6AddressBandwidth can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth default eip-2fede9fsgnr4059gp674m6ney
+ * $ pulumi import volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth default eip-2fede9fsgnr4059gp674m6ney
  * ```
  */
 export class Ipv6AddressBandwidth extends pulumi.CustomResource {

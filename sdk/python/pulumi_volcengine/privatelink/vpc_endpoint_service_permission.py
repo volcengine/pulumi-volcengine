@@ -147,7 +147,7 @@ class VpcEndpointServicePermission(pulumi.CustomResource):
         VpcEndpointServicePermission can be imported using the serviceId:permitAccountId, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
+        $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
         ```
 
         :param str resource_name: The name of the resource.
@@ -211,7 +211,7 @@ class VpcEndpointServicePermission(pulumi.CustomResource):
         VpcEndpointServicePermission can be imported using the serviceId:permitAccountId, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
+        $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
         ```
 
         :param str resource_name: The name of the resource.

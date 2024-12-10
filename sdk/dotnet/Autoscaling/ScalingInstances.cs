@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Autoscaling
     {
         /// <summary>
         /// Use this data source to query detailed information of scaling instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -150,7 +148,7 @@ namespace Pulumi.Volcengine.Autoscaling
         ///             Entrusted = true,
         ///         }, new CustomResourceOptions
         ///         {
-        ///             DependsOn = new[]
+        ///             DependsOn =
         ///             {
         ///                 fooScalingGroupEnabler,
         ///             },
@@ -164,17 +162,13 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingInstancesResult> InvokeAsync(ScalingInstancesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingInstancesResult>("volcengine:autoscaling/scalingInstances:ScalingInstances", args ?? new ScalingInstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -309,7 +303,7 @@ namespace Pulumi.Volcengine.Autoscaling
         ///             Entrusted = true,
         ///         }, new CustomResourceOptions
         ///         {
-        ///             DependsOn = new[]
+        ///             DependsOn =
         ///             {
         ///                 fooScalingGroupEnabler,
         ///             },
@@ -323,8 +317,6 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingInstancesResult> Invoke(ScalingInstancesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ScalingInstancesResult>("volcengine:autoscaling/scalingInstances:ScalingInstances", args ?? new ScalingInstancesInvokeArgs(), options.WithDefaults());

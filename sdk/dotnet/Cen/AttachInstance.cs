@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Cen
     /// Cen attach instance can be imported using the CenId:InstanceId:InstanceType:RegionId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cen/attachInstance:AttachInstance default cen-7qthudw0ll6jmc***:vpc-2fexiqjlgjif45oxruvso****:VPC:cn-beijing
+    /// $ pulumi import volcengine:cen/attachInstance:AttachInstance default cen-7qthudw0ll6jmc***:vpc-2fexiqjlgjif45oxruvso****:VPC:cn-beijing
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/attachInstance:AttachInstance")]

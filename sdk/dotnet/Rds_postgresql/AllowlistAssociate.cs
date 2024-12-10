@@ -100,7 +100,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     /// RdsPostgresqlAllowlistAssociate can be imported using the instance_id:allow_list_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate default resource_id
+    /// $ pulumi import volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate")]

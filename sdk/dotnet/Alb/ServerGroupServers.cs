@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Alb
     {
         /// <summary>
         /// Use this data source to query detailed information of alb server group servers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ServerGroupServersResult> InvokeAsync(ServerGroupServersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ServerGroupServersResult>("volcengine:alb/serverGroupServers:ServerGroupServers", args ?? new ServerGroupServersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of alb server group servers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ServerGroupServersResult> Invoke(ServerGroupServersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ServerGroupServersResult>("volcengine:alb/serverGroupServers:ServerGroupServers", args ?? new ServerGroupServersInvokeArgs(), options.WithDefaults());

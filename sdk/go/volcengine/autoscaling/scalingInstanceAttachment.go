@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -77,7 +77,7 @@ import (
 //				EipBillingType:     pulumi.String("PostPaidByBandwidth"),
 //				EipIsp:             pulumi.String("BGP"),
 //				HostName:           pulumi.String("acc-hostname"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceChargeType: pulumi.String("PostPaid"),
 //				InstanceName:       pulumi.String("acc-instance-name"),
 //				InstanceTypeId:     pulumi.String("ecs.g1.large"),
@@ -129,7 +129,7 @@ import (
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
@@ -161,12 +161,11 @@ import (
 //
 // ## Import
 //
-// Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g. You can choose to remove or detach the instance according to the `delete_type` field.
+// Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g.
+// You can choose to remove or detach the instance according to the `delete_type` field.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment default scg-mizl7m1kqccg5smt1bdpijuj:i-l8u2ai4j0fauo6mrpgk8
-//
+// $ pulumi import volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment default scg-mizl7m1kqccg5smt1bdpijuj:i-l8u2ai4j0fauo6mrpgk8
 // ```
 type ScalingInstanceAttachment struct {
 	pulumi.CustomResourceState

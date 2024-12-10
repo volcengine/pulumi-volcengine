@@ -775,6 +775,7 @@ class ScalingGroupServerGroupAttribute(dict):
         :param int port: The port receiving request of the server group. Value range: 1 ~ 65535.
         :param str server_group_id: The id of the server group.
         :param int weight: The weight of the instance. Value range: 0 ~ 100.
+        :param str load_balancer_id: The load balancer id.
         """
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "server_group_id", server_group_id)
@@ -809,6 +810,9 @@ class ScalingGroupServerGroupAttribute(dict):
     @property
     @pulumi.getter(name="loadBalancerId")
     def load_balancer_id(self) -> Optional[str]:
+        """
+        The load balancer id.
+        """
         return pulumi.get(self, "load_balancer_id")
 
 

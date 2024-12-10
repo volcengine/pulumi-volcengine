@@ -17,6 +17,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
         /// </summary>
         public readonly ImmutableArray<string> AccessSourceIpsv4s;
+        /// <summary>
+        /// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        /// </summary>
         public readonly string IpFamily;
         /// <summary>
         /// Public network access network configuration.

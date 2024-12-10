@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Bioos
     /// Workspace can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:bioos/workspace:Workspace default *****
+    /// $ pulumi import volcengine:bioos/workspace:Workspace default *****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bioos/workspace:Workspace")]

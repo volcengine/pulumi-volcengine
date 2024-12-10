@@ -47,7 +47,7 @@ namespace Pulumi.Volcengine.Vpc
     /// Network interface can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+    /// $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkInterface:NetworkInterface")]

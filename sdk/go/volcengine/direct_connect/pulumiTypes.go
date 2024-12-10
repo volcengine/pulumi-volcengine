@@ -638,9 +638,9 @@ func (o ConnectionsDirectConnectConnectionArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type ConnectionsDirectConnectConnectionTag struct {
-	// The tag key of cloud resource instance.
+	// The tag key.
 	Key string `pulumi:"key"`
-	// The tag value of cloud resource instance.
+	// The tag value.
 	Value string `pulumi:"value"`
 }
 
@@ -656,9 +656,9 @@ type ConnectionsDirectConnectConnectionTagInput interface {
 }
 
 type ConnectionsDirectConnectConnectionTagArgs struct {
-	// The tag key of cloud resource instance.
+	// The tag key.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The tag value of cloud resource instance.
+	// The tag value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -713,12 +713,12 @@ func (o ConnectionsDirectConnectConnectionTagOutput) ToConnectionsDirectConnectC
 	return o
 }
 
-// The tag key of cloud resource instance.
+// The tag key.
 func (o ConnectionsDirectConnectConnectionTagOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsDirectConnectConnectionTag) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The tag value of cloud resource instance.
+// The tag value.
 func (o ConnectionsDirectConnectConnectionTagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsDirectConnectConnectionTag) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -1447,9 +1447,9 @@ func (o GatewaysDirectConnectGatewayAssociateCenArrayOutput) Index(i pulumi.IntI
 }
 
 type GatewaysDirectConnectGatewayTag struct {
-	// The tag key of cloud resource instance.
+	// The tag key.
 	Key string `pulumi:"key"`
-	// The tag value of cloud resource instance.
+	// The tag value.
 	Value string `pulumi:"value"`
 }
 
@@ -1465,9 +1465,9 @@ type GatewaysDirectConnectGatewayTagInput interface {
 }
 
 type GatewaysDirectConnectGatewayTagArgs struct {
-	// The tag key of cloud resource instance.
+	// The tag key.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The tag value of cloud resource instance.
+	// The tag value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -1522,12 +1522,12 @@ func (o GatewaysDirectConnectGatewayTagOutput) ToGatewaysDirectConnectGatewayTag
 	return o
 }
 
-// The tag key of cloud resource instance.
+// The tag key.
 func (o GatewaysDirectConnectGatewayTagOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysDirectConnectGatewayTag) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The tag value of cloud resource instance.
+// The tag value.
 func (o GatewaysDirectConnectGatewayTagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysDirectConnectGatewayTag) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2148,9 +2148,9 @@ func (o VirtualInterfacesVirtualInterfaceArrayOutput) Index(i pulumi.IntInput) V
 }
 
 type VirtualInterfacesVirtualInterfaceTag struct {
-	// The tag key of cloud resource instance.
+	// The tag key.
 	Key string `pulumi:"key"`
-	// The tag value of cloud resource instance.
+	// The tag value.
 	Value string `pulumi:"value"`
 }
 
@@ -2166,9 +2166,9 @@ type VirtualInterfacesVirtualInterfaceTagInput interface {
 }
 
 type VirtualInterfacesVirtualInterfaceTagArgs struct {
-	// The tag key of cloud resource instance.
+	// The tag key.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The tag value of cloud resource instance.
+	// The tag value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2223,12 +2223,12 @@ func (o VirtualInterfacesVirtualInterfaceTagOutput) ToVirtualInterfacesVirtualIn
 	return o
 }
 
-// The tag key of cloud resource instance.
+// The tag key.
 func (o VirtualInterfacesVirtualInterfaceTagOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v VirtualInterfacesVirtualInterfaceTag) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The tag value of cloud resource instance.
+// The tag value.
 func (o VirtualInterfacesVirtualInterfaceTagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v VirtualInterfacesVirtualInterfaceTag) string { return v.Value }).(pulumi.StringOutput)
 }

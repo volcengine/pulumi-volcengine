@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Bandwidth_package.Outputs
     public sealed class BandwidthPackagesPackageTagResult
     {
         /// <summary>
-        /// The key of the tag.
+        /// The Key of Tags.
         /// </summary>
         public readonly string Key;
         /// <summary>

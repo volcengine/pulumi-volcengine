@@ -43,7 +43,7 @@ import (
 // fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 // SubnetName: pulumi.String("acc-test-subnet"),
 // CidrBlock: pulumi.String("172.16.0.0/24"),
-// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// ZoneId: pulumi.String(fooZones.Zones[0].Id),
 // VpcId: fooVpc.ID(),
 // })
 // if err != nil {
@@ -86,7 +86,7 @@ import (
 //	    val0 := index
 //
 // __res, err := autoscaling.NewScalingConfiguration(ctx, fmt.Sprintf("fooScalingConfiguration-%v", key0), &autoscaling.ScalingConfigurationArgs{
-// ImageId: *pulumi.String(fooImages.Images[0].ImageId),
+// ImageId: pulumi.String(fooImages.Images[0].ImageId),
 // InstanceName: pulumi.String("acc-test-instance"),
 // InstanceTypes: pulumi.StringArray{
 // pulumi.String("ecs.g1.large"),

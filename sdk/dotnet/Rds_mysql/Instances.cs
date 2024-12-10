@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds mysql instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -77,17 +75,13 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:rds_mysql/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mysql instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -149,8 +143,6 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:rds_mysql/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());

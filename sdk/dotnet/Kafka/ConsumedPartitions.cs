@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Kafka
     {
         /// <summary>
         /// Use this data source to query detailed information of kafka consumed partitions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -127,17 +125,13 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ConsumedPartitionsResult> InvokeAsync(ConsumedPartitionsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ConsumedPartitionsResult>("volcengine:kafka/consumedPartitions:ConsumedPartitions", args ?? new ConsumedPartitionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of kafka consumed partitions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -249,8 +243,6 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ConsumedPartitionsResult> Invoke(ConsumedPartitionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ConsumedPartitionsResult>("volcengine:kafka/consumedPartitions:ConsumedPartitions", args ?? new ConsumedPartitionsInvokeArgs(), options.WithDefaults());

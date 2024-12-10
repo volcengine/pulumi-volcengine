@@ -609,7 +609,7 @@ class FileSystem(pulumi.CustomResource):
         CloudFileSystem can be imported using the FsName, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname
+        $ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname
         ```
 
         :param str resource_name: The name of the resource.
@@ -673,7 +673,7 @@ class FileSystem(pulumi.CustomResource):
         CloudFileSystem can be imported using the FsName, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname
+        $ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname
         ```
 
         :param str resource_name: The name of the resource.

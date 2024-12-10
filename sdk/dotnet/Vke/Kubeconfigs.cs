@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vke
     {
         /// <summary>
         /// Use this data source to query detailed information of vke kubeconfigs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -121,17 +119,13 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<KubeconfigsResult> InvokeAsync(KubeconfigsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<KubeconfigsResult>("volcengine:vke/kubeconfigs:Kubeconfigs", args ?? new KubeconfigsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke kubeconfigs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -237,8 +231,6 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<KubeconfigsResult> Invoke(KubeconfigsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<KubeconfigsResult>("volcengine:vke/kubeconfigs:Kubeconfigs", args ?? new KubeconfigsInvokeArgs(), options.WithDefaults());

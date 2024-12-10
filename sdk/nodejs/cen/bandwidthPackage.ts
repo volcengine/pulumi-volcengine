@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  * CenBandwidthPackage can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cen/bandwidthPackage:BandwidthPackage default cbp-4c2zaavbvh5f42****
+ * $ pulumi import volcengine:cen/bandwidthPackage:BandwidthPackage default cbp-4c2zaavbvh5f42****
  * ```
  */
 export class BandwidthPackage extends pulumi.CustomResource {

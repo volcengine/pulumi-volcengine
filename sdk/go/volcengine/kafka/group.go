@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -100,9 +100,7 @@ import (
 // KafkaGroup can be imported using the instance_id:group_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:kafka/group:Group default kafka-****x:groupId
-//
+// $ pulumi import volcengine:kafka/group:Group default kafka-****x:groupId
 // ```
 type Group struct {
 	pulumi.CustomResourceState

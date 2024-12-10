@@ -43,7 +43,7 @@ import * as utilities from "../utilities";
  * TransitRouterDirectConnectGatewayAttachment can be imported using the transitRouterId:attachmentId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/directConnectGatewayAttachment:DirectConnectGatewayAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
+ * $ pulumi import volcengine:transit_router/directConnectGatewayAttachment:DirectConnectGatewayAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
  * ```
  */
 export class DirectConnectGatewayAttachment extends pulumi.CustomResource {

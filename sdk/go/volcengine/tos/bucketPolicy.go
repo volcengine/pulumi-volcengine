@@ -68,9 +68,7 @@ import (
 // Tos Bucket can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
-//
+// $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
 // ```
 type BucketPolicy struct {
 	pulumi.CustomResourceState

@@ -1121,7 +1121,7 @@ class Connection(pulumi.CustomResource):
         VpnConnection can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/connection:Connection default vgc-3tex2x1cwd4c6c0v****
+        $ pulumi import volcengine:vpn/connection:Connection default vgc-3tex2x1cwd4c6c0v****
         ```
 
         :param str resource_name: The name of the resource.
@@ -1217,7 +1217,7 @@ class Connection(pulumi.CustomResource):
         VpnConnection can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/connection:Connection default vgc-3tex2x1cwd4c6c0v****
+        $ pulumi import volcengine:vpn/connection:Connection default vgc-3tex2x1cwd4c6c0v****
         ```
 
         :param str resource_name: The name of the resource.

@@ -183,7 +183,7 @@ class MongoAllowList(pulumi.CustomResource):
         mongodb allow list can be imported using the allowListId, e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/mongoAllowList:MongoAllowList default acl-d1fd76693bd54e658912e7337d5b****
+        $ pulumi import volcengine:mongodb/mongoAllowList:MongoAllowList default acl-d1fd76693bd54e658912e7337d5b****
         ```
 
         :param str resource_name: The name of the resource.
@@ -219,7 +219,7 @@ class MongoAllowList(pulumi.CustomResource):
         mongodb allow list can be imported using the allowListId, e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/mongoAllowList:MongoAllowList default acl-d1fd76693bd54e658912e7337d5b****
+        $ pulumi import volcengine:mongodb/mongoAllowList:MongoAllowList default acl-d1fd76693bd54e658912e7337d5b****
         ```
 
         :param str resource_name: The name of the resource.

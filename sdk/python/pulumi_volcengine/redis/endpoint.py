@@ -144,7 +144,7 @@ class Endpoint(pulumi.CustomResource):
         Redis Endpoint can be imported using the instanceId:eipId, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/endpoint:Endpoint default redis-asdljioeixxxx:eip-2fef2qcfbfw8w5oxruw3w****
+        $ pulumi import volcengine:redis/endpoint:Endpoint default redis-asdljioeixxxx:eip-2fef2qcfbfw8w5oxruw3w****
         ```
 
         :param str resource_name: The name of the resource.
@@ -205,7 +205,7 @@ class Endpoint(pulumi.CustomResource):
         Redis Endpoint can be imported using the instanceId:eipId, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/endpoint:Endpoint default redis-asdljioeixxxx:eip-2fef2qcfbfw8w5oxruw3w****
+        $ pulumi import volcengine:redis/endpoint:Endpoint default redis-asdljioeixxxx:eip-2fef2qcfbfw8w5oxruw3w****
         ```
 
         :param str resource_name: The name of the resource.

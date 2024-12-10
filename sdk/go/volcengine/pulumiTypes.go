@@ -14,10 +14,14 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ProviderAssumeRole struct {
-	AssumeRoleSessionName string  `pulumi:"assumeRoleSessionName"`
-	AssumeRoleTrn         string  `pulumi:"assumeRoleTrn"`
-	DurationSeconds       int     `pulumi:"durationSeconds"`
-	Policy                *string `pulumi:"policy"`
+	// The session name to use when making the AssumeRole call.
+	AssumeRoleSessionName string `pulumi:"assumeRoleSessionName"`
+	// The TRN of the role to assume.
+	AssumeRoleTrn string `pulumi:"assumeRoleTrn"`
+	// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// A more restrictive policy when making the AssumeRole call.
+	Policy *string `pulumi:"policy"`
 }
 
 // ProviderAssumeRoleInput is an input type that accepts ProviderAssumeRoleArgs and ProviderAssumeRoleOutput values.
@@ -32,10 +36,14 @@ type ProviderAssumeRoleInput interface {
 }
 
 type ProviderAssumeRoleArgs struct {
-	AssumeRoleSessionName pulumi.StringInput    `pulumi:"assumeRoleSessionName"`
-	AssumeRoleTrn         pulumi.StringInput    `pulumi:"assumeRoleTrn"`
-	DurationSeconds       pulumi.IntInput       `pulumi:"durationSeconds"`
-	Policy                pulumi.StringPtrInput `pulumi:"policy"`
+	// The session name to use when making the AssumeRole call.
+	AssumeRoleSessionName pulumi.StringInput `pulumi:"assumeRoleSessionName"`
+	// The TRN of the role to assume.
+	AssumeRoleTrn pulumi.StringInput `pulumi:"assumeRoleTrn"`
+	// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+	DurationSeconds pulumi.IntInput `pulumi:"durationSeconds"`
+	// A more restrictive policy when making the AssumeRole call.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
 }
 
 func (ProviderAssumeRoleArgs) ElementType() reflect.Type {
@@ -115,18 +123,22 @@ func (o ProviderAssumeRoleOutput) ToProviderAssumeRolePtrOutputWithContext(ctx c
 	}).(ProviderAssumeRolePtrOutput)
 }
 
+// The session name to use when making the AssumeRole call.
 func (o ProviderAssumeRoleOutput) AssumeRoleSessionName() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) string { return v.AssumeRoleSessionName }).(pulumi.StringOutput)
 }
 
+// The TRN of the role to assume.
 func (o ProviderAssumeRoleOutput) AssumeRoleTrn() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) string { return v.AssumeRoleTrn }).(pulumi.StringOutput)
 }
 
+// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
 func (o ProviderAssumeRoleOutput) DurationSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) int { return v.DurationSeconds }).(pulumi.IntOutput)
 }
 
+// A more restrictive policy when making the AssumeRole call.
 func (o ProviderAssumeRoleOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
@@ -155,6 +167,7 @@ func (o ProviderAssumeRolePtrOutput) Elem() ProviderAssumeRoleOutput {
 	}).(ProviderAssumeRoleOutput)
 }
 
+// The session name to use when making the AssumeRole call.
 func (o ProviderAssumeRolePtrOutput) AssumeRoleSessionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -164,6 +177,7 @@ func (o ProviderAssumeRolePtrOutput) AssumeRoleSessionName() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The TRN of the role to assume.
 func (o ProviderAssumeRolePtrOutput) AssumeRoleTrn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -173,6 +187,7 @@ func (o ProviderAssumeRolePtrOutput) AssumeRoleTrn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
 func (o ProviderAssumeRolePtrOutput) DurationSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *int {
 		if v == nil {
@@ -182,6 +197,7 @@ func (o ProviderAssumeRolePtrOutput) DurationSeconds() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// A more restrictive policy when making the AssumeRole call.
 func (o ProviderAssumeRolePtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {

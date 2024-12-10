@@ -37,6 +37,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
         /// </summary>
         public readonly bool? KeepInstanceName;
+        /// <summary>
+        /// The status phase to the Node.
+        /// </summary>
         public readonly string? Phase;
 
         [OutputConstructor]

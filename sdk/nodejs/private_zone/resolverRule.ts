@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  * PrivateZoneResolverRule can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:private_zone/resolverRule:ResolverRule default resource_id
+ * $ pulumi import volcengine:private_zone/resolverRule:ResolverRule default resource_id
  * ```
  */
 export class ResolverRule extends pulumi.CustomResource {

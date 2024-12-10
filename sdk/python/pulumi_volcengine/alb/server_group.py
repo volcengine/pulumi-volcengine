@@ -414,7 +414,7 @@ class ServerGroup(pulumi.CustomResource):
         AlbServerGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
+        $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -470,7 +470,7 @@ class ServerGroup(pulumi.CustomResource):
         AlbServerGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
+        $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
         ```
 
         :param str resource_name: The name of the resource.

@@ -13,12 +13,20 @@ namespace Pulumi.Volcengine.Ebs.Outputs
     [OutputType]
     public sealed class VolumesVolumeResult
     {
+        /// <summary>
+        /// The baseline performance of the volume.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VolumesVolumeBaselinePerformanceResult> BaselinePerformances;
         public readonly int BillingType;
         public readonly string CreatedAt;
         public readonly bool DeleteWithInstance;
         public readonly string Description;
         public readonly string DeviceName;
         public readonly string ExpiredTime;
+        /// <summary>
+        /// The extra performance of the volume.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VolumesVolumeExtraPerformanceResult> ExtraPerformances;
         public readonly string Id;
         public readonly string ImageId;
         /// <summary>
@@ -37,6 +45,10 @@ namespace Pulumi.Volcengine.Ebs.Outputs
         /// Tags.
         /// </summary>
         public readonly ImmutableArray<Outputs.VolumesVolumeTagResult> Tags;
+        /// <summary>
+        /// The baseline performance of the volume.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VolumesVolumeTotalPerformanceResult> TotalPerformances;
         public readonly int TradeStatus;
         public readonly string UpdatedAt;
         public readonly string VolumeId;
@@ -55,6 +67,8 @@ namespace Pulumi.Volcengine.Ebs.Outputs
 
         [OutputConstructor]
         private VolumesVolumeResult(
+            ImmutableArray<Outputs.VolumesVolumeBaselinePerformanceResult> baselinePerformances,
+
             int billingType,
 
             string createdAt,
@@ -66,6 +80,8 @@ namespace Pulumi.Volcengine.Ebs.Outputs
             string deviceName,
 
             string expiredTime,
+
+            ImmutableArray<Outputs.VolumesVolumeExtraPerformanceResult> extraPerformances,
 
             string id,
 
@@ -85,6 +101,8 @@ namespace Pulumi.Volcengine.Ebs.Outputs
 
             ImmutableArray<Outputs.VolumesVolumeTagResult> tags,
 
+            ImmutableArray<Outputs.VolumesVolumeTotalPerformanceResult> totalPerformances,
+
             int tradeStatus,
 
             string updatedAt,
@@ -97,12 +115,14 @@ namespace Pulumi.Volcengine.Ebs.Outputs
 
             string zoneId)
         {
+            BaselinePerformances = baselinePerformances;
             BillingType = billingType;
             CreatedAt = createdAt;
             DeleteWithInstance = deleteWithInstance;
             Description = description;
             DeviceName = deviceName;
             ExpiredTime = expiredTime;
+            ExtraPerformances = extraPerformances;
             Id = id;
             ImageId = imageId;
             InstanceId = instanceId;
@@ -112,6 +132,7 @@ namespace Pulumi.Volcengine.Ebs.Outputs
             Size = size;
             Status = status;
             Tags = tags;
+            TotalPerformances = totalPerformances;
             TradeStatus = tradeStatus;
             UpdatedAt = updatedAt;
             VolumeId = volumeId;

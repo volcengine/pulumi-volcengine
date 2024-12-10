@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * IamUserGroupAttachment can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
+ * $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
  * ```
  */
 export class UserGroupAttachment extends pulumi.CustomResource {

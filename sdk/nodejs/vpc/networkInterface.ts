@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * Network interface can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+ * $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
  * ```
  */
 export class NetworkInterface extends pulumi.CustomResource {

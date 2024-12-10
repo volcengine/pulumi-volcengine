@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vke
     {
         /// <summary>
         /// Use this data source to query detailed information of vke nodes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -120,8 +118,8 @@ namespace Pulumi.Volcengine.Vke
         ///             },
         ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
         ///             {
-        ///                 return  image.ImageId;
-        ///             })[0],
+        ///                 return image.ImageId;
+        ///             }).ToList()[0],
         ///             SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
         ///             {
         ///                 Type = "ESSD_PL0",
@@ -205,8 +203,8 @@ namespace Pulumi.Volcengine.Vke
         ///             HostName = "tf-acc-test",
         ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
         ///             {
-        ///                 return  image.ImageId;
-        ///             })[0],
+        ///                 return image.ImageId;
+        ///             }).ToList()[0],
         ///             InstanceType = "ecs.g1ie.xlarge",
         ///             Password = "93f0cb0614Aab12",
         ///             InstanceChargeType = "PostPaid",
@@ -255,17 +253,13 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<NodesResult> InvokeAsync(NodesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke nodes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -370,8 +364,8 @@ namespace Pulumi.Volcengine.Vke
         ///             },
         ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
         ///             {
-        ///                 return  image.ImageId;
-        ///             })[0],
+        ///                 return image.ImageId;
+        ///             }).ToList()[0],
         ///             SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
         ///             {
         ///                 Type = "ESSD_PL0",
@@ -455,8 +449,8 @@ namespace Pulumi.Volcengine.Vke
         ///             HostName = "tf-acc-test",
         ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
         ///             {
-        ///                 return  image.ImageId;
-        ///             })[0],
+        ///                 return image.ImageId;
+        ///             }).ToList()[0],
         ///             InstanceType = "ecs.g1ie.xlarge",
         ///             Password = "93f0cb0614Aab12",
         ///             InstanceChargeType = "PostPaid",
@@ -505,8 +499,6 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<NodesResult> Invoke(NodesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesInvokeArgs(), options.WithDefaults());

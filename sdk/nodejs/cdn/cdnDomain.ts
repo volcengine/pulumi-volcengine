@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *             value: "tfvalue2",
  *         },
  *     ],
- *     domainConfig: fooCdnCertificate.id.apply(id => JSON.stringify({
+ *     domainConfig: pulumi.jsonStringify({
  *         OriginProtocol: "https",
  *         Origin: [{
  *             OriginAction: {
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  *         }],
  *         HTTPS: {
  *             CertInfo: {
- *                 CertId: id,
+ *                 CertId: fooCdnCertificate.id,
  *             },
  *             DisableHttp: false,
  *             HTTP2: true,
@@ -61,7 +61,7 @@ import * as utilities from "../utilities";
  *                 "tlsv1.2",
  *             ],
  *         },
- *     })),
+ *     }),
  * });
  * ```
  *
@@ -70,10 +70,9 @@ import * as utilities from "../utilities";
  * CdnDomain can be imported using the domain, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
+ * $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
  * ```
- *
- *  Please note that when you execute destroy, we will first take the domain name offline and then delete it.
+ * Please note that when you execute destroy, we will first take the domain name offline and then delete it.
  */
 export class CdnDomain extends pulumi.CustomResource {
     /**

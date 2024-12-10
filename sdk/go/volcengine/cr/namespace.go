@@ -50,9 +50,7 @@ import (
 // CR namespace can be imported using the registry:name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cr/namespace:Namespace default cr-basic:namespace-1
-//
+// $ pulumi import volcengine:cr/namespace:Namespace default cr-basic:namespace-1
 // ```
 type Namespace struct {
 	pulumi.CustomResourceState

@@ -293,7 +293,7 @@ class Snapshot(pulumi.CustomResource):
         Nas Snapshot can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
+        $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
         ```
 
         :param str resource_name: The name of the resource.
@@ -327,7 +327,7 @@ class Snapshot(pulumi.CustomResource):
         Nas Snapshot can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
+        $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
         ```
 
         :param str resource_name: The name of the resource.

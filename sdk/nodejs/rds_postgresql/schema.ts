@@ -84,7 +84,7 @@ import * as utilities from "../utilities";
  * RdsPostgresqlSchema can be imported using the instance id, database name and schema name, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
+ * $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
  * ```
  */
 export class Schema extends pulumi.CustomResource {

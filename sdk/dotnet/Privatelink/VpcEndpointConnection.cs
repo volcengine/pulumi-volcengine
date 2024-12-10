@@ -108,7 +108,7 @@ namespace Pulumi.Volcengine.Privatelink
     ///         ServiceId = fooVpcEndpointService.Id,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             fooVpcEndpointZone,
     ///         },
@@ -122,7 +122,7 @@ namespace Pulumi.Volcengine.Privatelink
     /// PrivateLink Vpc Endpoint Connection Service can be imported using the endpoint id and service id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection default ep-3rel74u229dz45zsk2i6l69qa:epsvc-2byz5mykk9y4g2dx0efs4aqz3
+    /// $ pulumi import volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection default ep-3rel74u229dz45zsk2i6l69qa:epsvc-2byz5mykk9y4g2dx0efs4aqz3
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection")]

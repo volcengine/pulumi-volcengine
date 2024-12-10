@@ -152,7 +152,7 @@ class GrantRule(pulumi.CustomResource):
         TransitRouterGrantRule can be imported using the transit router id and accountId, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/grantRule:GrantRule default trId:accountId
+        $ pulumi import volcengine:transit_router/grantRule:GrantRule default trId:accountId
         ```
 
         :param str resource_name: The name of the resource.
@@ -189,7 +189,7 @@ class GrantRule(pulumi.CustomResource):
         TransitRouterGrantRule can be imported using the transit router id and accountId, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/grantRule:GrantRule default trId:accountId
+        $ pulumi import volcengine:transit_router/grantRule:GrantRule default trId:accountId
         ```
 
         :param str resource_name: The name of the resource.

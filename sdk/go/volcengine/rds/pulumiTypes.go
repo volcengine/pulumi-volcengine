@@ -765,7 +765,8 @@ type InstancesRdsInstance struct {
 	// The status of the RDS instance.
 	InstanceStatus string `pulumi:"instanceStatus"`
 	// The type of the RDS instance.
-	InstanceType        string   `pulumi:"instanceType"`
+	InstanceType string `pulumi:"instanceType"`
+	// The ID list of read only instance.
 	ReadOnlyInstanceIds []string `pulumi:"readOnlyInstanceIds"`
 	// The region of the RDS instance.
 	Region string `pulumi:"region"`
@@ -814,7 +815,8 @@ type InstancesRdsInstanceArgs struct {
 	// The status of the RDS instance.
 	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
 	// The type of the RDS instance.
-	InstanceType        pulumi.StringInput      `pulumi:"instanceType"`
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The ID list of read only instance.
 	ReadOnlyInstanceIds pulumi.StringArrayInput `pulumi:"readOnlyInstanceIds"`
 	// The region of the RDS instance.
 	Region pulumi.StringInput `pulumi:"region"`
@@ -939,6 +941,7 @@ func (o InstancesRdsInstanceOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsInstance) string { return v.InstanceType }).(pulumi.StringOutput)
 }
 
+// The ID list of read only instance.
 func (o InstancesRdsInstanceOutput) ReadOnlyInstanceIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v InstancesRdsInstance) []string { return v.ReadOnlyInstanceIds }).(pulumi.StringArrayOutput)
 }

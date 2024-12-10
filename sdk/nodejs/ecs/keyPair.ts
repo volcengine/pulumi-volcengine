@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * ECS key pair can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:ecs/keyPair:KeyPair default kp-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:ecs/keyPair:KeyPair default kp-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class KeyPair extends pulumi.CustomResource {

@@ -280,7 +280,7 @@ class Tag(pulumi.CustomResource):
         CR tags can be imported using the registry:namespace:repository:tag, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
+        $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
         ```
 
         :param str resource_name: The name of the resource.
@@ -316,7 +316,7 @@ class Tag(pulumi.CustomResource):
         CR tags can be imported using the registry:namespace:repository:tag, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
+        $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
         ```
 
         :param str resource_name: The name of the resource.

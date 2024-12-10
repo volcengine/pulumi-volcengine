@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * KafkaSaslUser can be imported using the kafka_id:username, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
+ * $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
  * ```
  */
 export class SaslUser extends pulumi.CustomResource {

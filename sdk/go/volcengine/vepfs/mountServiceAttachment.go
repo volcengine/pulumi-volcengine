@@ -89,9 +89,7 @@ import (
 // VepfsMountServiceAttachment can be imported using the mount_service_id:file_system_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vepfs/mountServiceAttachment:MountServiceAttachment default mount_service_id:file_system_id
-//
+// $ pulumi import volcengine:vepfs/mountServiceAttachment:MountServiceAttachment default mount_service_id:file_system_id
 // ```
 type MountServiceAttachment struct {
 	pulumi.CustomResourceState

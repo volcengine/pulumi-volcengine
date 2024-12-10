@@ -69,7 +69,7 @@ import * as utilities from "../utilities";
  * ESCloud Instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:escloud/instance:Instance default n769ewmjjqyqh5dv
+ * $ pulumi import volcengine:escloud/instance:Instance default n769ewmjjqyqh5dv
  * ```
  */
 export class Instance extends pulumi.CustomResource {

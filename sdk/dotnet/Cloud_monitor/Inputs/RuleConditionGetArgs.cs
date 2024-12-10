@@ -30,6 +30,9 @@ namespace Pulumi.Volcengine.Cloud_monitor.Inputs
         [Input("metricUnit", required: true)]
         public Input<string> MetricUnit { get; set; } = null!;
 
+        /// <summary>
+        /// The period of the cloud monitor rule.
+        /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
 

@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = vpc.NewIpv6AddressBandwidth(ctx, "foo", &vpc.Ipv6AddressBandwidthArgs{
-//				Ipv6Address: *pulumi.String(dataIpv6.Ipv6Addresses[0].Ipv6Address),
+//				Ipv6Address: pulumi.String(dataIpv6.Ipv6Addresses[0].Ipv6Address),
 //				BillingType: pulumi.String("PostPaidByBandwidth"),
 //				Bandwidth:   pulumi.Int(5),
 //			})
@@ -60,9 +60,7 @@ import (
 // Ipv6AddressBandwidth can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth default eip-2fede9fsgnr4059gp674m6ney
-//
+// $ pulumi import volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth default eip-2fede9fsgnr4059gp674m6ney
 // ```
 type Ipv6AddressBandwidth struct {
 	pulumi.CustomResourceState

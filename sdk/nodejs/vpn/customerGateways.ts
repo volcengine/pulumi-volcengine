@@ -36,6 +36,7 @@ export function customerGateways(args?: CustomerGatewaysArgs, opts?: pulumi.Invo
         "ipAddress": args.ipAddress,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
     }, opts);
 }
 
@@ -63,6 +64,10 @@ export interface CustomerGatewaysArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name of the VPN customer gateway.
+     */
+    projectName?: string;
 }
 
 /**
@@ -85,6 +90,7 @@ export interface CustomerGatewaysResult {
     readonly ipAddress?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    readonly projectName?: string;
     /**
      * The total count of customer gateway query.
      */
@@ -138,4 +144,8 @@ export interface CustomerGatewaysOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the VPN customer gateway.
+     */
+    projectName?: pulumi.Input<string>;
 }

@@ -47,9 +47,7 @@ import (
 // Subnet can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
-//
+// $ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
 // ```
 type Subnet struct {
 	pulumi.CustomResourceState

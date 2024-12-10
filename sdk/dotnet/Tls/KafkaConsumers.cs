@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Use this data source to query detailed information of tls kafka consumers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -37,17 +35,13 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<KafkaConsumersResult> InvokeAsync(KafkaConsumersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<KafkaConsumersResult>("volcengine:tls/kafkaConsumers:KafkaConsumers", args ?? new KafkaConsumersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls kafka consumers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -69,8 +63,6 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<KafkaConsumersResult> Invoke(KafkaConsumersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<KafkaConsumersResult>("volcengine:tls/kafkaConsumers:KafkaConsumers", args ?? new KafkaConsumersInvokeArgs(), options.WithDefaults());

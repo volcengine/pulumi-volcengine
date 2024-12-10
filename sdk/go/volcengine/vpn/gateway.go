@@ -66,9 +66,7 @@ import (
 // VpnGateway can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
-//
+// $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
 // ```
 type Gateway struct {
 	pulumi.CustomResourceState
@@ -77,8 +75,7 @@ type Gateway struct {
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
 	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
-	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-	// state file, not actually remove.
+	// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The business status of the VPN gateway.
 	BusinessStatus pulumi.StringOutput `pulumi:"businessStatus"`
@@ -94,7 +91,7 @@ type Gateway struct {
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
 	// The IP address of the VPN gateway.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// Whether ipsec is enabled.
+	// Whether ipsec is enabled. Default is true.
 	IpsecEnabled pulumi.BoolPtrOutput `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringOutput `pulumi:"lockReason"`
@@ -107,7 +104,7 @@ type Gateway struct {
 	RenewType pulumi.StringOutput `pulumi:"renewType"`
 	// The route count of the VPN gateway.
 	RouteCount pulumi.IntOutput `pulumi:"routeCount"`
-	// Whether ssl is enabled.
+	// Whether ssl is enabled. Default is false.
 	SslEnabled pulumi.BoolPtrOutput `pulumi:"sslEnabled"`
 	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
 	SslMaxConnections pulumi.IntOutput `pulumi:"sslMaxConnections"`
@@ -170,8 +167,7 @@ type gatewayState struct {
 	AccountId *string `pulumi:"accountId"`
 	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-	// state file, not actually remove.
+	// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The business status of the VPN gateway.
 	BusinessStatus *string `pulumi:"businessStatus"`
@@ -187,7 +183,7 @@ type gatewayState struct {
 	ExpiredTime *string `pulumi:"expiredTime"`
 	// The IP address of the VPN gateway.
 	IpAddress *string `pulumi:"ipAddress"`
-	// Whether ipsec is enabled.
+	// Whether ipsec is enabled. Default is true.
 	IpsecEnabled *bool `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason *string `pulumi:"lockReason"`
@@ -200,7 +196,7 @@ type gatewayState struct {
 	RenewType *string `pulumi:"renewType"`
 	// The route count of the VPN gateway.
 	RouteCount *int `pulumi:"routeCount"`
-	// Whether ssl is enabled.
+	// Whether ssl is enabled. Default is false.
 	SslEnabled *bool `pulumi:"sslEnabled"`
 	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
 	SslMaxConnections *int `pulumi:"sslMaxConnections"`
@@ -225,8 +221,7 @@ type GatewayState struct {
 	AccountId pulumi.StringPtrInput
 	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth pulumi.IntPtrInput
-	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-	// state file, not actually remove.
+	// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
 	BillingType pulumi.StringPtrInput
 	// The business status of the VPN gateway.
 	BusinessStatus pulumi.StringPtrInput
@@ -242,7 +237,7 @@ type GatewayState struct {
 	ExpiredTime pulumi.StringPtrInput
 	// The IP address of the VPN gateway.
 	IpAddress pulumi.StringPtrInput
-	// Whether ipsec is enabled.
+	// Whether ipsec is enabled. Default is true.
 	IpsecEnabled pulumi.BoolPtrInput
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringPtrInput
@@ -255,7 +250,7 @@ type GatewayState struct {
 	RenewType pulumi.StringPtrInput
 	// The route count of the VPN gateway.
 	RouteCount pulumi.IntPtrInput
-	// Whether ssl is enabled.
+	// Whether ssl is enabled. Default is false.
 	SslEnabled pulumi.BoolPtrInput
 	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
 	SslMaxConnections pulumi.IntPtrInput
@@ -282,19 +277,18 @@ func (GatewayState) ElementType() reflect.Type {
 type gatewayArgs struct {
 	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth int `pulumi:"bandwidth"`
-	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-	// state file, not actually remove.
+	// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the VPN gateway.
 	Description *string `pulumi:"description"`
-	// Whether ipsec is enabled.
+	// Whether ipsec is enabled. Default is true.
 	IpsecEnabled *bool `pulumi:"ipsecEnabled"`
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
 	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period *int `pulumi:"period"`
 	// The project name of the VPN gateway.
 	ProjectName *string `pulumi:"projectName"`
-	// Whether ssl is enabled.
+	// Whether ssl is enabled. Default is false.
 	SslEnabled *bool `pulumi:"sslEnabled"`
 	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
 	SslMaxConnections *int `pulumi:"sslMaxConnections"`
@@ -312,19 +306,18 @@ type gatewayArgs struct {
 type GatewayArgs struct {
 	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth pulumi.IntInput
-	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-	// state file, not actually remove.
+	// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
 	BillingType pulumi.StringPtrInput
 	// The description of the VPN gateway.
 	Description pulumi.StringPtrInput
-	// Whether ipsec is enabled.
+	// Whether ipsec is enabled. Default is true.
 	IpsecEnabled pulumi.BoolPtrInput
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
 	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrInput
 	// The project name of the VPN gateway.
 	ProjectName pulumi.StringPtrInput
-	// Whether ssl is enabled.
+	// Whether ssl is enabled. Default is false.
 	SslEnabled pulumi.BoolPtrInput
 	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
 	SslMaxConnections pulumi.IntPtrInput
@@ -435,8 +428,7 @@ func (o GatewayOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-// state file, not actually remove.
+// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
 func (o GatewayOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -476,7 +468,7 @@ func (o GatewayOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// Whether ipsec is enabled.
+// Whether ipsec is enabled. Default is true.
 func (o GatewayOutput) IpsecEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.BoolPtrOutput { return v.IpsecEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -507,7 +499,7 @@ func (o GatewayOutput) RouteCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.IntOutput { return v.RouteCount }).(pulumi.IntOutput)
 }
 
-// Whether ssl is enabled.
+// Whether ssl is enabled. Default is false.
 func (o GatewayOutput) SslEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.BoolPtrOutput { return v.SslEnabled }).(pulumi.BoolPtrOutput)
 }

@@ -17,6 +17,8 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.transit_router.BandwidthPackage("foo", {
  *     bandwidth: 2,
  *     description: "acc-test",
+ *     localGeographicRegionSetId: "China",
+ *     peerGeographicRegionSetId: "China",
  *     period: 1,
  *     projectName: "default",
  *     renewType: "Manual",
@@ -33,7 +35,7 @@ import * as utilities from "../utilities";
  * TransitRouterBandwidthPackage can be imported using the Id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
+ * $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
  * ```
  */
 export class BandwidthPackage extends pulumi.CustomResource {
@@ -92,6 +94,14 @@ export class BandwidthPackage extends pulumi.CustomResource {
      * The expired time of the transit router bandwidth package.
      */
     public /*out*/ readonly expiredTime!: pulumi.Output<string>;
+    /**
+     * The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+     */
+    public readonly localGeographicRegionSetId!: pulumi.Output<string | undefined>;
+    /**
+     * The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+     */
+    public readonly peerGeographicRegionSetId!: pulumi.Output<string | undefined>;
     /**
      * The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
      */
@@ -153,6 +163,8 @@ export class BandwidthPackage extends pulumi.CustomResource {
             resourceInputs["deleteTime"] = state ? state.deleteTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["expiredTime"] = state ? state.expiredTime : undefined;
+            resourceInputs["localGeographicRegionSetId"] = state ? state.localGeographicRegionSetId : undefined;
+            resourceInputs["peerGeographicRegionSetId"] = state ? state.peerGeographicRegionSetId : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["remainRenewTimes"] = state ? state.remainRenewTimes : undefined;
@@ -167,6 +179,8 @@ export class BandwidthPackage extends pulumi.CustomResource {
             const args = argsOrState as BandwidthPackageArgs | undefined;
             resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["localGeographicRegionSetId"] = args ? args.localGeographicRegionSetId : undefined;
+            resourceInputs["peerGeographicRegionSetId"] = args ? args.peerGeographicRegionSetId : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["remainRenewTimes"] = args ? args.remainRenewTimes : undefined;
@@ -221,6 +235,14 @@ export interface BandwidthPackageState {
      */
     expiredTime?: pulumi.Input<string>;
     /**
+     * The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+     */
+    localGeographicRegionSetId?: pulumi.Input<string>;
+    /**
+     * The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+     */
+    peerGeographicRegionSetId?: pulumi.Input<string>;
+    /**
      * The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
      */
     period?: pulumi.Input<number>;
@@ -274,6 +296,14 @@ export interface BandwidthPackageArgs {
      * The description of the transit router bandwidth package.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+     */
+    localGeographicRegionSetId?: pulumi.Input<string>;
+    /**
+     * The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+     */
+    peerGeographicRegionSetId?: pulumi.Input<string>;
     /**
      * The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
      */

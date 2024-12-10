@@ -122,7 +122,7 @@ import * as utilities from "../utilities";
  * tls rule can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:tls/rule:Rule default fa************
+ * $ pulumi import volcengine:tls/rule:Rule default fa************
  * ```
  */
 export class Rule extends pulumi.CustomResource {

@@ -293,7 +293,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
         ScalingLifecycleHook can be imported using the ScalingGroupId:LifecycleHookId, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
+        $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
         ```
 
         :param str resource_name: The name of the resource.
@@ -360,7 +360,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
         ScalingLifecycleHook can be imported using the ScalingGroupId:LifecycleHookId, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
+        $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
         ```
 
         :param str resource_name: The name of the resource.

@@ -27,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Tag cannot be created,please import by command `terraform import volcengine_cr_tag.default registry:namespace:repository:tag`
 //			_, err := cr.NewTag(ctx, "default", &cr.TagArgs{
 //				Namespace:  pulumi.String("langyu"),
 //				Registry:   pulumi.String("enterprise-1"),
@@ -46,9 +47,7 @@ import (
 // CR tags can be imported using the registry:namespace:repository:tag, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
-//
+// $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
 // ```
 type Tag struct {
 	pulumi.CustomResourceState

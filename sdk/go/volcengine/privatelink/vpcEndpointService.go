@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -96,12 +96,10 @@ import (
 // VpcEndpointService can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
-//
+// $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
 // ```
-//
-//	It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
+// It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource.
+// For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
 type VpcEndpointService struct {
 	pulumi.CustomResourceState
 

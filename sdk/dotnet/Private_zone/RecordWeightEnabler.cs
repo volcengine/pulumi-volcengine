@@ -11,13 +11,12 @@ namespace Pulumi.Volcengine.Private_zone
 {
     /// <summary>
     /// Provides a resource to manage private zone record weight enabler
-    /// 
     /// ## Import
     /// 
     /// PrivateZoneRecordWeightEnabler can be imported using the zid:record_set_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler default resource_id
+    /// $ pulumi import volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler")]

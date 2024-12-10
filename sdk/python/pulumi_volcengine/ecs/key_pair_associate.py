@@ -140,10 +140,14 @@ class KeyPairAssociate(pulumi.CustomResource):
 
         ## Import
 
-        ECS key pair associate can be imported using the id, e.g. After binding the key pair, the instance needs to be restarted for the key pair to take effect. After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
+        ECS key pair associate can be imported using the id, e.g.
+
+        After binding the key pair, the instance needs to be restarted for the key pair to take effect.
+
+        After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
 
         ```sh
-         $ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -200,10 +204,14 @@ class KeyPairAssociate(pulumi.CustomResource):
 
         ## Import
 
-        ECS key pair associate can be imported using the id, e.g. After binding the key pair, the instance needs to be restarted for the key pair to take effect. After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
+        ECS key pair associate can be imported using the id, e.g.
+
+        After binding the key pair, the instance needs to be restarted for the key pair to take effect.
+
+        After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
 
         ```sh
-         $ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

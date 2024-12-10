@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud monitor rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RulesResult> InvokeAsync(RulesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RulesResult>("volcengine:cloud_monitor/rules:Rules", args ?? new RulesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud monitor rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RulesResult> Invoke(RulesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RulesResult>("volcengine:cloud_monitor/rules:Rules", args ?? new RulesInvokeArgs(), options.WithDefaults());

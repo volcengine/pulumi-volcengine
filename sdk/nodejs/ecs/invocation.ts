@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  * EcsInvocation can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:ecs/invocation:Invocation default ivk-ychnxnm45dl8j0mm****
+ * $ pulumi import volcengine:ecs/invocation:Invocation default ivk-ychnxnm45dl8j0mm****
  * ```
  */
 export class Invocation extends pulumi.CustomResource {

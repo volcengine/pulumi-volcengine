@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_v2
     {
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds instances v2
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Rds_v2
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RdsInstancesV2Result> InvokeAsync(RdsInstancesV2Args? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RdsInstancesV2Result>("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args ?? new RdsInstancesV2Args(), options.WithDefaults());
 
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds instances v2
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Rds_v2
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RdsInstancesV2Result> Invoke(RdsInstancesV2InvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RdsInstancesV2Result>("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args ?? new RdsInstancesV2InvokeArgs(), options.WithDefaults());

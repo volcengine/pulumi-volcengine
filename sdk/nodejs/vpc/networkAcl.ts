@@ -14,13 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpc.NetworkAcl("foo", {
- *     egressAclEntries: [{
- *         destinationCidrIp: "192.168.0.0/16",
- *         networkAclEntryName: "egress2",
- *         policy: "accept",
- *         protocol: "all",
- *     }],
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooNetworkAcl = new volcengine.vpc.NetworkAcl("fooNetworkAcl", {
+ *     vpcId: fooVpc.id,
+ *     networkAclName: "tf-test-acl",
  *     ingressAclEntries: [
  *         {
  *             networkAclEntryName: "ingress1",
@@ -31,14 +31,22 @@ import * as utilities from "../utilities";
  *         {
  *             networkAclEntryName: "ingress3",
  *             policy: "accept",
- *             port: "80/80",
  *             protocol: "tcp",
+ *             port: "80/80",
  *             sourceCidrIp: "192.168.0.0/24",
  *         },
  *     ],
- *     networkAclName: "tf-test-acl",
+ *     egressAclEntries: [{
+ *         networkAclEntryName: "egress2",
+ *         policy: "accept",
+ *         protocol: "all",
+ *         destinationCidrIp: "192.168.0.0/16",
+ *     }],
  *     projectName: "default",
- *     vpcId: "vpc-2d6jskar243k058ozfdae13ne",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -47,7 +55,7 @@ import * as utilities from "../utilities";
  * Network Acl can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
+ * $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
  * ```
  */
 export class NetworkAcl extends pulumi.CustomResource {
@@ -99,6 +107,10 @@ export class NetworkAcl extends pulumi.CustomResource {
      */
     public readonly projectName!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.NetworkAclTag[] | undefined>;
+    /**
      * The vpc id of Network Acl.
      */
     public readonly vpcId!: pulumi.Output<string>;
@@ -121,6 +133,7 @@ export class NetworkAcl extends pulumi.CustomResource {
             resourceInputs["ingressAclEntries"] = state ? state.ingressAclEntries : undefined;
             resourceInputs["networkAclName"] = state ? state.networkAclName : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as NetworkAclArgs | undefined;
@@ -132,6 +145,7 @@ export class NetworkAcl extends pulumi.CustomResource {
             resourceInputs["ingressAclEntries"] = args ? args.ingressAclEntries : undefined;
             resourceInputs["networkAclName"] = args ? args.networkAclName : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -164,6 +178,10 @@ export interface NetworkAclState {
      */
     projectName?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.NetworkAclTag>[]>;
+    /**
      * The vpc id of Network Acl.
      */
     vpcId?: pulumi.Input<string>;
@@ -193,6 +211,10 @@ export interface NetworkAclArgs {
      * The project name of the network acl.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.NetworkAclTag>[]>;
     /**
      * The vpc id of Network Acl.
      */

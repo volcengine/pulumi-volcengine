@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -68,7 +68,7 @@ import (
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
@@ -95,7 +95,7 @@ import (
 //				Description:      pulumi.String("acc-test"),
 //				Kind:             pulumi.String("data"),
 //				Size:             pulumi.Int(40),
-//				ZoneId:           *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:           pulumi.String(fooZones.Zones[0].Id),
 //				VolumeChargeType: pulumi.String("PostPaid"),
 //				ProjectName:      pulumi.String("default"),
 //			})
@@ -120,9 +120,7 @@ import (
 // VolumeAttach can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
-//
+// $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
 // ```
 type VolumeAttach struct {
 	pulumi.CustomResourceState

@@ -365,7 +365,7 @@ class Gateway(pulumi.CustomResource):
         NatGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
+        $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
         ```
 
         :param str resource_name: The name of the resource.
@@ -421,7 +421,7 @@ class Gateway(pulumi.CustomResource):
         NatGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
+        $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
         ```
 
         :param str resource_name: The name of the resource.

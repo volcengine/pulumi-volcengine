@@ -8,7 +8,7 @@ namespace Pulumi.Volcengine
 {
     public static class Config
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "IDE1006", Justification = 
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "IDE1006", Justification = 
         "Double underscore prefix used to avoid conflicts with variable names.")]
         private sealed class __Value<T>
         {
@@ -43,10 +43,6 @@ namespace Pulumi.Volcengine
         }
 
         private static readonly __Value<Pulumi.Volcengine.Config.Types.AssumeRole?> _assumeRole = new __Value<Pulumi.Volcengine.Config.Types.AssumeRole?>(() => __config.GetObject<Pulumi.Volcengine.Config.Types.AssumeRole>("assumeRole"));
-        /// <summary>
-        /// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
-        /// supplied credentials.
-        /// </summary>
         public static Pulumi.Volcengine.Config.Types.AssumeRole? AssumeRole
         {
             get => _assumeRole.Get();
@@ -138,9 +134,21 @@ namespace Pulumi.Volcengine
 
              public class AssumeRole
              {
+            /// <summary>
+            /// The session name to use when making the AssumeRole call.
+            /// </summary>
                 public string AssumeRoleSessionName { get; set; }
+            /// <summary>
+            /// The TRN of the role to assume.
+            /// </summary>
                 public string AssumeRoleTrn { get; set; }
+            /// <summary>
+            /// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+            /// </summary>
                 public int DurationSeconds { get; set; }
+            /// <summary>
+            /// A more restrictive policy when making the AssumeRole call.
+            /// </summary>
                 public string? Policy { get; set; } = null!;
             }
         }

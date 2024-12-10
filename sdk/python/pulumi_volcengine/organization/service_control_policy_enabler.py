@@ -42,7 +42,7 @@ class ServiceControlPolicyEnabler(pulumi.CustomResource):
         ServiceControlPolicy enabler can be imported using the default_id (organization:service_control_policy_enable) , e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler default organization:service_control_policy_enable
+        $ pulumi import volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler default organization:service_control_policy_enable
         ```
 
         :param str resource_name: The name of the resource.
@@ -70,7 +70,7 @@ class ServiceControlPolicyEnabler(pulumi.CustomResource):
         ServiceControlPolicy enabler can be imported using the default_id (organization:service_control_policy_enable) , e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler default organization:service_control_policy_enable
+        $ pulumi import volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler default organization:service_control_policy_enable
         ```
 
         :param str resource_name: The name of the resource.

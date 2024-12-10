@@ -390,7 +390,7 @@ class BandwidthPackage(pulumi.CustomResource):
         BandwidthPackage can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
+        $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
         ```
 
         :param str resource_name: The name of the resource.
@@ -438,7 +438,7 @@ class BandwidthPackage(pulumi.CustomResource):
         BandwidthPackage can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
+        $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
         ```
 
         :param str resource_name: The name of the resource.

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cdn
     {
         /// <summary>
         /// Use this data source to query detailed information of cdn domains
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -51,7 +49,7 @@ namespace Pulumi.Volcengine.Cdn
         ///                 Value = "tfvalue2",
         ///             },
         ///         },
-        ///         DomainConfig = fooCdnCertificate.Id.Apply(id =&gt; JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         DomainConfig = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["OriginProtocol"] = "https",
         ///             ["Origin"] = new[]
@@ -80,7 +78,7 @@ namespace Pulumi.Volcengine.Cdn
         ///             {
         ///                 ["CertInfo"] = new Dictionary&lt;string, object?&gt;
         ///                 {
-        ///                     ["CertId"] = id,
+        ///                     ["CertId"] = fooCdnCertificate.Id,
         ///                 },
         ///                 ["DisableHttp"] = false,
         ///                 ["HTTP2"] = true,
@@ -102,17 +100,13 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<DomainsResult> InvokeAsync(DomainsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<DomainsResult>("volcengine:cdn/domains:Domains", args ?? new DomainsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cdn domains
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -148,7 +142,7 @@ namespace Pulumi.Volcengine.Cdn
         ///                 Value = "tfvalue2",
         ///             },
         ///         },
-        ///         DomainConfig = fooCdnCertificate.Id.Apply(id =&gt; JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         DomainConfig = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["OriginProtocol"] = "https",
         ///             ["Origin"] = new[]
@@ -177,7 +171,7 @@ namespace Pulumi.Volcengine.Cdn
         ///             {
         ///                 ["CertInfo"] = new Dictionary&lt;string, object?&gt;
         ///                 {
-        ///                     ["CertId"] = id,
+        ///                     ["CertId"] = fooCdnCertificate.Id,
         ///                 },
         ///                 ["DisableHttp"] = false,
         ///                 ["HTTP2"] = true,
@@ -199,8 +193,6 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<DomainsResult> Invoke(DomainsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<DomainsResult>("volcengine:cdn/domains:Domains", args ?? new DomainsInvokeArgs(), options.WithDefaults());

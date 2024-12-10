@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  * AlbServerGroup can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
+ * $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
  * ```
  */
 export class ServerGroup extends pulumi.CustomResource {

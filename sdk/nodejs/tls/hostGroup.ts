@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * Tls Host Group can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
+ * $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
  * ```
  */
 export class HostGroup extends pulumi.CustomResource {
@@ -96,7 +96,7 @@ export class HostGroup extends pulumi.CustomResource {
     /**
      * The project name of iam.
      */
-    public readonly iamProjectName!: pulumi.Output<string | undefined>;
+    public readonly iamProjectName!: pulumi.Output<string>;
     /**
      * The modify time of host group.
      */

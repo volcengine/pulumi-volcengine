@@ -150,7 +150,7 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         ECS deployment set associate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -217,7 +217,7 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         ECS deployment set associate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

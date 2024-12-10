@@ -51,12 +51,12 @@ import (
 //
 // ## Import
 //
-// LaunchTemplate can be imported using the LaunchTemplateId, e.g. When the instance launch template is modified, a new version will be created. When the number of versions reaches the upper limit (30), the oldest version that is not the default version will be deleted.
+// LaunchTemplate can be imported using the LaunchTemplateId, e.g.
+// When the instance launch template is modified, a new version will be created.
+// When the number of versions reaches the upper limit (30), the oldest version that is not the default version will be deleted.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ecs/launchTemplate:LaunchTemplate default lt-ysxc16auaugh9zfy****
-//
+// $ pulumi import volcengine:ecs/launchTemplate:LaunchTemplate default lt-ysxc16auaugh9zfy****
 // ```
 type LaunchTemplate struct {
 	pulumi.CustomResourceState

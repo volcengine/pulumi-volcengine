@@ -276,10 +276,11 @@ class ScalingInstanceAttachment(pulumi.CustomResource):
 
         ## Import
 
-        Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g. You can choose to remove or detach the instance according to the `delete_type` field.
+        Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g.
+        You can choose to remove or detach the instance according to the `delete_type` field.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment default scg-mizl7m1kqccg5smt1bdpijuj:i-l8u2ai4j0fauo6mrpgk8
+        $ pulumi import volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment default scg-mizl7m1kqccg5smt1bdpijuj:i-l8u2ai4j0fauo6mrpgk8
         ```
 
         :param str resource_name: The name of the resource.
@@ -376,10 +377,11 @@ class ScalingInstanceAttachment(pulumi.CustomResource):
 
         ## Import
 
-        Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g. You can choose to remove or detach the instance according to the `delete_type` field.
+        Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g.
+        You can choose to remove or detach the instance according to the `delete_type` field.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment default scg-mizl7m1kqccg5smt1bdpijuj:i-l8u2ai4j0fauo6mrpgk8
+        $ pulumi import volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment default scg-mizl7m1kqccg5smt1bdpijuj:i-l8u2ai4j0fauo6mrpgk8
         ```
 
         :param str resource_name: The name of the resource.

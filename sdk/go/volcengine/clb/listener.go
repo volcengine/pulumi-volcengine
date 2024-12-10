@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -122,9 +122,7 @@ import (
 // Listener can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
-//
+// $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
 // ```
 type Listener struct {
 	pulumi.CustomResourceState
@@ -142,7 +140,7 @@ type Listener struct {
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled pulumi.StringPtrOutput `pulumi:"connectionDrainEnabled"`
-	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// The connection drain timeout of the Listener. Valid value range is `0-900`.
 	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
 	ConnectionDrainTimeout pulumi.IntOutput `pulumi:"connectionDrainTimeout"`
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
@@ -234,7 +232,7 @@ type listenerState struct {
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled *string `pulumi:"connectionDrainEnabled"`
-	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// The connection drain timeout of the Listener. Valid value range is `0-900`.
 	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
 	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
@@ -285,7 +283,7 @@ type ListenerState struct {
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled pulumi.StringPtrInput
-	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// The connection drain timeout of the Listener. Valid value range is `0-900`.
 	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
 	ConnectionDrainTimeout pulumi.IntPtrInput
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
@@ -340,7 +338,7 @@ type listenerArgs struct {
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled *string `pulumi:"connectionDrainEnabled"`
-	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// The connection drain timeout of the Listener. Valid value range is `0-900`.
 	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
 	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
@@ -390,7 +388,7 @@ type ListenerArgs struct {
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled pulumi.StringPtrInput
-	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// The connection drain timeout of the Listener. Valid value range is `0-900`.
 	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
 	ConnectionDrainTimeout pulumi.IntPtrInput
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
@@ -543,7 +541,7 @@ func (o ListenerOutput) ConnectionDrainEnabled() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.ConnectionDrainEnabled }).(pulumi.StringPtrOutput)
 }
 
-// The connection drain timeout of the Listener. Valid value range is `1-900`.
+// The connection drain timeout of the Listener. Valid value range is `0-900`.
 // This filed is required when the value of field `connectionDrainEnabled` is `on`.
 func (o ListenerOutput) ConnectionDrainTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)

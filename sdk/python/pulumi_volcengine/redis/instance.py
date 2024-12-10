@@ -18,36 +18,38 @@ class InstanceArgs:
     def __init__(__self__, *,
                  engine_version: pulumi.Input[str],
                  node_number: pulumi.Input[int],
-                 password: pulumi.Input[str],
                  shard_capacity: pulumi.Input[int],
                  sharded_cluster: pulumi.Input[int],
                  subnet_id: pulumi.Input[str],
-                 zone_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 additional_bandwidth: Optional[pulumi.Input[int]] = None,
                  apply_immediately: Optional[pulumi.Input[bool]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backup_active: Optional[pulumi.Input[bool]] = None,
                  backup_hour: Optional[pulumi.Input[int]] = None,
                  backup_periods: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 configure_nodes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]]] = None,
                  create_backup: Optional[pulumi.Input[bool]] = None,
                  deletion_protection: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 multi_az: Optional[pulumi.Input[str]] = None,
                  param_values: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  purchase_months: Optional[pulumi.Input[int]] = None,
                  shard_number: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
-                 vpc_auth_mode: Optional[pulumi.Input[str]] = None):
+                 vpc_auth_mode: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
-        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
-        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shard_capacity: The memory capacity of each shard, unit is MiB. The valid value range is as fallows: When the value of `ShardedCluster` is 0: 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536. When the value of `ShardedCluster` is 1: 1024, 2048, 4096, 8192, 16384. When the value of `node_number` is 1, the value of this field can not be 256.
         :param pulumi.Input[int] sharded_cluster: Whether enable sharded cluster for the current redis instance. Valid values: 0, 1. 0 means disable, 1 means enable.
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        :param pulumi.Input[int] additional_bandwidth: Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
         :param pulumi.Input[bool] apply_immediately: Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -57,11 +59,18 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] backup_periods: The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on. 
                This field is valid and required when updating the backup plan of primary and secondary instance.
         :param pulumi.Input[str] charge_type: The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]] configure_nodes: Set the list of available zones to which the node belongs.
         :param pulumi.Input[bool] create_backup: Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         :param pulumi.Input[str] deletion_protection: Whether enable deletion protection for redis instance. Valid values: `enabled`, `disabled`(default).
         :param pulumi.Input[str] instance_name: The name of the redis instance.
+        :param pulumi.Input[str] multi_az: Set the availability zone deployment scheme for the instance. The value range is as follows: 
+               disabled: Single availability zone deployment scheme.
+               enabled: Multi-availability zone deployment scheme.
+               Description:
+               When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
+        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
@@ -69,14 +78,15 @@ class InstanceArgs:
         :param pulumi.Input[int] shard_number: The number of shards in redis instance, the valid value range is `2-256`. This field is valid and required when the value of `ShardedCluster` is 1.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
         pulumi.set(__self__, "engine_version", engine_version)
         pulumi.set(__self__, "node_number", node_number)
-        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "shard_capacity", shard_capacity)
         pulumi.set(__self__, "sharded_cluster", sharded_cluster)
         pulumi.set(__self__, "subnet_id", subnet_id)
-        pulumi.set(__self__, "zone_ids", zone_ids)
+        if additional_bandwidth is not None:
+            pulumi.set(__self__, "additional_bandwidth", additional_bandwidth)
         if apply_immediately is not None:
             pulumi.set(__self__, "apply_immediately", apply_immediately)
         if auto_renew is not None:
@@ -89,14 +99,20 @@ class InstanceArgs:
             pulumi.set(__self__, "backup_periods", backup_periods)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if configure_nodes is not None:
+            pulumi.set(__self__, "configure_nodes", configure_nodes)
         if create_backup is not None:
             pulumi.set(__self__, "create_backup", create_backup)
         if deletion_protection is not None:
             pulumi.set(__self__, "deletion_protection", deletion_protection)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
+        if multi_az is not None:
+            pulumi.set(__self__, "multi_az", multi_az)
         if param_values is not None:
             pulumi.set(__self__, "param_values", param_values)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if project_name is not None:
@@ -109,12 +125,17 @@ class InstanceArgs:
             pulumi.set(__self__, "tags", tags)
         if vpc_auth_mode is not None:
             pulumi.set(__self__, "vpc_auth_mode", vpc_auth_mode)
+        if zone_ids is not None:
+            warnings.warn("""This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""", DeprecationWarning)
+            pulumi.log.warn("""zone_ids is deprecated: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""")
+        if zone_ids is not None:
+            pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="engineVersion")
     def engine_version(self) -> pulumi.Input[str]:
         """
-        The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         """
         return pulumi.get(self, "engine_version")
 
@@ -133,18 +154,6 @@ class InstanceArgs:
     @node_number.setter
     def node_number(self, value: pulumi.Input[int]):
         pulumi.set(self, "node_number", value)
-
-    @property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[str]:
-        """
-        The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[str]):
-        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter(name="shardCapacity")
@@ -183,16 +192,16 @@ class InstanceArgs:
         pulumi.set(self, "subnet_id", value)
 
     @property
-    @pulumi.getter(name="zoneIds")
-    def zone_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+    @pulumi.getter(name="additionalBandwidth")
+    def additional_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
         """
-        return pulumi.get(self, "zone_ids")
+        return pulumi.get(self, "additional_bandwidth")
 
-    @zone_ids.setter
-    def zone_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "zone_ids", value)
+    @additional_bandwidth.setter
+    def additional_bandwidth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_bandwidth", value)
 
     @property
     @pulumi.getter(name="applyImmediately")
@@ -270,6 +279,18 @@ class InstanceArgs:
         pulumi.set(self, "charge_type", value)
 
     @property
+    @pulumi.getter(name="configureNodes")
+    def configure_nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]]]:
+        """
+        Set the list of available zones to which the node belongs.
+        """
+        return pulumi.get(self, "configure_nodes")
+
+    @configure_nodes.setter
+    def configure_nodes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]]]):
+        pulumi.set(self, "configure_nodes", value)
+
+    @property
     @pulumi.getter(name="createBackup")
     def create_backup(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -306,6 +327,22 @@ class InstanceArgs:
         pulumi.set(self, "instance_name", value)
 
     @property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        disabled: Single availability zone deployment scheme.
+        enabled: Multi-availability zone deployment scheme.
+        Description:
+        When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        """
+        return pulumi.get(self, "multi_az")
+
+    @multi_az.setter
+    def multi_az(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "multi_az", value)
+
+    @property
     @pulumi.getter(name="paramValues")
     def param_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]]]:
         """
@@ -317,6 +354,18 @@ class InstanceArgs:
     @param_values.setter
     def param_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]]]):
         pulumi.set(self, "param_values", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter
@@ -391,20 +440,38 @@ class InstanceArgs:
     def vpc_auth_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_auth_mode", value)
 
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        """
+        warnings.warn("""This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""", DeprecationWarning)
+        pulumi.log.warn("""zone_ids is deprecated: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""")
+
+        return pulumi.get(self, "zone_ids")
+
+    @zone_ids.setter
+    def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "zone_ids", value)
+
 
 @pulumi.input_type
 class _InstanceState:
     def __init__(__self__, *,
+                 additional_bandwidth: Optional[pulumi.Input[int]] = None,
                  apply_immediately: Optional[pulumi.Input[bool]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backup_active: Optional[pulumi.Input[bool]] = None,
                  backup_hour: Optional[pulumi.Input[int]] = None,
                  backup_periods: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 configure_nodes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]]] = None,
                  create_backup: Optional[pulumi.Input[bool]] = None,
                  deletion_protection: Optional[pulumi.Input[str]] = None,
                  engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 multi_az: Optional[pulumi.Input[str]] = None,
                  node_number: Optional[pulumi.Input[int]] = None,
                  param_values: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -420,6 +487,7 @@ class _InstanceState:
                  zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+        :param pulumi.Input[int] additional_bandwidth: Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
         :param pulumi.Input[bool] apply_immediately: Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -429,14 +497,20 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] backup_periods: The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on. 
                This field is valid and required when updating the backup plan of primary and secondary instance.
         :param pulumi.Input[str] charge_type: The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]] configure_nodes: Set the list of available zones to which the node belongs.
         :param pulumi.Input[bool] create_backup: Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         :param pulumi.Input[str] deletion_protection: Whether enable deletion protection for redis instance. Valid values: `enabled`, `disabled`(default).
-        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         :param pulumi.Input[str] instance_name: The name of the redis instance.
+        :param pulumi.Input[str] multi_az: Set the availability zone deployment scheme for the instance. The value range is as follows: 
+               disabled: Single availability zone deployment scheme.
+               enabled: Multi-availability zone deployment scheme.
+               Description:
+               When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
-        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
@@ -447,8 +521,10 @@ class _InstanceState:
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
+        if additional_bandwidth is not None:
+            pulumi.set(__self__, "additional_bandwidth", additional_bandwidth)
         if apply_immediately is not None:
             pulumi.set(__self__, "apply_immediately", apply_immediately)
         if auto_renew is not None:
@@ -461,6 +537,8 @@ class _InstanceState:
             pulumi.set(__self__, "backup_periods", backup_periods)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if configure_nodes is not None:
+            pulumi.set(__self__, "configure_nodes", configure_nodes)
         if create_backup is not None:
             pulumi.set(__self__, "create_backup", create_backup)
         if deletion_protection is not None:
@@ -469,6 +547,8 @@ class _InstanceState:
             pulumi.set(__self__, "engine_version", engine_version)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
+        if multi_az is not None:
+            pulumi.set(__self__, "multi_az", multi_az)
         if node_number is not None:
             pulumi.set(__self__, "node_number", node_number)
         if param_values is not None:
@@ -494,7 +574,22 @@ class _InstanceState:
         if vpc_auth_mode is not None:
             pulumi.set(__self__, "vpc_auth_mode", vpc_auth_mode)
         if zone_ids is not None:
+            warnings.warn("""This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""", DeprecationWarning)
+            pulumi.log.warn("""zone_ids is deprecated: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""")
+        if zone_ids is not None:
             pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="additionalBandwidth")
+    def additional_bandwidth(self) -> Optional[pulumi.Input[int]]:
+        """
+        Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+        """
+        return pulumi.get(self, "additional_bandwidth")
+
+    @additional_bandwidth.setter
+    def additional_bandwidth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_bandwidth", value)
 
     @property
     @pulumi.getter(name="applyImmediately")
@@ -572,6 +667,18 @@ class _InstanceState:
         pulumi.set(self, "charge_type", value)
 
     @property
+    @pulumi.getter(name="configureNodes")
+    def configure_nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]]]:
+        """
+        Set the list of available zones to which the node belongs.
+        """
+        return pulumi.get(self, "configure_nodes")
+
+    @configure_nodes.setter
+    def configure_nodes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceConfigureNodeArgs']]]]):
+        pulumi.set(self, "configure_nodes", value)
+
+    @property
     @pulumi.getter(name="createBackup")
     def create_backup(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -599,7 +706,7 @@ class _InstanceState:
     @pulumi.getter(name="engineVersion")
     def engine_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         """
         return pulumi.get(self, "engine_version")
 
@@ -618,6 +725,22 @@ class _InstanceState:
     @instance_name.setter
     def instance_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_name", value)
+
+    @property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        disabled: Single availability zone deployment scheme.
+        enabled: Multi-availability zone deployment scheme.
+        Description:
+        When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        """
+        return pulumi.get(self, "multi_az")
+
+    @multi_az.setter
+    def multi_az(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "multi_az", value)
 
     @property
     @pulumi.getter(name="nodeNumber")
@@ -648,7 +771,7 @@ class _InstanceState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         """
         return pulumi.get(self, "password")
 
@@ -769,8 +892,11 @@ class _InstanceState:
     @pulumi.getter(name="zoneIds")
     def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
+        warnings.warn("""This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""", DeprecationWarning)
+        pulumi.log.warn("""zone_ids is deprecated: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""")
+
         return pulumi.get(self, "zone_ids")
 
     @zone_ids.setter
@@ -783,16 +909,19 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_bandwidth: Optional[pulumi.Input[int]] = None,
                  apply_immediately: Optional[pulumi.Input[bool]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backup_active: Optional[pulumi.Input[bool]] = None,
                  backup_hour: Optional[pulumi.Input[int]] = None,
                  backup_periods: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 configure_nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceConfigureNodeArgs']]]]] = None,
                  create_backup: Optional[pulumi.Input[bool]] = None,
                  deletion_protection: Optional[pulumi.Input[str]] = None,
                  engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 multi_az: Optional[pulumi.Input[str]] = None,
                  node_number: Optional[pulumi.Input[int]] = None,
                  param_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -824,11 +953,10 @@ class Instance(pulumi.CustomResource):
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
         foo_instance = volcengine.redis.Instance("fooInstance",
-            zone_ids=[foo_zones.zones[0].id],
-            instance_name="tf-test",
+            instance_name="tf-test2",
             sharded_cluster=1,
             password="1qaz!QAZ12",
-            node_number=2,
+            node_number=4,
             shard_capacity=1024,
             shard_number=2,
             engine_version="5.0",
@@ -866,7 +994,23 @@ class Instance(pulumi.CustomResource):
             backup_hour=6,
             backup_active=True,
             create_backup=False,
-            apply_immediately=True)
+            apply_immediately=True,
+            multi_az="enabled",
+            configure_nodes=[
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-a",
+                ),
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-b",
+                ),
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-c",
+                ),
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-b",
+                ),
+            ])
+        #additional_bandwidth = 12
         ```
 
         ## Import
@@ -874,11 +1018,13 @@ class Instance(pulumi.CustomResource):
         redis instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
+        $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
         ```
+        Adding or removing nodes and migrating availability zones for multiple AZ instances are not supported to be orchestrated simultaneously, but it is possible for single AZ instances.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] additional_bandwidth: Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
         :param pulumi.Input[bool] apply_immediately: Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -888,14 +1034,20 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] backup_periods: The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on. 
                This field is valid and required when updating the backup plan of primary and secondary instance.
         :param pulumi.Input[str] charge_type: The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceConfigureNodeArgs']]]] configure_nodes: Set the list of available zones to which the node belongs.
         :param pulumi.Input[bool] create_backup: Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         :param pulumi.Input[str] deletion_protection: Whether enable deletion protection for redis instance. Valid values: `enabled`, `disabled`(default).
-        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         :param pulumi.Input[str] instance_name: The name of the redis instance.
+        :param pulumi.Input[str] multi_az: Set the availability zone deployment scheme for the instance. The value range is as follows: 
+               disabled: Single availability zone deployment scheme.
+               enabled: Multi-availability zone deployment scheme.
+               Description:
+               When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
-        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
@@ -906,7 +1058,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
         ...
     @overload
@@ -931,11 +1083,10 @@ class Instance(pulumi.CustomResource):
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
         foo_instance = volcengine.redis.Instance("fooInstance",
-            zone_ids=[foo_zones.zones[0].id],
-            instance_name="tf-test",
+            instance_name="tf-test2",
             sharded_cluster=1,
             password="1qaz!QAZ12",
-            node_number=2,
+            node_number=4,
             shard_capacity=1024,
             shard_number=2,
             engine_version="5.0",
@@ -973,7 +1124,23 @@ class Instance(pulumi.CustomResource):
             backup_hour=6,
             backup_active=True,
             create_backup=False,
-            apply_immediately=True)
+            apply_immediately=True,
+            multi_az="enabled",
+            configure_nodes=[
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-a",
+                ),
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-b",
+                ),
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-c",
+                ),
+                volcengine.redis.InstanceConfigureNodeArgs(
+                    az="cn-guilin-b",
+                ),
+            ])
+        #additional_bandwidth = 12
         ```
 
         ## Import
@@ -981,8 +1148,9 @@ class Instance(pulumi.CustomResource):
         redis instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
+        $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
         ```
+        Adding or removing nodes and migrating availability zones for multiple AZ instances are not supported to be orchestrated simultaneously, but it is possible for single AZ instances.
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -999,16 +1167,19 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_bandwidth: Optional[pulumi.Input[int]] = None,
                  apply_immediately: Optional[pulumi.Input[bool]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backup_active: Optional[pulumi.Input[bool]] = None,
                  backup_hour: Optional[pulumi.Input[int]] = None,
                  backup_periods: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 configure_nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceConfigureNodeArgs']]]]] = None,
                  create_backup: Optional[pulumi.Input[bool]] = None,
                  deletion_protection: Optional[pulumi.Input[str]] = None,
                  engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 multi_az: Optional[pulumi.Input[str]] = None,
                  node_number: Optional[pulumi.Input[int]] = None,
                  param_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -1031,24 +1202,25 @@ class Instance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceArgs.__new__(InstanceArgs)
 
+            __props__.__dict__["additional_bandwidth"] = additional_bandwidth
             __props__.__dict__["apply_immediately"] = apply_immediately
             __props__.__dict__["auto_renew"] = auto_renew
             __props__.__dict__["backup_active"] = backup_active
             __props__.__dict__["backup_hour"] = backup_hour
             __props__.__dict__["backup_periods"] = backup_periods
             __props__.__dict__["charge_type"] = charge_type
+            __props__.__dict__["configure_nodes"] = configure_nodes
             __props__.__dict__["create_backup"] = create_backup
             __props__.__dict__["deletion_protection"] = deletion_protection
             if engine_version is None and not opts.urn:
                 raise TypeError("Missing required property 'engine_version'")
             __props__.__dict__["engine_version"] = engine_version
             __props__.__dict__["instance_name"] = instance_name
+            __props__.__dict__["multi_az"] = multi_az
             if node_number is None and not opts.urn:
                 raise TypeError("Missing required property 'node_number'")
             __props__.__dict__["node_number"] = node_number
             __props__.__dict__["param_values"] = param_values
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["port"] = port
             __props__.__dict__["project_name"] = project_name
@@ -1065,8 +1237,6 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["subnet_id"] = subnet_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vpc_auth_mode"] = vpc_auth_mode
-            if zone_ids is None and not opts.urn:
-                raise TypeError("Missing required property 'zone_ids'")
             __props__.__dict__["zone_ids"] = zone_ids
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -1080,16 +1250,19 @@ class Instance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            additional_bandwidth: Optional[pulumi.Input[int]] = None,
             apply_immediately: Optional[pulumi.Input[bool]] = None,
             auto_renew: Optional[pulumi.Input[bool]] = None,
             backup_active: Optional[pulumi.Input[bool]] = None,
             backup_hour: Optional[pulumi.Input[int]] = None,
             backup_periods: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             charge_type: Optional[pulumi.Input[str]] = None,
+            configure_nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceConfigureNodeArgs']]]]] = None,
             create_backup: Optional[pulumi.Input[bool]] = None,
             deletion_protection: Optional[pulumi.Input[str]] = None,
             engine_version: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
+            multi_az: Optional[pulumi.Input[str]] = None,
             node_number: Optional[pulumi.Input[int]] = None,
             param_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]]] = None,
             password: Optional[pulumi.Input[str]] = None,
@@ -1110,6 +1283,7 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] additional_bandwidth: Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
         :param pulumi.Input[bool] apply_immediately: Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -1119,14 +1293,20 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] backup_periods: The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on. 
                This field is valid and required when updating the backup plan of primary and secondary instance.
         :param pulumi.Input[str] charge_type: The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceConfigureNodeArgs']]]] configure_nodes: Set the list of available zones to which the node belongs.
         :param pulumi.Input[bool] create_backup: Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         :param pulumi.Input[str] deletion_protection: Whether enable deletion protection for redis instance. Valid values: `enabled`, `disabled`(default).
-        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        :param pulumi.Input[str] engine_version: The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         :param pulumi.Input[str] instance_name: The name of the redis instance.
+        :param pulumi.Input[str] multi_az: Set the availability zone deployment scheme for the instance. The value range is as follows: 
+               disabled: Single availability zone deployment scheme.
+               enabled: Multi-availability zone deployment scheme.
+               Description:
+               When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
-        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
@@ -1137,22 +1317,25 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _InstanceState.__new__(_InstanceState)
 
+        __props__.__dict__["additional_bandwidth"] = additional_bandwidth
         __props__.__dict__["apply_immediately"] = apply_immediately
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["backup_active"] = backup_active
         __props__.__dict__["backup_hour"] = backup_hour
         __props__.__dict__["backup_periods"] = backup_periods
         __props__.__dict__["charge_type"] = charge_type
+        __props__.__dict__["configure_nodes"] = configure_nodes
         __props__.__dict__["create_backup"] = create_backup
         __props__.__dict__["deletion_protection"] = deletion_protection
         __props__.__dict__["engine_version"] = engine_version
         __props__.__dict__["instance_name"] = instance_name
+        __props__.__dict__["multi_az"] = multi_az
         __props__.__dict__["node_number"] = node_number
         __props__.__dict__["param_values"] = param_values
         __props__.__dict__["password"] = password
@@ -1167,6 +1350,14 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["vpc_auth_mode"] = vpc_auth_mode
         __props__.__dict__["zone_ids"] = zone_ids
         return Instance(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="additionalBandwidth")
+    def additional_bandwidth(self) -> pulumi.Output[Optional[int]]:
+        """
+        Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+        """
+        return pulumi.get(self, "additional_bandwidth")
 
     @property
     @pulumi.getter(name="applyImmediately")
@@ -1220,6 +1411,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "charge_type")
 
     @property
+    @pulumi.getter(name="configureNodes")
+    def configure_nodes(self) -> pulumi.Output[Sequence['outputs.InstanceConfigureNode']]:
+        """
+        Set the list of available zones to which the node belongs.
+        """
+        return pulumi.get(self, "configure_nodes")
+
+    @property
     @pulumi.getter(name="createBackup")
     def create_backup(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1239,7 +1438,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="engineVersion")
     def engine_version(self) -> pulumi.Output[str]:
         """
-        The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         """
         return pulumi.get(self, "engine_version")
 
@@ -1250,6 +1449,18 @@ class Instance(pulumi.CustomResource):
         The name of the redis instance.
         """
         return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> pulumi.Output[str]:
+        """
+        Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        disabled: Single availability zone deployment scheme.
+        enabled: Multi-availability zone deployment scheme.
+        Description:
+        When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        """
+        return pulumi.get(self, "multi_az")
 
     @property
     @pulumi.getter(name="nodeNumber")
@@ -1270,9 +1481,9 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def password(self) -> pulumi.Output[str]:
+    def password(self) -> pulumi.Output[Optional[str]]:
         """
-        The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         """
         return pulumi.get(self, "password")
 
@@ -1351,9 +1562,12 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="zoneIds")
-    def zone_ids(self) -> pulumi.Output[Sequence[str]]:
+    def zone_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
+        warnings.warn("""This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""", DeprecationWarning)
+        pulumi.log.warn("""zone_ids is deprecated: This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.""")
+
         return pulumi.get(self, "zone_ids")
 

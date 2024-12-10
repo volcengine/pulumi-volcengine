@@ -112,22 +112,6 @@ class RouteTableAssociation(pulumi.CustomResource):
             description="tf-test-acc-description",
             transit_router_route_table_name="tf-table-test-acc",
             transit_router_id=foo_transit_router.id)
-        foo_zones = volcengine.ecs.zones()
-        foo_vpc = volcengine.vpc.Vpc("fooVpc",
-            vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
-        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
-            subnet_name="acc-test-subnet",
-            cidr_block="172.16.0.0/24",
-            zone_id=foo_zones.zones[0].id,
-            vpc_id=foo_vpc.id)
-        foo_gateway = volcengine.vpn.Gateway("fooGateway",
-            vpc_id=foo_vpc.id,
-            subnet_id=foo_subnet.id,
-            bandwidth=20,
-            vpn_gateway_name="acc-test",
-            description="acc-test",
-            period=2)
         foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
             ip_address="192.0.1.3",
             customer_gateway_name="acc-test",
@@ -136,7 +120,6 @@ class RouteTableAssociation(pulumi.CustomResource):
             vpn_connection_name="acc-tf-test",
             description="acc-tf-test",
             attach_type="TransitRouter",
-            vpn_gateway_id=foo_gateway.id,
             customer_gateway_id=foo_customer_gateway.id,
             local_subnets=["192.168.0.0/22"],
             remote_subnets=["192.161.0.0/20"],
@@ -172,7 +155,7 @@ class RouteTableAssociation(pulumi.CustomResource):
         TransitRouterRouteTableAssociation can be imported using the TransitRouterAttachmentId:TransitRouterRouteTableId, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/routeTableAssociation:RouteTableAssociation default tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
+        $ pulumi import volcengine:transit_router/routeTableAssociation:RouteTableAssociation default tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
         ```
 
         :param str resource_name: The name of the resource.
@@ -201,22 +184,6 @@ class RouteTableAssociation(pulumi.CustomResource):
             description="tf-test-acc-description",
             transit_router_route_table_name="tf-table-test-acc",
             transit_router_id=foo_transit_router.id)
-        foo_zones = volcengine.ecs.zones()
-        foo_vpc = volcengine.vpc.Vpc("fooVpc",
-            vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
-        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
-            subnet_name="acc-test-subnet",
-            cidr_block="172.16.0.0/24",
-            zone_id=foo_zones.zones[0].id,
-            vpc_id=foo_vpc.id)
-        foo_gateway = volcengine.vpn.Gateway("fooGateway",
-            vpc_id=foo_vpc.id,
-            subnet_id=foo_subnet.id,
-            bandwidth=20,
-            vpn_gateway_name="acc-test",
-            description="acc-test",
-            period=2)
         foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
             ip_address="192.0.1.3",
             customer_gateway_name="acc-test",
@@ -225,7 +192,6 @@ class RouteTableAssociation(pulumi.CustomResource):
             vpn_connection_name="acc-tf-test",
             description="acc-tf-test",
             attach_type="TransitRouter",
-            vpn_gateway_id=foo_gateway.id,
             customer_gateway_id=foo_customer_gateway.id,
             local_subnets=["192.168.0.0/22"],
             remote_subnets=["192.161.0.0/20"],
@@ -261,7 +227,7 @@ class RouteTableAssociation(pulumi.CustomResource):
         TransitRouterRouteTableAssociation can be imported using the TransitRouterAttachmentId:TransitRouterRouteTableId, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/routeTableAssociation:RouteTableAssociation default tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
+        $ pulumi import volcengine:transit_router/routeTableAssociation:RouteTableAssociation default tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
         ```
 
         :param str resource_name: The name of the resource.

@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  * RdsPostgresqlInstance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
+ * $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
  * ```
  */
 export class Instance extends pulumi.CustomResource {

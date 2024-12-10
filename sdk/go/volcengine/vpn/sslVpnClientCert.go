@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -98,9 +98,7 @@ import (
 // SSL VPN Client Cert can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
-//
+// $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
 // ```
 type SslVpnClientCert struct {
 	pulumi.CustomResourceState

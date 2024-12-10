@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * AlbCaCertificate can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
+ * $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
  * ```
  */
 export class CACertificate extends pulumi.CustomResource {

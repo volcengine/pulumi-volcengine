@@ -151,7 +151,7 @@ class IpList(pulumi.CustomResource):
         RDSIPList can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/ipList:IpList default mysql-42b38c769c4b:group_name
+        $ pulumi import volcengine:rds/ipList:IpList default mysql-42b38c769c4b:group_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -188,7 +188,7 @@ class IpList(pulumi.CustomResource):
         RDSIPList can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/ipList:IpList default mysql-42b38c769c4b:group_name
+        $ pulumi import volcengine:rds/ipList:IpList default mysql-42b38c769c4b:group_name
         ```
 
         :param str resource_name: The name of the resource.

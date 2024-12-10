@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Kafka
     {
         /// <summary>
         /// Use this data source to query detailed information of kafka sasl users
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -95,17 +93,13 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SaslUsersResult> InvokeAsync(SaslUsersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SaslUsersResult>("volcengine:kafka/saslUsers:SaslUsers", args ?? new SaslUsersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of kafka sasl users
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -185,8 +179,6 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SaslUsersResult> Invoke(SaslUsersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SaslUsersResult>("volcengine:kafka/saslUsers:SaslUsers", args ?? new SaslUsersInvokeArgs(), options.WithDefaults());

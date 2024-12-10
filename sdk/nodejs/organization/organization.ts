@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * Organization can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:organization/organization:Organization default resource_id
+ * $ pulumi import volcengine:organization/organization:Organization default resource_id
  * ```
  */
 export class Organization extends pulumi.CustomResource {

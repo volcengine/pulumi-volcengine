@@ -151,7 +151,7 @@ class RouteTablePropagation(pulumi.CustomResource):
         TransitRouterRouteTablePropagation can be imported using the propagation:TransitRouterAttachmentId:TransitRouterRouteTableId, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/routeTablePropagation:RouteTablePropagation default propagation:tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
+        $ pulumi import volcengine:transit_router/routeTablePropagation:RouteTablePropagation default propagation:tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
         ```
 
         :param str resource_name: The name of the resource.
@@ -219,7 +219,7 @@ class RouteTablePropagation(pulumi.CustomResource):
         TransitRouterRouteTablePropagation can be imported using the propagation:TransitRouterAttachmentId:TransitRouterRouteTableId, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/routeTablePropagation:RouteTablePropagation default propagation:tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
+        $ pulumi import volcengine:transit_router/routeTablePropagation:RouteTablePropagation default propagation:tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
         ```
 
         :param str resource_name: The name of the resource.

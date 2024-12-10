@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Iam
     {
         /// <summary>
         /// Use this data source to query detailed information of iam roles
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -50,17 +48,13 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RolesResult> InvokeAsync(RolesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RolesResult>("volcengine:iam/roles:Roles", args ?? new RolesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam roles
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -95,8 +89,6 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RolesResult> Invoke(RolesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RolesResult>("volcengine:iam/roles:Roles", args ?? new RolesInvokeArgs(), options.WithDefaults());

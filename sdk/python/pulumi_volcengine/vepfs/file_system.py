@@ -602,7 +602,7 @@ class FileSystem(pulumi.CustomResource):
         VepfsFileSystem can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vepfs/fileSystem:FileSystem default resource_id
+        $ pulumi import volcengine:vepfs/fileSystem:FileSystem default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -657,7 +657,7 @@ class FileSystem(pulumi.CustomResource):
         VepfsFileSystem can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vepfs/fileSystem:FileSystem default resource_id
+        $ pulumi import volcengine:vepfs/fileSystem:FileSystem default resource_id
         ```
 
         :param str resource_name: The name of the resource.

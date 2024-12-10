@@ -696,7 +696,7 @@ class ScalingPolicy(pulumi.CustomResource):
         ScalingPolicy can be imported using the ScalingGroupId:ScalingPolicyId, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
+        $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
         ```
 
         :param str resource_name: The name of the resource.
@@ -779,7 +779,7 @@ class ScalingPolicy(pulumi.CustomResource):
         ScalingPolicy can be imported using the ScalingGroupId:ScalingPolicyId, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
+        $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
         ```
 
         :param str resource_name: The name of the resource.

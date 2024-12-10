@@ -51,9 +51,7 @@ import (
 // Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
-//
+// $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
 // ```
 type Instance struct {
 	pulumi.CustomResourceState

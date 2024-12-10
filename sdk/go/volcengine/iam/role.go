@@ -48,9 +48,7 @@ import (
 // Iam role can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/role:Role default TerraformTestRole
-//
+// $ pulumi import volcengine:iam/role:Role default TerraformTestRole
 // ```
 type Role struct {
 	pulumi.CustomResourceState

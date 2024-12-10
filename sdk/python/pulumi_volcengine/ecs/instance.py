@@ -76,7 +76,7 @@ class InstanceArgs:
         :param pulumi.Input[bool] keep_image_credential: Whether to keep the mirror settings. Only custom images and shared images support this field.
                When the value of this field is true, the Password and KeyPairName cannot be specified.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
+        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
         :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
@@ -413,7 +413,7 @@ class InstanceArgs:
     @pulumi.getter(name="keyPairName")
     def key_pair_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The ssh key name of ECS instance.
+        The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         """
         return pulumi.get(self, "key_pair_name")
 
@@ -637,7 +637,7 @@ class _InstanceState:
                When the value of this field is true, the Password and KeyPairName cannot be specified.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] key_pair_id: The ssh key ID of ECS instance.
-        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
+        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         :param pulumi.Input[int] memory_size: The memory size of ECS instance.
         :param pulumi.Input[str] network_interface_id: The ID of primary networkInterface.
         :param pulumi.Input[str] os_name: The os name of ECS instance.
@@ -1047,7 +1047,7 @@ class _InstanceState:
     @pulumi.getter(name="keyPairName")
     def key_pair_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The ssh key name of ECS instance.
+        The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         """
         return pulumi.get(self, "key_pair_name")
 
@@ -1434,10 +1434,11 @@ class Instance(pulumi.CustomResource):
 
         ## Import
 
-        ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
+        ECS Instance can be imported using the id, e.g.
+        If Import,The data_volumes is sort by volume name
 
         ```sh
-         $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -1463,7 +1464,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[bool] keep_image_credential: Whether to keep the mirror settings. Only custom images and shared images support this field.
                When the value of this field is true, the Password and KeyPairName cannot be specified.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
+        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
         :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
@@ -1537,10 +1538,11 @@ class Instance(pulumi.CustomResource):
 
         ## Import
 
-        ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
+        ECS Instance can be imported using the id, e.g.
+        If Import,The data_volumes is sort by volume name
 
         ```sh
-         $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -1754,7 +1756,7 @@ class Instance(pulumi.CustomResource):
                When the value of this field is true, the Password and KeyPairName cannot be specified.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] key_pair_id: The ssh key ID of ECS instance.
-        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
+        :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         :param pulumi.Input[int] memory_size: The memory size of ECS instance.
         :param pulumi.Input[str] network_interface_id: The ID of primary networkInterface.
         :param pulumi.Input[str] os_name: The os name of ECS instance.
@@ -2027,9 +2029,9 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="keyPairName")
-    def key_pair_name(self) -> pulumi.Output[str]:
+    def key_pair_name(self) -> pulumi.Output[Optional[str]]:
         """
-        The ssh key name of ECS instance.
+        The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         """
         return pulumi.get(self, "key_pair_name")
 

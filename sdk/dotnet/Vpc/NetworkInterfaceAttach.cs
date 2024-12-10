@@ -35,7 +35,7 @@ namespace Pulumi.Volcengine.Vpc
     /// Network interface attach can be imported using the network_interface_id:instance_id.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+    /// $ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach")]

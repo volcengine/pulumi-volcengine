@@ -115,6 +115,7 @@ class RouteEntryArgs:
 @pulumi.input_type
 class _RouteEntryState:
     def __init__(__self__, *,
+                 as_path: Optional[pulumi.Input[str]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  destination_cidr_block: Optional[pulumi.Input[str]] = None,
@@ -128,6 +129,7 @@ class _RouteEntryState:
                  update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RouteEntry resources.
+        :param pulumi.Input[str] as_path: The as path of the route entry.
         :param pulumi.Input[str] creation_time: The creation time of the route entry.
         :param pulumi.Input[str] description: Description of the transit router route entry.
         :param pulumi.Input[str] destination_cidr_block: The target network segment of the route entry.
@@ -140,6 +142,8 @@ class _RouteEntryState:
         :param pulumi.Input[str] transit_router_route_table_id: The id of the route table.
         :param pulumi.Input[str] update_time: The update time of the route entry.
         """
+        if as_path is not None:
+            pulumi.set(__self__, "as_path", as_path)
         if creation_time is not None:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
@@ -162,6 +166,18 @@ class _RouteEntryState:
             pulumi.set(__self__, "transit_router_route_table_id", transit_router_route_table_id)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="asPath")
+    def as_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The as path of the route entry.
+        """
+        return pulumi.get(self, "as_path")
+
+    @as_path.setter
+    def as_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "as_path", value)
 
     @property
     @pulumi.getter(name="creationTime")
@@ -316,22 +332,6 @@ class RouteEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
-        foo_vpc = volcengine.vpc.Vpc("fooVpc",
-            vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
-        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
-            subnet_name="acc-test-subnet",
-            cidr_block="172.16.0.0/24",
-            zone_id=foo_zones.zones[0].id,
-            vpc_id=foo_vpc.id)
-        foo_gateway = volcengine.vpn.Gateway("fooGateway",
-            vpc_id=foo_vpc.id,
-            subnet_id=foo_subnet.id,
-            bandwidth=20,
-            vpn_gateway_name="acc-test",
-            description="acc-test",
-            period=2)
         foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
             ip_address="192.0.1.3",
             customer_gateway_name="acc-test",
@@ -340,7 +340,6 @@ class RouteEntry(pulumi.CustomResource):
             vpn_connection_name="acc-tf-test",
             description="acc-tf-test",
             attach_type="TransitRouter",
-            vpn_gateway_id=foo_gateway.id,
             customer_gateway_id=foo_customer_gateway.id,
             local_subnets=["192.168.0.0/22"],
             remote_subnets=["192.161.0.0/20"],
@@ -387,7 +386,7 @@ class RouteEntry(pulumi.CustomResource):
         transit router route entry can be imported using the table and entry id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
+        $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
         ```
 
         :param str resource_name: The name of the resource.
@@ -413,22 +412,6 @@ class RouteEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
-        foo_vpc = volcengine.vpc.Vpc("fooVpc",
-            vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
-        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
-            subnet_name="acc-test-subnet",
-            cidr_block="172.16.0.0/24",
-            zone_id=foo_zones.zones[0].id,
-            vpc_id=foo_vpc.id)
-        foo_gateway = volcengine.vpn.Gateway("fooGateway",
-            vpc_id=foo_vpc.id,
-            subnet_id=foo_subnet.id,
-            bandwidth=20,
-            vpn_gateway_name="acc-test",
-            description="acc-test",
-            period=2)
         foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
             ip_address="192.0.1.3",
             customer_gateway_name="acc-test",
@@ -437,7 +420,6 @@ class RouteEntry(pulumi.CustomResource):
             vpn_connection_name="acc-tf-test",
             description="acc-tf-test",
             attach_type="TransitRouter",
-            vpn_gateway_id=foo_gateway.id,
             customer_gateway_id=foo_customer_gateway.id,
             local_subnets=["192.168.0.0/22"],
             remote_subnets=["192.161.0.0/20"],
@@ -484,7 +466,7 @@ class RouteEntry(pulumi.CustomResource):
         transit router route entry can be imported using the table and entry id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
+        $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
         ```
 
         :param str resource_name: The name of the resource.
@@ -529,6 +511,7 @@ class RouteEntry(pulumi.CustomResource):
             if transit_router_route_table_id is None and not opts.urn:
                 raise TypeError("Missing required property 'transit_router_route_table_id'")
             __props__.__dict__["transit_router_route_table_id"] = transit_router_route_table_id
+            __props__.__dict__["as_path"] = None
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["transit_router_route_entry_id"] = None
@@ -544,6 +527,7 @@ class RouteEntry(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            as_path: Optional[pulumi.Input[str]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             destination_cidr_block: Optional[pulumi.Input[str]] = None,
@@ -562,6 +546,7 @@ class RouteEntry(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] as_path: The as path of the route entry.
         :param pulumi.Input[str] creation_time: The creation time of the route entry.
         :param pulumi.Input[str] description: Description of the transit router route entry.
         :param pulumi.Input[str] destination_cidr_block: The target network segment of the route entry.
@@ -578,6 +563,7 @@ class RouteEntry(pulumi.CustomResource):
 
         __props__ = _RouteEntryState.__new__(_RouteEntryState)
 
+        __props__.__dict__["as_path"] = as_path
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["destination_cidr_block"] = destination_cidr_block
@@ -590,6 +576,14 @@ class RouteEntry(pulumi.CustomResource):
         __props__.__dict__["transit_router_route_table_id"] = transit_router_route_table_id
         __props__.__dict__["update_time"] = update_time
         return RouteEntry(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="asPath")
+    def as_path(self) -> pulumi.Output[str]:
+        """
+        The as path of the route entry.
+        """
+        return pulumi.get(self, "as_path")
 
     @property
     @pulumi.getter(name="creationTime")

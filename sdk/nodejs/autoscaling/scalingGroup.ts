@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  * ScalingGroup can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class ScalingGroup extends pulumi.CustomResource {

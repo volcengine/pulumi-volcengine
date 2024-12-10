@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Use this data source to query detailed information of tls hosts
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<HostsResult> InvokeAsync(HostsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<HostsResult>("volcengine:tls/hosts:Hosts", args ?? new HostsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls hosts
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<HostsResult> Invoke(HostsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<HostsResult>("volcengine:tls/hosts:Hosts", args ?? new HostsInvokeArgs(), options.WithDefaults());

@@ -13,6 +13,9 @@ namespace Pulumi.Volcengine.Autoscaling.Outputs
     [OutputType]
     public sealed class ScalingGroupServerGroupAttribute
     {
+        /// <summary>
+        /// The load balancer id.
+        /// </summary>
         public readonly string? LoadBalancerId;
         /// <summary>
         /// The port receiving request of the server group. Value range: 1 ~ 65535.

@@ -13,8 +13,17 @@ namespace Pulumi.Volcengine.Redis.Outputs
     [OutputType]
     public sealed class PitrTimeWindowsPeriodResult
     {
+        /// <summary>
+        /// Recoverable end time (UTC time) supported when restoring data by point in time.
+        /// </summary>
         public readonly string EndTime;
+        /// <summary>
+        /// The instance id.
+        /// </summary>
         public readonly string InstanceId;
+        /// <summary>
+        /// The recoverable start time (in UTC time) supported when restoring data by point in time.
+        /// </summary>
         public readonly string StartTime;
 
         [OutputConstructor]

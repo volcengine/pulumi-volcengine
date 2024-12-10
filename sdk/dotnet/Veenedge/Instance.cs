@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Veenedge
     /// Instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
+    /// $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:veenedge/instance:Instance")]

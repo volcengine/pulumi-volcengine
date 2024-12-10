@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Mongodb
     {
         /// <summary>
         /// Use this data source to query detailed information of mongodb ssl states
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -78,17 +76,13 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SslStatesResult> InvokeAsync(SslStatesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SslStatesResult>("volcengine:mongodb/sslStates:SslStates", args ?? new SslStatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb ssl states
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -151,8 +145,6 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SslStatesResult> Invoke(SslStatesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SslStatesResult>("volcengine:mongodb/sslStates:SslStates", args ?? new SslStatesInvokeArgs(), options.WithDefaults());

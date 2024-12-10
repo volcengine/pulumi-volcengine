@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_mssql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds mssql zones
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ZonesResult> InvokeAsync(ZonesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:rds_mssql/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mssql zones
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ZonesResult> Invoke(ZonesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:rds_mssql/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());

@@ -47,9 +47,7 @@ import (
 // Database can be imported using the instanceId:dbName, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_postgresql/database:Database default postgres-ca7b7019****:dbname
-//
+// $ pulumi import volcengine:rds_postgresql/database:Database default postgres-ca7b7019****:dbname
 // ```
 type Database struct {
 	pulumi.CustomResourceState

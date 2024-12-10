@@ -45,9 +45,7 @@ import (
 // CR endpoints can be imported using the endpoint:registryName, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
-//
+// $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
 // ```
 type Endpoint struct {
 	pulumi.CustomResourceState

@@ -128,7 +128,7 @@ namespace Pulumi.Volcengine.Clb
     ///         Bandwidth = 5,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             ipv6Gateway,
     ///         },
@@ -142,7 +142,7 @@ namespace Pulumi.Volcengine.Clb
     /// CLB can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
+    /// $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/clb:Clb")]

@@ -42,7 +42,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -67,7 +67,7 @@ import (
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PrePaid"),
@@ -95,7 +95,7 @@ import (
 //				Description:        pulumi.String("acc-test"),
 //				Kind:               pulumi.String("data"),
 //				Size:               pulumi.Int(40),
-//				ZoneId:             *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:             pulumi.String(fooZones.Zones[0].Id),
 //				VolumeChargeType:   pulumi.String("PrePaid"),
 //				InstanceId:         fooInstance.ID(),
 //				ProjectName:        pulumi.String("default"),
@@ -116,7 +116,7 @@ import (
 //				Description:      pulumi.String("acc-test"),
 //				Kind:             pulumi.String("data"),
 //				Size:             pulumi.Int(40),
-//				ZoneId:           *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:           pulumi.String(fooZones.Zones[0].Id),
 //				VolumeChargeType: pulumi.String("PostPaid"),
 //				ProjectName:      pulumi.String("default"),
 //				Tags: ebs.VolumeTagArray{
@@ -140,9 +140,7 @@ import (
 // Volume can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
 // ```
 type Volume struct {
 	pulumi.CustomResourceState
@@ -153,6 +151,12 @@ type Volume struct {
 	DeleteWithInstance pulumi.BoolOutput `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+	ExtraPerformanceIops pulumi.IntOutput `pulumi:"extraPerformanceIops"`
+	// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+	ExtraPerformanceThroughputMb pulumi.IntOutput `pulumi:"extraPerformanceThroughputMb"`
+	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+	ExtraPerformanceTypeId pulumi.StringPtrOutput `pulumi:"extraPerformanceTypeId"`
 	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
 	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
 	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -231,6 +235,12 @@ type volumeState struct {
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description *string `pulumi:"description"`
+	// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+	ExtraPerformanceIops *int `pulumi:"extraPerformanceIops"`
+	// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+	ExtraPerformanceThroughputMb *int `pulumi:"extraPerformanceThroughputMb"`
+	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+	ExtraPerformanceTypeId *string `pulumi:"extraPerformanceTypeId"`
 	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
 	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
 	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -265,6 +275,12 @@ type VolumeState struct {
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The description of the Volume.
 	Description pulumi.StringPtrInput
+	// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+	ExtraPerformanceIops pulumi.IntPtrInput
+	// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+	ExtraPerformanceThroughputMb pulumi.IntPtrInput
+	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+	ExtraPerformanceTypeId pulumi.StringPtrInput
 	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
 	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
 	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -301,6 +317,12 @@ type volumeArgs struct {
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description *string `pulumi:"description"`
+	// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+	ExtraPerformanceIops *int `pulumi:"extraPerformanceIops"`
+	// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+	ExtraPerformanceThroughputMb *int `pulumi:"extraPerformanceThroughputMb"`
+	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+	ExtraPerformanceTypeId *string `pulumi:"extraPerformanceTypeId"`
 	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
 	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
 	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -330,6 +352,12 @@ type VolumeArgs struct {
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The description of the Volume.
 	Description pulumi.StringPtrInput
+	// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+	ExtraPerformanceIops pulumi.IntPtrInput
+	// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+	ExtraPerformanceThroughputMb pulumi.IntPtrInput
+	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+	ExtraPerformanceTypeId pulumi.StringPtrInput
 	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
 	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
 	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -453,6 +481,21 @@ func (o VolumeOutput) DeleteWithInstance() pulumi.BoolOutput {
 // The description of the Volume.
 func (o VolumeOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+func (o VolumeOutput) ExtraPerformanceIops() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ExtraPerformanceIops }).(pulumi.IntOutput)
+}
+
+// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+func (o VolumeOutput) ExtraPerformanceThroughputMb() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ExtraPerformanceThroughputMb }).(pulumi.IntOutput)
+}
+
+// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+func (o VolumeOutput) ExtraPerformanceTypeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ExtraPerformanceTypeId }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the

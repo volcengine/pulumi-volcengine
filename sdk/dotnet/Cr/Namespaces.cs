@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cr
     {
         /// <summary>
         /// Use this data source to query detailed information of cr namespaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -36,17 +34,13 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<NamespacesResult> InvokeAsync(NamespacesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<NamespacesResult>("volcengine:cr/namespaces:Namespaces", args ?? new NamespacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr namespaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,8 +61,6 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<NamespacesResult> Invoke(NamespacesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<NamespacesResult>("volcengine:cr/namespaces:Namespaces", args ?? new NamespacesInvokeArgs(), options.WithDefaults());

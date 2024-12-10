@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * Tls Kafka Consumer can be imported using the kafka:topic_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:tls/kafkaConsumer:KafkaConsumer default kafka:edf051ed-3c46-49ba-9339-bea628fedc15
+ * $ pulumi import volcengine:tls/kafkaConsumer:KafkaConsumer default kafka:edf051ed-3c46-49ba-9339-bea628fedc15
  * ```
  */
 export class KafkaConsumer extends pulumi.CustomResource {

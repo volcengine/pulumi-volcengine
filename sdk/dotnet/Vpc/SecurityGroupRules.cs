@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of security group rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SecurityGroupRulesResult> InvokeAsync(SecurityGroupRulesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupRulesResult>("volcengine:vpc/securityGroupRules:SecurityGroupRules", args ?? new SecurityGroupRulesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of security group rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SecurityGroupRulesResult> Invoke(SecurityGroupRulesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SecurityGroupRulesResult>("volcengine:vpc/securityGroupRules:SecurityGroupRules", args ?? new SecurityGroupRulesInvokeArgs(), options.WithDefaults());

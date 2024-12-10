@@ -265,7 +265,7 @@ class Database(pulumi.CustomResource):
         Database can be imported using the instanceId:dbName, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/database:Database default postgres-ca7b7019****:dbname
+        $ pulumi import volcengine:rds_postgresql/database:Database default postgres-ca7b7019****:dbname
         ```
 
         :param str resource_name: The name of the resource.
@@ -303,7 +303,7 @@ class Database(pulumi.CustomResource):
         Database can be imported using the instanceId:dbName, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/database:Database default postgres-ca7b7019****:dbname
+        $ pulumi import volcengine:rds_postgresql/database:Database default postgres-ca7b7019****:dbname
         ```
 
         :param str resource_name: The name of the resource.

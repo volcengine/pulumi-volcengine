@@ -87,7 +87,7 @@ namespace Pulumi.Volcengine.Ecs
     ///         InstanceId = fooInstance.Id,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             fooState,
     ///         },
@@ -101,7 +101,7 @@ namespace Pulumi.Volcengine.Ecs
     /// ECS deployment set associate can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate")]

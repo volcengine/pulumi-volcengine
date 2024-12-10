@@ -62,9 +62,7 @@ import (
 // IamUserGroupPolicyAttachment can be imported using the user group name and policy name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment default userGroupName:policyName
-//
+// $ pulumi import volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment default userGroupName:policyName
 // ```
 type UserGroupPolicyAttachment struct {
 	pulumi.CustomResourceState

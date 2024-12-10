@@ -264,7 +264,7 @@ class Registry(pulumi.CustomResource):
         CR Registry can be imported using the name, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/registry:Registry default enterprise-x
+        $ pulumi import volcengine:cr/registry:Registry default enterprise-x
         ```
 
         :param str resource_name: The name of the resource.
@@ -297,7 +297,7 @@ class Registry(pulumi.CustomResource):
         CR Registry can be imported using the name, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/registry:Registry default enterprise-x
+        $ pulumi import volcengine:cr/registry:Registry default enterprise-x
         ```
 
         :param str resource_name: The name of the resource.

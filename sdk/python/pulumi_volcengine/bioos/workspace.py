@@ -182,7 +182,7 @@ class Workspace(pulumi.CustomResource):
         Workspace can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bioos/workspace:Workspace default *****
+        $ pulumi import volcengine:bioos/workspace:Workspace default *****
         ```
 
         :param str resource_name: The name of the resource.
@@ -216,7 +216,7 @@ class Workspace(pulumi.CustomResource):
         Workspace can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bioos/workspace:Workspace default *****
+        $ pulumi import volcengine:bioos/workspace:Workspace default *****
         ```
 
         :param str resource_name: The name of the resource.

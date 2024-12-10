@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -78,7 +78,7 @@ import (
 //				EipBillingType:     pulumi.String("PostPaidByBandwidth"),
 //				EipIsp:             pulumi.String("BGP"),
 //				HostName:           pulumi.String("acc-hostname"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceChargeType: pulumi.String("PostPaid"),
 //				InstanceName:       pulumi.String("acc-instance-name"),
 //				InstanceTypeId:     pulumi.String("ecs.g1.large"),
@@ -134,7 +134,7 @@ import (
 //					InstanceName:       pulumi.String(fmt.Sprintf("acc-test-ecs-%v", val0)),
 //					Description:        pulumi.String("acc-test"),
 //					HostName:           pulumi.String("tf-acc-test"),
-//					ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//					ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //					InstanceType:       pulumi.String("ecs.g1.large"),
 //					Password:           pulumi.String("93f0cb0614Aab12"),
 //					InstanceChargeType: pulumi.String("PostPaid"),

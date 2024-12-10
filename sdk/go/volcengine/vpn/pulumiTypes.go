@@ -16,9 +16,9 @@ var _ = internal.GetEnvOrDefault
 type ConnectionsVpnConnection struct {
 	// The account ID of the VPN connection.
 	AccountId string `pulumi:"accountId"`
-	// The IPsec attach status.
+	// The attach status of VPN connection.
 	AttachStatus string `pulumi:"attachStatus"`
-	// The IPsec attach type.
+	// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
 	AttachType string `pulumi:"attachType"`
 	// The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
 	BusinessStatus string `pulumi:"businessStatus"`
@@ -76,9 +76,9 @@ type ConnectionsVpnConnection struct {
 	OverdueTime string `pulumi:"overdueTime"`
 	// The remote subnet of the VPN connection.
 	RemoteSubnets []string `pulumi:"remoteSubnets"`
-	// The status of the VPN connection.
+	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status string `pulumi:"status"`
-	// The id of transit router, valid when the attach type is 'TransitRouter'.
+	// An ID of transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
 	UpdateTime string `pulumi:"updateTime"`
@@ -106,9 +106,9 @@ type ConnectionsVpnConnectionInput interface {
 type ConnectionsVpnConnectionArgs struct {
 	// The account ID of the VPN connection.
 	AccountId pulumi.StringInput `pulumi:"accountId"`
-	// The IPsec attach status.
+	// The attach status of VPN connection.
 	AttachStatus pulumi.StringInput `pulumi:"attachStatus"`
-	// The IPsec attach type.
+	// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
 	AttachType pulumi.StringInput `pulumi:"attachType"`
 	// The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
 	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
@@ -166,9 +166,9 @@ type ConnectionsVpnConnectionArgs struct {
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
 	// The remote subnet of the VPN connection.
 	RemoteSubnets pulumi.StringArrayInput `pulumi:"remoteSubnets"`
-	// The status of the VPN connection.
+	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status pulumi.StringInput `pulumi:"status"`
-	// The id of transit router, valid when the attach type is 'TransitRouter'.
+	// An ID of transit router.
 	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
@@ -238,12 +238,12 @@ func (o ConnectionsVpnConnectionOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.AccountId }).(pulumi.StringOutput)
 }
 
-// The IPsec attach status.
+// The attach status of VPN connection.
 func (o ConnectionsVpnConnectionOutput) AttachStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.AttachStatus }).(pulumi.StringOutput)
 }
 
-// The IPsec attach type.
+// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
 func (o ConnectionsVpnConnectionOutput) AttachType() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.AttachType }).(pulumi.StringOutput)
 }
@@ -388,12 +388,12 @@ func (o ConnectionsVpnConnectionOutput) RemoteSubnets() pulumi.StringArrayOutput
 	return o.ApplyT(func(v ConnectionsVpnConnection) []string { return v.RemoteSubnets }).(pulumi.StringArrayOutput)
 }
 
-// The status of the VPN connection.
+// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 func (o ConnectionsVpnConnectionOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// The id of transit router, valid when the attach type is 'TransitRouter'.
+// An ID of transit router.
 func (o ConnectionsVpnConnectionOutput) TransitRouterId() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.TransitRouterId }).(pulumi.StringOutput)
 }
@@ -1016,11 +1016,11 @@ type GatewaysVpnGateway struct {
 	Id string `pulumi:"id"`
 	// A IP address of the VPN gateway.
 	IpAddress string `pulumi:"ipAddress"`
-	// Whether ipsec is enabled.
+	// Whether IPSec is enabled.
 	IpsecEnabled bool `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason string `pulumi:"lockReason"`
-	// The name of project.
+	// The project name of the VPN gateway.
 	ProjectName string `pulumi:"projectName"`
 	// The route count of the VPN gateway.
 	RouteCount int `pulumi:"routeCount"`
@@ -1078,11 +1078,11 @@ type GatewaysVpnGatewayArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// A IP address of the VPN gateway.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// Whether ipsec is enabled.
+	// Whether IPSec is enabled.
 	IpsecEnabled pulumi.BoolInput `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringInput `pulumi:"lockReason"`
-	// The name of project.
+	// The project name of the VPN gateway.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The route count of the VPN gateway.
 	RouteCount pulumi.IntInput `pulumi:"routeCount"`
@@ -1212,7 +1212,7 @@ func (o GatewaysVpnGatewayOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// Whether ipsec is enabled.
+// Whether IPSec is enabled.
 func (o GatewaysVpnGatewayOutput) IpsecEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) bool { return v.IpsecEnabled }).(pulumi.BoolOutput)
 }
@@ -1222,7 +1222,7 @@ func (o GatewaysVpnGatewayOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) string { return v.LockReason }).(pulumi.StringOutput)
 }
 
-// The name of project.
+// The project name of the VPN gateway.
 func (o GatewaysVpnGatewayOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) string { return v.ProjectName }).(pulumi.StringOutput)
 }
@@ -1643,6 +1643,10 @@ type SslVpnServersSslVpnServer struct {
 	Id string `pulumi:"id"`
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets []string `pulumi:"localSubnets"`
+	// The port of the ssl server.
+	Port int `pulumi:"port"`
+	// The project name of the ssl server.
+	ProjectName string `pulumi:"projectName"`
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol string `pulumi:"protocol"`
 	// The id of the ssl vpn server.
@@ -1694,6 +1698,10 @@ type SslVpnServersSslVpnServerArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets pulumi.StringArrayInput `pulumi:"localSubnets"`
+	// The port of the ssl server.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The project name of the ssl server.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// The id of the ssl vpn server.
@@ -1806,6 +1814,16 @@ func (o SslVpnServersSslVpnServerOutput) Id() pulumi.StringOutput {
 // The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 func (o SslVpnServersSslVpnServerOutput) LocalSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SslVpnServersSslVpnServer) []string { return v.LocalSubnets }).(pulumi.StringArrayOutput)
+}
+
+// The port of the ssl server.
+func (o SslVpnServersSslVpnServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The project name of the ssl server.
+func (o SslVpnServersSslVpnServerOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.

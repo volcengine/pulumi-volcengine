@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * CloudMonitorContactGroup can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
+ * $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
  * ```
  */
 export class ContactGroup extends pulumi.CustomResource {

@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -53,8 +53,8 @@ import (
 //				InstanceName:        pulumi.String("acc-test-rds-mysql"),
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
 //				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
-//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:       pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
 //				SubnetId:            fooSubnet.ID(),
 //				LowerCaseTableNames: pulumi.String("1"),
@@ -105,9 +105,7 @@ import (
 // RDS AllowList Associate can be imported using the instance id and allow list id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate default rds-mysql-h441603c68aaa:acl-d1fd76693bd54e658912e7337d5b****
-//
+// $ pulumi import volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate default rds-mysql-h441603c68aaa:acl-d1fd76693bd54e658912e7337d5b****
 // ```
 type AllowlistAssociate struct {
 	pulumi.CustomResourceState

@@ -51,7 +51,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -59,7 +59,7 @@ import (
 //			}
 //			fooInstance, err := redis.NewInstance(ctx, "fooInstance", &redis.InstanceArgs{
 //				ZoneIds: pulumi.StringArray{
-//					*pulumi.String(fooZones.Zones[0].Id),
+//					pulumi.String(fooZones.Zones[0].Id),
 //				},
 //				InstanceName:       pulumi.String("acc-test-tf-redis"),
 //				ShardedCluster:     pulumi.Int(1),

@@ -872,7 +872,7 @@ class ScalingConfiguration(pulumi.CustomResource):
         ScalingConfiguration can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
+        $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
         ```
 
         :param str resource_name: The name of the resource.
@@ -986,7 +986,7 @@ class ScalingConfiguration(pulumi.CustomResource):
         ScalingConfiguration can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
+        $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
         ```
 
         :param str resource_name: The name of the resource.

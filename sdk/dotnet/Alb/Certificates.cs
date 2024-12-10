@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Alb
     {
         /// <summary>
         /// Use this data source to query detailed information of alb certificates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<CertificatesResult> InvokeAsync(CertificatesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CertificatesResult>("volcengine:alb/certificates:Certificates", args ?? new CertificatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of alb certificates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<CertificatesResult> Invoke(CertificatesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CertificatesResult>("volcengine:alb/certificates:Certificates", args ?? new CertificatesInvokeArgs(), options.WithDefaults());

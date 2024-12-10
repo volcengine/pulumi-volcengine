@@ -86,7 +86,7 @@ namespace Pulumi.Volcengine.Cdn
     /// CdnSharedConfig can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
+    /// $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cdn/sharedConfig:SharedConfig")]

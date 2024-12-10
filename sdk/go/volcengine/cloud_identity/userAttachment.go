@@ -64,9 +64,7 @@ import (
 // CloudIdentityUserAttachment can be imported using the group_id:user_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloud_identity/userAttachment:UserAttachment default resource_id
-//
+// $ pulumi import volcengine:cloud_identity/userAttachment:UserAttachment default resource_id
 // ```
 type UserAttachment struct {
 	pulumi.CustomResourceState

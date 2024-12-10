@@ -477,7 +477,7 @@ class NetworkInterface(pulumi.CustomResource):
         Network interface can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+        $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
         ```
 
         :param str resource_name: The name of the resource.
@@ -527,7 +527,7 @@ class NetworkInterface(pulumi.CustomResource):
         Network interface can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+        $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
         ```
 
         :param str resource_name: The name of the resource.

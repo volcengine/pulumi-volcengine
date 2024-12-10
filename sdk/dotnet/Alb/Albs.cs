@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Alb
     {
         /// <summary>
         /// Use this data source to query detailed information of albs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -83,17 +81,13 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AlbsResult> InvokeAsync(AlbsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AlbsResult>("volcengine:alb/albs:Albs", args ?? new AlbsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of albs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -161,8 +155,6 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AlbsResult> Invoke(AlbsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AlbsResult>("volcengine:alb/albs:Albs", args ?? new AlbsInvokeArgs(), options.WithDefaults());

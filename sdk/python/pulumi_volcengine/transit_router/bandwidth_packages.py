@@ -23,7 +23,7 @@ class BandwidthPackagesResult:
     """
     A collection of values returned by BandwidthPackages.
     """
-    def __init__(__self__, bandwidth_packages=None, id=None, ids=None, output_file=None, project_name=None, tags=None, total_count=None, transit_router_bandwidth_package_name=None, transit_router_peer_attachment_id=None):
+    def __init__(__self__, bandwidth_packages=None, id=None, ids=None, local_geographic_region_set_id=None, output_file=None, peer_geographic_region_set_id=None, project_name=None, tags=None, total_count=None, transit_router_bandwidth_package_name=None, transit_router_peer_attachment_id=None):
         if bandwidth_packages and not isinstance(bandwidth_packages, list):
             raise TypeError("Expected argument 'bandwidth_packages' to be a list")
         pulumi.set(__self__, "bandwidth_packages", bandwidth_packages)
@@ -33,9 +33,15 @@ class BandwidthPackagesResult:
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
         pulumi.set(__self__, "ids", ids)
+        if local_geographic_region_set_id and not isinstance(local_geographic_region_set_id, str):
+            raise TypeError("Expected argument 'local_geographic_region_set_id' to be a str")
+        pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if peer_geographic_region_set_id and not isinstance(peer_geographic_region_set_id, str):
+            raise TypeError("Expected argument 'peer_geographic_region_set_id' to be a str")
+        pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
         if project_name and not isinstance(project_name, str):
             raise TypeError("Expected argument 'project_name' to be a str")
         pulumi.set(__self__, "project_name", project_name)
@@ -74,9 +80,25 @@ class BandwidthPackagesResult:
         return pulumi.get(self, "ids")
 
     @property
+    @pulumi.getter(name="localGeographicRegionSetId")
+    def local_geographic_region_set_id(self) -> Optional[str]:
+        """
+        The local geographic region set ID.
+        """
+        return pulumi.get(self, "local_geographic_region_set_id")
+
+    @property
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="peerGeographicRegionSetId")
+    def peer_geographic_region_set_id(self) -> Optional[str]:
+        """
+        The peer geographic region set ID.
+        """
+        return pulumi.get(self, "peer_geographic_region_set_id")
 
     @property
     @pulumi.getter(name="projectName")
@@ -128,7 +150,9 @@ class AwaitableBandwidthPackagesResult(BandwidthPackagesResult):
             bandwidth_packages=self.bandwidth_packages,
             id=self.id,
             ids=self.ids,
+            local_geographic_region_set_id=self.local_geographic_region_set_id,
             output_file=self.output_file,
+            peer_geographic_region_set_id=self.peer_geographic_region_set_id,
             project_name=self.project_name,
             tags=self.tags,
             total_count=self.total_count,
@@ -137,7 +161,9 @@ class AwaitableBandwidthPackagesResult(BandwidthPackagesResult):
 
 
 def bandwidth_packages(ids: Optional[Sequence[str]] = None,
+                       local_geographic_region_set_id: Optional[str] = None,
                        output_file: Optional[str] = None,
+                       peer_geographic_region_set_id: Optional[str] = None,
                        project_name: Optional[str] = None,
                        tags: Optional[Sequence[pulumi.InputType['BandwidthPackagesTagArgs']]] = None,
                        transit_router_bandwidth_package_name: Optional[str] = None,
@@ -162,7 +188,9 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
 
 
     :param Sequence[str] ids: The ID list of the TransitRouter bandwidth package.
+    :param str local_geographic_region_set_id: The local geographic region set ID.
     :param str output_file: File name where to save data source results.
+    :param str peer_geographic_region_set_id: The peer geographic region set ID.
     :param str project_name: The ProjectName of the TransitRouter bandwidth package.
     :param Sequence[pulumi.InputType['BandwidthPackagesTagArgs']] tags: Tags.
     :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.
@@ -170,7 +198,9 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
     """
     __args__ = dict()
     __args__['ids'] = ids
+    __args__['localGeographicRegionSetId'] = local_geographic_region_set_id
     __args__['outputFile'] = output_file
+    __args__['peerGeographicRegionSetId'] = peer_geographic_region_set_id
     __args__['projectName'] = project_name
     __args__['tags'] = tags
     __args__['transitRouterBandwidthPackageName'] = transit_router_bandwidth_package_name
@@ -182,7 +212,9 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
         bandwidth_packages=pulumi.get(__ret__, 'bandwidth_packages'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
+        local_geographic_region_set_id=pulumi.get(__ret__, 'local_geographic_region_set_id'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        peer_geographic_region_set_id=pulumi.get(__ret__, 'peer_geographic_region_set_id'),
         project_name=pulumi.get(__ret__, 'project_name'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
@@ -192,7 +224,9 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
 
 @_utilities.lift_output_func(bandwidth_packages)
 def bandwidth_packages_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                              local_geographic_region_set_id: Optional[pulumi.Input[Optional[str]]] = None,
                               output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                              peer_geographic_region_set_id: Optional[pulumi.Input[Optional[str]]] = None,
                               project_name: Optional[pulumi.Input[Optional[str]]] = None,
                               tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['BandwidthPackagesTagArgs']]]]] = None,
                               transit_router_bandwidth_package_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -217,7 +251,9 @@ def bandwidth_packages_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
 
 
     :param Sequence[str] ids: The ID list of the TransitRouter bandwidth package.
+    :param str local_geographic_region_set_id: The local geographic region set ID.
     :param str output_file: File name where to save data source results.
+    :param str peer_geographic_region_set_id: The peer geographic region set ID.
     :param str project_name: The ProjectName of the TransitRouter bandwidth package.
     :param Sequence[pulumi.InputType['BandwidthPackagesTagArgs']] tags: Tags.
     :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.

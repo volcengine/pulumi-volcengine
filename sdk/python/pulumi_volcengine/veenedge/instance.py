@@ -350,7 +350,7 @@ class Instance(pulumi.CustomResource):
         Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
+        $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
         ```
 
         :param str resource_name: The name of the resource.
@@ -391,7 +391,7 @@ class Instance(pulumi.CustomResource):
         Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
+        $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
         ```
 
         :param str resource_name: The name of the resource.

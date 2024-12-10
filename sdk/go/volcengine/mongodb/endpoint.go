@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -79,7 +79,7 @@ import (
 //				ShardNumber:          pulumi.Int(3),
 //				StorageSpaceGb:       pulumi.Int(20),
 //				SubnetId:             fooSubnet.ID(),
-//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:               pulumi.String(fooZones.Zones[0].Id),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -115,7 +115,7 @@ import (
 //				ShardNumber:          pulumi.Int(2),
 //				StorageSpaceGb:       pulumi.Int(20),
 //				SubnetId:             fooSubnet.ID(),
-//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:               pulumi.String(fooZones.Zones[0].Id),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -144,12 +144,13 @@ import (
 //
 // ## Import
 //
-// mongodb endpoint can be imported using the instanceId:endpointId `instanceId`represents the instance that endpoint related to. `endpointId`the id of endpoint. e.g.
+// mongodb endpoint can be imported using the instanceId:endpointId
+// `instanceId`: represents the instance that endpoint related to.
+// `endpointId`: the id of endpoint.
+// e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
-//
+// $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
 // ```
 type Endpoint struct {
 	pulumi.CustomResourceState

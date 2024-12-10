@@ -23,6 +23,7 @@ export function instanceTypes(args?: InstanceTypesArgs, opts?: pulumi.InvokeOpti
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/instanceTypes:InstanceTypes", {
         "ids": args.ids,
+        "imageId": args.imageId,
         "outputFile": args.outputFile,
     }, opts);
 }
@@ -35,6 +36,10 @@ export interface InstanceTypesArgs {
      * A list of instance type IDs. When the number of ids is greater than 10, only the first 10 are effective.
      */
     ids?: string[];
+    /**
+     * The id of image.
+     */
+    imageId?: string;
     /**
      * File name where to save data source results.
      */
@@ -50,6 +55,7 @@ export interface InstanceTypesResult {
      */
     readonly id: string;
     readonly ids?: string[];
+    readonly imageId?: string;
     /**
      * The collection of query.
      */
@@ -83,6 +89,10 @@ export interface InstanceTypesOutputArgs {
      * A list of instance type IDs. When the number of ids is greater than 10, only the first 10 are effective.
      */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The id of image.
+     */
+    imageId?: pulumi.Input<string>;
     /**
      * File name where to save data source results.
      */

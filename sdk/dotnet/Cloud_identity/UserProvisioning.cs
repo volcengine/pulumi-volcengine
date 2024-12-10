@@ -11,13 +11,12 @@ namespace Pulumi.Volcengine.Cloud_identity
 {
     /// <summary>
     /// Provides a resource to manage cloud identity user provisioning
-    /// 
     /// ## Import
     /// 
     /// CloudIdentityUserProvisioning can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
+    /// $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloud_identity/userProvisioning:UserProvisioning")]

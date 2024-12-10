@@ -286,7 +286,7 @@ class Cen(pulumi.CustomResource):
         Cen can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/cen:Cen default cen-7qthudw0ll6jmc****
+        $ pulumi import volcengine:cen/cen:Cen default cen-7qthudw0ll6jmc****
         ```
 
         :param str resource_name: The name of the resource.
@@ -325,7 +325,7 @@ class Cen(pulumi.CustomResource):
         Cen can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/cen:Cen default cen-7qthudw0ll6jmc****
+        $ pulumi import volcengine:cen/cen:Cen default cen-7qthudw0ll6jmc****
         ```
 
         :param str resource_name: The name of the resource.

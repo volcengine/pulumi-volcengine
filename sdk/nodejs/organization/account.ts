@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * OrganizationAccount can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:organization/account:Account default resource_id
+ * $ pulumi import volcengine:organization/account:Account default resource_id
  * ```
  */
 export class Account extends pulumi.CustomResource {

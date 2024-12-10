@@ -115,10 +115,11 @@ class ScalingConfigurationAttachment(pulumi.CustomResource):
 
         ## Import
 
-        Scaling Configuration attachment can be imported using the scaling_configuration_id e.g. The launch template and scaling configuration cannot take effect at the same time.
+        Scaling Configuration attachment can be imported using the scaling_configuration_id e.g.
+        The launch template and scaling configuration cannot take effect at the same time.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327
+        $ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327
         ```
 
         :param str resource_name: The name of the resource.
@@ -181,10 +182,11 @@ class ScalingConfigurationAttachment(pulumi.CustomResource):
 
         ## Import
 
-        Scaling Configuration attachment can be imported using the scaling_configuration_id e.g. The launch template and scaling configuration cannot take effect at the same time.
+        Scaling Configuration attachment can be imported using the scaling_configuration_id e.g.
+        The launch template and scaling configuration cannot take effect at the same time.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327
+        $ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327
         ```
 
         :param str resource_name: The name of the resource.

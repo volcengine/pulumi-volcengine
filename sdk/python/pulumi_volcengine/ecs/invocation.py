@@ -467,7 +467,7 @@ class Invocation(pulumi.CustomResource):
         EcsInvocation can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/invocation:Invocation default ivk-ychnxnm45dl8j0mm****
+        $ pulumi import volcengine:ecs/invocation:Invocation default ivk-ychnxnm45dl8j0mm****
         ```
 
         :param str resource_name: The name of the resource.
@@ -517,7 +517,7 @@ class Invocation(pulumi.CustomResource):
         EcsInvocation can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/invocation:Invocation default ivk-ychnxnm45dl8j0mm****
+        $ pulumi import volcengine:ecs/invocation:Invocation default ivk-ychnxnm45dl8j0mm****
         ```
 
         :param str resource_name: The name of the resource.

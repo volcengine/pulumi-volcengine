@@ -27,8 +27,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DeploymentSet{}
 	case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
 		r = &DeploymentSetAssociate{}
+	case "volcengine:ecs/hpcCluster:HpcCluster":
+		r = &HpcCluster{}
 	case "volcengine:ecs/iamRoleAttachment:IamRoleAttachment":
 		r = &IamRoleAttachment{}
+	case "volcengine:ecs/image:Image":
+		r = &Image{}
+	case "volcengine:ecs/imageImport:ImageImport":
+		r = &ImageImport{}
+	case "volcengine:ecs/imageSharePermission:ImageSharePermission":
+		r = &ImageSharePermission{}
 	case "volcengine:ecs/instance:Instance":
 		r = &Instance{}
 	case "volcengine:ecs/invocation:Invocation":
@@ -71,7 +79,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"ecs/hpcCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"ecs/iamRoleAttachment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/image",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/imageImport",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/imageSharePermission",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

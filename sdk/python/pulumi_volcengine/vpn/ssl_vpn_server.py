@@ -21,6 +21,8 @@ class SslVpnServerArgs:
                  cipher: Optional[pulumi.Input[str]] = None,
                  compress: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None):
         """
@@ -41,6 +43,8 @@ class SslVpnServerArgs:
                `None` (do not use encryption).
         :param pulumi.Input[bool] compress: Whether to compress the transmitted data. The default value is false.
         :param pulumi.Input[str] description: The description of the ssl server.
+        :param pulumi.Input[int] port: The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        :param pulumi.Input[str] project_name: The project name of the ssl server.
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
         """
@@ -55,6 +59,10 @@ class SslVpnServerArgs:
             pulumi.set(__self__, "compress", compress)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
         if ssl_vpn_server_name is not None:
@@ -155,6 +163,30 @@ class SslVpnServerArgs:
 
     @property
     @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ssl server.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
         The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
@@ -187,6 +219,8 @@ class _SslVpnServerState:
                  compress: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  local_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
@@ -208,6 +242,8 @@ class _SslVpnServerState:
         :param pulumi.Input[bool] compress: Whether to compress the transmitted data. The default value is false.
         :param pulumi.Input[str] description: The description of the ssl server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+        :param pulumi.Input[int] port: The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        :param pulumi.Input[str] project_name: The project name of the ssl server.
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
@@ -225,6 +261,10 @@ class _SslVpnServerState:
             pulumi.set(__self__, "description", description)
         if local_subnets is not None:
             pulumi.set(__self__, "local_subnets", local_subnets)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
         if ssl_vpn_server_id is not None:
@@ -317,6 +357,30 @@ class _SslVpnServerState:
 
     @property
     @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ssl server.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
         The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
@@ -375,6 +439,8 @@ class SslVpnServer(pulumi.CustomResource):
                  compress: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  local_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None,
@@ -423,7 +489,7 @@ class SslVpnServer(pulumi.CustomResource):
         SSL VPN server can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
+        $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
         ```
 
         :param str resource_name: The name of the resource.
@@ -443,6 +509,8 @@ class SslVpnServer(pulumi.CustomResource):
         :param pulumi.Input[bool] compress: Whether to compress the transmitted data. The default value is false.
         :param pulumi.Input[str] description: The description of the ssl server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+        :param pulumi.Input[int] port: The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        :param pulumi.Input[str] project_name: The project name of the ssl server.
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
         :param pulumi.Input[str] vpn_gateway_id: The vpn gateway id.
@@ -497,7 +565,7 @@ class SslVpnServer(pulumi.CustomResource):
         SSL VPN server can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
+        $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
         ```
 
         :param str resource_name: The name of the resource.
@@ -521,6 +589,8 @@ class SslVpnServer(pulumi.CustomResource):
                  compress: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  local_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None,
@@ -543,6 +613,8 @@ class SslVpnServer(pulumi.CustomResource):
             if local_subnets is None and not opts.urn:
                 raise TypeError("Missing required property 'local_subnets'")
             __props__.__dict__["local_subnets"] = local_subnets
+            __props__.__dict__["port"] = port
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["ssl_vpn_server_name"] = ssl_vpn_server_name
             if vpn_gateway_id is None and not opts.urn:
@@ -565,6 +637,8 @@ class SslVpnServer(pulumi.CustomResource):
             compress: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             local_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            port: Optional[pulumi.Input[int]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
             ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
@@ -591,6 +665,8 @@ class SslVpnServer(pulumi.CustomResource):
         :param pulumi.Input[bool] compress: Whether to compress the transmitted data. The default value is false.
         :param pulumi.Input[str] description: The description of the ssl server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+        :param pulumi.Input[int] port: The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        :param pulumi.Input[str] project_name: The project name of the ssl server.
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
@@ -606,6 +682,8 @@ class SslVpnServer(pulumi.CustomResource):
         __props__.__dict__["compress"] = compress
         __props__.__dict__["description"] = description
         __props__.__dict__["local_subnets"] = local_subnets
+        __props__.__dict__["port"] = port
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["ssl_vpn_server_id"] = ssl_vpn_server_id
         __props__.__dict__["ssl_vpn_server_name"] = ssl_vpn_server_name
@@ -668,6 +746,22 @@ class SslVpnServer(pulumi.CustomResource):
         The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
         """
         return pulumi.get(self, "local_subnets")
+
+    @property
+    @pulumi.getter
+    def port(self) -> pulumi.Output[Optional[int]]:
+        """
+        The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the ssl server.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter

@@ -22,7 +22,7 @@ class CustomerGatewaysResult:
     """
     A collection of values returned by CustomerGateways.
     """
-    def __init__(__self__, customer_gateway_names=None, customer_gateways=None, id=None, ids=None, ip_address=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, customer_gateway_names=None, customer_gateways=None, id=None, ids=None, ip_address=None, name_regex=None, output_file=None, project_name=None, total_count=None):
         if customer_gateway_names and not isinstance(customer_gateway_names, list):
             raise TypeError("Expected argument 'customer_gateway_names' to be a list")
         pulumi.set(__self__, "customer_gateway_names", customer_gateway_names)
@@ -44,6 +44,9 @@ class CustomerGatewaysResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -93,6 +96,11 @@ class CustomerGatewaysResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -114,6 +122,7 @@ class AwaitableCustomerGatewaysResult(CustomerGatewaysResult):
             ip_address=self.ip_address,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             total_count=self.total_count)
 
 
@@ -122,6 +131,7 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
                       ip_address: Optional[str] = None,
                       name_regex: Optional[str] = None,
                       output_file: Optional[str] = None,
+                      project_name: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableCustomerGatewaysResult:
     """
     Use this data source to query detailed information of customer gateways
@@ -145,6 +155,7 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
     :param str ip_address: A IP address of the customer gateway.
     :param str name_regex: A Name Regex of customer gateway.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the VPN customer gateway.
     """
     __args__ = dict()
     __args__['customerGatewayNames'] = customer_gateway_names
@@ -152,6 +163,7 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
     __args__['ipAddress'] = ip_address
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpn/customerGateways:CustomerGateways', __args__, opts=opts, typ=CustomerGatewaysResult).value
 
@@ -163,6 +175,7 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
         ip_address=pulumi.get(__ret__, 'ip_address'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -172,6 +185,7 @@ def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optio
                              ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                              name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                              output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                             project_name: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CustomerGatewaysResult]:
     """
     Use this data source to query detailed information of customer gateways
@@ -195,5 +209,6 @@ def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optio
     :param str ip_address: A IP address of the customer gateway.
     :param str name_regex: A Name Regex of customer gateway.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the VPN customer gateway.
     """
     ...

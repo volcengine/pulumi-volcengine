@@ -21,9 +21,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/transit_router"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpn"
 //
 // )
@@ -33,37 +31,6 @@ import (
 //			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
 //				TransitRouterName: pulumi.String("test-tf-acc"),
 //				Description:       pulumi.String("test-tf-acc"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
-//				VpcName:   pulumi.String("acc-test-vpc"),
-//				CidrBlock: pulumi.String("172.16.0.0/16"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
-//				SubnetName: pulumi.String("acc-test-subnet"),
-//				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
-//				VpcId:      fooVpc.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooGateway, err := vpn.NewGateway(ctx, "fooGateway", &vpn.GatewayArgs{
-//				VpcId:          fooVpc.ID(),
-//				SubnetId:       fooSubnet.ID(),
-//				Bandwidth:      pulumi.Int(20),
-//				VpnGatewayName: pulumi.String("acc-test"),
-//				Description:    pulumi.String("acc-test"),
-//				Period:         pulumi.Int(2),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +47,6 @@ import (
 //				VpnConnectionName: pulumi.String("acc-tf-test"),
 //				Description:       pulumi.String("acc-tf-test"),
 //				AttachType:        pulumi.String("TransitRouter"),
-//				VpnGatewayId:      fooGateway.ID(),
 //				CustomerGatewayId: fooCustomerGateway.ID(),
 //				LocalSubnets: pulumi.StringArray{
 //					pulumi.String("192.168.0.0/22"),
@@ -135,9 +101,7 @@ import (
 // TransitRouterVpnAttachment can be imported using the transitRouterId:attachmentId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:transit_router/vpnAttachment:VpnAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
-//
+// $ pulumi import volcengine:transit_router/vpnAttachment:VpnAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
 // ```
 type VpnAttachment struct {
 	pulumi.CustomResourceState

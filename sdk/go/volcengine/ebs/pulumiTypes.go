@@ -13,6 +13,1845 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AutoSnapshotPoliciesAutoSnapshotPolicy struct {
+	// The id of the auto snapshot policy.
+	AutoSnapshotPolicyId string `pulumi:"autoSnapshotPolicyId"`
+	// The name of the auto snapshot policy.
+	AutoSnapshotPolicyName string `pulumi:"autoSnapshotPolicyName"`
+	// The creation time of the auto snapshot policy.
+	CreatedAt string `pulumi:"createdAt"`
+	// The id of the auto snapshot policy.
+	Id string `pulumi:"id"`
+	// The project name of auto snapshot policy.
+	ProjectName string `pulumi:"projectName"`
+	// Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+	RepeatDays int `pulumi:"repeatDays"`
+	// The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+	RepeatWeekdays []string `pulumi:"repeatWeekdays"`
+	// The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+	RetentionDays int `pulumi:"retentionDays"`
+	// The status of the auto snapshot policy.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []AutoSnapshotPoliciesAutoSnapshotPolicyTag `pulumi:"tags"`
+	// The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+	TimePoints []string `pulumi:"timePoints"`
+	// The updated time of the auto snapshot policy.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The number of volumes associated with the auto snapshot policy.
+	VolumeNums int `pulumi:"volumeNums"`
+}
+
+// AutoSnapshotPoliciesAutoSnapshotPolicyInput is an input type that accepts AutoSnapshotPoliciesAutoSnapshotPolicyArgs and AutoSnapshotPoliciesAutoSnapshotPolicyOutput values.
+// You can construct a concrete instance of `AutoSnapshotPoliciesAutoSnapshotPolicyInput` via:
+//
+//	AutoSnapshotPoliciesAutoSnapshotPolicyArgs{...}
+type AutoSnapshotPoliciesAutoSnapshotPolicyInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyOutput() AutoSnapshotPoliciesAutoSnapshotPolicyOutput
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyOutputWithContext(context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyOutput
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyArgs struct {
+	// The id of the auto snapshot policy.
+	AutoSnapshotPolicyId pulumi.StringInput `pulumi:"autoSnapshotPolicyId"`
+	// The name of the auto snapshot policy.
+	AutoSnapshotPolicyName pulumi.StringInput `pulumi:"autoSnapshotPolicyName"`
+	// The creation time of the auto snapshot policy.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The id of the auto snapshot policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The project name of auto snapshot policy.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+	RepeatDays pulumi.IntInput `pulumi:"repeatDays"`
+	// The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+	RepeatWeekdays pulumi.StringArrayInput `pulumi:"repeatWeekdays"`
+	// The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// The status of the auto snapshot policy.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayInput `pulumi:"tags"`
+	// The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+	TimePoints pulumi.StringArrayInput `pulumi:"timePoints"`
+	// The updated time of the auto snapshot policy.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The number of volumes associated with the auto snapshot policy.
+	VolumeNums pulumi.IntInput `pulumi:"volumeNums"`
+}
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicy)(nil)).Elem()
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyArgs) ToAutoSnapshotPoliciesAutoSnapshotPolicyOutput() AutoSnapshotPoliciesAutoSnapshotPolicyOutput {
+	return i.ToAutoSnapshotPoliciesAutoSnapshotPolicyOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyArgs) ToAutoSnapshotPoliciesAutoSnapshotPolicyOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPoliciesAutoSnapshotPolicyOutput)
+}
+
+// AutoSnapshotPoliciesAutoSnapshotPolicyArrayInput is an input type that accepts AutoSnapshotPoliciesAutoSnapshotPolicyArray and AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput values.
+// You can construct a concrete instance of `AutoSnapshotPoliciesAutoSnapshotPolicyArrayInput` via:
+//
+//	AutoSnapshotPoliciesAutoSnapshotPolicyArray{ AutoSnapshotPoliciesAutoSnapshotPolicyArgs{...} }
+type AutoSnapshotPoliciesAutoSnapshotPolicyArrayInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput() AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutputWithContext(context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyArray []AutoSnapshotPoliciesAutoSnapshotPolicyInput
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPoliciesAutoSnapshotPolicy)(nil)).Elem()
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyArray) ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput() AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput {
+	return i.ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyArray) ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput)
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicy)(nil)).Elem()
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyOutput() AutoSnapshotPoliciesAutoSnapshotPolicyOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyOutput {
+	return o
+}
+
+// The id of the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) AutoSnapshotPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.AutoSnapshotPolicyId }).(pulumi.StringOutput)
+}
+
+// The name of the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) AutoSnapshotPolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.AutoSnapshotPolicyName }).(pulumi.StringOutput)
+}
+
+// The creation time of the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The id of the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The project name of auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) RepeatDays() pulumi.IntOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) int { return v.RepeatDays }).(pulumi.IntOutput)
+}
+
+// The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) RepeatWeekdays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) []string { return v.RepeatWeekdays }).(pulumi.StringArrayOutput)
+}
+
+// The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The status of the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) Tags() AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) []AutoSnapshotPoliciesAutoSnapshotPolicyTag {
+		return v.Tags
+	}).(AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput)
+}
+
+// The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) TimePoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) []string { return v.TimePoints }).(pulumi.StringArrayOutput)
+}
+
+// The updated time of the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The number of volumes associated with the auto snapshot policy.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyOutput) VolumeNums() pulumi.IntOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicy) int { return v.VolumeNums }).(pulumi.IntOutput)
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPoliciesAutoSnapshotPolicy)(nil)).Elem()
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput() AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyArrayOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput) Index(i pulumi.IntInput) AutoSnapshotPoliciesAutoSnapshotPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoSnapshotPoliciesAutoSnapshotPolicy {
+		return vs[0].([]AutoSnapshotPoliciesAutoSnapshotPolicy)[vs[1].(int)]
+	}).(AutoSnapshotPoliciesAutoSnapshotPolicyOutput)
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AutoSnapshotPoliciesAutoSnapshotPolicyTagInput is an input type that accepts AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs and AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput values.
+// You can construct a concrete instance of `AutoSnapshotPoliciesAutoSnapshotPolicyTagInput` via:
+//
+//	AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs{...}
+type AutoSnapshotPoliciesAutoSnapshotPolicyTagInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutput() AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutputWithContext(context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutput() AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput {
+	return i.ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput)
+}
+
+// AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayInput is an input type that accepts AutoSnapshotPoliciesAutoSnapshotPolicyTagArray and AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput values.
+// You can construct a concrete instance of `AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayInput` via:
+//
+//	AutoSnapshotPoliciesAutoSnapshotPolicyTagArray{ AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs{...} }
+type AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput() AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput
+	ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutputWithContext(context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyTagArray []AutoSnapshotPoliciesAutoSnapshotPolicyTagInput
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPoliciesAutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyTagArray) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput() AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput {
+	return i.ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPoliciesAutoSnapshotPolicyTagArray) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput)
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutput() AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicyTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesAutoSnapshotPolicyTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPoliciesAutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput() AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput) ToAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutputWithContext(ctx context.Context) AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput) Index(i pulumi.IntInput) AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoSnapshotPoliciesAutoSnapshotPolicyTag {
+		return vs[0].([]AutoSnapshotPoliciesAutoSnapshotPolicyTag)[vs[1].(int)]
+	}).(AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput)
+}
+
+type AutoSnapshotPoliciesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AutoSnapshotPoliciesTagInput is an input type that accepts AutoSnapshotPoliciesTagArgs and AutoSnapshotPoliciesTagOutput values.
+// You can construct a concrete instance of `AutoSnapshotPoliciesTagInput` via:
+//
+//	AutoSnapshotPoliciesTagArgs{...}
+type AutoSnapshotPoliciesTagInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPoliciesTagOutput() AutoSnapshotPoliciesTagOutput
+	ToAutoSnapshotPoliciesTagOutputWithContext(context.Context) AutoSnapshotPoliciesTagOutput
+}
+
+type AutoSnapshotPoliciesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AutoSnapshotPoliciesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPoliciesTag)(nil)).Elem()
+}
+
+func (i AutoSnapshotPoliciesTagArgs) ToAutoSnapshotPoliciesTagOutput() AutoSnapshotPoliciesTagOutput {
+	return i.ToAutoSnapshotPoliciesTagOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPoliciesTagArgs) ToAutoSnapshotPoliciesTagOutputWithContext(ctx context.Context) AutoSnapshotPoliciesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPoliciesTagOutput)
+}
+
+// AutoSnapshotPoliciesTagArrayInput is an input type that accepts AutoSnapshotPoliciesTagArray and AutoSnapshotPoliciesTagArrayOutput values.
+// You can construct a concrete instance of `AutoSnapshotPoliciesTagArrayInput` via:
+//
+//	AutoSnapshotPoliciesTagArray{ AutoSnapshotPoliciesTagArgs{...} }
+type AutoSnapshotPoliciesTagArrayInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPoliciesTagArrayOutput() AutoSnapshotPoliciesTagArrayOutput
+	ToAutoSnapshotPoliciesTagArrayOutputWithContext(context.Context) AutoSnapshotPoliciesTagArrayOutput
+}
+
+type AutoSnapshotPoliciesTagArray []AutoSnapshotPoliciesTagInput
+
+func (AutoSnapshotPoliciesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPoliciesTag)(nil)).Elem()
+}
+
+func (i AutoSnapshotPoliciesTagArray) ToAutoSnapshotPoliciesTagArrayOutput() AutoSnapshotPoliciesTagArrayOutput {
+	return i.ToAutoSnapshotPoliciesTagArrayOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPoliciesTagArray) ToAutoSnapshotPoliciesTagArrayOutputWithContext(ctx context.Context) AutoSnapshotPoliciesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPoliciesTagArrayOutput)
+}
+
+type AutoSnapshotPoliciesTagOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPoliciesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPoliciesTag)(nil)).Elem()
+}
+
+func (o AutoSnapshotPoliciesTagOutput) ToAutoSnapshotPoliciesTagOutput() AutoSnapshotPoliciesTagOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesTagOutput) ToAutoSnapshotPoliciesTagOutputWithContext(ctx context.Context) AutoSnapshotPoliciesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AutoSnapshotPoliciesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AutoSnapshotPoliciesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPoliciesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AutoSnapshotPoliciesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPoliciesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPoliciesTag)(nil)).Elem()
+}
+
+func (o AutoSnapshotPoliciesTagArrayOutput) ToAutoSnapshotPoliciesTagArrayOutput() AutoSnapshotPoliciesTagArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesTagArrayOutput) ToAutoSnapshotPoliciesTagArrayOutputWithContext(ctx context.Context) AutoSnapshotPoliciesTagArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPoliciesTagArrayOutput) Index(i pulumi.IntInput) AutoSnapshotPoliciesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoSnapshotPoliciesTag {
+		return vs[0].([]AutoSnapshotPoliciesTag)[vs[1].(int)]
+	}).(AutoSnapshotPoliciesTagOutput)
+}
+
+type AutoSnapshotPolicyTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AutoSnapshotPolicyTagInput is an input type that accepts AutoSnapshotPolicyTagArgs and AutoSnapshotPolicyTagOutput values.
+// You can construct a concrete instance of `AutoSnapshotPolicyTagInput` via:
+//
+//	AutoSnapshotPolicyTagArgs{...}
+type AutoSnapshotPolicyTagInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPolicyTagOutput() AutoSnapshotPolicyTagOutput
+	ToAutoSnapshotPolicyTagOutputWithContext(context.Context) AutoSnapshotPolicyTagOutput
+}
+
+type AutoSnapshotPolicyTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AutoSnapshotPolicyTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (i AutoSnapshotPolicyTagArgs) ToAutoSnapshotPolicyTagOutput() AutoSnapshotPolicyTagOutput {
+	return i.ToAutoSnapshotPolicyTagOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPolicyTagArgs) ToAutoSnapshotPolicyTagOutputWithContext(ctx context.Context) AutoSnapshotPolicyTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPolicyTagOutput)
+}
+
+// AutoSnapshotPolicyTagArrayInput is an input type that accepts AutoSnapshotPolicyTagArray and AutoSnapshotPolicyTagArrayOutput values.
+// You can construct a concrete instance of `AutoSnapshotPolicyTagArrayInput` via:
+//
+//	AutoSnapshotPolicyTagArray{ AutoSnapshotPolicyTagArgs{...} }
+type AutoSnapshotPolicyTagArrayInput interface {
+	pulumi.Input
+
+	ToAutoSnapshotPolicyTagArrayOutput() AutoSnapshotPolicyTagArrayOutput
+	ToAutoSnapshotPolicyTagArrayOutputWithContext(context.Context) AutoSnapshotPolicyTagArrayOutput
+}
+
+type AutoSnapshotPolicyTagArray []AutoSnapshotPolicyTagInput
+
+func (AutoSnapshotPolicyTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (i AutoSnapshotPolicyTagArray) ToAutoSnapshotPolicyTagArrayOutput() AutoSnapshotPolicyTagArrayOutput {
+	return i.ToAutoSnapshotPolicyTagArrayOutputWithContext(context.Background())
+}
+
+func (i AutoSnapshotPolicyTagArray) ToAutoSnapshotPolicyTagArrayOutputWithContext(ctx context.Context) AutoSnapshotPolicyTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoSnapshotPolicyTagArrayOutput)
+}
+
+type AutoSnapshotPolicyTagOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPolicyTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (o AutoSnapshotPolicyTagOutput) ToAutoSnapshotPolicyTagOutput() AutoSnapshotPolicyTagOutput {
+	return o
+}
+
+func (o AutoSnapshotPolicyTagOutput) ToAutoSnapshotPolicyTagOutputWithContext(ctx context.Context) AutoSnapshotPolicyTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AutoSnapshotPolicyTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPolicyTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AutoSnapshotPolicyTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoSnapshotPolicyTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AutoSnapshotPolicyTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoSnapshotPolicyTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoSnapshotPolicyTag)(nil)).Elem()
+}
+
+func (o AutoSnapshotPolicyTagArrayOutput) ToAutoSnapshotPolicyTagArrayOutput() AutoSnapshotPolicyTagArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPolicyTagArrayOutput) ToAutoSnapshotPolicyTagArrayOutputWithContext(ctx context.Context) AutoSnapshotPolicyTagArrayOutput {
+	return o
+}
+
+func (o AutoSnapshotPolicyTagArrayOutput) Index(i pulumi.IntInput) AutoSnapshotPolicyTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoSnapshotPolicyTag {
+		return vs[0].([]AutoSnapshotPolicyTag)[vs[1].(int)]
+	}).(AutoSnapshotPolicyTagOutput)
+}
+
+type SnapshotGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SnapshotGroupTagInput is an input type that accepts SnapshotGroupTagArgs and SnapshotGroupTagOutput values.
+// You can construct a concrete instance of `SnapshotGroupTagInput` via:
+//
+//	SnapshotGroupTagArgs{...}
+type SnapshotGroupTagInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupTagOutput() SnapshotGroupTagOutput
+	ToSnapshotGroupTagOutputWithContext(context.Context) SnapshotGroupTagOutput
+}
+
+type SnapshotGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SnapshotGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupTag)(nil)).Elem()
+}
+
+func (i SnapshotGroupTagArgs) ToSnapshotGroupTagOutput() SnapshotGroupTagOutput {
+	return i.ToSnapshotGroupTagOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupTagArgs) ToSnapshotGroupTagOutputWithContext(ctx context.Context) SnapshotGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupTagOutput)
+}
+
+// SnapshotGroupTagArrayInput is an input type that accepts SnapshotGroupTagArray and SnapshotGroupTagArrayOutput values.
+// You can construct a concrete instance of `SnapshotGroupTagArrayInput` via:
+//
+//	SnapshotGroupTagArray{ SnapshotGroupTagArgs{...} }
+type SnapshotGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupTagArrayOutput() SnapshotGroupTagArrayOutput
+	ToSnapshotGroupTagArrayOutputWithContext(context.Context) SnapshotGroupTagArrayOutput
+}
+
+type SnapshotGroupTagArray []SnapshotGroupTagInput
+
+func (SnapshotGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupTag)(nil)).Elem()
+}
+
+func (i SnapshotGroupTagArray) ToSnapshotGroupTagArrayOutput() SnapshotGroupTagArrayOutput {
+	return i.ToSnapshotGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupTagArray) ToSnapshotGroupTagArrayOutputWithContext(ctx context.Context) SnapshotGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupTagArrayOutput)
+}
+
+type SnapshotGroupTagOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupTag)(nil)).Elem()
+}
+
+func (o SnapshotGroupTagOutput) ToSnapshotGroupTagOutput() SnapshotGroupTagOutput {
+	return o
+}
+
+func (o SnapshotGroupTagOutput) ToSnapshotGroupTagOutputWithContext(ctx context.Context) SnapshotGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SnapshotGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SnapshotGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SnapshotGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupTag)(nil)).Elem()
+}
+
+func (o SnapshotGroupTagArrayOutput) ToSnapshotGroupTagArrayOutput() SnapshotGroupTagArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupTagArrayOutput) ToSnapshotGroupTagArrayOutputWithContext(ctx context.Context) SnapshotGroupTagArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupTagArrayOutput) Index(i pulumi.IntInput) SnapshotGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotGroupTag {
+		return vs[0].([]SnapshotGroupTag)[vs[1].(int)]
+	}).(SnapshotGroupTagOutput)
+}
+
+type SnapshotGroupsSnapshotGroup struct {
+	// The creation time of the snapshot.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the snapshot.
+	Description string `pulumi:"description"`
+	// The id of the snapshot group.
+	Id string `pulumi:"id"`
+	// The image id of the snapshot.
+	ImageId string `pulumi:"imageId"`
+	// The instance id of snapshot group.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of snapshot group.
+	Name string `pulumi:"name"`
+	// The project name of snapshot group.
+	ProjectName string `pulumi:"projectName"`
+	// The id of the snapshot group.
+	SnapshotGroupId string `pulumi:"snapshotGroupId"`
+	// The snapshots of the snapshot group.
+	Snapshots []SnapshotGroupsSnapshotGroupSnapshot `pulumi:"snapshots"`
+	// A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []SnapshotGroupsSnapshotGroupTag `pulumi:"tags"`
+}
+
+// SnapshotGroupsSnapshotGroupInput is an input type that accepts SnapshotGroupsSnapshotGroupArgs and SnapshotGroupsSnapshotGroupOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupInput` via:
+//
+//	SnapshotGroupsSnapshotGroupArgs{...}
+type SnapshotGroupsSnapshotGroupInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupOutput() SnapshotGroupsSnapshotGroupOutput
+	ToSnapshotGroupsSnapshotGroupOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupOutput
+}
+
+type SnapshotGroupsSnapshotGroupArgs struct {
+	// The creation time of the snapshot.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the snapshot.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the snapshot group.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The image id of the snapshot.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The instance id of snapshot group.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of snapshot group.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of snapshot group.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The id of the snapshot group.
+	SnapshotGroupId pulumi.StringInput `pulumi:"snapshotGroupId"`
+	// The snapshots of the snapshot group.
+	Snapshots SnapshotGroupsSnapshotGroupSnapshotArrayInput `pulumi:"snapshots"`
+	// A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags SnapshotGroupsSnapshotGroupTagArrayInput `pulumi:"tags"`
+}
+
+func (SnapshotGroupsSnapshotGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroup)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupArgs) ToSnapshotGroupsSnapshotGroupOutput() SnapshotGroupsSnapshotGroupOutput {
+	return i.ToSnapshotGroupsSnapshotGroupOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupArgs) ToSnapshotGroupsSnapshotGroupOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupOutput)
+}
+
+// SnapshotGroupsSnapshotGroupArrayInput is an input type that accepts SnapshotGroupsSnapshotGroupArray and SnapshotGroupsSnapshotGroupArrayOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupArrayInput` via:
+//
+//	SnapshotGroupsSnapshotGroupArray{ SnapshotGroupsSnapshotGroupArgs{...} }
+type SnapshotGroupsSnapshotGroupArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupArrayOutput() SnapshotGroupsSnapshotGroupArrayOutput
+	ToSnapshotGroupsSnapshotGroupArrayOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupArrayOutput
+}
+
+type SnapshotGroupsSnapshotGroupArray []SnapshotGroupsSnapshotGroupInput
+
+func (SnapshotGroupsSnapshotGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroup)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupArray) ToSnapshotGroupsSnapshotGroupArrayOutput() SnapshotGroupsSnapshotGroupArrayOutput {
+	return i.ToSnapshotGroupsSnapshotGroupArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupArray) ToSnapshotGroupsSnapshotGroupArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupArrayOutput)
+}
+
+type SnapshotGroupsSnapshotGroupOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroup)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupOutput) ToSnapshotGroupsSnapshotGroupOutput() SnapshotGroupsSnapshotGroupOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupOutput) ToSnapshotGroupsSnapshotGroupOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupOutput {
+	return o
+}
+
+// The creation time of the snapshot.
+func (o SnapshotGroupsSnapshotGroupOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the snapshot.
+func (o SnapshotGroupsSnapshotGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the snapshot group.
+func (o SnapshotGroupsSnapshotGroupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The image id of the snapshot.
+func (o SnapshotGroupsSnapshotGroupOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The instance id of snapshot group.
+func (o SnapshotGroupsSnapshotGroupOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of snapshot group.
+func (o SnapshotGroupsSnapshotGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project name of snapshot group.
+func (o SnapshotGroupsSnapshotGroupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The id of the snapshot group.
+func (o SnapshotGroupsSnapshotGroupOutput) SnapshotGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.SnapshotGroupId }).(pulumi.StringOutput)
+}
+
+// The snapshots of the snapshot group.
+func (o SnapshotGroupsSnapshotGroupOutput) Snapshots() SnapshotGroupsSnapshotGroupSnapshotArrayOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) []SnapshotGroupsSnapshotGroupSnapshot { return v.Snapshots }).(SnapshotGroupsSnapshotGroupSnapshotArrayOutput)
+}
+
+// A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+func (o SnapshotGroupsSnapshotGroupOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SnapshotGroupsSnapshotGroupOutput) Tags() SnapshotGroupsSnapshotGroupTagArrayOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroup) []SnapshotGroupsSnapshotGroupTag { return v.Tags }).(SnapshotGroupsSnapshotGroupTagArrayOutput)
+}
+
+type SnapshotGroupsSnapshotGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroup)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupArrayOutput) ToSnapshotGroupsSnapshotGroupArrayOutput() SnapshotGroupsSnapshotGroupArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupArrayOutput) ToSnapshotGroupsSnapshotGroupArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupArrayOutput) Index(i pulumi.IntInput) SnapshotGroupsSnapshotGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotGroupsSnapshotGroup {
+		return vs[0].([]SnapshotGroupsSnapshotGroup)[vs[1].(int)]
+	}).(SnapshotGroupsSnapshotGroupOutput)
+}
+
+type SnapshotGroupsSnapshotGroupSnapshot struct {
+	// The creation time of the snapshot.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the snapshot.
+	Description string `pulumi:"description"`
+	// The image id of the snapshot.
+	ImageId string `pulumi:"imageId"`
+	// The progress of the snapshot.
+	Progress int `pulumi:"progress"`
+	// The project name of snapshot group.
+	ProjectName string `pulumi:"projectName"`
+	// The id of the snapshot.
+	RetentionDays int `pulumi:"retentionDays"`
+	// The id of the snapshot.
+	SnapshotId string `pulumi:"snapshotId"`
+	// The name of the snapshot.
+	SnapshotName string `pulumi:"snapshotName"`
+	// The type of the snapshot.
+	SnapshotType string `pulumi:"snapshotType"`
+	// A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []SnapshotGroupsSnapshotGroupSnapshotTag `pulumi:"tags"`
+	// The volume id of the snapshot.
+	VolumeId string `pulumi:"volumeId"`
+	// The volume kind of the snapshot.
+	VolumeKind string `pulumi:"volumeKind"`
+	// The volume name of the snapshot.
+	VolumeName string `pulumi:"volumeName"`
+	// The volume size of the snapshot.
+	VolumeSize int `pulumi:"volumeSize"`
+	// The volume status of the snapshot.
+	VolumeStatus string `pulumi:"volumeStatus"`
+	// The volume type of the snapshot.
+	VolumeType string `pulumi:"volumeType"`
+	// The zone id of the snapshot.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// SnapshotGroupsSnapshotGroupSnapshotInput is an input type that accepts SnapshotGroupsSnapshotGroupSnapshotArgs and SnapshotGroupsSnapshotGroupSnapshotOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupSnapshotInput` via:
+//
+//	SnapshotGroupsSnapshotGroupSnapshotArgs{...}
+type SnapshotGroupsSnapshotGroupSnapshotInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupSnapshotOutput() SnapshotGroupsSnapshotGroupSnapshotOutput
+	ToSnapshotGroupsSnapshotGroupSnapshotOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupSnapshotOutput
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotArgs struct {
+	// The creation time of the snapshot.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the snapshot.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The image id of the snapshot.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The progress of the snapshot.
+	Progress pulumi.IntInput `pulumi:"progress"`
+	// The project name of snapshot group.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The id of the snapshot.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// The id of the snapshot.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// The name of the snapshot.
+	SnapshotName pulumi.StringInput `pulumi:"snapshotName"`
+	// The type of the snapshot.
+	SnapshotType pulumi.StringInput `pulumi:"snapshotType"`
+	// A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags SnapshotGroupsSnapshotGroupSnapshotTagArrayInput `pulumi:"tags"`
+	// The volume id of the snapshot.
+	VolumeId pulumi.StringInput `pulumi:"volumeId"`
+	// The volume kind of the snapshot.
+	VolumeKind pulumi.StringInput `pulumi:"volumeKind"`
+	// The volume name of the snapshot.
+	VolumeName pulumi.StringInput `pulumi:"volumeName"`
+	// The volume size of the snapshot.
+	VolumeSize pulumi.IntInput `pulumi:"volumeSize"`
+	// The volume status of the snapshot.
+	VolumeStatus pulumi.StringInput `pulumi:"volumeStatus"`
+	// The volume type of the snapshot.
+	VolumeType pulumi.StringInput `pulumi:"volumeType"`
+	// The zone id of the snapshot.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (SnapshotGroupsSnapshotGroupSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshot)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotArgs) ToSnapshotGroupsSnapshotGroupSnapshotOutput() SnapshotGroupsSnapshotGroupSnapshotOutput {
+	return i.ToSnapshotGroupsSnapshotGroupSnapshotOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotArgs) ToSnapshotGroupsSnapshotGroupSnapshotOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupSnapshotOutput)
+}
+
+// SnapshotGroupsSnapshotGroupSnapshotArrayInput is an input type that accepts SnapshotGroupsSnapshotGroupSnapshotArray and SnapshotGroupsSnapshotGroupSnapshotArrayOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupSnapshotArrayInput` via:
+//
+//	SnapshotGroupsSnapshotGroupSnapshotArray{ SnapshotGroupsSnapshotGroupSnapshotArgs{...} }
+type SnapshotGroupsSnapshotGroupSnapshotArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupSnapshotArrayOutput() SnapshotGroupsSnapshotGroupSnapshotArrayOutput
+	ToSnapshotGroupsSnapshotGroupSnapshotArrayOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupSnapshotArrayOutput
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotArray []SnapshotGroupsSnapshotGroupSnapshotInput
+
+func (SnapshotGroupsSnapshotGroupSnapshotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroupSnapshot)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotArray) ToSnapshotGroupsSnapshotGroupSnapshotArrayOutput() SnapshotGroupsSnapshotGroupSnapshotArrayOutput {
+	return i.ToSnapshotGroupsSnapshotGroupSnapshotArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotArray) ToSnapshotGroupsSnapshotGroupSnapshotArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupSnapshotArrayOutput)
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshot)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) ToSnapshotGroupsSnapshotGroupSnapshotOutput() SnapshotGroupsSnapshotGroupSnapshotOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) ToSnapshotGroupsSnapshotGroupSnapshotOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotOutput {
+	return o
+}
+
+// The creation time of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The image id of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The progress of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) Progress() pulumi.IntOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) int { return v.Progress }).(pulumi.IntOutput)
+}
+
+// The project name of snapshot group.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The id of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The id of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// The name of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) SnapshotName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.SnapshotName }).(pulumi.StringOutput)
+}
+
+// The type of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) SnapshotType() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.SnapshotType }).(pulumi.StringOutput)
+}
+
+// A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) Tags() SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) []SnapshotGroupsSnapshotGroupSnapshotTag { return v.Tags }).(SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput)
+}
+
+// The volume id of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.VolumeId }).(pulumi.StringOutput)
+}
+
+// The volume kind of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) VolumeKind() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.VolumeKind }).(pulumi.StringOutput)
+}
+
+// The volume name of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) VolumeName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.VolumeName }).(pulumi.StringOutput)
+}
+
+// The volume size of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) VolumeSize() pulumi.IntOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) int { return v.VolumeSize }).(pulumi.IntOutput)
+}
+
+// The volume status of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) VolumeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.VolumeStatus }).(pulumi.StringOutput)
+}
+
+// The volume type of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.VolumeType }).(pulumi.StringOutput)
+}
+
+// The zone id of the snapshot.
+func (o SnapshotGroupsSnapshotGroupSnapshotOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshot) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupSnapshotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroupSnapshot)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotArrayOutput) ToSnapshotGroupsSnapshotGroupSnapshotArrayOutput() SnapshotGroupsSnapshotGroupSnapshotArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotArrayOutput) ToSnapshotGroupsSnapshotGroupSnapshotArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotArrayOutput) Index(i pulumi.IntInput) SnapshotGroupsSnapshotGroupSnapshotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotGroupsSnapshotGroupSnapshot {
+		return vs[0].([]SnapshotGroupsSnapshotGroupSnapshot)[vs[1].(int)]
+	}).(SnapshotGroupsSnapshotGroupSnapshotOutput)
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SnapshotGroupsSnapshotGroupSnapshotTagInput is an input type that accepts SnapshotGroupsSnapshotGroupSnapshotTagArgs and SnapshotGroupsSnapshotGroupSnapshotTagOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupSnapshotTagInput` via:
+//
+//	SnapshotGroupsSnapshotGroupSnapshotTagArgs{...}
+type SnapshotGroupsSnapshotGroupSnapshotTagInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupSnapshotTagOutput() SnapshotGroupsSnapshotGroupSnapshotTagOutput
+	ToSnapshotGroupsSnapshotGroupSnapshotTagOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupSnapshotTagOutput
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SnapshotGroupsSnapshotGroupSnapshotTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshotTag)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotTagArgs) ToSnapshotGroupsSnapshotGroupSnapshotTagOutput() SnapshotGroupsSnapshotGroupSnapshotTagOutput {
+	return i.ToSnapshotGroupsSnapshotGroupSnapshotTagOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotTagArgs) ToSnapshotGroupsSnapshotGroupSnapshotTagOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupSnapshotTagOutput)
+}
+
+// SnapshotGroupsSnapshotGroupSnapshotTagArrayInput is an input type that accepts SnapshotGroupsSnapshotGroupSnapshotTagArray and SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupSnapshotTagArrayInput` via:
+//
+//	SnapshotGroupsSnapshotGroupSnapshotTagArray{ SnapshotGroupsSnapshotGroupSnapshotTagArgs{...} }
+type SnapshotGroupsSnapshotGroupSnapshotTagArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutput() SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput
+	ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotTagArray []SnapshotGroupsSnapshotGroupSnapshotTagInput
+
+func (SnapshotGroupsSnapshotGroupSnapshotTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroupSnapshotTag)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotTagArray) ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutput() SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput {
+	return i.ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupSnapshotTagArray) ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput)
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotTagOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupSnapshotTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshotTag)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotTagOutput) ToSnapshotGroupsSnapshotGroupSnapshotTagOutput() SnapshotGroupsSnapshotGroupSnapshotTagOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotTagOutput) ToSnapshotGroupsSnapshotGroupSnapshotTagOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SnapshotGroupsSnapshotGroupSnapshotTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshotTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SnapshotGroupsSnapshotGroupSnapshotTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupSnapshotTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroupSnapshotTag)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput) ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutput() SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput) ToSnapshotGroupsSnapshotGroupSnapshotTagArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput) Index(i pulumi.IntInput) SnapshotGroupsSnapshotGroupSnapshotTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotGroupsSnapshotGroupSnapshotTag {
+		return vs[0].([]SnapshotGroupsSnapshotGroupSnapshotTag)[vs[1].(int)]
+	}).(SnapshotGroupsSnapshotGroupSnapshotTagOutput)
+}
+
+type SnapshotGroupsSnapshotGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SnapshotGroupsSnapshotGroupTagInput is an input type that accepts SnapshotGroupsSnapshotGroupTagArgs and SnapshotGroupsSnapshotGroupTagOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupTagInput` via:
+//
+//	SnapshotGroupsSnapshotGroupTagArgs{...}
+type SnapshotGroupsSnapshotGroupTagInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupTagOutput() SnapshotGroupsSnapshotGroupTagOutput
+	ToSnapshotGroupsSnapshotGroupTagOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupTagOutput
+}
+
+type SnapshotGroupsSnapshotGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SnapshotGroupsSnapshotGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroupTag)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupTagArgs) ToSnapshotGroupsSnapshotGroupTagOutput() SnapshotGroupsSnapshotGroupTagOutput {
+	return i.ToSnapshotGroupsSnapshotGroupTagOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupTagArgs) ToSnapshotGroupsSnapshotGroupTagOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupTagOutput)
+}
+
+// SnapshotGroupsSnapshotGroupTagArrayInput is an input type that accepts SnapshotGroupsSnapshotGroupTagArray and SnapshotGroupsSnapshotGroupTagArrayOutput values.
+// You can construct a concrete instance of `SnapshotGroupsSnapshotGroupTagArrayInput` via:
+//
+//	SnapshotGroupsSnapshotGroupTagArray{ SnapshotGroupsSnapshotGroupTagArgs{...} }
+type SnapshotGroupsSnapshotGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotGroupsSnapshotGroupTagArrayOutput() SnapshotGroupsSnapshotGroupTagArrayOutput
+	ToSnapshotGroupsSnapshotGroupTagArrayOutputWithContext(context.Context) SnapshotGroupsSnapshotGroupTagArrayOutput
+}
+
+type SnapshotGroupsSnapshotGroupTagArray []SnapshotGroupsSnapshotGroupTagInput
+
+func (SnapshotGroupsSnapshotGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroupTag)(nil)).Elem()
+}
+
+func (i SnapshotGroupsSnapshotGroupTagArray) ToSnapshotGroupsSnapshotGroupTagArrayOutput() SnapshotGroupsSnapshotGroupTagArrayOutput {
+	return i.ToSnapshotGroupsSnapshotGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotGroupsSnapshotGroupTagArray) ToSnapshotGroupsSnapshotGroupTagArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotGroupsSnapshotGroupTagArrayOutput)
+}
+
+type SnapshotGroupsSnapshotGroupTagOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotGroupsSnapshotGroupTag)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupTagOutput) ToSnapshotGroupsSnapshotGroupTagOutput() SnapshotGroupsSnapshotGroupTagOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupTagOutput) ToSnapshotGroupsSnapshotGroupTagOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SnapshotGroupsSnapshotGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SnapshotGroupsSnapshotGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotGroupsSnapshotGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SnapshotGroupsSnapshotGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotGroupsSnapshotGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotGroupsSnapshotGroupTag)(nil)).Elem()
+}
+
+func (o SnapshotGroupsSnapshotGroupTagArrayOutput) ToSnapshotGroupsSnapshotGroupTagArrayOutput() SnapshotGroupsSnapshotGroupTagArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupTagArrayOutput) ToSnapshotGroupsSnapshotGroupTagArrayOutputWithContext(ctx context.Context) SnapshotGroupsSnapshotGroupTagArrayOutput {
+	return o
+}
+
+func (o SnapshotGroupsSnapshotGroupTagArrayOutput) Index(i pulumi.IntInput) SnapshotGroupsSnapshotGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotGroupsSnapshotGroupTag {
+		return vs[0].([]SnapshotGroupsSnapshotGroupTag)[vs[1].(int)]
+	}).(SnapshotGroupsSnapshotGroupTagOutput)
+}
+
+type SnapshotTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SnapshotTagInput is an input type that accepts SnapshotTagArgs and SnapshotTagOutput values.
+// You can construct a concrete instance of `SnapshotTagInput` via:
+//
+//	SnapshotTagArgs{...}
+type SnapshotTagInput interface {
+	pulumi.Input
+
+	ToSnapshotTagOutput() SnapshotTagOutput
+	ToSnapshotTagOutputWithContext(context.Context) SnapshotTagOutput
+}
+
+type SnapshotTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SnapshotTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotTag)(nil)).Elem()
+}
+
+func (i SnapshotTagArgs) ToSnapshotTagOutput() SnapshotTagOutput {
+	return i.ToSnapshotTagOutputWithContext(context.Background())
+}
+
+func (i SnapshotTagArgs) ToSnapshotTagOutputWithContext(ctx context.Context) SnapshotTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotTagOutput)
+}
+
+// SnapshotTagArrayInput is an input type that accepts SnapshotTagArray and SnapshotTagArrayOutput values.
+// You can construct a concrete instance of `SnapshotTagArrayInput` via:
+//
+//	SnapshotTagArray{ SnapshotTagArgs{...} }
+type SnapshotTagArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotTagArrayOutput() SnapshotTagArrayOutput
+	ToSnapshotTagArrayOutputWithContext(context.Context) SnapshotTagArrayOutput
+}
+
+type SnapshotTagArray []SnapshotTagInput
+
+func (SnapshotTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotTag)(nil)).Elem()
+}
+
+func (i SnapshotTagArray) ToSnapshotTagArrayOutput() SnapshotTagArrayOutput {
+	return i.ToSnapshotTagArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotTagArray) ToSnapshotTagArrayOutputWithContext(ctx context.Context) SnapshotTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotTagArrayOutput)
+}
+
+type SnapshotTagOutput struct{ *pulumi.OutputState }
+
+func (SnapshotTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotTag)(nil)).Elem()
+}
+
+func (o SnapshotTagOutput) ToSnapshotTagOutput() SnapshotTagOutput {
+	return o
+}
+
+func (o SnapshotTagOutput) ToSnapshotTagOutputWithContext(ctx context.Context) SnapshotTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SnapshotTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SnapshotTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SnapshotTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotTag)(nil)).Elem()
+}
+
+func (o SnapshotTagArrayOutput) ToSnapshotTagArrayOutput() SnapshotTagArrayOutput {
+	return o
+}
+
+func (o SnapshotTagArrayOutput) ToSnapshotTagArrayOutputWithContext(ctx context.Context) SnapshotTagArrayOutput {
+	return o
+}
+
+func (o SnapshotTagArrayOutput) Index(i pulumi.IntInput) SnapshotTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotTag {
+		return vs[0].([]SnapshotTag)[vs[1].(int)]
+	}).(SnapshotTagOutput)
+}
+
+type SnapshotsSnapshot struct {
+	// The creation time of the snapshot.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the snapshot.
+	Description string `pulumi:"description"`
+	// The id of the snapshot.
+	Id string `pulumi:"id"`
+	// The project name of snapshot.
+	ProjectName string `pulumi:"projectName"`
+	// The retention days of the snapshot.
+	RetentionDays int `pulumi:"retentionDays"`
+	// The id of the snapshot.
+	SnapshotId string `pulumi:"snapshotId"`
+	// The name of the snapshot.
+	SnapshotName string `pulumi:"snapshotName"`
+	// The type of the snapshot.
+	SnapshotType string `pulumi:"snapshotType"`
+	// The status of the snapshot.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []SnapshotsSnapshotTag `pulumi:"tags"`
+	// The volume id of the snapshot.
+	VolumeId string `pulumi:"volumeId"`
+	// The volume kind of the snapshot.
+	VolumeKind string `pulumi:"volumeKind"`
+	// The volume name of the snapshot.
+	VolumeName string `pulumi:"volumeName"`
+	// The volume size of the snapshot.
+	VolumeSize int `pulumi:"volumeSize"`
+	// The volume status of the snapshot.
+	VolumeStatus string `pulumi:"volumeStatus"`
+	// The volume type of the snapshot.
+	VolumeType string `pulumi:"volumeType"`
+	// The zone id of snapshot.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// SnapshotsSnapshotInput is an input type that accepts SnapshotsSnapshotArgs and SnapshotsSnapshotOutput values.
+// You can construct a concrete instance of `SnapshotsSnapshotInput` via:
+//
+//	SnapshotsSnapshotArgs{...}
+type SnapshotsSnapshotInput interface {
+	pulumi.Input
+
+	ToSnapshotsSnapshotOutput() SnapshotsSnapshotOutput
+	ToSnapshotsSnapshotOutputWithContext(context.Context) SnapshotsSnapshotOutput
+}
+
+type SnapshotsSnapshotArgs struct {
+	// The creation time of the snapshot.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the snapshot.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the snapshot.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The project name of snapshot.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The retention days of the snapshot.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// The id of the snapshot.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// The name of the snapshot.
+	SnapshotName pulumi.StringInput `pulumi:"snapshotName"`
+	// The type of the snapshot.
+	SnapshotType pulumi.StringInput `pulumi:"snapshotType"`
+	// The status of the snapshot.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags SnapshotsSnapshotTagArrayInput `pulumi:"tags"`
+	// The volume id of the snapshot.
+	VolumeId pulumi.StringInput `pulumi:"volumeId"`
+	// The volume kind of the snapshot.
+	VolumeKind pulumi.StringInput `pulumi:"volumeKind"`
+	// The volume name of the snapshot.
+	VolumeName pulumi.StringInput `pulumi:"volumeName"`
+	// The volume size of the snapshot.
+	VolumeSize pulumi.IntInput `pulumi:"volumeSize"`
+	// The volume status of the snapshot.
+	VolumeStatus pulumi.StringInput `pulumi:"volumeStatus"`
+	// The volume type of the snapshot.
+	VolumeType pulumi.StringInput `pulumi:"volumeType"`
+	// The zone id of snapshot.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (SnapshotsSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotsSnapshot)(nil)).Elem()
+}
+
+func (i SnapshotsSnapshotArgs) ToSnapshotsSnapshotOutput() SnapshotsSnapshotOutput {
+	return i.ToSnapshotsSnapshotOutputWithContext(context.Background())
+}
+
+func (i SnapshotsSnapshotArgs) ToSnapshotsSnapshotOutputWithContext(ctx context.Context) SnapshotsSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotsSnapshotOutput)
+}
+
+// SnapshotsSnapshotArrayInput is an input type that accepts SnapshotsSnapshotArray and SnapshotsSnapshotArrayOutput values.
+// You can construct a concrete instance of `SnapshotsSnapshotArrayInput` via:
+//
+//	SnapshotsSnapshotArray{ SnapshotsSnapshotArgs{...} }
+type SnapshotsSnapshotArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotsSnapshotArrayOutput() SnapshotsSnapshotArrayOutput
+	ToSnapshotsSnapshotArrayOutputWithContext(context.Context) SnapshotsSnapshotArrayOutput
+}
+
+type SnapshotsSnapshotArray []SnapshotsSnapshotInput
+
+func (SnapshotsSnapshotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotsSnapshot)(nil)).Elem()
+}
+
+func (i SnapshotsSnapshotArray) ToSnapshotsSnapshotArrayOutput() SnapshotsSnapshotArrayOutput {
+	return i.ToSnapshotsSnapshotArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotsSnapshotArray) ToSnapshotsSnapshotArrayOutputWithContext(ctx context.Context) SnapshotsSnapshotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotsSnapshotArrayOutput)
+}
+
+type SnapshotsSnapshotOutput struct{ *pulumi.OutputState }
+
+func (SnapshotsSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotsSnapshot)(nil)).Elem()
+}
+
+func (o SnapshotsSnapshotOutput) ToSnapshotsSnapshotOutput() SnapshotsSnapshotOutput {
+	return o
+}
+
+func (o SnapshotsSnapshotOutput) ToSnapshotsSnapshotOutputWithContext(ctx context.Context) SnapshotsSnapshotOutput {
+	return o
+}
+
+// The creation time of the snapshot.
+func (o SnapshotsSnapshotOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the snapshot.
+func (o SnapshotsSnapshotOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the snapshot.
+func (o SnapshotsSnapshotOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The project name of snapshot.
+func (o SnapshotsSnapshotOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The retention days of the snapshot.
+func (o SnapshotsSnapshotOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The id of the snapshot.
+func (o SnapshotsSnapshotOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// The name of the snapshot.
+func (o SnapshotsSnapshotOutput) SnapshotName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.SnapshotName }).(pulumi.StringOutput)
+}
+
+// The type of the snapshot.
+func (o SnapshotsSnapshotOutput) SnapshotType() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.SnapshotType }).(pulumi.StringOutput)
+}
+
+// The status of the snapshot.
+func (o SnapshotsSnapshotOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SnapshotsSnapshotOutput) Tags() SnapshotsSnapshotTagArrayOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) []SnapshotsSnapshotTag { return v.Tags }).(SnapshotsSnapshotTagArrayOutput)
+}
+
+// The volume id of the snapshot.
+func (o SnapshotsSnapshotOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.VolumeId }).(pulumi.StringOutput)
+}
+
+// The volume kind of the snapshot.
+func (o SnapshotsSnapshotOutput) VolumeKind() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.VolumeKind }).(pulumi.StringOutput)
+}
+
+// The volume name of the snapshot.
+func (o SnapshotsSnapshotOutput) VolumeName() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.VolumeName }).(pulumi.StringOutput)
+}
+
+// The volume size of the snapshot.
+func (o SnapshotsSnapshotOutput) VolumeSize() pulumi.IntOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) int { return v.VolumeSize }).(pulumi.IntOutput)
+}
+
+// The volume status of the snapshot.
+func (o SnapshotsSnapshotOutput) VolumeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.VolumeStatus }).(pulumi.StringOutput)
+}
+
+// The volume type of the snapshot.
+func (o SnapshotsSnapshotOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.VolumeType }).(pulumi.StringOutput)
+}
+
+// The zone id of snapshot.
+func (o SnapshotsSnapshotOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshot) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type SnapshotsSnapshotArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotsSnapshotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotsSnapshot)(nil)).Elem()
+}
+
+func (o SnapshotsSnapshotArrayOutput) ToSnapshotsSnapshotArrayOutput() SnapshotsSnapshotArrayOutput {
+	return o
+}
+
+func (o SnapshotsSnapshotArrayOutput) ToSnapshotsSnapshotArrayOutputWithContext(ctx context.Context) SnapshotsSnapshotArrayOutput {
+	return o
+}
+
+func (o SnapshotsSnapshotArrayOutput) Index(i pulumi.IntInput) SnapshotsSnapshotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotsSnapshot {
+		return vs[0].([]SnapshotsSnapshot)[vs[1].(int)]
+	}).(SnapshotsSnapshotOutput)
+}
+
+type SnapshotsSnapshotTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SnapshotsSnapshotTagInput is an input type that accepts SnapshotsSnapshotTagArgs and SnapshotsSnapshotTagOutput values.
+// You can construct a concrete instance of `SnapshotsSnapshotTagInput` via:
+//
+//	SnapshotsSnapshotTagArgs{...}
+type SnapshotsSnapshotTagInput interface {
+	pulumi.Input
+
+	ToSnapshotsSnapshotTagOutput() SnapshotsSnapshotTagOutput
+	ToSnapshotsSnapshotTagOutputWithContext(context.Context) SnapshotsSnapshotTagOutput
+}
+
+type SnapshotsSnapshotTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SnapshotsSnapshotTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotsSnapshotTag)(nil)).Elem()
+}
+
+func (i SnapshotsSnapshotTagArgs) ToSnapshotsSnapshotTagOutput() SnapshotsSnapshotTagOutput {
+	return i.ToSnapshotsSnapshotTagOutputWithContext(context.Background())
+}
+
+func (i SnapshotsSnapshotTagArgs) ToSnapshotsSnapshotTagOutputWithContext(ctx context.Context) SnapshotsSnapshotTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotsSnapshotTagOutput)
+}
+
+// SnapshotsSnapshotTagArrayInput is an input type that accepts SnapshotsSnapshotTagArray and SnapshotsSnapshotTagArrayOutput values.
+// You can construct a concrete instance of `SnapshotsSnapshotTagArrayInput` via:
+//
+//	SnapshotsSnapshotTagArray{ SnapshotsSnapshotTagArgs{...} }
+type SnapshotsSnapshotTagArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotsSnapshotTagArrayOutput() SnapshotsSnapshotTagArrayOutput
+	ToSnapshotsSnapshotTagArrayOutputWithContext(context.Context) SnapshotsSnapshotTagArrayOutput
+}
+
+type SnapshotsSnapshotTagArray []SnapshotsSnapshotTagInput
+
+func (SnapshotsSnapshotTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotsSnapshotTag)(nil)).Elem()
+}
+
+func (i SnapshotsSnapshotTagArray) ToSnapshotsSnapshotTagArrayOutput() SnapshotsSnapshotTagArrayOutput {
+	return i.ToSnapshotsSnapshotTagArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotsSnapshotTagArray) ToSnapshotsSnapshotTagArrayOutputWithContext(ctx context.Context) SnapshotsSnapshotTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotsSnapshotTagArrayOutput)
+}
+
+type SnapshotsSnapshotTagOutput struct{ *pulumi.OutputState }
+
+func (SnapshotsSnapshotTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotsSnapshotTag)(nil)).Elem()
+}
+
+func (o SnapshotsSnapshotTagOutput) ToSnapshotsSnapshotTagOutput() SnapshotsSnapshotTagOutput {
+	return o
+}
+
+func (o SnapshotsSnapshotTagOutput) ToSnapshotsSnapshotTagOutputWithContext(ctx context.Context) SnapshotsSnapshotTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SnapshotsSnapshotTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshotTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SnapshotsSnapshotTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsSnapshotTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SnapshotsSnapshotTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotsSnapshotTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotsSnapshotTag)(nil)).Elem()
+}
+
+func (o SnapshotsSnapshotTagArrayOutput) ToSnapshotsSnapshotTagArrayOutput() SnapshotsSnapshotTagArrayOutput {
+	return o
+}
+
+func (o SnapshotsSnapshotTagArrayOutput) ToSnapshotsSnapshotTagArrayOutputWithContext(ctx context.Context) SnapshotsSnapshotTagArrayOutput {
+	return o
+}
+
+func (o SnapshotsSnapshotTagArrayOutput) Index(i pulumi.IntInput) SnapshotsSnapshotTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotsSnapshotTag {
+		return vs[0].([]SnapshotsSnapshotTag)[vs[1].(int)]
+	}).(SnapshotsSnapshotTagOutput)
+}
+
+type SnapshotsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SnapshotsTagInput is an input type that accepts SnapshotsTagArgs and SnapshotsTagOutput values.
+// You can construct a concrete instance of `SnapshotsTagInput` via:
+//
+//	SnapshotsTagArgs{...}
+type SnapshotsTagInput interface {
+	pulumi.Input
+
+	ToSnapshotsTagOutput() SnapshotsTagOutput
+	ToSnapshotsTagOutputWithContext(context.Context) SnapshotsTagOutput
+}
+
+type SnapshotsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SnapshotsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotsTag)(nil)).Elem()
+}
+
+func (i SnapshotsTagArgs) ToSnapshotsTagOutput() SnapshotsTagOutput {
+	return i.ToSnapshotsTagOutputWithContext(context.Background())
+}
+
+func (i SnapshotsTagArgs) ToSnapshotsTagOutputWithContext(ctx context.Context) SnapshotsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotsTagOutput)
+}
+
+// SnapshotsTagArrayInput is an input type that accepts SnapshotsTagArray and SnapshotsTagArrayOutput values.
+// You can construct a concrete instance of `SnapshotsTagArrayInput` via:
+//
+//	SnapshotsTagArray{ SnapshotsTagArgs{...} }
+type SnapshotsTagArrayInput interface {
+	pulumi.Input
+
+	ToSnapshotsTagArrayOutput() SnapshotsTagArrayOutput
+	ToSnapshotsTagArrayOutputWithContext(context.Context) SnapshotsTagArrayOutput
+}
+
+type SnapshotsTagArray []SnapshotsTagInput
+
+func (SnapshotsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotsTag)(nil)).Elem()
+}
+
+func (i SnapshotsTagArray) ToSnapshotsTagArrayOutput() SnapshotsTagArrayOutput {
+	return i.ToSnapshotsTagArrayOutputWithContext(context.Background())
+}
+
+func (i SnapshotsTagArray) ToSnapshotsTagArrayOutputWithContext(ctx context.Context) SnapshotsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotsTagArrayOutput)
+}
+
+type SnapshotsTagOutput struct{ *pulumi.OutputState }
+
+func (SnapshotsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotsTag)(nil)).Elem()
+}
+
+func (o SnapshotsTagOutput) ToSnapshotsTagOutput() SnapshotsTagOutput {
+	return o
+}
+
+func (o SnapshotsTagOutput) ToSnapshotsTagOutputWithContext(ctx context.Context) SnapshotsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SnapshotsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SnapshotsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SnapshotsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SnapshotsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SnapshotsTag)(nil)).Elem()
+}
+
+func (o SnapshotsTagArrayOutput) ToSnapshotsTagArrayOutput() SnapshotsTagArrayOutput {
+	return o
+}
+
+func (o SnapshotsTagArrayOutput) ToSnapshotsTagArrayOutputWithContext(ctx context.Context) SnapshotsTagArrayOutput {
+	return o
+}
+
+func (o SnapshotsTagArrayOutput) Index(i pulumi.IntInput) SnapshotsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SnapshotsTag {
+		return vs[0].([]SnapshotsTag)[vs[1].(int)]
+	}).(SnapshotsTagOutput)
+}
+
 type VolumeTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -226,14 +2065,18 @@ func (o VolumesTagArrayOutput) Index(i pulumi.IntInput) VolumesTagOutput {
 }
 
 type VolumesVolume struct {
-	BillingType        int    `pulumi:"billingType"`
-	CreatedAt          string `pulumi:"createdAt"`
-	DeleteWithInstance bool   `pulumi:"deleteWithInstance"`
-	Description        string `pulumi:"description"`
-	DeviceName         string `pulumi:"deviceName"`
-	ExpiredTime        string `pulumi:"expiredTime"`
-	Id                 string `pulumi:"id"`
-	ImageId            string `pulumi:"imageId"`
+	// The baseline performance of the volume.
+	BaselinePerformances []VolumesVolumeBaselinePerformance `pulumi:"baselinePerformances"`
+	BillingType          int                                `pulumi:"billingType"`
+	CreatedAt            string                             `pulumi:"createdAt"`
+	DeleteWithInstance   bool                               `pulumi:"deleteWithInstance"`
+	Description          string                             `pulumi:"description"`
+	DeviceName           string                             `pulumi:"deviceName"`
+	ExpiredTime          string                             `pulumi:"expiredTime"`
+	// The extra performance of the volume.
+	ExtraPerformances []VolumesVolumeExtraPerformance `pulumi:"extraPerformances"`
+	Id                string                          `pulumi:"id"`
+	ImageId           string                          `pulumi:"imageId"`
 	// The Id of instance.
 	InstanceId string `pulumi:"instanceId"`
 	// The Kind of Volume.
@@ -243,10 +2086,12 @@ type VolumesVolume struct {
 	Size      int    `pulumi:"size"`
 	Status    string `pulumi:"status"`
 	// Tags.
-	Tags        []VolumesVolumeTag `pulumi:"tags"`
-	TradeStatus int                `pulumi:"tradeStatus"`
-	UpdatedAt   string             `pulumi:"updatedAt"`
-	VolumeId    string             `pulumi:"volumeId"`
+	Tags []VolumesVolumeTag `pulumi:"tags"`
+	// The baseline performance of the volume.
+	TotalPerformances []VolumesVolumeTotalPerformance `pulumi:"totalPerformances"`
+	TradeStatus       int                             `pulumi:"tradeStatus"`
+	UpdatedAt         string                          `pulumi:"updatedAt"`
+	VolumeId          string                          `pulumi:"volumeId"`
 	// The name of Volume.
 	VolumeName string `pulumi:"volumeName"`
 	// The type of Volume.
@@ -267,14 +2112,18 @@ type VolumesVolumeInput interface {
 }
 
 type VolumesVolumeArgs struct {
-	BillingType        pulumi.IntInput    `pulumi:"billingType"`
-	CreatedAt          pulumi.StringInput `pulumi:"createdAt"`
-	DeleteWithInstance pulumi.BoolInput   `pulumi:"deleteWithInstance"`
-	Description        pulumi.StringInput `pulumi:"description"`
-	DeviceName         pulumi.StringInput `pulumi:"deviceName"`
-	ExpiredTime        pulumi.StringInput `pulumi:"expiredTime"`
-	Id                 pulumi.StringInput `pulumi:"id"`
-	ImageId            pulumi.StringInput `pulumi:"imageId"`
+	// The baseline performance of the volume.
+	BaselinePerformances VolumesVolumeBaselinePerformanceArrayInput `pulumi:"baselinePerformances"`
+	BillingType          pulumi.IntInput                            `pulumi:"billingType"`
+	CreatedAt            pulumi.StringInput                         `pulumi:"createdAt"`
+	DeleteWithInstance   pulumi.BoolInput                           `pulumi:"deleteWithInstance"`
+	Description          pulumi.StringInput                         `pulumi:"description"`
+	DeviceName           pulumi.StringInput                         `pulumi:"deviceName"`
+	ExpiredTime          pulumi.StringInput                         `pulumi:"expiredTime"`
+	// The extra performance of the volume.
+	ExtraPerformances VolumesVolumeExtraPerformanceArrayInput `pulumi:"extraPerformances"`
+	Id                pulumi.StringInput                      `pulumi:"id"`
+	ImageId           pulumi.StringInput                      `pulumi:"imageId"`
 	// The Id of instance.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The Kind of Volume.
@@ -284,10 +2133,12 @@ type VolumesVolumeArgs struct {
 	Size      pulumi.IntInput    `pulumi:"size"`
 	Status    pulumi.StringInput `pulumi:"status"`
 	// Tags.
-	Tags        VolumesVolumeTagArrayInput `pulumi:"tags"`
-	TradeStatus pulumi.IntInput            `pulumi:"tradeStatus"`
-	UpdatedAt   pulumi.StringInput         `pulumi:"updatedAt"`
-	VolumeId    pulumi.StringInput         `pulumi:"volumeId"`
+	Tags VolumesVolumeTagArrayInput `pulumi:"tags"`
+	// The baseline performance of the volume.
+	TotalPerformances VolumesVolumeTotalPerformanceArrayInput `pulumi:"totalPerformances"`
+	TradeStatus       pulumi.IntInput                         `pulumi:"tradeStatus"`
+	UpdatedAt         pulumi.StringInput                      `pulumi:"updatedAt"`
+	VolumeId          pulumi.StringInput                      `pulumi:"volumeId"`
 	// The name of Volume.
 	VolumeName pulumi.StringInput `pulumi:"volumeName"`
 	// The type of Volume.
@@ -347,6 +2198,11 @@ func (o VolumesVolumeOutput) ToVolumesVolumeOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The baseline performance of the volume.
+func (o VolumesVolumeOutput) BaselinePerformances() VolumesVolumeBaselinePerformanceArrayOutput {
+	return o.ApplyT(func(v VolumesVolume) []VolumesVolumeBaselinePerformance { return v.BaselinePerformances }).(VolumesVolumeBaselinePerformanceArrayOutput)
+}
+
 func (o VolumesVolumeOutput) BillingType() pulumi.IntOutput {
 	return o.ApplyT(func(v VolumesVolume) int { return v.BillingType }).(pulumi.IntOutput)
 }
@@ -369,6 +2225,11 @@ func (o VolumesVolumeOutput) DeviceName() pulumi.StringOutput {
 
 func (o VolumesVolumeOutput) ExpiredTime() pulumi.StringOutput {
 	return o.ApplyT(func(v VolumesVolume) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The extra performance of the volume.
+func (o VolumesVolumeOutput) ExtraPerformances() VolumesVolumeExtraPerformanceArrayOutput {
+	return o.ApplyT(func(v VolumesVolume) []VolumesVolumeExtraPerformance { return v.ExtraPerformances }).(VolumesVolumeExtraPerformanceArrayOutput)
 }
 
 func (o VolumesVolumeOutput) Id() pulumi.StringOutput {
@@ -408,6 +2269,11 @@ func (o VolumesVolumeOutput) Status() pulumi.StringOutput {
 // Tags.
 func (o VolumesVolumeOutput) Tags() VolumesVolumeTagArrayOutput {
 	return o.ApplyT(func(v VolumesVolume) []VolumesVolumeTag { return v.Tags }).(VolumesVolumeTagArrayOutput)
+}
+
+// The baseline performance of the volume.
+func (o VolumesVolumeOutput) TotalPerformances() VolumesVolumeTotalPerformanceArrayOutput {
+	return o.ApplyT(func(v VolumesVolume) []VolumesVolumeTotalPerformance { return v.TotalPerformances }).(VolumesVolumeTotalPerformanceArrayOutput)
 }
 
 func (o VolumesVolumeOutput) TradeStatus() pulumi.IntOutput {
@@ -455,6 +2321,227 @@ func (o VolumesVolumeArrayOutput) Index(i pulumi.IntInput) VolumesVolumeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumesVolume {
 		return vs[0].([]VolumesVolume)[vs[1].(int)]
 	}).(VolumesVolumeOutput)
+}
+
+type VolumesVolumeBaselinePerformance struct {
+	// The total IOPS performance size for volume.
+	Iops int `pulumi:"iops"`
+	// The total Throughput performance size for volume. Unit: MB/s.
+	Throughput int `pulumi:"throughput"`
+}
+
+// VolumesVolumeBaselinePerformanceInput is an input type that accepts VolumesVolumeBaselinePerformanceArgs and VolumesVolumeBaselinePerformanceOutput values.
+// You can construct a concrete instance of `VolumesVolumeBaselinePerformanceInput` via:
+//
+//	VolumesVolumeBaselinePerformanceArgs{...}
+type VolumesVolumeBaselinePerformanceInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeBaselinePerformanceOutput() VolumesVolumeBaselinePerformanceOutput
+	ToVolumesVolumeBaselinePerformanceOutputWithContext(context.Context) VolumesVolumeBaselinePerformanceOutput
+}
+
+type VolumesVolumeBaselinePerformanceArgs struct {
+	// The total IOPS performance size for volume.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The total Throughput performance size for volume. Unit: MB/s.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (VolumesVolumeBaselinePerformanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeBaselinePerformance)(nil)).Elem()
+}
+
+func (i VolumesVolumeBaselinePerformanceArgs) ToVolumesVolumeBaselinePerformanceOutput() VolumesVolumeBaselinePerformanceOutput {
+	return i.ToVolumesVolumeBaselinePerformanceOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeBaselinePerformanceArgs) ToVolumesVolumeBaselinePerformanceOutputWithContext(ctx context.Context) VolumesVolumeBaselinePerformanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeBaselinePerformanceOutput)
+}
+
+// VolumesVolumeBaselinePerformanceArrayInput is an input type that accepts VolumesVolumeBaselinePerformanceArray and VolumesVolumeBaselinePerformanceArrayOutput values.
+// You can construct a concrete instance of `VolumesVolumeBaselinePerformanceArrayInput` via:
+//
+//	VolumesVolumeBaselinePerformanceArray{ VolumesVolumeBaselinePerformanceArgs{...} }
+type VolumesVolumeBaselinePerformanceArrayInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeBaselinePerformanceArrayOutput() VolumesVolumeBaselinePerformanceArrayOutput
+	ToVolumesVolumeBaselinePerformanceArrayOutputWithContext(context.Context) VolumesVolumeBaselinePerformanceArrayOutput
+}
+
+type VolumesVolumeBaselinePerformanceArray []VolumesVolumeBaselinePerformanceInput
+
+func (VolumesVolumeBaselinePerformanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeBaselinePerformance)(nil)).Elem()
+}
+
+func (i VolumesVolumeBaselinePerformanceArray) ToVolumesVolumeBaselinePerformanceArrayOutput() VolumesVolumeBaselinePerformanceArrayOutput {
+	return i.ToVolumesVolumeBaselinePerformanceArrayOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeBaselinePerformanceArray) ToVolumesVolumeBaselinePerformanceArrayOutputWithContext(ctx context.Context) VolumesVolumeBaselinePerformanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeBaselinePerformanceArrayOutput)
+}
+
+type VolumesVolumeBaselinePerformanceOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeBaselinePerformanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeBaselinePerformance)(nil)).Elem()
+}
+
+func (o VolumesVolumeBaselinePerformanceOutput) ToVolumesVolumeBaselinePerformanceOutput() VolumesVolumeBaselinePerformanceOutput {
+	return o
+}
+
+func (o VolumesVolumeBaselinePerformanceOutput) ToVolumesVolumeBaselinePerformanceOutputWithContext(ctx context.Context) VolumesVolumeBaselinePerformanceOutput {
+	return o
+}
+
+// The total IOPS performance size for volume.
+func (o VolumesVolumeBaselinePerformanceOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v VolumesVolumeBaselinePerformance) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The total Throughput performance size for volume. Unit: MB/s.
+func (o VolumesVolumeBaselinePerformanceOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v VolumesVolumeBaselinePerformance) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type VolumesVolumeBaselinePerformanceArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeBaselinePerformanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeBaselinePerformance)(nil)).Elem()
+}
+
+func (o VolumesVolumeBaselinePerformanceArrayOutput) ToVolumesVolumeBaselinePerformanceArrayOutput() VolumesVolumeBaselinePerformanceArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeBaselinePerformanceArrayOutput) ToVolumesVolumeBaselinePerformanceArrayOutputWithContext(ctx context.Context) VolumesVolumeBaselinePerformanceArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeBaselinePerformanceArrayOutput) Index(i pulumi.IntInput) VolumesVolumeBaselinePerformanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumesVolumeBaselinePerformance {
+		return vs[0].([]VolumesVolumeBaselinePerformance)[vs[1].(int)]
+	}).(VolumesVolumeBaselinePerformanceOutput)
+}
+
+type VolumesVolumeExtraPerformance struct {
+	// The type of extra performance for volume.
+	ExtraPerformanceTypeId string `pulumi:"extraPerformanceTypeId"`
+	// The total IOPS performance size for volume.
+	Iops int `pulumi:"iops"`
+	// The total Throughput performance size for volume. Unit: MB/s.
+	Throughput int `pulumi:"throughput"`
+}
+
+// VolumesVolumeExtraPerformanceInput is an input type that accepts VolumesVolumeExtraPerformanceArgs and VolumesVolumeExtraPerformanceOutput values.
+// You can construct a concrete instance of `VolumesVolumeExtraPerformanceInput` via:
+//
+//	VolumesVolumeExtraPerformanceArgs{...}
+type VolumesVolumeExtraPerformanceInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeExtraPerformanceOutput() VolumesVolumeExtraPerformanceOutput
+	ToVolumesVolumeExtraPerformanceOutputWithContext(context.Context) VolumesVolumeExtraPerformanceOutput
+}
+
+type VolumesVolumeExtraPerformanceArgs struct {
+	// The type of extra performance for volume.
+	ExtraPerformanceTypeId pulumi.StringInput `pulumi:"extraPerformanceTypeId"`
+	// The total IOPS performance size for volume.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The total Throughput performance size for volume. Unit: MB/s.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (VolumesVolumeExtraPerformanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeExtraPerformance)(nil)).Elem()
+}
+
+func (i VolumesVolumeExtraPerformanceArgs) ToVolumesVolumeExtraPerformanceOutput() VolumesVolumeExtraPerformanceOutput {
+	return i.ToVolumesVolumeExtraPerformanceOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeExtraPerformanceArgs) ToVolumesVolumeExtraPerformanceOutputWithContext(ctx context.Context) VolumesVolumeExtraPerformanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeExtraPerformanceOutput)
+}
+
+// VolumesVolumeExtraPerformanceArrayInput is an input type that accepts VolumesVolumeExtraPerformanceArray and VolumesVolumeExtraPerformanceArrayOutput values.
+// You can construct a concrete instance of `VolumesVolumeExtraPerformanceArrayInput` via:
+//
+//	VolumesVolumeExtraPerformanceArray{ VolumesVolumeExtraPerformanceArgs{...} }
+type VolumesVolumeExtraPerformanceArrayInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeExtraPerformanceArrayOutput() VolumesVolumeExtraPerformanceArrayOutput
+	ToVolumesVolumeExtraPerformanceArrayOutputWithContext(context.Context) VolumesVolumeExtraPerformanceArrayOutput
+}
+
+type VolumesVolumeExtraPerformanceArray []VolumesVolumeExtraPerformanceInput
+
+func (VolumesVolumeExtraPerformanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeExtraPerformance)(nil)).Elem()
+}
+
+func (i VolumesVolumeExtraPerformanceArray) ToVolumesVolumeExtraPerformanceArrayOutput() VolumesVolumeExtraPerformanceArrayOutput {
+	return i.ToVolumesVolumeExtraPerformanceArrayOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeExtraPerformanceArray) ToVolumesVolumeExtraPerformanceArrayOutputWithContext(ctx context.Context) VolumesVolumeExtraPerformanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeExtraPerformanceArrayOutput)
+}
+
+type VolumesVolumeExtraPerformanceOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeExtraPerformanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeExtraPerformance)(nil)).Elem()
+}
+
+func (o VolumesVolumeExtraPerformanceOutput) ToVolumesVolumeExtraPerformanceOutput() VolumesVolumeExtraPerformanceOutput {
+	return o
+}
+
+func (o VolumesVolumeExtraPerformanceOutput) ToVolumesVolumeExtraPerformanceOutputWithContext(ctx context.Context) VolumesVolumeExtraPerformanceOutput {
+	return o
+}
+
+// The type of extra performance for volume.
+func (o VolumesVolumeExtraPerformanceOutput) ExtraPerformanceTypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumesVolumeExtraPerformance) string { return v.ExtraPerformanceTypeId }).(pulumi.StringOutput)
+}
+
+// The total IOPS performance size for volume.
+func (o VolumesVolumeExtraPerformanceOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v VolumesVolumeExtraPerformance) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The total Throughput performance size for volume. Unit: MB/s.
+func (o VolumesVolumeExtraPerformanceOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v VolumesVolumeExtraPerformance) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type VolumesVolumeExtraPerformanceArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeExtraPerformanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeExtraPerformance)(nil)).Elem()
+}
+
+func (o VolumesVolumeExtraPerformanceArrayOutput) ToVolumesVolumeExtraPerformanceArrayOutput() VolumesVolumeExtraPerformanceArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeExtraPerformanceArrayOutput) ToVolumesVolumeExtraPerformanceArrayOutputWithContext(ctx context.Context) VolumesVolumeExtraPerformanceArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeExtraPerformanceArrayOutput) Index(i pulumi.IntInput) VolumesVolumeExtraPerformanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumesVolumeExtraPerformance {
+		return vs[0].([]VolumesVolumeExtraPerformance)[vs[1].(int)]
+	}).(VolumesVolumeExtraPerformanceOutput)
 }
 
 type VolumesVolumeTag struct {
@@ -563,21 +2650,191 @@ func (o VolumesVolumeTagArrayOutput) Index(i pulumi.IntInput) VolumesVolumeTagOu
 	}).(VolumesVolumeTagOutput)
 }
 
+type VolumesVolumeTotalPerformance struct {
+	// The total IOPS performance size for volume.
+	Iops int `pulumi:"iops"`
+	// The total Throughput performance size for volume. Unit: MB/s.
+	Throughput int `pulumi:"throughput"`
+}
+
+// VolumesVolumeTotalPerformanceInput is an input type that accepts VolumesVolumeTotalPerformanceArgs and VolumesVolumeTotalPerformanceOutput values.
+// You can construct a concrete instance of `VolumesVolumeTotalPerformanceInput` via:
+//
+//	VolumesVolumeTotalPerformanceArgs{...}
+type VolumesVolumeTotalPerformanceInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeTotalPerformanceOutput() VolumesVolumeTotalPerformanceOutput
+	ToVolumesVolumeTotalPerformanceOutputWithContext(context.Context) VolumesVolumeTotalPerformanceOutput
+}
+
+type VolumesVolumeTotalPerformanceArgs struct {
+	// The total IOPS performance size for volume.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The total Throughput performance size for volume. Unit: MB/s.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (VolumesVolumeTotalPerformanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeTotalPerformance)(nil)).Elem()
+}
+
+func (i VolumesVolumeTotalPerformanceArgs) ToVolumesVolumeTotalPerformanceOutput() VolumesVolumeTotalPerformanceOutput {
+	return i.ToVolumesVolumeTotalPerformanceOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeTotalPerformanceArgs) ToVolumesVolumeTotalPerformanceOutputWithContext(ctx context.Context) VolumesVolumeTotalPerformanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeTotalPerformanceOutput)
+}
+
+// VolumesVolumeTotalPerformanceArrayInput is an input type that accepts VolumesVolumeTotalPerformanceArray and VolumesVolumeTotalPerformanceArrayOutput values.
+// You can construct a concrete instance of `VolumesVolumeTotalPerformanceArrayInput` via:
+//
+//	VolumesVolumeTotalPerformanceArray{ VolumesVolumeTotalPerformanceArgs{...} }
+type VolumesVolumeTotalPerformanceArrayInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeTotalPerformanceArrayOutput() VolumesVolumeTotalPerformanceArrayOutput
+	ToVolumesVolumeTotalPerformanceArrayOutputWithContext(context.Context) VolumesVolumeTotalPerformanceArrayOutput
+}
+
+type VolumesVolumeTotalPerformanceArray []VolumesVolumeTotalPerformanceInput
+
+func (VolumesVolumeTotalPerformanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeTotalPerformance)(nil)).Elem()
+}
+
+func (i VolumesVolumeTotalPerformanceArray) ToVolumesVolumeTotalPerformanceArrayOutput() VolumesVolumeTotalPerformanceArrayOutput {
+	return i.ToVolumesVolumeTotalPerformanceArrayOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeTotalPerformanceArray) ToVolumesVolumeTotalPerformanceArrayOutputWithContext(ctx context.Context) VolumesVolumeTotalPerformanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeTotalPerformanceArrayOutput)
+}
+
+type VolumesVolumeTotalPerformanceOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeTotalPerformanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeTotalPerformance)(nil)).Elem()
+}
+
+func (o VolumesVolumeTotalPerformanceOutput) ToVolumesVolumeTotalPerformanceOutput() VolumesVolumeTotalPerformanceOutput {
+	return o
+}
+
+func (o VolumesVolumeTotalPerformanceOutput) ToVolumesVolumeTotalPerformanceOutputWithContext(ctx context.Context) VolumesVolumeTotalPerformanceOutput {
+	return o
+}
+
+// The total IOPS performance size for volume.
+func (o VolumesVolumeTotalPerformanceOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v VolumesVolumeTotalPerformance) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The total Throughput performance size for volume. Unit: MB/s.
+func (o VolumesVolumeTotalPerformanceOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v VolumesVolumeTotalPerformance) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type VolumesVolumeTotalPerformanceArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeTotalPerformanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeTotalPerformance)(nil)).Elem()
+}
+
+func (o VolumesVolumeTotalPerformanceArrayOutput) ToVolumesVolumeTotalPerformanceArrayOutput() VolumesVolumeTotalPerformanceArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeTotalPerformanceArrayOutput) ToVolumesVolumeTotalPerformanceArrayOutputWithContext(ctx context.Context) VolumesVolumeTotalPerformanceArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeTotalPerformanceArrayOutput) Index(i pulumi.IntInput) VolumesVolumeTotalPerformanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumesVolumeTotalPerformance {
+		return vs[0].([]VolumesVolumeTotalPerformance)[vs[1].(int)]
+	}).(VolumesVolumeTotalPerformanceOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicyInput)(nil)).Elem(), AutoSnapshotPoliciesAutoSnapshotPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicyArrayInput)(nil)).Elem(), AutoSnapshotPoliciesAutoSnapshotPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicyTagInput)(nil)).Elem(), AutoSnapshotPoliciesAutoSnapshotPolicyTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayInput)(nil)).Elem(), AutoSnapshotPoliciesAutoSnapshotPolicyTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesTagInput)(nil)).Elem(), AutoSnapshotPoliciesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesTagArrayInput)(nil)).Elem(), AutoSnapshotPoliciesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPolicyTagInput)(nil)).Elem(), AutoSnapshotPolicyTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPolicyTagArrayInput)(nil)).Elem(), AutoSnapshotPolicyTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupTagInput)(nil)).Elem(), SnapshotGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupTagArrayInput)(nil)).Elem(), SnapshotGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupArrayInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshotInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshotArrayInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupSnapshotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshotTagInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupSnapshotTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupSnapshotTagArrayInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupSnapshotTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupTagInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupTagArrayInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotTagInput)(nil)).Elem(), SnapshotTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotTagArrayInput)(nil)).Elem(), SnapshotTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotsSnapshotInput)(nil)).Elem(), SnapshotsSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotsSnapshotArrayInput)(nil)).Elem(), SnapshotsSnapshotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotsSnapshotTagInput)(nil)).Elem(), SnapshotsSnapshotTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotsSnapshotTagArrayInput)(nil)).Elem(), SnapshotsSnapshotTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotsTagInput)(nil)).Elem(), SnapshotsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotsTagArrayInput)(nil)).Elem(), SnapshotsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTagInput)(nil)).Elem(), VolumeTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTagArrayInput)(nil)).Elem(), VolumeTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesTagInput)(nil)).Elem(), VolumesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesTagArrayInput)(nil)).Elem(), VolumesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeInput)(nil)).Elem(), VolumesVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeArrayInput)(nil)).Elem(), VolumesVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeBaselinePerformanceInput)(nil)).Elem(), VolumesVolumeBaselinePerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeBaselinePerformanceArrayInput)(nil)).Elem(), VolumesVolumeBaselinePerformanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeExtraPerformanceInput)(nil)).Elem(), VolumesVolumeExtraPerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeExtraPerformanceArrayInput)(nil)).Elem(), VolumesVolumeExtraPerformanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeTagInput)(nil)).Elem(), VolumesVolumeTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeTagArrayInput)(nil)).Elem(), VolumesVolumeTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeTotalPerformanceInput)(nil)).Elem(), VolumesVolumeTotalPerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeTotalPerformanceArrayInput)(nil)).Elem(), VolumesVolumeTotalPerformanceArray{})
+	pulumi.RegisterOutputType(AutoSnapshotPoliciesAutoSnapshotPolicyOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPoliciesAutoSnapshotPolicyArrayOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPoliciesAutoSnapshotPolicyTagOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPoliciesTagOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPoliciesTagArrayOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPolicyTagOutput{})
+	pulumi.RegisterOutputType(AutoSnapshotPolicyTagArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupTagOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupSnapshotOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupSnapshotArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupSnapshotTagOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupSnapshotTagArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupTagOutput{})
+	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotTagOutput{})
+	pulumi.RegisterOutputType(SnapshotTagArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotsSnapshotOutput{})
+	pulumi.RegisterOutputType(SnapshotsSnapshotArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotsSnapshotTagOutput{})
+	pulumi.RegisterOutputType(SnapshotsSnapshotTagArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotsTagOutput{})
+	pulumi.RegisterOutputType(SnapshotsTagArrayOutput{})
 	pulumi.RegisterOutputType(VolumeTagOutput{})
 	pulumi.RegisterOutputType(VolumeTagArrayOutput{})
 	pulumi.RegisterOutputType(VolumesTagOutput{})
 	pulumi.RegisterOutputType(VolumesTagArrayOutput{})
 	pulumi.RegisterOutputType(VolumesVolumeOutput{})
 	pulumi.RegisterOutputType(VolumesVolumeArrayOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeBaselinePerformanceOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeBaselinePerformanceArrayOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeExtraPerformanceOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeExtraPerformanceArrayOutput{})
 	pulumi.RegisterOutputType(VolumesVolumeTagOutput{})
 	pulumi.RegisterOutputType(VolumesVolumeTagArrayOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeTotalPerformanceOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeTotalPerformanceArrayOutput{})
 }

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Kafka
     {
         /// <summary>
         /// Use this data source to query detailed information of kafka topic partitions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -124,17 +122,13 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<TopicPartitionsResult> InvokeAsync(TopicPartitionsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<TopicPartitionsResult>("volcengine:kafka/topicPartitions:TopicPartitions", args ?? new TopicPartitionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of kafka topic partitions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -243,8 +237,6 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<TopicPartitionsResult> Invoke(TopicPartitionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<TopicPartitionsResult>("volcengine:kafka/topicPartitions:TopicPartitions", args ?? new TopicPartitionsInvokeArgs(), options.WithDefaults());

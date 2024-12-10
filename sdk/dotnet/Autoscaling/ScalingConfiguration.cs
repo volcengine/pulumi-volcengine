@@ -128,7 +128,7 @@ namespace Pulumi.Volcengine.Autoscaling
     /// ScalingConfiguration can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
+    /// $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingConfiguration:ScalingConfiguration")]

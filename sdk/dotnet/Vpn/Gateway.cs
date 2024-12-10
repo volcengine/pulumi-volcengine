@@ -53,7 +53,7 @@ namespace Pulumi.Volcengine.Vpn
     /// VpnGateway can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
+    /// $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpn/gateway:Gateway")]
@@ -72,8 +72,7 @@ namespace Pulumi.Volcengine.Vpn
         public Output<int> Bandwidth { get; private set; } = null!;
 
         /// <summary>
-        /// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-        /// state file, not actually remove.
+        /// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         /// </summary>
         [Output("billingType")]
         public Output<string?> BillingType { get; private set; } = null!;
@@ -121,7 +120,7 @@ namespace Pulumi.Volcengine.Vpn
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// Whether ipsec is enabled.
+        /// Whether ipsec is enabled. Default is true.
         /// </summary>
         [Output("ipsecEnabled")]
         public Output<bool?> IpsecEnabled { get; private set; } = null!;
@@ -158,7 +157,7 @@ namespace Pulumi.Volcengine.Vpn
         public Output<int> RouteCount { get; private set; } = null!;
 
         /// <summary>
-        /// Whether ssl is enabled.
+        /// Whether ssl is enabled. Default is false.
         /// </summary>
         [Output("sslEnabled")]
         public Output<bool?> SslEnabled { get; private set; } = null!;
@@ -265,8 +264,7 @@ namespace Pulumi.Volcengine.Vpn
         public Input<int> Bandwidth { get; set; } = null!;
 
         /// <summary>
-        /// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-        /// state file, not actually remove.
+        /// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -278,7 +276,7 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Whether ipsec is enabled.
+        /// Whether ipsec is enabled. Default is true.
         /// </summary>
         [Input("ipsecEnabled")]
         public Input<bool>? IpsecEnabled { get; set; }
@@ -297,7 +295,7 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? ProjectName { get; set; }
 
         /// <summary>
-        /// Whether ssl is enabled.
+        /// Whether ssl is enabled. Default is false.
         /// </summary>
         [Input("sslEnabled")]
         public Input<bool>? SslEnabled { get; set; }
@@ -359,8 +357,7 @@ namespace Pulumi.Volcengine.Vpn
         public Input<int>? Bandwidth { get; set; }
 
         /// <summary>
-        /// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-        /// state file, not actually remove.
+        /// The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -408,7 +405,7 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// Whether ipsec is enabled.
+        /// Whether ipsec is enabled. Default is true.
         /// </summary>
         [Input("ipsecEnabled")]
         public Input<bool>? IpsecEnabled { get; set; }
@@ -445,7 +442,7 @@ namespace Pulumi.Volcengine.Vpn
         public Input<int>? RouteCount { get; set; }
 
         /// <summary>
-        /// Whether ssl is enabled.
+        /// Whether ssl is enabled. Default is false.
         /// </summary>
         [Input("sslEnabled")]
         public Input<bool>? SslEnabled { get; set; }

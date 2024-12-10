@@ -57,9 +57,7 @@ import (
 // RDS postgresql account can be imported using the instance_id:account_name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_postgresql/account:Account default postgres-ca7b7019****:accountName
-//
+// $ pulumi import volcengine:rds_postgresql/account:Account default postgres-ca7b7019****:accountName
 // ```
 type Account struct {
 	pulumi.CustomResourceState

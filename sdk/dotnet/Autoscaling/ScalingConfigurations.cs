@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Autoscaling
     {
         /// <summary>
         /// Use this data source to query detailed information of scaling configurations
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -106,17 +104,13 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingConfigurationsResult> InvokeAsync(ScalingConfigurationsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingConfigurationsResult>("volcengine:autoscaling/scalingConfigurations:ScalingConfigurations", args ?? new ScalingConfigurationsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling configurations
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -207,8 +201,6 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingConfigurationsResult> Invoke(ScalingConfigurationsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ScalingConfigurationsResult>("volcengine:autoscaling/scalingConfigurations:ScalingConfigurations", args ?? new ScalingConfigurationsInvokeArgs(), options.WithDefaults());

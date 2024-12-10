@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string ChargeType;
         /// <summary>
+        /// Set the list of available zones to which the node belongs.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesInstanceConfigureNodeResult> ConfigureNodes;
+        /// <summary>
         /// The creation time of the redis instance.
         /// </summary>
         public readonly string CreateTime;
@@ -57,6 +61,14 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// The maintainable time of the redis instance.
         /// </summary>
         public readonly string MaintenanceTime;
+        /// <summary>
+        /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        /// disabled: Single availability zone deployment scheme.
+        /// enabled: Multi-availability zone deployment scheme.
+        /// Description:
+        /// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        /// </summary>
+        public readonly string MultiAz;
         /// <summary>
         /// The list of redis instance node IDs.
         /// </summary>
@@ -126,6 +138,8 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string chargeType,
 
+            ImmutableArray<Outputs.InstancesInstanceConfigureNodeResult> configureNodes,
+
             string createTime,
 
             string deletionProtection,
@@ -141,6 +155,8 @@ namespace Pulumi.Volcengine.Redis.Outputs
             string instanceName,
 
             string maintenanceTime,
+
+            string multiAz,
 
             ImmutableArray<string> nodeIds,
 
@@ -175,6 +191,7 @@ namespace Pulumi.Volcengine.Redis.Outputs
             BackupPlan = backupPlan;
             Capacity = capacity;
             ChargeType = chargeType;
+            ConfigureNodes = configureNodes;
             CreateTime = createTime;
             DeletionProtection = deletionProtection;
             EngineVersion = engineVersion;
@@ -183,6 +200,7 @@ namespace Pulumi.Volcengine.Redis.Outputs
             InstanceId = instanceId;
             InstanceName = instanceName;
             MaintenanceTime = maintenanceTime;
+            MultiAz = multiAz;
             NodeIds = nodeIds;
             NodeNumber = nodeNumber;
             Params = @params;

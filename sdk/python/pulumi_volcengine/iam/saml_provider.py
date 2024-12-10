@@ -263,7 +263,7 @@ class SamlProvider(pulumi.CustomResource):
         IamSamlProvider can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
+        $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
         ```
 
         :param str resource_name: The name of the resource.
@@ -300,7 +300,7 @@ class SamlProvider(pulumi.CustomResource):
         IamSamlProvider can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
+        $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
         ```
 
         :param str resource_name: The name of the resource.

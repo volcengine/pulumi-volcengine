@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cr
     {
         /// <summary>
         /// Use this data source to query detailed information of cr registries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -39,17 +37,13 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RegistriesResult> InvokeAsync(RegistriesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RegistriesResult>("volcengine:cr/registries:Registries", args ?? new RegistriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr registries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -73,8 +67,6 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RegistriesResult> Invoke(RegistriesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RegistriesResult>("volcengine:cr/registries:Registries", args ?? new RegistriesInvokeArgs(), options.WithDefaults());

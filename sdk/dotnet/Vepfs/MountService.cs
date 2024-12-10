@@ -51,7 +51,7 @@ namespace Pulumi.Volcengine.Vepfs
     /// VepfsMountService can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
+    /// $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vepfs/mountService:MountService")]

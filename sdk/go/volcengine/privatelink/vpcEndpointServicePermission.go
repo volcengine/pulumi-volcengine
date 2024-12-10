@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -103,9 +103,7 @@ import (
 // VpcEndpointServicePermission can be imported using the serviceId:permitAccountId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
-//
+// $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
 // ```
 type VpcEndpointServicePermission struct {
 	pulumi.CustomResourceState

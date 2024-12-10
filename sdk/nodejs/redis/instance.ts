@@ -26,11 +26,10 @@ import * as utilities from "../utilities";
  *     vpcId: fooVpc.id,
  * });
  * const fooInstance = new volcengine.redis.Instance("fooInstance", {
- *     zoneIds: [fooZones.then(fooZones => fooZones.zones?.[0]?.id)],
- *     instanceName: "tf-test",
+ *     instanceName: "tf-test2",
  *     shardedCluster: 1,
  *     password: "1qaz!QAZ12",
- *     nodeNumber: 2,
+ *     nodeNumber: 4,
  *     shardCapacity: 1024,
  *     shardNumber: 2,
  *     engineVersion: "5.0",
@@ -69,7 +68,23 @@ import * as utilities from "../utilities";
  *     backupActive: true,
  *     createBackup: false,
  *     applyImmediately: true,
+ *     multiAz: "enabled",
+ *     configureNodes: [
+ *         {
+ *             az: "cn-guilin-a",
+ *         },
+ *         {
+ *             az: "cn-guilin-b",
+ *         },
+ *         {
+ *             az: "cn-guilin-c",
+ *         },
+ *         {
+ *             az: "cn-guilin-b",
+ *         },
+ *     ],
  * });
+ * //additional_bandwidth = 12
  * ```
  *
  * ## Import
@@ -77,8 +92,9 @@ import * as utilities from "../utilities";
  * redis instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
+ * $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
  * ```
+ * Adding or removing nodes and migrating availability zones for multiple AZ instances are not supported to be orchestrated simultaneously, but it is possible for single AZ instances.
  */
 export class Instance extends pulumi.CustomResource {
     /**
@@ -109,6 +125,10 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
+     * Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+     */
+    public readonly additionalBandwidth!: pulumi.Output<number | undefined>;
+    /**
      * Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
      */
     public readonly applyImmediately!: pulumi.Output<boolean | undefined>;
@@ -136,6 +156,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly chargeType!: pulumi.Output<string | undefined>;
     /**
+     * Set the list of available zones to which the node belongs.
+     */
+    public readonly configureNodes!: pulumi.Output<outputs.redis.InstanceConfigureNode[]>;
+    /**
      * Whether to create a final backup when modify the instance configuration or destroy the redis instance.
      */
     public readonly createBackup!: pulumi.Output<boolean | undefined>;
@@ -144,13 +168,21 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly deletionProtection!: pulumi.Output<string | undefined>;
     /**
-     * The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+     * The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
      */
     public readonly engineVersion!: pulumi.Output<string>;
     /**
      * The name of the redis instance.
      */
     public readonly instanceName!: pulumi.Output<string | undefined>;
+    /**
+     * Set the availability zone deployment scheme for the instance. The value range is as follows: 
+     * disabled: Single availability zone deployment scheme.
+     * enabled: Multi-availability zone deployment scheme.
+     * Description:
+     * When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+     */
+    public readonly multiAz!: pulumi.Output<string>;
     /**
      * The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
      */
@@ -161,9 +193,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly paramValues!: pulumi.Output<outputs.redis.InstanceParamValue[] | undefined>;
     /**
-     * The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     * The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
      */
-    public readonly password!: pulumi.Output<string>;
+    public readonly password!: pulumi.Output<string | undefined>;
     /**
      * The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
      */
@@ -202,9 +234,11 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly vpcAuthMode!: pulumi.Output<string>;
     /**
-     * The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+     * This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+     *
+     * @deprecated This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone.
      */
-    public readonly zoneIds!: pulumi.Output<string[]>;
+    public readonly zoneIds!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -219,16 +253,19 @@ export class Instance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceState | undefined;
+            resourceInputs["additionalBandwidth"] = state ? state.additionalBandwidth : undefined;
             resourceInputs["applyImmediately"] = state ? state.applyImmediately : undefined;
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["backupActive"] = state ? state.backupActive : undefined;
             resourceInputs["backupHour"] = state ? state.backupHour : undefined;
             resourceInputs["backupPeriods"] = state ? state.backupPeriods : undefined;
             resourceInputs["chargeType"] = state ? state.chargeType : undefined;
+            resourceInputs["configureNodes"] = state ? state.configureNodes : undefined;
             resourceInputs["createBackup"] = state ? state.createBackup : undefined;
             resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
             resourceInputs["engineVersion"] = state ? state.engineVersion : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
+            resourceInputs["multiAz"] = state ? state.multiAz : undefined;
             resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
             resourceInputs["paramValues"] = state ? state.paramValues : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
@@ -250,9 +287,6 @@ export class Instance extends pulumi.CustomResource {
             if ((!args || args.nodeNumber === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodeNumber'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
             if ((!args || args.shardCapacity === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'shardCapacity'");
             }
@@ -262,19 +296,19 @@ export class Instance extends pulumi.CustomResource {
             if ((!args || args.subnetId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnetId'");
             }
-            if ((!args || args.zoneIds === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'zoneIds'");
-            }
+            resourceInputs["additionalBandwidth"] = args ? args.additionalBandwidth : undefined;
             resourceInputs["applyImmediately"] = args ? args.applyImmediately : undefined;
             resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
             resourceInputs["backupActive"] = args ? args.backupActive : undefined;
             resourceInputs["backupHour"] = args ? args.backupHour : undefined;
             resourceInputs["backupPeriods"] = args ? args.backupPeriods : undefined;
             resourceInputs["chargeType"] = args ? args.chargeType : undefined;
+            resourceInputs["configureNodes"] = args ? args.configureNodes : undefined;
             resourceInputs["createBackup"] = args ? args.createBackup : undefined;
             resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["engineVersion"] = args ? args.engineVersion : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
+            resourceInputs["multiAz"] = args ? args.multiAz : undefined;
             resourceInputs["nodeNumber"] = args ? args.nodeNumber : undefined;
             resourceInputs["paramValues"] = args ? args.paramValues : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -300,6 +334,10 @@ export class Instance extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Instance resources.
  */
 export interface InstanceState {
+    /**
+     * Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+     */
+    additionalBandwidth?: pulumi.Input<number>;
     /**
      * Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
      */
@@ -328,6 +366,10 @@ export interface InstanceState {
      */
     chargeType?: pulumi.Input<string>;
     /**
+     * Set the list of available zones to which the node belongs.
+     */
+    configureNodes?: pulumi.Input<pulumi.Input<inputs.redis.InstanceConfigureNode>[]>;
+    /**
      * Whether to create a final backup when modify the instance configuration or destroy the redis instance.
      */
     createBackup?: pulumi.Input<boolean>;
@@ -336,13 +378,21 @@ export interface InstanceState {
      */
     deletionProtection?: pulumi.Input<string>;
     /**
-     * The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+     * The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
      */
     engineVersion?: pulumi.Input<string>;
     /**
      * The name of the redis instance.
      */
     instanceName?: pulumi.Input<string>;
+    /**
+     * Set the availability zone deployment scheme for the instance. The value range is as follows: 
+     * disabled: Single availability zone deployment scheme.
+     * enabled: Multi-availability zone deployment scheme.
+     * Description:
+     * When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+     */
+    multiAz?: pulumi.Input<string>;
     /**
      * The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
      */
@@ -353,7 +403,7 @@ export interface InstanceState {
      */
     paramValues?: pulumi.Input<pulumi.Input<inputs.redis.InstanceParamValue>[]>;
     /**
-     * The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     * The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
      */
     password?: pulumi.Input<string>;
     /**
@@ -394,7 +444,9 @@ export interface InstanceState {
      */
     vpcAuthMode?: pulumi.Input<string>;
     /**
-     * The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+     * This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+     *
+     * @deprecated This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone.
      */
     zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -403,6 +455,10 @@ export interface InstanceState {
  * The set of arguments for constructing a Instance resource.
  */
 export interface InstanceArgs {
+    /**
+     * Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+     */
+    additionalBandwidth?: pulumi.Input<number>;
     /**
      * Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
      */
@@ -431,6 +487,10 @@ export interface InstanceArgs {
      */
     chargeType?: pulumi.Input<string>;
     /**
+     * Set the list of available zones to which the node belongs.
+     */
+    configureNodes?: pulumi.Input<pulumi.Input<inputs.redis.InstanceConfigureNode>[]>;
+    /**
      * Whether to create a final backup when modify the instance configuration or destroy the redis instance.
      */
     createBackup?: pulumi.Input<boolean>;
@@ -439,13 +499,21 @@ export interface InstanceArgs {
      */
     deletionProtection?: pulumi.Input<string>;
     /**
-     * The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+     * The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
      */
     engineVersion: pulumi.Input<string>;
     /**
      * The name of the redis instance.
      */
     instanceName?: pulumi.Input<string>;
+    /**
+     * Set the availability zone deployment scheme for the instance. The value range is as follows: 
+     * disabled: Single availability zone deployment scheme.
+     * enabled: Multi-availability zone deployment scheme.
+     * Description:
+     * When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+     */
+    multiAz?: pulumi.Input<string>;
     /**
      * The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
      */
@@ -456,9 +524,9 @@ export interface InstanceArgs {
      */
     paramValues?: pulumi.Input<pulumi.Input<inputs.redis.InstanceParamValue>[]>;
     /**
-     * The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     * The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     /**
      * The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
      */
@@ -497,7 +565,9 @@ export interface InstanceArgs {
      */
     vpcAuthMode?: pulumi.Input<string>;
     /**
-     * The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+     * This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+     *
+     * @deprecated This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone.
      */
-    zoneIds: pulumi.Input<pulumi.Input<string>[]>;
+    zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -569,7 +569,7 @@ func (o RdsInstanceV2ConnectionInfoAddressArrayOutput) Index(i pulumi.IntInput) 
 type RdsInstanceV2ConnectionInfoReadOnlyNodeWeight struct {
 	// The ID of the node.
 	NodeId *string `pulumi:"nodeId"`
-	// Node type, the value is "Primary", "Secondary", "ReadOnly".
+	// The type of the node.
 	NodeType *string `pulumi:"nodeType"`
 	// The weight of the node.
 	Weight *int `pulumi:"weight"`
@@ -589,7 +589,7 @@ type RdsInstanceV2ConnectionInfoReadOnlyNodeWeightInput interface {
 type RdsInstanceV2ConnectionInfoReadOnlyNodeWeightArgs struct {
 	// The ID of the node.
 	NodeId pulumi.StringPtrInput `pulumi:"nodeId"`
-	// Node type, the value is "Primary", "Secondary", "ReadOnly".
+	// The type of the node.
 	NodeType pulumi.StringPtrInput `pulumi:"nodeType"`
 	// The weight of the node.
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
@@ -651,7 +651,7 @@ func (o RdsInstanceV2ConnectionInfoReadOnlyNodeWeightOutput) NodeId() pulumi.Str
 	return o.ApplyT(func(v RdsInstanceV2ConnectionInfoReadOnlyNodeWeight) *string { return v.NodeId }).(pulumi.StringPtrOutput)
 }
 
-// Node type, the value is "Primary", "Secondary", "ReadOnly".
+// The type of the node.
 func (o RdsInstanceV2ConnectionInfoReadOnlyNodeWeightOutput) NodeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdsInstanceV2ConnectionInfoReadOnlyNodeWeight) *string { return v.NodeType }).(pulumi.StringPtrOutput)
 }

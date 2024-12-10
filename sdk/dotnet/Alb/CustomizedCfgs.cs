@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Alb
     {
         /// <summary>
         /// Use this data source to query detailed information of alb customized cfgs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<CustomizedCfgsResult> InvokeAsync(CustomizedCfgsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CustomizedCfgsResult>("volcengine:alb/customizedCfgs:CustomizedCfgs", args ?? new CustomizedCfgsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of alb customized cfgs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<CustomizedCfgsResult> Invoke(CustomizedCfgsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CustomizedCfgsResult>("volcengine:alb/customizedCfgs:CustomizedCfgs", args ?? new CustomizedCfgsInvokeArgs(), options.WithDefaults());

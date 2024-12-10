@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of vpc prefix lists
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -64,17 +62,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<PrefixListsResult> InvokeAsync(PrefixListsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<PrefixListsResult>("volcengine:vpc/prefixLists:PrefixLists", args ?? new PrefixListsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpc prefix lists
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -123,8 +117,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<PrefixListsResult> Invoke(PrefixListsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<PrefixListsResult>("volcengine:vpc/prefixLists:PrefixLists", args ?? new PrefixListsInvokeArgs(), options.WithDefaults());

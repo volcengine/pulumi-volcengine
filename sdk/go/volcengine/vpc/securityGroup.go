@@ -45,9 +45,7 @@ import (
 // SecurityGroup can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
-//
+// $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
 // ```
 type SecurityGroup struct {
 	pulumi.CustomResourceState

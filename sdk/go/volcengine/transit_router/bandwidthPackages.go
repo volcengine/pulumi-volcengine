@@ -60,8 +60,12 @@ func BandwidthPackages(ctx *pulumi.Context, args *BandwidthPackagesArgs, opts ..
 type BandwidthPackagesArgs struct {
 	// The ID list of the TransitRouter bandwidth package.
 	Ids []string `pulumi:"ids"`
+	// The local geographic region set ID.
+	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The peer geographic region set ID.
+	PeerGeographicRegionSetId *string `pulumi:"peerGeographicRegionSetId"`
 	// The ProjectName of the TransitRouter bandwidth package.
 	ProjectName *string `pulumi:"projectName"`
 	// Tags.
@@ -77,9 +81,13 @@ type BandwidthPackagesResult struct {
 	// The collection of query.
 	BandwidthPackages []BandwidthPackagesBandwidthPackage `pulumi:"bandwidthPackages"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	Ids        []string `pulumi:"ids"`
-	OutputFile *string  `pulumi:"outputFile"`
+	Id  string   `pulumi:"id"`
+	Ids []string `pulumi:"ids"`
+	// The local geographic region set ID.
+	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
+	OutputFile                 *string `pulumi:"outputFile"`
+	// The peer geographic region set ID.
+	PeerGeographicRegionSetId *string `pulumi:"peerGeographicRegionSetId"`
 	// The ProjectName of the transit router bandwidth package.
 	ProjectName *string `pulumi:"projectName"`
 	// Tags.
@@ -109,8 +117,12 @@ func BandwidthPackagesOutput(ctx *pulumi.Context, args BandwidthPackagesOutputAr
 type BandwidthPackagesOutputArgs struct {
 	// The ID list of the TransitRouter bandwidth package.
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// The local geographic region set ID.
+	LocalGeographicRegionSetId pulumi.StringPtrInput `pulumi:"localGeographicRegionSetId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The peer geographic region set ID.
+	PeerGeographicRegionSetId pulumi.StringPtrInput `pulumi:"peerGeographicRegionSetId"`
 	// The ProjectName of the TransitRouter bandwidth package.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// Tags.
@@ -154,8 +166,18 @@ func (o BandwidthPackagesResultOutput) Ids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v BandwidthPackagesResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
 }
 
+// The local geographic region set ID.
+func (o BandwidthPackagesResultOutput) LocalGeographicRegionSetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPackagesResult) *string { return v.LocalGeographicRegionSetId }).(pulumi.StringPtrOutput)
+}
+
 func (o BandwidthPackagesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPackagesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The peer geographic region set ID.
+func (o BandwidthPackagesResultOutput) PeerGeographicRegionSetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPackagesResult) *string { return v.PeerGeographicRegionSetId }).(pulumi.StringPtrOutput)
 }
 
 // The ProjectName of the transit router bandwidth package.

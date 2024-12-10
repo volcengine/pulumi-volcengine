@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Organization
     {
         /// <summary>
         /// Use this data source to query detailed information of organization units
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<UnitsResult> InvokeAsync(UnitsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<UnitsResult>("volcengine:organization/units:Units", args ?? new UnitsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of organization units
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<UnitsResult> Invoke(UnitsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<UnitsResult>("volcengine:organization/units:Units", args ?? new UnitsInvokeArgs(), options.WithDefaults());

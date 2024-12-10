@@ -49,9 +49,7 @@ import (
 // Route entry can be imported using the route_table_id:route_entry_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
-//
+// $ pulumi import volcengine:vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
 // ```
 type RouteEntry struct {
 	pulumi.CustomResourceState

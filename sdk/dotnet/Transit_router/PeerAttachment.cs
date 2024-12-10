@@ -65,7 +65,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// TransitRouterPeerAttachment can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/peerAttachment:PeerAttachment default tr-attach-12be67d0yh2io17q7y1au****
+    /// $ pulumi import volcengine:transit_router/peerAttachment:PeerAttachment default tr-attach-12be67d0yh2io17q7y1au****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/peerAttachment:PeerAttachment")]

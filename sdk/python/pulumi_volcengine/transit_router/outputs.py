@@ -1011,6 +1011,7 @@ class PeerAttachmentsTransitRouterAttachmentTagResult(dict):
 @pulumi.output_type
 class RouteEntriesEntryResult(dict):
     def __init__(__self__, *,
+                 as_path: str,
                  creation_time: str,
                  description: str,
                  destination_cidr_block: str,
@@ -1022,6 +1023,7 @@ class RouteEntriesEntryResult(dict):
                  transit_router_route_entry_type: str,
                  update_time: str):
         """
+        :param str as_path: The as path of the route entry.
         :param str creation_time: The creation time of the route entry.
         :param str description: Description of the transit router route entry.
         :param str destination_cidr_block: The target network segment of the route entry.
@@ -1033,6 +1035,7 @@ class RouteEntriesEntryResult(dict):
         :param str transit_router_route_entry_type: The type of the route entry.
         :param str update_time: The update time of the route entry.
         """
+        pulumi.set(__self__, "as_path", as_path)
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
@@ -1043,6 +1046,14 @@ class RouteEntriesEntryResult(dict):
         pulumi.set(__self__, "transit_router_route_entry_next_hop_type", transit_router_route_entry_next_hop_type)
         pulumi.set(__self__, "transit_router_route_entry_type", transit_router_route_entry_type)
         pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="asPath")
+    def as_path(self) -> str:
+        """
+        The as path of the route entry.
+        """
+        return pulumi.get(self, "as_path")
 
     @property
     @pulumi.getter(name="creationTime")
@@ -1596,6 +1607,7 @@ class TransitRoutersTransitRouterResult(dict):
                  business_status: str,
                  creation_time: str,
                  description: str,
+                 grant_status: str,
                  id: str,
                  overdue_time: str,
                  project_name: str,
@@ -1611,6 +1623,7 @@ class TransitRoutersTransitRouterResult(dict):
         :param str business_status: The business status of the transit router.
         :param str creation_time: The create time.
         :param str description: The description info.
+        :param str grant_status: The grant status of the transit router.
         :param str id: The ID of the transit router.
         :param str overdue_time: The overdue time.
         :param str project_name: The ProjectName of the transit router.
@@ -1626,6 +1639,7 @@ class TransitRoutersTransitRouterResult(dict):
         pulumi.set(__self__, "business_status", business_status)
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "grant_status", grant_status)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "project_name", project_name)
@@ -1675,6 +1689,14 @@ class TransitRoutersTransitRouterResult(dict):
         The description info.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="grantStatus")
+    def grant_status(self) -> str:
+        """
+        The grant status of the transit router.
+        """
+        return pulumi.get(self, "grant_status")
 
     @property
     @pulumi.getter

@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * ECS deployment set can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:ecs/deploymentSet:DeploymentSet default i-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:ecs/deploymentSet:DeploymentSet default i-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class DeploymentSet extends pulumi.CustomResource {

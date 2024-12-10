@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * AlbListener can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+ * $ pulumi import volcengine:alb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
  * ```
  */
 export class Listener extends pulumi.CustomResource {

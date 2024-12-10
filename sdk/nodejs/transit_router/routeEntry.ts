@@ -10,28 +10,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
- * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
- *     vpcName: "acc-test-vpc",
- *     cidrBlock: "172.16.0.0/16",
- * });
- * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
- *     subnetName: "acc-test-subnet",
- *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
- *     vpcId: fooVpc.id,
- * });
- * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
- *     vpcId: fooVpc.id,
- *     subnetId: fooSubnet.id,
- *     bandwidth: 20,
- *     vpnGatewayName: "acc-test",
- *     description: "acc-test",
- *     period: 2,
- * });
  * const fooCustomerGateway = new volcengine.vpn.CustomerGateway("fooCustomerGateway", {
  *     ipAddress: "192.0.1.3",
  *     customerGatewayName: "acc-test",
@@ -41,7 +21,6 @@ import * as utilities from "../utilities";
  *     vpnConnectionName: "acc-tf-test",
  *     description: "acc-tf-test",
  *     attachType: "TransitRouter",
- *     vpnGatewayId: fooGateway.id,
  *     customerGatewayId: fooCustomerGateway.id,
  *     localSubnets: ["192.168.0.0/22"],
  *     remoteSubnets: ["192.161.0.0/20"],
@@ -93,7 +72,7 @@ import * as utilities from "../utilities";
  * transit router route entry can be imported using the table and entry id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
+ * $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
  * ```
  */
 export class RouteEntry extends pulumi.CustomResource {
@@ -124,6 +103,10 @@ export class RouteEntry extends pulumi.CustomResource {
         return obj['__pulumiType'] === RouteEntry.__pulumiType;
     }
 
+    /**
+     * The as path of the route entry.
+     */
+    public /*out*/ readonly asPath!: pulumi.Output<string>;
     /**
      * The creation time of the route entry.
      */
@@ -182,6 +165,7 @@ export class RouteEntry extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouteEntryState | undefined;
+            resourceInputs["asPath"] = state ? state.asPath : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["destinationCidrBlock"] = state ? state.destinationCidrBlock : undefined;
@@ -210,6 +194,7 @@ export class RouteEntry extends pulumi.CustomResource {
             resourceInputs["transitRouterRouteEntryNextHopId"] = args ? args.transitRouterRouteEntryNextHopId : undefined;
             resourceInputs["transitRouterRouteEntryNextHopType"] = args ? args.transitRouterRouteEntryNextHopType : undefined;
             resourceInputs["transitRouterRouteTableId"] = args ? args.transitRouterRouteTableId : undefined;
+            resourceInputs["asPath"] = undefined /*out*/;
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["transitRouterRouteEntryId"] = undefined /*out*/;
@@ -225,6 +210,10 @@ export class RouteEntry extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouteEntry resources.
  */
 export interface RouteEntryState {
+    /**
+     * The as path of the route entry.
+     */
+    asPath?: pulumi.Input<string>;
     /**
      * The creation time of the route entry.
      */

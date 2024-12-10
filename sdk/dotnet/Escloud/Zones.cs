@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Escloud
     {
         /// <summary>
         /// Use this data source to query detailed information of escloud zones
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ZonesResult> InvokeAsync(ZonesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of escloud zones
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ZonesResult> Invoke(ZonesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());

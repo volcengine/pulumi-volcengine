@@ -202,7 +202,7 @@ class Allowlist(pulumi.CustomResource):
         RDS AllowList can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
+        $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
         ```
 
         :param str resource_name: The name of the resource.
@@ -241,7 +241,7 @@ class Allowlist(pulumi.CustomResource):
         RDS AllowList can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
+        $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
         ```
 
         :param str resource_name: The name of the resource.

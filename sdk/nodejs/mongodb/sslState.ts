@@ -51,7 +51,7 @@ import * as utilities from "../utilities";
  * mongodb ssl state can be imported using the ssl:instanceId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
+ * $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
  * ```
  */
 export class SslState extends pulumi.CustomResource {

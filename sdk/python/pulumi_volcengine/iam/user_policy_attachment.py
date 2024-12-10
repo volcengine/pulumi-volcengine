@@ -155,7 +155,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
         Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+        $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
         ```
 
         :param str resource_name: The name of the resource.
@@ -196,7 +196,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
         Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+        $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
         ```
 
         :param str resource_name: The name of the resource.

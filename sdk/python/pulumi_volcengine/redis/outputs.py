@@ -20,11 +20,13 @@ __all__ = [
     'BackupsBackupResult',
     'BackupsBackupInstanceDetailResult',
     'BackupsBackupInstanceDetailVpcInfoResult',
+    'InstanceConfigureNode',
     'InstanceParamValue',
     'InstanceTag',
     'InstancesInstanceResult',
     'InstancesInstanceBackupPlanResult',
     'InstancesInstanceCapacityResult',
+    'InstancesInstanceConfigureNodeResult',
     'InstancesInstanceParamResult',
     'InstancesInstanceParamOptionResult',
     'InstancesInstanceTagResult',
@@ -952,6 +954,26 @@ class BackupsBackupInstanceDetailVpcInfoResult(dict):
 
 
 @pulumi.output_type
+class InstanceConfigureNode(dict):
+    def __init__(__self__, *,
+                 az: str):
+        """
+        :param str az: Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+               When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+        """
+        pulumi.set(__self__, "az", az)
+
+    @property
+    @pulumi.getter
+    def az(self) -> str:
+        """
+        Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+        When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+        """
+        return pulumi.get(self, "az")
+
+
+@pulumi.output_type
 class InstanceParamValue(dict):
     def __init__(__self__, *,
                  name: str,
@@ -1015,6 +1037,7 @@ class InstancesInstanceResult(dict):
                  backup_plan: 'outputs.InstancesInstanceBackupPlanResult',
                  capacity: 'outputs.InstancesInstanceCapacityResult',
                  charge_type: str,
+                 configure_nodes: Sequence['outputs.InstancesInstanceConfigureNodeResult'],
                  create_time: str,
                  deletion_protection: str,
                  engine_version: str,
@@ -1023,6 +1046,7 @@ class InstancesInstanceResult(dict):
                  instance_id: str,
                  instance_name: str,
                  maintenance_time: str,
+                 multi_az: str,
                  node_ids: Sequence[str],
                  node_number: int,
                  params: Sequence['outputs.InstancesInstanceParamResult'],
@@ -1042,6 +1066,7 @@ class InstancesInstanceResult(dict):
         :param 'InstancesInstanceBackupPlanArgs' backup_plan: The list of backup plans.
         :param 'InstancesInstanceCapacityArgs' capacity: The memory capacity information.
         :param str charge_type: The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
+        :param Sequence['InstancesInstanceConfigureNodeArgs'] configure_nodes: Set the list of available zones to which the node belongs.
         :param str create_time: The creation time of the redis instance.
         :param str deletion_protection: whether enable deletion protection.
         :param str engine_version: The engine version of redis instance to query. Valid values: `4.0`, `5.0`, `6.0`.
@@ -1050,6 +1075,11 @@ class InstancesInstanceResult(dict):
         :param str instance_id: The id of redis instance to query. This field supports fuzzy queries.
         :param str instance_name: The name of redis instance to query. This field supports fuzzy queries.
         :param str maintenance_time: The maintainable time of the redis instance.
+        :param str multi_az: Set the availability zone deployment scheme for the instance. The value range is as follows: 
+               disabled: Single availability zone deployment scheme.
+               enabled: Multi-availability zone deployment scheme.
+               Description:
+               When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
         :param Sequence[str] node_ids: The list of redis instance node IDs.
         :param int node_number: The number of nodes in each shard.
         :param Sequence['InstancesInstanceParamArgs'] params: The list of params.
@@ -1069,6 +1099,7 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "backup_plan", backup_plan)
         pulumi.set(__self__, "capacity", capacity)
         pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "configure_nodes", configure_nodes)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "deletion_protection", deletion_protection)
         pulumi.set(__self__, "engine_version", engine_version)
@@ -1077,6 +1108,7 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "maintenance_time", maintenance_time)
+        pulumi.set(__self__, "multi_az", multi_az)
         pulumi.set(__self__, "node_ids", node_ids)
         pulumi.set(__self__, "node_number", node_number)
         pulumi.set(__self__, "params", params)
@@ -1116,6 +1148,14 @@ class InstancesInstanceResult(dict):
         The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
         """
         return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="configureNodes")
+    def configure_nodes(self) -> Sequence['outputs.InstancesInstanceConfigureNodeResult']:
+        """
+        Set the list of available zones to which the node belongs.
+        """
+        return pulumi.get(self, "configure_nodes")
 
     @property
     @pulumi.getter(name="createTime")
@@ -1180,6 +1220,18 @@ class InstancesInstanceResult(dict):
         The maintainable time of the redis instance.
         """
         return pulumi.get(self, "maintenance_time")
+
+    @property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> str:
+        """
+        Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        disabled: Single availability zone deployment scheme.
+        enabled: Multi-availability zone deployment scheme.
+        Description:
+        When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        """
+        return pulumi.get(self, "multi_az")
 
     @property
     @pulumi.getter(name="nodeIds")
@@ -1427,6 +1479,26 @@ class InstancesInstanceCapacityResult(dict):
 
 
 @pulumi.output_type
+class InstancesInstanceConfigureNodeResult(dict):
+    def __init__(__self__, *,
+                 az: str):
+        """
+        :param str az: Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+               When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+        """
+        pulumi.set(__self__, "az", az)
+
+    @property
+    @pulumi.getter
+    def az(self) -> str:
+        """
+        Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+        When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+        """
+        return pulumi.get(self, "az")
+
+
+@pulumi.output_type
 class InstancesInstanceParamResult(dict):
     def __init__(__self__, *,
                  current_value: str,
@@ -1607,17 +1679,23 @@ class InstancesInstanceVisitAddrResult(dict):
                  addr_type: str,
                  address: str,
                  eip_id: str,
-                 port: str):
+                 port: str,
+                 vip: str,
+                 vip_v6: str):
         """
         :param str addr_type: The connection address type.
         :param str address: The connection address.
         :param str eip_id: The EIP ID bound to the instance's public network address.
         :param str port: The connection port.
+        :param str vip: The ipv4 address of the connection address.
+        :param str vip_v6: The ipv6 address of the connection address.
         """
         pulumi.set(__self__, "addr_type", addr_type)
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "vip", vip)
+        pulumi.set(__self__, "vip_v6", vip_v6)
 
     @property
     @pulumi.getter(name="addrType")
@@ -1650,6 +1728,22 @@ class InstancesInstanceVisitAddrResult(dict):
         The connection port.
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def vip(self) -> str:
+        """
+        The ipv4 address of the connection address.
+        """
+        return pulumi.get(self, "vip")
+
+    @property
+    @pulumi.getter(name="vipV6")
+    def vip_v6(self) -> str:
+        """
+        The ipv6 address of the connection address.
+        """
+        return pulumi.get(self, "vip_v6")
 
 
 @pulumi.output_type
@@ -1687,6 +1781,11 @@ class PitrTimeWindowsPeriodResult(dict):
                  end_time: str,
                  instance_id: str,
                  start_time: str):
+        """
+        :param str end_time: Recoverable end time (UTC time) supported when restoring data by point in time.
+        :param str instance_id: The instance id.
+        :param str start_time: The recoverable start time (in UTC time) supported when restoring data by point in time.
+        """
         pulumi.set(__self__, "end_time", end_time)
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "start_time", start_time)
@@ -1694,16 +1793,25 @@ class PitrTimeWindowsPeriodResult(dict):
     @property
     @pulumi.getter(name="endTime")
     def end_time(self) -> str:
+        """
+        Recoverable end time (UTC time) supported when restoring data by point in time.
+        """
         return pulumi.get(self, "end_time")
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> str:
+        """
+        The instance id.
+        """
         return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="startTime")
     def start_time(self) -> str:
+        """
+        The recoverable start time (in UTC time) supported when restoring data by point in time.
+        """
         return pulumi.get(self, "start_time")
 
 

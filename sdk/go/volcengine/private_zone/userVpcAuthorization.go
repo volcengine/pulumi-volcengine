@@ -44,9 +44,7 @@ import (
 // PrivateZoneUserVpcAuthorization can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:private_zone/userVpcAuthorization:UserVpcAuthorization default resource_id
-//
+// $ pulumi import volcengine:private_zone/userVpcAuthorization:UserVpcAuthorization default resource_id
 // ```
 type UserVpcAuthorization struct {
 	pulumi.CustomResourceState

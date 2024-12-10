@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_identity
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud identity user provisionings
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<UserProvisioningsResult> InvokeAsync(UserProvisioningsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<UserProvisioningsResult>("volcengine:cloud_identity/userProvisionings:UserProvisionings", args ?? new UserProvisioningsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud identity user provisionings
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<UserProvisioningsResult> Invoke(UserProvisioningsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<UserProvisioningsResult>("volcengine:cloud_identity/userProvisionings:UserProvisionings", args ?? new UserProvisioningsInvokeArgs(), options.WithDefaults());

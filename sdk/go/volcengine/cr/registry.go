@@ -44,9 +44,7 @@ import (
 // CR Registry can be imported using the name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cr/registry:Registry default enterprise-x
-//
+// $ pulumi import volcengine:cr/registry:Registry default enterprise-x
 // ```
 type Registry struct {
 	pulumi.CustomResourceState

@@ -19,7 +19,7 @@ namespace Pulumi.Volcengine.Rds_v2.Inputs
         public Input<string>? NodeId { get; set; }
 
         /// <summary>
-        /// Node type, the value is "Primary", "Secondary", "ReadOnly".
+        /// The type of the node.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }

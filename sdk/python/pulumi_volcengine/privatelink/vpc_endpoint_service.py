@@ -324,10 +324,10 @@ class VpcEndpointService(pulumi.CustomResource):
         VpcEndpointService can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
+        $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
         ```
-
-         It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
+        It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource.
+        For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -388,10 +388,10 @@ class VpcEndpointService(pulumi.CustomResource):
         VpcEndpointService can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
+        $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
         ```
-
-         It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
+        It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource.
+        For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
 
         :param str resource_name: The name of the resource.
         :param VpcEndpointServiceArgs args: The arguments to use to populate this resource's properties.

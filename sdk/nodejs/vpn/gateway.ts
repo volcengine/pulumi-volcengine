@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  * VpnGateway can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
+ * $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
  * ```
  */
 export class Gateway extends pulumi.CustomResource {
@@ -79,8 +79,7 @@ export class Gateway extends pulumi.CustomResource {
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
-     * The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-     * state file, not actually remove.
+     * The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -112,7 +111,7 @@ export class Gateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * Whether ipsec is enabled.
+     * Whether ipsec is enabled. Default is true.
      */
     public readonly ipsecEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -137,7 +136,7 @@ export class Gateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly routeCount!: pulumi.Output<number>;
     /**
-     * Whether ssl is enabled.
+     * Whether ssl is enabled. Default is false.
      */
     public readonly sslEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -266,8 +265,7 @@ export interface GatewayState {
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-     * state file, not actually remove.
+     * The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -299,7 +297,7 @@ export interface GatewayState {
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * Whether ipsec is enabled.
+     * Whether ipsec is enabled. Default is true.
      */
     ipsecEnabled?: pulumi.Input<boolean>;
     /**
@@ -324,7 +322,7 @@ export interface GatewayState {
      */
     routeCount?: pulumi.Input<number>;
     /**
-     * Whether ssl is enabled.
+     * Whether ssl is enabled. Default is false.
      */
     sslEnabled?: pulumi.Input<boolean>;
     /**
@@ -370,8 +368,7 @@ export interface GatewayArgs {
      */
     bandwidth: pulumi.Input<number>;
     /**
-     * The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-     * state file, not actually remove.
+     * The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -379,7 +376,7 @@ export interface GatewayArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * Whether ipsec is enabled.
+     * Whether ipsec is enabled. Default is true.
      */
     ipsecEnabled?: pulumi.Input<boolean>;
     /**
@@ -392,7 +389,7 @@ export interface GatewayArgs {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * Whether ssl is enabled.
+     * Whether ssl is enabled. Default is false.
      */
     sslEnabled?: pulumi.Input<boolean>;
     /**

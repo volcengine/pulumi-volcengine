@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -128,9 +128,7 @@ import (
 // PrivateLink Security Group Service can be imported using the endpoint id and security group id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
-//
+// $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
 // ```
 type SecurityGroup struct {
 	pulumi.CustomResourceState

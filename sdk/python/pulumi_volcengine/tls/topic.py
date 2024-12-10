@@ -23,6 +23,8 @@ class TopicArgs:
                  auto_split: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 manual_split_shard_id: Optional[pulumi.Input[int]] = None,
+                 manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]] = None,
                  time_format: Optional[pulumi.Input[str]] = None,
@@ -30,7 +32,7 @@ class TopicArgs:
         """
         The set of arguments for constructing a Topic resource.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
-        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
+        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         :param pulumi.Input[str] topic_name: The name of the tls topic.
         :param pulumi.Input[int] ttl: The data storage time of the tls topic. Unit: Day. Valid value range: 1-3650.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
@@ -38,6 +40,10 @@ class TopicArgs:
                false: Disables automatic partition splitting.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]] tags: Tags.
         :param pulumi.Input[str] time_format: The format of the time field.
@@ -53,6 +59,10 @@ class TopicArgs:
             pulumi.set(__self__, "description", description)
         if enable_tracking is not None:
             pulumi.set(__self__, "enable_tracking", enable_tracking)
+        if manual_split_shard_id is not None:
+            pulumi.set(__self__, "manual_split_shard_id", manual_split_shard_id)
+        if manual_split_shard_number is not None:
+            pulumi.set(__self__, "manual_split_shard_number", manual_split_shard_number)
         if max_split_shard is not None:
             pulumi.set(__self__, "max_split_shard", max_split_shard)
         if tags is not None:
@@ -78,7 +88,7 @@ class TopicArgs:
     @pulumi.getter(name="shardCount")
     def shard_count(self) -> pulumi.Input[int]:
         """
-        The count of shards in the tls topic. Valid value range: 1-10.
+        The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         """
         return pulumi.get(self, "shard_count")
 
@@ -149,6 +159,32 @@ class TopicArgs:
         pulumi.set(self, "enable_tracking", value)
 
     @property
+    @pulumi.getter(name="manualSplitShardId")
+    def manual_split_shard_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The id of shard to be manually split. This field is valid only when modifying the topic. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "manual_split_shard_id")
+
+    @manual_split_shard_id.setter
+    def manual_split_shard_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "manual_split_shard_id", value)
+
+    @property
+    @pulumi.getter(name="manualSplitShardNumber")
+    def manual_split_shard_number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "manual_split_shard_number")
+
+    @manual_split_shard_number.setter
+    def manual_split_shard_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "manual_split_shard_number", value)
+
+    @property
     @pulumi.getter(name="maxSplitShard")
     def max_split_shard(self) -> Optional[pulumi.Input[int]]:
         """
@@ -204,6 +240,8 @@ class _TopicState:
                  create_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 manual_split_shard_id: Optional[pulumi.Input[int]] = None,
+                 manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
                  modify_time: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -221,10 +259,14 @@ class _TopicState:
         :param pulumi.Input[str] create_time: The create time of the tls topic.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[str] modify_time: The modify time of the tls topic.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
-        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
+        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         :param pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]] tags: Tags.
         :param pulumi.Input[str] time_format: The format of the time field.
         :param pulumi.Input[str] time_key: The name of the time field.
@@ -239,6 +281,10 @@ class _TopicState:
             pulumi.set(__self__, "description", description)
         if enable_tracking is not None:
             pulumi.set(__self__, "enable_tracking", enable_tracking)
+        if manual_split_shard_id is not None:
+            pulumi.set(__self__, "manual_split_shard_id", manual_split_shard_id)
+        if manual_split_shard_number is not None:
+            pulumi.set(__self__, "manual_split_shard_number", manual_split_shard_number)
         if max_split_shard is not None:
             pulumi.set(__self__, "max_split_shard", max_split_shard)
         if modify_time is not None:
@@ -309,6 +355,32 @@ class _TopicState:
         pulumi.set(self, "enable_tracking", value)
 
     @property
+    @pulumi.getter(name="manualSplitShardId")
+    def manual_split_shard_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The id of shard to be manually split. This field is valid only when modifying the topic. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "manual_split_shard_id")
+
+    @manual_split_shard_id.setter
+    def manual_split_shard_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "manual_split_shard_id", value)
+
+    @property
+    @pulumi.getter(name="manualSplitShardNumber")
+    def manual_split_shard_number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "manual_split_shard_number")
+
+    @manual_split_shard_number.setter
+    def manual_split_shard_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "manual_split_shard_number", value)
+
+    @property
     @pulumi.getter(name="maxSplitShard")
     def max_split_shard(self) -> Optional[pulumi.Input[int]]:
         """
@@ -348,7 +420,7 @@ class _TopicState:
     @pulumi.getter(name="shardCount")
     def shard_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The count of shards in the tls topic. Valid value range: 1-10.
+        The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         """
         return pulumi.get(self, "shard_count")
 
@@ -425,6 +497,8 @@ class Topic(pulumi.CustomResource):
                  auto_split: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 manual_split_shard_id: Optional[pulumi.Input[int]] = None,
+                 manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  shard_count: Optional[pulumi.Input[int]] = None,
@@ -464,7 +538,7 @@ class Topic(pulumi.CustomResource):
         Tls Topic can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
+        $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
         ```
 
         :param str resource_name: The name of the resource.
@@ -474,9 +548,13 @@ class Topic(pulumi.CustomResource):
                false: Disables automatic partition splitting.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
-        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
+        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] time_format: The format of the time field.
         :param pulumi.Input[str] time_key: The name of the time field.
@@ -519,7 +597,7 @@ class Topic(pulumi.CustomResource):
         Tls Topic can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
+        $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
         ```
 
         :param str resource_name: The name of the resource.
@@ -540,6 +618,8 @@ class Topic(pulumi.CustomResource):
                  auto_split: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 manual_split_shard_id: Optional[pulumi.Input[int]] = None,
+                 manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  shard_count: Optional[pulumi.Input[int]] = None,
@@ -560,6 +640,8 @@ class Topic(pulumi.CustomResource):
             __props__.__dict__["auto_split"] = auto_split
             __props__.__dict__["description"] = description
             __props__.__dict__["enable_tracking"] = enable_tracking
+            __props__.__dict__["manual_split_shard_id"] = manual_split_shard_id
+            __props__.__dict__["manual_split_shard_number"] = manual_split_shard_number
             __props__.__dict__["max_split_shard"] = max_split_shard
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -592,6 +674,8 @@ class Topic(pulumi.CustomResource):
             create_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enable_tracking: Optional[pulumi.Input[bool]] = None,
+            manual_split_shard_id: Optional[pulumi.Input[int]] = None,
+            manual_split_shard_number: Optional[pulumi.Input[int]] = None,
             max_split_shard: Optional[pulumi.Input[int]] = None,
             modify_time: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -614,10 +698,14 @@ class Topic(pulumi.CustomResource):
         :param pulumi.Input[str] create_time: The create time of the tls topic.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[str] modify_time: The modify time of the tls topic.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
-        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
+        :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] time_format: The format of the time field.
         :param pulumi.Input[str] time_key: The name of the time field.
@@ -632,6 +720,8 @@ class Topic(pulumi.CustomResource):
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
         __props__.__dict__["enable_tracking"] = enable_tracking
+        __props__.__dict__["manual_split_shard_id"] = manual_split_shard_id
+        __props__.__dict__["manual_split_shard_number"] = manual_split_shard_number
         __props__.__dict__["max_split_shard"] = max_split_shard
         __props__.__dict__["modify_time"] = modify_time
         __props__.__dict__["project_id"] = project_id
@@ -678,6 +768,24 @@ class Topic(pulumi.CustomResource):
         return pulumi.get(self, "enable_tracking")
 
     @property
+    @pulumi.getter(name="manualSplitShardId")
+    def manual_split_shard_id(self) -> pulumi.Output[Optional[int]]:
+        """
+        The id of shard to be manually split. This field is valid only when modifying the topic. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "manual_split_shard_id")
+
+    @property
+    @pulumi.getter(name="manualSplitShardNumber")
+    def manual_split_shard_number(self) -> pulumi.Output[Optional[int]]:
+        """
+        The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "manual_split_shard_number")
+
+    @property
     @pulumi.getter(name="maxSplitShard")
     def max_split_shard(self) -> pulumi.Output[int]:
         """
@@ -705,7 +813,7 @@ class Topic(pulumi.CustomResource):
     @pulumi.getter(name="shardCount")
     def shard_count(self) -> pulumi.Output[int]:
         """
-        The count of shards in the tls topic. Valid value range: 1-10.
+        The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         """
         return pulumi.get(self, "shard_count")
 

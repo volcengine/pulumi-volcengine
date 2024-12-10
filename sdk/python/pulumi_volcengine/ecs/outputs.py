@@ -16,7 +16,13 @@ __all__ = [
     'AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult',
     'CommandsCommandResult',
     'DeploymentSetsDeploymentSetResult',
+    'HpcClustersHpcClusterResult',
+    'ImageImportTag',
+    'ImageSharePermissionsAccountResult',
+    'ImageTag',
     'ImagesImageResult',
+    'ImagesImageTagResult',
+    'ImagesTagResult',
     'InstanceCpuOptions',
     'InstanceDataVolume',
     'InstanceGpuDevice',
@@ -372,9 +378,181 @@ class DeploymentSetsDeploymentSetResult(dict):
 
 
 @pulumi.output_type
+class HpcClustersHpcClusterResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 hpc_cluster_id: str,
+                 id: str,
+                 name: str,
+                 updated_at: str,
+                 vpc_id: str,
+                 zone_id: str):
+        """
+        :param str created_at: The created time of the hpc cluster.
+        :param str description: The description of the hpc cluster.
+        :param str hpc_cluster_id: The id of the hpc cluster.
+        :param str id: The id of the hpc cluster.
+        :param str name: The name of the hpc cluster.
+        :param str updated_at: The updated time of the hpc cluster.
+        :param str vpc_id: The vpc id of the hpc cluster.
+        :param str zone_id: The zone id of the hpc cluster.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The created time of the hpc cluster.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the hpc cluster.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> str:
+        """
+        The id of the hpc cluster.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the hpc cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the hpc cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The updated time of the hpc cluster.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id of the hpc cluster.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of the hpc cluster.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class ImageImportTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ImageSharePermissionsAccountResult(dict):
+    def __init__(__self__, *,
+                 account_id: str):
+        """
+        :param str account_id: The shared account id of the image.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The shared account id of the image.
+        """
+        return pulumi.get(self, "account_id")
+
+
+@pulumi.output_type
+class ImageTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class ImagesImageResult(dict):
     def __init__(__self__, *,
                  architecture: str,
+                 boot_mode: str,
                  created_at: str,
                  description: str,
                  image_id: str,
@@ -387,10 +565,12 @@ class ImagesImageResult(dict):
                  share_status: str,
                  size: int,
                  status: str,
+                 tags: Sequence['outputs.ImagesImageTagResult'],
                  updated_at: str,
                  visibility: str):
         """
         :param str architecture: The architecture of Image.
+        :param str boot_mode: The boot mode of Image.
         :param str created_at: The create time of Image.
         :param str description: The description of Image.
         :param str image_id: The ID of Image.
@@ -403,10 +583,12 @@ class ImagesImageResult(dict):
         :param str share_status: The share mode of Image.
         :param int size: The size(GiB) of Image.
         :param str status: A list of Image status, the value can be `available` or `creating` or `error`.
+        :param Sequence['ImagesImageTagArgs'] tags: Tags.
         :param str updated_at: The update time of Image.
         :param str visibility: The visibility of Image.
         """
         pulumi.set(__self__, "architecture", architecture)
+        pulumi.set(__self__, "boot_mode", boot_mode)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "image_id", image_id)
@@ -419,6 +601,7 @@ class ImagesImageResult(dict):
         pulumi.set(__self__, "share_status", share_status)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "visibility", visibility)
 
@@ -429,6 +612,14 @@ class ImagesImageResult(dict):
         The architecture of Image.
         """
         return pulumi.get(self, "architecture")
+
+    @property
+    @pulumi.getter(name="bootMode")
+    def boot_mode(self) -> str:
+        """
+        The boot mode of Image.
+        """
+        return pulumi.get(self, "boot_mode")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -527,6 +718,14 @@ class ImagesImageResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.ImagesImageTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
@@ -541,6 +740,64 @@ class ImagesImageResult(dict):
         The visibility of Image.
         """
         return pulumi.get(self, "visibility")
+
+
+@pulumi.output_type
+class ImagesImageTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ImagesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -759,7 +1016,7 @@ class InstanceSecondaryNetworkInterface(dict):
         """
         :param Sequence[str] security_group_ids: The security group ID set of secondary networkInterface.
         :param str subnet_id: The subnet ID of secondary networkInterface.
-        :param str primary_ip_address: The private ip address of primary networkInterface.
+        :param str primary_ip_address: The private ip address of secondary networkInterface.
         """
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -786,7 +1043,7 @@ class InstanceSecondaryNetworkInterface(dict):
     @pulumi.getter(name="primaryIpAddress")
     def primary_ip_address(self) -> Optional[str]:
         """
-        The private ip address of primary networkInterface.
+        The private ip address of secondary networkInterface.
         """
         return pulumi.get(self, "primary_ip_address")
 
@@ -1321,7 +1578,7 @@ class InstancesInstanceResult(dict):
         :param str instance_name: The name of ECS instance. This field support fuzzy query.
         :param str instance_type: The spec type of ECS instance.
         :param int ipv6_address_count: The number of IPv6 addresses of the ECS instance.
-        :param Sequence[str] ipv6_addresses: The  IPv6 address list of the ECS instance.
+        :param Sequence[str] ipv6_addresses: A list of ipv6 addresses.
         :param bool is_gpu: The Flag of GPU instance.If the instance is GPU,The flag is true.
         :param str key_pair_id: The ssh key ID of ECS instance.
         :param str key_pair_name: The key pair name of ECS instance.
@@ -1471,7 +1728,7 @@ class InstancesInstanceResult(dict):
     @pulumi.getter(name="ipv6Addresses")
     def ipv6_addresses(self) -> Sequence[str]:
         """
-        The  IPv6 address list of the ECS instance.
+        A list of ipv6 addresses.
         """
         return pulumi.get(self, "ipv6_addresses")
 

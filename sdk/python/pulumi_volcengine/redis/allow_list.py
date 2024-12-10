@@ -236,7 +236,7 @@ class AllowList(pulumi.CustomResource):
         Redis AllowList can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/allowList:AllowList default acl-cn03wk541s55c376xxxx
+        $ pulumi import volcengine:redis/allowList:AllowList default acl-cn03wk541s55c376xxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -275,7 +275,7 @@ class AllowList(pulumi.CustomResource):
         Redis AllowList can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/allowList:AllowList default acl-cn03wk541s55c376xxxx
+        $ pulumi import volcengine:redis/allowList:AllowList default acl-cn03wk541s55c376xxxx
         ```
 
         :param str resource_name: The name of the resource.

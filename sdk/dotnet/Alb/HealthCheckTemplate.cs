@@ -45,7 +45,7 @@ namespace Pulumi.Volcengine.Alb
     /// AlbHealthCheckTemplate can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
+    /// $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:alb/healthCheckTemplate:HealthCheckTemplate")]

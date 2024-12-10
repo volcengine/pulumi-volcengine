@@ -344,7 +344,7 @@ class Access(pulumi.CustomResource):
         CloudFs Access can be imported using the FsName:AccessId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloudfs/access:Access default tfname:access-**rdgmedx3fow
+        $ pulumi import volcengine:cloudfs/access:Access default tfname:access-**rdgmedx3fow
         ```
 
         :param str resource_name: The name of the resource.
@@ -382,7 +382,7 @@ class Access(pulumi.CustomResource):
         CloudFs Access can be imported using the FsName:AccessId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloudfs/access:Access default tfname:access-**rdgmedx3fow
+        $ pulumi import volcengine:cloudfs/access:Access default tfname:access-**rdgmedx3fow
         ```
 
         :param str resource_name: The name of the resource.

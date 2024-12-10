@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpn
     {
         /// <summary>
         /// Use this data source to query detailed information of vpn connections
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -100,17 +98,13 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ConnectionsResult> InvokeAsync(ConnectionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ConnectionsResult>("volcengine:vpn/connections:Connections", args ?? new ConnectionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpn connections
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -195,8 +189,6 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ConnectionsResult> Invoke(ConnectionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ConnectionsResult>("volcengine:vpn/connections:Connections", args ?? new ConnectionsInvokeArgs(), options.WithDefaults());
@@ -205,6 +197,18 @@ namespace Pulumi.Volcengine.Vpn
 
     public sealed class ConnectionsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The attach status of VPN connection.
+        /// </summary>
+        [Input("attachStatus")]
+        public string? AttachStatus { get; set; }
+
+        /// <summary>
+        /// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+        /// </summary>
+        [Input("attachType")]
+        public string? AttachType { get; set; }
+
         /// <summary>
         /// An ID of customer gateway.
         /// </summary>
@@ -235,6 +239,30 @@ namespace Pulumi.Volcengine.Vpn
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of VPN connection.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// The spec of IPSec connection. Valid values: `default`, `large`.
+        /// </summary>
+        [Input("spec")]
+        public string? Spec { get; set; }
+
+        /// <summary>
+        /// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        /// </summary>
+        [Input("status")]
+        public string? Status { get; set; }
+
+        /// <summary>
+        /// An ID of transit router.
+        /// </summary>
+        [Input("transitRouterId")]
+        public string? TransitRouterId { get; set; }
+
         [Input("vpnConnectionNames")]
         private List<string>? _vpnConnectionNames;
 
@@ -261,6 +289,18 @@ namespace Pulumi.Volcengine.Vpn
 
     public sealed class ConnectionsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The attach status of VPN connection.
+        /// </summary>
+        [Input("attachStatus")]
+        public Input<string>? AttachStatus { get; set; }
+
+        /// <summary>
+        /// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+        /// </summary>
+        [Input("attachType")]
+        public Input<string>? AttachType { get; set; }
+
         /// <summary>
         /// An ID of customer gateway.
         /// </summary>
@@ -291,6 +331,30 @@ namespace Pulumi.Volcengine.Vpn
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of VPN connection.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The spec of IPSec connection. Valid values: `default`, `large`.
+        /// </summary>
+        [Input("spec")]
+        public Input<string>? Spec { get; set; }
+
+        /// <summary>
+        /// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// An ID of transit router.
+        /// </summary>
+        [Input("transitRouterId")]
+        public Input<string>? TransitRouterId { get; set; }
+
         [Input("vpnConnectionNames")]
         private InputList<string>? _vpnConnectionNames;
 
@@ -320,6 +384,14 @@ namespace Pulumi.Volcengine.Vpn
     public sealed class ConnectionsResult
     {
         /// <summary>
+        /// The IPsec attach status.
+        /// </summary>
+        public readonly string? AttachStatus;
+        /// <summary>
+        /// The IPsec attach type.
+        /// </summary>
+        public readonly string? AttachType;
+        /// <summary>
         /// The ID of the customer gateway.
         /// </summary>
         public readonly string? CustomerGatewayId;
@@ -330,10 +402,20 @@ namespace Pulumi.Volcengine.Vpn
         public readonly ImmutableArray<string> Ids;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        public readonly string? ProjectName;
+        public readonly string? Spec;
+        /// <summary>
+        /// The status of the VPN connection.
+        /// </summary>
+        public readonly string? Status;
         /// <summary>
         /// The total count of VPN connection query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The id of transit router, valid when the attach type is 'TransitRouter'.
+        /// </summary>
+        public readonly string? TransitRouterId;
         public readonly ImmutableArray<string> VpnConnectionNames;
         /// <summary>
         /// The collection of VPN connection query.
@@ -346,6 +428,10 @@ namespace Pulumi.Volcengine.Vpn
 
         [OutputConstructor]
         private ConnectionsResult(
+            string? attachStatus,
+
+            string? attachType,
+
             string? customerGatewayId,
 
             string id,
@@ -356,7 +442,15 @@ namespace Pulumi.Volcengine.Vpn
 
             string? outputFile,
 
+            string? projectName,
+
+            string? spec,
+
+            string? status,
+
             int totalCount,
+
+            string? transitRouterId,
 
             ImmutableArray<string> vpnConnectionNames,
 
@@ -364,12 +458,18 @@ namespace Pulumi.Volcengine.Vpn
 
             string? vpnGatewayId)
         {
+            AttachStatus = attachStatus;
+            AttachType = attachType;
             CustomerGatewayId = customerGatewayId;
             Id = id;
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Spec = spec;
+            Status = status;
             TotalCount = totalCount;
+            TransitRouterId = transitRouterId;
             VpnConnectionNames = vpnConnectionNames;
             VpnConnections = vpnConnections;
             VpnGatewayId = vpnGatewayId;

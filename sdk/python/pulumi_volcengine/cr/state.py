@@ -132,7 +132,7 @@ class State(pulumi.CustomResource):
         CR registry state can be imported using the state:registry_name, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/state:State default state:cr-basic
+        $ pulumi import volcengine:cr/state:State default state:cr-basic
         ```
 
         :param str resource_name: The name of the resource.
@@ -162,7 +162,7 @@ class State(pulumi.CustomResource):
         CR registry state can be imported using the state:registry_name, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/state:State default state:cr-basic
+        $ pulumi import volcengine:cr/state:State default state:cr-basic
         ```
 
         :param str resource_name: The name of the resource.

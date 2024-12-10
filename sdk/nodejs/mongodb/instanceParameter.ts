@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  * mongodb parameter can be imported using the param:instanceId:parameterName, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
+ * $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
  * ```
  */
 export class InstanceParameter extends pulumi.CustomResource {

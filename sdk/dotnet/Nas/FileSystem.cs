@@ -48,7 +48,7 @@ namespace Pulumi.Volcengine.Nas
     /// NasFileSystem can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
+    /// $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nas/fileSystem:FileSystem")]

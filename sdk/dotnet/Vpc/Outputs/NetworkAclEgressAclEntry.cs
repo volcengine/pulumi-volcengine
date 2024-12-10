@@ -21,6 +21,9 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// The DestinationCidrIp of entry.
         /// </summary>
         public readonly string? DestinationCidrIp;
+        /// <summary>
+        /// The id of entry.
+        /// </summary>
         public readonly string? NetworkAclEntryId;
         /// <summary>
         /// The name of entry.
@@ -34,6 +37,9 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
         /// </summary>
         public readonly string? Port;
+        /// <summary>
+        /// The priority of entry.
+        /// </summary>
         public readonly int? Priority;
         /// <summary>
         /// The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.

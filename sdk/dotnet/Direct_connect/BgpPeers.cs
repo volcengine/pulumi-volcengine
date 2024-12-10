@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Direct_connect
     {
         /// <summary>
         /// Use this data source to query detailed information of direct connect bgp peers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BgpPeersResult> InvokeAsync(BgpPeersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BgpPeersResult>("volcengine:direct_connect/bgpPeers:BgpPeers", args ?? new BgpPeersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of direct connect bgp peers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BgpPeersResult> Invoke(BgpPeersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BgpPeersResult>("volcengine:direct_connect/bgpPeers:BgpPeers", args ?? new BgpPeersInvokeArgs(), options.WithDefaults());

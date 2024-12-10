@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  * RDS Instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
+ * $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
  * ```
  */
 export class ParameterTemplate extends pulumi.CustomResource {

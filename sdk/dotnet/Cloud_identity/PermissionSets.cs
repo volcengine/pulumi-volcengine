@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_identity
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud identity permission sets
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,17 +60,13 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<PermissionSetsResult> InvokeAsync(PermissionSetsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<PermissionSetsResult>("volcengine:cloud_identity/permissionSets:PermissionSets", args ?? new PermissionSetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud identity permission sets
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -119,8 +113,6 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<PermissionSetsResult> Invoke(PermissionSetsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<PermissionSetsResult>("volcengine:cloud_identity/permissionSets:PermissionSets", args ?? new PermissionSetsInvokeArgs(), options.WithDefaults());

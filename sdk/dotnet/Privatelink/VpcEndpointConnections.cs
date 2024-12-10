@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Privatelink
     {
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint connections
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -108,7 +106,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///         ServiceId = fooVpcEndpointService.Id,
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooVpcEndpointZone,
         ///         },
@@ -122,17 +120,13 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointConnectionsResult> InvokeAsync(VpcEndpointConnectionsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointConnectionsResult>("volcengine:privatelink/vpcEndpointConnections:VpcEndpointConnections", args ?? new VpcEndpointConnectionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint connections
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -225,7 +219,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///         ServiceId = fooVpcEndpointService.Id,
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooVpcEndpointZone,
         ///         },
@@ -239,8 +233,6 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointConnectionsResult> Invoke(VpcEndpointConnectionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointConnectionsResult>("volcengine:privatelink/vpcEndpointConnections:VpcEndpointConnections", args ?? new VpcEndpointConnectionsInvokeArgs(), options.WithDefaults());

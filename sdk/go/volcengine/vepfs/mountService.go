@@ -64,9 +64,7 @@ import (
 // VepfsMountService can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vepfs/mountService:MountService default resource_id
-//
+// $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
 // ```
 type MountService struct {
 	pulumi.CustomResourceState

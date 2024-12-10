@@ -280,7 +280,7 @@ class CustomerGateway(pulumi.CustomResource):
         CustomerGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/customerGateway:CustomerGateway default cgw-2byswc356dybk2dx0eed2****
+        $ pulumi import volcengine:vpn/customerGateway:CustomerGateway default cgw-2byswc356dybk2dx0eed2****
         ```
 
         :param str resource_name: The name of the resource.
@@ -316,7 +316,7 @@ class CustomerGateway(pulumi.CustomResource):
         CustomerGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/customerGateway:CustomerGateway default cgw-2byswc356dybk2dx0eed2****
+        $ pulumi import volcengine:vpn/customerGateway:CustomerGateway default cgw-2byswc356dybk2dx0eed2****
         ```
 
         :param str resource_name: The name of the resource.

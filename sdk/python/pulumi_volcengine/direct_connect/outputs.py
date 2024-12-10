@@ -497,8 +497,8 @@ class ConnectionsDirectConnectConnectionTagResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The tag key of cloud resource instance.
-        :param str value: The tag value of cloud resource instance.
+        :param str key: The tag key.
+        :param str value: The tag value.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -507,7 +507,7 @@ class ConnectionsDirectConnectConnectionTagResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The tag key of cloud resource instance.
+        The tag key.
         """
         return pulumi.get(self, "key")
 
@@ -515,7 +515,7 @@ class ConnectionsDirectConnectConnectionTagResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The tag value of cloud resource instance.
+        The tag value.
         """
         return pulumi.get(self, "value")
 
@@ -884,8 +884,8 @@ class GatewaysDirectConnectGatewayTagResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The tag key of cloud resource instance.
-        :param str value: The tag value of cloud resource instance.
+        :param str key: The tag key.
+        :param str value: The tag value.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -894,7 +894,7 @@ class GatewaysDirectConnectGatewayTagResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The tag key of cloud resource instance.
+        The tag key.
         """
         return pulumi.get(self, "key")
 
@@ -902,7 +902,7 @@ class GatewaysDirectConnectGatewayTagResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The tag value of cloud resource instance.
+        The tag value.
         """
         return pulumi.get(self, "value")
 
@@ -1244,8 +1244,8 @@ class VirtualInterfacesVirtualInterfaceTagResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The tag key of cloud resource instance.
-        :param str value: The tag value of cloud resource instance.
+        :param str key: The tag key.
+        :param str value: The tag value.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -1254,7 +1254,7 @@ class VirtualInterfacesVirtualInterfaceTagResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The tag key of cloud resource instance.
+        The tag key.
         """
         return pulumi.get(self, "key")
 
@@ -1262,7 +1262,7 @@ class VirtualInterfacesVirtualInterfaceTagResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The tag value of cloud resource instance.
+        The tag value.
         """
         return pulumi.get(self, "value")
 

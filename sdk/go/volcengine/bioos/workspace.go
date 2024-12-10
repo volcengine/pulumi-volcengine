@@ -45,9 +45,7 @@ import (
 // Workspace can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:bioos/workspace:Workspace default *****
-//
+// $ pulumi import volcengine:bioos/workspace:Workspace default *****
 // ```
 type Workspace struct {
 	pulumi.CustomResourceState

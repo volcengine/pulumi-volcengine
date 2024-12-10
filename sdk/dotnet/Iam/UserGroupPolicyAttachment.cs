@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Iam
     /// IamUserGroupPolicyAttachment can be imported using the user group name and policy name, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment default userGroupName:policyName
+    /// $ pulumi import volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment default userGroupName:policyName
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment")]

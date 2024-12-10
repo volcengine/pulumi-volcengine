@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Alb
     /// AlbServerGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
+    /// $ pulumi import volcengine:alb/serverGroup:ServerGroup default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:alb/serverGroup:ServerGroup")]

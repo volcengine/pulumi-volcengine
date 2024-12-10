@@ -47,7 +47,7 @@ namespace Pulumi.Volcengine.Cdn
     ///                 Value = "tfvalue2",
     ///             },
     ///         },
-    ///         DomainConfig = fooCdnCertificate.Id.Apply(id =&gt; JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         DomainConfig = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["OriginProtocol"] = "https",
     ///             ["Origin"] = new[]
@@ -76,7 +76,7 @@ namespace Pulumi.Volcengine.Cdn
     ///             {
     ///                 ["CertInfo"] = new Dictionary&lt;string, object?&gt;
     ///                 {
-    ///                     ["CertId"] = id,
+    ///                     ["CertId"] = fooCdnCertificate.Id,
     ///                 },
     ///                 ["DisableHttp"] = false,
     ///                 ["HTTP2"] = true,
@@ -99,10 +99,9 @@ namespace Pulumi.Volcengine.Cdn
     /// CdnDomain can be imported using the domain, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
+    /// $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
     /// ```
-    /// 
-    ///  Please note that when you execute destroy, we will first take the domain name offline and then delete it.
+    /// Please note that when you execute destroy, we will first take the domain name offline and then delete it.
     /// </summary>
     [VolcengineResourceType("volcengine:cdn/cdnDomain:CdnDomain")]
     public partial class CdnDomain : global::Pulumi.CustomResource

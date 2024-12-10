@@ -74,7 +74,7 @@ namespace Pulumi.Volcengine.Redis
     /// Redis account can be imported using the instanceId:accountName, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:redis/account:Account default redis-42b38c769c4b:test
+    /// $ pulumi import volcengine:redis/account:Account default redis-42b38c769c4b:test
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/account:Account")]

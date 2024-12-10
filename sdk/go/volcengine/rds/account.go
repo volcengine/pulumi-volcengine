@@ -47,9 +47,7 @@ import (
 // RDS account can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds/account:Account default mysql-42b38c769c4b:test
-//
+// $ pulumi import volcengine:rds/account:Account default mysql-42b38c769c4b:test
 // ```
 type Account struct {
 	pulumi.CustomResourceState

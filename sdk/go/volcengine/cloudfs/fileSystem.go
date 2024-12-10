@@ -69,9 +69,7 @@ import (
 // CloudFileSystem can be imported using the FsName, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname
-//
+// $ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname
 // ```
 type FileSystem struct {
 	pulumi.CustomResourceState

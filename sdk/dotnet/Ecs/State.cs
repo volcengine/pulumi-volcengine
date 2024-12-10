@@ -81,7 +81,7 @@ namespace Pulumi.Volcengine.Ecs
     /// State Instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/state:State")]

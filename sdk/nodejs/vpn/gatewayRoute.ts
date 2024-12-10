@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  * VpnGatewayRoute can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
+ * $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
  * ```
  */
 export class GatewayRoute extends pulumi.CustomResource {

@@ -67,7 +67,7 @@ import * as utilities from "../utilities";
  * SecurityGroupRule can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
+ * $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
  * ```
  */
 export class SecurityGroupRule extends pulumi.CustomResource {
@@ -111,19 +111,19 @@ export class SecurityGroupRule extends pulumi.CustomResource {
      */
     public readonly direction!: pulumi.Output<string>;
     /**
-     * Access strategy.
+     * Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
      */
     public readonly policy!: pulumi.Output<string | undefined>;
     /**
-     * Port end of egress/ingress Rule.
+     * Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
      */
     public readonly portEnd!: pulumi.Output<number>;
     /**
-     * Port start of egress/ingress Rule.
+     * Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
      */
     public readonly portStart!: pulumi.Output<number>;
     /**
-     * Priority of a security group rule.
+     * Priority of a security group rule. Valid value range: 1~100. Default is 1.
      */
     public readonly priority!: pulumi.Output<number | undefined>;
     /**
@@ -218,19 +218,19 @@ export interface SecurityGroupRuleState {
      */
     direction?: pulumi.Input<string>;
     /**
-     * Access strategy.
+     * Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
      */
     policy?: pulumi.Input<string>;
     /**
-     * Port end of egress/ingress Rule.
+     * Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
      */
     portEnd?: pulumi.Input<number>;
     /**
-     * Port start of egress/ingress Rule.
+     * Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
      */
     portStart?: pulumi.Input<number>;
     /**
-     * Priority of a security group rule.
+     * Priority of a security group rule. Valid value range: 1~100. Default is 1.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -268,19 +268,19 @@ export interface SecurityGroupRuleArgs {
      */
     direction: pulumi.Input<string>;
     /**
-     * Access strategy.
+     * Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
      */
     policy?: pulumi.Input<string>;
     /**
-     * Port end of egress/ingress Rule.
+     * Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
      */
     portEnd: pulumi.Input<number>;
     /**
-     * Port start of egress/ingress Rule.
+     * Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
      */
     portStart: pulumi.Input<number>;
     /**
-     * Priority of a security group rule.
+     * Priority of a security group rule. Valid value range: 1~100. Default is 1.
      */
     priority?: pulumi.Input<number>;
     /**

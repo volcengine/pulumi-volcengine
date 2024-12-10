@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -93,9 +93,7 @@ import (
 // ScalingPolicy can be imported using the ScalingGroupId:ScalingPolicyId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
-//
+// $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
 // ```
 type ScalingPolicy struct {
 	pulumi.CustomResourceState

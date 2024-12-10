@@ -16,10 +16,6 @@ The Access Key for Volcengine Provider
 """
 
 assumeRole: Optional[str]
-"""
-The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
-supplied credentials.
-"""
 
 customerEndpoints: Optional[str]
 """

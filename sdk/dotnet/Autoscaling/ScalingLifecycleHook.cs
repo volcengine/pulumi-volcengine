@@ -82,7 +82,7 @@ namespace Pulumi.Volcengine.Autoscaling
     /// ScalingLifecycleHook can be imported using the ScalingGroupId:LifecycleHookId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
+    /// $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook")]

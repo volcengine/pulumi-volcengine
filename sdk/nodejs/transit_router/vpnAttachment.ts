@@ -12,31 +12,11 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
  *     transitRouterName: "test-tf-acc",
  *     description: "test-tf-acc",
- * });
- * const fooZones = volcengine.ecs.Zones({});
- * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
- *     vpcName: "acc-test-vpc",
- *     cidrBlock: "172.16.0.0/16",
- * });
- * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
- *     subnetName: "acc-test-subnet",
- *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
- *     vpcId: fooVpc.id,
- * });
- * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
- *     vpcId: fooVpc.id,
- *     subnetId: fooSubnet.id,
- *     bandwidth: 20,
- *     vpnGatewayName: "acc-test",
- *     description: "acc-test",
- *     period: 2,
  * });
  * const fooCustomerGateway = new volcengine.vpn.CustomerGateway("fooCustomerGateway", {
  *     ipAddress: "192.0.1.3",
@@ -47,7 +27,6 @@ import * as utilities from "../utilities";
  *     vpnConnectionName: "acc-tf-test",
  *     description: "acc-tf-test",
  *     attachType: "TransitRouter",
- *     vpnGatewayId: fooGateway.id,
  *     customerGatewayId: fooCustomerGateway.id,
  *     localSubnets: ["192.168.0.0/22"],
  *     remoteSubnets: ["192.161.0.0/20"],
@@ -86,7 +65,7 @@ import * as utilities from "../utilities";
  * TransitRouterVpnAttachment can be imported using the transitRouterId:attachmentId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/vpnAttachment:VpnAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
+ * $ pulumi import volcengine:transit_router/vpnAttachment:VpnAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
  * ```
  */
 export class VpnAttachment extends pulumi.CustomResource {

@@ -107,9 +107,7 @@ import (
 // VpnConnection can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpn/connection:Connection default vgc-3tex2x1cwd4c6c0v****
-//
+// $ pulumi import volcengine:vpn/connection:Connection default vgc-3tex2x1cwd4c6c0v****
 // ```
 type Connection struct {
 	pulumi.CustomResourceState

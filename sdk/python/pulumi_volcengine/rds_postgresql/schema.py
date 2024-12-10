@@ -233,7 +233,7 @@ class Schema(pulumi.CustomResource):
         RdsPostgresqlSchema can be imported using the instance id, database name and schema name, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
+        $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -321,7 +321,7 @@ class Schema(pulumi.CustomResource):
         RdsPostgresqlSchema can be imported using the instance id, database name and schema name, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
+        $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
         ```
 
         :param str resource_name: The name of the resource.

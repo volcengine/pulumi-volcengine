@@ -387,7 +387,7 @@ class RdsInstanceV2ConnectionInfoReadOnlyNodeWeightArgs:
                  weight: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] node_id: The ID of the node.
-        :param pulumi.Input[str] node_type: Node type, the value is "Primary", "Secondary", "ReadOnly".
+        :param pulumi.Input[str] node_type: The type of the node.
         :param pulumi.Input[int] weight: The weight of the node.
         """
         if node_id is not None:
@@ -413,7 +413,7 @@ class RdsInstanceV2ConnectionInfoReadOnlyNodeWeightArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Node type, the value is "Primary", "Secondary", "ReadOnly".
+        The type of the node.
         """
         return pulumi.get(self, "node_type")
 

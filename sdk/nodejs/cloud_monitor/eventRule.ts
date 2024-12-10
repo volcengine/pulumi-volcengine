@@ -59,7 +59,7 @@ import * as utilities from "../utilities";
  * CloudMonitorEventRule can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
+ * $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
  * ```
  */
 export class EventRule extends pulumi.CustomResource {

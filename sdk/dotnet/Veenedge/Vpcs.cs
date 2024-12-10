@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Veenedge
     {
         /// <summary>
         /// Use this data source to query detailed information of veenedge vpcs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpcsResult> InvokeAsync(VpcsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:veenedge/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge vpcs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpcsResult> Invoke(VpcsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:veenedge/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());

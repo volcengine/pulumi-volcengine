@@ -47,9 +47,7 @@ import (
 // mongodb allow list can be imported using the allowListId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:mongodb/mongoAllowList:MongoAllowList default acl-d1fd76693bd54e658912e7337d5b****
-//
+// $ pulumi import volcengine:mongodb/mongoAllowList:MongoAllowList default acl-d1fd76693bd54e658912e7337d5b****
 // ```
 type MongoAllowList struct {
 	pulumi.CustomResourceState

@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -62,7 +62,7 @@ import (
 //				ShardNumber:          pulumi.Int(3),
 //				StorageSpaceGb:       pulumi.Int(20),
 //				SubnetId:             fooSubnet.ID(),
-//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:               pulumi.String(fooZones.Zones[0].Id),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -93,9 +93,7 @@ import (
 // mongodb parameter can be imported using the param:instanceId:parameterName, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
-//
+// $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
 // ```
 type InstanceParameter struct {
 	pulumi.CustomResourceState

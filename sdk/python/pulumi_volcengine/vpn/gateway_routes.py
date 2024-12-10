@@ -22,7 +22,7 @@ class GatewayRoutesResult:
     """
     A collection of values returned by GatewayRoutes.
     """
-    def __init__(__self__, destination_cidr_block=None, id=None, ids=None, next_hop_id=None, output_file=None, total_count=None, vpn_gateway_id=None, vpn_gateway_routes=None):
+    def __init__(__self__, destination_cidr_block=None, id=None, ids=None, next_hop_id=None, output_file=None, route_type=None, status=None, total_count=None, vpn_gateway_id=None, vpn_gateway_routes=None):
         if destination_cidr_block and not isinstance(destination_cidr_block, str):
             raise TypeError("Expected argument 'destination_cidr_block' to be a str")
         pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
@@ -38,6 +38,12 @@ class GatewayRoutesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if route_type and not isinstance(route_type, str):
+            raise TypeError("Expected argument 'route_type' to be a str")
+        pulumi.set(__self__, "route_type", route_type)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -83,6 +89,19 @@ class GatewayRoutesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="routeType")
+    def route_type(self) -> Optional[str]:
+        return pulumi.get(self, "route_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the VPN gateway route.
+        """
+        return pulumi.get(self, "status")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -118,6 +137,8 @@ class AwaitableGatewayRoutesResult(GatewayRoutesResult):
             ids=self.ids,
             next_hop_id=self.next_hop_id,
             output_file=self.output_file,
+            route_type=self.route_type,
+            status=self.status,
             total_count=self.total_count,
             vpn_gateway_id=self.vpn_gateway_id,
             vpn_gateway_routes=self.vpn_gateway_routes)
@@ -127,6 +148,8 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
                    ids: Optional[Sequence[str]] = None,
                    next_hop_id: Optional[str] = None,
                    output_file: Optional[str] = None,
+                   route_type: Optional[str] = None,
+                   status: Optional[str] = None,
                    vpn_gateway_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGatewayRoutesResult:
     """
@@ -194,6 +217,8 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
     :param Sequence[str] ids: A list of VPN gateway route ids.
     :param str next_hop_id: An ID of next hop.
     :param str output_file: File name where to save data source results.
+    :param str route_type: The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+    :param str status: The status of the VPN gateway route.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
     __args__ = dict()
@@ -201,6 +226,8 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
     __args__['ids'] = ids
     __args__['nextHopId'] = next_hop_id
     __args__['outputFile'] = output_file
+    __args__['routeType'] = route_type
+    __args__['status'] = status
     __args__['vpnGatewayId'] = vpn_gateway_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpn/gatewayRoutes:GatewayRoutes', __args__, opts=opts, typ=GatewayRoutesResult).value
@@ -211,6 +238,8 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
         ids=pulumi.get(__ret__, 'ids'),
         next_hop_id=pulumi.get(__ret__, 'next_hop_id'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        route_type=pulumi.get(__ret__, 'route_type'),
+        status=pulumi.get(__ret__, 'status'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpn_gateway_id=pulumi.get(__ret__, 'vpn_gateway_id'),
         vpn_gateway_routes=pulumi.get(__ret__, 'vpn_gateway_routes'))
@@ -221,6 +250,8 @@ def gateway_routes_output(destination_cidr_block: Optional[pulumi.Input[Optional
                           ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           next_hop_id: Optional[pulumi.Input[Optional[str]]] = None,
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                          route_type: Optional[pulumi.Input[Optional[str]]] = None,
+                          status: Optional[pulumi.Input[Optional[str]]] = None,
                           vpn_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GatewayRoutesResult]:
     """
@@ -288,6 +319,8 @@ def gateway_routes_output(destination_cidr_block: Optional[pulumi.Input[Optional
     :param Sequence[str] ids: A list of VPN gateway route ids.
     :param str next_hop_id: An ID of next hop.
     :param str output_file: File name where to save data source results.
+    :param str route_type: The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+    :param str status: The status of the VPN gateway route.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
     ...

@@ -21,16 +21,33 @@ namespace Pulumi.Volcengine.Transit_router
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var secondAccount = new Volcengine.Provider("secondAccount", new()
+    ///     {
+    ///         AccessKey = "access_key_2",
+    ///         SecretKey = "secret_key_2",
+    ///         Region = "region_2",
+    ///     });
+    /// 
     ///     var fooTransitRouter = new Volcengine.Transit_router.TransitRouter("fooTransitRouter", new()
     ///     {
     ///         TransitRouterName = "acc-test-tr",
     ///         Description = "acc-test",
     ///     });
     /// 
+    ///     var fooGrantRule = new Volcengine.Transit_router.GrantRule("fooGrantRule", new()
+    ///     {
+    ///         GrantAccountId = "2000xxxxx",
+    ///         Description = "acc-test-tf",
+    ///         TransitRouterId = fooTransitRouter.Id,
+    ///     });
+    /// 
     ///     var fooSharedTransitRouterState = new Volcengine.Transit_router.SharedTransitRouterState("fooSharedTransitRouterState", new()
     ///     {
     ///         TransitRouterId = fooTransitRouter.Id,
-    ///         Action = "Reject",
+    ///         Action = "Accept",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         Provider = volcengine.Second_account,
     ///     });
     /// 
     /// });
@@ -41,14 +58,14 @@ namespace Pulumi.Volcengine.Transit_router
     /// SharedTransitRouterState can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
+    /// $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState")]
     public partial class SharedTransitRouterState : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `Accept` or `Reject` the shared transit router.
+        /// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -107,7 +124,7 @@ namespace Pulumi.Volcengine.Transit_router
     public sealed class SharedTransitRouterStateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `Accept` or `Reject` the shared transit router.
+        /// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -127,7 +144,7 @@ namespace Pulumi.Volcengine.Transit_router
     public sealed class SharedTransitRouterStateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `Accept` or `Reject` the shared transit router.
+        /// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }

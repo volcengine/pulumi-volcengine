@@ -194,7 +194,7 @@ class State(pulumi.CustomResource):
         State Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -254,7 +254,7 @@ class State(pulumi.CustomResource):
         State Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

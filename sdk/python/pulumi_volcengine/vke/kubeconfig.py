@@ -188,7 +188,7 @@ class Kubeconfig(pulumi.CustomResource):
         VkeKubeconfig can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
+        $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
         ```
 
         :param str resource_name: The name of the resource.
@@ -261,7 +261,7 @@ class Kubeconfig(pulumi.CustomResource):
         VkeKubeconfig can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
+        $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
         ```
 
         :param str resource_name: The name of the resource.

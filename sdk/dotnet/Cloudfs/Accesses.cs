@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloudfs
     {
         /// <summary>
         /// Use this data source to query detailed information of cloudfs accesses
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AccessesResult> InvokeAsync(AccessesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AccessesResult>("volcengine:cloudfs/accesses:Accesses", args ?? new AccessesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloudfs accesses
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AccessesResult> Invoke(AccessesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AccessesResult>("volcengine:cloudfs/accesses:Accesses", args ?? new AccessesInvokeArgs(), options.WithDefaults());

@@ -493,7 +493,7 @@ class Node(pulumi.CustomResource):
         VKE node can be imported using the node id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
+        $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
         ```
 
         :param str resource_name: The name of the resource.
@@ -645,7 +645,7 @@ class Node(pulumi.CustomResource):
         VKE node can be imported using the node id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
+        $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
         ```
 
         :param str resource_name: The name of the resource.

@@ -61,6 +61,9 @@ namespace Pulumi.Volcengine.Rds.Outputs
         /// The type of the RDS instance.
         /// </summary>
         public readonly string InstanceType;
+        /// <summary>
+        /// The ID list of read only instance.
+        /// </summary>
         public readonly ImmutableArray<string> ReadOnlyInstanceIds;
         /// <summary>
         /// The region of the RDS instance.

@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Redis
     /// Redis Backup can be imported using the instanceId:backupId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:redis/backup:Backup default redis-cn02aqusft7ws****:b-cn02xmmrp751i9cdzcphjmk4****
+    /// $ pulumi import volcengine:redis/backup:Backup default redis-cn02aqusft7ws****:b-cn02xmmrp751i9cdzcphjmk4****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/backup:Backup")]

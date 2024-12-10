@@ -369,7 +369,7 @@ class Topic(pulumi.CustomResource):
         KafkaTopic can be imported using the instance_id:topic_name, e.g.
 
         ```sh
-         $ pulumi import volcengine:kafka/topic:Topic default kafka-cnoeeapetf4s****:topic
+        $ pulumi import volcengine:kafka/topic:Topic default kafka-cnoeeapetf4s****:topic
         ```
 
         :param str resource_name: The name of the resource.
@@ -462,7 +462,7 @@ class Topic(pulumi.CustomResource):
         KafkaTopic can be imported using the instance_id:topic_name, e.g.
 
         ```sh
-         $ pulumi import volcengine:kafka/topic:Topic default kafka-cnoeeapetf4s****:topic
+        $ pulumi import volcengine:kafka/topic:Topic default kafka-cnoeeapetf4s****:topic
         ```
 
         :param str resource_name: The name of the resource.

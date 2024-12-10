@@ -62,9 +62,7 @@ import (
 // tls alarm notify group can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
-//
+// $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
 // ```
 type AlarmNotifyGroup struct {
 	pulumi.CustomResourceState

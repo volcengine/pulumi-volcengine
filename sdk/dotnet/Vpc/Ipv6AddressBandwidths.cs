@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 address bandwidths
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<Ipv6AddressBandwidthsResult> InvokeAsync(Ipv6AddressBandwidthsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<Ipv6AddressBandwidthsResult>("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args ?? new Ipv6AddressBandwidthsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 address bandwidths
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<Ipv6AddressBandwidthsResult> Invoke(Ipv6AddressBandwidthsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Ipv6AddressBandwidthsResult>("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args ?? new Ipv6AddressBandwidthsInvokeArgs(), options.WithDefaults());

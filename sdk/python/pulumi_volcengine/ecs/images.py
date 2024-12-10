@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ImagesResult',
@@ -22,13 +23,16 @@ class ImagesResult:
     """
     A collection of values returned by Images.
     """
-    def __init__(__self__, id=None, ids=None, images=None, instance_type_id=None, is_support_cloud_init=None, name_regex=None, os_type=None, output_file=None, statuses=None, total_count=None, visibility=None):
+    def __init__(__self__, id=None, ids=None, image_name=None, images=None, instance_type_id=None, is_support_cloud_init=None, is_tls=None, name_regex=None, os_type=None, output_file=None, platform=None, statuses=None, tags=None, total_count=None, visibility=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
         pulumi.set(__self__, "ids", ids)
+        if image_name and not isinstance(image_name, str):
+            raise TypeError("Expected argument 'image_name' to be a str")
+        pulumi.set(__self__, "image_name", image_name)
         if images and not isinstance(images, list):
             raise TypeError("Expected argument 'images' to be a list")
         pulumi.set(__self__, "images", images)
@@ -38,6 +42,9 @@ class ImagesResult:
         if is_support_cloud_init and not isinstance(is_support_cloud_init, bool):
             raise TypeError("Expected argument 'is_support_cloud_init' to be a bool")
         pulumi.set(__self__, "is_support_cloud_init", is_support_cloud_init)
+        if is_tls and not isinstance(is_tls, bool):
+            raise TypeError("Expected argument 'is_tls' to be a bool")
+        pulumi.set(__self__, "is_tls", is_tls)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
@@ -47,9 +54,15 @@ class ImagesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if platform and not isinstance(platform, str):
+            raise TypeError("Expected argument 'platform' to be a str")
+        pulumi.set(__self__, "platform", platform)
         if statuses and not isinstance(statuses, list):
             raise TypeError("Expected argument 'statuses' to be a list")
         pulumi.set(__self__, "statuses", statuses)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -69,6 +82,14 @@ class ImagesResult:
     @pulumi.getter
     def ids(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> Optional[str]:
+        """
+        The name of Image.
+        """
+        return pulumi.get(self, "image_name")
 
     @property
     @pulumi.getter
@@ -92,6 +113,11 @@ class ImagesResult:
         return pulumi.get(self, "is_support_cloud_init")
 
     @property
+    @pulumi.getter(name="isTls")
+    def is_tls(self) -> Optional[bool]:
+        return pulumi.get(self, "is_tls")
+
+    @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
         return pulumi.get(self, "name_regex")
@@ -111,11 +137,27 @@ class ImagesResult:
 
     @property
     @pulumi.getter
+    def platform(self) -> Optional[str]:
+        """
+        The platform of Image.
+        """
+        return pulumi.get(self, "platform")
+
+    @property
+    @pulumi.getter
     def statuses(self) -> Optional[Sequence[str]]:
         """
         The status of Image.
         """
         return pulumi.get(self, "statuses")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ImagesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -142,24 +184,32 @@ class AwaitableImagesResult(ImagesResult):
         return ImagesResult(
             id=self.id,
             ids=self.ids,
+            image_name=self.image_name,
             images=self.images,
             instance_type_id=self.instance_type_id,
             is_support_cloud_init=self.is_support_cloud_init,
+            is_tls=self.is_tls,
             name_regex=self.name_regex,
             os_type=self.os_type,
             output_file=self.output_file,
+            platform=self.platform,
             statuses=self.statuses,
+            tags=self.tags,
             total_count=self.total_count,
             visibility=self.visibility)
 
 
 def images(ids: Optional[Sequence[str]] = None,
+           image_name: Optional[str] = None,
            instance_type_id: Optional[str] = None,
            is_support_cloud_init: Optional[bool] = None,
+           is_tls: Optional[bool] = None,
            name_regex: Optional[str] = None,
            os_type: Optional[str] = None,
            output_file: Optional[str] = None,
+           platform: Optional[str] = None,
            statuses: Optional[Sequence[str]] = None,
+           tags: Optional[Sequence[pulumi.InputType['ImagesTagArgs']]] = None,
            visibility: Optional[str] = None,
            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableImagesResult:
     """
@@ -177,22 +227,30 @@ def images(ids: Optional[Sequence[str]] = None,
 
 
     :param Sequence[str] ids: A list of Image IDs.
+    :param str image_name: The name of Image.
     :param str instance_type_id: The specification of  Instance.
     :param bool is_support_cloud_init: Whether the Image support cloud-init.
+    :param bool is_tls: Whether the Image maintained for a long time.
     :param str name_regex: A Name Regex of Image.
     :param str os_type: The operating system type of Image.
     :param str output_file: File name where to save data source results.
+    :param str platform: The platform of Image.
     :param Sequence[str] statuses: A list of Image status, the value can be `available` or `creating` or `error`.
+    :param Sequence[pulumi.InputType['ImagesTagArgs']] tags: Tags.
     :param str visibility: The visibility of Image.
     """
     __args__ = dict()
     __args__['ids'] = ids
+    __args__['imageName'] = image_name
     __args__['instanceTypeId'] = instance_type_id
     __args__['isSupportCloudInit'] = is_support_cloud_init
+    __args__['isTls'] = is_tls
     __args__['nameRegex'] = name_regex
     __args__['osType'] = os_type
     __args__['outputFile'] = output_file
+    __args__['platform'] = platform
     __args__['statuses'] = statuses
+    __args__['tags'] = tags
     __args__['visibility'] = visibility
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:ecs/images:Images', __args__, opts=opts, typ=ImagesResult).value
@@ -200,25 +258,33 @@ def images(ids: Optional[Sequence[str]] = None,
     return AwaitableImagesResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
+        image_name=pulumi.get(__ret__, 'image_name'),
         images=pulumi.get(__ret__, 'images'),
         instance_type_id=pulumi.get(__ret__, 'instance_type_id'),
         is_support_cloud_init=pulumi.get(__ret__, 'is_support_cloud_init'),
+        is_tls=pulumi.get(__ret__, 'is_tls'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         os_type=pulumi.get(__ret__, 'os_type'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        platform=pulumi.get(__ret__, 'platform'),
         statuses=pulumi.get(__ret__, 'statuses'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(images)
 def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                  image_name: Optional[pulumi.Input[Optional[str]]] = None,
                   instance_type_id: Optional[pulumi.Input[Optional[str]]] = None,
                   is_support_cloud_init: Optional[pulumi.Input[Optional[bool]]] = None,
+                  is_tls: Optional[pulumi.Input[Optional[bool]]] = None,
                   name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                   os_type: Optional[pulumi.Input[Optional[str]]] = None,
                   output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                  platform: Optional[pulumi.Input[Optional[str]]] = None,
                   statuses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                  tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ImagesTagArgs']]]]] = None,
                   visibility: Optional[pulumi.Input[Optional[str]]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ImagesResult]:
     """
@@ -236,12 +302,16 @@ def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
 
 
     :param Sequence[str] ids: A list of Image IDs.
+    :param str image_name: The name of Image.
     :param str instance_type_id: The specification of  Instance.
     :param bool is_support_cloud_init: Whether the Image support cloud-init.
+    :param bool is_tls: Whether the Image maintained for a long time.
     :param str name_regex: A Name Regex of Image.
     :param str os_type: The operating system type of Image.
     :param str output_file: File name where to save data source results.
+    :param str platform: The platform of Image.
     :param Sequence[str] statuses: A list of Image status, the value can be `available` or `creating` or `error`.
+    :param Sequence[pulumi.InputType['ImagesTagArgs']] tags: Tags.
     :param str visibility: The visibility of Image.
     """
     ...

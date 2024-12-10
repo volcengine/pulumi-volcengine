@@ -115,7 +115,7 @@ namespace Pulumi.Volcengine.Kafka
     /// KafkaTopic can be imported using the instance_id:topic_name, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:kafka/topic:Topic default kafka-cnoeeapetf4s****:topic
+    /// $ pulumi import volcengine:kafka/topic:Topic default kafka-cnoeeapetf4s****:topic
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:kafka/topic:Topic")]

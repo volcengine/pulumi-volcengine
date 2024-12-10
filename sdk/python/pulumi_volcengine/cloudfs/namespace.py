@@ -361,7 +361,7 @@ class Namespace(pulumi.CustomResource):
         CloudfsNamespace can be imported using the FsName:NsId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
+        $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
         ```
 
         :param str resource_name: The name of the resource.
@@ -399,7 +399,7 @@ class Namespace(pulumi.CustomResource):
         CloudfsNamespace can be imported using the FsName:NsId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
+        $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
         ```
 
         :param str resource_name: The name of the resource.

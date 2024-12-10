@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cdn
     {
         /// <summary>
         /// Use this data source to query detailed information of cdn shared configs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,17 +32,13 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SharedConfigsResult> InvokeAsync(SharedConfigsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SharedConfigsResult>("volcengine:cdn/sharedConfigs:SharedConfigs", args ?? new SharedConfigsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cdn shared configs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -63,8 +57,6 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SharedConfigsResult> Invoke(SharedConfigsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SharedConfigsResult>("volcengine:cdn/sharedConfigs:SharedConfigs", args ?? new SharedConfigsInvokeArgs(), options.WithDefaults());

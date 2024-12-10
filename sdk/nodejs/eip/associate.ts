@@ -57,7 +57,7 @@ import * as utilities from "../utilities";
  * Eip associate can be imported using the eip allocation_id:instance_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+ * $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
  * ```
  */
 export class Associate extends pulumi.CustomResource {

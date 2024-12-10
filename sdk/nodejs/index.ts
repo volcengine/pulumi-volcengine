@@ -48,6 +48,7 @@ import * as tls from "./tls";
 import * as tos from "./tos";
 import * as transit_router from "./transit_router";
 import * as types from "./types";
+import * as vedb_mysql from "./vedb_mysql";
 import * as veenedge from "./veenedge";
 import * as vepfs from "./vepfs";
 import * as vke from "./vke";
@@ -91,6 +92,7 @@ export {
     tos,
     transit_router,
     types,
+    vedb_mysql,
     veenedge,
     vepfs,
     vke,

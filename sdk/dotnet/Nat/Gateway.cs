@@ -63,7 +63,7 @@ namespace Pulumi.Volcengine.Nat
     /// NatGateway can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
+    /// $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nat/gateway:Gateway")]

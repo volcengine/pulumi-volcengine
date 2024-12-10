@@ -67,7 +67,7 @@ namespace Pulumi.Volcengine.Clb
     /// ServerGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+    /// $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/serverGroup:ServerGroup")]

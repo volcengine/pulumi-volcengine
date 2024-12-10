@@ -93,6 +93,8 @@ class InstanceChargeDetailArgs:
                  temp_modify_start_time: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] auto_renew: Whether to automatically renew in prepaid scenarios.
+               Autorenew_Enable
+               Autorenew_Disable (default).
         :param pulumi.Input[str] charge_end_time: Billing expiry time (yearly and monthly only).
         :param pulumi.Input[str] charge_start_time: Billing start time (pay-as-you-go & monthly subscription).
         :param pulumi.Input[str] charge_status: Pay status. Value:
@@ -139,6 +141,8 @@ class InstanceChargeDetailArgs:
     def auto_renew(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether to automatically renew in prepaid scenarios.
+        Autorenew_Enable
+        Autorenew_Disable (default).
         """
         return pulumi.get(self, "auto_renew")
 
@@ -282,9 +286,6 @@ class InstanceChargeInfoArgs:
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] charge_type: Payment type. Value:
-               PostPaid - Pay-As-You-Go
-               PrePaid - Yearly and monthly (default).
         :param pulumi.Input[bool] auto_renew: Whether to automatically renew in prepaid scenarios.
         :param pulumi.Input[int] period: Purchase duration in prepaid scenarios. Default: 1.
         :param pulumi.Input[str] period_unit: The purchase cycle in the prepaid scenario.
@@ -302,11 +303,6 @@ class InstanceChargeInfoArgs:
     @property
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> pulumi.Input[str]:
-        """
-        Payment type. Value:
-        PostPaid - Pay-As-You-Go
-        PrePaid - Yearly and monthly (default).
-        """
         return pulumi.get(self, "charge_type")
 
     @charge_type.setter

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud monitor event rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<EventRulesResult> InvokeAsync(EventRulesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<EventRulesResult>("volcengine:cloud_monitor/eventRules:EventRules", args ?? new EventRulesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud monitor event rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<EventRulesResult> Invoke(EventRulesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<EventRulesResult>("volcengine:cloud_monitor/eventRules:EventRules", args ?? new EventRulesInvokeArgs(), options.WithDefaults());

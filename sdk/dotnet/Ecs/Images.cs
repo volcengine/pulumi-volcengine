@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of images
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,17 +32,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ImagesResult> InvokeAsync(ImagesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of images
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -63,8 +57,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ImagesResult> Invoke(ImagesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesInvokeArgs(), options.WithDefaults());
@@ -86,6 +78,12 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The name of Image.
+        /// </summary>
+        [Input("imageName")]
+        public string? ImageName { get; set; }
+
+        /// <summary>
         /// The specification of  Instance.
         /// </summary>
         [Input("instanceTypeId")]
@@ -96,6 +94,12 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("isSupportCloudInit")]
         public bool? IsSupportCloudInit { get; set; }
+
+        /// <summary>
+        /// Whether the Image maintained for a long time.
+        /// </summary>
+        [Input("isTls")]
+        public bool? IsTls { get; set; }
 
         /// <summary>
         /// A Name Regex of Image.
@@ -115,6 +119,12 @@ namespace Pulumi.Volcengine.Ecs
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The platform of Image.
+        /// </summary>
+        [Input("platform")]
+        public string? Platform { get; set; }
+
         [Input("statuses")]
         private List<string>? _statuses;
 
@@ -125,6 +135,18 @@ namespace Pulumi.Volcengine.Ecs
         {
             get => _statuses ?? (_statuses = new List<string>());
             set => _statuses = value;
+        }
+
+        [Input("tags")]
+        private List<Inputs.ImagesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.ImagesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.ImagesTagArgs>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -154,6 +176,12 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The name of Image.
+        /// </summary>
+        [Input("imageName")]
+        public Input<string>? ImageName { get; set; }
+
+        /// <summary>
         /// The specification of  Instance.
         /// </summary>
         [Input("instanceTypeId")]
@@ -164,6 +192,12 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("isSupportCloudInit")]
         public Input<bool>? IsSupportCloudInit { get; set; }
+
+        /// <summary>
+        /// Whether the Image maintained for a long time.
+        /// </summary>
+        [Input("isTls")]
+        public Input<bool>? IsTls { get; set; }
 
         /// <summary>
         /// A Name Regex of Image.
@@ -183,6 +217,12 @@ namespace Pulumi.Volcengine.Ecs
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The platform of Image.
+        /// </summary>
+        [Input("platform")]
+        public Input<string>? Platform { get; set; }
+
         [Input("statuses")]
         private InputList<string>? _statuses;
 
@@ -193,6 +233,18 @@ namespace Pulumi.Volcengine.Ecs
         {
             get => _statuses ?? (_statuses = new InputList<string>());
             set => _statuses = value;
+        }
+
+        [Input("tags")]
+        private InputList<Inputs.ImagesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ImagesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ImagesTagInputArgs>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -217,6 +269,10 @@ namespace Pulumi.Volcengine.Ecs
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
         /// <summary>
+        /// The name of Image.
+        /// </summary>
+        public readonly string? ImageName;
+        /// <summary>
         /// The collection of Image query.
         /// </summary>
         public readonly ImmutableArray<Outputs.ImagesImageResult> Images;
@@ -225,6 +281,7 @@ namespace Pulumi.Volcengine.Ecs
         /// Whether the Image support cloud-init.
         /// </summary>
         public readonly bool? IsSupportCloudInit;
+        public readonly bool? IsTls;
         public readonly string? NameRegex;
         /// <summary>
         /// The operating system type of Image.
@@ -232,9 +289,17 @@ namespace Pulumi.Volcengine.Ecs
         public readonly string? OsType;
         public readonly string? OutputFile;
         /// <summary>
+        /// The platform of Image.
+        /// </summary>
+        public readonly string? Platform;
+        /// <summary>
         /// The status of Image.
         /// </summary>
         public readonly ImmutableArray<string> Statuses;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ImagesTagResult> Tags;
         /// <summary>
         /// The total count of Image query.
         /// </summary>
@@ -250,11 +315,15 @@ namespace Pulumi.Volcengine.Ecs
 
             ImmutableArray<string> ids,
 
+            string? imageName,
+
             ImmutableArray<Outputs.ImagesImageResult> images,
 
             string? instanceTypeId,
 
             bool? isSupportCloudInit,
+
+            bool? isTls,
 
             string? nameRegex,
 
@@ -262,7 +331,11 @@ namespace Pulumi.Volcengine.Ecs
 
             string? outputFile,
 
+            string? platform,
+
             ImmutableArray<string> statuses,
+
+            ImmutableArray<Outputs.ImagesTagResult> tags,
 
             int totalCount,
 
@@ -270,13 +343,17 @@ namespace Pulumi.Volcengine.Ecs
         {
             Id = id;
             Ids = ids;
+            ImageName = imageName;
             Images = images;
             InstanceTypeId = instanceTypeId;
             IsSupportCloudInit = isSupportCloudInit;
+            IsTls = isTls;
             NameRegex = nameRegex;
             OsType = osType;
             OutputFile = outputFile;
+            Platform = platform;
             Statuses = statuses;
+            Tags = tags;
             TotalCount = totalCount;
             Visibility = visibility;
         }

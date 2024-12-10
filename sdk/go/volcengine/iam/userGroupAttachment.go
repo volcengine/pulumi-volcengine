@@ -61,9 +61,7 @@ import (
 // IamUserGroupAttachment can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
-//
+// $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
 // ```
 type UserGroupAttachment struct {
 	pulumi.CustomResourceState

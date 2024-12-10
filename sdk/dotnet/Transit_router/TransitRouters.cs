@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Transit_router
     {
         /// <summary>
         /// Use this data source to query detailed information of transit routers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -42,17 +40,13 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<TransitRoutersResult> InvokeAsync(TransitRoutersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<TransitRoutersResult>("volcengine:transit_router/transitRouters:TransitRouters", args ?? new TransitRoutersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of transit routers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -79,8 +73,6 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<TransitRoutersResult> Invoke(TransitRoutersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<TransitRoutersResult>("volcengine:transit_router/transitRouters:TransitRouters", args ?? new TransitRoutersInvokeArgs(), options.WithDefaults());

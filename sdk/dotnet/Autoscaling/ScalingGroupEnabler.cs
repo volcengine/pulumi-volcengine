@@ -85,7 +85,7 @@ namespace Pulumi.Volcengine.Autoscaling
     ///         ScalingConfigurationId = foo1.ScalingConfigurationId,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             foo1,
     ///         },
@@ -97,7 +97,7 @@ namespace Pulumi.Volcengine.Autoscaling
     ///         ScalingGroupId = foo.ScalingGroupId,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             foo2,
     ///         },
@@ -111,7 +111,7 @@ namespace Pulumi.Volcengine.Autoscaling
     /// Scaling Group enabler can be imported using the scaling_group_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler default enable:scg-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler default enable:scg-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler")]

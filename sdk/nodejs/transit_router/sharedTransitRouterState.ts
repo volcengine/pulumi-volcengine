@@ -12,13 +12,25 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
+ * const secondAccount = new volcengine.Provider("secondAccount", {
+ *     accessKey: "access_key_2",
+ *     secretKey: "secret_key_2",
+ *     region: "region_2",
+ * });
  * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
  *     transitRouterName: "acc-test-tr",
  *     description: "acc-test",
  * });
+ * const fooGrantRule = new volcengine.transit_router.GrantRule("fooGrantRule", {
+ *     grantAccountId: "2000xxxxx",
+ *     description: "acc-test-tf",
+ *     transitRouterId: fooTransitRouter.id,
+ * });
  * const fooSharedTransitRouterState = new volcengine.transit_router.SharedTransitRouterState("fooSharedTransitRouterState", {
  *     transitRouterId: fooTransitRouter.id,
- *     action: "Reject",
+ *     action: "Accept",
+ * }, {
+ *     provider: volcengine.second_account,
  * });
  * ```
  *
@@ -27,7 +39,7 @@ import * as utilities from "../utilities";
  * SharedTransitRouterState can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
+ * $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
  * ```
  */
 export class SharedTransitRouterState extends pulumi.CustomResource {
@@ -59,7 +71,7 @@ export class SharedTransitRouterState extends pulumi.CustomResource {
     }
 
     /**
-     * `Accept` or `Reject` the shared transit router.
+     * `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly action!: pulumi.Output<string>;
     /**
@@ -103,7 +115,7 @@ export class SharedTransitRouterState extends pulumi.CustomResource {
  */
 export interface SharedTransitRouterStateState {
     /**
-     * `Accept` or `Reject` the shared transit router.
+     * `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     action?: pulumi.Input<string>;
     /**
@@ -117,7 +129,7 @@ export interface SharedTransitRouterStateState {
  */
 export interface SharedTransitRouterStateArgs {
     /**
-     * `Accept` or `Reject` the shared transit router.
+     * `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     action: pulumi.Input<string>;
     /**
