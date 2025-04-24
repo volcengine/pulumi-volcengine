@@ -38,10 +38,12 @@ import (
 //						Permission: pulumi.String("WRITE_ACP"),
 //					},
 //				},
-//				BucketName:    pulumi.String("tf-acc-test-bucket"),
-//				EnableVersion: pulumi.Bool(true),
-//				ProjectName:   pulumi.String("default"),
-//				PublicAcl:     pulumi.String("private"),
+//				AzRedundancy:       pulumi.String("multi-az"),
+//				BucketAclDelivered: pulumi.Bool(true),
+//				BucketName:         pulumi.String("tf-acc-test-bucket-0123-3"),
+//				EnableVersion:      pulumi.Bool(true),
+//				ProjectName:        pulumi.String("default"),
+//				PublicAcl:          pulumi.String("private"),
 //				Tags: tos.BucketTagArray{
 //					&tos.BucketTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -70,6 +72,10 @@ type Bucket struct {
 
 	// The user set of grant full control.
 	AccountAcls BucketAccountAclArrayOutput `pulumi:"accountAcls"`
+	// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+	AzRedundancy pulumi.StringPtrOutput `pulumi:"azRedundancy"`
+	// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+	BucketAclDelivered pulumi.BoolOutput `pulumi:"bucketAclDelivered"`
 	// The name of the bucket.
 	BucketName pulumi.StringOutput `pulumi:"bucketName"`
 	// The create date of the TOS bucket.
@@ -127,6 +133,10 @@ func GetBucket(ctx *pulumi.Context,
 type bucketState struct {
 	// The user set of grant full control.
 	AccountAcls []BucketAccountAcl `pulumi:"accountAcls"`
+	// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+	AzRedundancy *string `pulumi:"azRedundancy"`
+	// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+	BucketAclDelivered *bool `pulumi:"bucketAclDelivered"`
 	// The name of the bucket.
 	BucketName *string `pulumi:"bucketName"`
 	// The create date of the TOS bucket.
@@ -152,6 +162,10 @@ type bucketState struct {
 type BucketState struct {
 	// The user set of grant full control.
 	AccountAcls BucketAccountAclArrayInput
+	// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+	AzRedundancy pulumi.StringPtrInput
+	// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+	BucketAclDelivered pulumi.BoolPtrInput
 	// The name of the bucket.
 	BucketName pulumi.StringPtrInput
 	// The create date of the TOS bucket.
@@ -181,6 +195,10 @@ func (BucketState) ElementType() reflect.Type {
 type bucketArgs struct {
 	// The user set of grant full control.
 	AccountAcls []BucketAccountAcl `pulumi:"accountAcls"`
+	// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+	AzRedundancy *string `pulumi:"azRedundancy"`
+	// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+	BucketAclDelivered *bool `pulumi:"bucketAclDelivered"`
 	// The name of the bucket.
 	BucketName string `pulumi:"bucketName"`
 	// The flag of enable tos version.
@@ -199,6 +217,10 @@ type bucketArgs struct {
 type BucketArgs struct {
 	// The user set of grant full control.
 	AccountAcls BucketAccountAclArrayInput
+	// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+	AzRedundancy pulumi.StringPtrInput
+	// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+	BucketAclDelivered pulumi.BoolPtrInput
 	// The name of the bucket.
 	BucketName pulumi.StringInput
 	// The flag of enable tos version.
@@ -303,6 +325,16 @@ func (o BucketOutput) ToBucketOutputWithContext(ctx context.Context) BucketOutpu
 // The user set of grant full control.
 func (o BucketOutput) AccountAcls() BucketAccountAclArrayOutput {
 	return o.ApplyT(func(v *Bucket) BucketAccountAclArrayOutput { return v.AccountAcls }).(BucketAccountAclArrayOutput)
+}
+
+// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+func (o BucketOutput) AzRedundancy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.AzRedundancy }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+func (o BucketOutput) BucketAclDelivered() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Bucket) pulumi.BoolOutput { return v.BucketAclDelivered }).(pulumi.BoolOutput)
 }
 
 // The name of the bucket.

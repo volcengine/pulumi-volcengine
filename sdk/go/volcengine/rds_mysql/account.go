@@ -75,6 +75,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			foo1, err := rds_mysql.NewDatabase(ctx, "foo1", &rds_mysql.DatabaseArgs{
+//				DbName:     pulumi.String("acc-test-db1"),
+//				InstanceId: fooInstance.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			fooDatabase, err := rds_mysql.NewDatabase(ctx, "fooDatabase", &rds_mysql.DatabaseArgs{
 //				DbName:     pulumi.String("acc-test-db"),
 //				InstanceId: fooInstance.ID(),
@@ -91,7 +98,11 @@ import (
 //					&rds_mysql.AccountAccountPrivilegeArgs{
 //						DbName:                 fooDatabase.DbName,
 //						AccountPrivilege:       pulumi.String("Custom"),
-//						AccountPrivilegeDetail: pulumi.String("SELECT,INSERT"),
+//						AccountPrivilegeDetail: pulumi.String("SELECT,INSERT,UPDATE"),
+//					},
+//					&rds_mysql.AccountAccountPrivilegeArgs{
+//						DbName:           foo1.DbName,
+//						AccountPrivilege: pulumi.String("DDLOnly"),
 //					},
 //				},
 //			})

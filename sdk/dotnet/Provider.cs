@@ -25,6 +25,12 @@ namespace Pulumi.Volcengine
         public Output<string?> AccessKey { get; private set; } = null!;
 
         /// <summary>
+        /// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+        /// </summary>
+        [Output("customerEndpointSuffix")]
+        public Output<string?> CustomerEndpointSuffix { get; private set; } = null!;
+
+        /// <summary>
         /// CUSTOMER ENDPOINTS for Volcengine Provider
         /// </summary>
         [Output("customerEndpoints")]
@@ -107,6 +113,12 @@ namespace Pulumi.Volcengine
         /// </summary>
         [Input("assumeRole", json: true)]
         public Input<Inputs.ProviderAssumeRoleArgs>? AssumeRole { get; set; }
+
+        /// <summary>
+        /// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+        /// </summary>
+        [Input("customerEndpointSuffix")]
+        public Input<string>? CustomerEndpointSuffix { get; set; }
 
         /// <summary>
         /// CUSTOMER ENDPOINTS for Volcengine Provider

@@ -66,6 +66,12 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///         },
     ///     });
     /// 
+    ///     var foo1 = new Volcengine.Rds_mysql.Database("foo1", new()
+    ///     {
+    ///         DbName = "acc-test-db1",
+    ///         InstanceId = fooInstance.Id,
+    ///     });
+    /// 
     ///     var fooDatabase = new Volcengine.Rds_mysql.Database("fooDatabase", new()
     ///     {
     ///         DbName = "acc-test-db",
@@ -84,7 +90,12 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///             {
     ///                 DbName = fooDatabase.DbName,
     ///                 AccountPrivilege = "Custom",
-    ///                 AccountPrivilegeDetail = "SELECT,INSERT",
+    ///                 AccountPrivilegeDetail = "SELECT,INSERT,UPDATE",
+    ///             },
+    ///             new Volcengine.Rds_mysql.Inputs.AccountAccountPrivilegeArgs
+    ///             {
+    ///                 DbName = foo1.DbName,
+    ///                 AccountPrivilege = "DDLOnly",
     ///             },
     ///         },
     ///     });

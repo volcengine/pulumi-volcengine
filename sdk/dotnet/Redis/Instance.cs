@@ -92,19 +92,19 @@ namespace Pulumi.Volcengine.Redis
     ///         {
     ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
     ///             {
-    ///                 Az = "cn-guilin-a",
+    ///                 Az = "cn-beijing-a",
     ///             },
     ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
     ///             {
-    ///                 Az = "cn-guilin-b",
+    ///                 Az = "cn-beijing-b",
     ///             },
     ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
     ///             {
-    ///                 Az = "cn-guilin-c",
+    ///                 Az = "cn-beijing-c",
     ///             },
     ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
     ///             {
-    ///                 Az = "cn-guilin-b",
+    ///                 Az = "cn-beijing-b",
     ///             },
     ///         },
     ///     });

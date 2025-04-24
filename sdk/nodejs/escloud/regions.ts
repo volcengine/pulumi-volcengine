@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Use this data source to query detailed information of escloud regions
+ * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
  * ## Example Usage
  *
  * ```typescript
@@ -55,7 +55,7 @@ export interface RegionsResult {
     readonly totalCount: number;
 }
 /**
- * Use this data source to query detailed information of escloud regions
+ * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
  * ## Example Usage
  *
  * ```typescript

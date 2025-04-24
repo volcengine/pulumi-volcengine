@@ -156,7 +156,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<ImmutableArray<string>> MongosNodeIds { get; private set; } = null!;
 
         /// <summary>
-        /// The network type of endpoint.
+        /// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         /// </summary>
         [Output("networkType")]
         public Output<string?> NetworkType { get; private set; } = null!;
@@ -245,7 +245,7 @@ namespace Pulumi.Volcengine.Mongodb
         }
 
         /// <summary>
-        /// The network type of endpoint.
+        /// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         /// </summary>
         [Input("networkType")]
         public Input<string>? NetworkType { get; set; }
@@ -301,7 +301,7 @@ namespace Pulumi.Volcengine.Mongodb
         }
 
         /// <summary>
-        /// The network type of endpoint.
+        /// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         /// </summary>
         [Input("networkType")]
         public Input<string>? NetworkType { get; set; }

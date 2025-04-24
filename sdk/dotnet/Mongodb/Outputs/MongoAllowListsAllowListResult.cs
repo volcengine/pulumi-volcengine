@@ -45,6 +45,10 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
         /// The list of associated instances.
         /// </summary>
         public readonly ImmutableArray<Outputs.MongoAllowListsAllowListAssociatedInstanceResult> AssociatedInstances;
+        /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        public readonly string ProjectName;
 
         [OutputConstructor]
         private MongoAllowListsAllowListResult(
@@ -62,7 +66,9 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
 
             int associatedInstanceNum,
 
-            ImmutableArray<Outputs.MongoAllowListsAllowListAssociatedInstanceResult> associatedInstances)
+            ImmutableArray<Outputs.MongoAllowListsAllowListAssociatedInstanceResult> associatedInstances,
+
+            string projectName)
         {
             AllowList = allowList;
             AllowListDesc = allowListDesc;
@@ -72,6 +78,7 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
             AllowListType = allowListType;
             AssociatedInstanceNum = associatedInstanceNum;
             AssociatedInstances = associatedInstances;
+            ProjectName = projectName;
         }
     }
 }

@@ -69,6 +69,8 @@ type InstancesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name to query.
+	ProjectName *string `pulumi:"projectName"`
 	// Tags.
 	Tags []InstancesTag `pulumi:"tags"`
 	// The end time of update to query.
@@ -103,6 +105,8 @@ type InstancesResult struct {
 	Instances  []InstancesInstance `pulumi:"instances"`
 	NameRegex  *string             `pulumi:"nameRegex"`
 	OutputFile *string             `pulumi:"outputFile"`
+	// The project name to which the instance belongs.
+	ProjectName *string `pulumi:"projectName"`
 	// Tags.
 	Tags []InstancesTag `pulumi:"tags"`
 	// The total count of mongodb instances query.
@@ -150,6 +154,8 @@ type InstancesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name to query.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// Tags.
 	Tags InstancesTagArrayInput `pulumi:"tags"`
 	// The end time of update to query.
@@ -235,6 +241,11 @@ func (o InstancesResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o InstancesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name to which the instance belongs.
+func (o InstancesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstancesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // Tags.

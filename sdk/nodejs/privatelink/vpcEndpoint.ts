@@ -130,6 +130,14 @@ export class VpcEndpoint extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpointType!: pulumi.Output<string>;
     /**
+     * Whether to enable private dns name. Default is false.
+     */
+    public readonly privateDnsEnabled!: pulumi.Output<boolean>;
+    /**
+     * The private dns name of vpc endpoint.
+     */
+    public /*out*/ readonly privateDnsName!: pulumi.Output<string>;
+    /**
      * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
      * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
@@ -176,6 +184,8 @@ export class VpcEndpoint extends pulumi.CustomResource {
             resourceInputs["endpointDomain"] = state ? state.endpointDomain : undefined;
             resourceInputs["endpointName"] = state ? state.endpointName : undefined;
             resourceInputs["endpointType"] = state ? state.endpointType : undefined;
+            resourceInputs["privateDnsEnabled"] = state ? state.privateDnsEnabled : undefined;
+            resourceInputs["privateDnsName"] = state ? state.privateDnsName : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["serviceId"] = state ? state.serviceId : undefined;
             resourceInputs["serviceName"] = state ? state.serviceName : undefined;
@@ -192,6 +202,7 @@ export class VpcEndpoint extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["endpointName"] = args ? args.endpointName : undefined;
+            resourceInputs["privateDnsEnabled"] = args ? args.privateDnsEnabled : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
             resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["serviceName"] = args ? args.serviceName : undefined;
@@ -201,6 +212,7 @@ export class VpcEndpoint extends pulumi.CustomResource {
             resourceInputs["deletedTime"] = undefined /*out*/;
             resourceInputs["endpointDomain"] = undefined /*out*/;
             resourceInputs["endpointType"] = undefined /*out*/;
+            resourceInputs["privateDnsName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updateTime"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
@@ -247,6 +259,14 @@ export interface VpcEndpointState {
      */
     endpointType?: pulumi.Input<string>;
     /**
+     * Whether to enable private dns name. Default is false.
+     */
+    privateDnsEnabled?: pulumi.Input<boolean>;
+    /**
+     * The private dns name of vpc endpoint.
+     */
+    privateDnsName?: pulumi.Input<string>;
+    /**
      * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
      * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
@@ -285,6 +305,10 @@ export interface VpcEndpointArgs {
      * The name of vpc endpoint.
      */
     endpointName?: pulumi.Input<string>;
+    /**
+     * Whether to enable private dns name. Default is false.
+     */
+    privateDnsEnabled?: pulumi.Input<boolean>;
     /**
      * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
      * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.

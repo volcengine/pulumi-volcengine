@@ -22,7 +22,7 @@ class MongoAllowListsResult:
     """
     A collection of values returned by MongoAllowLists.
     """
-    def __init__(__self__, allow_list_ids=None, allow_lists=None, id=None, instance_id=None, output_file=None, region_id=None, total_count=None):
+    def __init__(__self__, allow_list_ids=None, allow_lists=None, id=None, instance_id=None, output_file=None, project_name=None, region_id=None, total_count=None):
         if allow_list_ids and not isinstance(allow_list_ids, list):
             raise TypeError("Expected argument 'allow_list_ids' to be a list")
         pulumi.set(__self__, "allow_list_ids", allow_list_ids)
@@ -38,6 +38,9 @@ class MongoAllowListsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if region_id and not isinstance(region_id, str):
             raise TypeError("Expected argument 'region_id' to be a str")
         pulumi.set(__self__, "region_id", region_id)
@@ -80,6 +83,14 @@ class MongoAllowListsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> str:
         return pulumi.get(self, "region_id")
@@ -104,6 +115,7 @@ class AwaitableMongoAllowListsResult(MongoAllowListsResult):
             id=self.id,
             instance_id=self.instance_id,
             output_file=self.output_file,
+            project_name=self.project_name,
             region_id=self.region_id,
             total_count=self.total_count)
 
@@ -111,6 +123,7 @@ class AwaitableMongoAllowListsResult(MongoAllowListsResult):
 def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
                       instance_id: Optional[str] = None,
                       output_file: Optional[str] = None,
+                      project_name: Optional[str] = None,
                       region_id: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableMongoAllowListsResult:
     """
@@ -134,12 +147,14 @@ def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
     :param Sequence[str] allow_list_ids: The allow list IDs to query.
     :param str instance_id: The instance ID to query.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the allow list.
     :param str region_id: The region ID.
     """
     __args__ = dict()
     __args__['allowListIds'] = allow_list_ids
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['regionId'] = region_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:mongodb/mongoAllowLists:MongoAllowLists', __args__, opts=opts, typ=MongoAllowListsResult).value
@@ -150,6 +165,7 @@ def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         region_id=pulumi.get(__ret__, 'region_id'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
@@ -158,6 +174,7 @@ def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
 def mongo_allow_lists_output(allow_list_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                              instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                              output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                             project_name: Optional[pulumi.Input[Optional[str]]] = None,
                              region_id: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[MongoAllowListsResult]:
     """
@@ -181,6 +198,7 @@ def mongo_allow_lists_output(allow_list_ids: Optional[pulumi.Input[Optional[Sequ
     :param Sequence[str] allow_list_ids: The allow list IDs to query.
     :param str instance_id: The instance ID to query.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the allow list.
     :param str region_id: The region ID.
     """
     ...

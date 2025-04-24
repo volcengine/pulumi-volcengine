@@ -13,28 +13,16 @@ namespace Pulumi.Volcengine.Rds_mysql.Inputs
     public sealed class InstanceMaintenanceWindowGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// DayKind of maintainable window. Value: Week. Month.
+        /// Maintenance cycle granularity, values: Week: Week. Month: Month.
         /// </summary>
         [Input("dayKind")]
         public Input<string>? DayKind { get; set; }
-
-        [Input("dayOfMonths")]
-        private InputList<int>? _dayOfMonths;
-
-        /// <summary>
-        /// Days of maintainable window of the month.
-        /// </summary>
-        public InputList<int> DayOfMonths
-        {
-            get => _dayOfMonths ?? (_dayOfMonths = new InputList<int>());
-            set => _dayOfMonths = value;
-        }
 
         [Input("dayOfWeeks")]
         private InputList<string>? _dayOfWeeks;
 
         /// <summary>
-        /// Days of maintainable window of the week.
+        /// Specify the maintainable time period of a certain day of the week. The values are: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Multiple selections are allowed. If this value is not specified or is empty, it defaults to specifying all seven days of the week.
         /// </summary>
         public InputList<string> DayOfWeeks
         {
@@ -43,7 +31,7 @@ namespace Pulumi.Volcengine.Rds_mysql.Inputs
         }
 
         /// <summary>
-        /// The maintainable time of the RDS instance.
+        /// Maintenance period of an instance. Format: HH:mmZ-HH:mmZ (UTC time).
         /// </summary>
         [Input("maintenanceTime")]
         public Input<string>? MaintenanceTime { get; set; }

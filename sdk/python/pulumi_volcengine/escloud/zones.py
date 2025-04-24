@@ -91,7 +91,7 @@ def zones(output_file: Optional[str] = None,
           region_id: Optional[str] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableZonesResult:
     """
-    Use this data source to query detailed information of escloud zones
+    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
     ## Example Usage
 
     ```python
@@ -124,7 +124,7 @@ def zones_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ZonesResult]:
     """
-    Use this data source to query detailed information of escloud zones
+    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
     ## Example Usage
 
     ```python

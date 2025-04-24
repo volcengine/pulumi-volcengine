@@ -129,6 +129,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly eipAddress!: pulumi.Output<outputs.ecs.InstanceEipAddress | undefined>;
+    /**
      * The id of an existing Available EIP which will be automatically assigned to this instance. 
      * It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
      */
@@ -317,6 +321,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["dataVolumes"] = state ? state.dataVolumes : undefined;
             resourceInputs["deploymentSetId"] = state ? state.deploymentSetId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
             resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["gpuDevices"] = state ? state.gpuDevices : undefined;
             resourceInputs["hostName"] = state ? state.hostName : undefined;
@@ -383,6 +388,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["dataVolumes"] = args ? args.dataVolumes : undefined;
             resourceInputs["deploymentSetId"] = args ? args.deploymentSetId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["eipAddress"] = args ? args.eipAddress : undefined;
             resourceInputs["eipId"] = args ? args.eipId : undefined;
             resourceInputs["hostName"] = args ? args.hostName : undefined;
             resourceInputs["hpcClusterId"] = args ? args.hpcClusterId : undefined;
@@ -469,6 +475,10 @@ export interface InstanceState {
      * The description of ECS instance.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    eipAddress?: pulumi.Input<inputs.ecs.InstanceEipAddress>;
     /**
      * The id of an existing Available EIP which will be automatically assigned to this instance. 
      * It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
@@ -666,6 +676,10 @@ export interface InstanceArgs {
      * The description of ECS instance.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    eipAddress?: pulumi.Input<inputs.ecs.InstanceEipAddress>;
     /**
      * The id of an existing Available EIP which will be automatically assigned to this instance. 
      * It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.

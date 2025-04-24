@@ -114,13 +114,19 @@ namespace Pulumi.Volcengine.Tos
         public Output<string?> FilePath { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable the default inheritance bucket ACL function for the object.
+        /// </summary>
+        [Output("isDefault")]
+        public Output<bool> IsDefault { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the object.
         /// </summary>
         [Output("objectName")]
         public Output<string> ObjectName { get; private set; } = null!;
 
         /// <summary>
-        /// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        /// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         /// </summary>
         [Output("publicAcl")]
         public Output<string?> PublicAcl { get; private set; } = null!;
@@ -245,7 +251,7 @@ namespace Pulumi.Volcengine.Tos
         public Input<string> ObjectName { get; set; } = null!;
 
         /// <summary>
-        /// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        /// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         /// </summary>
         [Input("publicAcl")]
         public Input<string>? PublicAcl { get; set; }
@@ -331,13 +337,19 @@ namespace Pulumi.Volcengine.Tos
         public Input<string>? FilePath { get; set; }
 
         /// <summary>
+        /// Whether to enable the default inheritance bucket ACL function for the object.
+        /// </summary>
+        [Input("isDefault")]
+        public Input<bool>? IsDefault { get; set; }
+
+        /// <summary>
         /// The name of the object.
         /// </summary>
         [Input("objectName")]
         public Input<string>? ObjectName { get; set; }
 
         /// <summary>
-        /// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        /// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         /// </summary>
         [Input("publicAcl")]
         public Input<string>? PublicAcl { get; set; }

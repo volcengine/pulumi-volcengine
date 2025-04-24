@@ -149,6 +149,12 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
+        /// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("eipAddress")]
+        public Output<Outputs.InstanceEipAddress?> EipAddress { get; private set; } = null!;
+
+        /// <summary>
         /// The id of an existing Available EIP which will be automatically assigned to this instance. 
         /// It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
         /// </summary>
@@ -489,6 +495,12 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("eipAddress")]
+        public Input<Inputs.InstanceEipAddressArgs>? EipAddress { get; set; }
+
+        /// <summary>
         /// The id of an existing Available EIP which will be automatically assigned to this instance. 
         /// It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
         /// </summary>
@@ -752,6 +764,12 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("eipAddress")]
+        public Input<Inputs.InstanceEipAddressGetArgs>? EipAddress { get; set; }
 
         /// <summary>
         /// The id of an existing Available EIP which will be automatically assigned to this instance. 

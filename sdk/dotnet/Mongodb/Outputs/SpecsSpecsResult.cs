@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
     public sealed class SpecsSpecsResult
     {
         /// <summary>
+        /// The collection of config server node specs.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.SpecsSpecsConfigServerNodeSpecResult> ConfigServerNodeSpecs;
+        /// <summary>
         /// The collection of mongos node specs.
         /// </summary>
         public readonly ImmutableArray<Outputs.SpecsSpecsMongosNodeSpecResult> MongosNodeSpecs;
@@ -28,12 +32,15 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
 
         [OutputConstructor]
         private SpecsSpecsResult(
+            ImmutableArray<Outputs.SpecsSpecsConfigServerNodeSpecResult> configServerNodeSpecs,
+
             ImmutableArray<Outputs.SpecsSpecsMongosNodeSpecResult> mongosNodeSpecs,
 
             ImmutableArray<Outputs.SpecsSpecsNodeSpecResult> nodeSpecs,
 
             ImmutableArray<Outputs.SpecsSpecsShardNodeSpecResult> shardNodeSpecs)
         {
+            ConfigServerNodeSpecs = configServerNodeSpecs;
             MongosNodeSpecs = mongosNodeSpecs;
             NodeSpecs = nodeSpecs;
             ShardNodeSpecs = shardNodeSpecs;

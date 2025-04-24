@@ -10,11 +10,51 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'AccountAccountPrivilegeArgs',
     'InstanceMongoArgs',
+    'InstanceNodeAvailabilityZoneArgs',
     'InstanceShardArgs',
     'InstanceTagArgs',
     'InstancesTagArgs',
+    'MongoAllowListAssociatedInstanceArgs',
 ]
+
+@pulumi.input_type
+class AccountAccountPrivilegeArgs:
+    def __init__(__self__, *,
+                 db_name: pulumi.Input[str],
+                 role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[str] db_name: The name of database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: The role names of the account.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> pulumi.Input[str]:
+        """
+        The name of database.
+        """
+        return pulumi.get(self, "db_name")
+
+    @db_name.setter
+    def db_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "db_name", value)
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The role names of the account.
+        """
+        return pulumi.get(self, "role_names")
+
+    @role_names.setter
+    def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "role_names", value)
+
 
 @pulumi.input_type
 class InstanceMongoArgs:
@@ -24,7 +64,7 @@ class InstanceMongoArgs:
                  node_status: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] mongos_node_id: The mongos node ID.
-        :param pulumi.Input[str] node_spec: The spec of node.
+        :param pulumi.Input[str] node_spec: The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         :param pulumi.Input[str] node_status: The node status.
         """
         if mongos_node_id is not None:
@@ -50,7 +90,7 @@ class InstanceMongoArgs:
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The spec of node.
+        The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         """
         return pulumi.get(self, "node_spec")
 
@@ -69,6 +109,47 @@ class InstanceMongoArgs:
     @node_status.setter
     def node_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "node_status", value)
+
+
+@pulumi.input_type
+class InstanceNodeAvailabilityZoneArgs:
+    def __init__(__self__, *,
+                 node_number: pulumi.Input[int],
+                 zone_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] node_number: The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+               When the instance_type is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+               When the instance_type is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+        :param pulumi.Input[str] zone_id: The zone id of readonly nodes.
+        """
+        pulumi.set(__self__, "node_number", node_number)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="nodeNumber")
+    def node_number(self) -> pulumi.Input[int]:
+        """
+        The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+        When the instance_type is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+        When the instance_type is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+        """
+        return pulumi.get(self, "node_number")
+
+    @node_number.setter
+    def node_number(self, value: pulumi.Input[int]):
+        pulumi.set(self, "node_number", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> pulumi.Input[str]:
+        """
+        The zone id of readonly nodes.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "zone_id", value)
 
 
 @pulumi.input_type
@@ -166,5 +247,76 @@ class InstancesTagArgs:
     @value.setter
     def value(self, value: str):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class MongoAllowListAssociatedInstanceArgs:
+    def __init__(__self__, *,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 instance_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 vpc: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] instance_id: The instance id that bound to the allow list.
+        :param pulumi.Input[str] instance_name: The instance name that bound to the allow list.
+        :param pulumi.Input[str] project_name: The project name of the allow list.
+        :param pulumi.Input[str] vpc: The VPC ID.
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_name is not None:
+            pulumi.set(__self__, "instance_name", instance_name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if vpc is not None:
+            pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The instance id that bound to the allow list.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The instance name that bound to the allow list.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @instance_name.setter
+    def instance_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_name", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> Optional[pulumi.Input[str]]:
+        """
+        The VPC ID.
+        """
+        return pulumi.get(self, "vpc")
+
+    @vpc.setter
+    def vpc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc", value)
 
 

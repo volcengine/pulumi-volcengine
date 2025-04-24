@@ -100,7 +100,7 @@ type InstanceParameter struct {
 
 	// The instance ID.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The name of parameter.
+	// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
 	ParameterName pulumi.StringOutput `pulumi:"parameterName"`
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole pulumi.StringOutput `pulumi:"parameterRole"`
@@ -152,7 +152,7 @@ func GetInstanceParameter(ctx *pulumi.Context,
 type instanceParameterState struct {
 	// The instance ID.
 	InstanceId *string `pulumi:"instanceId"`
-	// The name of parameter.
+	// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
 	ParameterName *string `pulumi:"parameterName"`
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole *string `pulumi:"parameterRole"`
@@ -163,7 +163,7 @@ type instanceParameterState struct {
 type InstanceParameterState struct {
 	// The instance ID.
 	InstanceId pulumi.StringPtrInput
-	// The name of parameter.
+	// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
 	ParameterName pulumi.StringPtrInput
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole pulumi.StringPtrInput
@@ -178,7 +178,7 @@ func (InstanceParameterState) ElementType() reflect.Type {
 type instanceParameterArgs struct {
 	// The instance ID.
 	InstanceId string `pulumi:"instanceId"`
-	// The name of parameter.
+	// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
 	ParameterName string `pulumi:"parameterName"`
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole string `pulumi:"parameterRole"`
@@ -190,7 +190,7 @@ type instanceParameterArgs struct {
 type InstanceParameterArgs struct {
 	// The instance ID.
 	InstanceId pulumi.StringInput
-	// The name of parameter.
+	// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
 	ParameterName pulumi.StringInput
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole pulumi.StringInput
@@ -290,7 +290,7 @@ func (o InstanceParameterOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceParameter) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The name of parameter.
+// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
 func (o InstanceParameterOutput) ParameterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceParameter) pulumi.StringOutput { return v.ParameterName }).(pulumi.StringOutput)
 }

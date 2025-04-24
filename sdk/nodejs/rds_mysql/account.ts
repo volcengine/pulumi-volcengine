@@ -49,6 +49,10 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
+ * const foo1 = new volcengine.rds_mysql.Database("foo1", {
+ *     dbName: "acc-test-db1",
+ *     instanceId: fooInstance.id,
+ * });
  * const fooDatabase = new volcengine.rds_mysql.Database("fooDatabase", {
  *     dbName: "acc-test-db",
  *     instanceId: fooInstance.id,
@@ -58,11 +62,17 @@ import * as utilities from "../utilities";
  *     accountPassword: "93f0cb0614Aab12",
  *     accountType: "Normal",
  *     instanceId: fooInstance.id,
- *     accountPrivileges: [{
- *         dbName: fooDatabase.dbName,
- *         accountPrivilege: "Custom",
- *         accountPrivilegeDetail: "SELECT,INSERT",
- *     }],
+ *     accountPrivileges: [
+ *         {
+ *             dbName: fooDatabase.dbName,
+ *             accountPrivilege: "Custom",
+ *             accountPrivilegeDetail: "SELECT,INSERT,UPDATE",
+ *         },
+ *         {
+ *             dbName: foo1.dbName,
+ *             accountPrivilege: "DDLOnly",
+ *         },
+ *     ],
  * });
  * ```
  *

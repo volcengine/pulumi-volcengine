@@ -110,6 +110,12 @@ namespace Pulumi.Volcengine.Mongodb
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The region ID.
         /// </summary>
         [Input("regionId", required: true)]
@@ -148,6 +154,12 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The region ID.
         /// </summary>
         [Input("regionId", required: true)]
@@ -177,6 +189,10 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         public readonly string? InstanceId;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        public readonly string? ProjectName;
         public readonly string RegionId;
         /// <summary>
         /// The total count of mongodb allow lists query.
@@ -195,6 +211,8 @@ namespace Pulumi.Volcengine.Mongodb
 
             string? outputFile,
 
+            string? projectName,
+
             string regionId,
 
             int totalCount)
@@ -204,6 +222,7 @@ namespace Pulumi.Volcengine.Mongodb
             Id = id;
             InstanceId = instanceId;
             OutputFile = outputFile;
+            ProjectName = projectName;
             RegionId = regionId;
             TotalCount = totalCount;
         }

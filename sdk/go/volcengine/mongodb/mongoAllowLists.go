@@ -64,6 +64,8 @@ type MongoAllowListsArgs struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the allow list.
+	ProjectName *string `pulumi:"projectName"`
 	// The region ID.
 	RegionId string `pulumi:"regionId"`
 }
@@ -78,7 +80,9 @@ type MongoAllowListsResult struct {
 	// The instance id that bound to the allow list.
 	InstanceId *string `pulumi:"instanceId"`
 	OutputFile *string `pulumi:"outputFile"`
-	RegionId   string  `pulumi:"regionId"`
+	// The project name of the allow list.
+	ProjectName *string `pulumi:"projectName"`
+	RegionId    string  `pulumi:"regionId"`
 	// The total count of mongodb allow lists query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -104,6 +108,8 @@ type MongoAllowListsOutputArgs struct {
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The region ID.
 	RegionId pulumi.StringInput `pulumi:"regionId"`
 }
@@ -148,6 +154,11 @@ func (o MongoAllowListsResultOutput) InstanceId() pulumi.StringPtrOutput {
 
 func (o MongoAllowListsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoAllowListsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the allow list.
+func (o MongoAllowListsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoAllowListsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 func (o MongoAllowListsResultOutput) RegionId() pulumi.StringOutput {

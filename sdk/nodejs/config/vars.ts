@@ -29,6 +29,17 @@ Object.defineProperty(exports, "assumeRole", {
 });
 
 /**
+ * CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+ */
+export declare const customerEndpointSuffix: string | undefined;
+Object.defineProperty(exports, "customerEndpointSuffix", {
+    get() {
+        return __config.get("customerEndpointSuffix");
+    },
+    enumerable: true,
+});
+
+/**
  * CUSTOMER ENDPOINTS for Volcengine Provider
  */
 export declare const customerEndpoints: string | undefined;

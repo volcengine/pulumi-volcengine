@@ -34,6 +34,7 @@ export function mongoAllowLists(args: MongoAllowListsArgs, opts?: pulumi.InvokeO
         "allowListIds": args.allowListIds,
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "regionId": args.regionId,
     }, opts);
 }
@@ -54,6 +55,10 @@ export interface MongoAllowListsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name of the allow list.
+     */
+    projectName?: string;
     /**
      * The region ID.
      */
@@ -78,6 +83,10 @@ export interface MongoAllowListsResult {
      */
     readonly instanceId?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the allow list.
+     */
+    readonly projectName?: string;
     readonly regionId: string;
     /**
      * The total count of mongodb allow lists query.
@@ -125,6 +134,10 @@ export interface MongoAllowListsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the allow list.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The region ID.
      */

@@ -13,10 +13,22 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class NodePoolKubernetesConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+        /// </summary>
+        [Input("autoSyncDisabled")]
+        public Input<bool>? AutoSyncDisabled { get; set; }
+
+        /// <summary>
         /// The Cordon of KubernetesConfig.
         /// </summary>
         [Input("cordon", required: true)]
         public Input<bool> Cordon { get; set; } = null!;
+
+        /// <summary>
+        /// The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+        /// </summary>
+        [Input("kubeletConfig")]
+        public Input<Inputs.NodePoolKubernetesConfigKubeletConfigArgs>? KubeletConfig { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.NodePoolKubernetesConfigLabelArgs>? _labels;

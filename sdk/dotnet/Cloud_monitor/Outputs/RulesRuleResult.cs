@@ -101,6 +101,10 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
         /// The web hook of the cloud monitor rule.
         /// </summary>
         public readonly string WebHook;
+        /// <summary>
+        /// The webhook id list of the cloud monitor rule.
+        /// </summary>
+        public readonly ImmutableArray<string> WebhookIds;
 
         [OutputConstructor]
         private RulesRuleResult(
@@ -146,7 +150,9 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
 
             string updatedAt,
 
-            string webHook)
+            string webHook,
+
+            ImmutableArray<string> webhookIds)
         {
             AlertMethods = alertMethods;
             AlertState = alertState;
@@ -170,6 +176,7 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
             SubNamespace = subNamespace;
             UpdatedAt = updatedAt;
             WebHook = webHook;
+            WebhookIds = webhookIds;
         }
     }
 }

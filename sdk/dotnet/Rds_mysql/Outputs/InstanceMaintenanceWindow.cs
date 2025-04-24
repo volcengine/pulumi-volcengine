@@ -14,19 +14,15 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
     public sealed class InstanceMaintenanceWindow
     {
         /// <summary>
-        /// DayKind of maintainable window. Value: Week. Month.
+        /// Maintenance cycle granularity, values: Week: Week. Month: Month.
         /// </summary>
         public readonly string? DayKind;
         /// <summary>
-        /// Days of maintainable window of the month.
-        /// </summary>
-        public readonly ImmutableArray<int> DayOfMonths;
-        /// <summary>
-        /// Days of maintainable window of the week.
+        /// Specify the maintainable time period of a certain day of the week. The values are: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Multiple selections are allowed. If this value is not specified or is empty, it defaults to specifying all seven days of the week.
         /// </summary>
         public readonly ImmutableArray<string> DayOfWeeks;
         /// <summary>
-        /// The maintainable time of the RDS instance.
+        /// Maintenance period of an instance. Format: HH:mmZ-HH:mmZ (UTC time).
         /// </summary>
         public readonly string? MaintenanceTime;
 
@@ -34,14 +30,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         private InstanceMaintenanceWindow(
             string? dayKind,
 
-            ImmutableArray<int> dayOfMonths,
-
             ImmutableArray<string> dayOfWeeks,
 
             string? maintenanceTime)
         {
             DayKind = dayKind;
-            DayOfMonths = dayOfMonths;
             DayOfWeeks = dayOfWeeks;
             MaintenanceTime = maintenanceTime;
         }

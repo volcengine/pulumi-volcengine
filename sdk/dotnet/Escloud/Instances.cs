@@ -12,7 +12,7 @@ namespace Pulumi.Volcengine.Escloud
     public static class Instances
     {
         /// <summary>
-        /// Use this data source to query detailed information of escloud instances
+        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -99,7 +99,7 @@ namespace Pulumi.Volcengine.Escloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:escloud/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to query detailed information of escloud instances
+        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
         /// ## Example Usage
         /// 
         /// ```csharp

@@ -12,7 +12,7 @@ namespace Pulumi.Volcengine.Escloud
     public static class Regions
     {
         /// <summary>
-        /// Use this data source to query detailed information of escloud regions
+        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -32,7 +32,7 @@ namespace Pulumi.Volcengine.Escloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<RegionsResult>("volcengine:escloud/regions:Regions", args ?? new RegionsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to query detailed information of escloud regions
+        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
         /// ## Example Usage
         /// 
         /// ```csharp

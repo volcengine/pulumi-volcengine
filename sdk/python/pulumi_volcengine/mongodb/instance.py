@@ -26,6 +26,7 @@ class InstanceArgs:
                  instance_type: Optional[pulumi.Input[str]] = None,
                  mongos_node_number: Optional[pulumi.Input[int]] = None,
                  mongos_node_spec: Optional[pulumi.Input[str]] = None,
+                 node_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -33,27 +34,30 @@ class InstanceArgs:
                  super_account_password: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
-                 zone_id: Optional[pulumi.Input[str]] = None):
+                 zone_id: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
-        :param pulumi.Input[str] node_spec: The spec of node.
-        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        :param pulumi.Input[str] node_spec: The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
+        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
-        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal.
-        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
-        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
+        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
-        :param pulumi.Input[str] instance_type: The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
-        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[int] period: The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
-        :param pulumi.Input[str] period_unit: The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] instance_type: The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
+        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]] node_availability_zones: The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] period: The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] period_unit: The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] project_name: The project name to which the instance belongs.
-        :param pulumi.Input[int] shard_number: The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] super_account_password: The password of database account.
+        :param pulumi.Input[int] shard_number: The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[str] super_account_password: The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc ID.
-        :param pulumi.Input[str] zone_id: The zone ID of instance.
+        :param pulumi.Input[str] zone_id: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
         """
         pulumi.set(__self__, "node_spec", node_spec)
         pulumi.set(__self__, "storage_space_gb", storage_space_gb)
@@ -72,6 +76,8 @@ class InstanceArgs:
             pulumi.set(__self__, "mongos_node_number", mongos_node_number)
         if mongos_node_spec is not None:
             pulumi.set(__self__, "mongos_node_spec", mongos_node_spec)
+        if node_availability_zones is not None:
+            pulumi.set(__self__, "node_availability_zones", node_availability_zones)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
@@ -87,13 +93,18 @@ class InstanceArgs:
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if zone_id is not None:
+            warnings.warn("""This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""", DeprecationWarning)
+            pulumi.log.warn("""zone_id is deprecated: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""")
+        if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
+        if zone_ids is not None:
+            pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> pulumi.Input[str]:
         """
-        The spec of node.
+        The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         """
         return pulumi.get(self, "node_spec")
 
@@ -105,7 +116,7 @@ class InstanceArgs:
     @pulumi.getter(name="storageSpaceGb")
     def storage_space_gb(self) -> pulumi.Input[int]:
         """
-        The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         """
         return pulumi.get(self, "storage_space_gb")
 
@@ -129,7 +140,7 @@ class InstanceArgs:
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to enable automatic renewal.
+        Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -141,7 +152,7 @@ class InstanceArgs:
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         """
         return pulumi.get(self, "charge_type")
 
@@ -153,7 +164,7 @@ class InstanceArgs:
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         """
         return pulumi.get(self, "db_engine_version")
 
@@ -177,7 +188,7 @@ class InstanceArgs:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -189,7 +200,7 @@ class InstanceArgs:
     @pulumi.getter(name="mongosNodeNumber")
     def mongos_node_number(self) -> Optional[pulumi.Input[int]]:
         """
-        The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "mongos_node_number")
 
@@ -201,7 +212,7 @@ class InstanceArgs:
     @pulumi.getter(name="mongosNodeSpec")
     def mongos_node_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "mongos_node_spec")
 
@@ -210,10 +221,22 @@ class InstanceArgs:
         pulumi.set(self, "mongos_node_spec", value)
 
     @property
+    @pulumi.getter(name="nodeAvailabilityZones")
+    def node_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]]]:
+        """
+        The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "node_availability_zones")
+
+    @node_availability_zones.setter
+    def node_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]]]):
+        pulumi.set(self, "node_availability_zones", value)
+
+    @property
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "period")
 
@@ -225,7 +248,7 @@ class InstanceArgs:
     @pulumi.getter(name="periodUnit")
     def period_unit(self) -> Optional[pulumi.Input[str]]:
         """
-        The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "period_unit")
 
@@ -249,7 +272,7 @@ class InstanceArgs:
     @pulumi.getter(name="shardNumber")
     def shard_number(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "shard_number")
 
@@ -261,7 +284,7 @@ class InstanceArgs:
     @pulumi.getter(name="superAccountPassword")
     def super_account_password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password of database account.
+        The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "super_account_password")
 
@@ -297,13 +320,28 @@ class InstanceArgs:
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone ID of instance.
+        This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
         """
+        warnings.warn("""This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""", DeprecationWarning)
+        pulumi.log.warn("""zone_id is deprecated: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""")
+
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
     def zone_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+        """
+        return pulumi.get(self, "zone_ids")
+
+    @zone_ids.setter
+    def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "zone_ids", value)
 
 
 @pulumi.input_type
@@ -319,10 +357,13 @@ class _InstanceState:
                  mongos_id: Optional[pulumi.Input[str]] = None,
                  mongos_node_number: Optional[pulumi.Input[int]] = None,
                  mongos_node_spec: Optional[pulumi.Input[str]] = None,
+                 node_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
+                 private_endpoint: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 read_only_node_number: Optional[pulumi.Input[int]] = None,
                  shard_number: Optional[pulumi.Input[int]] = None,
                  shards: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceShardArgs']]]] = None,
                  storage_space_gb: Optional[pulumi.Input[int]] = None,
@@ -330,31 +371,36 @@ class _InstanceState:
                  super_account_password: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
-                 zone_id: Optional[pulumi.Input[str]] = None):
+                 zone_id: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
-        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal.
-        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         :param pulumi.Input[str] config_servers_id: The config servers id of the ShardedCluster instance.
-        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
-        :param pulumi.Input[str] instance_type: The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        :param pulumi.Input[str] instance_type: The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceMongoArgs']]] mongos: The mongos information of the ShardedCluster instance.
         :param pulumi.Input[str] mongos_id: The mongos id of the ShardedCluster instance.
-        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] node_spec: The spec of node.
-        :param pulumi.Input[int] period: The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
-        :param pulumi.Input[str] period_unit: The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]] node_availability_zones: The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] node_spec: The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
+        :param pulumi.Input[int] period: The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] period_unit: The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] private_endpoint: The private endpoint address of instance.
         :param pulumi.Input[str] project_name: The project name to which the instance belongs.
-        :param pulumi.Input[int] shard_number: The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[int] read_only_node_number: The number of readonly node in instance.
+        :param pulumi.Input[int] shard_number: The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceShardArgs']]] shards: The shards information of the ShardedCluster instance.
-        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
-        :param pulumi.Input[str] super_account_password: The password of database account.
+        :param pulumi.Input[str] super_account_password: The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc ID.
-        :param pulumi.Input[str] zone_id: The zone ID of instance.
+        :param pulumi.Input[str] zone_id: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
         """
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
@@ -376,14 +422,20 @@ class _InstanceState:
             pulumi.set(__self__, "mongos_node_number", mongos_node_number)
         if mongos_node_spec is not None:
             pulumi.set(__self__, "mongos_node_spec", mongos_node_spec)
+        if node_availability_zones is not None:
+            pulumi.set(__self__, "node_availability_zones", node_availability_zones)
         if node_spec is not None:
             pulumi.set(__self__, "node_spec", node_spec)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if private_endpoint is not None:
+            pulumi.set(__self__, "private_endpoint", private_endpoint)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if read_only_node_number is not None:
+            pulumi.set(__self__, "read_only_node_number", read_only_node_number)
         if shard_number is not None:
             pulumi.set(__self__, "shard_number", shard_number)
         if shards is not None:
@@ -399,13 +451,18 @@ class _InstanceState:
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if zone_id is not None:
+            warnings.warn("""This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""", DeprecationWarning)
+            pulumi.log.warn("""zone_id is deprecated: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""")
+        if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
+        if zone_ids is not None:
+            pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to enable automatic renewal.
+        Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -417,7 +474,7 @@ class _InstanceState:
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         """
         return pulumi.get(self, "charge_type")
 
@@ -441,7 +498,7 @@ class _InstanceState:
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         """
         return pulumi.get(self, "db_engine_version")
 
@@ -465,7 +522,7 @@ class _InstanceState:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -501,7 +558,7 @@ class _InstanceState:
     @pulumi.getter(name="mongosNodeNumber")
     def mongos_node_number(self) -> Optional[pulumi.Input[int]]:
         """
-        The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "mongos_node_number")
 
@@ -513,7 +570,7 @@ class _InstanceState:
     @pulumi.getter(name="mongosNodeSpec")
     def mongos_node_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "mongos_node_spec")
 
@@ -522,10 +579,22 @@ class _InstanceState:
         pulumi.set(self, "mongos_node_spec", value)
 
     @property
+    @pulumi.getter(name="nodeAvailabilityZones")
+    def node_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]]]:
+        """
+        The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "node_availability_zones")
+
+    @node_availability_zones.setter
+    def node_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeAvailabilityZoneArgs']]]]):
+        pulumi.set(self, "node_availability_zones", value)
+
+    @property
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The spec of node.
+        The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         """
         return pulumi.get(self, "node_spec")
 
@@ -537,7 +606,7 @@ class _InstanceState:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "period")
 
@@ -549,13 +618,25 @@ class _InstanceState:
     @pulumi.getter(name="periodUnit")
     def period_unit(self) -> Optional[pulumi.Input[str]]:
         """
-        The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "period_unit")
 
     @period_unit.setter
     def period_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "period_unit", value)
+
+    @property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private endpoint address of instance.
+        """
+        return pulumi.get(self, "private_endpoint")
+
+    @private_endpoint.setter
+    def private_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_endpoint", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -570,10 +651,22 @@ class _InstanceState:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter(name="readOnlyNodeNumber")
+    def read_only_node_number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of readonly node in instance.
+        """
+        return pulumi.get(self, "read_only_node_number")
+
+    @read_only_node_number.setter
+    def read_only_node_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "read_only_node_number", value)
+
+    @property
     @pulumi.getter(name="shardNumber")
     def shard_number(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "shard_number")
 
@@ -597,7 +690,7 @@ class _InstanceState:
     @pulumi.getter(name="storageSpaceGb")
     def storage_space_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         """
         return pulumi.get(self, "storage_space_gb")
 
@@ -621,7 +714,7 @@ class _InstanceState:
     @pulumi.getter(name="superAccountPassword")
     def super_account_password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password of database account.
+        The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "super_account_password")
 
@@ -657,13 +750,28 @@ class _InstanceState:
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone ID of instance.
+        This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
         """
+        warnings.warn("""This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""", DeprecationWarning)
+        pulumi.log.warn("""zone_id is deprecated: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""")
+
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
     def zone_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+        """
+        return pulumi.get(self, "zone_ids")
+
+    @zone_ids.setter
+    def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "zone_ids", value)
 
 
 class Instance(pulumi.CustomResource):
@@ -678,6 +786,7 @@ class Instance(pulumi.CustomResource):
                  instance_type: Optional[pulumi.Input[str]] = None,
                  mongos_node_number: Optional[pulumi.Input[int]] = None,
                  mongos_node_spec: Optional[pulumi.Input[str]] = None,
+                 node_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeAvailabilityZoneArgs']]]]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
@@ -689,6 +798,7 @@ class Instance(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -697,21 +807,43 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.Instance("foo",
-            charge_type="PostPaid",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
             db_engine_version="MongoDB_4_0",
-            instance_name="mongo-replica-be9995d32e4a",
             instance_type="ReplicaSet",
             node_spec="mongo.2c4g",
-            project_name="default",
             storage_space_gb=20,
-            subnet_id="subnet-rrx4ns6abw1sv0x57wq6h47",
-            super_account_password="******",
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test-mongodb-replica",
+            charge_type="PostPaid",
+            super_account_password="93f0cb0614Aab12",
+            project_name="default",
             tags=[volcengine.mongodb.InstanceTagArgs(
                 key="k1",
                 value="v1",
             )],
-            zone_id="cn-beijing-a")
+            node_availability_zones=[volcengine.mongodb.InstanceNodeAvailabilityZoneArgs(
+                zone_id=foo_zones.zones[0].id,
+                node_number=2,
+            )])
+        #  period_unit = "Month"
+        #  period      = 1
+        #  auto_renew  = false
+        #  ssl_action  = "Close"
+        #  lifecycle {
+        #    ignore_changes = [
+        #      super_account_password,
+        #    ]
+        #  }
         ```
 
         ## Import
@@ -724,24 +856,26 @@ class Instance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal.
-        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
-        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
+        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
-        :param pulumi.Input[str] instance_type: The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
-        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] node_spec: The spec of node.
-        :param pulumi.Input[int] period: The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
-        :param pulumi.Input[str] period_unit: The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] instance_type: The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
+        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeAvailabilityZoneArgs']]]] node_availability_zones: The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] node_spec: The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
+        :param pulumi.Input[int] period: The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] period_unit: The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] project_name: The project name to which the instance belongs.
-        :param pulumi.Input[int] shard_number: The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        :param pulumi.Input[int] shard_number: The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
-        :param pulumi.Input[str] super_account_password: The password of database account.
+        :param pulumi.Input[str] super_account_password: The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc ID.
-        :param pulumi.Input[str] zone_id: The zone ID of instance.
+        :param pulumi.Input[str] zone_id: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
         """
         ...
     @overload
@@ -756,21 +890,43 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.Instance("foo",
-            charge_type="PostPaid",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
             db_engine_version="MongoDB_4_0",
-            instance_name="mongo-replica-be9995d32e4a",
             instance_type="ReplicaSet",
             node_spec="mongo.2c4g",
-            project_name="default",
             storage_space_gb=20,
-            subnet_id="subnet-rrx4ns6abw1sv0x57wq6h47",
-            super_account_password="******",
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test-mongodb-replica",
+            charge_type="PostPaid",
+            super_account_password="93f0cb0614Aab12",
+            project_name="default",
             tags=[volcengine.mongodb.InstanceTagArgs(
                 key="k1",
                 value="v1",
             )],
-            zone_id="cn-beijing-a")
+            node_availability_zones=[volcengine.mongodb.InstanceNodeAvailabilityZoneArgs(
+                zone_id=foo_zones.zones[0].id,
+                node_number=2,
+            )])
+        #  period_unit = "Month"
+        #  period      = 1
+        #  auto_renew  = false
+        #  ssl_action  = "Close"
+        #  lifecycle {
+        #    ignore_changes = [
+        #      super_account_password,
+        #    ]
+        #  }
         ```
 
         ## Import
@@ -803,6 +959,7 @@ class Instance(pulumi.CustomResource):
                  instance_type: Optional[pulumi.Input[str]] = None,
                  mongos_node_number: Optional[pulumi.Input[int]] = None,
                  mongos_node_spec: Optional[pulumi.Input[str]] = None,
+                 node_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeAvailabilityZoneArgs']]]]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
@@ -814,6 +971,7 @@ class Instance(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -830,6 +988,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["instance_type"] = instance_type
             __props__.__dict__["mongos_node_number"] = mongos_node_number
             __props__.__dict__["mongos_node_spec"] = mongos_node_spec
+            __props__.__dict__["node_availability_zones"] = node_availability_zones
             if node_spec is None and not opts.urn:
                 raise TypeError("Missing required property 'node_spec'")
             __props__.__dict__["node_spec"] = node_spec
@@ -847,9 +1006,12 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["zone_id"] = zone_id
+            __props__.__dict__["zone_ids"] = zone_ids
             __props__.__dict__["config_servers_id"] = None
             __props__.__dict__["mongos"] = None
             __props__.__dict__["mongos_id"] = None
+            __props__.__dict__["private_endpoint"] = None
+            __props__.__dict__["read_only_node_number"] = None
             __props__.__dict__["shards"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["superAccountPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -873,10 +1035,13 @@ class Instance(pulumi.CustomResource):
             mongos_id: Optional[pulumi.Input[str]] = None,
             mongos_node_number: Optional[pulumi.Input[int]] = None,
             mongos_node_spec: Optional[pulumi.Input[str]] = None,
+            node_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeAvailabilityZoneArgs']]]]] = None,
             node_spec: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             period_unit: Optional[pulumi.Input[str]] = None,
+            private_endpoint: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
+            read_only_node_number: Optional[pulumi.Input[int]] = None,
             shard_number: Optional[pulumi.Input[int]] = None,
             shards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceShardArgs']]]]] = None,
             storage_space_gb: Optional[pulumi.Input[int]] = None,
@@ -884,7 +1049,8 @@ class Instance(pulumi.CustomResource):
             super_account_password: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
-            zone_id: Optional[pulumi.Input[str]] = None) -> 'Instance':
+            zone_id: Optional[pulumi.Input[str]] = None,
+            zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -892,28 +1058,32 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal.
-        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         :param pulumi.Input[str] config_servers_id: The config servers id of the ShardedCluster instance.
-        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
-        :param pulumi.Input[str] instance_type: The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        :param pulumi.Input[str] instance_type: The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMongoArgs']]]] mongos: The mongos information of the ShardedCluster instance.
         :param pulumi.Input[str] mongos_id: The mongos id of the ShardedCluster instance.
-        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
-        :param pulumi.Input[str] node_spec: The spec of node.
-        :param pulumi.Input[int] period: The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
-        :param pulumi.Input[str] period_unit: The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeAvailabilityZoneArgs']]]] node_availability_zones: The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] node_spec: The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
+        :param pulumi.Input[int] period: The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] period_unit: The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
+        :param pulumi.Input[str] private_endpoint: The private endpoint address of instance.
         :param pulumi.Input[str] project_name: The project name to which the instance belongs.
-        :param pulumi.Input[int] shard_number: The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[int] read_only_node_number: The number of readonly node in instance.
+        :param pulumi.Input[int] shard_number: The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceShardArgs']]]] shards: The shards information of the ShardedCluster instance.
-        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
-        :param pulumi.Input[str] super_account_password: The password of database account.
+        :param pulumi.Input[str] super_account_password: The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc ID.
-        :param pulumi.Input[str] zone_id: The zone ID of instance.
+        :param pulumi.Input[str] zone_id: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -929,10 +1099,13 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["mongos_id"] = mongos_id
         __props__.__dict__["mongos_node_number"] = mongos_node_number
         __props__.__dict__["mongos_node_spec"] = mongos_node_spec
+        __props__.__dict__["node_availability_zones"] = node_availability_zones
         __props__.__dict__["node_spec"] = node_spec
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
+        __props__.__dict__["private_endpoint"] = private_endpoint
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["read_only_node_number"] = read_only_node_number
         __props__.__dict__["shard_number"] = shard_number
         __props__.__dict__["shards"] = shards
         __props__.__dict__["storage_space_gb"] = storage_space_gb
@@ -941,13 +1114,14 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["zone_id"] = zone_id
+        __props__.__dict__["zone_ids"] = zone_ids
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> pulumi.Output[bool]:
         """
-        Whether to enable automatic renewal.
+        Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -955,7 +1129,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> pulumi.Output[str]:
         """
-        The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         """
         return pulumi.get(self, "charge_type")
 
@@ -971,7 +1145,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> pulumi.Output[str]:
         """
-        The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         """
         return pulumi.get(self, "db_engine_version")
 
@@ -987,7 +1161,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Output[str]:
         """
-        The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -1011,7 +1185,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="mongosNodeNumber")
     def mongos_node_number(self) -> pulumi.Output[Optional[int]]:
         """
-        The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "mongos_node_number")
 
@@ -1019,15 +1193,23 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="mongosNodeSpec")
     def mongos_node_spec(self) -> pulumi.Output[Optional[str]]:
         """
-        The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "mongos_node_spec")
+
+    @property
+    @pulumi.getter(name="nodeAvailabilityZones")
+    def node_availability_zones(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceNodeAvailabilityZone']]]:
+        """
+        The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "node_availability_zones")
 
     @property
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> pulumi.Output[str]:
         """
-        The spec of node.
+        The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         """
         return pulumi.get(self, "node_spec")
 
@@ -1035,7 +1217,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def period(self) -> pulumi.Output[int]:
         """
-        The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "period")
 
@@ -1043,9 +1225,17 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="periodUnit")
     def period_unit(self) -> pulumi.Output[str]:
         """
-        The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         """
         return pulumi.get(self, "period_unit")
+
+    @property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> pulumi.Output[str]:
+        """
+        The private endpoint address of instance.
+        """
+        return pulumi.get(self, "private_endpoint")
 
     @property
     @pulumi.getter(name="projectName")
@@ -1056,10 +1246,18 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "project_name")
 
     @property
+    @pulumi.getter(name="readOnlyNodeNumber")
+    def read_only_node_number(self) -> pulumi.Output[int]:
+        """
+        The number of readonly node in instance.
+        """
+        return pulumi.get(self, "read_only_node_number")
+
+    @property
     @pulumi.getter(name="shardNumber")
     def shard_number(self) -> pulumi.Output[Optional[int]]:
         """
-        The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "shard_number")
 
@@ -1075,7 +1273,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="storageSpaceGb")
     def storage_space_gb(self) -> pulumi.Output[int]:
         """
-        The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         """
         return pulumi.get(self, "storage_space_gb")
 
@@ -1091,7 +1289,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="superAccountPassword")
     def super_account_password(self) -> pulumi.Output[Optional[str]]:
         """
-        The password of database account.
+        The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "super_account_password")
 
@@ -1115,7 +1313,18 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Output[str]:
         """
-        The zone ID of instance.
+        This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
         """
+        warnings.warn("""This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""", DeprecationWarning)
+        pulumi.log.warn("""zone_id is deprecated: This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones.""")
+
         return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+        """
+        return pulumi.get(self, "zone_ids")
 

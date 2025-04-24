@@ -37,7 +37,7 @@ class BucketObjectArgs:
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
         :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
-        :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        :param pulumi.Input[str] public_acl: The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
         :param pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]] tags: Tos Bucket Tags.
         """
@@ -162,7 +162,7 @@ class BucketObjectArgs:
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         """
         return pulumi.get(self, "public_acl")
 
@@ -206,6 +206,7 @@ class _BucketObjectState:
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
                  file_path: Optional[pulumi.Input[str]] = None,
+                 is_default: Optional[pulumi.Input[bool]] = None,
                  object_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
@@ -221,8 +222,9 @@ class _BucketObjectState:
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
         :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
+        :param pulumi.Input[bool] is_default: Whether to enable the default inheritance bucket ACL function for the object.
         :param pulumi.Input[str] object_name: The name of the object.
-        :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        :param pulumi.Input[str] public_acl: The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
         :param pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]] tags: Tos Bucket Tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] version_ids: The version ids of the object if exist.
@@ -243,6 +245,8 @@ class _BucketObjectState:
             pulumi.set(__self__, "encryption", encryption)
         if file_path is not None:
             pulumi.set(__self__, "file_path", file_path)
+        if is_default is not None:
+            pulumi.set(__self__, "is_default", is_default)
         if object_name is not None:
             pulumi.set(__self__, "object_name", object_name)
         if public_acl is not None:
@@ -351,6 +355,18 @@ class _BucketObjectState:
         pulumi.set(self, "file_path", value)
 
     @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the default inheritance bucket ACL function for the object.
+        """
+        return pulumi.get(self, "is_default")
+
+    @is_default.setter
+    def is_default(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_default", value)
+
+    @property
     @pulumi.getter(name="objectName")
     def object_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -366,7 +382,7 @@ class _BucketObjectState:
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         """
         return pulumi.get(self, "public_acl")
 
@@ -476,7 +492,7 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
         :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] object_name: The name of the object.
-        :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        :param pulumi.Input[str] public_acl: The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]] tags: Tos Bucket Tags.
         """
@@ -575,6 +591,7 @@ class BucketObject(pulumi.CustomResource):
             __props__.__dict__["storage_class"] = storage_class
             __props__.__dict__["tags"] = tags
             __props__.__dict__["enable_version"] = None
+            __props__.__dict__["is_default"] = None
             __props__.__dict__["version_ids"] = None
         super(BucketObject, __self__).__init__(
             'volcengine:tos/bucketObject:BucketObject',
@@ -594,6 +611,7 @@ class BucketObject(pulumi.CustomResource):
             enable_version: Optional[pulumi.Input[bool]] = None,
             encryption: Optional[pulumi.Input[str]] = None,
             file_path: Optional[pulumi.Input[str]] = None,
+            is_default: Optional[pulumi.Input[bool]] = None,
             object_name: Optional[pulumi.Input[str]] = None,
             public_acl: Optional[pulumi.Input[str]] = None,
             storage_class: Optional[pulumi.Input[str]] = None,
@@ -614,8 +632,9 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
         :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
+        :param pulumi.Input[bool] is_default: Whether to enable the default inheritance bucket ACL function for the object.
         :param pulumi.Input[str] object_name: The name of the object.
-        :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        :param pulumi.Input[str] public_acl: The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]] tags: Tos Bucket Tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] version_ids: The version ids of the object if exist.
@@ -632,6 +651,7 @@ class BucketObject(pulumi.CustomResource):
         __props__.__dict__["enable_version"] = enable_version
         __props__.__dict__["encryption"] = encryption
         __props__.__dict__["file_path"] = file_path
+        __props__.__dict__["is_default"] = is_default
         __props__.__dict__["object_name"] = object_name
         __props__.__dict__["public_acl"] = public_acl
         __props__.__dict__["storage_class"] = storage_class
@@ -704,6 +724,14 @@ class BucketObject(pulumi.CustomResource):
         return pulumi.get(self, "file_path")
 
     @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> pulumi.Output[bool]:
+        """
+        Whether to enable the default inheritance bucket ACL function for the object.
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
     @pulumi.getter(name="objectName")
     def object_name(self) -> pulumi.Output[str]:
         """
@@ -715,7 +743,7 @@ class BucketObject(pulumi.CustomResource):
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> pulumi.Output[Optional[str]]:
         """
-        The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+        The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
         """
         return pulumi.get(self, "public_acl")
 

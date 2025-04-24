@@ -170,10 +170,9 @@ namespace Pulumi.Volcengine.Ebs
         public Output<string?> ExtraPerformanceTypeId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-        /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-        /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-        /// terraform state file and management.
+        /// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+        /// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+        /// volcengine_volume.resource_name` command to remove it from terraform state file and management.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -197,6 +196,13 @@ namespace Pulumi.Volcengine.Ebs
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
+        /// The id of the snapshot. When creating a volume using snapshots, this field is required.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("snapshotId")]
+        public Output<string?> SnapshotId { get; private set; } = null!;
+
+        /// <summary>
         /// Status of Volume.
         /// </summary>
         [Output("status")]
@@ -215,7 +221,7 @@ namespace Pulumi.Volcengine.Ebs
         public Output<int> TradeStatus { get; private set; } = null!;
 
         /// <summary>
-        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         /// </summary>
         [Output("volumeChargeType")]
         public Output<string?> VolumeChargeType { get; private set; } = null!;
@@ -316,10 +322,9 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? ExtraPerformanceTypeId { get; set; }
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-        /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-        /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-        /// terraform state file and management.
+        /// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+        /// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+        /// volcengine_volume.resource_name` command to remove it from terraform state file and management.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -342,6 +347,13 @@ namespace Pulumi.Volcengine.Ebs
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
+        /// <summary>
+        /// The id of the snapshot. When creating a volume using snapshots, this field is required.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("snapshotId")]
+        public Input<string>? SnapshotId { get; set; }
+
         [Input("tags")]
         private InputList<Inputs.VolumeTagArgs>? _tags;
 
@@ -355,7 +367,7 @@ namespace Pulumi.Volcengine.Ebs
         }
 
         /// <summary>
-        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         /// </summary>
         [Input("volumeChargeType")]
         public Input<string>? VolumeChargeType { get; set; }
@@ -423,10 +435,9 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? ExtraPerformanceTypeId { get; set; }
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-        /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-        /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-        /// terraform state file and management.
+        /// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+        /// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+        /// volcengine_volume.resource_name` command to remove it from terraform state file and management.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -448,6 +459,13 @@ namespace Pulumi.Volcengine.Ebs
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
+
+        /// <summary>
+        /// The id of the snapshot. When creating a volume using snapshots, this field is required.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("snapshotId")]
+        public Input<string>? SnapshotId { get; set; }
 
         /// <summary>
         /// Status of Volume.
@@ -474,7 +492,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<int>? TradeStatus { get; set; }
 
         /// <summary>
-        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         /// </summary>
         [Input("volumeChargeType")]
         public Input<string>? VolumeChargeType { get; set; }

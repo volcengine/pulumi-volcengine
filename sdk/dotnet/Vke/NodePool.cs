@@ -191,6 +191,7 @@ namespace Pulumi.Volcengine.Vke
     ///                 },
     ///             },
     ///             Cordon = true,
+    ///             AutoSyncDisabled = false,
     ///         },
     ///         Tags = new[]
     ///         {

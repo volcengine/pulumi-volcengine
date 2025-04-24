@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Use this data source to query detailed information of escloud zones
+ * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
  * ## Example Usage
  *
  * ```typescript
@@ -62,7 +62,7 @@ export interface ZonesResult {
     readonly zones: outputs.escloud.ZonesZone[];
 }
 /**
- * Use this data source to query detailed information of escloud zones
+ * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
  * ## Example Usage
  *
  * ```typescript

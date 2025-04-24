@@ -182,12 +182,12 @@ type Clb struct {
 	EniIpv6Address pulumi.StringOutput `pulumi:"eniIpv6Address"`
 	// The Ipv6 Eip ID of the Clb.
 	Ipv6EipId pulumi.StringOutput `pulumi:"ipv6EipId"`
-	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
 	LoadBalancerBillingType pulumi.StringOutput `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringOutput `pulumi:"loadBalancerName"`
-	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
-	LoadBalancerSpec pulumi.StringOutput `pulumi:"loadBalancerSpec"`
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
+	LoadBalancerSpec pulumi.StringPtrOutput `pulumi:"loadBalancerSpec"`
 	// The master zone ID of the CLB.
 	MasterZoneId pulumi.StringOutput `pulumi:"masterZoneId"`
 	// The reason of the console modification protection.
@@ -221,9 +221,6 @@ func NewClb(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.LoadBalancerSpec == nil {
-		return nil, errors.New("invalid value for required argument 'LoadBalancerSpec'")
-	}
 	if args.SubnetId == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
@@ -270,11 +267,11 @@ type clbState struct {
 	EniIpv6Address *string `pulumi:"eniIpv6Address"`
 	// The Ipv6 Eip ID of the Clb.
 	Ipv6EipId *string `pulumi:"ipv6EipId"`
-	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
-	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
 	LoadBalancerSpec *string `pulumi:"loadBalancerSpec"`
 	// The master zone ID of the CLB.
 	MasterZoneId *string `pulumi:"masterZoneId"`
@@ -320,11 +317,11 @@ type ClbState struct {
 	EniIpv6Address pulumi.StringPtrInput
 	// The Ipv6 Eip ID of the Clb.
 	Ipv6EipId pulumi.StringPtrInput
-	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringPtrInput
-	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
 	LoadBalancerSpec pulumi.StringPtrInput
 	// The master zone ID of the CLB.
 	MasterZoneId pulumi.StringPtrInput
@@ -368,12 +365,12 @@ type clbArgs struct {
 	EniAddress *string `pulumi:"eniAddress"`
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address *string `pulumi:"eniIpv6Address"`
-	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
-	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
-	LoadBalancerSpec string `pulumi:"loadBalancerSpec"`
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
+	LoadBalancerSpec *string `pulumi:"loadBalancerSpec"`
 	// The master zone ID of the CLB.
 	MasterZoneId *string `pulumi:"masterZoneId"`
 	// The reason of the console modification protection.
@@ -411,12 +408,12 @@ type ClbArgs struct {
 	EniAddress pulumi.StringPtrInput
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address pulumi.StringPtrInput
-	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringPtrInput
-	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
-	LoadBalancerSpec pulumi.StringInput
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
+	LoadBalancerSpec pulumi.StringPtrInput
 	// The master zone ID of the CLB.
 	MasterZoneId pulumi.StringPtrInput
 	// The reason of the console modification protection.
@@ -569,7 +566,7 @@ func (o ClbOutput) Ipv6EipId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.Ipv6EipId }).(pulumi.StringOutput)
 }
 
-// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
 func (o ClbOutput) LoadBalancerBillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerBillingType }).(pulumi.StringOutput)
 }
@@ -579,9 +576,9 @@ func (o ClbOutput) LoadBalancerName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerName }).(pulumi.StringOutput)
 }
 
-// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
-func (o ClbOutput) LoadBalancerSpec() pulumi.StringOutput {
-	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerSpec }).(pulumi.StringOutput)
+// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
+func (o ClbOutput) LoadBalancerSpec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.LoadBalancerSpec }).(pulumi.StringPtrOutput)
 }
 
 // The master zone ID of the CLB.

@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
         /// </summary>
         public readonly string? MongosNodeId;
         /// <summary>
-        /// The spec of node.
+        /// The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         /// </summary>
         public readonly string? NodeSpec;
         /// <summary>

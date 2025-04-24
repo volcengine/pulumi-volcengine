@@ -22,9 +22,19 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly int BackupUse;
         /// <summary>
+        /// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+        /// true: Yes.
+        /// false: No.
+        /// </summary>
+        public readonly bool BinlogDump;
+        /// <summary>
         /// Payment methods.
         /// </summary>
         public readonly Outputs.InstancesRdsMysqlInstanceChargeDetailResult ChargeDetail;
+        /// <summary>
+        /// Connection pool type.
+        /// </summary>
+        public readonly string ConnectionPoolType;
         /// <summary>
         /// Node creation local time.
         /// </summary>
@@ -38,9 +48,27 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string DbEngineVersion;
         /// <summary>
+        /// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+        /// Creating: The proxy is being started.
+        /// Running: The proxy is running.
+        /// Shutdown: The proxy is closed.
+        /// Deleting: The proxy is being closed.
+        /// </summary>
+        public readonly string DbProxyStatus;
+        /// <summary>
         /// The endpoint info of the RDS instance.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesRdsMysqlInstanceEndpointResult> Endpoints;
+        /// <summary>
+        /// Feature status.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesRdsMysqlInstanceFeatureStateResult> FeatureStates;
+        /// <summary>
+        /// Whether to enable global read-only.
+        /// true: Yes.
+        /// false: No.
+        /// </summary>
+        public readonly bool GlobalReadOnly;
         /// <summary>
         /// The ID of the RDS instance.
         /// </summary>
@@ -73,9 +101,21 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly int Memory;
         /// <summary>
+        /// Average CPU usage of the instance master node in nearly one minute.
+        /// </summary>
+        public readonly double NodeCpuUsedPercentage;
+        /// <summary>
+        /// Average memory usage of the instance master node in nearly one minute.
+        /// </summary>
+        public readonly double NodeMemoryUsedPercentage;
+        /// <summary>
         /// The number of nodes.
         /// </summary>
         public readonly int NodeNumber;
+        /// <summary>
+        /// Average disk usage of the instance master node in nearly one minute.
+        /// </summary>
+        public readonly double NodeSpaceUsedPercentage;
         /// <summary>
         /// General instance type, different from Custom instance type.
         /// </summary>
@@ -132,6 +172,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// The available zone of the RDS instance.
         /// </summary>
         public readonly string ZoneId;
+        /// <summary>
+        /// List of availability zones where each node of the instance is located.
+        /// </summary>
+        public readonly ImmutableArray<string> ZoneIds;
 
         [OutputConstructor]
         private InstancesRdsMysqlInstanceResult(
@@ -139,7 +183,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             int backupUse,
 
+            bool binlogDump,
+
             Outputs.InstancesRdsMysqlInstanceChargeDetailResult chargeDetail,
+
+            string connectionPoolType,
 
             string createTime,
 
@@ -147,7 +195,13 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             string dbEngineVersion,
 
+            string dbProxyStatus,
+
             ImmutableArray<Outputs.InstancesRdsMysqlInstanceEndpointResult> endpoints,
+
+            ImmutableArray<Outputs.InstancesRdsMysqlInstanceFeatureStateResult> featureStates,
+
+            bool globalReadOnly,
 
             string id,
 
@@ -163,7 +217,13 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             int memory,
 
+            double nodeCpuUsedPercentage,
+
+            double nodeMemoryUsedPercentage,
+
             int nodeNumber,
+
+            double nodeSpaceUsedPercentage,
 
             string nodeSpec,
 
@@ -191,15 +251,22 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             string vpcId,
 
-            string zoneId)
+            string zoneId,
+
+            ImmutableArray<string> zoneIds)
         {
             AllowListVersion = allowListVersion;
             BackupUse = backupUse;
+            BinlogDump = binlogDump;
             ChargeDetail = chargeDetail;
+            ConnectionPoolType = connectionPoolType;
             CreateTime = createTime;
             DataSyncMode = dataSyncMode;
             DbEngineVersion = dbEngineVersion;
+            DbProxyStatus = dbProxyStatus;
             Endpoints = endpoints;
+            FeatureStates = featureStates;
+            GlobalReadOnly = globalReadOnly;
             Id = id;
             InstanceId = instanceId;
             InstanceName = instanceName;
@@ -207,7 +274,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             LowerCaseTableNames = lowerCaseTableNames;
             MaintenanceWindows = maintenanceWindows;
             Memory = memory;
+            NodeCpuUsedPercentage = nodeCpuUsedPercentage;
+            NodeMemoryUsedPercentage = nodeMemoryUsedPercentage;
             NodeNumber = nodeNumber;
+            NodeSpaceUsedPercentage = nodeSpaceUsedPercentage;
             NodeSpec = nodeSpec;
             Nodes = nodes;
             ProjectName = projectName;
@@ -222,6 +292,7 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             VCpu = vCpu;
             VpcId = vpcId;
             ZoneId = zoneId;
+            ZoneIds = zoneIds;
         }
     }
 }

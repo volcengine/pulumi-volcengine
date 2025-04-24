@@ -34,6 +34,7 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
         "instanceType": args.instanceType,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "tags": args.tags,
         "updateEndTime": args.updateEndTime,
         "updateStartTime": args.updateStartTime,
@@ -86,6 +87,10 @@ export interface InstancesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name to query.
+     */
+    projectName?: string;
     /**
      * Tags.
      */
@@ -148,6 +153,10 @@ export interface InstancesResult {
     readonly instances: outputs.mongodb.InstancesInstance[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project name to which the instance belongs.
+     */
+    readonly projectName?: string;
     /**
      * Tags.
      */
@@ -228,6 +237,10 @@ export interface InstancesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name to query.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Tags.
      */

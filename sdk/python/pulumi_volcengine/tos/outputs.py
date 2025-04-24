@@ -8,12 +8,25 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'BucketAccountAcl',
+    'BucketInventoriesInventoryConfigurationResult',
+    'BucketInventoriesInventoryConfigurationDestinationResult',
+    'BucketInventoriesInventoryConfigurationDestinationTosBucketDestinationResult',
+    'BucketInventoriesInventoryConfigurationFilterResult',
+    'BucketInventoriesInventoryConfigurationOptionalFieldResult',
+    'BucketInventoriesInventoryConfigurationScheduleResult',
+    'BucketInventoryDestination',
+    'BucketInventoryDestinationTosBucketDestination',
+    'BucketInventoryFilter',
+    'BucketInventoryOptionalFields',
+    'BucketInventorySchedule',
     'BucketObjectAccountAcl',
     'BucketObjectTag',
     'BucketObjectsObjectResult',
+    'BucketRealtimeLogAccessLogConfiguration',
     'BucketTag',
     'BucketsBucketResult',
 ]
@@ -76,6 +89,406 @@ class BucketAccountAcl(dict):
         The acl type to control.Valid value is CanonicalUser.
         """
         return pulumi.get(self, "acl_type")
+
+
+@pulumi.output_type
+class BucketInventoriesInventoryConfigurationResult(dict):
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 destinations: Sequence['outputs.BucketInventoriesInventoryConfigurationDestinationResult'],
+                 filters: Sequence['outputs.BucketInventoriesInventoryConfigurationFilterResult'],
+                 id: str,
+                 included_object_versions: str,
+                 is_enabled: bool,
+                 optional_fields: Sequence['outputs.BucketInventoriesInventoryConfigurationOptionalFieldResult'],
+                 schedules: Sequence['outputs.BucketInventoriesInventoryConfigurationScheduleResult']):
+        """
+        :param str bucket_name: The name the TOS bucket.
+        :param Sequence['BucketInventoriesInventoryConfigurationDestinationArgs'] destinations: The destination information of the bucket inventory.
+        :param Sequence['BucketInventoriesInventoryConfigurationFilterArgs'] filters: The filter of the bucket inventory.
+        :param str id: The name of the bucket inventory.
+        :param str included_object_versions: The export version of object. Valid values: `All`, `Current`.
+        :param bool is_enabled: Whether to enable the bucket inventory.
+        :param Sequence['BucketInventoriesInventoryConfigurationOptionalFieldArgs'] optional_fields: The information exported from the bucket inventory.
+        :param Sequence['BucketInventoriesInventoryConfigurationScheduleArgs'] schedules: The export schedule of the bucket inventory.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "destinations", destinations)
+        pulumi.set(__self__, "filters", filters)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "included_object_versions", included_object_versions)
+        pulumi.set(__self__, "is_enabled", is_enabled)
+        pulumi.set(__self__, "optional_fields", optional_fields)
+        pulumi.set(__self__, "schedules", schedules)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The name the TOS bucket.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def destinations(self) -> Sequence['outputs.BucketInventoriesInventoryConfigurationDestinationResult']:
+        """
+        The destination information of the bucket inventory.
+        """
+        return pulumi.get(self, "destinations")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Sequence['outputs.BucketInventoriesInventoryConfigurationFilterResult']:
+        """
+        The filter of the bucket inventory.
+        """
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The name of the bucket inventory.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="includedObjectVersions")
+    def included_object_versions(self) -> str:
+        """
+        The export version of object. Valid values: `All`, `Current`.
+        """
+        return pulumi.get(self, "included_object_versions")
+
+    @property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> bool:
+        """
+        Whether to enable the bucket inventory.
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @property
+    @pulumi.getter(name="optionalFields")
+    def optional_fields(self) -> Sequence['outputs.BucketInventoriesInventoryConfigurationOptionalFieldResult']:
+        """
+        The information exported from the bucket inventory.
+        """
+        return pulumi.get(self, "optional_fields")
+
+    @property
+    @pulumi.getter
+    def schedules(self) -> Sequence['outputs.BucketInventoriesInventoryConfigurationScheduleResult']:
+        """
+        The export schedule of the bucket inventory.
+        """
+        return pulumi.get(self, "schedules")
+
+
+@pulumi.output_type
+class BucketInventoriesInventoryConfigurationDestinationResult(dict):
+    def __init__(__self__, *,
+                 tos_bucket_destinations: Sequence['outputs.BucketInventoriesInventoryConfigurationDestinationTosBucketDestinationResult']):
+        """
+        :param Sequence['BucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs'] tos_bucket_destinations: The destination tos bucket information of the bucket inventory.
+        """
+        pulumi.set(__self__, "tos_bucket_destinations", tos_bucket_destinations)
+
+    @property
+    @pulumi.getter(name="tosBucketDestinations")
+    def tos_bucket_destinations(self) -> Sequence['outputs.BucketInventoriesInventoryConfigurationDestinationTosBucketDestinationResult']:
+        """
+        The destination tos bucket information of the bucket inventory.
+        """
+        return pulumi.get(self, "tos_bucket_destinations")
+
+
+@pulumi.output_type
+class BucketInventoriesInventoryConfigurationDestinationTosBucketDestinationResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 bucket: str,
+                 format: str,
+                 prefix: str,
+                 role: str):
+        """
+        :param str account_id: The account id of the destination tos bucket.
+        :param str bucket: The name of the destination tos bucket.
+        :param str format: The format of the bucket inventory. Valid values: `CSV`.
+        :param str prefix: The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        :param str role: The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the destination tos bucket.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the destination tos bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        The format of the bucket inventory. Valid values: `CSV`.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class BucketInventoriesInventoryConfigurationFilterResult(dict):
+    def __init__(__self__, *,
+                 prefix: str):
+        """
+        :param str prefix: The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        return pulumi.get(self, "prefix")
+
+
+@pulumi.output_type
+class BucketInventoriesInventoryConfigurationOptionalFieldResult(dict):
+    def __init__(__self__, *,
+                 fields: Sequence[str]):
+        """
+        :param Sequence[str] fields: The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+        """
+        pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Sequence[str]:
+        """
+        The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+        """
+        return pulumi.get(self, "fields")
+
+
+@pulumi.output_type
+class BucketInventoriesInventoryConfigurationScheduleResult(dict):
+    def __init__(__self__, *,
+                 frequency: str):
+        """
+        :param str frequency: The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+        """
+        pulumi.set(__self__, "frequency", frequency)
+
+    @property
+    @pulumi.getter
+    def frequency(self) -> str:
+        """
+        The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+        """
+        return pulumi.get(self, "frequency")
+
+
+@pulumi.output_type
+class BucketInventoryDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tosBucketDestination":
+            suggest = "tos_bucket_destination"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketInventoryDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketInventoryDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketInventoryDestination.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 tos_bucket_destination: 'outputs.BucketInventoryDestinationTosBucketDestination'):
+        """
+        :param 'BucketInventoryDestinationTosBucketDestinationArgs' tos_bucket_destination: The destination tos bucket information of the bucket inventory.
+        """
+        pulumi.set(__self__, "tos_bucket_destination", tos_bucket_destination)
+
+    @property
+    @pulumi.getter(name="tosBucketDestination")
+    def tos_bucket_destination(self) -> 'outputs.BucketInventoryDestinationTosBucketDestination':
+        """
+        The destination tos bucket information of the bucket inventory.
+        """
+        return pulumi.get(self, "tos_bucket_destination")
+
+
+@pulumi.output_type
+class BucketInventoryDestinationTosBucketDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountId":
+            suggest = "account_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketInventoryDestinationTosBucketDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketInventoryDestinationTosBucketDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketInventoryDestinationTosBucketDestination.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_id: str,
+                 bucket: str,
+                 format: str,
+                 role: str,
+                 prefix: Optional[str] = None):
+        """
+        :param str account_id: The account id of the destination tos bucket.
+        :param str bucket: The name of the destination tos bucket.
+        :param str format: The format of the bucket inventory. Valid values: `CSV`.
+        :param str role: The role name used to grant TOS access to read all files from the source bucket and write files to the destination bucket. You can use the default TOS role `TosArchiveTOSInventory`.
+        :param str prefix: The storage path prefix of the bucket inventory in destination tos bucket.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "role", role)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the destination tos bucket.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the destination tos bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        The format of the bucket inventory. Valid values: `CSV`.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role name used to grant TOS access to read all files from the source bucket and write files to the destination bucket. You can use the default TOS role `TosArchiveTOSInventory`.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        The storage path prefix of the bucket inventory in destination tos bucket.
+        """
+        return pulumi.get(self, "prefix")
+
+
+@pulumi.output_type
+class BucketInventoryFilter(dict):
+    def __init__(__self__, *,
+                 prefix: Optional[str] = None):
+        """
+        :param str prefix: The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        return pulumi.get(self, "prefix")
+
+
+@pulumi.output_type
+class BucketInventoryOptionalFields(dict):
+    def __init__(__self__, *,
+                 fields: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] fields: The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[Sequence[str]]:
+        """
+        The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+        """
+        return pulumi.get(self, "fields")
+
+
+@pulumi.output_type
+class BucketInventorySchedule(dict):
+    def __init__(__self__, *,
+                 frequency: str):
+        """
+        :param str frequency: The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+        """
+        pulumi.set(__self__, "frequency", frequency)
+
+    @property
+    @pulumi.getter
+    def frequency(self) -> str:
+        """
+        The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+        """
+        return pulumi.get(self, "frequency")
 
 
 @pulumi.output_type
@@ -216,6 +629,82 @@ class BucketObjectsObjectResult(dict):
         The name the TOS Object storage class.
         """
         return pulumi.get(self, "storage_class")
+
+
+@pulumi.output_type
+class BucketRealtimeLogAccessLogConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tlsDashboardId":
+            suggest = "tls_dashboard_id"
+        elif key == "tlsProjectId":
+            suggest = "tls_project_id"
+        elif key == "tlsTopicId":
+            suggest = "tls_topic_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketRealtimeLogAccessLogConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketRealtimeLogAccessLogConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketRealtimeLogAccessLogConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 tls_dashboard_id: Optional[str] = None,
+                 tls_project_id: Optional[str] = None,
+                 tls_topic_id: Optional[str] = None,
+                 ttl: Optional[int] = None):
+        """
+        :param str tls_dashboard_id: The ID of the tls dashboard.
+        :param str tls_project_id: The ID of the tls project.
+        :param str tls_topic_id: The ID of the tls topic.
+        :param int ttl: The TLS log retention duration. Unit in days. Valid values range is 1~3650. default is 7.
+        """
+        if tls_dashboard_id is not None:
+            pulumi.set(__self__, "tls_dashboard_id", tls_dashboard_id)
+        if tls_project_id is not None:
+            pulumi.set(__self__, "tls_project_id", tls_project_id)
+        if tls_topic_id is not None:
+            pulumi.set(__self__, "tls_topic_id", tls_topic_id)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="tlsDashboardId")
+    def tls_dashboard_id(self) -> Optional[str]:
+        """
+        The ID of the tls dashboard.
+        """
+        return pulumi.get(self, "tls_dashboard_id")
+
+    @property
+    @pulumi.getter(name="tlsProjectId")
+    def tls_project_id(self) -> Optional[str]:
+        """
+        The ID of the tls project.
+        """
+        return pulumi.get(self, "tls_project_id")
+
+    @property
+    @pulumi.getter(name="tlsTopicId")
+    def tls_topic_id(self) -> Optional[str]:
+        """
+        The ID of the tls topic.
+        """
+        return pulumi.get(self, "tls_topic_id")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[int]:
+        """
+        The TLS log retention duration. Unit in days. Valid values range is 1~3650. default is 7.
+        """
+        return pulumi.get(self, "ttl")
 
 
 @pulumi.output_type

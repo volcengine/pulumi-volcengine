@@ -86,9 +86,17 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly ImmutableArray<string> InstanceTypeIds;
         /// <summary>
+        /// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+        /// </summary>
+        public readonly bool KubeConfigAutoSyncDisabled;
+        /// <summary>
         /// The NamePrefix of node metadata.
         /// </summary>
         public readonly string KubeConfigNamePrefix;
+        /// <summary>
+        /// The KubeletConfig of KubernetesConfig.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NodePoolsNodePoolKubeletConfigResult> KubeletConfigs;
         /// <summary>
         /// The LabelContent of KubernetesConfig.
         /// </summary>
@@ -212,7 +220,11 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             ImmutableArray<string> instanceTypeIds,
 
+            bool kubeConfigAutoSyncDisabled,
+
             string kubeConfigNamePrefix,
+
+            ImmutableArray<Outputs.NodePoolsNodePoolKubeletConfigResult> kubeletConfigs,
 
             ImmutableArray<Outputs.NodePoolsNodePoolLabelContentResult> labelContents,
 
@@ -274,7 +286,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
             InitializeScript = initializeScript;
             InstanceChargeType = instanceChargeType;
             InstanceTypeIds = instanceTypeIds;
+            KubeConfigAutoSyncDisabled = kubeConfigAutoSyncDisabled;
             KubeConfigNamePrefix = kubeConfigNamePrefix;
+            KubeletConfigs = kubeletConfigs;
             LabelContents = labelContents;
             LoginKeyPairName = loginKeyPairName;
             LoginType = loginType;

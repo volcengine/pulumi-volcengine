@@ -3492,6 +3492,534 @@ export namespace clb {
 
 }
 
+export namespace cloud_firewall {
+    export interface CfwAddressBooksAddressBook {
+        /**
+         * The address list of the address book.
+         */
+        addressLists: string[];
+        /**
+         * The group type of address book. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The group name of address book. This field support fuzzy query.
+         */
+        groupName: string;
+        /**
+         * The group type of address book. Valid values: `ip`, `port`, `domain`.
+         */
+        groupType: string;
+        /**
+         * The uuid of the address book.
+         */
+        groupUuid: string;
+        /**
+         * The uuid of the address book.
+         */
+        id: string;
+        /**
+         * The reference count of the address book.
+         */
+        refCnt: number;
+    }
+
+    export interface CfwControlPoliciesControlPolicy {
+        /**
+         * The account id of the control policy.
+         */
+        accountId: string;
+        /**
+         * The action list of the control policy. Valid values: `accept`, `deny`, `monitor`.
+         */
+        action: string;
+        /**
+         * The description of the control policy. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The dest port of the control policy.
+         */
+        destPort: string;
+        /**
+         * The dest port group type of the control policy.
+         */
+        destPortGroupType: string;
+        /**
+         * The dest port list of the control policy.
+         */
+        destPortLists: string[];
+        /**
+         * The dest port type of the control policy.
+         */
+        destPortType: string;
+        /**
+         * The destination of the control policy. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination cidr list of the control policy.
+         */
+        destinationCidrLists: string[];
+        /**
+         * The destination group type of the control policy.
+         */
+        destinationGroupType: string;
+        /**
+         * The destination type of the control policy.
+         */
+        destinationType: string;
+        /**
+         * The direction of control policy. Valid values: `in`, `out`.
+         */
+        direction: string;
+        /**
+         * The effect status of the control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+         */
+        effectStatus: number;
+        /**
+         * The end time of the control policy. Unix timestamp.
+         */
+        endTime: number;
+        /**
+         * The hit count of the control policy.
+         */
+        hitCnt: number;
+        /**
+         * The id of the control policy.
+         */
+        id: string;
+        /**
+         * Whether the control policy is effected.
+         */
+        isEffected: boolean;
+        /**
+         * The priority of the control policy.
+         */
+        prio: number;
+        /**
+         * The proto list of the control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+         */
+        proto: string;
+        /**
+         * The repeat days of the control policy.
+         */
+        repeatDays: number[];
+        /**
+         * The repeat end time of the control policy.
+         */
+        repeatEndTime: string;
+        /**
+         * The repeat start time of the control policy.
+         */
+        repeatStartTime: string;
+        /**
+         * The repeat type of the control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+         */
+        repeatType: string;
+        /**
+         * The rule id of the control policy. This field support fuzzy query.
+         */
+        ruleId: string;
+        /**
+         * The source of the control policy. This field support fuzzy query.
+         */
+        source: string;
+        /**
+         * The source cidr list of the control policy.
+         */
+        sourceCidrLists: string[];
+        /**
+         * The source group type of the control policy.
+         */
+        sourceGroupType: string;
+        /**
+         * The source type of the control policy.
+         */
+        sourceType: string;
+        /**
+         * The start time of the control policy. Unix timestamp.
+         */
+        startTime: number;
+        /**
+         * The enable status list of the control policy.
+         */
+        status: boolean;
+        /**
+         * The update time of the control policy.
+         */
+        updateTime: number;
+        /**
+         * The use count of the control policy.
+         */
+        useCount: number;
+    }
+
+    export interface CfwDnsControlPoliciesDnsControlPolicy {
+        /**
+         * The account id of the dns control policy.
+         */
+        accountId: string;
+        /**
+         * The description of the dns control policy. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The destination list of the dns control policy. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination group list of the dns control policy.
+         */
+        destinationGroupLists: string[];
+        /**
+         * The destination type of the dns control policy.
+         */
+        destinationType: string;
+        /**
+         * The destination domain list of the dns control policy.
+         */
+        domainLists: string[];
+        /**
+         * The hit count of the dns control policy.
+         */
+        hitCnt: number;
+        /**
+         * The id of the dns control policy.
+         */
+        id: string;
+        /**
+         * The last hit time of the dns control policy. Unix timestamp.
+         */
+        lastHitTime: number;
+        /**
+         * The id of the dns control policy.
+         */
+        ruleId: string;
+        /**
+         * The source list of the dns control policy. This field support fuzzy query.
+         */
+        sources: outputs.cloud_firewall.CfwDnsControlPoliciesDnsControlPolicySource[];
+        /**
+         * The enable status list of the dns control policy. This field support fuzzy query.
+         */
+        status: boolean;
+        /**
+         * The use count of the dns control policy.
+         */
+        useCount: number;
+    }
+
+    export interface CfwDnsControlPoliciesDnsControlPolicySource {
+        /**
+         * The region of the source vpc.
+         */
+        region: string;
+        /**
+         * The id of the source vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface CfwDnsControlPolicySource {
+        /**
+         * The region of the source vpc.
+         */
+        region: string;
+        /**
+         * The id of the source vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface CfwNatFirewallControlPoliciesNatFirewallControlPolicy {
+        /**
+         * The account id of the nat firewall control policy.
+         */
+        accountId: string;
+        /**
+         * The action list of the nat firewall control policy. Valid values: `accept`, `deny`, `monitor`.
+         */
+        action: string;
+        /**
+         * The description of the nat firewall control policy. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The dest port of the nat firewall control policy.
+         */
+        destPort: string;
+        /**
+         * The dest port group list of the nat firewall control policy.
+         */
+        destPortGroupLists: string[];
+        /**
+         * The dest port group type of the nat firewall control policy.
+         */
+        destPortGroupType: string;
+        /**
+         * The dest port list of the nat firewall control policy.
+         */
+        destPortLists: string[];
+        /**
+         * The dest port type of the nat firewall control policy.
+         */
+        destPortType: string;
+        /**
+         * The destination of the nat firewall control policy. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination cidr list of the nat firewall control policy.
+         */
+        destinationCidrLists: string[];
+        /**
+         * The destination group list of the nat firewall control policy.
+         */
+        destinationGroupLists: string[];
+        /**
+         * The destination group type of the nat firewall control policy.
+         */
+        destinationGroupType: string;
+        /**
+         * The destination type of the nat firewall control policy.
+         */
+        destinationType: string;
+        /**
+         * The direction of nat firewall control policy. Valid values: `in`, `out`.
+         */
+        direction: string;
+        /**
+         * The effect status of the nat firewall control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+         */
+        effectStatus: number;
+        /**
+         * The end time of the nat firewall control policy. Unix timestamp.
+         */
+        endTime: number;
+        /**
+         * The hit count of the nat firewall control policy.
+         */
+        hitCnt: number;
+        /**
+         * The id of the nat firewall control policy.
+         */
+        id: string;
+        /**
+         * Whether the nat firewall control policy is effected.
+         */
+        isEffected: boolean;
+        /**
+         * The nat firewall id of the nat firewall control policy.
+         */
+        natFirewallId: string;
+        /**
+         * The name of the nat firewall.
+         */
+        natFirewallName: string;
+        /**
+         * The priority of the nat firewall control policy.
+         */
+        prio: number;
+        /**
+         * The proto list of the nat firewall control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+         */
+        proto: string;
+        /**
+         * The repeat days of the nat firewall control policy.
+         */
+        repeatDays: number[];
+        /**
+         * The repeat end time of the nat firewall control policy.
+         */
+        repeatEndTime: string;
+        /**
+         * The repeat start time of the nat firewall control policy.
+         */
+        repeatStartTime: string;
+        /**
+         * The repeat type of the nat firewall control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+         */
+        repeatType: string;
+        /**
+         * The rule id of the nat firewall control policy. This field support fuzzy query.
+         */
+        ruleId: string;
+        /**
+         * The source of the nat firewall control policy. This field support fuzzy query.
+         */
+        source: string;
+        /**
+         * The source cidr list of the nat firewall control policy.
+         */
+        sourceCidrLists: string[];
+        /**
+         * The source group list of the nat firewall control policy.
+         */
+        sourceGroupLists: string[];
+        /**
+         * The source group type of the nat firewall control policy.
+         */
+        sourceGroupType: string;
+        /**
+         * The source type of the nat firewall control policy.
+         */
+        sourceType: string;
+        /**
+         * The start time of the nat firewall control policy. Unix timestamp.
+         */
+        startTime: number;
+        /**
+         * The enable status list of the nat firewall control policy.
+         */
+        status: boolean;
+        /**
+         * The update time of the nat firewall control policy.
+         */
+        updateTime: number;
+        /**
+         * The use count of the nat firewall control policy.
+         */
+        useCount: number;
+    }
+
+    export interface CfwVpcFirewallAclRulesVpcFirewallAclRule {
+        /**
+         * The account id of the vpc firewall acl rule.
+         */
+        accountId: string;
+        /**
+         * The action list of the vpc firewall acl rule. Valid values: `accept`, `deny`, `monitor`.
+         */
+        action: string;
+        /**
+         * The description of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The dest port of the vpc firewall acl rule.
+         */
+        destPort: string;
+        /**
+         * The dest port group type of the vpc firewall acl rule.
+         */
+        destPortGroupType: string;
+        /**
+         * The dest port list of the vpc firewall acl rule.
+         */
+        destPortLists: string[];
+        /**
+         * The dest port type of the vpc firewall acl rule.
+         */
+        destPortType: string;
+        /**
+         * The destination of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination cidr list of the vpc firewall acl rule.
+         */
+        destinationCidrLists: string[];
+        /**
+         * The destination group type of the vpc firewall acl rule.
+         */
+        destinationGroupType: string;
+        /**
+         * The destination type of the vpc firewall acl rule.
+         */
+        destinationType: string;
+        /**
+         * The effect status of the vpc firewall acl rule. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+         */
+        effectStatus: number;
+        /**
+         * The end time of the vpc firewall acl rule. Unix timestamp.
+         */
+        endTime: number;
+        /**
+         * The hit count of the vpc firewall acl rule.
+         */
+        hitCnt: number;
+        /**
+         * The id of the vpc firewall acl rule.
+         */
+        id: string;
+        /**
+         * Whether the vpc firewall acl rule is effected.
+         */
+        isEffected: boolean;
+        /**
+         * The priority of the vpc firewall acl rule.
+         */
+        prio: number;
+        /**
+         * The proto list of the vpc firewall acl rule. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+         */
+        proto: string;
+        /**
+         * The repeat days of the vpc firewall acl rule.
+         */
+        repeatDays: number[];
+        /**
+         * The repeat end time of the vpc firewall acl rule.
+         */
+        repeatEndTime: string;
+        /**
+         * The repeat start time of the vpc firewall acl rule.
+         */
+        repeatStartTime: string;
+        /**
+         * The repeat type of the vpc firewall acl rule. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+         */
+        repeatType: string;
+        /**
+         * The rule id of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        ruleId: string;
+        /**
+         * The source of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        source: string;
+        /**
+         * The source cidr list of the vpc firewall acl rule.
+         */
+        sourceCidrLists: string[];
+        /**
+         * The source group type of the vpc firewall acl rule.
+         */
+        sourceGroupType: string;
+        /**
+         * The source type of the vpc firewall acl rule.
+         */
+        sourceType: string;
+        /**
+         * The start time of the vpc firewall acl rule. Unix timestamp.
+         */
+        startTime: number;
+        /**
+         * The enable status list of the vpc firewall acl rule.
+         */
+        status: boolean;
+        /**
+         * The update time of the vpc firewall acl rule.
+         */
+        updateTime: number;
+        /**
+         * The use count of the vpc firewall acl rule.
+         */
+        useCount: number;
+        /**
+         * The vpc firewall id of the vpc firewall acl rule.
+         */
+        vpcFirewallId: string;
+        /**
+         * The name of the vpc firewall.
+         */
+        vpcFirewallName: string;
+    }
+
+}
+
 export namespace cloud_identity {
     export interface GroupMember {
         /**
@@ -4234,6 +4762,10 @@ export namespace cloud_monitor {
          * The web hook of the cloud monitor rule.
          */
         webHook: string;
+        /**
+         * The webhook id list of the cloud monitor rule.
+         */
+        webhookIds: string[];
     }
 
     export interface RulesRuleCondition {
@@ -5280,6 +5812,242 @@ export namespace direct_connect {
 
 }
 
+export namespace dns {
+    export interface BackupsBackupInfo {
+        /**
+         * The ID of the backup.
+         */
+        backupId: string;
+        /**
+         * The time when the backup was created. The time zone is UTC + 8.
+         */
+        backupTime: string;
+        /**
+         * The number of DNS records in the backup.
+         */
+        recordCount: number;
+    }
+
+    export interface RecordSetsRecordSet {
+        /**
+         * The domain prefix of the record set.
+         */
+        host: string;
+        /**
+         * The ID of the DNS record set.
+         */
+        id: string;
+        /**
+         * The line code corresponding to the DNS record set.
+         */
+        line: string;
+        /**
+         * The domain prefix contained in the DNS record set, in PQDN (Partially Qualified Domain Name) format.
+         */
+        pqdn: string;
+        /**
+         * The type of DNS records in the DNS record set.
+         */
+        type: string;
+        /**
+         * Indicates whether load balancing is enabled for the DNS record set.
+         */
+        weightEnabled: boolean;
+    }
+
+    export interface RecordsRecord {
+        /**
+         * The creation time of the domain.
+         */
+        createdAt: string;
+        /**
+         * Indicates whether the DNS record is enabled.
+         */
+        enable: boolean;
+        /**
+         * Domain prefix of the DNS record.
+         */
+        host: string;
+        /**
+         * Line of the DNS record.
+         */
+        line: string;
+        /**
+         * The account ID that called this API.
+         */
+        operators: string[];
+        /**
+         * The hostname included in the DNS record, in PQDN (Partially Qualified Domain Name) format.
+         */
+        pqdn: string;
+        /**
+         * The ID of the DNS record.
+         */
+        recordId: string;
+        /**
+         * The ID of the record set to which the DNS record belongs.
+         */
+        recordSetId: string;
+        /**
+         * The remark of the DNS record.
+         */
+        remark: string;
+        /**
+         * The tag information of the DNS record.
+         */
+        tags: string[];
+        /**
+         * The Time to Live (TTL) of the DNS record. The unit is seconds.
+         */
+        ttl: number;
+        /**
+         * Type of the DNS record.
+         */
+        type: string;
+        /**
+         * The most recent update time of the domain.
+         */
+        updatedAt: string;
+        /**
+         * Value of the DNS record.
+         */
+        value: string;
+        /**
+         * The weight of the DNS record.
+         */
+        weight: number;
+    }
+
+    export interface ZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ZonesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface ZonesZone {
+        /**
+         * The list of DNS servers allocated to the domain by BytePlus DNS.
+         */
+        allocateDnsServerLists: string[];
+        /**
+         * Whether automatic domain renewal is enabled.
+         */
+        autoRenew: boolean;
+        /**
+         * The most recent update time of the domain.
+         */
+        cacheStage: number;
+        /**
+         * The creation time of the domain.
+         */
+        createdAt: string;
+        /**
+         * The version of DNS DDoS protection service.
+         */
+        dnsSecurity: string;
+        /**
+         * The expiration time of the domain.
+         */
+        expiredTime: number;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The ID of the instance.
+         */
+        instanceId: string;
+        /**
+         * The ID of the instance. For free edition, the value of this field is null.
+         */
+        instanceNo: string;
+        /**
+         * Indicates whether the configuration of NS servers is correct. If the configuration is correct, the status of the domain in BytePlus DNS is Active.
+         */
+        isNsCorrect: boolean;
+        /**
+         * Whether the domain is a subdomain.
+         */
+        isSubDomain: boolean;
+        /**
+         * The ID of the account that last updated this domain.
+         */
+        lastOperator: string;
+        /**
+         * The ProjectName of the domain.
+         */
+        projectName: string;
+        /**
+         * The list of DNS servers actually used by the domain.
+         */
+        realDnsServerLists: string[];
+        /**
+         * The total number of DNS records contained in the domain.
+         */
+        recordCount: number;
+        /**
+         * The remarks for the domain.
+         */
+        remark: string;
+        /**
+         * The status of the domain.
+         */
+        stage: number;
+        /**
+         * The domain prefix of the subdomain. If the domain is not a subdomain, this parameter is null.
+         */
+        subDomainHost: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.dns.ZonesZoneTag[];
+        /**
+         * The edition of the domain.
+         */
+        tradeCode: string;
+        /**
+         * The most recent update time of the domain.
+         */
+        updatedAt: string;
+        /**
+         * The ID of the domain.
+         */
+        zid: number;
+        /**
+         * The domain name.
+         */
+        zoneName: string;
+    }
+
+    export interface ZonesZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+}
+
 export namespace ebs {
     export interface AutoSnapshotPoliciesAutoSnapshotPolicy {
         /**
@@ -6055,6 +6823,25 @@ export namespace ecs {
          * The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
          */
         volumeType: string;
+    }
+
+    export interface InstanceEipAddress {
+        /**
+         * The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+         */
+        bandwidthMbps?: number;
+        /**
+         * The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+         */
+        bandwidthPackageId?: number;
+        /**
+         * The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+         */
+        chargeType?: string;
+        /**
+         * The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+         */
+        isp?: string;
     }
 
     export interface InstanceGpuDevice {
@@ -7590,6 +8377,828 @@ export namespace escloud {
 
 }
 
+export namespace escloud_v2 {
+    export interface EscloudInstanceV2NetworkSpec {
+        /**
+         * The bandwidth of the eip. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * Whether the eip is opened.
+         */
+        isOpen: boolean;
+        /**
+         * The spec name of public network.
+         */
+        specName: string;
+        /**
+         * The type of public network, valid values: `Elasticsearch`, `Kibana`.
+         */
+        type: string;
+    }
+
+    export interface EscloudInstanceV2NodeSpecsAssign {
+        /**
+         * The extra performance of FlexPL storage spec.
+         */
+        extraPerformance?: outputs.escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformance;
+        /**
+         * The number of node.
+         */
+        number: number;
+        /**
+         * The name of compute resource spec.
+         */
+        resourceSpecName: string;
+        /**
+         * The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+         */
+        storageSize: number;
+        /**
+         * The name of storage spec. Kibana NodeSpecsAssign should specify this field to ``.
+         */
+        storageSpecName: string;
+        /**
+         * The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+         */
+        type: string;
+    }
+
+    export interface EscloudInstanceV2NodeSpecsAssignExtraPerformance {
+        /**
+         * When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+         * The unit is MiB, and the adjustment step size is 10MiB.
+         */
+        throughput: number;
+    }
+
+    export interface EscloudInstanceV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface EscloudInstancesV2Instance {
+        /**
+         * Whether to enable cerebro.
+         */
+        cerebroEnabled: boolean;
+        /**
+         * The cerebro private domain of instance.
+         */
+        cerebroPrivateDomain: string;
+        /**
+         * The cerebro public domain of instance.
+         */
+        cerebroPublicDomain: string;
+        /**
+         * The charge status of instance.
+         */
+        chargeEnabled: boolean;
+        /**
+         * The cluster id of instance.
+         */
+        clusterId: string;
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * Whether enable deletion protection for ESCloud instance.
+         */
+        deletionProtection: boolean;
+        /**
+         * whether enable es private domain public.
+         */
+        enableEsPrivateDomainPublic: boolean;
+        /**
+         * whether enable es private network.
+         */
+        enableEsPrivateNetwork: boolean;
+        /**
+         * whether enable es public network.
+         */
+        enableEsPublicNetwork: boolean;
+        /**
+         * whether enable kibana private domain public.
+         */
+        enableKibanaPrivateDomainPublic: boolean;
+        /**
+         * whether enable kibana private network.
+         */
+        enableKibanaPrivateNetwork: boolean;
+        /**
+         * whether enable kibana public network.
+         */
+        enableKibanaPublicNetwork: boolean;
+        /**
+         * The eip address of instance.
+         */
+        esEip: string;
+        /**
+         * The eip id associated with the instance.
+         */
+        esEipId: string;
+        /**
+         * The es inner endpoint of instance.
+         */
+        esInnerEndpoint: string;
+        /**
+         * The es private domain of instance.
+         */
+        esPrivateDomain: string;
+        /**
+         * The es private endpoint of instance.
+         */
+        esPrivateEndpoint: string;
+        /**
+         * The whitelist of es private ip.
+         */
+        esPrivateIpWhitelist: string;
+        /**
+         * The es public domain of instance.
+         */
+        esPublicDomain: string;
+        /**
+         * The es public endpoint of instance.
+         */
+        esPublicEndpoint: string;
+        /**
+         * The whitelist of es public ip.
+         */
+        esPublicIpWhitelist: string;
+        /**
+         * The expire time of instance.
+         */
+        expireDate: string;
+        /**
+         * The id of instance.
+         */
+        id: string;
+        /**
+         * The configuration of instance.
+         */
+        instanceConfigurations: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfiguration[];
+        /**
+         * The id of instance.
+         */
+        instanceId: string;
+        /**
+         * The eip address of kibana.
+         */
+        kibanaEip: string;
+        /**
+         * The eip id associated with kibana.
+         */
+        kibanaEipId: string;
+        /**
+         * The kibana private domain of instance.
+         */
+        kibanaPrivateDomain: string;
+        /**
+         * The whitelist of kibana private ip.
+         */
+        kibanaPrivateIpWhitelist: string;
+        /**
+         * The kibana public domain of instance.
+         */
+        kibanaPublicDomain: string;
+        /**
+         * The whitelist of kibana public ip.
+         */
+        kibanaPublicIpWhitelist: string;
+        /**
+         * The main zone id of instance.
+         */
+        mainZoneId: string;
+        /**
+         * The maintenance day of instance.
+         */
+        maintenanceDays: string[];
+        /**
+         * The maintenance time of instance.
+         */
+        maintenanceTime: string;
+        /**
+         * The nodes info of instance.
+         */
+        nodes: outputs.escloud_v2.EscloudInstancesV2InstanceNode[];
+        /**
+         * The plugin info of instance.
+         */
+        plugins: outputs.escloud_v2.EscloudInstancesV2InstancePlugin[];
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * Whether support code node.
+         */
+        supportCodeNode: boolean;
+        /**
+         * Tags.
+         */
+        tags: outputs.escloud_v2.EscloudInstancesV2InstanceTag[];
+        /**
+         * The total nodes of instance.
+         */
+        totalNodes: number;
+        /**
+         * The user id of instance.
+         */
+        userId: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfiguration {
+        /**
+         * The user name of instance.
+         */
+        adminUserName: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * The node number of cold.
+         */
+        coldNodeNumber: number;
+        /**
+         * The node resource spec of cold.
+         */
+        coldNodeResourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec[];
+        /**
+         * The node storage spec of cold.
+         */
+        coldNodeStorageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec[];
+        /**
+         * The node number of coordinator.
+         */
+        coordinatorNodeNumber: number;
+        /**
+         * The node resource spec of coordinator.
+         */
+        coordinatorNodeResourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec[];
+        /**
+         * The node storage spec of coordinator.
+         */
+        coordinatorNodeStorageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec[];
+        /**
+         * whether enable https.
+         */
+        enableHttps: boolean;
+        /**
+         * Whether enable pure master.
+         */
+        enablePureMaster: boolean;
+        /**
+         * The node number of hot.
+         */
+        hotNodeNumber: number;
+        /**
+         * The node resource spec of hot.
+         */
+        hotNodeResourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec[];
+        /**
+         * The node storage spec of hot.
+         */
+        hotNodeStorageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec[];
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The node number of kibana.
+         */
+        kibanaNodeNumber: number;
+        /**
+         * The node resource spec of kibana.
+         */
+        kibanaNodeResourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec[];
+        /**
+         * The node storage spec of kibana.
+         */
+        kibanaNodeStorageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec[];
+        /**
+         * The node number of master.
+         */
+        masterNodeNumber: number;
+        /**
+         * The node resource spec of master.
+         */
+        masterNodeResourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec[];
+        /**
+         * The node storage spec of master.
+         */
+        masterNodeStorageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec[];
+        /**
+         * The period of project.
+         */
+        period: number;
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * The region info of instance.
+         */
+        regionId: string;
+        /**
+         * The subnet info.
+         */
+        subnets: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationSubnet[];
+        /**
+         * The version of instance.
+         */
+        version: string;
+        /**
+         * The vpc info.
+         */
+        vpcs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationVpc[];
+        /**
+         * The node number of warm.
+         */
+        warmNodeNumber: number;
+        /**
+         * The node resource spec of warm.
+         */
+        warmNodeResourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec[];
+        /**
+         * The node storage spec of warm.
+         */
+        warmNodeStorageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec[];
+        /**
+         * The zoneId of instance.
+         */
+        zoneId: string;
+        /**
+         * The zone number of instance.
+         */
+        zoneNumber: number;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationSubnet {
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of subnet.
+         */
+        subnetName: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationVpc {
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudInstancesV2InstanceNode {
+        /**
+         * Is cold node.
+         */
+        isCold: boolean;
+        /**
+         * Is coordinator node.
+         */
+        isCoordinator: boolean;
+        /**
+         * Is hot node.
+         */
+        isHot: boolean;
+        /**
+         * Is kibana node.
+         */
+        isKibana: boolean;
+        /**
+         * Is master node.
+         */
+        isMaster: boolean;
+        /**
+         * Is warm node.
+         */
+        isWarm: boolean;
+        /**
+         * The show name of node.
+         */
+        nodeDisplayName: string;
+        /**
+         * The name of node.
+         */
+        nodeName: string;
+        /**
+         * The node resource spec of master.
+         */
+        resourceSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceNodeResourceSpec[];
+        /**
+         * The restart times of node.
+         */
+        restartNumber: number;
+        /**
+         * The start time of node.
+         */
+        startTime: string;
+        /**
+         * The status of node.
+         */
+        status: string;
+        /**
+         * The node storage spec of master.
+         */
+        storageSpecs: outputs.escloud_v2.EscloudInstancesV2InstanceNodeStorageSpec[];
+    }
+
+    export interface EscloudInstancesV2InstanceNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+    }
+
+    export interface EscloudInstancesV2InstanceNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+    }
+
+    export interface EscloudInstancesV2InstancePlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The status of plugin.
+         */
+        status: string;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface EscloudInstancesV2InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface EscloudInstancesV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+}
+
 export namespace financial_relation {
     export interface FinancialRelationsFinancialRelation {
         /**
@@ -8364,9 +9973,24 @@ export namespace kafka {
 }
 
 export namespace mongodb {
+    export interface AccountAccountPrivilege {
+        /**
+         * The name of database.
+         */
+        dbName: string;
+        /**
+         * The role names of the account.
+         */
+        roleNames: string[];
+    }
+
     export interface AccountsAccount {
         /**
-         * The name of account, current support only `root`.
+         * The description of account.
+         */
+        accountDesc: string;
+        /**
+         * The name of account. This field support fuzzy query.
          */
         accountName: string;
         /**
@@ -8377,6 +10001,18 @@ export namespace mongodb {
          * The type of account.
          */
         accountType: string;
+        /**
+         * The database of account. This field support fuzzy query.
+         */
+        authDb: string;
+        /**
+         * The create time of account.
+         */
+        createTime: string;
+        /**
+         * The modify time of account.
+         */
+        modifyTime: string;
     }
 
     export interface AccountsAccountAccountPrivilege {
@@ -8458,13 +10094,26 @@ export namespace mongodb {
          */
         mongosNodeId: string;
         /**
-         * The spec of node.
+         * The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
          */
         nodeSpec: string;
         /**
          * The node status.
          */
         nodeStatus: string;
+    }
+
+    export interface InstanceNodeAvailabilityZone {
+        /**
+         * The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+         * When the instanceType is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+         * When the instanceType is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+         */
+        nodeNumber: number;
+        /**
+         * The zone id of readonly nodes.
+         */
+        zoneId: string;
     }
 
     export interface InstanceParameterLogsParameterChangeLogs {
@@ -8687,9 +10336,17 @@ export namespace mongodb {
          */
         nodes: outputs.mongodb.InstancesInstanceNode[];
         /**
-         * The project name to which the instance belongs.
+         * The private endpoint address of instance.
+         */
+        privateEndpoint: string;
+        /**
+         * The project name to query.
          */
         projectName: string;
+        /**
+         * The number of readonly node in instance.
+         */
+        readOnlyNodeNumber: number;
         /**
          * The planned reclaim time of instance.
          */
@@ -8941,6 +10598,25 @@ export namespace mongodb {
         value: string;
     }
 
+    export interface MongoAllowListAssociatedInstance {
+        /**
+         * The instance id that bound to the allow list.
+         */
+        instanceId: string;
+        /**
+         * The instance name that bound to the allow list.
+         */
+        instanceName: string;
+        /**
+         * The project name of the allow list.
+         */
+        projectName: string;
+        /**
+         * The VPC ID.
+         */
+        vpc: string;
+    }
+
     export interface MongoAllowListsAllowList {
         /**
          * The list of IP address in allow list.
@@ -8974,6 +10650,10 @@ export namespace mongodb {
          * The list of associated instances.
          */
         associatedInstances: outputs.mongodb.MongoAllowListsAllowListAssociatedInstance[];
+        /**
+         * The project name of the allow list.
+         */
+        projectName: string;
     }
 
     export interface MongoAllowListsAllowListAssociatedInstance {
@@ -8985,6 +10665,10 @@ export namespace mongodb {
          * The instance name that bound to the allow list.
          */
         instanceName: string;
+        /**
+         * The project name of the allow list.
+         */
+        projectName: string;
         /**
          * The VPC ID.
          */
@@ -9004,6 +10688,10 @@ export namespace mongodb {
 
     export interface SpecsSpecs {
         /**
+         * The collection of config server node specs.
+         */
+        configServerNodeSpecs: outputs.mongodb.SpecsSpecsConfigServerNodeSpec[];
+        /**
          * The collection of mongos node specs.
          */
         mongosNodeSpecs: outputs.mongodb.SpecsSpecsMongosNodeSpec[];
@@ -9015,6 +10703,33 @@ export namespace mongodb {
          * The collection of shard node specs.
          */
         shardNodeSpecs: outputs.mongodb.SpecsSpecsShardNodeSpec[];
+    }
+
+    export interface SpecsSpecsConfigServerNodeSpec {
+        /**
+         * The cpu cores.
+         */
+        cpuNum: number;
+        /**
+         * The max connections.
+         */
+        maxConn: number;
+        /**
+         * The max storage.
+         */
+        maxStorage: number;
+        /**
+         * The memory in GB.
+         */
+        memInGb: number;
+        /**
+         * The min storage.
+         */
+        minStorage: number;
+        /**
+         * The shard node spec name.
+         */
+        specName: string;
     }
 
     export interface SpecsSpecsMongosNodeSpec {
@@ -9054,6 +10769,10 @@ export namespace mongodb {
          */
         memInDb: number;
         /**
+         * The min storage.
+         */
+        minStorage: number;
+        /**
          * The shard node spec name.
          */
         specName: string;
@@ -9076,6 +10795,10 @@ export namespace mongodb {
          * The memory in GB.
          */
         memInGb: number;
+        /**
+         * The min storage.
+         */
+        minStorage: number;
         /**
          * The shard node spec name.
          */
@@ -10629,6 +12352,14 @@ export namespace privatelink {
          */
         id: string;
         /**
+         * Whether to enable private dns name.
+         */
+        privateDnsEnabled: boolean;
+        /**
+         * The private dns name of vpc endpoint.
+         */
+        privateDnsName: string;
+        /**
          * The Id of vpc endpoint service.
          */
         serviceId: string;
@@ -10648,6 +12379,272 @@ export namespace privatelink {
          * The vpc id of vpc endpoint.
          */
         vpcId: string;
+    }
+
+}
+
+export namespace rabbitmq {
+    export interface InstanceChargeInfo {
+        /**
+         * Whether to automatically renew in prepaid scenarios. Default is false.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the rabbitmq instance. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * Purchase duration in prepaid scenarios. When PeriodUnit is specified as `Month`, the value range is 1-9. When PeriodUnit is specified as `Year`, the value range is 1-3. Default is 1.
+         */
+        period?: number;
+        /**
+         * The purchase cycle in the prepaid scenario. Valid values: `Month`, `Year`. Default is `Month`.
+         */
+        periodUnit?: string;
+    }
+
+    export interface InstanceEndpoint {
+        /**
+         * The endpoint type of the rabbitmq instance.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of the rabbitmq instance.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of the rabbitmq instance.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of the rabbitmq instance.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface InstancePluginsPlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The disable prompt of plugin.
+         */
+        disablePrompt: string;
+        /**
+         * The enable prompt of plugin.
+         */
+        enablePrompt: string;
+        /**
+         * Whether plugin is enabled.
+         */
+        enabled: boolean;
+        /**
+         * Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+         */
+        needRebootOnChange: boolean;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The port of plugin.
+         */
+        port: number;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesRabbitmqInstance {
+        /**
+         * The account id of the rabbitmq instance.
+         */
+        accountId: string;
+        /**
+         * Whether enable the public network parsing function of the rabbitmq instance.
+         */
+        applyPrivateDnsToPublic: boolean;
+        /**
+         * The type of the rabbitmq instance.
+         */
+        archType: string;
+        /**
+         * The charge detail information of the rabbitmq instance.
+         */
+        chargeDetails: outputs.rabbitmq.InstancesRabbitmqInstanceChargeDetail[];
+        /**
+         * The compute specification of the rabbitmq instance.
+         */
+        computeSpec: string;
+        /**
+         * The create time of the rabbitmq instance.
+         */
+        createTime: string;
+        /**
+         * The eip id of the rabbitmq instance.
+         */
+        eipId: string;
+        /**
+         * The endpoint info of the rabbitmq instance.
+         */
+        endpoints: outputs.rabbitmq.InstancesRabbitmqInstanceEndpoint[];
+        /**
+         * The id of the rabbitmq instance.
+         */
+        id: string;
+        /**
+         * The WebUI admin user name of the rabbitmq instance.
+         */
+        initUserName: string;
+        /**
+         * The description of the rabbitmq instance.
+         */
+        instanceDescription: string;
+        /**
+         * The id of rabbitmq instance. This field supports fuzzy query.
+         */
+        instanceId: string;
+        /**
+         * The name of rabbitmq instance. This field supports fuzzy query.
+         */
+        instanceName: string;
+        /**
+         * The status of rabbitmq instance.
+         */
+        instanceStatus: string;
+        /**
+         * The project name of rabbitmq instance.
+         */
+        projectName: string;
+        /**
+         * The region description of the rabbitmq instance.
+         */
+        regionDescription: string;
+        /**
+         * The region id of the rabbitmq instance.
+         */
+        regionId: string;
+        /**
+         * The total storage space of the rabbitmq instance. Unit: GiB.
+         */
+        storageSpace: number;
+        /**
+         * The subnet id of the rabbitmq instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rabbitmq.InstancesRabbitmqInstanceTag[];
+        /**
+         * The used storage space of the rabbitmq instance. Unit: GiB.
+         */
+        usedStorageSpace: number;
+        /**
+         * The version of the rabbitmq instance.
+         */
+        version: string;
+        /**
+         * The vpc id of rabbitmq instance. This field supports fuzzy query.
+         */
+        vpcId: string;
+        /**
+         * The zone description of the rabbitmq instance.
+         */
+        zoneDescription: string;
+        /**
+         * The zone id of rabbitmq instance. This field supports fuzzy query.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesRabbitmqInstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge end time of the rabbitmq instance.
+         */
+        chargeEndTime: string;
+        /**
+         * The charge expire time of the rabbitmq instance.
+         */
+        chargeExpireTime: string;
+        /**
+         * The charge start time of the rabbitmq instance.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status of the rabbitmq instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of rabbitmq instance.
+         */
+        chargeType: string;
+        /**
+         * The overdue reclaim time of the rabbitmq instance.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of the rabbitmq instance.
+         */
+        overdueTime: string;
+    }
+
+    export interface InstancesRabbitmqInstanceEndpoint {
+        /**
+         * The endpoint type of the rabbitmq instance.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of the rabbitmq instance.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of the rabbitmq instance.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of the rabbitmq instance.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface InstancesRabbitmqInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }
@@ -11548,7 +13545,26 @@ export namespace rds_mysql {
         dbName: string;
     }
 
+    export interface AllowlistSecurityGroupBindInfo {
+        /**
+         * The schema for the associated security group.
+         * IngressDirectionIp: Incoming Direction IP.
+         * AssociateEcsIp: Associate ECSIP.
+         * explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+         */
+        bindMode: string;
+        /**
+         * The security group id of the allow list.
+         */
+        securityGroupId: string;
+    }
+
     export interface AllowlistsAllowList {
+        /**
+         * White list category. Values:
+         * Ordinary: Ordinary white list. Default: Default white list. Description: When this parameter is used as a request parameter, the default value is Ordinary.
+         */
+        allowListCategory: string;
         /**
          * The description of the allow list.
          */
@@ -11581,6 +13597,14 @@ export namespace rds_mysql {
          * The list of instances.
          */
         associatedInstances: outputs.rds_mysql.AllowlistsAllowListAssociatedInstance[];
+        /**
+         * Whitelist information for the associated security group.
+         */
+        securityGroupBindInfos: outputs.rds_mysql.AllowlistsAllowListSecurityGroupBindInfo[];
+        /**
+         * IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+         */
+        userAllowLists: string[];
     }
 
     export interface AllowlistsAllowListAssociatedInstance {
@@ -11596,6 +13620,135 @@ export namespace rds_mysql {
          * The id of the vpc.
          */
         vpc: string;
+    }
+
+    export interface AllowlistsAllowListSecurityGroupBindInfo {
+        /**
+         * The schema for the associated security group.
+         * IngressDirectionIp: Incoming Direction IP.
+         * AssociateEcsIp: Associate ECSIP.
+         * explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+         */
+        bindMode: string;
+        /**
+         * The ip list of the security group.
+         */
+        ipLists: string[];
+        /**
+         * The security group id of the allow list.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the security group.
+         */
+        securityGroupName: string;
+    }
+
+    export interface BackupBackupMeta {
+        /**
+         * Specify the database that needs to be backed up.
+         */
+        dbName: string;
+        /**
+         * Specify the tables to be backed up in the specified database. When this field is empty, it defaults to full database backup.
+         */
+        tableNames?: string[];
+    }
+
+    export interface BackupsBackup {
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * Backup file name.
+         */
+        backupFileName: string;
+        /**
+         * Backup file size, in bytes.
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * Backup type, value: Physical: Physical backup. Default value. Logical: Logical backup. Description: There is no default value. When this field is not passed, backups of all states under the query conditions limited by other fields are returned.
+         */
+        backupMethod: string;
+        /**
+         * The region where the backup is located.
+         */
+        backupRegion: string;
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * Backup status, values: Success: Success. Failed: Failed. Running: In progress. Description: There is no default value. When this field is not passed, all backups in all states under the query conditions limited by other fields are returned.
+         */
+        backupStatus: string;
+        /**
+         * Backup method, value: Full: Full backup under physical backup type or library table backup under logical backup type. Increment: Incremental backup under physical backup type. DumpAll: Full database backup under logical backup type. Description: There is no default value. When this field is not passed, all backups of all methods under the query conditions limited by other fields are returned.
+         */
+        backupType: string;
+        /**
+         * The time point of a consistent snapshot is in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        consistentTime: string;
+        /**
+         * Creator of backup. Values: System: System. User: User. Description: There is no default value. When this field is not passed, all types of backups under the query conditions limited by other fields are returned.
+         */
+        createType: string;
+        /**
+         * The database table information contained in the backup set can include up to 10,000 tables.
+         * Explanation:
+         * When the database is empty, this field is not returned.
+         */
+        dbTableInfos: outputs.rds_mysql.BackupsBackupDbTableInfo[];
+        /**
+         * Download status. Values:
+         * NotDownload: Not downloaded.
+         * Success: Downloaded.
+         * Failed: Download failed.
+         * Running: Downloading.
+         */
+        downloadStatus: string;
+        /**
+         * Error message.
+         */
+        errorMessage: string;
+        /**
+         * Expired time of backup, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        expiredTime: string;
+        /**
+         * The id of the backup.
+         */
+        id: string;
+        /**
+         * Is the data backup encrypted? Value:
+         * true: Encrypted.
+         * false: Not encrypted.
+         */
+        isEncrypted: boolean;
+        /**
+         * Whether the backup has expired. Value:
+         * true: Expired.
+         * false: Not expired.
+         */
+        isExpired: boolean;
+    }
+
+    export interface BackupsBackupDbTableInfo {
+        /**
+         * Database name.
+         */
+        database: string;
+        /**
+         * Table names.
+         */
+        tables: string[];
     }
 
     export interface DatabasesDatabase {
@@ -11626,6 +13779,114 @@ export namespace rds_mysql {
          * The privilege detail of the account.
          */
         accountPrivilegeDetail: string;
+    }
+
+    export interface EndpointReadOnlyNodeWeight {
+        /**
+         * Read-only nodes require NodeId to be passed, while primary nodes do not require it.
+         */
+        nodeId?: string;
+        /**
+         * The primary node needs to pass in the NodeType as Primary, while the read-only node does not need to pass it in.
+         */
+        nodeType?: string;
+        /**
+         * The read weight of the node increases by 100, with a maximum value of 10000.
+         */
+        weight: number;
+    }
+
+    export interface EndpointsEndpoint {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_mysql.EndpointsEndpointAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * The description of the mysql endpoint.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * The id of the mysql endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of the mysql endpoint.
+         */
+        endpointName: string;
+        /**
+         * The endpoint type of the mysql endpoint.
+         */
+        endpointType: string;
+        /**
+         * The id of the mysql endpoint.
+         */
+        id: string;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights: outputs.rds_mysql.EndpointsEndpointReadOnlyNodeWeight[];
+        /**
+         * The read write mode.
+         */
+        readWriteMode: string;
+    }
+
+    export interface EndpointsEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * The Port.
+         */
+        port: string;
+        /**
+         * Subnet ID, valid only for private addresses.
+         */
+        subnetId: string;
+    }
+
+    export interface EndpointsEndpointReadOnlyNodeWeight {
+        /**
+         * The ID of the node.
+         */
+        nodeId: string;
+        /**
+         * The type of the node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
     }
 
     export interface InstanceChargeDetail {
@@ -11674,6 +13935,14 @@ export namespace rds_mysql {
          * Year - Package year.
          */
         periodUnit: string;
+        /**
+         * Restore time of temporary upgrade.
+         */
+        tempModifyEndTime: string;
+        /**
+         * Temporary upgrade start time.
+         */
+        tempModifyStartTime: string;
     }
 
     export interface InstanceChargeInfo {
@@ -11732,6 +14001,10 @@ export namespace rds_mysql {
          * AllNode: All node terminals. (Only the operation and maintenance side).
          */
         endpointType: string;
+        /**
+         * Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+         */
+        idleConnectionReclaim: boolean;
         /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
@@ -11792,23 +14065,38 @@ export namespace rds_mysql {
         weight: number;
     }
 
+    export interface InstanceFeatureState {
+        /**
+         * Whether it is enabled. Values:
+         * true: Enabled.
+         * false: Disabled.
+         */
+        enable: boolean;
+        /**
+         * Feature name.
+         */
+        featureName: string;
+        /**
+         * Whether it support this function. Value:
+         * true: Supported.
+         * false: Not supported.
+         */
+        support: boolean;
+    }
+
     export interface InstanceMaintenanceWindow {
         /**
-         * DayKind of maintainable window. Value: Week. Month.
+         * Maintenance cycle granularity, values: Week: Week. Month: Month.
          */
-        dayKind: string;
+        dayKind?: string;
         /**
-         * Days of maintainable window of the month.
+         * Specify the maintainable time period of a certain day of the week. The values are: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Multiple selections are allowed. If this value is not specified or is empty, it defaults to specifying all seven days of the week.
          */
-        dayOfMonths: number[];
+        dayOfWeeks?: string[];
         /**
-         * Days of maintainable window of the week.
+         * Maintenance period of an instance. Format: HH:mmZ-HH:mmZ (UTC time).
          */
-        dayOfWeeks: string[];
-        /**
-         * The maintainable time of the RDS instance.
-         */
-        maintenanceTime: string;
+        maintenanceTime?: string;
     }
 
     export interface InstanceNode {
@@ -11871,6 +14159,75 @@ export namespace rds_mysql {
         parameterValue: string;
     }
 
+    export interface InstanceSpecsInstanceSpec {
+        /**
+         * Default value of maximum number of connections.
+         */
+        connection: number;
+        /**
+         * Compatible version. Values:
+         * MySQL_5_7: MySQL 5.7 version. Default value.
+         * MySQL_8_0: MySQL 8.0 version.
+         */
+        dbEngineVersion: string;
+        /**
+         * Instance type. The value is DoubleNode.
+         */
+        instanceType: string;
+        /**
+         * Maximum IOPS per second.
+         */
+        iops: number;
+        /**
+         * Memory size, in GB.
+         */
+        memory: number;
+        /**
+         * Queries Per Second (QPS).
+         */
+        qps: number;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * Instance specification code.
+         */
+        specCode: string;
+        /**
+         * Instance specification type. Values:
+         * General: Exclusive specification (formerly "General Purpose").
+         * Shared: General specification (formerly "Shared Type").
+         */
+        specFamily: string;
+        /**
+         * The status of the available zone where the specification is located includes the following statuses:
+         * Normal: On sale.
+         * Soldout: Sold out.
+         */
+        specStatus: string;
+        /**
+         * Maximum storage space, in GB.
+         */
+        storageMax: number;
+        /**
+         * Minimum storage space, in GB.
+         */
+        storageMin: number;
+        /**
+         * Disk step size, in GB.
+         */
+        storageStep: number;
+        /**
+         * Number of vCPUs.
+         */
+        vcpu: number;
+        /**
+         * Availability zone ID.
+         */
+        zoneId: string;
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -11892,9 +14249,19 @@ export namespace rds_mysql {
          */
         backupUse: number;
         /**
+         * Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+         * true: Yes.
+         * false: No.
+         */
+        binlogDump: boolean;
+        /**
          * Payment methods.
          */
         chargeDetail: outputs.rds_mysql.InstancesRdsMysqlInstanceChargeDetail;
+        /**
+         * Connection pool type.
+         */
+        connectionPoolType: string;
         /**
          * Node creation local time.
          */
@@ -11908,9 +14275,27 @@ export namespace rds_mysql {
          */
         dbEngineVersion: string;
         /**
+         * The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+         * Creating: The proxy is being started.
+         * Running: The proxy is running.
+         * Shutdown: The proxy is closed.
+         * Deleting: The proxy is being closed.
+         */
+        dbProxyStatus: string;
+        /**
          * The endpoint info of the RDS instance.
          */
         endpoints: outputs.rds_mysql.InstancesRdsMysqlInstanceEndpoint[];
+        /**
+         * Feature status.
+         */
+        featureStates: outputs.rds_mysql.InstancesRdsMysqlInstanceFeatureState[];
+        /**
+         * Whether to enable global read-only.
+         * true: Yes.
+         * false: No.
+         */
+        globalReadOnly: boolean;
         /**
          * The ID of the RDS instance.
          */
@@ -11943,9 +14328,21 @@ export namespace rds_mysql {
          */
         memory: number;
         /**
+         * Average CPU usage of the instance master node in nearly one minute.
+         */
+        nodeCpuUsedPercentage: number;
+        /**
+         * Average memory usage of the instance master node in nearly one minute.
+         */
+        nodeMemoryUsedPercentage: number;
+        /**
          * The number of nodes.
          */
         nodeNumber: number;
+        /**
+         * Average disk usage of the instance master node in nearly one minute.
+         */
+        nodeSpaceUsedPercentage: number;
         /**
          * General instance type, different from Custom instance type.
          */
@@ -12002,6 +14399,10 @@ export namespace rds_mysql {
          * The available zone of the RDS instance.
          */
         zoneId: string;
+        /**
+         * List of availability zones where each node of the instance is located.
+         */
+        zoneIds: string[];
     }
 
     export interface InstancesRdsMysqlInstanceChargeDetail {
@@ -12048,6 +14449,14 @@ export namespace rds_mysql {
          * Year - Package year.
          */
         periodUnit: string;
+        /**
+         * Restore time of temporary upgrade.
+         */
+        tempModifyEndTime: string;
+        /**
+         * Temporary upgrade start time.
+         */
+        tempModifyStartTime: string;
     }
 
     export interface InstancesRdsMysqlInstanceEndpoint {
@@ -12088,6 +14497,10 @@ export namespace rds_mysql {
          * AllNode: All node terminals. (Only the operation and maintenance side).
          */
         endpointType: string;
+        /**
+         * Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+         */
+        idleConnectionReclaim: boolean;
         /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
@@ -12146,6 +14559,25 @@ export namespace rds_mysql {
          * The weight of the node.
          */
         weight: number;
+    }
+
+    export interface InstancesRdsMysqlInstanceFeatureState {
+        /**
+         * Whether it is enabled. Values:
+         * true: Enabled.
+         * false: Disabled.
+         */
+        enable: boolean;
+        /**
+         * Feature name.
+         */
+        featureName: string;
+        /**
+         * Whether it support this function. Value:
+         * true: Supported.
+         * false: Not supported.
+         */
+        support: boolean;
     }
 
     export interface InstancesRdsMysqlInstanceMaintenanceWindow {
@@ -12236,6 +14668,139 @@ export namespace rds_mysql {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface ParameterTemplateTemplateParam {
+        /**
+         * Instance parameter name.
+         * Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+         */
+        name: string;
+        /**
+         * Parameter running value.
+         * Description: When making request parameters in CreateParameterTemplate and ModifyParameterTemplate, only Name and RunningValue need to be passed in.
+         */
+        runningValue: string;
+    }
+
+    export interface ParameterTemplatesTemplate {
+        /**
+         * The account ID.
+         */
+        accountId: string;
+        /**
+         * Creation time.
+         */
+        createTime: string;
+        /**
+         * Does the template contain parameters that require restart.
+         */
+        needRestart: boolean;
+        /**
+         * The number of parameters contained in the template.
+         */
+        parameterNum: number;
+        /**
+         * The project to which the template belongs.
+         */
+        projectName: string;
+        /**
+         * Template category, with a value of DBEngine (database engine parameters).
+         */
+        templateCategory: string;
+        /**
+         * Parameter template description.
+         */
+        templateDesc: string;
+        /**
+         * Parameter template ID.
+         */
+        templateId: string;
+        /**
+         * Parameter template name.
+         */
+        templateName: string;
+        /**
+         * Parameters contained in the template.
+         */
+        templateParams: outputs.rds_mysql.ParameterTemplatesTemplateTemplateParam[];
+        /**
+         * Parameter template source, value range: System. User.
+         */
+        templateSource: string;
+        /**
+         * Database type of parameter template. The default value is Mysql.
+         */
+        templateType: string;
+        /**
+         * Database version of parameter template. Value range:
+         * MySQL_5_7: Default value. MySQL 5.7 version.
+         * MySQL_8_0: MySQL 8.0 version.
+         */
+        templateTypeVersion: string;
+        /**
+         * Modification time of the template.
+         */
+        updateTime: string;
+    }
+
+    export interface ParameterTemplatesTemplateTemplateParam {
+        /**
+         * Parameter default value.
+         */
+        defaultValue: string;
+        /**
+         * Parameter description.
+         */
+        description: string;
+        /**
+         * Instance parameter name.
+         * Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+         */
+        name: string;
+        /**
+         * Is it necessary to restart the instance for the changes to take effect.
+         */
+        restart: boolean;
+        /**
+         * Parameter running value.
+         * Description: When making requests with CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+         */
+        runningValue: string;
+        /**
+         * Value range of parameters.
+         */
+        valueRange: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
 }
@@ -14063,6 +16628,618 @@ export namespace redis {
 
 }
 
+export namespace rocketmq {
+    export interface AccessKeysAccessKey {
+        /**
+         * The access key id of the rocketmq key.
+         */
+        accessKey: string;
+        /**
+         * The acl config of the rocketmq key.
+         */
+        aclConfigJson: string;
+        /**
+         * The active status of the rocketmq key.
+         */
+        actived: boolean;
+        /**
+         * The default authority of the rocketmq key.
+         */
+        allAuthority: string;
+        /**
+         * The create time of the rocketmq key.
+         */
+        createTime: string;
+        /**
+         * The description of the rocketmq key.
+         */
+        description: string;
+        /**
+         * The id of rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The secret key of the rocketmq key.
+         */
+        secretKey: string;
+        /**
+         * The custom authority of the rocketmq key.
+         */
+        topicPermissions: outputs.rocketmq.AccessKeysAccessKeyTopicPermission[];
+    }
+
+    export interface AccessKeysAccessKeyTopicPermission {
+        /**
+         * The custom authority for the topic.
+         */
+        permission: string;
+        /**
+         * The name of the rocketmq topic.
+         */
+        topicName: string;
+    }
+
+    export interface AllowListsRocketmqAllowList {
+        /**
+         * The description of the rocketmq allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the rocketmq allow list.
+         */
+        allowListId: string;
+        /**
+         * The number of ip address in the rocketmq allow list.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the rocketmq allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the rocketmq allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format of the allow list.
+         */
+        allowLists: string[];
+        /**
+         * The number of the rocketmq instances associated with the allow list.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The associated instance information of the allow list.
+         */
+        associatedInstances: outputs.rocketmq.AllowListsRocketmqAllowListAssociatedInstance[];
+        /**
+         * The id of the rocketmq allow list.
+         */
+        id: string;
+    }
+
+    export interface AllowListsRocketmqAllowListAssociatedInstance {
+        /**
+         * The id of the rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the rocketmq instance.
+         */
+        instanceName: string;
+        /**
+         * The vpc id of the rocketmq instance.
+         */
+        vpc: string;
+    }
+
+    export interface GroupsRocketmqGroup {
+        /**
+         * The consumed topic information of the rocketmq group.
+         */
+        consumedClients: outputs.rocketmq.GroupsRocketmqGroupConsumedClient[];
+        /**
+         * The consumed topic information of the rocketmq group.
+         */
+        consumedTopics: outputs.rocketmq.GroupsRocketmqGroupConsumedTopic[];
+        /**
+         * The create time of the rocketmq group.
+         */
+        createTime: string;
+        /**
+         * The description of the rocketmq group.
+         */
+        description: string;
+        /**
+         * The id of rocketmq group. This field support fuzzy query.
+         */
+        groupId: string;
+        /**
+         * The type of rocketmq group. Valid values: `TCP`.
+         */
+        groupType: string;
+        /**
+         * Whether the subscription relationship of consumer instance groups within the group is consistent.
+         */
+        isSubSame: boolean;
+        /**
+         * The message delay time of the rocketmq group. The unit is milliseconds.
+         */
+        messageDelayTime: string;
+        /**
+         * The message model of the rocketmq group.
+         */
+        messageModel: string;
+        /**
+         * The status of the rocketmq group.
+         */
+        status: string;
+        /**
+         * The total consume rate of the rocketmq group. The unit is per second.
+         */
+        totalConsumeRate: string;
+        /**
+         * The total amount of unconsumed messages.
+         */
+        totalDiff: number;
+    }
+
+    export interface GroupsRocketmqGroupConsumedClient {
+        /**
+         * The address of the consumed client.
+         */
+        clientAddress: string;
+        /**
+         * The id of the consumed client.
+         */
+        clientId: string;
+        /**
+         * The amount of message.
+         */
+        diff: number;
+        /**
+         * The language of the consumed client.
+         */
+        language: string;
+        /**
+         * The version of the consumed client.
+         */
+        version: string;
+    }
+
+    export interface GroupsRocketmqGroupConsumedTopic {
+        /**
+         * The queue number of the rocketmq topic.
+         */
+        queueNum: number;
+        /**
+         * The sub string of the rocketmq topic.
+         */
+        subString: string;
+        /**
+         * The name of the rocketmq topic.
+         */
+        topicName: string;
+    }
+
+    export interface InstancesRocketmqInstance {
+        /**
+         * The account id of the rocketmq instance.
+         */
+        accountId: string;
+        /**
+         * Whether the private dns to public function is enabled for the rocketmq instance.
+         */
+        applyPrivateDnsToPublic: boolean;
+        /**
+         * The available queue number of the rocketmq instance.
+         */
+        availableQueueNumber: number;
+        /**
+         * The charge detail information of the rocketmq instance.
+         */
+        chargeDetails: outputs.rocketmq.InstancesRocketmqInstanceChargeDetail[];
+        /**
+         * The compute spec of the rocketmq instance.
+         */
+        computeSpec: string;
+        /**
+         * The connection information of the rocketmq.
+         */
+        connectionInfos: outputs.rocketmq.InstancesRocketmqInstanceConnectionInfo[];
+        /**
+         * The create time of the rocketmq instance.
+         */
+        createTime: string;
+        /**
+         * The eip id of the rocketmq instance.
+         */
+        eipId: string;
+        /**
+         * Whether the ssl authentication is enabled for the rocketmq instance.
+         */
+        enableSsl: boolean;
+        /**
+         * The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+         */
+        fileReservedTime: number;
+        /**
+         * The id of the rocketmq instance.
+         */
+        id: string;
+        /**
+         * The description of the rocketmq instance.
+         */
+        instanceDescription: string;
+        /**
+         * The id of rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The name of rocketmq instance. This field support fuzzy query.
+         */
+        instanceName: string;
+        /**
+         * The status of rocketmq instance.
+         */
+        instanceStatus: string;
+        /**
+         * The project name of rocketmq instance.
+         */
+        projectName: string;
+        /**
+         * The region id of the rocketmq instance.
+         */
+        regionId: string;
+        /**
+         * The ssl mode of the rocketmq instance.
+         */
+        sslMode: string;
+        /**
+         * The total storage space of the rocketmq instance.
+         */
+        storageSpace: number;
+        /**
+         * The subnet id of the rocketmq instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rocketmq.InstancesRocketmqInstanceTag[];
+        /**
+         * The used group number of the rocketmq instance.
+         */
+        usedGroupNumber: number;
+        /**
+         * The used queue number of the rocketmq instance.
+         */
+        usedQueueNumber: number;
+        /**
+         * The used storage space of the rocketmq instance.
+         */
+        usedStorageSpace: number;
+        /**
+         * The used topic number of the rocketmq instance.
+         */
+        usedTopicNumber: number;
+        /**
+         * The version of rocketmq instance. Valid values: `4.8`.
+         */
+        version: string;
+        /**
+         * The vpc id of rocketmq instance.
+         */
+        vpcId: string;
+        /**
+         * The zone id of rocketmq instance.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesRocketmqInstanceChargeDetail {
+        /**
+         * Whether to enable automatic renewal.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge expire time of the rocketmq instance.
+         */
+        chargeExpireTime: string;
+        /**
+         * The charge start time of the rocketmq instance.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status of the rocketmq instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * The overdue reclaim time of the rocketmq instance.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of the rocketmq instance.
+         */
+        overdueTime: string;
+        /**
+         * The period unit of the rocketmq instance.
+         */
+        periodUnit: string;
+    }
+
+    export interface InstancesRocketmqInstanceConnectionInfo {
+        /**
+         * The endpoint address ip of the rocketmq.
+         */
+        endpointAddressIp: string;
+        /**
+         * The endpoint type of the rocketmq.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of the rocketmq.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of the rocketmq.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of the rocketmq.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface InstancesRocketmqInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RocketMQAccessKeyTopicPermission {
+        /**
+         * The custom authority for the topic.
+         */
+        permission: string;
+        /**
+         * The name of the rocketmq topic.
+         */
+        topicName: string;
+    }
+
+    export interface RocketMQAllowListAssociatedInstance {
+        /**
+         * The id of the rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the rocketmq instance.
+         */
+        instanceName: string;
+        /**
+         * The vpc id of the rocketmq instance.
+         */
+        vpc: string;
+    }
+
+    export interface RocketMQInstanceChargeInfo {
+        /**
+         * Whether to automatically renew in prepaid scenarios. Default is false.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * Purchase duration in prepaid scenarios. When PeriodUnit is specified as `Monthly`, the value range is 1-9. When PeriodUnit is specified as `Yearly`, the value range is 1-3. Default is 1.
+         */
+        period?: number;
+        /**
+         * The purchase cycle in the prepaid scenario. Valid values: `Monthly`, `Yearly`. Default is `Monthly`.
+         */
+        periodUnit?: string;
+    }
+
+    export interface RocketMQInstanceConnectionInfo {
+        /**
+         * The endpoint address ip of the rocketmq.
+         */
+        endpointAddressIp: string;
+        /**
+         * The endpoint type of the rocketmq.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of the rocketmq.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of the rocketmq.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of the rocketmq.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface RocketMQInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RocketMQTopicAccessPolicy {
+        /**
+         * The access key of the rocketmq key.
+         */
+        accessKey: string;
+        /**
+         * The authority of the rocketmq key for the current topic. Valid values: `ALL`, `PUB`, `SUB`, `DENY`. Default is `DENY`.
+         */
+        authority: string;
+    }
+
+    export interface RocketMQTopicGroup {
+        /**
+         * The id of the rocketmq group.
+         */
+        groupId: string;
+        /**
+         * The message model of the rocketmq group.
+         */
+        messageModel: string;
+        /**
+         * The sub string of the rocketmq group.
+         */
+        subString: string;
+    }
+
+    export interface RocketMQTopicQueue {
+        /**
+         * The end offset of the rocketmq queue.
+         */
+        endOffset: number;
+        /**
+         * The last update timestamp of the rocketmq queue.
+         */
+        lastUpdateTimestamp: number;
+        /**
+         * The message count of the rocketmq queue.
+         */
+        messageCount: number;
+        /**
+         * The id of the rocketmq queue.
+         */
+        queueId: string;
+        /**
+         * The start offset of the rocketmq queue.
+         */
+        startOffset: number;
+    }
+
+    export interface TopicsRocketmqTopic {
+        /**
+         * The access policies of the rocketmq topic.
+         */
+        accessPolicies: outputs.rocketmq.TopicsRocketmqTopicAccessPolicy[];
+        /**
+         * The create time of the rocketmq topic.
+         */
+        createTime: string;
+        /**
+         * The description of the rocketmq topic.
+         */
+        description: string;
+        /**
+         * The groups information of the rocketmq topic.
+         */
+        groups: outputs.rocketmq.TopicsRocketmqTopicGroup[];
+        /**
+         * The id of rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+         * 0: Regular message
+         * 1: Transaction message
+         * 2: Partition order message
+         * 3: Global sequential message
+         * 4: Delay message.
+         */
+        messageType: number;
+        /**
+         * The number of the rocketmq topic queue.
+         */
+        queueNumber: number;
+        /**
+         * The queues information of the rocketmq topic.
+         */
+        queues: outputs.rocketmq.TopicsRocketmqTopicQueue[];
+        /**
+         * The name of the rocketmq topic. This field support fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface TopicsRocketmqTopicAccessPolicy {
+        /**
+         * The access key of the rocketmq key.
+         */
+        accessKey: string;
+        /**
+         * The authority of the rocketmq key for the current topic.
+         */
+        authority: string;
+    }
+
+    export interface TopicsRocketmqTopicGroup {
+        /**
+         * The id of the rocketmq group.
+         */
+        groupId: string;
+        /**
+         * The message model of the rocketmq group.
+         */
+        messageModel: string;
+        /**
+         * The sub string of the rocketmq group.
+         */
+        subString: string;
+    }
+
+    export interface TopicsRocketmqTopicQueue {
+        /**
+         * The end offset of the rocketmq queue.
+         */
+        endOffset: number;
+        /**
+         * The last update timestamp of the rocketmq queue.
+         */
+        lastUpdateTimestamp: number;
+        /**
+         * The message count of the rocketmq queue.
+         */
+        messageCount: number;
+        /**
+         * The id of the rocketmq queue.
+         */
+        queueId: string;
+        /**
+         * The start offset of the rocketmq queue.
+         */
+        startOffset: number;
+    }
+
+}
+
 export namespace tls {
     export interface AlarmAlarmPeriodDetail {
         /**
@@ -15767,6 +18944,143 @@ export namespace tos {
         permission: string;
     }
 
+    export interface BucketInventoriesInventoryConfiguration {
+        /**
+         * The name the TOS bucket.
+         */
+        bucketName: string;
+        /**
+         * The destination information of the bucket inventory.
+         */
+        destinations: outputs.tos.BucketInventoriesInventoryConfigurationDestination[];
+        /**
+         * The filter of the bucket inventory.
+         */
+        filters: outputs.tos.BucketInventoriesInventoryConfigurationFilter[];
+        /**
+         * The name of the bucket inventory.
+         */
+        id: string;
+        /**
+         * The export version of object. Valid values: `All`, `Current`.
+         */
+        includedObjectVersions: string;
+        /**
+         * Whether to enable the bucket inventory.
+         */
+        isEnabled: boolean;
+        /**
+         * The information exported from the bucket inventory.
+         */
+        optionalFields: outputs.tos.BucketInventoriesInventoryConfigurationOptionalField[];
+        /**
+         * The export schedule of the bucket inventory.
+         */
+        schedules: outputs.tos.BucketInventoriesInventoryConfigurationSchedule[];
+    }
+
+    export interface BucketInventoriesInventoryConfigurationDestination {
+        /**
+         * The destination tos bucket information of the bucket inventory.
+         */
+        tosBucketDestinations: outputs.tos.BucketInventoriesInventoryConfigurationDestinationTosBucketDestination[];
+    }
+
+    export interface BucketInventoriesInventoryConfigurationDestinationTosBucketDestination {
+        /**
+         * The account id of the destination tos bucket.
+         */
+        accountId: string;
+        /**
+         * The name of the destination tos bucket.
+         */
+        bucket: string;
+        /**
+         * The format of the bucket inventory. Valid values: `CSV`.
+         */
+        format: string;
+        /**
+         * The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+         */
+        prefix: string;
+        /**
+         * The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+         */
+        role: string;
+    }
+
+    export interface BucketInventoriesInventoryConfigurationFilter {
+        /**
+         * The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+         */
+        prefix: string;
+    }
+
+    export interface BucketInventoriesInventoryConfigurationOptionalField {
+        /**
+         * The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+         */
+        fields: string[];
+    }
+
+    export interface BucketInventoriesInventoryConfigurationSchedule {
+        /**
+         * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+         */
+        frequency: string;
+    }
+
+    export interface BucketInventoryDestination {
+        /**
+         * The destination tos bucket information of the bucket inventory.
+         */
+        tosBucketDestination: outputs.tos.BucketInventoryDestinationTosBucketDestination;
+    }
+
+    export interface BucketInventoryDestinationTosBucketDestination {
+        /**
+         * The account id of the destination tos bucket.
+         */
+        accountId: string;
+        /**
+         * The name of the destination tos bucket.
+         */
+        bucket: string;
+        /**
+         * The format of the bucket inventory. Valid values: `CSV`.
+         */
+        format: string;
+        /**
+         * The storage path prefix of the bucket inventory in destination tos bucket.
+         */
+        prefix: string;
+        /**
+         * The role name used to grant TOS access to read all files from the source bucket and write files to the destination bucket. You can use the default TOS role `TosArchiveTOSInventory`.
+         */
+        role: string;
+    }
+
+    export interface BucketInventoryFilter {
+        /**
+         * The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+         */
+        prefix?: string;
+    }
+
+    export interface BucketInventoryOptionalFields {
+        /**
+         * The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+         */
+        fields?: string[];
+    }
+
+    export interface BucketInventorySchedule {
+        /**
+         * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+         */
+        frequency: string;
+    }
+
     export interface BucketObjectAccountAcl {
         /**
          * The accountId to control.
@@ -15810,6 +19124,25 @@ export namespace tos {
          * The name the TOS Object storage class.
          */
         storageClass: string;
+    }
+
+    export interface BucketRealtimeLogAccessLogConfiguration {
+        /**
+         * The ID of the tls dashboard.
+         */
+        tlsDashboardId: string;
+        /**
+         * The ID of the tls project.
+         */
+        tlsProjectId: string;
+        /**
+         * The ID of the tls topic.
+         */
+        tlsTopicId: string;
+        /**
+         * The TLS log retention duration. Unit in days. Valid values range is 1~3650. default is 7.
+         */
+        ttl?: number;
     }
 
     export interface BucketTag {
@@ -19505,9 +22838,17 @@ export namespace vke {
 
     export interface NodePoolKubernetesConfig {
         /**
+         * Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+         */
+        autoSyncDisabled: boolean;
+        /**
          * The Cordon of KubernetesConfig.
          */
         cordon: boolean;
+        /**
+         * The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+         */
+        kubeletConfig?: outputs.vke.NodePoolKubernetesConfigKubeletConfig;
         /**
          * The Labels of KubernetesConfig.
          */
@@ -19520,6 +22861,28 @@ export namespace vke {
          * The Taints of KubernetesConfig.
          */
         taints?: outputs.vke.NodePoolKubernetesConfigTaint[];
+    }
+
+    export interface NodePoolKubernetesConfigKubeletConfig {
+        /**
+         * The FeatureGates of KubeletConfig.
+         */
+        featureGates?: outputs.vke.NodePoolKubernetesConfigKubeletConfigFeatureGates;
+        /**
+         * The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+         */
+        topologyManagerPolicy?: string;
+        /**
+         * The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+         */
+        topologyManagerScope?: string;
+    }
+
+    export interface NodePoolKubernetesConfigKubeletConfigFeatureGates {
+        /**
+         * Whether to enable QoSResourceManager. Default is false.
+         */
+        qosResourceManager?: boolean;
     }
 
     export interface NodePoolKubernetesConfigLabel {
@@ -19804,9 +23167,17 @@ export namespace vke {
          */
         instanceTypeIds: string[];
         /**
+         * Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+         */
+        kubeConfigAutoSyncDisabled: boolean;
+        /**
          * The NamePrefix of node metadata.
          */
         kubeConfigNamePrefix: string;
+        /**
+         * The KubeletConfig of KubernetesConfig.
+         */
+        kubeletConfigs: outputs.vke.NodePoolsNodePoolKubeletConfig[];
         /**
          * The LabelContent of KubernetesConfig.
          */
@@ -19917,6 +23288,28 @@ export namespace vke {
          * The Value of Taint.
          */
         value: string;
+    }
+
+    export interface NodePoolsNodePoolKubeletConfig {
+        /**
+         * The FeatureGates of KubeletConfig.
+         */
+        featureGates: outputs.vke.NodePoolsNodePoolKubeletConfigFeatureGate[];
+        /**
+         * The TopologyManagerPolicy of KubeletConfig.
+         */
+        topologyManagerPolicy: string;
+        /**
+         * The TopologyManagerScope of KubeletConfig.
+         */
+        topologyManagerScope: string;
+    }
+
+    export interface NodePoolsNodePoolKubeletConfigFeatureGate {
+        /**
+         * Whether to enable QoSResourceManager.
+         */
+        qosResourceManager: boolean;
     }
 
     export interface NodePoolsNodePoolLabelContent {

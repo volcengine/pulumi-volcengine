@@ -106,11 +106,15 @@ export class BucketObject extends pulumi.CustomResource {
      */
     public readonly filePath!: pulumi.Output<string | undefined>;
     /**
+     * Whether to enable the default inheritance bucket ACL function for the object.
+     */
+    public /*out*/ readonly isDefault!: pulumi.Output<boolean>;
+    /**
      * The name of the object.
      */
     public readonly objectName!: pulumi.Output<string>;
     /**
-     * The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+     * The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
      */
     public readonly publicAcl!: pulumi.Output<string | undefined>;
     /**
@@ -147,6 +151,7 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["enableVersion"] = state ? state.enableVersion : undefined;
             resourceInputs["encryption"] = state ? state.encryption : undefined;
             resourceInputs["filePath"] = state ? state.filePath : undefined;
+            resourceInputs["isDefault"] = state ? state.isDefault : undefined;
             resourceInputs["objectName"] = state ? state.objectName : undefined;
             resourceInputs["publicAcl"] = state ? state.publicAcl : undefined;
             resourceInputs["storageClass"] = state ? state.storageClass : undefined;
@@ -172,6 +177,7 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["storageClass"] = args ? args.storageClass : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["enableVersion"] = undefined /*out*/;
+            resourceInputs["isDefault"] = undefined /*out*/;
             resourceInputs["versionIds"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -216,11 +222,15 @@ export interface BucketObjectState {
      */
     filePath?: pulumi.Input<string>;
     /**
+     * Whether to enable the default inheritance bucket ACL function for the object.
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The name of the object.
      */
     objectName?: pulumi.Input<string>;
     /**
-     * The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+     * The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
      */
     publicAcl?: pulumi.Input<string>;
     /**
@@ -274,7 +284,7 @@ export interface BucketObjectArgs {
      */
     objectName: pulumi.Input<string>;
     /**
-     * The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+     * The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
      */
     publicAcl?: pulumi.Input<string>;
     /**

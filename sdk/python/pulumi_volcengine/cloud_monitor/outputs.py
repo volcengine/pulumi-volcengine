@@ -1030,7 +1030,8 @@ class RulesRuleResult(dict):
                  silence_time: int,
                  sub_namespace: str,
                  updated_at: str,
-                 web_hook: str):
+                 web_hook: str,
+                 webhook_ids: Sequence[str]):
         """
         :param Sequence[str] alert_methods: The alert methods of the cloud monitor rule.
         :param str alert_state: The alert state of the cloud monitor rule. Valid values: `altering`, `normal`.
@@ -1054,6 +1055,7 @@ class RulesRuleResult(dict):
         :param str sub_namespace: The sub namespace of the cloud monitor rule.
         :param str updated_at: The updated time of the cloud monitor rule.
         :param str web_hook: The web hook of the cloud monitor rule.
+        :param Sequence[str] webhook_ids: The webhook id list of the cloud monitor rule.
         """
         pulumi.set(__self__, "alert_methods", alert_methods)
         pulumi.set(__self__, "alert_state", alert_state)
@@ -1077,6 +1079,7 @@ class RulesRuleResult(dict):
         pulumi.set(__self__, "sub_namespace", sub_namespace)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "web_hook", web_hook)
+        pulumi.set(__self__, "webhook_ids", webhook_ids)
 
     @property
     @pulumi.getter(name="alertMethods")
@@ -1253,6 +1256,14 @@ class RulesRuleResult(dict):
         The web hook of the cloud monitor rule.
         """
         return pulumi.get(self, "web_hook")
+
+    @property
+    @pulumi.getter(name="webhookIds")
+    def webhook_ids(self) -> Sequence[str]:
+        """
+        The webhook id list of the cloud monitor rule.
+        """
+        return pulumi.get(self, "webhook_ids")
 
 
 @pulumi.output_type
