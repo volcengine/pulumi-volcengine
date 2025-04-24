@@ -78,11 +78,17 @@ import (
 //				RecoveryNotify: &cloud_monitor.RuleRecoveryNotifyArgs{
 //					Enable: pulumi.Bool(true),
 //				},
-//				Regions:      pulumi.String("cn-beijing"),
+//				Regions: pulumi.StringArray{
+//					pulumi.String("cn-beijing"),
+//					pulumi.String("cn-shanghai"),
+//				},
 //				RuleName:     pulumi.String("acc-test-rule"),
 //				SilenceTime:  pulumi.Int(5),
 //				SubNamespace: pulumi.String("Storage"),
-//				WebHook:      pulumi.String("http://alert.volc.com/callback"),
+//				WebhookIds: pulumi.StringArray{
+//					pulumi.String("187655704106731****"),
+//					pulumi.String("187655712542447****"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -135,8 +141,8 @@ type Rule struct {
 	OriginalDimensions RuleOriginalDimensionArrayOutput `pulumi:"originalDimensions"`
 	// The recovery notify of the cloud monitor rule.
 	RecoveryNotify RuleRecoveryNotifyOutput `pulumi:"recoveryNotify"`
-	// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-	Regions pulumi.StringOutput `pulumi:"regions"`
+	// The region ids of the cloud monitor rule.
+	Regions pulumi.StringArrayOutput `pulumi:"regions"`
 	// The name of the cloud monitor rule.
 	RuleName pulumi.StringOutput `pulumi:"ruleName"`
 	// The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
@@ -145,8 +151,10 @@ type Rule struct {
 	SubNamespace pulumi.StringOutput `pulumi:"subNamespace"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook pulumi.StringPtrOutput `pulumi:"webHook"`
+	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+	WebhookIds pulumi.StringArrayOutput `pulumi:"webhookIds"`
 }
 
 // NewRule registers a new resource with the given unique name, arguments, and options.
@@ -250,8 +258,8 @@ type ruleState struct {
 	OriginalDimensions []RuleOriginalDimension `pulumi:"originalDimensions"`
 	// The recovery notify of the cloud monitor rule.
 	RecoveryNotify *RuleRecoveryNotify `pulumi:"recoveryNotify"`
-	// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-	Regions *string `pulumi:"regions"`
+	// The region ids of the cloud monitor rule.
+	Regions []string `pulumi:"regions"`
 	// The name of the cloud monitor rule.
 	RuleName *string `pulumi:"ruleName"`
 	// The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
@@ -260,8 +268,10 @@ type ruleState struct {
 	SubNamespace *string `pulumi:"subNamespace"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook *string `pulumi:"webHook"`
+	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+	WebhookIds []string `pulumi:"webhookIds"`
 }
 
 type RuleState struct {
@@ -297,8 +307,8 @@ type RuleState struct {
 	OriginalDimensions RuleOriginalDimensionArrayInput
 	// The recovery notify of the cloud monitor rule.
 	RecoveryNotify RuleRecoveryNotifyPtrInput
-	// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-	Regions pulumi.StringPtrInput
+	// The region ids of the cloud monitor rule.
+	Regions pulumi.StringArrayInput
 	// The name of the cloud monitor rule.
 	RuleName pulumi.StringPtrInput
 	// The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
@@ -307,8 +317,10 @@ type RuleState struct {
 	SubNamespace pulumi.StringPtrInput
 	// The updated time of the cloud monitor rule.
 	UpdatedAt pulumi.StringPtrInput
-	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook pulumi.StringPtrInput
+	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+	WebhookIds pulumi.StringArrayInput
 }
 
 func (RuleState) ElementType() reflect.Type {
@@ -344,16 +356,18 @@ type ruleArgs struct {
 	OriginalDimensions []RuleOriginalDimension `pulumi:"originalDimensions"`
 	// The recovery notify of the cloud monitor rule.
 	RecoveryNotify *RuleRecoveryNotify `pulumi:"recoveryNotify"`
-	// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-	Regions string `pulumi:"regions"`
+	// The region ids of the cloud monitor rule.
+	Regions []string `pulumi:"regions"`
 	// The name of the cloud monitor rule.
 	RuleName string `pulumi:"ruleName"`
 	// The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
 	SilenceTime int `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace string `pulumi:"subNamespace"`
-	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook *string `pulumi:"webHook"`
+	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+	WebhookIds []string `pulumi:"webhookIds"`
 }
 
 // The set of arguments for constructing a Rule resource.
@@ -386,16 +400,18 @@ type RuleArgs struct {
 	OriginalDimensions RuleOriginalDimensionArrayInput
 	// The recovery notify of the cloud monitor rule.
 	RecoveryNotify RuleRecoveryNotifyPtrInput
-	// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-	Regions pulumi.StringInput
+	// The region ids of the cloud monitor rule.
+	Regions pulumi.StringArrayInput
 	// The name of the cloud monitor rule.
 	RuleName pulumi.StringInput
 	// The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
 	SilenceTime pulumi.IntInput
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace pulumi.StringInput
-	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook pulumi.StringPtrInput
+	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+	WebhookIds pulumi.StringArrayInput
 }
 
 func (RuleArgs) ElementType() reflect.Type {
@@ -565,9 +581,9 @@ func (o RuleOutput) RecoveryNotify() RuleRecoveryNotifyOutput {
 	return o.ApplyT(func(v *Rule) RuleRecoveryNotifyOutput { return v.RecoveryNotify }).(RuleRecoveryNotifyOutput)
 }
 
-// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-func (o RuleOutput) Regions() pulumi.StringOutput {
-	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.Regions }).(pulumi.StringOutput)
+// The region ids of the cloud monitor rule.
+func (o RuleOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringArrayOutput { return v.Regions }).(pulumi.StringArrayOutput)
 }
 
 // The name of the cloud monitor rule.
@@ -590,9 +606,14 @@ func (o RuleOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 func (o RuleOutput) WebHook() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.WebHook }).(pulumi.StringPtrOutput)
+}
+
+// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+func (o RuleOutput) WebhookIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringArrayOutput { return v.WebhookIds }).(pulumi.StringArrayOutput)
 }
 
 type RuleArrayOutput struct{ *pulumi.OutputState }

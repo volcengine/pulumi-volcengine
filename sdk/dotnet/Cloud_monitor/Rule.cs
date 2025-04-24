@@ -84,11 +84,19 @@ namespace Pulumi.Volcengine.Cloud_monitor
     ///         {
     ///             Enable = true,
     ///         },
-    ///         Regions = "cn-beijing",
+    ///         Regions = new[]
+    ///         {
+    ///             "cn-beijing",
+    ///             "cn-shanghai",
+    ///         },
     ///         RuleName = "acc-test-rule",
     ///         SilenceTime = 5,
     ///         SubNamespace = "Storage",
-    ///         WebHook = "http://alert.volc.com/callback",
+    ///         WebhookIds = new[]
+    ///         {
+    ///             "187655704106731****",
+    ///             "187655712542447****",
+    ///         },
     ///     });
     /// 
     /// });
@@ -202,10 +210,10 @@ namespace Pulumi.Volcengine.Cloud_monitor
         public Output<Outputs.RuleRecoveryNotify> RecoveryNotify { get; private set; } = null!;
 
         /// <summary>
-        /// The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        /// The region ids of the cloud monitor rule.
         /// </summary>
         [Output("regions")]
-        public Output<string> Regions { get; private set; } = null!;
+        public Output<ImmutableArray<string>> Regions { get; private set; } = null!;
 
         /// <summary>
         /// The name of the cloud monitor rule.
@@ -232,10 +240,16 @@ namespace Pulumi.Volcengine.Cloud_monitor
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         /// </summary>
         [Output("webHook")]
         public Output<string?> WebHook { get; private set; } = null!;
+
+        /// <summary>
+        /// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        /// </summary>
+        [Output("webhookIds")]
+        public Output<ImmutableArray<string>> WebhookIds { get; private set; } = null!;
 
 
         /// <summary>
@@ -392,11 +406,17 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("recoveryNotify")]
         public Input<Inputs.RuleRecoveryNotifyArgs>? RecoveryNotify { get; set; }
 
-        /// <summary>
-        /// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-        /// </summary>
         [Input("regions", required: true)]
-        public Input<string> Regions { get; set; } = null!;
+        private InputList<string>? _regions;
+
+        /// <summary>
+        /// The region ids of the cloud monitor rule.
+        /// </summary>
+        public InputList<string> Regions
+        {
+            get => _regions ?? (_regions = new InputList<string>());
+            set => _regions = value;
+        }
 
         /// <summary>
         /// The name of the cloud monitor rule.
@@ -417,10 +437,22 @@ namespace Pulumi.Volcengine.Cloud_monitor
         public Input<string> SubNamespace { get; set; } = null!;
 
         /// <summary>
-        /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         /// </summary>
         [Input("webHook")]
         public Input<string>? WebHook { get; set; }
+
+        [Input("webhookIds")]
+        private InputList<string>? _webhookIds;
+
+        /// <summary>
+        /// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        /// </summary>
+        public InputList<string> WebhookIds
+        {
+            get => _webhookIds ?? (_webhookIds = new InputList<string>());
+            set => _webhookIds = value;
+        }
 
         public RuleArgs()
         {
@@ -550,11 +582,17 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("recoveryNotify")]
         public Input<Inputs.RuleRecoveryNotifyGetArgs>? RecoveryNotify { get; set; }
 
-        /// <summary>
-        /// The region ids of the cloud monitor rule. Only one region id can be specified currently.
-        /// </summary>
         [Input("regions")]
-        public Input<string>? Regions { get; set; }
+        private InputList<string>? _regions;
+
+        /// <summary>
+        /// The region ids of the cloud monitor rule.
+        /// </summary>
+        public InputList<string> Regions
+        {
+            get => _regions ?? (_regions = new InputList<string>());
+            set => _regions = value;
+        }
 
         /// <summary>
         /// The name of the cloud monitor rule.
@@ -581,10 +619,22 @@ namespace Pulumi.Volcengine.Cloud_monitor
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         /// </summary>
         [Input("webHook")]
         public Input<string>? WebHook { get; set; }
+
+        [Input("webhookIds")]
+        private InputList<string>? _webhookIds;
+
+        /// <summary>
+        /// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        /// </summary>
+        public InputList<string> WebhookIds
+        {
+            get => _webhookIds ?? (_webhookIds = new InputList<string>());
+            set => _webhookIds = value;
+        }
 
         public RuleState()
         {

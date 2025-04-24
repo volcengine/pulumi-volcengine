@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AllowlistArgs', 'Allowlist']
 
@@ -15,22 +17,42 @@ __all__ = ['AllowlistArgs', 'Allowlist']
 class AllowlistArgs:
     def __init__(__self__, *,
                  allow_list_name: pulumi.Input[str],
-                 allow_lists: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
-                 allow_list_type: Optional[pulumi.Input[str]] = None):
+                 allow_list_type: Optional[pulumi.Input[str]] = None,
+                 allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]] = None,
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Allowlist resource.
         :param pulumi.Input[str] allow_list_name: The name of the allow list.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[str] allow_list_category: White list category. Values:
+               Ordinary: Ordinary white list.
+               Default: Default white list.
+               Description: When this parameter is used as a request parameter, the default value is Ordinary.
         :param pulumi.Input[str] allow_list_desc: The description of the allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
+        :param pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]] security_group_bind_infos: Whitelist information for the associated security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of the allow list.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
         """
         pulumi.set(__self__, "allow_list_name", allow_list_name)
-        pulumi.set(__self__, "allow_lists", allow_lists)
+        if allow_list_category is not None:
+            pulumi.set(__self__, "allow_list_category", allow_list_category)
         if allow_list_desc is not None:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_type is not None:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
+        if allow_lists is not None:
+            pulumi.set(__self__, "allow_lists", allow_lists)
+        if security_group_bind_infos is not None:
+            pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if user_allow_lists is not None:
+            pulumi.set(__self__, "user_allow_lists", user_allow_lists)
 
     @property
     @pulumi.getter(name="allowListName")
@@ -45,16 +67,19 @@ class AllowlistArgs:
         pulumi.set(self, "allow_list_name", value)
 
     @property
-    @pulumi.getter(name="allowLists")
-    def allow_lists(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> Optional[pulumi.Input[str]]:
         """
-        Enter an IP address or a range of IP addresses in CIDR format.
+        White list category. Values:
+        Ordinary: Ordinary white list.
+        Default: Default white list.
+        Description: When this parameter is used as a request parameter, the default value is Ordinary.
         """
-        return pulumi.get(self, "allow_lists")
+        return pulumi.get(self, "allow_list_category")
 
-    @allow_lists.setter
-    def allow_lists(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "allow_lists", value)
+    @allow_list_category.setter
+    def allow_list_category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allow_list_category", value)
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -80,23 +105,84 @@ class AllowlistArgs:
     def allow_list_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_type", value)
 
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @allow_lists.setter
+    def allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allow_lists", value)
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]:
+        """
+        Whitelist information for the associated security group.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @security_group_bind_infos.setter
+    def security_group_bind_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]):
+        pulumi.set(self, "security_group_bind_infos", value)
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The security group ids of the allow list.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+        """
+        return pulumi.get(self, "user_allow_lists")
+
+    @user_allow_lists.setter
+    def user_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_allow_lists", value)
+
 
 @pulumi.input_type
 class _AllowlistState:
     def __init__(__self__, *,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_id: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
-                 allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]] = None,
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Allowlist resources.
+        :param pulumi.Input[str] allow_list_category: White list category. Values:
+               Ordinary: Ordinary white list.
+               Default: Default white list.
+               Description: When this parameter is used as a request parameter, the default value is Ordinary.
         :param pulumi.Input[str] allow_list_desc: The description of the allow list.
         :param pulumi.Input[str] allow_list_id: The id of the allow list.
         :param pulumi.Input[str] allow_list_name: The name of the allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
+        :param pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]] security_group_bind_infos: Whitelist information for the associated security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of the allow list.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
         """
+        if allow_list_category is not None:
+            pulumi.set(__self__, "allow_list_category", allow_list_category)
         if allow_list_desc is not None:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_id is not None:
@@ -107,6 +193,27 @@ class _AllowlistState:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
         if allow_lists is not None:
             pulumi.set(__self__, "allow_lists", allow_lists)
+        if security_group_bind_infos is not None:
+            pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if user_allow_lists is not None:
+            pulumi.set(__self__, "user_allow_lists", user_allow_lists)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> Optional[pulumi.Input[str]]:
+        """
+        White list category. Values:
+        Ordinary: Ordinary white list.
+        Default: Default white list.
+        Description: When this parameter is used as a request parameter, the default value is Ordinary.
+        """
+        return pulumi.get(self, "allow_list_category")
+
+    @allow_list_category.setter
+    def allow_list_category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allow_list_category", value)
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -160,7 +267,7 @@ class _AllowlistState:
     @pulumi.getter(name="allowLists")
     def allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Enter an IP address or a range of IP addresses in CIDR format.
+        Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
         """
         return pulumi.get(self, "allow_lists")
 
@@ -168,16 +275,56 @@ class _AllowlistState:
     def allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_lists", value)
 
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]:
+        """
+        Whitelist information for the associated security group.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @security_group_bind_infos.setter
+    def security_group_bind_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]):
+        pulumi.set(self, "security_group_bind_infos", value)
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The security group ids of the allow list.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+        """
+        return pulumi.get(self, "user_allow_lists")
+
+    @user_allow_lists.setter
+    def user_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_allow_lists", value)
+
 
 class Allowlist(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
                  allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]]] = None,
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds mysql allowlist
@@ -188,13 +335,23 @@ class Allowlist(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.rds_mysql.Allowlist("foo",
-            allow_lists=[
-                "192.168.0.0/24",
-                "192.168.1.0/24",
-            ],
             allow_list_desc="acc-test",
             allow_list_name="acc-test-allowlist",
-            allow_list_type="IPv4")
+            allow_list_type="IPv4",
+            security_group_bind_infos=[
+                volcengine.rds_mysql.AllowlistSecurityGroupBindInfoArgs(
+                    bind_mode="IngressDirectionIp",
+                    security_group_id="sg-13fd7wyduxekg3n6nu5t9fhj7",
+                ),
+                volcengine.rds_mysql.AllowlistSecurityGroupBindInfoArgs(
+                    bind_mode="IngressDirectionIp",
+                    security_group_id="sg-mjoa9qfyzg1s5smt1a6dmc1l",
+                ),
+            ],
+            user_allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ])
         ```
 
         ## Import
@@ -207,10 +364,17 @@ class Allowlist(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allow_list_category: White list category. Values:
+               Ordinary: Ordinary white list.
+               Default: Default white list.
+               Description: When this parameter is used as a request parameter, the default value is Ordinary.
         :param pulumi.Input[str] allow_list_desc: The description of the allow list.
         :param pulumi.Input[str] allow_list_name: The name of the allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]] security_group_bind_infos: Whitelist information for the associated security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of the allow list.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
         """
         ...
     @overload
@@ -227,13 +391,23 @@ class Allowlist(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.rds_mysql.Allowlist("foo",
-            allow_lists=[
-                "192.168.0.0/24",
-                "192.168.1.0/24",
-            ],
             allow_list_desc="acc-test",
             allow_list_name="acc-test-allowlist",
-            allow_list_type="IPv4")
+            allow_list_type="IPv4",
+            security_group_bind_infos=[
+                volcengine.rds_mysql.AllowlistSecurityGroupBindInfoArgs(
+                    bind_mode="IngressDirectionIp",
+                    security_group_id="sg-13fd7wyduxekg3n6nu5t9fhj7",
+                ),
+                volcengine.rds_mysql.AllowlistSecurityGroupBindInfoArgs(
+                    bind_mode="IngressDirectionIp",
+                    security_group_id="sg-mjoa9qfyzg1s5smt1a6dmc1l",
+                ),
+            ],
+            user_allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ])
         ```
 
         ## Import
@@ -259,10 +433,14 @@ class Allowlist(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
                  allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]]] = None,
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -272,14 +450,16 @@ class Allowlist(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AllowlistArgs.__new__(AllowlistArgs)
 
+            __props__.__dict__["allow_list_category"] = allow_list_category
             __props__.__dict__["allow_list_desc"] = allow_list_desc
             if allow_list_name is None and not opts.urn:
                 raise TypeError("Missing required property 'allow_list_name'")
             __props__.__dict__["allow_list_name"] = allow_list_name
             __props__.__dict__["allow_list_type"] = allow_list_type
-            if allow_lists is None and not opts.urn:
-                raise TypeError("Missing required property 'allow_lists'")
             __props__.__dict__["allow_lists"] = allow_lists
+            __props__.__dict__["security_group_bind_infos"] = security_group_bind_infos
+            __props__.__dict__["security_group_ids"] = security_group_ids
+            __props__.__dict__["user_allow_lists"] = user_allow_lists
             __props__.__dict__["allow_list_id"] = None
         super(Allowlist, __self__).__init__(
             'volcengine:rds_mysql/allowlist:Allowlist',
@@ -291,11 +471,15 @@ class Allowlist(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_list_category: Optional[pulumi.Input[str]] = None,
             allow_list_desc: Optional[pulumi.Input[str]] = None,
             allow_list_id: Optional[pulumi.Input[str]] = None,
             allow_list_name: Optional[pulumi.Input[str]] = None,
             allow_list_type: Optional[pulumi.Input[str]] = None,
-            allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Allowlist':
+            allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]]] = None,
+            security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Allowlist':
         """
         Get an existing Allowlist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -303,22 +487,44 @@ class Allowlist(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allow_list_category: White list category. Values:
+               Ordinary: Ordinary white list.
+               Default: Default white list.
+               Description: When this parameter is used as a request parameter, the default value is Ordinary.
         :param pulumi.Input[str] allow_list_desc: The description of the allow list.
         :param pulumi.Input[str] allow_list_id: The id of the allow list.
         :param pulumi.Input[str] allow_list_name: The name of the allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]] security_group_bind_infos: Whitelist information for the associated security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of the allow list.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AllowlistState.__new__(_AllowlistState)
 
+        __props__.__dict__["allow_list_category"] = allow_list_category
         __props__.__dict__["allow_list_desc"] = allow_list_desc
         __props__.__dict__["allow_list_id"] = allow_list_id
         __props__.__dict__["allow_list_name"] = allow_list_name
         __props__.__dict__["allow_list_type"] = allow_list_type
         __props__.__dict__["allow_lists"] = allow_lists
+        __props__.__dict__["security_group_bind_infos"] = security_group_bind_infos
+        __props__.__dict__["security_group_ids"] = security_group_ids
+        __props__.__dict__["user_allow_lists"] = user_allow_lists
         return Allowlist(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> pulumi.Output[str]:
+        """
+        White list category. Values:
+        Ordinary: Ordinary white list.
+        Default: Default white list.
+        Description: When this parameter is used as a request parameter, the default value is Ordinary.
+        """
+        return pulumi.get(self, "allow_list_category")
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -356,7 +562,31 @@ class Allowlist(pulumi.CustomResource):
     @pulumi.getter(name="allowLists")
     def allow_lists(self) -> pulumi.Output[Sequence[str]]:
         """
-        Enter an IP address or a range of IP addresses in CIDR format.
+        Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
         """
         return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> pulumi.Output[Optional[Sequence['outputs.AllowlistSecurityGroupBindInfo']]]:
+        """
+        Whitelist information for the associated security group.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The security group ids of the allow list.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> pulumi.Output[Sequence[str]]:
+        """
+        IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+        """
+        return pulumi.get(self, "user_allow_lists")
 

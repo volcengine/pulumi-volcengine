@@ -28,6 +28,7 @@ class VolumeArgs:
                  extra_performance_type_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None):
         """
@@ -42,13 +43,14 @@ class VolumeArgs:
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-               terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+               volcengine_volume.resource_name` command to remove it from terraform state file and management.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
+        :param pulumi.Input[str] snapshot_id: The id of the snapshot. When creating a volume using snapshots, this field is required.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]] tags: Tags.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "size", size)
@@ -69,6 +71,8 @@ class VolumeArgs:
             pulumi.set(__self__, "instance_id", instance_id)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if volume_charge_type is not None:
@@ -198,10 +202,9 @@ class VolumeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-        system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-        deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-        terraform state file and management.
+        The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+        instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+        volcengine_volume.resource_name` command to remove it from terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -222,6 +225,19 @@ class VolumeArgs:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the snapshot. When creating a volume using snapshots, this field is required.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]]:
         """
@@ -237,7 +253,7 @@ class VolumeArgs:
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -259,6 +275,7 @@ class _VolumeState:
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]] = None,
                  trade_status: Optional[pulumi.Input[int]] = None,
@@ -274,17 +291,18 @@ class _VolumeState:
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-               terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+               volcengine_volume.resource_name` command to remove it from terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
+        :param pulumi.Input[str] snapshot_id: The id of the snapshot. When creating a volume using snapshots, this field is required.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]] tags: Tags.
         :param pulumi.Input[int] trade_status: Status of Trade.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
@@ -309,6 +327,8 @@ class _VolumeState:
             pulumi.set(__self__, "project_name", project_name)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -400,10 +420,9 @@ class _VolumeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-        system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-        deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-        terraform state file and management.
+        The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+        instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+        volcengine_volume.resource_name` command to remove it from terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -448,6 +467,19 @@ class _VolumeState:
         pulumi.set(self, "size", value)
 
     @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the snapshot. When creating a volume using snapshots, this field is required.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -487,7 +519,7 @@ class _VolumeState:
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -546,6 +578,7 @@ class Volume(pulumi.CustomResource):
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
@@ -637,15 +670,16 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-               terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+               volcengine_volume.resource_name` command to remove it from terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
+        :param pulumi.Input[str] snapshot_id: The id of the snapshot. When creating a volume using snapshots, this field is required.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
@@ -758,6 +792,7 @@ class Volume(pulumi.CustomResource):
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
@@ -785,6 +820,7 @@ class Volume(pulumi.CustomResource):
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
+            __props__.__dict__["snapshot_id"] = snapshot_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["volume_charge_type"] = volume_charge_type
             if volume_name is None and not opts.urn:
@@ -819,6 +855,7 @@ class Volume(pulumi.CustomResource):
             kind: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
+            snapshot_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]]] = None,
             trade_status: Optional[pulumi.Input[int]] = None,
@@ -839,17 +876,18 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-               terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+               volcengine_volume.resource_name` command to remove it from terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
+        :param pulumi.Input[str] snapshot_id: The id of the snapshot. When creating a volume using snapshots, this field is required.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
         :param pulumi.Input[int] trade_status: Status of Trade.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
@@ -868,6 +906,7 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["kind"] = kind
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["size"] = size
+        __props__.__dict__["snapshot_id"] = snapshot_id
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["trade_status"] = trade_status
@@ -929,10 +968,9 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-        system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-        deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-        terraform state file and management.
+        The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+        instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+        volcengine_volume.resource_name` command to remove it from terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -959,6 +997,15 @@ class Volume(pulumi.CustomResource):
         The size of Volume.
         """
         return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The id of the snapshot. When creating a volume using snapshots, this field is required.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter
@@ -988,7 +1035,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         """
         return pulumi.get(self, "volume_charge_type")
 

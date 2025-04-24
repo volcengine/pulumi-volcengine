@@ -25,7 +25,9 @@ import * as utilities from "../utilities";
  *             permission: "WRITE_ACP",
  *         },
  *     ],
- *     bucketName: "tf-acc-test-bucket",
+ *     azRedundancy: "multi-az",
+ *     bucketAclDelivered: true,
+ *     bucketName: "tf-acc-test-bucket-0123-3",
  *     enableVersion: true,
  *     projectName: "default",
  *     publicAcl: "private",
@@ -76,6 +78,14 @@ export class Bucket extends pulumi.CustomResource {
      * The user set of grant full control.
      */
     public readonly accountAcls!: pulumi.Output<outputs.tos.BucketAccountAcl[] | undefined>;
+    /**
+     * The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+     */
+    public readonly azRedundancy!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+     */
+    public readonly bucketAclDelivered!: pulumi.Output<boolean>;
     /**
      * The name of the bucket.
      */
@@ -131,6 +141,8 @@ export class Bucket extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as BucketState | undefined;
             resourceInputs["accountAcls"] = state ? state.accountAcls : undefined;
+            resourceInputs["azRedundancy"] = state ? state.azRedundancy : undefined;
+            resourceInputs["bucketAclDelivered"] = state ? state.bucketAclDelivered : undefined;
             resourceInputs["bucketName"] = state ? state.bucketName : undefined;
             resourceInputs["creationDate"] = state ? state.creationDate : undefined;
             resourceInputs["enableVersion"] = state ? state.enableVersion : undefined;
@@ -147,6 +159,8 @@ export class Bucket extends pulumi.CustomResource {
                 throw new Error("Missing required property 'bucketName'");
             }
             resourceInputs["accountAcls"] = args ? args.accountAcls : undefined;
+            resourceInputs["azRedundancy"] = args ? args.azRedundancy : undefined;
+            resourceInputs["bucketAclDelivered"] = args ? args.bucketAclDelivered : undefined;
             resourceInputs["bucketName"] = args ? args.bucketName : undefined;
             resourceInputs["enableVersion"] = args ? args.enableVersion : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
@@ -171,6 +185,14 @@ export interface BucketState {
      * The user set of grant full control.
      */
     accountAcls?: pulumi.Input<pulumi.Input<inputs.tos.BucketAccountAcl>[]>;
+    /**
+     * The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+     */
+    azRedundancy?: pulumi.Input<string>;
+    /**
+     * Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+     */
+    bucketAclDelivered?: pulumi.Input<boolean>;
     /**
      * The name of the bucket.
      */
@@ -221,6 +243,14 @@ export interface BucketArgs {
      * The user set of grant full control.
      */
     accountAcls?: pulumi.Input<pulumi.Input<inputs.tos.BucketAccountAcl>[]>;
+    /**
+     * The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+     */
+    azRedundancy?: pulumi.Input<string>;
+    /**
+     * Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+     */
+    bucketAclDelivered?: pulumi.Input<boolean>;
     /**
      * The name of the bucket.
      */

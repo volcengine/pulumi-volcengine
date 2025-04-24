@@ -24,6 +24,8 @@ if typing.TYPE_CHECKING:
     cen = __cen
     import pulumi_volcengine.clb as __clb
     clb = __clb
+    import pulumi_volcengine.cloud_firewall as __cloud_firewall
+    cloud_firewall = __cloud_firewall
     import pulumi_volcengine.cloud_identity as __cloud_identity
     cloud_identity = __cloud_identity
     import pulumi_volcengine.cloud_monitor as __cloud_monitor
@@ -36,6 +38,8 @@ if typing.TYPE_CHECKING:
     cr = __cr
     import pulumi_volcengine.direct_connect as __direct_connect
     direct_connect = __direct_connect
+    import pulumi_volcengine.dns as __dns
+    dns = __dns
     import pulumi_volcengine.ebs as __ebs
     ebs = __ebs
     import pulumi_volcengine.ecs as __ecs
@@ -44,6 +48,8 @@ if typing.TYPE_CHECKING:
     eip = __eip
     import pulumi_volcengine.escloud as __escloud
     escloud = __escloud
+    import pulumi_volcengine.escloud_v2 as __escloud_v2
+    escloud_v2 = __escloud_v2
     import pulumi_volcengine.financial_relation as __financial_relation
     financial_relation = __financial_relation
     import pulumi_volcengine.iam as __iam
@@ -62,6 +68,8 @@ if typing.TYPE_CHECKING:
     private_zone = __private_zone
     import pulumi_volcengine.privatelink as __privatelink
     privatelink = __privatelink
+    import pulumi_volcengine.rabbitmq as __rabbitmq
+    rabbitmq = __rabbitmq
     import pulumi_volcengine.rds as __rds
     rds = __rds
     import pulumi_volcengine.rds_mssql as __rds_mssql
@@ -74,6 +82,8 @@ if typing.TYPE_CHECKING:
     rds_v2 = __rds_v2
     import pulumi_volcengine.redis as __redis
     redis = __redis
+    import pulumi_volcengine.rocketmq as __rocketmq
+    rocketmq = __rocketmq
     import pulumi_volcengine.tls as __tls
     tls = __tls
     import pulumi_volcengine.tos as __tos
@@ -100,16 +110,19 @@ else:
     cdn = _utilities.lazy_import('pulumi_volcengine.cdn')
     cen = _utilities.lazy_import('pulumi_volcengine.cen')
     clb = _utilities.lazy_import('pulumi_volcengine.clb')
+    cloud_firewall = _utilities.lazy_import('pulumi_volcengine.cloud_firewall')
     cloud_identity = _utilities.lazy_import('pulumi_volcengine.cloud_identity')
     cloud_monitor = _utilities.lazy_import('pulumi_volcengine.cloud_monitor')
     cloudfs = _utilities.lazy_import('pulumi_volcengine.cloudfs')
     config = _utilities.lazy_import('pulumi_volcengine.config')
     cr = _utilities.lazy_import('pulumi_volcengine.cr')
     direct_connect = _utilities.lazy_import('pulumi_volcengine.direct_connect')
+    dns = _utilities.lazy_import('pulumi_volcengine.dns')
     ebs = _utilities.lazy_import('pulumi_volcengine.ebs')
     ecs = _utilities.lazy_import('pulumi_volcengine.ecs')
     eip = _utilities.lazy_import('pulumi_volcengine.eip')
     escloud = _utilities.lazy_import('pulumi_volcengine.escloud')
+    escloud_v2 = _utilities.lazy_import('pulumi_volcengine.escloud_v2')
     financial_relation = _utilities.lazy_import('pulumi_volcengine.financial_relation')
     iam = _utilities.lazy_import('pulumi_volcengine.iam')
     kafka = _utilities.lazy_import('pulumi_volcengine.kafka')
@@ -119,12 +132,14 @@ else:
     organization = _utilities.lazy_import('pulumi_volcengine.organization')
     private_zone = _utilities.lazy_import('pulumi_volcengine.private_zone')
     privatelink = _utilities.lazy_import('pulumi_volcengine.privatelink')
+    rabbitmq = _utilities.lazy_import('pulumi_volcengine.rabbitmq')
     rds = _utilities.lazy_import('pulumi_volcengine.rds')
     rds_mssql = _utilities.lazy_import('pulumi_volcengine.rds_mssql')
     rds_mysql = _utilities.lazy_import('pulumi_volcengine.rds_mysql')
     rds_postgresql = _utilities.lazy_import('pulumi_volcengine.rds_postgresql')
     rds_v2 = _utilities.lazy_import('pulumi_volcengine.rds_v2')
     redis = _utilities.lazy_import('pulumi_volcengine.redis')
+    rocketmq = _utilities.lazy_import('pulumi_volcengine.rocketmq')
     tls = _utilities.lazy_import('pulumi_volcengine.tls')
     tos = _utilities.lazy_import('pulumi_volcengine.tos')
     transit_router = _utilities.lazy_import('pulumi_volcengine.transit_router')
@@ -476,6 +491,70 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwAddressBook",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwAddressBook:CfwAddressBook": "CfwAddressBook"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwControlPolicy",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwControlPolicy:CfwControlPolicy": "CfwControlPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwControlPolicyPriority",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwControlPolicyPriority:CfwControlPolicyPriority": "CfwControlPolicyPriority"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwDnsControlPolicy",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwDnsControlPolicy:CfwDnsControlPolicy": "CfwDnsControlPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwNatFirewallControlPolicy",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwNatFirewallControlPolicy:CfwNatFirewallControlPolicy": "CfwNatFirewallControlPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwNatFirewallControlPolicyPriority",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwNatFirewallControlPolicyPriority:CfwNatFirewallControlPolicyPriority": "CfwNatFirewallControlPolicyPriority"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwVpcFirewallAclRule",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwVpcFirewallAclRule:CfwVpcFirewallAclRule": "CfwVpcFirewallAclRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_firewall/cfwVpcFirewallAclRulePriority",
+  "fqn": "pulumi_volcengine.cloud_firewall",
+  "classes": {
+   "volcengine:cloud_firewall/cfwVpcFirewallAclRulePriority:CfwVpcFirewallAclRulePriority": "CfwVpcFirewallAclRulePriority"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "cloud_identity/group",
   "fqn": "pulumi_volcengine.cloud_identity",
   "classes": {
@@ -684,6 +763,38 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "dns/backup",
+  "fqn": "pulumi_volcengine.dns",
+  "classes": {
+   "volcengine:dns/backup:Backup": "Backup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "dns/backupSchedule",
+  "fqn": "pulumi_volcengine.dns",
+  "classes": {
+   "volcengine:dns/backupSchedule:BackupSchedule": "BackupSchedule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "dns/record",
+  "fqn": "pulumi_volcengine.dns",
+  "classes": {
+   "volcengine:dns/record:Record": "Record"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "dns/zone",
+  "fqn": "pulumi_volcengine.dns",
+  "classes": {
+   "volcengine:dns/zone:Zone": "Zone"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "ebs/autoSnapshotPolicy",
   "fqn": "pulumi_volcengine.ebs",
   "classes": {
@@ -868,6 +979,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "escloud_v2/escloudInstanceV2",
+  "fqn": "pulumi_volcengine.escloud_v2",
+  "classes": {
+   "volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2": "EscloudInstanceV2"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "escloud_v2/escloudIpWhiteList",
+  "fqn": "pulumi_volcengine.escloud_v2",
+  "classes": {
+   "volcengine:escloud_v2/escloudIpWhiteList:EscloudIpWhiteList": "EscloudIpWhiteList"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "financial_relation/financialRelation",
   "fqn": "pulumi_volcengine.financial_relation",
   "classes": {
@@ -1000,6 +1127,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.kafka",
   "classes": {
    "volcengine:kafka/topic:Topic": "Topic"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "mongodb/account",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/account:Account": "Account"
   }
  },
  {
@@ -1260,6 +1395,30 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "rabbitmq/instance",
+  "fqn": "pulumi_volcengine.rabbitmq",
+  "classes": {
+   "volcengine:rabbitmq/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rabbitmq/instancePlugin",
+  "fqn": "pulumi_volcengine.rabbitmq",
+  "classes": {
+   "volcengine:rabbitmq/instancePlugin:InstancePlugin": "InstancePlugin"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rabbitmq/publicAddress",
+  "fqn": "pulumi_volcengine.rabbitmq",
+  "classes": {
+   "volcengine:rabbitmq/publicAddress:PublicAddress": "PublicAddress"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "rds/account",
   "fqn": "pulumi_volcengine.rds",
   "classes": {
@@ -1348,10 +1507,42 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "rds_mysql/backup",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/backup:Backup": "Backup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/backupPolicy",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/backupPolicy:BackupPolicy": "BackupPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "rds_mysql/database",
   "fqn": "pulumi_volcengine.rds_mysql",
   "classes": {
    "volcengine:rds_mysql/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/endpoint",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/endpoint:Endpoint": "Endpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/endpointPublicAddress",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/endpointPublicAddress:EndpointPublicAddress": "EndpointPublicAddress"
   }
  },
  {
@@ -1368,6 +1559,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.rds_mysql",
   "classes": {
    "volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode": "InstanceReadonlyNode"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/parameterTemplate",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/parameterTemplate:ParameterTemplate": "ParameterTemplate"
   }
  },
  {
@@ -1508,6 +1707,62 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQAccessKey",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQAccessKey:RocketMQAccessKey": "RocketMQAccessKey"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQAllowList",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQAllowList:RocketMQAllowList": "RocketMQAllowList"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQAllowListAssociate",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQAllowListAssociate:RocketMQAllowListAssociate": "RocketMQAllowListAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQGroup",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQGroup:RocketMQGroup": "RocketMQGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQInstance",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQInstance:RocketMQInstance": "RocketMQInstance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQPublicAddress",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQPublicAddress:RocketMQPublicAddress": "RocketMQPublicAddress"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rocketmq/rocketMQTopic",
+  "fqn": "pulumi_volcengine.rocketmq",
+  "classes": {
+   "volcengine:rocketmq/rocketMQTopic:RocketMQTopic": "RocketMQTopic"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tls/alarm",
   "fqn": "pulumi_volcengine.tls",
   "classes": {
@@ -1596,6 +1851,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tos/bucketInventory",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketInventory:BucketInventory": "BucketInventory"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tos/bucketObject",
   "fqn": "pulumi_volcengine.tos",
   "classes": {
@@ -1608,6 +1871,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.tos",
   "classes": {
    "volcengine:tos/bucketPolicy:BucketPolicy": "BucketPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketRealtimeLog",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketRealtimeLog:BucketRealtimeLog": "BucketRealtimeLog"
   }
  },
  {

@@ -75,6 +75,18 @@ namespace Pulumi.Volcengine.Rds_mysql.Inputs
         [Input("periodUnit")]
         public Input<string>? PeriodUnit { get; set; }
 
+        /// <summary>
+        /// Restore time of temporary upgrade.
+        /// </summary>
+        [Input("tempModifyEndTime")]
+        public Input<string>? TempModifyEndTime { get; set; }
+
+        /// <summary>
+        /// Temporary upgrade start time.
+        /// </summary>
+        [Input("tempModifyStartTime")]
+        public Input<string>? TempModifyStartTime { get; set; }
+
         public InstanceChargeDetailArgs()
         {
         }

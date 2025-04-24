@@ -13,13 +13,127 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AccountAccountPrivilege struct {
+	// The name of database.
+	DbName string `pulumi:"dbName"`
+	// The role names of the account.
+	RoleNames []string `pulumi:"roleNames"`
+}
+
+// AccountAccountPrivilegeInput is an input type that accepts AccountAccountPrivilegeArgs and AccountAccountPrivilegeOutput values.
+// You can construct a concrete instance of `AccountAccountPrivilegeInput` via:
+//
+//	AccountAccountPrivilegeArgs{...}
+type AccountAccountPrivilegeInput interface {
+	pulumi.Input
+
+	ToAccountAccountPrivilegeOutput() AccountAccountPrivilegeOutput
+	ToAccountAccountPrivilegeOutputWithContext(context.Context) AccountAccountPrivilegeOutput
+}
+
+type AccountAccountPrivilegeArgs struct {
+	// The name of database.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+	// The role names of the account.
+	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+}
+
+func (AccountAccountPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountAccountPrivilege)(nil)).Elem()
+}
+
+func (i AccountAccountPrivilegeArgs) ToAccountAccountPrivilegeOutput() AccountAccountPrivilegeOutput {
+	return i.ToAccountAccountPrivilegeOutputWithContext(context.Background())
+}
+
+func (i AccountAccountPrivilegeArgs) ToAccountAccountPrivilegeOutputWithContext(ctx context.Context) AccountAccountPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountAccountPrivilegeOutput)
+}
+
+// AccountAccountPrivilegeArrayInput is an input type that accepts AccountAccountPrivilegeArray and AccountAccountPrivilegeArrayOutput values.
+// You can construct a concrete instance of `AccountAccountPrivilegeArrayInput` via:
+//
+//	AccountAccountPrivilegeArray{ AccountAccountPrivilegeArgs{...} }
+type AccountAccountPrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToAccountAccountPrivilegeArrayOutput() AccountAccountPrivilegeArrayOutput
+	ToAccountAccountPrivilegeArrayOutputWithContext(context.Context) AccountAccountPrivilegeArrayOutput
+}
+
+type AccountAccountPrivilegeArray []AccountAccountPrivilegeInput
+
+func (AccountAccountPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountAccountPrivilege)(nil)).Elem()
+}
+
+func (i AccountAccountPrivilegeArray) ToAccountAccountPrivilegeArrayOutput() AccountAccountPrivilegeArrayOutput {
+	return i.ToAccountAccountPrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i AccountAccountPrivilegeArray) ToAccountAccountPrivilegeArrayOutputWithContext(ctx context.Context) AccountAccountPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountAccountPrivilegeArrayOutput)
+}
+
+type AccountAccountPrivilegeOutput struct{ *pulumi.OutputState }
+
+func (AccountAccountPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountAccountPrivilege)(nil)).Elem()
+}
+
+func (o AccountAccountPrivilegeOutput) ToAccountAccountPrivilegeOutput() AccountAccountPrivilegeOutput {
+	return o
+}
+
+func (o AccountAccountPrivilegeOutput) ToAccountAccountPrivilegeOutputWithContext(ctx context.Context) AccountAccountPrivilegeOutput {
+	return o
+}
+
+// The name of database.
+func (o AccountAccountPrivilegeOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountAccountPrivilege) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The role names of the account.
+func (o AccountAccountPrivilegeOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AccountAccountPrivilege) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+type AccountAccountPrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountAccountPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountAccountPrivilege)(nil)).Elem()
+}
+
+func (o AccountAccountPrivilegeArrayOutput) ToAccountAccountPrivilegeArrayOutput() AccountAccountPrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountAccountPrivilegeArrayOutput) ToAccountAccountPrivilegeArrayOutputWithContext(ctx context.Context) AccountAccountPrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountAccountPrivilegeArrayOutput) Index(i pulumi.IntInput) AccountAccountPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountAccountPrivilege {
+		return vs[0].([]AccountAccountPrivilege)[vs[1].(int)]
+	}).(AccountAccountPrivilegeOutput)
+}
+
 type AccountsAccount struct {
-	// The name of account, current support only `root`.
+	// The description of account.
+	AccountDesc string `pulumi:"accountDesc"`
+	// The name of account. This field support fuzzy query.
 	AccountName string `pulumi:"accountName"`
 	// The privilege info of mongo instance.
 	AccountPrivileges []AccountsAccountAccountPrivilege `pulumi:"accountPrivileges"`
 	// The type of account.
 	AccountType string `pulumi:"accountType"`
+	// The database of account. This field support fuzzy query.
+	AuthDb string `pulumi:"authDb"`
+	// The create time of account.
+	CreateTime string `pulumi:"createTime"`
+	// The modify time of account.
+	ModifyTime string `pulumi:"modifyTime"`
 }
 
 // AccountsAccountInput is an input type that accepts AccountsAccountArgs and AccountsAccountOutput values.
@@ -34,12 +148,20 @@ type AccountsAccountInput interface {
 }
 
 type AccountsAccountArgs struct {
-	// The name of account, current support only `root`.
+	// The description of account.
+	AccountDesc pulumi.StringInput `pulumi:"accountDesc"`
+	// The name of account. This field support fuzzy query.
 	AccountName pulumi.StringInput `pulumi:"accountName"`
 	// The privilege info of mongo instance.
 	AccountPrivileges AccountsAccountAccountPrivilegeArrayInput `pulumi:"accountPrivileges"`
 	// The type of account.
 	AccountType pulumi.StringInput `pulumi:"accountType"`
+	// The database of account. This field support fuzzy query.
+	AuthDb pulumi.StringInput `pulumi:"authDb"`
+	// The create time of account.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The modify time of account.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
 }
 
 func (AccountsAccountArgs) ElementType() reflect.Type {
@@ -93,7 +215,12 @@ func (o AccountsAccountOutput) ToAccountsAccountOutputWithContext(ctx context.Co
 	return o
 }
 
-// The name of account, current support only `root`.
+// The description of account.
+func (o AccountsAccountOutput) AccountDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountsAccount) string { return v.AccountDesc }).(pulumi.StringOutput)
+}
+
+// The name of account. This field support fuzzy query.
 func (o AccountsAccountOutput) AccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v AccountsAccount) string { return v.AccountName }).(pulumi.StringOutput)
 }
@@ -106,6 +233,21 @@ func (o AccountsAccountOutput) AccountPrivileges() AccountsAccountAccountPrivile
 // The type of account.
 func (o AccountsAccountOutput) AccountType() pulumi.StringOutput {
 	return o.ApplyT(func(v AccountsAccount) string { return v.AccountType }).(pulumi.StringOutput)
+}
+
+// The database of account. This field support fuzzy query.
+func (o AccountsAccountOutput) AuthDb() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountsAccount) string { return v.AuthDb }).(pulumi.StringOutput)
+}
+
+// The create time of account.
+func (o AccountsAccountOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountsAccount) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The modify time of account.
+func (o AccountsAccountOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountsAccount) string { return v.ModifyTime }).(pulumi.StringOutput)
 }
 
 type AccountsAccountArrayOutput struct{ *pulumi.OutputState }
@@ -539,7 +681,7 @@ func (o EndpointsEndpointDbAddressArrayOutput) Index(i pulumi.IntInput) Endpoint
 type InstanceMongo struct {
 	// The mongos node ID.
 	MongosNodeId *string `pulumi:"mongosNodeId"`
-	// The spec of node.
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec *string `pulumi:"nodeSpec"`
 	// The node status.
 	NodeStatus *string `pulumi:"nodeStatus"`
@@ -559,7 +701,7 @@ type InstanceMongoInput interface {
 type InstanceMongoArgs struct {
 	// The mongos node ID.
 	MongosNodeId pulumi.StringPtrInput `pulumi:"mongosNodeId"`
-	// The spec of node.
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec pulumi.StringPtrInput `pulumi:"nodeSpec"`
 	// The node status.
 	NodeStatus pulumi.StringPtrInput `pulumi:"nodeStatus"`
@@ -621,7 +763,7 @@ func (o InstanceMongoOutput) MongosNodeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceMongo) *string { return v.MongosNodeId }).(pulumi.StringPtrOutput)
 }
 
-// The spec of node.
+// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 func (o InstanceMongoOutput) NodeSpec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceMongo) *string { return v.NodeSpec }).(pulumi.StringPtrOutput)
 }
@@ -649,6 +791,118 @@ func (o InstanceMongoArrayOutput) Index(i pulumi.IntInput) InstanceMongoOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceMongo {
 		return vs[0].([]InstanceMongo)[vs[1].(int)]
 	}).(InstanceMongoOutput)
+}
+
+type InstanceNodeAvailabilityZone struct {
+	// The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+	// When the instanceType is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+	// When the instanceType is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+	NodeNumber int `pulumi:"nodeNumber"`
+	// The zone id of readonly nodes.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// InstanceNodeAvailabilityZoneInput is an input type that accepts InstanceNodeAvailabilityZoneArgs and InstanceNodeAvailabilityZoneOutput values.
+// You can construct a concrete instance of `InstanceNodeAvailabilityZoneInput` via:
+//
+//	InstanceNodeAvailabilityZoneArgs{...}
+type InstanceNodeAvailabilityZoneInput interface {
+	pulumi.Input
+
+	ToInstanceNodeAvailabilityZoneOutput() InstanceNodeAvailabilityZoneOutput
+	ToInstanceNodeAvailabilityZoneOutputWithContext(context.Context) InstanceNodeAvailabilityZoneOutput
+}
+
+type InstanceNodeAvailabilityZoneArgs struct {
+	// The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+	// When the instanceType is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+	// When the instanceType is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
+	// The zone id of readonly nodes.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (InstanceNodeAvailabilityZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceNodeAvailabilityZone)(nil)).Elem()
+}
+
+func (i InstanceNodeAvailabilityZoneArgs) ToInstanceNodeAvailabilityZoneOutput() InstanceNodeAvailabilityZoneOutput {
+	return i.ToInstanceNodeAvailabilityZoneOutputWithContext(context.Background())
+}
+
+func (i InstanceNodeAvailabilityZoneArgs) ToInstanceNodeAvailabilityZoneOutputWithContext(ctx context.Context) InstanceNodeAvailabilityZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceNodeAvailabilityZoneOutput)
+}
+
+// InstanceNodeAvailabilityZoneArrayInput is an input type that accepts InstanceNodeAvailabilityZoneArray and InstanceNodeAvailabilityZoneArrayOutput values.
+// You can construct a concrete instance of `InstanceNodeAvailabilityZoneArrayInput` via:
+//
+//	InstanceNodeAvailabilityZoneArray{ InstanceNodeAvailabilityZoneArgs{...} }
+type InstanceNodeAvailabilityZoneArrayInput interface {
+	pulumi.Input
+
+	ToInstanceNodeAvailabilityZoneArrayOutput() InstanceNodeAvailabilityZoneArrayOutput
+	ToInstanceNodeAvailabilityZoneArrayOutputWithContext(context.Context) InstanceNodeAvailabilityZoneArrayOutput
+}
+
+type InstanceNodeAvailabilityZoneArray []InstanceNodeAvailabilityZoneInput
+
+func (InstanceNodeAvailabilityZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceNodeAvailabilityZone)(nil)).Elem()
+}
+
+func (i InstanceNodeAvailabilityZoneArray) ToInstanceNodeAvailabilityZoneArrayOutput() InstanceNodeAvailabilityZoneArrayOutput {
+	return i.ToInstanceNodeAvailabilityZoneArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceNodeAvailabilityZoneArray) ToInstanceNodeAvailabilityZoneArrayOutputWithContext(ctx context.Context) InstanceNodeAvailabilityZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceNodeAvailabilityZoneArrayOutput)
+}
+
+type InstanceNodeAvailabilityZoneOutput struct{ *pulumi.OutputState }
+
+func (InstanceNodeAvailabilityZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceNodeAvailabilityZone)(nil)).Elem()
+}
+
+func (o InstanceNodeAvailabilityZoneOutput) ToInstanceNodeAvailabilityZoneOutput() InstanceNodeAvailabilityZoneOutput {
+	return o
+}
+
+func (o InstanceNodeAvailabilityZoneOutput) ToInstanceNodeAvailabilityZoneOutputWithContext(ctx context.Context) InstanceNodeAvailabilityZoneOutput {
+	return o
+}
+
+// The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+// When the instanceType is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+// When the instanceType is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+func (o InstanceNodeAvailabilityZoneOutput) NodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceNodeAvailabilityZone) int { return v.NodeNumber }).(pulumi.IntOutput)
+}
+
+// The zone id of readonly nodes.
+func (o InstanceNodeAvailabilityZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceNodeAvailabilityZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type InstanceNodeAvailabilityZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceNodeAvailabilityZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceNodeAvailabilityZone)(nil)).Elem()
+}
+
+func (o InstanceNodeAvailabilityZoneArrayOutput) ToInstanceNodeAvailabilityZoneArrayOutput() InstanceNodeAvailabilityZoneArrayOutput {
+	return o
+}
+
+func (o InstanceNodeAvailabilityZoneArrayOutput) ToInstanceNodeAvailabilityZoneArrayOutputWithContext(ctx context.Context) InstanceNodeAvailabilityZoneArrayOutput {
+	return o
+}
+
+func (o InstanceNodeAvailabilityZoneArrayOutput) Index(i pulumi.IntInput) InstanceNodeAvailabilityZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceNodeAvailabilityZone {
+		return vs[0].([]InstanceNodeAvailabilityZone)[vs[1].(int)]
+	}).(InstanceNodeAvailabilityZoneOutput)
 }
 
 type InstanceParameterLogsParameterChangeLogs struct {
@@ -1461,8 +1715,12 @@ type InstancesInstance struct {
 	MongosId string `pulumi:"mongosId"`
 	// The node information.
 	Nodes []InstancesInstanceNode `pulumi:"nodes"`
-	// The project name to which the instance belongs.
+	// The private endpoint address of instance.
+	PrivateEndpoint string `pulumi:"privateEndpoint"`
+	// The project name to query.
 	ProjectName string `pulumi:"projectName"`
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber int `pulumi:"readOnlyNodeNumber"`
 	// The planned reclaim time of instance.
 	ReclaimTime string `pulumi:"reclaimTime"`
 	// The list of shards.
@@ -1535,8 +1793,12 @@ type InstancesInstanceArgs struct {
 	MongosId pulumi.StringInput `pulumi:"mongosId"`
 	// The node information.
 	Nodes InstancesInstanceNodeArrayInput `pulumi:"nodes"`
-	// The project name to which the instance belongs.
+	// The private endpoint address of instance.
+	PrivateEndpoint pulumi.StringInput `pulumi:"privateEndpoint"`
+	// The project name to query.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber pulumi.IntInput `pulumi:"readOnlyNodeNumber"`
 	// The planned reclaim time of instance.
 	ReclaimTime pulumi.StringInput `pulumi:"reclaimTime"`
 	// The list of shards.
@@ -1702,9 +1964,19 @@ func (o InstancesInstanceOutput) Nodes() InstancesInstanceNodeArrayOutput {
 	return o.ApplyT(func(v InstancesInstance) []InstancesInstanceNode { return v.Nodes }).(InstancesInstanceNodeArrayOutput)
 }
 
-// The project name to which the instance belongs.
+// The private endpoint address of instance.
+func (o InstancesInstanceOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstance) string { return v.PrivateEndpoint }).(pulumi.StringOutput)
+}
+
+// The project name to query.
 func (o InstancesInstanceOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The number of readonly node in instance.
+func (o InstancesInstanceOutput) ReadOnlyNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesInstance) int { return v.ReadOnlyNodeNumber }).(pulumi.IntOutput)
 }
 
 // The planned reclaim time of instance.
@@ -2812,6 +3084,130 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 	}).(InstancesTagOutput)
 }
 
+type MongoAllowListAssociatedInstance struct {
+	// The instance id that bound to the allow list.
+	InstanceId *string `pulumi:"instanceId"`
+	// The instance name that bound to the allow list.
+	InstanceName *string `pulumi:"instanceName"`
+	// The project name of the allow list.
+	ProjectName *string `pulumi:"projectName"`
+	// The VPC ID.
+	Vpc *string `pulumi:"vpc"`
+}
+
+// MongoAllowListAssociatedInstanceInput is an input type that accepts MongoAllowListAssociatedInstanceArgs and MongoAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `MongoAllowListAssociatedInstanceInput` via:
+//
+//	MongoAllowListAssociatedInstanceArgs{...}
+type MongoAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToMongoAllowListAssociatedInstanceOutput() MongoAllowListAssociatedInstanceOutput
+	ToMongoAllowListAssociatedInstanceOutputWithContext(context.Context) MongoAllowListAssociatedInstanceOutput
+}
+
+type MongoAllowListAssociatedInstanceArgs struct {
+	// The instance id that bound to the allow list.
+	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The instance name that bound to the allow list.
+	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The VPC ID.
+	Vpc pulumi.StringPtrInput `pulumi:"vpc"`
+}
+
+func (MongoAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i MongoAllowListAssociatedInstanceArgs) ToMongoAllowListAssociatedInstanceOutput() MongoAllowListAssociatedInstanceOutput {
+	return i.ToMongoAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i MongoAllowListAssociatedInstanceArgs) ToMongoAllowListAssociatedInstanceOutputWithContext(ctx context.Context) MongoAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoAllowListAssociatedInstanceOutput)
+}
+
+// MongoAllowListAssociatedInstanceArrayInput is an input type that accepts MongoAllowListAssociatedInstanceArray and MongoAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `MongoAllowListAssociatedInstanceArrayInput` via:
+//
+//	MongoAllowListAssociatedInstanceArray{ MongoAllowListAssociatedInstanceArgs{...} }
+type MongoAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToMongoAllowListAssociatedInstanceArrayOutput() MongoAllowListAssociatedInstanceArrayOutput
+	ToMongoAllowListAssociatedInstanceArrayOutputWithContext(context.Context) MongoAllowListAssociatedInstanceArrayOutput
+}
+
+type MongoAllowListAssociatedInstanceArray []MongoAllowListAssociatedInstanceInput
+
+func (MongoAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MongoAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i MongoAllowListAssociatedInstanceArray) ToMongoAllowListAssociatedInstanceArrayOutput() MongoAllowListAssociatedInstanceArrayOutput {
+	return i.ToMongoAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i MongoAllowListAssociatedInstanceArray) ToMongoAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) MongoAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoAllowListAssociatedInstanceArrayOutput)
+}
+
+type MongoAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (MongoAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o MongoAllowListAssociatedInstanceOutput) ToMongoAllowListAssociatedInstanceOutput() MongoAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o MongoAllowListAssociatedInstanceOutput) ToMongoAllowListAssociatedInstanceOutputWithContext(ctx context.Context) MongoAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// The instance id that bound to the allow list.
+func (o MongoAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoAllowListAssociatedInstance) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+// The instance name that bound to the allow list.
+func (o MongoAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoAllowListAssociatedInstance) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the allow list.
+func (o MongoAllowListAssociatedInstanceOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoAllowListAssociatedInstance) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The VPC ID.
+func (o MongoAllowListAssociatedInstanceOutput) Vpc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoAllowListAssociatedInstance) *string { return v.Vpc }).(pulumi.StringPtrOutput)
+}
+
+type MongoAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (MongoAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MongoAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o MongoAllowListAssociatedInstanceArrayOutput) ToMongoAllowListAssociatedInstanceArrayOutput() MongoAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o MongoAllowListAssociatedInstanceArrayOutput) ToMongoAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) MongoAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o MongoAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) MongoAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MongoAllowListAssociatedInstance {
+		return vs[0].([]MongoAllowListAssociatedInstance)[vs[1].(int)]
+	}).(MongoAllowListAssociatedInstanceOutput)
+}
+
 type MongoAllowListsAllowList struct {
 	// The list of IP address in allow list.
 	AllowList string `pulumi:"allowList"`
@@ -2829,6 +3225,8 @@ type MongoAllowListsAllowList struct {
 	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
 	// The list of associated instances.
 	AssociatedInstances []MongoAllowListsAllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// The project name of the allow list.
+	ProjectName string `pulumi:"projectName"`
 }
 
 // MongoAllowListsAllowListInput is an input type that accepts MongoAllowListsAllowListArgs and MongoAllowListsAllowListOutput values.
@@ -2859,6 +3257,8 @@ type MongoAllowListsAllowListArgs struct {
 	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
 	// The list of associated instances.
 	AssociatedInstances MongoAllowListsAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 }
 
 func (MongoAllowListsAllowListArgs) ElementType() reflect.Type {
@@ -2954,6 +3354,11 @@ func (o MongoAllowListsAllowListOutput) AssociatedInstances() MongoAllowListsAll
 	}).(MongoAllowListsAllowListAssociatedInstanceArrayOutput)
 }
 
+// The project name of the allow list.
+func (o MongoAllowListsAllowListOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v MongoAllowListsAllowList) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 type MongoAllowListsAllowListArrayOutput struct{ *pulumi.OutputState }
 
 func (MongoAllowListsAllowListArrayOutput) ElementType() reflect.Type {
@@ -2979,6 +3384,8 @@ type MongoAllowListsAllowListAssociatedInstance struct {
 	InstanceId string `pulumi:"instanceId"`
 	// The instance name that bound to the allow list.
 	InstanceName string `pulumi:"instanceName"`
+	// The project name of the allow list.
+	ProjectName string `pulumi:"projectName"`
 	// The VPC ID.
 	Vpc string `pulumi:"vpc"`
 }
@@ -2999,6 +3406,8 @@ type MongoAllowListsAllowListAssociatedInstanceArgs struct {
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The instance name that bound to the allow list.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The VPC ID.
 	Vpc pulumi.StringInput `pulumi:"vpc"`
 }
@@ -3062,6 +3471,11 @@ func (o MongoAllowListsAllowListAssociatedInstanceOutput) InstanceId() pulumi.St
 // The instance name that bound to the allow list.
 func (o MongoAllowListsAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v MongoAllowListsAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The project name of the allow list.
+func (o MongoAllowListsAllowListAssociatedInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v MongoAllowListsAllowListAssociatedInstance) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The VPC ID.
@@ -3196,6 +3610,8 @@ func (o RegionsRegionArrayOutput) Index(i pulumi.IntInput) RegionsRegionOutput {
 }
 
 type SpecsSpecs struct {
+	// The collection of config server node specs.
+	ConfigServerNodeSpecs []SpecsSpecsConfigServerNodeSpec `pulumi:"configServerNodeSpecs"`
 	// The collection of mongos node specs.
 	MongosNodeSpecs []SpecsSpecsMongosNodeSpec `pulumi:"mongosNodeSpecs"`
 	// The collection of node specs.
@@ -3216,6 +3632,8 @@ type SpecsSpecsInput interface {
 }
 
 type SpecsSpecsArgs struct {
+	// The collection of config server node specs.
+	ConfigServerNodeSpecs SpecsSpecsConfigServerNodeSpecArrayInput `pulumi:"configServerNodeSpecs"`
 	// The collection of mongos node specs.
 	MongosNodeSpecs SpecsSpecsMongosNodeSpecArrayInput `pulumi:"mongosNodeSpecs"`
 	// The collection of node specs.
@@ -3250,6 +3668,11 @@ func (o SpecsSpecsOutput) ToSpecsSpecsOutputWithContext(ctx context.Context) Spe
 	return o
 }
 
+// The collection of config server node specs.
+func (o SpecsSpecsOutput) ConfigServerNodeSpecs() SpecsSpecsConfigServerNodeSpecArrayOutput {
+	return o.ApplyT(func(v SpecsSpecs) []SpecsSpecsConfigServerNodeSpec { return v.ConfigServerNodeSpecs }).(SpecsSpecsConfigServerNodeSpecArrayOutput)
+}
+
 // The collection of mongos node specs.
 func (o SpecsSpecsOutput) MongosNodeSpecs() SpecsSpecsMongosNodeSpecArrayOutput {
 	return o.ApplyT(func(v SpecsSpecs) []SpecsSpecsMongosNodeSpec { return v.MongosNodeSpecs }).(SpecsSpecsMongosNodeSpecArrayOutput)
@@ -3263,6 +3686,148 @@ func (o SpecsSpecsOutput) NodeSpecs() SpecsSpecsNodeSpecArrayOutput {
 // The collection of shard node specs.
 func (o SpecsSpecsOutput) ShardNodeSpecs() SpecsSpecsShardNodeSpecArrayOutput {
 	return o.ApplyT(func(v SpecsSpecs) []SpecsSpecsShardNodeSpec { return v.ShardNodeSpecs }).(SpecsSpecsShardNodeSpecArrayOutput)
+}
+
+type SpecsSpecsConfigServerNodeSpec struct {
+	// The cpu cores.
+	CpuNum float64 `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn int `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage int `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInGb int `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage int `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// SpecsSpecsConfigServerNodeSpecInput is an input type that accepts SpecsSpecsConfigServerNodeSpecArgs and SpecsSpecsConfigServerNodeSpecOutput values.
+// You can construct a concrete instance of `SpecsSpecsConfigServerNodeSpecInput` via:
+//
+//	SpecsSpecsConfigServerNodeSpecArgs{...}
+type SpecsSpecsConfigServerNodeSpecInput interface {
+	pulumi.Input
+
+	ToSpecsSpecsConfigServerNodeSpecOutput() SpecsSpecsConfigServerNodeSpecOutput
+	ToSpecsSpecsConfigServerNodeSpecOutputWithContext(context.Context) SpecsSpecsConfigServerNodeSpecOutput
+}
+
+type SpecsSpecsConfigServerNodeSpecArgs struct {
+	// The cpu cores.
+	CpuNum pulumi.Float64Input `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn pulumi.IntInput `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage pulumi.IntInput `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInGb pulumi.IntInput `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage pulumi.IntInput `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (SpecsSpecsConfigServerNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (i SpecsSpecsConfigServerNodeSpecArgs) ToSpecsSpecsConfigServerNodeSpecOutput() SpecsSpecsConfigServerNodeSpecOutput {
+	return i.ToSpecsSpecsConfigServerNodeSpecOutputWithContext(context.Background())
+}
+
+func (i SpecsSpecsConfigServerNodeSpecArgs) ToSpecsSpecsConfigServerNodeSpecOutputWithContext(ctx context.Context) SpecsSpecsConfigServerNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SpecsSpecsConfigServerNodeSpecOutput)
+}
+
+// SpecsSpecsConfigServerNodeSpecArrayInput is an input type that accepts SpecsSpecsConfigServerNodeSpecArray and SpecsSpecsConfigServerNodeSpecArrayOutput values.
+// You can construct a concrete instance of `SpecsSpecsConfigServerNodeSpecArrayInput` via:
+//
+//	SpecsSpecsConfigServerNodeSpecArray{ SpecsSpecsConfigServerNodeSpecArgs{...} }
+type SpecsSpecsConfigServerNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToSpecsSpecsConfigServerNodeSpecArrayOutput() SpecsSpecsConfigServerNodeSpecArrayOutput
+	ToSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(context.Context) SpecsSpecsConfigServerNodeSpecArrayOutput
+}
+
+type SpecsSpecsConfigServerNodeSpecArray []SpecsSpecsConfigServerNodeSpecInput
+
+func (SpecsSpecsConfigServerNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (i SpecsSpecsConfigServerNodeSpecArray) ToSpecsSpecsConfigServerNodeSpecArrayOutput() SpecsSpecsConfigServerNodeSpecArrayOutput {
+	return i.ToSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i SpecsSpecsConfigServerNodeSpecArray) ToSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(ctx context.Context) SpecsSpecsConfigServerNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SpecsSpecsConfigServerNodeSpecArrayOutput)
+}
+
+type SpecsSpecsConfigServerNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (SpecsSpecsConfigServerNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (o SpecsSpecsConfigServerNodeSpecOutput) ToSpecsSpecsConfigServerNodeSpecOutput() SpecsSpecsConfigServerNodeSpecOutput {
+	return o
+}
+
+func (o SpecsSpecsConfigServerNodeSpecOutput) ToSpecsSpecsConfigServerNodeSpecOutputWithContext(ctx context.Context) SpecsSpecsConfigServerNodeSpecOutput {
+	return o
+}
+
+// The cpu cores.
+func (o SpecsSpecsConfigServerNodeSpecOutput) CpuNum() pulumi.Float64Output {
+	return o.ApplyT(func(v SpecsSpecsConfigServerNodeSpec) float64 { return v.CpuNum }).(pulumi.Float64Output)
+}
+
+// The max connections.
+func (o SpecsSpecsConfigServerNodeSpecOutput) MaxConn() pulumi.IntOutput {
+	return o.ApplyT(func(v SpecsSpecsConfigServerNodeSpec) int { return v.MaxConn }).(pulumi.IntOutput)
+}
+
+// The max storage.
+func (o SpecsSpecsConfigServerNodeSpecOutput) MaxStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v SpecsSpecsConfigServerNodeSpec) int { return v.MaxStorage }).(pulumi.IntOutput)
+}
+
+// The memory in GB.
+func (o SpecsSpecsConfigServerNodeSpecOutput) MemInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v SpecsSpecsConfigServerNodeSpec) int { return v.MemInGb }).(pulumi.IntOutput)
+}
+
+// The min storage.
+func (o SpecsSpecsConfigServerNodeSpecOutput) MinStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v SpecsSpecsConfigServerNodeSpec) int { return v.MinStorage }).(pulumi.IntOutput)
+}
+
+// The shard node spec name.
+func (o SpecsSpecsConfigServerNodeSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v SpecsSpecsConfigServerNodeSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type SpecsSpecsConfigServerNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (SpecsSpecsConfigServerNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (o SpecsSpecsConfigServerNodeSpecArrayOutput) ToSpecsSpecsConfigServerNodeSpecArrayOutput() SpecsSpecsConfigServerNodeSpecArrayOutput {
+	return o
+}
+
+func (o SpecsSpecsConfigServerNodeSpecArrayOutput) ToSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(ctx context.Context) SpecsSpecsConfigServerNodeSpecArrayOutput {
+	return o
+}
+
+func (o SpecsSpecsConfigServerNodeSpecArrayOutput) Index(i pulumi.IntInput) SpecsSpecsConfigServerNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SpecsSpecsConfigServerNodeSpec {
+		return vs[0].([]SpecsSpecsConfigServerNodeSpec)[vs[1].(int)]
+	}).(SpecsSpecsConfigServerNodeSpecOutput)
 }
 
 type SpecsSpecsMongosNodeSpec struct {
@@ -3398,6 +3963,8 @@ type SpecsSpecsNodeSpec struct {
 	MaxStorage int `pulumi:"maxStorage"`
 	// The memory in GB.
 	MemInDb float64 `pulumi:"memInDb"`
+	// The min storage.
+	MinStorage int `pulumi:"minStorage"`
 	// The shard node spec name.
 	SpecName string `pulumi:"specName"`
 }
@@ -3422,6 +3989,8 @@ type SpecsSpecsNodeSpecArgs struct {
 	MaxStorage pulumi.IntInput `pulumi:"maxStorage"`
 	// The memory in GB.
 	MemInDb pulumi.Float64Input `pulumi:"memInDb"`
+	// The min storage.
+	MinStorage pulumi.IntInput `pulumi:"minStorage"`
 	// The shard node spec name.
 	SpecName pulumi.StringInput `pulumi:"specName"`
 }
@@ -3497,6 +4066,11 @@ func (o SpecsSpecsNodeSpecOutput) MemInDb() pulumi.Float64Output {
 	return o.ApplyT(func(v SpecsSpecsNodeSpec) float64 { return v.MemInDb }).(pulumi.Float64Output)
 }
 
+// The min storage.
+func (o SpecsSpecsNodeSpecOutput) MinStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v SpecsSpecsNodeSpec) int { return v.MinStorage }).(pulumi.IntOutput)
+}
+
 // The shard node spec name.
 func (o SpecsSpecsNodeSpecOutput) SpecName() pulumi.StringOutput {
 	return o.ApplyT(func(v SpecsSpecsNodeSpec) string { return v.SpecName }).(pulumi.StringOutput)
@@ -3531,6 +4105,8 @@ type SpecsSpecsShardNodeSpec struct {
 	MaxStorage int `pulumi:"maxStorage"`
 	// The memory in GB.
 	MemInGb int `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage int `pulumi:"minStorage"`
 	// The shard node spec name.
 	SpecName string `pulumi:"specName"`
 }
@@ -3555,6 +4131,8 @@ type SpecsSpecsShardNodeSpecArgs struct {
 	MaxStorage pulumi.IntInput `pulumi:"maxStorage"`
 	// The memory in GB.
 	MemInGb pulumi.IntInput `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage pulumi.IntInput `pulumi:"minStorage"`
 	// The shard node spec name.
 	SpecName pulumi.StringInput `pulumi:"specName"`
 }
@@ -3628,6 +4206,11 @@ func (o SpecsSpecsShardNodeSpecOutput) MaxStorage() pulumi.IntOutput {
 // The memory in GB.
 func (o SpecsSpecsShardNodeSpecOutput) MemInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v SpecsSpecsShardNodeSpec) int { return v.MemInGb }).(pulumi.IntOutput)
+}
+
+// The min storage.
+func (o SpecsSpecsShardNodeSpecOutput) MinStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v SpecsSpecsShardNodeSpec) int { return v.MinStorage }).(pulumi.IntOutput)
 }
 
 // The shard node spec name.
@@ -3895,6 +4478,8 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeInput)(nil)).Elem(), AccountAccountPrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeArrayInput)(nil)).Elem(), AccountAccountPrivilegeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountInput)(nil)).Elem(), AccountsAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountArrayInput)(nil)).Elem(), AccountsAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountAccountPrivilegeInput)(nil)).Elem(), AccountsAccountAccountPrivilegeArgs{})
@@ -3905,6 +4490,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointDbAddressArrayInput)(nil)).Elem(), EndpointsEndpointDbAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceMongoInput)(nil)).Elem(), InstanceMongoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceMongoArrayInput)(nil)).Elem(), InstanceMongoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceNodeAvailabilityZoneInput)(nil)).Elem(), InstanceNodeAvailabilityZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceNodeAvailabilityZoneArrayInput)(nil)).Elem(), InstanceNodeAvailabilityZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterLogsParameterChangeLogsInput)(nil)).Elem(), InstanceParameterLogsParameterChangeLogsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParametersInstanceParameterInput)(nil)).Elem(), InstanceParametersInstanceParameterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParametersInstanceParameterArrayInput)(nil)).Elem(), InstanceParametersInstanceParameterArray{})
@@ -3932,6 +4519,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceTagArrayInput)(nil)).Elem(), InstancesInstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoAllowListAssociatedInstanceInput)(nil)).Elem(), MongoAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoAllowListAssociatedInstanceArrayInput)(nil)).Elem(), MongoAllowListAssociatedInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoAllowListsAllowListInput)(nil)).Elem(), MongoAllowListsAllowListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoAllowListsAllowListArrayInput)(nil)).Elem(), MongoAllowListsAllowListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoAllowListsAllowListAssociatedInstanceInput)(nil)).Elem(), MongoAllowListsAllowListAssociatedInstanceArgs{})
@@ -3939,6 +4528,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpecsSpecsInput)(nil)).Elem(), SpecsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpecsSpecsConfigServerNodeSpecInput)(nil)).Elem(), SpecsSpecsConfigServerNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpecsSpecsConfigServerNodeSpecArrayInput)(nil)).Elem(), SpecsSpecsConfigServerNodeSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpecsSpecsMongosNodeSpecInput)(nil)).Elem(), SpecsSpecsMongosNodeSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpecsSpecsMongosNodeSpecArrayInput)(nil)).Elem(), SpecsSpecsMongosNodeSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpecsSpecsNodeSpecInput)(nil)).Elem(), SpecsSpecsNodeSpecArgs{})
@@ -3949,6 +4540,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SslStatesSslStateArrayInput)(nil)).Elem(), SslStatesSslStateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterOutputType(AccountAccountPrivilegeOutput{})
+	pulumi.RegisterOutputType(AccountAccountPrivilegeArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountOutput{})
 	pulumi.RegisterOutputType(AccountsAccountArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountAccountPrivilegeOutput{})
@@ -3959,6 +4552,8 @@ func init() {
 	pulumi.RegisterOutputType(EndpointsEndpointDbAddressArrayOutput{})
 	pulumi.RegisterOutputType(InstanceMongoOutput{})
 	pulumi.RegisterOutputType(InstanceMongoArrayOutput{})
+	pulumi.RegisterOutputType(InstanceNodeAvailabilityZoneOutput{})
+	pulumi.RegisterOutputType(InstanceNodeAvailabilityZoneArrayOutput{})
 	pulumi.RegisterOutputType(InstanceParameterLogsParameterChangeLogsOutput{})
 	pulumi.RegisterOutputType(InstanceParametersInstanceParameterOutput{})
 	pulumi.RegisterOutputType(InstanceParametersInstanceParameterArrayOutput{})
@@ -3986,6 +4581,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancesInstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(InstancesTagOutput{})
 	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(MongoAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(MongoAllowListAssociatedInstanceArrayOutput{})
 	pulumi.RegisterOutputType(MongoAllowListsAllowListOutput{})
 	pulumi.RegisterOutputType(MongoAllowListsAllowListArrayOutput{})
 	pulumi.RegisterOutputType(MongoAllowListsAllowListAssociatedInstanceOutput{})
@@ -3993,6 +4590,8 @@ func init() {
 	pulumi.RegisterOutputType(RegionsRegionOutput{})
 	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
 	pulumi.RegisterOutputType(SpecsSpecsOutput{})
+	pulumi.RegisterOutputType(SpecsSpecsConfigServerNodeSpecOutput{})
+	pulumi.RegisterOutputType(SpecsSpecsConfigServerNodeSpecArrayOutput{})
 	pulumi.RegisterOutputType(SpecsSpecsMongosNodeSpecOutput{})
 	pulumi.RegisterOutputType(SpecsSpecsMongosNodeSpecArrayOutput{})
 	pulumi.RegisterOutputType(SpecsSpecsNodeSpecOutput{})

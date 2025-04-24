@@ -157,10 +157,9 @@ type Volume struct {
 	ExtraPerformanceThroughputMb pulumi.IntOutput `pulumi:"extraPerformanceThroughputMb"`
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId pulumi.StringPtrOutput `pulumi:"extraPerformanceTypeId"`
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-	// terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringOutput `pulumi:"kind"`
@@ -168,13 +167,16 @@ type Volume struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The size of Volume.
 	Size pulumi.IntOutput `pulumi:"size"`
+	// The id of the snapshot. When creating a volume using snapshots, this field is required.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// Status of Volume.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags.
 	Tags VolumeTagArrayOutput `pulumi:"tags"`
 	// Status of Trade.
 	TradeStatus pulumi.IntOutput `pulumi:"tradeStatus"`
-	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
 	VolumeChargeType pulumi.StringPtrOutput `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName pulumi.StringOutput `pulumi:"volumeName"`
@@ -241,10 +243,9 @@ type volumeState struct {
 	ExtraPerformanceThroughputMb *int `pulumi:"extraPerformanceThroughputMb"`
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId *string `pulumi:"extraPerformanceTypeId"`
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-	// terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
 	InstanceId *string `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind *string `pulumi:"kind"`
@@ -252,13 +253,16 @@ type volumeState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The size of Volume.
 	Size *int `pulumi:"size"`
+	// The id of the snapshot. When creating a volume using snapshots, this field is required.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	SnapshotId *string `pulumi:"snapshotId"`
 	// Status of Volume.
 	Status *string `pulumi:"status"`
 	// Tags.
 	Tags []VolumeTag `pulumi:"tags"`
 	// Status of Trade.
 	TradeStatus *int `pulumi:"tradeStatus"`
-	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName *string `pulumi:"volumeName"`
@@ -281,10 +285,9 @@ type VolumeState struct {
 	ExtraPerformanceThroughputMb pulumi.IntPtrInput
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId pulumi.StringPtrInput
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-	// terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
 	InstanceId pulumi.StringPtrInput
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringPtrInput
@@ -292,13 +295,16 @@ type VolumeState struct {
 	ProjectName pulumi.StringPtrInput
 	// The size of Volume.
 	Size pulumi.IntPtrInput
+	// The id of the snapshot. When creating a volume using snapshots, this field is required.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	SnapshotId pulumi.StringPtrInput
 	// Status of Volume.
 	Status pulumi.StringPtrInput
 	// Tags.
 	Tags VolumeTagArrayInput
 	// Status of Trade.
 	TradeStatus pulumi.IntPtrInput
-	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
 	VolumeName pulumi.StringPtrInput
@@ -323,10 +329,9 @@ type volumeArgs struct {
 	ExtraPerformanceThroughputMb *int `pulumi:"extraPerformanceThroughputMb"`
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId *string `pulumi:"extraPerformanceTypeId"`
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-	// terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
 	InstanceId *string `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind string `pulumi:"kind"`
@@ -334,9 +339,12 @@ type volumeArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The size of Volume.
 	Size int `pulumi:"size"`
+	// The id of the snapshot. When creating a volume using snapshots, this field is required.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	SnapshotId *string `pulumi:"snapshotId"`
 	// Tags.
 	Tags []VolumeTag `pulumi:"tags"`
-	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName string `pulumi:"volumeName"`
@@ -358,10 +366,9 @@ type VolumeArgs struct {
 	ExtraPerformanceThroughputMb pulumi.IntPtrInput
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId pulumi.StringPtrInput
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-	// terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
 	InstanceId pulumi.StringPtrInput
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringInput
@@ -369,9 +376,12 @@ type VolumeArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The size of Volume.
 	Size pulumi.IntInput
+	// The id of the snapshot. When creating a volume using snapshots, this field is required.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	SnapshotId pulumi.StringPtrInput
 	// Tags.
 	Tags VolumeTagArrayInput
-	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
 	VolumeName pulumi.StringInput
@@ -498,10 +508,9 @@ func (o VolumeOutput) ExtraPerformanceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ExtraPerformanceTypeId }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-// terraform state file and management.
+// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+// volcengine_volume.resource_name` command to remove it from terraform state file and management.
 func (o VolumeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
@@ -521,6 +530,12 @@ func (o VolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
+// The id of the snapshot. When creating a volume using snapshots, this field is required.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o VolumeOutput) SnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
+}
+
 // Status of Volume.
 func (o VolumeOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
@@ -536,7 +551,7 @@ func (o VolumeOutput) TradeStatus() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.TradeStatus }).(pulumi.IntOutput)
 }
 
-// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
 func (o VolumeOutput) VolumeChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.VolumeChargeType }).(pulumi.StringPtrOutput)
 }

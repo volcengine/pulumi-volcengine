@@ -62,13 +62,19 @@ namespace Pulumi.Volcengine.Mongodb
     public sealed class AccountsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of account, current support only `root`.
+        /// The name of account. This field support fuzzy query.
         /// </summary>
         [Input("accountName")]
         public string? AccountName { get; set; }
 
         /// <summary>
-        /// Target query mongo instance id.
+        /// The database of account. This field support fuzzy query.
+        /// </summary>
+        [Input("authDb")]
+        public string? AuthDb { get; set; }
+
+        /// <summary>
+        /// Target query mongodb instance id.
         /// </summary>
         [Input("instanceId", required: true)]
         public string InstanceId { get; set; } = null!;
@@ -88,13 +94,19 @@ namespace Pulumi.Volcengine.Mongodb
     public sealed class AccountsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of account, current support only `root`.
+        /// The name of account. This field support fuzzy query.
         /// </summary>
         [Input("accountName")]
         public Input<string>? AccountName { get; set; }
 
         /// <summary>
-        /// Target query mongo instance id.
+        /// The database of account. This field support fuzzy query.
+        /// </summary>
+        [Input("authDb")]
+        public Input<string>? AuthDb { get; set; }
+
+        /// <summary>
+        /// Target query mongodb instance id.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -124,6 +136,10 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         public readonly ImmutableArray<Outputs.AccountsAccountResult> Accounts;
         /// <summary>
+        /// The database of account.
+        /// </summary>
+        public readonly string? AuthDb;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -140,6 +156,8 @@ namespace Pulumi.Volcengine.Mongodb
 
             ImmutableArray<Outputs.AccountsAccountResult> accounts,
 
+            string? authDb,
+
             string id,
 
             string instanceId,
@@ -150,6 +168,7 @@ namespace Pulumi.Volcengine.Mongodb
         {
             AccountName = accountName;
             Accounts = accounts;
+            AuthDb = authDb;
             Id = id;
             InstanceId = instanceId;
             OutputFile = outputFile;

@@ -46,6 +46,8 @@ __all__ = [
     'NodeKubernetesConfigTaintArgs',
     'NodePoolAutoScalingArgs',
     'NodePoolKubernetesConfigArgs',
+    'NodePoolKubernetesConfigKubeletConfigArgs',
+    'NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs',
     'NodePoolKubernetesConfigLabelArgs',
     'NodePoolKubernetesConfigTaintArgs',
     'NodePoolNodeConfigArgs',
@@ -1903,16 +1905,24 @@ class NodePoolAutoScalingArgs:
 class NodePoolKubernetesConfigArgs:
     def __init__(__self__, *,
                  cordon: pulumi.Input[bool],
+                 auto_sync_disabled: Optional[pulumi.Input[bool]] = None,
+                 kubelet_config: Optional[pulumi.Input['NodePoolKubernetesConfigKubeletConfigArgs']] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]]] = None,
                  name_prefix: Optional[pulumi.Input[str]] = None,
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]]] = None):
         """
         :param pulumi.Input[bool] cordon: The Cordon of KubernetesConfig.
+        :param pulumi.Input[bool] auto_sync_disabled: Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+        :param pulumi.Input['NodePoolKubernetesConfigKubeletConfigArgs'] kubelet_config: The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
         :param pulumi.Input[str] name_prefix: The NamePrefix of node metadata.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
         """
         pulumi.set(__self__, "cordon", cordon)
+        if auto_sync_disabled is not None:
+            pulumi.set(__self__, "auto_sync_disabled", auto_sync_disabled)
+        if kubelet_config is not None:
+            pulumi.set(__self__, "kubelet_config", kubelet_config)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name_prefix is not None:
@@ -1931,6 +1941,30 @@ class NodePoolKubernetesConfigArgs:
     @cordon.setter
     def cordon(self, value: pulumi.Input[bool]):
         pulumi.set(self, "cordon", value)
+
+    @property
+    @pulumi.getter(name="autoSyncDisabled")
+    def auto_sync_disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+        """
+        return pulumi.get(self, "auto_sync_disabled")
+
+    @auto_sync_disabled.setter
+    def auto_sync_disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_sync_disabled", value)
+
+    @property
+    @pulumi.getter(name="kubeletConfig")
+    def kubelet_config(self) -> Optional[pulumi.Input['NodePoolKubernetesConfigKubeletConfigArgs']]:
+        """
+        The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+        """
+        return pulumi.get(self, "kubelet_config")
+
+    @kubelet_config.setter
+    def kubelet_config(self, value: Optional[pulumi.Input['NodePoolKubernetesConfigKubeletConfigArgs']]):
+        pulumi.set(self, "kubelet_config", value)
 
     @property
     @pulumi.getter
@@ -1967,6 +2001,84 @@ class NodePoolKubernetesConfigArgs:
     @taints.setter
     def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]]]):
         pulumi.set(self, "taints", value)
+
+
+@pulumi.input_type
+class NodePoolKubernetesConfigKubeletConfigArgs:
+    def __init__(__self__, *,
+                 feature_gates: Optional[pulumi.Input['NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs']] = None,
+                 topology_manager_policy: Optional[pulumi.Input[str]] = None,
+                 topology_manager_scope: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs'] feature_gates: The FeatureGates of KubeletConfig.
+        :param pulumi.Input[str] topology_manager_policy: The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+        :param pulumi.Input[str] topology_manager_scope: The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+        """
+        if feature_gates is not None:
+            pulumi.set(__self__, "feature_gates", feature_gates)
+        if topology_manager_policy is not None:
+            pulumi.set(__self__, "topology_manager_policy", topology_manager_policy)
+        if topology_manager_scope is not None:
+            pulumi.set(__self__, "topology_manager_scope", topology_manager_scope)
+
+    @property
+    @pulumi.getter(name="featureGates")
+    def feature_gates(self) -> Optional[pulumi.Input['NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs']]:
+        """
+        The FeatureGates of KubeletConfig.
+        """
+        return pulumi.get(self, "feature_gates")
+
+    @feature_gates.setter
+    def feature_gates(self, value: Optional[pulumi.Input['NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs']]):
+        pulumi.set(self, "feature_gates", value)
+
+    @property
+    @pulumi.getter(name="topologyManagerPolicy")
+    def topology_manager_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+        """
+        return pulumi.get(self, "topology_manager_policy")
+
+    @topology_manager_policy.setter
+    def topology_manager_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topology_manager_policy", value)
+
+    @property
+    @pulumi.getter(name="topologyManagerScope")
+    def topology_manager_scope(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+        """
+        return pulumi.get(self, "topology_manager_scope")
+
+    @topology_manager_scope.setter
+    def topology_manager_scope(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topology_manager_scope", value)
+
+
+@pulumi.input_type
+class NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs:
+    def __init__(__self__, *,
+                 qos_resource_manager: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] qos_resource_manager: Whether to enable QoSResourceManager. Default is false.
+        """
+        if qos_resource_manager is not None:
+            pulumi.set(__self__, "qos_resource_manager", qos_resource_manager)
+
+    @property
+    @pulumi.getter(name="qosResourceManager")
+    def qos_resource_manager(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable QoSResourceManager. Default is false.
+        """
+        return pulumi.get(self, "qos_resource_manager")
+
+    @qos_resource_manager.setter
+    def qos_resource_manager(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "qos_resource_manager", value)
 
 
 @pulumi.input_type

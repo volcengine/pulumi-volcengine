@@ -23,9 +23,11 @@ class InstanceArgs:
                  secondary_zone_id: pulumi.Input[str],
                  subnet_id: pulumi.Input[str],
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 connection_pool_type: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
@@ -41,6 +43,9 @@ class InstanceArgs:
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
+        :param pulumi.Input[str] connection_pool_type: Connection pool type. Value range:
+               Direct: Direct connection mode.
+               Transaction: Transaction-level connection pool (default).
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
@@ -49,6 +54,7 @@ class InstanceArgs:
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
+        :param pulumi.Input['InstanceMaintenanceWindowArgs'] maintenance_window: Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
@@ -62,12 +68,16 @@ class InstanceArgs:
         pulumi.set(__self__, "subnet_id", subnet_id)
         if allow_list_ids is not None:
             pulumi.set(__self__, "allow_list_ids", allow_list_ids)
+        if connection_pool_type is not None:
+            pulumi.set(__self__, "connection_pool_type", connection_pool_type)
         if db_time_zone is not None:
             pulumi.set(__self__, "db_time_zone", db_time_zone)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
         if lower_case_table_names is not None:
             pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
         if project_name is not None:
@@ -164,6 +174,20 @@ class InstanceArgs:
         pulumi.set(self, "allow_list_ids", value)
 
     @property
+    @pulumi.getter(name="connectionPoolType")
+    def connection_pool_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Connection pool type. Value range:
+        Direct: Direct connection mode.
+        Transaction: Transaction-level connection pool (default).
+        """
+        return pulumi.get(self, "connection_pool_type")
+
+    @connection_pool_type.setter
+    def connection_pool_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_pool_type", value)
+
+    @property
     @pulumi.getter(name="dbTimeZone")
     def db_time_zone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -203,6 +227,18 @@ class InstanceArgs:
     @lower_case_table_names.setter
     def lower_case_table_names(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lower_case_table_names", value)
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input['InstanceMaintenanceWindowArgs']]:
+        """
+        Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']]):
+        pulumi.set(self, "maintenance_window", value)
 
     @property
     @pulumi.getter
@@ -259,20 +295,28 @@ class _InstanceState:
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allow_list_version: Optional[pulumi.Input[str]] = None,
                  backup_use: Optional[pulumi.Input[int]] = None,
+                 binlog_dump: Optional[pulumi.Input[bool]] = None,
                  charge_details: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceChargeDetailArgs']]]] = None,
                  charge_info: Optional[pulumi.Input['InstanceChargeInfoArgs']] = None,
+                 connection_pool_type: Optional[pulumi.Input[str]] = None,
                  create_time: Optional[pulumi.Input[str]] = None,
                  data_sync_mode: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
+                 db_proxy_status: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]]] = None,
+                 feature_states: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFeatureStateArgs']]]] = None,
+                 global_read_only: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_status: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
-                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceMaintenanceWindowArgs']]]] = None,
+                 maintenance_window: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']] = None,
                  memory: Optional[pulumi.Input[int]] = None,
+                 node_cpu_used_percentage: Optional[pulumi.Input[float]] = None,
+                 node_memory_used_percentage: Optional[pulumi.Input[float]] = None,
                  node_number: Optional[pulumi.Input[int]] = None,
+                 node_space_used_percentage: Optional[pulumi.Input[float]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeArgs']]]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]]] = None,
@@ -289,21 +333,37 @@ class _InstanceState:
                  update_time: Optional[pulumi.Input[str]] = None,
                  v_cpu: Optional[pulumi.Input[int]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
-                 zone_id: Optional[pulumi.Input[str]] = None):
+                 zone_id: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
         :param pulumi.Input[str] allow_list_version: The version of allow list.
         :param pulumi.Input[int] backup_use: The instance has used backup space. Unit: GB.
+        :param pulumi.Input[bool] binlog_dump: Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+               true: Yes.
+               false: No.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceChargeDetailArgs']]] charge_details: Payment methods.
         :param pulumi.Input['InstanceChargeInfoArgs'] charge_info: Payment methods.
+        :param pulumi.Input[str] connection_pool_type: Connection pool type. Value range:
+               Direct: Direct connection mode.
+               Transaction: Transaction-level connection pool (default).
         :param pulumi.Input[str] create_time: Node creation local time.
         :param pulumi.Input[str] data_sync_mode: Data synchronization mode.
         :param pulumi.Input[str] db_engine_version: Instance type. Value:
                MySQL_5_7
                MySQL_8_0.
+        :param pulumi.Input[str] db_proxy_status: The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+               Creating: The proxy is being started.
+               Running: The proxy is running.
+               Shutdown: The proxy is closed.
+               Deleting: The proxy is being closed.
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]] endpoints: The endpoint info of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceFeatureStateArgs']]] feature_states: Feature status.
+        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only.
+               true: Yes.
+               false: No.
         :param pulumi.Input[str] instance_id: Instance ID.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
@@ -313,9 +373,12 @@ class _InstanceState:
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceMaintenanceWindowArgs']]] maintenance_windows: Maintenance Window.
+        :param pulumi.Input['InstanceMaintenanceWindowArgs'] maintenance_window: Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         :param pulumi.Input[int] memory: Memory size in GB.
+        :param pulumi.Input[float] node_cpu_used_percentage: Average CPU usage of the instance master node in nearly one minute.
+        :param pulumi.Input[float] node_memory_used_percentage: Average memory usage of the instance master node in nearly one minute.
         :param pulumi.Input[int] node_number: The number of nodes.
+        :param pulumi.Input[float] node_space_used_percentage: Average disk usage of the instance master node in nearly one minute.
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceNodeArgs']]] nodes: Instance node information.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
@@ -333,6 +396,7 @@ class _InstanceState:
         :param pulumi.Input[int] v_cpu: CPU size.
         :param pulumi.Input[str] vpc_id: The vpc ID of the RDS instance.
         :param pulumi.Input[str] zone_id: The available zone of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: List of availability zones where each node of the instance is located.
         """
         if allow_list_ids is not None:
             pulumi.set(__self__, "allow_list_ids", allow_list_ids)
@@ -340,20 +404,30 @@ class _InstanceState:
             pulumi.set(__self__, "allow_list_version", allow_list_version)
         if backup_use is not None:
             pulumi.set(__self__, "backup_use", backup_use)
+        if binlog_dump is not None:
+            pulumi.set(__self__, "binlog_dump", binlog_dump)
         if charge_details is not None:
             pulumi.set(__self__, "charge_details", charge_details)
         if charge_info is not None:
             pulumi.set(__self__, "charge_info", charge_info)
+        if connection_pool_type is not None:
+            pulumi.set(__self__, "connection_pool_type", connection_pool_type)
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
         if data_sync_mode is not None:
             pulumi.set(__self__, "data_sync_mode", data_sync_mode)
         if db_engine_version is not None:
             pulumi.set(__self__, "db_engine_version", db_engine_version)
+        if db_proxy_status is not None:
+            pulumi.set(__self__, "db_proxy_status", db_proxy_status)
         if db_time_zone is not None:
             pulumi.set(__self__, "db_time_zone", db_time_zone)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
+        if feature_states is not None:
+            pulumi.set(__self__, "feature_states", feature_states)
+        if global_read_only is not None:
+            pulumi.set(__self__, "global_read_only", global_read_only)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if instance_name is not None:
@@ -362,12 +436,18 @@ class _InstanceState:
             pulumi.set(__self__, "instance_status", instance_status)
         if lower_case_table_names is not None:
             pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
-        if maintenance_windows is not None:
-            pulumi.set(__self__, "maintenance_windows", maintenance_windows)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
         if memory is not None:
             pulumi.set(__self__, "memory", memory)
+        if node_cpu_used_percentage is not None:
+            pulumi.set(__self__, "node_cpu_used_percentage", node_cpu_used_percentage)
+        if node_memory_used_percentage is not None:
+            pulumi.set(__self__, "node_memory_used_percentage", node_memory_used_percentage)
         if node_number is not None:
             pulumi.set(__self__, "node_number", node_number)
+        if node_space_used_percentage is not None:
+            pulumi.set(__self__, "node_space_used_percentage", node_space_used_percentage)
         if node_spec is not None:
             pulumi.set(__self__, "node_spec", node_spec)
         if nodes is not None:
@@ -402,6 +482,8 @@ class _InstanceState:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
+        if zone_ids is not None:
+            pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="allowListIds")
@@ -440,6 +522,20 @@ class _InstanceState:
         pulumi.set(self, "backup_use", value)
 
     @property
+    @pulumi.getter(name="binlogDump")
+    def binlog_dump(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+        true: Yes.
+        false: No.
+        """
+        return pulumi.get(self, "binlog_dump")
+
+    @binlog_dump.setter
+    def binlog_dump(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "binlog_dump", value)
+
+    @property
     @pulumi.getter(name="chargeDetails")
     def charge_details(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceChargeDetailArgs']]]]:
         """
@@ -462,6 +558,20 @@ class _InstanceState:
     @charge_info.setter
     def charge_info(self, value: Optional[pulumi.Input['InstanceChargeInfoArgs']]):
         pulumi.set(self, "charge_info", value)
+
+    @property
+    @pulumi.getter(name="connectionPoolType")
+    def connection_pool_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Connection pool type. Value range:
+        Direct: Direct connection mode.
+        Transaction: Transaction-level connection pool (default).
+        """
+        return pulumi.get(self, "connection_pool_type")
+
+    @connection_pool_type.setter
+    def connection_pool_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_pool_type", value)
 
     @property
     @pulumi.getter(name="createTime")
@@ -502,6 +612,22 @@ class _InstanceState:
         pulumi.set(self, "db_engine_version", value)
 
     @property
+    @pulumi.getter(name="dbProxyStatus")
+    def db_proxy_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+        Creating: The proxy is being started.
+        Running: The proxy is running.
+        Shutdown: The proxy is closed.
+        Deleting: The proxy is being closed.
+        """
+        return pulumi.get(self, "db_proxy_status")
+
+    @db_proxy_status.setter
+    def db_proxy_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "db_proxy_status", value)
+
+    @property
     @pulumi.getter(name="dbTimeZone")
     def db_time_zone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -524,6 +650,32 @@ class _InstanceState:
     @endpoints.setter
     def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
+
+    @property
+    @pulumi.getter(name="featureStates")
+    def feature_states(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFeatureStateArgs']]]]:
+        """
+        Feature status.
+        """
+        return pulumi.get(self, "feature_states")
+
+    @feature_states.setter
+    def feature_states(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFeatureStateArgs']]]]):
+        pulumi.set(self, "feature_states", value)
+
+    @property
+    @pulumi.getter(name="globalReadOnly")
+    def global_read_only(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable global read-only.
+        true: Yes.
+        false: No.
+        """
+        return pulumi.get(self, "global_read_only")
+
+    @global_read_only.setter
+    def global_read_only(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "global_read_only", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -579,16 +731,16 @@ class _InstanceState:
         pulumi.set(self, "lower_case_table_names", value)
 
     @property
-    @pulumi.getter(name="maintenanceWindows")
-    def maintenance_windows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceMaintenanceWindowArgs']]]]:
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input['InstanceMaintenanceWindowArgs']]:
         """
-        Maintenance Window.
+        Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         """
-        return pulumi.get(self, "maintenance_windows")
+        return pulumi.get(self, "maintenance_window")
 
-    @maintenance_windows.setter
-    def maintenance_windows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceMaintenanceWindowArgs']]]]):
-        pulumi.set(self, "maintenance_windows", value)
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']]):
+        pulumi.set(self, "maintenance_window", value)
 
     @property
     @pulumi.getter
@@ -603,6 +755,30 @@ class _InstanceState:
         pulumi.set(self, "memory", value)
 
     @property
+    @pulumi.getter(name="nodeCpuUsedPercentage")
+    def node_cpu_used_percentage(self) -> Optional[pulumi.Input[float]]:
+        """
+        Average CPU usage of the instance master node in nearly one minute.
+        """
+        return pulumi.get(self, "node_cpu_used_percentage")
+
+    @node_cpu_used_percentage.setter
+    def node_cpu_used_percentage(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "node_cpu_used_percentage", value)
+
+    @property
+    @pulumi.getter(name="nodeMemoryUsedPercentage")
+    def node_memory_used_percentage(self) -> Optional[pulumi.Input[float]]:
+        """
+        Average memory usage of the instance master node in nearly one minute.
+        """
+        return pulumi.get(self, "node_memory_used_percentage")
+
+    @node_memory_used_percentage.setter
+    def node_memory_used_percentage(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "node_memory_used_percentage", value)
+
+    @property
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> Optional[pulumi.Input[int]]:
         """
@@ -613,6 +789,18 @@ class _InstanceState:
     @node_number.setter
     def node_number(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "node_number", value)
+
+    @property
+    @pulumi.getter(name="nodeSpaceUsedPercentage")
+    def node_space_used_percentage(self) -> Optional[pulumi.Input[float]]:
+        """
+        Average disk usage of the instance master node in nearly one minute.
+        """
+        return pulumi.get(self, "node_space_used_percentage")
+
+    @node_space_used_percentage.setter
+    def node_space_used_percentage(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "node_space_used_percentage", value)
 
     @property
     @pulumi.getter(name="nodeSpec")
@@ -818,6 +1006,18 @@ class _InstanceState:
     def zone_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone_id", value)
 
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of availability zones where each node of the instance is located.
+        """
+        return pulumi.get(self, "zone_ids")
+
+    @zone_ids.setter
+    def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "zone_ids", value)
+
 
 class Instance(pulumi.CustomResource):
     @overload
@@ -826,10 +1026,12 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
+                 connection_pool_type: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
@@ -875,7 +1077,7 @@ class Instance(pulumi.CustomResource):
                 ),
                 volcengine.rds_mysql.InstanceParameterArgs(
                     parameter_name="auto_increment_offset",
-                    parameter_value="4",
+                    parameter_value="5",
                 ),
             ],
             project_name="default",
@@ -897,6 +1099,9 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
         :param pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']] charge_info: Payment methods.
+        :param pulumi.Input[str] connection_pool_type: Connection pool type. Value range:
+               Direct: Direct connection mode.
+               Transaction: Transaction-level connection pool (default).
         :param pulumi.Input[str] db_engine_version: Instance type. Value:
                MySQL_5_7
                MySQL_8_0.
@@ -908,6 +1113,7 @@ class Instance(pulumi.CustomResource):
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
+        :param pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']] maintenance_window: Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
@@ -959,7 +1165,7 @@ class Instance(pulumi.CustomResource):
                 ),
                 volcengine.rds_mysql.InstanceParameterArgs(
                     parameter_name="auto_increment_offset",
-                    parameter_value="4",
+                    parameter_value="5",
                 ),
             ],
             project_name="default",
@@ -994,10 +1200,12 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
+                 connection_pool_type: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
@@ -1019,12 +1227,14 @@ class Instance(pulumi.CustomResource):
             if charge_info is None and not opts.urn:
                 raise TypeError("Missing required property 'charge_info'")
             __props__.__dict__["charge_info"] = charge_info
+            __props__.__dict__["connection_pool_type"] = connection_pool_type
             if db_engine_version is None and not opts.urn:
                 raise TypeError("Missing required property 'db_engine_version'")
             __props__.__dict__["db_engine_version"] = db_engine_version
             __props__.__dict__["db_time_zone"] = db_time_zone
             __props__.__dict__["instance_name"] = instance_name
             __props__.__dict__["lower_case_table_names"] = lower_case_table_names
+            __props__.__dict__["maintenance_window"] = maintenance_window
             if node_spec is None and not opts.urn:
                 raise TypeError("Missing required property 'node_spec'")
             __props__.__dict__["node_spec"] = node_spec
@@ -1043,15 +1253,21 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["allow_list_version"] = None
             __props__.__dict__["backup_use"] = None
+            __props__.__dict__["binlog_dump"] = None
             __props__.__dict__["charge_details"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["data_sync_mode"] = None
+            __props__.__dict__["db_proxy_status"] = None
             __props__.__dict__["endpoints"] = None
+            __props__.__dict__["feature_states"] = None
+            __props__.__dict__["global_read_only"] = None
             __props__.__dict__["instance_id"] = None
             __props__.__dict__["instance_status"] = None
-            __props__.__dict__["maintenance_windows"] = None
             __props__.__dict__["memory"] = None
+            __props__.__dict__["node_cpu_used_percentage"] = None
+            __props__.__dict__["node_memory_used_percentage"] = None
             __props__.__dict__["node_number"] = None
+            __props__.__dict__["node_space_used_percentage"] = None
             __props__.__dict__["nodes"] = None
             __props__.__dict__["region_id"] = None
             __props__.__dict__["storage_type"] = None
@@ -1061,6 +1277,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["v_cpu"] = None
             __props__.__dict__["vpc_id"] = None
             __props__.__dict__["zone_id"] = None
+            __props__.__dict__["zone_ids"] = None
         super(Instance, __self__).__init__(
             'volcengine:rds_mysql/instance:Instance',
             resource_name,
@@ -1074,20 +1291,28 @@ class Instance(pulumi.CustomResource):
             allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allow_list_version: Optional[pulumi.Input[str]] = None,
             backup_use: Optional[pulumi.Input[int]] = None,
+            binlog_dump: Optional[pulumi.Input[bool]] = None,
             charge_details: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceChargeDetailArgs']]]]] = None,
             charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
+            connection_pool_type: Optional[pulumi.Input[str]] = None,
             create_time: Optional[pulumi.Input[str]] = None,
             data_sync_mode: Optional[pulumi.Input[str]] = None,
             db_engine_version: Optional[pulumi.Input[str]] = None,
+            db_proxy_status: Optional[pulumi.Input[str]] = None,
             db_time_zone: Optional[pulumi.Input[str]] = None,
             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEndpointArgs']]]]] = None,
+            feature_states: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceFeatureStateArgs']]]]] = None,
+            global_read_only: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             instance_status: Optional[pulumi.Input[str]] = None,
             lower_case_table_names: Optional[pulumi.Input[str]] = None,
-            maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]]]] = None,
+            maintenance_window: Optional[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]] = None,
             memory: Optional[pulumi.Input[int]] = None,
+            node_cpu_used_percentage: Optional[pulumi.Input[float]] = None,
+            node_memory_used_percentage: Optional[pulumi.Input[float]] = None,
             node_number: Optional[pulumi.Input[int]] = None,
+            node_space_used_percentage: Optional[pulumi.Input[float]] = None,
             node_spec: Optional[pulumi.Input[str]] = None,
             nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeArgs']]]]] = None,
             parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
@@ -1104,7 +1329,8 @@ class Instance(pulumi.CustomResource):
             update_time: Optional[pulumi.Input[str]] = None,
             v_cpu: Optional[pulumi.Input[int]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
-            zone_id: Optional[pulumi.Input[str]] = None) -> 'Instance':
+            zone_id: Optional[pulumi.Input[str]] = None,
+            zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1115,15 +1341,30 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
         :param pulumi.Input[str] allow_list_version: The version of allow list.
         :param pulumi.Input[int] backup_use: The instance has used backup space. Unit: GB.
+        :param pulumi.Input[bool] binlog_dump: Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+               true: Yes.
+               false: No.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceChargeDetailArgs']]]] charge_details: Payment methods.
         :param pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']] charge_info: Payment methods.
+        :param pulumi.Input[str] connection_pool_type: Connection pool type. Value range:
+               Direct: Direct connection mode.
+               Transaction: Transaction-level connection pool (default).
         :param pulumi.Input[str] create_time: Node creation local time.
         :param pulumi.Input[str] data_sync_mode: Data synchronization mode.
         :param pulumi.Input[str] db_engine_version: Instance type. Value:
                MySQL_5_7
                MySQL_8_0.
+        :param pulumi.Input[str] db_proxy_status: The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+               Creating: The proxy is being started.
+               Running: The proxy is running.
+               Shutdown: The proxy is closed.
+               Deleting: The proxy is being closed.
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEndpointArgs']]]] endpoints: The endpoint info of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceFeatureStateArgs']]]] feature_states: Feature status.
+        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only.
+               true: Yes.
+               false: No.
         :param pulumi.Input[str] instance_id: Instance ID.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
@@ -1133,9 +1374,12 @@ class Instance(pulumi.CustomResource):
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]]] maintenance_windows: Maintenance Window.
+        :param pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']] maintenance_window: Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         :param pulumi.Input[int] memory: Memory size in GB.
+        :param pulumi.Input[float] node_cpu_used_percentage: Average CPU usage of the instance master node in nearly one minute.
+        :param pulumi.Input[float] node_memory_used_percentage: Average memory usage of the instance master node in nearly one minute.
         :param pulumi.Input[int] node_number: The number of nodes.
+        :param pulumi.Input[float] node_space_used_percentage: Average disk usage of the instance master node in nearly one minute.
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeArgs']]]] nodes: Instance node information.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
@@ -1153,6 +1397,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] v_cpu: CPU size.
         :param pulumi.Input[str] vpc_id: The vpc ID of the RDS instance.
         :param pulumi.Input[str] zone_id: The available zone of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: List of availability zones where each node of the instance is located.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1161,20 +1406,28 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["allow_list_ids"] = allow_list_ids
         __props__.__dict__["allow_list_version"] = allow_list_version
         __props__.__dict__["backup_use"] = backup_use
+        __props__.__dict__["binlog_dump"] = binlog_dump
         __props__.__dict__["charge_details"] = charge_details
         __props__.__dict__["charge_info"] = charge_info
+        __props__.__dict__["connection_pool_type"] = connection_pool_type
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["data_sync_mode"] = data_sync_mode
         __props__.__dict__["db_engine_version"] = db_engine_version
+        __props__.__dict__["db_proxy_status"] = db_proxy_status
         __props__.__dict__["db_time_zone"] = db_time_zone
         __props__.__dict__["endpoints"] = endpoints
+        __props__.__dict__["feature_states"] = feature_states
+        __props__.__dict__["global_read_only"] = global_read_only
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["instance_status"] = instance_status
         __props__.__dict__["lower_case_table_names"] = lower_case_table_names
-        __props__.__dict__["maintenance_windows"] = maintenance_windows
+        __props__.__dict__["maintenance_window"] = maintenance_window
         __props__.__dict__["memory"] = memory
+        __props__.__dict__["node_cpu_used_percentage"] = node_cpu_used_percentage
+        __props__.__dict__["node_memory_used_percentage"] = node_memory_used_percentage
         __props__.__dict__["node_number"] = node_number
+        __props__.__dict__["node_space_used_percentage"] = node_space_used_percentage
         __props__.__dict__["node_spec"] = node_spec
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["parameters"] = parameters
@@ -1192,6 +1445,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["v_cpu"] = v_cpu
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["zone_id"] = zone_id
+        __props__.__dict__["zone_ids"] = zone_ids
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1219,6 +1473,16 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "backup_use")
 
     @property
+    @pulumi.getter(name="binlogDump")
+    def binlog_dump(self) -> pulumi.Output[bool]:
+        """
+        Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+        true: Yes.
+        false: No.
+        """
+        return pulumi.get(self, "binlog_dump")
+
+    @property
     @pulumi.getter(name="chargeDetails")
     def charge_details(self) -> pulumi.Output[Sequence['outputs.InstanceChargeDetail']]:
         """
@@ -1233,6 +1497,16 @@ class Instance(pulumi.CustomResource):
         Payment methods.
         """
         return pulumi.get(self, "charge_info")
+
+    @property
+    @pulumi.getter(name="connectionPoolType")
+    def connection_pool_type(self) -> pulumi.Output[str]:
+        """
+        Connection pool type. Value range:
+        Direct: Direct connection mode.
+        Transaction: Transaction-level connection pool (default).
+        """
+        return pulumi.get(self, "connection_pool_type")
 
     @property
     @pulumi.getter(name="createTime")
@@ -1261,6 +1535,18 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "db_engine_version")
 
     @property
+    @pulumi.getter(name="dbProxyStatus")
+    def db_proxy_status(self) -> pulumi.Output[str]:
+        """
+        The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+        Creating: The proxy is being started.
+        Running: The proxy is running.
+        Shutdown: The proxy is closed.
+        Deleting: The proxy is being closed.
+        """
+        return pulumi.get(self, "db_proxy_status")
+
+    @property
     @pulumi.getter(name="dbTimeZone")
     def db_time_zone(self) -> pulumi.Output[str]:
         """
@@ -1275,6 +1561,24 @@ class Instance(pulumi.CustomResource):
         The endpoint info of the RDS instance.
         """
         return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="featureStates")
+    def feature_states(self) -> pulumi.Output[Sequence['outputs.InstanceFeatureState']]:
+        """
+        Feature status.
+        """
+        return pulumi.get(self, "feature_states")
+
+    @property
+    @pulumi.getter(name="globalReadOnly")
+    def global_read_only(self) -> pulumi.Output[bool]:
+        """
+        Whether to enable global read-only.
+        true: Yes.
+        false: No.
+        """
+        return pulumi.get(self, "global_read_only")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -1314,12 +1618,12 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "lower_case_table_names")
 
     @property
-    @pulumi.getter(name="maintenanceWindows")
-    def maintenance_windows(self) -> pulumi.Output[Sequence['outputs.InstanceMaintenanceWindow']]:
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> pulumi.Output['outputs.InstanceMaintenanceWindow']:
         """
-        Maintenance Window.
+        Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         """
-        return pulumi.get(self, "maintenance_windows")
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter
@@ -1330,12 +1634,36 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "memory")
 
     @property
+    @pulumi.getter(name="nodeCpuUsedPercentage")
+    def node_cpu_used_percentage(self) -> pulumi.Output[float]:
+        """
+        Average CPU usage of the instance master node in nearly one minute.
+        """
+        return pulumi.get(self, "node_cpu_used_percentage")
+
+    @property
+    @pulumi.getter(name="nodeMemoryUsedPercentage")
+    def node_memory_used_percentage(self) -> pulumi.Output[float]:
+        """
+        Average memory usage of the instance master node in nearly one minute.
+        """
+        return pulumi.get(self, "node_memory_used_percentage")
+
+    @property
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Output[int]:
         """
         The number of nodes.
         """
         return pulumi.get(self, "node_number")
+
+    @property
+    @pulumi.getter(name="nodeSpaceUsedPercentage")
+    def node_space_used_percentage(self) -> pulumi.Output[float]:
+        """
+        Average disk usage of the instance master node in nearly one minute.
+        """
+        return pulumi.get(self, "node_space_used_percentage")
 
     @property
     @pulumi.getter(name="nodeSpec")
@@ -1472,4 +1800,12 @@ class Instance(pulumi.CustomResource):
         The available zone of the RDS instance.
         """
         return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of availability zones where each node of the instance is located.
+        """
+        return pulumi.get(self, "zone_ids")
 

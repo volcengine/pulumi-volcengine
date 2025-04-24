@@ -163,7 +163,7 @@ type Endpoint struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// A list of the Mongos node that needs to apply for the endpoint.
 	MongosNodeIds pulumi.StringArrayOutput `pulumi:"mongosNodeIds"`
-	// The network type of endpoint.
+	// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
 	NetworkType pulumi.StringPtrOutput `pulumi:"networkType"`
 	// The object ID corresponding to the endpoint.
 	ObjectId pulumi.StringOutput `pulumi:"objectId"`
@@ -210,7 +210,7 @@ type endpointState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// A list of the Mongos node that needs to apply for the endpoint.
 	MongosNodeIds []string `pulumi:"mongosNodeIds"`
-	// The network type of endpoint.
+	// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
 	NetworkType *string `pulumi:"networkType"`
 	// The object ID corresponding to the endpoint.
 	ObjectId *string `pulumi:"objectId"`
@@ -225,7 +225,7 @@ type EndpointState struct {
 	InstanceId pulumi.StringPtrInput
 	// A list of the Mongos node that needs to apply for the endpoint.
 	MongosNodeIds pulumi.StringArrayInput
-	// The network type of endpoint.
+	// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
 	NetworkType pulumi.StringPtrInput
 	// The object ID corresponding to the endpoint.
 	ObjectId pulumi.StringPtrInput
@@ -242,7 +242,7 @@ type endpointArgs struct {
 	InstanceId string `pulumi:"instanceId"`
 	// A list of the Mongos node that needs to apply for the endpoint.
 	MongosNodeIds []string `pulumi:"mongosNodeIds"`
-	// The network type of endpoint.
+	// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
 	NetworkType *string `pulumi:"networkType"`
 	// The object ID corresponding to the endpoint.
 	ObjectId *string `pulumi:"objectId"`
@@ -256,7 +256,7 @@ type EndpointArgs struct {
 	InstanceId pulumi.StringInput
 	// A list of the Mongos node that needs to apply for the endpoint.
 	MongosNodeIds pulumi.StringArrayInput
-	// The network type of endpoint.
+	// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
 	NetworkType pulumi.StringPtrInput
 	// The object ID corresponding to the endpoint.
 	ObjectId pulumi.StringPtrInput
@@ -369,7 +369,7 @@ func (o EndpointOutput) MongosNodeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringArrayOutput { return v.MongosNodeIds }).(pulumi.StringArrayOutput)
 }
 
-// The network type of endpoint.
+// The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
 func (o EndpointOutput) NetworkType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringPtrOutput { return v.NetworkType }).(pulumi.StringPtrOutput)
 }

@@ -25,8 +25,9 @@ namespace Pulumi.Volcengine.Mongodb
     ///     {
     ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
     ///         AllowListDesc = "acc-test",
-    ///         AllowListName = "acc-test",
+    ///         AllowListName = "acc-test-allow-list",
     ///         AllowListType = "IPv4",
+    ///         ProjectName = "default",
     ///     });
     /// 
     /// });
@@ -44,7 +45,7 @@ namespace Pulumi.Volcengine.Mongodb
     public partial class MongoAllowList : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// IP address or IP address segment in CIDR format.
+        /// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         /// </summary>
         [Output("allowList")]
         public Output<string> AllowList { get; private set; } = null!;
@@ -54,6 +55,12 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         [Output("allowListDesc")]
         public Output<string> AllowListDesc { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of allow list IPs.
+        /// </summary>
+        [Output("allowListIpNum")]
+        public Output<int> AllowListIpNum { get; private set; } = null!;
 
         /// <summary>
         /// The name of allow list.
@@ -66,6 +73,24 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         [Output("allowListType")]
         public Output<string?> AllowListType { get; private set; } = null!;
+
+        /// <summary>
+        /// The total number of instances bound under the allow list.
+        /// </summary>
+        [Output("associatedInstanceNum")]
+        public Output<int> AssociatedInstanceNum { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of associated instances.
+        /// </summary>
+        [Output("associatedInstances")]
+        public Output<ImmutableArray<Outputs.MongoAllowListAssociatedInstance>> AssociatedInstances { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
 
 
         /// <summary>
@@ -115,7 +140,7 @@ namespace Pulumi.Volcengine.Mongodb
     public sealed class MongoAllowListArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// IP address or IP address segment in CIDR format.
+        /// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         /// </summary>
         [Input("allowList", required: true)]
         public Input<string> AllowList { get; set; } = null!;
@@ -138,6 +163,12 @@ namespace Pulumi.Volcengine.Mongodb
         [Input("allowListType")]
         public Input<string>? AllowListType { get; set; }
 
+        /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         public MongoAllowListArgs()
         {
         }
@@ -147,7 +178,7 @@ namespace Pulumi.Volcengine.Mongodb
     public sealed class MongoAllowListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// IP address or IP address segment in CIDR format.
+        /// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         /// </summary>
         [Input("allowList")]
         public Input<string>? AllowList { get; set; }
@@ -157,6 +188,12 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         [Input("allowListDesc")]
         public Input<string>? AllowListDesc { get; set; }
+
+        /// <summary>
+        /// The number of allow list IPs.
+        /// </summary>
+        [Input("allowListIpNum")]
+        public Input<int>? AllowListIpNum { get; set; }
 
         /// <summary>
         /// The name of allow list.
@@ -169,6 +206,30 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         [Input("allowListType")]
         public Input<string>? AllowListType { get; set; }
+
+        /// <summary>
+        /// The total number of instances bound under the allow list.
+        /// </summary>
+        [Input("associatedInstanceNum")]
+        public Input<int>? AssociatedInstanceNum { get; set; }
+
+        [Input("associatedInstances")]
+        private InputList<Inputs.MongoAllowListAssociatedInstanceGetArgs>? _associatedInstances;
+
+        /// <summary>
+        /// The list of associated instances.
+        /// </summary>
+        public InputList<Inputs.MongoAllowListAssociatedInstanceGetArgs> AssociatedInstances
+        {
+            get => _associatedInstances ?? (_associatedInstances = new InputList<Inputs.MongoAllowListAssociatedInstanceGetArgs>());
+            set => _associatedInstances = value;
+        }
+
+        /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         public MongoAllowListState()
         {

@@ -71,6 +71,12 @@ namespace Pulumi.Volcengine.Rds_mysql.Inputs
         [Input("endpointType")]
         public Input<string>? EndpointType { get; set; }
 
+        /// <summary>
+        /// Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+        /// </summary>
+        [Input("idleConnectionReclaim")]
+        public Input<bool>? IdleConnectionReclaim { get; set; }
+
         [Input("nodeWeights")]
         private InputList<Inputs.InstanceEndpointNodeWeightArgs>? _nodeWeights;
 

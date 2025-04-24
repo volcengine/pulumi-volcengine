@@ -14,6 +14,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
     public sealed class AllowlistsAllowListResult
     {
         /// <summary>
+        /// White list category. Values:
+        /// Ordinary: Ordinary white list. Default: Default white list. Description: When this parameter is used as a request parameter, the default value is Ordinary.
+        /// </summary>
+        public readonly string AllowListCategory;
+        /// <summary>
         /// The description of the allow list.
         /// </summary>
         public readonly string AllowListDesc;
@@ -45,9 +50,19 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// The list of instances.
         /// </summary>
         public readonly ImmutableArray<Outputs.AllowlistsAllowListAssociatedInstanceResult> AssociatedInstances;
+        /// <summary>
+        /// Whitelist information for the associated security group.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AllowlistsAllowListSecurityGroupBindInfoResult> SecurityGroupBindInfos;
+        /// <summary>
+        /// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+        /// </summary>
+        public readonly ImmutableArray<string> UserAllowLists;
 
         [OutputConstructor]
         private AllowlistsAllowListResult(
+            string allowListCategory,
+
             string allowListDesc,
 
             string allowListId,
@@ -62,8 +77,13 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             int associatedInstanceNum,
 
-            ImmutableArray<Outputs.AllowlistsAllowListAssociatedInstanceResult> associatedInstances)
+            ImmutableArray<Outputs.AllowlistsAllowListAssociatedInstanceResult> associatedInstances,
+
+            ImmutableArray<Outputs.AllowlistsAllowListSecurityGroupBindInfoResult> securityGroupBindInfos,
+
+            ImmutableArray<string> userAllowLists)
         {
+            AllowListCategory = allowListCategory;
             AllowListDesc = allowListDesc;
             AllowListId = allowListId;
             AllowListIpNum = allowListIpNum;
@@ -72,6 +92,8 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             AllowLists = allowLists;
             AssociatedInstanceNum = associatedInstanceNum;
             AssociatedInstances = associatedInstances;
+            SecurityGroupBindInfos = securityGroupBindInfos;
+            UserAllowLists = userAllowLists;
         }
     }
 }

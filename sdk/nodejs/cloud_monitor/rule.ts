@@ -61,11 +61,17 @@ import * as utilities from "../utilities";
  *     recoveryNotify: {
  *         enable: true,
  *     },
- *     regions: "cn-beijing",
+ *     regions: [
+ *         "cn-beijing",
+ *         "cn-shanghai",
+ *     ],
  *     ruleName: "acc-test-rule",
  *     silenceTime: 5,
  *     subNamespace: "Storage",
- *     webHook: "http://alert.volc.com/callback",
+ *     webhookIds: [
+ *         "187655704106731****",
+ *         "187655712542447****",
+ *     ],
  * });
  * ```
  *
@@ -170,9 +176,9 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly recoveryNotify!: pulumi.Output<outputs.cloud_monitor.RuleRecoveryNotify>;
     /**
-     * The region ids of the cloud monitor rule. Only one region id can be specified currently.
+     * The region ids of the cloud monitor rule.
      */
-    public readonly regions!: pulumi.Output<string>;
+    public readonly regions!: pulumi.Output<string[]>;
     /**
      * The name of the cloud monitor rule.
      */
@@ -190,9 +196,13 @@ export class Rule extends pulumi.CustomResource {
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+     * The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
      */
     public readonly webHook!: pulumi.Output<string | undefined>;
+    /**
+     * The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+     */
+    public readonly webhookIds!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Rule resource with the given unique name, arguments, and options.
@@ -229,6 +239,7 @@ export class Rule extends pulumi.CustomResource {
             resourceInputs["subNamespace"] = state ? state.subNamespace : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["webHook"] = state ? state.webHook : undefined;
+            resourceInputs["webhookIds"] = state ? state.webhookIds : undefined;
         } else {
             const args = argsOrState as RuleArgs | undefined;
             if ((!args || args.alertMethods === undefined) && !opts.urn) {
@@ -289,6 +300,7 @@ export class Rule extends pulumi.CustomResource {
             resourceInputs["silenceTime"] = args ? args.silenceTime : undefined;
             resourceInputs["subNamespace"] = args ? args.subNamespace : undefined;
             resourceInputs["webHook"] = args ? args.webHook : undefined;
+            resourceInputs["webhookIds"] = args ? args.webhookIds : undefined;
             resourceInputs["alertState"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -367,9 +379,9 @@ export interface RuleState {
      */
     recoveryNotify?: pulumi.Input<inputs.cloud_monitor.RuleRecoveryNotify>;
     /**
-     * The region ids of the cloud monitor rule. Only one region id can be specified currently.
+     * The region ids of the cloud monitor rule.
      */
-    regions?: pulumi.Input<string>;
+    regions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the cloud monitor rule.
      */
@@ -387,9 +399,13 @@ export interface RuleState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+     * The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
      */
     webHook?: pulumi.Input<string>;
+    /**
+     * The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+     */
+    webhookIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -453,9 +469,9 @@ export interface RuleArgs {
      */
     recoveryNotify?: pulumi.Input<inputs.cloud_monitor.RuleRecoveryNotify>;
     /**
-     * The region ids of the cloud monitor rule. Only one region id can be specified currently.
+     * The region ids of the cloud monitor rule.
      */
-    regions: pulumi.Input<string>;
+    regions: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the cloud monitor rule.
      */
@@ -469,7 +485,11 @@ export interface RuleArgs {
      */
     subNamespace: pulumi.Input<string>;
     /**
-     * The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+     * The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
      */
     webHook?: pulumi.Input<string>;
+    /**
+     * The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
+     */
+    webhookIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

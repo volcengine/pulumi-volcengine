@@ -28,13 +28,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := rds_mysql.NewAllowlist(ctx, "foo", &rds_mysql.AllowlistArgs{
-//				AllowLists: pulumi.StringArray{
-//					pulumi.String("192.168.0.0/24"),
-//					pulumi.String("192.168.1.0/24"),
-//				},
 //				AllowListDesc: pulumi.String("acc-test"),
 //				AllowListName: pulumi.String("acc-test-allowlist"),
 //				AllowListType: pulumi.String("IPv4"),
+//				SecurityGroupBindInfos: rds_mysql.AllowlistSecurityGroupBindInfoArray{
+//					&rds_mysql.AllowlistSecurityGroupBindInfoArgs{
+//						BindMode:        pulumi.String("IngressDirectionIp"),
+//						SecurityGroupId: pulumi.String("sg-13fd7wyduxekg3n6nu5t9fhj7"),
+//					},
+//					&rds_mysql.AllowlistSecurityGroupBindInfoArgs{
+//						BindMode:        pulumi.String("IngressDirectionIp"),
+//						SecurityGroupId: pulumi.String("sg-mjoa9qfyzg1s5smt1a6dmc1l"),
+//					},
+//				},
+//				UserAllowLists: pulumi.StringArray{
+//					pulumi.String("192.168.0.0/24"),
+//					pulumi.String("192.168.1.0/24"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -55,6 +65,11 @@ import (
 type Allowlist struct {
 	pulumi.CustomResourceState
 
+	// White list category. Values:
+	// Ordinary: Ordinary white list.
+	// Default: Default white list.
+	// Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory pulumi.StringOutput `pulumi:"allowListCategory"`
 	// The description of the allow list.
 	AllowListDesc pulumi.StringPtrOutput `pulumi:"allowListDesc"`
 	// The id of the allow list.
@@ -63,8 +78,14 @@ type Allowlist struct {
 	AllowListName pulumi.StringOutput `pulumi:"allowListName"`
 	// The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
 	AllowListType pulumi.StringOutput `pulumi:"allowListType"`
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
 	AllowLists pulumi.StringArrayOutput `pulumi:"allowLists"`
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos AllowlistSecurityGroupBindInfoArrayOutput `pulumi:"securityGroupBindInfos"`
+	// The security group ids of the allow list.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists pulumi.StringArrayOutput `pulumi:"userAllowLists"`
 }
 
 // NewAllowlist registers a new resource with the given unique name, arguments, and options.
@@ -76,9 +97,6 @@ func NewAllowlist(ctx *pulumi.Context,
 
 	if args.AllowListName == nil {
 		return nil, errors.New("invalid value for required argument 'AllowListName'")
-	}
-	if args.AllowLists == nil {
-		return nil, errors.New("invalid value for required argument 'AllowLists'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Allowlist
@@ -103,6 +121,11 @@ func GetAllowlist(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Allowlist resources.
 type allowlistState struct {
+	// White list category. Values:
+	// Ordinary: Ordinary white list.
+	// Default: Default white list.
+	// Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory *string `pulumi:"allowListCategory"`
 	// The description of the allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
 	// The id of the allow list.
@@ -111,11 +134,22 @@ type allowlistState struct {
 	AllowListName *string `pulumi:"allowListName"`
 	// The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
 	AllowListType *string `pulumi:"allowListType"`
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
 	AllowLists []string `pulumi:"allowLists"`
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos []AllowlistSecurityGroupBindInfo `pulumi:"securityGroupBindInfos"`
+	// The security group ids of the allow list.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists []string `pulumi:"userAllowLists"`
 }
 
 type AllowlistState struct {
+	// White list category. Values:
+	// Ordinary: Ordinary white list.
+	// Default: Default white list.
+	// Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory pulumi.StringPtrInput
 	// The description of the allow list.
 	AllowListDesc pulumi.StringPtrInput
 	// The id of the allow list.
@@ -124,8 +158,14 @@ type AllowlistState struct {
 	AllowListName pulumi.StringPtrInput
 	// The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
 	AllowListType pulumi.StringPtrInput
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
 	AllowLists pulumi.StringArrayInput
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos AllowlistSecurityGroupBindInfoArrayInput
+	// The security group ids of the allow list.
+	SecurityGroupIds pulumi.StringArrayInput
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists pulumi.StringArrayInput
 }
 
 func (AllowlistState) ElementType() reflect.Type {
@@ -133,26 +173,48 @@ func (AllowlistState) ElementType() reflect.Type {
 }
 
 type allowlistArgs struct {
+	// White list category. Values:
+	// Ordinary: Ordinary white list.
+	// Default: Default white list.
+	// Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory *string `pulumi:"allowListCategory"`
 	// The description of the allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
 	// The name of the allow list.
 	AllowListName string `pulumi:"allowListName"`
 	// The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
 	AllowListType *string `pulumi:"allowListType"`
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
 	AllowLists []string `pulumi:"allowLists"`
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos []AllowlistSecurityGroupBindInfo `pulumi:"securityGroupBindInfos"`
+	// The security group ids of the allow list.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists []string `pulumi:"userAllowLists"`
 }
 
 // The set of arguments for constructing a Allowlist resource.
 type AllowlistArgs struct {
+	// White list category. Values:
+	// Ordinary: Ordinary white list.
+	// Default: Default white list.
+	// Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory pulumi.StringPtrInput
 	// The description of the allow list.
 	AllowListDesc pulumi.StringPtrInput
 	// The name of the allow list.
 	AllowListName pulumi.StringInput
 	// The type of IP address in the whitelist. Currently only IPv4 addresses are supported.
 	AllowListType pulumi.StringPtrInput
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
 	AllowLists pulumi.StringArrayInput
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos AllowlistSecurityGroupBindInfoArrayInput
+	// The security group ids of the allow list.
+	SecurityGroupIds pulumi.StringArrayInput
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists pulumi.StringArrayInput
 }
 
 func (AllowlistArgs) ElementType() reflect.Type {
@@ -242,6 +304,14 @@ func (o AllowlistOutput) ToAllowlistOutputWithContext(ctx context.Context) Allow
 	return o
 }
 
+// White list category. Values:
+// Ordinary: Ordinary white list.
+// Default: Default white list.
+// Description: When this parameter is used as a request parameter, the default value is Ordinary.
+func (o AllowlistOutput) AllowListCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.StringOutput { return v.AllowListCategory }).(pulumi.StringOutput)
+}
+
 // The description of the allow list.
 func (o AllowlistOutput) AllowListDesc() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Allowlist) pulumi.StringPtrOutput { return v.AllowListDesc }).(pulumi.StringPtrOutput)
@@ -262,9 +332,24 @@ func (o AllowlistOutput) AllowListType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Allowlist) pulumi.StringOutput { return v.AllowListType }).(pulumi.StringOutput)
 }
 
-// Enter an IP address or a range of IP addresses in CIDR format.
+// Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
 func (o AllowlistOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Allowlist) pulumi.StringArrayOutput { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+// Whitelist information for the associated security group.
+func (o AllowlistOutput) SecurityGroupBindInfos() AllowlistSecurityGroupBindInfoArrayOutput {
+	return o.ApplyT(func(v *Allowlist) AllowlistSecurityGroupBindInfoArrayOutput { return v.SecurityGroupBindInfos }).(AllowlistSecurityGroupBindInfoArrayOutput)
+}
+
+// The security group ids of the allow list.
+func (o AllowlistOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+func (o AllowlistOutput) UserAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.StringArrayOutput { return v.UserAllowLists }).(pulumi.StringArrayOutput)
 }
 
 type AllowlistArrayOutput struct{ *pulumi.OutputState }

@@ -25,7 +25,7 @@ class RuleArgs:
                  level: pulumi.Input[str],
                  namespace: pulumi.Input[str],
                  original_dimensions: pulumi.Input[Sequence[pulumi.Input['RuleOriginalDimensionArgs']]],
-                 regions: pulumi.Input[str],
+                 regions: pulumi.Input[Sequence[pulumi.Input[str]]],
                  rule_name: pulumi.Input[str],
                  silence_time: pulumi.Input[int],
                  sub_namespace: pulumi.Input[str],
@@ -34,7 +34,8 @@ class RuleArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  multiple_conditions: Optional[pulumi.Input[bool]] = None,
                  recovery_notify: Optional[pulumi.Input['RuleRecoveryNotifyArgs']] = None,
-                 web_hook: Optional[pulumi.Input[str]] = None):
+                 web_hook: Optional[pulumi.Input[str]] = None,
+                 webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Rule resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alert_methods: The alert methods of the cloud monitor rule. Valid values: `Email`, `Phone`, `SMS`, `Webhook`.
@@ -46,7 +47,7 @@ class RuleArgs:
         :param pulumi.Input[str] level: The level of the cloud monitor rule. Valid values: `critical`, `warning`, `notice`.
         :param pulumi.Input[str] namespace: The namespace of the cloud monitor rule.
         :param pulumi.Input[Sequence[pulumi.Input['RuleOriginalDimensionArgs']]] original_dimensions: The original dimensions of the cloud monitor rule.
-        :param pulumi.Input[str] regions: The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: The region ids of the cloud monitor rule.
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
@@ -55,7 +56,8 @@ class RuleArgs:
         :param pulumi.Input[str] description: The description of the cloud monitor rule.
         :param pulumi.Input[bool] multiple_conditions: Whether to enable the multiple conditions function of the cloud monitor rule.
         :param pulumi.Input['RuleRecoveryNotifyArgs'] recovery_notify: The recovery notify of the cloud monitor rule.
-        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         pulumi.set(__self__, "alert_methods", alert_methods)
         pulumi.set(__self__, "conditions", conditions)
@@ -82,6 +84,8 @@ class RuleArgs:
             pulumi.set(__self__, "recovery_notify", recovery_notify)
         if web_hook is not None:
             pulumi.set(__self__, "web_hook", web_hook)
+        if webhook_ids is not None:
+            pulumi.set(__self__, "webhook_ids", webhook_ids)
 
     @property
     @pulumi.getter(name="alertMethods")
@@ -193,14 +197,14 @@ class RuleArgs:
 
     @property
     @pulumi.getter
-    def regions(self) -> pulumi.Input[str]:
+    def regions(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        The region ids of the cloud monitor rule.
         """
         return pulumi.get(self, "regions")
 
     @regions.setter
-    def regions(self, value: pulumi.Input[str]):
+    def regions(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "regions", value)
 
     @property
@@ -303,13 +307,25 @@ class RuleArgs:
     @pulumi.getter(name="webHook")
     def web_hook(self) -> Optional[pulumi.Input[str]]:
         """
-        The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         return pulumi.get(self, "web_hook")
 
     @web_hook.setter
     def web_hook(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "web_hook", value)
+
+    @property
+    @pulumi.getter(name="webhookIds")
+    def webhook_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        """
+        return pulumi.get(self, "webhook_ids")
+
+    @webhook_ids.setter
+    def webhook_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "webhook_ids", value)
 
 
 @pulumi.input_type
@@ -331,12 +347,13 @@ class _RuleState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  original_dimensions: Optional[pulumi.Input[Sequence[pulumi.Input['RuleOriginalDimensionArgs']]]] = None,
                  recovery_notify: Optional[pulumi.Input['RuleRecoveryNotifyArgs']] = None,
-                 regions: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rule_name: Optional[pulumi.Input[str]] = None,
                  silence_time: Optional[pulumi.Input[int]] = None,
                  sub_namespace: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
-                 web_hook: Optional[pulumi.Input[str]] = None):
+                 web_hook: Optional[pulumi.Input[str]] = None,
+                 webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Rule resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alert_methods: The alert methods of the cloud monitor rule. Valid values: `Email`, `Phone`, `SMS`, `Webhook`.
@@ -355,12 +372,13 @@ class _RuleState:
         :param pulumi.Input[str] namespace: The namespace of the cloud monitor rule.
         :param pulumi.Input[Sequence[pulumi.Input['RuleOriginalDimensionArgs']]] original_dimensions: The original dimensions of the cloud monitor rule.
         :param pulumi.Input['RuleRecoveryNotifyArgs'] recovery_notify: The recovery notify of the cloud monitor rule.
-        :param pulumi.Input[str] regions: The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: The region ids of the cloud monitor rule.
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
         :param pulumi.Input[str] updated_at: The updated time of the cloud monitor rule.
-        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         if alert_methods is not None:
             pulumi.set(__self__, "alert_methods", alert_methods)
@@ -406,6 +424,8 @@ class _RuleState:
             pulumi.set(__self__, "updated_at", updated_at)
         if web_hook is not None:
             pulumi.set(__self__, "web_hook", web_hook)
+        if webhook_ids is not None:
+            pulumi.set(__self__, "webhook_ids", webhook_ids)
 
     @property
     @pulumi.getter(name="alertMethods")
@@ -601,14 +621,14 @@ class _RuleState:
 
     @property
     @pulumi.getter
-    def regions(self) -> Optional[pulumi.Input[str]]:
+    def regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        The region ids of the cloud monitor rule.
         """
         return pulumi.get(self, "regions")
 
     @regions.setter
-    def regions(self, value: Optional[pulumi.Input[str]]):
+    def regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "regions", value)
 
     @property
@@ -663,13 +683,25 @@ class _RuleState:
     @pulumi.getter(name="webHook")
     def web_hook(self) -> Optional[pulumi.Input[str]]:
         """
-        The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         return pulumi.get(self, "web_hook")
 
     @web_hook.setter
     def web_hook(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "web_hook", value)
+
+    @property
+    @pulumi.getter(name="webhookIds")
+    def webhook_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        """
+        return pulumi.get(self, "webhook_ids")
+
+    @webhook_ids.setter
+    def webhook_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "webhook_ids", value)
 
 
 class Rule(pulumi.CustomResource):
@@ -691,11 +723,12 @@ class Rule(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  original_dimensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleOriginalDimensionArgs']]]]] = None,
                  recovery_notify: Optional[pulumi.Input[pulumi.InputType['RuleRecoveryNotifyArgs']]] = None,
-                 regions: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rule_name: Optional[pulumi.Input[str]] = None,
                  silence_time: Optional[pulumi.Input[int]] = None,
                  sub_namespace: Optional[pulumi.Input[str]] = None,
                  web_hook: Optional[pulumi.Input[str]] = None,
+                 webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage cloud monitor rule
@@ -752,11 +785,17 @@ class Rule(pulumi.CustomResource):
             recovery_notify=volcengine.cloud_monitor.RuleRecoveryNotifyArgs(
                 enable=True,
             ),
-            regions="cn-beijing",
+            regions=[
+                "cn-beijing",
+                "cn-shanghai",
+            ],
             rule_name="acc-test-rule",
             silence_time=5,
             sub_namespace="Storage",
-            web_hook="http://alert.volc.com/callback")
+            webhook_ids=[
+                "187655704106731****",
+                "187655712542447****",
+            ])
         ```
 
         ## Import
@@ -783,11 +822,12 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] namespace: The namespace of the cloud monitor rule.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleOriginalDimensionArgs']]]] original_dimensions: The original dimensions of the cloud monitor rule.
         :param pulumi.Input[pulumi.InputType['RuleRecoveryNotifyArgs']] recovery_notify: The recovery notify of the cloud monitor rule.
-        :param pulumi.Input[str] regions: The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: The region ids of the cloud monitor rule.
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
-        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         ...
     @overload
@@ -850,11 +890,17 @@ class Rule(pulumi.CustomResource):
             recovery_notify=volcengine.cloud_monitor.RuleRecoveryNotifyArgs(
                 enable=True,
             ),
-            regions="cn-beijing",
+            regions=[
+                "cn-beijing",
+                "cn-shanghai",
+            ],
             rule_name="acc-test-rule",
             silence_time=5,
             sub_namespace="Storage",
-            web_hook="http://alert.volc.com/callback")
+            webhook_ids=[
+                "187655704106731****",
+                "187655712542447****",
+            ])
         ```
 
         ## Import
@@ -894,11 +940,12 @@ class Rule(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  original_dimensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleOriginalDimensionArgs']]]]] = None,
                  recovery_notify: Optional[pulumi.Input[pulumi.InputType['RuleRecoveryNotifyArgs']]] = None,
-                 regions: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rule_name: Optional[pulumi.Input[str]] = None,
                  silence_time: Optional[pulumi.Input[int]] = None,
                  sub_namespace: Optional[pulumi.Input[str]] = None,
                  web_hook: Optional[pulumi.Input[str]] = None,
+                 webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -953,6 +1000,7 @@ class Rule(pulumi.CustomResource):
                 raise TypeError("Missing required property 'sub_namespace'")
             __props__.__dict__["sub_namespace"] = sub_namespace
             __props__.__dict__["web_hook"] = web_hook
+            __props__.__dict__["webhook_ids"] = webhook_ids
             __props__.__dict__["alert_state"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
@@ -982,12 +1030,13 @@ class Rule(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             original_dimensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleOriginalDimensionArgs']]]]] = None,
             recovery_notify: Optional[pulumi.Input[pulumi.InputType['RuleRecoveryNotifyArgs']]] = None,
-            regions: Optional[pulumi.Input[str]] = None,
+            regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             rule_name: Optional[pulumi.Input[str]] = None,
             silence_time: Optional[pulumi.Input[int]] = None,
             sub_namespace: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            web_hook: Optional[pulumi.Input[str]] = None) -> 'Rule':
+            web_hook: Optional[pulumi.Input[str]] = None,
+            webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Rule':
         """
         Get an existing Rule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1011,12 +1060,13 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] namespace: The namespace of the cloud monitor rule.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleOriginalDimensionArgs']]]] original_dimensions: The original dimensions of the cloud monitor rule.
         :param pulumi.Input[pulumi.InputType['RuleRecoveryNotifyArgs']] recovery_notify: The recovery notify of the cloud monitor rule.
-        :param pulumi.Input[str] regions: The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: The region ids of the cloud monitor rule.
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
         :param pulumi.Input[str] updated_at: The updated time of the cloud monitor rule.
-        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1044,6 +1094,7 @@ class Rule(pulumi.CustomResource):
         __props__.__dict__["sub_namespace"] = sub_namespace
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["web_hook"] = web_hook
+        __props__.__dict__["webhook_ids"] = webhook_ids
         return Rule(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1176,9 +1227,9 @@ class Rule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def regions(self) -> pulumi.Output[str]:
+    def regions(self) -> pulumi.Output[Sequence[str]]:
         """
-        The region ids of the cloud monitor rule. Only one region id can be specified currently.
+        The region ids of the cloud monitor rule.
         """
         return pulumi.get(self, "regions")
 
@@ -1218,7 +1269,15 @@ class Rule(pulumi.CustomResource):
     @pulumi.getter(name="webHook")
     def web_hook(self) -> pulumi.Output[Optional[str]]:
         """
-        The web hook of the cloud monitor rule. When the alert method is `Webhook`, This field must be specified.
+        The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
         return pulumi.get(self, "web_hook")
+
+    @property
+    @pulumi.getter(name="webhookIds")
+    def webhook_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
+        """
+        return pulumi.get(self, "webhook_ids")
 

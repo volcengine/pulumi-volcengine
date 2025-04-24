@@ -463,6 +463,7 @@ class NodePool(pulumi.CustomResource):
                     effect="NoSchedule",
                 )],
                 cordon=True,
+                auto_sync_disabled=False,
             ),
             tags=[volcengine.vke.NodePoolTagArgs(
                 key="node-pool-k1",
@@ -677,6 +678,7 @@ class NodePool(pulumi.CustomResource):
                     effect="NoSchedule",
                 )],
                 cordon=True,
+                auto_sync_disabled=False,
             ),
             tags=[volcengine.vke.NodePoolTagArgs(
                 key="node-pool-k1",

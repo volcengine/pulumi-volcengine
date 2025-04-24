@@ -32,6 +32,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly accessKey!: pulumi.Output<string | undefined>;
     /**
+     * CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+     */
+    public readonly customerEndpointSuffix!: pulumi.Output<string | undefined>;
+    /**
      * CUSTOMER ENDPOINTS for Volcengine Provider
      */
     public readonly customerEndpoints!: pulumi.Output<string | undefined>;
@@ -73,6 +77,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("VOLCENGINE_ACCESS_KEY");
             resourceInputs["assumeRole"] = pulumi.output(args ? args.assumeRole : undefined).apply(JSON.stringify);
+            resourceInputs["customerEndpointSuffix"] = args ? args.customerEndpointSuffix : undefined;
             resourceInputs["customerEndpoints"] = args ? args.customerEndpoints : undefined;
             resourceInputs["customerHeaders"] = args ? args.customerHeaders : undefined;
             resourceInputs["disableSsl"] = pulumi.output(args ? args.disableSsl : undefined).apply(JSON.stringify);
@@ -100,6 +105,10 @@ export interface ProviderArgs {
      * supplied credentials.
      */
     assumeRole?: pulumi.Input<inputs.ProviderAssumeRole>;
+    /**
+     * CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+     */
+    customerEndpointSuffix?: pulumi.Input<string>;
     /**
      * CUSTOMER ENDPOINTS for Volcengine Provider
      */

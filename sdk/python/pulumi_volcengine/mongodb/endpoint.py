@@ -24,7 +24,7 @@ class EndpointArgs:
         :param pulumi.Input[str] instance_id: The instance where the endpoint resides.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] eip_ids: A list of EIP IDs that need to be bound when applying for endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] mongos_node_ids: A list of the Mongos node that needs to apply for the endpoint.
-        :param pulumi.Input[str] network_type: The network type of endpoint.
+        :param pulumi.Input[str] network_type: The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         :param pulumi.Input[str] object_id: The object ID corresponding to the endpoint.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -77,7 +77,7 @@ class EndpointArgs:
     @pulumi.getter(name="networkType")
     def network_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The network type of endpoint.
+        The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         """
         return pulumi.get(self, "network_type")
 
@@ -113,7 +113,7 @@ class _EndpointState:
         :param pulumi.Input[str] endpoint_id: The id of endpoint.
         :param pulumi.Input[str] instance_id: The instance where the endpoint resides.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] mongos_node_ids: A list of the Mongos node that needs to apply for the endpoint.
-        :param pulumi.Input[str] network_type: The network type of endpoint.
+        :param pulumi.Input[str] network_type: The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         :param pulumi.Input[str] object_id: The object ID corresponding to the endpoint.
         """
         if eip_ids is not None:
@@ -181,7 +181,7 @@ class _EndpointState:
     @pulumi.getter(name="networkType")
     def network_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The network type of endpoint.
+        The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         """
         return pulumi.get(self, "network_type")
 
@@ -300,7 +300,7 @@ class Endpoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] eip_ids: A list of EIP IDs that need to be bound when applying for endpoint.
         :param pulumi.Input[str] instance_id: The instance where the endpoint resides.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] mongos_node_ids: A list of the Mongos node that needs to apply for the endpoint.
-        :param pulumi.Input[str] network_type: The network type of endpoint.
+        :param pulumi.Input[str] network_type: The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         :param pulumi.Input[str] object_id: The object ID corresponding to the endpoint.
         """
         ...
@@ -455,7 +455,7 @@ class Endpoint(pulumi.CustomResource):
         :param pulumi.Input[str] endpoint_id: The id of endpoint.
         :param pulumi.Input[str] instance_id: The instance where the endpoint resides.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] mongos_node_ids: A list of the Mongos node that needs to apply for the endpoint.
-        :param pulumi.Input[str] network_type: The network type of endpoint.
+        :param pulumi.Input[str] network_type: The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         :param pulumi.Input[str] object_id: The object ID corresponding to the endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -506,7 +506,7 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="networkType")
     def network_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The network type of endpoint.
+        The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
         """
         return pulumi.get(self, "network_type")
 

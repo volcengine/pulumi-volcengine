@@ -16,7 +16,6 @@ __all__ = ['ClbArgs', 'Clb']
 @pulumi.input_type
 class ClbArgs:
     def __init__(__self__, *,
-                 load_balancer_spec: pulumi.Input[str],
                  subnet_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  address_ip_version: Optional[pulumi.Input[str]] = None,
@@ -26,6 +25,7 @@ class ClbArgs:
                  eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
+                 load_balancer_spec: Optional[pulumi.Input[str]] = None,
                  master_zone_id: Optional[pulumi.Input[str]] = None,
                  modification_protection_reason: Optional[pulumi.Input[str]] = None,
                  modification_protection_status: Optional[pulumi.Input[str]] = None,
@@ -37,7 +37,6 @@ class ClbArgs:
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Clb resource.
-        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
@@ -46,8 +45,9 @@ class ClbArgs:
         :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
+        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
@@ -58,7 +58,6 @@ class ClbArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
         """
-        pulumi.set(__self__, "load_balancer_spec", load_balancer_spec)
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "type", type)
         if address_ip_version is not None:
@@ -75,6 +74,8 @@ class ClbArgs:
             pulumi.set(__self__, "load_balancer_billing_type", load_balancer_billing_type)
         if load_balancer_name is not None:
             pulumi.set(__self__, "load_balancer_name", load_balancer_name)
+        if load_balancer_spec is not None:
+            pulumi.set(__self__, "load_balancer_spec", load_balancer_spec)
         if master_zone_id is not None:
             pulumi.set(__self__, "master_zone_id", master_zone_id)
         if modification_protection_reason is not None:
@@ -93,18 +94,6 @@ class ClbArgs:
             pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
-
-    @property
-    @pulumi.getter(name="loadBalancerSpec")
-    def load_balancer_spec(self) -> pulumi.Input[str]:
-        """
-        The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
-        """
-        return pulumi.get(self, "load_balancer_spec")
-
-    @load_balancer_spec.setter
-    def load_balancer_spec(self, value: pulumi.Input[str]):
-        pulumi.set(self, "load_balancer_spec", value)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -195,7 +184,7 @@ class ClbArgs:
     @pulumi.getter(name="loadBalancerBillingType")
     def load_balancer_billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         """
         return pulumi.get(self, "load_balancer_billing_type")
 
@@ -214,6 +203,18 @@ class ClbArgs:
     @load_balancer_name.setter
     def load_balancer_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "load_balancer_name", value)
+
+    @property
+    @pulumi.getter(name="loadBalancerSpec")
+    def load_balancer_spec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
+        """
+        return pulumi.get(self, "load_balancer_spec")
+
+    @load_balancer_spec.setter
+    def load_balancer_spec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "load_balancer_spec", value)
 
     @property
     @pulumi.getter(name="masterZoneId")
@@ -361,9 +362,9 @@ class _ClbState:
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] ipv6_eip_id: The Ipv6 Eip ID of the Clb.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
-        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
@@ -525,7 +526,7 @@ class _ClbState:
     @pulumi.getter(name="loadBalancerBillingType")
     def load_balancer_billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         """
         return pulumi.get(self, "load_balancer_billing_type")
 
@@ -549,7 +550,7 @@ class _ClbState:
     @pulumi.getter(name="loadBalancerSpec")
     def load_balancer_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         """
         return pulumi.get(self, "load_balancer_spec")
 
@@ -821,9 +822,9 @@ class Clb(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
-        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
@@ -978,8 +979,6 @@ class Clb(pulumi.CustomResource):
             __props__.__dict__["eni_ipv6_address"] = eni_ipv6_address
             __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
             __props__.__dict__["load_balancer_name"] = load_balancer_name
-            if load_balancer_spec is None and not opts.urn:
-                raise TypeError("Missing required property 'load_balancer_spec'")
             __props__.__dict__["load_balancer_spec"] = load_balancer_spec
             __props__.__dict__["master_zone_id"] = master_zone_id
             __props__.__dict__["modification_protection_reason"] = modification_protection_reason
@@ -1049,9 +1048,9 @@ class Clb(pulumi.CustomResource):
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] ipv6_eip_id: The Ipv6 Eip ID of the Clb.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
-        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
@@ -1163,7 +1162,7 @@ class Clb(pulumi.CustomResource):
     @pulumi.getter(name="loadBalancerBillingType")
     def load_balancer_billing_type(self) -> pulumi.Output[str]:
         """
-        The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         """
         return pulumi.get(self, "load_balancer_billing_type")
 
@@ -1177,9 +1176,9 @@ class Clb(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loadBalancerSpec")
-    def load_balancer_spec(self) -> pulumi.Output[str]:
+    def load_balancer_spec(self) -> pulumi.Output[Optional[str]]:
         """
-        The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         """
         return pulumi.get(self, "load_balancer_spec")
 

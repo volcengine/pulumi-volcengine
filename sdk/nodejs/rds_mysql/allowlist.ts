@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,13 +15,23 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.rds_mysql.Allowlist("foo", {
- *     allowLists: [
- *         "192.168.0.0/24",
- *         "192.168.1.0/24",
- *     ],
  *     allowListDesc: "acc-test",
  *     allowListName: "acc-test-allowlist",
  *     allowListType: "IPv4",
+ *     securityGroupBindInfos: [
+ *         {
+ *             bindMode: "IngressDirectionIp",
+ *             securityGroupId: "sg-13fd7wyduxekg3n6nu5t9fhj7",
+ *         },
+ *         {
+ *             bindMode: "IngressDirectionIp",
+ *             securityGroupId: "sg-mjoa9qfyzg1s5smt1a6dmc1l",
+ *         },
+ *     ],
+ *     userAllowLists: [
+ *         "192.168.0.0/24",
+ *         "192.168.1.0/24",
+ *     ],
  * });
  * ```
  *
@@ -60,6 +72,13 @@ export class Allowlist extends pulumi.CustomResource {
     }
 
     /**
+     * White list category. Values:
+     * Ordinary: Ordinary white list.
+     * Default: Default white list.
+     * Description: When this parameter is used as a request parameter, the default value is Ordinary.
+     */
+    public readonly allowListCategory!: pulumi.Output<string>;
+    /**
      * The description of the allow list.
      */
     public readonly allowListDesc!: pulumi.Output<string | undefined>;
@@ -76,9 +95,21 @@ export class Allowlist extends pulumi.CustomResource {
      */
     public readonly allowListType!: pulumi.Output<string>;
     /**
-     * Enter an IP address or a range of IP addresses in CIDR format.
+     * Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
      */
     public readonly allowLists!: pulumi.Output<string[]>;
+    /**
+     * Whitelist information for the associated security group.
+     */
+    public readonly securityGroupBindInfos!: pulumi.Output<outputs.rds_mysql.AllowlistSecurityGroupBindInfo[] | undefined>;
+    /**
+     * The security group ids of the allow list.
+     */
+    public readonly securityGroupIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+     */
+    public readonly userAllowLists!: pulumi.Output<string[]>;
 
     /**
      * Create a Allowlist resource with the given unique name, arguments, and options.
@@ -93,23 +124,28 @@ export class Allowlist extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AllowlistState | undefined;
+            resourceInputs["allowListCategory"] = state ? state.allowListCategory : undefined;
             resourceInputs["allowListDesc"] = state ? state.allowListDesc : undefined;
             resourceInputs["allowListId"] = state ? state.allowListId : undefined;
             resourceInputs["allowListName"] = state ? state.allowListName : undefined;
             resourceInputs["allowListType"] = state ? state.allowListType : undefined;
             resourceInputs["allowLists"] = state ? state.allowLists : undefined;
+            resourceInputs["securityGroupBindInfos"] = state ? state.securityGroupBindInfos : undefined;
+            resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
+            resourceInputs["userAllowLists"] = state ? state.userAllowLists : undefined;
         } else {
             const args = argsOrState as AllowlistArgs | undefined;
             if ((!args || args.allowListName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'allowListName'");
             }
-            if ((!args || args.allowLists === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'allowLists'");
-            }
+            resourceInputs["allowListCategory"] = args ? args.allowListCategory : undefined;
             resourceInputs["allowListDesc"] = args ? args.allowListDesc : undefined;
             resourceInputs["allowListName"] = args ? args.allowListName : undefined;
             resourceInputs["allowListType"] = args ? args.allowListType : undefined;
             resourceInputs["allowLists"] = args ? args.allowLists : undefined;
+            resourceInputs["securityGroupBindInfos"] = args ? args.securityGroupBindInfos : undefined;
+            resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
+            resourceInputs["userAllowLists"] = args ? args.userAllowLists : undefined;
             resourceInputs["allowListId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -121,6 +157,13 @@ export class Allowlist extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Allowlist resources.
  */
 export interface AllowlistState {
+    /**
+     * White list category. Values:
+     * Ordinary: Ordinary white list.
+     * Default: Default white list.
+     * Description: When this parameter is used as a request parameter, the default value is Ordinary.
+     */
+    allowListCategory?: pulumi.Input<string>;
     /**
      * The description of the allow list.
      */
@@ -138,15 +181,34 @@ export interface AllowlistState {
      */
     allowListType?: pulumi.Input<string>;
     /**
-     * Enter an IP address or a range of IP addresses in CIDR format.
+     * Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
      */
     allowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whitelist information for the associated security group.
+     */
+    securityGroupBindInfos?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AllowlistSecurityGroupBindInfo>[]>;
+    /**
+     * The security group ids of the allow list.
+     */
+    securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+     */
+    userAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
  * The set of arguments for constructing a Allowlist resource.
  */
 export interface AllowlistArgs {
+    /**
+     * White list category. Values:
+     * Ordinary: Ordinary white list.
+     * Default: Default white list.
+     * Description: When this parameter is used as a request parameter, the default value is Ordinary.
+     */
+    allowListCategory?: pulumi.Input<string>;
     /**
      * The description of the allow list.
      */
@@ -160,7 +222,19 @@ export interface AllowlistArgs {
      */
     allowListType?: pulumi.Input<string>;
     /**
-     * Enter an IP address or a range of IP addresses in CIDR format.
+     * Enter an IP address or a range of IP addresses in CIDR format. Please note that if you want to use security group - related parameters, do not use this field. Instead, use the user_allow_list.
      */
-    allowLists: pulumi.Input<pulumi.Input<string>[]>;
+    allowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whitelist information for the associated security group.
+     */
+    securityGroupBindInfos?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AllowlistSecurityGroupBindInfo>[]>;
+    /**
+     * The security group ids of the allow list.
+     */
+    securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+     */
+    userAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
 }

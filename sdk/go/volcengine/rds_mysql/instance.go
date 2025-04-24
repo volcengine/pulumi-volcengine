@@ -68,7 +68,7 @@ import (
 //					},
 //					&rds_mysql.InstanceParameterArgs{
 //						ParameterName:  pulumi.String("auto_increment_offset"),
-//						ParameterValue: pulumi.String("4"),
+//						ParameterValue: pulumi.String("5"),
 //					},
 //				},
 //				ProjectName: pulumi.String("default"),
@@ -104,10 +104,18 @@ type Instance struct {
 	AllowListVersion pulumi.StringOutput `pulumi:"allowListVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntOutput `pulumi:"backupUse"`
+	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+	// true: Yes.
+	// false: No.
+	BinlogDump pulumi.BoolOutput `pulumi:"binlogDump"`
 	// Payment methods.
 	ChargeDetails InstanceChargeDetailArrayOutput `pulumi:"chargeDetails"`
 	// Payment methods.
 	ChargeInfo InstanceChargeInfoOutput `pulumi:"chargeInfo"`
+	// Connection pool type. Value range:
+	// Direct: Direct connection mode.
+	// Transaction: Transaction-level connection pool (default).
+	ConnectionPoolType pulumi.StringOutput `pulumi:"connectionPoolType"`
 	// Node creation local time.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// Data synchronization mode.
@@ -116,10 +124,22 @@ type Instance struct {
 	// MySQL_5_7
 	// MySQL_8_0.
 	DbEngineVersion pulumi.StringOutput `pulumi:"dbEngineVersion"`
+	// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+	// Creating: The proxy is being started.
+	// Running: The proxy is running.
+	// Shutdown: The proxy is closed.
+	// Deleting: The proxy is being closed.
+	DbProxyStatus pulumi.StringOutput `pulumi:"dbProxyStatus"`
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone pulumi.StringOutput `pulumi:"dbTimeZone"`
 	// The endpoint info of the RDS instance.
 	Endpoints InstanceEndpointArrayOutput `pulumi:"endpoints"`
+	// Feature status.
+	FeatureStates InstanceFeatureStateArrayOutput `pulumi:"featureStates"`
+	// Whether to enable global read-only.
+	// true: Yes.
+	// false: No.
+	GlobalReadOnly pulumi.BoolOutput `pulumi:"globalReadOnly"`
 	// Instance ID.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Instance name. Cannot start with a number or a dash
@@ -133,12 +153,18 @@ type Instance struct {
 	// 0: Table names are stored as fixed and table names are case-sensitive.
 	// 1: Table names will be stored in lowercase and table names are not case sensitive.
 	LowerCaseTableNames pulumi.StringPtrOutput `pulumi:"lowerCaseTableNames"`
-	// Maintenance Window.
-	MaintenanceWindows InstanceMaintenanceWindowArrayOutput `pulumi:"maintenanceWindows"`
+	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+	MaintenanceWindow InstanceMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// Memory size in GB.
 	Memory pulumi.IntOutput `pulumi:"memory"`
+	// Average CPU usage of the instance master node in nearly one minute.
+	NodeCpuUsedPercentage pulumi.Float64Output `pulumi:"nodeCpuUsedPercentage"`
+	// Average memory usage of the instance master node in nearly one minute.
+	NodeMemoryUsedPercentage pulumi.Float64Output `pulumi:"nodeMemoryUsedPercentage"`
 	// The number of nodes.
 	NodeNumber pulumi.IntOutput `pulumi:"nodeNumber"`
+	// Average disk usage of the instance master node in nearly one minute.
+	NodeSpaceUsedPercentage pulumi.Float64Output `pulumi:"nodeSpaceUsedPercentage"`
 	// The specification of primary node and secondary node.
 	NodeSpec pulumi.StringOutput `pulumi:"nodeSpec"`
 	// Instance node information.
@@ -173,6 +199,8 @@ type Instance struct {
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 	// The available zone of the RDS instance.
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
+	// List of availability zones where each node of the instance is located.
+	ZoneIds pulumi.StringArrayOutput `pulumi:"zoneIds"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -229,10 +257,18 @@ type instanceState struct {
 	AllowListVersion *string `pulumi:"allowListVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse *int `pulumi:"backupUse"`
+	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+	// true: Yes.
+	// false: No.
+	BinlogDump *bool `pulumi:"binlogDump"`
 	// Payment methods.
 	ChargeDetails []InstanceChargeDetail `pulumi:"chargeDetails"`
 	// Payment methods.
 	ChargeInfo *InstanceChargeInfo `pulumi:"chargeInfo"`
+	// Connection pool type. Value range:
+	// Direct: Direct connection mode.
+	// Transaction: Transaction-level connection pool (default).
+	ConnectionPoolType *string `pulumi:"connectionPoolType"`
 	// Node creation local time.
 	CreateTime *string `pulumi:"createTime"`
 	// Data synchronization mode.
@@ -241,10 +277,22 @@ type instanceState struct {
 	// MySQL_5_7
 	// MySQL_8_0.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
+	// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+	// Creating: The proxy is being started.
+	// Running: The proxy is running.
+	// Shutdown: The proxy is closed.
+	// Deleting: The proxy is being closed.
+	DbProxyStatus *string `pulumi:"dbProxyStatus"`
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone *string `pulumi:"dbTimeZone"`
 	// The endpoint info of the RDS instance.
 	Endpoints []InstanceEndpoint `pulumi:"endpoints"`
+	// Feature status.
+	FeatureStates []InstanceFeatureState `pulumi:"featureStates"`
+	// Whether to enable global read-only.
+	// true: Yes.
+	// false: No.
+	GlobalReadOnly *bool `pulumi:"globalReadOnly"`
 	// Instance ID.
 	InstanceId *string `pulumi:"instanceId"`
 	// Instance name. Cannot start with a number or a dash
@@ -258,12 +306,18 @@ type instanceState struct {
 	// 0: Table names are stored as fixed and table names are case-sensitive.
 	// 1: Table names will be stored in lowercase and table names are not case sensitive.
 	LowerCaseTableNames *string `pulumi:"lowerCaseTableNames"`
-	// Maintenance Window.
-	MaintenanceWindows []InstanceMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+	MaintenanceWindow *InstanceMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// Memory size in GB.
 	Memory *int `pulumi:"memory"`
+	// Average CPU usage of the instance master node in nearly one minute.
+	NodeCpuUsedPercentage *float64 `pulumi:"nodeCpuUsedPercentage"`
+	// Average memory usage of the instance master node in nearly one minute.
+	NodeMemoryUsedPercentage *float64 `pulumi:"nodeMemoryUsedPercentage"`
 	// The number of nodes.
 	NodeNumber *int `pulumi:"nodeNumber"`
+	// Average disk usage of the instance master node in nearly one minute.
+	NodeSpaceUsedPercentage *float64 `pulumi:"nodeSpaceUsedPercentage"`
 	// The specification of primary node and secondary node.
 	NodeSpec *string `pulumi:"nodeSpec"`
 	// Instance node information.
@@ -298,6 +352,8 @@ type instanceState struct {
 	VpcId *string `pulumi:"vpcId"`
 	// The available zone of the RDS instance.
 	ZoneId *string `pulumi:"zoneId"`
+	// List of availability zones where each node of the instance is located.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 type InstanceState struct {
@@ -307,10 +363,18 @@ type InstanceState struct {
 	AllowListVersion pulumi.StringPtrInput
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntPtrInput
+	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+	// true: Yes.
+	// false: No.
+	BinlogDump pulumi.BoolPtrInput
 	// Payment methods.
 	ChargeDetails InstanceChargeDetailArrayInput
 	// Payment methods.
 	ChargeInfo InstanceChargeInfoPtrInput
+	// Connection pool type. Value range:
+	// Direct: Direct connection mode.
+	// Transaction: Transaction-level connection pool (default).
+	ConnectionPoolType pulumi.StringPtrInput
 	// Node creation local time.
 	CreateTime pulumi.StringPtrInput
 	// Data synchronization mode.
@@ -319,10 +383,22 @@ type InstanceState struct {
 	// MySQL_5_7
 	// MySQL_8_0.
 	DbEngineVersion pulumi.StringPtrInput
+	// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+	// Creating: The proxy is being started.
+	// Running: The proxy is running.
+	// Shutdown: The proxy is closed.
+	// Deleting: The proxy is being closed.
+	DbProxyStatus pulumi.StringPtrInput
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone pulumi.StringPtrInput
 	// The endpoint info of the RDS instance.
 	Endpoints InstanceEndpointArrayInput
+	// Feature status.
+	FeatureStates InstanceFeatureStateArrayInput
+	// Whether to enable global read-only.
+	// true: Yes.
+	// false: No.
+	GlobalReadOnly pulumi.BoolPtrInput
 	// Instance ID.
 	InstanceId pulumi.StringPtrInput
 	// Instance name. Cannot start with a number or a dash
@@ -336,12 +412,18 @@ type InstanceState struct {
 	// 0: Table names are stored as fixed and table names are case-sensitive.
 	// 1: Table names will be stored in lowercase and table names are not case sensitive.
 	LowerCaseTableNames pulumi.StringPtrInput
-	// Maintenance Window.
-	MaintenanceWindows InstanceMaintenanceWindowArrayInput
+	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+	MaintenanceWindow InstanceMaintenanceWindowPtrInput
 	// Memory size in GB.
 	Memory pulumi.IntPtrInput
+	// Average CPU usage of the instance master node in nearly one minute.
+	NodeCpuUsedPercentage pulumi.Float64PtrInput
+	// Average memory usage of the instance master node in nearly one minute.
+	NodeMemoryUsedPercentage pulumi.Float64PtrInput
 	// The number of nodes.
 	NodeNumber pulumi.IntPtrInput
+	// Average disk usage of the instance master node in nearly one minute.
+	NodeSpaceUsedPercentage pulumi.Float64PtrInput
 	// The specification of primary node and secondary node.
 	NodeSpec pulumi.StringPtrInput
 	// Instance node information.
@@ -376,6 +458,8 @@ type InstanceState struct {
 	VpcId pulumi.StringPtrInput
 	// The available zone of the RDS instance.
 	ZoneId pulumi.StringPtrInput
+	// List of availability zones where each node of the instance is located.
+	ZoneIds pulumi.StringArrayInput
 }
 
 func (InstanceState) ElementType() reflect.Type {
@@ -387,6 +471,10 @@ type instanceArgs struct {
 	AllowListIds []string `pulumi:"allowListIds"`
 	// Payment methods.
 	ChargeInfo InstanceChargeInfo `pulumi:"chargeInfo"`
+	// Connection pool type. Value range:
+	// Direct: Direct connection mode.
+	// Transaction: Transaction-level connection pool (default).
+	ConnectionPoolType *string `pulumi:"connectionPoolType"`
 	// Instance type. Value:
 	// MySQL_5_7
 	// MySQL_8_0.
@@ -402,6 +490,8 @@ type instanceArgs struct {
 	// 0: Table names are stored as fixed and table names are case-sensitive.
 	// 1: Table names will be stored in lowercase and table names are not case sensitive.
 	LowerCaseTableNames *string `pulumi:"lowerCaseTableNames"`
+	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+	MaintenanceWindow *InstanceMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// The specification of primary node and secondary node.
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
@@ -426,6 +516,10 @@ type InstanceArgs struct {
 	AllowListIds pulumi.StringArrayInput
 	// Payment methods.
 	ChargeInfo InstanceChargeInfoInput
+	// Connection pool type. Value range:
+	// Direct: Direct connection mode.
+	// Transaction: Transaction-level connection pool (default).
+	ConnectionPoolType pulumi.StringPtrInput
 	// Instance type. Value:
 	// MySQL_5_7
 	// MySQL_8_0.
@@ -441,6 +535,8 @@ type InstanceArgs struct {
 	// 0: Table names are stored as fixed and table names are case-sensitive.
 	// 1: Table names will be stored in lowercase and table names are not case sensitive.
 	LowerCaseTableNames pulumi.StringPtrInput
+	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+	MaintenanceWindow InstanceMaintenanceWindowPtrInput
 	// The specification of primary node and secondary node.
 	NodeSpec pulumi.StringInput
 	// Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
@@ -561,6 +657,13 @@ func (o InstanceOutput) BackupUse() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.BackupUse }).(pulumi.IntOutput)
 }
 
+// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+// true: Yes.
+// false: No.
+func (o InstanceOutput) BinlogDump() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.BinlogDump }).(pulumi.BoolOutput)
+}
+
 // Payment methods.
 func (o InstanceOutput) ChargeDetails() InstanceChargeDetailArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceChargeDetailArrayOutput { return v.ChargeDetails }).(InstanceChargeDetailArrayOutput)
@@ -569,6 +672,13 @@ func (o InstanceOutput) ChargeDetails() InstanceChargeDetailArrayOutput {
 // Payment methods.
 func (o InstanceOutput) ChargeInfo() InstanceChargeInfoOutput {
 	return o.ApplyT(func(v *Instance) InstanceChargeInfoOutput { return v.ChargeInfo }).(InstanceChargeInfoOutput)
+}
+
+// Connection pool type. Value range:
+// Direct: Direct connection mode.
+// Transaction: Transaction-level connection pool (default).
+func (o InstanceOutput) ConnectionPoolType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ConnectionPoolType }).(pulumi.StringOutput)
 }
 
 // Node creation local time.
@@ -588,6 +698,15 @@ func (o InstanceOutput) DbEngineVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbEngineVersion }).(pulumi.StringOutput)
 }
 
+// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+// Creating: The proxy is being started.
+// Running: The proxy is running.
+// Shutdown: The proxy is closed.
+// Deleting: The proxy is being closed.
+func (o InstanceOutput) DbProxyStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbProxyStatus }).(pulumi.StringOutput)
+}
+
 // Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o InstanceOutput) DbTimeZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbTimeZone }).(pulumi.StringOutput)
@@ -596,6 +715,18 @@ func (o InstanceOutput) DbTimeZone() pulumi.StringOutput {
 // The endpoint info of the RDS instance.
 func (o InstanceOutput) Endpoints() InstanceEndpointArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceEndpointArrayOutput { return v.Endpoints }).(InstanceEndpointArrayOutput)
+}
+
+// Feature status.
+func (o InstanceOutput) FeatureStates() InstanceFeatureStateArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceFeatureStateArrayOutput { return v.FeatureStates }).(InstanceFeatureStateArrayOutput)
+}
+
+// Whether to enable global read-only.
+// true: Yes.
+// false: No.
+func (o InstanceOutput) GlobalReadOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.GlobalReadOnly }).(pulumi.BoolOutput)
 }
 
 // Instance ID.
@@ -623,9 +754,9 @@ func (o InstanceOutput) LowerCaseTableNames() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.LowerCaseTableNames }).(pulumi.StringPtrOutput)
 }
 
-// Maintenance Window.
-func (o InstanceOutput) MaintenanceWindows() InstanceMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v *Instance) InstanceMaintenanceWindowArrayOutput { return v.MaintenanceWindows }).(InstanceMaintenanceWindowArrayOutput)
+// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+func (o InstanceOutput) MaintenanceWindow() InstanceMaintenanceWindowOutput {
+	return o.ApplyT(func(v *Instance) InstanceMaintenanceWindowOutput { return v.MaintenanceWindow }).(InstanceMaintenanceWindowOutput)
 }
 
 // Memory size in GB.
@@ -633,9 +764,24 @@ func (o InstanceOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.Memory }).(pulumi.IntOutput)
 }
 
+// Average CPU usage of the instance master node in nearly one minute.
+func (o InstanceOutput) NodeCpuUsedPercentage() pulumi.Float64Output {
+	return o.ApplyT(func(v *Instance) pulumi.Float64Output { return v.NodeCpuUsedPercentage }).(pulumi.Float64Output)
+}
+
+// Average memory usage of the instance master node in nearly one minute.
+func (o InstanceOutput) NodeMemoryUsedPercentage() pulumi.Float64Output {
+	return o.ApplyT(func(v *Instance) pulumi.Float64Output { return v.NodeMemoryUsedPercentage }).(pulumi.Float64Output)
+}
+
 // The number of nodes.
 func (o InstanceOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.NodeNumber }).(pulumi.IntOutput)
+}
+
+// Average disk usage of the instance master node in nearly one minute.
+func (o InstanceOutput) NodeSpaceUsedPercentage() pulumi.Float64Output {
+	return o.ApplyT(func(v *Instance) pulumi.Float64Output { return v.NodeSpaceUsedPercentage }).(pulumi.Float64Output)
 }
 
 // The specification of primary node and secondary node.
@@ -721,6 +867,11 @@ func (o InstanceOutput) VpcId() pulumi.StringOutput {
 // The available zone of the RDS instance.
 func (o InstanceOutput) ZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// List of availability zones where each node of the instance is located.
+func (o InstanceOutput) ZoneIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.ZoneIds }).(pulumi.StringArrayOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

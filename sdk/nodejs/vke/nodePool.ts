@@ -118,6 +118,7 @@ import * as utilities from "../utilities";
  *             effect: "NoSchedule",
  *         }],
  *         cordon: true,
+ *         autoSyncDisabled: false,
  *     },
  *     tags: [{
  *         key: "node-pool-k1",

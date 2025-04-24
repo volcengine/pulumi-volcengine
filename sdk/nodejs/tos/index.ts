@@ -10,6 +10,16 @@ export type Bucket = import("./bucket").Bucket;
 export const Bucket: typeof import("./bucket").Bucket = null as any;
 utilities.lazyLoad(exports, ["Bucket"], () => require("./bucket"));
 
+export { BucketInventoriesArgs, BucketInventoriesResult, BucketInventoriesOutputArgs } from "./bucketInventories";
+export const bucketInventories: typeof import("./bucketInventories").bucketInventories = null as any;
+export const bucketInventoriesOutput: typeof import("./bucketInventories").bucketInventoriesOutput = null as any;
+utilities.lazyLoad(exports, ["bucketInventories","bucketInventoriesOutput"], () => require("./bucketInventories"));
+
+export { BucketInventoryArgs, BucketInventoryState } from "./bucketInventory";
+export type BucketInventory = import("./bucketInventory").BucketInventory;
+export const BucketInventory: typeof import("./bucketInventory").BucketInventory = null as any;
+utilities.lazyLoad(exports, ["BucketInventory"], () => require("./bucketInventory"));
+
 export { BucketObjectArgs, BucketObjectState } from "./bucketObject";
 export type BucketObject = import("./bucketObject").BucketObject;
 export const BucketObject: typeof import("./bucketObject").BucketObject = null as any;
@@ -25,6 +35,11 @@ export type BucketPolicy = import("./bucketPolicy").BucketPolicy;
 export const BucketPolicy: typeof import("./bucketPolicy").BucketPolicy = null as any;
 utilities.lazyLoad(exports, ["BucketPolicy"], () => require("./bucketPolicy"));
 
+export { BucketRealtimeLogArgs, BucketRealtimeLogState } from "./bucketRealtimeLog";
+export type BucketRealtimeLog = import("./bucketRealtimeLog").BucketRealtimeLog;
+export const BucketRealtimeLog: typeof import("./bucketRealtimeLog").BucketRealtimeLog = null as any;
+utilities.lazyLoad(exports, ["BucketRealtimeLog"], () => require("./bucketRealtimeLog"));
+
 export { BucketsArgs, BucketsResult, BucketsOutputArgs } from "./buckets";
 export const buckets: typeof import("./buckets").buckets = null as any;
 export const bucketsOutput: typeof import("./buckets").bucketsOutput = null as any;
@@ -37,15 +52,21 @@ const _module = {
         switch (type) {
             case "volcengine:tos/bucket:Bucket":
                 return new Bucket(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketInventory:BucketInventory":
+                return new BucketInventory(name, <any>undefined, { urn })
             case "volcengine:tos/bucketObject:BucketObject":
                 return new BucketObject(name, <any>undefined, { urn })
             case "volcengine:tos/bucketPolicy:BucketPolicy":
                 return new BucketPolicy(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketRealtimeLog:BucketRealtimeLog":
+                return new BucketRealtimeLog(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucket", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketInventory", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketObject", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketPolicy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketRealtimeLog", _module)

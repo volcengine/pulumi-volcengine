@@ -685,6 +685,8 @@ class VpcEndpointsVpcEndpointResult(dict):
                  endpoint_name: str,
                  endpoint_type: str,
                  id: str,
+                 private_dns_enabled: bool,
+                 private_dns_name: str,
                  service_id: str,
                  service_name: str,
                  status: str,
@@ -701,6 +703,8 @@ class VpcEndpointsVpcEndpointResult(dict):
         :param str endpoint_name: The name of vpc endpoint.
         :param str endpoint_type: The type of vpc endpoint.
         :param str id: The Id of vpc endpoint.
+        :param bool private_dns_enabled: Whether to enable private dns name.
+        :param str private_dns_name: The private dns name of vpc endpoint.
         :param str service_id: The Id of vpc endpoint service.
         :param str service_name: The name of vpc endpoint service.
         :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
@@ -717,6 +721,8 @@ class VpcEndpointsVpcEndpointResult(dict):
         pulumi.set(__self__, "endpoint_name", endpoint_name)
         pulumi.set(__self__, "endpoint_type", endpoint_type)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "private_dns_enabled", private_dns_enabled)
+        pulumi.set(__self__, "private_dns_name", private_dns_name)
         pulumi.set(__self__, "service_id", service_id)
         pulumi.set(__self__, "service_name", service_name)
         pulumi.set(__self__, "status", status)
@@ -802,6 +808,22 @@ class VpcEndpointsVpcEndpointResult(dict):
         The Id of vpc endpoint.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="privateDnsEnabled")
+    def private_dns_enabled(self) -> bool:
+        """
+        Whether to enable private dns name.
+        """
+        return pulumi.get(self, "private_dns_enabled")
+
+    @property
+    @pulumi.getter(name="privateDnsName")
+    def private_dns_name(self) -> str:
+        """
+        The private dns name of vpc endpoint.
+        """
+        return pulumi.get(self, "private_dns_name")
 
     @property
     @pulumi.getter(name="serviceId")

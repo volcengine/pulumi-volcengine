@@ -11,11 +11,13 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AccountAccountPrivilege',
     'AccountsAccountResult',
     'AccountsAccountAccountPrivilegeResult',
     'EndpointsEndpointResult',
     'EndpointsEndpointDbAddressResult',
     'InstanceMongo',
+    'InstanceNodeAvailabilityZone',
     'InstanceParameterLogsParameterChangeLogsResult',
     'InstanceParametersInstanceParameterResult',
     'InstanceParametersParameterResult',
@@ -30,10 +32,12 @@ __all__ = [
     'InstancesInstanceShardNodeResult',
     'InstancesInstanceTagResult',
     'InstancesTagResult',
+    'MongoAllowListAssociatedInstance',
     'MongoAllowListsAllowListResult',
     'MongoAllowListsAllowListAssociatedInstanceResult',
     'RegionsRegionResult',
     'SpecsSpecsResult',
+    'SpecsSpecsConfigServerNodeSpecResult',
     'SpecsSpecsMongosNodeSpecResult',
     'SpecsSpecsNodeSpecResult',
     'SpecsSpecsShardNodeSpecResult',
@@ -42,25 +46,93 @@ __all__ = [
 ]
 
 @pulumi.output_type
+class AccountAccountPrivilege(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dbName":
+            suggest = "db_name"
+        elif key == "roleNames":
+            suggest = "role_names"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccountAccountPrivilege. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccountAccountPrivilege.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccountAccountPrivilege.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 db_name: str,
+                 role_names: Sequence[str]):
+        """
+        :param str db_name: The name of database.
+        :param Sequence[str] role_names: The role names of the account.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        The name of database.
+        """
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        """
+        The role names of the account.
+        """
+        return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
 class AccountsAccountResult(dict):
     def __init__(__self__, *,
+                 account_desc: str,
                  account_name: str,
                  account_privileges: Sequence['outputs.AccountsAccountAccountPrivilegeResult'],
-                 account_type: str):
+                 account_type: str,
+                 auth_db: str,
+                 create_time: str,
+                 modify_time: str):
         """
-        :param str account_name: The name of account, current support only `root`.
+        :param str account_desc: The description of account.
+        :param str account_name: The name of account. This field support fuzzy query.
         :param Sequence['AccountsAccountAccountPrivilegeArgs'] account_privileges: The privilege info of mongo instance.
         :param str account_type: The type of account.
+        :param str auth_db: The database of account. This field support fuzzy query.
+        :param str create_time: The create time of account.
+        :param str modify_time: The modify time of account.
         """
+        pulumi.set(__self__, "account_desc", account_desc)
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_privileges", account_privileges)
         pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "auth_db", auth_db)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "modify_time", modify_time)
+
+    @property
+    @pulumi.getter(name="accountDesc")
+    def account_desc(self) -> str:
+        """
+        The description of account.
+        """
+        return pulumi.get(self, "account_desc")
 
     @property
     @pulumi.getter(name="accountName")
     def account_name(self) -> str:
         """
-        The name of account, current support only `root`.
+        The name of account. This field support fuzzy query.
         """
         return pulumi.get(self, "account_name")
 
@@ -79,6 +151,30 @@ class AccountsAccountResult(dict):
         The type of account.
         """
         return pulumi.get(self, "account_type")
+
+    @property
+    @pulumi.getter(name="authDb")
+    def auth_db(self) -> str:
+        """
+        The database of account. This field support fuzzy query.
+        """
+        return pulumi.get(self, "auth_db")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of account.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The modify time of account.
+        """
+        return pulumi.get(self, "modify_time")
 
 
 @pulumi.output_type
@@ -307,7 +403,7 @@ class InstanceMongo(dict):
                  node_status: Optional[str] = None):
         """
         :param str mongos_node_id: The mongos node ID.
-        :param str node_spec: The spec of node.
+        :param str node_spec: The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         :param str node_status: The node status.
         """
         if mongos_node_id is not None:
@@ -329,7 +425,7 @@ class InstanceMongo(dict):
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> Optional[str]:
         """
-        The spec of node.
+        The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         """
         return pulumi.get(self, "node_spec")
 
@@ -340,6 +436,58 @@ class InstanceMongo(dict):
         The node status.
         """
         return pulumi.get(self, "node_status")
+
+
+@pulumi.output_type
+class InstanceNodeAvailabilityZone(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodeNumber":
+            suggest = "node_number"
+        elif key == "zoneId":
+            suggest = "zone_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceNodeAvailabilityZone. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceNodeAvailabilityZone.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceNodeAvailabilityZone.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 node_number: int,
+                 zone_id: str):
+        """
+        :param int node_number: The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+               When the instance_type is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+               When the instance_type is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+        :param str zone_id: The zone id of readonly nodes.
+        """
+        pulumi.set(__self__, "node_number", node_number)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="nodeNumber")
+    def node_number(self) -> int:
+        """
+        The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+        When the instance_type is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+        When the instance_type is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+        """
+        return pulumi.get(self, "node_number")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of readonly nodes.
+        """
+        return pulumi.get(self, "zone_id")
 
 
 @pulumi.output_type
@@ -775,7 +923,9 @@ class InstancesInstanceResult(dict):
                  mongos: Sequence['outputs.InstancesInstanceMongoResult'],
                  mongos_id: str,
                  nodes: Sequence['outputs.InstancesInstanceNodeResult'],
+                 private_endpoint: str,
                  project_name: str,
+                 read_only_node_number: int,
                  reclaim_time: str,
                  shards: Sequence['outputs.InstancesInstanceShardResult'],
                  ssl_enable: bool,
@@ -806,7 +956,9 @@ class InstancesInstanceResult(dict):
         :param Sequence['InstancesInstanceMongoArgs'] mongos: The list of mongos.
         :param str mongos_id: The ID of mongos.
         :param Sequence['InstancesInstanceNodeArgs'] nodes: The node information.
-        :param str project_name: The project name to which the instance belongs.
+        :param str private_endpoint: The private endpoint address of instance.
+        :param str project_name: The project name to query.
+        :param int read_only_node_number: The number of readonly node in instance.
         :param str reclaim_time: The planned reclaim time of instance.
         :param Sequence['InstancesInstanceShardArgs'] shards: The list of shards.
         :param bool ssl_enable: Whether ssl enabled.
@@ -837,7 +989,9 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "mongos", mongos)
         pulumi.set(__self__, "mongos_id", mongos_id)
         pulumi.set(__self__, "nodes", nodes)
+        pulumi.set(__self__, "private_endpoint", private_endpoint)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "read_only_node_number", read_only_node_number)
         pulumi.set(__self__, "reclaim_time", reclaim_time)
         pulumi.set(__self__, "shards", shards)
         pulumi.set(__self__, "ssl_enable", ssl_enable)
@@ -995,12 +1149,28 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "nodes")
 
     @property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> str:
+        """
+        The private endpoint address of instance.
+        """
+        return pulumi.get(self, "private_endpoint")
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> str:
         """
-        The project name to which the instance belongs.
+        The project name to query.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeNumber")
+    def read_only_node_number(self) -> int:
+        """
+        The number of readonly node in instance.
+        """
+        return pulumi.get(self, "read_only_node_number")
 
     @property
     @pulumi.getter(name="reclaimTime")
@@ -1647,6 +1817,82 @@ class InstancesTagResult(dict):
 
 
 @pulumi.output_type
+class MongoAllowListAssociatedInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceId":
+            suggest = "instance_id"
+        elif key == "instanceName":
+            suggest = "instance_name"
+        elif key == "projectName":
+            suggest = "project_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MongoAllowListAssociatedInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MongoAllowListAssociatedInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MongoAllowListAssociatedInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_id: Optional[str] = None,
+                 instance_name: Optional[str] = None,
+                 project_name: Optional[str] = None,
+                 vpc: Optional[str] = None):
+        """
+        :param str instance_id: The instance id that bound to the allow list.
+        :param str instance_name: The instance name that bound to the allow list.
+        :param str project_name: The project name of the allow list.
+        :param str vpc: The VPC ID.
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_name is not None:
+            pulumi.set(__self__, "instance_name", instance_name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if vpc is not None:
+            pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[str]:
+        """
+        The instance id that bound to the allow list.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> Optional[str]:
+        """
+        The instance name that bound to the allow list.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> Optional[str]:
+        """
+        The VPC ID.
+        """
+        return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
 class MongoAllowListsAllowListResult(dict):
     def __init__(__self__, *,
                  allow_list: str,
@@ -1656,7 +1902,8 @@ class MongoAllowListsAllowListResult(dict):
                  allow_list_name: str,
                  allow_list_type: str,
                  associated_instance_num: int,
-                 associated_instances: Sequence['outputs.MongoAllowListsAllowListAssociatedInstanceResult']):
+                 associated_instances: Sequence['outputs.MongoAllowListsAllowListAssociatedInstanceResult'],
+                 project_name: str):
         """
         :param str allow_list: The list of IP address in allow list.
         :param str allow_list_desc: The description of allow list.
@@ -1666,6 +1913,7 @@ class MongoAllowListsAllowListResult(dict):
         :param str allow_list_type: The IP address type in allow list.
         :param int associated_instance_num: The total number of instances bound under the allow list.
         :param Sequence['MongoAllowListsAllowListAssociatedInstanceArgs'] associated_instances: The list of associated instances.
+        :param str project_name: The project name of the allow list.
         """
         pulumi.set(__self__, "allow_list", allow_list)
         pulumi.set(__self__, "allow_list_desc", allow_list_desc)
@@ -1675,6 +1923,7 @@ class MongoAllowListsAllowListResult(dict):
         pulumi.set(__self__, "allow_list_type", allow_list_type)
         pulumi.set(__self__, "associated_instance_num", associated_instance_num)
         pulumi.set(__self__, "associated_instances", associated_instances)
+        pulumi.set(__self__, "project_name", project_name)
 
     @property
     @pulumi.getter(name="allowList")
@@ -1740,20 +1989,31 @@ class MongoAllowListsAllowListResult(dict):
         """
         return pulumi.get(self, "associated_instances")
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
+
 
 @pulumi.output_type
 class MongoAllowListsAllowListAssociatedInstanceResult(dict):
     def __init__(__self__, *,
                  instance_id: str,
                  instance_name: str,
+                 project_name: str,
                  vpc: str):
         """
         :param str instance_id: The instance ID to query.
         :param str instance_name: The instance name that bound to the allow list.
+        :param str project_name: The project name of the allow list.
         :param str vpc: The VPC ID.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "vpc", vpc)
 
     @property
@@ -1771,6 +2031,14 @@ class MongoAllowListsAllowListAssociatedInstanceResult(dict):
         The instance name that bound to the allow list.
         """
         return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -1813,17 +2081,28 @@ class RegionsRegionResult(dict):
 @pulumi.output_type
 class SpecsSpecsResult(dict):
     def __init__(__self__, *,
+                 config_server_node_specs: Sequence['outputs.SpecsSpecsConfigServerNodeSpecResult'],
                  mongos_node_specs: Sequence['outputs.SpecsSpecsMongosNodeSpecResult'],
                  node_specs: Sequence['outputs.SpecsSpecsNodeSpecResult'],
                  shard_node_specs: Sequence['outputs.SpecsSpecsShardNodeSpecResult']):
         """
+        :param Sequence['SpecsSpecsConfigServerNodeSpecArgs'] config_server_node_specs: The collection of config server node specs.
         :param Sequence['SpecsSpecsMongosNodeSpecArgs'] mongos_node_specs: The collection of mongos node specs.
         :param Sequence['SpecsSpecsNodeSpecArgs'] node_specs: The collection of node specs.
         :param Sequence['SpecsSpecsShardNodeSpecArgs'] shard_node_specs: The collection of shard node specs.
         """
+        pulumi.set(__self__, "config_server_node_specs", config_server_node_specs)
         pulumi.set(__self__, "mongos_node_specs", mongos_node_specs)
         pulumi.set(__self__, "node_specs", node_specs)
         pulumi.set(__self__, "shard_node_specs", shard_node_specs)
+
+    @property
+    @pulumi.getter(name="configServerNodeSpecs")
+    def config_server_node_specs(self) -> Sequence['outputs.SpecsSpecsConfigServerNodeSpecResult']:
+        """
+        The collection of config server node specs.
+        """
+        return pulumi.get(self, "config_server_node_specs")
 
     @property
     @pulumi.getter(name="mongosNodeSpecs")
@@ -1848,6 +2127,79 @@ class SpecsSpecsResult(dict):
         The collection of shard node specs.
         """
         return pulumi.get(self, "shard_node_specs")
+
+
+@pulumi.output_type
+class SpecsSpecsConfigServerNodeSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu_num: float,
+                 max_conn: int,
+                 max_storage: int,
+                 mem_in_gb: int,
+                 min_storage: int,
+                 spec_name: str):
+        """
+        :param float cpu_num: The cpu cores.
+        :param int max_conn: The max connections.
+        :param int max_storage: The max storage.
+        :param int mem_in_gb: The memory in GB.
+        :param int min_storage: The min storage.
+        :param str spec_name: The shard node spec name.
+        """
+        pulumi.set(__self__, "cpu_num", cpu_num)
+        pulumi.set(__self__, "max_conn", max_conn)
+        pulumi.set(__self__, "max_storage", max_storage)
+        pulumi.set(__self__, "mem_in_gb", mem_in_gb)
+        pulumi.set(__self__, "min_storage", min_storage)
+        pulumi.set(__self__, "spec_name", spec_name)
+
+    @property
+    @pulumi.getter(name="cpuNum")
+    def cpu_num(self) -> float:
+        """
+        The cpu cores.
+        """
+        return pulumi.get(self, "cpu_num")
+
+    @property
+    @pulumi.getter(name="maxConn")
+    def max_conn(self) -> int:
+        """
+        The max connections.
+        """
+        return pulumi.get(self, "max_conn")
+
+    @property
+    @pulumi.getter(name="maxStorage")
+    def max_storage(self) -> int:
+        """
+        The max storage.
+        """
+        return pulumi.get(self, "max_storage")
+
+    @property
+    @pulumi.getter(name="memInGb")
+    def mem_in_gb(self) -> int:
+        """
+        The memory in GB.
+        """
+        return pulumi.get(self, "mem_in_gb")
+
+    @property
+    @pulumi.getter(name="minStorage")
+    def min_storage(self) -> int:
+        """
+        The min storage.
+        """
+        return pulumi.get(self, "min_storage")
+
+    @property
+    @pulumi.getter(name="specName")
+    def spec_name(self) -> str:
+        """
+        The shard node spec name.
+        """
+        return pulumi.get(self, "spec_name")
 
 
 @pulumi.output_type
@@ -1908,18 +2260,21 @@ class SpecsSpecsNodeSpecResult(dict):
                  max_conn: int,
                  max_storage: int,
                  mem_in_db: float,
+                 min_storage: int,
                  spec_name: str):
         """
         :param float cpu_num: The cpu cores.
         :param int max_conn: The max connections.
         :param int max_storage: The max storage.
         :param float mem_in_db: The memory in GB.
+        :param int min_storage: The min storage.
         :param str spec_name: The shard node spec name.
         """
         pulumi.set(__self__, "cpu_num", cpu_num)
         pulumi.set(__self__, "max_conn", max_conn)
         pulumi.set(__self__, "max_storage", max_storage)
         pulumi.set(__self__, "mem_in_db", mem_in_db)
+        pulumi.set(__self__, "min_storage", min_storage)
         pulumi.set(__self__, "spec_name", spec_name)
 
     @property
@@ -1955,6 +2310,14 @@ class SpecsSpecsNodeSpecResult(dict):
         return pulumi.get(self, "mem_in_db")
 
     @property
+    @pulumi.getter(name="minStorage")
+    def min_storage(self) -> int:
+        """
+        The min storage.
+        """
+        return pulumi.get(self, "min_storage")
+
+    @property
     @pulumi.getter(name="specName")
     def spec_name(self) -> str:
         """
@@ -1970,18 +2333,21 @@ class SpecsSpecsShardNodeSpecResult(dict):
                  max_conn: int,
                  max_storage: int,
                  mem_in_gb: int,
+                 min_storage: int,
                  spec_name: str):
         """
         :param float cpu_num: The cpu cores.
         :param int max_conn: The max connections.
         :param int max_storage: The max storage.
         :param int mem_in_gb: The memory in GB.
+        :param int min_storage: The min storage.
         :param str spec_name: The shard node spec name.
         """
         pulumi.set(__self__, "cpu_num", cpu_num)
         pulumi.set(__self__, "max_conn", max_conn)
         pulumi.set(__self__, "max_storage", max_storage)
         pulumi.set(__self__, "mem_in_gb", mem_in_gb)
+        pulumi.set(__self__, "min_storage", min_storage)
         pulumi.set(__self__, "spec_name", spec_name)
 
     @property
@@ -2015,6 +2381,14 @@ class SpecsSpecsShardNodeSpecResult(dict):
         The memory in GB.
         """
         return pulumi.get(self, "mem_in_gb")
+
+    @property
+    @pulumi.getter(name="minStorage")
+    def min_storage(self) -> int:
+        """
+        The min storage.
+        """
+        return pulumi.get(self, "min_storage")
 
     @property
     @pulumi.getter(name="specName")

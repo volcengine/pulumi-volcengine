@@ -30,8 +30,9 @@ import (
 //			_, err := mongodb.NewMongoAllowList(ctx, "foo", &mongodb.MongoAllowListArgs{
 //				AllowList:     pulumi.String("10.1.1.3,10.2.3.0/24,10.1.1.1"),
 //				AllowListDesc: pulumi.String("acc-test"),
-//				AllowListName: pulumi.String("acc-test"),
+//				AllowListName: pulumi.String("acc-test-allow-list"),
 //				AllowListType: pulumi.String("IPv4"),
+//				ProjectName:   pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
@@ -52,14 +53,22 @@ import (
 type MongoAllowList struct {
 	pulumi.CustomResourceState
 
-	// IP address or IP address segment in CIDR format.
+	// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
 	AllowList pulumi.StringOutput `pulumi:"allowList"`
 	// The description of allow list.
 	AllowListDesc pulumi.StringOutput `pulumi:"allowListDesc"`
+	// The number of allow list IPs.
+	AllowListIpNum pulumi.IntOutput `pulumi:"allowListIpNum"`
 	// The name of allow list.
 	AllowListName pulumi.StringOutput `pulumi:"allowListName"`
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType pulumi.StringPtrOutput `pulumi:"allowListType"`
+	// The total number of instances bound under the allow list.
+	AssociatedInstanceNum pulumi.IntOutput `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances MongoAllowListAssociatedInstanceArrayOutput `pulumi:"associatedInstances"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 }
 
 // NewMongoAllowList registers a new resource with the given unique name, arguments, and options.
@@ -98,25 +107,41 @@ func GetMongoAllowList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MongoAllowList resources.
 type mongoAllowListState struct {
-	// IP address or IP address segment in CIDR format.
+	// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
 	AllowList *string `pulumi:"allowList"`
 	// The description of allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
+	// The number of allow list IPs.
+	AllowListIpNum *int `pulumi:"allowListIpNum"`
 	// The name of allow list.
 	AllowListName *string `pulumi:"allowListName"`
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType *string `pulumi:"allowListType"`
+	// The total number of instances bound under the allow list.
+	AssociatedInstanceNum *int `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances []MongoAllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// The project name of the allow list.
+	ProjectName *string `pulumi:"projectName"`
 }
 
 type MongoAllowListState struct {
-	// IP address or IP address segment in CIDR format.
+	// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
 	AllowList pulumi.StringPtrInput
 	// The description of allow list.
 	AllowListDesc pulumi.StringPtrInput
+	// The number of allow list IPs.
+	AllowListIpNum pulumi.IntPtrInput
 	// The name of allow list.
 	AllowListName pulumi.StringPtrInput
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType pulumi.StringPtrInput
+	// The total number of instances bound under the allow list.
+	AssociatedInstanceNum pulumi.IntPtrInput
+	// The list of associated instances.
+	AssociatedInstances MongoAllowListAssociatedInstanceArrayInput
+	// The project name of the allow list.
+	ProjectName pulumi.StringPtrInput
 }
 
 func (MongoAllowListState) ElementType() reflect.Type {
@@ -124,7 +149,7 @@ func (MongoAllowListState) ElementType() reflect.Type {
 }
 
 type mongoAllowListArgs struct {
-	// IP address or IP address segment in CIDR format.
+	// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
 	AllowList string `pulumi:"allowList"`
 	// The description of allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
@@ -132,11 +157,13 @@ type mongoAllowListArgs struct {
 	AllowListName string `pulumi:"allowListName"`
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType *string `pulumi:"allowListType"`
+	// The project name of the allow list.
+	ProjectName *string `pulumi:"projectName"`
 }
 
 // The set of arguments for constructing a MongoAllowList resource.
 type MongoAllowListArgs struct {
-	// IP address or IP address segment in CIDR format.
+	// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
 	AllowList pulumi.StringInput
 	// The description of allow list.
 	AllowListDesc pulumi.StringPtrInput
@@ -144,6 +171,8 @@ type MongoAllowListArgs struct {
 	AllowListName pulumi.StringInput
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType pulumi.StringPtrInput
+	// The project name of the allow list.
+	ProjectName pulumi.StringPtrInput
 }
 
 func (MongoAllowListArgs) ElementType() reflect.Type {
@@ -233,7 +262,7 @@ func (o MongoAllowListOutput) ToMongoAllowListOutputWithContext(ctx context.Cont
 	return o
 }
 
-// IP address or IP address segment in CIDR format.
+// IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
 func (o MongoAllowListOutput) AllowList() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoAllowList) pulumi.StringOutput { return v.AllowList }).(pulumi.StringOutput)
 }
@@ -241,6 +270,11 @@ func (o MongoAllowListOutput) AllowList() pulumi.StringOutput {
 // The description of allow list.
 func (o MongoAllowListOutput) AllowListDesc() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoAllowList) pulumi.StringOutput { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The number of allow list IPs.
+func (o MongoAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *MongoAllowList) pulumi.IntOutput { return v.AllowListIpNum }).(pulumi.IntOutput)
 }
 
 // The name of allow list.
@@ -251,6 +285,21 @@ func (o MongoAllowListOutput) AllowListName() pulumi.StringOutput {
 // The IP address type of allow list, valid value contains `IPv4`.
 func (o MongoAllowListOutput) AllowListType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoAllowList) pulumi.StringPtrOutput { return v.AllowListType }).(pulumi.StringPtrOutput)
+}
+
+// The total number of instances bound under the allow list.
+func (o MongoAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *MongoAllowList) pulumi.IntOutput { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The list of associated instances.
+func (o MongoAllowListOutput) AssociatedInstances() MongoAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v *MongoAllowList) MongoAllowListAssociatedInstanceArrayOutput { return v.AssociatedInstances }).(MongoAllowListAssociatedInstanceArrayOutput)
+}
+
+// The project name of the allow list.
+func (o MongoAllowListOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *MongoAllowList) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 type MongoAllowListArrayOutput struct{ *pulumi.OutputState }

@@ -56,6 +56,14 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// Year - Package year.
         /// </summary>
         public readonly string PeriodUnit;
+        /// <summary>
+        /// Restore time of temporary upgrade.
+        /// </summary>
+        public readonly string TempModifyEndTime;
+        /// <summary>
+        /// Temporary upgrade start time.
+        /// </summary>
+        public readonly string TempModifyStartTime;
 
         [OutputConstructor]
         private InstancesRdsMysqlInstanceChargeDetailResult(
@@ -75,7 +83,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             int period,
 
-            string periodUnit)
+            string periodUnit,
+
+            string tempModifyEndTime,
+
+            string tempModifyStartTime)
         {
             AutoRenew = autoRenew;
             ChargeEndTime = chargeEndTime;
@@ -86,6 +98,8 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             OverdueTime = overdueTime;
             Period = period;
             PeriodUnit = periodUnit;
+            TempModifyEndTime = tempModifyEndTime;
+            TempModifyStartTime = tempModifyStartTime;
         }
     }
 }

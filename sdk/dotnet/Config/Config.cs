@@ -49,6 +49,16 @@ namespace Pulumi.Volcengine
             set => _assumeRole.Set(value);
         }
 
+        private static readonly __Value<string?> _customerEndpointSuffix = new __Value<string?>(() => __config.Get("customerEndpointSuffix"));
+        /// <summary>
+        /// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+        /// </summary>
+        public static string? CustomerEndpointSuffix
+        {
+            get => _customerEndpointSuffix.Get();
+            set => _customerEndpointSuffix.Set(value);
+        }
+
         private static readonly __Value<string?> _customerEndpoints = new __Value<string?>(() => __config.Get("customerEndpoints"));
         /// <summary>
         /// CUSTOMER ENDPOINTS for Volcengine Provider

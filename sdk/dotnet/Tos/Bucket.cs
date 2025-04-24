@@ -36,7 +36,9 @@ namespace Pulumi.Volcengine.Tos
     ///                 Permission = "WRITE_ACP",
     ///             },
     ///         },
-    ///         BucketName = "tf-acc-test-bucket",
+    ///         AzRedundancy = "multi-az",
+    ///         BucketAclDelivered = true,
+    ///         BucketName = "tf-acc-test-bucket-0123-3",
     ///         EnableVersion = true,
     ///         ProjectName = "default",
     ///         PublicAcl = "private",
@@ -69,6 +71,18 @@ namespace Pulumi.Volcengine.Tos
         /// </summary>
         [Output("accountAcls")]
         public Output<ImmutableArray<Outputs.BucketAccountAcl>> AccountAcls { get; private set; } = null!;
+
+        /// <summary>
+        /// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        /// </summary>
+        [Output("azRedundancy")]
+        public Output<string?> AzRedundancy { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        /// </summary>
+        [Output("bucketAclDelivered")]
+        public Output<bool> BucketAclDelivered { get; private set; } = null!;
 
         /// <summary>
         /// The name of the bucket.
@@ -190,6 +204,18 @@ namespace Pulumi.Volcengine.Tos
         }
 
         /// <summary>
+        /// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        /// </summary>
+        [Input("azRedundancy")]
+        public Input<string>? AzRedundancy { get; set; }
+
+        /// <summary>
+        /// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        /// </summary>
+        [Input("bucketAclDelivered")]
+        public Input<bool>? BucketAclDelivered { get; set; }
+
+        /// <summary>
         /// The name of the bucket.
         /// </summary>
         [Input("bucketName", required: true)]
@@ -250,6 +276,18 @@ namespace Pulumi.Volcengine.Tos
             get => _accountAcls ?? (_accountAcls = new InputList<Inputs.BucketAccountAclGetArgs>());
             set => _accountAcls = value;
         }
+
+        /// <summary>
+        /// The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        /// </summary>
+        [Input("azRedundancy")]
+        public Input<string>? AzRedundancy { get; set; }
+
+        /// <summary>
+        /// Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        /// </summary>
+        [Input("bucketAclDelivered")]
+        public Input<bool>? BucketAclDelivered { get; set; }
 
         /// <summary>
         /// The name of the bucket.

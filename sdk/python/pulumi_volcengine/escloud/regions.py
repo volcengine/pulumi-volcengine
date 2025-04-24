@@ -81,7 +81,7 @@ class AwaitableRegionsResult(RegionsResult):
 def regions(output_file: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRegionsResult:
     """
-    Use this data source to query detailed information of escloud regions
+    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
     ## Example Usage
 
     ```python
@@ -110,7 +110,7 @@ def regions(output_file: Optional[str] = None,
 def regions_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RegionsResult]:
     """
-    Use this data source to query detailed information of escloud regions
+    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
     ## Example Usage
 
     ```python

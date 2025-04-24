@@ -11,7 +11,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
-// Use this data source to query detailed information of escloud regions
+// (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
 // ## Example Usage
 //
 // ```go

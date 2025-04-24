@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AccountArgs, AccountState } from "./account";
+export type Account = import("./account").Account;
+export const Account: typeof import("./account").Account = null as any;
+utilities.lazyLoad(exports, ["Account"], () => require("./account"));
+
 export { AccountsArgs, AccountsResult, AccountsOutputArgs } from "./accounts";
 export const accounts: typeof import("./accounts").accounts = null as any;
 export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
@@ -90,6 +95,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:mongodb/account:Account":
+                return new Account(name, <any>undefined, { urn })
             case "volcengine:mongodb/endpoint:Endpoint":
                 return new Endpoint(name, <any>undefined, { urn })
             case "volcengine:mongodb/instance:Instance":
@@ -107,6 +114,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "mongodb/account", _module)
 pulumi.runtime.registerResourceModule("volcengine", "mongodb/endpoint", _module)
 pulumi.runtime.registerResourceModule("volcengine", "mongodb/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "mongodb/instanceParameter", _module)

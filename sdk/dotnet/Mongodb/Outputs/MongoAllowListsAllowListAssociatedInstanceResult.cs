@@ -22,6 +22,10 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
+        /// The project name of the allow list.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The VPC ID.
         /// </summary>
         public readonly string Vpc;
@@ -32,10 +36,13 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
 
             string instanceName,
 
+            string projectName,
+
             string vpc)
         {
             InstanceId = instanceId;
             InstanceName = instanceName;
+            ProjectName = projectName;
             Vpc = vpc;
         }
     }

@@ -11,16 +11,21 @@ from .. import _utilities
 
 __all__ = [
     'AccountAccountPrivilegeArgs',
+    'AllowlistSecurityGroupBindInfoArgs',
+    'BackupBackupMetaArgs',
+    'EndpointReadOnlyNodeWeightArgs',
     'InstanceChargeDetailArgs',
     'InstanceChargeInfoArgs',
     'InstanceEndpointArgs',
     'InstanceEndpointAddressArgs',
     'InstanceEndpointNodeWeightArgs',
+    'InstanceFeatureStateArgs',
     'InstanceMaintenanceWindowArgs',
     'InstanceNodeArgs',
     'InstanceParameterArgs',
     'InstanceTagArgs',
     'InstancesTagArgs',
+    'ParameterTemplateTemplateParamArgs',
 ]
 
 @pulumi.input_type
@@ -77,6 +82,141 @@ class AccountAccountPrivilegeArgs:
 
 
 @pulumi.input_type
+class AllowlistSecurityGroupBindInfoArgs:
+    def __init__(__self__, *,
+                 bind_mode: pulumi.Input[str],
+                 security_group_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] bind_mode: The schema for the associated security group.
+               IngressDirectionIp: Incoming Direction IP.
+               AssociateEcsIp: Associate ECSIP.
+               explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+        :param pulumi.Input[str] security_group_id: The security group id of the allow list.
+        """
+        pulumi.set(__self__, "bind_mode", bind_mode)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+
+    @property
+    @pulumi.getter(name="bindMode")
+    def bind_mode(self) -> pulumi.Input[str]:
+        """
+        The schema for the associated security group.
+        IngressDirectionIp: Incoming Direction IP.
+        AssociateEcsIp: Associate ECSIP.
+        explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+        """
+        return pulumi.get(self, "bind_mode")
+
+    @bind_mode.setter
+    def bind_mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bind_mode", value)
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> pulumi.Input[str]:
+        """
+        The security group id of the allow list.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "security_group_id", value)
+
+
+@pulumi.input_type
+class BackupBackupMetaArgs:
+    def __init__(__self__, *,
+                 db_name: pulumi.Input[str],
+                 table_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] db_name: Specify the database that needs to be backed up.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] table_names: Specify the tables to be backed up in the specified database. When this field is empty, it defaults to full database backup.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        if table_names is not None:
+            pulumi.set(__self__, "table_names", table_names)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> pulumi.Input[str]:
+        """
+        Specify the database that needs to be backed up.
+        """
+        return pulumi.get(self, "db_name")
+
+    @db_name.setter
+    def db_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "db_name", value)
+
+    @property
+    @pulumi.getter(name="tableNames")
+    def table_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specify the tables to be backed up in the specified database. When this field is empty, it defaults to full database backup.
+        """
+        return pulumi.get(self, "table_names")
+
+    @table_names.setter
+    def table_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "table_names", value)
+
+
+@pulumi.input_type
+class EndpointReadOnlyNodeWeightArgs:
+    def __init__(__self__, *,
+                 weight: pulumi.Input[int],
+                 node_id: Optional[pulumi.Input[str]] = None,
+                 node_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] weight: The read weight of the node increases by 100, with a maximum value of 10000.
+        :param pulumi.Input[str] node_id: Read-only nodes require NodeId to be passed, while primary nodes do not require it.
+        :param pulumi.Input[str] node_type: The primary node needs to pass in the NodeType as Primary, while the read-only node does not need to pass it in.
+        """
+        pulumi.set(__self__, "weight", weight)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_type is not None:
+            pulumi.set(__self__, "node_type", node_type)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> pulumi.Input[int]:
+        """
+        The read weight of the node increases by 100, with a maximum value of 10000.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: pulumi.Input[int]):
+        pulumi.set(self, "weight", value)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Read-only nodes require NodeId to be passed, while primary nodes do not require it.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The primary node needs to pass in the NodeType as Primary, while the read-only node does not need to pass it in.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_type", value)
+
+
+@pulumi.input_type
 class InstanceChargeDetailArgs:
     def __init__(__self__, *,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
@@ -87,7 +227,9 @@ class InstanceChargeDetailArgs:
                  overdue_reclaim_time: Optional[pulumi.Input[str]] = None,
                  overdue_time: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
-                 period_unit: Optional[pulumi.Input[str]] = None):
+                 period_unit: Optional[pulumi.Input[str]] = None,
+                 temp_modify_end_time: Optional[pulumi.Input[str]] = None,
+                 temp_modify_start_time: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] auto_renew: Whether to automatically renew in prepaid scenarios.
                Autorenew_Enable
@@ -107,6 +249,8 @@ class InstanceChargeDetailArgs:
         :param pulumi.Input[str] period_unit: The purchase cycle in the prepaid scenario.
                Month - monthly subscription (default)
                Year - Package year.
+        :param pulumi.Input[str] temp_modify_end_time: Restore time of temporary upgrade.
+        :param pulumi.Input[str] temp_modify_start_time: Temporary upgrade start time.
         """
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
@@ -126,6 +270,10 @@ class InstanceChargeDetailArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if temp_modify_end_time is not None:
+            pulumi.set(__self__, "temp_modify_end_time", temp_modify_end_time)
+        if temp_modify_start_time is not None:
+            pulumi.set(__self__, "temp_modify_start_time", temp_modify_start_time)
 
     @property
     @pulumi.getter(name="autoRenew")
@@ -244,6 +392,30 @@ class InstanceChargeDetailArgs:
     def period_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "period_unit", value)
 
+    @property
+    @pulumi.getter(name="tempModifyEndTime")
+    def temp_modify_end_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Restore time of temporary upgrade.
+        """
+        return pulumi.get(self, "temp_modify_end_time")
+
+    @temp_modify_end_time.setter
+    def temp_modify_end_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "temp_modify_end_time", value)
+
+    @property
+    @pulumi.getter(name="tempModifyStartTime")
+    def temp_modify_start_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Temporary upgrade start time.
+        """
+        return pulumi.get(self, "temp_modify_start_time")
+
+    @temp_modify_start_time.setter
+    def temp_modify_start_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "temp_modify_start_time", value)
+
 
 @pulumi.input_type
 class InstanceChargeInfoArgs:
@@ -326,6 +498,7 @@ class InstanceEndpointArgs:
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
                  endpoint_type: Optional[pulumi.Input[str]] = None,
+                 idle_connection_reclaim: Optional[pulumi.Input[bool]] = None,
                  node_weights: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointNodeWeightArgs']]]] = None,
                  read_write_mode: Optional[pulumi.Input[str]] = None):
         """
@@ -342,6 +515,7 @@ class InstanceEndpointArgs:
                Custom: Custom terminal.
                Direct: Direct connection to the terminal. (Only the operation and maintenance side)
                AllNode: All node terminals. (Only the operation and maintenance side).
+        :param pulumi.Input[bool] idle_connection_reclaim: Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceEndpointNodeWeightArgs']]] node_weights: The list of nodes configured by the connection terminal and the corresponding read-only weights.
         :param pulumi.Input[str] read_write_mode: Read and write mode:
                ReadWrite: read and write
@@ -363,6 +537,8 @@ class InstanceEndpointArgs:
             pulumi.set(__self__, "endpoint_name", endpoint_name)
         if endpoint_type is not None:
             pulumi.set(__self__, "endpoint_type", endpoint_type)
+        if idle_connection_reclaim is not None:
+            pulumi.set(__self__, "idle_connection_reclaim", idle_connection_reclaim)
         if node_weights is not None:
             pulumi.set(__self__, "node_weights", node_weights)
         if read_write_mode is not None:
@@ -468,6 +644,18 @@ class InstanceEndpointArgs:
     @endpoint_type.setter
     def endpoint_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "endpoint_type", value)
+
+    @property
+    @pulumi.getter(name="idleConnectionReclaim")
+    def idle_connection_reclaim(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+        """
+        return pulumi.get(self, "idle_connection_reclaim")
+
+    @idle_connection_reclaim.setter
+    def idle_connection_reclaim(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "idle_connection_reclaim", value)
 
     @property
     @pulumi.getter(name="nodeWeights")
@@ -675,22 +863,81 @@ class InstanceEndpointNodeWeightArgs:
 
 
 @pulumi.input_type
+class InstanceFeatureStateArgs:
+    def __init__(__self__, *,
+                 enable: Optional[pulumi.Input[bool]] = None,
+                 feature_name: Optional[pulumi.Input[str]] = None,
+                 support: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] enable: Whether it is enabled. Values:
+               true: Enabled.
+               false: Disabled.
+        :param pulumi.Input[str] feature_name: Feature name.
+        :param pulumi.Input[bool] support: Whether it support this function. Value:
+               true: Supported.
+               false: Not supported.
+        """
+        if enable is not None:
+            pulumi.set(__self__, "enable", enable)
+        if feature_name is not None:
+            pulumi.set(__self__, "feature_name", feature_name)
+        if support is not None:
+            pulumi.set(__self__, "support", support)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether it is enabled. Values:
+        true: Enabled.
+        false: Disabled.
+        """
+        return pulumi.get(self, "enable")
+
+    @enable.setter
+    def enable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable", value)
+
+    @property
+    @pulumi.getter(name="featureName")
+    def feature_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Feature name.
+        """
+        return pulumi.get(self, "feature_name")
+
+    @feature_name.setter
+    def feature_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_name", value)
+
+    @property
+    @pulumi.getter
+    def support(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether it support this function. Value:
+        true: Supported.
+        false: Not supported.
+        """
+        return pulumi.get(self, "support")
+
+    @support.setter
+    def support(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "support", value)
+
+
+@pulumi.input_type
 class InstanceMaintenanceWindowArgs:
     def __init__(__self__, *,
                  day_kind: Optional[pulumi.Input[str]] = None,
-                 day_of_months: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  day_of_weeks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  maintenance_time: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] day_kind: DayKind of maintainable window. Value: Week. Month.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] day_of_months: Days of maintainable window of the month.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] day_of_weeks: Days of maintainable window of the week.
-        :param pulumi.Input[str] maintenance_time: The maintainable time of the RDS instance.
+        :param pulumi.Input[str] day_kind: Maintenance cycle granularity, values: Week: Week. Month: Month.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] day_of_weeks: Specify the maintainable time period of a certain day of the week. The values are: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Multiple selections are allowed. If this value is not specified or is empty, it defaults to specifying all seven days of the week.
+        :param pulumi.Input[str] maintenance_time: Maintenance period of an instance. Format: HH:mmZ-HH:mmZ (UTC time).
         """
         if day_kind is not None:
             pulumi.set(__self__, "day_kind", day_kind)
-        if day_of_months is not None:
-            pulumi.set(__self__, "day_of_months", day_of_months)
         if day_of_weeks is not None:
             pulumi.set(__self__, "day_of_weeks", day_of_weeks)
         if maintenance_time is not None:
@@ -700,7 +947,7 @@ class InstanceMaintenanceWindowArgs:
     @pulumi.getter(name="dayKind")
     def day_kind(self) -> Optional[pulumi.Input[str]]:
         """
-        DayKind of maintainable window. Value: Week. Month.
+        Maintenance cycle granularity, values: Week: Week. Month: Month.
         """
         return pulumi.get(self, "day_kind")
 
@@ -709,22 +956,10 @@ class InstanceMaintenanceWindowArgs:
         pulumi.set(self, "day_kind", value)
 
     @property
-    @pulumi.getter(name="dayOfMonths")
-    def day_of_months(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
-        """
-        Days of maintainable window of the month.
-        """
-        return pulumi.get(self, "day_of_months")
-
-    @day_of_months.setter
-    def day_of_months(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
-        pulumi.set(self, "day_of_months", value)
-
-    @property
     @pulumi.getter(name="dayOfWeeks")
     def day_of_weeks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Days of maintainable window of the week.
+        Specify the maintainable time period of a certain day of the week. The values are: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Multiple selections are allowed. If this value is not specified or is empty, it defaults to specifying all seven days of the week.
         """
         return pulumi.get(self, "day_of_weeks")
 
@@ -736,7 +971,7 @@ class InstanceMaintenanceWindowArgs:
     @pulumi.getter(name="maintenanceTime")
     def maintenance_time(self) -> Optional[pulumi.Input[str]]:
         """
-        The maintainable time of the RDS instance.
+        Maintenance period of an instance. Format: HH:mmZ-HH:mmZ (UTC time).
         """
         return pulumi.get(self, "maintenance_time")
 
@@ -1041,5 +1276,46 @@ class InstancesTagArgs:
     @value.setter
     def value(self, value: str):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ParameterTemplateTemplateParamArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 running_value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Instance parameter name.
+               Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+        :param pulumi.Input[str] running_value: Parameter running value.
+               Description: When making request parameters in CreateParameterTemplate and ModifyParameterTemplate, only Name and RunningValue need to be passed in.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "running_value", running_value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Instance parameter name.
+        Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="runningValue")
+    def running_value(self) -> pulumi.Input[str]:
+        """
+        Parameter running value.
+        Description: When making request parameters in CreateParameterTemplate and ModifyParameterTemplate, only Name and RunningValue need to be passed in.
+        """
+        return pulumi.get(self, "running_value")
+
+    @running_value.setter
+    def running_value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "running_value", value)
 
 

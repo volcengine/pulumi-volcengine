@@ -21,7 +21,7 @@ class InstanceParameterArgs:
         """
         The set of arguments for constructing a InstanceParameter resource.
         :param pulumi.Input[str] instance_id: The instance ID.
-        :param pulumi.Input[str] parameter_name: The name of parameter.
+        :param pulumi.Input[str] parameter_name: The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -46,7 +46,7 @@ class InstanceParameterArgs:
     @pulumi.getter(name="parameterName")
     def parameter_name(self) -> pulumi.Input[str]:
         """
-        The name of parameter.
+        The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         """
         return pulumi.get(self, "parameter_name")
 
@@ -89,7 +89,7 @@ class _InstanceParameterState:
         """
         Input properties used for looking up and filtering InstanceParameter resources.
         :param pulumi.Input[str] instance_id: The instance ID.
-        :param pulumi.Input[str] parameter_name: The name of parameter.
+        :param pulumi.Input[str] parameter_name: The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -118,7 +118,7 @@ class _InstanceParameterState:
     @pulumi.getter(name="parameterName")
     def parameter_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of parameter.
+        The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         """
         return pulumi.get(self, "parameter_name")
 
@@ -214,7 +214,7 @@ class InstanceParameter(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The instance ID.
-        :param pulumi.Input[str] parameter_name: The name of parameter.
+        :param pulumi.Input[str] parameter_name: The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -336,7 +336,7 @@ class InstanceParameter(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The instance ID.
-        :param pulumi.Input[str] parameter_name: The name of parameter.
+        :param pulumi.Input[str] parameter_name: The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -362,7 +362,7 @@ class InstanceParameter(pulumi.CustomResource):
     @pulumi.getter(name="parameterName")
     def parameter_name(self) -> pulumi.Output[str]:
         """
-        The name of parameter.
+        The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         """
         return pulumi.get(self, "parameter_name")
 

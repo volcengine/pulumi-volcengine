@@ -14,9 +14,17 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolKubernetesConfig
     {
         /// <summary>
+        /// Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+        /// </summary>
+        public readonly bool? AutoSyncDisabled;
+        /// <summary>
         /// The Cordon of KubernetesConfig.
         /// </summary>
         public readonly bool Cordon;
+        /// <summary>
+        /// The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+        /// </summary>
+        public readonly Outputs.NodePoolKubernetesConfigKubeletConfig? KubeletConfig;
         /// <summary>
         /// The Labels of KubernetesConfig.
         /// </summary>
@@ -32,7 +40,11 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
         [OutputConstructor]
         private NodePoolKubernetesConfig(
+            bool? autoSyncDisabled,
+
             bool cordon,
+
+            Outputs.NodePoolKubernetesConfigKubeletConfig? kubeletConfig,
 
             ImmutableArray<Outputs.NodePoolKubernetesConfigLabel> labels,
 
@@ -40,7 +52,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             ImmutableArray<Outputs.NodePoolKubernetesConfigTaint> taints)
         {
+            AutoSyncDisabled = autoSyncDisabled;
             Cordon = cordon;
+            KubeletConfig = kubeletConfig;
             Labels = labels;
             NamePrefix = namePrefix;
             Taints = taints;

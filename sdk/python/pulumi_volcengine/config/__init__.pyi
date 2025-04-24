@@ -17,6 +17,11 @@ The Access Key for Volcengine Provider
 
 assumeRole: Optional[str]
 
+customerEndpointSuffix: Optional[str]
+"""
+CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+"""
+
 customerEndpoints: Optional[str]
 """
 CUSTOMER ENDPOINTS for Volcengine Provider

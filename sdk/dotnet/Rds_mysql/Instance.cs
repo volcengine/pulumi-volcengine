@@ -61,7 +61,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
     ///             {
     ///                 ParameterName = "auto_increment_offset",
-    ///                 ParameterValue = "4",
+    ///                 ParameterValue = "5",
     ///             },
     ///         },
     ///         ProjectName = "default",
@@ -108,6 +108,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<int> BackupUse { get; private set; } = null!;
 
         /// <summary>
+        /// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+        /// true: Yes.
+        /// false: No.
+        /// </summary>
+        [Output("binlogDump")]
+        public Output<bool> BinlogDump { get; private set; } = null!;
+
+        /// <summary>
         /// Payment methods.
         /// </summary>
         [Output("chargeDetails")]
@@ -118,6 +126,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Output("chargeInfo")]
         public Output<Outputs.InstanceChargeInfo> ChargeInfo { get; private set; } = null!;
+
+        /// <summary>
+        /// Connection pool type. Value range:
+        /// Direct: Direct connection mode.
+        /// Transaction: Transaction-level connection pool (default).
+        /// </summary>
+        [Output("connectionPoolType")]
+        public Output<string> ConnectionPoolType { get; private set; } = null!;
 
         /// <summary>
         /// Node creation local time.
@@ -140,6 +156,16 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> DbEngineVersion { get; private set; } = null!;
 
         /// <summary>
+        /// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+        /// Creating: The proxy is being started.
+        /// Running: The proxy is running.
+        /// Shutdown: The proxy is closed.
+        /// Deleting: The proxy is being closed.
+        /// </summary>
+        [Output("dbProxyStatus")]
+        public Output<string> DbProxyStatus { get; private set; } = null!;
+
+        /// <summary>
         /// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("dbTimeZone")]
@@ -150,6 +176,20 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Output("endpoints")]
         public Output<ImmutableArray<Outputs.InstanceEndpoint>> Endpoints { get; private set; } = null!;
+
+        /// <summary>
+        /// Feature status.
+        /// </summary>
+        [Output("featureStates")]
+        public Output<ImmutableArray<Outputs.InstanceFeatureState>> FeatureStates { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable global read-only.
+        /// true: Yes.
+        /// false: No.
+        /// </summary>
+        [Output("globalReadOnly")]
+        public Output<bool> GlobalReadOnly { get; private set; } = null!;
 
         /// <summary>
         /// Instance ID.
@@ -181,10 +221,10 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string?> LowerCaseTableNames { get; private set; } = null!;
 
         /// <summary>
-        /// Maintenance Window.
+        /// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         /// </summary>
-        [Output("maintenanceWindows")]
-        public Output<ImmutableArray<Outputs.InstanceMaintenanceWindow>> MaintenanceWindows { get; private set; } = null!;
+        [Output("maintenanceWindow")]
+        public Output<Outputs.InstanceMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
         /// <summary>
         /// Memory size in GB.
@@ -193,10 +233,28 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<int> Memory { get; private set; } = null!;
 
         /// <summary>
+        /// Average CPU usage of the instance master node in nearly one minute.
+        /// </summary>
+        [Output("nodeCpuUsedPercentage")]
+        public Output<double> NodeCpuUsedPercentage { get; private set; } = null!;
+
+        /// <summary>
+        /// Average memory usage of the instance master node in nearly one minute.
+        /// </summary>
+        [Output("nodeMemoryUsedPercentage")]
+        public Output<double> NodeMemoryUsedPercentage { get; private set; } = null!;
+
+        /// <summary>
         /// The number of nodes.
         /// </summary>
         [Output("nodeNumber")]
         public Output<int> NodeNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// Average disk usage of the instance master node in nearly one minute.
+        /// </summary>
+        [Output("nodeSpaceUsedPercentage")]
+        public Output<double> NodeSpaceUsedPercentage { get; private set; } = null!;
 
         /// <summary>
         /// The specification of primary node and secondary node.
@@ -300,6 +358,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         [Output("zoneId")]
         public Output<string> ZoneId { get; private set; } = null!;
 
+        /// <summary>
+        /// List of availability zones where each node of the instance is located.
+        /// </summary>
+        [Output("zoneIds")]
+        public Output<ImmutableArray<string>> ZoneIds { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Instance resource with the given unique name, arguments, and options.
@@ -366,6 +430,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<Inputs.InstanceChargeInfoArgs> ChargeInfo { get; set; } = null!;
 
         /// <summary>
+        /// Connection pool type. Value range:
+        /// Direct: Direct connection mode.
+        /// Transaction: Transaction-level connection pool (default).
+        /// </summary>
+        [Input("connectionPoolType")]
+        public Input<string>? ConnectionPoolType { get; set; }
+
+        /// <summary>
         /// Instance type. Value:
         /// MySQL_5_7
         /// MySQL_8_0.
@@ -395,6 +467,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("lowerCaseTableNames")]
         public Input<string>? LowerCaseTableNames { get; set; }
+
+        /// <summary>
+        /// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+        /// </summary>
+        [Input("maintenanceWindow")]
+        public Input<Inputs.InstanceMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
         /// The specification of primary node and secondary node.
@@ -488,6 +566,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         [Input("backupUse")]
         public Input<int>? BackupUse { get; set; }
 
+        /// <summary>
+        /// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+        /// true: Yes.
+        /// false: No.
+        /// </summary>
+        [Input("binlogDump")]
+        public Input<bool>? BinlogDump { get; set; }
+
         [Input("chargeDetails")]
         private InputList<Inputs.InstanceChargeDetailGetArgs>? _chargeDetails;
 
@@ -505,6 +591,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("chargeInfo")]
         public Input<Inputs.InstanceChargeInfoGetArgs>? ChargeInfo { get; set; }
+
+        /// <summary>
+        /// Connection pool type. Value range:
+        /// Direct: Direct connection mode.
+        /// Transaction: Transaction-level connection pool (default).
+        /// </summary>
+        [Input("connectionPoolType")]
+        public Input<string>? ConnectionPoolType { get; set; }
 
         /// <summary>
         /// Node creation local time.
@@ -527,6 +621,16 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? DbEngineVersion { get; set; }
 
         /// <summary>
+        /// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+        /// Creating: The proxy is being started.
+        /// Running: The proxy is running.
+        /// Shutdown: The proxy is closed.
+        /// Deleting: The proxy is being closed.
+        /// </summary>
+        [Input("dbProxyStatus")]
+        public Input<string>? DbProxyStatus { get; set; }
+
+        /// <summary>
         /// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("dbTimeZone")]
@@ -543,6 +647,26 @@ namespace Pulumi.Volcengine.Rds_mysql
             get => _endpoints ?? (_endpoints = new InputList<Inputs.InstanceEndpointGetArgs>());
             set => _endpoints = value;
         }
+
+        [Input("featureStates")]
+        private InputList<Inputs.InstanceFeatureStateGetArgs>? _featureStates;
+
+        /// <summary>
+        /// Feature status.
+        /// </summary>
+        public InputList<Inputs.InstanceFeatureStateGetArgs> FeatureStates
+        {
+            get => _featureStates ?? (_featureStates = new InputList<Inputs.InstanceFeatureStateGetArgs>());
+            set => _featureStates = value;
+        }
+
+        /// <summary>
+        /// Whether to enable global read-only.
+        /// true: Yes.
+        /// false: No.
+        /// </summary>
+        [Input("globalReadOnly")]
+        public Input<bool>? GlobalReadOnly { get; set; }
 
         /// <summary>
         /// Instance ID.
@@ -573,17 +697,11 @@ namespace Pulumi.Volcengine.Rds_mysql
         [Input("lowerCaseTableNames")]
         public Input<string>? LowerCaseTableNames { get; set; }
 
-        [Input("maintenanceWindows")]
-        private InputList<Inputs.InstanceMaintenanceWindowGetArgs>? _maintenanceWindows;
-
         /// <summary>
-        /// Maintenance Window.
+        /// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         /// </summary>
-        public InputList<Inputs.InstanceMaintenanceWindowGetArgs> MaintenanceWindows
-        {
-            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.InstanceMaintenanceWindowGetArgs>());
-            set => _maintenanceWindows = value;
-        }
+        [Input("maintenanceWindow")]
+        public Input<Inputs.InstanceMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
         /// Memory size in GB.
@@ -592,10 +710,28 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<int>? Memory { get; set; }
 
         /// <summary>
+        /// Average CPU usage of the instance master node in nearly one minute.
+        /// </summary>
+        [Input("nodeCpuUsedPercentage")]
+        public Input<double>? NodeCpuUsedPercentage { get; set; }
+
+        /// <summary>
+        /// Average memory usage of the instance master node in nearly one minute.
+        /// </summary>
+        [Input("nodeMemoryUsedPercentage")]
+        public Input<double>? NodeMemoryUsedPercentage { get; set; }
+
+        /// <summary>
         /// The number of nodes.
         /// </summary>
         [Input("nodeNumber")]
         public Input<int>? NodeNumber { get; set; }
+
+        /// <summary>
+        /// Average disk usage of the instance master node in nearly one minute.
+        /// </summary>
+        [Input("nodeSpaceUsedPercentage")]
+        public Input<double>? NodeSpaceUsedPercentage { get; set; }
 
         /// <summary>
         /// The specification of primary node and secondary node.
@@ -716,6 +852,18 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
+
+        [Input("zoneIds")]
+        private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// List of availability zones where each node of the instance is located.
+        /// </summary>
+        public InputList<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new InputList<string>());
+            set => _zoneIds = value;
+        }
 
         public InstanceState()
         {

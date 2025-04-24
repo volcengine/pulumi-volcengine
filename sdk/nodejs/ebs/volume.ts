@@ -146,10 +146,9 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly extraPerformanceTypeId!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-     * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-     * deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-     * terraform state file and management.
+     * The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+     * instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+     * volcengine_volume.resource_name` command to remove it from terraform state file and management.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -165,6 +164,11 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly size!: pulumi.Output<number>;
     /**
+     * The id of the snapshot. When creating a volume using snapshots, this field is required.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly snapshotId!: pulumi.Output<string | undefined>;
+    /**
      * Status of Volume.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
@@ -177,7 +181,7 @@ export class Volume extends pulumi.CustomResource {
      */
     public /*out*/ readonly tradeStatus!: pulumi.Output<number>;
     /**
-     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
      */
     public readonly volumeChargeType!: pulumi.Output<string | undefined>;
     /**
@@ -216,6 +220,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["kind"] = state ? state.kind : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["tradeStatus"] = state ? state.tradeStatus : undefined;
@@ -249,6 +254,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["kind"] = args ? args.kind : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["volumeChargeType"] = args ? args.volumeChargeType : undefined;
             resourceInputs["volumeName"] = args ? args.volumeName : undefined;
@@ -292,10 +298,9 @@ export interface VolumeState {
      */
     extraPerformanceTypeId?: pulumi.Input<string>;
     /**
-     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-     * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-     * deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-     * terraform state file and management.
+     * The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+     * instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+     * volcengine_volume.resource_name` command to remove it from terraform state file and management.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -311,6 +316,11 @@ export interface VolumeState {
      */
     size?: pulumi.Input<number>;
     /**
+     * The id of the snapshot. When creating a volume using snapshots, this field is required.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    snapshotId?: pulumi.Input<string>;
+    /**
      * Status of Volume.
      */
     status?: pulumi.Input<string>;
@@ -323,7 +333,7 @@ export interface VolumeState {
      */
     tradeStatus?: pulumi.Input<number>;
     /**
-     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
      */
     volumeChargeType?: pulumi.Input<string>;
     /**
@@ -365,10 +375,9 @@ export interface VolumeArgs {
      */
     extraPerformanceTypeId?: pulumi.Input<string>;
     /**
-     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
-     * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
-     * deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
-     * terraform state file and management.
+     * The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
+     * instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
+     * volcengine_volume.resource_name` command to remove it from terraform state file and management.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -384,11 +393,16 @@ export interface VolumeArgs {
      */
     size: pulumi.Input<number>;
     /**
+     * The id of the snapshot. When creating a volume using snapshots, this field is required.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    snapshotId?: pulumi.Input<string>;
+    /**
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.ebs.VolumeTag>[]>;
     /**
-     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
      */
     volumeChargeType?: pulumi.Input<string>;
     /**

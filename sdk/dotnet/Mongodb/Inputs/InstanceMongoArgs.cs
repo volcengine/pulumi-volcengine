@@ -19,7 +19,7 @@ namespace Pulumi.Volcengine.Mongodb.Inputs
         public Input<string>? MongosNodeId { get; set; }
 
         /// <summary>
-        /// The spec of node.
+        /// The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         /// </summary>
         [Input("nodeSpec")]
         public Input<string>? NodeSpec { get; set; }

@@ -12,7 +12,7 @@ namespace Pulumi.Volcengine.Escloud
     public static class Zones
     {
         /// <summary>
-        /// Use this data source to query detailed information of escloud zones
+        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -35,7 +35,7 @@ namespace Pulumi.Volcengine.Escloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to query detailed information of escloud zones
+        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
         /// ## Example Usage
         /// 
         /// ```csharp

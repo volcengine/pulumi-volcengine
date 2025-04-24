@@ -121,6 +121,12 @@ namespace Pulumi.Volcengine.Mongodb
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name to query.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
         [Input("tags")]
         private List<Inputs.InstancesTagArgs>? _tags;
 
@@ -225,6 +231,12 @@ namespace Pulumi.Volcengine.Mongodb
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name to query.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("tags")]
         private InputList<Inputs.InstancesTagInputArgs>? _tags;
 
@@ -308,6 +320,10 @@ namespace Pulumi.Volcengine.Mongodb
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name to which the instance belongs.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// Tags.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesTagResult> Tags;
@@ -352,6 +368,8 @@ namespace Pulumi.Volcengine.Mongodb
 
             string? outputFile,
 
+            string? projectName,
+
             ImmutableArray<Outputs.InstancesTagResult> tags,
 
             int totalCount,
@@ -376,6 +394,7 @@ namespace Pulumi.Volcengine.Mongodb
             Instances = instances;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             Tags = tags;
             TotalCount = totalCount;
             UpdateEndTime = updateEndTime;

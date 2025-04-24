@@ -12,7 +12,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
-// Provides a resource to manage escloud instance
+// (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Provides a resource to manage escloud instance
 // ## Example Usage
 //
 // ```go

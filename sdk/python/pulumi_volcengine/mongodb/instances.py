@@ -23,7 +23,7 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, create_end_time=None, create_start_time=None, db_engine=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, instance_type=None, instances=None, name_regex=None, output_file=None, tags=None, total_count=None, update_end_time=None, update_start_time=None, vpc_id=None, zone_id=None):
+    def __init__(__self__, create_end_time=None, create_start_time=None, db_engine=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, instance_type=None, instances=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, update_end_time=None, update_start_time=None, vpc_id=None, zone_id=None):
         if create_end_time and not isinstance(create_end_time, str):
             raise TypeError("Expected argument 'create_end_time' to be a str")
         pulumi.set(__self__, "create_end_time", create_end_time)
@@ -60,6 +60,9 @@ class InstancesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -164,6 +167,14 @@ class InstancesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name to which the instance belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.InstancesTagResult']]:
         """
@@ -224,6 +235,7 @@ class AwaitableInstancesResult(InstancesResult):
             instances=self.instances,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             tags=self.tags,
             total_count=self.total_count,
             update_end_time=self.update_end_time,
@@ -242,6 +254,7 @@ def instances(create_end_time: Optional[str] = None,
               instance_type: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
+              project_name: Optional[str] = None,
               tags: Optional[Sequence[pulumi.InputType['InstancesTagArgs']]] = None,
               update_end_time: Optional[str] = None,
               update_start_time: Optional[str] = None,
@@ -270,6 +283,7 @@ def instances(create_end_time: Optional[str] = None,
     :param str instance_type: The type of instance to query, the valid value contains `ReplicaSet` or `ShardedCluster`.
     :param str name_regex: A Name Regex of DB instance.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name to query.
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str update_end_time: The end time of update to query.
     :param str update_start_time: The start time of update to query.
@@ -287,6 +301,7 @@ def instances(create_end_time: Optional[str] = None,
     __args__['instanceType'] = instance_type
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['tags'] = tags
     __args__['updateEndTime'] = update_end_time
     __args__['updateStartTime'] = update_start_time
@@ -308,6 +323,7 @@ def instances(create_end_time: Optional[str] = None,
         instances=pulumi.get(__ret__, 'instances'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         update_end_time=pulumi.get(__ret__, 'update_end_time'),
@@ -327,6 +343,7 @@ def instances_output(create_end_time: Optional[pulumi.Input[Optional[str]]] = No
                      instance_type: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
                      tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['InstancesTagArgs']]]]] = None,
                      update_end_time: Optional[pulumi.Input[Optional[str]]] = None,
                      update_start_time: Optional[pulumi.Input[Optional[str]]] = None,
@@ -355,6 +372,7 @@ def instances_output(create_end_time: Optional[pulumi.Input[Optional[str]]] = No
     :param str instance_type: The type of instance to query, the valid value contains `ReplicaSet` or `ShardedCluster`.
     :param str name_regex: A Name Regex of DB instance.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name to query.
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str update_end_time: The end time of update to query.
     :param str update_start_time: The start time of update to query.
