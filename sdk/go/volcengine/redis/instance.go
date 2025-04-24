@@ -94,16 +94,16 @@ import (
 //				MultiAz:          pulumi.String("enabled"),
 //				ConfigureNodes: redis.InstanceConfigureNodeArray{
 //					&redis.InstanceConfigureNodeArgs{
-//						Az: pulumi.String("cn-guilin-a"),
+//						Az: pulumi.String("cn-beijing-a"),
 //					},
 //					&redis.InstanceConfigureNodeArgs{
-//						Az: pulumi.String("cn-guilin-b"),
+//						Az: pulumi.String("cn-beijing-b"),
 //					},
 //					&redis.InstanceConfigureNodeArgs{
-//						Az: pulumi.String("cn-guilin-c"),
+//						Az: pulumi.String("cn-beijing-c"),
 //					},
 //					&redis.InstanceConfigureNodeArgs{
-//						Az: pulumi.String("cn-guilin-b"),
+//						Az: pulumi.String("cn-beijing-b"),
 //					},
 //				},
 //			})

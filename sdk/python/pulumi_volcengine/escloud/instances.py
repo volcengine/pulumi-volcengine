@@ -141,7 +141,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
               zone_ids: Optional[Sequence[str]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstancesResult:
     """
-    Use this data source to query detailed information of escloud instances
+    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
     ## Example Usage
 
     ```python
@@ -239,7 +239,7 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
                      zone_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstancesResult]:
     """
-    Use this data source to query detailed information of escloud instances
+    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
     ## Example Usage
 
     ```python

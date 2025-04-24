@@ -91,7 +91,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of parameter.
+        /// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         /// </summary>
         [Output("parameterName")]
         public Output<string> ParameterName { get; private set; } = null!;
@@ -162,7 +162,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The name of parameter.
+        /// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         /// </summary>
         [Input("parameterName", required: true)]
         public Input<string> ParameterName { get; set; } = null!;
@@ -194,7 +194,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// The name of parameter.
+        /// The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
         /// </summary>
         [Input("parameterName")]
         public Input<string>? ParameterName { get; set; }

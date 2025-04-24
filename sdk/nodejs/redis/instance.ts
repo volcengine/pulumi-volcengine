@@ -71,16 +71,16 @@ import * as utilities from "../utilities";
  *     multiAz: "enabled",
  *     configureNodes: [
  *         {
- *             az: "cn-guilin-a",
+ *             az: "cn-beijing-a",
  *         },
  *         {
- *             az: "cn-guilin-b",
+ *             az: "cn-beijing-b",
  *         },
  *         {
- *             az: "cn-guilin-c",
+ *             az: "cn-beijing-c",
  *         },
  *         {
- *             az: "cn-guilin-b",
+ *             az: "cn-beijing-b",
  *         },
  *     ],
  * });

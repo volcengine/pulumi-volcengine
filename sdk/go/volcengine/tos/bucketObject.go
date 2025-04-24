@@ -85,9 +85,11 @@ type BucketObject struct {
 	Encryption pulumi.StringPtrOutput `pulumi:"encryption"`
 	// The file path for upload. Only one of `file_path,content` can be specified.
 	FilePath pulumi.StringPtrOutput `pulumi:"filePath"`
+	// Whether to enable the default inheritance bucket ACL function for the object.
+	IsDefault pulumi.BoolOutput `pulumi:"isDefault"`
 	// The name of the object.
 	ObjectName pulumi.StringOutput `pulumi:"objectName"`
-	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+	// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
 	PublicAcl pulumi.StringPtrOutput `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
@@ -149,9 +151,11 @@ type bucketObjectState struct {
 	Encryption *string `pulumi:"encryption"`
 	// The file path for upload. Only one of `file_path,content` can be specified.
 	FilePath *string `pulumi:"filePath"`
+	// Whether to enable the default inheritance bucket ACL function for the object.
+	IsDefault *bool `pulumi:"isDefault"`
 	// The name of the object.
 	ObjectName *string `pulumi:"objectName"`
-	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+	// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
 	PublicAcl *string `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass *string `pulumi:"storageClass"`
@@ -178,9 +182,11 @@ type BucketObjectState struct {
 	Encryption pulumi.StringPtrInput
 	// The file path for upload. Only one of `file_path,content` can be specified.
 	FilePath pulumi.StringPtrInput
+	// Whether to enable the default inheritance bucket ACL function for the object.
+	IsDefault pulumi.BoolPtrInput
 	// The name of the object.
 	ObjectName pulumi.StringPtrInput
-	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+	// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
 	PublicAcl pulumi.StringPtrInput
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass pulumi.StringPtrInput
@@ -211,7 +217,7 @@ type bucketObjectArgs struct {
 	FilePath *string `pulumi:"filePath"`
 	// The name of the object.
 	ObjectName string `pulumi:"objectName"`
-	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+	// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
 	PublicAcl *string `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass *string `pulumi:"storageClass"`
@@ -237,7 +243,7 @@ type BucketObjectArgs struct {
 	FilePath pulumi.StringPtrInput
 	// The name of the object.
 	ObjectName pulumi.StringInput
-	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+	// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
 	PublicAcl pulumi.StringPtrInput
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass pulumi.StringPtrInput
@@ -372,12 +378,17 @@ func (o BucketObjectOutput) FilePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringPtrOutput { return v.FilePath }).(pulumi.StringPtrOutput)
 }
 
+// Whether to enable the default inheritance bucket ACL function for the object.
+func (o BucketObjectOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v *BucketObject) pulumi.BoolOutput { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 // The name of the object.
 func (o BucketObjectOutput) ObjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringOutput { return v.ObjectName }).(pulumi.StringOutput)
 }
 
-// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
+// The public acl control of object. Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read|default. `default` means to enable the default inheritance bucket ACL function for the object.
 func (o BucketObjectOutput) PublicAcl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringPtrOutput { return v.PublicAcl }).(pulumi.StringPtrOutput)
 }

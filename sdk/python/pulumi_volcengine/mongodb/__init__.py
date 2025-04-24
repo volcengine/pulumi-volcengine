@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .account import *
 from .accounts import *
 from .endpoint import *
 from .endpoints import *

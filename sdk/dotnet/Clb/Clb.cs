@@ -198,7 +198,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> Ipv6EipId { get; private set; } = null!;
 
         /// <summary>
-        /// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        /// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         /// </summary>
         [Output("loadBalancerBillingType")]
         public Output<string> LoadBalancerBillingType { get; private set; } = null!;
@@ -210,10 +210,10 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> LoadBalancerName { get; private set; } = null!;
 
         /// <summary>
-        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         /// </summary>
         [Output("loadBalancerSpec")]
-        public Output<string> LoadBalancerSpec { get; private set; } = null!;
+        public Output<string?> LoadBalancerSpec { get; private set; } = null!;
 
         /// <summary>
         /// The master zone ID of the CLB.
@@ -366,7 +366,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? EniIpv6Address { get; set; }
 
         /// <summary>
-        /// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        /// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         /// </summary>
         [Input("loadBalancerBillingType")]
         public Input<string>? LoadBalancerBillingType { get; set; }
@@ -378,10 +378,10 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerName { get; set; }
 
         /// <summary>
-        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         /// </summary>
-        [Input("loadBalancerSpec", required: true)]
-        public Input<string> LoadBalancerSpec { get; set; } = null!;
+        [Input("loadBalancerSpec")]
+        public Input<string>? LoadBalancerSpec { get; set; }
 
         /// <summary>
         /// The master zone ID of the CLB.
@@ -513,7 +513,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Ipv6EipId { get; set; }
 
         /// <summary>
-        /// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+        /// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         /// </summary>
         [Input("loadBalancerBillingType")]
         public Input<string>? LoadBalancerBillingType { get; set; }
@@ -525,7 +525,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerName { get; set; }
 
         /// <summary>
-        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
+        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`. When the value of the `load_balancer_billing_type` is `PostPaidByLCU`, this field does not need to be specified.
         /// </summary>
         [Input("loadBalancerSpec")]
         public Input<string>? LoadBalancerSpec { get; set; }

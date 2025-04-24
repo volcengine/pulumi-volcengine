@@ -173,7 +173,8 @@ import (
 //							Effect: pulumi.String("NoSchedule"),
 //						},
 //					},
-//					Cordon: pulumi.Bool(true),
+//					Cordon:           pulumi.Bool(true),
+//					AutoSyncDisabled: pulumi.Bool(false),
 //				},
 //				Tags: vke.NodePoolTagArray{
 //					&vke.NodePoolTagArgs{

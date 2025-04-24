@@ -27,6 +27,11 @@ func GetAssumeRole(ctx *pulumi.Context) string {
 	return config.Get(ctx, "volcengine:assumeRole")
 }
 
+// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
+func GetCustomerEndpointSuffix(ctx *pulumi.Context) string {
+	return config.Get(ctx, "volcengine:customerEndpointSuffix")
+}
+
 // CUSTOMER ENDPOINTS for Volcengine Provider
 func GetCustomerEndpoints(ctx *pulumi.Context) string {
 	return config.Get(ctx, "volcengine:customerEndpoints")

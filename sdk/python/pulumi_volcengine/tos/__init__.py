@@ -6,9 +6,12 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .bucket import *
+from .bucket_inventories import *
+from .bucket_inventory import *
 from .bucket_object import *
 from .bucket_objects import *
 from .bucket_policy import *
+from .bucket_realtime_log import *
 from .buckets import *
 from ._inputs import *
 from . import outputs

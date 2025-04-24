@@ -18,6 +18,8 @@ class BucketArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]]] = None,
+                 az_redundancy: Optional[pulumi.Input[str]] = None,
+                 bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
@@ -27,6 +29,8 @@ class BucketArgs:
         The set of arguments for constructing a Bucket resource.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
         :param pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]] account_acls: The user set of grant full control.
+        :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
@@ -36,6 +40,10 @@ class BucketArgs:
         pulumi.set(__self__, "bucket_name", bucket_name)
         if account_acls is not None:
             pulumi.set(__self__, "account_acls", account_acls)
+        if az_redundancy is not None:
+            pulumi.set(__self__, "az_redundancy", az_redundancy)
+        if bucket_acl_delivered is not None:
+            pulumi.set(__self__, "bucket_acl_delivered", bucket_acl_delivered)
         if enable_version is not None:
             pulumi.set(__self__, "enable_version", enable_version)
         if project_name is not None:
@@ -70,6 +78,30 @@ class BucketArgs:
     @account_acls.setter
     def account_acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]]]):
         pulumi.set(self, "account_acls", value)
+
+    @property
+    @pulumi.getter(name="azRedundancy")
+    def az_redundancy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        """
+        return pulumi.get(self, "az_redundancy")
+
+    @az_redundancy.setter
+    def az_redundancy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "az_redundancy", value)
+
+    @property
+    @pulumi.getter(name="bucketAclDelivered")
+    def bucket_acl_delivered(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        """
+        return pulumi.get(self, "bucket_acl_delivered")
+
+    @bucket_acl_delivered.setter
+    def bucket_acl_delivered(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bucket_acl_delivered", value)
 
     @property
     @pulumi.getter(name="enableVersion")
@@ -136,6 +168,8 @@ class BucketArgs:
 class _BucketState:
     def __init__(__self__, *,
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]]] = None,
+                 az_redundancy: Optional[pulumi.Input[str]] = None,
+                 bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
                  creation_date: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
@@ -149,6 +183,8 @@ class _BucketState:
         """
         Input properties used for looking up and filtering Bucket resources.
         :param pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]] account_acls: The user set of grant full control.
+        :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
         :param pulumi.Input[str] creation_date: The create date of the TOS bucket.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
@@ -162,6 +198,10 @@ class _BucketState:
         """
         if account_acls is not None:
             pulumi.set(__self__, "account_acls", account_acls)
+        if az_redundancy is not None:
+            pulumi.set(__self__, "az_redundancy", az_redundancy)
+        if bucket_acl_delivered is not None:
+            pulumi.set(__self__, "bucket_acl_delivered", bucket_acl_delivered)
         if bucket_name is not None:
             pulumi.set(__self__, "bucket_name", bucket_name)
         if creation_date is not None:
@@ -194,6 +234,30 @@ class _BucketState:
     @account_acls.setter
     def account_acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]]]):
         pulumi.set(self, "account_acls", value)
+
+    @property
+    @pulumi.getter(name="azRedundancy")
+    def az_redundancy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        """
+        return pulumi.get(self, "az_redundancy")
+
+    @az_redundancy.setter
+    def az_redundancy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "az_redundancy", value)
+
+    @property
+    @pulumi.getter(name="bucketAclDelivered")
+    def bucket_acl_delivered(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        """
+        return pulumi.get(self, "bucket_acl_delivered")
+
+    @bucket_acl_delivered.setter
+    def bucket_acl_delivered(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bucket_acl_delivered", value)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -322,6 +386,8 @@ class Bucket(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]]] = None,
+                 az_redundancy: Optional[pulumi.Input[str]] = None,
+                 bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -348,7 +414,9 @@ class Bucket(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            bucket_name="tf-acc-test-bucket",
+            az_redundancy="multi-az",
+            bucket_acl_delivered=True,
+            bucket_name="tf-acc-test-bucket-0123-3",
             enable_version=True,
             project_name="default",
             public_acl="private",
@@ -369,6 +437,8 @@ class Bucket(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]] account_acls: The user set of grant full control.
+        :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
@@ -401,7 +471,9 @@ class Bucket(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            bucket_name="tf-acc-test-bucket",
+            az_redundancy="multi-az",
+            bucket_acl_delivered=True,
+            bucket_name="tf-acc-test-bucket-0123-3",
             enable_version=True,
             project_name="default",
             public_acl="private",
@@ -435,6 +507,8 @@ class Bucket(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]]] = None,
+                 az_redundancy: Optional[pulumi.Input[str]] = None,
+                 bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -451,6 +525,8 @@ class Bucket(pulumi.CustomResource):
             __props__ = BucketArgs.__new__(BucketArgs)
 
             __props__.__dict__["account_acls"] = account_acls
+            __props__.__dict__["az_redundancy"] = az_redundancy
+            __props__.__dict__["bucket_acl_delivered"] = bucket_acl_delivered
             if bucket_name is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket_name'")
             __props__.__dict__["bucket_name"] = bucket_name
@@ -474,6 +550,8 @@ class Bucket(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]]] = None,
+            az_redundancy: Optional[pulumi.Input[str]] = None,
+            bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
             bucket_name: Optional[pulumi.Input[str]] = None,
             creation_date: Optional[pulumi.Input[str]] = None,
             enable_version: Optional[pulumi.Input[bool]] = None,
@@ -492,6 +570,8 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]] account_acls: The user set of grant full control.
+        :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
         :param pulumi.Input[str] creation_date: The create date of the TOS bucket.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
@@ -508,6 +588,8 @@ class Bucket(pulumi.CustomResource):
         __props__ = _BucketState.__new__(_BucketState)
 
         __props__.__dict__["account_acls"] = account_acls
+        __props__.__dict__["az_redundancy"] = az_redundancy
+        __props__.__dict__["bucket_acl_delivered"] = bucket_acl_delivered
         __props__.__dict__["bucket_name"] = bucket_name
         __props__.__dict__["creation_date"] = creation_date
         __props__.__dict__["enable_version"] = enable_version
@@ -527,6 +609,22 @@ class Bucket(pulumi.CustomResource):
         The user set of grant full control.
         """
         return pulumi.get(self, "account_acls")
+
+    @property
+    @pulumi.getter(name="azRedundancy")
+    def az_redundancy(self) -> pulumi.Output[Optional[str]]:
+        """
+        The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
+        """
+        return pulumi.get(self, "az_redundancy")
+
+    @property
+    @pulumi.getter(name="bucketAclDelivered")
+    def bucket_acl_delivered(self) -> pulumi.Output[bool]:
+        """
+        Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        """
+        return pulumi.get(self, "bucket_acl_delivered")
 
     @property
     @pulumi.getter(name="bucketName")

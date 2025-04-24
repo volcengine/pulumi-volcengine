@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -15,8 +17,9 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.mongodb.MongoAllowList("foo", {
  *     allowList: "10.1.1.3,10.2.3.0/24,10.1.1.1",
  *     allowListDesc: "acc-test",
- *     allowListName: "acc-test",
+ *     allowListName: "acc-test-allow-list",
  *     allowListType: "IPv4",
+ *     projectName: "default",
  * });
  * ```
  *
@@ -57,13 +60,17 @@ export class MongoAllowList extends pulumi.CustomResource {
     }
 
     /**
-     * IP address or IP address segment in CIDR format.
+     * IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
      */
     public readonly allowList!: pulumi.Output<string>;
     /**
      * The description of allow list.
      */
     public readonly allowListDesc!: pulumi.Output<string>;
+    /**
+     * The number of allow list IPs.
+     */
+    public /*out*/ readonly allowListIpNum!: pulumi.Output<number>;
     /**
      * The name of allow list.
      */
@@ -72,6 +79,18 @@ export class MongoAllowList extends pulumi.CustomResource {
      * The IP address type of allow list, valid value contains `IPv4`.
      */
     public readonly allowListType!: pulumi.Output<string | undefined>;
+    /**
+     * The total number of instances bound under the allow list.
+     */
+    public /*out*/ readonly associatedInstanceNum!: pulumi.Output<number>;
+    /**
+     * The list of associated instances.
+     */
+    public /*out*/ readonly associatedInstances!: pulumi.Output<outputs.mongodb.MongoAllowListAssociatedInstance[]>;
+    /**
+     * The project name of the allow list.
+     */
+    public readonly projectName!: pulumi.Output<string>;
 
     /**
      * Create a MongoAllowList resource with the given unique name, arguments, and options.
@@ -88,8 +107,12 @@ export class MongoAllowList extends pulumi.CustomResource {
             const state = argsOrState as MongoAllowListState | undefined;
             resourceInputs["allowList"] = state ? state.allowList : undefined;
             resourceInputs["allowListDesc"] = state ? state.allowListDesc : undefined;
+            resourceInputs["allowListIpNum"] = state ? state.allowListIpNum : undefined;
             resourceInputs["allowListName"] = state ? state.allowListName : undefined;
             resourceInputs["allowListType"] = state ? state.allowListType : undefined;
+            resourceInputs["associatedInstanceNum"] = state ? state.associatedInstanceNum : undefined;
+            resourceInputs["associatedInstances"] = state ? state.associatedInstances : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
         } else {
             const args = argsOrState as MongoAllowListArgs | undefined;
             if ((!args || args.allowList === undefined) && !opts.urn) {
@@ -102,6 +125,10 @@ export class MongoAllowList extends pulumi.CustomResource {
             resourceInputs["allowListDesc"] = args ? args.allowListDesc : undefined;
             resourceInputs["allowListName"] = args ? args.allowListName : undefined;
             resourceInputs["allowListType"] = args ? args.allowListType : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["allowListIpNum"] = undefined /*out*/;
+            resourceInputs["associatedInstanceNum"] = undefined /*out*/;
+            resourceInputs["associatedInstances"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MongoAllowList.__pulumiType, name, resourceInputs, opts);
@@ -113,13 +140,17 @@ export class MongoAllowList extends pulumi.CustomResource {
  */
 export interface MongoAllowListState {
     /**
-     * IP address or IP address segment in CIDR format.
+     * IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
      */
     allowList?: pulumi.Input<string>;
     /**
      * The description of allow list.
      */
     allowListDesc?: pulumi.Input<string>;
+    /**
+     * The number of allow list IPs.
+     */
+    allowListIpNum?: pulumi.Input<number>;
     /**
      * The name of allow list.
      */
@@ -128,6 +159,18 @@ export interface MongoAllowListState {
      * The IP address type of allow list, valid value contains `IPv4`.
      */
     allowListType?: pulumi.Input<string>;
+    /**
+     * The total number of instances bound under the allow list.
+     */
+    associatedInstanceNum?: pulumi.Input<number>;
+    /**
+     * The list of associated instances.
+     */
+    associatedInstances?: pulumi.Input<pulumi.Input<inputs.mongodb.MongoAllowListAssociatedInstance>[]>;
+    /**
+     * The project name of the allow list.
+     */
+    projectName?: pulumi.Input<string>;
 }
 
 /**
@@ -135,7 +178,7 @@ export interface MongoAllowListState {
  */
 export interface MongoAllowListArgs {
     /**
-     * IP address or IP address segment in CIDR format.
+     * IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
      */
     allowList: pulumi.Input<string>;
     /**
@@ -150,4 +193,8 @@ export interface MongoAllowListArgs {
      * The IP address type of allow list, valid value contains `IPv4`.
      */
     allowListType?: pulumi.Input<string>;
+    /**
+     * The project name of the allow list.
+     */
+    projectName?: pulumi.Input<string>;
 }

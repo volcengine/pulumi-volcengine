@@ -127,6 +127,8 @@ type Instance struct {
 	DeploymentSetId pulumi.StringOutput `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EipAddress InstanceEipAddressPtrOutput `pulumi:"eipAddress"`
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
 	EipId pulumi.StringPtrOutput `pulumi:"eipId"`
@@ -287,6 +289,8 @@ type instanceState struct {
 	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
+	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EipAddress *InstanceEipAddress `pulumi:"eipAddress"`
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
 	EipId *string `pulumi:"eipId"`
@@ -393,6 +397,8 @@ type InstanceState struct {
 	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
+	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EipAddress InstanceEipAddressPtrInput
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
 	EipId pulumi.StringPtrInput
@@ -499,6 +505,8 @@ type instanceArgs struct {
 	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
+	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EipAddress *InstanceEipAddress `pulumi:"eipAddress"`
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
 	EipId *string `pulumi:"eipId"`
@@ -576,6 +584,8 @@ type InstanceArgs struct {
 	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
+	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EipAddress InstanceEipAddressPtrInput
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
 	EipId pulumi.StringPtrInput
@@ -764,6 +774,11 @@ func (o InstanceOutput) DeploymentSetId() pulumi.StringOutput {
 // The description of ECS instance.
 func (o InstanceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceOutput) EipAddress() InstanceEipAddressPtrOutput {
+	return o.ApplyT(func(v *Instance) InstanceEipAddressPtrOutput { return v.EipAddress }).(InstanceEipAddressPtrOutput)
 }
 
 // The id of an existing Available EIP which will be automatically assigned to this instance.

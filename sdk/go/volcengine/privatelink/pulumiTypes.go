@@ -1179,6 +1179,10 @@ type VpcEndpointsVpcEndpoint struct {
 	EndpointType string `pulumi:"endpointType"`
 	// The Id of vpc endpoint.
 	Id string `pulumi:"id"`
+	// Whether to enable private dns name.
+	PrivateDnsEnabled bool `pulumi:"privateDnsEnabled"`
+	// The private dns name of vpc endpoint.
+	PrivateDnsName string `pulumi:"privateDnsName"`
 	// The Id of vpc endpoint service.
 	ServiceId string `pulumi:"serviceId"`
 	// The name of vpc endpoint service.
@@ -1223,6 +1227,10 @@ type VpcEndpointsVpcEndpointArgs struct {
 	EndpointType pulumi.StringInput `pulumi:"endpointType"`
 	// The Id of vpc endpoint.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Whether to enable private dns name.
+	PrivateDnsEnabled pulumi.BoolInput `pulumi:"privateDnsEnabled"`
+	// The private dns name of vpc endpoint.
+	PrivateDnsName pulumi.StringInput `pulumi:"privateDnsName"`
 	// The Id of vpc endpoint service.
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 	// The name of vpc endpoint service.
@@ -1334,6 +1342,16 @@ func (o VpcEndpointsVpcEndpointOutput) EndpointType() pulumi.StringOutput {
 // The Id of vpc endpoint.
 func (o VpcEndpointsVpcEndpointOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v VpcEndpointsVpcEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether to enable private dns name.
+func (o VpcEndpointsVpcEndpointOutput) PrivateDnsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v VpcEndpointsVpcEndpoint) bool { return v.PrivateDnsEnabled }).(pulumi.BoolOutput)
+}
+
+// The private dns name of vpc endpoint.
+func (o VpcEndpointsVpcEndpointOutput) PrivateDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcEndpointsVpcEndpoint) string { return v.PrivateDnsName }).(pulumi.StringOutput)
 }
 
 // The Id of vpc endpoint service.

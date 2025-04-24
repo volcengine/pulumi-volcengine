@@ -11,8 +11,14 @@ from .. import _utilities
 
 __all__ = [
     'BucketAccountAclArgs',
+    'BucketInventoryDestinationArgs',
+    'BucketInventoryDestinationTosBucketDestinationArgs',
+    'BucketInventoryFilterArgs',
+    'BucketInventoryOptionalFieldsArgs',
+    'BucketInventoryScheduleArgs',
     'BucketObjectAccountAclArgs',
     'BucketObjectTagArgs',
+    'BucketRealtimeLogAccessLogConfigurationArgs',
     'BucketTagArgs',
 ]
 
@@ -67,6 +73,179 @@ class BucketAccountAclArgs:
     @acl_type.setter
     def acl_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "acl_type", value)
+
+
+@pulumi.input_type
+class BucketInventoryDestinationArgs:
+    def __init__(__self__, *,
+                 tos_bucket_destination: pulumi.Input['BucketInventoryDestinationTosBucketDestinationArgs']):
+        """
+        :param pulumi.Input['BucketInventoryDestinationTosBucketDestinationArgs'] tos_bucket_destination: The destination tos bucket information of the bucket inventory.
+        """
+        pulumi.set(__self__, "tos_bucket_destination", tos_bucket_destination)
+
+    @property
+    @pulumi.getter(name="tosBucketDestination")
+    def tos_bucket_destination(self) -> pulumi.Input['BucketInventoryDestinationTosBucketDestinationArgs']:
+        """
+        The destination tos bucket information of the bucket inventory.
+        """
+        return pulumi.get(self, "tos_bucket_destination")
+
+    @tos_bucket_destination.setter
+    def tos_bucket_destination(self, value: pulumi.Input['BucketInventoryDestinationTosBucketDestinationArgs']):
+        pulumi.set(self, "tos_bucket_destination", value)
+
+
+@pulumi.input_type
+class BucketInventoryDestinationTosBucketDestinationArgs:
+    def __init__(__self__, *,
+                 account_id: pulumi.Input[str],
+                 bucket: pulumi.Input[str],
+                 format: pulumi.Input[str],
+                 role: pulumi.Input[str],
+                 prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] account_id: The account id of the destination tos bucket.
+        :param pulumi.Input[str] bucket: The name of the destination tos bucket.
+        :param pulumi.Input[str] format: The format of the bucket inventory. Valid values: `CSV`.
+        :param pulumi.Input[str] role: The role name used to grant TOS access to read all files from the source bucket and write files to the destination bucket. You can use the default TOS role `TosArchiveTOSInventory`.
+        :param pulumi.Input[str] prefix: The storage path prefix of the bucket inventory in destination tos bucket.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "role", role)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> pulumi.Input[str]:
+        """
+        The account id of the destination tos bucket.
+        """
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[str]:
+        """
+        The name of the destination tos bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> pulumi.Input[str]:
+        """
+        The format of the bucket inventory. Valid values: `CSV`.
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: pulumi.Input[str]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role name used to grant TOS access to read all files from the source bucket and write files to the destination bucket. You can use the default TOS role `TosArchiveTOSInventory`.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The storage path prefix of the bucket inventory in destination tos bucket.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+
+@pulumi.input_type
+class BucketInventoryFilterArgs:
+    def __init__(__self__, *,
+                 prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] prefix: The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+
+@pulumi.input_type
+class BucketInventoryOptionalFieldsArgs:
+    def __init__(__self__, *,
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] fields: The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "fields", value)
+
+
+@pulumi.input_type
+class BucketInventoryScheduleArgs:
+    def __init__(__self__, *,
+                 frequency: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] frequency: The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+        """
+        pulumi.set(__self__, "frequency", frequency)
+
+    @property
+    @pulumi.getter
+    def frequency(self) -> pulumi.Input[str]:
+        """
+        The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+        """
+        return pulumi.get(self, "frequency")
+
+    @frequency.setter
+    def frequency(self, value: pulumi.Input[str]):
+        pulumi.set(self, "frequency", value)
 
 
 @pulumi.input_type
@@ -157,6 +336,77 @@ class BucketObjectTagArgs:
     @value.setter
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class BucketRealtimeLogAccessLogConfigurationArgs:
+    def __init__(__self__, *,
+                 tls_dashboard_id: Optional[pulumi.Input[str]] = None,
+                 tls_project_id: Optional[pulumi.Input[str]] = None,
+                 tls_topic_id: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] tls_dashboard_id: The ID of the tls dashboard.
+        :param pulumi.Input[str] tls_project_id: The ID of the tls project.
+        :param pulumi.Input[str] tls_topic_id: The ID of the tls topic.
+        :param pulumi.Input[int] ttl: The TLS log retention duration. Unit in days. Valid values range is 1~3650. default is 7.
+        """
+        if tls_dashboard_id is not None:
+            pulumi.set(__self__, "tls_dashboard_id", tls_dashboard_id)
+        if tls_project_id is not None:
+            pulumi.set(__self__, "tls_project_id", tls_project_id)
+        if tls_topic_id is not None:
+            pulumi.set(__self__, "tls_topic_id", tls_topic_id)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="tlsDashboardId")
+    def tls_dashboard_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the tls dashboard.
+        """
+        return pulumi.get(self, "tls_dashboard_id")
+
+    @tls_dashboard_id.setter
+    def tls_dashboard_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_dashboard_id", value)
+
+    @property
+    @pulumi.getter(name="tlsProjectId")
+    def tls_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the tls project.
+        """
+        return pulumi.get(self, "tls_project_id")
+
+    @tls_project_id.setter
+    def tls_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_project_id", value)
+
+    @property
+    @pulumi.getter(name="tlsTopicId")
+    def tls_topic_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the tls topic.
+        """
+        return pulumi.get(self, "tls_topic_id")
+
+    @tls_topic_id.setter
+    def tls_topic_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_topic_id", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TLS log retention duration. Unit in days. Valid values range is 1~3650. default is 7.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
 
 
 @pulumi.input_type

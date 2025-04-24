@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['MongoAllowListArgs', 'MongoAllowList']
 
@@ -17,13 +19,15 @@ class MongoAllowListArgs:
                  allow_list: pulumi.Input[str],
                  allow_list_name: pulumi.Input[str],
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
-                 allow_list_type: Optional[pulumi.Input[str]] = None):
+                 allow_list_type: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MongoAllowList resource.
-        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format.
+        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
+        :param pulumi.Input[str] project_name: The project name of the allow list.
         """
         pulumi.set(__self__, "allow_list", allow_list)
         pulumi.set(__self__, "allow_list_name", allow_list_name)
@@ -31,12 +35,14 @@ class MongoAllowListArgs:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_type is not None:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
 
     @property
     @pulumi.getter(name="allowList")
     def allow_list(self) -> pulumi.Input[str]:
         """
-        IP address or IP address segment in CIDR format.
+        IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         """
         return pulumi.get(self, "allow_list")
 
@@ -80,35 +86,63 @@ class MongoAllowListArgs:
     def allow_list_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_type", value)
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
 
 @pulumi.input_type
 class _MongoAllowListState:
     def __init__(__self__, *,
                  allow_list: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
+                 allow_list_ip_num: Optional[pulumi.Input[int]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
-                 allow_list_type: Optional[pulumi.Input[str]] = None):
+                 allow_list_type: Optional[pulumi.Input[str]] = None,
+                 associated_instance_num: Optional[pulumi.Input[int]] = None,
+                 associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input['MongoAllowListAssociatedInstanceArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MongoAllowList resources.
-        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format.
+        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
+        :param pulumi.Input[int] allow_list_ip_num: The number of allow list IPs.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
+        :param pulumi.Input[int] associated_instance_num: The total number of instances bound under the allow list.
+        :param pulumi.Input[Sequence[pulumi.Input['MongoAllowListAssociatedInstanceArgs']]] associated_instances: The list of associated instances.
+        :param pulumi.Input[str] project_name: The project name of the allow list.
         """
         if allow_list is not None:
             pulumi.set(__self__, "allow_list", allow_list)
         if allow_list_desc is not None:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        if allow_list_ip_num is not None:
+            pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
         if allow_list_name is not None:
             pulumi.set(__self__, "allow_list_name", allow_list_name)
         if allow_list_type is not None:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
+        if associated_instance_num is not None:
+            pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        if associated_instances is not None:
+            pulumi.set(__self__, "associated_instances", associated_instances)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
 
     @property
     @pulumi.getter(name="allowList")
     def allow_list(self) -> Optional[pulumi.Input[str]]:
         """
-        IP address or IP address segment in CIDR format.
+        IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         """
         return pulumi.get(self, "allow_list")
 
@@ -127,6 +161,18 @@ class _MongoAllowListState:
     @allow_list_desc.setter
     def allow_list_desc(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_desc", value)
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of allow list IPs.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @allow_list_ip_num.setter
+    def allow_list_ip_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "allow_list_ip_num", value)
 
     @property
     @pulumi.getter(name="allowListName")
@@ -152,6 +198,42 @@ class _MongoAllowListState:
     def allow_list_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_type", value)
 
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> Optional[pulumi.Input[int]]:
+        """
+        The total number of instances bound under the allow list.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @associated_instance_num.setter
+    def associated_instance_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "associated_instance_num", value)
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MongoAllowListAssociatedInstanceArgs']]]]:
+        """
+        The list of associated instances.
+        """
+        return pulumi.get(self, "associated_instances")
+
+    @associated_instances.setter
+    def associated_instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MongoAllowListAssociatedInstanceArgs']]]]):
+        pulumi.set(self, "associated_instances", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
 
 class MongoAllowList(pulumi.CustomResource):
     @overload
@@ -162,6 +244,7 @@ class MongoAllowList(pulumi.CustomResource):
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage mongodb allow list
@@ -174,8 +257,9 @@ class MongoAllowList(pulumi.CustomResource):
         foo = volcengine.mongodb.MongoAllowList("foo",
             allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1",
             allow_list_desc="acc-test",
-            allow_list_name="acc-test",
-            allow_list_type="IPv4")
+            allow_list_name="acc-test-allow-list",
+            allow_list_type="IPv4",
+            project_name="default")
         ```
 
         ## Import
@@ -188,10 +272,11 @@ class MongoAllowList(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format.
+        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
+        :param pulumi.Input[str] project_name: The project name of the allow list.
         """
         ...
     @overload
@@ -210,8 +295,9 @@ class MongoAllowList(pulumi.CustomResource):
         foo = volcengine.mongodb.MongoAllowList("foo",
             allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1",
             allow_list_desc="acc-test",
-            allow_list_name="acc-test",
-            allow_list_type="IPv4")
+            allow_list_name="acc-test-allow-list",
+            allow_list_type="IPv4",
+            project_name="default")
         ```
 
         ## Import
@@ -241,6 +327,7 @@ class MongoAllowList(pulumi.CustomResource):
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -258,6 +345,10 @@ class MongoAllowList(pulumi.CustomResource):
                 raise TypeError("Missing required property 'allow_list_name'")
             __props__.__dict__["allow_list_name"] = allow_list_name
             __props__.__dict__["allow_list_type"] = allow_list_type
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["allow_list_ip_num"] = None
+            __props__.__dict__["associated_instance_num"] = None
+            __props__.__dict__["associated_instances"] = None
         super(MongoAllowList, __self__).__init__(
             'volcengine:mongodb/mongoAllowList:MongoAllowList',
             resource_name,
@@ -270,8 +361,12 @@ class MongoAllowList(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_list: Optional[pulumi.Input[str]] = None,
             allow_list_desc: Optional[pulumi.Input[str]] = None,
+            allow_list_ip_num: Optional[pulumi.Input[int]] = None,
             allow_list_name: Optional[pulumi.Input[str]] = None,
-            allow_list_type: Optional[pulumi.Input[str]] = None) -> 'MongoAllowList':
+            allow_list_type: Optional[pulumi.Input[str]] = None,
+            associated_instance_num: Optional[pulumi.Input[int]] = None,
+            associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MongoAllowListAssociatedInstanceArgs']]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None) -> 'MongoAllowList':
         """
         Get an existing MongoAllowList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -279,10 +374,14 @@ class MongoAllowList(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format.
+        :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
+        :param pulumi.Input[int] allow_list_ip_num: The number of allow list IPs.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
+        :param pulumi.Input[int] associated_instance_num: The total number of instances bound under the allow list.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MongoAllowListAssociatedInstanceArgs']]]] associated_instances: The list of associated instances.
+        :param pulumi.Input[str] project_name: The project name of the allow list.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -290,15 +389,19 @@ class MongoAllowList(pulumi.CustomResource):
 
         __props__.__dict__["allow_list"] = allow_list
         __props__.__dict__["allow_list_desc"] = allow_list_desc
+        __props__.__dict__["allow_list_ip_num"] = allow_list_ip_num
         __props__.__dict__["allow_list_name"] = allow_list_name
         __props__.__dict__["allow_list_type"] = allow_list_type
+        __props__.__dict__["associated_instance_num"] = associated_instance_num
+        __props__.__dict__["associated_instances"] = associated_instances
+        __props__.__dict__["project_name"] = project_name
         return MongoAllowList(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="allowList")
     def allow_list(self) -> pulumi.Output[str]:
         """
-        IP address or IP address segment in CIDR format.
+        IP address or IP address segment in CIDR format. Duplicate addresses are not allowed, multiple addresses should be separated by commas (,) in English.
         """
         return pulumi.get(self, "allow_list")
 
@@ -309,6 +412,14 @@ class MongoAllowList(pulumi.CustomResource):
         The description of allow list.
         """
         return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> pulumi.Output[int]:
+        """
+        The number of allow list IPs.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
 
     @property
     @pulumi.getter(name="allowListName")
@@ -325,4 +436,28 @@ class MongoAllowList(pulumi.CustomResource):
         The IP address type of allow list, valid value contains `IPv4`.
         """
         return pulumi.get(self, "allow_list_type")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> pulumi.Output[int]:
+        """
+        The total number of instances bound under the allow list.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> pulumi.Output[Sequence['outputs.MongoAllowListAssociatedInstance']]:
+        """
+        The list of associated instances.
+        """
+        return pulumi.get(self, "associated_instances")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the allow list.
+        """
+        return pulumi.get(self, "project_name")
 

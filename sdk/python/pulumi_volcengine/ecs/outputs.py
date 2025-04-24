@@ -25,6 +25,7 @@ __all__ = [
     'ImagesTagResult',
     'InstanceCpuOptions',
     'InstanceDataVolume',
+    'InstanceEipAddress',
     'InstanceGpuDevice',
     'InstanceSecondaryNetworkInterface',
     'InstanceTag',
@@ -908,6 +909,82 @@ class InstanceDataVolume(dict):
         The delete with instance flag of volume.
         """
         return pulumi.get(self, "delete_with_instance")
+
+
+@pulumi.output_type
+class InstanceEipAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bandwidthMbps":
+            suggest = "bandwidth_mbps"
+        elif key == "bandwidthPackageId":
+            suggest = "bandwidth_package_id"
+        elif key == "chargeType":
+            suggest = "charge_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceEipAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceEipAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceEipAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bandwidth_mbps: Optional[int] = None,
+                 bandwidth_package_id: Optional[int] = None,
+                 charge_type: Optional[str] = None,
+                 isp: Optional[str] = None):
+        """
+        :param int bandwidth_mbps: The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+        :param int bandwidth_package_id: The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+        :param str charge_type: The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        :param str isp: The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+        """
+        if bandwidth_mbps is not None:
+            pulumi.set(__self__, "bandwidth_mbps", bandwidth_mbps)
+        if bandwidth_package_id is not None:
+            pulumi.set(__self__, "bandwidth_package_id", bandwidth_package_id)
+        if charge_type is not None:
+            pulumi.set(__self__, "charge_type", charge_type)
+        if isp is not None:
+            pulumi.set(__self__, "isp", isp)
+
+    @property
+    @pulumi.getter(name="bandwidthMbps")
+    def bandwidth_mbps(self) -> Optional[int]:
+        """
+        The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+        """
+        return pulumi.get(self, "bandwidth_mbps")
+
+    @property
+    @pulumi.getter(name="bandwidthPackageId")
+    def bandwidth_package_id(self) -> Optional[int]:
+        """
+        The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+        """
+        return pulumi.get(self, "bandwidth_package_id")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> Optional[str]:
+        """
+        The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> Optional[str]:
+        """
+        The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+        """
+        return pulumi.get(self, "isp")
 
 
 @pulumi.output_type

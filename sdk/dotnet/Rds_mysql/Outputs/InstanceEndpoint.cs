@@ -51,6 +51,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string? EndpointType;
         /// <summary>
+        /// Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+        /// </summary>
+        public readonly bool? IdleConnectionReclaim;
+        /// <summary>
         /// The list of nodes configured by the connection terminal and the corresponding read-only weights.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstanceEndpointNodeWeight> NodeWeights;
@@ -79,6 +83,8 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             string? endpointType,
 
+            bool? idleConnectionReclaim,
+
             ImmutableArray<Outputs.InstanceEndpointNodeWeight> nodeWeights,
 
             string? readWriteMode)
@@ -91,6 +97,7 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             EndpointId = endpointId;
             EndpointName = endpointName;
             EndpointType = endpointType;
+            IdleConnectionReclaim = idleConnectionReclaim;
             NodeWeights = nodeWeights;
             ReadWriteMode = readWriteMode;
         }

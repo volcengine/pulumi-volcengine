@@ -998,16 +998,16 @@ class Instance(pulumi.CustomResource):
             multi_az="enabled",
             configure_nodes=[
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-a",
+                    az="cn-beijing-a",
                 ),
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-b",
+                    az="cn-beijing-b",
                 ),
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-c",
+                    az="cn-beijing-c",
                 ),
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-b",
+                    az="cn-beijing-b",
                 ),
             ])
         #additional_bandwidth = 12
@@ -1128,16 +1128,16 @@ class Instance(pulumi.CustomResource):
             multi_az="enabled",
             configure_nodes=[
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-a",
+                    az="cn-beijing-a",
                 ),
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-b",
+                    az="cn-beijing-b",
                 ),
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-c",
+                    az="cn-beijing-c",
                 ),
                 volcengine.redis.InstanceConfigureNodeArgs(
-                    az="cn-guilin-b",
+                    az="cn-beijing-b",
                 ),
             ])
         #additional_bandwidth = 12

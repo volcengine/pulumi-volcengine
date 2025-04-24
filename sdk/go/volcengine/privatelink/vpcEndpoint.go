@@ -135,6 +135,10 @@ type VpcEndpoint struct {
 	EndpointName pulumi.StringOutput `pulumi:"endpointName"`
 	// The type of vpc endpoint.
 	EndpointType pulumi.StringOutput `pulumi:"endpointType"`
+	// Whether to enable private dns name. Default is false.
+	PrivateDnsEnabled pulumi.BoolOutput `pulumi:"privateDnsEnabled"`
+	// The private dns name of vpc endpoint.
+	PrivateDnsName pulumi.StringOutput `pulumi:"privateDnsName"`
 	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
 	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
@@ -202,6 +206,10 @@ type vpcEndpointState struct {
 	EndpointName *string `pulumi:"endpointName"`
 	// The type of vpc endpoint.
 	EndpointType *string `pulumi:"endpointType"`
+	// Whether to enable private dns name. Default is false.
+	PrivateDnsEnabled *bool `pulumi:"privateDnsEnabled"`
+	// The private dns name of vpc endpoint.
+	PrivateDnsName *string `pulumi:"privateDnsName"`
 	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
 	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
@@ -234,6 +242,10 @@ type VpcEndpointState struct {
 	EndpointName pulumi.StringPtrInput
 	// The type of vpc endpoint.
 	EndpointType pulumi.StringPtrInput
+	// Whether to enable private dns name. Default is false.
+	PrivateDnsEnabled pulumi.BoolPtrInput
+	// The private dns name of vpc endpoint.
+	PrivateDnsName pulumi.StringPtrInput
 	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
 	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds pulumi.StringArrayInput
@@ -258,6 +270,8 @@ type vpcEndpointArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of vpc endpoint.
 	EndpointName *string `pulumi:"endpointName"`
+	// Whether to enable private dns name. Default is false.
+	PrivateDnsEnabled *bool `pulumi:"privateDnsEnabled"`
 	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
 	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
@@ -273,6 +287,8 @@ type VpcEndpointArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of vpc endpoint.
 	EndpointName pulumi.StringPtrInput
+	// Whether to enable private dns name. Default is false.
+	PrivateDnsEnabled pulumi.BoolPtrInput
 	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
 	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds pulumi.StringArrayInput
@@ -407,6 +423,16 @@ func (o VpcEndpointOutput) EndpointName() pulumi.StringOutput {
 // The type of vpc endpoint.
 func (o VpcEndpointOutput) EndpointType() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcEndpoint) pulumi.StringOutput { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// Whether to enable private dns name. Default is false.
+func (o VpcEndpointOutput) PrivateDnsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *VpcEndpoint) pulumi.BoolOutput { return v.PrivateDnsEnabled }).(pulumi.BoolOutput)
+}
+
+// The private dns name of vpc endpoint.
+func (o VpcEndpointOutput) PrivateDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcEndpoint) pulumi.StringOutput { return v.PrivateDnsName }).(pulumi.StringOutput)
 }
 
 // The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.

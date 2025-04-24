@@ -283,6 +283,9 @@ class Account(pulumi.CustomResource):
                     parameter_value="4",
                 ),
             ])
+        foo1 = volcengine.rds_mysql.Database("foo1",
+            db_name="acc-test-db1",
+            instance_id=foo_instance.id)
         foo_database = volcengine.rds_mysql.Database("fooDatabase",
             db_name="acc-test-db",
             instance_id=foo_instance.id)
@@ -291,11 +294,17 @@ class Account(pulumi.CustomResource):
             account_password="93f0cb0614Aab12",
             account_type="Normal",
             instance_id=foo_instance.id,
-            account_privileges=[volcengine.rds_mysql.AccountAccountPrivilegeArgs(
-                db_name=foo_database.db_name,
-                account_privilege="Custom",
-                account_privilege_detail="SELECT,INSERT",
-            )])
+            account_privileges=[
+                volcengine.rds_mysql.AccountAccountPrivilegeArgs(
+                    db_name=foo_database.db_name,
+                    account_privilege="Custom",
+                    account_privilege_detail="SELECT,INSERT,UPDATE",
+                ),
+                volcengine.rds_mysql.AccountAccountPrivilegeArgs(
+                    db_name=foo1.db_name,
+                    account_privilege="DDLOnly",
+                ),
+            ])
         ```
 
         ## Import
@@ -371,6 +380,9 @@ class Account(pulumi.CustomResource):
                     parameter_value="4",
                 ),
             ])
+        foo1 = volcengine.rds_mysql.Database("foo1",
+            db_name="acc-test-db1",
+            instance_id=foo_instance.id)
         foo_database = volcengine.rds_mysql.Database("fooDatabase",
             db_name="acc-test-db",
             instance_id=foo_instance.id)
@@ -379,11 +391,17 @@ class Account(pulumi.CustomResource):
             account_password="93f0cb0614Aab12",
             account_type="Normal",
             instance_id=foo_instance.id,
-            account_privileges=[volcengine.rds_mysql.AccountAccountPrivilegeArgs(
-                db_name=foo_database.db_name,
-                account_privilege="Custom",
-                account_privilege_detail="SELECT,INSERT",
-            )])
+            account_privileges=[
+                volcengine.rds_mysql.AccountAccountPrivilegeArgs(
+                    db_name=foo_database.db_name,
+                    account_privilege="Custom",
+                    account_privilege_detail="SELECT,INSERT,UPDATE",
+                ),
+                volcengine.rds_mysql.AccountAccountPrivilegeArgs(
+                    db_name=foo1.db_name,
+                    account_privilege="DDLOnly",
+                ),
+            ])
         ```
 
         ## Import

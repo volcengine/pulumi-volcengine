@@ -2078,6 +2078,8 @@ type RulesRule struct {
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule.
 	WebHook string `pulumi:"webHook"`
+	// The webhook id list of the cloud monitor rule.
+	WebhookIds []string `pulumi:"webhookIds"`
 }
 
 // RulesRuleInput is an input type that accepts RulesRuleArgs and RulesRuleOutput values.
@@ -2136,6 +2138,8 @@ type RulesRuleArgs struct {
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule.
 	WebHook pulumi.StringInput `pulumi:"webHook"`
+	// The webhook id list of the cloud monitor rule.
+	WebhookIds pulumi.StringArrayInput `pulumi:"webhookIds"`
 }
 
 func (RulesRuleArgs) ElementType() reflect.Type {
@@ -2297,6 +2301,11 @@ func (o RulesRuleOutput) UpdatedAt() pulumi.StringOutput {
 // The web hook of the cloud monitor rule.
 func (o RulesRuleOutput) WebHook() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRule) string { return v.WebHook }).(pulumi.StringOutput)
+}
+
+// The webhook id list of the cloud monitor rule.
+func (o RulesRuleOutput) WebhookIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RulesRule) []string { return v.WebhookIds }).(pulumi.StringArrayOutput)
 }
 
 type RulesRuleArrayOutput struct{ *pulumi.OutputState }

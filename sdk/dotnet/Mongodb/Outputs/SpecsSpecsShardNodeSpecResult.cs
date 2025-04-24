@@ -30,6 +30,10 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
         /// </summary>
         public readonly int MemInGb;
         /// <summary>
+        /// The min storage.
+        /// </summary>
+        public readonly int MinStorage;
+        /// <summary>
         /// The shard node spec name.
         /// </summary>
         public readonly string SpecName;
@@ -44,12 +48,15 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
 
             int memInGb,
 
+            int minStorage,
+
             string specName)
         {
             CpuNum = cpuNum;
             MaxConn = maxConn;
             MaxStorage = maxStorage;
             MemInGb = memInGb;
+            MinStorage = minStorage;
             SpecName = specName;
         }
     }

@@ -20,17 +20,37 @@ namespace Pulumi.Volcengine.Mongodb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Mongodb.Instance("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         ChargeType = "PostPaid",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+    ///     {
+    ///         ZoneIds = new[]
+    ///         {
+    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         },
     ///         DbEngineVersion = "MongoDB_4_0",
-    ///         InstanceName = "mongo-replica-be9995d32e4a",
     ///         InstanceType = "ReplicaSet",
     ///         NodeSpec = "mongo.2c4g",
-    ///         ProjectName = "default",
     ///         StorageSpaceGb = 20,
-    ///         SubnetId = "subnet-rrx4ns6abw1sv0x57wq6h47",
-    ///         SuperAccountPassword = "******",
+    ///         SubnetId = fooSubnet.Id,
+    ///         InstanceName = "acc-test-mongodb-replica",
+    ///         ChargeType = "PostPaid",
+    ///         SuperAccountPassword = "93f0cb0614Aab12",
+    ///         ProjectName = "default",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
@@ -39,9 +59,25 @@ namespace Pulumi.Volcengine.Mongodb
     ///                 Value = "v1",
     ///             },
     ///         },
-    ///         ZoneId = "cn-beijing-a",
+    ///         NodeAvailabilityZones = new[]
+    ///         {
+    ///             new Volcengine.Mongodb.Inputs.InstanceNodeAvailabilityZoneArgs
+    ///             {
+    ///                 ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///                 NodeNumber = 2,
+    ///             },
+    ///         },
     ///     });
     /// 
+    ///     //  period_unit = "Month"
+    ///     //  period      = 1
+    ///     //  auto_renew  = false
+    ///     //  ssl_action  = "Close"
+    ///     //  lifecycle {
+    ///     //    ignore_changes = [
+    ///     //      super_account_password,
+    ///     //    ]
+    ///     //  }
     /// });
     /// ```
     /// 
@@ -57,13 +93,13 @@ namespace Pulumi.Volcengine.Mongodb
     public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether to enable automatic renewal.
+        /// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Output("autoRenew")]
         public Output<bool> AutoRenew { get; private set; } = null!;
 
         /// <summary>
-        /// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        /// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         /// </summary>
         [Output("chargeType")]
         public Output<string> ChargeType { get; private set; } = null!;
@@ -75,7 +111,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> ConfigServersId { get; private set; } = null!;
 
         /// <summary>
-        /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         /// </summary>
         [Output("dbEngineVersion")]
         public Output<string> DbEngineVersion { get; private set; } = null!;
@@ -87,7 +123,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> InstanceName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        /// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         /// </summary>
         [Output("instanceType")]
         public Output<string> InstanceType { get; private set; } = null!;
@@ -105,34 +141,46 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> MongosId { get; private set; } = null!;
 
         /// <summary>
-        /// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Output("mongosNodeNumber")]
         public Output<int?> MongosNodeNumber { get; private set; } = null!;
 
         /// <summary>
-        /// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Output("mongosNodeSpec")]
         public Output<string?> MongosNodeSpec { get; private set; } = null!;
 
         /// <summary>
-        /// The spec of node.
+        /// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("nodeAvailabilityZones")]
+        public Output<ImmutableArray<Outputs.InstanceNodeAvailabilityZone>> NodeAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
+        /// The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         /// </summary>
         [Output("nodeSpec")]
         public Output<string> NodeSpec { get; private set; } = null!;
 
         /// <summary>
-        /// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        /// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Output("period")]
         public Output<int> Period { get; private set; } = null!;
 
         /// <summary>
-        /// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        /// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Output("periodUnit")]
         public Output<string> PeriodUnit { get; private set; } = null!;
+
+        /// <summary>
+        /// The private endpoint address of instance.
+        /// </summary>
+        [Output("privateEndpoint")]
+        public Output<string> PrivateEndpoint { get; private set; } = null!;
 
         /// <summary>
         /// The project name to which the instance belongs.
@@ -141,7 +189,13 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
-        /// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The number of readonly node in instance.
+        /// </summary>
+        [Output("readOnlyNodeNumber")]
+        public Output<int> ReadOnlyNodeNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Output("shardNumber")]
         public Output<int?> ShardNumber { get; private set; } = null!;
@@ -153,7 +207,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<ImmutableArray<Outputs.InstanceShard>> Shards { get; private set; } = null!;
 
         /// <summary>
-        /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         /// </summary>
         [Output("storageSpaceGb")]
         public Output<int> StorageSpaceGb { get; private set; } = null!;
@@ -165,7 +219,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> SubnetId { get; private set; } = null!;
 
         /// <summary>
-        /// The password of database account.
+        /// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("superAccountPassword")]
         public Output<string?> SuperAccountPassword { get; private set; } = null!;
@@ -183,10 +237,16 @@ namespace Pulumi.Volcengine.Mongodb
         public Output<string> VpcId { get; private set; } = null!;
 
         /// <summary>
-        /// The zone ID of instance.
+        /// This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
         /// </summary>
         [Output("zoneId")]
         public Output<string> ZoneId { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+        /// </summary>
+        [Output("zoneIds")]
+        public Output<ImmutableArray<string>> ZoneIds { get; private set; } = null!;
 
 
         /// <summary>
@@ -240,19 +300,19 @@ namespace Pulumi.Volcengine.Mongodb
     public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to enable automatic renewal.
+        /// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
 
         /// <summary>
-        /// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        /// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         /// </summary>
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }
 
         /// <summary>
-        /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         /// </summary>
         [Input("dbEngineVersion")]
         public Input<string>? DbEngineVersion { get; set; }
@@ -264,37 +324,49 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        /// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         /// </summary>
         [Input("instanceType")]
         public Input<string>? InstanceType { get; set; }
 
         /// <summary>
-        /// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Input("mongosNodeNumber")]
         public Input<int>? MongosNodeNumber { get; set; }
 
         /// <summary>
-        /// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Input("mongosNodeSpec")]
         public Input<string>? MongosNodeSpec { get; set; }
 
+        [Input("nodeAvailabilityZones")]
+        private InputList<Inputs.InstanceNodeAvailabilityZoneArgs>? _nodeAvailabilityZones;
+
         /// <summary>
-        /// The spec of node.
+        /// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<Inputs.InstanceNodeAvailabilityZoneArgs> NodeAvailabilityZones
+        {
+            get => _nodeAvailabilityZones ?? (_nodeAvailabilityZones = new InputList<Inputs.InstanceNodeAvailabilityZoneArgs>());
+            set => _nodeAvailabilityZones = value;
+        }
+
+        /// <summary>
+        /// The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         /// </summary>
         [Input("nodeSpec", required: true)]
         public Input<string> NodeSpec { get; set; } = null!;
 
         /// <summary>
-        /// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        /// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        /// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Input("periodUnit")]
         public Input<string>? PeriodUnit { get; set; }
@@ -306,13 +378,13 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? ProjectName { get; set; }
 
         /// <summary>
-        /// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Input("shardNumber")]
         public Input<int>? ShardNumber { get; set; }
 
         /// <summary>
-        /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         /// </summary>
         [Input("storageSpaceGb", required: true)]
         public Input<int> StorageSpaceGb { get; set; } = null!;
@@ -327,7 +399,7 @@ namespace Pulumi.Volcengine.Mongodb
         private Input<string>? _superAccountPassword;
 
         /// <summary>
-        /// The password of database account.
+        /// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         public Input<string>? SuperAccountPassword
         {
@@ -358,10 +430,22 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// The zone ID of instance.
+        /// This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
         /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
+
+        [Input("zoneIds")]
+        private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+        /// </summary>
+        public InputList<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new InputList<string>());
+            set => _zoneIds = value;
+        }
 
         public InstanceArgs()
         {
@@ -372,13 +456,13 @@ namespace Pulumi.Volcengine.Mongodb
     public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to enable automatic renewal.
+        /// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
 
         /// <summary>
-        /// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        /// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         /// </summary>
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }
@@ -390,7 +474,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? ConfigServersId { get; set; }
 
         /// <summary>
-        /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+        /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         /// </summary>
         [Input("dbEngineVersion")]
         public Input<string>? DbEngineVersion { get; set; }
@@ -402,7 +486,7 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        /// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
         /// </summary>
         [Input("instanceType")]
         public Input<string>? InstanceType { get; set; }
@@ -426,34 +510,52 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? MongosId { get; set; }
 
         /// <summary>
-        /// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Input("mongosNodeNumber")]
         public Input<int>? MongosNodeNumber { get; set; }
 
         /// <summary>
-        /// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Input("mongosNodeSpec")]
         public Input<string>? MongosNodeSpec { get; set; }
 
+        [Input("nodeAvailabilityZones")]
+        private InputList<Inputs.InstanceNodeAvailabilityZoneGetArgs>? _nodeAvailabilityZones;
+
         /// <summary>
-        /// The spec of node.
+        /// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<Inputs.InstanceNodeAvailabilityZoneGetArgs> NodeAvailabilityZones
+        {
+            get => _nodeAvailabilityZones ?? (_nodeAvailabilityZones = new InputList<Inputs.InstanceNodeAvailabilityZoneGetArgs>());
+            set => _nodeAvailabilityZones = value;
+        }
+
+        /// <summary>
+        /// The spec of node. When the instance_type is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instance_type is ShardedCluster, this parameter represents the specification of the Shard node.
         /// </summary>
         [Input("nodeSpec")]
         public Input<string>? NodeSpec { get; set; }
 
         /// <summary>
-        /// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        /// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+        /// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
         /// </summary>
         [Input("periodUnit")]
         public Input<string>? PeriodUnit { get; set; }
+
+        /// <summary>
+        /// The private endpoint address of instance.
+        /// </summary>
+        [Input("privateEndpoint")]
+        public Input<string>? PrivateEndpoint { get; set; }
 
         /// <summary>
         /// The project name to which the instance belongs.
@@ -462,7 +564,13 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? ProjectName { get; set; }
 
         /// <summary>
-        /// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        /// The number of readonly node in instance.
+        /// </summary>
+        [Input("readOnlyNodeNumber")]
+        public Input<int>? ReadOnlyNodeNumber { get; set; }
+
+        /// <summary>
+        /// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
         /// </summary>
         [Input("shardNumber")]
         public Input<int>? ShardNumber { get; set; }
@@ -480,7 +588,7 @@ namespace Pulumi.Volcengine.Mongodb
         }
 
         /// <summary>
-        /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+        /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
         /// </summary>
         [Input("storageSpaceGb")]
         public Input<int>? StorageSpaceGb { get; set; }
@@ -495,7 +603,7 @@ namespace Pulumi.Volcengine.Mongodb
         private Input<string>? _superAccountPassword;
 
         /// <summary>
-        /// The password of database account.
+        /// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         public Input<string>? SuperAccountPassword
         {
@@ -526,10 +634,22 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// The zone ID of instance.
+        /// This field has been deprecated after version-0.0.156. Please use `zone_ids` to deploy multiple availability zones. The zone ID of instance.
         /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
+
+        [Input("zoneIds")]
+        private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+        /// </summary>
+        public InputList<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new InputList<string>());
+            set => _zoneIds = value;
+        }
 
         public InstanceState()
         {

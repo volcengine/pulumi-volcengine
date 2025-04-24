@@ -24,6 +24,7 @@ export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/accounts:Accounts", {
         "accountName": args.accountName,
+        "authDb": args.authDb,
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
     }, opts);
@@ -34,11 +35,15 @@ export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface AccountsArgs {
     /**
-     * The name of account, current support only `root`.
+     * The name of account. This field support fuzzy query.
      */
     accountName?: string;
     /**
-     * Target query mongo instance id.
+     * The database of account. This field support fuzzy query.
+     */
+    authDb?: string;
+    /**
+     * Target query mongodb instance id.
      */
     instanceId: string;
     /**
@@ -59,6 +64,10 @@ export interface AccountsResult {
      * The collection of accounts query.
      */
     readonly accounts: outputs.mongodb.AccountsAccount[];
+    /**
+     * The database of account.
+     */
+    readonly authDb?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -92,11 +101,15 @@ export function accountsOutput(args: AccountsOutputArgs, opts?: pulumi.InvokeOpt
  */
 export interface AccountsOutputArgs {
     /**
-     * The name of account, current support only `root`.
+     * The name of account. This field support fuzzy query.
      */
     accountName?: pulumi.Input<string>;
     /**
-     * Target query mongo instance id.
+     * The database of account. This field support fuzzy query.
+     */
+    authDb?: pulumi.Input<string>;
+    /**
+     * Target query mongodb instance id.
      */
     instanceId: pulumi.Input<string>;
     /**

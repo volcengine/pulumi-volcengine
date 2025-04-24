@@ -166,7 +166,7 @@ export class Clb extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipv6EipId!: pulumi.Output<string>;
     /**
-     * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+     * The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
      */
     public readonly loadBalancerBillingType!: pulumi.Output<string>;
     /**
@@ -174,9 +174,9 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly loadBalancerName!: pulumi.Output<string>;
     /**
-     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
      */
-    public readonly loadBalancerSpec!: pulumi.Output<string>;
+    public readonly loadBalancerSpec!: pulumi.Output<string | undefined>;
     /**
      * The master zone ID of the CLB.
      */
@@ -264,9 +264,6 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as ClbArgs | undefined;
-            if ((!args || args.loadBalancerSpec === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'loadBalancerSpec'");
-            }
             if ((!args || args.subnetId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnetId'");
             }
@@ -340,7 +337,7 @@ export interface ClbState {
      */
     ipv6EipId?: pulumi.Input<string>;
     /**
-     * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+     * The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
      */
     loadBalancerBillingType?: pulumi.Input<string>;
     /**
@@ -348,7 +345,7 @@ export interface ClbState {
      */
     loadBalancerName?: pulumi.Input<string>;
     /**
-     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
      */
     loadBalancerSpec?: pulumi.Input<string>;
     /**
@@ -427,7 +424,7 @@ export interface ClbArgs {
      */
     eniIpv6Address?: pulumi.Input<string>;
     /**
-     * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
+     * The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
      */
     loadBalancerBillingType?: pulumi.Input<string>;
     /**
@@ -435,9 +432,9 @@ export interface ClbArgs {
      */
     loadBalancerName?: pulumi.Input<string>;
     /**
-     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`. When the value of the `loadBalancerBillingType` is `PostPaidByLCU`, this field does not need to be specified.
      */
-    loadBalancerSpec: pulumi.Input<string>;
+    loadBalancerSpec?: pulumi.Input<string>;
     /**
      * The master zone ID of the CLB.
      */

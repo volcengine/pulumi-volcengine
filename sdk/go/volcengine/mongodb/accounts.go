@@ -49,9 +49,11 @@ func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking Accounts.
 type AccountsArgs struct {
-	// The name of account, current support only `root`.
+	// The name of account. This field support fuzzy query.
 	AccountName *string `pulumi:"accountName"`
-	// Target query mongo instance id.
+	// The database of account. This field support fuzzy query.
+	AuthDb *string `pulumi:"authDb"`
+	// Target query mongodb instance id.
 	InstanceId string `pulumi:"instanceId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
@@ -63,6 +65,8 @@ type AccountsResult struct {
 	AccountName *string `pulumi:"accountName"`
 	// The collection of accounts query.
 	Accounts []AccountsAccount `pulumi:"accounts"`
+	// The database of account.
+	AuthDb *string `pulumi:"authDb"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
 	InstanceId string  `pulumi:"instanceId"`
@@ -86,9 +90,11 @@ func AccountsOutput(ctx *pulumi.Context, args AccountsOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking Accounts.
 type AccountsOutputArgs struct {
-	// The name of account, current support only `root`.
+	// The name of account. This field support fuzzy query.
 	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
-	// Target query mongo instance id.
+	// The database of account. This field support fuzzy query.
+	AuthDb pulumi.StringPtrInput `pulumi:"authDb"`
+	// Target query mongodb instance id.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
@@ -121,6 +127,11 @@ func (o AccountsResultOutput) AccountName() pulumi.StringPtrOutput {
 // The collection of accounts query.
 func (o AccountsResultOutput) Accounts() AccountsAccountArrayOutput {
 	return o.ApplyT(func(v AccountsResult) []AccountsAccount { return v.Accounts }).(AccountsAccountArrayOutput)
+}
+
+// The database of account.
+func (o AccountsResultOutput) AuthDb() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccountsResult) *string { return v.AuthDb }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

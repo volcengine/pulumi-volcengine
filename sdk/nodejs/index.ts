@@ -19,16 +19,19 @@ import * as bioos from "./bioos";
 import * as cdn from "./cdn";
 import * as cen from "./cen";
 import * as clb from "./clb";
+import * as cloud_firewall from "./cloud_firewall";
 import * as cloud_identity from "./cloud_identity";
 import * as cloud_monitor from "./cloud_monitor";
 import * as cloudfs from "./cloudfs";
 import * as config from "./config";
 import * as cr from "./cr";
 import * as direct_connect from "./direct_connect";
+import * as dns from "./dns";
 import * as ebs from "./ebs";
 import * as ecs from "./ecs";
 import * as eip from "./eip";
 import * as escloud from "./escloud";
+import * as escloud_v2 from "./escloud_v2";
 import * as financial_relation from "./financial_relation";
 import * as iam from "./iam";
 import * as kafka from "./kafka";
@@ -38,12 +41,14 @@ import * as nat from "./nat";
 import * as organization from "./organization";
 import * as private_zone from "./private_zone";
 import * as privatelink from "./privatelink";
+import * as rabbitmq from "./rabbitmq";
 import * as rds from "./rds";
 import * as rds_mssql from "./rds_mssql";
 import * as rds_mysql from "./rds_mysql";
 import * as rds_postgresql from "./rds_postgresql";
 import * as rds_v2 from "./rds_v2";
 import * as redis from "./redis";
+import * as rocketmq from "./rocketmq";
 import * as tls from "./tls";
 import * as tos from "./tos";
 import * as transit_router from "./transit_router";
@@ -63,16 +68,19 @@ export {
     cdn,
     cen,
     clb,
+    cloud_firewall,
     cloud_identity,
     cloud_monitor,
     cloudfs,
     config,
     cr,
     direct_connect,
+    dns,
     ebs,
     ecs,
     eip,
     escloud,
+    escloud_v2,
     financial_relation,
     iam,
     kafka,
@@ -82,12 +90,14 @@ export {
     organization,
     private_zone,
     privatelink,
+    rabbitmq,
     rds,
     rds_mssql,
     rds_mysql,
     rds_postgresql,
     rds_v2,
     redis,
+    rocketmq,
     tls,
     tos,
     transit_router,

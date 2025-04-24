@@ -27,12 +27,22 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Allowlist{}
 	case "volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate":
 		r = &AllowlistAssociate{}
+	case "volcengine:rds_mysql/backup:Backup":
+		r = &Backup{}
+	case "volcengine:rds_mysql/backupPolicy:BackupPolicy":
+		r = &BackupPolicy{}
 	case "volcengine:rds_mysql/database:Database":
 		r = &Database{}
+	case "volcengine:rds_mysql/endpoint:Endpoint":
+		r = &Endpoint{}
+	case "volcengine:rds_mysql/endpointPublicAddress:EndpointPublicAddress":
+		r = &EndpointPublicAddress{}
 	case "volcengine:rds_mysql/instance:Instance":
 		r = &Instance{}
 	case "volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode":
 		r = &InstanceReadonlyNode{}
+	case "volcengine:rds_mysql/parameterTemplate:ParameterTemplate":
+		r = &ParameterTemplate{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -63,7 +73,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"rds_mysql/backup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_mysql/backupPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"rds_mysql/database",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_mysql/endpoint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_mysql/endpointPublicAddress",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -74,6 +104,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"rds_mysql/instanceReadonlyNode",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_mysql/parameterTemplate",
 		&module{version},
 	)
 }

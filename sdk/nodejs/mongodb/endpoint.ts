@@ -140,7 +140,7 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly mongosNodeIds!: pulumi.Output<string[] | undefined>;
     /**
-     * The network type of endpoint.
+     * The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
      */
     public readonly networkType!: pulumi.Output<string | undefined>;
     /**
@@ -205,7 +205,7 @@ export interface EndpointState {
      */
     mongosNodeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The network type of endpoint.
+     * The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
      */
     networkType?: pulumi.Input<string>;
     /**
@@ -231,7 +231,7 @@ export interface EndpointArgs {
      */
     mongosNodeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The network type of endpoint.
+     * The network type of endpoint. Valid values: `Private`, `Public`. Default is `Private`.
      */
     networkType?: pulumi.Input<string>;
     /**

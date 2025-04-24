@@ -54,6 +54,14 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Whether to enable private dns name.
+        /// </summary>
+        public readonly bool PrivateDnsEnabled;
+        /// <summary>
+        /// The private dns name of vpc endpoint.
+        /// </summary>
+        public readonly string PrivateDnsName;
+        /// <summary>
         /// The Id of vpc endpoint service.
         /// </summary>
         public readonly string ServiceId;
@@ -96,6 +104,10 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
 
             string id,
 
+            bool privateDnsEnabled,
+
+            string privateDnsName,
+
             string serviceId,
 
             string serviceName,
@@ -116,6 +128,8 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
             EndpointName = endpointName;
             EndpointType = endpointType;
             Id = id;
+            PrivateDnsEnabled = privateDnsEnabled;
+            PrivateDnsName = privateDnsName;
             ServiceId = serviceId;
             ServiceName = serviceName;
             Status = status;

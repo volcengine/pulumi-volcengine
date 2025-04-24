@@ -14,7 +14,11 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
     public sealed class AccountsAccountResult
     {
         /// <summary>
-        /// The name of account, current support only `root`.
+        /// The description of account.
+        /// </summary>
+        public readonly string AccountDesc;
+        /// <summary>
+        /// The name of account. This field support fuzzy query.
         /// </summary>
         public readonly string AccountName;
         /// <summary>
@@ -25,18 +29,42 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
         /// The type of account.
         /// </summary>
         public readonly string AccountType;
+        /// <summary>
+        /// The database of account. This field support fuzzy query.
+        /// </summary>
+        public readonly string AuthDb;
+        /// <summary>
+        /// The create time of account.
+        /// </summary>
+        public readonly string CreateTime;
+        /// <summary>
+        /// The modify time of account.
+        /// </summary>
+        public readonly string ModifyTime;
 
         [OutputConstructor]
         private AccountsAccountResult(
+            string accountDesc,
+
             string accountName,
 
             ImmutableArray<Outputs.AccountsAccountAccountPrivilegeResult> accountPrivileges,
 
-            string accountType)
+            string accountType,
+
+            string authDb,
+
+            string createTime,
+
+            string modifyTime)
         {
+            AccountDesc = accountDesc;
             AccountName = accountName;
             AccountPrivileges = accountPrivileges;
             AccountType = accountType;
+            AuthDb = authDb;
+            CreateTime = createTime;
+            ModifyTime = modifyTime;
         }
     }
 }

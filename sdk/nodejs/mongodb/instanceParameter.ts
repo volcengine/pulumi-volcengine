@@ -92,7 +92,7 @@ export class InstanceParameter extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The name of parameter.
+     * The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
      */
     public readonly parameterName!: pulumi.Output<string>;
     /**
@@ -154,7 +154,7 @@ export interface InstanceParameterState {
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The name of parameter.
+     * The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
      */
     parameterName?: pulumi.Input<string>;
     /**
@@ -176,7 +176,7 @@ export interface InstanceParameterArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The name of parameter.
+     * The name of parameter. The parameter resource can only be added or modified, deleting this resource will not actually execute any operation.
      */
     parameterName: pulumi.Input<string>;
     /**

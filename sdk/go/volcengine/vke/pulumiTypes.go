@@ -6953,8 +6953,12 @@ func (o NodePoolAutoScalingPtrOutput) SubnetPolicy() pulumi.StringPtrOutput {
 }
 
 type NodePoolKubernetesConfig struct {
+	// Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+	AutoSyncDisabled *bool `pulumi:"autoSyncDisabled"`
 	// The Cordon of KubernetesConfig.
 	Cordon bool `pulumi:"cordon"`
+	// The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+	KubeletConfig *NodePoolKubernetesConfigKubeletConfig `pulumi:"kubeletConfig"`
 	// The Labels of KubernetesConfig.
 	Labels []NodePoolKubernetesConfigLabel `pulumi:"labels"`
 	// The NamePrefix of node metadata.
@@ -6975,8 +6979,12 @@ type NodePoolKubernetesConfigInput interface {
 }
 
 type NodePoolKubernetesConfigArgs struct {
+	// Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+	AutoSyncDisabled pulumi.BoolPtrInput `pulumi:"autoSyncDisabled"`
 	// The Cordon of KubernetesConfig.
 	Cordon pulumi.BoolInput `pulumi:"cordon"`
+	// The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+	KubeletConfig NodePoolKubernetesConfigKubeletConfigPtrInput `pulumi:"kubeletConfig"`
 	// The Labels of KubernetesConfig.
 	Labels NodePoolKubernetesConfigLabelArrayInput `pulumi:"labels"`
 	// The NamePrefix of node metadata.
@@ -7062,9 +7070,19 @@ func (o NodePoolKubernetesConfigOutput) ToNodePoolKubernetesConfigPtrOutputWithC
 	}).(NodePoolKubernetesConfigPtrOutput)
 }
 
+// Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+func (o NodePoolKubernetesConfigOutput) AutoSyncDisabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfig) *bool { return v.AutoSyncDisabled }).(pulumi.BoolPtrOutput)
+}
+
 // The Cordon of KubernetesConfig.
 func (o NodePoolKubernetesConfigOutput) Cordon() pulumi.BoolOutput {
 	return o.ApplyT(func(v NodePoolKubernetesConfig) bool { return v.Cordon }).(pulumi.BoolOutput)
+}
+
+// The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+func (o NodePoolKubernetesConfigOutput) KubeletConfig() NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfig) *NodePoolKubernetesConfigKubeletConfig { return v.KubeletConfig }).(NodePoolKubernetesConfigKubeletConfigPtrOutput)
 }
 
 // The Labels of KubernetesConfig.
@@ -7106,6 +7124,16 @@ func (o NodePoolKubernetesConfigPtrOutput) Elem() NodePoolKubernetesConfigOutput
 	}).(NodePoolKubernetesConfigOutput)
 }
 
+// Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+func (o NodePoolKubernetesConfigPtrOutput) AutoSyncDisabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoSyncDisabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The Cordon of KubernetesConfig.
 func (o NodePoolKubernetesConfigPtrOutput) Cordon() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NodePoolKubernetesConfig) *bool {
@@ -7114,6 +7142,16 @@ func (o NodePoolKubernetesConfigPtrOutput) Cordon() pulumi.BoolPtrOutput {
 		}
 		return &v.Cordon
 	}).(pulumi.BoolPtrOutput)
+}
+
+// The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+func (o NodePoolKubernetesConfigPtrOutput) KubeletConfig() NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfig) *NodePoolKubernetesConfigKubeletConfig {
+		if v == nil {
+			return nil
+		}
+		return v.KubeletConfig
+	}).(NodePoolKubernetesConfigKubeletConfigPtrOutput)
 }
 
 // The Labels of KubernetesConfig.
@@ -7144,6 +7182,320 @@ func (o NodePoolKubernetesConfigPtrOutput) Taints() NodePoolKubernetesConfigTain
 		}
 		return v.Taints
 	}).(NodePoolKubernetesConfigTaintArrayOutput)
+}
+
+type NodePoolKubernetesConfigKubeletConfig struct {
+	// The FeatureGates of KubeletConfig.
+	FeatureGates *NodePoolKubernetesConfigKubeletConfigFeatureGates `pulumi:"featureGates"`
+	// The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+	TopologyManagerPolicy *string `pulumi:"topologyManagerPolicy"`
+	// The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+	TopologyManagerScope *string `pulumi:"topologyManagerScope"`
+}
+
+// NodePoolKubernetesConfigKubeletConfigInput is an input type that accepts NodePoolKubernetesConfigKubeletConfigArgs and NodePoolKubernetesConfigKubeletConfigOutput values.
+// You can construct a concrete instance of `NodePoolKubernetesConfigKubeletConfigInput` via:
+//
+//	NodePoolKubernetesConfigKubeletConfigArgs{...}
+type NodePoolKubernetesConfigKubeletConfigInput interface {
+	pulumi.Input
+
+	ToNodePoolKubernetesConfigKubeletConfigOutput() NodePoolKubernetesConfigKubeletConfigOutput
+	ToNodePoolKubernetesConfigKubeletConfigOutputWithContext(context.Context) NodePoolKubernetesConfigKubeletConfigOutput
+}
+
+type NodePoolKubernetesConfigKubeletConfigArgs struct {
+	// The FeatureGates of KubeletConfig.
+	FeatureGates NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrInput `pulumi:"featureGates"`
+	// The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+	TopologyManagerPolicy pulumi.StringPtrInput `pulumi:"topologyManagerPolicy"`
+	// The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+	TopologyManagerScope pulumi.StringPtrInput `pulumi:"topologyManagerScope"`
+}
+
+func (NodePoolKubernetesConfigKubeletConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfig)(nil)).Elem()
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigArgs) ToNodePoolKubernetesConfigKubeletConfigOutput() NodePoolKubernetesConfigKubeletConfigOutput {
+	return i.ToNodePoolKubernetesConfigKubeletConfigOutputWithContext(context.Background())
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigArgs) ToNodePoolKubernetesConfigKubeletConfigOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolKubernetesConfigKubeletConfigOutput)
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigArgs) ToNodePoolKubernetesConfigKubeletConfigPtrOutput() NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return i.ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigArgs) ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolKubernetesConfigKubeletConfigOutput).ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(ctx)
+}
+
+// NodePoolKubernetesConfigKubeletConfigPtrInput is an input type that accepts NodePoolKubernetesConfigKubeletConfigArgs, NodePoolKubernetesConfigKubeletConfigPtr and NodePoolKubernetesConfigKubeletConfigPtrOutput values.
+// You can construct a concrete instance of `NodePoolKubernetesConfigKubeletConfigPtrInput` via:
+//
+//	        NodePoolKubernetesConfigKubeletConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodePoolKubernetesConfigKubeletConfigPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolKubernetesConfigKubeletConfigPtrOutput() NodePoolKubernetesConfigKubeletConfigPtrOutput
+	ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(context.Context) NodePoolKubernetesConfigKubeletConfigPtrOutput
+}
+
+type nodePoolKubernetesConfigKubeletConfigPtrType NodePoolKubernetesConfigKubeletConfigArgs
+
+func NodePoolKubernetesConfigKubeletConfigPtr(v *NodePoolKubernetesConfigKubeletConfigArgs) NodePoolKubernetesConfigKubeletConfigPtrInput {
+	return (*nodePoolKubernetesConfigKubeletConfigPtrType)(v)
+}
+
+func (*nodePoolKubernetesConfigKubeletConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolKubernetesConfigKubeletConfig)(nil)).Elem()
+}
+
+func (i *nodePoolKubernetesConfigKubeletConfigPtrType) ToNodePoolKubernetesConfigKubeletConfigPtrOutput() NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return i.ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *nodePoolKubernetesConfigKubeletConfigPtrType) ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolKubernetesConfigKubeletConfigPtrOutput)
+}
+
+type NodePoolKubernetesConfigKubeletConfigOutput struct{ *pulumi.OutputState }
+
+func (NodePoolKubernetesConfigKubeletConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfig)(nil)).Elem()
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigOutput) ToNodePoolKubernetesConfigKubeletConfigOutput() NodePoolKubernetesConfigKubeletConfigOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigOutput) ToNodePoolKubernetesConfigKubeletConfigOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigOutput) ToNodePoolKubernetesConfigKubeletConfigPtrOutput() NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return o.ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigOutput) ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolKubernetesConfigKubeletConfig) *NodePoolKubernetesConfigKubeletConfig {
+		return &v
+	}).(NodePoolKubernetesConfigKubeletConfigPtrOutput)
+}
+
+// The FeatureGates of KubeletConfig.
+func (o NodePoolKubernetesConfigKubeletConfigOutput) FeatureGates() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfigKubeletConfig) *NodePoolKubernetesConfigKubeletConfigFeatureGates {
+		return v.FeatureGates
+	}).(NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput)
+}
+
+// The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+func (o NodePoolKubernetesConfigKubeletConfigOutput) TopologyManagerPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfigKubeletConfig) *string { return v.TopologyManagerPolicy }).(pulumi.StringPtrOutput)
+}
+
+// The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+func (o NodePoolKubernetesConfigKubeletConfigOutput) TopologyManagerScope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfigKubeletConfig) *string { return v.TopologyManagerScope }).(pulumi.StringPtrOutput)
+}
+
+type NodePoolKubernetesConfigKubeletConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NodePoolKubernetesConfigKubeletConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolKubernetesConfigKubeletConfig)(nil)).Elem()
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigPtrOutput) ToNodePoolKubernetesConfigKubeletConfigPtrOutput() NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigPtrOutput) ToNodePoolKubernetesConfigKubeletConfigPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigPtrOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigPtrOutput) Elem() NodePoolKubernetesConfigKubeletConfigOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfigKubeletConfig) NodePoolKubernetesConfigKubeletConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NodePoolKubernetesConfigKubeletConfig
+		return ret
+	}).(NodePoolKubernetesConfigKubeletConfigOutput)
+}
+
+// The FeatureGates of KubeletConfig.
+func (o NodePoolKubernetesConfigKubeletConfigPtrOutput) FeatureGates() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfigKubeletConfig) *NodePoolKubernetesConfigKubeletConfigFeatureGates {
+		if v == nil {
+			return nil
+		}
+		return v.FeatureGates
+	}).(NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput)
+}
+
+// The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+func (o NodePoolKubernetesConfigKubeletConfigPtrOutput) TopologyManagerPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfigKubeletConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TopologyManagerPolicy
+	}).(pulumi.StringPtrOutput)
+}
+
+// The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+func (o NodePoolKubernetesConfigKubeletConfigPtrOutput) TopologyManagerScope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfigKubeletConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TopologyManagerScope
+	}).(pulumi.StringPtrOutput)
+}
+
+type NodePoolKubernetesConfigKubeletConfigFeatureGates struct {
+	// Whether to enable QoSResourceManager. Default is false.
+	QosResourceManager *bool `pulumi:"qosResourceManager"`
+}
+
+// NodePoolKubernetesConfigKubeletConfigFeatureGatesInput is an input type that accepts NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs and NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput values.
+// You can construct a concrete instance of `NodePoolKubernetesConfigKubeletConfigFeatureGatesInput` via:
+//
+//	NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs{...}
+type NodePoolKubernetesConfigKubeletConfigFeatureGatesInput interface {
+	pulumi.Input
+
+	ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput
+	ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutputWithContext(context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput
+}
+
+type NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs struct {
+	// Whether to enable QoSResourceManager. Default is false.
+	QosResourceManager pulumi.BoolPtrInput `pulumi:"qosResourceManager"`
+}
+
+func (NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfigFeatureGates)(nil)).Elem()
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput {
+	return i.ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutputWithContext(context.Background())
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput)
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return i.ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(context.Background())
+}
+
+func (i NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput).ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(ctx)
+}
+
+// NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrInput is an input type that accepts NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs, NodePoolKubernetesConfigKubeletConfigFeatureGatesPtr and NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput values.
+// You can construct a concrete instance of `NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrInput` via:
+//
+//	        NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput
+	ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput
+}
+
+type nodePoolKubernetesConfigKubeletConfigFeatureGatesPtrType NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs
+
+func NodePoolKubernetesConfigKubeletConfigFeatureGatesPtr(v *NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs) NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrInput {
+	return (*nodePoolKubernetesConfigKubeletConfigFeatureGatesPtrType)(v)
+}
+
+func (*nodePoolKubernetesConfigKubeletConfigFeatureGatesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolKubernetesConfigKubeletConfigFeatureGates)(nil)).Elem()
+}
+
+func (i *nodePoolKubernetesConfigKubeletConfigFeatureGatesPtrType) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return i.ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(context.Background())
+}
+
+func (i *nodePoolKubernetesConfigKubeletConfigFeatureGatesPtrType) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput)
+}
+
+type NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput struct{ *pulumi.OutputState }
+
+func (NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfigFeatureGates)(nil)).Elem()
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return o.ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(context.Background())
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolKubernetesConfigKubeletConfigFeatureGates) *NodePoolKubernetesConfigKubeletConfigFeatureGates {
+		return &v
+	}).(NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput)
+}
+
+// Whether to enable QoSResourceManager. Default is false.
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput) QosResourceManager() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfigKubeletConfigFeatureGates) *bool { return v.QosResourceManager }).(pulumi.BoolPtrOutput)
+}
+
+type NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput struct{ *pulumi.OutputState }
+
+func (NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolKubernetesConfigKubeletConfigFeatureGates)(nil)).Elem()
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput() NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput) ToNodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutputWithContext(ctx context.Context) NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput {
+	return o
+}
+
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput) Elem() NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfigKubeletConfigFeatureGates) NodePoolKubernetesConfigKubeletConfigFeatureGates {
+		if v != nil {
+			return *v
+		}
+		var ret NodePoolKubernetesConfigKubeletConfigFeatureGates
+		return ret
+	}).(NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput)
+}
+
+// Whether to enable QoSResourceManager. Default is false.
+func (o NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput) QosResourceManager() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfigKubeletConfigFeatureGates) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.QosResourceManager
+	}).(pulumi.BoolPtrOutput)
 }
 
 type NodePoolKubernetesConfigLabel struct {
@@ -8808,8 +9160,12 @@ type NodePoolsNodePool struct {
 	InstanceChargeType string `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
+	// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+	KubeConfigAutoSyncDisabled bool `pulumi:"kubeConfigAutoSyncDisabled"`
 	// The NamePrefix of node metadata.
 	KubeConfigNamePrefix string `pulumi:"kubeConfigNamePrefix"`
+	// The KubeletConfig of KubernetesConfig.
+	KubeletConfigs []NodePoolsNodePoolKubeletConfig `pulumi:"kubeletConfigs"`
 	// The LabelContent of KubernetesConfig.
 	LabelContents []NodePoolsNodePoolLabelContent `pulumi:"labelContents"`
 	// The login SshKeyPairName of NodeConfig.
@@ -8902,8 +9258,12 @@ type NodePoolsNodePoolArgs struct {
 	InstanceChargeType pulumi.StringInput `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
+	// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+	KubeConfigAutoSyncDisabled pulumi.BoolInput `pulumi:"kubeConfigAutoSyncDisabled"`
 	// The NamePrefix of node metadata.
 	KubeConfigNamePrefix pulumi.StringInput `pulumi:"kubeConfigNamePrefix"`
+	// The KubeletConfig of KubernetesConfig.
+	KubeletConfigs NodePoolsNodePoolKubeletConfigArrayInput `pulumi:"kubeletConfigs"`
 	// The LabelContent of KubernetesConfig.
 	LabelContents NodePoolsNodePoolLabelContentArrayInput `pulumi:"labelContents"`
 	// The login SshKeyPairName of NodeConfig.
@@ -9089,9 +9449,19 @@ func (o NodePoolsNodePoolOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
 }
 
+// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+func (o NodePoolsNodePoolOutput) KubeConfigAutoSyncDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) bool { return v.KubeConfigAutoSyncDisabled }).(pulumi.BoolOutput)
+}
+
 // The NamePrefix of node metadata.
 func (o NodePoolsNodePoolOutput) KubeConfigNamePrefix() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.KubeConfigNamePrefix }).(pulumi.StringOutput)
+}
+
+// The KubeletConfig of KubernetesConfig.
+func (o NodePoolsNodePoolOutput) KubeletConfigs() NodePoolsNodePoolKubeletConfigArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolKubeletConfig { return v.KubeletConfigs }).(NodePoolsNodePoolKubeletConfigArrayOutput)
 }
 
 // The LabelContent of KubernetesConfig.
@@ -9438,6 +9808,220 @@ func (o NodePoolsNodePoolEcsTagArrayOutput) Index(i pulumi.IntInput) NodePoolsNo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolEcsTag {
 		return vs[0].([]NodePoolsNodePoolEcsTag)[vs[1].(int)]
 	}).(NodePoolsNodePoolEcsTagOutput)
+}
+
+type NodePoolsNodePoolKubeletConfig struct {
+	// The FeatureGates of KubeletConfig.
+	FeatureGates []NodePoolsNodePoolKubeletConfigFeatureGate `pulumi:"featureGates"`
+	// The TopologyManagerPolicy of KubeletConfig.
+	TopologyManagerPolicy string `pulumi:"topologyManagerPolicy"`
+	// The TopologyManagerScope of KubeletConfig.
+	TopologyManagerScope string `pulumi:"topologyManagerScope"`
+}
+
+// NodePoolsNodePoolKubeletConfigInput is an input type that accepts NodePoolsNodePoolKubeletConfigArgs and NodePoolsNodePoolKubeletConfigOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolKubeletConfigInput` via:
+//
+//	NodePoolsNodePoolKubeletConfigArgs{...}
+type NodePoolsNodePoolKubeletConfigInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolKubeletConfigOutput() NodePoolsNodePoolKubeletConfigOutput
+	ToNodePoolsNodePoolKubeletConfigOutputWithContext(context.Context) NodePoolsNodePoolKubeletConfigOutput
+}
+
+type NodePoolsNodePoolKubeletConfigArgs struct {
+	// The FeatureGates of KubeletConfig.
+	FeatureGates NodePoolsNodePoolKubeletConfigFeatureGateArrayInput `pulumi:"featureGates"`
+	// The TopologyManagerPolicy of KubeletConfig.
+	TopologyManagerPolicy pulumi.StringInput `pulumi:"topologyManagerPolicy"`
+	// The TopologyManagerScope of KubeletConfig.
+	TopologyManagerScope pulumi.StringInput `pulumi:"topologyManagerScope"`
+}
+
+func (NodePoolsNodePoolKubeletConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolKubeletConfigArgs) ToNodePoolsNodePoolKubeletConfigOutput() NodePoolsNodePoolKubeletConfigOutput {
+	return i.ToNodePoolsNodePoolKubeletConfigOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolKubeletConfigArgs) ToNodePoolsNodePoolKubeletConfigOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolKubeletConfigOutput)
+}
+
+// NodePoolsNodePoolKubeletConfigArrayInput is an input type that accepts NodePoolsNodePoolKubeletConfigArray and NodePoolsNodePoolKubeletConfigArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolKubeletConfigArrayInput` via:
+//
+//	NodePoolsNodePoolKubeletConfigArray{ NodePoolsNodePoolKubeletConfigArgs{...} }
+type NodePoolsNodePoolKubeletConfigArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolKubeletConfigArrayOutput() NodePoolsNodePoolKubeletConfigArrayOutput
+	ToNodePoolsNodePoolKubeletConfigArrayOutputWithContext(context.Context) NodePoolsNodePoolKubeletConfigArrayOutput
+}
+
+type NodePoolsNodePoolKubeletConfigArray []NodePoolsNodePoolKubeletConfigInput
+
+func (NodePoolsNodePoolKubeletConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolKubeletConfigArray) ToNodePoolsNodePoolKubeletConfigArrayOutput() NodePoolsNodePoolKubeletConfigArrayOutput {
+	return i.ToNodePoolsNodePoolKubeletConfigArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolKubeletConfigArray) ToNodePoolsNodePoolKubeletConfigArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolKubeletConfigArrayOutput)
+}
+
+type NodePoolsNodePoolKubeletConfigOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolKubeletConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolKubeletConfigOutput) ToNodePoolsNodePoolKubeletConfigOutput() NodePoolsNodePoolKubeletConfigOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolKubeletConfigOutput) ToNodePoolsNodePoolKubeletConfigOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigOutput {
+	return o
+}
+
+// The FeatureGates of KubeletConfig.
+func (o NodePoolsNodePoolKubeletConfigOutput) FeatureGates() NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolKubeletConfig) []NodePoolsNodePoolKubeletConfigFeatureGate {
+		return v.FeatureGates
+	}).(NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput)
+}
+
+// The TopologyManagerPolicy of KubeletConfig.
+func (o NodePoolsNodePoolKubeletConfigOutput) TopologyManagerPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolKubeletConfig) string { return v.TopologyManagerPolicy }).(pulumi.StringOutput)
+}
+
+// The TopologyManagerScope of KubeletConfig.
+func (o NodePoolsNodePoolKubeletConfigOutput) TopologyManagerScope() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolKubeletConfig) string { return v.TopologyManagerScope }).(pulumi.StringOutput)
+}
+
+type NodePoolsNodePoolKubeletConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolKubeletConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolKubeletConfigArrayOutput) ToNodePoolsNodePoolKubeletConfigArrayOutput() NodePoolsNodePoolKubeletConfigArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolKubeletConfigArrayOutput) ToNodePoolsNodePoolKubeletConfigArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolKubeletConfigArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolKubeletConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolKubeletConfig {
+		return vs[0].([]NodePoolsNodePoolKubeletConfig)[vs[1].(int)]
+	}).(NodePoolsNodePoolKubeletConfigOutput)
+}
+
+type NodePoolsNodePoolKubeletConfigFeatureGate struct {
+	// Whether to enable QoSResourceManager.
+	QosResourceManager bool `pulumi:"qosResourceManager"`
+}
+
+// NodePoolsNodePoolKubeletConfigFeatureGateInput is an input type that accepts NodePoolsNodePoolKubeletConfigFeatureGateArgs and NodePoolsNodePoolKubeletConfigFeatureGateOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolKubeletConfigFeatureGateInput` via:
+//
+//	NodePoolsNodePoolKubeletConfigFeatureGateArgs{...}
+type NodePoolsNodePoolKubeletConfigFeatureGateInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolKubeletConfigFeatureGateOutput() NodePoolsNodePoolKubeletConfigFeatureGateOutput
+	ToNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(context.Context) NodePoolsNodePoolKubeletConfigFeatureGateOutput
+}
+
+type NodePoolsNodePoolKubeletConfigFeatureGateArgs struct {
+	// Whether to enable QoSResourceManager.
+	QosResourceManager pulumi.BoolInput `pulumi:"qosResourceManager"`
+}
+
+func (NodePoolsNodePoolKubeletConfigFeatureGateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolKubeletConfigFeatureGateArgs) ToNodePoolsNodePoolKubeletConfigFeatureGateOutput() NodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return i.ToNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolKubeletConfigFeatureGateArgs) ToNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolKubeletConfigFeatureGateOutput)
+}
+
+// NodePoolsNodePoolKubeletConfigFeatureGateArrayInput is an input type that accepts NodePoolsNodePoolKubeletConfigFeatureGateArray and NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolKubeletConfigFeatureGateArrayInput` via:
+//
+//	NodePoolsNodePoolKubeletConfigFeatureGateArray{ NodePoolsNodePoolKubeletConfigFeatureGateArgs{...} }
+type NodePoolsNodePoolKubeletConfigFeatureGateArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput() NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput
+	ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(context.Context) NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput
+}
+
+type NodePoolsNodePoolKubeletConfigFeatureGateArray []NodePoolsNodePoolKubeletConfigFeatureGateInput
+
+func (NodePoolsNodePoolKubeletConfigFeatureGateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolKubeletConfigFeatureGateArray) ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput() NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return i.ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolKubeletConfigFeatureGateArray) ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput)
+}
+
+type NodePoolsNodePoolKubeletConfigFeatureGateOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolKubeletConfigFeatureGateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolKubeletConfigFeatureGateOutput) ToNodePoolsNodePoolKubeletConfigFeatureGateOutput() NodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolKubeletConfigFeatureGateOutput) ToNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return o
+}
+
+// Whether to enable QoSResourceManager.
+func (o NodePoolsNodePoolKubeletConfigFeatureGateOutput) QosResourceManager() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolKubeletConfigFeatureGate) bool { return v.QosResourceManager }).(pulumi.BoolOutput)
+}
+
+type NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput() NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) ToNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolKubeletConfigFeatureGate {
+		return vs[0].([]NodePoolsNodePoolKubeletConfigFeatureGate)[vs[1].(int)]
+	}).(NodePoolsNodePoolKubeletConfigFeatureGateOutput)
 }
 
 type NodePoolsNodePoolLabelContent struct {
@@ -11465,6 +12049,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingPtrInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigInput)(nil)).Elem(), NodePoolKubernetesConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigPtrInput)(nil)).Elem(), NodePoolKubernetesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfigInput)(nil)).Elem(), NodePoolKubernetesConfigKubeletConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfigPtrInput)(nil)).Elem(), NodePoolKubernetesConfigKubeletConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfigFeatureGatesInput)(nil)).Elem(), NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrInput)(nil)).Elem(), NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigLabelInput)(nil)).Elem(), NodePoolKubernetesConfigLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigLabelArrayInput)(nil)).Elem(), NodePoolKubernetesConfigLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigTaintInput)(nil)).Elem(), NodePoolKubernetesConfigTaintArgs{})
@@ -11491,6 +12079,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolDataVolumeArrayInput)(nil)).Elem(), NodePoolsNodePoolDataVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolEcsTagInput)(nil)).Elem(), NodePoolsNodePoolEcsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolEcsTagArrayInput)(nil)).Elem(), NodePoolsNodePoolEcsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolKubeletConfigInput)(nil)).Elem(), NodePoolsNodePoolKubeletConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolKubeletConfigArrayInput)(nil)).Elem(), NodePoolsNodePoolKubeletConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolKubeletConfigFeatureGateInput)(nil)).Elem(), NodePoolsNodePoolKubeletConfigFeatureGateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolKubeletConfigFeatureGateArrayInput)(nil)).Elem(), NodePoolsNodePoolKubeletConfigFeatureGateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentArrayInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticArgs{})
@@ -11622,6 +12214,10 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolAutoScalingPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigPtrOutput{})
+	pulumi.RegisterOutputType(NodePoolKubernetesConfigKubeletConfigOutput{})
+	pulumi.RegisterOutputType(NodePoolKubernetesConfigKubeletConfigPtrOutput{})
+	pulumi.RegisterOutputType(NodePoolKubernetesConfigKubeletConfigFeatureGatesOutput{})
+	pulumi.RegisterOutputType(NodePoolKubernetesConfigKubeletConfigFeatureGatesPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigLabelOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigLabelArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigTaintOutput{})
@@ -11648,6 +12244,10 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolsNodePoolDataVolumeArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolEcsTagOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolEcsTagArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolKubeletConfigOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolKubeletConfigArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolKubeletConfigFeatureGateOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticOutput{})

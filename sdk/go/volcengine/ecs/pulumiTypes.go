@@ -1884,6 +1884,200 @@ func (o InstanceDataVolumeArrayOutput) Index(i pulumi.IntInput) InstanceDataVolu
 	}).(InstanceDataVolumeOutput)
 }
 
+type InstanceEipAddress struct {
+	// The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+	BandwidthMbps *int `pulumi:"bandwidthMbps"`
+	// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+	BandwidthPackageId *int `pulumi:"bandwidthPackageId"`
+	// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+	ChargeType *string `pulumi:"chargeType"`
+	// The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+	Isp *string `pulumi:"isp"`
+}
+
+// InstanceEipAddressInput is an input type that accepts InstanceEipAddressArgs and InstanceEipAddressOutput values.
+// You can construct a concrete instance of `InstanceEipAddressInput` via:
+//
+//	InstanceEipAddressArgs{...}
+type InstanceEipAddressInput interface {
+	pulumi.Input
+
+	ToInstanceEipAddressOutput() InstanceEipAddressOutput
+	ToInstanceEipAddressOutputWithContext(context.Context) InstanceEipAddressOutput
+}
+
+type InstanceEipAddressArgs struct {
+	// The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+	BandwidthMbps pulumi.IntPtrInput `pulumi:"bandwidthMbps"`
+	// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+	BandwidthPackageId pulumi.IntPtrInput `pulumi:"bandwidthPackageId"`
+	// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+	ChargeType pulumi.StringPtrInput `pulumi:"chargeType"`
+	// The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+	Isp pulumi.StringPtrInput `pulumi:"isp"`
+}
+
+func (InstanceEipAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceEipAddress)(nil)).Elem()
+}
+
+func (i InstanceEipAddressArgs) ToInstanceEipAddressOutput() InstanceEipAddressOutput {
+	return i.ToInstanceEipAddressOutputWithContext(context.Background())
+}
+
+func (i InstanceEipAddressArgs) ToInstanceEipAddressOutputWithContext(ctx context.Context) InstanceEipAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceEipAddressOutput)
+}
+
+func (i InstanceEipAddressArgs) ToInstanceEipAddressPtrOutput() InstanceEipAddressPtrOutput {
+	return i.ToInstanceEipAddressPtrOutputWithContext(context.Background())
+}
+
+func (i InstanceEipAddressArgs) ToInstanceEipAddressPtrOutputWithContext(ctx context.Context) InstanceEipAddressPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceEipAddressOutput).ToInstanceEipAddressPtrOutputWithContext(ctx)
+}
+
+// InstanceEipAddressPtrInput is an input type that accepts InstanceEipAddressArgs, InstanceEipAddressPtr and InstanceEipAddressPtrOutput values.
+// You can construct a concrete instance of `InstanceEipAddressPtrInput` via:
+//
+//	        InstanceEipAddressArgs{...}
+//
+//	or:
+//
+//	        nil
+type InstanceEipAddressPtrInput interface {
+	pulumi.Input
+
+	ToInstanceEipAddressPtrOutput() InstanceEipAddressPtrOutput
+	ToInstanceEipAddressPtrOutputWithContext(context.Context) InstanceEipAddressPtrOutput
+}
+
+type instanceEipAddressPtrType InstanceEipAddressArgs
+
+func InstanceEipAddressPtr(v *InstanceEipAddressArgs) InstanceEipAddressPtrInput {
+	return (*instanceEipAddressPtrType)(v)
+}
+
+func (*instanceEipAddressPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceEipAddress)(nil)).Elem()
+}
+
+func (i *instanceEipAddressPtrType) ToInstanceEipAddressPtrOutput() InstanceEipAddressPtrOutput {
+	return i.ToInstanceEipAddressPtrOutputWithContext(context.Background())
+}
+
+func (i *instanceEipAddressPtrType) ToInstanceEipAddressPtrOutputWithContext(ctx context.Context) InstanceEipAddressPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceEipAddressPtrOutput)
+}
+
+type InstanceEipAddressOutput struct{ *pulumi.OutputState }
+
+func (InstanceEipAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceEipAddress)(nil)).Elem()
+}
+
+func (o InstanceEipAddressOutput) ToInstanceEipAddressOutput() InstanceEipAddressOutput {
+	return o
+}
+
+func (o InstanceEipAddressOutput) ToInstanceEipAddressOutputWithContext(ctx context.Context) InstanceEipAddressOutput {
+	return o
+}
+
+func (o InstanceEipAddressOutput) ToInstanceEipAddressPtrOutput() InstanceEipAddressPtrOutput {
+	return o.ToInstanceEipAddressPtrOutputWithContext(context.Background())
+}
+
+func (o InstanceEipAddressOutput) ToInstanceEipAddressPtrOutputWithContext(ctx context.Context) InstanceEipAddressPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InstanceEipAddress) *InstanceEipAddress {
+		return &v
+	}).(InstanceEipAddressPtrOutput)
+}
+
+// The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+func (o InstanceEipAddressOutput) BandwidthMbps() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceEipAddress) *int { return v.BandwidthMbps }).(pulumi.IntPtrOutput)
+}
+
+// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+func (o InstanceEipAddressOutput) BandwidthPackageId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceEipAddress) *int { return v.BandwidthPackageId }).(pulumi.IntPtrOutput)
+}
+
+// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+func (o InstanceEipAddressOutput) ChargeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceEipAddress) *string { return v.ChargeType }).(pulumi.StringPtrOutput)
+}
+
+// The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+func (o InstanceEipAddressOutput) Isp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceEipAddress) *string { return v.Isp }).(pulumi.StringPtrOutput)
+}
+
+type InstanceEipAddressPtrOutput struct{ *pulumi.OutputState }
+
+func (InstanceEipAddressPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceEipAddress)(nil)).Elem()
+}
+
+func (o InstanceEipAddressPtrOutput) ToInstanceEipAddressPtrOutput() InstanceEipAddressPtrOutput {
+	return o
+}
+
+func (o InstanceEipAddressPtrOutput) ToInstanceEipAddressPtrOutputWithContext(ctx context.Context) InstanceEipAddressPtrOutput {
+	return o
+}
+
+func (o InstanceEipAddressPtrOutput) Elem() InstanceEipAddressOutput {
+	return o.ApplyT(func(v *InstanceEipAddress) InstanceEipAddress {
+		if v != nil {
+			return *v
+		}
+		var ret InstanceEipAddress
+		return ret
+	}).(InstanceEipAddressOutput)
+}
+
+// The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+func (o InstanceEipAddressPtrOutput) BandwidthMbps() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceEipAddress) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BandwidthMbps
+	}).(pulumi.IntPtrOutput)
+}
+
+// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+func (o InstanceEipAddressPtrOutput) BandwidthPackageId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceEipAddress) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BandwidthPackageId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+func (o InstanceEipAddressPtrOutput) ChargeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceEipAddress) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChargeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+func (o InstanceEipAddressPtrOutput) Isp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceEipAddress) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Isp
+	}).(pulumi.StringPtrOutput)
+}
+
 type InstanceGpuDevice struct {
 	// The Count of GPU device.
 	Count *int `pulumi:"count"`
@@ -6035,6 +6229,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCpuOptionsPtrInput)(nil)).Elem(), InstanceCpuOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceDataVolumeInput)(nil)).Elem(), InstanceDataVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceDataVolumeArrayInput)(nil)).Elem(), InstanceDataVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceEipAddressInput)(nil)).Elem(), InstanceEipAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceEipAddressPtrInput)(nil)).Elem(), InstanceEipAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGpuDeviceInput)(nil)).Elem(), InstanceGpuDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGpuDeviceArrayInput)(nil)).Elem(), InstanceGpuDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecondaryNetworkInterfaceInput)(nil)).Elem(), InstanceSecondaryNetworkInterfaceArgs{})
@@ -6121,6 +6317,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceCpuOptionsPtrOutput{})
 	pulumi.RegisterOutputType(InstanceDataVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceDataVolumeArrayOutput{})
+	pulumi.RegisterOutputType(InstanceEipAddressOutput{})
+	pulumi.RegisterOutputType(InstanceEipAddressPtrOutput{})
 	pulumi.RegisterOutputType(InstanceGpuDeviceOutput{})
 	pulumi.RegisterOutputType(InstanceGpuDeviceArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecondaryNetworkInterfaceOutput{})

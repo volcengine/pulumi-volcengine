@@ -155,6 +155,18 @@ namespace Pulumi.Volcengine.Privatelink
         public Output<string> EndpointType { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable private dns name. Default is false.
+        /// </summary>
+        [Output("privateDnsEnabled")]
+        public Output<bool> PrivateDnsEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The private dns name of vpc endpoint.
+        /// </summary>
+        [Output("privateDnsName")]
+        public Output<string> PrivateDnsName { get; private set; } = null!;
+
+        /// <summary>
         /// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
         /// For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         /// </summary>
@@ -250,6 +262,12 @@ namespace Pulumi.Volcengine.Privatelink
         [Input("endpointName")]
         public Input<string>? EndpointName { get; set; }
 
+        /// <summary>
+        /// Whether to enable private dns name. Default is false.
+        /// </summary>
+        [Input("privateDnsEnabled")]
+        public Input<bool>? PrivateDnsEnabled { get; set; }
+
         [Input("securityGroupIds", required: true)]
         private InputList<string>? _securityGroupIds;
 
@@ -330,6 +348,18 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Input("endpointType")]
         public Input<string>? EndpointType { get; set; }
+
+        /// <summary>
+        /// Whether to enable private dns name. Default is false.
+        /// </summary>
+        [Input("privateDnsEnabled")]
+        public Input<bool>? PrivateDnsEnabled { get; set; }
+
+        /// <summary>
+        /// The private dns name of vpc endpoint.
+        /// </summary>
+        [Input("privateDnsName")]
+        public Input<string>? PrivateDnsName { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;

@@ -20,29 +20,59 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/mongodb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewInstance(ctx, "foo", &mongodb.InstanceArgs{
-//				ChargeType:           pulumi.String("PostPaid"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewInstance(ctx, "fooInstance", &mongodb.InstanceArgs{
+//				ZoneIds: pulumi.StringArray{
+//					pulumi.String(fooZones.Zones[0].Id),
+//				},
 //				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
-//				InstanceName:         pulumi.String("mongo-replica-be9995d32e4a"),
 //				InstanceType:         pulumi.String("ReplicaSet"),
 //				NodeSpec:             pulumi.String("mongo.2c4g"),
-//				ProjectName:          pulumi.String("default"),
 //				StorageSpaceGb:       pulumi.Int(20),
-//				SubnetId:             pulumi.String("subnet-rrx4ns6abw1sv0x57wq6h47"),
-//				SuperAccountPassword: pulumi.String("******"),
+//				SubnetId:             fooSubnet.ID(),
+//				InstanceName:         pulumi.String("acc-test-mongodb-replica"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				SuperAccountPassword: pulumi.String("93f0cb0614Aab12"),
+//				ProjectName:          pulumi.String("default"),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
 //						Value: pulumi.String("v1"),
 //					},
 //				},
-//				ZoneId: pulumi.String("cn-beijing-a"),
+//				NodeAvailabilityZones: mongodb.InstanceNodeAvailabilityZoneArray{
+//					&mongodb.InstanceNodeAvailabilityZoneArgs{
+//						ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//						NodeNumber: pulumi.Int(2),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -63,50 +93,60 @@ import (
 type Instance struct {
 	pulumi.CustomResourceState
 
-	// Whether to enable automatic renewal.
+	// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
 	AutoRenew pulumi.BoolOutput `pulumi:"autoRenew"`
-	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType pulumi.StringOutput `pulumi:"chargeType"`
 	// The config servers id of the ShardedCluster instance.
 	ConfigServersId pulumi.StringOutput `pulumi:"configServersId"`
-	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion pulumi.StringOutput `pulumi:"dbEngineVersion"`
 	// The instance name.
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
-	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+	// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// The mongos information of the ShardedCluster instance.
 	Mongos InstanceMongoArrayOutput `pulumi:"mongos"`
 	// The mongos id of the ShardedCluster instance.
 	MongosId pulumi.StringOutput `pulumi:"mongosId"`
-	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber pulumi.IntPtrOutput `pulumi:"mongosNodeNumber"`
-	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeSpec pulumi.StringPtrOutput `pulumi:"mongosNodeSpec"`
-	// The spec of node.
+	// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NodeAvailabilityZones InstanceNodeAvailabilityZoneArrayOutput `pulumi:"nodeAvailabilityZones"`
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec pulumi.StringOutput `pulumi:"nodeSpec"`
-	// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	Period pulumi.IntOutput `pulumi:"period"`
-	// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	PeriodUnit pulumi.StringOutput `pulumi:"periodUnit"`
+	// The private endpoint address of instance.
+	PrivateEndpoint pulumi.StringOutput `pulumi:"privateEndpoint"`
 	// The project name to which the instance belongs.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
-	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber pulumi.IntOutput `pulumi:"readOnlyNodeNumber"`
+	// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	ShardNumber pulumi.IntPtrOutput `pulumi:"shardNumber"`
 	// The shards information of the ShardedCluster instance.
 	Shards InstanceShardArrayOutput `pulumi:"shards"`
-	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
 	StorageSpaceGb pulumi.IntOutput `pulumi:"storageSpaceGb"`
 	// The subnet id of instance.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
-	// The password of database account.
+	// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SuperAccountPassword pulumi.StringPtrOutput `pulumi:"superAccountPassword"`
 	// Tags.
 	Tags InstanceTagArrayOutput `pulumi:"tags"`
 	// The vpc ID.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
-	// The zone ID of instance.
+	// This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones. The zone ID of instance.
+	//
+	// Deprecated: This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones.
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+	ZoneIds pulumi.StringArrayOutput `pulumi:"zoneIds"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -155,97 +195,117 @@ func GetInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Instance resources.
 type instanceState struct {
-	// Whether to enable automatic renewal.
+	// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
 	AutoRenew *bool `pulumi:"autoRenew"`
-	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType *string `pulumi:"chargeType"`
 	// The config servers id of the ShardedCluster instance.
 	ConfigServersId *string `pulumi:"configServersId"`
-	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
 	// The instance name.
 	InstanceName *string `pulumi:"instanceName"`
-	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+	// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
 	InstanceType *string `pulumi:"instanceType"`
 	// The mongos information of the ShardedCluster instance.
 	Mongos []InstanceMongo `pulumi:"mongos"`
 	// The mongos id of the ShardedCluster instance.
 	MongosId *string `pulumi:"mongosId"`
-	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber *int `pulumi:"mongosNodeNumber"`
-	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeSpec *string `pulumi:"mongosNodeSpec"`
-	// The spec of node.
+	// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NodeAvailabilityZones []InstanceNodeAvailabilityZone `pulumi:"nodeAvailabilityZones"`
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec *string `pulumi:"nodeSpec"`
-	// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	Period *int `pulumi:"period"`
-	// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	PeriodUnit *string `pulumi:"periodUnit"`
+	// The private endpoint address of instance.
+	PrivateEndpoint *string `pulumi:"privateEndpoint"`
 	// The project name to which the instance belongs.
 	ProjectName *string `pulumi:"projectName"`
-	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber *int `pulumi:"readOnlyNodeNumber"`
+	// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	ShardNumber *int `pulumi:"shardNumber"`
 	// The shards information of the ShardedCluster instance.
 	Shards []InstanceShard `pulumi:"shards"`
-	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
 	StorageSpaceGb *int `pulumi:"storageSpaceGb"`
 	// The subnet id of instance.
 	SubnetId *string `pulumi:"subnetId"`
-	// The password of database account.
+	// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SuperAccountPassword *string `pulumi:"superAccountPassword"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
 	// The vpc ID.
 	VpcId *string `pulumi:"vpcId"`
-	// The zone ID of instance.
+	// This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones. The zone ID of instance.
+	//
+	// Deprecated: This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones.
 	ZoneId *string `pulumi:"zoneId"`
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 type InstanceState struct {
-	// Whether to enable automatic renewal.
+	// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
 	AutoRenew pulumi.BoolPtrInput
-	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType pulumi.StringPtrInput
 	// The config servers id of the ShardedCluster instance.
 	ConfigServersId pulumi.StringPtrInput
-	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion pulumi.StringPtrInput
 	// The instance name.
 	InstanceName pulumi.StringPtrInput
-	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+	// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
 	InstanceType pulumi.StringPtrInput
 	// The mongos information of the ShardedCluster instance.
 	Mongos InstanceMongoArrayInput
 	// The mongos id of the ShardedCluster instance.
 	MongosId pulumi.StringPtrInput
-	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber pulumi.IntPtrInput
-	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeSpec pulumi.StringPtrInput
-	// The spec of node.
+	// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NodeAvailabilityZones InstanceNodeAvailabilityZoneArrayInput
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec pulumi.StringPtrInput
-	// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	Period pulumi.IntPtrInput
-	// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	PeriodUnit pulumi.StringPtrInput
+	// The private endpoint address of instance.
+	PrivateEndpoint pulumi.StringPtrInput
 	// The project name to which the instance belongs.
 	ProjectName pulumi.StringPtrInput
-	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber pulumi.IntPtrInput
+	// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	ShardNumber pulumi.IntPtrInput
 	// The shards information of the ShardedCluster instance.
 	Shards InstanceShardArrayInput
-	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
 	StorageSpaceGb pulumi.IntPtrInput
 	// The subnet id of instance.
 	SubnetId pulumi.StringPtrInput
-	// The password of database account.
+	// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SuperAccountPassword pulumi.StringPtrInput
 	// Tags.
 	Tags InstanceTagArrayInput
 	// The vpc ID.
 	VpcId pulumi.StringPtrInput
-	// The zone ID of instance.
+	// This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones. The zone ID of instance.
+	//
+	// Deprecated: This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones.
 	ZoneId pulumi.StringPtrInput
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+	ZoneIds pulumi.StringArrayInput
 }
 
 func (InstanceState) ElementType() reflect.Type {
@@ -253,82 +313,94 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
-	// Whether to enable automatic renewal.
+	// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
 	AutoRenew *bool `pulumi:"autoRenew"`
-	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType *string `pulumi:"chargeType"`
-	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
 	// The instance name.
 	InstanceName *string `pulumi:"instanceName"`
-	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+	// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
 	InstanceType *string `pulumi:"instanceType"`
-	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber *int `pulumi:"mongosNodeNumber"`
-	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeSpec *string `pulumi:"mongosNodeSpec"`
-	// The spec of node.
+	// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NodeAvailabilityZones []InstanceNodeAvailabilityZone `pulumi:"nodeAvailabilityZones"`
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec string `pulumi:"nodeSpec"`
-	// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	Period *int `pulumi:"period"`
-	// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	PeriodUnit *string `pulumi:"periodUnit"`
 	// The project name to which the instance belongs.
 	ProjectName *string `pulumi:"projectName"`
-	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	ShardNumber *int `pulumi:"shardNumber"`
-	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
 	StorageSpaceGb int `pulumi:"storageSpaceGb"`
 	// The subnet id of instance.
 	SubnetId string `pulumi:"subnetId"`
-	// The password of database account.
+	// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SuperAccountPassword *string `pulumi:"superAccountPassword"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
 	// The vpc ID.
 	VpcId *string `pulumi:"vpcId"`
-	// The zone ID of instance.
+	// This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones. The zone ID of instance.
+	//
+	// Deprecated: This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones.
 	ZoneId *string `pulumi:"zoneId"`
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
-	// Whether to enable automatic renewal.
+	// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
 	AutoRenew pulumi.BoolPtrInput
-	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType pulumi.StringPtrInput
-	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion pulumi.StringPtrInput
 	// The instance name.
 	InstanceName pulumi.StringPtrInput
-	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+	// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
 	InstanceType pulumi.StringPtrInput
-	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber pulumi.IntPtrInput
-	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	MongosNodeSpec pulumi.StringPtrInput
-	// The spec of node.
+	// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NodeAvailabilityZones InstanceNodeAvailabilityZoneArrayInput
+	// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 	NodeSpec pulumi.StringInput
-	// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	Period pulumi.IntPtrInput
-	// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+	// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 	PeriodUnit pulumi.StringPtrInput
 	// The project name to which the instance belongs.
 	ProjectName pulumi.StringPtrInput
-	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+	// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 	ShardNumber pulumi.IntPtrInput
-	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
 	StorageSpaceGb pulumi.IntInput
 	// The subnet id of instance.
 	SubnetId pulumi.StringInput
-	// The password of database account.
+	// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SuperAccountPassword pulumi.StringPtrInput
 	// Tags.
 	Tags InstanceTagArrayInput
 	// The vpc ID.
 	VpcId pulumi.StringPtrInput
-	// The zone ID of instance.
+	// This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones. The zone ID of instance.
+	//
+	// Deprecated: This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones.
 	ZoneId pulumi.StringPtrInput
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+	ZoneIds pulumi.StringArrayInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -418,12 +490,12 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 	return o
 }
 
-// Whether to enable automatic renewal.
+// Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
 func (o InstanceOutput) AutoRenew() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.AutoRenew }).(pulumi.BoolOutput)
 }
 
-// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 func (o InstanceOutput) ChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ChargeType }).(pulumi.StringOutput)
 }
@@ -433,7 +505,7 @@ func (o InstanceOutput) ConfigServersId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ConfigServersId }).(pulumi.StringOutput)
 }
 
-// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
+// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 func (o InstanceOutput) DbEngineVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbEngineVersion }).(pulumi.StringOutput)
 }
@@ -443,7 +515,7 @@ func (o InstanceOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+// The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
 func (o InstanceOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
 }
@@ -458,29 +530,39 @@ func (o InstanceOutput) MongosId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.MongosId }).(pulumi.StringOutput)
 }
 
-// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
+// The mongos node number of shard cluster, value range is `2~23`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 func (o InstanceOutput) MongosNodeNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.MongosNodeNumber }).(pulumi.IntPtrOutput)
 }
 
-// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
+// The mongos node spec of shard cluster, this parameter is required when the `InstanceType` is `ShardedCluster`.
 func (o InstanceOutput) MongosNodeSpec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.MongosNodeSpec }).(pulumi.StringPtrOutput)
 }
 
-// The spec of node.
+// The readonly node of the instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceOutput) NodeAvailabilityZones() InstanceNodeAvailabilityZoneArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceNodeAvailabilityZoneArrayOutput { return v.NodeAvailabilityZones }).(InstanceNodeAvailabilityZoneArrayOutput)
+}
+
+// The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
 func (o InstanceOutput) NodeSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.NodeSpec }).(pulumi.StringOutput)
 }
 
-// The instance purchase duration,the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+// The instance purchase duration, the value range is `1~3` when `PeriodUtil` is `Year`, the value range is `1~9` when `PeriodUtil` is `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 func (o InstanceOutput) Period() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.Period }).(pulumi.IntOutput)
 }
 
-// The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
+// The period unit, valid value contains `Year` or `Month`. This parameter is required when the `ChargeType` is `Prepaid`.
 func (o InstanceOutput) PeriodUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PeriodUnit }).(pulumi.StringOutput)
+}
+
+// The private endpoint address of instance.
+func (o InstanceOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PrivateEndpoint }).(pulumi.StringOutput)
 }
 
 // The project name to which the instance belongs.
@@ -488,7 +570,12 @@ func (o InstanceOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
-// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+// The number of readonly node in instance.
+func (o InstanceOutput) ReadOnlyNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.ReadOnlyNodeNumber }).(pulumi.IntOutput)
+}
+
+// The number of shards in shard cluster, value range is `2~32`, this parameter is required when the `InstanceType` is `ShardedCluster`.
 func (o InstanceOutput) ShardNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.ShardNumber }).(pulumi.IntPtrOutput)
 }
@@ -498,7 +585,7 @@ func (o InstanceOutput) Shards() InstanceShardArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceShardArrayOutput { return v.Shards }).(InstanceShardArrayOutput)
 }
 
-// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
+// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster. Unit: GiB.
 func (o InstanceOutput) StorageSpaceGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageSpaceGb }).(pulumi.IntOutput)
 }
@@ -508,7 +595,7 @@ func (o InstanceOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
 }
 
-// The password of database account.
+// The password of database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o InstanceOutput) SuperAccountPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.SuperAccountPassword }).(pulumi.StringPtrOutput)
 }
@@ -523,9 +610,16 @@ func (o InstanceOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
 }
 
-// The zone ID of instance.
+// This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones. The zone ID of instance.
+//
+// Deprecated: This field has been deprecated after version-0.0.156. Please use `zoneIds` to deploy multiple availability zones.
 func (o InstanceOutput) ZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time. By default, the first available zone passed in is the primary available zone, and the two available zones passed in afterwards are the backup available zones.
+func (o InstanceOutput) ZoneIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.ZoneIds }).(pulumi.StringArrayOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

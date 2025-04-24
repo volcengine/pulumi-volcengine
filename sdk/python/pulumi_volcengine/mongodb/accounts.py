@@ -22,13 +22,16 @@ class AccountsResult:
     """
     A collection of values returned by Accounts.
     """
-    def __init__(__self__, account_name=None, accounts=None, id=None, instance_id=None, output_file=None, total_count=None):
+    def __init__(__self__, account_name=None, accounts=None, auth_db=None, id=None, instance_id=None, output_file=None, total_count=None):
         if account_name and not isinstance(account_name, str):
             raise TypeError("Expected argument 'account_name' to be a str")
         pulumi.set(__self__, "account_name", account_name)
         if accounts and not isinstance(accounts, list):
             raise TypeError("Expected argument 'accounts' to be a list")
         pulumi.set(__self__, "accounts", accounts)
+        if auth_db and not isinstance(auth_db, str):
+            raise TypeError("Expected argument 'auth_db' to be a str")
+        pulumi.set(__self__, "auth_db", auth_db)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -57,6 +60,14 @@ class AccountsResult:
         The collection of accounts query.
         """
         return pulumi.get(self, "accounts")
+
+    @property
+    @pulumi.getter(name="authDb")
+    def auth_db(self) -> Optional[str]:
+        """
+        The database of account.
+        """
+        return pulumi.get(self, "auth_db")
 
     @property
     @pulumi.getter
@@ -93,6 +104,7 @@ class AwaitableAccountsResult(AccountsResult):
         return AccountsResult(
             account_name=self.account_name,
             accounts=self.accounts,
+            auth_db=self.auth_db,
             id=self.id,
             instance_id=self.instance_id,
             output_file=self.output_file,
@@ -100,6 +112,7 @@ class AwaitableAccountsResult(AccountsResult):
 
 
 def accounts(account_name: Optional[str] = None,
+             auth_db: Optional[str] = None,
              instance_id: Optional[str] = None,
              output_file: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableAccountsResult:
@@ -115,12 +128,14 @@ def accounts(account_name: Optional[str] = None,
     ```
 
 
-    :param str account_name: The name of account, current support only `root`.
-    :param str instance_id: Target query mongo instance id.
+    :param str account_name: The name of account. This field support fuzzy query.
+    :param str auth_db: The database of account. This field support fuzzy query.
+    :param str instance_id: Target query mongodb instance id.
     :param str output_file: File name where to save data source results.
     """
     __args__ = dict()
     __args__['accountName'] = account_name
+    __args__['authDb'] = auth_db
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -129,6 +144,7 @@ def accounts(account_name: Optional[str] = None,
     return AwaitableAccountsResult(
         account_name=pulumi.get(__ret__, 'account_name'),
         accounts=pulumi.get(__ret__, 'accounts'),
+        auth_db=pulumi.get(__ret__, 'auth_db'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         output_file=pulumi.get(__ret__, 'output_file'),
@@ -137,6 +153,7 @@ def accounts(account_name: Optional[str] = None,
 
 @_utilities.lift_output_func(accounts)
 def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
+                    auth_db: Optional[pulumi.Input[Optional[str]]] = None,
                     instance_id: Optional[pulumi.Input[str]] = None,
                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[AccountsResult]:
@@ -152,8 +169,9 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str account_name: The name of account, current support only `root`.
-    :param str instance_id: Target query mongo instance id.
+    :param str account_name: The name of account. This field support fuzzy query.
+    :param str auth_db: The database of account. This field support fuzzy query.
+    :param str instance_id: Target query mongodb instance id.
     :param str output_file: File name where to save data source results.
     """
     ...

@@ -86,9 +86,17 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesInstanceNodeResult> Nodes;
         /// <summary>
-        /// The project name to which the instance belongs.
+        /// The private endpoint address of instance.
+        /// </summary>
+        public readonly string PrivateEndpoint;
+        /// <summary>
+        /// The project name to query.
         /// </summary>
         public readonly string ProjectName;
+        /// <summary>
+        /// The number of readonly node in instance.
+        /// </summary>
+        public readonly int ReadOnlyNodeNumber;
         /// <summary>
         /// The planned reclaim time of instance.
         /// </summary>
@@ -172,7 +180,11 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
 
             ImmutableArray<Outputs.InstancesInstanceNodeResult> nodes,
 
+            string privateEndpoint,
+
             string projectName,
+
+            int readOnlyNodeNumber,
 
             string reclaimTime,
 
@@ -214,7 +226,9 @@ namespace Pulumi.Volcengine.Mongodb.Outputs
             Mongos = mongos;
             MongosId = mongosId;
             Nodes = nodes;
+            PrivateEndpoint = privateEndpoint;
             ProjectName = projectName;
+            ReadOnlyNodeNumber = readOnlyNodeNumber;
             ReclaimTime = reclaimTime;
             Shards = shards;
             SslEnable = sslEnable;

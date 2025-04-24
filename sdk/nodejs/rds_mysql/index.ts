@@ -30,6 +30,21 @@ export const allowlists: typeof import("./allowlists").allowlists = null as any;
 export const allowlistsOutput: typeof import("./allowlists").allowlistsOutput = null as any;
 utilities.lazyLoad(exports, ["allowlists","allowlistsOutput"], () => require("./allowlists"));
 
+export { BackupArgs, BackupState } from "./backup";
+export type Backup = import("./backup").Backup;
+export const Backup: typeof import("./backup").Backup = null as any;
+utilities.lazyLoad(exports, ["Backup"], () => require("./backup"));
+
+export { BackupPolicyArgs, BackupPolicyState } from "./backupPolicy";
+export type BackupPolicy = import("./backupPolicy").BackupPolicy;
+export const BackupPolicy: typeof import("./backupPolicy").BackupPolicy = null as any;
+utilities.lazyLoad(exports, ["BackupPolicy"], () => require("./backupPolicy"));
+
+export { BackupsArgs, BackupsResult, BackupsOutputArgs } from "./backups";
+export const backups: typeof import("./backups").backups = null as any;
+export const backupsOutput: typeof import("./backups").backupsOutput = null as any;
+utilities.lazyLoad(exports, ["backups","backupsOutput"], () => require("./backups"));
+
 export { DatabaseArgs, DatabaseState } from "./database";
 export type Database = import("./database").Database;
 export const Database: typeof import("./database").Database = null as any;
@@ -39,6 +54,21 @@ export { DatabasesArgs, DatabasesResult, DatabasesOutputArgs } from "./databases
 export const databases: typeof import("./databases").databases = null as any;
 export const databasesOutput: typeof import("./databases").databasesOutput = null as any;
 utilities.lazyLoad(exports, ["databases","databasesOutput"], () => require("./databases"));
+
+export { EndpointArgs, EndpointState } from "./endpoint";
+export type Endpoint = import("./endpoint").Endpoint;
+export const Endpoint: typeof import("./endpoint").Endpoint = null as any;
+utilities.lazyLoad(exports, ["Endpoint"], () => require("./endpoint"));
+
+export { EndpointPublicAddressArgs, EndpointPublicAddressState } from "./endpointPublicAddress";
+export type EndpointPublicAddress = import("./endpointPublicAddress").EndpointPublicAddress;
+export const EndpointPublicAddress: typeof import("./endpointPublicAddress").EndpointPublicAddress = null as any;
+utilities.lazyLoad(exports, ["EndpointPublicAddress"], () => require("./endpointPublicAddress"));
+
+export { EndpointsArgs, EndpointsResult, EndpointsOutputArgs } from "./endpoints";
+export const endpoints: typeof import("./endpoints").endpoints = null as any;
+export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
+utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
 
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
@@ -50,10 +80,35 @@ export type InstanceReadonlyNode = import("./instanceReadonlyNode").InstanceRead
 export const InstanceReadonlyNode: typeof import("./instanceReadonlyNode").InstanceReadonlyNode = null as any;
 utilities.lazyLoad(exports, ["InstanceReadonlyNode"], () => require("./instanceReadonlyNode"));
 
+export { InstanceSpecsArgs, InstanceSpecsResult, InstanceSpecsOutputArgs } from "./instanceSpecs";
+export const instanceSpecs: typeof import("./instanceSpecs").instanceSpecs = null as any;
+export const instanceSpecsOutput: typeof import("./instanceSpecs").instanceSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceSpecs","instanceSpecsOutput"], () => require("./instanceSpecs"));
+
 export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
 export const instances: typeof import("./instances").instances = null as any;
 export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
 utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
+export { ParameterTemplateArgs, ParameterTemplateState } from "./parameterTemplate";
+export type ParameterTemplate = import("./parameterTemplate").ParameterTemplate;
+export const ParameterTemplate: typeof import("./parameterTemplate").ParameterTemplate = null as any;
+utilities.lazyLoad(exports, ["ParameterTemplate"], () => require("./parameterTemplate"));
+
+export { ParameterTemplatesArgs, ParameterTemplatesResult, ParameterTemplatesOutputArgs } from "./parameterTemplates";
+export const parameterTemplates: typeof import("./parameterTemplates").parameterTemplates = null as any;
+export const parameterTemplatesOutput: typeof import("./parameterTemplates").parameterTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["parameterTemplates","parameterTemplatesOutput"], () => require("./parameterTemplates"));
+
+export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
+export const regions: typeof import("./regions").regions = null as any;
+export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
+utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
+export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
+export const zones: typeof import("./zones").zones = null as any;
+export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
+utilities.lazyLoad(exports, ["zones","zonesOutput"], () => require("./zones"));
 
 
 const _module = {
@@ -66,12 +121,22 @@ const _module = {
                 return new Allowlist(name, <any>undefined, { urn })
             case "volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate":
                 return new AllowlistAssociate(name, <any>undefined, { urn })
+            case "volcengine:rds_mysql/backup:Backup":
+                return new Backup(name, <any>undefined, { urn })
+            case "volcengine:rds_mysql/backupPolicy:BackupPolicy":
+                return new BackupPolicy(name, <any>undefined, { urn })
             case "volcengine:rds_mysql/database:Database":
                 return new Database(name, <any>undefined, { urn })
+            case "volcengine:rds_mysql/endpoint:Endpoint":
+                return new Endpoint(name, <any>undefined, { urn })
+            case "volcengine:rds_mysql/endpointPublicAddress:EndpointPublicAddress":
+                return new EndpointPublicAddress(name, <any>undefined, { urn })
             case "volcengine:rds_mysql/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
             case "volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode":
                 return new InstanceReadonlyNode(name, <any>undefined, { urn })
+            case "volcengine:rds_mysql/parameterTemplate:ParameterTemplate":
+                return new ParameterTemplate(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -80,6 +145,11 @@ const _module = {
 pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/account", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/allowlist", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/allowlistAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/backup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/backupPolicy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/database", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/endpoint", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/endpointPublicAddress", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/instanceReadonlyNode", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_mysql/parameterTemplate", _module)

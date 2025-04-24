@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  *         },
  *         {
  *             parameterName: "auto_increment_offset",
- *             parameterValue: "4",
+ *             parameterValue: "5",
  *         },
  *     ],
  *     projectName: "default",
@@ -105,6 +105,12 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly backupUse!: pulumi.Output<number>;
     /**
+     * Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+     * true: Yes.
+     * false: No.
+     */
+    public /*out*/ readonly binlogDump!: pulumi.Output<boolean>;
+    /**
      * Payment methods.
      */
     public /*out*/ readonly chargeDetails!: pulumi.Output<outputs.rds_mysql.InstanceChargeDetail[]>;
@@ -112,6 +118,12 @@ export class Instance extends pulumi.CustomResource {
      * Payment methods.
      */
     public readonly chargeInfo!: pulumi.Output<outputs.rds_mysql.InstanceChargeInfo>;
+    /**
+     * Connection pool type. Value range:
+     * Direct: Direct connection mode.
+     * Transaction: Transaction-level connection pool (default).
+     */
+    public readonly connectionPoolType!: pulumi.Output<string>;
     /**
      * Node creation local time.
      */
@@ -127,6 +139,14 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly dbEngineVersion!: pulumi.Output<string>;
     /**
+     * The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+     * Creating: The proxy is being started.
+     * Running: The proxy is running.
+     * Shutdown: The proxy is closed.
+     * Deleting: The proxy is being closed.
+     */
+    public /*out*/ readonly dbProxyStatus!: pulumi.Output<string>;
+    /**
      * Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly dbTimeZone!: pulumi.Output<string>;
@@ -134,6 +154,16 @@ export class Instance extends pulumi.CustomResource {
      * The endpoint info of the RDS instance.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.rds_mysql.InstanceEndpoint[]>;
+    /**
+     * Feature status.
+     */
+    public /*out*/ readonly featureStates!: pulumi.Output<outputs.rds_mysql.InstanceFeatureState[]>;
+    /**
+     * Whether to enable global read-only.
+     * true: Yes.
+     * false: No.
+     */
+    public /*out*/ readonly globalReadOnly!: pulumi.Output<boolean>;
     /**
      * Instance ID.
      */
@@ -156,17 +186,29 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly lowerCaseTableNames!: pulumi.Output<string | undefined>;
     /**
-     * Maintenance Window.
+     * Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
      */
-    public /*out*/ readonly maintenanceWindows!: pulumi.Output<outputs.rds_mysql.InstanceMaintenanceWindow[]>;
+    public readonly maintenanceWindow!: pulumi.Output<outputs.rds_mysql.InstanceMaintenanceWindow>;
     /**
      * Memory size in GB.
      */
     public /*out*/ readonly memory!: pulumi.Output<number>;
     /**
+     * Average CPU usage of the instance master node in nearly one minute.
+     */
+    public /*out*/ readonly nodeCpuUsedPercentage!: pulumi.Output<number>;
+    /**
+     * Average memory usage of the instance master node in nearly one minute.
+     */
+    public /*out*/ readonly nodeMemoryUsedPercentage!: pulumi.Output<number>;
+    /**
      * The number of nodes.
      */
     public /*out*/ readonly nodeNumber!: pulumi.Output<number>;
+    /**
+     * Average disk usage of the instance master node in nearly one minute.
+     */
+    public /*out*/ readonly nodeSpaceUsedPercentage!: pulumi.Output<number>;
     /**
      * The specification of primary node and secondary node.
      */
@@ -235,6 +277,10 @@ export class Instance extends pulumi.CustomResource {
      * The available zone of the RDS instance.
      */
     public /*out*/ readonly zoneId!: pulumi.Output<string>;
+    /**
+     * List of availability zones where each node of the instance is located.
+     */
+    public /*out*/ readonly zoneIds!: pulumi.Output<string[]>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -252,20 +298,28 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["allowListIds"] = state ? state.allowListIds : undefined;
             resourceInputs["allowListVersion"] = state ? state.allowListVersion : undefined;
             resourceInputs["backupUse"] = state ? state.backupUse : undefined;
+            resourceInputs["binlogDump"] = state ? state.binlogDump : undefined;
             resourceInputs["chargeDetails"] = state ? state.chargeDetails : undefined;
             resourceInputs["chargeInfo"] = state ? state.chargeInfo : undefined;
+            resourceInputs["connectionPoolType"] = state ? state.connectionPoolType : undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["dataSyncMode"] = state ? state.dataSyncMode : undefined;
             resourceInputs["dbEngineVersion"] = state ? state.dbEngineVersion : undefined;
+            resourceInputs["dbProxyStatus"] = state ? state.dbProxyStatus : undefined;
             resourceInputs["dbTimeZone"] = state ? state.dbTimeZone : undefined;
             resourceInputs["endpoints"] = state ? state.endpoints : undefined;
+            resourceInputs["featureStates"] = state ? state.featureStates : undefined;
+            resourceInputs["globalReadOnly"] = state ? state.globalReadOnly : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["instanceStatus"] = state ? state.instanceStatus : undefined;
             resourceInputs["lowerCaseTableNames"] = state ? state.lowerCaseTableNames : undefined;
-            resourceInputs["maintenanceWindows"] = state ? state.maintenanceWindows : undefined;
+            resourceInputs["maintenanceWindow"] = state ? state.maintenanceWindow : undefined;
             resourceInputs["memory"] = state ? state.memory : undefined;
+            resourceInputs["nodeCpuUsedPercentage"] = state ? state.nodeCpuUsedPercentage : undefined;
+            resourceInputs["nodeMemoryUsedPercentage"] = state ? state.nodeMemoryUsedPercentage : undefined;
             resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
+            resourceInputs["nodeSpaceUsedPercentage"] = state ? state.nodeSpaceUsedPercentage : undefined;
             resourceInputs["nodeSpec"] = state ? state.nodeSpec : undefined;
             resourceInputs["nodes"] = state ? state.nodes : undefined;
             resourceInputs["parameters"] = state ? state.parameters : undefined;
@@ -283,6 +337,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vCpu"] = state ? state.vCpu : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["zoneId"] = state ? state.zoneId : undefined;
+            resourceInputs["zoneIds"] = state ? state.zoneIds : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
             if ((!args || args.chargeInfo === undefined) && !opts.urn) {
@@ -305,10 +360,12 @@ export class Instance extends pulumi.CustomResource {
             }
             resourceInputs["allowListIds"] = args ? args.allowListIds : undefined;
             resourceInputs["chargeInfo"] = args ? args.chargeInfo : undefined;
+            resourceInputs["connectionPoolType"] = args ? args.connectionPoolType : undefined;
             resourceInputs["dbEngineVersion"] = args ? args.dbEngineVersion : undefined;
             resourceInputs["dbTimeZone"] = args ? args.dbTimeZone : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["lowerCaseTableNames"] = args ? args.lowerCaseTableNames : undefined;
+            resourceInputs["maintenanceWindow"] = args ? args.maintenanceWindow : undefined;
             resourceInputs["nodeSpec"] = args ? args.nodeSpec : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["primaryZoneId"] = args ? args.primaryZoneId : undefined;
@@ -319,15 +376,21 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["allowListVersion"] = undefined /*out*/;
             resourceInputs["backupUse"] = undefined /*out*/;
+            resourceInputs["binlogDump"] = undefined /*out*/;
             resourceInputs["chargeDetails"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["dataSyncMode"] = undefined /*out*/;
+            resourceInputs["dbProxyStatus"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
+            resourceInputs["featureStates"] = undefined /*out*/;
+            resourceInputs["globalReadOnly"] = undefined /*out*/;
             resourceInputs["instanceId"] = undefined /*out*/;
             resourceInputs["instanceStatus"] = undefined /*out*/;
-            resourceInputs["maintenanceWindows"] = undefined /*out*/;
             resourceInputs["memory"] = undefined /*out*/;
+            resourceInputs["nodeCpuUsedPercentage"] = undefined /*out*/;
+            resourceInputs["nodeMemoryUsedPercentage"] = undefined /*out*/;
             resourceInputs["nodeNumber"] = undefined /*out*/;
+            resourceInputs["nodeSpaceUsedPercentage"] = undefined /*out*/;
             resourceInputs["nodes"] = undefined /*out*/;
             resourceInputs["regionId"] = undefined /*out*/;
             resourceInputs["storageType"] = undefined /*out*/;
@@ -337,6 +400,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vCpu"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
             resourceInputs["zoneId"] = undefined /*out*/;
+            resourceInputs["zoneIds"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Instance.__pulumiType, name, resourceInputs, opts);
@@ -360,6 +424,12 @@ export interface InstanceState {
      */
     backupUse?: pulumi.Input<number>;
     /**
+     * Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+     * true: Yes.
+     * false: No.
+     */
+    binlogDump?: pulumi.Input<boolean>;
+    /**
      * Payment methods.
      */
     chargeDetails?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceChargeDetail>[]>;
@@ -367,6 +437,12 @@ export interface InstanceState {
      * Payment methods.
      */
     chargeInfo?: pulumi.Input<inputs.rds_mysql.InstanceChargeInfo>;
+    /**
+     * Connection pool type. Value range:
+     * Direct: Direct connection mode.
+     * Transaction: Transaction-level connection pool (default).
+     */
+    connectionPoolType?: pulumi.Input<string>;
     /**
      * Node creation local time.
      */
@@ -382,6 +458,14 @@ export interface InstanceState {
      */
     dbEngineVersion?: pulumi.Input<string>;
     /**
+     * The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+     * Creating: The proxy is being started.
+     * Running: The proxy is running.
+     * Shutdown: The proxy is closed.
+     * Deleting: The proxy is being closed.
+     */
+    dbProxyStatus?: pulumi.Input<string>;
+    /**
      * Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     dbTimeZone?: pulumi.Input<string>;
@@ -389,6 +473,16 @@ export interface InstanceState {
      * The endpoint info of the RDS instance.
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceEndpoint>[]>;
+    /**
+     * Feature status.
+     */
+    featureStates?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceFeatureState>[]>;
+    /**
+     * Whether to enable global read-only.
+     * true: Yes.
+     * false: No.
+     */
+    globalReadOnly?: pulumi.Input<boolean>;
     /**
      * Instance ID.
      */
@@ -411,17 +505,29 @@ export interface InstanceState {
      */
     lowerCaseTableNames?: pulumi.Input<string>;
     /**
-     * Maintenance Window.
+     * Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
      */
-    maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceMaintenanceWindow>[]>;
+    maintenanceWindow?: pulumi.Input<inputs.rds_mysql.InstanceMaintenanceWindow>;
     /**
      * Memory size in GB.
      */
     memory?: pulumi.Input<number>;
     /**
+     * Average CPU usage of the instance master node in nearly one minute.
+     */
+    nodeCpuUsedPercentage?: pulumi.Input<number>;
+    /**
+     * Average memory usage of the instance master node in nearly one minute.
+     */
+    nodeMemoryUsedPercentage?: pulumi.Input<number>;
+    /**
      * The number of nodes.
      */
     nodeNumber?: pulumi.Input<number>;
+    /**
+     * Average disk usage of the instance master node in nearly one minute.
+     */
+    nodeSpaceUsedPercentage?: pulumi.Input<number>;
     /**
      * The specification of primary node and secondary node.
      */
@@ -490,6 +596,10 @@ export interface InstanceState {
      * The available zone of the RDS instance.
      */
     zoneId?: pulumi.Input<string>;
+    /**
+     * List of availability zones where each node of the instance is located.
+     */
+    zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -504,6 +614,12 @@ export interface InstanceArgs {
      * Payment methods.
      */
     chargeInfo: pulumi.Input<inputs.rds_mysql.InstanceChargeInfo>;
+    /**
+     * Connection pool type. Value range:
+     * Direct: Direct connection mode.
+     * Transaction: Transaction-level connection pool (default).
+     */
+    connectionPoolType?: pulumi.Input<string>;
     /**
      * Instance type. Value:
      * MySQL_5_7
@@ -527,6 +643,10 @@ export interface InstanceArgs {
      * 1: Table names will be stored in lowercase and table names are not case sensitive.
      */
     lowerCaseTableNames?: pulumi.Input<string>;
+    /**
+     * Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+     */
+    maintenanceWindow?: pulumi.Input<inputs.rds_mysql.InstanceMaintenanceWindow>;
     /**
      * The specification of primary node and secondary node.
      */

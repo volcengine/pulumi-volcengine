@@ -694,6 +694,20 @@ export namespace clb {
 
 }
 
+export namespace cloud_firewall {
+    export interface CfwDnsControlPolicySource {
+        /**
+         * The region of the source vpc.
+         */
+        region: pulumi.Input<string>;
+        /**
+         * The id of the source vpc.
+         */
+        vpcId: pulumi.Input<string>;
+    }
+
+}
+
 export namespace cloud_identity {
     export interface GroupMember {
         /**
@@ -1082,6 +1096,42 @@ export namespace direct_connect {
 
 }
 
+export namespace dns {
+    export interface ZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ZonesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface ZonesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+}
+
 export namespace ebs {
     export interface AutoSnapshotPoliciesTag {
         /**
@@ -1264,6 +1314,25 @@ export namespace ecs {
          * The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
          */
         volumeType: pulumi.Input<string>;
+    }
+
+    export interface InstanceEipAddress {
+        /**
+         * The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
+         */
+        bandwidthMbps?: pulumi.Input<number>;
+        /**
+         * The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+         */
+        bandwidthPackageId?: pulumi.Input<number>;
+        /**
+         * The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+         */
+        chargeType?: pulumi.Input<string>;
+        /**
+         * The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
+         */
+        isp?: pulumi.Input<string>;
     }
 
     export interface InstanceGpuDevice {
@@ -1493,6 +1562,95 @@ export namespace escloud {
 
 }
 
+export namespace escloud_v2 {
+    export interface EscloudInstanceV2NetworkSpec {
+        /**
+         * The bandwidth of the eip. Unit: Mbps.
+         */
+        bandwidth: pulumi.Input<number>;
+        /**
+         * Whether the eip is opened.
+         */
+        isOpen: pulumi.Input<boolean>;
+        /**
+         * The spec name of public network.
+         */
+        specName: pulumi.Input<string>;
+        /**
+         * The type of public network, valid values: `Elasticsearch`, `Kibana`.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface EscloudInstanceV2NodeSpecsAssign {
+        /**
+         * The extra performance of FlexPL storage spec.
+         */
+        extraPerformance?: pulumi.Input<inputs.escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformance>;
+        /**
+         * The number of node.
+         */
+        number: pulumi.Input<number>;
+        /**
+         * The name of compute resource spec.
+         */
+        resourceSpecName: pulumi.Input<string>;
+        /**
+         * The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+         */
+        storageSize: pulumi.Input<number>;
+        /**
+         * The name of storage spec. Kibana NodeSpecsAssign should specify this field to ``.
+         */
+        storageSpecName: pulumi.Input<string>;
+        /**
+         * The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface EscloudInstanceV2NodeSpecsAssignExtraPerformance {
+        /**
+         * When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+         * The unit is MiB, and the adjustment step size is 10MiB.
+         */
+        throughput: pulumi.Input<number>;
+    }
+
+    export interface EscloudInstanceV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface EscloudInstancesV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface EscloudInstancesV2TagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+}
+
 export namespace financial_relation {
 }
 
@@ -1573,19 +1731,43 @@ export namespace kafka {
 }
 
 export namespace mongodb {
+    export interface AccountAccountPrivilege {
+        /**
+         * The name of database.
+         */
+        dbName: pulumi.Input<string>;
+        /**
+         * The role names of the account.
+         */
+        roleNames: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface InstanceMongo {
         /**
          * The mongos node ID.
          */
         mongosNodeId?: pulumi.Input<string>;
         /**
-         * The spec of node.
+         * The spec of node. When the instanceType is ReplicaSet, this parameter represents the computing node specification of the replica set instance. When the instanceType is ShardedCluster, this parameter represents the specification of the Shard node.
          */
         nodeSpec?: pulumi.Input<string>;
         /**
          * The node status.
          */
         nodeStatus?: pulumi.Input<string>;
+    }
+
+    export interface InstanceNodeAvailabilityZone {
+        /**
+         * The number of readonly nodes in current zone. Currently, only ReplicaSet instances and Shard in ShardedCluster instances support adding readonly nodes.
+         * When the instanceType is ReplicaSet, this value represents the total number of readonly nodes in a single replica set instance. Each instance of the replica set supports adding up to 5 readonly nodes.
+         * When the instanceType is ShardedCluster, this value represents the number of readonly nodes in each shard. Each shard can add up to 5 readonly nodes.
+         */
+        nodeNumber: pulumi.Input<number>;
+        /**
+         * The zone id of readonly nodes.
+         */
+        zoneId: pulumi.Input<string>;
     }
 
     export interface InstanceShard {
@@ -1626,6 +1808,25 @@ export namespace mongodb {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface MongoAllowListAssociatedInstance {
+        /**
+         * The instance id that bound to the allow list.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * The instance name that bound to the allow list.
+         */
+        instanceName?: pulumi.Input<string>;
+        /**
+         * The project name of the allow list.
+         */
+        projectName?: pulumi.Input<string>;
+        /**
+         * The VPC ID.
+         */
+        vpc?: pulumi.Input<string>;
     }
 
 }
@@ -1855,6 +2056,79 @@ export namespace privatelink {
 
 }
 
+export namespace rabbitmq {
+    export interface InstanceChargeInfo {
+        /**
+         * Whether to automatically renew in prepaid scenarios. Default is false.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The charge type of the rabbitmq instance. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Purchase duration in prepaid scenarios. When PeriodUnit is specified as `Month`, the value range is 1-9. When PeriodUnit is specified as `Year`, the value range is 1-3. Default is 1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * The purchase cycle in the prepaid scenario. Valid values: `Month`, `Year`. Default is `Month`.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface InstanceEndpoint {
+        /**
+         * The endpoint type of the rabbitmq instance.
+         */
+        endpointType?: pulumi.Input<string>;
+        /**
+         * The internal endpoint of the rabbitmq instance.
+         */
+        internalEndpoint?: pulumi.Input<string>;
+        /**
+         * The network type of the rabbitmq instance.
+         */
+        networkType?: pulumi.Input<string>;
+        /**
+         * The public endpoint of the rabbitmq instance.
+         */
+        publicEndpoint?: pulumi.Input<string>;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+}
+
 export namespace rds {
     export interface AccountPrivilegeDbPrivilege {
         /**
@@ -2005,6 +2279,46 @@ export namespace rds_mysql {
         dbName: pulumi.Input<string>;
     }
 
+    export interface AllowlistSecurityGroupBindInfo {
+        /**
+         * The schema for the associated security group.
+         * IngressDirectionIp: Incoming Direction IP.
+         * AssociateEcsIp: Associate ECSIP.
+         * explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+         */
+        bindMode: pulumi.Input<string>;
+        /**
+         * The security group id of the allow list.
+         */
+        securityGroupId: pulumi.Input<string>;
+    }
+
+    export interface BackupBackupMeta {
+        /**
+         * Specify the database that needs to be backed up.
+         */
+        dbName: pulumi.Input<string>;
+        /**
+         * Specify the tables to be backed up in the specified database. When this field is empty, it defaults to full database backup.
+         */
+        tableNames?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface EndpointReadOnlyNodeWeight {
+        /**
+         * Read-only nodes require NodeId to be passed, while primary nodes do not require it.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * The primary node needs to pass in the NodeType as Primary, while the read-only node does not need to pass it in.
+         */
+        nodeType?: pulumi.Input<string>;
+        /**
+         * The read weight of the node increases by 100, with a maximum value of 10000.
+         */
+        weight: pulumi.Input<number>;
+    }
+
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
@@ -2051,6 +2365,14 @@ export namespace rds_mysql {
          * Year - Package year.
          */
         periodUnit?: pulumi.Input<string>;
+        /**
+         * Restore time of temporary upgrade.
+         */
+        tempModifyEndTime?: pulumi.Input<string>;
+        /**
+         * Temporary upgrade start time.
+         */
+        tempModifyStartTime?: pulumi.Input<string>;
     }
 
     export interface InstanceChargeInfo {
@@ -2109,6 +2431,10 @@ export namespace rds_mysql {
          * AllNode: All node terminals. (Only the operation and maintenance side).
          */
         endpointType?: pulumi.Input<string>;
+        /**
+         * Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+         */
+        idleConnectionReclaim?: pulumi.Input<boolean>;
         /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
@@ -2169,21 +2495,36 @@ export namespace rds_mysql {
         weight?: pulumi.Input<number>;
     }
 
+    export interface InstanceFeatureState {
+        /**
+         * Whether it is enabled. Values:
+         * true: Enabled.
+         * false: Disabled.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * Feature name.
+         */
+        featureName?: pulumi.Input<string>;
+        /**
+         * Whether it support this function. Value:
+         * true: Supported.
+         * false: Not supported.
+         */
+        support?: pulumi.Input<boolean>;
+    }
+
     export interface InstanceMaintenanceWindow {
         /**
-         * DayKind of maintainable window. Value: Week. Month.
+         * Maintenance cycle granularity, values: Week: Week. Month: Month.
          */
         dayKind?: pulumi.Input<string>;
         /**
-         * Days of maintainable window of the month.
-         */
-        dayOfMonths?: pulumi.Input<pulumi.Input<number>[]>;
-        /**
-         * Days of maintainable window of the week.
+         * Specify the maintainable time period of a certain day of the week. The values are: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Multiple selections are allowed. If this value is not specified or is empty, it defaults to specifying all seven days of the week.
          */
         dayOfWeeks?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The maintainable time of the RDS instance.
+         * Maintenance period of an instance. Format: HH:mmZ-HH:mmZ (UTC time).
          */
         maintenanceTime?: pulumi.Input<string>;
     }
@@ -2280,6 +2621,20 @@ export namespace rds_mysql {
          */
         value: pulumi.Input<string>;
     }
+
+    export interface ParameterTemplateTemplateParam {
+        /**
+         * Instance parameter name.
+         * Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * Parameter running value.
+         * Description: When making request parameters in CreateParameterTemplate and ModifyParameterTemplate, only Name and RunningValue need to be passed in.
+         */
+        runningValue: pulumi.Input<string>;
+    }
+
 }
 
 export namespace rds_postgresql {
@@ -2863,6 +3218,159 @@ export namespace redis {
 
 }
 
+export namespace rocketmq {
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RocketMQAccessKeyTopicPermission {
+        /**
+         * The custom authority for the topic.
+         */
+        permission?: pulumi.Input<string>;
+        /**
+         * The name of the rocketmq topic.
+         */
+        topicName?: pulumi.Input<string>;
+    }
+
+    export interface RocketMQAllowListAssociatedInstance {
+        /**
+         * The id of the rocketmq instance.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * The name of the rocketmq instance.
+         */
+        instanceName?: pulumi.Input<string>;
+        /**
+         * The vpc id of the rocketmq instance.
+         */
+        vpc?: pulumi.Input<string>;
+    }
+
+    export interface RocketMQInstanceChargeInfo {
+        /**
+         * Whether to automatically renew in prepaid scenarios. Default is false.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The charge type of the rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Purchase duration in prepaid scenarios. When PeriodUnit is specified as `Monthly`, the value range is 1-9. When PeriodUnit is specified as `Yearly`, the value range is 1-3. Default is 1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * The purchase cycle in the prepaid scenario. Valid values: `Monthly`, `Yearly`. Default is `Monthly`.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface RocketMQInstanceConnectionInfo {
+        /**
+         * The endpoint address ip of the rocketmq.
+         */
+        endpointAddressIp?: pulumi.Input<string>;
+        /**
+         * The endpoint type of the rocketmq.
+         */
+        endpointType?: pulumi.Input<string>;
+        /**
+         * The internal endpoint of the rocketmq.
+         */
+        internalEndpoint?: pulumi.Input<string>;
+        /**
+         * The network type of the rocketmq.
+         */
+        networkType?: pulumi.Input<string>;
+        /**
+         * The public endpoint of the rocketmq.
+         */
+        publicEndpoint?: pulumi.Input<string>;
+    }
+
+    export interface RocketMQInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RocketMQTopicAccessPolicy {
+        /**
+         * The access key of the rocketmq key.
+         */
+        accessKey: pulumi.Input<string>;
+        /**
+         * The authority of the rocketmq key for the current topic. Valid values: `ALL`, `PUB`, `SUB`, `DENY`. Default is `DENY`.
+         */
+        authority: pulumi.Input<string>;
+    }
+
+    export interface RocketMQTopicGroup {
+        /**
+         * The id of the rocketmq group.
+         */
+        groupId?: pulumi.Input<string>;
+        /**
+         * The message model of the rocketmq group.
+         */
+        messageModel?: pulumi.Input<string>;
+        /**
+         * The sub string of the rocketmq group.
+         */
+        subString?: pulumi.Input<string>;
+    }
+
+    export interface RocketMQTopicQueue {
+        /**
+         * The end offset of the rocketmq queue.
+         */
+        endOffset?: pulumi.Input<number>;
+        /**
+         * The last update timestamp of the rocketmq queue.
+         */
+        lastUpdateTimestamp?: pulumi.Input<number>;
+        /**
+         * The message count of the rocketmq queue.
+         */
+        messageCount?: pulumi.Input<number>;
+        /**
+         * The id of the rocketmq queue.
+         */
+        queueId?: pulumi.Input<string>;
+        /**
+         * The start offset of the rocketmq queue.
+         */
+        startOffset?: pulumi.Input<number>;
+    }
+
+}
+
 export namespace tls {
     export interface AlarmAlarmPeriodDetail {
         /**
@@ -3363,6 +3871,57 @@ export namespace tos {
         permission: pulumi.Input<string>;
     }
 
+    export interface BucketInventoryDestination {
+        /**
+         * The destination tos bucket information of the bucket inventory.
+         */
+        tosBucketDestination: pulumi.Input<inputs.tos.BucketInventoryDestinationTosBucketDestination>;
+    }
+
+    export interface BucketInventoryDestinationTosBucketDestination {
+        /**
+         * The account id of the destination tos bucket.
+         */
+        accountId: pulumi.Input<string>;
+        /**
+         * The name of the destination tos bucket.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * The format of the bucket inventory. Valid values: `CSV`.
+         */
+        format: pulumi.Input<string>;
+        /**
+         * The storage path prefix of the bucket inventory in destination tos bucket.
+         */
+        prefix?: pulumi.Input<string>;
+        /**
+         * The role name used to grant TOS access to read all files from the source bucket and write files to the destination bucket. You can use the default TOS role `TosArchiveTOSInventory`.
+         */
+        role: pulumi.Input<string>;
+    }
+
+    export interface BucketInventoryFilter {
+        /**
+         * The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+         */
+        prefix?: pulumi.Input<string>;
+    }
+
+    export interface BucketInventoryOptionalFields {
+        /**
+         * The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+         */
+        fields?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface BucketInventorySchedule {
+        /**
+         * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+         */
+        frequency: pulumi.Input<string>;
+    }
+
     export interface BucketObjectAccountAcl {
         /**
          * The accountId to control.
@@ -3387,6 +3946,25 @@ export namespace tos {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface BucketRealtimeLogAccessLogConfiguration {
+        /**
+         * The ID of the tls dashboard.
+         */
+        tlsDashboardId?: pulumi.Input<string>;
+        /**
+         * The ID of the tls project.
+         */
+        tlsProjectId?: pulumi.Input<string>;
+        /**
+         * The ID of the tls topic.
+         */
+        tlsTopicId?: pulumi.Input<string>;
+        /**
+         * The TLS log retention duration. Unit in days. Valid values range is 1~3650. default is 7.
+         */
+        ttl?: pulumi.Input<number>;
     }
 
     export interface BucketTag {
@@ -4458,9 +5036,17 @@ export namespace vke {
 
     export interface NodePoolKubernetesConfig {
         /**
+         * Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+         */
+        autoSyncDisabled?: pulumi.Input<boolean>;
+        /**
          * The Cordon of KubernetesConfig.
          */
         cordon: pulumi.Input<boolean>;
+        /**
+         * The KubeletConfig of KubernetesConfig. After adding parameters, deleting parameters does not take effect.
+         */
+        kubeletConfig?: pulumi.Input<inputs.vke.NodePoolKubernetesConfigKubeletConfig>;
         /**
          * The Labels of KubernetesConfig.
          */
@@ -4473,6 +5059,28 @@ export namespace vke {
          * The Taints of KubernetesConfig.
          */
         taints?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolKubernetesConfigTaint>[]>;
+    }
+
+    export interface NodePoolKubernetesConfigKubeletConfig {
+        /**
+         * The FeatureGates of KubeletConfig.
+         */
+        featureGates?: pulumi.Input<inputs.vke.NodePoolKubernetesConfigKubeletConfigFeatureGates>;
+        /**
+         * The TopologyManagerPolicy of KubeletConfig. Valid values: `none`, `restricted`, `best-effort`, `single-numa-node`. Default is `none`.
+         */
+        topologyManagerPolicy?: pulumi.Input<string>;
+        /**
+         * The TopologyManagerScope of KubeletConfig. Valid values: `container`.
+         */
+        topologyManagerScope?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolKubernetesConfigKubeletConfigFeatureGates {
+        /**
+         * Whether to enable QoSResourceManager. Default is false.
+         */
+        qosResourceManager?: pulumi.Input<boolean>;
     }
 
     export interface NodePoolKubernetesConfigLabel {

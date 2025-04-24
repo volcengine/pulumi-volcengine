@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:mongodb/account:Account":
+		r = &Account{}
 	case "volcengine:mongodb/endpoint:Endpoint":
 		r = &Endpoint{}
 	case "volcengine:mongodb/instance:Instance":
@@ -46,6 +48,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"mongodb/account",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"mongodb/endpoint",
