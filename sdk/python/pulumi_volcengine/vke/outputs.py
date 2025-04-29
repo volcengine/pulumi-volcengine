@@ -851,6 +851,7 @@ class ClustersClusterResult(dict):
                  name: str,
                  node_statistics: 'outputs.ClustersClusterNodeStatisticsResult',
                  pods_config: 'outputs.ClustersClusterPodsConfigResult',
+                 project_name: str,
                  services_config: 'outputs.ClustersClusterServicesConfigResult',
                  status: 'outputs.ClustersClusterStatusResult',
                  tags: Sequence['outputs.ClustersClusterTagResult'],
@@ -871,6 +872,7 @@ class ClustersClusterResult(dict):
         :param str name: The name of the cluster.
         :param 'ClustersClusterNodeStatisticsArgs' node_statistics: Statistics on the number of nodes corresponding to each master state in the cluster.
         :param 'ClustersClusterPodsConfigArgs' pods_config: The config of the pods.
+        :param str project_name: The project name of the cluster.
         :param 'ClustersClusterServicesConfigArgs' services_config: The config of the services.
         :param 'ClustersClusterStatusArgs' status: The status of the cluster.
         :param Sequence['ClustersClusterTagArgs'] tags: Tags.
@@ -891,6 +893,7 @@ class ClustersClusterResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_statistics", node_statistics)
         pulumi.set(__self__, "pods_config", pods_config)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "services_config", services_config)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "tags", tags)
@@ -1003,6 +1006,14 @@ class ClustersClusterResult(dict):
         The config of the pods.
         """
         return pulumi.get(self, "pods_config")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the cluster.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="servicesConfig")
@@ -3297,6 +3308,8 @@ class NodePoolNodeConfig(dict):
             suggest = "instance_charge_type"
         elif key == "namePrefix":
             suggest = "name_prefix"
+        elif key == "projectName":
+            suggest = "project_name"
         elif key == "systemVolume":
             suggest = "system_volume"
 
@@ -3326,6 +3339,7 @@ class NodePoolNodeConfig(dict):
                  instance_charge_type: Optional[str] = None,
                  name_prefix: Optional[str] = None,
                  period: Optional[int] = None,
+                 project_name: Optional[str] = None,
                  system_volume: Optional['outputs.NodePoolNodeConfigSystemVolume'] = None):
         """
         :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
@@ -3342,6 +3356,7 @@ class NodePoolNodeConfig(dict):
         :param str instance_charge_type: The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
         :param str name_prefix: The NamePrefix of NodeConfig.
         :param int period: The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+        :param str project_name: The project name of the ecs instance.
         :param 'NodePoolNodeConfigSystemVolumeArgs' system_volume: The SystemVolume of NodeConfig.
         """
         pulumi.set(__self__, "instance_type_ids", instance_type_ids)
@@ -3369,6 +3384,8 @@ class NodePoolNodeConfig(dict):
             pulumi.set(__self__, "name_prefix", name_prefix)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if system_volume is not None:
             pulumi.set(__self__, "system_volume", system_volume)
 
@@ -3483,6 +3500,14 @@ class NodePoolNodeConfig(dict):
         The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
         """
         return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the ecs instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="systemVolume")
@@ -3944,6 +3969,7 @@ class NodePoolsNodePoolResult(dict):
                  period: int,
                  phase: str,
                  priority: int,
+                 project_name: str,
                  security_group_ids: Sequence[str],
                  security_strategies: Sequence[str],
                  security_strategy_enabled: bool,
@@ -3987,6 +4013,7 @@ class NodePoolsNodePoolResult(dict):
         :param int period: The period of the PrePaid instance of NodeConfig.
         :param str phase: The Phase of Status.
         :param int priority: The Priority of AutoScaling.
+        :param str project_name: The project name of NodeConfig.
         :param Sequence[str] security_group_ids: The SecurityGroupIds of NodeConfig.
         :param Sequence[str] security_strategies: The SecurityStrategies of NodeConfig.
         :param bool security_strategy_enabled: The SecurityStrategyEnabled of NodeConfig.
@@ -4030,6 +4057,7 @@ class NodePoolsNodePoolResult(dict):
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "phase", phase)
         pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "security_strategies", security_strategies)
         pulumi.set(__self__, "security_strategy_enabled", security_strategy_enabled)
@@ -4296,6 +4324,14 @@ class NodePoolsNodePoolResult(dict):
         The Priority of AutoScaling.
         """
         return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of NodeConfig.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="securityGroupIds")

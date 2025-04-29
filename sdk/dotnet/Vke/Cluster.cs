@@ -44,6 +44,7 @@ namespace Pulumi.Volcengine.Vke
     ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
     ///     {
     ///         Description = "created by terraform",
+    ///         ProjectName = "default",
     ///         DeleteProtectionEnabled = false,
     ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
     ///         {
@@ -171,6 +172,12 @@ namespace Pulumi.Volcengine.Vke
         public Output<Outputs.ClusterPodsConfig> PodsConfig { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The config of the services.
         /// </summary>
         [Output("servicesConfig")]
@@ -278,6 +285,12 @@ namespace Pulumi.Volcengine.Vke
         public Input<Inputs.ClusterPodsConfigArgs> PodsConfig { get; set; } = null!;
 
         /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The config of the services.
         /// </summary>
         [Input("servicesConfig", required: true)]
@@ -368,6 +381,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("podsConfig")]
         public Input<Inputs.ClusterPodsConfigGetArgs>? PodsConfig { get; set; }
+
+        /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The config of the services.

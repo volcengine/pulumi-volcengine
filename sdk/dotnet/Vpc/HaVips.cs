@@ -169,6 +169,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("subnetId")]
         public string? SubnetId { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.HaVipsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.HaVipsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.HaVipsTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The id of vpc.
         /// </summary>
@@ -237,6 +249,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.HaVipsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HaVipsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HaVipsTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The id of vpc.
         /// </summary>
@@ -285,6 +309,10 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         public readonly string? SubnetId;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.HaVipsTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
@@ -315,6 +343,8 @@ namespace Pulumi.Volcengine.Vpc
 
             string? subnetId,
 
+            ImmutableArray<Outputs.HaVipsTagResult> tags,
+
             int totalCount,
 
             string? vpcId)
@@ -329,6 +359,7 @@ namespace Pulumi.Volcengine.Vpc
             ProjectName = projectName;
             Status = status;
             SubnetId = subnetId;
+            Tags = tags;
             TotalCount = totalCount;
             VpcId = vpcId;
         }

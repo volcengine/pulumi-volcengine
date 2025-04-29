@@ -378,9 +378,10 @@ class NodePool(pulumi.CustomResource):
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+        foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS Compatible 64 bit")
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
+            project_name="default",
             delete_protection_enabled=False,
             cluster_config=volcengine.vke.ClusterClusterConfigArgs(
                 subnet_ids=[foo_subnet.id],
@@ -419,7 +420,7 @@ class NodePool(pulumi.CustomResource):
             node_config=volcengine.vke.NodePoolNodeConfigArgs(
                 instance_type_ids=["ecs.g1ie.xlarge"],
                 subnet_ids=[foo_subnet.id],
-                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS Compatible 64 bit"][0],
                 system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
                     type="ESSD_PL0",
                     size=80,
@@ -447,6 +448,7 @@ class NodePool(pulumi.CustomResource):
                 additional_container_storage_enabled=False,
                 instance_charge_type="PostPaid",
                 name_prefix="acc-test",
+                project_name="default",
                 ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
                     key="ecs_k1",
                     value="ecs_v1",
@@ -475,7 +477,7 @@ class NodePool(pulumi.CustomResource):
             foo_instance.append(volcengine.ecs.Instance(f"fooInstance-{range['value']}",
                 instance_name=f"acc-test-ecs-{range['value']}",
                 host_name="tf-acc-test",
-                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS Compatible 64 bit"][0],
                 instance_type="ecs.g1ie.xlarge",
                 password="93f0cb0614Aab12",
                 instance_charge_type="PostPaid",
@@ -500,7 +502,7 @@ class NodePool(pulumi.CustomResource):
             node_config=volcengine.vke.NodePoolNodeConfigArgs(
                 instance_type_ids=["ecs.g1ie.xlarge"],
                 subnet_ids=[foo_subnet.id],
-                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS Compatible 64 bit"][0],
                 system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
                     type="ESSD_PL0",
                     size=50,
@@ -593,9 +595,10 @@ class NodePool(pulumi.CustomResource):
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+        foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS Compatible 64 bit")
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
+            project_name="default",
             delete_protection_enabled=False,
             cluster_config=volcengine.vke.ClusterClusterConfigArgs(
                 subnet_ids=[foo_subnet.id],
@@ -634,7 +637,7 @@ class NodePool(pulumi.CustomResource):
             node_config=volcengine.vke.NodePoolNodeConfigArgs(
                 instance_type_ids=["ecs.g1ie.xlarge"],
                 subnet_ids=[foo_subnet.id],
-                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS Compatible 64 bit"][0],
                 system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
                     type="ESSD_PL0",
                     size=80,
@@ -662,6 +665,7 @@ class NodePool(pulumi.CustomResource):
                 additional_container_storage_enabled=False,
                 instance_charge_type="PostPaid",
                 name_prefix="acc-test",
+                project_name="default",
                 ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
                     key="ecs_k1",
                     value="ecs_v1",
@@ -690,7 +694,7 @@ class NodePool(pulumi.CustomResource):
             foo_instance.append(volcengine.ecs.Instance(f"fooInstance-{range['value']}",
                 instance_name=f"acc-test-ecs-{range['value']}",
                 host_name="tf-acc-test",
-                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS Compatible 64 bit"][0],
                 instance_type="ecs.g1ie.xlarge",
                 password="93f0cb0614Aab12",
                 instance_charge_type="PostPaid",
@@ -715,7 +719,7 @@ class NodePool(pulumi.CustomResource):
             node_config=volcengine.vke.NodePoolNodeConfigArgs(
                 instance_type_ids=["ecs.g1ie.xlarge"],
                 subnet_ids=[foo_subnet.id],
-                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS Compatible 64 bit"][0],
                 system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
                     type="ESSD_PL0",
                     size=50,

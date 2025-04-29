@@ -21,35 +21,85 @@ namespace Pulumi.Volcengine.Alb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooCustomizedCfg = new Volcengine.Alb.CustomizedCfg("fooCustomizedCfg", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         CustomizedCfgName = "acc-test-cfg1",
-    ///         Description = "This is a test modify",
-    ///         CustomizedCfgContent = "proxy_connect_timeout 4s;proxy_request_buffering on;",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooAlb = new Volcengine.Alb.Alb("fooAlb", new()
+    ///     {
+    ///         AddressIpVersion = "IPv4",
+    ///         Type = "private",
+    ///         LoadBalancerName = "acc-test-alb-private",
+    ///         Description = "acc-test",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             fooSubnet.Id,
+    ///         },
     ///         ProjectName = "default",
+    ///         DeleteProtection = "off",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.AlbTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooServerGroup = new Volcengine.Alb.ServerGroup("fooServerGroup", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         ServerGroupName = "acc-test-server-group",
+    ///         Description = "acc-test",
+    ///         ServerGroupType = "instance",
+    ///         Scheduler = "wlc",
+    ///         ProjectName = "default",
+    ///         HealthCheck = new Volcengine.Alb.Inputs.ServerGroupHealthCheckArgs
+    ///         {
+    ///             Enabled = "on",
+    ///             Interval = 3,
+    ///             Timeout = 3,
+    ///             Method = "GET",
+    ///         },
+    ///         StickySessionConfig = new Volcengine.Alb.Inputs.ServerGroupStickySessionConfigArgs
+    ///         {
+    ///             StickySessionEnabled = "on",
+    ///             StickySessionType = "insert",
+    ///             CookieTimeout = 1100,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooCertificate = new Volcengine.Alb.Certificate("fooCertificate", new()
+    ///     {
+    ///         Description = "tf-test",
+    ///         PublicKey = "public key",
+    ///         PrivateKey = "private key",
     ///     });
     /// 
     ///     var fooListener = new Volcengine.Alb.Listener("fooListener", new()
     ///     {
-    ///         LoadBalancerId = "alb-1iidd17v3klj474adhfrunyz9",
-    ///         ListenerName = "acc-test-listener-1",
+    ///         LoadBalancerId = fooAlb.Id,
+    ///         ListenerName = "acc-test-listener",
     ///         Protocol = "HTTPS",
     ///         Port = 6666,
-    ///         Enabled = "on",
-    ///         CertificateId = "cert-1iidd2pahdyio74adhfr9ajwg",
-    ///         CaCertificateId = "cert-1iidd2r9ii0hs74adhfeodxo1",
-    ///         ServerGroupId = "rsp-1g72w74y4umf42zbhq4k4hnln",
-    ///         EnableHttp2 = "on",
-    ///         EnableQuic = "off",
-    ///         AclStatus = "on",
-    ///         AclType = "white",
-    ///         AclIds = new[]
-    ///         {
-    ///             "acl-1g72w6z11ighs2zbhq4v3rvh4",
-    ///             "acl-1g72xvtt7kg002zbhq5diim3s",
-    ///         },
+    ///         Enabled = "off",
+    ///         CertificateSource = "alb",
+    ///         CertificateId = fooCertificate.Id,
+    ///         ServerGroupId = fooServerGroup.Id,
     ///         Description = "acc test listener",
-    ///         CustomizedCfgId = fooCustomizedCfg.Id,
     ///     });
     /// 
     /// });
@@ -91,10 +141,22 @@ namespace Pulumi.Volcengine.Alb
         public Output<string?> CaCertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate id associated with the listener.
+        /// The certificate id associated with the listener. Source is `cert_center`.
+        /// </summary>
+        [Output("certCenterCertificateId")]
+        public Output<string?> CertCenterCertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The certificate id associated with the listener. Source is `alb`.
         /// </summary>
         [Output("certificateId")]
         public Output<string?> CertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
+        /// </summary>
+        [Output("certificateSource")]
+        public Output<string?> CertificateSource { get; private set; } = null!;
 
         /// <summary>
         /// Personalized configuration ID, with a value of " " when not bound.
@@ -240,10 +302,22 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? CaCertificateId { get; set; }
 
         /// <summary>
-        /// The certificate id associated with the listener.
+        /// The certificate id associated with the listener. Source is `cert_center`.
+        /// </summary>
+        [Input("certCenterCertificateId")]
+        public Input<string>? CertCenterCertificateId { get; set; }
+
+        /// <summary>
+        /// The certificate id associated with the listener. Source is `alb`.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
+        /// </summary>
+        [Input("certificateSource")]
+        public Input<string>? CertificateSource { get; set; }
 
         /// <summary>
         /// Personalized configuration ID, with a value of " " when not bound.
@@ -344,10 +418,22 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? CaCertificateId { get; set; }
 
         /// <summary>
-        /// The certificate id associated with the listener.
+        /// The certificate id associated with the listener. Source is `cert_center`.
+        /// </summary>
+        [Input("certCenterCertificateId")]
+        public Input<string>? CertCenterCertificateId { get; set; }
+
+        /// <summary>
+        /// The certificate id associated with the listener. Source is `alb`.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
+        /// </summary>
+        [Input("certificateSource")]
+        public Input<string>? CertificateSource { get; set; }
 
         /// <summary>
         /// Personalized configuration ID, with a value of " " when not bound.

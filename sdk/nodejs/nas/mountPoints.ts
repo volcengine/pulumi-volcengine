@@ -17,7 +17,7 @@ export function mountPoints(args: MountPointsArgs, opts?: pulumi.InvokeOptions):
         "mountPointId": args.mountPointId,
         "mountPointName": args.mountPointName,
         "outputFile": args.outputFile,
-        "vpcsId": args.vpcsId,
+        "vpcId": args.vpcId,
     }, opts);
 }
 
@@ -44,7 +44,7 @@ export interface MountPointsArgs {
     /**
      * The id of the vpc.
      */
-    vpcsId?: string;
+    vpcId?: string;
 }
 
 /**
@@ -76,7 +76,10 @@ export interface MountPointsResult {
      * The total count of nas mount points query.
      */
     readonly totalCount: number;
-    readonly vpcsId?: string;
+    /**
+     * The id of the vpc.
+     */
+    readonly vpcId?: string;
 }
 /**
  * Use this data source to query detailed information of nas mount points
@@ -108,5 +111,5 @@ export interface MountPointsOutputArgs {
     /**
      * The id of the vpc.
      */
-    vpcsId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string>;
 }

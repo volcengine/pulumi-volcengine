@@ -54,8 +54,8 @@ namespace Pulumi.Volcengine.Nas
         /// <summary>
         /// The id of the vpc.
         /// </summary>
-        [Input("vpcsId")]
-        public string? VpcsId { get; set; }
+        [Input("vpcId")]
+        public string? VpcId { get; set; }
 
         public MountPointsArgs()
         {
@@ -92,8 +92,8 @@ namespace Pulumi.Volcengine.Nas
         /// <summary>
         /// The id of the vpc.
         /// </summary>
-        [Input("vpcsId")]
-        public Input<string>? VpcsId { get; set; }
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         public MountPointsInvokeArgs()
         {
@@ -130,7 +130,10 @@ namespace Pulumi.Volcengine.Nas
         /// The total count of nas mount points query.
         /// </summary>
         public readonly int TotalCount;
-        public readonly string? VpcsId;
+        /// <summary>
+        /// The id of the vpc.
+        /// </summary>
+        public readonly string? VpcId;
 
         [OutputConstructor]
         private MountPointsResult(
@@ -148,7 +151,7 @@ namespace Pulumi.Volcengine.Nas
 
             int totalCount,
 
-            string? vpcsId)
+            string? vpcId)
         {
             FileSystemId = fileSystemId;
             Id = id;
@@ -157,7 +160,7 @@ namespace Pulumi.Volcengine.Nas
             MountPoints = mountPoints;
             OutputFile = outputFile;
             TotalCount = totalCount;
-            VpcsId = vpcsId;
+            VpcId = vpcId;
         }
     }
 }

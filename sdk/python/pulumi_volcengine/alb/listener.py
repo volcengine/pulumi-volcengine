@@ -22,7 +22,9 @@ class ListenerArgs:
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
@@ -39,7 +41,9 @@ class ListenerArgs:
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
-        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -59,8 +63,12 @@ class ListenerArgs:
             pulumi.set(__self__, "acl_type", acl_type)
         if ca_certificate_id is not None:
             pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
         if customized_cfg_id is not None:
             pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
         if description is not None:
@@ -171,16 +179,40 @@ class ListenerArgs:
         pulumi.set(self, "ca_certificate_id", value)
 
     @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate id associated with the listener. Source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate id associated with the listener.
+        The certificate id associated with the listener. Source is `alb`.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
 
     @property
     @pulumi.getter(name="customizedCfgId")
@@ -262,7 +294,9 @@ class _ListenerState:
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
@@ -280,7 +314,9 @@ class _ListenerState:
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
-        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -301,8 +337,12 @@ class _ListenerState:
             pulumi.set(__self__, "acl_type", acl_type)
         if ca_certificate_id is not None:
             pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
         if customized_cfg_id is not None:
             pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
         if description is not None:
@@ -375,16 +415,40 @@ class _ListenerState:
         pulumi.set(self, "ca_certificate_id", value)
 
     @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate id associated with the listener. Source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate id associated with the listener.
+        The certificate id associated with the listener. Source is `alb`.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
 
     @property
     @pulumi.getter(name="customizedCfgId")
@@ -528,7 +592,9 @@ class Listener(pulumi.CustomResource):
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
@@ -548,30 +614,59 @@ class Listener(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_customized_cfg = volcengine.alb.CustomizedCfg("fooCustomizedCfg",
-            customized_cfg_name="acc-test-cfg1",
-            description="This is a test modify",
-            customized_cfg_content="proxy_connect_timeout 4s;proxy_request_buffering on;",
-            project_name="default")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_alb = volcengine.alb.Alb("fooAlb",
+            address_ip_version="IPv4",
+            type="private",
+            load_balancer_name="acc-test-alb-private",
+            description="acc-test",
+            subnet_ids=[foo_subnet.id],
+            project_name="default",
+            delete_protection="off",
+            tags=[volcengine.alb.AlbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_server_group = volcengine.alb.ServerGroup("fooServerGroup",
+            vpc_id=foo_vpc.id,
+            server_group_name="acc-test-server-group",
+            description="acc-test",
+            server_group_type="instance",
+            scheduler="wlc",
+            project_name="default",
+            health_check=volcengine.alb.ServerGroupHealthCheckArgs(
+                enabled="on",
+                interval=3,
+                timeout=3,
+                method="GET",
+            ),
+            sticky_session_config=volcengine.alb.ServerGroupStickySessionConfigArgs(
+                sticky_session_enabled="on",
+                sticky_session_type="insert",
+                cookie_timeout=1100,
+            ))
+        foo_certificate = volcengine.alb.Certificate("fooCertificate",
+            description="tf-test",
+            public_key="public key",
+            private_key="private key")
         foo_listener = volcengine.alb.Listener("fooListener",
-            load_balancer_id="alb-1iidd17v3klj474adhfrunyz9",
-            listener_name="acc-test-listener-1",
+            load_balancer_id=foo_alb.id,
+            listener_name="acc-test-listener",
             protocol="HTTPS",
             port=6666,
-            enabled="on",
-            certificate_id="cert-1iidd2pahdyio74adhfr9ajwg",
-            ca_certificate_id="cert-1iidd2r9ii0hs74adhfeodxo1",
-            server_group_id="rsp-1g72w74y4umf42zbhq4k4hnln",
-            enable_http2="on",
-            enable_quic="off",
-            acl_status="on",
-            acl_type="white",
-            acl_ids=[
-                "acl-1g72w6z11ighs2zbhq4v3rvh4",
-                "acl-1g72xvtt7kg002zbhq5diim3s",
-            ],
-            description="acc test listener",
-            customized_cfg_id=foo_customized_cfg.id)
+            enabled="off",
+            certificate_source="alb",
+            certificate_id=foo_certificate.id,
+            server_group_id=foo_server_group.id,
+            description="acc test listener")
         ```
 
         ## Import
@@ -588,7 +683,9 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
-        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -614,30 +711,59 @@ class Listener(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_customized_cfg = volcengine.alb.CustomizedCfg("fooCustomizedCfg",
-            customized_cfg_name="acc-test-cfg1",
-            description="This is a test modify",
-            customized_cfg_content="proxy_connect_timeout 4s;proxy_request_buffering on;",
-            project_name="default")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_alb = volcengine.alb.Alb("fooAlb",
+            address_ip_version="IPv4",
+            type="private",
+            load_balancer_name="acc-test-alb-private",
+            description="acc-test",
+            subnet_ids=[foo_subnet.id],
+            project_name="default",
+            delete_protection="off",
+            tags=[volcengine.alb.AlbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_server_group = volcengine.alb.ServerGroup("fooServerGroup",
+            vpc_id=foo_vpc.id,
+            server_group_name="acc-test-server-group",
+            description="acc-test",
+            server_group_type="instance",
+            scheduler="wlc",
+            project_name="default",
+            health_check=volcengine.alb.ServerGroupHealthCheckArgs(
+                enabled="on",
+                interval=3,
+                timeout=3,
+                method="GET",
+            ),
+            sticky_session_config=volcengine.alb.ServerGroupStickySessionConfigArgs(
+                sticky_session_enabled="on",
+                sticky_session_type="insert",
+                cookie_timeout=1100,
+            ))
+        foo_certificate = volcengine.alb.Certificate("fooCertificate",
+            description="tf-test",
+            public_key="public key",
+            private_key="private key")
         foo_listener = volcengine.alb.Listener("fooListener",
-            load_balancer_id="alb-1iidd17v3klj474adhfrunyz9",
-            listener_name="acc-test-listener-1",
+            load_balancer_id=foo_alb.id,
+            listener_name="acc-test-listener",
             protocol="HTTPS",
             port=6666,
-            enabled="on",
-            certificate_id="cert-1iidd2pahdyio74adhfr9ajwg",
-            ca_certificate_id="cert-1iidd2r9ii0hs74adhfeodxo1",
-            server_group_id="rsp-1g72w74y4umf42zbhq4k4hnln",
-            enable_http2="on",
-            enable_quic="off",
-            acl_status="on",
-            acl_type="white",
-            acl_ids=[
-                "acl-1g72w6z11ighs2zbhq4v3rvh4",
-                "acl-1g72xvtt7kg002zbhq5diim3s",
-            ],
-            description="acc test listener",
-            customized_cfg_id=foo_customized_cfg.id)
+            enabled="off",
+            certificate_source="alb",
+            certificate_id=foo_certificate.id,
+            server_group_id=foo_server_group.id,
+            description="acc test listener")
         ```
 
         ## Import
@@ -667,7 +793,9 @@ class Listener(pulumi.CustomResource):
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
@@ -691,7 +819,9 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["acl_status"] = acl_status
             __props__.__dict__["acl_type"] = acl_type
             __props__.__dict__["ca_certificate_id"] = ca_certificate_id
+            __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
             __props__.__dict__["certificate_id"] = certificate_id
+            __props__.__dict__["certificate_source"] = certificate_source
             __props__.__dict__["customized_cfg_id"] = customized_cfg_id
             __props__.__dict__["description"] = description
             __props__.__dict__["enable_http2"] = enable_http2
@@ -725,7 +855,9 @@ class Listener(pulumi.CustomResource):
             acl_status: Optional[pulumi.Input[str]] = None,
             acl_type: Optional[pulumi.Input[str]] = None,
             ca_certificate_id: Optional[pulumi.Input[str]] = None,
+            cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
+            certificate_source: Optional[pulumi.Input[str]] = None,
             customized_cfg_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enable_http2: Optional[pulumi.Input[str]] = None,
@@ -748,7 +880,9 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
-        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -769,7 +903,9 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["acl_status"] = acl_status
         __props__.__dict__["acl_type"] = acl_type
         __props__.__dict__["ca_certificate_id"] = ca_certificate_id
+        __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
         __props__.__dict__["certificate_id"] = certificate_id
+        __props__.__dict__["certificate_source"] = certificate_source
         __props__.__dict__["customized_cfg_id"] = customized_cfg_id
         __props__.__dict__["description"] = description
         __props__.__dict__["enable_http2"] = enable_http2
@@ -816,12 +952,28 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "ca_certificate_id")
 
     @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The certificate id associated with the listener. Source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The certificate id associated with the listener.
+        The certificate id associated with the listener. Source is `alb`.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
+        """
+        return pulumi.get(self, "certificate_source")
 
     @property
     @pulumi.getter(name="customizedCfgId")

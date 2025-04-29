@@ -33,7 +33,7 @@ type MountPointsArgs struct {
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 	// The id of the vpc.
-	VpcsId *string `pulumi:"vpcsId"`
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by MountPoints.
@@ -50,8 +50,9 @@ type MountPointsResult struct {
 	MountPoints []MountPointsMountPoint `pulumi:"mountPoints"`
 	OutputFile  *string                 `pulumi:"outputFile"`
 	// The total count of nas mount points query.
-	TotalCount int     `pulumi:"totalCount"`
-	VpcsId     *string `pulumi:"vpcsId"`
+	TotalCount int `pulumi:"totalCount"`
+	// The id of the vpc.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 func MountPointsOutput(ctx *pulumi.Context, args MountPointsOutputArgs, opts ...pulumi.InvokeOption) MountPointsResultOutput {
@@ -78,7 +79,7 @@ type MountPointsOutputArgs struct {
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The id of the vpc.
-	VpcsId pulumi.StringPtrInput `pulumi:"vpcsId"`
+	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
 func (MountPointsOutputArgs) ElementType() reflect.Type {
@@ -134,8 +135,9 @@ func (o MountPointsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v MountPointsResult) int { return v.TotalCount }).(pulumi.IntOutput)
 }
 
-func (o MountPointsResultOutput) VpcsId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v MountPointsResult) *string { return v.VpcsId }).(pulumi.StringPtrOutput)
+// The id of the vpc.
+func (o MountPointsResultOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MountPointsResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 func init() {

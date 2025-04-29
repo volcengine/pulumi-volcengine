@@ -74,6 +74,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string SubnetId;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.HaVipsHaVipTagResult> Tags;
+        /// <summary>
         /// The update time of the Ha Vip.
         /// </summary>
         public readonly string UpdatedAt;
@@ -114,6 +118,8 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string subnetId,
 
+            ImmutableArray<Outputs.HaVipsHaVipTagResult> tags,
+
             string updatedAt,
 
             string vpcId)
@@ -133,6 +139,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             ProjectName = projectName;
             Status = status;
             SubnetId = subnetId;
+            Tags = tags;
             UpdatedAt = updatedAt;
             VpcId = vpcId;
         }

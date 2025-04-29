@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .authorization_tokens import *
 from .endpoint import *
+from .endpoint_acl_policy import *
 from .endpoints import *
 from .namespace import *
 from .namespaces import *

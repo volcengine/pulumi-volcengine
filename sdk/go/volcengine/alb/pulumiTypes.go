@@ -3901,8 +3901,12 @@ type ListenersListener struct {
 	AclType string `pulumi:"aclType"`
 	// CA certificate ID associated with HTTPS listener.
 	CaCertificateId string `pulumi:"caCertificateId"`
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource string `pulumi:"certificateSource"`
 	// The create time of the Listener.
 	CreateTime string `pulumi:"createTime"`
 	// The customized configuration ID, the value is empty string when not bound.
@@ -3961,8 +3965,12 @@ type ListenersListenerArgs struct {
 	AclType pulumi.StringInput `pulumi:"aclType"`
 	// CA certificate ID associated with HTTPS listener.
 	CaCertificateId pulumi.StringInput `pulumi:"caCertificateId"`
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource pulumi.StringInput `pulumi:"certificateSource"`
 	// The create time of the Listener.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The customized configuration ID, the value is empty string when not bound.
@@ -4072,9 +4080,19 @@ func (o ListenersListenerOutput) CaCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.CaCertificateId }).(pulumi.StringOutput)
 }
 
+// The certificate id associated with the listener. Source is `certCenter`.
+func (o ListenersListenerOutput) CertCenterCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
+}
+
 // The server certificate ID that domain used.
 func (o ListenersListenerOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The source of the certificate.
+func (o ListenersListenerOutput) CertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.CertificateSource }).(pulumi.StringOutput)
 }
 
 // The create time of the Listener.

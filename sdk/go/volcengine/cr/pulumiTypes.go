@@ -128,7 +128,115 @@ func (o AuthorizationTokensTokenArrayOutput) Index(i pulumi.IntInput) Authorizat
 	}).(AuthorizationTokensTokenOutput)
 }
 
+type EndpointAclPolicyType struct {
+	// The description of the acl policy.
+	Description *string `pulumi:"description"`
+	// The ip of the acl policy.
+	Entry *string `pulumi:"entry"`
+}
+
+// EndpointAclPolicyTypeInput is an input type that accepts EndpointAclPolicyTypeArgs and EndpointAclPolicyTypeOutput values.
+// You can construct a concrete instance of `EndpointAclPolicyTypeInput` via:
+//
+//	EndpointAclPolicyTypeArgs{...}
+type EndpointAclPolicyTypeInput interface {
+	pulumi.Input
+
+	ToEndpointAclPolicyTypeOutput() EndpointAclPolicyTypeOutput
+	ToEndpointAclPolicyTypeOutputWithContext(context.Context) EndpointAclPolicyTypeOutput
+}
+
+type EndpointAclPolicyTypeArgs struct {
+	// The description of the acl policy.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The ip of the acl policy.
+	Entry pulumi.StringPtrInput `pulumi:"entry"`
+}
+
+func (EndpointAclPolicyTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointAclPolicyType)(nil)).Elem()
+}
+
+func (i EndpointAclPolicyTypeArgs) ToEndpointAclPolicyTypeOutput() EndpointAclPolicyTypeOutput {
+	return i.ToEndpointAclPolicyTypeOutputWithContext(context.Background())
+}
+
+func (i EndpointAclPolicyTypeArgs) ToEndpointAclPolicyTypeOutputWithContext(ctx context.Context) EndpointAclPolicyTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointAclPolicyTypeOutput)
+}
+
+// EndpointAclPolicyTypeArrayInput is an input type that accepts EndpointAclPolicyTypeArray and EndpointAclPolicyTypeArrayOutput values.
+// You can construct a concrete instance of `EndpointAclPolicyTypeArrayInput` via:
+//
+//	EndpointAclPolicyTypeArray{ EndpointAclPolicyTypeArgs{...} }
+type EndpointAclPolicyTypeArrayInput interface {
+	pulumi.Input
+
+	ToEndpointAclPolicyTypeArrayOutput() EndpointAclPolicyTypeArrayOutput
+	ToEndpointAclPolicyTypeArrayOutputWithContext(context.Context) EndpointAclPolicyTypeArrayOutput
+}
+
+type EndpointAclPolicyTypeArray []EndpointAclPolicyTypeInput
+
+func (EndpointAclPolicyTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EndpointAclPolicyType)(nil)).Elem()
+}
+
+func (i EndpointAclPolicyTypeArray) ToEndpointAclPolicyTypeArrayOutput() EndpointAclPolicyTypeArrayOutput {
+	return i.ToEndpointAclPolicyTypeArrayOutputWithContext(context.Background())
+}
+
+func (i EndpointAclPolicyTypeArray) ToEndpointAclPolicyTypeArrayOutputWithContext(ctx context.Context) EndpointAclPolicyTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointAclPolicyTypeArrayOutput)
+}
+
+type EndpointAclPolicyTypeOutput struct{ *pulumi.OutputState }
+
+func (EndpointAclPolicyTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointAclPolicyType)(nil)).Elem()
+}
+
+func (o EndpointAclPolicyTypeOutput) ToEndpointAclPolicyTypeOutput() EndpointAclPolicyTypeOutput {
+	return o
+}
+
+func (o EndpointAclPolicyTypeOutput) ToEndpointAclPolicyTypeOutputWithContext(ctx context.Context) EndpointAclPolicyTypeOutput {
+	return o
+}
+
+// The description of the acl policy.
+func (o EndpointAclPolicyTypeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EndpointAclPolicyType) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The ip of the acl policy.
+func (o EndpointAclPolicyTypeOutput) Entry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EndpointAclPolicyType) *string { return v.Entry }).(pulumi.StringPtrOutput)
+}
+
+type EndpointAclPolicyTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (EndpointAclPolicyTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EndpointAclPolicyType)(nil)).Elem()
+}
+
+func (o EndpointAclPolicyTypeArrayOutput) ToEndpointAclPolicyTypeArrayOutput() EndpointAclPolicyTypeArrayOutput {
+	return o
+}
+
+func (o EndpointAclPolicyTypeArrayOutput) ToEndpointAclPolicyTypeArrayOutputWithContext(ctx context.Context) EndpointAclPolicyTypeArrayOutput {
+	return o
+}
+
+func (o EndpointAclPolicyTypeArrayOutput) Index(i pulumi.IntInput) EndpointAclPolicyTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointAclPolicyType {
+		return vs[0].([]EndpointAclPolicyType)[vs[1].(int)]
+	}).(EndpointAclPolicyTypeOutput)
+}
+
 type EndpointsEndpoint struct {
+	// The list of acl policies.
+	AclPolicies []EndpointsEndpointAclPolicy `pulumi:"aclPolicies"`
 	// Whether public endpoint is enabled.
 	Enabled bool `pulumi:"enabled"`
 	// The CR instance name.
@@ -149,6 +257,8 @@ type EndpointsEndpointInput interface {
 }
 
 type EndpointsEndpointArgs struct {
+	// The list of acl policies.
+	AclPolicies EndpointsEndpointAclPolicyArrayInput `pulumi:"aclPolicies"`
 	// Whether public endpoint is enabled.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The CR instance name.
@@ -208,6 +318,11 @@ func (o EndpointsEndpointOutput) ToEndpointsEndpointOutputWithContext(ctx contex
 	return o
 }
 
+// The list of acl policies.
+func (o EndpointsEndpointOutput) AclPolicies() EndpointsEndpointAclPolicyArrayOutput {
+	return o.ApplyT(func(v EndpointsEndpoint) []EndpointsEndpointAclPolicy { return v.AclPolicies }).(EndpointsEndpointAclPolicyArrayOutput)
+}
+
 // Whether public endpoint is enabled.
 func (o EndpointsEndpointOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v EndpointsEndpoint) bool { return v.Enabled }).(pulumi.BoolOutput)
@@ -243,11 +358,119 @@ func (o EndpointsEndpointArrayOutput) Index(i pulumi.IntInput) EndpointsEndpoint
 	}).(EndpointsEndpointOutput)
 }
 
+type EndpointsEndpointAclPolicy struct {
+	// The description of the acl policy.
+	Description string `pulumi:"description"`
+	// The ip of the acl policy.
+	Entry string `pulumi:"entry"`
+}
+
+// EndpointsEndpointAclPolicyInput is an input type that accepts EndpointsEndpointAclPolicyArgs and EndpointsEndpointAclPolicyOutput values.
+// You can construct a concrete instance of `EndpointsEndpointAclPolicyInput` via:
+//
+//	EndpointsEndpointAclPolicyArgs{...}
+type EndpointsEndpointAclPolicyInput interface {
+	pulumi.Input
+
+	ToEndpointsEndpointAclPolicyOutput() EndpointsEndpointAclPolicyOutput
+	ToEndpointsEndpointAclPolicyOutputWithContext(context.Context) EndpointsEndpointAclPolicyOutput
+}
+
+type EndpointsEndpointAclPolicyArgs struct {
+	// The description of the acl policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ip of the acl policy.
+	Entry pulumi.StringInput `pulumi:"entry"`
+}
+
+func (EndpointsEndpointAclPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (i EndpointsEndpointAclPolicyArgs) ToEndpointsEndpointAclPolicyOutput() EndpointsEndpointAclPolicyOutput {
+	return i.ToEndpointsEndpointAclPolicyOutputWithContext(context.Background())
+}
+
+func (i EndpointsEndpointAclPolicyArgs) ToEndpointsEndpointAclPolicyOutputWithContext(ctx context.Context) EndpointsEndpointAclPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointsEndpointAclPolicyOutput)
+}
+
+// EndpointsEndpointAclPolicyArrayInput is an input type that accepts EndpointsEndpointAclPolicyArray and EndpointsEndpointAclPolicyArrayOutput values.
+// You can construct a concrete instance of `EndpointsEndpointAclPolicyArrayInput` via:
+//
+//	EndpointsEndpointAclPolicyArray{ EndpointsEndpointAclPolicyArgs{...} }
+type EndpointsEndpointAclPolicyArrayInput interface {
+	pulumi.Input
+
+	ToEndpointsEndpointAclPolicyArrayOutput() EndpointsEndpointAclPolicyArrayOutput
+	ToEndpointsEndpointAclPolicyArrayOutputWithContext(context.Context) EndpointsEndpointAclPolicyArrayOutput
+}
+
+type EndpointsEndpointAclPolicyArray []EndpointsEndpointAclPolicyInput
+
+func (EndpointsEndpointAclPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (i EndpointsEndpointAclPolicyArray) ToEndpointsEndpointAclPolicyArrayOutput() EndpointsEndpointAclPolicyArrayOutput {
+	return i.ToEndpointsEndpointAclPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i EndpointsEndpointAclPolicyArray) ToEndpointsEndpointAclPolicyArrayOutputWithContext(ctx context.Context) EndpointsEndpointAclPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointsEndpointAclPolicyArrayOutput)
+}
+
+type EndpointsEndpointAclPolicyOutput struct{ *pulumi.OutputState }
+
+func (EndpointsEndpointAclPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (o EndpointsEndpointAclPolicyOutput) ToEndpointsEndpointAclPolicyOutput() EndpointsEndpointAclPolicyOutput {
+	return o
+}
+
+func (o EndpointsEndpointAclPolicyOutput) ToEndpointsEndpointAclPolicyOutputWithContext(ctx context.Context) EndpointsEndpointAclPolicyOutput {
+	return o
+}
+
+// The description of the acl policy.
+func (o EndpointsEndpointAclPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EndpointsEndpointAclPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ip of the acl policy.
+func (o EndpointsEndpointAclPolicyOutput) Entry() pulumi.StringOutput {
+	return o.ApplyT(func(v EndpointsEndpointAclPolicy) string { return v.Entry }).(pulumi.StringOutput)
+}
+
+type EndpointsEndpointAclPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (EndpointsEndpointAclPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (o EndpointsEndpointAclPolicyArrayOutput) ToEndpointsEndpointAclPolicyArrayOutput() EndpointsEndpointAclPolicyArrayOutput {
+	return o
+}
+
+func (o EndpointsEndpointAclPolicyArrayOutput) ToEndpointsEndpointAclPolicyArrayOutputWithContext(ctx context.Context) EndpointsEndpointAclPolicyArrayOutput {
+	return o
+}
+
+func (o EndpointsEndpointAclPolicyArrayOutput) Index(i pulumi.IntInput) EndpointsEndpointAclPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointsEndpointAclPolicy {
+		return vs[0].([]EndpointsEndpointAclPolicy)[vs[1].(int)]
+	}).(EndpointsEndpointAclPolicyOutput)
+}
+
 type NamespacesNamespace struct {
 	// The time when namespace created.
 	CreateTime string `pulumi:"createTime"`
 	// The name of OCI repository.
 	Name string `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project string `pulumi:"project"`
 }
 
 // NamespacesNamespaceInput is an input type that accepts NamespacesNamespaceArgs and NamespacesNamespaceOutput values.
@@ -266,6 +489,8 @@ type NamespacesNamespaceArgs struct {
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The name of OCI repository.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project pulumi.StringInput `pulumi:"project"`
 }
 
 func (NamespacesNamespaceArgs) ElementType() reflect.Type {
@@ -329,6 +554,11 @@ func (o NamespacesNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v NamespacesNamespace) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The ProjectName of the CrNamespace.
+func (o NamespacesNamespaceOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v NamespacesNamespace) string { return v.Project }).(pulumi.StringOutput)
+}
+
 type NamespacesNamespaceArrayOutput struct{ *pulumi.OutputState }
 
 func (NamespacesNamespaceArrayOutput) ElementType() reflect.Type {
@@ -358,6 +588,10 @@ type RegistriesRegistry struct {
 	Domains []RegistriesRegistryDomain `pulumi:"domains"`
 	// The name of registry.
 	Name string `pulumi:"name"`
+	// The ProjectName of the cr registry.
+	Project string `pulumi:"project"`
+	// The tags of cr registry.
+	ResourceTags []RegistriesRegistryResourceTag `pulumi:"resourceTags"`
 	// The status of registry.
 	Status RegistriesRegistryStatus `pulumi:"status"`
 	// The type of registry.
@@ -388,6 +622,10 @@ type RegistriesRegistryArgs struct {
 	Domains RegistriesRegistryDomainArrayInput `pulumi:"domains"`
 	// The name of registry.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The ProjectName of the cr registry.
+	Project pulumi.StringInput `pulumi:"project"`
+	// The tags of cr registry.
+	ResourceTags RegistriesRegistryResourceTagArrayInput `pulumi:"resourceTags"`
 	// The status of registry.
 	Status RegistriesRegistryStatusInput `pulumi:"status"`
 	// The type of registry.
@@ -467,6 +705,16 @@ func (o RegistriesRegistryOutput) Domains() RegistriesRegistryDomainArrayOutput 
 // The name of registry.
 func (o RegistriesRegistryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistriesRegistry) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cr registry.
+func (o RegistriesRegistryOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesRegistry) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The tags of cr registry.
+func (o RegistriesRegistryOutput) ResourceTags() RegistriesRegistryResourceTagArrayOutput {
+	return o.ApplyT(func(v RegistriesRegistry) []RegistriesRegistryResourceTag { return v.ResourceTags }).(RegistriesRegistryResourceTagArrayOutput)
 }
 
 // The status of registry.
@@ -615,6 +863,112 @@ func (o RegistriesRegistryDomainArrayOutput) Index(i pulumi.IntInput) Registries
 	}).(RegistriesRegistryDomainOutput)
 }
 
+type RegistriesRegistryResourceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RegistriesRegistryResourceTagInput is an input type that accepts RegistriesRegistryResourceTagArgs and RegistriesRegistryResourceTagOutput values.
+// You can construct a concrete instance of `RegistriesRegistryResourceTagInput` via:
+//
+//	RegistriesRegistryResourceTagArgs{...}
+type RegistriesRegistryResourceTagInput interface {
+	pulumi.Input
+
+	ToRegistriesRegistryResourceTagOutput() RegistriesRegistryResourceTagOutput
+	ToRegistriesRegistryResourceTagOutputWithContext(context.Context) RegistriesRegistryResourceTagOutput
+}
+
+type RegistriesRegistryResourceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RegistriesRegistryResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (i RegistriesRegistryResourceTagArgs) ToRegistriesRegistryResourceTagOutput() RegistriesRegistryResourceTagOutput {
+	return i.ToRegistriesRegistryResourceTagOutputWithContext(context.Background())
+}
+
+func (i RegistriesRegistryResourceTagArgs) ToRegistriesRegistryResourceTagOutputWithContext(ctx context.Context) RegistriesRegistryResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistriesRegistryResourceTagOutput)
+}
+
+// RegistriesRegistryResourceTagArrayInput is an input type that accepts RegistriesRegistryResourceTagArray and RegistriesRegistryResourceTagArrayOutput values.
+// You can construct a concrete instance of `RegistriesRegistryResourceTagArrayInput` via:
+//
+//	RegistriesRegistryResourceTagArray{ RegistriesRegistryResourceTagArgs{...} }
+type RegistriesRegistryResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToRegistriesRegistryResourceTagArrayOutput() RegistriesRegistryResourceTagArrayOutput
+	ToRegistriesRegistryResourceTagArrayOutputWithContext(context.Context) RegistriesRegistryResourceTagArrayOutput
+}
+
+type RegistriesRegistryResourceTagArray []RegistriesRegistryResourceTagInput
+
+func (RegistriesRegistryResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (i RegistriesRegistryResourceTagArray) ToRegistriesRegistryResourceTagArrayOutput() RegistriesRegistryResourceTagArrayOutput {
+	return i.ToRegistriesRegistryResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i RegistriesRegistryResourceTagArray) ToRegistriesRegistryResourceTagArrayOutputWithContext(ctx context.Context) RegistriesRegistryResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistriesRegistryResourceTagArrayOutput)
+}
+
+type RegistriesRegistryResourceTagOutput struct{ *pulumi.OutputState }
+
+func (RegistriesRegistryResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (o RegistriesRegistryResourceTagOutput) ToRegistriesRegistryResourceTagOutput() RegistriesRegistryResourceTagOutput {
+	return o
+}
+
+func (o RegistriesRegistryResourceTagOutput) ToRegistriesRegistryResourceTagOutputWithContext(ctx context.Context) RegistriesRegistryResourceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RegistriesRegistryResourceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesRegistryResourceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RegistriesRegistryResourceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesRegistryResourceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RegistriesRegistryResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistriesRegistryResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (o RegistriesRegistryResourceTagArrayOutput) ToRegistriesRegistryResourceTagArrayOutput() RegistriesRegistryResourceTagArrayOutput {
+	return o
+}
+
+func (o RegistriesRegistryResourceTagArrayOutput) ToRegistriesRegistryResourceTagArrayOutputWithContext(ctx context.Context) RegistriesRegistryResourceTagArrayOutput {
+	return o
+}
+
+func (o RegistriesRegistryResourceTagArrayOutput) Index(i pulumi.IntInput) RegistriesRegistryResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistriesRegistryResourceTag {
+		return vs[0].([]RegistriesRegistryResourceTag)[vs[1].(int)]
+	}).(RegistriesRegistryResourceTagOutput)
+}
+
 type RegistriesRegistryStatus struct {
 	// The condition of registry.
 	Conditions []string `pulumi:"conditions"`
@@ -674,6 +1028,112 @@ func (o RegistriesRegistryStatusOutput) Conditions() pulumi.StringArrayOutput {
 // The phase status of registry.
 func (o RegistriesRegistryStatusOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistriesRegistryStatus) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+type RegistriesResourceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// RegistriesResourceTagInput is an input type that accepts RegistriesResourceTagArgs and RegistriesResourceTagOutput values.
+// You can construct a concrete instance of `RegistriesResourceTagInput` via:
+//
+//	RegistriesResourceTagArgs{...}
+type RegistriesResourceTagInput interface {
+	pulumi.Input
+
+	ToRegistriesResourceTagOutput() RegistriesResourceTagOutput
+	ToRegistriesResourceTagOutputWithContext(context.Context) RegistriesResourceTagOutput
+}
+
+type RegistriesResourceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RegistriesResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistriesResourceTag)(nil)).Elem()
+}
+
+func (i RegistriesResourceTagArgs) ToRegistriesResourceTagOutput() RegistriesResourceTagOutput {
+	return i.ToRegistriesResourceTagOutputWithContext(context.Background())
+}
+
+func (i RegistriesResourceTagArgs) ToRegistriesResourceTagOutputWithContext(ctx context.Context) RegistriesResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistriesResourceTagOutput)
+}
+
+// RegistriesResourceTagArrayInput is an input type that accepts RegistriesResourceTagArray and RegistriesResourceTagArrayOutput values.
+// You can construct a concrete instance of `RegistriesResourceTagArrayInput` via:
+//
+//	RegistriesResourceTagArray{ RegistriesResourceTagArgs{...} }
+type RegistriesResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToRegistriesResourceTagArrayOutput() RegistriesResourceTagArrayOutput
+	ToRegistriesResourceTagArrayOutputWithContext(context.Context) RegistriesResourceTagArrayOutput
+}
+
+type RegistriesResourceTagArray []RegistriesResourceTagInput
+
+func (RegistriesResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistriesResourceTag)(nil)).Elem()
+}
+
+func (i RegistriesResourceTagArray) ToRegistriesResourceTagArrayOutput() RegistriesResourceTagArrayOutput {
+	return i.ToRegistriesResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i RegistriesResourceTagArray) ToRegistriesResourceTagArrayOutputWithContext(ctx context.Context) RegistriesResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistriesResourceTagArrayOutput)
+}
+
+type RegistriesResourceTagOutput struct{ *pulumi.OutputState }
+
+func (RegistriesResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistriesResourceTag)(nil)).Elem()
+}
+
+func (o RegistriesResourceTagOutput) ToRegistriesResourceTagOutput() RegistriesResourceTagOutput {
+	return o
+}
+
+func (o RegistriesResourceTagOutput) ToRegistriesResourceTagOutputWithContext(ctx context.Context) RegistriesResourceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RegistriesResourceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesResourceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RegistriesResourceTagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RegistriesResourceTag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RegistriesResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistriesResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistriesResourceTag)(nil)).Elem()
+}
+
+func (o RegistriesResourceTagArrayOutput) ToRegistriesResourceTagArrayOutput() RegistriesResourceTagArrayOutput {
+	return o
+}
+
+func (o RegistriesResourceTagArrayOutput) ToRegistriesResourceTagArrayOutputWithContext(ctx context.Context) RegistriesResourceTagArrayOutput {
+	return o
+}
+
+func (o RegistriesResourceTagArrayOutput) Index(i pulumi.IntInput) RegistriesResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistriesResourceTag {
+		return vs[0].([]RegistriesResourceTag)[vs[1].(int)]
+	}).(RegistriesResourceTagOutput)
 }
 
 type RegistriesStatus struct {
@@ -886,6 +1346,112 @@ func (o RegistryDomainArrayOutput) Index(i pulumi.IntInput) RegistryDomainOutput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistryDomain {
 		return vs[0].([]RegistryDomain)[vs[1].(int)]
 	}).(RegistryDomainOutput)
+}
+
+type RegistryResourceTag struct {
+	// The Key of Tags.
+	Key *string `pulumi:"key"`
+	// The Value of Tags.
+	Value *string `pulumi:"value"`
+}
+
+// RegistryResourceTagInput is an input type that accepts RegistryResourceTagArgs and RegistryResourceTagOutput values.
+// You can construct a concrete instance of `RegistryResourceTagInput` via:
+//
+//	RegistryResourceTagArgs{...}
+type RegistryResourceTagInput interface {
+	pulumi.Input
+
+	ToRegistryResourceTagOutput() RegistryResourceTagOutput
+	ToRegistryResourceTagOutputWithContext(context.Context) RegistryResourceTagOutput
+}
+
+type RegistryResourceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (RegistryResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryResourceTag)(nil)).Elem()
+}
+
+func (i RegistryResourceTagArgs) ToRegistryResourceTagOutput() RegistryResourceTagOutput {
+	return i.ToRegistryResourceTagOutputWithContext(context.Background())
+}
+
+func (i RegistryResourceTagArgs) ToRegistryResourceTagOutputWithContext(ctx context.Context) RegistryResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryResourceTagOutput)
+}
+
+// RegistryResourceTagArrayInput is an input type that accepts RegistryResourceTagArray and RegistryResourceTagArrayOutput values.
+// You can construct a concrete instance of `RegistryResourceTagArrayInput` via:
+//
+//	RegistryResourceTagArray{ RegistryResourceTagArgs{...} }
+type RegistryResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToRegistryResourceTagArrayOutput() RegistryResourceTagArrayOutput
+	ToRegistryResourceTagArrayOutputWithContext(context.Context) RegistryResourceTagArrayOutput
+}
+
+type RegistryResourceTagArray []RegistryResourceTagInput
+
+func (RegistryResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistryResourceTag)(nil)).Elem()
+}
+
+func (i RegistryResourceTagArray) ToRegistryResourceTagArrayOutput() RegistryResourceTagArrayOutput {
+	return i.ToRegistryResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i RegistryResourceTagArray) ToRegistryResourceTagArrayOutputWithContext(ctx context.Context) RegistryResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryResourceTagArrayOutput)
+}
+
+type RegistryResourceTagOutput struct{ *pulumi.OutputState }
+
+func (RegistryResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryResourceTag)(nil)).Elem()
+}
+
+func (o RegistryResourceTagOutput) ToRegistryResourceTagOutput() RegistryResourceTagOutput {
+	return o
+}
+
+func (o RegistryResourceTagOutput) ToRegistryResourceTagOutputWithContext(ctx context.Context) RegistryResourceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RegistryResourceTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistryResourceTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Tags.
+func (o RegistryResourceTagOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistryResourceTag) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type RegistryResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistryResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistryResourceTag)(nil)).Elem()
+}
+
+func (o RegistryResourceTagArrayOutput) ToRegistryResourceTagArrayOutput() RegistryResourceTagArrayOutput {
+	return o
+}
+
+func (o RegistryResourceTagArrayOutput) ToRegistryResourceTagArrayOutputWithContext(ctx context.Context) RegistryResourceTagArrayOutput {
+	return o
+}
+
+func (o RegistryResourceTagArrayOutput) Index(i pulumi.IntInput) RegistryResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistryResourceTag {
+		return vs[0].([]RegistryResourceTag)[vs[1].(int)]
+	}).(RegistryResourceTagOutput)
 }
 
 type RegistryStatus struct {
@@ -2251,19 +2817,29 @@ func (o VpcEndpointsEndpointVpcArrayOutput) Index(i pulumi.IntInput) VpcEndpoint
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthorizationTokensTokenInput)(nil)).Elem(), AuthorizationTokensTokenArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthorizationTokensTokenArrayInput)(nil)).Elem(), AuthorizationTokensTokenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointAclPolicyTypeInput)(nil)).Elem(), EndpointAclPolicyTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointAclPolicyTypeArrayInput)(nil)).Elem(), EndpointAclPolicyTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointInput)(nil)).Elem(), EndpointsEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointArrayInput)(nil)).Elem(), EndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointAclPolicyInput)(nil)).Elem(), EndpointsEndpointAclPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointAclPolicyArrayInput)(nil)).Elem(), EndpointsEndpointAclPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespacesNamespaceInput)(nil)).Elem(), NamespacesNamespaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespacesNamespaceArrayInput)(nil)).Elem(), NamespacesNamespaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryInput)(nil)).Elem(), RegistriesRegistryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryArrayInput)(nil)).Elem(), RegistriesRegistryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryDomainInput)(nil)).Elem(), RegistriesRegistryDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryDomainArrayInput)(nil)).Elem(), RegistriesRegistryDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryResourceTagInput)(nil)).Elem(), RegistriesRegistryResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryResourceTagArrayInput)(nil)).Elem(), RegistriesRegistryResourceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryStatusInput)(nil)).Elem(), RegistriesRegistryStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesResourceTagInput)(nil)).Elem(), RegistriesResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesResourceTagArrayInput)(nil)).Elem(), RegistriesResourceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesStatusInput)(nil)).Elem(), RegistriesStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesStatusArrayInput)(nil)).Elem(), RegistriesStatusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryDomainInput)(nil)).Elem(), RegistryDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryDomainArrayInput)(nil)).Elem(), RegistryDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryResourceTagInput)(nil)).Elem(), RegistryResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryResourceTagArrayInput)(nil)).Elem(), RegistryResourceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryStatusInput)(nil)).Elem(), RegistryStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryStatusArrayInput)(nil)).Elem(), RegistryStatusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RepositoriesRepositoryInput)(nil)).Elem(), RepositoriesRepositoryArgs{})
@@ -2287,19 +2863,29 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointsEndpointVpcArrayInput)(nil)).Elem(), VpcEndpointsEndpointVpcArray{})
 	pulumi.RegisterOutputType(AuthorizationTokensTokenOutput{})
 	pulumi.RegisterOutputType(AuthorizationTokensTokenArrayOutput{})
+	pulumi.RegisterOutputType(EndpointAclPolicyTypeOutput{})
+	pulumi.RegisterOutputType(EndpointAclPolicyTypeArrayOutput{})
 	pulumi.RegisterOutputType(EndpointsEndpointOutput{})
 	pulumi.RegisterOutputType(EndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(EndpointsEndpointAclPolicyOutput{})
+	pulumi.RegisterOutputType(EndpointsEndpointAclPolicyArrayOutput{})
 	pulumi.RegisterOutputType(NamespacesNamespaceOutput{})
 	pulumi.RegisterOutputType(NamespacesNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryDomainOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryDomainArrayOutput{})
+	pulumi.RegisterOutputType(RegistriesRegistryResourceTagOutput{})
+	pulumi.RegisterOutputType(RegistriesRegistryResourceTagArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryStatusOutput{})
+	pulumi.RegisterOutputType(RegistriesResourceTagOutput{})
+	pulumi.RegisterOutputType(RegistriesResourceTagArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesStatusOutput{})
 	pulumi.RegisterOutputType(RegistriesStatusArrayOutput{})
 	pulumi.RegisterOutputType(RegistryDomainOutput{})
 	pulumi.RegisterOutputType(RegistryDomainArrayOutput{})
+	pulumi.RegisterOutputType(RegistryResourceTagOutput{})
+	pulumi.RegisterOutputType(RegistryResourceTagArrayOutput{})
 	pulumi.RegisterOutputType(RegistryStatusOutput{})
 	pulumi.RegisterOutputType(RegistryStatusArrayOutput{})
 	pulumi.RegisterOutputType(RepositoriesRepositoryOutput{})

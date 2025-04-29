@@ -425,6 +425,9 @@ class InstanceChargeInfoArgs:
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] charge_type: Payment type. Value:
+               PostPaid - Pay-As-You-Go
+               PrePaid - Yearly and monthly (default).
         :param pulumi.Input[bool] auto_renew: Whether to automatically renew in prepaid scenarios.
         :param pulumi.Input[int] period: Purchase duration in prepaid scenarios. Default: 1.
         :param pulumi.Input[str] period_unit: The purchase cycle in the prepaid scenario.
@@ -442,6 +445,11 @@ class InstanceChargeInfoArgs:
     @property
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> pulumi.Input[str]:
+        """
+        Payment type. Value:
+        PostPaid - Pay-As-You-Go
+        PrePaid - Yearly and monthly (default).
+        """
         return pulumi.get(self, "charge_type")
 
     @charge_type.setter

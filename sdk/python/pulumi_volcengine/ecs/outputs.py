@@ -936,13 +936,13 @@ class InstanceEipAddress(dict):
 
     def __init__(__self__, *,
                  bandwidth_mbps: Optional[int] = None,
-                 bandwidth_package_id: Optional[int] = None,
+                 bandwidth_package_id: Optional[str] = None,
                  charge_type: Optional[str] = None,
                  isp: Optional[str] = None):
         """
         :param int bandwidth_mbps: The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
-        :param int bandwidth_package_id: The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
-        :param str charge_type: The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        :param str bandwidth_package_id: The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+        :param str charge_type: The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
         :param str isp: The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
         """
         if bandwidth_mbps is not None:
@@ -964,7 +964,7 @@ class InstanceEipAddress(dict):
 
     @property
     @pulumi.getter(name="bandwidthPackageId")
-    def bandwidth_package_id(self) -> Optional[int]:
+    def bandwidth_package_id(self) -> Optional[str]:
         """
         The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
         """
@@ -974,7 +974,7 @@ class InstanceEipAddress(dict):
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> Optional[str]:
         """
-        The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
         """
         return pulumi.get(self, "charge_type")
 

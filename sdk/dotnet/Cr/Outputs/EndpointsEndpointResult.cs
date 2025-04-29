@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Cr.Outputs
     public sealed class EndpointsEndpointResult
     {
         /// <summary>
+        /// The list of acl policies.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.EndpointsEndpointAclPolicyResult> AclPolicies;
+        /// <summary>
         /// Whether public endpoint is enabled.
         /// </summary>
         public readonly bool Enabled;
@@ -28,12 +32,15 @@ namespace Pulumi.Volcengine.Cr.Outputs
 
         [OutputConstructor]
         private EndpointsEndpointResult(
+            ImmutableArray<Outputs.EndpointsEndpointAclPolicyResult> aclPolicies,
+
             bool enabled,
 
             string registry,
 
             string status)
         {
+            AclPolicies = aclPolicies;
             Enabled = enabled;
             Registry = registry;
             Status = status;

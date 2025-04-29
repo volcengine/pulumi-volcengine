@@ -62,6 +62,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int? Period;
         /// <summary>
+        /// The project name of the ecs instance.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
         public readonly Outputs.NodePoolNodeConfigSecurity Security;
@@ -100,6 +104,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             int? period,
 
+            string? projectName,
+
             Outputs.NodePoolNodeConfigSecurity security,
 
             ImmutableArray<string> subnetIds,
@@ -118,6 +124,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             InstanceTypeIds = instanceTypeIds;
             NamePrefix = namePrefix;
             Period = period;
+            ProjectName = projectName;
             Security = security;
             SubnetIds = subnetIds;
             SystemVolume = systemVolume;

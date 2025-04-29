@@ -31,10 +31,11 @@ import * as utilities from "../utilities";
  *     vpcId: fooVpc.id,
  * });
  * const fooImages = volcengine.ecs.Images({
- *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
+ *     nameRegex: "veLinux 1.0 CentOS Compatible 64 bit",
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
+ *     projectName: "default",
  *     deleteProtectionEnabled: false,
  *     clusterConfig: {
  *         subnetIds: [fooSubnet.id],
@@ -74,7 +75,7 @@ import * as utilities from "../utilities";
  *     nodeConfig: {
  *         instanceTypeIds: ["ecs.g1ie.xlarge"],
  *         subnetIds: [fooSubnet.id],
- *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS Compatible 64 bit").map(image => (image.imageId))[0]),
  *         systemVolume: {
  *             type: "ESSD_PL0",
  *             size: 80,
@@ -102,6 +103,7 @@ import * as utilities from "../utilities";
  *         additionalContainerStorageEnabled: false,
  *         instanceChargeType: "PostPaid",
  *         namePrefix: "acc-test",
+ *         projectName: "default",
  *         ecsTags: [{
  *             key: "ecs_k1",
  *             value: "ecs_v1",
@@ -131,7 +133,7 @@ import * as utilities from "../utilities";
  *     fooInstance.push(new volcengine.ecs.Instance(`fooInstance-${range.value}`, {
  *         instanceName: `acc-test-ecs-${range.value}`,
  *         hostName: "tf-acc-test",
- *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS Compatible 64 bit").map(image => (image.imageId))[0]),
  *         instanceType: "ecs.g1ie.xlarge",
  *         password: "93f0cb0614Aab12",
  *         instanceChargeType: "PostPaid",
@@ -158,7 +160,7 @@ import * as utilities from "../utilities";
  *     nodeConfig: {
  *         instanceTypeIds: ["ecs.g1ie.xlarge"],
  *         subnetIds: [fooSubnet.id],
- *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS Compatible 64 bit").map(image => (image.imageId))[0]),
  *         systemVolume: {
  *             type: "ESSD_PL0",
  *             size: 50,

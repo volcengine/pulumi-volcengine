@@ -109,6 +109,12 @@ namespace Pulumi.Volcengine.Vke.Inputs
         public Input<int>? Period { get; set; }
 
         /// <summary>
+        /// The project name of the ecs instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
         [Input("security", required: true)]

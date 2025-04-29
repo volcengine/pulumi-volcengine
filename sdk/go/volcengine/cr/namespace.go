@@ -28,13 +28,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cr.NewNamespace(ctx, "foo", &cr.NamespaceArgs{
-//				Registry: pulumi.String("tf-2"),
+//				Project:  pulumi.String("default"),
+//				Registry: pulumi.String("tf-test-cr"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cr.NewNamespace(ctx, "foo1", &cr.NamespaceArgs{
-//				Registry: pulumi.String("tf-1"),
+//				Project:  pulumi.String("default"),
+//				Registry: pulumi.String("tf-test-cr"),
 //			})
 //			if err != nil {
 //				return err
@@ -59,6 +61,8 @@ type Namespace struct {
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// The name of CrNamespace.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project pulumi.StringOutput `pulumi:"project"`
 	// The registry name.
 	Registry pulumi.StringOutput `pulumi:"registry"`
 }
@@ -100,6 +104,8 @@ type namespaceState struct {
 	CreateTime *string `pulumi:"createTime"`
 	// The name of CrNamespace.
 	Name *string `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project *string `pulumi:"project"`
 	// The registry name.
 	Registry *string `pulumi:"registry"`
 }
@@ -109,6 +115,8 @@ type NamespaceState struct {
 	CreateTime pulumi.StringPtrInput
 	// The name of CrNamespace.
 	Name pulumi.StringPtrInput
+	// The ProjectName of the CrNamespace.
+	Project pulumi.StringPtrInput
 	// The registry name.
 	Registry pulumi.StringPtrInput
 }
@@ -120,6 +128,8 @@ func (NamespaceState) ElementType() reflect.Type {
 type namespaceArgs struct {
 	// The name of CrNamespace.
 	Name *string `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project *string `pulumi:"project"`
 	// The registry name.
 	Registry string `pulumi:"registry"`
 }
@@ -128,6 +138,8 @@ type namespaceArgs struct {
 type NamespaceArgs struct {
 	// The name of CrNamespace.
 	Name pulumi.StringPtrInput
+	// The ProjectName of the CrNamespace.
+	Project pulumi.StringPtrInput
 	// The registry name.
 	Registry pulumi.StringInput
 }
@@ -227,6 +239,11 @@ func (o NamespaceOutput) CreateTime() pulumi.StringOutput {
 // The name of CrNamespace.
 func (o NamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the CrNamespace.
+func (o NamespaceOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Project }).(pulumi.StringOutput)
 }
 
 // The registry name.

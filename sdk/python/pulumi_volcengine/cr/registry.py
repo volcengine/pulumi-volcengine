@@ -18,12 +18,14 @@ class RegistryArgs:
     def __init__(__self__, *,
                  delete_immediately: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 password: Optional[pulumi.Input[str]] = None):
+                 password: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Registry resource.
         :param pulumi.Input[bool] delete_immediately: Whether delete registry immediately. Only effected in delete action.
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
+        :param pulumi.Input[str] project: The ProjectName of the cr registry.
         """
         if delete_immediately is not None:
             pulumi.set(__self__, "delete_immediately", delete_immediately)
@@ -31,6 +33,8 @@ class RegistryArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if project is not None:
+            pulumi.set(__self__, "project", project)
 
     @property
     @pulumi.getter(name="deleteImmediately")
@@ -68,6 +72,18 @@ class RegistryArgs:
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
 
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the cr registry.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project", value)
+
 
 @pulumi.input_type
 class _RegistryState:
@@ -78,6 +94,8 @@ class _RegistryState:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryDomainArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]] = None,
                  statuses: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryStatusArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  user_status: Optional[pulumi.Input[str]] = None,
@@ -90,6 +108,8 @@ class _RegistryState:
         :param pulumi.Input[Sequence[pulumi.Input['RegistryDomainArgs']]] domains: The domain of registry.
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
+        :param pulumi.Input[str] project: The ProjectName of the cr registry.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]] resource_tags: Tags.
         :param pulumi.Input[Sequence[pulumi.Input['RegistryStatusArgs']]] statuses: The status of registry.
         :param pulumi.Input[str] type: The type of registry.
         :param pulumi.Input[str] user_status: The status of user.
@@ -107,6 +127,10 @@ class _RegistryState:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if project is not None:
+            pulumi.set(__self__, "project", project)
+        if resource_tags is not None:
+            pulumi.set(__self__, "resource_tags", resource_tags)
         if statuses is not None:
             pulumi.set(__self__, "statuses", statuses)
         if type is not None:
@@ -190,6 +214,30 @@ class _RegistryState:
 
     @property
     @pulumi.getter
+    def project(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the cr registry.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project", value)
+
+    @property
+    @pulumi.getter(name="resourceTags")
+    def resource_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "resource_tags")
+
+    @resource_tags.setter
+    def resource_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]]):
+        pulumi.set(self, "resource_tags", value)
+
+    @property
+    @pulumi.getter
     def statuses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryStatusArgs']]]]:
         """
         The status of registry.
@@ -245,6 +293,7 @@ class Registry(pulumi.CustomResource):
                  delete_immediately: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage cr registry
@@ -256,7 +305,8 @@ class Registry(pulumi.CustomResource):
 
         foo = volcengine.cr.Registry("foo",
             delete_immediately=False,
-            password="1qaz!QAZ")
+            password="1qaz!QAZ",
+            project="default")
         ```
 
         ## Import
@@ -272,6 +322,7 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[bool] delete_immediately: Whether delete registry immediately. Only effected in delete action.
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
+        :param pulumi.Input[str] project: The ProjectName of the cr registry.
         """
         ...
     @overload
@@ -289,7 +340,8 @@ class Registry(pulumi.CustomResource):
 
         foo = volcengine.cr.Registry("foo",
             delete_immediately=False,
-            password="1qaz!QAZ")
+            password="1qaz!QAZ",
+            project="default")
         ```
 
         ## Import
@@ -318,6 +370,7 @@ class Registry(pulumi.CustomResource):
                  delete_immediately: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -330,9 +383,11 @@ class Registry(pulumi.CustomResource):
             __props__.__dict__["delete_immediately"] = delete_immediately
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["project"] = project
             __props__.__dict__["charge_type"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["domains"] = None
+            __props__.__dict__["resource_tags"] = None
             __props__.__dict__["statuses"] = None
             __props__.__dict__["type"] = None
             __props__.__dict__["user_status"] = None
@@ -355,6 +410,8 @@ class Registry(pulumi.CustomResource):
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryDomainArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]]] = None,
             statuses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryStatusArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             user_status: Optional[pulumi.Input[str]] = None,
@@ -372,6 +429,8 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryDomainArgs']]]] domains: The domain of registry.
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
+        :param pulumi.Input[str] project: The ProjectName of the cr registry.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]] resource_tags: Tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryStatusArgs']]]] statuses: The status of registry.
         :param pulumi.Input[str] type: The type of registry.
         :param pulumi.Input[str] user_status: The status of user.
@@ -387,6 +446,8 @@ class Registry(pulumi.CustomResource):
         __props__.__dict__["domains"] = domains
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
+        __props__.__dict__["project"] = project
+        __props__.__dict__["resource_tags"] = resource_tags
         __props__.__dict__["statuses"] = statuses
         __props__.__dict__["type"] = type
         __props__.__dict__["user_status"] = user_status
@@ -440,6 +501,22 @@ class Registry(pulumi.CustomResource):
         The password of registry user.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def project(self) -> pulumi.Output[str]:
+        """
+        The ProjectName of the cr registry.
+        """
+        return pulumi.get(self, "project")
+
+    @property
+    @pulumi.getter(name="resourceTags")
+    def resource_tags(self) -> pulumi.Output[Sequence['outputs.RegistryResourceTag']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "resource_tags")
 
     @property
     @pulumi.getter

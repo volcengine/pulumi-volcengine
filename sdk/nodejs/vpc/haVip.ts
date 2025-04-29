@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -28,8 +30,11 @@ import * as utilities from "../utilities";
  *     haVipName: "acc-test-ha-vip",
  *     description: "acc-test",
  *     subnetId: fooSubnet.id,
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
- * //  ip_address = "172.16.0.5"
  * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
  * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
  *     allocationId: fooAddress.id,
@@ -123,6 +128,10 @@ export class HaVip extends pulumi.CustomResource {
      */
     public readonly subnetId!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.HaVipTag[] | undefined>;
+    /**
      * The update time of the Ha Vip.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
@@ -156,6 +165,7 @@ export class HaVip extends pulumi.CustomResource {
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
@@ -167,6 +177,7 @@ export class HaVip extends pulumi.CustomResource {
             resourceInputs["haVipName"] = args ? args.haVipName : undefined;
             resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["associatedEipAddress"] = undefined /*out*/;
             resourceInputs["associatedEipId"] = undefined /*out*/;
             resourceInputs["associatedInstanceIds"] = undefined /*out*/;
@@ -236,6 +247,10 @@ export interface HaVipState {
      */
     subnetId?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.HaVipTag>[]>;
+    /**
      * The update time of the Ha Vip.
      */
     updatedAt?: pulumi.Input<string>;
@@ -265,4 +280,8 @@ export interface HaVipArgs {
      * The subnet id of the Ha Vip.
      */
     subnetId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.HaVipTag>[]>;
 }

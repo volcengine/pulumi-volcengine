@@ -1888,8 +1888,8 @@ type InstanceEipAddress struct {
 	// The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
 	BandwidthMbps *int `pulumi:"bandwidthMbps"`
 	// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
-	BandwidthPackageId *int `pulumi:"bandwidthPackageId"`
-	// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+	BandwidthPackageId *string `pulumi:"bandwidthPackageId"`
+	// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
 	ChargeType *string `pulumi:"chargeType"`
 	// The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
 	Isp *string `pulumi:"isp"`
@@ -1910,8 +1910,8 @@ type InstanceEipAddressArgs struct {
 	// The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
 	BandwidthMbps pulumi.IntPtrInput `pulumi:"bandwidthMbps"`
 	// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
-	BandwidthPackageId pulumi.IntPtrInput `pulumi:"bandwidthPackageId"`
-	// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+	BandwidthPackageId pulumi.StringPtrInput `pulumi:"bandwidthPackageId"`
+	// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
 	ChargeType pulumi.StringPtrInput `pulumi:"chargeType"`
 	// The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
 	Isp pulumi.StringPtrInput `pulumi:"isp"`
@@ -2000,11 +2000,11 @@ func (o InstanceEipAddressOutput) BandwidthMbps() pulumi.IntPtrOutput {
 }
 
 // The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
-func (o InstanceEipAddressOutput) BandwidthPackageId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v InstanceEipAddress) *int { return v.BandwidthPackageId }).(pulumi.IntPtrOutput)
+func (o InstanceEipAddressOutput) BandwidthPackageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceEipAddress) *string { return v.BandwidthPackageId }).(pulumi.StringPtrOutput)
 }
 
-// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
 func (o InstanceEipAddressOutput) ChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceEipAddress) *string { return v.ChargeType }).(pulumi.StringPtrOutput)
 }
@@ -2049,16 +2049,16 @@ func (o InstanceEipAddressPtrOutput) BandwidthMbps() pulumi.IntPtrOutput {
 }
 
 // The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
-func (o InstanceEipAddressPtrOutput) BandwidthPackageId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *InstanceEipAddress) *int {
+func (o InstanceEipAddressPtrOutput) BandwidthPackageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceEipAddress) *string {
 		if v == nil {
 			return nil
 		}
 		return v.BandwidthPackageId
-	}).(pulumi.IntPtrOutput)
+	}).(pulumi.StringPtrOutput)
 }
 
-// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
 func (o InstanceEipAddressPtrOutput) ChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceEipAddress) *string {
 		if v == nil {

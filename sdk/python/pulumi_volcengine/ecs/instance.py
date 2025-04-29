@@ -62,9 +62,11 @@ class InstanceArgs:
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu,only support for ebm.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
-        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+               The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
         :param pulumi.Input[str] description: The description of ECS instance.
-        :param pulumi.Input['InstanceEipAddressArgs'] eip_address: The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input['InstanceEipAddressArgs'] eip_address: The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
                It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
@@ -281,7 +283,8 @@ class InstanceArgs:
     @pulumi.getter(name="deploymentSetId")
     def deployment_set_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of Ecs Deployment Set.
+        The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+        The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
         """
         return pulumi.get(self, "deployment_set_id")
 
@@ -305,7 +308,8 @@ class InstanceArgs:
     @pulumi.getter(name="eipAddress")
     def eip_address(self) -> Optional[pulumi.Input['InstanceEipAddressArgs']]:
         """
-        The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "eip_address")
 
@@ -583,6 +587,7 @@ class _InstanceState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
+                 deployment_set_id_computed: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_address: Optional[pulumi.Input['InstanceEipAddressArgs']] = None,
                  eip_id: Optional[pulumi.Input[str]] = None,
@@ -633,9 +638,12 @@ class _InstanceState:
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
-        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+               The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
+        :param pulumi.Input[str] deployment_set_id_computed: The ID of Ecs Deployment Set. Computed field.
         :param pulumi.Input[str] description: The description of ECS instance.
-        :param pulumi.Input['InstanceEipAddressArgs'] eip_address: The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input['InstanceEipAddressArgs'] eip_address: The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
                It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]] gpu_devices: The GPU device info of Instance.
@@ -698,6 +706,8 @@ class _InstanceState:
             pulumi.set(__self__, "data_volumes", data_volumes)
         if deployment_set_id is not None:
             pulumi.set(__self__, "deployment_set_id", deployment_set_id)
+        if deployment_set_id_computed is not None:
+            pulumi.set(__self__, "deployment_set_id_computed", deployment_set_id_computed)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_address is not None:
@@ -859,13 +869,26 @@ class _InstanceState:
     @pulumi.getter(name="deploymentSetId")
     def deployment_set_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of Ecs Deployment Set.
+        The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+        The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
         """
         return pulumi.get(self, "deployment_set_id")
 
     @deployment_set_id.setter
     def deployment_set_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "deployment_set_id", value)
+
+    @property
+    @pulumi.getter(name="deploymentSetIdComputed")
+    def deployment_set_id_computed(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of Ecs Deployment Set. Computed field.
+        """
+        return pulumi.get(self, "deployment_set_id_computed")
+
+    @deployment_set_id_computed.setter
+    def deployment_set_id_computed(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deployment_set_id_computed", value)
 
     @property
     @pulumi.getter
@@ -883,7 +906,8 @@ class _InstanceState:
     @pulumi.getter(name="eipAddress")
     def eip_address(self) -> Optional[pulumi.Input['InstanceEipAddressArgs']]:
         """
-        The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "eip_address")
 
@@ -1451,11 +1475,6 @@ class Instance(pulumi.CustomResource):
             instance_charge_type="PostPaid",
             system_volume_type="ESSD_PL0",
             system_volume_size=40,
-            data_volumes=[volcengine.ecs.InstanceDataVolumeArgs(
-                volume_type="ESSD_PL0",
-                size=50,
-                delete_with_instance=True,
-            )],
             subnet_id=foo_subnet.id,
             security_group_ids=[foo_security_group.id],
             project_name="default",
@@ -1480,9 +1499,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu,only support for ebm.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
-        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+               The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
         :param pulumi.Input[str] description: The description of ECS instance.
-        :param pulumi.Input[pulumi.InputType['InstanceEipAddressArgs']] eip_address: The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[pulumi.InputType['InstanceEipAddressArgs']] eip_address: The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
                It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
@@ -1556,11 +1577,6 @@ class Instance(pulumi.CustomResource):
             instance_charge_type="PostPaid",
             system_volume_type="ESSD_PL0",
             system_volume_size=40,
-            data_volumes=[volcengine.ecs.InstanceDataVolumeArgs(
-                volume_type="ESSD_PL0",
-                size=50,
-                delete_with_instance=True,
-            )],
             subnet_id=foo_subnet.id,
             security_group_ids=[foo_security_group.id],
             project_name="default",
@@ -1685,6 +1701,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["zone_id"] = zone_id
             __props__.__dict__["cpus"] = None
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["deployment_set_id_computed"] = None
             __props__.__dict__["gpu_devices"] = None
             __props__.__dict__["instance_id"] = None
             __props__.__dict__["is_gpu"] = None
@@ -1717,6 +1734,7 @@ class Instance(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
             deployment_set_id: Optional[pulumi.Input[str]] = None,
+            deployment_set_id_computed: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             eip_address: Optional[pulumi.Input[pulumi.InputType['InstanceEipAddressArgs']]] = None,
             eip_id: Optional[pulumi.Input[str]] = None,
@@ -1772,9 +1790,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
-        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+               The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
+        :param pulumi.Input[str] deployment_set_id_computed: The ID of Ecs Deployment Set. Computed field.
         :param pulumi.Input[str] description: The description of ECS instance.
-        :param pulumi.Input[pulumi.InputType['InstanceEipAddressArgs']] eip_address: The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[pulumi.InputType['InstanceEipAddressArgs']] eip_address: The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
                It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGpuDeviceArgs']]]] gpu_devices: The GPU device info of Instance.
@@ -1834,6 +1855,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["data_volumes"] = data_volumes
         __props__.__dict__["deployment_set_id"] = deployment_set_id
+        __props__.__dict__["deployment_set_id_computed"] = deployment_set_id_computed
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_address"] = eip_address
         __props__.__dict__["eip_id"] = eip_id
@@ -1928,11 +1950,20 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deploymentSetId")
-    def deployment_set_id(self) -> pulumi.Output[str]:
+    def deployment_set_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of Ecs Deployment Set.
+        The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+        The current deployment set id of the ECS instance is the `deployment_set_id_computed` field.
         """
         return pulumi.get(self, "deployment_set_id")
+
+    @property
+    @pulumi.getter(name="deploymentSetIdComputed")
+    def deployment_set_id_computed(self) -> pulumi.Output[str]:
+        """
+        The ID of Ecs Deployment Set. Computed field.
+        """
+        return pulumi.get(self, "deployment_set_id_computed")
 
     @property
     @pulumi.getter
@@ -1946,7 +1977,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="eipAddress")
     def eip_address(self) -> pulumi.Output[Optional['outputs.InstanceEipAddress']]:
         """
-        The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "eip_address")
 

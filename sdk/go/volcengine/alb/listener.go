@@ -22,39 +22,93 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooCustomizedCfg, err := alb.NewCustomizedCfg(ctx, "fooCustomizedCfg", &alb.CustomizedCfgArgs{
-//				CustomizedCfgName:    pulumi.String("acc-test-cfg1"),
-//				Description:          pulumi.String("This is a test modify"),
-//				CustomizedCfgContent: pulumi.String("proxy_connect_timeout 4s;proxy_request_buffering on;"),
-//				ProjectName:          pulumi.String("default"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAlb, err := alb.NewAlb(ctx, "fooAlb", &alb.AlbArgs{
+//				AddressIpVersion: pulumi.String("IPv4"),
+//				Type:             pulumi.String("private"),
+//				LoadBalancerName: pulumi.String("acc-test-alb-private"),
+//				Description:      pulumi.String("acc-test"),
+//				SubnetIds: pulumi.StringArray{
+//					fooSubnet.ID(),
+//				},
+//				ProjectName:      pulumi.String("default"),
+//				DeleteProtection: pulumi.String("off"),
+//				Tags: alb.AlbTagArray{
+//					&alb.AlbTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooServerGroup, err := alb.NewServerGroup(ctx, "fooServerGroup", &alb.ServerGroupArgs{
+//				VpcId:           fooVpc.ID(),
+//				ServerGroupName: pulumi.String("acc-test-server-group"),
+//				Description:     pulumi.String("acc-test"),
+//				ServerGroupType: pulumi.String("instance"),
+//				Scheduler:       pulumi.String("wlc"),
+//				ProjectName:     pulumi.String("default"),
+//				HealthCheck: &alb.ServerGroupHealthCheckArgs{
+//					Enabled:  pulumi.String("on"),
+//					Interval: pulumi.Int(3),
+//					Timeout:  pulumi.Int(3),
+//					Method:   pulumi.String("GET"),
+//				},
+//				StickySessionConfig: &alb.ServerGroupStickySessionConfigArgs{
+//					StickySessionEnabled: pulumi.String("on"),
+//					StickySessionType:    pulumi.String("insert"),
+//					CookieTimeout:        pulumi.Int(1100),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooCertificate, err := alb.NewCertificate(ctx, "fooCertificate", &alb.CertificateArgs{
+//				Description: pulumi.String("tf-test"),
+//				PublicKey:   pulumi.String("public key"),
+//				PrivateKey:  pulumi.String("private key"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = alb.NewListener(ctx, "fooListener", &alb.ListenerArgs{
-//				LoadBalancerId:  pulumi.String("alb-1iidd17v3klj474adhfrunyz9"),
-//				ListenerName:    pulumi.String("acc-test-listener-1"),
-//				Protocol:        pulumi.String("HTTPS"),
-//				Port:            pulumi.Int(6666),
-//				Enabled:         pulumi.String("on"),
-//				CertificateId:   pulumi.String("cert-1iidd2pahdyio74adhfr9ajwg"),
-//				CaCertificateId: pulumi.String("cert-1iidd2r9ii0hs74adhfeodxo1"),
-//				ServerGroupId:   pulumi.String("rsp-1g72w74y4umf42zbhq4k4hnln"),
-//				EnableHttp2:     pulumi.String("on"),
-//				EnableQuic:      pulumi.String("off"),
-//				AclStatus:       pulumi.String("on"),
-//				AclType:         pulumi.String("white"),
-//				AclIds: pulumi.StringArray{
-//					pulumi.String("acl-1g72w6z11ighs2zbhq4v3rvh4"),
-//					pulumi.String("acl-1g72xvtt7kg002zbhq5diim3s"),
-//				},
-//				Description:     pulumi.String("acc test listener"),
-//				CustomizedCfgId: fooCustomizedCfg.ID(),
+//				LoadBalancerId:    fooAlb.ID(),
+//				ListenerName:      pulumi.String("acc-test-listener"),
+//				Protocol:          pulumi.String("HTTPS"),
+//				Port:              pulumi.Int(6666),
+//				Enabled:           pulumi.String("off"),
+//				CertificateSource: pulumi.String("alb"),
+//				CertificateId:     fooCertificate.ID(),
+//				ServerGroupId:     fooServerGroup.ID(),
+//				Description:       pulumi.String("acc test listener"),
 //			})
 //			if err != nil {
 //				return err
@@ -83,8 +137,12 @@ type Listener struct {
 	AclType pulumi.StringOutput `pulumi:"aclType"`
 	// The CA certificate id associated with the listener.
 	CaCertificateId pulumi.StringPtrOutput `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener.
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrOutput `pulumi:"certCenterCertificateId"`
+	// The certificate id associated with the listener. Source is `alb`.
 	CertificateId pulumi.StringPtrOutput `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+	CertificateSource pulumi.StringPtrOutput `pulumi:"certificateSource"`
 	// Personalized configuration ID, with a value of " " when not bound.
 	CustomizedCfgId pulumi.StringPtrOutput `pulumi:"customizedCfgId"`
 	// The description of the Listener.
@@ -159,8 +217,12 @@ type listenerState struct {
 	AclType *string `pulumi:"aclType"`
 	// The CA certificate id associated with the listener.
 	CaCertificateId *string `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener.
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
+	// The certificate id associated with the listener. Source is `alb`.
 	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+	CertificateSource *string `pulumi:"certificateSource"`
 	// Personalized configuration ID, with a value of " " when not bound.
 	CustomizedCfgId *string `pulumi:"customizedCfgId"`
 	// The description of the Listener.
@@ -194,8 +256,12 @@ type ListenerState struct {
 	AclType pulumi.StringPtrInput
 	// The CA certificate id associated with the listener.
 	CaCertificateId pulumi.StringPtrInput
-	// The certificate id associated with the listener.
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrInput
+	// The certificate id associated with the listener. Source is `alb`.
 	CertificateId pulumi.StringPtrInput
+	// The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+	CertificateSource pulumi.StringPtrInput
 	// Personalized configuration ID, with a value of " " when not bound.
 	CustomizedCfgId pulumi.StringPtrInput
 	// The description of the Listener.
@@ -233,8 +299,12 @@ type listenerArgs struct {
 	AclType *string `pulumi:"aclType"`
 	// The CA certificate id associated with the listener.
 	CaCertificateId *string `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener.
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
+	// The certificate id associated with the listener. Source is `alb`.
 	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+	CertificateSource *string `pulumi:"certificateSource"`
 	// Personalized configuration ID, with a value of " " when not bound.
 	CustomizedCfgId *string `pulumi:"customizedCfgId"`
 	// The description of the Listener.
@@ -267,8 +337,12 @@ type ListenerArgs struct {
 	AclType pulumi.StringPtrInput
 	// The CA certificate id associated with the listener.
 	CaCertificateId pulumi.StringPtrInput
-	// The certificate id associated with the listener.
+	// The certificate id associated with the listener. Source is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrInput
+	// The certificate id associated with the listener. Source is `alb`.
 	CertificateId pulumi.StringPtrInput
+	// The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+	CertificateSource pulumi.StringPtrInput
 	// Personalized configuration ID, with a value of " " when not bound.
 	CustomizedCfgId pulumi.StringPtrInput
 	// The description of the Listener.
@@ -398,9 +472,19 @@ func (o ListenerOutput) CaCertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CaCertificateId }).(pulumi.StringPtrOutput)
 }
 
-// The certificate id associated with the listener.
+// The certificate id associated with the listener. Source is `certCenter`.
+func (o ListenerOutput) CertCenterCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CertCenterCertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The certificate id associated with the listener. Source is `alb`.
 func (o ListenerOutput) CertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+func (o ListenerOutput) CertificateSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CertificateSource }).(pulumi.StringPtrOutput)
 }
 
 // Personalized configuration ID, with a value of " " when not bound.

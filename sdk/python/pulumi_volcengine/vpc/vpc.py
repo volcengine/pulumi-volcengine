@@ -488,8 +488,8 @@ class Vpc(pulumi.CustomResource):
                 "8.8.8.8",
                 "114.114.114.114",
             ],
-            project_name="AS_test",
-            vpc_name="tf-project-1")
+            project_name="default",
+            vpc_name="acc-test-vpc")
         ```
 
         ## Import
@@ -531,8 +531,8 @@ class Vpc(pulumi.CustomResource):
                 "8.8.8.8",
                 "114.114.114.114",
             ],
-            project_name="AS_test",
-            vpc_name="tf-project-1")
+            project_name="default",
+            vpc_name="acc-test-vpc")
         ```
 
         ## Import

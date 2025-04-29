@@ -93,6 +93,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("resourceTags")]
+        private List<Inputs.RegistriesResourceTagArgs>? _resourceTags;
+
+        /// <summary>
+        /// The tags of cr registry.
+        /// </summary>
+        public List<Inputs.RegistriesResourceTagArgs> ResourceTags
+        {
+            get => _resourceTags ?? (_resourceTags = new List<Inputs.RegistriesResourceTagArgs>());
+            set => _resourceTags = value;
+        }
+
         [Input("statuses")]
         private List<Inputs.RegistriesStatusArgs>? _statuses;
 
@@ -143,6 +155,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("resourceTags")]
+        private InputList<Inputs.RegistriesResourceTagInputArgs>? _resourceTags;
+
+        /// <summary>
+        /// The tags of cr registry.
+        /// </summary>
+        public InputList<Inputs.RegistriesResourceTagInputArgs> ResourceTags
+        {
+            get => _resourceTags ?? (_resourceTags = new InputList<Inputs.RegistriesResourceTagInputArgs>());
+            set => _resourceTags = value;
+        }
+
         [Input("statuses")]
         private InputList<Inputs.RegistriesStatusInputArgs>? _statuses;
 
@@ -187,6 +211,10 @@ namespace Pulumi.Volcengine.Cr
         /// The collection of registry query.
         /// </summary>
         public readonly ImmutableArray<Outputs.RegistriesRegistryResult> Registries;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RegistriesResourceTagResult> ResourceTags;
         public readonly ImmutableArray<Outputs.RegistriesStatusResult> Statuses;
         /// <summary>
         /// The total count of registry query.
@@ -204,6 +232,8 @@ namespace Pulumi.Volcengine.Cr
 
             ImmutableArray<Outputs.RegistriesRegistryResult> registries,
 
+            ImmutableArray<Outputs.RegistriesResourceTagResult> resourceTags,
+
             ImmutableArray<Outputs.RegistriesStatusResult> statuses,
 
             int totalCount,
@@ -214,6 +244,7 @@ namespace Pulumi.Volcengine.Cr
             Names = names;
             OutputFile = outputFile;
             Registries = registries;
+            ResourceTags = resourceTags;
             Statuses = statuses;
             TotalCount = totalCount;
             Types = types;

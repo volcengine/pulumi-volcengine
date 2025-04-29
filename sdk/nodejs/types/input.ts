@@ -888,6 +888,39 @@ export namespace config {
 }
 
 export namespace cr {
+    export interface EndpointAclPolicy {
+        /**
+         * The description of the acl policy.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The ip of the acl policy.
+         */
+        entry?: pulumi.Input<string>;
+    }
+
+    export interface RegistriesResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface RegistriesResourceTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface RegistriesStatus {
         /**
          * The condition of registry.
@@ -919,6 +952,17 @@ export namespace cr {
          * The type of registry.
          */
         type?: pulumi.Input<string>;
+    }
+
+    export interface RegistryResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value?: pulumi.Input<string>;
     }
 
     export interface RegistryStatus {
@@ -1324,9 +1368,9 @@ export namespace ecs {
         /**
          * The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
          */
-        bandwidthPackageId?: pulumi.Input<number>;
+        bandwidthPackageId?: pulumi.Input<string>;
         /**
-         * The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+         * The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
          */
         chargeType?: pulumi.Input<string>;
         /**
@@ -2380,6 +2424,11 @@ export namespace rds_mysql {
          * Whether to automatically renew in prepaid scenarios.
          */
         autoRenew?: pulumi.Input<boolean>;
+        /**
+         * Payment type. Value:
+         * PostPaid - Pay-As-You-Go
+         * PrePaid - Yearly and monthly (default).
+         */
         chargeType: pulumi.Input<string>;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
@@ -5159,6 +5208,10 @@ export namespace vke {
          */
         period?: pulumi.Input<number>;
         /**
+         * The project name of the ecs instance.
+         */
+        projectName?: pulumi.Input<string>;
+        /**
          * The Security of NodeConfig.
          */
         security: pulumi.Input<inputs.vke.NodePoolNodeConfigSecurity>;
@@ -5360,6 +5413,39 @@ export namespace vke {
 }
 
 export namespace vpc {
+    export interface HaVipTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface HaVipsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface HaVipsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface NetworkAclEgressAclEntry {
         /**
          * The description of entry.
@@ -5549,6 +5635,39 @@ export namespace vpc {
          * The values of the tag.
          */
         values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface RouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RouteTablesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface SecurityGroupTag {

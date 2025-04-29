@@ -30,6 +30,14 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The ProjectName of the cr registry.
+        /// </summary>
+        public readonly string Project;
+        /// <summary>
+        /// The tags of cr registry.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RegistriesRegistryResourceTagResult> ResourceTags;
+        /// <summary>
         /// The status of registry.
         /// </summary>
         public readonly Outputs.RegistriesRegistryStatusResult Status;
@@ -56,6 +64,10 @@ namespace Pulumi.Volcengine.Cr.Outputs
 
             string name,
 
+            string project,
+
+            ImmutableArray<Outputs.RegistriesRegistryResourceTagResult> resourceTags,
+
             Outputs.RegistriesRegistryStatusResult status,
 
             string type,
@@ -68,6 +80,8 @@ namespace Pulumi.Volcengine.Cr.Outputs
             CreateTime = createTime;
             Domains = domains;
             Name = name;
+            Project = project;
+            ResourceTags = resourceTags;
             Status = status;
             Type = type;
             UserStatus = userStatus;

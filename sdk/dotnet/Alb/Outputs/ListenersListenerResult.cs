@@ -30,9 +30,17 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string CaCertificateId;
         /// <summary>
+        /// The certificate id associated with the listener. Source is `cert_center`.
+        /// </summary>
+        public readonly string CertCenterCertificateId;
+        /// <summary>
         /// The server certificate ID that domain used.
         /// </summary>
         public readonly string CertificateId;
+        /// <summary>
+        /// The source of the certificate.
+        /// </summary>
+        public readonly string CertificateSource;
         /// <summary>
         /// The create time of the Listener.
         /// </summary>
@@ -116,7 +124,11 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string caCertificateId,
 
+            string certCenterCertificateId,
+
             string certificateId,
+
+            string certificateSource,
 
             string createTime,
 
@@ -158,7 +170,9 @@ namespace Pulumi.Volcengine.Alb.Outputs
             AclStatus = aclStatus;
             AclType = aclType;
             CaCertificateId = caCertificateId;
+            CertCenterCertificateId = certCenterCertificateId;
             CertificateId = certificateId;
+            CertificateSource = certificateSource;
             CreateTime = createTime;
             CustomizedCfgId = customizedCfgId;
             Description = description;

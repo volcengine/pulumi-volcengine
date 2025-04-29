@@ -72,14 +72,7 @@ import (
 //				InstanceChargeType: pulumi.String("PostPaid"),
 //				SystemVolumeType:   pulumi.String("ESSD_PL0"),
 //				SystemVolumeSize:   pulumi.Int(40),
-//				DataVolumes: ecs.InstanceDataVolumeArray{
-//					&ecs.InstanceDataVolumeArgs{
-//						VolumeType:         pulumi.String("ESSD_PL0"),
-//						Size:               pulumi.Int(50),
-//						DeleteWithInstance: pulumi.Bool(true),
-//					},
-//				},
-//				SubnetId: fooSubnet.ID(),
+//				SubnetId:           fooSubnet.ID(),
 //				SecurityGroupIds: pulumi.StringArray{
 //					fooSecurityGroup.ID(),
 //				},
@@ -123,11 +116,15 @@ type Instance struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayOutput `pulumi:"dataVolumes"`
-	// The ID of Ecs Deployment Set.
-	DeploymentSetId pulumi.StringOutput `pulumi:"deploymentSetId"`
+	// The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set.
+	// The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
+	DeploymentSetId pulumi.StringPtrOutput `pulumi:"deploymentSetId"`
+	// The ID of Ecs Deployment Set. Computed field.
+	DeploymentSetIdComputed pulumi.StringOutput `pulumi:"deploymentSetIdComputed"`
 	// The description of ECS instance.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	// The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	EipAddress InstanceEipAddressPtrOutput `pulumi:"eipAddress"`
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
@@ -285,11 +282,15 @@ type instanceState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The data volumes collection of  ECS instance.
 	DataVolumes []InstanceDataVolume `pulumi:"dataVolumes"`
-	// The ID of Ecs Deployment Set.
+	// The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set.
+	// The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
 	DeploymentSetId *string `pulumi:"deploymentSetId"`
+	// The ID of Ecs Deployment Set. Computed field.
+	DeploymentSetIdComputed *string `pulumi:"deploymentSetIdComputed"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
-	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	// The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	EipAddress *InstanceEipAddress `pulumi:"eipAddress"`
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
@@ -393,11 +394,15 @@ type InstanceState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayInput
-	// The ID of Ecs Deployment Set.
+	// The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set.
+	// The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
 	DeploymentSetId pulumi.StringPtrInput
+	// The ID of Ecs Deployment Set. Computed field.
+	DeploymentSetIdComputed pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
-	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	// The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	EipAddress InstanceEipAddressPtrInput
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
@@ -501,11 +506,13 @@ type instanceArgs struct {
 	CpuOptions *InstanceCpuOptions `pulumi:"cpuOptions"`
 	// The data volumes collection of  ECS instance.
 	DataVolumes []InstanceDataVolume `pulumi:"dataVolumes"`
-	// The ID of Ecs Deployment Set.
+	// The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set.
+	// The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
 	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
-	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	// The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	EipAddress *InstanceEipAddress `pulumi:"eipAddress"`
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
@@ -580,11 +587,13 @@ type InstanceArgs struct {
 	CpuOptions InstanceCpuOptionsPtrInput
 	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayInput
-	// The ID of Ecs Deployment Set.
+	// The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set.
+	// The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
 	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
-	// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	// The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	EipAddress InstanceEipAddressPtrInput
 	// The id of an existing Available EIP which will be automatically assigned to this instance.
 	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
@@ -766,9 +775,15 @@ func (o InstanceOutput) DataVolumes() InstanceDataVolumeArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceDataVolumeArrayOutput { return v.DataVolumes }).(InstanceDataVolumeArrayOutput)
 }
 
-// The ID of Ecs Deployment Set.
-func (o InstanceOutput) DeploymentSetId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DeploymentSetId }).(pulumi.StringOutput)
+// The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set.
+// The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
+func (o InstanceOutput) DeploymentSetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.DeploymentSetId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of Ecs Deployment Set. Computed field.
+func (o InstanceOutput) DeploymentSetIdComputed() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DeploymentSetIdComputed }).(pulumi.StringOutput)
 }
 
 // The description of ECS instance.
@@ -776,7 +791,8 @@ func (o InstanceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+// The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `eip.Address`.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o InstanceOutput) EipAddress() InstanceEipAddressPtrOutput {
 	return o.ApplyT(func(v *Instance) InstanceEipAddressPtrOutput { return v.EipAddress }).(InstanceEipAddressPtrOutput)
 }

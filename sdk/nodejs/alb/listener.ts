@@ -10,33 +10,67 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooCustomizedCfg = new volcengine.alb.CustomizedCfg("fooCustomizedCfg", {
- *     customizedCfgName: "acc-test-cfg1",
- *     description: "This is a test modify",
- *     customizedCfgContent: "proxy_connect_timeout 4s;proxy_request_buffering on;",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooAlb = new volcengine.alb.Alb("fooAlb", {
+ *     addressIpVersion: "IPv4",
+ *     type: "private",
+ *     loadBalancerName: "acc-test-alb-private",
+ *     description: "acc-test",
+ *     subnetIds: [fooSubnet.id],
  *     projectName: "default",
+ *     deleteProtection: "off",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooServerGroup = new volcengine.alb.ServerGroup("fooServerGroup", {
+ *     vpcId: fooVpc.id,
+ *     serverGroupName: "acc-test-server-group",
+ *     description: "acc-test",
+ *     serverGroupType: "instance",
+ *     scheduler: "wlc",
+ *     projectName: "default",
+ *     healthCheck: {
+ *         enabled: "on",
+ *         interval: 3,
+ *         timeout: 3,
+ *         method: "GET",
+ *     },
+ *     stickySessionConfig: {
+ *         stickySessionEnabled: "on",
+ *         stickySessionType: "insert",
+ *         cookieTimeout: 1100,
+ *     },
+ * });
+ * const fooCertificate = new volcengine.alb.Certificate("fooCertificate", {
+ *     description: "tf-test",
+ *     publicKey: "public key",
+ *     privateKey: "private key",
  * });
  * const fooListener = new volcengine.alb.Listener("fooListener", {
- *     loadBalancerId: "alb-1iidd17v3klj474adhfrunyz9",
- *     listenerName: "acc-test-listener-1",
+ *     loadBalancerId: fooAlb.id,
+ *     listenerName: "acc-test-listener",
  *     protocol: "HTTPS",
  *     port: 6666,
- *     enabled: "on",
- *     certificateId: "cert-1iidd2pahdyio74adhfr9ajwg",
- *     caCertificateId: "cert-1iidd2r9ii0hs74adhfeodxo1",
- *     serverGroupId: "rsp-1g72w74y4umf42zbhq4k4hnln",
- *     enableHttp2: "on",
- *     enableQuic: "off",
- *     aclStatus: "on",
- *     aclType: "white",
- *     aclIds: [
- *         "acl-1g72w6z11ighs2zbhq4v3rvh4",
- *         "acl-1g72xvtt7kg002zbhq5diim3s",
- *     ],
+ *     enabled: "off",
+ *     certificateSource: "alb",
+ *     certificateId: fooCertificate.id,
+ *     serverGroupId: fooServerGroup.id,
  *     description: "acc test listener",
- *     customizedCfgId: fooCustomizedCfg.id,
  * });
  * ```
  *
@@ -93,9 +127,17 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly caCertificateId!: pulumi.Output<string | undefined>;
     /**
-     * The certificate id associated with the listener.
+     * The certificate id associated with the listener. Source is `certCenter`.
+     */
+    public readonly certCenterCertificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The certificate id associated with the listener. Source is `alb`.
      */
     public readonly certificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+     */
+    public readonly certificateSource!: pulumi.Output<string | undefined>;
     /**
      * Personalized configuration ID, with a value of " " when not bound.
      */
@@ -158,7 +200,9 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["aclStatus"] = state ? state.aclStatus : undefined;
             resourceInputs["aclType"] = state ? state.aclType : undefined;
             resourceInputs["caCertificateId"] = state ? state.caCertificateId : undefined;
+            resourceInputs["certCenterCertificateId"] = state ? state.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["certificateSource"] = state ? state.certificateSource : undefined;
             resourceInputs["customizedCfgId"] = state ? state.customizedCfgId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enableHttp2"] = state ? state.enableHttp2 : undefined;
@@ -188,7 +232,9 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["aclStatus"] = args ? args.aclStatus : undefined;
             resourceInputs["aclType"] = args ? args.aclType : undefined;
             resourceInputs["caCertificateId"] = args ? args.caCertificateId : undefined;
+            resourceInputs["certCenterCertificateId"] = args ? args.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
+            resourceInputs["certificateSource"] = args ? args.certificateSource : undefined;
             resourceInputs["customizedCfgId"] = args ? args.customizedCfgId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enableHttp2"] = args ? args.enableHttp2 : undefined;
@@ -227,9 +273,17 @@ export interface ListenerState {
      */
     caCertificateId?: pulumi.Input<string>;
     /**
-     * The certificate id associated with the listener.
+     * The certificate id associated with the listener. Source is `certCenter`.
+     */
+    certCenterCertificateId?: pulumi.Input<string>;
+    /**
+     * The certificate id associated with the listener. Source is `alb`.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+     */
+    certificateSource?: pulumi.Input<string>;
     /**
      * Personalized configuration ID, with a value of " " when not bound.
      */
@@ -297,9 +351,17 @@ export interface ListenerArgs {
      */
     caCertificateId?: pulumi.Input<string>;
     /**
-     * The certificate id associated with the listener.
+     * The certificate id associated with the listener. Source is `certCenter`.
+     */
+    certCenterCertificateId?: pulumi.Input<string>;
+    /**
+     * The certificate id associated with the listener. Source is `alb`.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * The source of the certificate. Valid values: `alb`, `certCenter`. Default is `alb`.
+     */
+    certificateSource?: pulumi.Input<string>;
     /**
      * Personalized configuration ID, with a value of " " when not bound.
      */

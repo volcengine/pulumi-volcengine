@@ -59,13 +59,14 @@ import (
 //				return err
 //			}
 //			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
-//				NameRegex: pulumi.StringRef("veLinux 1.0 CentOS兼容版 64位"),
+//				NameRegex: pulumi.StringRef("veLinux 1.0 CentOS Compatible 64 bit"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
 //				Description:             pulumi.String("created by terraform"),
+//				ProjectName:             pulumi.String("default"),
 //				DeleteProtectionEnabled: pulumi.Bool(false),
 //				ClusterConfig: &vke.ClusterClusterConfigArgs{
 //					SubnetIds: pulumi.StringArray{
@@ -152,6 +153,7 @@ import (
 //					AdditionalContainerStorageEnabled: pulumi.Bool(false),
 //					InstanceChargeType:                pulumi.String("PostPaid"),
 //					NamePrefix:                        pulumi.String("acc-test"),
+//					ProjectName:                       pulumi.String("default"),
 //					EcsTags: vke.NodePoolNodeConfigEcsTagArray{
 //						&vke.NodePoolNodeConfigEcsTagArgs{
 //							Key:   pulumi.String("ecs_k1"),
