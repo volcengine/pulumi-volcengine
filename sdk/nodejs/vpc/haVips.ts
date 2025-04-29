@@ -50,6 +50,7 @@ export function haVips(args?: HaVipsArgs, opts?: pulumi.InvokeOptions): Promise<
         "projectName": args.projectName,
         "status": args.status,
         "subnetId": args.subnetId,
+        "tags": args.tags,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -91,6 +92,10 @@ export interface HaVipsArgs {
      */
     subnetId?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.vpc.HaVipsTag[];
+    /**
      * The id of vpc.
      */
     vpcId?: string;
@@ -131,6 +136,10 @@ export interface HaVipsResult {
      * The subnet id of the Ha Vip.
      */
     readonly subnetId?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.HaVipsTag[];
     /**
      * The total count of query.
      */
@@ -211,6 +220,10 @@ export interface HaVipsOutputArgs {
      * The id of subnet.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.HaVipsTagArgs>[]>;
     /**
      * The id of vpc.
      */

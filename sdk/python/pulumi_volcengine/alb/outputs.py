@@ -2027,7 +2027,9 @@ class ListenersListenerResult(dict):
                  acl_status: str,
                  acl_type: str,
                  ca_certificate_id: str,
+                 cert_center_certificate_id: str,
                  certificate_id: str,
+                 certificate_source: str,
                  create_time: str,
                  customized_cfg_id: str,
                  description: str,
@@ -2051,7 +2053,9 @@ class ListenersListenerResult(dict):
         :param str acl_status: Whether to enable the access control function,valid value is on or off.
         :param str acl_type: The access control type.
         :param str ca_certificate_id: CA certificate ID associated with HTTPS listener.
+        :param str cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
         :param str certificate_id: The server certificate ID that domain used.
+        :param str certificate_source: The source of the certificate.
         :param str create_time: The create time of the Listener.
         :param str customized_cfg_id: The customized configuration ID, the value is empty string when not bound.
         :param str description: The description of listener.
@@ -2075,7 +2079,9 @@ class ListenersListenerResult(dict):
         pulumi.set(__self__, "acl_status", acl_status)
         pulumi.set(__self__, "acl_type", acl_type)
         pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "certificate_source", certificate_source)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
         pulumi.set(__self__, "description", description)
@@ -2128,12 +2134,28 @@ class ListenersListenerResult(dict):
         return pulumi.get(self, "ca_certificate_id")
 
     @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> str:
+        """
+        The certificate id associated with the listener. Source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> str:
         """
         The server certificate ID that domain used.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> str:
+        """
+        The source of the certificate.
+        """
+        return pulumi.get(self, "certificate_source")
 
     @property
     @pulumi.getter(name="createTime")

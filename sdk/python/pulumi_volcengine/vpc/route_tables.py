@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'RouteTablesResult',
@@ -22,7 +23,7 @@ class RouteTablesResult:
     """
     A collection of values returned by RouteTables.
     """
-    def __init__(__self__, id=None, ids=None, output_file=None, project_name=None, route_table_name=None, route_tables=None, total_count=None, vpc_id=None):
+    def __init__(__self__, id=None, ids=None, output_file=None, project_name=None, route_table_name=None, route_tables=None, tags=None, total_count=None, vpc_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -41,6 +42,9 @@ class RouteTablesResult:
         if route_tables and not isinstance(route_tables, list):
             raise TypeError("Expected argument 'route_tables' to be a list")
         pulumi.set(__self__, "route_tables", route_tables)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -91,6 +95,14 @@ class RouteTablesResult:
         return pulumi.get(self, "route_tables")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.RouteTablesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -119,6 +131,7 @@ class AwaitableRouteTablesResult(RouteTablesResult):
             project_name=self.project_name,
             route_table_name=self.route_table_name,
             route_tables=self.route_tables,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_id=self.vpc_id)
 
@@ -127,6 +140,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
                  output_file: Optional[str] = None,
                  project_name: Optional[str] = None,
                  route_table_name: Optional[str] = None,
+                 tags: Optional[Sequence[pulumi.InputType['RouteTablesTagArgs']]] = None,
                  vpc_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRouteTablesResult:
     """
@@ -149,6 +163,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of the route table.
     :param str route_table_name: A name of route table.
+    :param Sequence[pulumi.InputType['RouteTablesTagArgs']] tags: Tags.
     :param str vpc_id: An id of VPC.
     """
     __args__ = dict()
@@ -156,6 +171,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
     __args__['outputFile'] = output_file
     __args__['projectName'] = project_name
     __args__['routeTableName'] = route_table_name
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpc/routeTables:RouteTables', __args__, opts=opts, typ=RouteTablesResult).value
@@ -167,6 +183,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
         project_name=pulumi.get(__ret__, 'project_name'),
         route_table_name=pulumi.get(__ret__, 'route_table_name'),
         route_tables=pulumi.get(__ret__, 'route_tables'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
@@ -176,6 +193,7 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
                         project_name: Optional[pulumi.Input[Optional[str]]] = None,
                         route_table_name: Optional[pulumi.Input[Optional[str]]] = None,
+                        tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['RouteTablesTagArgs']]]]] = None,
                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RouteTablesResult]:
     """
@@ -198,6 +216,7 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of the route table.
     :param str route_table_name: A name of route table.
+    :param Sequence[pulumi.InputType['RouteTablesTagArgs']] tags: Tags.
     :param str vpc_id: An id of VPC.
     """
     ...

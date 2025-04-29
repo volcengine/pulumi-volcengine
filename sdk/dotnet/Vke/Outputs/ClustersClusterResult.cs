@@ -70,6 +70,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly Outputs.ClustersClusterPodsConfigResult PodsConfig;
         /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The config of the services.
         /// </summary>
         public readonly Outputs.ClustersClusterServicesConfigResult ServicesConfig;
@@ -120,6 +124,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             Outputs.ClustersClusterPodsConfigResult podsConfig,
 
+            string projectName,
+
             Outputs.ClustersClusterServicesConfigResult servicesConfig,
 
             Outputs.ClustersClusterStatusResult status,
@@ -144,6 +150,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             Name = name;
             NodeStatistics = nodeStatistics;
             PodsConfig = podsConfig;
+            ProjectName = projectName;
             ServicesConfig = servicesConfig;
             Status = status;
             Tags = tags;

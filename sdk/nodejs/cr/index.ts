@@ -15,6 +15,11 @@ export type Endpoint = import("./endpoint").Endpoint;
 export const Endpoint: typeof import("./endpoint").Endpoint = null as any;
 utilities.lazyLoad(exports, ["Endpoint"], () => require("./endpoint"));
 
+export { EndpointAclPolicyArgs, EndpointAclPolicyState } from "./endpointAclPolicy";
+export type EndpointAclPolicy = import("./endpointAclPolicy").EndpointAclPolicy;
+export const EndpointAclPolicy: typeof import("./endpointAclPolicy").EndpointAclPolicy = null as any;
+utilities.lazyLoad(exports, ["EndpointAclPolicy"], () => require("./endpointAclPolicy"));
+
 export { EndpointsArgs, EndpointsResult, EndpointsOutputArgs } from "./endpoints";
 export const endpoints: typeof import("./endpoints").endpoints = null as any;
 export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
@@ -82,6 +87,8 @@ const _module = {
         switch (type) {
             case "volcengine:cr/endpoint:Endpoint":
                 return new Endpoint(name, <any>undefined, { urn })
+            case "volcengine:cr/endpointAclPolicy:EndpointAclPolicy":
+                return new EndpointAclPolicy(name, <any>undefined, { urn })
             case "volcengine:cr/namespace:Namespace":
                 return new Namespace(name, <any>undefined, { urn })
             case "volcengine:cr/registry:Registry":
@@ -100,6 +107,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "cr/endpoint", _module)
+pulumi.runtime.registerResourceModule("volcengine", "cr/endpointAclPolicy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "cr/namespace", _module)
 pulumi.runtime.registerResourceModule("volcengine", "cr/registry", _module)
 pulumi.runtime.registerResourceModule("volcengine", "cr/repository", _module)

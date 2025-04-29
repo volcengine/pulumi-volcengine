@@ -18,6 +18,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Inputs
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
 
+        /// <summary>
+        /// Payment type. Value:
+        /// PostPaid - Pay-As-You-Go
+        /// PrePaid - Yearly and monthly (default).
+        /// </summary>
         [Input("chargeType", required: true)]
         public Input<string> ChargeType { get; set; } = null!;
 

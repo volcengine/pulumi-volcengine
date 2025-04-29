@@ -20,8 +20,8 @@ import * as utilities from "../utilities";
  *         "8.8.8.8",
  *         "114.114.114.114",
  *     ],
- *     projectName: "AS_test",
- *     vpcName: "tf-project-1",
+ *     projectName: "default",
+ *     vpcName: "acc-test-vpc",
  * });
  * ```
  *

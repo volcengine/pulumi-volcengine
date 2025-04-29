@@ -2428,7 +2428,10 @@ func (o InstanceChargeDetailArrayOutput) Index(i pulumi.IntInput) InstanceCharge
 
 type InstanceChargeInfo struct {
 	// Whether to automatically renew in prepaid scenarios.
-	AutoRenew  *bool  `pulumi:"autoRenew"`
+	AutoRenew *bool `pulumi:"autoRenew"`
+	// Payment type. Value:
+	// PostPaid - Pay-As-You-Go
+	// PrePaid - Yearly and monthly (default).
 	ChargeType string `pulumi:"chargeType"`
 	// Purchase duration in prepaid scenarios. Default: 1.
 	Period *int `pulumi:"period"`
@@ -2451,8 +2454,11 @@ type InstanceChargeInfoInput interface {
 
 type InstanceChargeInfoArgs struct {
 	// Whether to automatically renew in prepaid scenarios.
-	AutoRenew  pulumi.BoolPtrInput `pulumi:"autoRenew"`
-	ChargeType pulumi.StringInput  `pulumi:"chargeType"`
+	AutoRenew pulumi.BoolPtrInput `pulumi:"autoRenew"`
+	// Payment type. Value:
+	// PostPaid - Pay-As-You-Go
+	// PrePaid - Yearly and monthly (default).
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
 	// Purchase duration in prepaid scenarios. Default: 1.
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The purchase cycle in the prepaid scenario.
@@ -2543,6 +2549,9 @@ func (o InstanceChargeInfoOutput) AutoRenew() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *bool { return v.AutoRenew }).(pulumi.BoolPtrOutput)
 }
 
+// Payment type. Value:
+// PostPaid - Pay-As-You-Go
+// PrePaid - Yearly and monthly (default).
 func (o InstanceChargeInfoOutput) ChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) string { return v.ChargeType }).(pulumi.StringOutput)
 }
@@ -2593,6 +2602,9 @@ func (o InstanceChargeInfoPtrOutput) AutoRenew() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Payment type. Value:
+// PostPaid - Pay-As-You-Go
+// PrePaid - Yearly and monthly (default).
 func (o InstanceChargeInfoPtrOutput) ChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceChargeInfo) *string {
 		if v == nil {

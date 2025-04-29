@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['HaVipArgs', 'HaVip']
 
@@ -17,13 +19,15 @@ class HaVipArgs:
                  subnet_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  ha_vip_name: Optional[pulumi.Input[str]] = None,
-                 ip_address: Optional[pulumi.Input[str]] = None):
+                 ip_address: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]]] = None):
         """
         The set of arguments for constructing a HaVip resource.
         :param pulumi.Input[str] subnet_id: The subnet id of the Ha Vip.
         :param pulumi.Input[str] description: The description of the Ha Vip.
         :param pulumi.Input[str] ha_vip_name: The name of the Ha Vip.
         :param pulumi.Input[str] ip_address: The ip address of the Ha Vip.
+        :param pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
         if description is not None:
@@ -32,6 +36,8 @@ class HaVipArgs:
             pulumi.set(__self__, "ha_vip_name", ha_vip_name)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -81,6 +87,18 @@ class HaVipArgs:
     def ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_address", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _HaVipState:
@@ -97,6 +115,7 @@ class _HaVipState:
                  project_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
@@ -113,6 +132,7 @@ class _HaVipState:
         :param pulumi.Input[str] project_name: The project name of the Ha Vip.
         :param pulumi.Input[str] status: The status of the Ha Vip.
         :param pulumi.Input[str] subnet_id: The subnet id of the Ha Vip.
+        :param pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of the Ha Vip.
         :param pulumi.Input[str] vpc_id: The vpc id of the Ha Vip.
         """
@@ -140,6 +160,8 @@ class _HaVipState:
             pulumi.set(__self__, "status", status)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if vpc_id is not None:
@@ -290,6 +312,18 @@ class _HaVipState:
         pulumi.set(self, "subnet_id", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HaVipTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
@@ -323,6 +357,7 @@ class HaVip(pulumi.CustomResource):
                  ha_vip_name: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVipTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage ha vip
@@ -344,8 +379,11 @@ class HaVip(pulumi.CustomResource):
         foo_ha_vip = volcengine.vpc.HaVip("fooHaVip",
             ha_vip_name="acc-test-ha-vip",
             description="acc-test",
-            subnet_id=foo_subnet.id)
-        #  ip_address = "172.16.0.5"
+            subnet_id=foo_subnet.id,
+            tags=[volcengine.vpc.HaVipTagArgs(
+                key="k1",
+                value="v1",
+            )])
         foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
         foo_associate = volcengine.eip.Associate("fooAssociate",
             allocation_id=foo_address.id,
@@ -367,6 +405,7 @@ class HaVip(pulumi.CustomResource):
         :param pulumi.Input[str] ha_vip_name: The name of the Ha Vip.
         :param pulumi.Input[str] ip_address: The ip address of the Ha Vip.
         :param pulumi.Input[str] subnet_id: The subnet id of the Ha Vip.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVipTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -394,8 +433,11 @@ class HaVip(pulumi.CustomResource):
         foo_ha_vip = volcengine.vpc.HaVip("fooHaVip",
             ha_vip_name="acc-test-ha-vip",
             description="acc-test",
-            subnet_id=foo_subnet.id)
-        #  ip_address = "172.16.0.5"
+            subnet_id=foo_subnet.id,
+            tags=[volcengine.vpc.HaVipTagArgs(
+                key="k1",
+                value="v1",
+            )])
         foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
         foo_associate = volcengine.eip.Associate("fooAssociate",
             allocation_id=foo_address.id,
@@ -430,6 +472,7 @@ class HaVip(pulumi.CustomResource):
                  ha_vip_name: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVipTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -445,6 +488,7 @@ class HaVip(pulumi.CustomResource):
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["associated_eip_address"] = None
             __props__.__dict__["associated_eip_id"] = None
             __props__.__dict__["associated_instance_ids"] = None
@@ -477,6 +521,7 @@ class HaVip(pulumi.CustomResource):
             project_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVipTagArgs']]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'HaVip':
         """
@@ -498,6 +543,7 @@ class HaVip(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The project name of the Ha Vip.
         :param pulumi.Input[str] status: The status of the Ha Vip.
         :param pulumi.Input[str] subnet_id: The subnet id of the Ha Vip.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVipTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of the Ha Vip.
         :param pulumi.Input[str] vpc_id: The vpc id of the Ha Vip.
         """
@@ -517,6 +563,7 @@ class HaVip(pulumi.CustomResource):
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_id"] = subnet_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vpc_id"] = vpc_id
         return HaVip(resource_name, opts=opts, __props__=__props__)
@@ -616,6 +663,14 @@ class HaVip(pulumi.CustomResource):
         The subnet id of the Ha Vip.
         """
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.HaVipTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")

@@ -25,6 +25,7 @@ namespace Pulumi.Volcengine.Cr
     ///     {
     ///         DeleteImmediately = false,
     ///         Password = "1qaz!QAZ",
+    ///         Project = "default",
     ///     });
     /// 
     /// });
@@ -76,6 +77,18 @@ namespace Pulumi.Volcengine.Cr
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the cr registry.
+        /// </summary>
+        [Output("project")]
+        public Output<string> Project { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("resourceTags")]
+        public Output<ImmutableArray<Outputs.RegistryResourceTag>> ResourceTags { get; private set; } = null!;
 
         /// <summary>
         /// The status of registry.
@@ -180,6 +193,12 @@ namespace Pulumi.Volcengine.Cr
             }
         }
 
+        /// <summary>
+        /// The ProjectName of the cr registry.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
         public RegistryArgs()
         {
         }
@@ -238,6 +257,24 @@ namespace Pulumi.Volcengine.Cr
                 var emptySecret = Output.CreateSecret(0);
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
+        }
+
+        /// <summary>
+        /// The ProjectName of the cr registry.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        [Input("resourceTags")]
+        private InputList<Inputs.RegistryResourceTagGetArgs>? _resourceTags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RegistryResourceTagGetArgs> ResourceTags
+        {
+            get => _resourceTags ?? (_resourceTags = new InputList<Inputs.RegistryResourceTagGetArgs>());
+            set => _resourceTags = value;
         }
 
         [Input("statuses")]

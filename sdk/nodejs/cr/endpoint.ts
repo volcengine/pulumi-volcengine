@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -55,6 +57,10 @@ export class Endpoint extends pulumi.CustomResource {
     }
 
     /**
+     * The list of acl policies.
+     */
+    public /*out*/ readonly aclPolicies!: pulumi.Output<outputs.cr.EndpointAclPolicy[]>;
+    /**
      * Whether enable public endpoint.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
@@ -80,6 +86,7 @@ export class Endpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointState | undefined;
+            resourceInputs["aclPolicies"] = state ? state.aclPolicies : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["registry"] = state ? state.registry : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -90,6 +97,7 @@ export class Endpoint extends pulumi.CustomResource {
             }
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["registry"] = args ? args.registry : undefined;
+            resourceInputs["aclPolicies"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -101,6 +109,10 @@ export class Endpoint extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Endpoint resources.
  */
 export interface EndpointState {
+    /**
+     * The list of acl policies.
+     */
+    aclPolicies?: pulumi.Input<pulumi.Input<inputs.cr.EndpointAclPolicy>[]>;
     /**
      * Whether enable public endpoint.
      */

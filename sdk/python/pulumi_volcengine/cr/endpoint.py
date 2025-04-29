@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['EndpointArgs', 'Endpoint']
 
@@ -53,21 +55,37 @@ class EndpointArgs:
 @pulumi.input_type
 class _EndpointState:
     def __init__(__self__, *,
+                 acl_policies: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointAclPolicyArgs']]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  registry: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointAclPolicyArgs']]] acl_policies: The list of acl policies.
         :param pulumi.Input[bool] enabled: Whether enable public endpoint.
         :param pulumi.Input[str] registry: The CrRegistry name.
         :param pulumi.Input[str] status: The status of public endpoint.
         """
+        if acl_policies is not None:
+            pulumi.set(__self__, "acl_policies", acl_policies)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if registry is not None:
             pulumi.set(__self__, "registry", registry)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="aclPolicies")
+    def acl_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointAclPolicyArgs']]]]:
+        """
+        The list of acl policies.
+        """
+        return pulumi.get(self, "acl_policies")
+
+    @acl_policies.setter
+    def acl_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointAclPolicyArgs']]]]):
+        pulumi.set(self, "acl_policies", value)
 
     @property
     @pulumi.getter
@@ -197,6 +215,7 @@ class Endpoint(pulumi.CustomResource):
             if registry is None and not opts.urn:
                 raise TypeError("Missing required property 'registry'")
             __props__.__dict__["registry"] = registry
+            __props__.__dict__["acl_policies"] = None
             __props__.__dict__["status"] = None
         super(Endpoint, __self__).__init__(
             'volcengine:cr/endpoint:Endpoint',
@@ -208,6 +227,7 @@ class Endpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            acl_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointAclPolicyArgs']]]]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             registry: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None) -> 'Endpoint':
@@ -218,6 +238,7 @@ class Endpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointAclPolicyArgs']]]] acl_policies: The list of acl policies.
         :param pulumi.Input[bool] enabled: Whether enable public endpoint.
         :param pulumi.Input[str] registry: The CrRegistry name.
         :param pulumi.Input[str] status: The status of public endpoint.
@@ -226,10 +247,19 @@ class Endpoint(pulumi.CustomResource):
 
         __props__ = _EndpointState.__new__(_EndpointState)
 
+        __props__.__dict__["acl_policies"] = acl_policies
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["registry"] = registry
         __props__.__dict__["status"] = status
         return Endpoint(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="aclPolicies")
+    def acl_policies(self) -> pulumi.Output[Sequence['outputs.EndpointAclPolicy']]:
+        """
+        The list of acl policies.
+        """
+        return pulumi.get(self, "acl_policies")
 
     @property
     @pulumi.getter

@@ -50,6 +50,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RouteTablesRouteTableTagResult> Tags;
+        /// <summary>
         /// The last update time of the route table.
         /// </summary>
         public readonly string UpdateTime;
@@ -82,6 +86,8 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             ImmutableArray<string> subnetIds,
 
+            ImmutableArray<Outputs.RouteTablesRouteTableTagResult> tags,
+
             string updateTime,
 
             string vpcId,
@@ -97,6 +103,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             RouteTableName = routeTableName;
             RouteTableType = routeTableType;
             SubnetIds = subnetIds;
+            Tags = tags;
             UpdateTime = updateTime;
             VpcId = vpcId;
             VpcName = vpcName;

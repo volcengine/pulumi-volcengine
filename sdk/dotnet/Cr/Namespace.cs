@@ -23,12 +23,14 @@ namespace Pulumi.Volcengine.Cr
     /// {
     ///     var foo = new Volcengine.Cr.Namespace("foo", new()
     ///     {
-    ///         Registry = "tf-2",
+    ///         Project = "default",
+    ///         Registry = "tf-test-cr",
     ///     });
     /// 
     ///     var foo1 = new Volcengine.Cr.Namespace("foo1", new()
     ///     {
-    ///         Registry = "tf-1",
+    ///         Project = "default",
+    ///         Registry = "tf-test-cr",
     ///     });
     /// 
     /// });
@@ -56,6 +58,12 @@ namespace Pulumi.Volcengine.Cr
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the CrNamespace.
+        /// </summary>
+        [Output("project")]
+        public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
         /// The registry name.
@@ -117,6 +125,12 @@ namespace Pulumi.Volcengine.Cr
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ProjectName of the CrNamespace.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
         /// The registry name.
         /// </summary>
         [Input("registry", required: true)]
@@ -141,6 +155,12 @@ namespace Pulumi.Volcengine.Cr
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the CrNamespace.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
 
         /// <summary>
         /// The registry name.

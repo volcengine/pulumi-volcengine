@@ -675,6 +675,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "cr/endpointAclPolicy",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/endpointAclPolicy:EndpointAclPolicy": "EndpointAclPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "cr/namespace",
   "fqn": "pulumi_volcengine.cr",
   "classes": {

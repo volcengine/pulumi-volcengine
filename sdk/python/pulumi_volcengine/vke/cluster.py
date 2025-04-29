@@ -25,6 +25,7 @@ class ClusterArgs:
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  logging_config: Optional[pulumi.Input['ClusterLoggingConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None):
         """
         The set of arguments for constructing a Cluster resource.
@@ -37,6 +38,7 @@ class ClusterArgs:
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
+        :param pulumi.Input[str] project_name: The project name of the cluster.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "cluster_config", cluster_config)
@@ -54,6 +56,8 @@ class ClusterArgs:
             pulumi.set(__self__, "logging_config", logging_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -166,6 +170,18 @@ class ClusterArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]:
         """
@@ -192,6 +208,7 @@ class _ClusterState:
                  logging_config: Optional[pulumi.Input['ClusterLoggingConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pods_config: Optional[pulumi.Input['ClusterPodsConfigArgs']] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  services_config: Optional[pulumi.Input['ClusterServicesConfigArgs']] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None):
         """
@@ -207,6 +224,7 @@ class _ClusterState:
         :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input['ClusterPodsConfigArgs'] pods_config: The config of the pods.
+        :param pulumi.Input[str] project_name: The project name of the cluster.
         :param pulumi.Input['ClusterServicesConfigArgs'] services_config: The config of the services.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Tags.
         """
@@ -232,6 +250,8 @@ class _ClusterState:
             pulumi.set(__self__, "name", name)
         if pods_config is not None:
             pulumi.set(__self__, "pods_config", pods_config)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if services_config is not None:
             pulumi.set(__self__, "services_config", services_config)
         if tags is not None:
@@ -370,6 +390,18 @@ class _ClusterState:
         pulumi.set(self, "pods_config", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="servicesConfig")
     def services_config(self) -> Optional[pulumi.Input['ClusterServicesConfigArgs']]:
         """
@@ -407,6 +439,7 @@ class Cluster(pulumi.CustomResource):
                  logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pods_config: Optional[pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
                  __props__=None):
@@ -431,6 +464,7 @@ class Cluster(pulumi.CustomResource):
             security_group_name="acc-test-security-group2")
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
+            project_name="default",
             delete_protection_enabled=False,
             cluster_config=volcengine.vke.ClusterClusterConfigArgs(
                 subnet_ids=[foo_subnet.id],
@@ -476,6 +510,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']] pods_config: The config of the pods.
+        :param pulumi.Input[str] project_name: The project name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']] services_config: The config of the services.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Tags.
         """
@@ -506,6 +541,7 @@ class Cluster(pulumi.CustomResource):
             security_group_name="acc-test-security-group2")
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
+            project_name="default",
             delete_protection_enabled=False,
             cluster_config=volcengine.vke.ClusterClusterConfigArgs(
                 subnet_ids=[foo_subnet.id],
@@ -564,6 +600,7 @@ class Cluster(pulumi.CustomResource):
                  logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pods_config: Optional[pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
                  __props__=None):
@@ -587,6 +624,7 @@ class Cluster(pulumi.CustomResource):
             if pods_config is None and not opts.urn:
                 raise TypeError("Missing required property 'pods_config'")
             __props__.__dict__["pods_config"] = pods_config
+            __props__.__dict__["project_name"] = project_name
             if services_config is None and not opts.urn:
                 raise TypeError("Missing required property 'services_config'")
             __props__.__dict__["services_config"] = services_config
@@ -615,6 +653,7 @@ class Cluster(pulumi.CustomResource):
             logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             pods_config: Optional[pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None) -> 'Cluster':
         """
@@ -635,6 +674,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']] pods_config: The config of the pods.
+        :param pulumi.Input[str] project_name: The project name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']] services_config: The config of the services.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Tags.
         """
@@ -653,6 +693,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["logging_config"] = logging_config
         __props__.__dict__["name"] = name
         __props__.__dict__["pods_config"] = pods_config
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["services_config"] = services_config
         __props__.__dict__["tags"] = tags
         return Cluster(resource_name, opts=opts, __props__=__props__)
@@ -744,6 +785,14 @@ class Cluster(pulumi.CustomResource):
         The config of the pods.
         """
         return pulumi.get(self, "pods_config")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the cluster.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="servicesConfig")

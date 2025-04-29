@@ -13,6 +13,112 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type HaVipTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HaVipTagInput is an input type that accepts HaVipTagArgs and HaVipTagOutput values.
+// You can construct a concrete instance of `HaVipTagInput` via:
+//
+//	HaVipTagArgs{...}
+type HaVipTagInput interface {
+	pulumi.Input
+
+	ToHaVipTagOutput() HaVipTagOutput
+	ToHaVipTagOutputWithContext(context.Context) HaVipTagOutput
+}
+
+type HaVipTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HaVipTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipTag)(nil)).Elem()
+}
+
+func (i HaVipTagArgs) ToHaVipTagOutput() HaVipTagOutput {
+	return i.ToHaVipTagOutputWithContext(context.Background())
+}
+
+func (i HaVipTagArgs) ToHaVipTagOutputWithContext(ctx context.Context) HaVipTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipTagOutput)
+}
+
+// HaVipTagArrayInput is an input type that accepts HaVipTagArray and HaVipTagArrayOutput values.
+// You can construct a concrete instance of `HaVipTagArrayInput` via:
+//
+//	HaVipTagArray{ HaVipTagArgs{...} }
+type HaVipTagArrayInput interface {
+	pulumi.Input
+
+	ToHaVipTagArrayOutput() HaVipTagArrayOutput
+	ToHaVipTagArrayOutputWithContext(context.Context) HaVipTagArrayOutput
+}
+
+type HaVipTagArray []HaVipTagInput
+
+func (HaVipTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipTag)(nil)).Elem()
+}
+
+func (i HaVipTagArray) ToHaVipTagArrayOutput() HaVipTagArrayOutput {
+	return i.ToHaVipTagArrayOutputWithContext(context.Background())
+}
+
+func (i HaVipTagArray) ToHaVipTagArrayOutputWithContext(ctx context.Context) HaVipTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipTagArrayOutput)
+}
+
+type HaVipTagOutput struct{ *pulumi.OutputState }
+
+func (HaVipTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipTag)(nil)).Elem()
+}
+
+func (o HaVipTagOutput) ToHaVipTagOutput() HaVipTagOutput {
+	return o
+}
+
+func (o HaVipTagOutput) ToHaVipTagOutputWithContext(ctx context.Context) HaVipTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HaVipTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HaVipTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HaVipTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HaVipTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipTag)(nil)).Elem()
+}
+
+func (o HaVipTagArrayOutput) ToHaVipTagArrayOutput() HaVipTagArrayOutput {
+	return o
+}
+
+func (o HaVipTagArrayOutput) ToHaVipTagArrayOutputWithContext(ctx context.Context) HaVipTagArrayOutput {
+	return o
+}
+
+func (o HaVipTagArrayOutput) Index(i pulumi.IntInput) HaVipTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HaVipTag {
+		return vs[0].([]HaVipTag)[vs[1].(int)]
+	}).(HaVipTagOutput)
+}
+
 type HaVipsHaVip struct {
 	// The account id of the Ha Vip.
 	AccountId string `pulumi:"accountId"`
@@ -44,6 +150,8 @@ type HaVipsHaVip struct {
 	Status string `pulumi:"status"`
 	// The id of subnet.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []HaVipsHaVipTag `pulumi:"tags"`
 	// The update time of the Ha Vip.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The id of vpc.
@@ -92,6 +200,8 @@ type HaVipsHaVipArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The id of subnet.
 	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags HaVipsHaVipTagArrayInput `pulumi:"tags"`
 	// The update time of the Ha Vip.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The id of vpc.
@@ -224,6 +334,11 @@ func (o HaVipsHaVipOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v HaVipsHaVip) string { return v.SubnetId }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o HaVipsHaVipOutput) Tags() HaVipsHaVipTagArrayOutput {
+	return o.ApplyT(func(v HaVipsHaVip) []HaVipsHaVipTag { return v.Tags }).(HaVipsHaVipTagArrayOutput)
+}
+
 // The update time of the Ha Vip.
 func (o HaVipsHaVipOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v HaVipsHaVip) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -252,6 +367,218 @@ func (o HaVipsHaVipArrayOutput) Index(i pulumi.IntInput) HaVipsHaVipOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HaVipsHaVip {
 		return vs[0].([]HaVipsHaVip)[vs[1].(int)]
 	}).(HaVipsHaVipOutput)
+}
+
+type HaVipsHaVipTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HaVipsHaVipTagInput is an input type that accepts HaVipsHaVipTagArgs and HaVipsHaVipTagOutput values.
+// You can construct a concrete instance of `HaVipsHaVipTagInput` via:
+//
+//	HaVipsHaVipTagArgs{...}
+type HaVipsHaVipTagInput interface {
+	pulumi.Input
+
+	ToHaVipsHaVipTagOutput() HaVipsHaVipTagOutput
+	ToHaVipsHaVipTagOutputWithContext(context.Context) HaVipsHaVipTagOutput
+}
+
+type HaVipsHaVipTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HaVipsHaVipTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipsHaVipTag)(nil)).Elem()
+}
+
+func (i HaVipsHaVipTagArgs) ToHaVipsHaVipTagOutput() HaVipsHaVipTagOutput {
+	return i.ToHaVipsHaVipTagOutputWithContext(context.Background())
+}
+
+func (i HaVipsHaVipTagArgs) ToHaVipsHaVipTagOutputWithContext(ctx context.Context) HaVipsHaVipTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipsHaVipTagOutput)
+}
+
+// HaVipsHaVipTagArrayInput is an input type that accepts HaVipsHaVipTagArray and HaVipsHaVipTagArrayOutput values.
+// You can construct a concrete instance of `HaVipsHaVipTagArrayInput` via:
+//
+//	HaVipsHaVipTagArray{ HaVipsHaVipTagArgs{...} }
+type HaVipsHaVipTagArrayInput interface {
+	pulumi.Input
+
+	ToHaVipsHaVipTagArrayOutput() HaVipsHaVipTagArrayOutput
+	ToHaVipsHaVipTagArrayOutputWithContext(context.Context) HaVipsHaVipTagArrayOutput
+}
+
+type HaVipsHaVipTagArray []HaVipsHaVipTagInput
+
+func (HaVipsHaVipTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipsHaVipTag)(nil)).Elem()
+}
+
+func (i HaVipsHaVipTagArray) ToHaVipsHaVipTagArrayOutput() HaVipsHaVipTagArrayOutput {
+	return i.ToHaVipsHaVipTagArrayOutputWithContext(context.Background())
+}
+
+func (i HaVipsHaVipTagArray) ToHaVipsHaVipTagArrayOutputWithContext(ctx context.Context) HaVipsHaVipTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipsHaVipTagArrayOutput)
+}
+
+type HaVipsHaVipTagOutput struct{ *pulumi.OutputState }
+
+func (HaVipsHaVipTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipsHaVipTag)(nil)).Elem()
+}
+
+func (o HaVipsHaVipTagOutput) ToHaVipsHaVipTagOutput() HaVipsHaVipTagOutput {
+	return o
+}
+
+func (o HaVipsHaVipTagOutput) ToHaVipsHaVipTagOutputWithContext(ctx context.Context) HaVipsHaVipTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HaVipsHaVipTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVipTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HaVipsHaVipTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVipTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HaVipsHaVipTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HaVipsHaVipTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipsHaVipTag)(nil)).Elem()
+}
+
+func (o HaVipsHaVipTagArrayOutput) ToHaVipsHaVipTagArrayOutput() HaVipsHaVipTagArrayOutput {
+	return o
+}
+
+func (o HaVipsHaVipTagArrayOutput) ToHaVipsHaVipTagArrayOutputWithContext(ctx context.Context) HaVipsHaVipTagArrayOutput {
+	return o
+}
+
+func (o HaVipsHaVipTagArrayOutput) Index(i pulumi.IntInput) HaVipsHaVipTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HaVipsHaVipTag {
+		return vs[0].([]HaVipsHaVipTag)[vs[1].(int)]
+	}).(HaVipsHaVipTagOutput)
+}
+
+type HaVipsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HaVipsTagInput is an input type that accepts HaVipsTagArgs and HaVipsTagOutput values.
+// You can construct a concrete instance of `HaVipsTagInput` via:
+//
+//	HaVipsTagArgs{...}
+type HaVipsTagInput interface {
+	pulumi.Input
+
+	ToHaVipsTagOutput() HaVipsTagOutput
+	ToHaVipsTagOutputWithContext(context.Context) HaVipsTagOutput
+}
+
+type HaVipsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HaVipsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipsTag)(nil)).Elem()
+}
+
+func (i HaVipsTagArgs) ToHaVipsTagOutput() HaVipsTagOutput {
+	return i.ToHaVipsTagOutputWithContext(context.Background())
+}
+
+func (i HaVipsTagArgs) ToHaVipsTagOutputWithContext(ctx context.Context) HaVipsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipsTagOutput)
+}
+
+// HaVipsTagArrayInput is an input type that accepts HaVipsTagArray and HaVipsTagArrayOutput values.
+// You can construct a concrete instance of `HaVipsTagArrayInput` via:
+//
+//	HaVipsTagArray{ HaVipsTagArgs{...} }
+type HaVipsTagArrayInput interface {
+	pulumi.Input
+
+	ToHaVipsTagArrayOutput() HaVipsTagArrayOutput
+	ToHaVipsTagArrayOutputWithContext(context.Context) HaVipsTagArrayOutput
+}
+
+type HaVipsTagArray []HaVipsTagInput
+
+func (HaVipsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipsTag)(nil)).Elem()
+}
+
+func (i HaVipsTagArray) ToHaVipsTagArrayOutput() HaVipsTagArrayOutput {
+	return i.ToHaVipsTagArrayOutputWithContext(context.Background())
+}
+
+func (i HaVipsTagArray) ToHaVipsTagArrayOutputWithContext(ctx context.Context) HaVipsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipsTagArrayOutput)
+}
+
+type HaVipsTagOutput struct{ *pulumi.OutputState }
+
+func (HaVipsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipsTag)(nil)).Elem()
+}
+
+func (o HaVipsTagOutput) ToHaVipsTagOutput() HaVipsTagOutput {
+	return o
+}
+
+func (o HaVipsTagOutput) ToHaVipsTagOutputWithContext(ctx context.Context) HaVipsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HaVipsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HaVipsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HaVipsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HaVipsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipsTag)(nil)).Elem()
+}
+
+func (o HaVipsTagArrayOutput) ToHaVipsTagArrayOutput() HaVipsTagArrayOutput {
+	return o
+}
+
+func (o HaVipsTagArrayOutput) ToHaVipsTagArrayOutputWithContext(ctx context.Context) HaVipsTagArrayOutput {
+	return o
+}
+
+func (o HaVipsTagArrayOutput) Index(i pulumi.IntInput) HaVipsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HaVipsTag {
+		return vs[0].([]HaVipsTag)[vs[1].(int)]
+	}).(HaVipsTagOutput)
 }
 
 type Ipv6AddressBandwidthsIpv6AddressBandwidth struct {
@@ -3925,6 +4252,112 @@ func (o RouteEntriesRouteEntryArrayOutput) Index(i pulumi.IntInput) RouteEntries
 	}).(RouteEntriesRouteEntryOutput)
 }
 
+type RouteTableTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RouteTableTagInput is an input type that accepts RouteTableTagArgs and RouteTableTagOutput values.
+// You can construct a concrete instance of `RouteTableTagInput` via:
+//
+//	RouteTableTagArgs{...}
+type RouteTableTagInput interface {
+	pulumi.Input
+
+	ToRouteTableTagOutput() RouteTableTagOutput
+	ToRouteTableTagOutputWithContext(context.Context) RouteTableTagOutput
+}
+
+type RouteTableTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteTableTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTableTagArgs) ToRouteTableTagOutput() RouteTableTagOutput {
+	return i.ToRouteTableTagOutputWithContext(context.Background())
+}
+
+func (i RouteTableTagArgs) ToRouteTableTagOutputWithContext(ctx context.Context) RouteTableTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTableTagOutput)
+}
+
+// RouteTableTagArrayInput is an input type that accepts RouteTableTagArray and RouteTableTagArrayOutput values.
+// You can construct a concrete instance of `RouteTableTagArrayInput` via:
+//
+//	RouteTableTagArray{ RouteTableTagArgs{...} }
+type RouteTableTagArrayInput interface {
+	pulumi.Input
+
+	ToRouteTableTagArrayOutput() RouteTableTagArrayOutput
+	ToRouteTableTagArrayOutputWithContext(context.Context) RouteTableTagArrayOutput
+}
+
+type RouteTableTagArray []RouteTableTagInput
+
+func (RouteTableTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTableTagArray) ToRouteTableTagArrayOutput() RouteTableTagArrayOutput {
+	return i.ToRouteTableTagArrayOutputWithContext(context.Background())
+}
+
+func (i RouteTableTagArray) ToRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTableTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTableTagArrayOutput)
+}
+
+type RouteTableTagOutput struct{ *pulumi.OutputState }
+
+func (RouteTableTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTableTagOutput) ToRouteTableTagOutput() RouteTableTagOutput {
+	return o
+}
+
+func (o RouteTableTagOutput) ToRouteTableTagOutputWithContext(ctx context.Context) RouteTableTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RouteTableTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTableTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RouteTableTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTableTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteTableTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteTableTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTableTagArrayOutput) ToRouteTableTagArrayOutput() RouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTableTagArrayOutput) ToRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTableTagArrayOutput) Index(i pulumi.IntInput) RouteTableTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTableTag {
+		return vs[0].([]RouteTableTag)[vs[1].(int)]
+	}).(RouteTableTagOutput)
+}
+
 type RouteTablesRouteTable struct {
 	// The account id of the route table creator.
 	AccountId string `pulumi:"accountId"`
@@ -3944,6 +4377,8 @@ type RouteTablesRouteTable struct {
 	RouteTableType string `pulumi:"routeTableType"`
 	// The list of the subnet ids to which the entry table associates.
 	SubnetIds []string `pulumi:"subnetIds"`
+	// Tags.
+	Tags []RouteTablesRouteTableTag `pulumi:"tags"`
 	// The last update time of the route table.
 	UpdateTime string `pulumi:"updateTime"`
 	// An id of VPC.
@@ -3982,6 +4417,8 @@ type RouteTablesRouteTableArgs struct {
 	RouteTableType pulumi.StringInput `pulumi:"routeTableType"`
 	// The list of the subnet ids to which the entry table associates.
 	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// Tags.
+	Tags RouteTablesRouteTableTagArrayInput `pulumi:"tags"`
 	// The last update time of the route table.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// An id of VPC.
@@ -4086,6 +4523,11 @@ func (o RouteTablesRouteTableOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RouteTablesRouteTable) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }
 
+// Tags.
+func (o RouteTablesRouteTableOutput) Tags() RouteTablesRouteTableTagArrayOutput {
+	return o.ApplyT(func(v RouteTablesRouteTable) []RouteTablesRouteTableTag { return v.Tags }).(RouteTablesRouteTableTagArrayOutput)
+}
+
 // The last update time of the route table.
 func (o RouteTablesRouteTableOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v RouteTablesRouteTable) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -4119,6 +4561,218 @@ func (o RouteTablesRouteTableArrayOutput) Index(i pulumi.IntInput) RouteTablesRo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTablesRouteTable {
 		return vs[0].([]RouteTablesRouteTable)[vs[1].(int)]
 	}).(RouteTablesRouteTableOutput)
+}
+
+type RouteTablesRouteTableTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RouteTablesRouteTableTagInput is an input type that accepts RouteTablesRouteTableTagArgs and RouteTablesRouteTableTagOutput values.
+// You can construct a concrete instance of `RouteTablesRouteTableTagInput` via:
+//
+//	RouteTablesRouteTableTagArgs{...}
+type RouteTablesRouteTableTagInput interface {
+	pulumi.Input
+
+	ToRouteTablesRouteTableTagOutput() RouteTablesRouteTableTagOutput
+	ToRouteTablesRouteTableTagOutputWithContext(context.Context) RouteTablesRouteTableTagOutput
+}
+
+type RouteTablesRouteTableTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteTablesRouteTableTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTablesRouteTableTagArgs) ToRouteTablesRouteTableTagOutput() RouteTablesRouteTableTagOutput {
+	return i.ToRouteTablesRouteTableTagOutputWithContext(context.Background())
+}
+
+func (i RouteTablesRouteTableTagArgs) ToRouteTablesRouteTableTagOutputWithContext(ctx context.Context) RouteTablesRouteTableTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesRouteTableTagOutput)
+}
+
+// RouteTablesRouteTableTagArrayInput is an input type that accepts RouteTablesRouteTableTagArray and RouteTablesRouteTableTagArrayOutput values.
+// You can construct a concrete instance of `RouteTablesRouteTableTagArrayInput` via:
+//
+//	RouteTablesRouteTableTagArray{ RouteTablesRouteTableTagArgs{...} }
+type RouteTablesRouteTableTagArrayInput interface {
+	pulumi.Input
+
+	ToRouteTablesRouteTableTagArrayOutput() RouteTablesRouteTableTagArrayOutput
+	ToRouteTablesRouteTableTagArrayOutputWithContext(context.Context) RouteTablesRouteTableTagArrayOutput
+}
+
+type RouteTablesRouteTableTagArray []RouteTablesRouteTableTagInput
+
+func (RouteTablesRouteTableTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTablesRouteTableTagArray) ToRouteTablesRouteTableTagArrayOutput() RouteTablesRouteTableTagArrayOutput {
+	return i.ToRouteTablesRouteTableTagArrayOutputWithContext(context.Background())
+}
+
+func (i RouteTablesRouteTableTagArray) ToRouteTablesRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTablesRouteTableTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesRouteTableTagArrayOutput)
+}
+
+type RouteTablesRouteTableTagOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesRouteTableTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTablesRouteTableTagOutput) ToRouteTablesRouteTableTagOutput() RouteTablesRouteTableTagOutput {
+	return o
+}
+
+func (o RouteTablesRouteTableTagOutput) ToRouteTablesRouteTableTagOutputWithContext(ctx context.Context) RouteTablesRouteTableTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RouteTablesRouteTableTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesRouteTableTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RouteTablesRouteTableTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesRouteTableTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteTablesRouteTableTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesRouteTableTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTablesRouteTableTagArrayOutput) ToRouteTablesRouteTableTagArrayOutput() RouteTablesRouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesRouteTableTagArrayOutput) ToRouteTablesRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTablesRouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesRouteTableTagArrayOutput) Index(i pulumi.IntInput) RouteTablesRouteTableTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTablesRouteTableTag {
+		return vs[0].([]RouteTablesRouteTableTag)[vs[1].(int)]
+	}).(RouteTablesRouteTableTagOutput)
+}
+
+type RouteTablesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RouteTablesTagInput is an input type that accepts RouteTablesTagArgs and RouteTablesTagOutput values.
+// You can construct a concrete instance of `RouteTablesTagInput` via:
+//
+//	RouteTablesTagArgs{...}
+type RouteTablesTagInput interface {
+	pulumi.Input
+
+	ToRouteTablesTagOutput() RouteTablesTagOutput
+	ToRouteTablesTagOutputWithContext(context.Context) RouteTablesTagOutput
+}
+
+type RouteTablesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteTablesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesTag)(nil)).Elem()
+}
+
+func (i RouteTablesTagArgs) ToRouteTablesTagOutput() RouteTablesTagOutput {
+	return i.ToRouteTablesTagOutputWithContext(context.Background())
+}
+
+func (i RouteTablesTagArgs) ToRouteTablesTagOutputWithContext(ctx context.Context) RouteTablesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesTagOutput)
+}
+
+// RouteTablesTagArrayInput is an input type that accepts RouteTablesTagArray and RouteTablesTagArrayOutput values.
+// You can construct a concrete instance of `RouteTablesTagArrayInput` via:
+//
+//	RouteTablesTagArray{ RouteTablesTagArgs{...} }
+type RouteTablesTagArrayInput interface {
+	pulumi.Input
+
+	ToRouteTablesTagArrayOutput() RouteTablesTagArrayOutput
+	ToRouteTablesTagArrayOutputWithContext(context.Context) RouteTablesTagArrayOutput
+}
+
+type RouteTablesTagArray []RouteTablesTagInput
+
+func (RouteTablesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesTag)(nil)).Elem()
+}
+
+func (i RouteTablesTagArray) ToRouteTablesTagArrayOutput() RouteTablesTagArrayOutput {
+	return i.ToRouteTablesTagArrayOutputWithContext(context.Background())
+}
+
+func (i RouteTablesTagArray) ToRouteTablesTagArrayOutputWithContext(ctx context.Context) RouteTablesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesTagArrayOutput)
+}
+
+type RouteTablesTagOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesTag)(nil)).Elem()
+}
+
+func (o RouteTablesTagOutput) ToRouteTablesTagOutput() RouteTablesTagOutput {
+	return o
+}
+
+func (o RouteTablesTagOutput) ToRouteTablesTagOutputWithContext(ctx context.Context) RouteTablesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RouteTablesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RouteTablesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteTablesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesTag)(nil)).Elem()
+}
+
+func (o RouteTablesTagArrayOutput) ToRouteTablesTagArrayOutput() RouteTablesTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesTagArrayOutput) ToRouteTablesTagArrayOutputWithContext(ctx context.Context) RouteTablesTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesTagArrayOutput) Index(i pulumi.IntInput) RouteTablesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTablesTag {
+		return vs[0].([]RouteTablesTag)[vs[1].(int)]
+	}).(RouteTablesTagOutput)
 }
 
 type SecurityGroupRulesSecurityGroupRule struct {
@@ -6241,8 +6895,14 @@ func (o VpcsVpcTagArrayOutput) Index(i pulumi.IntInput) VpcsVpcTagOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipTagInput)(nil)).Elem(), HaVipTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipTagArrayInput)(nil)).Elem(), HaVipTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipInput)(nil)).Elem(), HaVipsHaVipArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipArrayInput)(nil)).Elem(), HaVipsHaVipArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipTagInput)(nil)).Elem(), HaVipsHaVipTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipTagArrayInput)(nil)).Elem(), HaVipsHaVipTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsTagInput)(nil)).Elem(), HaVipsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsTagArrayInput)(nil)).Elem(), HaVipsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsIpv6AddressBandwidthInput)(nil)).Elem(), Ipv6AddressBandwidthsIpv6AddressBandwidthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsIpv6AddressBandwidthArrayInput)(nil)).Elem(), Ipv6AddressBandwidthsIpv6AddressBandwidthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressesIpv6AddressInput)(nil)).Elem(), Ipv6AddressesIpv6AddressArgs{})
@@ -6295,8 +6955,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsTagFilterArrayInput)(nil)).Elem(), PrefixListsTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesRouteEntryInput)(nil)).Elem(), RouteEntriesRouteEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesRouteEntryArrayInput)(nil)).Elem(), RouteEntriesRouteEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableTagInput)(nil)).Elem(), RouteTableTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableTagArrayInput)(nil)).Elem(), RouteTableTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableInput)(nil)).Elem(), RouteTablesRouteTableArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableArrayInput)(nil)).Elem(), RouteTablesRouteTableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableTagInput)(nil)).Elem(), RouteTablesRouteTableTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableTagArrayInput)(nil)).Elem(), RouteTablesRouteTableTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesTagInput)(nil)).Elem(), RouteTablesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesTagArrayInput)(nil)).Elem(), RouteTablesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupRulesSecurityGroupRuleInput)(nil)).Elem(), SecurityGroupRulesSecurityGroupRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupRulesSecurityGroupRuleArrayInput)(nil)).Elem(), SecurityGroupRulesSecurityGroupRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupTagInput)(nil)).Elem(), SecurityGroupTagArgs{})
@@ -6328,8 +6994,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcAssociateCenArrayInput)(nil)).Elem(), VpcsVpcAssociateCenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcTagInput)(nil)).Elem(), VpcsVpcTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcTagArrayInput)(nil)).Elem(), VpcsVpcTagArray{})
+	pulumi.RegisterOutputType(HaVipTagOutput{})
+	pulumi.RegisterOutputType(HaVipTagArrayOutput{})
 	pulumi.RegisterOutputType(HaVipsHaVipOutput{})
 	pulumi.RegisterOutputType(HaVipsHaVipArrayOutput{})
+	pulumi.RegisterOutputType(HaVipsHaVipTagOutput{})
+	pulumi.RegisterOutputType(HaVipsHaVipTagArrayOutput{})
+	pulumi.RegisterOutputType(HaVipsTagOutput{})
+	pulumi.RegisterOutputType(HaVipsTagArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressBandwidthsIpv6AddressBandwidthOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressBandwidthsIpv6AddressBandwidthArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressesIpv6AddressOutput{})
@@ -6382,8 +7054,14 @@ func init() {
 	pulumi.RegisterOutputType(PrefixListsTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(RouteEntriesRouteEntryOutput{})
 	pulumi.RegisterOutputType(RouteEntriesRouteEntryArrayOutput{})
+	pulumi.RegisterOutputType(RouteTableTagOutput{})
+	pulumi.RegisterOutputType(RouteTableTagArrayOutput{})
 	pulumi.RegisterOutputType(RouteTablesRouteTableOutput{})
 	pulumi.RegisterOutputType(RouteTablesRouteTableArrayOutput{})
+	pulumi.RegisterOutputType(RouteTablesRouteTableTagOutput{})
+	pulumi.RegisterOutputType(RouteTablesRouteTableTagArrayOutput{})
+	pulumi.RegisterOutputType(RouteTablesTagOutput{})
+	pulumi.RegisterOutputType(RouteTablesTagArrayOutput{})
 	pulumi.RegisterOutputType(SecurityGroupRulesSecurityGroupRuleOutput{})
 	pulumi.RegisterOutputType(SecurityGroupRulesSecurityGroupRuleArrayOutput{})
 	pulumi.RegisterOutputType(SecurityGroupTagOutput{})

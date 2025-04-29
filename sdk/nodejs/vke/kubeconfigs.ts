@@ -89,6 +89,7 @@ export function kubeconfigs(args?: KubeconfigsArgs, opts?: pulumi.InvokeOptions)
         "pageSize": args.pageSize,
         "roleIds": args.roleIds,
         "types": args.types,
+        "userIds": args.userIds,
     }, opts);
 }
 
@@ -128,6 +129,10 @@ export interface KubeconfigsArgs {
      * The type of Kubeconfigs query.
      */
     types?: string[];
+    /**
+     * A list of User IDs.
+     */
+    userIds?: number[];
 }
 
 /**
@@ -154,6 +159,7 @@ export interface KubeconfigsResult {
      */
     readonly totalCount: number;
     readonly types?: string[];
+    readonly userIds?: number[];
 }
 /**
  * Use this data source to query detailed information of vke kubeconfigs
@@ -265,4 +271,8 @@ export interface KubeconfigsOutputArgs {
      * The type of Kubeconfigs query.
      */
     types?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of User IDs.
+     */
+    userIds?: pulumi.Input<pulumi.Input<number>[]>;
 }

@@ -44,11 +44,6 @@ import * as utilities from "../utilities";
  *     instanceChargeType: "PostPaid",
  *     systemVolumeType: "ESSD_PL0",
  *     systemVolumeSize: 40,
- *     dataVolumes: [{
- *         volumeType: "ESSD_PL0",
- *         size: 50,
- *         deleteWithInstance: true,
- *     }],
  *     subnetId: fooSubnet.id,
  *     securityGroupIds: [fooSecurityGroup.id],
  *     projectName: "default",
@@ -121,15 +116,21 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly dataVolumes!: pulumi.Output<outputs.ecs.InstanceDataVolume[]>;
     /**
-     * The ID of Ecs Deployment Set.
+     * The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+     * The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
      */
-    public readonly deploymentSetId!: pulumi.Output<string>;
+    public readonly deploymentSetId!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of Ecs Deployment Set. Computed field.
+     */
+    public /*out*/ readonly deploymentSetIdComputed!: pulumi.Output<string>;
     /**
      * The description of ECS instance.
      */
     public readonly description!: pulumi.Output<string>;
     /**
-     * The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     * The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `volcengine.eip.Address`.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly eipAddress!: pulumi.Output<outputs.ecs.InstanceEipAddress | undefined>;
     /**
@@ -320,6 +321,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dataVolumes"] = state ? state.dataVolumes : undefined;
             resourceInputs["deploymentSetId"] = state ? state.deploymentSetId : undefined;
+            resourceInputs["deploymentSetIdComputed"] = state ? state.deploymentSetIdComputed : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
             resourceInputs["eipId"] = state ? state.eipId : undefined;
@@ -418,6 +420,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
             resourceInputs["cpus"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["deploymentSetIdComputed"] = undefined /*out*/;
             resourceInputs["gpuDevices"] = undefined /*out*/;
             resourceInputs["instanceId"] = undefined /*out*/;
             resourceInputs["isGpu"] = undefined /*out*/;
@@ -468,15 +471,21 @@ export interface InstanceState {
      */
     dataVolumes?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceDataVolume>[]>;
     /**
-     * The ID of Ecs Deployment Set.
+     * The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+     * The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
      */
     deploymentSetId?: pulumi.Input<string>;
+    /**
+     * The ID of Ecs Deployment Set. Computed field.
+     */
+    deploymentSetIdComputed?: pulumi.Input<string>;
     /**
      * The description of ECS instance.
      */
     description?: pulumi.Input<string>;
     /**
-     * The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     * The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `volcengine.eip.Address`.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     eipAddress?: pulumi.Input<inputs.ecs.InstanceEipAddress>;
     /**
@@ -669,7 +678,8 @@ export interface InstanceArgs {
      */
     dataVolumes?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceDataVolume>[]>;
     /**
-     * The ID of Ecs Deployment Set.
+     * The ID of Ecs Deployment Set. This field only used to associate a deployment set to the ECS instance. Setting this field to null means disassociating the instance from the deployment set. 
+     * The current deployment set id of the ECS instance is the `deploymentSetIdComputed` field.
      */
     deploymentSetId?: pulumi.Input<string>;
     /**
@@ -677,7 +687,8 @@ export interface InstanceArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The config of the eip which will be automatically created and assigned to this instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     * The config of the eip which will be automatically created and assigned to this instance. `Prepaid` type eip cannot be created in this way, please use `volcengine.eip.Address`.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     eipAddress?: pulumi.Input<inputs.ecs.InstanceEipAddress>;
     /**

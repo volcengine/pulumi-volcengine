@@ -30,6 +30,7 @@ import * as utilities from "../utilities";
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
+ *     projectName: "default",
  *     deleteProtectionEnabled: false,
  *     clusterConfig: {
  *         subnetIds: [fooSubnet.id],
@@ -139,6 +140,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly podsConfig!: pulumi.Output<outputs.vke.ClusterPodsConfig>;
     /**
+     * The project name of the cluster.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The config of the services.
      */
     public readonly servicesConfig!: pulumi.Output<outputs.vke.ClusterServicesConfig>;
@@ -171,6 +176,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["loggingConfig"] = state ? state.loggingConfig : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["podsConfig"] = state ? state.podsConfig : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["servicesConfig"] = state ? state.servicesConfig : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
@@ -192,6 +198,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["loggingConfig"] = args ? args.loggingConfig : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["podsConfig"] = args ? args.podsConfig : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["servicesConfig"] = args ? args.servicesConfig : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["eipAllocationId"] = undefined /*out*/;
@@ -252,6 +259,10 @@ export interface ClusterState {
      */
     podsConfig?: pulumi.Input<inputs.vke.ClusterPodsConfig>;
     /**
+     * The project name of the cluster.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The config of the services.
      */
     servicesConfig?: pulumi.Input<inputs.vke.ClusterServicesConfig>;
@@ -297,6 +308,10 @@ export interface ClusterArgs {
      * The config of the pods.
      */
     podsConfig: pulumi.Input<inputs.vke.ClusterPodsConfig>;
+    /**
+     * The project name of the cluster.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The config of the services.
      */

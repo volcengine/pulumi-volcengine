@@ -93,6 +93,8 @@ type HaVipsArgs struct {
 	Status *string `pulumi:"status"`
 	// The id of subnet.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []HaVipsTag `pulumi:"tags"`
 	// The id of vpc.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -116,6 +118,8 @@ type HaVipsResult struct {
 	Status *string `pulumi:"status"`
 	// The subnet id of the Ha Vip.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []HaVipsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The vpc id of the Ha Vip.
@@ -153,6 +157,8 @@ type HaVipsOutputArgs struct {
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// The id of subnet.
 	SubnetId pulumi.StringPtrInput `pulumi:"subnetId"`
+	// Tags.
+	Tags HaVipsTagArrayInput `pulumi:"tags"`
 	// The id of vpc.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -221,6 +227,11 @@ func (o HaVipsResultOutput) Status() pulumi.StringPtrOutput {
 // The subnet id of the Ha Vip.
 func (o HaVipsResultOutput) SubnetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVipsResult) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o HaVipsResultOutput) Tags() HaVipsTagArrayOutput {
+	return o.ApplyT(func(v HaVipsResult) []HaVipsTag { return v.Tags }).(HaVipsTagArrayOutput)
 }
 
 // The total count of query.

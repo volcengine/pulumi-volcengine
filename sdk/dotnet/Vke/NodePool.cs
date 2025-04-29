@@ -45,12 +45,13 @@ namespace Pulumi.Volcengine.Vke
     /// 
     ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
     ///     {
-    ///         NameRegex = "veLinux 1.0 CentOS兼容版 64位",
+    ///         NameRegex = "veLinux 1.0 CentOS Compatible 64 bit",
     ///     });
     /// 
     ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
     ///     {
     ///         Description = "created by terraform",
+    ///         ProjectName = "default",
     ///         DeleteProtectionEnabled = false,
     ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
     ///         {
@@ -119,7 +120,7 @@ namespace Pulumi.Volcengine.Vke
     ///             {
     ///                 fooSubnet.Id,
     ///             },
-    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS Compatible 64 bit").Select(image =&gt; 
     ///             {
     ///                 return image.ImageId;
     ///             }).ToList()[0],
@@ -162,6 +163,7 @@ namespace Pulumi.Volcengine.Vke
     ///             AdditionalContainerStorageEnabled = false,
     ///             InstanceChargeType = "PostPaid",
     ///             NamePrefix = "acc-test",
+    ///             ProjectName = "default",
     ///             EcsTags = new[]
     ///             {
     ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigEcsTagArgs
@@ -212,7 +214,7 @@ namespace Pulumi.Volcengine.Vke
     ///         {
     ///             InstanceName = $"acc-test-ecs-{range.Value}",
     ///             HostName = "tf-acc-test",
-    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS Compatible 64 bit").Select(image =&gt; 
     ///             {
     ///                 return image.ImageId;
     ///             }).ToList()[0],
@@ -261,7 +263,7 @@ namespace Pulumi.Volcengine.Vke
     ///             {
     ///                 fooSubnet.Id,
     ///             },
-    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS Compatible 64 bit").Select(image =&gt; 
     ///             {
     ///                 return image.ImageId;
     ///             }).ToList()[0],

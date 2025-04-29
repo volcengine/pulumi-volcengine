@@ -21,15 +21,22 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// The name of OCI repository.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The ProjectName of the CrNamespace.
+        /// </summary>
+        public readonly string Project;
 
         [OutputConstructor]
         private NamespacesNamespaceResult(
             string createTime,
 
-            string name)
+            string name,
+
+            string project)
         {
             CreateTime = createTime;
             Name = name;
+            Project = project;
         }
     }
 }

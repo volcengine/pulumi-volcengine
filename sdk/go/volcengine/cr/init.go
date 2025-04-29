@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:cr/endpoint:Endpoint":
 		r = &Endpoint{}
+	case "volcengine:cr/endpointAclPolicy:EndpointAclPolicy":
+		r = &EndpointAclPolicy{}
 	case "volcengine:cr/namespace:Namespace":
 		r = &Namespace{}
 	case "volcengine:cr/registry:Registry":
@@ -51,6 +53,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"cr/endpoint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"cr/endpointAclPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -101,6 +101,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("routeTableName")]
         public string? RouteTableName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.RouteTablesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.RouteTablesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.RouteTablesTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// An id of VPC.
         /// </summary>
@@ -145,6 +157,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("routeTableName")]
         public Input<string>? RouteTableName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.RouteTablesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RouteTablesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RouteTablesTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// An id of VPC.
         /// </summary>
@@ -180,6 +204,10 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         public readonly ImmutableArray<Outputs.RouteTablesRouteTableResult> RouteTables;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RouteTablesTagResult> Tags;
+        /// <summary>
         /// The total count of route table query.
         /// </summary>
         public readonly int TotalCount;
@@ -202,6 +230,8 @@ namespace Pulumi.Volcengine.Vpc
 
             ImmutableArray<Outputs.RouteTablesRouteTableResult> routeTables,
 
+            ImmutableArray<Outputs.RouteTablesTagResult> tags,
+
             int totalCount,
 
             string? vpcId)
@@ -212,6 +242,7 @@ namespace Pulumi.Volcengine.Vpc
             ProjectName = projectName;
             RouteTableName = routeTableName;
             RouteTables = routeTables;
+            Tags = tags;
             TotalCount = totalCount;
             VpcId = vpcId;
         }

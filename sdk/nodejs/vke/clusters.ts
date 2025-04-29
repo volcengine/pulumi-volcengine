@@ -76,6 +76,7 @@ export function clusters(args?: ClustersArgs, opts?: pulumi.InvokeOptions): Prom
         "pageNumber": args.pageNumber,
         "pageSize": args.pageSize,
         "podsConfigPodNetworkMode": args.podsConfigPodNetworkMode,
+        "projectName": args.projectName,
         "statuses": args.statuses,
         "tags": args.tags,
         "updateClientToken": args.updateClientToken,
@@ -123,6 +124,10 @@ export interface ClustersArgs {
      */
     podsConfigPodNetworkMode?: string;
     /**
+     * The project name of the cluster.
+     */
+    projectName?: string;
+    /**
      * Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
      */
     statuses?: inputs.vke.ClustersStatus[];
@@ -163,6 +168,10 @@ export interface ClustersResult {
     readonly pageNumber: number;
     readonly pageSize: number;
     readonly podsConfigPodNetworkMode?: string;
+    /**
+     * The project name of the cluster.
+     */
+    readonly projectName?: string;
     readonly statuses?: outputs.vke.ClustersStatus[];
     /**
      * Tags of the Cluster.
@@ -274,6 +283,10 @@ export interface ClustersOutputArgs {
      * The container network model of the cluster, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
      */
     podsConfigPodNetworkMode?: pulumi.Input<string>;
+    /**
+     * The project name of the cluster.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
      */

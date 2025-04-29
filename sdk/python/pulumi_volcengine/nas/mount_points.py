@@ -22,7 +22,7 @@ class MountPointsResult:
     """
     A collection of values returned by MountPoints.
     """
-    def __init__(__self__, file_system_id=None, id=None, mount_point_id=None, mount_point_name=None, mount_points=None, output_file=None, total_count=None, vpcs_id=None):
+    def __init__(__self__, file_system_id=None, id=None, mount_point_id=None, mount_point_name=None, mount_points=None, output_file=None, total_count=None, vpc_id=None):
         if file_system_id and not isinstance(file_system_id, str):
             raise TypeError("Expected argument 'file_system_id' to be a str")
         pulumi.set(__self__, "file_system_id", file_system_id)
@@ -44,9 +44,9 @@ class MountPointsResult:
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
-        if vpcs_id and not isinstance(vpcs_id, str):
-            raise TypeError("Expected argument 'vpcs_id' to be a str")
-        pulumi.set(__self__, "vpcs_id", vpcs_id)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="fileSystemId")
@@ -102,9 +102,12 @@ class MountPointsResult:
         return pulumi.get(self, "total_count")
 
     @property
-    @pulumi.getter(name="vpcsId")
-    def vpcs_id(self) -> Optional[str]:
-        return pulumi.get(self, "vpcs_id")
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc_id")
 
 
 class AwaitableMountPointsResult(MountPointsResult):
@@ -120,14 +123,14 @@ class AwaitableMountPointsResult(MountPointsResult):
             mount_points=self.mount_points,
             output_file=self.output_file,
             total_count=self.total_count,
-            vpcs_id=self.vpcs_id)
+            vpc_id=self.vpc_id)
 
 
 def mount_points(file_system_id: Optional[str] = None,
                  mount_point_id: Optional[str] = None,
                  mount_point_name: Optional[str] = None,
                  output_file: Optional[str] = None,
-                 vpcs_id: Optional[str] = None,
+                 vpc_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableMountPointsResult:
     """
     Use this data source to query detailed information of nas mount points
@@ -137,14 +140,14 @@ def mount_points(file_system_id: Optional[str] = None,
     :param str mount_point_id: The id of the mount point.
     :param str mount_point_name: The name of the mount point.
     :param str output_file: File name where to save data source results.
-    :param str vpcs_id: The id of the vpc.
+    :param str vpc_id: The id of the vpc.
     """
     __args__ = dict()
     __args__['fileSystemId'] = file_system_id
     __args__['mountPointId'] = mount_point_id
     __args__['mountPointName'] = mount_point_name
     __args__['outputFile'] = output_file
-    __args__['vpcsId'] = vpcs_id
+    __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:nas/mountPoints:MountPoints', __args__, opts=opts, typ=MountPointsResult).value
 
@@ -156,7 +159,7 @@ def mount_points(file_system_id: Optional[str] = None,
         mount_points=pulumi.get(__ret__, 'mount_points'),
         output_file=pulumi.get(__ret__, 'output_file'),
         total_count=pulumi.get(__ret__, 'total_count'),
-        vpcs_id=pulumi.get(__ret__, 'vpcs_id'))
+        vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
 
 @_utilities.lift_output_func(mount_points)
@@ -164,7 +167,7 @@ def mount_points_output(file_system_id: Optional[pulumi.Input[str]] = None,
                         mount_point_id: Optional[pulumi.Input[Optional[str]]] = None,
                         mount_point_name: Optional[pulumi.Input[Optional[str]]] = None,
                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
-                        vpcs_id: Optional[pulumi.Input[Optional[str]]] = None,
+                        vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[MountPointsResult]:
     """
     Use this data source to query detailed information of nas mount points
@@ -174,6 +177,6 @@ def mount_points_output(file_system_id: Optional[pulumi.Input[str]] = None,
     :param str mount_point_id: The id of the mount point.
     :param str mount_point_name: The name of the mount point.
     :param str output_file: File name where to save data source results.
-    :param str vpcs_id: The id of the vpc.
+    :param str vpc_id: The id of the vpc.
     """
     ...

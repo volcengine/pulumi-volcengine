@@ -61,6 +61,8 @@ type RouteTablesArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// A name of route table.
 	RouteTableName *string `pulumi:"routeTableName"`
+	// Tags.
+	Tags []RouteTablesTag `pulumi:"tags"`
 	// An id of VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -77,6 +79,8 @@ type RouteTablesResult struct {
 	RouteTableName *string `pulumi:"routeTableName"`
 	// The collection of route tables.
 	RouteTables []RouteTablesRouteTable `pulumi:"routeTables"`
+	// Tags.
+	Tags []RouteTablesTag `pulumi:"tags"`
 	// The total count of route table query.
 	TotalCount int `pulumi:"totalCount"`
 	// The id of the virtual private cloud (VPC) to which the route entry belongs.
@@ -106,6 +110,8 @@ type RouteTablesOutputArgs struct {
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// A name of route table.
 	RouteTableName pulumi.StringPtrInput `pulumi:"routeTableName"`
+	// Tags.
+	Tags RouteTablesTagArrayInput `pulumi:"tags"`
 	// An id of VPC.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -155,6 +161,11 @@ func (o RouteTablesResultOutput) RouteTableName() pulumi.StringPtrOutput {
 // The collection of route tables.
 func (o RouteTablesResultOutput) RouteTables() RouteTablesRouteTableArrayOutput {
 	return o.ApplyT(func(v RouteTablesResult) []RouteTablesRouteTable { return v.RouteTables }).(RouteTablesRouteTableArrayOutput)
+}
+
+// Tags.
+func (o RouteTablesResultOutput) Tags() RouteTablesTagArrayOutput {
+	return o.ApplyT(func(v RouteTablesResult) []RouteTablesTag { return v.Tags }).(RouteTablesTagArrayOutput)
 }
 
 // The total count of route table query.
