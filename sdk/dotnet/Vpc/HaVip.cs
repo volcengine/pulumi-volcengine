@@ -42,9 +42,16 @@ namespace Pulumi.Volcengine.Vpc
     ///         HaVipName = "acc-test-ha-vip",
     ///         Description = "acc-test",
     ///         SubnetId = fooSubnet.Id,
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vpc.Inputs.HaVipTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
-    ///     //  ip_address = "172.16.0.5"
     ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
     ///     {
     ///         BillingType = "PostPaidByTraffic",
@@ -144,6 +151,12 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> SubnetId { get; private set; } = null!;
 
         /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.HaVipTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// The update time of the Ha Vip.
         /// </summary>
         [Output("updatedAt")]
@@ -225,6 +238,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.HaVipTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HaVipTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HaVipTagArgs>());
+            set => _tags = value;
+        }
 
         public HaVipArgs()
         {
@@ -311,6 +336,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.HaVipTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HaVipTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HaVipTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of the Ha Vip.

@@ -12,8 +12,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.cr.Namespace("foo", {registry: "tf-2"});
- * const foo1 = new volcengine.cr.Namespace("foo1", {registry: "tf-1"});
+ * const foo = new volcengine.cr.Namespace("foo", {
+ *     project: "default",
+ *     registry: "tf-test-cr",
+ * });
+ * const foo1 = new volcengine.cr.Namespace("foo1", {
+ *     project: "default",
+ *     registry: "tf-test-cr",
+ * });
  * ```
  *
  * ## Import
@@ -61,6 +67,10 @@ export class Namespace extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The ProjectName of the CrNamespace.
+     */
+    public readonly project!: pulumi.Output<string>;
+    /**
      * The registry name.
      */
     public readonly registry!: pulumi.Output<string>;
@@ -80,6 +90,7 @@ export class Namespace extends pulumi.CustomResource {
             const state = argsOrState as NamespaceState | undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["registry"] = state ? state.registry : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
@@ -87,6 +98,7 @@ export class Namespace extends pulumi.CustomResource {
                 throw new Error("Missing required property 'registry'");
             }
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["registry"] = args ? args.registry : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
         }
@@ -108,6 +120,10 @@ export interface NamespaceState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The ProjectName of the CrNamespace.
+     */
+    project?: pulumi.Input<string>;
+    /**
      * The registry name.
      */
     registry?: pulumi.Input<string>;
@@ -121,6 +137,10 @@ export interface NamespaceArgs {
      * The name of CrNamespace.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the CrNamespace.
+     */
+    project?: pulumi.Input<string>;
     /**
      * The registry name.
      */

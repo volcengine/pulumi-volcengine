@@ -42,6 +42,12 @@ namespace Pulumi.Volcengine.Cr
     public partial class Endpoint : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The list of acl policies.
+        /// </summary>
+        [Output("aclPolicies")]
+        public Output<ImmutableArray<Outputs.EndpointAclPolicy>> AclPolicies { get; private set; } = null!;
+
+        /// <summary>
         /// Whether enable public endpoint.
         /// </summary>
         [Output("enabled")]
@@ -126,6 +132,18 @@ namespace Pulumi.Volcengine.Cr
 
     public sealed class EndpointState : global::Pulumi.ResourceArgs
     {
+        [Input("aclPolicies")]
+        private InputList<Inputs.EndpointAclPolicyGetArgs>? _aclPolicies;
+
+        /// <summary>
+        /// The list of acl policies.
+        /// </summary>
+        public InputList<Inputs.EndpointAclPolicyGetArgs> AclPolicies
+        {
+            get => _aclPolicies ?? (_aclPolicies = new InputList<Inputs.EndpointAclPolicyGetArgs>());
+            set => _aclPolicies = value;
+        }
+
         /// <summary>
         /// Whether enable public endpoint.
         /// </summary>

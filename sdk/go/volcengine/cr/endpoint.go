@@ -50,6 +50,8 @@ import (
 type Endpoint struct {
 	pulumi.CustomResourceState
 
+	// The list of acl policies.
+	AclPolicies EndpointAclPolicyTypeArrayOutput `pulumi:"aclPolicies"`
 	// Whether enable public endpoint.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// The CrRegistry name.
@@ -91,6 +93,8 @@ func GetEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Endpoint resources.
 type endpointState struct {
+	// The list of acl policies.
+	AclPolicies []EndpointAclPolicyType `pulumi:"aclPolicies"`
 	// Whether enable public endpoint.
 	Enabled *bool `pulumi:"enabled"`
 	// The CrRegistry name.
@@ -100,6 +104,8 @@ type endpointState struct {
 }
 
 type EndpointState struct {
+	// The list of acl policies.
+	AclPolicies EndpointAclPolicyTypeArrayInput
 	// Whether enable public endpoint.
 	Enabled pulumi.BoolPtrInput
 	// The CrRegistry name.
@@ -212,6 +218,11 @@ func (o EndpointOutput) ToEndpointOutput() EndpointOutput {
 
 func (o EndpointOutput) ToEndpointOutputWithContext(ctx context.Context) EndpointOutput {
 	return o
+}
+
+// The list of acl policies.
+func (o EndpointOutput) AclPolicies() EndpointAclPolicyTypeArrayOutput {
+	return o.ApplyT(func(v *Endpoint) EndpointAclPolicyTypeArrayOutput { return v.AclPolicies }).(EndpointAclPolicyTypeArrayOutput)
 }
 
 // Whether enable public endpoint.

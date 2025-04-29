@@ -151,6 +151,7 @@
         "config/vars.ts",
         "cr/authorizationTokens.ts",
         "cr/endpoint.ts",
+        "cr/endpointAclPolicy.ts",
         "cr/endpoints.ts",
         "cr/index.ts",
         "cr/namespace.ts",

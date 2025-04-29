@@ -2192,6 +2192,7 @@ class NodePoolNodeConfigArgs:
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  name_prefix: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  system_volume: Optional[pulumi.Input['NodePoolNodeConfigSystemVolumeArgs']] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
@@ -2208,6 +2209,7 @@ class NodePoolNodeConfigArgs:
         :param pulumi.Input[str] instance_charge_type: The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
         :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
         :param pulumi.Input[int] period: The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+        :param pulumi.Input[str] project_name: The project name of the ecs instance.
         :param pulumi.Input['NodePoolNodeConfigSystemVolumeArgs'] system_volume: The SystemVolume of NodeConfig.
         """
         pulumi.set(__self__, "instance_type_ids", instance_type_ids)
@@ -2235,6 +2237,8 @@ class NodePoolNodeConfigArgs:
             pulumi.set(__self__, "name_prefix", name_prefix)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if system_volume is not None:
             pulumi.set(__self__, "system_volume", system_volume)
 
@@ -2405,6 +2409,18 @@ class NodePoolNodeConfigArgs:
     @period.setter
     def period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ecs instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="systemVolume")

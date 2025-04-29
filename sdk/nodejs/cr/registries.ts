@@ -29,6 +29,7 @@ export function registries(args?: RegistriesArgs, opts?: pulumi.InvokeOptions): 
     return pulumi.runtime.invoke("volcengine:cr/registries:Registries", {
         "names": args.names,
         "outputFile": args.outputFile,
+        "resourceTags": args.resourceTags,
         "statuses": args.statuses,
         "types": args.types,
     }, opts);
@@ -46,6 +47,10 @@ export interface RegistriesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The tags of cr registry.
+     */
+    resourceTags?: inputs.cr.RegistriesResourceTag[];
     /**
      * The list of registry statuses.
      */
@@ -70,6 +75,10 @@ export interface RegistriesResult {
      * The collection of registry query.
      */
     readonly registries: outputs.cr.RegistriesRegistry[];
+    /**
+     * Tags.
+     */
+    readonly resourceTags?: outputs.cr.RegistriesResourceTag[];
     readonly statuses?: outputs.cr.RegistriesStatus[];
     /**
      * The total count of registry query.
@@ -109,6 +118,10 @@ export interface RegistriesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The tags of cr registry.
+     */
+    resourceTags?: pulumi.Input<pulumi.Input<inputs.cr.RegistriesResourceTagArgs>[]>;
     /**
      * The list of registry statuses.
      */

@@ -22,7 +22,7 @@ class KubeconfigsResult:
     """
     A collection of values returned by Kubeconfigs.
     """
-    def __init__(__self__, cluster_ids=None, id=None, ids=None, kubeconfigs=None, name_regex=None, output_file=None, page_number=None, page_size=None, role_ids=None, total_count=None, types=None):
+    def __init__(__self__, cluster_ids=None, id=None, ids=None, kubeconfigs=None, name_regex=None, output_file=None, page_number=None, page_size=None, role_ids=None, total_count=None, types=None, user_ids=None):
         if cluster_ids and not isinstance(cluster_ids, list):
             raise TypeError("Expected argument 'cluster_ids' to be a list")
         pulumi.set(__self__, "cluster_ids", cluster_ids)
@@ -56,6 +56,9 @@ class KubeconfigsResult:
         if types and not isinstance(types, list):
             raise TypeError("Expected argument 'types' to be a list")
         pulumi.set(__self__, "types", types)
+        if user_ids and not isinstance(user_ids, list):
+            raise TypeError("Expected argument 'user_ids' to be a list")
+        pulumi.set(__self__, "user_ids", user_ids)
 
     @property
     @pulumi.getter(name="clusterIds")
@@ -121,6 +124,11 @@ class KubeconfigsResult:
     def types(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "types")
 
+    @property
+    @pulumi.getter(name="userIds")
+    def user_ids(self) -> Optional[Sequence[int]]:
+        return pulumi.get(self, "user_ids")
+
 
 class AwaitableKubeconfigsResult(KubeconfigsResult):
     # pylint: disable=using-constant-test
@@ -138,7 +146,8 @@ class AwaitableKubeconfigsResult(KubeconfigsResult):
             page_size=self.page_size,
             role_ids=self.role_ids,
             total_count=self.total_count,
-            types=self.types)
+            types=self.types,
+            user_ids=self.user_ids)
 
 
 def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
@@ -149,6 +158,7 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
                 page_size: Optional[int] = None,
                 role_ids: Optional[Sequence[int]] = None,
                 types: Optional[Sequence[str]] = None,
+                user_ids: Optional[Sequence[int]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableKubeconfigsResult:
     """
     Use this data source to query detailed information of vke kubeconfigs
@@ -220,6 +230,7 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
     :param int page_size: The page size of Kubeconfigs query.
     :param Sequence[int] role_ids: A list of Role IDs.
     :param Sequence[str] types: The type of Kubeconfigs query.
+    :param Sequence[int] user_ids: A list of User IDs.
     """
     __args__ = dict()
     __args__['clusterIds'] = cluster_ids
@@ -230,6 +241,7 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
     __args__['pageSize'] = page_size
     __args__['roleIds'] = role_ids
     __args__['types'] = types
+    __args__['userIds'] = user_ids
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vke/kubeconfigs:Kubeconfigs', __args__, opts=opts, typ=KubeconfigsResult).value
 
@@ -244,7 +256,8 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
         page_size=pulumi.get(__ret__, 'page_size'),
         role_ids=pulumi.get(__ret__, 'role_ids'),
         total_count=pulumi.get(__ret__, 'total_count'),
-        types=pulumi.get(__ret__, 'types'))
+        types=pulumi.get(__ret__, 'types'),
+        user_ids=pulumi.get(__ret__, 'user_ids'))
 
 
 @_utilities.lift_output_func(kubeconfigs)
@@ -256,6 +269,7 @@ def kubeconfigs_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]
                        page_size: Optional[pulumi.Input[Optional[int]]] = None,
                        role_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                        types: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       user_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[KubeconfigsResult]:
     """
     Use this data source to query detailed information of vke kubeconfigs
@@ -327,5 +341,6 @@ def kubeconfigs_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]
     :param int page_size: The page size of Kubeconfigs query.
     :param Sequence[int] role_ids: A list of Role IDs.
     :param Sequence[str] types: The type of Kubeconfigs query.
+    :param Sequence[int] user_ids: A list of User IDs.
     """
     ...

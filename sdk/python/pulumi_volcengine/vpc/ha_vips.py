@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'HaVipsResult',
@@ -22,7 +23,7 @@ class HaVipsResult:
     """
     A collection of values returned by HaVips.
     """
-    def __init__(__self__, ha_vip_name=None, ha_vips=None, id=None, ids=None, ip_address=None, name_regex=None, output_file=None, project_name=None, status=None, subnet_id=None, total_count=None, vpc_id=None):
+    def __init__(__self__, ha_vip_name=None, ha_vips=None, id=None, ids=None, ip_address=None, name_regex=None, output_file=None, project_name=None, status=None, subnet_id=None, tags=None, total_count=None, vpc_id=None):
         if ha_vip_name and not isinstance(ha_vip_name, str):
             raise TypeError("Expected argument 'ha_vip_name' to be a str")
         pulumi.set(__self__, "ha_vip_name", ha_vip_name)
@@ -53,6 +54,9 @@ class HaVipsResult:
         if subnet_id and not isinstance(subnet_id, str):
             raise TypeError("Expected argument 'subnet_id' to be a str")
         pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -132,6 +136,14 @@ class HaVipsResult:
         return pulumi.get(self, "subnet_id")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.HaVipsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -164,6 +176,7 @@ class AwaitableHaVipsResult(HaVipsResult):
             project_name=self.project_name,
             status=self.status,
             subnet_id=self.subnet_id,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_id=self.vpc_id)
 
@@ -176,6 +189,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
             project_name: Optional[str] = None,
             status: Optional[str] = None,
             subnet_id: Optional[str] = None,
+            tags: Optional[Sequence[pulumi.InputType['HaVipsTagArgs']]] = None,
             vpc_id: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableHaVipsResult:
     """
@@ -212,6 +226,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
     :param str project_name: The project name of Ha Vip.
     :param str status: The status of Ha Vip.
     :param str subnet_id: The id of subnet.
+    :param Sequence[pulumi.InputType['HaVipsTagArgs']] tags: Tags.
     :param str vpc_id: The id of vpc.
     """
     __args__ = dict()
@@ -223,6 +238,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
     __args__['projectName'] = project_name
     __args__['status'] = status
     __args__['subnetId'] = subnet_id
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpc/haVips:HaVips', __args__, opts=opts, typ=HaVipsResult).value
@@ -238,6 +254,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
         project_name=pulumi.get(__ret__, 'project_name'),
         status=pulumi.get(__ret__, 'status'),
         subnet_id=pulumi.get(__ret__, 'subnet_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
@@ -251,6 +268,7 @@ def ha_vips_output(ha_vip_name: Optional[pulumi.Input[Optional[str]]] = None,
                    project_name: Optional[pulumi.Input[Optional[str]]] = None,
                    status: Optional[pulumi.Input[Optional[str]]] = None,
                    subnet_id: Optional[pulumi.Input[Optional[str]]] = None,
+                   tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['HaVipsTagArgs']]]]] = None,
                    vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[HaVipsResult]:
     """
@@ -287,6 +305,7 @@ def ha_vips_output(ha_vip_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_name: The project name of Ha Vip.
     :param str status: The status of Ha Vip.
     :param str subnet_id: The id of subnet.
+    :param Sequence[pulumi.InputType['HaVipsTagArgs']] tags: Tags.
     :param str vpc_id: The id of vpc.
     """
     ...

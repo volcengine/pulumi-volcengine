@@ -53,6 +53,7 @@ import (
 //			}
 //			_, err = vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
 //				Description:             pulumi.String("created by terraform"),
+//				ProjectName:             pulumi.String("default"),
 //				DeleteProtectionEnabled: pulumi.Bool(false),
 //				ClusterConfig: &vke.ClusterClusterConfigArgs{
 //					SubnetIds: pulumi.StringArray{
@@ -128,6 +129,8 @@ type Cluster struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The config of the pods.
 	PodsConfig ClusterPodsConfigOutput `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The config of the services.
 	ServicesConfig ClusterServicesConfigOutput `pulumi:"servicesConfig"`
 	// Tags.
@@ -195,6 +198,8 @@ type clusterState struct {
 	Name *string `pulumi:"name"`
 	// The config of the pods.
 	PodsConfig *ClusterPodsConfig `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName *string `pulumi:"projectName"`
 	// The config of the services.
 	ServicesConfig *ClusterServicesConfig `pulumi:"servicesConfig"`
 	// Tags.
@@ -224,6 +229,8 @@ type ClusterState struct {
 	Name pulumi.StringPtrInput
 	// The config of the pods.
 	PodsConfig ClusterPodsConfigPtrInput
+	// The project name of the cluster.
+	ProjectName pulumi.StringPtrInput
 	// The config of the services.
 	ServicesConfig ClusterServicesConfigPtrInput
 	// Tags.
@@ -251,6 +258,8 @@ type clusterArgs struct {
 	Name *string `pulumi:"name"`
 	// The config of the pods.
 	PodsConfig ClusterPodsConfig `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName *string `pulumi:"projectName"`
 	// The config of the services.
 	ServicesConfig ClusterServicesConfig `pulumi:"servicesConfig"`
 	// Tags.
@@ -275,6 +284,8 @@ type ClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// The config of the pods.
 	PodsConfig ClusterPodsConfigInput
+	// The project name of the cluster.
+	ProjectName pulumi.StringPtrInput
 	// The config of the services.
 	ServicesConfig ClusterServicesConfigInput
 	// Tags.
@@ -421,6 +432,11 @@ func (o ClusterOutput) Name() pulumi.StringOutput {
 // The config of the pods.
 func (o ClusterOutput) PodsConfig() ClusterPodsConfigOutput {
 	return o.ApplyT(func(v *Cluster) ClusterPodsConfigOutput { return v.PodsConfig }).(ClusterPodsConfigOutput)
+}
+
+// The project name of the cluster.
+func (o ClusterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The config of the services.

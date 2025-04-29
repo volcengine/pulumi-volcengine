@@ -149,6 +149,8 @@ type KubeconfigsArgs struct {
 	RoleIds []int `pulumi:"roleIds"`
 	// The type of Kubeconfigs query.
 	Types []string `pulumi:"types"`
+	// A list of User IDs.
+	UserIds []int `pulumi:"userIds"`
 }
 
 // A collection of values returned by Kubeconfigs.
@@ -167,6 +169,7 @@ type KubeconfigsResult struct {
 	// The total count of Kubeconfig query.
 	TotalCount int      `pulumi:"totalCount"`
 	Types      []string `pulumi:"types"`
+	UserIds    []int    `pulumi:"userIds"`
 }
 
 func KubeconfigsOutput(ctx *pulumi.Context, args KubeconfigsOutputArgs, opts ...pulumi.InvokeOption) KubeconfigsResultOutput {
@@ -200,6 +203,8 @@ type KubeconfigsOutputArgs struct {
 	RoleIds pulumi.IntArrayInput `pulumi:"roleIds"`
 	// The type of Kubeconfigs query.
 	Types pulumi.StringArrayInput `pulumi:"types"`
+	// A list of User IDs.
+	UserIds pulumi.IntArrayInput `pulumi:"userIds"`
 }
 
 func (KubeconfigsOutputArgs) ElementType() reflect.Type {
@@ -266,6 +271,10 @@ func (o KubeconfigsResultOutput) TotalCount() pulumi.IntOutput {
 
 func (o KubeconfigsResultOutput) Types() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubeconfigsResult) []string { return v.Types }).(pulumi.StringArrayOutput)
+}
+
+func (o KubeconfigsResultOutput) UserIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v KubeconfigsResult) []int { return v.UserIds }).(pulumi.IntArrayOutput)
 }
 
 func init() {

@@ -33,8 +33,8 @@ import (
 //					pulumi.String("8.8.8.8"),
 //					pulumi.String("114.114.114.114"),
 //				},
-//				ProjectName: pulumi.String("AS_test"),
-//				VpcName:     pulumi.String("tf-project-1"),
+//				ProjectName: pulumi.String("default"),
+//				VpcName:     pulumi.String("acc-test-vpc"),
 //			})
 //			if err != nil {
 //				return err

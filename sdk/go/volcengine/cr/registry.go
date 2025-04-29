@@ -29,6 +29,7 @@ import (
 //			_, err := cr.NewRegistry(ctx, "foo", &cr.RegistryArgs{
 //				DeleteImmediately: pulumi.Bool(false),
 //				Password:          pulumi.String("1qaz!QAZ"),
+//				Project:           pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
@@ -61,6 +62,10 @@ type Registry struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The password of registry user.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The ProjectName of the cr registry.
+	Project pulumi.StringOutput `pulumi:"project"`
+	// Tags.
+	ResourceTags RegistryResourceTagArrayOutput `pulumi:"resourceTags"`
 	// The status of registry.
 	Statuses RegistryStatusArrayOutput `pulumi:"statuses"`
 	// The type of registry.
@@ -120,6 +125,10 @@ type registryState struct {
 	Name *string `pulumi:"name"`
 	// The password of registry user.
 	Password *string `pulumi:"password"`
+	// The ProjectName of the cr registry.
+	Project *string `pulumi:"project"`
+	// Tags.
+	ResourceTags []RegistryResourceTag `pulumi:"resourceTags"`
 	// The status of registry.
 	Statuses []RegistryStatus `pulumi:"statuses"`
 	// The type of registry.
@@ -143,6 +152,10 @@ type RegistryState struct {
 	Name pulumi.StringPtrInput
 	// The password of registry user.
 	Password pulumi.StringPtrInput
+	// The ProjectName of the cr registry.
+	Project pulumi.StringPtrInput
+	// Tags.
+	ResourceTags RegistryResourceTagArrayInput
 	// The status of registry.
 	Statuses RegistryStatusArrayInput
 	// The type of registry.
@@ -164,6 +177,8 @@ type registryArgs struct {
 	Name *string `pulumi:"name"`
 	// The password of registry user.
 	Password *string `pulumi:"password"`
+	// The ProjectName of the cr registry.
+	Project *string `pulumi:"project"`
 }
 
 // The set of arguments for constructing a Registry resource.
@@ -174,6 +189,8 @@ type RegistryArgs struct {
 	Name pulumi.StringPtrInput
 	// The password of registry user.
 	Password pulumi.StringPtrInput
+	// The ProjectName of the cr registry.
+	Project pulumi.StringPtrInput
 }
 
 func (RegistryArgs) ElementType() reflect.Type {
@@ -291,6 +308,16 @@ func (o RegistryOutput) Name() pulumi.StringOutput {
 // The password of registry user.
 func (o RegistryOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the cr registry.
+func (o RegistryOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v *Registry) pulumi.StringOutput { return v.Project }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RegistryOutput) ResourceTags() RegistryResourceTagArrayOutput {
+	return o.ApplyT(func(v *Registry) RegistryResourceTagArrayOutput { return v.ResourceTags }).(RegistryResourceTagArrayOutput)
 }
 
 // The status of registry.

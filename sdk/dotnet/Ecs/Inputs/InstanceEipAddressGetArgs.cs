@@ -22,10 +22,10 @@ namespace Pulumi.Volcengine.Ecs.Inputs
         /// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
         /// </summary>
         [Input("bandwidthPackageId")]
-        public Input<int>? BandwidthPackageId { get; set; }
+        public Input<string>? BandwidthPackageId { get; set; }
 
         /// <summary>
-        /// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        /// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
         /// </summary>
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }

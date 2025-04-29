@@ -311,6 +311,18 @@ namespace Pulumi.Volcengine.Vke
             set => _types = value;
         }
 
+        [Input("userIds")]
+        private List<int>? _userIds;
+
+        /// <summary>
+        /// A list of User IDs.
+        /// </summary>
+        public List<int> UserIds
+        {
+            get => _userIds ?? (_userIds = new List<int>());
+            set => _userIds = value;
+        }
+
         public KubeconfigsArgs()
         {
         }
@@ -391,6 +403,18 @@ namespace Pulumi.Volcengine.Vke
             set => _types = value;
         }
 
+        [Input("userIds")]
+        private InputList<int>? _userIds;
+
+        /// <summary>
+        /// A list of User IDs.
+        /// </summary>
+        public InputList<int> UserIds
+        {
+            get => _userIds ?? (_userIds = new InputList<int>());
+            set => _userIds = value;
+        }
+
         public KubeconfigsInvokeArgs()
         {
         }
@@ -421,6 +445,7 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         public readonly int TotalCount;
         public readonly ImmutableArray<string> Types;
+        public readonly ImmutableArray<int> UserIds;
 
         [OutputConstructor]
         private KubeconfigsResult(
@@ -444,7 +469,9 @@ namespace Pulumi.Volcengine.Vke
 
             int totalCount,
 
-            ImmutableArray<string> types)
+            ImmutableArray<string> types,
+
+            ImmutableArray<int> userIds)
         {
             ClusterIds = clusterIds;
             Id = id;
@@ -457,6 +484,7 @@ namespace Pulumi.Volcengine.Vke
             RoleIds = roleIds;
             TotalCount = totalCount;
             Types = types;
+            UserIds = userIds;
         }
     }
 }

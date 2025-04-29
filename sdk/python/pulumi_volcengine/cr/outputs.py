@@ -12,13 +12,18 @@ from . import outputs
 
 __all__ = [
     'AuthorizationTokensTokenResult',
+    'EndpointAclPolicy',
     'EndpointsEndpointResult',
+    'EndpointsEndpointAclPolicyResult',
     'NamespacesNamespaceResult',
     'RegistriesRegistryResult',
     'RegistriesRegistryDomainResult',
+    'RegistriesRegistryResourceTagResult',
     'RegistriesRegistryStatusResult',
+    'RegistriesResourceTagResult',
     'RegistriesStatusResult',
     'RegistryDomain',
+    'RegistryResourceTag',
     'RegistryStatus',
     'RepositoriesRepositoryResult',
     'StateStatus',
@@ -73,19 +78,61 @@ class AuthorizationTokensTokenResult(dict):
 
 
 @pulumi.output_type
+class EndpointAclPolicy(dict):
+    def __init__(__self__, *,
+                 description: Optional[str] = None,
+                 entry: Optional[str] = None):
+        """
+        :param str description: The description of the acl policy.
+        :param str entry: The ip of the acl policy.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if entry is not None:
+            pulumi.set(__self__, "entry", entry)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the acl policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def entry(self) -> Optional[str]:
+        """
+        The ip of the acl policy.
+        """
+        return pulumi.get(self, "entry")
+
+
+@pulumi.output_type
 class EndpointsEndpointResult(dict):
     def __init__(__self__, *,
+                 acl_policies: Sequence['outputs.EndpointsEndpointAclPolicyResult'],
                  enabled: bool,
                  registry: str,
                  status: str):
         """
+        :param Sequence['EndpointsEndpointAclPolicyArgs'] acl_policies: The list of acl policies.
         :param bool enabled: Whether public endpoint is enabled.
         :param str registry: The CR instance name.
         :param str status: The status of public endpoint.
         """
+        pulumi.set(__self__, "acl_policies", acl_policies)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "registry", registry)
         pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="aclPolicies")
+    def acl_policies(self) -> Sequence['outputs.EndpointsEndpointAclPolicyResult']:
+        """
+        The list of acl policies.
+        """
+        return pulumi.get(self, "acl_policies")
 
     @property
     @pulumi.getter
@@ -113,16 +160,48 @@ class EndpointsEndpointResult(dict):
 
 
 @pulumi.output_type
+class EndpointsEndpointAclPolicyResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 entry: str):
+        """
+        :param str description: The description of the acl policy.
+        :param str entry: The ip of the acl policy.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "entry", entry)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the acl policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def entry(self) -> str:
+        """
+        The ip of the acl policy.
+        """
+        return pulumi.get(self, "entry")
+
+
+@pulumi.output_type
 class NamespacesNamespaceResult(dict):
     def __init__(__self__, *,
                  create_time: str,
-                 name: str):
+                 name: str,
+                 project: str):
         """
         :param str create_time: The time when namespace created.
         :param str name: The name of OCI repository.
+        :param str project: The ProjectName of the CrNamespace.
         """
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project", project)
 
     @property
     @pulumi.getter(name="createTime")
@@ -140,6 +219,14 @@ class NamespacesNamespaceResult(dict):
         """
         return pulumi.get(self, "name")
 
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ProjectName of the CrNamespace.
+        """
+        return pulumi.get(self, "project")
+
 
 @pulumi.output_type
 class RegistriesRegistryResult(dict):
@@ -148,6 +235,8 @@ class RegistriesRegistryResult(dict):
                  create_time: str,
                  domains: Sequence['outputs.RegistriesRegistryDomainResult'],
                  name: str,
+                 project: str,
+                 resource_tags: Sequence['outputs.RegistriesRegistryResourceTagResult'],
                  status: 'outputs.RegistriesRegistryStatusResult',
                  type: str,
                  user_status: str,
@@ -157,6 +246,8 @@ class RegistriesRegistryResult(dict):
         :param str create_time: The creation time of registry.
         :param Sequence['RegistriesRegistryDomainArgs'] domains: The domain of registry.
         :param str name: The name of registry.
+        :param str project: The ProjectName of the cr registry.
+        :param Sequence['RegistriesRegistryResourceTagArgs'] resource_tags: The tags of cr registry.
         :param 'RegistriesRegistryStatusArgs' status: The status of registry.
         :param str type: The type of registry.
         :param str user_status: The status of user.
@@ -166,6 +257,8 @@ class RegistriesRegistryResult(dict):
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "domains", domains)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "resource_tags", resource_tags)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "user_status", user_status)
@@ -202,6 +295,22 @@ class RegistriesRegistryResult(dict):
         The name of registry.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ProjectName of the cr registry.
+        """
+        return pulumi.get(self, "project")
+
+    @property
+    @pulumi.getter(name="resourceTags")
+    def resource_tags(self) -> Sequence['outputs.RegistriesRegistryResourceTagResult']:
+        """
+        The tags of cr registry.
+        """
+        return pulumi.get(self, "resource_tags")
 
     @property
     @pulumi.getter
@@ -266,6 +375,35 @@ class RegistriesRegistryDomainResult(dict):
 
 
 @pulumi.output_type
+class RegistriesRegistryResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class RegistriesRegistryStatusResult(dict):
     def __init__(__self__, *,
                  conditions: Sequence[str],
@@ -292,6 +430,35 @@ class RegistriesRegistryStatusResult(dict):
         The phase status of registry.
         """
         return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class RegistriesResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -354,6 +521,37 @@ class RegistryDomain(dict):
         The type of registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class RegistryResourceTag(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

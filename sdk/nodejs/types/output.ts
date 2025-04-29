@@ -717,9 +717,17 @@ export namespace alb {
          */
         caCertificateId: string;
         /**
+         * The certificate id associated with the listener. Source is `certCenter`.
+         */
+        certCenterCertificateId: string;
+        /**
          * The server certificate ID that domain used.
          */
         certificateId: string;
+        /**
+         * The source of the certificate.
+         */
+        certificateSource: string;
         /**
          * The create time of the Listener.
          */
@@ -5044,7 +5052,22 @@ export namespace cr {
         username: string;
     }
 
+    export interface EndpointAclPolicy {
+        /**
+         * The description of the acl policy.
+         */
+        description: string;
+        /**
+         * The ip of the acl policy.
+         */
+        entry: string;
+    }
+
     export interface EndpointsEndpoint {
+        /**
+         * The list of acl policies.
+         */
+        aclPolicies: outputs.cr.EndpointsEndpointAclPolicy[];
         /**
          * Whether public endpoint is enabled.
          */
@@ -5059,6 +5082,17 @@ export namespace cr {
         status: string;
     }
 
+    export interface EndpointsEndpointAclPolicy {
+        /**
+         * The description of the acl policy.
+         */
+        description: string;
+        /**
+         * The ip of the acl policy.
+         */
+        entry: string;
+    }
+
     export interface NamespacesNamespace {
         /**
          * The time when namespace created.
@@ -5068,6 +5102,10 @@ export namespace cr {
          * The name of OCI repository.
          */
         name: string;
+        /**
+         * The ProjectName of the CrNamespace.
+         */
+        project: string;
     }
 
     export interface RegistriesRegistry {
@@ -5087,6 +5125,14 @@ export namespace cr {
          * The name of registry.
          */
         name: string;
+        /**
+         * The ProjectName of the cr registry.
+         */
+        project: string;
+        /**
+         * The tags of cr registry.
+         */
+        resourceTags: outputs.cr.RegistriesRegistryResourceTag[];
         /**
          * The status of registry.
          */
@@ -5116,6 +5162,17 @@ export namespace cr {
         type: string;
     }
 
+    export interface RegistriesRegistryResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface RegistriesRegistryStatus {
         /**
          * The condition of registry.
@@ -5125,6 +5182,17 @@ export namespace cr {
          * The phase status of registry.
          */
         phase: string;
+    }
+
+    export interface RegistriesResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
     }
 
     export interface RegistriesStatus {
@@ -5147,6 +5215,17 @@ export namespace cr {
          * The type of registry.
          */
         type: string;
+    }
+
+    export interface RegistryResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RegistryStatus {
@@ -6833,9 +6912,9 @@ export namespace ecs {
         /**
          * The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
          */
-        bandwidthPackageId?: number;
+        bandwidthPackageId?: string;
         /**
-         * The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+         * The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
          */
         chargeType?: string;
         /**
@@ -13950,6 +14029,11 @@ export namespace rds_mysql {
          * Whether to automatically renew in prepaid scenarios.
          */
         autoRenew: boolean;
+        /**
+         * Payment type. Value:
+         * PostPaid - Pay-As-You-Go
+         * PrePaid - Yearly and monthly (default).
+         */
         chargeType: string;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
@@ -22186,6 +22270,10 @@ export namespace vke {
          */
         podsConfig: outputs.vke.ClustersClusterPodsConfig;
         /**
+         * The project name of the cluster.
+         */
+        projectName: string;
+        /**
          * The config of the services.
          */
         servicesConfig: outputs.vke.ClustersClusterServicesConfig;
@@ -22961,6 +23049,10 @@ export namespace vke {
          */
         period: number;
         /**
+         * The project name of the ecs instance.
+         */
+        projectName: string;
+        /**
          * The Security of NodeConfig.
          */
         security: outputs.vke.NodePoolNodeConfigSecurity;
@@ -23222,6 +23314,10 @@ export namespace vke {
          * The Priority of AutoScaling.
          */
         priority: number;
+        /**
+         * The project name of NodeConfig.
+         */
+        projectName: string;
         /**
          * The SecurityGroupIds of NodeConfig.
          */
@@ -23626,6 +23722,17 @@ export namespace vke {
 }
 
 export namespace vpc {
+    export interface HaVipTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface HaVipsHaVip {
         /**
          * The account id of the Ha Vip.
@@ -23688,6 +23795,10 @@ export namespace vpc {
          */
         subnetId: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vpc.HaVipsHaVipTag[];
+        /**
          * The update time of the Ha Vip.
          */
         updatedAt: string;
@@ -23695,6 +23806,28 @@ export namespace vpc {
          * The id of vpc.
          */
         vpcId: string;
+    }
+
+    export interface HaVipsHaVipTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface HaVipsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface Ipv6AddressBandwidthsIpv6AddressBandwidth {
@@ -24387,6 +24520,17 @@ export namespace vpc {
         vpcId: string;
     }
 
+    export interface RouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface RouteTablesRouteTable {
         /**
          * The account id of the route table creator.
@@ -24425,6 +24569,10 @@ export namespace vpc {
          */
         subnetIds: string[];
         /**
+         * Tags.
+         */
+        tags: outputs.vpc.RouteTablesRouteTableTag[];
+        /**
          * The last update time of the route table.
          */
         updateTime: string;
@@ -24436,6 +24584,28 @@ export namespace vpc {
          * The name of the virtual private cloud (VPC) to which the route entry belongs.
          */
         vpcName: string;
+    }
+
+    export interface RouteTablesRouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface SecurityGroupRulesSecurityGroupRule {

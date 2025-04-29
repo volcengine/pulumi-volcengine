@@ -20,9 +20,9 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// <summary>
         /// The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
         /// </summary>
-        public readonly int? BandwidthPackageId;
+        public readonly string? BandwidthPackageId;
         /// <summary>
-        /// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        /// The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
         /// </summary>
         public readonly string? ChargeType;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         private InstanceEipAddress(
             int? bandwidthMbps,
 
-            int? bandwidthPackageId,
+            string? bandwidthPackageId,
 
             string? chargeType,
 

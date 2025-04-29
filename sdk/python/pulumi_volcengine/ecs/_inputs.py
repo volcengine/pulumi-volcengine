@@ -231,13 +231,13 @@ class InstanceDataVolumeArgs:
 class InstanceEipAddressArgs:
     def __init__(__self__, *,
                  bandwidth_mbps: Optional[pulumi.Input[int]] = None,
-                 bandwidth_package_id: Optional[pulumi.Input[int]] = None,
+                 bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] bandwidth_mbps: The peek bandwidth of the EIP. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic. Default is 1.
-        :param pulumi.Input[int] bandwidth_package_id: The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
-        :param pulumi.Input[str] charge_type: The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        :param pulumi.Input[str] bandwidth_package_id: The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
+        :param pulumi.Input[str] charge_type: The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
         :param pulumi.Input[str] isp: The ISP of the EIP. Valid values: `BGP`, `ChinaMobile`, `ChinaUnicom`, `ChinaTelecom`, `SingleLine_BGP`, `Static_BGP`.
         """
         if bandwidth_mbps is not None:
@@ -263,21 +263,21 @@ class InstanceEipAddressArgs:
 
     @property
     @pulumi.getter(name="bandwidthPackageId")
-    def bandwidth_package_id(self) -> Optional[pulumi.Input[int]]:
+    def bandwidth_package_id(self) -> Optional[pulumi.Input[str]]:
         """
         The id of the bandwidth package, indicates that the public IP address will be added to the bandwidth package.
         """
         return pulumi.get(self, "bandwidth_package_id")
 
     @bandwidth_package_id.setter
-    def bandwidth_package_id(self, value: Optional[pulumi.Input[int]]):
+    def bandwidth_package_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bandwidth_package_id", value)
 
     @property
     @pulumi.getter(name="chargeType")
     def charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`, `PrePaid`. Default is `PayByBandwidth`.
+        The billing type of the EIP Address. Valid values: `PayByBandwidth`, `PayByTraffic`. Default is `PayByBandwidth`.
         """
         return pulumi.get(self, "charge_type")
 

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -12,11 +14,20 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpc.RouteTable("foo", {
- *     description: "tf-test1",
- *     projectName: "yuwao",
- *     routeTableName: "tf-project-1",
- *     vpcId: "vpc-2feppmy1ugt1c59gp688n1fld",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ *     projectName: "default",
+ * });
+ * const fooRouteTable = new volcengine.vpc.RouteTable("fooRouteTable", {
+ *     vpcId: fooVpc.id,
+ *     routeTableName: "acc-test-route-table",
+ *     description: "tf-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -69,6 +80,10 @@ export class RouteTable extends pulumi.CustomResource {
      */
     public readonly routeTableName!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.RouteTableTag[] | undefined>;
+    /**
      * The id of the VPC.
      */
     public readonly vpcId!: pulumi.Output<string>;
@@ -89,6 +104,7 @@ export class RouteTable extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["routeTableName"] = state ? state.routeTableName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as RouteTableArgs | undefined;
@@ -98,6 +114,7 @@ export class RouteTable extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["routeTableName"] = args ? args.routeTableName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -122,6 +139,10 @@ export interface RouteTableState {
      */
     routeTableName?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.RouteTableTag>[]>;
+    /**
      * The id of the VPC.
      */
     vpcId?: pulumi.Input<string>;
@@ -143,6 +164,10 @@ export interface RouteTableArgs {
      * The name of the route table.
      */
     routeTableName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.RouteTableTag>[]>;
     /**
      * The id of the VPC.
      */

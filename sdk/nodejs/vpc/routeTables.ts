@@ -32,6 +32,7 @@ export function routeTables(args?: RouteTablesArgs, opts?: pulumi.InvokeOptions)
         "outputFile": args.outputFile,
         "projectName": args.projectName,
         "routeTableName": args.routeTableName,
+        "tags": args.tags,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -56,6 +57,10 @@ export interface RouteTablesArgs {
      * A name of route table.
      */
     routeTableName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpc.RouteTablesTag[];
     /**
      * An id of VPC.
      */
@@ -84,6 +89,10 @@ export interface RouteTablesResult {
      * The collection of route tables.
      */
     readonly routeTables: outputs.vpc.RouteTablesRouteTable[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.RouteTablesTag[];
     /**
      * The total count of route table query.
      */
@@ -134,6 +143,10 @@ export interface RouteTablesOutputArgs {
      * A name of route table.
      */
     routeTableName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.RouteTablesTagArgs>[]>;
     /**
      * An id of VPC.
      */

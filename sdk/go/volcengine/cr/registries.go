@@ -58,6 +58,8 @@ type RegistriesArgs struct {
 	Names []string `pulumi:"names"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The tags of cr registry.
+	ResourceTags []RegistriesResourceTag `pulumi:"resourceTags"`
 	// The list of registry statuses.
 	Statuses []RegistriesStatus `pulumi:"statuses"`
 	// The list of registry types to query.
@@ -72,7 +74,9 @@ type RegistriesResult struct {
 	OutputFile *string  `pulumi:"outputFile"`
 	// The collection of registry query.
 	Registries []RegistriesRegistry `pulumi:"registries"`
-	Statuses   []RegistriesStatus   `pulumi:"statuses"`
+	// Tags.
+	ResourceTags []RegistriesResourceTag `pulumi:"resourceTags"`
+	Statuses     []RegistriesStatus      `pulumi:"statuses"`
 	// The total count of registry query.
 	TotalCount int      `pulumi:"totalCount"`
 	Types      []string `pulumi:"types"`
@@ -97,6 +101,8 @@ type RegistriesOutputArgs struct {
 	Names pulumi.StringArrayInput `pulumi:"names"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The tags of cr registry.
+	ResourceTags RegistriesResourceTagArrayInput `pulumi:"resourceTags"`
 	// The list of registry statuses.
 	Statuses RegistriesStatusArrayInput `pulumi:"statuses"`
 	// The list of registry types to query.
@@ -138,6 +144,11 @@ func (o RegistriesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The collection of registry query.
 func (o RegistriesResultOutput) Registries() RegistriesRegistryArrayOutput {
 	return o.ApplyT(func(v RegistriesResult) []RegistriesRegistry { return v.Registries }).(RegistriesRegistryArrayOutput)
+}
+
+// Tags.
+func (o RegistriesResultOutput) ResourceTags() RegistriesResourceTagArrayOutput {
+	return o.ApplyT(func(v RegistriesResult) []RegistriesResourceTag { return v.ResourceTags }).(RegistriesResourceTagArrayOutput)
 }
 
 func (o RegistriesResultOutput) Statuses() RegistriesStatusArrayOutput {

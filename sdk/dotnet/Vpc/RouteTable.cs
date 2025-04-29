@@ -21,12 +21,27 @@ namespace Pulumi.Volcengine.Vpc
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Vpc.RouteTable("foo", new()
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         Description = "tf-test1",
-    ///         ProjectName = "yuwao",
-    ///         RouteTableName = "tf-project-1",
-    ///         VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var fooRouteTable = new Volcengine.Vpc.RouteTable("fooRouteTable", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         RouteTableName = "acc-test-route-table",
+    ///         Description = "tf-test",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vpc.Inputs.RouteTableTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -60,6 +75,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Output("routeTableName")]
         public Output<string> RouteTableName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.RouteTableTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The id of the VPC.
@@ -132,6 +153,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("routeTableName")]
         public Input<string>? RouteTableName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.RouteTableTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RouteTableTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RouteTableTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The id of the VPC.
         /// </summary>
@@ -163,6 +196,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("routeTableName")]
         public Input<string>? RouteTableName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.RouteTableTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RouteTableTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RouteTableTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The id of the VPC.

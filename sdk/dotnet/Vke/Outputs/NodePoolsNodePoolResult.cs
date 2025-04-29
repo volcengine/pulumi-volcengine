@@ -142,6 +142,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int Priority;
         /// <summary>
+        /// The project name of NodeConfig.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The SecurityGroupIds of NodeConfig.
         /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
@@ -248,6 +252,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             int priority,
 
+            string projectName,
+
             ImmutableArray<string> securityGroupIds,
 
             ImmutableArray<string> securityStrategies,
@@ -300,6 +306,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             Period = period;
             Phase = phase;
             Priority = priority;
+            ProjectName = projectName;
             SecurityGroupIds = securityGroupIds;
             SecurityStrategies = securityStrategies;
             SecurityStrategyEnabled = securityStrategyEnabled;

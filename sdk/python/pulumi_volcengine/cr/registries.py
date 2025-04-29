@@ -23,7 +23,7 @@ class RegistriesResult:
     """
     A collection of values returned by Registries.
     """
-    def __init__(__self__, id=None, names=None, output_file=None, registries=None, statuses=None, total_count=None, types=None):
+    def __init__(__self__, id=None, names=None, output_file=None, registries=None, resource_tags=None, statuses=None, total_count=None, types=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -36,6 +36,9 @@ class RegistriesResult:
         if registries and not isinstance(registries, list):
             raise TypeError("Expected argument 'registries' to be a list")
         pulumi.set(__self__, "registries", registries)
+        if resource_tags and not isinstance(resource_tags, list):
+            raise TypeError("Expected argument 'resource_tags' to be a list")
+        pulumi.set(__self__, "resource_tags", resource_tags)
         if statuses and not isinstance(statuses, list):
             raise TypeError("Expected argument 'statuses' to be a list")
         pulumi.set(__self__, "statuses", statuses)
@@ -73,6 +76,14 @@ class RegistriesResult:
         return pulumi.get(self, "registries")
 
     @property
+    @pulumi.getter(name="resourceTags")
+    def resource_tags(self) -> Optional[Sequence['outputs.RegistriesResourceTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "resource_tags")
+
+    @property
     @pulumi.getter
     def statuses(self) -> Optional[Sequence['outputs.RegistriesStatusResult']]:
         return pulumi.get(self, "statuses")
@@ -101,6 +112,7 @@ class AwaitableRegistriesResult(RegistriesResult):
             names=self.names,
             output_file=self.output_file,
             registries=self.registries,
+            resource_tags=self.resource_tags,
             statuses=self.statuses,
             total_count=self.total_count,
             types=self.types)
@@ -108,6 +120,7 @@ class AwaitableRegistriesResult(RegistriesResult):
 
 def registries(names: Optional[Sequence[str]] = None,
                output_file: Optional[str] = None,
+               resource_tags: Optional[Sequence[pulumi.InputType['RegistriesResourceTagArgs']]] = None,
                statuses: Optional[Sequence[pulumi.InputType['RegistriesStatusArgs']]] = None,
                types: Optional[Sequence[str]] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRegistriesResult:
@@ -128,12 +141,14 @@ def registries(names: Optional[Sequence[str]] = None,
 
     :param Sequence[str] names: The list of registry names to query.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['RegistriesResourceTagArgs']] resource_tags: The tags of cr registry.
     :param Sequence[pulumi.InputType['RegistriesStatusArgs']] statuses: The list of registry statuses.
     :param Sequence[str] types: The list of registry types to query.
     """
     __args__ = dict()
     __args__['names'] = names
     __args__['outputFile'] = output_file
+    __args__['resourceTags'] = resource_tags
     __args__['statuses'] = statuses
     __args__['types'] = types
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -144,6 +159,7 @@ def registries(names: Optional[Sequence[str]] = None,
         names=pulumi.get(__ret__, 'names'),
         output_file=pulumi.get(__ret__, 'output_file'),
         registries=pulumi.get(__ret__, 'registries'),
+        resource_tags=pulumi.get(__ret__, 'resource_tags'),
         statuses=pulumi.get(__ret__, 'statuses'),
         total_count=pulumi.get(__ret__, 'total_count'),
         types=pulumi.get(__ret__, 'types'))
@@ -152,6 +168,7 @@ def registries(names: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(registries)
 def registries_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                      resource_tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['RegistriesResourceTagArgs']]]]] = None,
                       statuses: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['RegistriesStatusArgs']]]]] = None,
                       types: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RegistriesResult]:
@@ -172,6 +189,7 @@ def registries_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
 
     :param Sequence[str] names: The list of registry names to query.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['RegistriesResourceTagArgs']] resource_tags: The tags of cr registry.
     :param Sequence[pulumi.InputType['RegistriesStatusArgs']] statuses: The list of registry statuses.
     :param Sequence[str] types: The list of registry types to query.
     """

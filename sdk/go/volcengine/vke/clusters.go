@@ -129,6 +129,8 @@ type ClustersArgs struct {
 	PageSize *int `pulumi:"pageSize"`
 	// The container network model of the cluster, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
 	PodsConfigPodNetworkMode *string `pulumi:"podsConfigPodNetworkMode"`
+	// The project name of the cluster.
+	ProjectName *string `pulumi:"projectName"`
 	// Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
 	Statuses []ClustersStatus `pulumi:"statuses"`
 	// Tags.
@@ -148,13 +150,15 @@ type ClustersResult struct {
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
 	// The name of the cluster.
-	Name                     *string          `pulumi:"name"`
-	NameRegex                *string          `pulumi:"nameRegex"`
-	OutputFile               *string          `pulumi:"outputFile"`
-	PageNumber               int              `pulumi:"pageNumber"`
-	PageSize                 int              `pulumi:"pageSize"`
-	PodsConfigPodNetworkMode *string          `pulumi:"podsConfigPodNetworkMode"`
-	Statuses                 []ClustersStatus `pulumi:"statuses"`
+	Name                     *string `pulumi:"name"`
+	NameRegex                *string `pulumi:"nameRegex"`
+	OutputFile               *string `pulumi:"outputFile"`
+	PageNumber               int     `pulumi:"pageNumber"`
+	PageSize                 int     `pulumi:"pageSize"`
+	PodsConfigPodNetworkMode *string `pulumi:"podsConfigPodNetworkMode"`
+	// The project name of the cluster.
+	ProjectName *string          `pulumi:"projectName"`
+	Statuses    []ClustersStatus `pulumi:"statuses"`
 	// Tags of the Cluster.
 	Tags []ClustersTag `pulumi:"tags"`
 	// The total count of Cluster query.
@@ -195,6 +199,8 @@ type ClustersOutputArgs struct {
 	PageSize pulumi.IntPtrInput `pulumi:"pageSize"`
 	// The container network model of the cluster, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
 	PodsConfigPodNetworkMode pulumi.StringPtrInput `pulumi:"podsConfigPodNetworkMode"`
+	// The project name of the cluster.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
 	Statuses ClustersStatusArrayInput `pulumi:"statuses"`
 	// Tags.
@@ -268,6 +274,11 @@ func (o ClustersResultOutput) PageSize() pulumi.IntOutput {
 
 func (o ClustersResultOutput) PodsConfigPodNetworkMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClustersResult) *string { return v.PodsConfigPodNetworkMode }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the cluster.
+func (o ClustersResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClustersResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 func (o ClustersResultOutput) Statuses() ClustersStatusArrayOutput {

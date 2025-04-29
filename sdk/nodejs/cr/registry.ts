@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.cr.Registry("foo", {
  *     deleteImmediately: false,
  *     password: "1qaz!QAZ",
+ *     project: "default",
  * });
  * ```
  *
@@ -81,6 +82,14 @@ export class Registry extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * The ProjectName of the cr registry.
+     */
+    public readonly project!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public /*out*/ readonly resourceTags!: pulumi.Output<outputs.cr.RegistryResourceTag[]>;
+    /**
      * The status of registry.
      */
     public /*out*/ readonly statuses!: pulumi.Output<outputs.cr.RegistryStatus[]>;
@@ -116,6 +125,8 @@ export class Registry extends pulumi.CustomResource {
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["project"] = state ? state.project : undefined;
+            resourceInputs["resourceTags"] = state ? state.resourceTags : undefined;
             resourceInputs["statuses"] = state ? state.statuses : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["userStatus"] = state ? state.userStatus : undefined;
@@ -125,9 +136,11 @@ export class Registry extends pulumi.CustomResource {
             resourceInputs["deleteImmediately"] = args ? args.deleteImmediately : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["chargeType"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["domains"] = undefined /*out*/;
+            resourceInputs["resourceTags"] = undefined /*out*/;
             resourceInputs["statuses"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["userStatus"] = undefined /*out*/;
@@ -169,6 +182,14 @@ export interface RegistryState {
      */
     password?: pulumi.Input<string>;
     /**
+     * The ProjectName of the cr registry.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    resourceTags?: pulumi.Input<pulumi.Input<inputs.cr.RegistryResourceTag>[]>;
+    /**
      * The status of registry.
      */
     statuses?: pulumi.Input<pulumi.Input<inputs.cr.RegistryStatus>[]>;
@@ -202,4 +223,8 @@ export interface RegistryArgs {
      * The password of registry user.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the cr registry.
+     */
+    project?: pulumi.Input<string>;
 }

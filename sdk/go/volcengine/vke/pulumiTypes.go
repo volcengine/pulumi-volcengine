@@ -2028,6 +2028,8 @@ type ClustersCluster struct {
 	NodeStatistics ClustersClusterNodeStatistics `pulumi:"nodeStatistics"`
 	// The config of the pods.
 	PodsConfig ClustersClusterPodsConfig `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName string `pulumi:"projectName"`
 	// The config of the services.
 	ServicesConfig ClustersClusterServicesConfig `pulumi:"servicesConfig"`
 	// The status of the cluster.
@@ -2080,6 +2082,8 @@ type ClustersClusterArgs struct {
 	NodeStatistics ClustersClusterNodeStatisticsInput `pulumi:"nodeStatistics"`
 	// The config of the pods.
 	PodsConfig ClustersClusterPodsConfigInput `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The config of the services.
 	ServicesConfig ClustersClusterServicesConfigInput `pulumi:"servicesConfig"`
 	// The status of the cluster.
@@ -2211,6 +2215,11 @@ func (o ClustersClusterOutput) NodeStatistics() ClustersClusterNodeStatisticsOut
 // The config of the pods.
 func (o ClustersClusterOutput) PodsConfig() ClustersClusterPodsConfigOutput {
 	return o.ApplyT(func(v ClustersCluster) ClustersClusterPodsConfig { return v.PodsConfig }).(ClustersClusterPodsConfigOutput)
+}
+
+// The project name of the cluster.
+func (o ClustersClusterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersCluster) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The config of the services.
@@ -7744,6 +7753,8 @@ type NodePoolNodeConfig struct {
 	NamePrefix *string `pulumi:"namePrefix"`
 	// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
 	Period *int `pulumi:"period"`
+	// The project name of the ecs instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The Security of NodeConfig.
 	Security NodePoolNodeConfigSecurity `pulumi:"security"`
 	// The SubnetIds of NodeConfig.
@@ -7788,6 +7799,8 @@ type NodePoolNodeConfigArgs struct {
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 	// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The project name of the ecs instance.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The Security of NodeConfig.
 	Security NodePoolNodeConfigSecurityInput `pulumi:"security"`
 	// The SubnetIds of NodeConfig.
@@ -7931,6 +7944,11 @@ func (o NodePoolNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
 // The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
 func (o NodePoolNodeConfigOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The project name of the ecs instance.
+func (o NodePoolNodeConfigOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The Security of NodeConfig.
@@ -8090,6 +8108,16 @@ func (o NodePoolNodeConfigPtrOutput) Period() pulumi.IntPtrOutput {
 		}
 		return v.Period
 	}).(pulumi.IntPtrOutput)
+}
+
+// The project name of the ecs instance.
+func (o NodePoolNodeConfigPtrOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectName
+	}).(pulumi.StringPtrOutput)
 }
 
 // The Security of NodeConfig.
@@ -9188,6 +9216,8 @@ type NodePoolsNodePool struct {
 	Phase string `pulumi:"phase"`
 	// The Priority of AutoScaling.
 	Priority int `pulumi:"priority"`
+	// The project name of NodeConfig.
+	ProjectName string `pulumi:"projectName"`
 	// The SecurityGroupIds of NodeConfig.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The SecurityStrategies of NodeConfig.
@@ -9286,6 +9316,8 @@ type NodePoolsNodePoolArgs struct {
 	Phase pulumi.StringInput `pulumi:"phase"`
 	// The Priority of AutoScaling.
 	Priority pulumi.IntInput `pulumi:"priority"`
+	// The project name of NodeConfig.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The SecurityGroupIds of NodeConfig.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
 	// The SecurityStrategies of NodeConfig.
@@ -9517,6 +9549,11 @@ func (o NodePoolsNodePoolOutput) Phase() pulumi.StringOutput {
 // The Priority of AutoScaling.
 func (o NodePoolsNodePoolOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The project name of NodeConfig.
+func (o NodePoolsNodePoolOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The SecurityGroupIds of NodeConfig.

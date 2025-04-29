@@ -15,15 +15,19 @@ __all__ = ['NamespaceArgs', 'Namespace']
 class NamespaceArgs:
     def __init__(__self__, *,
                  registry: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
         :param pulumi.Input[str] registry: The registry name.
         :param pulumi.Input[str] name: The name of CrNamespace.
+        :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         """
         pulumi.set(__self__, "registry", registry)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project is not None:
+            pulumi.set(__self__, "project", project)
 
     @property
     @pulumi.getter
@@ -49,23 +53,39 @@ class NamespaceArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the CrNamespace.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project", value)
+
 
 @pulumi.input_type
 class _NamespaceState:
     def __init__(__self__, *,
                  create_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
                  registry: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
         :param pulumi.Input[str] create_time: The time when namespace created.
         :param pulumi.Input[str] name: The name of CrNamespace.
+        :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         :param pulumi.Input[str] registry: The registry name.
         """
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project is not None:
+            pulumi.set(__self__, "project", project)
         if registry is not None:
             pulumi.set(__self__, "registry", registry)
 
@@ -95,6 +115,18 @@ class _NamespaceState:
 
     @property
     @pulumi.getter
+    def project(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the CrNamespace.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project", value)
+
+    @property
+    @pulumi.getter
     def registry(self) -> Optional[pulumi.Input[str]]:
         """
         The registry name.
@@ -112,6 +144,7 @@ class Namespace(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
                  registry: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -122,8 +155,12 @@ class Namespace(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cr.Namespace("foo", registry="tf-2")
-        foo1 = volcengine.cr.Namespace("foo1", registry="tf-1")
+        foo = volcengine.cr.Namespace("foo",
+            project="default",
+            registry="tf-test-cr")
+        foo1 = volcengine.cr.Namespace("foo1",
+            project="default",
+            registry="tf-test-cr")
         ```
 
         ## Import
@@ -137,6 +174,7 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of CrNamespace.
+        :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         :param pulumi.Input[str] registry: The registry name.
         """
         ...
@@ -153,8 +191,12 @@ class Namespace(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cr.Namespace("foo", registry="tf-2")
-        foo1 = volcengine.cr.Namespace("foo1", registry="tf-1")
+        foo = volcengine.cr.Namespace("foo",
+            project="default",
+            registry="tf-test-cr")
+        foo1 = volcengine.cr.Namespace("foo1",
+            project="default",
+            registry="tf-test-cr")
         ```
 
         ## Import
@@ -181,6 +223,7 @@ class Namespace(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
                  registry: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -192,6 +235,7 @@ class Namespace(pulumi.CustomResource):
             __props__ = NamespaceArgs.__new__(NamespaceArgs)
 
             __props__.__dict__["name"] = name
+            __props__.__dict__["project"] = project
             if registry is None and not opts.urn:
                 raise TypeError("Missing required property 'registry'")
             __props__.__dict__["registry"] = registry
@@ -208,6 +252,7 @@ class Namespace(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             create_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
             registry: Optional[pulumi.Input[str]] = None) -> 'Namespace':
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
@@ -218,6 +263,7 @@ class Namespace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: The time when namespace created.
         :param pulumi.Input[str] name: The name of CrNamespace.
+        :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         :param pulumi.Input[str] registry: The registry name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -226,6 +272,7 @@ class Namespace(pulumi.CustomResource):
 
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["name"] = name
+        __props__.__dict__["project"] = project
         __props__.__dict__["registry"] = registry
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
@@ -244,6 +291,14 @@ class Namespace(pulumi.CustomResource):
         The name of CrNamespace.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def project(self) -> pulumi.Output[str]:
+        """
+        The ProjectName of the CrNamespace.
+        """
+        return pulumi.get(self, "project")
 
     @property
     @pulumi.getter

@@ -27,11 +27,25 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NewRouteTable(ctx, "foo", &vpc.RouteTableArgs{
-//				Description:    pulumi.String("tf-test1"),
-//				ProjectName:    pulumi.String("yuwao"),
-//				RouteTableName: pulumi.String("tf-project-1"),
-//				VpcId:          pulumi.String("vpc-2feppmy1ugt1c59gp688n1fld"),
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:     pulumi.String("acc-test-vpc"),
+//				CidrBlock:   pulumi.String("172.16.0.0/16"),
+//				ProjectName: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewRouteTable(ctx, "fooRouteTable", &vpc.RouteTableArgs{
+//				VpcId:          fooVpc.ID(),
+//				RouteTableName: pulumi.String("acc-test-route-table"),
+//				Description:    pulumi.String("tf-test"),
+//				ProjectName:    pulumi.String("default"),
+//				Tags: vpc.RouteTableTagArray{
+//					&vpc.RouteTableTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -58,6 +72,8 @@ type RouteTable struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName pulumi.StringOutput `pulumi:"routeTableName"`
+	// Tags.
+	Tags RouteTableTagArrayOutput `pulumi:"tags"`
 	// The id of the VPC.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -101,6 +117,8 @@ type routeTableState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName *string `pulumi:"routeTableName"`
+	// Tags.
+	Tags []RouteTableTag `pulumi:"tags"`
 	// The id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -112,6 +130,8 @@ type RouteTableState struct {
 	ProjectName pulumi.StringPtrInput
 	// The name of the route table.
 	RouteTableName pulumi.StringPtrInput
+	// Tags.
+	Tags RouteTableTagArrayInput
 	// The id of the VPC.
 	VpcId pulumi.StringPtrInput
 }
@@ -127,6 +147,8 @@ type routeTableArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName *string `pulumi:"routeTableName"`
+	// Tags.
+	Tags []RouteTableTag `pulumi:"tags"`
 	// The id of the VPC.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -139,6 +161,8 @@ type RouteTableArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The name of the route table.
 	RouteTableName pulumi.StringPtrInput
+	// Tags.
+	Tags RouteTableTagArrayInput
 	// The id of the VPC.
 	VpcId pulumi.StringInput
 }
@@ -243,6 +267,11 @@ func (o RouteTableOutput) ProjectName() pulumi.StringOutput {
 // The name of the route table.
 func (o RouteTableOutput) RouteTableName() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouteTable) pulumi.StringOutput { return v.RouteTableName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RouteTableOutput) Tags() RouteTableTagArrayOutput {
+	return o.ApplyT(func(v *RouteTable) RouteTableTagArrayOutput { return v.Tags }).(RouteTableTagArrayOutput)
 }
 
 // The id of the VPC.

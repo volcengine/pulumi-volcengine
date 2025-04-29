@@ -29,8 +29,8 @@ namespace Pulumi.Volcengine.Vpc
     ///             "8.8.8.8",
     ///             "114.114.114.114",
     ///         },
-    ///         ProjectName = "AS_test",
-    ///         VpcName = "tf-project-1",
+    ///         ProjectName = "default",
+    ///         VpcName = "acc-test-vpc",
     ///     });
     /// 
     /// });

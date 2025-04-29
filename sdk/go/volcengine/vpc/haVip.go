@@ -53,6 +53,12 @@ import (
 //				HaVipName:   pulumi.String("acc-test-ha-vip"),
 //				Description: pulumi.String("acc-test"),
 //				SubnetId:    fooSubnet.ID(),
+//				Tags: vpc.HaVipTagArray{
+//					&vpc.HaVipTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -111,6 +117,8 @@ type HaVip struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The subnet id of the Ha Vip.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// Tags.
+	Tags HaVipTagArrayOutput `pulumi:"tags"`
 	// The update time of the Ha Vip.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The vpc id of the Ha Vip.
@@ -174,6 +182,8 @@ type haVipState struct {
 	Status *string `pulumi:"status"`
 	// The subnet id of the Ha Vip.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []HaVipTag `pulumi:"tags"`
 	// The update time of the Ha Vip.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The vpc id of the Ha Vip.
@@ -205,6 +215,8 @@ type HaVipState struct {
 	Status pulumi.StringPtrInput
 	// The subnet id of the Ha Vip.
 	SubnetId pulumi.StringPtrInput
+	// Tags.
+	Tags HaVipTagArrayInput
 	// The update time of the Ha Vip.
 	UpdatedAt pulumi.StringPtrInput
 	// The vpc id of the Ha Vip.
@@ -224,6 +236,8 @@ type haVipArgs struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// The subnet id of the Ha Vip.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []HaVipTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a HaVip resource.
@@ -236,6 +250,8 @@ type HaVipArgs struct {
 	IpAddress pulumi.StringPtrInput
 	// The subnet id of the Ha Vip.
 	SubnetId pulumi.StringInput
+	// Tags.
+	Tags HaVipTagArrayInput
 }
 
 func (HaVipArgs) ElementType() reflect.Type {
@@ -383,6 +399,11 @@ func (o HaVipOutput) Status() pulumi.StringOutput {
 // The subnet id of the Ha Vip.
 func (o HaVipOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *HaVip) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o HaVipOutput) Tags() HaVipTagArrayOutput {
+	return o.ApplyT(func(v *HaVip) HaVipTagArrayOutput { return v.Tags }).(HaVipTagArrayOutput)
 }
 
 // The update time of the Ha Vip.

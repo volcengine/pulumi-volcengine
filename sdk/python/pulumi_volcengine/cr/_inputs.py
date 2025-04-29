@@ -10,14 +10,93 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'EndpointAclPolicyArgs',
+    'RegistriesResourceTagArgs',
     'RegistriesStatusArgs',
     'RegistryDomainArgs',
+    'RegistryResourceTagArgs',
     'RegistryStatusArgs',
     'StateStatusArgs',
     'TagChartAttributeArgs',
     'TagImageAttributeArgs',
     'VpcEndpointVpcArgs',
 ]
+
+@pulumi.input_type
+class EndpointAclPolicyArgs:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 entry: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] description: The description of the acl policy.
+        :param pulumi.Input[str] entry: The ip of the acl policy.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if entry is not None:
+            pulumi.set(__self__, "entry", entry)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the acl policy.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def entry(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ip of the acl policy.
+        """
+        return pulumi.get(self, "entry")
+
+    @entry.setter
+    def entry(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entry", value)
+
+
+@pulumi.input_type
+class RegistriesResourceTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
 
 @pulumi.input_type
 class RegistriesStatusArgs:
@@ -95,6 +174,45 @@ class RegistryDomainArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class RegistryResourceTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

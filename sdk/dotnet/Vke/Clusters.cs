@@ -265,6 +265,12 @@ namespace Pulumi.Volcengine.Vke
         [Input("podsConfigPodNetworkMode")]
         public string? PodsConfigPodNetworkMode { get; set; }
 
+        /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
         [Input("statuses")]
         private List<Inputs.ClustersStatusArgs>? _statuses;
 
@@ -363,6 +369,12 @@ namespace Pulumi.Volcengine.Vke
         [Input("podsConfigPodNetworkMode")]
         public Input<string>? PodsConfigPodNetworkMode { get; set; }
 
+        /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("statuses")]
         private InputList<Inputs.ClustersStatusInputArgs>? _statuses;
 
@@ -426,6 +438,10 @@ namespace Pulumi.Volcengine.Vke
         public readonly int PageNumber;
         public readonly int PageSize;
         public readonly string? PodsConfigPodNetworkMode;
+        /// <summary>
+        /// The project name of the cluster.
+        /// </summary>
+        public readonly string? ProjectName;
         public readonly ImmutableArray<Outputs.ClustersStatusResult> Statuses;
         /// <summary>
         /// Tags of the Cluster.
@@ -461,6 +477,8 @@ namespace Pulumi.Volcengine.Vke
 
             string? podsConfigPodNetworkMode,
 
+            string? projectName,
+
             ImmutableArray<Outputs.ClustersStatusResult> statuses,
 
             ImmutableArray<Outputs.ClustersTagResult> tags,
@@ -480,6 +498,7 @@ namespace Pulumi.Volcengine.Vke
             PageNumber = pageNumber;
             PageSize = pageSize;
             PodsConfigPodNetworkMode = podsConfigPodNetworkMode;
+            ProjectName = projectName;
             Statuses = statuses;
             Tags = tags;
             TotalCount = totalCount;
