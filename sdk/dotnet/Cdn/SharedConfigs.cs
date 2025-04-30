@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cdn
 {
+    [Obsolete(@"volcengine.cdn/sharedconfigs.SharedConfigs has been deprecated in favor of volcengine.cdn/getsharedconfigs.getSharedConfigs")]
     public static class SharedConfigs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cdn.SharedConfigs.Invoke(new()
+        ///     var foo = Volcengine.Cdn.GetSharedConfigs.Invoke(new()
         ///     {
         ///         ConfigName = "tf-test",
         ///         ConfigType = "allow_ip_access_rule",
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cdn.SharedConfigs.Invoke(new()
+        ///     var foo = Volcengine.Cdn.GetSharedConfigs.Invoke(new()
         ///     {
         ///         ConfigName = "tf-test",
         ///         ConfigType = "allow_ip_access_rule",

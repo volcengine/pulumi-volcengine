@@ -21,12 +21,14 @@ import * as utilities from "../utilities";
  *     desc: "tftest",
  *     source: "cdn_cert_hosting",
  * });
- * const fooCertificates = volcengine.cdn.CertificatesOutput({
+ * const fooCertificates = volcengine.cdn.getCertificatesOutput({
  *     source: fooCdnCertificate.source,
  * });
  * ```
  */
+/** @deprecated volcengine.cdn/certificates.Certificates has been deprecated in favor of volcengine.cdn/getcertificates.getCertificates */
 export function certificates(args: CertificatesArgs, opts?: pulumi.InvokeOptions): Promise<CertificatesResult> {
+    pulumi.log.warn("certificates is deprecated: volcengine.cdn/certificates.Certificates has been deprecated in favor of volcengine.cdn/getcertificates.getCertificates")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cdn/certificates:Certificates", {
@@ -101,11 +103,12 @@ export interface CertificatesResult {
  *     desc: "tftest",
  *     source: "cdn_cert_hosting",
  * });
- * const fooCertificates = volcengine.cdn.CertificatesOutput({
+ * const fooCertificates = volcengine.cdn.getCertificatesOutput({
  *     source: fooCdnCertificate.source,
  * });
  * ```
  */
+/** @deprecated volcengine.cdn/certificates.Certificates has been deprecated in favor of volcengine.cdn/getcertificates.getCertificates */
 export function certificatesOutput(args: CertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CertificatesResult> {
     return pulumi.output(args).apply((a: any) => certificates(a, opts))
 }

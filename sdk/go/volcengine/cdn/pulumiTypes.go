@@ -3281,6 +3281,1821 @@ func (o SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput) Index
 	}).(SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput)
 }
 
+type GetCertificatesCertInfo struct {
+	// ID indicating the certificate.
+	CertId string `pulumi:"certId"`
+	// The domain name to which the certificate is issued.
+	CertName string `pulumi:"certName"`
+	// The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+	ConfiguredDomain string `pulumi:"configuredDomain"`
+	// The remark of the cert.
+	Desc string `pulumi:"desc"`
+	// The domain names included in the SAN field of the certificate.
+	DnsName string `pulumi:"dnsName"`
+	// The issuance time of the certificate is indicated. The unit is Unix timestamp.
+	EffectiveTime int `pulumi:"effectiveTime"`
+	// The expiration time of the certificate is indicated. The unit is Unix timestamp.
+	ExpireTime int `pulumi:"expireTime"`
+	// Specify the location for storing the certificate. The parameter can take the following values: `volcCertCenter`: indicates that the certificate will be stored in the certificate center.`cdnCertHosting`: indicates that the certificate will be hosted on the content delivery network.
+	Source string `pulumi:"source"`
+	// Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+	Status string `pulumi:"status"`
+}
+
+// GetCertificatesCertInfoInput is an input type that accepts GetCertificatesCertInfoArgs and GetCertificatesCertInfoOutput values.
+// You can construct a concrete instance of `GetCertificatesCertInfoInput` via:
+//
+//	GetCertificatesCertInfoArgs{...}
+type GetCertificatesCertInfoInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertInfoOutput() GetCertificatesCertInfoOutput
+	ToGetCertificatesCertInfoOutputWithContext(context.Context) GetCertificatesCertInfoOutput
+}
+
+type GetCertificatesCertInfoArgs struct {
+	// ID indicating the certificate.
+	CertId pulumi.StringInput `pulumi:"certId"`
+	// The domain name to which the certificate is issued.
+	CertName pulumi.StringInput `pulumi:"certName"`
+	// The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+	ConfiguredDomain pulumi.StringInput `pulumi:"configuredDomain"`
+	// The remark of the cert.
+	Desc pulumi.StringInput `pulumi:"desc"`
+	// The domain names included in the SAN field of the certificate.
+	DnsName pulumi.StringInput `pulumi:"dnsName"`
+	// The issuance time of the certificate is indicated. The unit is Unix timestamp.
+	EffectiveTime pulumi.IntInput `pulumi:"effectiveTime"`
+	// The expiration time of the certificate is indicated. The unit is Unix timestamp.
+	ExpireTime pulumi.IntInput `pulumi:"expireTime"`
+	// Specify the location for storing the certificate. The parameter can take the following values: `volcCertCenter`: indicates that the certificate will be stored in the certificate center.`cdnCertHosting`: indicates that the certificate will be hosted on the content delivery network.
+	Source pulumi.StringInput `pulumi:"source"`
+	// Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetCertificatesCertInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertInfo)(nil)).Elem()
+}
+
+func (i GetCertificatesCertInfoArgs) ToGetCertificatesCertInfoOutput() GetCertificatesCertInfoOutput {
+	return i.ToGetCertificatesCertInfoOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertInfoArgs) ToGetCertificatesCertInfoOutputWithContext(ctx context.Context) GetCertificatesCertInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertInfoOutput)
+}
+
+// GetCertificatesCertInfoArrayInput is an input type that accepts GetCertificatesCertInfoArray and GetCertificatesCertInfoArrayOutput values.
+// You can construct a concrete instance of `GetCertificatesCertInfoArrayInput` via:
+//
+//	GetCertificatesCertInfoArray{ GetCertificatesCertInfoArgs{...} }
+type GetCertificatesCertInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertInfoArrayOutput() GetCertificatesCertInfoArrayOutput
+	ToGetCertificatesCertInfoArrayOutputWithContext(context.Context) GetCertificatesCertInfoArrayOutput
+}
+
+type GetCertificatesCertInfoArray []GetCertificatesCertInfoInput
+
+func (GetCertificatesCertInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertInfo)(nil)).Elem()
+}
+
+func (i GetCertificatesCertInfoArray) ToGetCertificatesCertInfoArrayOutput() GetCertificatesCertInfoArrayOutput {
+	return i.ToGetCertificatesCertInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertInfoArray) ToGetCertificatesCertInfoArrayOutputWithContext(ctx context.Context) GetCertificatesCertInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertInfoArrayOutput)
+}
+
+type GetCertificatesCertInfoOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertInfo)(nil)).Elem()
+}
+
+func (o GetCertificatesCertInfoOutput) ToGetCertificatesCertInfoOutput() GetCertificatesCertInfoOutput {
+	return o
+}
+
+func (o GetCertificatesCertInfoOutput) ToGetCertificatesCertInfoOutputWithContext(ctx context.Context) GetCertificatesCertInfoOutput {
+	return o
+}
+
+// ID indicating the certificate.
+func (o GetCertificatesCertInfoOutput) CertId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.CertId }).(pulumi.StringOutput)
+}
+
+// The domain name to which the certificate is issued.
+func (o GetCertificatesCertInfoOutput) CertName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.CertName }).(pulumi.StringOutput)
+}
+
+// The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+func (o GetCertificatesCertInfoOutput) ConfiguredDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.ConfiguredDomain }).(pulumi.StringOutput)
+}
+
+// The remark of the cert.
+func (o GetCertificatesCertInfoOutput) Desc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.Desc }).(pulumi.StringOutput)
+}
+
+// The domain names included in the SAN field of the certificate.
+func (o GetCertificatesCertInfoOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.DnsName }).(pulumi.StringOutput)
+}
+
+// The issuance time of the certificate is indicated. The unit is Unix timestamp.
+func (o GetCertificatesCertInfoOutput) EffectiveTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) int { return v.EffectiveTime }).(pulumi.IntOutput)
+}
+
+// The expiration time of the certificate is indicated. The unit is Unix timestamp.
+func (o GetCertificatesCertInfoOutput) ExpireTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) int { return v.ExpireTime }).(pulumi.IntOutput)
+}
+
+// Specify the location for storing the certificate. The parameter can take the following values: `volcCertCenter`: indicates that the certificate will be stored in the certificate center.`cdnCertHosting`: indicates that the certificate will be hosted on the content delivery network.
+func (o GetCertificatesCertInfoOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+func (o GetCertificatesCertInfoOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertInfo) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetCertificatesCertInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertInfo)(nil)).Elem()
+}
+
+func (o GetCertificatesCertInfoArrayOutput) ToGetCertificatesCertInfoArrayOutput() GetCertificatesCertInfoArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertInfoArrayOutput) ToGetCertificatesCertInfoArrayOutputWithContext(ctx context.Context) GetCertificatesCertInfoArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertInfoArrayOutput) Index(i pulumi.IntInput) GetCertificatesCertInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCertificatesCertInfo {
+		return vs[0].([]GetCertificatesCertInfo)[vs[1].(int)]
+	}).(GetCertificatesCertInfoOutput)
+}
+
+type GetConfigsDomainConfig struct {
+	// The cname of the domain.
+	Cname string `pulumi:"cname"`
+	// The create time of the domain.
+	CreateTime int `pulumi:"createTime"`
+	// The domain name.
+	Domain string `pulumi:"domain"`
+	// Indicates whether the configuration of this domain name is allowed to be changed.
+	LockStatus string `pulumi:"lockStatus"`
+	// The project name.
+	Project string `pulumi:"project"`
+	// The service region of the domain.
+	ServiceRegion string `pulumi:"serviceRegion"`
+	// The service type of the domain.
+	ServiceType string `pulumi:"serviceType"`
+	// The status of the domain.
+	Status string `pulumi:"status"`
+	// The update time of the domain.
+	UpdateTime int `pulumi:"updateTime"`
+}
+
+// GetConfigsDomainConfigInput is an input type that accepts GetConfigsDomainConfigArgs and GetConfigsDomainConfigOutput values.
+// You can construct a concrete instance of `GetConfigsDomainConfigInput` via:
+//
+//	GetConfigsDomainConfigArgs{...}
+type GetConfigsDomainConfigInput interface {
+	pulumi.Input
+
+	ToGetConfigsDomainConfigOutput() GetConfigsDomainConfigOutput
+	ToGetConfigsDomainConfigOutputWithContext(context.Context) GetConfigsDomainConfigOutput
+}
+
+type GetConfigsDomainConfigArgs struct {
+	// The cname of the domain.
+	Cname pulumi.StringInput `pulumi:"cname"`
+	// The create time of the domain.
+	CreateTime pulumi.IntInput `pulumi:"createTime"`
+	// The domain name.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Indicates whether the configuration of this domain name is allowed to be changed.
+	LockStatus pulumi.StringInput `pulumi:"lockStatus"`
+	// The project name.
+	Project pulumi.StringInput `pulumi:"project"`
+	// The service region of the domain.
+	ServiceRegion pulumi.StringInput `pulumi:"serviceRegion"`
+	// The service type of the domain.
+	ServiceType pulumi.StringInput `pulumi:"serviceType"`
+	// The status of the domain.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of the domain.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+}
+
+func (GetConfigsDomainConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigsDomainConfig)(nil)).Elem()
+}
+
+func (i GetConfigsDomainConfigArgs) ToGetConfigsDomainConfigOutput() GetConfigsDomainConfigOutput {
+	return i.ToGetConfigsDomainConfigOutputWithContext(context.Background())
+}
+
+func (i GetConfigsDomainConfigArgs) ToGetConfigsDomainConfigOutputWithContext(ctx context.Context) GetConfigsDomainConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigsDomainConfigOutput)
+}
+
+// GetConfigsDomainConfigArrayInput is an input type that accepts GetConfigsDomainConfigArray and GetConfigsDomainConfigArrayOutput values.
+// You can construct a concrete instance of `GetConfigsDomainConfigArrayInput` via:
+//
+//	GetConfigsDomainConfigArray{ GetConfigsDomainConfigArgs{...} }
+type GetConfigsDomainConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigsDomainConfigArrayOutput() GetConfigsDomainConfigArrayOutput
+	ToGetConfigsDomainConfigArrayOutputWithContext(context.Context) GetConfigsDomainConfigArrayOutput
+}
+
+type GetConfigsDomainConfigArray []GetConfigsDomainConfigInput
+
+func (GetConfigsDomainConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigsDomainConfig)(nil)).Elem()
+}
+
+func (i GetConfigsDomainConfigArray) ToGetConfigsDomainConfigArrayOutput() GetConfigsDomainConfigArrayOutput {
+	return i.ToGetConfigsDomainConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigsDomainConfigArray) ToGetConfigsDomainConfigArrayOutputWithContext(ctx context.Context) GetConfigsDomainConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigsDomainConfigArrayOutput)
+}
+
+type GetConfigsDomainConfigOutput struct{ *pulumi.OutputState }
+
+func (GetConfigsDomainConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigsDomainConfig)(nil)).Elem()
+}
+
+func (o GetConfigsDomainConfigOutput) ToGetConfigsDomainConfigOutput() GetConfigsDomainConfigOutput {
+	return o
+}
+
+func (o GetConfigsDomainConfigOutput) ToGetConfigsDomainConfigOutputWithContext(ctx context.Context) GetConfigsDomainConfigOutput {
+	return o
+}
+
+// The cname of the domain.
+func (o GetConfigsDomainConfigOutput) Cname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.Cname }).(pulumi.StringOutput)
+}
+
+// The create time of the domain.
+func (o GetConfigsDomainConfigOutput) CreateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) int { return v.CreateTime }).(pulumi.IntOutput)
+}
+
+// The domain name.
+func (o GetConfigsDomainConfigOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Indicates whether the configuration of this domain name is allowed to be changed.
+func (o GetConfigsDomainConfigOutput) LockStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.LockStatus }).(pulumi.StringOutput)
+}
+
+// The project name.
+func (o GetConfigsDomainConfigOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The service region of the domain.
+func (o GetConfigsDomainConfigOutput) ServiceRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.ServiceRegion }).(pulumi.StringOutput)
+}
+
+// The service type of the domain.
+func (o GetConfigsDomainConfigOutput) ServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.ServiceType }).(pulumi.StringOutput)
+}
+
+// The status of the domain.
+func (o GetConfigsDomainConfigOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of the domain.
+func (o GetConfigsDomainConfigOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigsDomainConfig) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+type GetConfigsDomainConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigsDomainConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigsDomainConfig)(nil)).Elem()
+}
+
+func (o GetConfigsDomainConfigArrayOutput) ToGetConfigsDomainConfigArrayOutput() GetConfigsDomainConfigArrayOutput {
+	return o
+}
+
+func (o GetConfigsDomainConfigArrayOutput) ToGetConfigsDomainConfigArrayOutputWithContext(ctx context.Context) GetConfigsDomainConfigArrayOutput {
+	return o
+}
+
+func (o GetConfigsDomainConfigArrayOutput) Index(i pulumi.IntInput) GetConfigsDomainConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigsDomainConfig {
+		return vs[0].([]GetConfigsDomainConfig)[vs[1].(int)]
+	}).(GetConfigsDomainConfigOutput)
+}
+
+type GetDomainsDomain struct {
+	// The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+	BackupOrigins []string `pulumi:"backupOrigins"`
+	// Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `targetHost`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cacheSharedOn`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+	CacheShared string `pulumi:"cacheShared"`
+	// If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is targetHost or an empty value, the parameter value is empty.
+	CacheSharedTargetHost string `pulumi:"cacheSharedTargetHost"`
+	// The CNAME address of the domain is automatically assigned when adding the domain.
+	Cname string `pulumi:"cname"`
+	// The creation time of the domain.
+	CreateTime int `pulumi:"createTime"`
+	// Search by specifying domain name keywords, with fuzzy matching.
+	Domain string `pulumi:"domain"`
+	// Indicates the locked status of the accelerated domain.
+	DomainLocks []GetDomainsDomainDomainLock `pulumi:"domainLocks"`
+	// Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+	Https bool `pulumi:"https"`
+	// Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+	Ipv6 bool `pulumi:"ipv6"`
+	// Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+	IsConflictDomain bool `pulumi:"isConflictDomain"`
+	// Configure the origin protocol for the accelerated domain.
+	OriginProtocol string `pulumi:"originProtocol"`
+	// Specify a primary origin server for filtering accelerated domains.
+	PrimaryOrigins []string `pulumi:"primaryOrigins"`
+	// The project name of the domain.
+	Project string `pulumi:"project"`
+	// Indicates the acceleration area. The parameter can take the following values: `chineseMainland`: Indicates mainland China. `global`: Indicates global. `outsideChineseMainland`: Indicates global (excluding mainland China).
+	ServiceRegion string `pulumi:"serviceRegion"`
+	// The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+	ServiceType string `pulumi:"serviceType"`
+	// The status of the domain.
+	Status string `pulumi:"status"`
+	// Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+	Tags []GetDomainsDomainTag `pulumi:"tags"`
+	// The update time of the domain.
+	UpdateTime int `pulumi:"updateTime"`
+}
+
+// GetDomainsDomainInput is an input type that accepts GetDomainsDomainArgs and GetDomainsDomainOutput values.
+// You can construct a concrete instance of `GetDomainsDomainInput` via:
+//
+//	GetDomainsDomainArgs{...}
+type GetDomainsDomainInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainOutput() GetDomainsDomainOutput
+	ToGetDomainsDomainOutputWithContext(context.Context) GetDomainsDomainOutput
+}
+
+type GetDomainsDomainArgs struct {
+	// The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+	BackupOrigins pulumi.StringArrayInput `pulumi:"backupOrigins"`
+	// Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `targetHost`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cacheSharedOn`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+	CacheShared pulumi.StringInput `pulumi:"cacheShared"`
+	// If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is targetHost or an empty value, the parameter value is empty.
+	CacheSharedTargetHost pulumi.StringInput `pulumi:"cacheSharedTargetHost"`
+	// The CNAME address of the domain is automatically assigned when adding the domain.
+	Cname pulumi.StringInput `pulumi:"cname"`
+	// The creation time of the domain.
+	CreateTime pulumi.IntInput `pulumi:"createTime"`
+	// Search by specifying domain name keywords, with fuzzy matching.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Indicates the locked status of the accelerated domain.
+	DomainLocks GetDomainsDomainDomainLockArrayInput `pulumi:"domainLocks"`
+	// Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+	Https pulumi.BoolInput `pulumi:"https"`
+	// Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+	Ipv6 pulumi.BoolInput `pulumi:"ipv6"`
+	// Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+	IsConflictDomain pulumi.BoolInput `pulumi:"isConflictDomain"`
+	// Configure the origin protocol for the accelerated domain.
+	OriginProtocol pulumi.StringInput `pulumi:"originProtocol"`
+	// Specify a primary origin server for filtering accelerated domains.
+	PrimaryOrigins pulumi.StringArrayInput `pulumi:"primaryOrigins"`
+	// The project name of the domain.
+	Project pulumi.StringInput `pulumi:"project"`
+	// Indicates the acceleration area. The parameter can take the following values: `chineseMainland`: Indicates mainland China. `global`: Indicates global. `outsideChineseMainland`: Indicates global (excluding mainland China).
+	ServiceRegion pulumi.StringInput `pulumi:"serviceRegion"`
+	// The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+	ServiceType pulumi.StringInput `pulumi:"serviceType"`
+	// The status of the domain.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+	Tags GetDomainsDomainTagArrayInput `pulumi:"tags"`
+	// The update time of the domain.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+}
+
+func (GetDomainsDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomain)(nil)).Elem()
+}
+
+func (i GetDomainsDomainArgs) ToGetDomainsDomainOutput() GetDomainsDomainOutput {
+	return i.ToGetDomainsDomainOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainArgs) ToGetDomainsDomainOutputWithContext(ctx context.Context) GetDomainsDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainOutput)
+}
+
+// GetDomainsDomainArrayInput is an input type that accepts GetDomainsDomainArray and GetDomainsDomainArrayOutput values.
+// You can construct a concrete instance of `GetDomainsDomainArrayInput` via:
+//
+//	GetDomainsDomainArray{ GetDomainsDomainArgs{...} }
+type GetDomainsDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainArrayOutput() GetDomainsDomainArrayOutput
+	ToGetDomainsDomainArrayOutputWithContext(context.Context) GetDomainsDomainArrayOutput
+}
+
+type GetDomainsDomainArray []GetDomainsDomainInput
+
+func (GetDomainsDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomain)(nil)).Elem()
+}
+
+func (i GetDomainsDomainArray) ToGetDomainsDomainArrayOutput() GetDomainsDomainArrayOutput {
+	return i.ToGetDomainsDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainArray) ToGetDomainsDomainArrayOutputWithContext(ctx context.Context) GetDomainsDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainArrayOutput)
+}
+
+type GetDomainsDomainOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomain)(nil)).Elem()
+}
+
+func (o GetDomainsDomainOutput) ToGetDomainsDomainOutput() GetDomainsDomainOutput {
+	return o
+}
+
+func (o GetDomainsDomainOutput) ToGetDomainsDomainOutputWithContext(ctx context.Context) GetDomainsDomainOutput {
+	return o
+}
+
+// The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+func (o GetDomainsDomainOutput) BackupOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDomainsDomain) []string { return v.BackupOrigins }).(pulumi.StringArrayOutput)
+}
+
+// Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `targetHost`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cacheSharedOn`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+func (o GetDomainsDomainOutput) CacheShared() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.CacheShared }).(pulumi.StringOutput)
+}
+
+// If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is targetHost or an empty value, the parameter value is empty.
+func (o GetDomainsDomainOutput) CacheSharedTargetHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.CacheSharedTargetHost }).(pulumi.StringOutput)
+}
+
+// The CNAME address of the domain is automatically assigned when adding the domain.
+func (o GetDomainsDomainOutput) Cname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.Cname }).(pulumi.StringOutput)
+}
+
+// The creation time of the domain.
+func (o GetDomainsDomainOutput) CreateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDomainsDomain) int { return v.CreateTime }).(pulumi.IntOutput)
+}
+
+// Search by specifying domain name keywords, with fuzzy matching.
+func (o GetDomainsDomainOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Indicates the locked status of the accelerated domain.
+func (o GetDomainsDomainOutput) DomainLocks() GetDomainsDomainDomainLockArrayOutput {
+	return o.ApplyT(func(v GetDomainsDomain) []GetDomainsDomainDomainLock { return v.DomainLocks }).(GetDomainsDomainDomainLockArrayOutput)
+}
+
+// Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+func (o GetDomainsDomainOutput) Https() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDomainsDomain) bool { return v.Https }).(pulumi.BoolOutput)
+}
+
+// Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+func (o GetDomainsDomainOutput) Ipv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDomainsDomain) bool { return v.Ipv6 }).(pulumi.BoolOutput)
+}
+
+// Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+func (o GetDomainsDomainOutput) IsConflictDomain() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDomainsDomain) bool { return v.IsConflictDomain }).(pulumi.BoolOutput)
+}
+
+// Configure the origin protocol for the accelerated domain.
+func (o GetDomainsDomainOutput) OriginProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.OriginProtocol }).(pulumi.StringOutput)
+}
+
+// Specify a primary origin server for filtering accelerated domains.
+func (o GetDomainsDomainOutput) PrimaryOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDomainsDomain) []string { return v.PrimaryOrigins }).(pulumi.StringArrayOutput)
+}
+
+// The project name of the domain.
+func (o GetDomainsDomainOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// Indicates the acceleration area. The parameter can take the following values: `chineseMainland`: Indicates mainland China. `global`: Indicates global. `outsideChineseMainland`: Indicates global (excluding mainland China).
+func (o GetDomainsDomainOutput) ServiceRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.ServiceRegion }).(pulumi.StringOutput)
+}
+
+// The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+func (o GetDomainsDomainOutput) ServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.ServiceType }).(pulumi.StringOutput)
+}
+
+// The status of the domain.
+func (o GetDomainsDomainOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+func (o GetDomainsDomainOutput) Tags() GetDomainsDomainTagArrayOutput {
+	return o.ApplyT(func(v GetDomainsDomain) []GetDomainsDomainTag { return v.Tags }).(GetDomainsDomainTagArrayOutput)
+}
+
+// The update time of the domain.
+func (o GetDomainsDomainOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDomainsDomain) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+type GetDomainsDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomain)(nil)).Elem()
+}
+
+func (o GetDomainsDomainArrayOutput) ToGetDomainsDomainArrayOutput() GetDomainsDomainArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainArrayOutput) ToGetDomainsDomainArrayOutputWithContext(ctx context.Context) GetDomainsDomainArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainArrayOutput) Index(i pulumi.IntInput) GetDomainsDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDomainsDomain {
+		return vs[0].([]GetDomainsDomain)[vs[1].(int)]
+	}).(GetDomainsDomainOutput)
+}
+
+type GetDomainsDomainDomainLock struct {
+	// If the Status is on, this parameter value records the reason for the lock.
+	Remark string `pulumi:"remark"`
+	// The status of the domain.
+	Status string `pulumi:"status"`
+}
+
+// GetDomainsDomainDomainLockInput is an input type that accepts GetDomainsDomainDomainLockArgs and GetDomainsDomainDomainLockOutput values.
+// You can construct a concrete instance of `GetDomainsDomainDomainLockInput` via:
+//
+//	GetDomainsDomainDomainLockArgs{...}
+type GetDomainsDomainDomainLockInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainDomainLockOutput() GetDomainsDomainDomainLockOutput
+	ToGetDomainsDomainDomainLockOutputWithContext(context.Context) GetDomainsDomainDomainLockOutput
+}
+
+type GetDomainsDomainDomainLockArgs struct {
+	// If the Status is on, this parameter value records the reason for the lock.
+	Remark pulumi.StringInput `pulumi:"remark"`
+	// The status of the domain.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetDomainsDomainDomainLockArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomainDomainLock)(nil)).Elem()
+}
+
+func (i GetDomainsDomainDomainLockArgs) ToGetDomainsDomainDomainLockOutput() GetDomainsDomainDomainLockOutput {
+	return i.ToGetDomainsDomainDomainLockOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainDomainLockArgs) ToGetDomainsDomainDomainLockOutputWithContext(ctx context.Context) GetDomainsDomainDomainLockOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainDomainLockOutput)
+}
+
+// GetDomainsDomainDomainLockArrayInput is an input type that accepts GetDomainsDomainDomainLockArray and GetDomainsDomainDomainLockArrayOutput values.
+// You can construct a concrete instance of `GetDomainsDomainDomainLockArrayInput` via:
+//
+//	GetDomainsDomainDomainLockArray{ GetDomainsDomainDomainLockArgs{...} }
+type GetDomainsDomainDomainLockArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainDomainLockArrayOutput() GetDomainsDomainDomainLockArrayOutput
+	ToGetDomainsDomainDomainLockArrayOutputWithContext(context.Context) GetDomainsDomainDomainLockArrayOutput
+}
+
+type GetDomainsDomainDomainLockArray []GetDomainsDomainDomainLockInput
+
+func (GetDomainsDomainDomainLockArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomainDomainLock)(nil)).Elem()
+}
+
+func (i GetDomainsDomainDomainLockArray) ToGetDomainsDomainDomainLockArrayOutput() GetDomainsDomainDomainLockArrayOutput {
+	return i.ToGetDomainsDomainDomainLockArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainDomainLockArray) ToGetDomainsDomainDomainLockArrayOutputWithContext(ctx context.Context) GetDomainsDomainDomainLockArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainDomainLockArrayOutput)
+}
+
+type GetDomainsDomainDomainLockOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainDomainLockOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomainDomainLock)(nil)).Elem()
+}
+
+func (o GetDomainsDomainDomainLockOutput) ToGetDomainsDomainDomainLockOutput() GetDomainsDomainDomainLockOutput {
+	return o
+}
+
+func (o GetDomainsDomainDomainLockOutput) ToGetDomainsDomainDomainLockOutputWithContext(ctx context.Context) GetDomainsDomainDomainLockOutput {
+	return o
+}
+
+// If the Status is on, this parameter value records the reason for the lock.
+func (o GetDomainsDomainDomainLockOutput) Remark() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomainDomainLock) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// The status of the domain.
+func (o GetDomainsDomainDomainLockOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomainDomainLock) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetDomainsDomainDomainLockArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainDomainLockArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomainDomainLock)(nil)).Elem()
+}
+
+func (o GetDomainsDomainDomainLockArrayOutput) ToGetDomainsDomainDomainLockArrayOutput() GetDomainsDomainDomainLockArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainDomainLockArrayOutput) ToGetDomainsDomainDomainLockArrayOutputWithContext(ctx context.Context) GetDomainsDomainDomainLockArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainDomainLockArrayOutput) Index(i pulumi.IntInput) GetDomainsDomainDomainLockOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDomainsDomainDomainLock {
+		return vs[0].([]GetDomainsDomainDomainLock)[vs[1].(int)]
+	}).(GetDomainsDomainDomainLockOutput)
+}
+
+type GetDomainsDomainTag struct {
+	// The key of the tag.
+	Key string `pulumi:"key"`
+	// The value of the tag.
+	Value string `pulumi:"value"`
+}
+
+// GetDomainsDomainTagInput is an input type that accepts GetDomainsDomainTagArgs and GetDomainsDomainTagOutput values.
+// You can construct a concrete instance of `GetDomainsDomainTagInput` via:
+//
+//	GetDomainsDomainTagArgs{...}
+type GetDomainsDomainTagInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainTagOutput() GetDomainsDomainTagOutput
+	ToGetDomainsDomainTagOutputWithContext(context.Context) GetDomainsDomainTagOutput
+}
+
+type GetDomainsDomainTagArgs struct {
+	// The key of the tag.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetDomainsDomainTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomainTag)(nil)).Elem()
+}
+
+func (i GetDomainsDomainTagArgs) ToGetDomainsDomainTagOutput() GetDomainsDomainTagOutput {
+	return i.ToGetDomainsDomainTagOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainTagArgs) ToGetDomainsDomainTagOutputWithContext(ctx context.Context) GetDomainsDomainTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainTagOutput)
+}
+
+// GetDomainsDomainTagArrayInput is an input type that accepts GetDomainsDomainTagArray and GetDomainsDomainTagArrayOutput values.
+// You can construct a concrete instance of `GetDomainsDomainTagArrayInput` via:
+//
+//	GetDomainsDomainTagArray{ GetDomainsDomainTagArgs{...} }
+type GetDomainsDomainTagArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainTagArrayOutput() GetDomainsDomainTagArrayOutput
+	ToGetDomainsDomainTagArrayOutputWithContext(context.Context) GetDomainsDomainTagArrayOutput
+}
+
+type GetDomainsDomainTagArray []GetDomainsDomainTagInput
+
+func (GetDomainsDomainTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomainTag)(nil)).Elem()
+}
+
+func (i GetDomainsDomainTagArray) ToGetDomainsDomainTagArrayOutput() GetDomainsDomainTagArrayOutput {
+	return i.ToGetDomainsDomainTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainTagArray) ToGetDomainsDomainTagArrayOutputWithContext(ctx context.Context) GetDomainsDomainTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainTagArrayOutput)
+}
+
+type GetDomainsDomainTagOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomainTag)(nil)).Elem()
+}
+
+func (o GetDomainsDomainTagOutput) ToGetDomainsDomainTagOutput() GetDomainsDomainTagOutput {
+	return o
+}
+
+func (o GetDomainsDomainTagOutput) ToGetDomainsDomainTagOutputWithContext(ctx context.Context) GetDomainsDomainTagOutput {
+	return o
+}
+
+// The key of the tag.
+func (o GetDomainsDomainTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomainTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag.
+func (o GetDomainsDomainTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomainTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetDomainsDomainTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomainTag)(nil)).Elem()
+}
+
+func (o GetDomainsDomainTagArrayOutput) ToGetDomainsDomainTagArrayOutput() GetDomainsDomainTagArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainTagArrayOutput) ToGetDomainsDomainTagArrayOutputWithContext(ctx context.Context) GetDomainsDomainTagArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainTagArrayOutput) Index(i pulumi.IntInput) GetDomainsDomainTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDomainsDomainTag {
+		return vs[0].([]GetDomainsDomainTag)[vs[1].(int)]
+	}).(GetDomainsDomainTagOutput)
+}
+
+type GetSharedConfigsConfigData struct {
+	// The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+	AllowIpAccessRules []GetSharedConfigsConfigDataAllowIpAccessRule `pulumi:"allowIpAccessRules"`
+	// The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+	AllowRefererAccessRules []GetSharedConfigsConfigDataAllowRefererAccessRule `pulumi:"allowRefererAccessRules"`
+	// The configuration for a common list is represented by ConfigType common_match_list.
+	CommonMatchLists []GetSharedConfigsConfigDataCommonMatchList `pulumi:"commonMatchLists"`
+	// The name of the shared config.
+	ConfigName string `pulumi:"configName"`
+	// The type of the shared config.
+	ConfigType string `pulumi:"configType"`
+	// The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+	DenyIpAccessRules []GetSharedConfigsConfigDataDenyIpAccessRule `pulumi:"denyIpAccessRules"`
+	// The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+	DenyRefererAccessRules []GetSharedConfigsConfigDataDenyRefererAccessRule `pulumi:"denyRefererAccessRules"`
+	// The number of domains.
+	DomainCount int `pulumi:"domainCount"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+	// The update time of the shared config.
+	UpdateTime int `pulumi:"updateTime"`
+}
+
+// GetSharedConfigsConfigDataInput is an input type that accepts GetSharedConfigsConfigDataArgs and GetSharedConfigsConfigDataOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataInput` via:
+//
+//	GetSharedConfigsConfigDataArgs{...}
+type GetSharedConfigsConfigDataInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataOutput() GetSharedConfigsConfigDataOutput
+	ToGetSharedConfigsConfigDataOutputWithContext(context.Context) GetSharedConfigsConfigDataOutput
+}
+
+type GetSharedConfigsConfigDataArgs struct {
+	// The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+	AllowIpAccessRules GetSharedConfigsConfigDataAllowIpAccessRuleArrayInput `pulumi:"allowIpAccessRules"`
+	// The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+	AllowRefererAccessRules GetSharedConfigsConfigDataAllowRefererAccessRuleArrayInput `pulumi:"allowRefererAccessRules"`
+	// The configuration for a common list is represented by ConfigType common_match_list.
+	CommonMatchLists GetSharedConfigsConfigDataCommonMatchListArrayInput `pulumi:"commonMatchLists"`
+	// The name of the shared config.
+	ConfigName pulumi.StringInput `pulumi:"configName"`
+	// The type of the shared config.
+	ConfigType pulumi.StringInput `pulumi:"configType"`
+	// The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+	DenyIpAccessRules GetSharedConfigsConfigDataDenyIpAccessRuleArrayInput `pulumi:"denyIpAccessRules"`
+	// The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+	DenyRefererAccessRules GetSharedConfigsConfigDataDenyRefererAccessRuleArrayInput `pulumi:"denyRefererAccessRules"`
+	// The number of domains.
+	DomainCount pulumi.IntInput `pulumi:"domainCount"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The update time of the shared config.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+}
+
+func (GetSharedConfigsConfigDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigData)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataArgs) ToGetSharedConfigsConfigDataOutput() GetSharedConfigsConfigDataOutput {
+	return i.ToGetSharedConfigsConfigDataOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataArgs) ToGetSharedConfigsConfigDataOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataOutput)
+}
+
+// GetSharedConfigsConfigDataArrayInput is an input type that accepts GetSharedConfigsConfigDataArray and GetSharedConfigsConfigDataArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataArrayInput` via:
+//
+//	GetSharedConfigsConfigDataArray{ GetSharedConfigsConfigDataArgs{...} }
+type GetSharedConfigsConfigDataArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataArrayOutput() GetSharedConfigsConfigDataArrayOutput
+	ToGetSharedConfigsConfigDataArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataArrayOutput
+}
+
+type GetSharedConfigsConfigDataArray []GetSharedConfigsConfigDataInput
+
+func (GetSharedConfigsConfigDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigData)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataArray) ToGetSharedConfigsConfigDataArrayOutput() GetSharedConfigsConfigDataArrayOutput {
+	return i.ToGetSharedConfigsConfigDataArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataArray) ToGetSharedConfigsConfigDataArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataArrayOutput)
+}
+
+type GetSharedConfigsConfigDataOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigData)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataOutput) ToGetSharedConfigsConfigDataOutput() GetSharedConfigsConfigDataOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataOutput) ToGetSharedConfigsConfigDataOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataOutput {
+	return o
+}
+
+// The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+func (o GetSharedConfigsConfigDataOutput) AllowIpAccessRules() GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) []GetSharedConfigsConfigDataAllowIpAccessRule {
+		return v.AllowIpAccessRules
+	}).(GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput)
+}
+
+// The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+func (o GetSharedConfigsConfigDataOutput) AllowRefererAccessRules() GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) []GetSharedConfigsConfigDataAllowRefererAccessRule {
+		return v.AllowRefererAccessRules
+	}).(GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput)
+}
+
+// The configuration for a common list is represented by ConfigType common_match_list.
+func (o GetSharedConfigsConfigDataOutput) CommonMatchLists() GetSharedConfigsConfigDataCommonMatchListArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) []GetSharedConfigsConfigDataCommonMatchList {
+		return v.CommonMatchLists
+	}).(GetSharedConfigsConfigDataCommonMatchListArrayOutput)
+}
+
+// The name of the shared config.
+func (o GetSharedConfigsConfigDataOutput) ConfigName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) string { return v.ConfigName }).(pulumi.StringOutput)
+}
+
+// The type of the shared config.
+func (o GetSharedConfigsConfigDataOutput) ConfigType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) string { return v.ConfigType }).(pulumi.StringOutput)
+}
+
+// The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+func (o GetSharedConfigsConfigDataOutput) DenyIpAccessRules() GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) []GetSharedConfigsConfigDataDenyIpAccessRule {
+		return v.DenyIpAccessRules
+	}).(GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput)
+}
+
+// The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+func (o GetSharedConfigsConfigDataOutput) DenyRefererAccessRules() GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) []GetSharedConfigsConfigDataDenyRefererAccessRule {
+		return v.DenyRefererAccessRules
+	}).(GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput)
+}
+
+// The number of domains.
+func (o GetSharedConfigsConfigDataOutput) DomainCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) int { return v.DomainCount }).(pulumi.IntOutput)
+}
+
+// The name of the project.
+func (o GetSharedConfigsConfigDataOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The update time of the shared config.
+func (o GetSharedConfigsConfigDataOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigData) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+type GetSharedConfigsConfigDataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigData)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataArrayOutput) ToGetSharedConfigsConfigDataArrayOutput() GetSharedConfigsConfigDataArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataArrayOutput) ToGetSharedConfigsConfigDataArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigData {
+		return vs[0].([]GetSharedConfigsConfigData)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataOutput)
+}
+
+type GetSharedConfigsConfigDataAllowIpAccessRule struct {
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules []string `pulumi:"rules"`
+}
+
+// GetSharedConfigsConfigDataAllowIpAccessRuleInput is an input type that accepts GetSharedConfigsConfigDataAllowIpAccessRuleArgs and GetSharedConfigsConfigDataAllowIpAccessRuleOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataAllowIpAccessRuleInput` via:
+//
+//	GetSharedConfigsConfigDataAllowIpAccessRuleArgs{...}
+type GetSharedConfigsConfigDataAllowIpAccessRuleInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataAllowIpAccessRuleOutput() GetSharedConfigsConfigDataAllowIpAccessRuleOutput
+	ToGetSharedConfigsConfigDataAllowIpAccessRuleOutputWithContext(context.Context) GetSharedConfigsConfigDataAllowIpAccessRuleOutput
+}
+
+type GetSharedConfigsConfigDataAllowIpAccessRuleArgs struct {
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules pulumi.StringArrayInput `pulumi:"rules"`
+}
+
+func (GetSharedConfigsConfigDataAllowIpAccessRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataAllowIpAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataAllowIpAccessRuleArgs) ToGetSharedConfigsConfigDataAllowIpAccessRuleOutput() GetSharedConfigsConfigDataAllowIpAccessRuleOutput {
+	return i.ToGetSharedConfigsConfigDataAllowIpAccessRuleOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataAllowIpAccessRuleArgs) ToGetSharedConfigsConfigDataAllowIpAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowIpAccessRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataAllowIpAccessRuleOutput)
+}
+
+// GetSharedConfigsConfigDataAllowIpAccessRuleArrayInput is an input type that accepts GetSharedConfigsConfigDataAllowIpAccessRuleArray and GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataAllowIpAccessRuleArrayInput` via:
+//
+//	GetSharedConfigsConfigDataAllowIpAccessRuleArray{ GetSharedConfigsConfigDataAllowIpAccessRuleArgs{...} }
+type GetSharedConfigsConfigDataAllowIpAccessRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput() GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput
+	ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput
+}
+
+type GetSharedConfigsConfigDataAllowIpAccessRuleArray []GetSharedConfigsConfigDataAllowIpAccessRuleInput
+
+func (GetSharedConfigsConfigDataAllowIpAccessRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataAllowIpAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataAllowIpAccessRuleArray) ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput() GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput {
+	return i.ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataAllowIpAccessRuleArray) ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput)
+}
+
+type GetSharedConfigsConfigDataAllowIpAccessRuleOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataAllowIpAccessRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataAllowIpAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataAllowIpAccessRuleOutput) ToGetSharedConfigsConfigDataAllowIpAccessRuleOutput() GetSharedConfigsConfigDataAllowIpAccessRuleOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowIpAccessRuleOutput) ToGetSharedConfigsConfigDataAllowIpAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowIpAccessRuleOutput {
+	return o
+}
+
+// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+func (o GetSharedConfigsConfigDataAllowIpAccessRuleOutput) Rules() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataAllowIpAccessRule) []string { return v.Rules }).(pulumi.StringArrayOutput)
+}
+
+type GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataAllowIpAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput) ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput() GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput) ToGetSharedConfigsConfigDataAllowIpAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataAllowIpAccessRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataAllowIpAccessRule {
+		return vs[0].([]GetSharedConfigsConfigDataAllowIpAccessRule)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataAllowIpAccessRuleOutput)
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRule struct {
+	// Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+	AllowEmpty bool `pulumi:"allowEmpty"`
+	// The content indicating the Referer blacklist.
+	CommonTypes []GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType `pulumi:"commonTypes"`
+}
+
+// GetSharedConfigsConfigDataAllowRefererAccessRuleInput is an input type that accepts GetSharedConfigsConfigDataAllowRefererAccessRuleArgs and GetSharedConfigsConfigDataAllowRefererAccessRuleOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataAllowRefererAccessRuleInput` via:
+//
+//	GetSharedConfigsConfigDataAllowRefererAccessRuleArgs{...}
+type GetSharedConfigsConfigDataAllowRefererAccessRuleInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleOutput
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutputWithContext(context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleOutput
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleArgs struct {
+	// Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+	AllowEmpty pulumi.BoolInput `pulumi:"allowEmpty"`
+	// The content indicating the Referer blacklist.
+	CommonTypes GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayInput `pulumi:"commonTypes"`
+}
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleArgs) ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleOutput {
+	return i.ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleArgs) ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataAllowRefererAccessRuleOutput)
+}
+
+// GetSharedConfigsConfigDataAllowRefererAccessRuleArrayInput is an input type that accepts GetSharedConfigsConfigDataAllowRefererAccessRuleArray and GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataAllowRefererAccessRuleArrayInput` via:
+//
+//	GetSharedConfigsConfigDataAllowRefererAccessRuleArray{ GetSharedConfigsConfigDataAllowRefererAccessRuleArgs{...} }
+type GetSharedConfigsConfigDataAllowRefererAccessRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleArray []GetSharedConfigsConfigDataAllowRefererAccessRuleInput
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataAllowRefererAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleArray) ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput {
+	return i.ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleArray) ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput)
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleOutput {
+	return o
+}
+
+// Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleOutput) AllowEmpty() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataAllowRefererAccessRule) bool { return v.AllowEmpty }).(pulumi.BoolOutput)
+}
+
+// The content indicating the Referer blacklist.
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleOutput) CommonTypes() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataAllowRefererAccessRule) []GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType {
+		return v.CommonTypes
+	}).(GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput)
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataAllowRefererAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataAllowRefererAccessRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataAllowRefererAccessRule {
+		return vs[0].([]GetSharedConfigsConfigDataAllowRefererAccessRule)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataAllowRefererAccessRuleOutput)
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType struct {
+	// This list is case-sensitive when matching requests. Default is true.
+	IgnoreCase bool `pulumi:"ignoreCase"`
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules []string `pulumi:"rules"`
+}
+
+// GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeInput is an input type that accepts GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs and GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeInput` via:
+//
+//	GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs{...}
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutputWithContext(context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs struct {
+	// This list is case-sensitive when matching requests. Default is true.
+	IgnoreCase pulumi.BoolInput `pulumi:"ignoreCase"`
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules pulumi.StringArrayInput `pulumi:"rules"`
+}
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput {
+	return i.ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput)
+}
+
+// GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayInput is an input type that accepts GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray and GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayInput` via:
+//
+//	GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray{ GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs{...} }
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput
+	ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray []GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeInput
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput {
+	return i.ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput)
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput {
+	return o
+}
+
+// This list is case-sensitive when matching requests. Default is true.
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput) IgnoreCase() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType) bool { return v.IgnoreCase }).(pulumi.BoolOutput)
+}
+
+// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput) Rules() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType) []string { return v.Rules }).(pulumi.StringArrayOutput)
+}
+
+type GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput() GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput) ToGetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType {
+		return vs[0].([]GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput)
+}
+
+type GetSharedConfigsConfigDataCommonMatchList struct {
+	// The content indicating the Referer blacklist.
+	CommonTypes []GetSharedConfigsConfigDataCommonMatchListCommonType `pulumi:"commonTypes"`
+}
+
+// GetSharedConfigsConfigDataCommonMatchListInput is an input type that accepts GetSharedConfigsConfigDataCommonMatchListArgs and GetSharedConfigsConfigDataCommonMatchListOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataCommonMatchListInput` via:
+//
+//	GetSharedConfigsConfigDataCommonMatchListArgs{...}
+type GetSharedConfigsConfigDataCommonMatchListInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataCommonMatchListOutput() GetSharedConfigsConfigDataCommonMatchListOutput
+	ToGetSharedConfigsConfigDataCommonMatchListOutputWithContext(context.Context) GetSharedConfigsConfigDataCommonMatchListOutput
+}
+
+type GetSharedConfigsConfigDataCommonMatchListArgs struct {
+	// The content indicating the Referer blacklist.
+	CommonTypes GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayInput `pulumi:"commonTypes"`
+}
+
+func (GetSharedConfigsConfigDataCommonMatchListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchList)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListArgs) ToGetSharedConfigsConfigDataCommonMatchListOutput() GetSharedConfigsConfigDataCommonMatchListOutput {
+	return i.ToGetSharedConfigsConfigDataCommonMatchListOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListArgs) ToGetSharedConfigsConfigDataCommonMatchListOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataCommonMatchListOutput)
+}
+
+// GetSharedConfigsConfigDataCommonMatchListArrayInput is an input type that accepts GetSharedConfigsConfigDataCommonMatchListArray and GetSharedConfigsConfigDataCommonMatchListArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataCommonMatchListArrayInput` via:
+//
+//	GetSharedConfigsConfigDataCommonMatchListArray{ GetSharedConfigsConfigDataCommonMatchListArgs{...} }
+type GetSharedConfigsConfigDataCommonMatchListArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataCommonMatchListArrayOutput() GetSharedConfigsConfigDataCommonMatchListArrayOutput
+	ToGetSharedConfigsConfigDataCommonMatchListArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataCommonMatchListArrayOutput
+}
+
+type GetSharedConfigsConfigDataCommonMatchListArray []GetSharedConfigsConfigDataCommonMatchListInput
+
+func (GetSharedConfigsConfigDataCommonMatchListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataCommonMatchList)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListArray) ToGetSharedConfigsConfigDataCommonMatchListArrayOutput() GetSharedConfigsConfigDataCommonMatchListArrayOutput {
+	return i.ToGetSharedConfigsConfigDataCommonMatchListArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListArray) ToGetSharedConfigsConfigDataCommonMatchListArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataCommonMatchListArrayOutput)
+}
+
+type GetSharedConfigsConfigDataCommonMatchListOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataCommonMatchListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchList)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListOutput) ToGetSharedConfigsConfigDataCommonMatchListOutput() GetSharedConfigsConfigDataCommonMatchListOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListOutput) ToGetSharedConfigsConfigDataCommonMatchListOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListOutput {
+	return o
+}
+
+// The content indicating the Referer blacklist.
+func (o GetSharedConfigsConfigDataCommonMatchListOutput) CommonTypes() GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataCommonMatchList) []GetSharedConfigsConfigDataCommonMatchListCommonType {
+		return v.CommonTypes
+	}).(GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput)
+}
+
+type GetSharedConfigsConfigDataCommonMatchListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataCommonMatchListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataCommonMatchList)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListArrayOutput) ToGetSharedConfigsConfigDataCommonMatchListArrayOutput() GetSharedConfigsConfigDataCommonMatchListArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListArrayOutput) ToGetSharedConfigsConfigDataCommonMatchListArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataCommonMatchListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataCommonMatchList {
+		return vs[0].([]GetSharedConfigsConfigDataCommonMatchList)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataCommonMatchListOutput)
+}
+
+type GetSharedConfigsConfigDataCommonMatchListCommonType struct {
+	// This list is case-sensitive when matching requests. Default is true.
+	IgnoreCase bool `pulumi:"ignoreCase"`
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules []string `pulumi:"rules"`
+}
+
+// GetSharedConfigsConfigDataCommonMatchListCommonTypeInput is an input type that accepts GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs and GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataCommonMatchListCommonTypeInput` via:
+//
+//	GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs{...}
+type GetSharedConfigsConfigDataCommonMatchListCommonTypeInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutput() GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput
+	ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutputWithContext(context.Context) GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput
+}
+
+type GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs struct {
+	// This list is case-sensitive when matching requests. Default is true.
+	IgnoreCase pulumi.BoolInput `pulumi:"ignoreCase"`
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules pulumi.StringArrayInput `pulumi:"rules"`
+}
+
+func (GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchListCommonType)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutput() GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput {
+	return i.ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput)
+}
+
+// GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayInput is an input type that accepts GetSharedConfigsConfigDataCommonMatchListCommonTypeArray and GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayInput` via:
+//
+//	GetSharedConfigsConfigDataCommonMatchListCommonTypeArray{ GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs{...} }
+type GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput() GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput
+	ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput
+}
+
+type GetSharedConfigsConfigDataCommonMatchListCommonTypeArray []GetSharedConfigsConfigDataCommonMatchListCommonTypeInput
+
+func (GetSharedConfigsConfigDataCommonMatchListCommonTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataCommonMatchListCommonType)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListCommonTypeArray) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput() GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput {
+	return i.ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataCommonMatchListCommonTypeArray) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput)
+}
+
+type GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchListCommonType)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutput() GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput {
+	return o
+}
+
+// This list is case-sensitive when matching requests. Default is true.
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput) IgnoreCase() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataCommonMatchListCommonType) bool { return v.IgnoreCase }).(pulumi.BoolOutput)
+}
+
+// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput) Rules() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataCommonMatchListCommonType) []string { return v.Rules }).(pulumi.StringArrayOutput)
+}
+
+type GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataCommonMatchListCommonType)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput() GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput) ToGetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataCommonMatchListCommonType {
+		return vs[0].([]GetSharedConfigsConfigDataCommonMatchListCommonType)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput)
+}
+
+type GetSharedConfigsConfigDataDenyIpAccessRule struct {
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules []string `pulumi:"rules"`
+}
+
+// GetSharedConfigsConfigDataDenyIpAccessRuleInput is an input type that accepts GetSharedConfigsConfigDataDenyIpAccessRuleArgs and GetSharedConfigsConfigDataDenyIpAccessRuleOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataDenyIpAccessRuleInput` via:
+//
+//	GetSharedConfigsConfigDataDenyIpAccessRuleArgs{...}
+type GetSharedConfigsConfigDataDenyIpAccessRuleInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataDenyIpAccessRuleOutput() GetSharedConfigsConfigDataDenyIpAccessRuleOutput
+	ToGetSharedConfigsConfigDataDenyIpAccessRuleOutputWithContext(context.Context) GetSharedConfigsConfigDataDenyIpAccessRuleOutput
+}
+
+type GetSharedConfigsConfigDataDenyIpAccessRuleArgs struct {
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules pulumi.StringArrayInput `pulumi:"rules"`
+}
+
+func (GetSharedConfigsConfigDataDenyIpAccessRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataDenyIpAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataDenyIpAccessRuleArgs) ToGetSharedConfigsConfigDataDenyIpAccessRuleOutput() GetSharedConfigsConfigDataDenyIpAccessRuleOutput {
+	return i.ToGetSharedConfigsConfigDataDenyIpAccessRuleOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataDenyIpAccessRuleArgs) ToGetSharedConfigsConfigDataDenyIpAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyIpAccessRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataDenyIpAccessRuleOutput)
+}
+
+// GetSharedConfigsConfigDataDenyIpAccessRuleArrayInput is an input type that accepts GetSharedConfigsConfigDataDenyIpAccessRuleArray and GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataDenyIpAccessRuleArrayInput` via:
+//
+//	GetSharedConfigsConfigDataDenyIpAccessRuleArray{ GetSharedConfigsConfigDataDenyIpAccessRuleArgs{...} }
+type GetSharedConfigsConfigDataDenyIpAccessRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput() GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput
+	ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput
+}
+
+type GetSharedConfigsConfigDataDenyIpAccessRuleArray []GetSharedConfigsConfigDataDenyIpAccessRuleInput
+
+func (GetSharedConfigsConfigDataDenyIpAccessRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataDenyIpAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataDenyIpAccessRuleArray) ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput() GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput {
+	return i.ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataDenyIpAccessRuleArray) ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput)
+}
+
+type GetSharedConfigsConfigDataDenyIpAccessRuleOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataDenyIpAccessRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataDenyIpAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataDenyIpAccessRuleOutput) ToGetSharedConfigsConfigDataDenyIpAccessRuleOutput() GetSharedConfigsConfigDataDenyIpAccessRuleOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyIpAccessRuleOutput) ToGetSharedConfigsConfigDataDenyIpAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyIpAccessRuleOutput {
+	return o
+}
+
+// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+func (o GetSharedConfigsConfigDataDenyIpAccessRuleOutput) Rules() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataDenyIpAccessRule) []string { return v.Rules }).(pulumi.StringArrayOutput)
+}
+
+type GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataDenyIpAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput) ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput() GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput) ToGetSharedConfigsConfigDataDenyIpAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataDenyIpAccessRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataDenyIpAccessRule {
+		return vs[0].([]GetSharedConfigsConfigDataDenyIpAccessRule)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataDenyIpAccessRuleOutput)
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRule struct {
+	// Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+	AllowEmpty bool `pulumi:"allowEmpty"`
+	// The content indicating the Referer blacklist.
+	CommonTypes []GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType `pulumi:"commonTypes"`
+}
+
+// GetSharedConfigsConfigDataDenyRefererAccessRuleInput is an input type that accepts GetSharedConfigsConfigDataDenyRefererAccessRuleArgs and GetSharedConfigsConfigDataDenyRefererAccessRuleOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataDenyRefererAccessRuleInput` via:
+//
+//	GetSharedConfigsConfigDataDenyRefererAccessRuleArgs{...}
+type GetSharedConfigsConfigDataDenyRefererAccessRuleInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleOutput
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutputWithContext(context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleOutput
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleArgs struct {
+	// Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+	AllowEmpty pulumi.BoolInput `pulumi:"allowEmpty"`
+	// The content indicating the Referer blacklist.
+	CommonTypes GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayInput `pulumi:"commonTypes"`
+}
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleArgs) ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleOutput {
+	return i.ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleArgs) ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataDenyRefererAccessRuleOutput)
+}
+
+// GetSharedConfigsConfigDataDenyRefererAccessRuleArrayInput is an input type that accepts GetSharedConfigsConfigDataDenyRefererAccessRuleArray and GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataDenyRefererAccessRuleArrayInput` via:
+//
+//	GetSharedConfigsConfigDataDenyRefererAccessRuleArray{ GetSharedConfigsConfigDataDenyRefererAccessRuleArgs{...} }
+type GetSharedConfigsConfigDataDenyRefererAccessRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleArray []GetSharedConfigsConfigDataDenyRefererAccessRuleInput
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataDenyRefererAccessRule)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleArray) ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput {
+	return i.ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleArray) ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput)
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleOutput {
+	return o
+}
+
+// Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleOutput) AllowEmpty() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataDenyRefererAccessRule) bool { return v.AllowEmpty }).(pulumi.BoolOutput)
+}
+
+// The content indicating the Referer blacklist.
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleOutput) CommonTypes() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataDenyRefererAccessRule) []GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType {
+		return v.CommonTypes
+	}).(GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput)
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataDenyRefererAccessRule)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataDenyRefererAccessRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataDenyRefererAccessRule {
+		return vs[0].([]GetSharedConfigsConfigDataDenyRefererAccessRule)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataDenyRefererAccessRuleOutput)
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType struct {
+	// This list is case-sensitive when matching requests. Default is true.
+	IgnoreCase bool `pulumi:"ignoreCase"`
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules []string `pulumi:"rules"`
+}
+
+// GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeInput is an input type that accepts GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs and GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeInput` via:
+//
+//	GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs{...}
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutputWithContext(context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs struct {
+	// This list is case-sensitive when matching requests. Default is true.
+	IgnoreCase pulumi.BoolInput `pulumi:"ignoreCase"`
+	// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+	Rules pulumi.StringArrayInput `pulumi:"rules"`
+}
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput {
+	return i.ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput)
+}
+
+// GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayInput is an input type that accepts GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray and GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput values.
+// You can construct a concrete instance of `GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayInput` via:
+//
+//	GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray{ GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs{...} }
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput
+	ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutputWithContext(context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray []GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeInput
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput {
+	return i.ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput)
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput {
+	return o
+}
+
+// This list is case-sensitive when matching requests. Default is true.
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput) IgnoreCase() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType) bool { return v.IgnoreCase }).(pulumi.BoolOutput)
+}
+
+// The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput) Rules() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType) []string { return v.Rules }).(pulumi.StringArrayOutput)
+}
+
+type GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType)(nil)).Elem()
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput() GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput) ToGetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutputWithContext(ctx context.Context) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput {
+	return o
+}
+
+func (o GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput) Index(i pulumi.IntInput) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType {
+		return vs[0].([]GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType)[vs[1].(int)]
+	}).(GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CdnDomainSharedCnameInput)(nil)).Elem(), CdnDomainSharedCnameArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CdnDomainSharedCnamePtrInput)(nil)).Elem(), CdnDomainSharedCnameArgs{})
@@ -3330,6 +5145,34 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SharedConfigsConfigDataDenyRefererAccessRuleArrayInput)(nil)).Elem(), SharedConfigsConfigDataDenyRefererAccessRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeInput)(nil)).Elem(), SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayInput)(nil)).Elem(), SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertInfoInput)(nil)).Elem(), GetCertificatesCertInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertInfoArrayInput)(nil)).Elem(), GetCertificatesCertInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigsDomainConfigInput)(nil)).Elem(), GetConfigsDomainConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigsDomainConfigArrayInput)(nil)).Elem(), GetConfigsDomainConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainInput)(nil)).Elem(), GetDomainsDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainArrayInput)(nil)).Elem(), GetDomainsDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainDomainLockInput)(nil)).Elem(), GetDomainsDomainDomainLockArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainDomainLockArrayInput)(nil)).Elem(), GetDomainsDomainDomainLockArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainTagInput)(nil)).Elem(), GetDomainsDomainTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainTagArrayInput)(nil)).Elem(), GetDomainsDomainTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataInput)(nil)).Elem(), GetSharedConfigsConfigDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataAllowIpAccessRuleInput)(nil)).Elem(), GetSharedConfigsConfigDataAllowIpAccessRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataAllowIpAccessRuleArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataAllowIpAccessRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRuleInput)(nil)).Elem(), GetSharedConfigsConfigDataAllowRefererAccessRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRuleArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataAllowRefererAccessRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeInput)(nil)).Elem(), GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchListInput)(nil)).Elem(), GetSharedConfigsConfigDataCommonMatchListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchListArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataCommonMatchListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchListCommonTypeInput)(nil)).Elem(), GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataCommonMatchListCommonTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataDenyIpAccessRuleInput)(nil)).Elem(), GetSharedConfigsConfigDataDenyIpAccessRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataDenyIpAccessRuleArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataDenyIpAccessRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRuleInput)(nil)).Elem(), GetSharedConfigsConfigDataDenyRefererAccessRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRuleArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataDenyRefererAccessRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeInput)(nil)).Elem(), GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayInput)(nil)).Elem(), GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArray{})
 	pulumi.RegisterOutputType(CdnDomainSharedCnameOutput{})
 	pulumi.RegisterOutputType(CdnDomainSharedCnamePtrOutput{})
 	pulumi.RegisterOutputType(CdnDomainTagOutput{})
@@ -3378,4 +5221,32 @@ func init() {
 	pulumi.RegisterOutputType(SharedConfigsConfigDataDenyRefererAccessRuleArrayOutput{})
 	pulumi.RegisterOutputType(SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput{})
 	pulumi.RegisterOutputType(SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertInfoOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetConfigsDomainConfigOutput{})
+	pulumi.RegisterOutputType(GetConfigsDomainConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainArrayOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainDomainLockOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainDomainLockArrayOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainTagOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainTagArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataAllowIpAccessRuleOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataAllowIpAccessRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataAllowRefererAccessRuleOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataAllowRefererAccessRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataCommonMatchListOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataCommonMatchListArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataCommonMatchListCommonTypeOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataCommonMatchListCommonTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataDenyIpAccessRuleOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataDenyIpAccessRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataDenyRefererAccessRuleOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataDenyRefererAccessRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeOutput{})
+	pulumi.RegisterOutputType(GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArrayOutput{})
 }

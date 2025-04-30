@@ -11,6 +11,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Deprecated: volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2
 func EscloudInstancesV2(ctx *pulumi.Context, args *EscloudInstancesV2Args, opts ...pulumi.InvokeOption) (*EscloudInstancesV2Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EscloudInstancesV2Result

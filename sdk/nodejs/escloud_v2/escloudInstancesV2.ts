@@ -6,7 +6,9 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/** @deprecated volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2 */
 export function escloudInstancesV2(args?: EscloudInstancesV2Args, opts?: pulumi.InvokeOptions): Promise<EscloudInstancesV2Result> {
+    pulumi.log.warn("escloudInstancesV2 is deprecated: volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -58,6 +60,7 @@ export interface EscloudInstancesV2Result {
     readonly versions?: string[];
     readonly zoneIds?: string[];
 }
+/** @deprecated volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2 */
 export function escloudInstancesV2Output(args?: EscloudInstancesV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EscloudInstancesV2Result> {
     return pulumi.output(args).apply((a: any) => escloudInstancesV2(a, opts))
 }

@@ -17,6 +17,8 @@ __all__ = [
     'certificates_output',
 ]
 
+warnings.warn("""volcengine.cdn/certificates.Certificates has been deprecated in favor of volcengine.cdn/getcertificates.getCertificates""", DeprecationWarning)
+
 @pulumi.output_type
 class CertificatesResult:
     """
@@ -129,7 +131,7 @@ def certificates(name: Optional[str] = None,
         private_key="",
         desc="tftest",
         source="cdn_cert_hosting")
-    foo_certificates = volcengine.cdn.certificates_output(source=foo_cdn_certificate.source)
+    foo_certificates = volcengine.cdn.get_certificates_output(source=foo_cdn_certificate.source)
     ```
 
 
@@ -138,6 +140,7 @@ def certificates(name: Optional[str] = None,
     :param str source: Specify the location for storing the certificate. The parameter can take the following values: `volc_cert_center`: indicates that the certificate will be stored in the certificate center.`cdn_cert_hosting`: indicates that the certificate will be hosted on the content delivery network.
     :param str status: Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
     """
+    pulumi.log.warn("""certificates is deprecated: volcengine.cdn/certificates.Certificates has been deprecated in favor of volcengine.cdn/getcertificates.getCertificates""")
     __args__ = dict()
     __args__['name'] = name
     __args__['outputFile'] = output_file
@@ -175,7 +178,7 @@ def certificates_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         private_key="",
         desc="tftest",
         source="cdn_cert_hosting")
-    foo_certificates = volcengine.cdn.certificates_output(source=foo_cdn_certificate.source)
+    foo_certificates = volcengine.cdn.get_certificates_output(source=foo_cdn_certificate.source)
     ```
 
 
@@ -184,4 +187,5 @@ def certificates_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str source: Specify the location for storing the certificate. The parameter can take the following values: `volc_cert_center`: indicates that the certificate will be stored in the certificate center.`cdn_cert_hosting`: indicates that the certificate will be hosted on the content delivery network.
     :param str status: Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
     """
+    pulumi.log.warn("""certificates is deprecated: volcengine.cdn/certificates.Certificates has been deprecated in favor of volcengine.cdn/getcertificates.getCertificates""")
     ...

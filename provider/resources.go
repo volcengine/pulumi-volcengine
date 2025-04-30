@@ -23,6 +23,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -55,7 +56,6 @@ const (
 	volcengineVpnMod               = "vpn"
 	volcengineAlbMod               = "alb"
 	volcengineEbsMod               = "ebs"
-	volcengineEscloudV2Mod         = "escloud_v2"
 	volcengineIamMod               = "iam"
 	volcengineOrganizationMod      = "organization"
 	volcengineVepfsMod             = "vepfs"
@@ -229,7 +229,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_vpc":                                              {Tok: resourceType(volcengineVpcMod, "Vpc")},
 			"volcengine_network_acl":                                      {Tok: resourceType(volcengineVpcMod, "NetworkAcl")},
 			"volcengine_ha_vip_associate":                                 {Tok: resourceType(volcengineVpcMod, "HaVipAssociate")},
-			"volcengine_escloud_instance":                                 {Tok: resourceType(volcengineEscloudMod, "Instance")},
 			"volcengine_iam_access_key":                                   {Tok: resourceType(volcengineIamMod, "AccessKey")},
 			"volcengine_iam_user_policy_attachment":                       {Tok: resourceType(volcengineIamMod, "UserPolicyAttachment")},
 			"volcengine_iam_login_profile":                                {Tok: resourceType(volcengineIamMod, "LoginProfile")},
@@ -292,13 +291,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_private_zone_record":                              {Tok: resourceType(volcenginePrivateZoneMod, "Record")},
 			"volcengine_private_zone_user_vpc_authorization":              {Tok: resourceType(volcenginePrivateZoneMod, "UserVpcAuthorization")},
 			"volcengine_private_zone_record_weight_enabler":               {Tok: resourceType(volcenginePrivateZoneMod, "RecordWeightEnabler")},
-			"volcengine_cloud_identity_permission_set_provisioning":       {Tok: resourceType(volcengineCloudIdentityMod, "PermissionSetProvisioning")},
-			"volcengine_cloud_identity_permission_set":                    {Tok: resourceType(volcengineCloudIdentityMod, "PermissionSet")},
-			"volcengine_cloud_identity_permission_set_assignment":         {Tok: resourceType(volcengineCloudIdentityMod, "PermissionSetAssignment")},
-			"volcengine_cloud_identity_user_provisioning":                 {Tok: resourceType(volcengineCloudIdentityMod, "UserProvisioning")},
-			"volcengine_cloud_identity_user_attachment":                   {Tok: resourceType(volcengineCloudIdentityMod, "UserAttachment")},
-			"volcengine_cloud_identity_group":                             {Tok: resourceType(volcengineCloudIdentityMod, "Group")},
-			"volcengine_cloud_identity_user":                              {Tok: resourceType(volcengineCloudIdentityMod, "User")},
 			"volcengine_mongodb_ssl_state":                                {Tok: resourceType(volcengineMongodbMod, "SslState")},
 			"volcengine_mongodb_endpoint":                                 {Tok: resourceType(volcengineMongodbMod, "Endpoint")},
 			"volcengine_mongodb_allow_list_associate":                     {Tok: resourceType(volcengineMongodbMod, "MongoAllowListAssociate")},
@@ -306,8 +298,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_mongodb_instance_parameter":                       {Tok: resourceType(volcengineMongodbMod, "InstanceParameter")},
 			"volcengine_mongodb_allow_list":                               {Tok: resourceType(volcengineMongodbMod, "MongoAllowList")},
 			"volcengine_mongodb_account":                                  {Tok: resourceType(volcengineMongodbMod, "Account")},
-			"volcengine_escloud_ip_white_list":                            {Tok: resourceType(volcengineEscloudV2Mod, "EscloudIpWhiteList")},
-			"volcengine_escloud_instance_v2":                              {Tok: resourceType(volcengineEscloudV2Mod, "EscloudInstanceV2")},
 			"volcengine_nas_snapshot":                                     {Tok: resourceType(volcengineNasMod, "Snapshot")},
 			"volcengine_nas_file_system":                                  {Tok: resourceType(volcengineNasMod, "FileSystem")},
 			"volcengine_nas_permission_group":                             {Tok: resourceType(volcengineNasMod, "PermissionGroup")},
@@ -332,7 +322,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_kafka_group":                                      {Tok: resourceType(volcengineKafkaMod, "Group")},
 			"volcengine_cdn_certificate":                                  {Tok: resourceType(volcengineCdnMod, "CdnCertificate")},
 			"volcengine_cdn_domain":                                       {Tok: resourceType(volcengineCdnMod, "CdnDomain")},
-			"volcengine_cdn_shared_config":                                {Tok: resourceType(volcengineCdnMod, "SharedConfig")},
 			"volcengine_ssl_vpn_client_cert":                              {Tok: resourceType(volcengineVpnMod, "SslVpnClientCert")},
 			"volcengine_ssl_vpn_server":                                   {Tok: resourceType(volcengineVpnMod, "SslVpnServer")},
 			"volcengine_customer_gateway":                                 {Tok: resourceType(volcengineVpnMod, "CustomerGateway")},
@@ -497,9 +486,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_subnets":                                           {Tok: dataSourceType(volcengineVpcMod, "Subnets")},
 			"volcengine_vpcs":                                              {Tok: dataSourceType(volcengineVpcMod, "Vpcs")},
 			"volcengine_network_acls":                                      {Tok: dataSourceType(volcengineVpcMod, "NetworkAcls")},
-			"volcengine_escloud_instances":                                 {Tok: dataSourceType(volcengineEscloudMod, "Instances")},
-			"volcengine_escloud_zones":                                     {Tok: dataSourceType(volcengineEscloudMod, "Zones")},
-			"volcengine_escloud_regions":                                   {Tok: dataSourceType(volcengineEscloudMod, "Regions")},
 			"volcengine_iam_access_keys":                                   {Tok: dataSourceType(volcengineIamMod, "AccessKeys")},
 			"volcengine_iam_users":                                         {Tok: dataSourceType(volcengineIamMod, "Users")},
 			"volcengine_iam_roles":                                         {Tok: dataSourceType(volcengineIamMod, "Roles")},
@@ -549,12 +535,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_private_zones":                                     {Tok: dataSourceType(volcenginePrivateZoneMod, "PrivateZones")},
 			"volcengine_private_zone_record_sets":                          {Tok: dataSourceType(volcenginePrivateZoneMod, "RecordSets")},
 			"volcengine_private_zone_records":                              {Tok: dataSourceType(volcenginePrivateZoneMod, "Records")},
-			"volcengine_cloud_identity_permission_set_provisionings":       {Tok: dataSourceType(volcengineCloudIdentityMod, "PermissionSetProvisionings")},
-			"volcengine_cloud_identity_permission_sets":                    {Tok: dataSourceType(volcengineCloudIdentityMod, "PermissionSets")},
-			"volcengine_cloud_identity_permission_set_assignments":         {Tok: dataSourceType(volcengineCloudIdentityMod, "PermissionSetAssignments")},
-			"volcengine_cloud_identity_user_provisionings":                 {Tok: dataSourceType(volcengineCloudIdentityMod, "UserProvisionings")},
-			"volcengine_cloud_identity_groups":                             {Tok: dataSourceType(volcengineCloudIdentityMod, "Groups")},
-			"volcengine_cloud_identity_users":                              {Tok: dataSourceType(volcengineCloudIdentityMod, "Users")},
 			"volcengine_mongodb_ssl_states":                                {Tok: dataSourceType(volcengineMongodbMod, "SslStates")},
 			"volcengine_mongodb_endpoints":                                 {Tok: dataSourceType(volcengineMongodbMod, "Endpoints")},
 			"volcengine_mongodb_instances":                                 {Tok: dataSourceType(volcengineMongodbMod, "Instances")},
@@ -565,7 +545,7 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_mongodb_accounts":                                  {Tok: dataSourceType(volcengineMongodbMod, "Accounts")},
 			"volcengine_mongodb_zones":                                     {Tok: dataSourceType(volcengineMongodbMod, "Zones")},
 			"volcengine_mongodb_instance_parameter_logs":                   {Tok: dataSourceType(volcengineMongodbMod, "InstanceParameterLogs")},
-			"volcengine_escloud_instances_v2":                              {Tok: dataSourceType(volcengineEscloudV2Mod, "EscloudInstancesV2")},
+			"volcengine_escloud_instances_v2":                              {Tok: dataSourceType(volcengineEscloudMod, "getInstancesV2")},
 			"volcengine_nas_regions":                                       {Tok: dataSourceType(volcengineNasMod, "Regions")},
 			"volcengine_nas_snapshots":                                     {Tok: dataSourceType(volcengineNasMod, "Snapshots")},
 			"volcengine_nas_file_systems":                                  {Tok: dataSourceType(volcengineNasMod, "FileSystems")},
@@ -592,10 +572,6 @@ func Provider() tfbridge.ProviderInfo {
 			"volcengine_kafka_regions":                                     {Tok: dataSourceType(volcengineKafkaMod, "Regions")},
 			"volcengine_kafka_instances":                                   {Tok: dataSourceType(volcengineKafkaMod, "Instances")},
 			"volcengine_kafka_groups":                                      {Tok: dataSourceType(volcengineKafkaMod, "Groups")},
-			"volcengine_cdn_certificates":                                  {Tok: dataSourceType(volcengineCdnMod, "Certificates")},
-			"volcengine_cdn_domains":                                       {Tok: dataSourceType(volcengineCdnMod, "Domains")},
-			"volcengine_cdn_shared_configs":                                {Tok: dataSourceType(volcengineCdnMod, "SharedConfigs")},
-			"volcengine_cdn_configs":                                       {Tok: dataSourceType(volcengineCdnMod, "Configs")},
 			"volcengine_ssl_vpn_client_certs":                              {Tok: dataSourceType(volcengineVpnMod, "SslVpnClientCerts")},
 			"volcengine_ssl_vpn_servers":                                   {Tok: dataSourceType(volcengineVpnMod, "SslVpnServers")},
 			"volcengine_customer_gateways":                                 {Tok: dataSourceType(volcengineVpnMod, "CustomerGateways")},
@@ -728,6 +704,18 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
+	prov.MustComputeTokens(
+			tks.MappedModules(
+				"volcengine_",
+				"index",
+				map[string]string{
+					"cdn":            volcengineCdnMod,
+					"cloud_identity": volcengineCloudIdentityMod,
+					"escloud":        volcengineEscloudMod,
+				},
+				tks.MakeStandard(volcenginePkg),
+			),
+		)
 	prov.SetAutonaming(255, "-")
 	prov.MustApplyAutoAliases()
 

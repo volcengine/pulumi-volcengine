@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_identity
 {
+    [Obsolete(@"volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments")]
     public static class PermissionSetAssignments
     {
         /// <summary>
@@ -66,7 +67,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///         PrincipalId = fooUser.Id,
         ///     });
         /// 
-        ///     var fooPermissionSetAssignments = Volcengine.Cloud_identity.PermissionSetAssignments.Invoke(new()
+        ///     var fooPermissionSetAssignments = Volcengine.Cloud_identity.GetPermissionSetAssignments.Invoke(new()
         ///     {
         ///         PermissionSetId = fooPermissionSetAssignment.PermissionSetId,
         ///     });
@@ -132,7 +133,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///         PrincipalId = fooUser.Id,
         ///     });
         /// 
-        ///     var fooPermissionSetAssignments = Volcengine.Cloud_identity.PermissionSetAssignments.Invoke(new()
+        ///     var fooPermissionSetAssignments = Volcengine.Cloud_identity.GetPermissionSetAssignments.Invoke(new()
         ///     {
         ///         PermissionSetId = fooPermissionSetAssignment.PermissionSetId,
         ///     });

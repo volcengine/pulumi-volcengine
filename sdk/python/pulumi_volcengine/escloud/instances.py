@@ -17,6 +17,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -141,7 +143,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
               zone_ids: Optional[Sequence[str]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstancesResult:
     """
-    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+    (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
     ## Example Usage
 
     ```python
@@ -193,7 +195,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
         project_name="default",
         force_restart_after_scale=False,
     ))
-    foo_instances = volcengine.escloud.instances_output(ids=[foo_instance.id])
+    foo_instances = volcengine.escloud.get_instances_output(ids=[foo_instance.id])
     ```
 
 
@@ -205,6 +207,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
     :param Sequence[str] versions: The versions of instance.
     :param Sequence[str] zone_ids: The available zone IDs of instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances""")
     __args__ = dict()
     __args__['chargeTypes'] = charge_types
     __args__['ids'] = ids
@@ -239,7 +242,7 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
                      zone_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstancesResult]:
     """
-    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+    (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
     ## Example Usage
 
     ```python
@@ -291,7 +294,7 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
         project_name="default",
         force_restart_after_scale=False,
     ))
-    foo_instances = volcengine.escloud.instances_output(ids=[foo_instance.id])
+    foo_instances = volcengine.escloud.get_instances_output(ids=[foo_instance.id])
     ```
 
 
@@ -303,4 +306,5 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
     :param Sequence[str] versions: The versions of instance.
     :param Sequence[str] zone_ids: The available zone IDs of instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances""")
     ...

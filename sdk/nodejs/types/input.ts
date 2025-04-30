@@ -1510,6 +1510,28 @@ export namespace eip {
 }
 
 export namespace escloud {
+    export interface GetInstancesV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetInstancesV2TagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface InstanceInstanceConfiguration {
         /**
          * The password of administrator account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -1602,6 +1624,71 @@ export namespace escloud {
          * The type of node, the value is `Master` or `Hot` or `Kibana`.
          */
         type: pulumi.Input<string>;
+    }
+
+    export interface InstanceV2NetworkSpec {
+        /**
+         * The bandwidth of the eip. Unit: Mbps.
+         */
+        bandwidth: pulumi.Input<number>;
+        /**
+         * Whether the eip is opened.
+         */
+        isOpen: pulumi.Input<boolean>;
+        /**
+         * The spec name of public network.
+         */
+        specName: pulumi.Input<string>;
+        /**
+         * The type of public network, valid values: `Elasticsearch`, `Kibana`.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface InstanceV2NodeSpecsAssign {
+        /**
+         * The extra performance of FlexPL storage spec.
+         */
+        extraPerformance?: pulumi.Input<inputs.escloud.InstanceV2NodeSpecsAssignExtraPerformance>;
+        /**
+         * The number of node.
+         */
+        number: pulumi.Input<number>;
+        /**
+         * The name of compute resource spec.
+         */
+        resourceSpecName: pulumi.Input<string>;
+        /**
+         * The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+         */
+        storageSize: pulumi.Input<number>;
+        /**
+         * The name of storage spec. Kibana NodeSpecsAssign should specify this field to ``.
+         */
+        storageSpecName: pulumi.Input<string>;
+        /**
+         * The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface InstanceV2NodeSpecsAssignExtraPerformance {
+        /**
+         * When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+         * The unit is MiB, and the adjustment step size is 10MiB.
+         */
+        throughput: pulumi.Input<number>;
+    }
+
+    export interface InstanceV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }

@@ -1464,6 +1464,1173 @@ func (o UsersUserArrayOutput) Index(i pulumi.IntInput) UsersUserOutput {
 	}).(UsersUserOutput)
 }
 
+type GetGroupsGroup struct {
+	// The created time of the cloud identity group.
+	CreatedTime string `pulumi:"createdTime"`
+	// The description of the cloud identity group.
+	Description string `pulumi:"description"`
+	// The display name of cloud identity group.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the cloud identity group.
+	GroupId string `pulumi:"groupId"`
+	// The name of cloud identity group.
+	GroupName string `pulumi:"groupName"`
+	// The id of the cloud identity group.
+	Id string `pulumi:"id"`
+	// The join type of cloud identity group. Valid values: `Auto`, `Manual`.
+	JoinType string `pulumi:"joinType"`
+	// The source of the cloud identity group.
+	Source string `pulumi:"source"`
+	// The updated time of the cloud identity group.
+	UpdatedTime string `pulumi:"updatedTime"`
+}
+
+// GetGroupsGroupInput is an input type that accepts GetGroupsGroupArgs and GetGroupsGroupOutput values.
+// You can construct a concrete instance of `GetGroupsGroupInput` via:
+//
+//	GetGroupsGroupArgs{...}
+type GetGroupsGroupInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupOutput() GetGroupsGroupOutput
+	ToGetGroupsGroupOutputWithContext(context.Context) GetGroupsGroupOutput
+}
+
+type GetGroupsGroupArgs struct {
+	// The created time of the cloud identity group.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The description of the cloud identity group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of cloud identity group.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the cloud identity group.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// The name of cloud identity group.
+	GroupName pulumi.StringInput `pulumi:"groupName"`
+	// The id of the cloud identity group.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The join type of cloud identity group. Valid values: `Auto`, `Manual`.
+	JoinType pulumi.StringInput `pulumi:"joinType"`
+	// The source of the cloud identity group.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The updated time of the cloud identity group.
+	UpdatedTime pulumi.StringInput `pulumi:"updatedTime"`
+}
+
+func (GetGroupsGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroup)(nil)).Elem()
+}
+
+func (i GetGroupsGroupArgs) ToGetGroupsGroupOutput() GetGroupsGroupOutput {
+	return i.ToGetGroupsGroupOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupArgs) ToGetGroupsGroupOutputWithContext(ctx context.Context) GetGroupsGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupOutput)
+}
+
+// GetGroupsGroupArrayInput is an input type that accepts GetGroupsGroupArray and GetGroupsGroupArrayOutput values.
+// You can construct a concrete instance of `GetGroupsGroupArrayInput` via:
+//
+//	GetGroupsGroupArray{ GetGroupsGroupArgs{...} }
+type GetGroupsGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput
+	ToGetGroupsGroupArrayOutputWithContext(context.Context) GetGroupsGroupArrayOutput
+}
+
+type GetGroupsGroupArray []GetGroupsGroupInput
+
+func (GetGroupsGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroup)(nil)).Elem()
+}
+
+func (i GetGroupsGroupArray) ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput {
+	return i.ToGetGroupsGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupArray) ToGetGroupsGroupArrayOutputWithContext(ctx context.Context) GetGroupsGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupArrayOutput)
+}
+
+type GetGroupsGroupOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroup)(nil)).Elem()
+}
+
+func (o GetGroupsGroupOutput) ToGetGroupsGroupOutput() GetGroupsGroupOutput {
+	return o
+}
+
+func (o GetGroupsGroupOutput) ToGetGroupsGroupOutputWithContext(ctx context.Context) GetGroupsGroupOutput {
+	return o
+}
+
+// The created time of the cloud identity group.
+func (o GetGroupsGroupOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The description of the cloud identity group.
+func (o GetGroupsGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of cloud identity group.
+func (o GetGroupsGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity group.
+func (o GetGroupsGroupOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// The name of cloud identity group.
+func (o GetGroupsGroupOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.GroupName }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity group.
+func (o GetGroupsGroupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The join type of cloud identity group. Valid values: `Auto`, `Manual`.
+func (o GetGroupsGroupOutput) JoinType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.JoinType }).(pulumi.StringOutput)
+}
+
+// The source of the cloud identity group.
+func (o GetGroupsGroupOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The updated time of the cloud identity group.
+func (o GetGroupsGroupOutput) UpdatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.UpdatedTime }).(pulumi.StringOutput)
+}
+
+type GetGroupsGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroup)(nil)).Elem()
+}
+
+func (o GetGroupsGroupArrayOutput) ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupArrayOutput) ToGetGroupsGroupArrayOutputWithContext(ctx context.Context) GetGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetGroupsGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsGroup {
+		return vs[0].([]GetGroupsGroup)[vs[1].(int)]
+	}).(GetGroupsGroupOutput)
+}
+
+type GetPermissionSetAssignmentsAssignment struct {
+	// The create time of the cloud identity permission set assignment.
+	CreateTime string `pulumi:"createTime"`
+	// The id of the cloud identity permission set.
+	Id string `pulumi:"id"`
+	// The id of cloud identity permission set.
+	PermissionSetId string `pulumi:"permissionSetId"`
+	// The name of the cloud identity permission set.
+	PermissionSetName string `pulumi:"permissionSetName"`
+	// The principal id of cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
+	PrincipalId string `pulumi:"principalId"`
+	// The principal type of cloud identity permission set. Valid values: `User`, `Group`.
+	PrincipalType string `pulumi:"principalType"`
+	// The target account id of cloud identity permission set assignment.
+	TargetId string `pulumi:"targetId"`
+}
+
+// GetPermissionSetAssignmentsAssignmentInput is an input type that accepts GetPermissionSetAssignmentsAssignmentArgs and GetPermissionSetAssignmentsAssignmentOutput values.
+// You can construct a concrete instance of `GetPermissionSetAssignmentsAssignmentInput` via:
+//
+//	GetPermissionSetAssignmentsAssignmentArgs{...}
+type GetPermissionSetAssignmentsAssignmentInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetAssignmentsAssignmentOutput() GetPermissionSetAssignmentsAssignmentOutput
+	ToGetPermissionSetAssignmentsAssignmentOutputWithContext(context.Context) GetPermissionSetAssignmentsAssignmentOutput
+}
+
+type GetPermissionSetAssignmentsAssignmentArgs struct {
+	// The create time of the cloud identity permission set assignment.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The id of the cloud identity permission set.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of cloud identity permission set.
+	PermissionSetId pulumi.StringInput `pulumi:"permissionSetId"`
+	// The name of the cloud identity permission set.
+	PermissionSetName pulumi.StringInput `pulumi:"permissionSetName"`
+	// The principal id of cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
+	PrincipalId pulumi.StringInput `pulumi:"principalId"`
+	// The principal type of cloud identity permission set. Valid values: `User`, `Group`.
+	PrincipalType pulumi.StringInput `pulumi:"principalType"`
+	// The target account id of cloud identity permission set assignment.
+	TargetId pulumi.StringInput `pulumi:"targetId"`
+}
+
+func (GetPermissionSetAssignmentsAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetAssignmentsAssignment)(nil)).Elem()
+}
+
+func (i GetPermissionSetAssignmentsAssignmentArgs) ToGetPermissionSetAssignmentsAssignmentOutput() GetPermissionSetAssignmentsAssignmentOutput {
+	return i.ToGetPermissionSetAssignmentsAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetAssignmentsAssignmentArgs) ToGetPermissionSetAssignmentsAssignmentOutputWithContext(ctx context.Context) GetPermissionSetAssignmentsAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetAssignmentsAssignmentOutput)
+}
+
+// GetPermissionSetAssignmentsAssignmentArrayInput is an input type that accepts GetPermissionSetAssignmentsAssignmentArray and GetPermissionSetAssignmentsAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetPermissionSetAssignmentsAssignmentArrayInput` via:
+//
+//	GetPermissionSetAssignmentsAssignmentArray{ GetPermissionSetAssignmentsAssignmentArgs{...} }
+type GetPermissionSetAssignmentsAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetAssignmentsAssignmentArrayOutput() GetPermissionSetAssignmentsAssignmentArrayOutput
+	ToGetPermissionSetAssignmentsAssignmentArrayOutputWithContext(context.Context) GetPermissionSetAssignmentsAssignmentArrayOutput
+}
+
+type GetPermissionSetAssignmentsAssignmentArray []GetPermissionSetAssignmentsAssignmentInput
+
+func (GetPermissionSetAssignmentsAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetAssignmentsAssignment)(nil)).Elem()
+}
+
+func (i GetPermissionSetAssignmentsAssignmentArray) ToGetPermissionSetAssignmentsAssignmentArrayOutput() GetPermissionSetAssignmentsAssignmentArrayOutput {
+	return i.ToGetPermissionSetAssignmentsAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetAssignmentsAssignmentArray) ToGetPermissionSetAssignmentsAssignmentArrayOutputWithContext(ctx context.Context) GetPermissionSetAssignmentsAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetAssignmentsAssignmentArrayOutput)
+}
+
+type GetPermissionSetAssignmentsAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetAssignmentsAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetAssignmentsAssignment)(nil)).Elem()
+}
+
+func (o GetPermissionSetAssignmentsAssignmentOutput) ToGetPermissionSetAssignmentsAssignmentOutput() GetPermissionSetAssignmentsAssignmentOutput {
+	return o
+}
+
+func (o GetPermissionSetAssignmentsAssignmentOutput) ToGetPermissionSetAssignmentsAssignmentOutputWithContext(ctx context.Context) GetPermissionSetAssignmentsAssignmentOutput {
+	return o
+}
+
+// The create time of the cloud identity permission set assignment.
+func (o GetPermissionSetAssignmentsAssignmentOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity permission set.
+func (o GetPermissionSetAssignmentsAssignmentOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of cloud identity permission set.
+func (o GetPermissionSetAssignmentsAssignmentOutput) PermissionSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.PermissionSetId }).(pulumi.StringOutput)
+}
+
+// The name of the cloud identity permission set.
+func (o GetPermissionSetAssignmentsAssignmentOutput) PermissionSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.PermissionSetName }).(pulumi.StringOutput)
+}
+
+// The principal id of cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
+func (o GetPermissionSetAssignmentsAssignmentOutput) PrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.PrincipalId }).(pulumi.StringOutput)
+}
+
+// The principal type of cloud identity permission set. Valid values: `User`, `Group`.
+func (o GetPermissionSetAssignmentsAssignmentOutput) PrincipalType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.PrincipalType }).(pulumi.StringOutput)
+}
+
+// The target account id of cloud identity permission set assignment.
+func (o GetPermissionSetAssignmentsAssignmentOutput) TargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetAssignmentsAssignment) string { return v.TargetId }).(pulumi.StringOutput)
+}
+
+type GetPermissionSetAssignmentsAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetAssignmentsAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetAssignmentsAssignment)(nil)).Elem()
+}
+
+func (o GetPermissionSetAssignmentsAssignmentArrayOutput) ToGetPermissionSetAssignmentsAssignmentArrayOutput() GetPermissionSetAssignmentsAssignmentArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetAssignmentsAssignmentArrayOutput) ToGetPermissionSetAssignmentsAssignmentArrayOutputWithContext(ctx context.Context) GetPermissionSetAssignmentsAssignmentArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetAssignmentsAssignmentArrayOutput) Index(i pulumi.IntInput) GetPermissionSetAssignmentsAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionSetAssignmentsAssignment {
+		return vs[0].([]GetPermissionSetAssignmentsAssignment)[vs[1].(int)]
+	}).(GetPermissionSetAssignmentsAssignmentOutput)
+}
+
+type GetPermissionSetProvisioningsPermissionProvisioning struct {
+	// The create time of the cloud identity permission set provisioning.
+	CreateTime string `pulumi:"createTime"`
+	// The id of the cloud identity permission set.
+	Id string `pulumi:"id"`
+	// The id of cloud identity permission set.
+	PermissionSetId string `pulumi:"permissionSetId"`
+	// The name of the cloud identity permission set.
+	PermissionSetName string `pulumi:"permissionSetName"`
+	// The target account id of cloud identity permission set.
+	TargetId string `pulumi:"targetId"`
+	// The update time of the cloud identity permission set provisioning.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetPermissionSetProvisioningsPermissionProvisioningInput is an input type that accepts GetPermissionSetProvisioningsPermissionProvisioningArgs and GetPermissionSetProvisioningsPermissionProvisioningOutput values.
+// You can construct a concrete instance of `GetPermissionSetProvisioningsPermissionProvisioningInput` via:
+//
+//	GetPermissionSetProvisioningsPermissionProvisioningArgs{...}
+type GetPermissionSetProvisioningsPermissionProvisioningInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetProvisioningsPermissionProvisioningOutput() GetPermissionSetProvisioningsPermissionProvisioningOutput
+	ToGetPermissionSetProvisioningsPermissionProvisioningOutputWithContext(context.Context) GetPermissionSetProvisioningsPermissionProvisioningOutput
+}
+
+type GetPermissionSetProvisioningsPermissionProvisioningArgs struct {
+	// The create time of the cloud identity permission set provisioning.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The id of the cloud identity permission set.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of cloud identity permission set.
+	PermissionSetId pulumi.StringInput `pulumi:"permissionSetId"`
+	// The name of the cloud identity permission set.
+	PermissionSetName pulumi.StringInput `pulumi:"permissionSetName"`
+	// The target account id of cloud identity permission set.
+	TargetId pulumi.StringInput `pulumi:"targetId"`
+	// The update time of the cloud identity permission set provisioning.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetPermissionSetProvisioningsPermissionProvisioningArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetProvisioningsPermissionProvisioning)(nil)).Elem()
+}
+
+func (i GetPermissionSetProvisioningsPermissionProvisioningArgs) ToGetPermissionSetProvisioningsPermissionProvisioningOutput() GetPermissionSetProvisioningsPermissionProvisioningOutput {
+	return i.ToGetPermissionSetProvisioningsPermissionProvisioningOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetProvisioningsPermissionProvisioningArgs) ToGetPermissionSetProvisioningsPermissionProvisioningOutputWithContext(ctx context.Context) GetPermissionSetProvisioningsPermissionProvisioningOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetProvisioningsPermissionProvisioningOutput)
+}
+
+// GetPermissionSetProvisioningsPermissionProvisioningArrayInput is an input type that accepts GetPermissionSetProvisioningsPermissionProvisioningArray and GetPermissionSetProvisioningsPermissionProvisioningArrayOutput values.
+// You can construct a concrete instance of `GetPermissionSetProvisioningsPermissionProvisioningArrayInput` via:
+//
+//	GetPermissionSetProvisioningsPermissionProvisioningArray{ GetPermissionSetProvisioningsPermissionProvisioningArgs{...} }
+type GetPermissionSetProvisioningsPermissionProvisioningArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutput() GetPermissionSetProvisioningsPermissionProvisioningArrayOutput
+	ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutputWithContext(context.Context) GetPermissionSetProvisioningsPermissionProvisioningArrayOutput
+}
+
+type GetPermissionSetProvisioningsPermissionProvisioningArray []GetPermissionSetProvisioningsPermissionProvisioningInput
+
+func (GetPermissionSetProvisioningsPermissionProvisioningArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetProvisioningsPermissionProvisioning)(nil)).Elem()
+}
+
+func (i GetPermissionSetProvisioningsPermissionProvisioningArray) ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutput() GetPermissionSetProvisioningsPermissionProvisioningArrayOutput {
+	return i.ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetProvisioningsPermissionProvisioningArray) ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutputWithContext(ctx context.Context) GetPermissionSetProvisioningsPermissionProvisioningArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetProvisioningsPermissionProvisioningArrayOutput)
+}
+
+type GetPermissionSetProvisioningsPermissionProvisioningOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetProvisioningsPermissionProvisioningOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetProvisioningsPermissionProvisioning)(nil)).Elem()
+}
+
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) ToGetPermissionSetProvisioningsPermissionProvisioningOutput() GetPermissionSetProvisioningsPermissionProvisioningOutput {
+	return o
+}
+
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) ToGetPermissionSetProvisioningsPermissionProvisioningOutputWithContext(ctx context.Context) GetPermissionSetProvisioningsPermissionProvisioningOutput {
+	return o
+}
+
+// The create time of the cloud identity permission set provisioning.
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetProvisioningsPermissionProvisioning) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity permission set.
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetProvisioningsPermissionProvisioning) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of cloud identity permission set.
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) PermissionSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetProvisioningsPermissionProvisioning) string { return v.PermissionSetId }).(pulumi.StringOutput)
+}
+
+// The name of the cloud identity permission set.
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) PermissionSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetProvisioningsPermissionProvisioning) string { return v.PermissionSetName }).(pulumi.StringOutput)
+}
+
+// The target account id of cloud identity permission set.
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) TargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetProvisioningsPermissionProvisioning) string { return v.TargetId }).(pulumi.StringOutput)
+}
+
+// The update time of the cloud identity permission set provisioning.
+func (o GetPermissionSetProvisioningsPermissionProvisioningOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetProvisioningsPermissionProvisioning) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetPermissionSetProvisioningsPermissionProvisioningArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetProvisioningsPermissionProvisioningArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetProvisioningsPermissionProvisioning)(nil)).Elem()
+}
+
+func (o GetPermissionSetProvisioningsPermissionProvisioningArrayOutput) ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutput() GetPermissionSetProvisioningsPermissionProvisioningArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetProvisioningsPermissionProvisioningArrayOutput) ToGetPermissionSetProvisioningsPermissionProvisioningArrayOutputWithContext(ctx context.Context) GetPermissionSetProvisioningsPermissionProvisioningArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetProvisioningsPermissionProvisioningArrayOutput) Index(i pulumi.IntInput) GetPermissionSetProvisioningsPermissionProvisioningOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionSetProvisioningsPermissionProvisioning {
+		return vs[0].([]GetPermissionSetProvisioningsPermissionProvisioning)[vs[1].(int)]
+	}).(GetPermissionSetProvisioningsPermissionProvisioningOutput)
+}
+
+type GetPermissionSetsPermissionSet struct {
+	// The create time of the cloud identity permission set.
+	CreatedTime string `pulumi:"createdTime"`
+	// The description of the cloud identity permission set.
+	Description string `pulumi:"description"`
+	// The id of the cloud identity permission set.
+	Id string `pulumi:"id"`
+	// The name of the cloud identity permission set.
+	Name string `pulumi:"name"`
+	// The policies of the cloud identity permission set.
+	PermissionPolicies []GetPermissionSetsPermissionSetPermissionPolicy `pulumi:"permissionPolicies"`
+	// The id of the cloud identity permission set.
+	PermissionSetId string `pulumi:"permissionSetId"`
+	// The relay state of the cloud identity permission set.
+	RelayState string `pulumi:"relayState"`
+	// The session duration of the cloud identity permission set.
+	SessionDuration int `pulumi:"sessionDuration"`
+	// The updated time of the cloud identity permission set.
+	UpdatedTime string `pulumi:"updatedTime"`
+}
+
+// GetPermissionSetsPermissionSetInput is an input type that accepts GetPermissionSetsPermissionSetArgs and GetPermissionSetsPermissionSetOutput values.
+// You can construct a concrete instance of `GetPermissionSetsPermissionSetInput` via:
+//
+//	GetPermissionSetsPermissionSetArgs{...}
+type GetPermissionSetsPermissionSetInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetsPermissionSetOutput() GetPermissionSetsPermissionSetOutput
+	ToGetPermissionSetsPermissionSetOutputWithContext(context.Context) GetPermissionSetsPermissionSetOutput
+}
+
+type GetPermissionSetsPermissionSetArgs struct {
+	// The create time of the cloud identity permission set.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The description of the cloud identity permission set.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the cloud identity permission set.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the cloud identity permission set.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The policies of the cloud identity permission set.
+	PermissionPolicies GetPermissionSetsPermissionSetPermissionPolicyArrayInput `pulumi:"permissionPolicies"`
+	// The id of the cloud identity permission set.
+	PermissionSetId pulumi.StringInput `pulumi:"permissionSetId"`
+	// The relay state of the cloud identity permission set.
+	RelayState pulumi.StringInput `pulumi:"relayState"`
+	// The session duration of the cloud identity permission set.
+	SessionDuration pulumi.IntInput `pulumi:"sessionDuration"`
+	// The updated time of the cloud identity permission set.
+	UpdatedTime pulumi.StringInput `pulumi:"updatedTime"`
+}
+
+func (GetPermissionSetsPermissionSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetsPermissionSet)(nil)).Elem()
+}
+
+func (i GetPermissionSetsPermissionSetArgs) ToGetPermissionSetsPermissionSetOutput() GetPermissionSetsPermissionSetOutput {
+	return i.ToGetPermissionSetsPermissionSetOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetsPermissionSetArgs) ToGetPermissionSetsPermissionSetOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetsPermissionSetOutput)
+}
+
+// GetPermissionSetsPermissionSetArrayInput is an input type that accepts GetPermissionSetsPermissionSetArray and GetPermissionSetsPermissionSetArrayOutput values.
+// You can construct a concrete instance of `GetPermissionSetsPermissionSetArrayInput` via:
+//
+//	GetPermissionSetsPermissionSetArray{ GetPermissionSetsPermissionSetArgs{...} }
+type GetPermissionSetsPermissionSetArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetsPermissionSetArrayOutput() GetPermissionSetsPermissionSetArrayOutput
+	ToGetPermissionSetsPermissionSetArrayOutputWithContext(context.Context) GetPermissionSetsPermissionSetArrayOutput
+}
+
+type GetPermissionSetsPermissionSetArray []GetPermissionSetsPermissionSetInput
+
+func (GetPermissionSetsPermissionSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetsPermissionSet)(nil)).Elem()
+}
+
+func (i GetPermissionSetsPermissionSetArray) ToGetPermissionSetsPermissionSetArrayOutput() GetPermissionSetsPermissionSetArrayOutput {
+	return i.ToGetPermissionSetsPermissionSetArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetsPermissionSetArray) ToGetPermissionSetsPermissionSetArrayOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetsPermissionSetArrayOutput)
+}
+
+type GetPermissionSetsPermissionSetOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetsPermissionSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetsPermissionSet)(nil)).Elem()
+}
+
+func (o GetPermissionSetsPermissionSetOutput) ToGetPermissionSetsPermissionSetOutput() GetPermissionSetsPermissionSetOutput {
+	return o
+}
+
+func (o GetPermissionSetsPermissionSetOutput) ToGetPermissionSetsPermissionSetOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetOutput {
+	return o
+}
+
+// The create time of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The description of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The policies of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) PermissionPolicies() GetPermissionSetsPermissionSetPermissionPolicyArrayOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) []GetPermissionSetsPermissionSetPermissionPolicy {
+		return v.PermissionPolicies
+	}).(GetPermissionSetsPermissionSetPermissionPolicyArrayOutput)
+}
+
+// The id of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) PermissionSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.PermissionSetId }).(pulumi.StringOutput)
+}
+
+// The relay state of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) RelayState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.RelayState }).(pulumi.StringOutput)
+}
+
+// The session duration of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) SessionDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) int { return v.SessionDuration }).(pulumi.IntOutput)
+}
+
+// The updated time of the cloud identity permission set.
+func (o GetPermissionSetsPermissionSetOutput) UpdatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSet) string { return v.UpdatedTime }).(pulumi.StringOutput)
+}
+
+type GetPermissionSetsPermissionSetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetsPermissionSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetsPermissionSet)(nil)).Elem()
+}
+
+func (o GetPermissionSetsPermissionSetArrayOutput) ToGetPermissionSetsPermissionSetArrayOutput() GetPermissionSetsPermissionSetArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetsPermissionSetArrayOutput) ToGetPermissionSetsPermissionSetArrayOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetsPermissionSetArrayOutput) Index(i pulumi.IntInput) GetPermissionSetsPermissionSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionSetsPermissionSet {
+		return vs[0].([]GetPermissionSetsPermissionSet)[vs[1].(int)]
+	}).(GetPermissionSetsPermissionSetOutput)
+}
+
+type GetPermissionSetsPermissionSetPermissionPolicy struct {
+	// The create time of the cloud identity permission set policy.
+	CreateTime string `pulumi:"createTime"`
+	// The document of the cloud identity permission set policy.
+	PermissionPolicyDocument string `pulumi:"permissionPolicyDocument"`
+	// The name of the cloud identity permission set policy.
+	PermissionPolicyName string `pulumi:"permissionPolicyName"`
+	// The type of the cloud identity permission set policy.
+	PermissionPolicyType string `pulumi:"permissionPolicyType"`
+}
+
+// GetPermissionSetsPermissionSetPermissionPolicyInput is an input type that accepts GetPermissionSetsPermissionSetPermissionPolicyArgs and GetPermissionSetsPermissionSetPermissionPolicyOutput values.
+// You can construct a concrete instance of `GetPermissionSetsPermissionSetPermissionPolicyInput` via:
+//
+//	GetPermissionSetsPermissionSetPermissionPolicyArgs{...}
+type GetPermissionSetsPermissionSetPermissionPolicyInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetsPermissionSetPermissionPolicyOutput() GetPermissionSetsPermissionSetPermissionPolicyOutput
+	ToGetPermissionSetsPermissionSetPermissionPolicyOutputWithContext(context.Context) GetPermissionSetsPermissionSetPermissionPolicyOutput
+}
+
+type GetPermissionSetsPermissionSetPermissionPolicyArgs struct {
+	// The create time of the cloud identity permission set policy.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The document of the cloud identity permission set policy.
+	PermissionPolicyDocument pulumi.StringInput `pulumi:"permissionPolicyDocument"`
+	// The name of the cloud identity permission set policy.
+	PermissionPolicyName pulumi.StringInput `pulumi:"permissionPolicyName"`
+	// The type of the cloud identity permission set policy.
+	PermissionPolicyType pulumi.StringInput `pulumi:"permissionPolicyType"`
+}
+
+func (GetPermissionSetsPermissionSetPermissionPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetsPermissionSetPermissionPolicy)(nil)).Elem()
+}
+
+func (i GetPermissionSetsPermissionSetPermissionPolicyArgs) ToGetPermissionSetsPermissionSetPermissionPolicyOutput() GetPermissionSetsPermissionSetPermissionPolicyOutput {
+	return i.ToGetPermissionSetsPermissionSetPermissionPolicyOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetsPermissionSetPermissionPolicyArgs) ToGetPermissionSetsPermissionSetPermissionPolicyOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetPermissionPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetsPermissionSetPermissionPolicyOutput)
+}
+
+// GetPermissionSetsPermissionSetPermissionPolicyArrayInput is an input type that accepts GetPermissionSetsPermissionSetPermissionPolicyArray and GetPermissionSetsPermissionSetPermissionPolicyArrayOutput values.
+// You can construct a concrete instance of `GetPermissionSetsPermissionSetPermissionPolicyArrayInput` via:
+//
+//	GetPermissionSetsPermissionSetPermissionPolicyArray{ GetPermissionSetsPermissionSetPermissionPolicyArgs{...} }
+type GetPermissionSetsPermissionSetPermissionPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutput() GetPermissionSetsPermissionSetPermissionPolicyArrayOutput
+	ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutputWithContext(context.Context) GetPermissionSetsPermissionSetPermissionPolicyArrayOutput
+}
+
+type GetPermissionSetsPermissionSetPermissionPolicyArray []GetPermissionSetsPermissionSetPermissionPolicyInput
+
+func (GetPermissionSetsPermissionSetPermissionPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetsPermissionSetPermissionPolicy)(nil)).Elem()
+}
+
+func (i GetPermissionSetsPermissionSetPermissionPolicyArray) ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutput() GetPermissionSetsPermissionSetPermissionPolicyArrayOutput {
+	return i.ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionSetsPermissionSetPermissionPolicyArray) ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetPermissionPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionSetsPermissionSetPermissionPolicyArrayOutput)
+}
+
+type GetPermissionSetsPermissionSetPermissionPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetsPermissionSetPermissionPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionSetsPermissionSetPermissionPolicy)(nil)).Elem()
+}
+
+func (o GetPermissionSetsPermissionSetPermissionPolicyOutput) ToGetPermissionSetsPermissionSetPermissionPolicyOutput() GetPermissionSetsPermissionSetPermissionPolicyOutput {
+	return o
+}
+
+func (o GetPermissionSetsPermissionSetPermissionPolicyOutput) ToGetPermissionSetsPermissionSetPermissionPolicyOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetPermissionPolicyOutput {
+	return o
+}
+
+// The create time of the cloud identity permission set policy.
+func (o GetPermissionSetsPermissionSetPermissionPolicyOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSetPermissionPolicy) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The document of the cloud identity permission set policy.
+func (o GetPermissionSetsPermissionSetPermissionPolicyOutput) PermissionPolicyDocument() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSetPermissionPolicy) string { return v.PermissionPolicyDocument }).(pulumi.StringOutput)
+}
+
+// The name of the cloud identity permission set policy.
+func (o GetPermissionSetsPermissionSetPermissionPolicyOutput) PermissionPolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSetPermissionPolicy) string { return v.PermissionPolicyName }).(pulumi.StringOutput)
+}
+
+// The type of the cloud identity permission set policy.
+func (o GetPermissionSetsPermissionSetPermissionPolicyOutput) PermissionPolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionSetsPermissionSetPermissionPolicy) string { return v.PermissionPolicyType }).(pulumi.StringOutput)
+}
+
+type GetPermissionSetsPermissionSetPermissionPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionSetsPermissionSetPermissionPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionSetsPermissionSetPermissionPolicy)(nil)).Elem()
+}
+
+func (o GetPermissionSetsPermissionSetPermissionPolicyArrayOutput) ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutput() GetPermissionSetsPermissionSetPermissionPolicyArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetsPermissionSetPermissionPolicyArrayOutput) ToGetPermissionSetsPermissionSetPermissionPolicyArrayOutputWithContext(ctx context.Context) GetPermissionSetsPermissionSetPermissionPolicyArrayOutput {
+	return o
+}
+
+func (o GetPermissionSetsPermissionSetPermissionPolicyArrayOutput) Index(i pulumi.IntInput) GetPermissionSetsPermissionSetPermissionPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionSetsPermissionSetPermissionPolicy {
+		return vs[0].([]GetPermissionSetsPermissionSetPermissionPolicy)[vs[1].(int)]
+	}).(GetPermissionSetsPermissionSetPermissionPolicyOutput)
+}
+
+type GetUserProvisioningsUserProvisioning struct {
+	// The created time of the cloud identity user provisioning.
+	CreatedTime string `pulumi:"createdTime"`
+	// The deletion strategy of the cloud identity user provisioning.
+	DeletionStrategy string `pulumi:"deletionStrategy"`
+	// The department names of the cloud identity user provisioning.
+	DepartmentNames []string `pulumi:"departmentNames"`
+	// The description of the cloud identity user provisioning.
+	Description string `pulumi:"description"`
+	// The duplication strategy of the cloud identity user provisioning.
+	DuplicationStrategy string `pulumi:"duplicationStrategy"`
+	// The duplication suffix of the cloud identity user provisioning.
+	DuplicationSuffix string `pulumi:"duplicationSuffix"`
+	// The id of the cloud identity user provisioning.
+	Id string `pulumi:"id"`
+	// The identity source strategy of the cloud identity user provisioning.
+	IdentitySourceStrategy string `pulumi:"identitySourceStrategy"`
+	// The principal id of the cloud identity user provisioning.
+	PrincipalId string `pulumi:"principalId"`
+	// The principal name of the cloud identity user provisioning.
+	PrincipalName string `pulumi:"principalName"`
+	// The principal type of the cloud identity user provisioning.
+	PrincipalType string `pulumi:"principalType"`
+	// The status of the cloud identity user provisioning.
+	ProvisionStatus string `pulumi:"provisionStatus"`
+	// The target account id of the cloud identity user provisioning.
+	TargetId string `pulumi:"targetId"`
+	// The updated time of the cloud identity user provisioning.
+	UpdatedTime string `pulumi:"updatedTime"`
+	// The id of the cloud identity user provisioning.
+	UserProvisioningId string `pulumi:"userProvisioningId"`
+}
+
+// GetUserProvisioningsUserProvisioningInput is an input type that accepts GetUserProvisioningsUserProvisioningArgs and GetUserProvisioningsUserProvisioningOutput values.
+// You can construct a concrete instance of `GetUserProvisioningsUserProvisioningInput` via:
+//
+//	GetUserProvisioningsUserProvisioningArgs{...}
+type GetUserProvisioningsUserProvisioningInput interface {
+	pulumi.Input
+
+	ToGetUserProvisioningsUserProvisioningOutput() GetUserProvisioningsUserProvisioningOutput
+	ToGetUserProvisioningsUserProvisioningOutputWithContext(context.Context) GetUserProvisioningsUserProvisioningOutput
+}
+
+type GetUserProvisioningsUserProvisioningArgs struct {
+	// The created time of the cloud identity user provisioning.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The deletion strategy of the cloud identity user provisioning.
+	DeletionStrategy pulumi.StringInput `pulumi:"deletionStrategy"`
+	// The department names of the cloud identity user provisioning.
+	DepartmentNames pulumi.StringArrayInput `pulumi:"departmentNames"`
+	// The description of the cloud identity user provisioning.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The duplication strategy of the cloud identity user provisioning.
+	DuplicationStrategy pulumi.StringInput `pulumi:"duplicationStrategy"`
+	// The duplication suffix of the cloud identity user provisioning.
+	DuplicationSuffix pulumi.StringInput `pulumi:"duplicationSuffix"`
+	// The id of the cloud identity user provisioning.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The identity source strategy of the cloud identity user provisioning.
+	IdentitySourceStrategy pulumi.StringInput `pulumi:"identitySourceStrategy"`
+	// The principal id of the cloud identity user provisioning.
+	PrincipalId pulumi.StringInput `pulumi:"principalId"`
+	// The principal name of the cloud identity user provisioning.
+	PrincipalName pulumi.StringInput `pulumi:"principalName"`
+	// The principal type of the cloud identity user provisioning.
+	PrincipalType pulumi.StringInput `pulumi:"principalType"`
+	// The status of the cloud identity user provisioning.
+	ProvisionStatus pulumi.StringInput `pulumi:"provisionStatus"`
+	// The target account id of the cloud identity user provisioning.
+	TargetId pulumi.StringInput `pulumi:"targetId"`
+	// The updated time of the cloud identity user provisioning.
+	UpdatedTime pulumi.StringInput `pulumi:"updatedTime"`
+	// The id of the cloud identity user provisioning.
+	UserProvisioningId pulumi.StringInput `pulumi:"userProvisioningId"`
+}
+
+func (GetUserProvisioningsUserProvisioningArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserProvisioningsUserProvisioning)(nil)).Elem()
+}
+
+func (i GetUserProvisioningsUserProvisioningArgs) ToGetUserProvisioningsUserProvisioningOutput() GetUserProvisioningsUserProvisioningOutput {
+	return i.ToGetUserProvisioningsUserProvisioningOutputWithContext(context.Background())
+}
+
+func (i GetUserProvisioningsUserProvisioningArgs) ToGetUserProvisioningsUserProvisioningOutputWithContext(ctx context.Context) GetUserProvisioningsUserProvisioningOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserProvisioningsUserProvisioningOutput)
+}
+
+// GetUserProvisioningsUserProvisioningArrayInput is an input type that accepts GetUserProvisioningsUserProvisioningArray and GetUserProvisioningsUserProvisioningArrayOutput values.
+// You can construct a concrete instance of `GetUserProvisioningsUserProvisioningArrayInput` via:
+//
+//	GetUserProvisioningsUserProvisioningArray{ GetUserProvisioningsUserProvisioningArgs{...} }
+type GetUserProvisioningsUserProvisioningArrayInput interface {
+	pulumi.Input
+
+	ToGetUserProvisioningsUserProvisioningArrayOutput() GetUserProvisioningsUserProvisioningArrayOutput
+	ToGetUserProvisioningsUserProvisioningArrayOutputWithContext(context.Context) GetUserProvisioningsUserProvisioningArrayOutput
+}
+
+type GetUserProvisioningsUserProvisioningArray []GetUserProvisioningsUserProvisioningInput
+
+func (GetUserProvisioningsUserProvisioningArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserProvisioningsUserProvisioning)(nil)).Elem()
+}
+
+func (i GetUserProvisioningsUserProvisioningArray) ToGetUserProvisioningsUserProvisioningArrayOutput() GetUserProvisioningsUserProvisioningArrayOutput {
+	return i.ToGetUserProvisioningsUserProvisioningArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserProvisioningsUserProvisioningArray) ToGetUserProvisioningsUserProvisioningArrayOutputWithContext(ctx context.Context) GetUserProvisioningsUserProvisioningArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserProvisioningsUserProvisioningArrayOutput)
+}
+
+type GetUserProvisioningsUserProvisioningOutput struct{ *pulumi.OutputState }
+
+func (GetUserProvisioningsUserProvisioningOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserProvisioningsUserProvisioning)(nil)).Elem()
+}
+
+func (o GetUserProvisioningsUserProvisioningOutput) ToGetUserProvisioningsUserProvisioningOutput() GetUserProvisioningsUserProvisioningOutput {
+	return o
+}
+
+func (o GetUserProvisioningsUserProvisioningOutput) ToGetUserProvisioningsUserProvisioningOutputWithContext(ctx context.Context) GetUserProvisioningsUserProvisioningOutput {
+	return o
+}
+
+// The created time of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The deletion strategy of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) DeletionStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.DeletionStrategy }).(pulumi.StringOutput)
+}
+
+// The department names of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) DepartmentNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) []string { return v.DepartmentNames }).(pulumi.StringArrayOutput)
+}
+
+// The description of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The duplication strategy of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) DuplicationStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.DuplicationStrategy }).(pulumi.StringOutput)
+}
+
+// The duplication suffix of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) DuplicationSuffix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.DuplicationSuffix }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The identity source strategy of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) IdentitySourceStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.IdentitySourceStrategy }).(pulumi.StringOutput)
+}
+
+// The principal id of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) PrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.PrincipalId }).(pulumi.StringOutput)
+}
+
+// The principal name of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) PrincipalName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.PrincipalName }).(pulumi.StringOutput)
+}
+
+// The principal type of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) PrincipalType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.PrincipalType }).(pulumi.StringOutput)
+}
+
+// The status of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) ProvisionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.ProvisionStatus }).(pulumi.StringOutput)
+}
+
+// The target account id of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) TargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.TargetId }).(pulumi.StringOutput)
+}
+
+// The updated time of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) UpdatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.UpdatedTime }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity user provisioning.
+func (o GetUserProvisioningsUserProvisioningOutput) UserProvisioningId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserProvisioningsUserProvisioning) string { return v.UserProvisioningId }).(pulumi.StringOutput)
+}
+
+type GetUserProvisioningsUserProvisioningArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserProvisioningsUserProvisioningArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserProvisioningsUserProvisioning)(nil)).Elem()
+}
+
+func (o GetUserProvisioningsUserProvisioningArrayOutput) ToGetUserProvisioningsUserProvisioningArrayOutput() GetUserProvisioningsUserProvisioningArrayOutput {
+	return o
+}
+
+func (o GetUserProvisioningsUserProvisioningArrayOutput) ToGetUserProvisioningsUserProvisioningArrayOutputWithContext(ctx context.Context) GetUserProvisioningsUserProvisioningArrayOutput {
+	return o
+}
+
+func (o GetUserProvisioningsUserProvisioningArrayOutput) Index(i pulumi.IntInput) GetUserProvisioningsUserProvisioningOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserProvisioningsUserProvisioning {
+		return vs[0].([]GetUserProvisioningsUserProvisioning)[vs[1].(int)]
+	}).(GetUserProvisioningsUserProvisioningOutput)
+}
+
+type GetUsersUser struct {
+	// The created time of the cloud identity user.
+	CreatedTime string `pulumi:"createdTime"`
+	// The description of the cloud identity user.
+	Description string `pulumi:"description"`
+	// The display name of cloud identity user.
+	DisplayName string `pulumi:"displayName"`
+	// The email of the cloud identity user.
+	Email string `pulumi:"email"`
+	// The id of the cloud identity user.
+	Id string `pulumi:"id"`
+	// The identity type of the cloud identity user.
+	IdentityType string `pulumi:"identityType"`
+	// The phone of the cloud identity user.
+	Phone string `pulumi:"phone"`
+	// The source of cloud identity user. Valid values: `Sync`, `Manual`.
+	Source string `pulumi:"source"`
+	// The updated time of the cloud identity user.
+	UpdatedTime string `pulumi:"updatedTime"`
+	// The id of the cloud identity user.
+	UserId string `pulumi:"userId"`
+	// The name of cloud identity user.
+	UserName string `pulumi:"userName"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	// The created time of the cloud identity user.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The description of the cloud identity user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of cloud identity user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The email of the cloud identity user.
+	Email pulumi.StringInput `pulumi:"email"`
+	// The id of the cloud identity user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The identity type of the cloud identity user.
+	IdentityType pulumi.StringInput `pulumi:"identityType"`
+	// The phone of the cloud identity user.
+	Phone pulumi.StringInput `pulumi:"phone"`
+	// The source of cloud identity user. Valid values: `Sync`, `Manual`.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The updated time of the cloud identity user.
+	UpdatedTime pulumi.StringInput `pulumi:"updatedTime"`
+	// The id of the cloud identity user.
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// The name of cloud identity user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+// The created time of the cloud identity user.
+func (o GetUsersUserOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The description of the cloud identity user.
+func (o GetUsersUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of cloud identity user.
+func (o GetUsersUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The email of the cloud identity user.
+func (o GetUsersUserOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity user.
+func (o GetUsersUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The identity type of the cloud identity user.
+func (o GetUsersUserOutput) IdentityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.IdentityType }).(pulumi.StringOutput)
+}
+
+// The phone of the cloud identity user.
+func (o GetUsersUserOutput) Phone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Phone }).(pulumi.StringOutput)
+}
+
+// The source of cloud identity user. Valid values: `Sync`, `Manual`.
+func (o GetUsersUserOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The updated time of the cloud identity user.
+func (o GetUsersUserOutput) UpdatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UpdatedTime }).(pulumi.StringOutput)
+}
+
+// The id of the cloud identity user.
+func (o GetUsersUserOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+// The name of cloud identity user.
+func (o GetUsersUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberInput)(nil)).Elem(), GroupMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberArrayInput)(nil)).Elem(), GroupMemberArray{})
@@ -1483,6 +2650,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserProvisioningsUserProvisioningArrayInput)(nil)).Elem(), UserProvisioningsUserProvisioningArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserInput)(nil)).Elem(), UsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserArrayInput)(nil)).Elem(), UsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupInput)(nil)).Elem(), GetGroupsGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupArrayInput)(nil)).Elem(), GetGroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetAssignmentsAssignmentInput)(nil)).Elem(), GetPermissionSetAssignmentsAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetAssignmentsAssignmentArrayInput)(nil)).Elem(), GetPermissionSetAssignmentsAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetProvisioningsPermissionProvisioningInput)(nil)).Elem(), GetPermissionSetProvisioningsPermissionProvisioningArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetProvisioningsPermissionProvisioningArrayInput)(nil)).Elem(), GetPermissionSetProvisioningsPermissionProvisioningArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetsPermissionSetInput)(nil)).Elem(), GetPermissionSetsPermissionSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetsPermissionSetArrayInput)(nil)).Elem(), GetPermissionSetsPermissionSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetsPermissionSetPermissionPolicyInput)(nil)).Elem(), GetPermissionSetsPermissionSetPermissionPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionSetsPermissionSetPermissionPolicyArrayInput)(nil)).Elem(), GetPermissionSetsPermissionSetPermissionPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserProvisioningsUserProvisioningInput)(nil)).Elem(), GetUserProvisioningsUserProvisioningArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserProvisioningsUserProvisioningArrayInput)(nil)).Elem(), GetUserProvisioningsUserProvisioningArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(GroupMemberOutput{})
 	pulumi.RegisterOutputType(GroupMemberArrayOutput{})
 	pulumi.RegisterOutputType(GroupsGroupOutput{})
@@ -1501,4 +2682,18 @@ func init() {
 	pulumi.RegisterOutputType(UserProvisioningsUserProvisioningArrayOutput{})
 	pulumi.RegisterOutputType(UsersUserOutput{})
 	pulumi.RegisterOutputType(UsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetAssignmentsAssignmentOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetAssignmentsAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetProvisioningsPermissionProvisioningOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetProvisioningsPermissionProvisioningArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetsPermissionSetOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetsPermissionSetArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetsPermissionSetPermissionPolicyOutput{})
+	pulumi.RegisterOutputType(GetPermissionSetsPermissionSetPermissionPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetUserProvisioningsUserProvisioningOutput{})
+	pulumi.RegisterOutputType(GetUserProvisioningsUserProvisioningArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

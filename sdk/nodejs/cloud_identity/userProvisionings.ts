@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_identity.UserProvisionings({
+ * const foo = volcengine.cloud_identity.getUserProvisionings({
  *     accountId: "210026****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/userprovisionings.UserProvisionings has been deprecated in favor of volcengine.cloud_identity/getuserprovisionings.getUserProvisionings */
 export function userProvisionings(args?: UserProvisioningsArgs, opts?: pulumi.InvokeOptions): Promise<UserProvisioningsResult> {
+    pulumi.log.warn("userProvisionings is deprecated: volcengine.cloud_identity/userprovisionings.UserProvisionings has been deprecated in favor of volcengine.cloud_identity/getuserprovisionings.getUserProvisionings")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -70,11 +72,12 @@ export interface UserProvisioningsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_identity.UserProvisionings({
+ * const foo = volcengine.cloud_identity.getUserProvisionings({
  *     accountId: "210026****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/userprovisionings.UserProvisionings has been deprecated in favor of volcengine.cloud_identity/getuserprovisionings.getUserProvisionings */
 export function userProvisioningsOutput(args?: UserProvisioningsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UserProvisioningsResult> {
     return pulumi.output(args).apply((a: any) => userProvisionings(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_identity
 {
+    [Obsolete(@"volcengine.cloud_identity/userprovisionings.UserProvisionings has been deprecated in favor of volcengine.cloud_identity/getuserprovisionings.getUserProvisionings")]
     public static class UserProvisionings
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_identity.UserProvisionings.Invoke(new()
+        ///     var foo = Volcengine.Cloud_identity.GetUserProvisionings.Invoke(new()
         ///     {
         ///         AccountId = "210026****",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_identity.UserProvisionings.Invoke(new()
+        ///     var foo = Volcengine.Cloud_identity.GetUserProvisionings.Invoke(new()
         ///     {
         ///         AccountId = "210026****",
         ///     });

@@ -5,6 +5,36 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetGroupsArgs, GetGroupsResult, GetGroupsOutputArgs } from "./getGroups";
+export const getGroups: typeof import("./getGroups").getGroups = null as any;
+export const getGroupsOutput: typeof import("./getGroups").getGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getGroups","getGroupsOutput"], () => require("./getGroups"));
+
+export { GetPermissionSetAssignmentsArgs, GetPermissionSetAssignmentsResult, GetPermissionSetAssignmentsOutputArgs } from "./getPermissionSetAssignments";
+export const getPermissionSetAssignments: typeof import("./getPermissionSetAssignments").getPermissionSetAssignments = null as any;
+export const getPermissionSetAssignmentsOutput: typeof import("./getPermissionSetAssignments").getPermissionSetAssignmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getPermissionSetAssignments","getPermissionSetAssignmentsOutput"], () => require("./getPermissionSetAssignments"));
+
+export { GetPermissionSetProvisioningsArgs, GetPermissionSetProvisioningsResult, GetPermissionSetProvisioningsOutputArgs } from "./getPermissionSetProvisionings";
+export const getPermissionSetProvisionings: typeof import("./getPermissionSetProvisionings").getPermissionSetProvisionings = null as any;
+export const getPermissionSetProvisioningsOutput: typeof import("./getPermissionSetProvisionings").getPermissionSetProvisioningsOutput = null as any;
+utilities.lazyLoad(exports, ["getPermissionSetProvisionings","getPermissionSetProvisioningsOutput"], () => require("./getPermissionSetProvisionings"));
+
+export { GetPermissionSetsArgs, GetPermissionSetsResult, GetPermissionSetsOutputArgs } from "./getPermissionSets";
+export const getPermissionSets: typeof import("./getPermissionSets").getPermissionSets = null as any;
+export const getPermissionSetsOutput: typeof import("./getPermissionSets").getPermissionSetsOutput = null as any;
+utilities.lazyLoad(exports, ["getPermissionSets","getPermissionSetsOutput"], () => require("./getPermissionSets"));
+
+export { GetUserProvisioningsArgs, GetUserProvisioningsResult, GetUserProvisioningsOutputArgs } from "./getUserProvisionings";
+export const getUserProvisionings: typeof import("./getUserProvisionings").getUserProvisionings = null as any;
+export const getUserProvisioningsOutput: typeof import("./getUserProvisionings").getUserProvisioningsOutput = null as any;
+utilities.lazyLoad(exports, ["getUserProvisionings","getUserProvisioningsOutput"], () => require("./getUserProvisionings"));
+
+export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+ * (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
  * ## Example Usage
  *
  * ```typescript
@@ -62,12 +62,14 @@ import * as utilities from "../utilities";
  *     projectName: "default",
  *     forceRestartAfterScale: false,
  * }});
- * const fooInstances = volcengine.escloud.InstancesOutput({
+ * const fooInstances = volcengine.escloud.getInstancesOutput({
  *     ids: [fooInstance.id],
  * });
  * ```
  */
+/** @deprecated volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -141,7 +143,7 @@ export interface InstancesResult {
     readonly zoneIds?: string[];
 }
 /**
- * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+ * (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
  * ## Example Usage
  *
  * ```typescript
@@ -196,11 +198,12 @@ export interface InstancesResult {
  *     projectName: "default",
  *     forceRestartAfterScale: false,
  * }});
- * const fooInstances = volcengine.escloud.InstancesOutput({
+ * const fooInstances = volcengine.escloud.getInstancesOutput({
  *     ids: [fooInstance.id],
  * });
  * ```
  */
+/** @deprecated volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

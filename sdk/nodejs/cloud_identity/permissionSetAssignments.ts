@@ -48,12 +48,14 @@ import * as utilities from "../utilities";
  *     principalType: "User",
  *     principalId: fooUser.id,
  * });
- * const fooPermissionSetAssignments = volcengine.cloud_identity.PermissionSetAssignmentsOutput({
+ * const fooPermissionSetAssignments = volcengine.cloud_identity.getPermissionSetAssignmentsOutput({
  *     permissionSetId: fooPermissionSetAssignment.permissionSetId,
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments */
 export function permissionSetAssignments(args?: PermissionSetAssignmentsArgs, opts?: pulumi.InvokeOptions): Promise<PermissionSetAssignmentsResult> {
+    pulumi.log.warn("permissionSetAssignments is deprecated: volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -174,11 +176,12 @@ export interface PermissionSetAssignmentsResult {
  *     principalType: "User",
  *     principalId: fooUser.id,
  * });
- * const fooPermissionSetAssignments = volcengine.cloud_identity.PermissionSetAssignmentsOutput({
+ * const fooPermissionSetAssignments = volcengine.cloud_identity.getPermissionSetAssignmentsOutput({
  *     permissionSetId: fooPermissionSetAssignment.permissionSetId,
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments */
 export function permissionSetAssignmentsOutput(args?: PermissionSetAssignmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PermissionSetAssignmentsResult> {
     return pulumi.output(args).apply((a: any) => permissionSetAssignments(a, opts))
 }

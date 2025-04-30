@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_identity
 {
+    [Obsolete(@"volcengine.cloud_identity/users.Users has been deprecated in favor of volcengine.cloud_identity/getusers.getUsers")]
     public static class Users
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///             UserName = $"acc-test-user-{range.Value}",
         ///         }));
         ///     }
-        ///     var fooUsers = Volcengine.Cloud_identity.Users.Invoke(new()
+        ///     var fooUsers = Volcengine.Cloud_identity.GetUsers.Invoke(new()
         ///     {
         ///         Source = "Manual",
         ///         UserName = "acc-test-user",
@@ -73,7 +74,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///             UserName = $"acc-test-user-{range.Value}",
         ///         }));
         ///     }
-        ///     var fooUsers = Volcengine.Cloud_identity.Users.Invoke(new()
+        ///     var fooUsers = Volcengine.Cloud_identity.GetUsers.Invoke(new()
         ///     {
         ///         Source = "Manual",
         ///         UserName = "acc-test-user",

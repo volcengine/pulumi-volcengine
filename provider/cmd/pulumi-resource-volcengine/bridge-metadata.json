@@ -766,7 +766,14 @@
                 }
             },
             "volcengine_escloud_instance_v2": {
-                "current": "volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2",
+                "current": "volcengine:escloud/instanceV2:InstanceV2",
+                "past": [
+                    {
+                        "name": "volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "maintenance_day": {
                         "maxItemsOne": false
@@ -793,7 +800,14 @@
                 }
             },
             "volcengine_escloud_ip_white_list": {
-                "current": "volcengine:escloud_v2/escloudIpWhiteList:EscloudIpWhiteList",
+                "current": "volcengine:escloud/ipWhiteList:IpWhiteList",
+                "past": [
+                    {
+                        "name": "volcengine:escloud_v2/escloudIpWhiteList:EscloudIpWhiteList",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "ip_list": {
                         "maxItemsOne": false
@@ -2818,7 +2832,14 @@
                 }
             },
             "volcengine_cdn_certificates": {
-                "current": "volcengine:cdn/certificates:Certificates",
+                "current": "volcengine:cdn/getCertificates:getCertificates",
+                "past": [
+                    {
+                        "name": "volcengine:cdn/certificates:Certificates",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "cert_info": {
                         "maxItemsOne": false
@@ -2826,7 +2847,14 @@
                 }
             },
             "volcengine_cdn_configs": {
-                "current": "volcengine:cdn/configs:Configs",
+                "current": "volcengine:cdn/getConfigs:getConfigs",
+                "past": [
+                    {
+                        "name": "volcengine:cdn/configs:Configs",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "domain_config": {
                         "maxItemsOne": false
@@ -2834,7 +2862,14 @@
                 }
             },
             "volcengine_cdn_domains": {
-                "current": "volcengine:cdn/domains:Domains",
+                "current": "volcengine:cdn/getDomains:getDomains",
+                "past": [
+                    {
+                        "name": "volcengine:cdn/domains:Domains",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "domains": {
                         "maxItemsOne": false,
@@ -2861,7 +2896,14 @@
                 }
             },
             "volcengine_cdn_shared_configs": {
-                "current": "volcengine:cdn/sharedConfigs:SharedConfigs",
+                "current": "volcengine:cdn/getSharedConfigs:getSharedConfigs",
+                "past": [
+                    {
+                        "name": "volcengine:cdn/sharedConfigs:SharedConfigs",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "config_data": {
                         "maxItemsOne": false,
@@ -3304,7 +3346,14 @@
                 }
             },
             "volcengine_cloud_identity_groups": {
-                "current": "volcengine:cloud_identity/groups:Groups",
+                "current": "volcengine:cloud_identity/getGroups:getGroups",
+                "past": [
+                    {
+                        "name": "volcengine:cloud_identity/groups:Groups",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "groups": {
                         "maxItemsOne": false
@@ -3312,7 +3361,14 @@
                 }
             },
             "volcengine_cloud_identity_permission_set_assignments": {
-                "current": "volcengine:cloud_identity/permissionSetAssignments:PermissionSetAssignments",
+                "current": "volcengine:cloud_identity/getPermissionSetAssignments:getPermissionSetAssignments",
+                "past": [
+                    {
+                        "name": "volcengine:cloud_identity/permissionSetAssignments:PermissionSetAssignments",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "assignments": {
                         "maxItemsOne": false
@@ -3320,7 +3376,14 @@
                 }
             },
             "volcengine_cloud_identity_permission_set_provisionings": {
-                "current": "volcengine:cloud_identity/permissionSetProvisionings:PermissionSetProvisionings",
+                "current": "volcengine:cloud_identity/getPermissionSetProvisionings:getPermissionSetProvisionings",
+                "past": [
+                    {
+                        "name": "volcengine:cloud_identity/permissionSetProvisionings:PermissionSetProvisionings",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "permission_provisionings": {
                         "maxItemsOne": false
@@ -3328,7 +3391,14 @@
                 }
             },
             "volcengine_cloud_identity_permission_sets": {
-                "current": "volcengine:cloud_identity/permissionSets:PermissionSets",
+                "current": "volcengine:cloud_identity/getPermissionSets:getPermissionSets",
+                "past": [
+                    {
+                        "name": "volcengine:cloud_identity/permissionSets:PermissionSets",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "ids": {
                         "maxItemsOne": false
@@ -3346,7 +3416,14 @@
                 }
             },
             "volcengine_cloud_identity_user_provisionings": {
-                "current": "volcengine:cloud_identity/userProvisionings:UserProvisionings",
+                "current": "volcengine:cloud_identity/getUserProvisionings:getUserProvisionings",
+                "past": [
+                    {
+                        "name": "volcengine:cloud_identity/userProvisionings:UserProvisionings",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "user_provisionings": {
                         "maxItemsOne": false,
@@ -3361,7 +3438,14 @@
                 }
             },
             "volcengine_cloud_identity_users": {
-                "current": "volcengine:cloud_identity/users:Users",
+                "current": "volcengine:cloud_identity/getUsers:getUsers",
+                "past": [
+                    {
+                        "name": "volcengine:cloud_identity/users:Users",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "users": {
                         "maxItemsOne": false
@@ -4182,7 +4266,14 @@
                 }
             },
             "volcengine_escloud_instances": {
-                "current": "volcengine:escloud/instances:Instances",
+                "current": "volcengine:escloud/getInstances:getInstances",
+                "past": [
+                    {
+                        "name": "volcengine:escloud/instances:Instances",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "charge_types": {
                         "maxItemsOne": false
@@ -4262,7 +4353,14 @@
                 }
             },
             "volcengine_escloud_instances_v2": {
-                "current": "volcengine:escloud_v2/escloudInstancesV2:EscloudInstancesV2",
+                "current": "volcengine:escloud/getInstancesV2:getInstancesV2",
+                "past": [
+                    {
+                        "name": "volcengine:escloud_v2/escloudInstancesV2:EscloudInstancesV2",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "charge_types": {
                         "maxItemsOne": false
@@ -4373,7 +4471,14 @@
                 }
             },
             "volcengine_escloud_regions": {
-                "current": "volcengine:escloud/regions:Regions",
+                "current": "volcengine:escloud/getRegions:getRegions",
+                "past": [
+                    {
+                        "name": "volcengine:escloud/regions:Regions",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -4381,7 +4486,14 @@
                 }
             },
             "volcengine_escloud_zones": {
-                "current": "volcengine:escloud/zones:Zones",
+                "current": "volcengine:escloud/getZones:getZones",
+                "past": [
+                    {
+                        "name": "volcengine:escloud/zones:Zones",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "zones": {
                         "maxItemsOne": false
@@ -7753,5 +7865,90 @@
             }
         }
     },
-    "auto-settings": {}
+    "auto-settings": {
+        "resources": {
+            "volcengine_escloud_instance_v2": {
+                "aliases": [
+                    "volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2"
+                ]
+            },
+            "volcengine_escloud_ip_white_list": {
+                "aliases": [
+                    "volcengine:escloud_v2/escloudIpWhiteList:EscloudIpWhiteList"
+                ]
+            }
+        },
+        "datasources": {
+            "volcengine_cdn_certificates": {
+                "renames": [
+                    "volcengine:cdn/certificates:Certificates"
+                ]
+            },
+            "volcengine_cdn_configs": {
+                "renames": [
+                    "volcengine:cdn/configs:Configs"
+                ]
+            },
+            "volcengine_cdn_domains": {
+                "renames": [
+                    "volcengine:cdn/domains:Domains"
+                ]
+            },
+            "volcengine_cdn_shared_configs": {
+                "renames": [
+                    "volcengine:cdn/sharedConfigs:SharedConfigs"
+                ]
+            },
+            "volcengine_cloud_identity_groups": {
+                "renames": [
+                    "volcengine:cloud_identity/groups:Groups"
+                ]
+            },
+            "volcengine_cloud_identity_permission_set_assignments": {
+                "renames": [
+                    "volcengine:cloud_identity/permissionSetAssignments:PermissionSetAssignments"
+                ]
+            },
+            "volcengine_cloud_identity_permission_set_provisionings": {
+                "renames": [
+                    "volcengine:cloud_identity/permissionSetProvisionings:PermissionSetProvisionings"
+                ]
+            },
+            "volcengine_cloud_identity_permission_sets": {
+                "renames": [
+                    "volcengine:cloud_identity/permissionSets:PermissionSets"
+                ]
+            },
+            "volcengine_cloud_identity_user_provisionings": {
+                "renames": [
+                    "volcengine:cloud_identity/userProvisionings:UserProvisionings"
+                ]
+            },
+            "volcengine_cloud_identity_users": {
+                "renames": [
+                    "volcengine:cloud_identity/users:Users"
+                ]
+            },
+            "volcengine_escloud_instances": {
+                "renames": [
+                    "volcengine:escloud/instances:Instances"
+                ]
+            },
+            "volcengine_escloud_instances_v2": {
+                "renames": [
+                    "volcengine:escloud_v2/escloudInstancesV2:EscloudInstancesV2"
+                ]
+            },
+            "volcengine_escloud_regions": {
+                "renames": [
+                    "volcengine:escloud/regions:Regions"
+                ]
+            },
+            "volcengine_escloud_zones": {
+                "renames": [
+                    "volcengine:escloud/zones:Zones"
+                ]
+            }
+        }
+    }
 }

@@ -9,10 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud
 {
+    [Obsolete(@"volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones")]
     public static class Zones
     {
         /// <summary>
-        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+        /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Zones.Invoke(new()
+        ///     var @default = Volcengine.Escloud.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "xxx",
         ///     });
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Escloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+        /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Zones.Invoke(new()
+        ///     var @default = Volcengine.Escloud.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "xxx",
         ///     });

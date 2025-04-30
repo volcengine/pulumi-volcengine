@@ -25,13 +25,15 @@ import * as utilities from "../utilities";
  *         userName: `acc-test-user-${range.value}`,
  *     }));
  * }
- * const fooUsers = volcengine.cloud_identity.Users({
+ * const fooUsers = volcengine.cloud_identity.getUsers({
  *     source: "Manual",
  *     userName: "acc-test-user",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/users.Users has been deprecated in favor of volcengine.cloud_identity/getusers.getUsers */
 export function users(args?: UsersArgs, opts?: pulumi.InvokeOptions): Promise<UsersResult> {
+    pulumi.log.warn("users is deprecated: volcengine.cloud_identity/users.Users has been deprecated in favor of volcengine.cloud_identity/getusers.getUsers")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -126,12 +128,13 @@ export interface UsersResult {
  *         userName: `acc-test-user-${range.value}`,
  *     }));
  * }
- * const fooUsers = volcengine.cloud_identity.Users({
+ * const fooUsers = volcengine.cloud_identity.getUsers({
  *     source: "Manual",
  *     userName: "acc-test-user",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/users.Users has been deprecated in favor of volcengine.cloud_identity/getusers.getUsers */
 export function usersOutput(args?: UsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UsersResult> {
     return pulumi.output(args).apply((a: any) => users(a, opts))
 }

@@ -5,15 +5,45 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetInstancesV2Args, GetInstancesV2Result, GetInstancesV2OutputArgs } from "./getInstancesV2";
+export const getInstancesV2: typeof import("./getInstancesV2").getInstancesV2 = null as any;
+export const getInstancesV2Output: typeof import("./getInstancesV2").getInstancesV2Output = null as any;
+utilities.lazyLoad(exports, ["getInstancesV2","getInstancesV2Output"], () => require("./getInstancesV2"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
 utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
 
+export { InstanceV2Args, InstanceV2State } from "./instanceV2";
+export type InstanceV2 = import("./instanceV2").InstanceV2;
+export const InstanceV2: typeof import("./instanceV2").InstanceV2 = null as any;
+utilities.lazyLoad(exports, ["InstanceV2"], () => require("./instanceV2"));
+
 export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
 export const instances: typeof import("./instances").instances = null as any;
 export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
 utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
+export { IpWhiteListArgs, IpWhiteListState } from "./ipWhiteList";
+export type IpWhiteList = import("./ipWhiteList").IpWhiteList;
+export const IpWhiteList: typeof import("./ipWhiteList").IpWhiteList = null as any;
+utilities.lazyLoad(exports, ["IpWhiteList"], () => require("./ipWhiteList"));
 
 export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
 export const regions: typeof import("./regions").regions = null as any;
@@ -32,9 +62,15 @@ const _module = {
         switch (type) {
             case "volcengine:escloud/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
+            case "volcengine:escloud/instanceV2:InstanceV2":
+                return new InstanceV2(name, <any>undefined, { urn })
+            case "volcengine:escloud/ipWhiteList:IpWhiteList":
+                return new IpWhiteList(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "escloud/instance", _module)
+pulumi.runtime.registerResourceModule("volcengine", "escloud/instanceV2", _module)
+pulumi.runtime.registerResourceModule("volcengine", "escloud/ipWhiteList", _module)

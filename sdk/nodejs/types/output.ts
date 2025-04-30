@@ -2275,6 +2275,300 @@ export namespace cdn {
         value: string;
     }
 
+    export interface GetCertificatesCertInfo {
+        /**
+         * ID indicating the certificate.
+         */
+        certId: string;
+        /**
+         * The domain name to which the certificate is issued.
+         */
+        certName: string;
+        /**
+         * The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+         */
+        configuredDomain: string;
+        /**
+         * The remark of the cert.
+         */
+        desc: string;
+        /**
+         * The domain names included in the SAN field of the certificate.
+         */
+        dnsName: string;
+        /**
+         * The issuance time of the certificate is indicated. The unit is Unix timestamp.
+         */
+        effectiveTime: number;
+        /**
+         * The expiration time of the certificate is indicated. The unit is Unix timestamp.
+         */
+        expireTime: number;
+        /**
+         * Specify the location for storing the certificate. The parameter can take the following values: `volcCertCenter`: indicates that the certificate will be stored in the certificate center.`cdnCertHosting`: indicates that the certificate will be hosted on the content delivery network.
+         */
+        source: string;
+        /**
+         * Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+         */
+        status: string;
+    }
+
+    export interface GetConfigsDomainConfig {
+        /**
+         * The cname of the domain.
+         */
+        cname: string;
+        /**
+         * The create time of the domain.
+         */
+        createTime: number;
+        /**
+         * The domain name.
+         */
+        domain: string;
+        /**
+         * Indicates whether the configuration of this domain name is allowed to be changed.
+         */
+        lockStatus: string;
+        /**
+         * The project name.
+         */
+        project: string;
+        /**
+         * The service region of the domain.
+         */
+        serviceRegion: string;
+        /**
+         * The service type of the domain.
+         */
+        serviceType: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+        /**
+         * The update time of the domain.
+         */
+        updateTime: number;
+    }
+
+    export interface GetDomainsDomain {
+        /**
+         * The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+         */
+        backupOrigins: string[];
+        /**
+         * Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `targetHost`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cacheSharedOn`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+         */
+        cacheShared: string;
+        /**
+         * If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is targetHost or an empty value, the parameter value is empty.
+         */
+        cacheSharedTargetHost: string;
+        /**
+         * The CNAME address of the domain is automatically assigned when adding the domain.
+         */
+        cname: string;
+        /**
+         * The creation time of the domain.
+         */
+        createTime: number;
+        /**
+         * Search by specifying domain name keywords, with fuzzy matching.
+         */
+        domain: string;
+        /**
+         * Indicates the locked status of the accelerated domain.
+         */
+        domainLocks: outputs.cdn.GetDomainsDomainDomainLock[];
+        /**
+         * Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+         */
+        https: boolean;
+        /**
+         * Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+         */
+        ipv6: boolean;
+        /**
+         * Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+         */
+        isConflictDomain: boolean;
+        /**
+         * Configure the origin protocol for the accelerated domain.
+         */
+        originProtocol: string;
+        /**
+         * Specify a primary origin server for filtering accelerated domains.
+         */
+        primaryOrigins: string[];
+        /**
+         * The project name of the domain.
+         */
+        project: string;
+        /**
+         * Indicates the acceleration area. The parameter can take the following values: `chineseMainland`: Indicates mainland China. `global`: Indicates global. `outsideChineseMainland`: Indicates global (excluding mainland China).
+         */
+        serviceRegion: string;
+        /**
+         * The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+         */
+        serviceType: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+        /**
+         * Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+         */
+        tags: outputs.cdn.GetDomainsDomainTag[];
+        /**
+         * The update time of the domain.
+         */
+        updateTime: number;
+    }
+
+    export interface GetDomainsDomainDomainLock {
+        /**
+         * If the Status is on, this parameter value records the reason for the lock.
+         */
+        remark: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+    }
+
+    export interface GetDomainsDomainTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface GetSharedConfigsConfigData {
+        /**
+         * The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+         */
+        allowIpAccessRules: outputs.cdn.GetSharedConfigsConfigDataAllowIpAccessRule[];
+        /**
+         * The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+         */
+        allowRefererAccessRules: outputs.cdn.GetSharedConfigsConfigDataAllowRefererAccessRule[];
+        /**
+         * The configuration for a common list is represented by ConfigType common_match_list.
+         */
+        commonMatchLists: outputs.cdn.GetSharedConfigsConfigDataCommonMatchList[];
+        /**
+         * The name of the shared config.
+         */
+        configName: string;
+        /**
+         * The type of the shared config.
+         */
+        configType: string;
+        /**
+         * The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+         */
+        denyIpAccessRules: outputs.cdn.GetSharedConfigsConfigDataDenyIpAccessRule[];
+        /**
+         * The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+         */
+        denyRefererAccessRules: outputs.cdn.GetSharedConfigsConfigDataDenyRefererAccessRule[];
+        /**
+         * The number of domains.
+         */
+        domainCount: number;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+        /**
+         * The update time of the shared config.
+         */
+        updateTime: number;
+    }
+
+    export interface GetSharedConfigsConfigDataAllowIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataAllowRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType[];
+    }
+
+    export interface GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataCommonMatchList {
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.GetSharedConfigsConfigDataCommonMatchListCommonType[];
+    }
+
+    export interface GetSharedConfigsConfigDataCommonMatchListCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataDenyIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataDenyRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType[];
+    }
+
+    export interface GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
     export interface SharedConfigAllowIpAccessRule {
         /**
          * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
@@ -4029,6 +4323,271 @@ export namespace cloud_firewall {
 }
 
 export namespace cloud_identity {
+    export interface GetGroupsGroup {
+        /**
+         * The created time of the cloud identity group.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity group.
+         */
+        description: string;
+        /**
+         * The display name of cloud identity group.
+         */
+        displayName: string;
+        /**
+         * The id of the cloud identity group.
+         */
+        groupId: string;
+        /**
+         * The name of cloud identity group.
+         */
+        groupName: string;
+        /**
+         * The id of the cloud identity group.
+         */
+        id: string;
+        /**
+         * The join type of cloud identity group. Valid values: `Auto`, `Manual`.
+         */
+        joinType: string;
+        /**
+         * The source of the cloud identity group.
+         */
+        source: string;
+        /**
+         * The updated time of the cloud identity group.
+         */
+        updatedTime: string;
+    }
+
+    export interface GetPermissionSetAssignmentsAssignment {
+        /**
+         * The create time of the cloud identity permission set assignment.
+         */
+        createTime: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The id of cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        permissionSetName: string;
+        /**
+         * The principal id of cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
+         */
+        principalId: string;
+        /**
+         * The principal type of cloud identity permission set. Valid values: `User`, `Group`.
+         */
+        principalType: string;
+        /**
+         * The target account id of cloud identity permission set assignment.
+         */
+        targetId: string;
+    }
+
+    export interface GetPermissionSetProvisioningsPermissionProvisioning {
+        /**
+         * The create time of the cloud identity permission set provisioning.
+         */
+        createTime: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The id of cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        permissionSetName: string;
+        /**
+         * The target account id of cloud identity permission set.
+         */
+        targetId: string;
+        /**
+         * The update time of the cloud identity permission set provisioning.
+         */
+        updateTime: string;
+    }
+
+    export interface GetPermissionSetsPermissionSet {
+        /**
+         * The create time of the cloud identity permission set.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity permission set.
+         */
+        description: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        name: string;
+        /**
+         * The policies of the cloud identity permission set.
+         */
+        permissionPolicies: outputs.cloud_identity.GetPermissionSetsPermissionSetPermissionPolicy[];
+        /**
+         * The id of the cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The relay state of the cloud identity permission set.
+         */
+        relayState: string;
+        /**
+         * The session duration of the cloud identity permission set.
+         */
+        sessionDuration: number;
+        /**
+         * The updated time of the cloud identity permission set.
+         */
+        updatedTime: string;
+    }
+
+    export interface GetPermissionSetsPermissionSetPermissionPolicy {
+        /**
+         * The create time of the cloud identity permission set policy.
+         */
+        createTime: string;
+        /**
+         * The document of the cloud identity permission set policy.
+         */
+        permissionPolicyDocument: string;
+        /**
+         * The name of the cloud identity permission set policy.
+         */
+        permissionPolicyName: string;
+        /**
+         * The type of the cloud identity permission set policy.
+         */
+        permissionPolicyType: string;
+    }
+
+    export interface GetUserProvisioningsUserProvisioning {
+        /**
+         * The created time of the cloud identity user provisioning.
+         */
+        createdTime: string;
+        /**
+         * The deletion strategy of the cloud identity user provisioning.
+         */
+        deletionStrategy: string;
+        /**
+         * The department names of the cloud identity user provisioning.
+         */
+        departmentNames: string[];
+        /**
+         * The description of the cloud identity user provisioning.
+         */
+        description: string;
+        /**
+         * The duplication strategy of the cloud identity user provisioning.
+         */
+        duplicationStrategy: string;
+        /**
+         * The duplication suffix of the cloud identity user provisioning.
+         */
+        duplicationSuffix: string;
+        /**
+         * The id of the cloud identity user provisioning.
+         */
+        id: string;
+        /**
+         * The identity source strategy of the cloud identity user provisioning.
+         */
+        identitySourceStrategy: string;
+        /**
+         * The principal id of the cloud identity user provisioning.
+         */
+        principalId: string;
+        /**
+         * The principal name of the cloud identity user provisioning.
+         */
+        principalName: string;
+        /**
+         * The principal type of the cloud identity user provisioning.
+         */
+        principalType: string;
+        /**
+         * The status of the cloud identity user provisioning.
+         */
+        provisionStatus: string;
+        /**
+         * The target account id of the cloud identity user provisioning.
+         */
+        targetId: string;
+        /**
+         * The updated time of the cloud identity user provisioning.
+         */
+        updatedTime: string;
+        /**
+         * The id of the cloud identity user provisioning.
+         */
+        userProvisioningId: string;
+    }
+
+    export interface GetUsersUser {
+        /**
+         * The created time of the cloud identity user.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity user.
+         */
+        description: string;
+        /**
+         * The display name of cloud identity user.
+         */
+        displayName: string;
+        /**
+         * The email of the cloud identity user.
+         */
+        email: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        id: string;
+        /**
+         * The identity type of the cloud identity user.
+         */
+        identityType: string;
+        /**
+         * The phone of the cloud identity user.
+         */
+        phone: string;
+        /**
+         * The source of cloud identity user. Valid values: `Sync`, `Manual`.
+         */
+        source: string;
+        /**
+         * The updated time of the cloud identity user.
+         */
+        updatedTime: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        userId: string;
+        /**
+         * The name of cloud identity user.
+         */
+        userName: string;
+    }
+
     export interface GroupMember {
         /**
          * The description of the cloud identity group.
@@ -7836,6 +8395,1284 @@ export namespace eip {
 }
 
 export namespace escloud {
+    export interface GetInstancesInstance {
+        /**
+         * The charge status of instance.
+         */
+        chargeEnabled: boolean;
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * whether enable es private network.
+         */
+        enableEsPrivateNetwork: boolean;
+        /**
+         * whether enable es public network.
+         */
+        enableEsPublicNetwork: boolean;
+        /**
+         * whether enable kibana private network.
+         */
+        enableKibanaPrivateNetwork: boolean;
+        /**
+         * whether enable kibana public network.
+         */
+        enableKibanaPublicNetwork: boolean;
+        /**
+         * The es inner endpoint of instance.
+         */
+        esInnerEndpoint: string;
+        /**
+         * The es private domain of instance.
+         */
+        esPrivateDomain: string;
+        /**
+         * The es private endpoint of instance.
+         */
+        esPrivateEndpoint: string;
+        /**
+         * The es public domain of instance.
+         */
+        esPublicDomain: string;
+        /**
+         * The es public endpoint of instance.
+         */
+        esPublicEndpoint: string;
+        /**
+         * The expire time of instance.
+         */
+        expireDate: string;
+        /**
+         * The Id of instance.
+         */
+        id: string;
+        /**
+         * The configuration of instance.
+         */
+        instanceConfiguration: outputs.escloud.GetInstancesInstanceInstanceConfiguration;
+        /**
+         * The Id of instance.
+         */
+        instanceId: string;
+        /**
+         * The kibana private domain of instance.
+         */
+        kibanaPrivateDomain: string;
+        /**
+         * The kibana public domain of instance.
+         */
+        kibanaPublicDomain: string;
+        /**
+         * The maintenance day of instance.
+         */
+        maintenanceDays: string[];
+        /**
+         * The maintenance time of instance.
+         */
+        maintenanceTime: string;
+        /**
+         * The namespace of instance.
+         */
+        namespace: string;
+        /**
+         * The nodes info of instance.
+         */
+        nodes: outputs.escloud.GetInstancesInstanceNode[];
+        /**
+         * The plugin info of instance.
+         */
+        plugins: outputs.escloud.GetInstancesInstancePlugin[];
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The total nodes of instance.
+         */
+        totalNodes: number;
+        /**
+         * The user id of instance.
+         */
+        userId: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfiguration {
+        /**
+         * The user name of instance.
+         */
+        adminUserName: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * whether enable https.
+         */
+        enableHttps: boolean;
+        /**
+         * Whether enable pure master.
+         */
+        enablePureMaster: boolean;
+        /**
+         * The node number of host.
+         */
+        hotNodeNumber: number;
+        /**
+         * The node resource spec of host.
+         */
+        hotNodeResourceSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec;
+        /**
+         * The node storage spec of host.
+         */
+        hotNodeStorageSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The node number of kibana.
+         */
+        kibanaNodeNumber: number;
+        /**
+         * The node resource spec of kibana.
+         */
+        kibanaNodeResourceSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec;
+        /**
+         * The node storage spec of kibana.
+         */
+        kibanaNodeStorageSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec;
+        /**
+         * The node number of master.
+         */
+        masterNodeNumber: number;
+        /**
+         * The node resource spec of master.
+         */
+        masterNodeResourceSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec;
+        /**
+         * The node storage spec of master.
+         */
+        masterNodeStorageSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec;
+        /**
+         * The period of project.
+         */
+        period: number;
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * The region info of instance.
+         */
+        regionId: string;
+        /**
+         * The subnet info.
+         */
+        subnet: outputs.escloud.GetInstancesInstanceInstanceConfigurationSubnet;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+        /**
+         * The vpc info.
+         */
+        vpc: outputs.escloud.GetInstancesInstanceInstanceConfigurationVpc;
+        /**
+         * The zoneId of instance.
+         */
+        zoneId: string;
+        /**
+         * The zone number of instance.
+         */
+        zoneNumber: number;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationSubnet {
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of subnet.
+         */
+        subnetName: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationVpc {
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface GetInstancesInstanceNode {
+        /**
+         * Is cold node.
+         */
+        isCold: boolean;
+        /**
+         * Is hot node.
+         */
+        isHot: boolean;
+        /**
+         * Is kibana node.
+         */
+        isKibana: boolean;
+        /**
+         * Is master node.
+         */
+        isMaster: boolean;
+        /**
+         * Is warm node.
+         */
+        isWarm: boolean;
+        /**
+         * The show name of node.
+         */
+        nodeDisplayName: string;
+        /**
+         * The name of node.
+         */
+        nodeName: string;
+        /**
+         * The node resource spec of master.
+         */
+        resourceSpec: outputs.escloud.GetInstancesInstanceNodeResourceSpec;
+        /**
+         * The restart times of node.
+         */
+        restartNumber: number;
+        /**
+         * The start time of node.
+         */
+        startTime: string;
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The node storage spec of master.
+         */
+        storageSpec: outputs.escloud.GetInstancesInstanceNodeStorageSpec;
+    }
+
+    export interface GetInstancesInstanceNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstancePlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface GetInstancesV2Instance {
+        /**
+         * Whether to enable cerebro.
+         */
+        cerebroEnabled: boolean;
+        /**
+         * The cerebro private domain of instance.
+         */
+        cerebroPrivateDomain: string;
+        /**
+         * The cerebro public domain of instance.
+         */
+        cerebroPublicDomain: string;
+        /**
+         * The charge status of instance.
+         */
+        chargeEnabled: boolean;
+        /**
+         * The cluster id of instance.
+         */
+        clusterId: string;
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * Whether enable deletion protection for ESCloud instance.
+         */
+        deletionProtection: boolean;
+        /**
+         * whether enable es private domain public.
+         */
+        enableEsPrivateDomainPublic: boolean;
+        /**
+         * whether enable es private network.
+         */
+        enableEsPrivateNetwork: boolean;
+        /**
+         * whether enable es public network.
+         */
+        enableEsPublicNetwork: boolean;
+        /**
+         * whether enable kibana private domain public.
+         */
+        enableKibanaPrivateDomainPublic: boolean;
+        /**
+         * whether enable kibana private network.
+         */
+        enableKibanaPrivateNetwork: boolean;
+        /**
+         * whether enable kibana public network.
+         */
+        enableKibanaPublicNetwork: boolean;
+        /**
+         * The eip address of instance.
+         */
+        esEip: string;
+        /**
+         * The eip id associated with the instance.
+         */
+        esEipId: string;
+        /**
+         * The es inner endpoint of instance.
+         */
+        esInnerEndpoint: string;
+        /**
+         * The es private domain of instance.
+         */
+        esPrivateDomain: string;
+        /**
+         * The es private endpoint of instance.
+         */
+        esPrivateEndpoint: string;
+        /**
+         * The whitelist of es private ip.
+         */
+        esPrivateIpWhitelist: string;
+        /**
+         * The es public domain of instance.
+         */
+        esPublicDomain: string;
+        /**
+         * The es public endpoint of instance.
+         */
+        esPublicEndpoint: string;
+        /**
+         * The whitelist of es public ip.
+         */
+        esPublicIpWhitelist: string;
+        /**
+         * The expire time of instance.
+         */
+        expireDate: string;
+        /**
+         * The id of instance.
+         */
+        id: string;
+        /**
+         * The configuration of instance.
+         */
+        instanceConfigurations: outputs.escloud.GetInstancesV2InstanceInstanceConfiguration[];
+        /**
+         * The id of instance.
+         */
+        instanceId: string;
+        /**
+         * The eip address of kibana.
+         */
+        kibanaEip: string;
+        /**
+         * The eip id associated with kibana.
+         */
+        kibanaEipId: string;
+        /**
+         * The kibana private domain of instance.
+         */
+        kibanaPrivateDomain: string;
+        /**
+         * The whitelist of kibana private ip.
+         */
+        kibanaPrivateIpWhitelist: string;
+        /**
+         * The kibana public domain of instance.
+         */
+        kibanaPublicDomain: string;
+        /**
+         * The whitelist of kibana public ip.
+         */
+        kibanaPublicIpWhitelist: string;
+        /**
+         * The main zone id of instance.
+         */
+        mainZoneId: string;
+        /**
+         * The maintenance day of instance.
+         */
+        maintenanceDays: string[];
+        /**
+         * The maintenance time of instance.
+         */
+        maintenanceTime: string;
+        /**
+         * The nodes info of instance.
+         */
+        nodes: outputs.escloud.GetInstancesV2InstanceNode[];
+        /**
+         * The plugin info of instance.
+         */
+        plugins: outputs.escloud.GetInstancesV2InstancePlugin[];
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * Whether support code node.
+         */
+        supportCodeNode: boolean;
+        /**
+         * Tags.
+         */
+        tags: outputs.escloud.GetInstancesV2InstanceTag[];
+        /**
+         * The total nodes of instance.
+         */
+        totalNodes: number;
+        /**
+         * The user id of instance.
+         */
+        userId: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfiguration {
+        /**
+         * The user name of instance.
+         */
+        adminUserName: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * The node number of cold.
+         */
+        coldNodeNumber: number;
+        /**
+         * The node resource spec of cold.
+         */
+        coldNodeResourceSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec[];
+        /**
+         * The node storage spec of cold.
+         */
+        coldNodeStorageSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec[];
+        /**
+         * The node number of coordinator.
+         */
+        coordinatorNodeNumber: number;
+        /**
+         * The node resource spec of coordinator.
+         */
+        coordinatorNodeResourceSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec[];
+        /**
+         * The node storage spec of coordinator.
+         */
+        coordinatorNodeStorageSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec[];
+        /**
+         * whether enable https.
+         */
+        enableHttps: boolean;
+        /**
+         * Whether enable pure master.
+         */
+        enablePureMaster: boolean;
+        /**
+         * The node number of hot.
+         */
+        hotNodeNumber: number;
+        /**
+         * The node resource spec of hot.
+         */
+        hotNodeResourceSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec[];
+        /**
+         * The node storage spec of hot.
+         */
+        hotNodeStorageSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec[];
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The node number of kibana.
+         */
+        kibanaNodeNumber: number;
+        /**
+         * The node resource spec of kibana.
+         */
+        kibanaNodeResourceSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec[];
+        /**
+         * The node storage spec of kibana.
+         */
+        kibanaNodeStorageSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec[];
+        /**
+         * The node number of master.
+         */
+        masterNodeNumber: number;
+        /**
+         * The node resource spec of master.
+         */
+        masterNodeResourceSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec[];
+        /**
+         * The node storage spec of master.
+         */
+        masterNodeStorageSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec[];
+        /**
+         * The period of project.
+         */
+        period: number;
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * The region info of instance.
+         */
+        regionId: string;
+        /**
+         * The subnet info.
+         */
+        subnets: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationSubnet[];
+        /**
+         * The version of instance.
+         */
+        version: string;
+        /**
+         * The vpc info.
+         */
+        vpcs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationVpc[];
+        /**
+         * The node number of warm.
+         */
+        warmNodeNumber: number;
+        /**
+         * The node resource spec of warm.
+         */
+        warmNodeResourceSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec[];
+        /**
+         * The node storage spec of warm.
+         */
+        warmNodeStorageSpecs: outputs.escloud.GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec[];
+        /**
+         * The zoneId of instance.
+         */
+        zoneId: string;
+        /**
+         * The zone number of instance.
+         */
+        zoneNumber: number;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationSubnet {
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of subnet.
+         */
+        subnetName: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationVpc {
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of resource spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetInstancesV2InstanceNode {
+        /**
+         * Is cold node.
+         */
+        isCold: boolean;
+        /**
+         * Is coordinator node.
+         */
+        isCoordinator: boolean;
+        /**
+         * Is hot node.
+         */
+        isHot: boolean;
+        /**
+         * Is kibana node.
+         */
+        isKibana: boolean;
+        /**
+         * Is master node.
+         */
+        isMaster: boolean;
+        /**
+         * Is warm node.
+         */
+        isWarm: boolean;
+        /**
+         * The show name of node.
+         */
+        nodeDisplayName: string;
+        /**
+         * The name of node.
+         */
+        nodeName: string;
+        /**
+         * The node resource spec of master.
+         */
+        resourceSpecs: outputs.escloud.GetInstancesV2InstanceNodeResourceSpec[];
+        /**
+         * The restart times of node.
+         */
+        restartNumber: number;
+        /**
+         * The start time of node.
+         */
+        startTime: string;
+        /**
+         * The status of node.
+         */
+        status: string;
+        /**
+         * The node storage spec of master.
+         */
+        storageSpecs: outputs.escloud.GetInstancesV2InstanceNodeStorageSpec[];
+    }
+
+    export interface GetInstancesV2InstanceNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of resource spec.
+         */
+        description: string;
+        /**
+         * The show name of resource spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+    }
+
+    export interface GetInstancesV2InstanceNodeStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+    }
+
+    export interface GetInstancesV2InstancePlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The status of plugin.
+         */
+        status: string;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface GetInstancesV2InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
     export interface InstanceInstanceConfiguration {
         /**
          * The password of administrator account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -7928,6 +9765,71 @@ export namespace escloud {
          * The type of node, the value is `Master` or `Hot` or `Kibana`.
          */
         type: string;
+    }
+
+    export interface InstanceV2NetworkSpec {
+        /**
+         * The bandwidth of the eip. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * Whether the eip is opened.
+         */
+        isOpen: boolean;
+        /**
+         * The spec name of public network.
+         */
+        specName: string;
+        /**
+         * The type of public network, valid values: `Elasticsearch`, `Kibana`.
+         */
+        type: string;
+    }
+
+    export interface InstanceV2NodeSpecsAssign {
+        /**
+         * The extra performance of FlexPL storage spec.
+         */
+        extraPerformance?: outputs.escloud.InstanceV2NodeSpecsAssignExtraPerformance;
+        /**
+         * The number of node.
+         */
+        number: number;
+        /**
+         * The name of compute resource spec.
+         */
+        resourceSpecName: string;
+        /**
+         * The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+         */
+        storageSize: number;
+        /**
+         * The name of storage spec. Kibana NodeSpecsAssign should specify this field to ``.
+         */
+        storageSpecName: string;
+        /**
+         * The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+         */
+        type: string;
+    }
+
+    export interface InstanceV2NodeSpecsAssignExtraPerformance {
+        /**
+         * When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+         * The unit is MiB, and the adjustment step size is 10MiB.
+         */
+        throughput: number;
+    }
+
+    export interface InstanceV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface InstancesInstance {

@@ -22,7 +22,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/escloud_v2"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/escloud"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooEscloudInstanceV2, err := escloud_v2.NewEscloudInstanceV2(ctx, "fooEscloudInstanceV2", &escloud_v2.EscloudInstanceV2Args{
+//			fooInstanceV2, err := escloud.NewInstanceV2(ctx, "fooInstanceV2", &escloud.InstanceV2Args{
 //				InstanceName: pulumi.String("acc-test-escloud-instance"),
 //				Version:      pulumi.String("V7_10"),
 //				ZoneIds: pulumi.StringArray{
@@ -68,25 +68,25 @@ import (
 //				EnablePureMaster:   pulumi.Bool(true),
 //				DeletionProtection: pulumi.Bool(false),
 //				ProjectName:        pulumi.String("default"),
-//				NodeSpecsAssigns: escloud_v2.EscloudInstanceV2NodeSpecsAssignArray{
-//					&escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs{
+//				NodeSpecsAssigns: escloud.InstanceV2NodeSpecsAssignArray{
+//					&escloud.InstanceV2NodeSpecsAssignArgs{
 //						Type:             pulumi.String("Master"),
 //						Number:           pulumi.Int(3),
 //						ResourceSpecName: pulumi.String("es.x2.medium"),
 //						StorageSpecName:  pulumi.String("es.volume.essd.pl0"),
 //						StorageSize:      pulumi.Int(20),
 //					},
-//					&escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs{
+//					&escloud.InstanceV2NodeSpecsAssignArgs{
 //						Type:             pulumi.String("Hot"),
 //						Number:           pulumi.Int(6),
 //						ResourceSpecName: pulumi.String("es.x2.medium"),
 //						StorageSpecName:  pulumi.String("es.volume.essd.flexpl-standard"),
 //						StorageSize:      pulumi.Int(500),
-//						ExtraPerformance: &escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs{
+//						ExtraPerformance: &escloud.InstanceV2NodeSpecsAssignExtraPerformanceArgs{
 //							Throughput: pulumi.Int(65),
 //						},
 //					},
-//					&escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs{
+//					&escloud.InstanceV2NodeSpecsAssignArgs{
 //						Type:             pulumi.String("Kibana"),
 //						Number:           pulumi.Int(1),
 //						ResourceSpecName: pulumi.String("kibana.x2.small"),
@@ -94,22 +94,22 @@ import (
 //						StorageSize:      pulumi.Int(0),
 //					},
 //				},
-//				NetworkSpecs: escloud_v2.EscloudInstanceV2NetworkSpecArray{
-//					&escloud_v2.EscloudInstanceV2NetworkSpecArgs{
+//				NetworkSpecs: escloud.InstanceV2NetworkSpecArray{
+//					&escloud.InstanceV2NetworkSpecArgs{
 //						Type:      pulumi.String("Elasticsearch"),
 //						Bandwidth: pulumi.Int(1),
 //						IsOpen:    pulumi.Bool(true),
 //						SpecName:  pulumi.String("es.eip.bgp_fixed_bandwidth"),
 //					},
-//					&escloud_v2.EscloudInstanceV2NetworkSpecArgs{
+//					&escloud.InstanceV2NetworkSpecArgs{
 //						Type:      pulumi.String("Kibana"),
 //						Bandwidth: pulumi.Int(1),
 //						IsOpen:    pulumi.Bool(true),
 //						SpecName:  pulumi.String("es.eip.bgp_fixed_bandwidth"),
 //					},
 //				},
-//				Tags: escloud_v2.EscloudInstanceV2TagArray{
-//					&escloud_v2.EscloudInstanceV2TagArgs{
+//				Tags: escloud.InstanceV2TagArray{
+//					&escloud.InstanceV2TagArgs{
 //						Key:   pulumi.String("k1"),
 //						Value: pulumi.String("v1"),
 //					},
@@ -118,8 +118,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = escloud_v2.NewEscloudIpWhiteList(ctx, "fooEscloudIpWhiteList", &escloud_v2.EscloudIpWhiteListArgs{
-//				InstanceId: fooEscloudInstanceV2.ID(),
+//			_, err = escloud.NewIpWhiteList(ctx, "fooIpWhiteList", &escloud.IpWhiteListArgs{
+//				InstanceId: fooInstanceV2.ID(),
 //				Type:       pulumi.String("public"),
 //				Component:  pulumi.String("es"),
 //				IpLists: pulumi.StringArray{
@@ -144,6 +144,8 @@ import (
 // ```sh
 // $ pulumi import volcengine:escloud_v2/escloudIpWhiteList:EscloudIpWhiteList default resource_id
 // ```
+//
+// Deprecated: volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList
 type EscloudIpWhiteList struct {
 	pulumi.CustomResourceState
 

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Provides a resource to manage escloud instance
+ * (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Provides a resource to manage escloud instance
  * ## Example Usage
  *
  * ```typescript

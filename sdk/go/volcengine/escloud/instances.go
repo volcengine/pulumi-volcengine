@@ -11,7 +11,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
-// (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+// (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
 // ## Example Usage
 //
 // ```go
@@ -89,7 +89,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = escloud.InstancesOutput(ctx, escloud.InstancesOutputArgs{
+//			_ = escloud.GetInstancesOutput(ctx, escloud.GetInstancesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooInstance.ID(),
 //				},
@@ -99,6 +99,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

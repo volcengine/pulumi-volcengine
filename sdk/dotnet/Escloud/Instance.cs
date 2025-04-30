@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Volcengine.Escloud
 {
     /// <summary>
-    /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Provides a resource to manage escloud instance
+    /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Provides a resource to manage escloud instance
     /// ## Example Usage
     /// 
     /// ```csharp

@@ -11,7 +11,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
-// (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
+// (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud regions
 // ## Example Usage
 //
 // ```go
@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := escloud.Regions(ctx, nil, nil)
+//			_, err := escloud.GetRegions(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.escloud/regions.Regions has been deprecated in favor of volcengine.escloud/getregions.getRegions
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegionsResult

@@ -5,8 +5,14 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_instances import *
+from .get_instances_v2 import *
+from .get_regions import *
+from .get_zones import *
 from .instance import *
+from .instance_v2 import *
 from .instances import *
+from .ip_white_list import *
 from .regions import *
 from .zones import *
 from ._inputs import *
