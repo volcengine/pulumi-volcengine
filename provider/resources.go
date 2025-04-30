@@ -18,6 +18,9 @@ import (
 	"fmt"
 	"path/filepath"
 
+	// The linter requires unnamed imports to have a doc comment
+	_ "embed"
+
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -98,6 +101,9 @@ func dataSourceType(mod string, res string) tokens.ModuleMember {
 	return tfbridge.MakeDataSource(volcenginePkg, mod, res)
 }
 
+//go:embed cmd/pulumi-resource-volcengine/bridge-metadata.json
+var metadata []byte
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
@@ -130,6 +136,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:   "https://volcengine.com",
 		Repository: "https://github.com/volcengine/pulumi-volcengine",
 		GitHubOrg:  "volcengine",
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config: map[string]*tfbridge.SchemaInfo{
 			"region": {
 				Default: &tfbridge.DefaultInfo{
@@ -722,6 +729,7 @@ func Provider() tfbridge.ProviderInfo {
 	}
 
 	prov.SetAutonaming(255, "-")
+	prov.MustApplyAutoAliases()
 
 	return prov
 }
