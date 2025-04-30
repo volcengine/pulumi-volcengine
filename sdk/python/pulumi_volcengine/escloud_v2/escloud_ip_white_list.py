@@ -151,7 +151,12 @@ class _EscloudIpWhiteListState:
         pulumi.set(self, "type", value)
 
 
+warnings.warn("""volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList""", DeprecationWarning)
+
+
 class EscloudIpWhiteList(pulumi.CustomResource):
+    warnings.warn("""volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -179,7 +184,7 @@ class EscloudIpWhiteList(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_escloud_instance_v2 = volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2",
+        foo_instance_v2 = volcengine.escloud.InstanceV2("fooInstanceV2",
             instance_name="acc-test-escloud-instance",
             version="V7_10",
             zone_ids=[
@@ -198,24 +203,24 @@ class EscloudIpWhiteList(pulumi.CustomResource):
             deletion_protection=False,
             project_name="default",
             node_specs_assigns=[
-                volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                volcengine.escloud.InstanceV2NodeSpecsAssignArgs(
                     type="Master",
                     number=3,
                     resource_spec_name="es.x2.medium",
                     storage_spec_name="es.volume.essd.pl0",
                     storage_size=20,
                 ),
-                volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                volcengine.escloud.InstanceV2NodeSpecsAssignArgs(
                     type="Hot",
                     number=6,
                     resource_spec_name="es.x2.medium",
                     storage_spec_name="es.volume.essd.flexpl-standard",
                     storage_size=500,
-                    extra_performance=volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs(
+                    extra_performance=volcengine.escloud.InstanceV2NodeSpecsAssignExtraPerformanceArgs(
                         throughput=65,
                     ),
                 ),
-                volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                volcengine.escloud.InstanceV2NodeSpecsAssignArgs(
                     type="Kibana",
                     number=1,
                     resource_spec_name="kibana.x2.small",
@@ -224,25 +229,25 @@ class EscloudIpWhiteList(pulumi.CustomResource):
                 ),
             ],
             network_specs=[
-                volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                volcengine.escloud.InstanceV2NetworkSpecArgs(
                     type="Elasticsearch",
                     bandwidth=1,
                     is_open=True,
                     spec_name="es.eip.bgp_fixed_bandwidth",
                 ),
-                volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                volcengine.escloud.InstanceV2NetworkSpecArgs(
                     type="Kibana",
                     bandwidth=1,
                     is_open=True,
                     spec_name="es.eip.bgp_fixed_bandwidth",
                 ),
             ],
-            tags=[volcengine.escloud_v2.EscloudInstanceV2TagArgs(
+            tags=[volcengine.escloud.InstanceV2TagArgs(
                 key="k1",
                 value="v1",
             )])
-        foo_escloud_ip_white_list = volcengine.escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList",
-            instance_id=foo_escloud_instance_v2.id,
+        foo_ip_white_list = volcengine.escloud.IpWhiteList("fooIpWhiteList",
+            instance_id=foo_instance_v2.id,
             type="public",
             component="es",
             ip_lists=[
@@ -291,7 +296,7 @@ class EscloudIpWhiteList(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_escloud_instance_v2 = volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2",
+        foo_instance_v2 = volcengine.escloud.InstanceV2("fooInstanceV2",
             instance_name="acc-test-escloud-instance",
             version="V7_10",
             zone_ids=[
@@ -310,24 +315,24 @@ class EscloudIpWhiteList(pulumi.CustomResource):
             deletion_protection=False,
             project_name="default",
             node_specs_assigns=[
-                volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                volcengine.escloud.InstanceV2NodeSpecsAssignArgs(
                     type="Master",
                     number=3,
                     resource_spec_name="es.x2.medium",
                     storage_spec_name="es.volume.essd.pl0",
                     storage_size=20,
                 ),
-                volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                volcengine.escloud.InstanceV2NodeSpecsAssignArgs(
                     type="Hot",
                     number=6,
                     resource_spec_name="es.x2.medium",
                     storage_spec_name="es.volume.essd.flexpl-standard",
                     storage_size=500,
-                    extra_performance=volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs(
+                    extra_performance=volcengine.escloud.InstanceV2NodeSpecsAssignExtraPerformanceArgs(
                         throughput=65,
                     ),
                 ),
-                volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                volcengine.escloud.InstanceV2NodeSpecsAssignArgs(
                     type="Kibana",
                     number=1,
                     resource_spec_name="kibana.x2.small",
@@ -336,25 +341,25 @@ class EscloudIpWhiteList(pulumi.CustomResource):
                 ),
             ],
             network_specs=[
-                volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                volcengine.escloud.InstanceV2NetworkSpecArgs(
                     type="Elasticsearch",
                     bandwidth=1,
                     is_open=True,
                     spec_name="es.eip.bgp_fixed_bandwidth",
                 ),
-                volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                volcengine.escloud.InstanceV2NetworkSpecArgs(
                     type="Kibana",
                     bandwidth=1,
                     is_open=True,
                     spec_name="es.eip.bgp_fixed_bandwidth",
                 ),
             ],
-            tags=[volcengine.escloud_v2.EscloudInstanceV2TagArgs(
+            tags=[volcengine.escloud.InstanceV2TagArgs(
                 key="k1",
                 value="v1",
             )])
-        foo_escloud_ip_white_list = volcengine.escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList",
-            instance_id=foo_escloud_instance_v2.id,
+        foo_ip_white_list = volcengine.escloud.IpWhiteList("fooIpWhiteList",
+            instance_id=foo_instance_v2.id,
             type="public",
             component="es",
             ip_lists=[
@@ -392,6 +397,7 @@ class EscloudIpWhiteList(pulumi.CustomResource):
                  ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EscloudIpWhiteList is deprecated: volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

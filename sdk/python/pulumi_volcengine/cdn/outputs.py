@@ -35,6 +35,20 @@ __all__ = [
     'SharedConfigsConfigDataDenyIpAccessRuleResult',
     'SharedConfigsConfigDataDenyRefererAccessRuleResult',
     'SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeResult',
+    'GetCertificatesCertInfoResult',
+    'GetConfigsDomainConfigResult',
+    'GetDomainsDomainResult',
+    'GetDomainsDomainDomainLockResult',
+    'GetDomainsDomainTagResult',
+    'GetSharedConfigsConfigDataResult',
+    'GetSharedConfigsConfigDataAllowIpAccessRuleResult',
+    'GetSharedConfigsConfigDataAllowRefererAccessRuleResult',
+    'GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeResult',
+    'GetSharedConfigsConfigDataCommonMatchListResult',
+    'GetSharedConfigsConfigDataCommonMatchListCommonTypeResult',
+    'GetSharedConfigsConfigDataDenyIpAccessRuleResult',
+    'GetSharedConfigsConfigDataDenyRefererAccessRuleResult',
+    'GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeResult',
 ]
 
 @pulumi.output_type
@@ -1169,6 +1183,797 @@ class SharedConfigsConfigDataDenyRefererAccessRuleResult(dict):
 
 @pulumi.output_type
 class SharedConfigsConfigDataDenyRefererAccessRuleCommonTypeResult(dict):
+    def __init__(__self__, *,
+                 ignore_case: bool,
+                 rules: Sequence[str]):
+        """
+        :param bool ignore_case: This list is case-sensitive when matching requests. Default is true.
+        :param Sequence[str] rules: The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        pulumi.set(__self__, "ignore_case", ignore_case)
+        pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> bool:
+        """
+        This list is case-sensitive when matching requests. Default is true.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Sequence[str]:
+        """
+        The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        return pulumi.get(self, "rules")
+
+
+@pulumi.output_type
+class GetCertificatesCertInfoResult(dict):
+    def __init__(__self__, *,
+                 cert_id: str,
+                 cert_name: str,
+                 configured_domain: str,
+                 desc: str,
+                 dns_name: str,
+                 effective_time: int,
+                 expire_time: int,
+                 source: str,
+                 status: str):
+        """
+        :param str cert_id: ID indicating the certificate.
+        :param str cert_name: The domain name to which the certificate is issued.
+        :param str configured_domain: The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+        :param str desc: The remark of the cert.
+        :param str dns_name: The domain names included in the SAN field of the certificate.
+        :param int effective_time: The issuance time of the certificate is indicated. The unit is Unix timestamp.
+        :param int expire_time: The expiration time of the certificate is indicated. The unit is Unix timestamp.
+        :param str source: Specify the location for storing the certificate. The parameter can take the following values: `volc_cert_center`: indicates that the certificate will be stored in the certificate center.`cdn_cert_hosting`: indicates that the certificate will be hosted on the content delivery network.
+        :param str status: Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+        """
+        pulumi.set(__self__, "cert_id", cert_id)
+        pulumi.set(__self__, "cert_name", cert_name)
+        pulumi.set(__self__, "configured_domain", configured_domain)
+        pulumi.set(__self__, "desc", desc)
+        pulumi.set(__self__, "dns_name", dns_name)
+        pulumi.set(__self__, "effective_time", effective_time)
+        pulumi.set(__self__, "expire_time", expire_time)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="certId")
+    def cert_id(self) -> str:
+        """
+        ID indicating the certificate.
+        """
+        return pulumi.get(self, "cert_id")
+
+    @property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> str:
+        """
+        The domain name to which the certificate is issued.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @property
+    @pulumi.getter(name="configuredDomain")
+    def configured_domain(self) -> str:
+        """
+        The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+        """
+        return pulumi.get(self, "configured_domain")
+
+    @property
+    @pulumi.getter
+    def desc(self) -> str:
+        """
+        The remark of the cert.
+        """
+        return pulumi.get(self, "desc")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        The domain names included in the SAN field of the certificate.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="effectiveTime")
+    def effective_time(self) -> int:
+        """
+        The issuance time of the certificate is indicated. The unit is Unix timestamp.
+        """
+        return pulumi.get(self, "effective_time")
+
+    @property
+    @pulumi.getter(name="expireTime")
+    def expire_time(self) -> int:
+        """
+        The expiration time of the certificate is indicated. The unit is Unix timestamp.
+        """
+        return pulumi.get(self, "expire_time")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        Specify the location for storing the certificate. The parameter can take the following values: `volc_cert_center`: indicates that the certificate will be stored in the certificate center.`cdn_cert_hosting`: indicates that the certificate will be hosted on the content delivery network.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetConfigsDomainConfigResult(dict):
+    def __init__(__self__, *,
+                 cname: str,
+                 create_time: int,
+                 domain: str,
+                 lock_status: str,
+                 project: str,
+                 service_region: str,
+                 service_type: str,
+                 status: str,
+                 update_time: int):
+        """
+        :param str cname: The cname of the domain.
+        :param int create_time: The create time of the domain.
+        :param str domain: The domain name.
+        :param str lock_status: Indicates whether the configuration of this domain name is allowed to be changed.
+        :param str project: The project name.
+        :param str service_region: The service region of the domain.
+        :param str service_type: The service type of the domain.
+        :param str status: The status of the domain.
+        :param int update_time: The update time of the domain.
+        """
+        pulumi.set(__self__, "cname", cname)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "lock_status", lock_status)
+        pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "service_region", service_region)
+        pulumi.set(__self__, "service_type", service_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter
+    def cname(self) -> str:
+        """
+        The cname of the domain.
+        """
+        return pulumi.get(self, "cname")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> int:
+        """
+        The create time of the domain.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="lockStatus")
+    def lock_status(self) -> str:
+        """
+        Indicates whether the configuration of this domain name is allowed to be changed.
+        """
+        return pulumi.get(self, "lock_status")
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The project name.
+        """
+        return pulumi.get(self, "project")
+
+    @property
+    @pulumi.getter(name="serviceRegion")
+    def service_region(self) -> str:
+        """
+        The service region of the domain.
+        """
+        return pulumi.get(self, "service_region")
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> str:
+        """
+        The service type of the domain.
+        """
+        return pulumi.get(self, "service_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the domain.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> int:
+        """
+        The update time of the domain.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetDomainsDomainResult(dict):
+    def __init__(__self__, *,
+                 backup_origins: Sequence[str],
+                 cache_shared: str,
+                 cache_shared_target_host: str,
+                 cname: str,
+                 create_time: int,
+                 domain: str,
+                 domain_locks: Sequence['outputs.GetDomainsDomainDomainLockResult'],
+                 https: bool,
+                 ipv6: bool,
+                 is_conflict_domain: bool,
+                 origin_protocol: str,
+                 primary_origins: Sequence[str],
+                 project: str,
+                 service_region: str,
+                 service_type: str,
+                 status: str,
+                 tags: Sequence['outputs.GetDomainsDomainTagResult'],
+                 update_time: int):
+        """
+        :param Sequence[str] backup_origins: The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+        :param str cache_shared: Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `target_host`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cache_shared_on`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+        :param str cache_shared_target_host: If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is target_host or an empty value, the parameter value is empty.
+        :param str cname: The CNAME address of the domain is automatically assigned when adding the domain.
+        :param int create_time: The creation time of the domain.
+        :param str domain: Search by specifying domain name keywords, with fuzzy matching.
+        :param Sequence['GetDomainsDomainDomainLockArgs'] domain_locks: Indicates the locked status of the accelerated domain.
+        :param bool https: Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+        :param bool ipv6: Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+        :param bool is_conflict_domain: Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+        :param str origin_protocol: Configure the origin protocol for the accelerated domain.
+        :param Sequence[str] primary_origins: Specify a primary origin server for filtering accelerated domains.
+        :param str project: The project name of the domain.
+        :param str service_region: Indicates the acceleration area. The parameter can take the following values: `chinese_mainland`: Indicates mainland China. `global`: Indicates global. `outside_chinese_mainland`: Indicates global (excluding mainland China).
+        :param str service_type: The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+        :param str status: The status of the domain.
+        :param Sequence['GetDomainsDomainTagArgs'] tags: Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+        :param int update_time: The update time of the domain.
+        """
+        pulumi.set(__self__, "backup_origins", backup_origins)
+        pulumi.set(__self__, "cache_shared", cache_shared)
+        pulumi.set(__self__, "cache_shared_target_host", cache_shared_target_host)
+        pulumi.set(__self__, "cname", cname)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_locks", domain_locks)
+        pulumi.set(__self__, "https", https)
+        pulumi.set(__self__, "ipv6", ipv6)
+        pulumi.set(__self__, "is_conflict_domain", is_conflict_domain)
+        pulumi.set(__self__, "origin_protocol", origin_protocol)
+        pulumi.set(__self__, "primary_origins", primary_origins)
+        pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "service_region", service_region)
+        pulumi.set(__self__, "service_type", service_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="backupOrigins")
+    def backup_origins(self) -> Sequence[str]:
+        """
+        The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+        """
+        return pulumi.get(self, "backup_origins")
+
+    @property
+    @pulumi.getter(name="cacheShared")
+    def cache_shared(self) -> str:
+        """
+        Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `target_host`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cache_shared_on`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+        """
+        return pulumi.get(self, "cache_shared")
+
+    @property
+    @pulumi.getter(name="cacheSharedTargetHost")
+    def cache_shared_target_host(self) -> str:
+        """
+        If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is target_host or an empty value, the parameter value is empty.
+        """
+        return pulumi.get(self, "cache_shared_target_host")
+
+    @property
+    @pulumi.getter
+    def cname(self) -> str:
+        """
+        The CNAME address of the domain is automatically assigned when adding the domain.
+        """
+        return pulumi.get(self, "cname")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> int:
+        """
+        The creation time of the domain.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        Search by specifying domain name keywords, with fuzzy matching.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="domainLocks")
+    def domain_locks(self) -> Sequence['outputs.GetDomainsDomainDomainLockResult']:
+        """
+        Indicates the locked status of the accelerated domain.
+        """
+        return pulumi.get(self, "domain_locks")
+
+    @property
+    @pulumi.getter
+    def https(self) -> bool:
+        """
+        Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+        """
+        return pulumi.get(self, "https")
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> bool:
+        """
+        Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+        """
+        return pulumi.get(self, "ipv6")
+
+    @property
+    @pulumi.getter(name="isConflictDomain")
+    def is_conflict_domain(self) -> bool:
+        """
+        Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+        """
+        return pulumi.get(self, "is_conflict_domain")
+
+    @property
+    @pulumi.getter(name="originProtocol")
+    def origin_protocol(self) -> str:
+        """
+        Configure the origin protocol for the accelerated domain.
+        """
+        return pulumi.get(self, "origin_protocol")
+
+    @property
+    @pulumi.getter(name="primaryOrigins")
+    def primary_origins(self) -> Sequence[str]:
+        """
+        Specify a primary origin server for filtering accelerated domains.
+        """
+        return pulumi.get(self, "primary_origins")
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The project name of the domain.
+        """
+        return pulumi.get(self, "project")
+
+    @property
+    @pulumi.getter(name="serviceRegion")
+    def service_region(self) -> str:
+        """
+        Indicates the acceleration area. The parameter can take the following values: `chinese_mainland`: Indicates mainland China. `global`: Indicates global. `outside_chinese_mainland`: Indicates global (excluding mainland China).
+        """
+        return pulumi.get(self, "service_region")
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> str:
+        """
+        The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+        """
+        return pulumi.get(self, "service_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the domain.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetDomainsDomainTagResult']:
+        """
+        Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> int:
+        """
+        The update time of the domain.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetDomainsDomainDomainLockResult(dict):
+    def __init__(__self__, *,
+                 remark: str,
+                 status: str):
+        """
+        :param str remark: If the Status is on, this parameter value records the reason for the lock.
+        :param str status: The status of the domain.
+        """
+        pulumi.set(__self__, "remark", remark)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def remark(self) -> str:
+        """
+        If the Status is on, this parameter value records the reason for the lock.
+        """
+        return pulumi.get(self, "remark")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the domain.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetDomainsDomainTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the tag.
+        :param str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataResult(dict):
+    def __init__(__self__, *,
+                 allow_ip_access_rules: Sequence['outputs.GetSharedConfigsConfigDataAllowIpAccessRuleResult'],
+                 allow_referer_access_rules: Sequence['outputs.GetSharedConfigsConfigDataAllowRefererAccessRuleResult'],
+                 common_match_lists: Sequence['outputs.GetSharedConfigsConfigDataCommonMatchListResult'],
+                 config_name: str,
+                 config_type: str,
+                 deny_ip_access_rules: Sequence['outputs.GetSharedConfigsConfigDataDenyIpAccessRuleResult'],
+                 deny_referer_access_rules: Sequence['outputs.GetSharedConfigsConfigDataDenyRefererAccessRuleResult'],
+                 domain_count: int,
+                 project_name: str,
+                 update_time: int):
+        """
+        :param Sequence['GetSharedConfigsConfigDataAllowIpAccessRuleArgs'] allow_ip_access_rules: The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+        :param Sequence['GetSharedConfigsConfigDataAllowRefererAccessRuleArgs'] allow_referer_access_rules: The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+        :param Sequence['GetSharedConfigsConfigDataCommonMatchListArgs'] common_match_lists: The configuration for a common list is represented by ConfigType common_match_list.
+        :param str config_name: The name of the shared config.
+        :param str config_type: The type of the shared config.
+        :param Sequence['GetSharedConfigsConfigDataDenyIpAccessRuleArgs'] deny_ip_access_rules: The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+        :param Sequence['GetSharedConfigsConfigDataDenyRefererAccessRuleArgs'] deny_referer_access_rules: The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+        :param int domain_count: The number of domains.
+        :param str project_name: The name of the project.
+        :param int update_time: The update time of the shared config.
+        """
+        pulumi.set(__self__, "allow_ip_access_rules", allow_ip_access_rules)
+        pulumi.set(__self__, "allow_referer_access_rules", allow_referer_access_rules)
+        pulumi.set(__self__, "common_match_lists", common_match_lists)
+        pulumi.set(__self__, "config_name", config_name)
+        pulumi.set(__self__, "config_type", config_type)
+        pulumi.set(__self__, "deny_ip_access_rules", deny_ip_access_rules)
+        pulumi.set(__self__, "deny_referer_access_rules", deny_referer_access_rules)
+        pulumi.set(__self__, "domain_count", domain_count)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="allowIpAccessRules")
+    def allow_ip_access_rules(self) -> Sequence['outputs.GetSharedConfigsConfigDataAllowIpAccessRuleResult']:
+        """
+        The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+        """
+        return pulumi.get(self, "allow_ip_access_rules")
+
+    @property
+    @pulumi.getter(name="allowRefererAccessRules")
+    def allow_referer_access_rules(self) -> Sequence['outputs.GetSharedConfigsConfigDataAllowRefererAccessRuleResult']:
+        """
+        The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+        """
+        return pulumi.get(self, "allow_referer_access_rules")
+
+    @property
+    @pulumi.getter(name="commonMatchLists")
+    def common_match_lists(self) -> Sequence['outputs.GetSharedConfigsConfigDataCommonMatchListResult']:
+        """
+        The configuration for a common list is represented by ConfigType common_match_list.
+        """
+        return pulumi.get(self, "common_match_lists")
+
+    @property
+    @pulumi.getter(name="configName")
+    def config_name(self) -> str:
+        """
+        The name of the shared config.
+        """
+        return pulumi.get(self, "config_name")
+
+    @property
+    @pulumi.getter(name="configType")
+    def config_type(self) -> str:
+        """
+        The type of the shared config.
+        """
+        return pulumi.get(self, "config_type")
+
+    @property
+    @pulumi.getter(name="denyIpAccessRules")
+    def deny_ip_access_rules(self) -> Sequence['outputs.GetSharedConfigsConfigDataDenyIpAccessRuleResult']:
+        """
+        The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+        """
+        return pulumi.get(self, "deny_ip_access_rules")
+
+    @property
+    @pulumi.getter(name="denyRefererAccessRules")
+    def deny_referer_access_rules(self) -> Sequence['outputs.GetSharedConfigsConfigDataDenyRefererAccessRuleResult']:
+        """
+        The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+        """
+        return pulumi.get(self, "deny_referer_access_rules")
+
+    @property
+    @pulumi.getter(name="domainCount")
+    def domain_count(self) -> int:
+        """
+        The number of domains.
+        """
+        return pulumi.get(self, "domain_count")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> int:
+        """
+        The update time of the shared config.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataAllowIpAccessRuleResult(dict):
+    def __init__(__self__, *,
+                 rules: Sequence[str]):
+        """
+        :param Sequence[str] rules: The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Sequence[str]:
+        """
+        The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        return pulumi.get(self, "rules")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataAllowRefererAccessRuleResult(dict):
+    def __init__(__self__, *,
+                 allow_empty: bool,
+                 common_types: Sequence['outputs.GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeResult']):
+        """
+        :param bool allow_empty: Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+        :param Sequence['GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeArgs'] common_types: The content indicating the Referer blacklist.
+        """
+        pulumi.set(__self__, "allow_empty", allow_empty)
+        pulumi.set(__self__, "common_types", common_types)
+
+    @property
+    @pulumi.getter(name="allowEmpty")
+    def allow_empty(self) -> bool:
+        """
+        Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+        """
+        return pulumi.get(self, "allow_empty")
+
+    @property
+    @pulumi.getter(name="commonTypes")
+    def common_types(self) -> Sequence['outputs.GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeResult']:
+        """
+        The content indicating the Referer blacklist.
+        """
+        return pulumi.get(self, "common_types")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataAllowRefererAccessRuleCommonTypeResult(dict):
+    def __init__(__self__, *,
+                 ignore_case: bool,
+                 rules: Sequence[str]):
+        """
+        :param bool ignore_case: This list is case-sensitive when matching requests. Default is true.
+        :param Sequence[str] rules: The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        pulumi.set(__self__, "ignore_case", ignore_case)
+        pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> bool:
+        """
+        This list is case-sensitive when matching requests. Default is true.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Sequence[str]:
+        """
+        The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        return pulumi.get(self, "rules")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataCommonMatchListResult(dict):
+    def __init__(__self__, *,
+                 common_types: Sequence['outputs.GetSharedConfigsConfigDataCommonMatchListCommonTypeResult']):
+        """
+        :param Sequence['GetSharedConfigsConfigDataCommonMatchListCommonTypeArgs'] common_types: The content indicating the Referer blacklist.
+        """
+        pulumi.set(__self__, "common_types", common_types)
+
+    @property
+    @pulumi.getter(name="commonTypes")
+    def common_types(self) -> Sequence['outputs.GetSharedConfigsConfigDataCommonMatchListCommonTypeResult']:
+        """
+        The content indicating the Referer blacklist.
+        """
+        return pulumi.get(self, "common_types")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataCommonMatchListCommonTypeResult(dict):
+    def __init__(__self__, *,
+                 ignore_case: bool,
+                 rules: Sequence[str]):
+        """
+        :param bool ignore_case: This list is case-sensitive when matching requests. Default is true.
+        :param Sequence[str] rules: The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        pulumi.set(__self__, "ignore_case", ignore_case)
+        pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> bool:
+        """
+        This list is case-sensitive when matching requests. Default is true.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Sequence[str]:
+        """
+        The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        return pulumi.get(self, "rules")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataDenyIpAccessRuleResult(dict):
+    def __init__(__self__, *,
+                 rules: Sequence[str]):
+        """
+        :param Sequence[str] rules: The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Sequence[str]:
+        """
+        The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+        """
+        return pulumi.get(self, "rules")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataDenyRefererAccessRuleResult(dict):
+    def __init__(__self__, *,
+                 allow_empty: bool,
+                 common_types: Sequence['outputs.GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeResult']):
+        """
+        :param bool allow_empty: Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+        :param Sequence['GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeArgs'] common_types: The content indicating the Referer blacklist.
+        """
+        pulumi.set(__self__, "allow_empty", allow_empty)
+        pulumi.set(__self__, "common_types", common_types)
+
+    @property
+    @pulumi.getter(name="allowEmpty")
+    def allow_empty(self) -> bool:
+        """
+        Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+        """
+        return pulumi.get(self, "allow_empty")
+
+    @property
+    @pulumi.getter(name="commonTypes")
+    def common_types(self) -> Sequence['outputs.GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeResult']:
+        """
+        The content indicating the Referer blacklist.
+        """
+        return pulumi.get(self, "common_types")
+
+
+@pulumi.output_type
+class GetSharedConfigsConfigDataDenyRefererAccessRuleCommonTypeResult(dict):
     def __init__(__self__, *,
                  ignore_case: bool,
                  rules: Sequence[str]):

@@ -38,12 +38,14 @@ import * as utilities from "../utilities";
  *         ],
  *     }));
  * }
- * const fooPermissionSets = volcengine.cloud_identity.PermissionSetsOutput({
+ * const fooPermissionSets = volcengine.cloud_identity.getPermissionSetsOutput({
  *     ids: fooPermissionSet.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/permissionsets.PermissionSets has been deprecated in favor of volcengine.cloud_identity/getpermissionsets.getPermissionSets */
 export function permissionSets(args?: PermissionSetsArgs, opts?: pulumi.InvokeOptions): Promise<PermissionSetsResult> {
+    pulumi.log.warn("permissionSets is deprecated: volcengine.cloud_identity/permissionsets.PermissionSets has been deprecated in favor of volcengine.cloud_identity/getpermissionsets.getPermissionSets")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -124,11 +126,12 @@ export interface PermissionSetsResult {
  *         ],
  *     }));
  * }
- * const fooPermissionSets = volcengine.cloud_identity.PermissionSetsOutput({
+ * const fooPermissionSets = volcengine.cloud_identity.getPermissionSetsOutput({
  *     ids: fooPermissionSet.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/permissionsets.PermissionSets has been deprecated in favor of volcengine.cloud_identity/getpermissionsets.getPermissionSets */
 export function permissionSetsOutput(args?: PermissionSetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PermissionSetsResult> {
     return pulumi.output(args).apply((a: any) => permissionSets(a, opts))
 }

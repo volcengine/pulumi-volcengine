@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * const fooEscloudInstanceV2 = new volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", {
+ * const fooInstanceV2 = new volcengine.escloud.InstanceV2("fooInstanceV2", {
  *     instanceName: "acc-test-escloud-instance",
  *     version: "V7_10",
  *     zoneIds: [
@@ -100,6 +100,8 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2 default resource_id
  * ```
+ *
+ * @deprecated volcengine.escloud_v2/escloudinstancev2.EscloudInstanceV2 has been deprecated in favor of volcengine.escloud/instancev2.InstanceV2
  */
 export class EscloudInstanceV2 extends pulumi.CustomResource {
     /**
@@ -112,6 +114,7 @@ export class EscloudInstanceV2 extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EscloudInstanceV2State, opts?: pulumi.CustomResourceOptions): EscloudInstanceV2 {
+        pulumi.log.warn("EscloudInstanceV2 is deprecated: volcengine.escloud_v2/escloudinstancev2.EscloudInstanceV2 has been deprecated in favor of volcengine.escloud/instancev2.InstanceV2")
         return new EscloudInstanceV2(name, <any>state, { ...opts, id: id });
     }
 
@@ -282,8 +285,11 @@ export class EscloudInstanceV2 extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated volcengine.escloud_v2/escloudinstancev2.EscloudInstanceV2 has been deprecated in favor of volcengine.escloud/instancev2.InstanceV2 */
     constructor(name: string, args: EscloudInstanceV2Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated volcengine.escloud_v2/escloudinstancev2.EscloudInstanceV2 has been deprecated in favor of volcengine.escloud/instancev2.InstanceV2 */
     constructor(name: string, argsOrState?: EscloudInstanceV2Args | EscloudInstanceV2State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EscloudInstanceV2 is deprecated: volcengine.escloud_v2/escloudinstancev2.EscloudInstanceV2 has been deprecated in favor of volcengine.escloud/instancev2.InstanceV2")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

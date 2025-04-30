@@ -68,7 +68,7 @@ class Instance(pulumi.CustomResource):
                  instance_configuration: Optional[pulumi.Input[pulumi.InputType['InstanceInstanceConfigurationArgs']]] = None,
                  __props__=None):
         """
-        (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Provides a resource to manage escloud instance
+        (Deprecated! Recommend use escloud.InstanceV2 replace) Provides a resource to manage escloud instance
         ## Example Usage
 
         ```python
@@ -141,7 +141,7 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Provides a resource to manage escloud instance
+        (Deprecated! Recommend use escloud.InstanceV2 replace) Provides a resource to manage escloud instance
         ## Example Usage
 
         ```python

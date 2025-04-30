@@ -68,7 +68,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cloud_identity.PermissionSetAssignmentsOutput(ctx, cloud_identity.PermissionSetAssignmentsOutputArgs{
+//			_ = cloud_identity.GetPermissionSetAssignmentsOutput(ctx, cloud_identity.GetPermissionSetAssignmentsOutputArgs{
 //				PermissionSetId: fooPermissionSetAssignment.PermissionSetId,
 //			}, nil)
 //			return nil
@@ -76,6 +76,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments
 func PermissionSetAssignments(ctx *pulumi.Context, args *PermissionSetAssignmentsArgs, opts ...pulumi.InvokeOption) (*PermissionSetAssignmentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PermissionSetAssignmentsResult

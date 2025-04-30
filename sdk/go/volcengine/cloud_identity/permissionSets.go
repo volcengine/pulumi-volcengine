@@ -56,13 +56,15 @@ import (
 // }
 // fooPermissionSet = append(fooPermissionSet, __res)
 // }
-// _ = cloud_identity.PermissionSetsOutput(ctx, cloud_identity.PermissionSetsOutputArgs{
+// _ = cloud_identity.GetPermissionSetsOutput(ctx, cloud_identity.GetPermissionSetsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:cloud_identity-permissionSets:PermissionSets.pp:23,9-31),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.cloud_identity/permissionsets.PermissionSets has been deprecated in favor of volcengine.cloud_identity/getpermissionsets.getPermissionSets
 func PermissionSets(ctx *pulumi.Context, args *PermissionSetsArgs, opts ...pulumi.InvokeOption) (*PermissionSetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PermissionSetsResult

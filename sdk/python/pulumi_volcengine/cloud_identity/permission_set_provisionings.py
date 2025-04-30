@@ -17,6 +17,8 @@ __all__ = [
     'permission_set_provisionings_output',
 ]
 
+warnings.warn("""volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings""", DeprecationWarning)
+
 @pulumi.output_type
 class PermissionSetProvisioningsResult:
     """
@@ -124,7 +126,7 @@ def permission_set_provisionings(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_identity.permission_set_provisionings(target_id="210026****")
+    foo = volcengine.cloud_identity.get_permission_set_provisionings(target_id="210026****")
     ```
 
 
@@ -133,6 +135,7 @@ def permission_set_provisionings(name_regex: Optional[str] = None,
     :param str permission_set_id: The id of cloud identity permission set.
     :param str target_id: The target account id of cloud identity permission set.
     """
+    pulumi.log.warn("""permission_set_provisionings is deprecated: volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -165,7 +168,7 @@ def permission_set_provisionings_output(name_regex: Optional[pulumi.Input[Option
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_identity.permission_set_provisionings(target_id="210026****")
+    foo = volcengine.cloud_identity.get_permission_set_provisionings(target_id="210026****")
     ```
 
 
@@ -174,4 +177,5 @@ def permission_set_provisionings_output(name_regex: Optional[pulumi.Input[Option
     :param str permission_set_id: The id of cloud identity permission set.
     :param str target_id: The target account id of cloud identity permission set.
     """
+    pulumi.log.warn("""permission_set_provisionings is deprecated: volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings""")
     ...

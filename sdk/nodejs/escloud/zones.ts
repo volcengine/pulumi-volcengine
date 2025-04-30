@@ -7,19 +7,21 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+ * (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.escloud.Zones({
+ * const default = volcengine.escloud.getZones({
  *     regionId: "xxx",
  * });
  * ```
  */
+/** @deprecated volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones */
 export function zones(args: ZonesArgs, opts?: pulumi.InvokeOptions): Promise<ZonesResult> {
+    pulumi.log.warn("zones is deprecated: volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:escloud/zones:Zones", {
@@ -62,18 +64,19 @@ export interface ZonesResult {
     readonly zones: outputs.escloud.ZonesZone[];
 }
 /**
- * (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+ * (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.escloud.Zones({
+ * const default = volcengine.escloud.getZones({
  *     regionId: "xxx",
  * });
  * ```
  */
+/** @deprecated volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones */
 export function zonesOutput(args: ZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ZonesResult> {
     return pulumi.output(args).apply((a: any) => zones(a, opts))
 }

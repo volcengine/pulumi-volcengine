@@ -9,10 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud
 {
+    [Obsolete(@"volcengine.escloud/instances.Instances has been deprecated in favor of volcengine.escloud/getinstances.getInstances")]
     public static class Instances
     {
         /// <summary>
-        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+        /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -84,7 +85,7 @@ namespace Pulumi.Volcengine.Escloud
         ///         },
         ///     });
         /// 
-        ///     var fooInstances = Volcengine.Escloud.Instances.Invoke(new()
+        ///     var fooInstances = Volcengine.Escloud.GetInstances.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -99,7 +100,7 @@ namespace Pulumi.Volcengine.Escloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:escloud/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud instances
+        /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud instances
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -171,7 +172,7 @@ namespace Pulumi.Volcengine.Escloud
         ///         },
         ///     });
         /// 
-        ///     var fooInstances = Volcengine.Escloud.Instances.Invoke(new()
+        ///     var fooInstances = Volcengine.Escloud.GetInstances.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

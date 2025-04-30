@@ -64,12 +64,14 @@ import * as utilities from "../utilities";
  *         },
  *     }),
  * });
- * const fooDomains = volcengine.cdn.DomainsOutput({
+ * const fooDomains = volcengine.cdn.getDomainsOutput({
  *     domain: fooCdnDomain.id,
  * });
  * ```
  */
+/** @deprecated volcengine.cdn/domains.Domains has been deprecated in favor of volcengine.cdn/getdomains.getDomains */
 export function domains(args?: DomainsArgs, opts?: pulumi.InvokeOptions): Promise<DomainsResult> {
+    pulumi.log.warn("domains is deprecated: volcengine.cdn/domains.Domains has been deprecated in favor of volcengine.cdn/getdomains.getDomains")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -245,11 +247,12 @@ export interface DomainsResult {
  *         },
  *     }),
  * });
- * const fooDomains = volcengine.cdn.DomainsOutput({
+ * const fooDomains = volcengine.cdn.getDomainsOutput({
  *     domain: fooCdnDomain.id,
  * });
  * ```
  */
+/** @deprecated volcengine.cdn/domains.Domains has been deprecated in favor of volcengine.cdn/getdomains.getDomains */
 export function domainsOutput(args?: DomainsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DomainsResult> {
     return pulumi.output(args).apply((a: any) => domains(a, opts))
 }

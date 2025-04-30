@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_identity.UserProvisionings(ctx, &cloud_identity.UserProvisioningsArgs{
+//			_, err := cloud_identity.GetUserProvisionings(ctx, &cloud_identity.GetUserProvisioningsArgs{
 //				AccountId: pulumi.StringRef("210026****"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_identity/userprovisionings.UserProvisionings has been deprecated in favor of volcengine.cloud_identity/getuserprovisionings.getUserProvisionings
 func UserProvisionings(ctx *pulumi.Context, args *UserProvisioningsArgs, opts ...pulumi.InvokeOption) (*UserProvisioningsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv UserProvisioningsResult

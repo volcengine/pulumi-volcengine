@@ -5,6 +5,12 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_groups import *
+from .get_permission_set_assignments import *
+from .get_permission_set_provisionings import *
+from .get_permission_sets import *
+from .get_user_provisionings import *
+from .get_users import *
 from .group import *
 from .groups import *
 from .permission_set import *

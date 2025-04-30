@@ -9,10 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud
 {
+    [Obsolete(@"volcengine.escloud/regions.Regions has been deprecated in favor of volcengine.escloud/getregions.getRegions")]
     public static class Regions
     {
         /// <summary>
-        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
+        /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud regions
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Regions.Invoke();
+        ///     var @default = Volcengine.Escloud.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -32,7 +33,7 @@ namespace Pulumi.Volcengine.Escloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<RegionsResult>("volcengine:escloud/regions:Regions", args ?? new RegionsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// (Deprecated! Recommend use volcengine.escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
+        /// (Deprecated! Recommend use volcengine.escloud.InstanceV2 replace) Use this data source to query detailed information of escloud regions
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Regions.Invoke();
+        ///     var @default = Volcengine.Escloud.GetRegions.Invoke();
         /// 
         /// });
         /// ```

@@ -17,6 +17,8 @@ __all__ = [
     'permission_set_assignments_output',
 ]
 
+warnings.warn("""volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments""", DeprecationWarning)
+
 @pulumi.output_type
 class PermissionSetAssignmentsResult:
     """
@@ -180,7 +182,7 @@ def permission_set_assignments(name_regex: Optional[str] = None,
         target_id="210026****",
         principal_type="User",
         principal_id=foo_user.id)
-    foo_permission_set_assignments = volcengine.cloud_identity.permission_set_assignments_output(permission_set_id=foo_permission_set_assignment.permission_set_id)
+    foo_permission_set_assignments = volcengine.cloud_identity.get_permission_set_assignments_output(permission_set_id=foo_permission_set_assignment.permission_set_id)
     ```
 
 
@@ -191,6 +193,7 @@ def permission_set_assignments(name_regex: Optional[str] = None,
     :param str principal_type: The principal type of cloud identity permission set. Valid values: `User`, `Group`.
     :param str target_id: The target account id of cloud identity permission set assignment.
     """
+    pulumi.log.warn("""permission_set_assignments is deprecated: volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -259,7 +262,7 @@ def permission_set_assignments_output(name_regex: Optional[pulumi.Input[Optional
         target_id="210026****",
         principal_type="User",
         principal_id=foo_user.id)
-    foo_permission_set_assignments = volcengine.cloud_identity.permission_set_assignments_output(permission_set_id=foo_permission_set_assignment.permission_set_id)
+    foo_permission_set_assignments = volcengine.cloud_identity.get_permission_set_assignments_output(permission_set_id=foo_permission_set_assignment.permission_set_id)
     ```
 
 
@@ -270,4 +273,5 @@ def permission_set_assignments_output(name_regex: Optional[pulumi.Input[Optional
     :param str principal_type: The principal type of cloud identity permission set. Valid values: `User`, `Group`.
     :param str target_id: The target account id of cloud identity permission set assignment.
     """
+    pulumi.log.warn("""permission_set_assignments is deprecated: volcengine.cloud_identity/permissionsetassignments.PermissionSetAssignments has been deprecated in favor of volcengine.cloud_identity/getpermissionsetassignments.getPermissionSetAssignments""")
     ...

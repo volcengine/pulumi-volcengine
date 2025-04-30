@@ -30,6 +30,26 @@ export const domains: typeof import("./domains").domains = null as any;
 export const domainsOutput: typeof import("./domains").domainsOutput = null as any;
 utilities.lazyLoad(exports, ["domains","domainsOutput"], () => require("./domains"));
 
+export { GetCertificatesArgs, GetCertificatesResult, GetCertificatesOutputArgs } from "./getCertificates";
+export const getCertificates: typeof import("./getCertificates").getCertificates = null as any;
+export const getCertificatesOutput: typeof import("./getCertificates").getCertificatesOutput = null as any;
+utilities.lazyLoad(exports, ["getCertificates","getCertificatesOutput"], () => require("./getCertificates"));
+
+export { GetConfigsArgs, GetConfigsResult, GetConfigsOutputArgs } from "./getConfigs";
+export const getConfigs: typeof import("./getConfigs").getConfigs = null as any;
+export const getConfigsOutput: typeof import("./getConfigs").getConfigsOutput = null as any;
+utilities.lazyLoad(exports, ["getConfigs","getConfigsOutput"], () => require("./getConfigs"));
+
+export { GetDomainsArgs, GetDomainsResult, GetDomainsOutputArgs } from "./getDomains";
+export const getDomains: typeof import("./getDomains").getDomains = null as any;
+export const getDomainsOutput: typeof import("./getDomains").getDomainsOutput = null as any;
+utilities.lazyLoad(exports, ["getDomains","getDomainsOutput"], () => require("./getDomains"));
+
+export { GetSharedConfigsArgs, GetSharedConfigsResult, GetSharedConfigsOutputArgs } from "./getSharedConfigs";
+export const getSharedConfigs: typeof import("./getSharedConfigs").getSharedConfigs = null as any;
+export const getSharedConfigsOutput: typeof import("./getSharedConfigs").getSharedConfigsOutput = null as any;
+utilities.lazyLoad(exports, ["getSharedConfigs","getSharedConfigsOutput"], () => require("./getSharedConfigs"));
+
 export { SharedConfigArgs, SharedConfigState } from "./sharedConfig";
 export type SharedConfig = import("./sharedConfig").SharedConfig;
 export const SharedConfig: typeof import("./sharedConfig").SharedConfig = null as any;

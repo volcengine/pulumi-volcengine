@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud_v2
 {
+    [Obsolete(@"volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2")]
     public static class EscloudInstancesV2
     {
         public static Task<EscloudInstancesV2Result> InvokeAsync(EscloudInstancesV2Args? args = null, InvokeOptions? options = null)

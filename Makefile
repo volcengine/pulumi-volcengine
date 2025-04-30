@@ -106,6 +106,7 @@ clean::
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
 	pulumi plugin install resource random 4.3.1
+	pulumi plugin install converter terraform 1.0.19
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
@@ -122,4 +123,3 @@ install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
 
 test::
 	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
-

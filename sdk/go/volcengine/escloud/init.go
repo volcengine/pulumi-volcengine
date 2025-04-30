@@ -23,6 +23,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:escloud/instance:Instance":
 		r = &Instance{}
+	case "volcengine:escloud/instanceV2:InstanceV2":
+		r = &InstanceV2{}
+	case "volcengine:escloud/ipWhiteList:IpWhiteList":
+		r = &IpWhiteList{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -39,6 +43,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"escloud/instance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"escloud/instanceV2",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"escloud/ipWhiteList",
 		&module{version},
 	)
 }

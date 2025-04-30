@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * const fooEscloudInstanceV2 = new volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", {
+ * const fooInstanceV2 = new volcengine.escloud.InstanceV2("fooInstanceV2", {
  *     instanceName: "acc-test-escloud-instance",
  *     version: "V7_10",
  *     zoneIds: [
@@ -88,8 +88,8 @@ import * as utilities from "../utilities";
  *         value: "v1",
  *     }],
  * });
- * const fooEscloudIpWhiteList = new volcengine.escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList", {
- *     instanceId: fooEscloudInstanceV2.id,
+ * const fooIpWhiteList = new volcengine.escloud.IpWhiteList("fooIpWhiteList", {
+ *     instanceId: fooInstanceV2.id,
  *     type: "public",
  *     component: "es",
  *     ipLists: [
@@ -107,6 +107,8 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import volcengine:escloud_v2/escloudIpWhiteList:EscloudIpWhiteList default resource_id
  * ```
+ *
+ * @deprecated volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList
  */
 export class EscloudIpWhiteList extends pulumi.CustomResource {
     /**
@@ -119,6 +121,7 @@ export class EscloudIpWhiteList extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EscloudIpWhiteListState, opts?: pulumi.CustomResourceOptions): EscloudIpWhiteList {
+        pulumi.log.warn("EscloudIpWhiteList is deprecated: volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList")
         return new EscloudIpWhiteList(name, <any>state, { ...opts, id: id });
     }
 
@@ -160,8 +163,11 @@ export class EscloudIpWhiteList extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList */
     constructor(name: string, args: EscloudIpWhiteListArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList */
     constructor(name: string, argsOrState?: EscloudIpWhiteListArgs | EscloudIpWhiteListState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EscloudIpWhiteList is deprecated: volcengine.escloud_v2/escloudipwhitelist.EscloudIpWhiteList has been deprecated in favor of volcengine.escloud/ipwhitelist.IpWhiteList")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

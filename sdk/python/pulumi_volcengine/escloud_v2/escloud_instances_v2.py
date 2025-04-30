@@ -18,6 +18,8 @@ __all__ = [
     'escloud_instances_v2_output',
 ]
 
+warnings.warn("""volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2""", DeprecationWarning)
+
 @pulumi.output_type
 class EscloudInstancesV2Result:
     """
@@ -158,6 +160,7 @@ def escloud_instances_v2(charge_types: Optional[Sequence[str]] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""escloud_instances_v2 is deprecated: volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2""")
     __args__ = dict()
     __args__['chargeTypes'] = charge_types
     __args__['ids'] = ids
@@ -200,4 +203,5 @@ def escloud_instances_v2_output(charge_types: Optional[pulumi.Input[Optional[Seq
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""escloud_instances_v2 is deprecated: volcengine.escloud_v2/escloudinstancesv2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud/getinstancesv2.getInstancesV2""")
     ...

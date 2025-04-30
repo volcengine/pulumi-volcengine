@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooEscloudInstanceV2 = new Volcengine.Escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", new()
+    ///     var fooInstanceV2 = new Volcengine.Escloud.InstanceV2("fooInstanceV2", new()
     ///     {
     ///         InstanceName = "acc-test-escloud-instance",
     ///         Version = "V7_10",
@@ -59,7 +59,7 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         ProjectName = "default",
     ///         NodeSpecsAssigns = new[]
     ///         {
-    ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+    ///             new Volcengine.Escloud.Inputs.InstanceV2NodeSpecsAssignArgs
     ///             {
     ///                 Type = "Master",
     ///                 Number = 3,
@@ -67,19 +67,19 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///                 StorageSpecName = "es.volume.essd.pl0",
     ///                 StorageSize = 20,
     ///             },
-    ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+    ///             new Volcengine.Escloud.Inputs.InstanceV2NodeSpecsAssignArgs
     ///             {
     ///                 Type = "Hot",
     ///                 Number = 6,
     ///                 ResourceSpecName = "es.x2.medium",
     ///                 StorageSpecName = "es.volume.essd.flexpl-standard",
     ///                 StorageSize = 500,
-    ///                 ExtraPerformance = new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs
+    ///                 ExtraPerformance = new Volcengine.Escloud.Inputs.InstanceV2NodeSpecsAssignExtraPerformanceArgs
     ///                 {
     ///                     Throughput = 65,
     ///                 },
     ///             },
-    ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+    ///             new Volcengine.Escloud.Inputs.InstanceV2NodeSpecsAssignArgs
     ///             {
     ///                 Type = "Kibana",
     ///                 Number = 1,
@@ -90,14 +90,14 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         },
     ///         NetworkSpecs = new[]
     ///         {
-    ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NetworkSpecArgs
+    ///             new Volcengine.Escloud.Inputs.InstanceV2NetworkSpecArgs
     ///             {
     ///                 Type = "Elasticsearch",
     ///                 Bandwidth = 1,
     ///                 IsOpen = true,
     ///                 SpecName = "es.eip.bgp_fixed_bandwidth",
     ///             },
-    ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NetworkSpecArgs
+    ///             new Volcengine.Escloud.Inputs.InstanceV2NetworkSpecArgs
     ///             {
     ///                 Type = "Kibana",
     ///                 Bandwidth = 1,
@@ -107,7 +107,7 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         },
     ///         Tags = new[]
     ///         {
-    ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2TagArgs
+    ///             new Volcengine.Escloud.Inputs.InstanceV2TagArgs
     ///             {
     ///                 Key = "k1",
     ///                 Value = "v1",
@@ -128,6 +128,7 @@ namespace Pulumi.Volcengine.Escloud_v2
     /// $ pulumi import volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2 default resource_id
     /// ```
     /// </summary>
+    [Obsolete(@"volcengine.escloud_v2/escloudinstancev2.EscloudInstanceV2 has been deprecated in favor of volcengine.escloud/instancev2.InstanceV2")]
     [VolcengineResourceType("volcengine:escloud_v2/escloudInstanceV2:EscloudInstanceV2")]
     public partial class EscloudInstanceV2 : global::Pulumi.CustomResource
     {

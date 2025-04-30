@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_identity.PermissionSetProvisionings({
+ * const foo = volcengine.cloud_identity.getPermissionSetProvisionings({
  *     targetId: "210026****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings */
 export function permissionSetProvisionings(args?: PermissionSetProvisioningsArgs, opts?: pulumi.InvokeOptions): Promise<PermissionSetProvisioningsResult> {
+    pulumi.log.warn("permissionSetProvisionings is deprecated: volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -88,11 +90,12 @@ export interface PermissionSetProvisioningsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_identity.PermissionSetProvisionings({
+ * const foo = volcengine.cloud_identity.getPermissionSetProvisionings({
  *     targetId: "210026****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings */
 export function permissionSetProvisioningsOutput(args?: PermissionSetProvisioningsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PermissionSetProvisioningsResult> {
     return pulumi.output(args).apply((a: any) => permissionSetProvisionings(a, opts))
 }

@@ -17,6 +17,8 @@ __all__ = [
     'regions_output',
 ]
 
+warnings.warn("""volcengine.escloud/regions.Regions has been deprecated in favor of volcengine.escloud/getregions.getRegions""", DeprecationWarning)
+
 @pulumi.output_type
 class RegionsResult:
     """
@@ -81,19 +83,20 @@ class AwaitableRegionsResult(RegionsResult):
 def regions(output_file: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRegionsResult:
     """
-    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
+    (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud regions
     ## Example Usage
 
     ```python
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.escloud.regions()
+    default = volcengine.escloud.get_regions()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""regions is deprecated: volcengine.escloud/regions.Regions has been deprecated in favor of volcengine.escloud/getregions.getRegions""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -110,17 +113,18 @@ def regions(output_file: Optional[str] = None,
 def regions_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RegionsResult]:
     """
-    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud regions
+    (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud regions
     ## Example Usage
 
     ```python
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.escloud.regions()
+    default = volcengine.escloud.get_regions()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""regions is deprecated: volcengine.escloud/regions.Regions has been deprecated in favor of volcengine.escloud/getregions.getRegions""")
     ...

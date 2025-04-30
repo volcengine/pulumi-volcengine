@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_identity
 {
+    [Obsolete(@"volcengine.cloud_identity/permissionsetprovisionings.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity/getpermissionsetprovisionings.getPermissionSetProvisionings")]
     public static class PermissionSetProvisionings
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_identity.PermissionSetProvisionings.Invoke(new()
+        ///     var foo = Volcengine.Cloud_identity.GetPermissionSetProvisionings.Invoke(new()
         ///     {
         ///         TargetId = "210026****",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_identity.PermissionSetProvisionings.Invoke(new()
+        ///     var foo = Volcengine.Cloud_identity.GetPermissionSetProvisionings.Invoke(new()
         ///     {
         ///         TargetId = "210026****",
         ///     });

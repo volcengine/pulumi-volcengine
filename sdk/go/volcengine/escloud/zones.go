@@ -11,7 +11,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
-// (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+// (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
 // ## Example Usage
 //
 // ```go
@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := escloud.Zones(ctx, &escloud.ZonesArgs{
+//			_, err := escloud.GetZones(ctx, &escloud.GetZonesArgs{
 //				RegionId: "xxx",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones
 func Zones(ctx *pulumi.Context, args *ZonesArgs, opts ...pulumi.InvokeOption) (*ZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ZonesResult

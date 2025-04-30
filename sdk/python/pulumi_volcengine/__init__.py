@@ -987,6 +987,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "escloud/instanceV2",
+  "fqn": "pulumi_volcengine.escloud",
+  "classes": {
+   "volcengine:escloud/instanceV2:InstanceV2": "InstanceV2"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "escloud/ipWhiteList",
+  "fqn": "pulumi_volcengine.escloud",
+  "classes": {
+   "volcengine:escloud/ipWhiteList:IpWhiteList": "IpWhiteList"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "escloud_v2/escloudInstanceV2",
   "fqn": "pulumi_volcengine.escloud_v2",
   "classes": {

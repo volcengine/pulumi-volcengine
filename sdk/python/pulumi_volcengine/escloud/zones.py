@@ -17,6 +17,8 @@ __all__ = [
     'zones_output',
 ]
 
+warnings.warn("""volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones""", DeprecationWarning)
+
 @pulumi.output_type
 class ZonesResult:
     """
@@ -91,20 +93,21 @@ def zones(output_file: Optional[str] = None,
           region_id: Optional[str] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableZonesResult:
     """
-    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+    (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
     ## Example Usage
 
     ```python
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.escloud.zones(region_id="xxx")
+    default = volcengine.escloud.get_zones(region_id="xxx")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str region_id: The Id of Region.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['regionId'] = region_id
@@ -124,18 +127,19 @@ def zones_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ZonesResult]:
     """
-    (Deprecated! Recommend use escloud_v2.EscloudInstanceV2 replace) Use this data source to query detailed information of escloud zones
+    (Deprecated! Recommend use escloud.InstanceV2 replace) Use this data source to query detailed information of escloud zones
     ## Example Usage
 
     ```python
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.escloud.zones(region_id="xxx")
+    default = volcengine.escloud.get_zones(region_id="xxx")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str region_id: The Id of Region.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.escloud/zones.Zones has been deprecated in favor of volcengine.escloud/getzones.getZones""")
     ...

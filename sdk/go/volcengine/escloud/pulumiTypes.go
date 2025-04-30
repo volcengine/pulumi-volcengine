@@ -589,6 +589,521 @@ func (o InstanceInstanceConfigurationNodeSpecsAssignArrayOutput) Index(i pulumi.
 	}).(InstanceInstanceConfigurationNodeSpecsAssignOutput)
 }
 
+type InstanceV2NetworkSpec struct {
+	// The bandwidth of the eip. Unit: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// Whether the eip is opened.
+	IsOpen bool `pulumi:"isOpen"`
+	// The spec name of public network.
+	SpecName string `pulumi:"specName"`
+	// The type of public network, valid values: `Elasticsearch`, `Kibana`.
+	Type string `pulumi:"type"`
+}
+
+// InstanceV2NetworkSpecInput is an input type that accepts InstanceV2NetworkSpecArgs and InstanceV2NetworkSpecOutput values.
+// You can construct a concrete instance of `InstanceV2NetworkSpecInput` via:
+//
+//	InstanceV2NetworkSpecArgs{...}
+type InstanceV2NetworkSpecInput interface {
+	pulumi.Input
+
+	ToInstanceV2NetworkSpecOutput() InstanceV2NetworkSpecOutput
+	ToInstanceV2NetworkSpecOutputWithContext(context.Context) InstanceV2NetworkSpecOutput
+}
+
+type InstanceV2NetworkSpecArgs struct {
+	// The bandwidth of the eip. Unit: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// Whether the eip is opened.
+	IsOpen pulumi.BoolInput `pulumi:"isOpen"`
+	// The spec name of public network.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+	// The type of public network, valid values: `Elasticsearch`, `Kibana`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (InstanceV2NetworkSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2NetworkSpec)(nil)).Elem()
+}
+
+func (i InstanceV2NetworkSpecArgs) ToInstanceV2NetworkSpecOutput() InstanceV2NetworkSpecOutput {
+	return i.ToInstanceV2NetworkSpecOutputWithContext(context.Background())
+}
+
+func (i InstanceV2NetworkSpecArgs) ToInstanceV2NetworkSpecOutputWithContext(ctx context.Context) InstanceV2NetworkSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NetworkSpecOutput)
+}
+
+// InstanceV2NetworkSpecArrayInput is an input type that accepts InstanceV2NetworkSpecArray and InstanceV2NetworkSpecArrayOutput values.
+// You can construct a concrete instance of `InstanceV2NetworkSpecArrayInput` via:
+//
+//	InstanceV2NetworkSpecArray{ InstanceV2NetworkSpecArgs{...} }
+type InstanceV2NetworkSpecArrayInput interface {
+	pulumi.Input
+
+	ToInstanceV2NetworkSpecArrayOutput() InstanceV2NetworkSpecArrayOutput
+	ToInstanceV2NetworkSpecArrayOutputWithContext(context.Context) InstanceV2NetworkSpecArrayOutput
+}
+
+type InstanceV2NetworkSpecArray []InstanceV2NetworkSpecInput
+
+func (InstanceV2NetworkSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceV2NetworkSpec)(nil)).Elem()
+}
+
+func (i InstanceV2NetworkSpecArray) ToInstanceV2NetworkSpecArrayOutput() InstanceV2NetworkSpecArrayOutput {
+	return i.ToInstanceV2NetworkSpecArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceV2NetworkSpecArray) ToInstanceV2NetworkSpecArrayOutputWithContext(ctx context.Context) InstanceV2NetworkSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NetworkSpecArrayOutput)
+}
+
+type InstanceV2NetworkSpecOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2NetworkSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2NetworkSpec)(nil)).Elem()
+}
+
+func (o InstanceV2NetworkSpecOutput) ToInstanceV2NetworkSpecOutput() InstanceV2NetworkSpecOutput {
+	return o
+}
+
+func (o InstanceV2NetworkSpecOutput) ToInstanceV2NetworkSpecOutputWithContext(ctx context.Context) InstanceV2NetworkSpecOutput {
+	return o
+}
+
+// The bandwidth of the eip. Unit: Mbps.
+func (o InstanceV2NetworkSpecOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceV2NetworkSpec) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// Whether the eip is opened.
+func (o InstanceV2NetworkSpecOutput) IsOpen() pulumi.BoolOutput {
+	return o.ApplyT(func(v InstanceV2NetworkSpec) bool { return v.IsOpen }).(pulumi.BoolOutput)
+}
+
+// The spec name of public network.
+func (o InstanceV2NetworkSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2NetworkSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+// The type of public network, valid values: `Elasticsearch`, `Kibana`.
+func (o InstanceV2NetworkSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2NetworkSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type InstanceV2NetworkSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2NetworkSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceV2NetworkSpec)(nil)).Elem()
+}
+
+func (o InstanceV2NetworkSpecArrayOutput) ToInstanceV2NetworkSpecArrayOutput() InstanceV2NetworkSpecArrayOutput {
+	return o
+}
+
+func (o InstanceV2NetworkSpecArrayOutput) ToInstanceV2NetworkSpecArrayOutputWithContext(ctx context.Context) InstanceV2NetworkSpecArrayOutput {
+	return o
+}
+
+func (o InstanceV2NetworkSpecArrayOutput) Index(i pulumi.IntInput) InstanceV2NetworkSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceV2NetworkSpec {
+		return vs[0].([]InstanceV2NetworkSpec)[vs[1].(int)]
+	}).(InstanceV2NetworkSpecOutput)
+}
+
+type InstanceV2NodeSpecsAssign struct {
+	// The extra performance of FlexPL storage spec.
+	ExtraPerformance *InstanceV2NodeSpecsAssignExtraPerformance `pulumi:"extraPerformance"`
+	// The number of node.
+	Number int `pulumi:"number"`
+	// The name of compute resource spec.
+	ResourceSpecName string `pulumi:"resourceSpecName"`
+	// The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+	StorageSize int `pulumi:"storageSize"`
+	// The name of storage spec. Kibana NodeSpecsAssign should specify this field to ``.
+	StorageSpecName string `pulumi:"storageSpecName"`
+	// The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+	Type string `pulumi:"type"`
+}
+
+// InstanceV2NodeSpecsAssignInput is an input type that accepts InstanceV2NodeSpecsAssignArgs and InstanceV2NodeSpecsAssignOutput values.
+// You can construct a concrete instance of `InstanceV2NodeSpecsAssignInput` via:
+//
+//	InstanceV2NodeSpecsAssignArgs{...}
+type InstanceV2NodeSpecsAssignInput interface {
+	pulumi.Input
+
+	ToInstanceV2NodeSpecsAssignOutput() InstanceV2NodeSpecsAssignOutput
+	ToInstanceV2NodeSpecsAssignOutputWithContext(context.Context) InstanceV2NodeSpecsAssignOutput
+}
+
+type InstanceV2NodeSpecsAssignArgs struct {
+	// The extra performance of FlexPL storage spec.
+	ExtraPerformance InstanceV2NodeSpecsAssignExtraPerformancePtrInput `pulumi:"extraPerformance"`
+	// The number of node.
+	Number pulumi.IntInput `pulumi:"number"`
+	// The name of compute resource spec.
+	ResourceSpecName pulumi.StringInput `pulumi:"resourceSpecName"`
+	// The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+	// The name of storage spec. Kibana NodeSpecsAssign should specify this field to ``.
+	StorageSpecName pulumi.StringInput `pulumi:"storageSpecName"`
+	// The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (InstanceV2NodeSpecsAssignArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2NodeSpecsAssign)(nil)).Elem()
+}
+
+func (i InstanceV2NodeSpecsAssignArgs) ToInstanceV2NodeSpecsAssignOutput() InstanceV2NodeSpecsAssignOutput {
+	return i.ToInstanceV2NodeSpecsAssignOutputWithContext(context.Background())
+}
+
+func (i InstanceV2NodeSpecsAssignArgs) ToInstanceV2NodeSpecsAssignOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NodeSpecsAssignOutput)
+}
+
+// InstanceV2NodeSpecsAssignArrayInput is an input type that accepts InstanceV2NodeSpecsAssignArray and InstanceV2NodeSpecsAssignArrayOutput values.
+// You can construct a concrete instance of `InstanceV2NodeSpecsAssignArrayInput` via:
+//
+//	InstanceV2NodeSpecsAssignArray{ InstanceV2NodeSpecsAssignArgs{...} }
+type InstanceV2NodeSpecsAssignArrayInput interface {
+	pulumi.Input
+
+	ToInstanceV2NodeSpecsAssignArrayOutput() InstanceV2NodeSpecsAssignArrayOutput
+	ToInstanceV2NodeSpecsAssignArrayOutputWithContext(context.Context) InstanceV2NodeSpecsAssignArrayOutput
+}
+
+type InstanceV2NodeSpecsAssignArray []InstanceV2NodeSpecsAssignInput
+
+func (InstanceV2NodeSpecsAssignArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceV2NodeSpecsAssign)(nil)).Elem()
+}
+
+func (i InstanceV2NodeSpecsAssignArray) ToInstanceV2NodeSpecsAssignArrayOutput() InstanceV2NodeSpecsAssignArrayOutput {
+	return i.ToInstanceV2NodeSpecsAssignArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceV2NodeSpecsAssignArray) ToInstanceV2NodeSpecsAssignArrayOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NodeSpecsAssignArrayOutput)
+}
+
+type InstanceV2NodeSpecsAssignOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2NodeSpecsAssignOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2NodeSpecsAssign)(nil)).Elem()
+}
+
+func (o InstanceV2NodeSpecsAssignOutput) ToInstanceV2NodeSpecsAssignOutput() InstanceV2NodeSpecsAssignOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignOutput) ToInstanceV2NodeSpecsAssignOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignOutput {
+	return o
+}
+
+// The extra performance of FlexPL storage spec.
+func (o InstanceV2NodeSpecsAssignOutput) ExtraPerformance() InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssign) *InstanceV2NodeSpecsAssignExtraPerformance {
+		return v.ExtraPerformance
+	}).(InstanceV2NodeSpecsAssignExtraPerformancePtrOutput)
+}
+
+// The number of node.
+func (o InstanceV2NodeSpecsAssignOutput) Number() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssign) int { return v.Number }).(pulumi.IntOutput)
+}
+
+// The name of compute resource spec.
+func (o InstanceV2NodeSpecsAssignOutput) ResourceSpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssign) string { return v.ResourceSpecName }).(pulumi.StringOutput)
+}
+
+// The size of storage. Unit: GiB. the adjustment step size is 10GiB. Default is 100 GiB. Kibana NodeSpecsAssign should specify this field to 0.
+func (o InstanceV2NodeSpecsAssignOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssign) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec. Kibana NodeSpecsAssign should specify this field to “.
+func (o InstanceV2NodeSpecsAssignOutput) StorageSpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssign) string { return v.StorageSpecName }).(pulumi.StringOutput)
+}
+
+// The type of node, valid values: `Master`, `Hot`, `Cold`, `Warm`, `Kibana`, `Coordinator`.
+func (o InstanceV2NodeSpecsAssignOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssign) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type InstanceV2NodeSpecsAssignArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2NodeSpecsAssignArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceV2NodeSpecsAssign)(nil)).Elem()
+}
+
+func (o InstanceV2NodeSpecsAssignArrayOutput) ToInstanceV2NodeSpecsAssignArrayOutput() InstanceV2NodeSpecsAssignArrayOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignArrayOutput) ToInstanceV2NodeSpecsAssignArrayOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignArrayOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignArrayOutput) Index(i pulumi.IntInput) InstanceV2NodeSpecsAssignOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceV2NodeSpecsAssign {
+		return vs[0].([]InstanceV2NodeSpecsAssign)[vs[1].(int)]
+	}).(InstanceV2NodeSpecsAssignOutput)
+}
+
+type InstanceV2NodeSpecsAssignExtraPerformance struct {
+	// When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+	// The unit is MiB, and the adjustment step size is 10MiB.
+	Throughput int `pulumi:"throughput"`
+}
+
+// InstanceV2NodeSpecsAssignExtraPerformanceInput is an input type that accepts InstanceV2NodeSpecsAssignExtraPerformanceArgs and InstanceV2NodeSpecsAssignExtraPerformanceOutput values.
+// You can construct a concrete instance of `InstanceV2NodeSpecsAssignExtraPerformanceInput` via:
+//
+//	InstanceV2NodeSpecsAssignExtraPerformanceArgs{...}
+type InstanceV2NodeSpecsAssignExtraPerformanceInput interface {
+	pulumi.Input
+
+	ToInstanceV2NodeSpecsAssignExtraPerformanceOutput() InstanceV2NodeSpecsAssignExtraPerformanceOutput
+	ToInstanceV2NodeSpecsAssignExtraPerformanceOutputWithContext(context.Context) InstanceV2NodeSpecsAssignExtraPerformanceOutput
+}
+
+type InstanceV2NodeSpecsAssignExtraPerformanceArgs struct {
+	// When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+	// The unit is MiB, and the adjustment step size is 10MiB.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (InstanceV2NodeSpecsAssignExtraPerformanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2NodeSpecsAssignExtraPerformance)(nil)).Elem()
+}
+
+func (i InstanceV2NodeSpecsAssignExtraPerformanceArgs) ToInstanceV2NodeSpecsAssignExtraPerformanceOutput() InstanceV2NodeSpecsAssignExtraPerformanceOutput {
+	return i.ToInstanceV2NodeSpecsAssignExtraPerformanceOutputWithContext(context.Background())
+}
+
+func (i InstanceV2NodeSpecsAssignExtraPerformanceArgs) ToInstanceV2NodeSpecsAssignExtraPerformanceOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignExtraPerformanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NodeSpecsAssignExtraPerformanceOutput)
+}
+
+func (i InstanceV2NodeSpecsAssignExtraPerformanceArgs) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutput() InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return i.ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(context.Background())
+}
+
+func (i InstanceV2NodeSpecsAssignExtraPerformanceArgs) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NodeSpecsAssignExtraPerformanceOutput).ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(ctx)
+}
+
+// InstanceV2NodeSpecsAssignExtraPerformancePtrInput is an input type that accepts InstanceV2NodeSpecsAssignExtraPerformanceArgs, InstanceV2NodeSpecsAssignExtraPerformancePtr and InstanceV2NodeSpecsAssignExtraPerformancePtrOutput values.
+// You can construct a concrete instance of `InstanceV2NodeSpecsAssignExtraPerformancePtrInput` via:
+//
+//	        InstanceV2NodeSpecsAssignExtraPerformanceArgs{...}
+//
+//	or:
+//
+//	        nil
+type InstanceV2NodeSpecsAssignExtraPerformancePtrInput interface {
+	pulumi.Input
+
+	ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutput() InstanceV2NodeSpecsAssignExtraPerformancePtrOutput
+	ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(context.Context) InstanceV2NodeSpecsAssignExtraPerformancePtrOutput
+}
+
+type instanceV2NodeSpecsAssignExtraPerformancePtrType InstanceV2NodeSpecsAssignExtraPerformanceArgs
+
+func InstanceV2NodeSpecsAssignExtraPerformancePtr(v *InstanceV2NodeSpecsAssignExtraPerformanceArgs) InstanceV2NodeSpecsAssignExtraPerformancePtrInput {
+	return (*instanceV2NodeSpecsAssignExtraPerformancePtrType)(v)
+}
+
+func (*instanceV2NodeSpecsAssignExtraPerformancePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceV2NodeSpecsAssignExtraPerformance)(nil)).Elem()
+}
+
+func (i *instanceV2NodeSpecsAssignExtraPerformancePtrType) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutput() InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return i.ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(context.Background())
+}
+
+func (i *instanceV2NodeSpecsAssignExtraPerformancePtrType) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2NodeSpecsAssignExtraPerformancePtrOutput)
+}
+
+type InstanceV2NodeSpecsAssignExtraPerformanceOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2NodeSpecsAssignExtraPerformanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2NodeSpecsAssignExtraPerformance)(nil)).Elem()
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformanceOutput) ToInstanceV2NodeSpecsAssignExtraPerformanceOutput() InstanceV2NodeSpecsAssignExtraPerformanceOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformanceOutput) ToInstanceV2NodeSpecsAssignExtraPerformanceOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignExtraPerformanceOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformanceOutput) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutput() InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return o.ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(context.Background())
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformanceOutput) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InstanceV2NodeSpecsAssignExtraPerformance) *InstanceV2NodeSpecsAssignExtraPerformance {
+		return &v
+	}).(InstanceV2NodeSpecsAssignExtraPerformancePtrOutput)
+}
+
+// When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+// The unit is MiB, and the adjustment step size is 10MiB.
+func (o InstanceV2NodeSpecsAssignExtraPerformanceOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceV2NodeSpecsAssignExtraPerformance) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type InstanceV2NodeSpecsAssignExtraPerformancePtrOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2NodeSpecsAssignExtraPerformancePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceV2NodeSpecsAssignExtraPerformance)(nil)).Elem()
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformancePtrOutput) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutput() InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformancePtrOutput) ToInstanceV2NodeSpecsAssignExtraPerformancePtrOutputWithContext(ctx context.Context) InstanceV2NodeSpecsAssignExtraPerformancePtrOutput {
+	return o
+}
+
+func (o InstanceV2NodeSpecsAssignExtraPerformancePtrOutput) Elem() InstanceV2NodeSpecsAssignExtraPerformanceOutput {
+	return o.ApplyT(func(v *InstanceV2NodeSpecsAssignExtraPerformance) InstanceV2NodeSpecsAssignExtraPerformance {
+		if v != nil {
+			return *v
+		}
+		var ret InstanceV2NodeSpecsAssignExtraPerformance
+		return ret
+	}).(InstanceV2NodeSpecsAssignExtraPerformanceOutput)
+}
+
+// When your data node chooses to use FlexPL storage type and the storage specification configuration is 500GiB or above, it supports purchasing bandwidth packages to increase disk bandwidth.
+// The unit is MiB, and the adjustment step size is 10MiB.
+func (o InstanceV2NodeSpecsAssignExtraPerformancePtrOutput) Throughput() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceV2NodeSpecsAssignExtraPerformance) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Throughput
+	}).(pulumi.IntPtrOutput)
+}
+
+type InstanceV2Tag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InstanceV2TagInput is an input type that accepts InstanceV2TagArgs and InstanceV2TagOutput values.
+// You can construct a concrete instance of `InstanceV2TagInput` via:
+//
+//	InstanceV2TagArgs{...}
+type InstanceV2TagInput interface {
+	pulumi.Input
+
+	ToInstanceV2TagOutput() InstanceV2TagOutput
+	ToInstanceV2TagOutputWithContext(context.Context) InstanceV2TagOutput
+}
+
+type InstanceV2TagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InstanceV2TagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2Tag)(nil)).Elem()
+}
+
+func (i InstanceV2TagArgs) ToInstanceV2TagOutput() InstanceV2TagOutput {
+	return i.ToInstanceV2TagOutputWithContext(context.Background())
+}
+
+func (i InstanceV2TagArgs) ToInstanceV2TagOutputWithContext(ctx context.Context) InstanceV2TagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2TagOutput)
+}
+
+// InstanceV2TagArrayInput is an input type that accepts InstanceV2TagArray and InstanceV2TagArrayOutput values.
+// You can construct a concrete instance of `InstanceV2TagArrayInput` via:
+//
+//	InstanceV2TagArray{ InstanceV2TagArgs{...} }
+type InstanceV2TagArrayInput interface {
+	pulumi.Input
+
+	ToInstanceV2TagArrayOutput() InstanceV2TagArrayOutput
+	ToInstanceV2TagArrayOutputWithContext(context.Context) InstanceV2TagArrayOutput
+}
+
+type InstanceV2TagArray []InstanceV2TagInput
+
+func (InstanceV2TagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceV2Tag)(nil)).Elem()
+}
+
+func (i InstanceV2TagArray) ToInstanceV2TagArrayOutput() InstanceV2TagArrayOutput {
+	return i.ToInstanceV2TagArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceV2TagArray) ToInstanceV2TagArrayOutputWithContext(ctx context.Context) InstanceV2TagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceV2TagArrayOutput)
+}
+
+type InstanceV2TagOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2TagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceV2Tag)(nil)).Elem()
+}
+
+func (o InstanceV2TagOutput) ToInstanceV2TagOutput() InstanceV2TagOutput {
+	return o
+}
+
+func (o InstanceV2TagOutput) ToInstanceV2TagOutputWithContext(ctx context.Context) InstanceV2TagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InstanceV2TagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2Tag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InstanceV2TagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceV2Tag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InstanceV2TagArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceV2TagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceV2Tag)(nil)).Elem()
+}
+
+func (o InstanceV2TagArrayOutput) ToInstanceV2TagArrayOutput() InstanceV2TagArrayOutput {
+	return o
+}
+
+func (o InstanceV2TagArrayOutput) ToInstanceV2TagArrayOutputWithContext(ctx context.Context) InstanceV2TagArrayOutput {
+	return o
+}
+
+func (o InstanceV2TagArrayOutput) Index(i pulumi.IntInput) InstanceV2TagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceV2Tag {
+		return vs[0].([]InstanceV2Tag)[vs[1].(int)]
+	}).(InstanceV2TagOutput)
+}
+
 type InstancesInstance struct {
 	// The charge status of instance.
 	ChargeEnabled bool `pulumi:"chargeEnabled"`
@@ -2587,11 +3102,5541 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 	}).(ZonesZoneOutput)
 }
 
+type GetInstancesInstance struct {
+	// The charge status of instance.
+	ChargeEnabled bool `pulumi:"chargeEnabled"`
+	// The create time of instance.
+	CreateTime string `pulumi:"createTime"`
+	// whether enable es private network.
+	EnableEsPrivateNetwork bool `pulumi:"enableEsPrivateNetwork"`
+	// whether enable es public network.
+	EnableEsPublicNetwork bool `pulumi:"enableEsPublicNetwork"`
+	// whether enable kibana private network.
+	EnableKibanaPrivateNetwork bool `pulumi:"enableKibanaPrivateNetwork"`
+	// whether enable kibana public network.
+	EnableKibanaPublicNetwork bool `pulumi:"enableKibanaPublicNetwork"`
+	// The es inner endpoint of instance.
+	EsInnerEndpoint string `pulumi:"esInnerEndpoint"`
+	// The es private domain of instance.
+	EsPrivateDomain string `pulumi:"esPrivateDomain"`
+	// The es private endpoint of instance.
+	EsPrivateEndpoint string `pulumi:"esPrivateEndpoint"`
+	// The es public domain of instance.
+	EsPublicDomain string `pulumi:"esPublicDomain"`
+	// The es public endpoint of instance.
+	EsPublicEndpoint string `pulumi:"esPublicEndpoint"`
+	// The expire time of instance.
+	ExpireDate string `pulumi:"expireDate"`
+	// The Id of instance.
+	Id string `pulumi:"id"`
+	// The configuration of instance.
+	InstanceConfiguration GetInstancesInstanceInstanceConfiguration `pulumi:"instanceConfiguration"`
+	// The Id of instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The kibana private domain of instance.
+	KibanaPrivateDomain string `pulumi:"kibanaPrivateDomain"`
+	// The kibana public domain of instance.
+	KibanaPublicDomain string `pulumi:"kibanaPublicDomain"`
+	// The maintenance day of instance.
+	MaintenanceDays []string `pulumi:"maintenanceDays"`
+	// The maintenance time of instance.
+	MaintenanceTime string `pulumi:"maintenanceTime"`
+	// The namespace of instance.
+	Namespace string `pulumi:"namespace"`
+	// The nodes info of instance.
+	Nodes []GetInstancesInstanceNode `pulumi:"nodes"`
+	// The plugin info of instance.
+	Plugins []GetInstancesInstancePlugin `pulumi:"plugins"`
+	// The status of instance.
+	Status string `pulumi:"status"`
+	// The total nodes of instance.
+	TotalNodes int `pulumi:"totalNodes"`
+	// The user id of instance.
+	UserId string `pulumi:"userId"`
+}
+
+// GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInput` via:
+//
+//	GetInstancesInstanceArgs{...}
+type GetInstancesInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceOutput() GetInstancesInstanceOutput
+	ToGetInstancesInstanceOutputWithContext(context.Context) GetInstancesInstanceOutput
+}
+
+type GetInstancesInstanceArgs struct {
+	// The charge status of instance.
+	ChargeEnabled pulumi.BoolInput `pulumi:"chargeEnabled"`
+	// The create time of instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// whether enable es private network.
+	EnableEsPrivateNetwork pulumi.BoolInput `pulumi:"enableEsPrivateNetwork"`
+	// whether enable es public network.
+	EnableEsPublicNetwork pulumi.BoolInput `pulumi:"enableEsPublicNetwork"`
+	// whether enable kibana private network.
+	EnableKibanaPrivateNetwork pulumi.BoolInput `pulumi:"enableKibanaPrivateNetwork"`
+	// whether enable kibana public network.
+	EnableKibanaPublicNetwork pulumi.BoolInput `pulumi:"enableKibanaPublicNetwork"`
+	// The es inner endpoint of instance.
+	EsInnerEndpoint pulumi.StringInput `pulumi:"esInnerEndpoint"`
+	// The es private domain of instance.
+	EsPrivateDomain pulumi.StringInput `pulumi:"esPrivateDomain"`
+	// The es private endpoint of instance.
+	EsPrivateEndpoint pulumi.StringInput `pulumi:"esPrivateEndpoint"`
+	// The es public domain of instance.
+	EsPublicDomain pulumi.StringInput `pulumi:"esPublicDomain"`
+	// The es public endpoint of instance.
+	EsPublicEndpoint pulumi.StringInput `pulumi:"esPublicEndpoint"`
+	// The expire time of instance.
+	ExpireDate pulumi.StringInput `pulumi:"expireDate"`
+	// The Id of instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The configuration of instance.
+	InstanceConfiguration GetInstancesInstanceInstanceConfigurationInput `pulumi:"instanceConfiguration"`
+	// The Id of instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The kibana private domain of instance.
+	KibanaPrivateDomain pulumi.StringInput `pulumi:"kibanaPrivateDomain"`
+	// The kibana public domain of instance.
+	KibanaPublicDomain pulumi.StringInput `pulumi:"kibanaPublicDomain"`
+	// The maintenance day of instance.
+	MaintenanceDays pulumi.StringArrayInput `pulumi:"maintenanceDays"`
+	// The maintenance time of instance.
+	MaintenanceTime pulumi.StringInput `pulumi:"maintenanceTime"`
+	// The namespace of instance.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// The nodes info of instance.
+	Nodes GetInstancesInstanceNodeArrayInput `pulumi:"nodes"`
+	// The plugin info of instance.
+	Plugins GetInstancesInstancePluginArrayInput `pulumi:"plugins"`
+	// The status of instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The total nodes of instance.
+	TotalNodes pulumi.IntInput `pulumi:"totalNodes"`
+	// The user id of instance.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetInstancesInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstance)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutput() GetInstancesInstanceOutput {
+	return i.ToGetInstancesInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceOutput)
+}
+
+// GetInstancesInstanceArrayInput is an input type that accepts GetInstancesInstanceArray and GetInstancesInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceArrayInput` via:
+//
+//	GetInstancesInstanceArray{ GetInstancesInstanceArgs{...} }
+type GetInstancesInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput
+	ToGetInstancesInstanceArrayOutputWithContext(context.Context) GetInstancesInstanceArrayOutput
+}
+
+type GetInstancesInstanceArray []GetInstancesInstanceInput
+
+func (GetInstancesInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstance)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput {
+	return i.ToGetInstancesInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutputWithContext(ctx context.Context) GetInstancesInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceArrayOutput)
+}
+
+type GetInstancesInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstance)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutput() GetInstancesInstanceOutput {
+	return o
+}
+
+func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
+	return o
+}
+
+// The charge status of instance.
+func (o GetInstancesInstanceOutput) ChargeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.ChargeEnabled }).(pulumi.BoolOutput)
+}
+
+// The create time of instance.
+func (o GetInstancesInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// whether enable es private network.
+func (o GetInstancesInstanceOutput) EnableEsPrivateNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.EnableEsPrivateNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable es public network.
+func (o GetInstancesInstanceOutput) EnableEsPublicNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.EnableEsPublicNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana private network.
+func (o GetInstancesInstanceOutput) EnableKibanaPrivateNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.EnableKibanaPrivateNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana public network.
+func (o GetInstancesInstanceOutput) EnableKibanaPublicNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.EnableKibanaPublicNetwork }).(pulumi.BoolOutput)
+}
+
+// The es inner endpoint of instance.
+func (o GetInstancesInstanceOutput) EsInnerEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.EsInnerEndpoint }).(pulumi.StringOutput)
+}
+
+// The es private domain of instance.
+func (o GetInstancesInstanceOutput) EsPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.EsPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The es private endpoint of instance.
+func (o GetInstancesInstanceOutput) EsPrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.EsPrivateEndpoint }).(pulumi.StringOutput)
+}
+
+// The es public domain of instance.
+func (o GetInstancesInstanceOutput) EsPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.EsPublicDomain }).(pulumi.StringOutput)
+}
+
+// The es public endpoint of instance.
+func (o GetInstancesInstanceOutput) EsPublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.EsPublicEndpoint }).(pulumi.StringOutput)
+}
+
+// The expire time of instance.
+func (o GetInstancesInstanceOutput) ExpireDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ExpireDate }).(pulumi.StringOutput)
+}
+
+// The Id of instance.
+func (o GetInstancesInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The configuration of instance.
+func (o GetInstancesInstanceOutput) InstanceConfiguration() GetInstancesInstanceInstanceConfigurationOutput {
+	return o.ApplyT(func(v GetInstancesInstance) GetInstancesInstanceInstanceConfiguration { return v.InstanceConfiguration }).(GetInstancesInstanceInstanceConfigurationOutput)
+}
+
+// The Id of instance.
+func (o GetInstancesInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The kibana private domain of instance.
+func (o GetInstancesInstanceOutput) KibanaPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.KibanaPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The kibana public domain of instance.
+func (o GetInstancesInstanceOutput) KibanaPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.KibanaPublicDomain }).(pulumi.StringOutput)
+}
+
+// The maintenance day of instance.
+func (o GetInstancesInstanceOutput) MaintenanceDays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []string { return v.MaintenanceDays }).(pulumi.StringArrayOutput)
+}
+
+// The maintenance time of instance.
+func (o GetInstancesInstanceOutput) MaintenanceTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.MaintenanceTime }).(pulumi.StringOutput)
+}
+
+// The namespace of instance.
+func (o GetInstancesInstanceOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// The nodes info of instance.
+func (o GetInstancesInstanceOutput) Nodes() GetInstancesInstanceNodeArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceNode { return v.Nodes }).(GetInstancesInstanceNodeArrayOutput)
+}
+
+// The plugin info of instance.
+func (o GetInstancesInstanceOutput) Plugins() GetInstancesInstancePluginArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstancePlugin { return v.Plugins }).(GetInstancesInstancePluginArrayOutput)
+}
+
+// The status of instance.
+func (o GetInstancesInstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The total nodes of instance.
+func (o GetInstancesInstanceOutput) TotalNodes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.TotalNodes }).(pulumi.IntOutput)
+}
+
+// The user id of instance.
+func (o GetInstancesInstanceOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstance)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutputWithContext(ctx context.Context) GetInstancesInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstance {
+		return vs[0].([]GetInstancesInstance)[vs[1].(int)]
+	}).(GetInstancesInstanceOutput)
+}
+
+type GetInstancesInstanceInstanceConfiguration struct {
+	// The user name of instance.
+	AdminUserName string `pulumi:"adminUserName"`
+	// The charge type of instance.
+	ChargeType string `pulumi:"chargeType"`
+	// whether enable https.
+	EnableHttps bool `pulumi:"enableHttps"`
+	// Whether enable pure master.
+	EnablePureMaster bool `pulumi:"enablePureMaster"`
+	// The node number of host.
+	HotNodeNumber int `pulumi:"hotNodeNumber"`
+	// The node resource spec of host.
+	HotNodeResourceSpec GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec `pulumi:"hotNodeResourceSpec"`
+	// The node storage spec of host.
+	HotNodeStorageSpec GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec `pulumi:"hotNodeStorageSpec"`
+	// The name of instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The node number of kibana.
+	KibanaNodeNumber int `pulumi:"kibanaNodeNumber"`
+	// The node resource spec of kibana.
+	KibanaNodeResourceSpec GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec `pulumi:"kibanaNodeResourceSpec"`
+	// The node storage spec of kibana.
+	KibanaNodeStorageSpec GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec `pulumi:"kibanaNodeStorageSpec"`
+	// The node number of master.
+	MasterNodeNumber int `pulumi:"masterNodeNumber"`
+	// The node resource spec of master.
+	MasterNodeResourceSpec GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec `pulumi:"masterNodeResourceSpec"`
+	// The node storage spec of master.
+	MasterNodeStorageSpec GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec `pulumi:"masterNodeStorageSpec"`
+	// The period of project.
+	Period int `pulumi:"period"`
+	// The name of project.
+	ProjectName string `pulumi:"projectName"`
+	// The region info of instance.
+	RegionId string `pulumi:"regionId"`
+	// The subnet info.
+	Subnet GetInstancesInstanceInstanceConfigurationSubnet `pulumi:"subnet"`
+	// The version of plugin.
+	Version string `pulumi:"version"`
+	// The vpc info.
+	Vpc GetInstancesInstanceInstanceConfigurationVpc `pulumi:"vpc"`
+	// The zoneId of instance.
+	ZoneId string `pulumi:"zoneId"`
+	// The zone number of instance.
+	ZoneNumber int `pulumi:"zoneNumber"`
+}
+
+// GetInstancesInstanceInstanceConfigurationInput is an input type that accepts GetInstancesInstanceInstanceConfigurationArgs and GetInstancesInstanceInstanceConfigurationOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationArgs{...}
+type GetInstancesInstanceInstanceConfigurationInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationOutput() GetInstancesInstanceInstanceConfigurationOutput
+	ToGetInstancesInstanceInstanceConfigurationOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationArgs struct {
+	// The user name of instance.
+	AdminUserName pulumi.StringInput `pulumi:"adminUserName"`
+	// The charge type of instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// whether enable https.
+	EnableHttps pulumi.BoolInput `pulumi:"enableHttps"`
+	// Whether enable pure master.
+	EnablePureMaster pulumi.BoolInput `pulumi:"enablePureMaster"`
+	// The node number of host.
+	HotNodeNumber pulumi.IntInput `pulumi:"hotNodeNumber"`
+	// The node resource spec of host.
+	HotNodeResourceSpec GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecInput `pulumi:"hotNodeResourceSpec"`
+	// The node storage spec of host.
+	HotNodeStorageSpec GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecInput `pulumi:"hotNodeStorageSpec"`
+	// The name of instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The node number of kibana.
+	KibanaNodeNumber pulumi.IntInput `pulumi:"kibanaNodeNumber"`
+	// The node resource spec of kibana.
+	KibanaNodeResourceSpec GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecInput `pulumi:"kibanaNodeResourceSpec"`
+	// The node storage spec of kibana.
+	KibanaNodeStorageSpec GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecInput `pulumi:"kibanaNodeStorageSpec"`
+	// The node number of master.
+	MasterNodeNumber pulumi.IntInput `pulumi:"masterNodeNumber"`
+	// The node resource spec of master.
+	MasterNodeResourceSpec GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecInput `pulumi:"masterNodeResourceSpec"`
+	// The node storage spec of master.
+	MasterNodeStorageSpec GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecInput `pulumi:"masterNodeStorageSpec"`
+	// The period of project.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The name of project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region info of instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The subnet info.
+	Subnet GetInstancesInstanceInstanceConfigurationSubnetInput `pulumi:"subnet"`
+	// The version of plugin.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The vpc info.
+	Vpc GetInstancesInstanceInstanceConfigurationVpcInput `pulumi:"vpc"`
+	// The zoneId of instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The zone number of instance.
+	ZoneNumber pulumi.IntInput `pulumi:"zoneNumber"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationArgs) ToGetInstancesInstanceInstanceConfigurationOutput() GetInstancesInstanceInstanceConfigurationOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationArgs) ToGetInstancesInstanceInstanceConfigurationOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationOutput) ToGetInstancesInstanceInstanceConfigurationOutput() GetInstancesInstanceInstanceConfigurationOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationOutput) ToGetInstancesInstanceInstanceConfigurationOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationOutput {
+	return o
+}
+
+// The user name of instance.
+func (o GetInstancesInstanceInstanceConfigurationOutput) AdminUserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.AdminUserName }).(pulumi.StringOutput)
+}
+
+// The charge type of instance.
+func (o GetInstancesInstanceInstanceConfigurationOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// whether enable https.
+func (o GetInstancesInstanceInstanceConfigurationOutput) EnableHttps() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) bool { return v.EnableHttps }).(pulumi.BoolOutput)
+}
+
+// Whether enable pure master.
+func (o GetInstancesInstanceInstanceConfigurationOutput) EnablePureMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) bool { return v.EnablePureMaster }).(pulumi.BoolOutput)
+}
+
+// The node number of host.
+func (o GetInstancesInstanceInstanceConfigurationOutput) HotNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) int { return v.HotNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of host.
+func (o GetInstancesInstanceInstanceConfigurationOutput) HotNodeResourceSpec() GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec {
+		return v.HotNodeResourceSpec
+	}).(GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput)
+}
+
+// The node storage spec of host.
+func (o GetInstancesInstanceInstanceConfigurationOutput) HotNodeStorageSpec() GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec {
+		return v.HotNodeStorageSpec
+	}).(GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput)
+}
+
+// The name of instance.
+func (o GetInstancesInstanceInstanceConfigurationOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The node number of kibana.
+func (o GetInstancesInstanceInstanceConfigurationOutput) KibanaNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) int { return v.KibanaNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of kibana.
+func (o GetInstancesInstanceInstanceConfigurationOutput) KibanaNodeResourceSpec() GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec {
+		return v.KibanaNodeResourceSpec
+	}).(GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput)
+}
+
+// The node storage spec of kibana.
+func (o GetInstancesInstanceInstanceConfigurationOutput) KibanaNodeStorageSpec() GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec {
+		return v.KibanaNodeStorageSpec
+	}).(GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput)
+}
+
+// The node number of master.
+func (o GetInstancesInstanceInstanceConfigurationOutput) MasterNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) int { return v.MasterNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of master.
+func (o GetInstancesInstanceInstanceConfigurationOutput) MasterNodeResourceSpec() GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec {
+		return v.MasterNodeResourceSpec
+	}).(GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput)
+}
+
+// The node storage spec of master.
+func (o GetInstancesInstanceInstanceConfigurationOutput) MasterNodeStorageSpec() GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec {
+		return v.MasterNodeStorageSpec
+	}).(GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput)
+}
+
+// The period of project.
+func (o GetInstancesInstanceInstanceConfigurationOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The name of project.
+func (o GetInstancesInstanceInstanceConfigurationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region info of instance.
+func (o GetInstancesInstanceInstanceConfigurationOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The subnet info.
+func (o GetInstancesInstanceInstanceConfigurationOutput) Subnet() GetInstancesInstanceInstanceConfigurationSubnetOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationSubnet {
+		return v.Subnet
+	}).(GetInstancesInstanceInstanceConfigurationSubnetOutput)
+}
+
+// The version of plugin.
+func (o GetInstancesInstanceInstanceConfigurationOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The vpc info.
+func (o GetInstancesInstanceInstanceConfigurationOutput) Vpc() GetInstancesInstanceInstanceConfigurationVpcOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) GetInstancesInstanceInstanceConfigurationVpc {
+		return v.Vpc
+	}).(GetInstancesInstanceInstanceConfigurationVpcOutput)
+}
+
+// The zoneId of instance.
+func (o GetInstancesInstanceInstanceConfigurationOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The zone number of instance.
+func (o GetInstancesInstanceInstanceConfigurationOutput) ZoneNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfiguration) int { return v.ZoneNumber }).(pulumi.IntOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecInput is an input type that accepts GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs and GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs{...}
+type GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput
+	ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs) ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs) ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) ToGetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+	// The type of storage spec.
+	Type string `pulumi:"type"`
+}
+
+// GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecInput is an input type that accepts GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs and GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs{...}
+type GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput
+	ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of storage spec.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs) ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs) ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) ToGetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecInput is an input type that accepts GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs and GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs{...}
+type GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput
+	ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ToGetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+	// The type of storage spec.
+	Type string `pulumi:"type"`
+}
+
+// GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecInput is an input type that accepts GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs and GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs{...}
+type GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput
+	ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of storage spec.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ToGetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecInput is an input type that accepts GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs and GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs{...}
+type GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput
+	ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs) ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs) ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) ToGetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+	// The type of storage spec.
+	Type string `pulumi:"type"`
+}
+
+// GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecInput is an input type that accepts GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs and GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs{...}
+type GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput
+	ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of storage spec.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs) ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs) ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) ToGetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of storage spec.
+func (o GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationSubnet struct {
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The name of subnet.
+	SubnetName string `pulumi:"subnetName"`
+}
+
+// GetInstancesInstanceInstanceConfigurationSubnetInput is an input type that accepts GetInstancesInstanceInstanceConfigurationSubnetArgs and GetInstancesInstanceInstanceConfigurationSubnetOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationSubnetInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationSubnetArgs{...}
+type GetInstancesInstanceInstanceConfigurationSubnetInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationSubnetOutput() GetInstancesInstanceInstanceConfigurationSubnetOutput
+	ToGetInstancesInstanceInstanceConfigurationSubnetOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationSubnetOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationSubnetArgs struct {
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The name of subnet.
+	SubnetName pulumi.StringInput `pulumi:"subnetName"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationSubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationSubnetArgs) ToGetInstancesInstanceInstanceConfigurationSubnetOutput() GetInstancesInstanceInstanceConfigurationSubnetOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationSubnetOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationSubnetArgs) ToGetInstancesInstanceInstanceConfigurationSubnetOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationSubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationSubnetOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationSubnetOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationSubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationSubnetOutput) ToGetInstancesInstanceInstanceConfigurationSubnetOutput() GetInstancesInstanceInstanceConfigurationSubnetOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationSubnetOutput) ToGetInstancesInstanceInstanceConfigurationSubnetOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationSubnetOutput {
+	return o
+}
+
+// The id of subnet.
+func (o GetInstancesInstanceInstanceConfigurationSubnetOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationSubnet) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The name of subnet.
+func (o GetInstancesInstanceInstanceConfigurationSubnetOutput) SubnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationSubnet) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationVpc struct {
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+	// The name of vpc.
+	VpcName string `pulumi:"vpcName"`
+}
+
+// GetInstancesInstanceInstanceConfigurationVpcInput is an input type that accepts GetInstancesInstanceInstanceConfigurationVpcArgs and GetInstancesInstanceInstanceConfigurationVpcOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInstanceConfigurationVpcInput` via:
+//
+//	GetInstancesInstanceInstanceConfigurationVpcArgs{...}
+type GetInstancesInstanceInstanceConfigurationVpcInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceInstanceConfigurationVpcOutput() GetInstancesInstanceInstanceConfigurationVpcOutput
+	ToGetInstancesInstanceInstanceConfigurationVpcOutputWithContext(context.Context) GetInstancesInstanceInstanceConfigurationVpcOutput
+}
+
+type GetInstancesInstanceInstanceConfigurationVpcArgs struct {
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The name of vpc.
+	VpcName pulumi.StringInput `pulumi:"vpcName"`
+}
+
+func (GetInstancesInstanceInstanceConfigurationVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceInstanceConfigurationVpcArgs) ToGetInstancesInstanceInstanceConfigurationVpcOutput() GetInstancesInstanceInstanceConfigurationVpcOutput {
+	return i.ToGetInstancesInstanceInstanceConfigurationVpcOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceInstanceConfigurationVpcArgs) ToGetInstancesInstanceInstanceConfigurationVpcOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceInstanceConfigurationVpcOutput)
+}
+
+type GetInstancesInstanceInstanceConfigurationVpcOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceInstanceConfigurationVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceInstanceConfigurationVpcOutput) ToGetInstancesInstanceInstanceConfigurationVpcOutput() GetInstancesInstanceInstanceConfigurationVpcOutput {
+	return o
+}
+
+func (o GetInstancesInstanceInstanceConfigurationVpcOutput) ToGetInstancesInstanceInstanceConfigurationVpcOutputWithContext(ctx context.Context) GetInstancesInstanceInstanceConfigurationVpcOutput {
+	return o
+}
+
+// The id of vpc.
+func (o GetInstancesInstanceInstanceConfigurationVpcOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationVpc) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The name of vpc.
+func (o GetInstancesInstanceInstanceConfigurationVpcOutput) VpcName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceInstanceConfigurationVpc) string { return v.VpcName }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceNode struct {
+	// Is cold node.
+	IsCold bool `pulumi:"isCold"`
+	// Is hot node.
+	IsHot bool `pulumi:"isHot"`
+	// Is kibana node.
+	IsKibana bool `pulumi:"isKibana"`
+	// Is master node.
+	IsMaster bool `pulumi:"isMaster"`
+	// Is warm node.
+	IsWarm bool `pulumi:"isWarm"`
+	// The show name of node.
+	NodeDisplayName string `pulumi:"nodeDisplayName"`
+	// The name of node.
+	NodeName string `pulumi:"nodeName"`
+	// The node resource spec of master.
+	ResourceSpec GetInstancesInstanceNodeResourceSpec `pulumi:"resourceSpec"`
+	// The restart times of node.
+	RestartNumber int `pulumi:"restartNumber"`
+	// The start time of node.
+	StartTime string `pulumi:"startTime"`
+	// The status of instance.
+	Status string `pulumi:"status"`
+	// The node storage spec of master.
+	StorageSpec GetInstancesInstanceNodeStorageSpec `pulumi:"storageSpec"`
+}
+
+// GetInstancesInstanceNodeInput is an input type that accepts GetInstancesInstanceNodeArgs and GetInstancesInstanceNodeOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceNodeInput` via:
+//
+//	GetInstancesInstanceNodeArgs{...}
+type GetInstancesInstanceNodeInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceNodeOutput() GetInstancesInstanceNodeOutput
+	ToGetInstancesInstanceNodeOutputWithContext(context.Context) GetInstancesInstanceNodeOutput
+}
+
+type GetInstancesInstanceNodeArgs struct {
+	// Is cold node.
+	IsCold pulumi.BoolInput `pulumi:"isCold"`
+	// Is hot node.
+	IsHot pulumi.BoolInput `pulumi:"isHot"`
+	// Is kibana node.
+	IsKibana pulumi.BoolInput `pulumi:"isKibana"`
+	// Is master node.
+	IsMaster pulumi.BoolInput `pulumi:"isMaster"`
+	// Is warm node.
+	IsWarm pulumi.BoolInput `pulumi:"isWarm"`
+	// The show name of node.
+	NodeDisplayName pulumi.StringInput `pulumi:"nodeDisplayName"`
+	// The name of node.
+	NodeName pulumi.StringInput `pulumi:"nodeName"`
+	// The node resource spec of master.
+	ResourceSpec GetInstancesInstanceNodeResourceSpecInput `pulumi:"resourceSpec"`
+	// The restart times of node.
+	RestartNumber pulumi.IntInput `pulumi:"restartNumber"`
+	// The start time of node.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// The status of instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The node storage spec of master.
+	StorageSpec GetInstancesInstanceNodeStorageSpecInput `pulumi:"storageSpec"`
+}
+
+func (GetInstancesInstanceNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceNodeArgs) ToGetInstancesInstanceNodeOutput() GetInstancesInstanceNodeOutput {
+	return i.ToGetInstancesInstanceNodeOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceNodeArgs) ToGetInstancesInstanceNodeOutputWithContext(ctx context.Context) GetInstancesInstanceNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceNodeOutput)
+}
+
+// GetInstancesInstanceNodeArrayInput is an input type that accepts GetInstancesInstanceNodeArray and GetInstancesInstanceNodeArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceNodeArrayInput` via:
+//
+//	GetInstancesInstanceNodeArray{ GetInstancesInstanceNodeArgs{...} }
+type GetInstancesInstanceNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceNodeArrayOutput() GetInstancesInstanceNodeArrayOutput
+	ToGetInstancesInstanceNodeArrayOutputWithContext(context.Context) GetInstancesInstanceNodeArrayOutput
+}
+
+type GetInstancesInstanceNodeArray []GetInstancesInstanceNodeInput
+
+func (GetInstancesInstanceNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceNodeArray) ToGetInstancesInstanceNodeArrayOutput() GetInstancesInstanceNodeArrayOutput {
+	return i.ToGetInstancesInstanceNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceNodeArray) ToGetInstancesInstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesInstanceNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceNodeArrayOutput)
+}
+
+type GetInstancesInstanceNodeOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceNodeOutput) ToGetInstancesInstanceNodeOutput() GetInstancesInstanceNodeOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeOutput) ToGetInstancesInstanceNodeOutputWithContext(ctx context.Context) GetInstancesInstanceNodeOutput {
+	return o
+}
+
+// Is cold node.
+func (o GetInstancesInstanceNodeOutput) IsCold() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) bool { return v.IsCold }).(pulumi.BoolOutput)
+}
+
+// Is hot node.
+func (o GetInstancesInstanceNodeOutput) IsHot() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) bool { return v.IsHot }).(pulumi.BoolOutput)
+}
+
+// Is kibana node.
+func (o GetInstancesInstanceNodeOutput) IsKibana() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) bool { return v.IsKibana }).(pulumi.BoolOutput)
+}
+
+// Is master node.
+func (o GetInstancesInstanceNodeOutput) IsMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) bool { return v.IsMaster }).(pulumi.BoolOutput)
+}
+
+// Is warm node.
+func (o GetInstancesInstanceNodeOutput) IsWarm() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) bool { return v.IsWarm }).(pulumi.BoolOutput)
+}
+
+// The show name of node.
+func (o GetInstancesInstanceNodeOutput) NodeDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.NodeDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of node.
+func (o GetInstancesInstanceNodeOutput) NodeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.NodeName }).(pulumi.StringOutput)
+}
+
+// The node resource spec of master.
+func (o GetInstancesInstanceNodeOutput) ResourceSpec() GetInstancesInstanceNodeResourceSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) GetInstancesInstanceNodeResourceSpec { return v.ResourceSpec }).(GetInstancesInstanceNodeResourceSpecOutput)
+}
+
+// The restart times of node.
+func (o GetInstancesInstanceNodeOutput) RestartNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) int { return v.RestartNumber }).(pulumi.IntOutput)
+}
+
+// The start time of node.
+func (o GetInstancesInstanceNodeOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// The status of instance.
+func (o GetInstancesInstanceNodeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The node storage spec of master.
+func (o GetInstancesInstanceNodeOutput) StorageSpec() GetInstancesInstanceNodeStorageSpecOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) GetInstancesInstanceNodeStorageSpec { return v.StorageSpec }).(GetInstancesInstanceNodeStorageSpecOutput)
+}
+
+type GetInstancesInstanceNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceNodeArrayOutput) ToGetInstancesInstanceNodeArrayOutput() GetInstancesInstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeArrayOutput) ToGetInstancesInstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesInstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceNode {
+		return vs[0].([]GetInstancesInstanceNode)[vs[1].(int)]
+	}).(GetInstancesInstanceNodeOutput)
+}
+
+type GetInstancesInstanceNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesInstanceNodeResourceSpecInput is an input type that accepts GetInstancesInstanceNodeResourceSpecArgs and GetInstancesInstanceNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceNodeResourceSpecInput` via:
+//
+//	GetInstancesInstanceNodeResourceSpecArgs{...}
+type GetInstancesInstanceNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceNodeResourceSpecOutput() GetInstancesInstanceNodeResourceSpecOutput
+	ToGetInstancesInstanceNodeResourceSpecOutputWithContext(context.Context) GetInstancesInstanceNodeResourceSpecOutput
+}
+
+type GetInstancesInstanceNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesInstanceNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceNodeResourceSpecArgs) ToGetInstancesInstanceNodeResourceSpecOutput() GetInstancesInstanceNodeResourceSpecOutput {
+	return i.ToGetInstancesInstanceNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceNodeResourceSpecArgs) ToGetInstancesInstanceNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceNodeResourceSpecOutput)
+}
+
+type GetInstancesInstanceNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceNodeResourceSpecOutput) ToGetInstancesInstanceNodeResourceSpecOutput() GetInstancesInstanceNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeResourceSpecOutput) ToGetInstancesInstanceNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesInstanceNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesInstanceNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesInstanceNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+	// The type of storage spec.
+	Type string `pulumi:"type"`
+}
+
+// GetInstancesInstanceNodeStorageSpecInput is an input type that accepts GetInstancesInstanceNodeStorageSpecArgs and GetInstancesInstanceNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceNodeStorageSpecInput` via:
+//
+//	GetInstancesInstanceNodeStorageSpecArgs{...}
+type GetInstancesInstanceNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceNodeStorageSpecOutput() GetInstancesInstanceNodeStorageSpecOutput
+	ToGetInstancesInstanceNodeStorageSpecOutputWithContext(context.Context) GetInstancesInstanceNodeStorageSpecOutput
+}
+
+type GetInstancesInstanceNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of storage spec.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetInstancesInstanceNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceNodeStorageSpecArgs) ToGetInstancesInstanceNodeStorageSpecOutput() GetInstancesInstanceNodeStorageSpecOutput {
+	return i.ToGetInstancesInstanceNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceNodeStorageSpecArgs) ToGetInstancesInstanceNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceNodeStorageSpecOutput)
+}
+
+type GetInstancesInstanceNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceNodeStorageSpecOutput) ToGetInstancesInstanceNodeStorageSpecOutput() GetInstancesInstanceNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeStorageSpecOutput) ToGetInstancesInstanceNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesInstanceNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancesInstanceNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesInstanceNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesInstanceNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesInstanceNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesInstanceNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesInstanceNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of storage spec.
+func (o GetInstancesInstanceNodeStorageSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNodeStorageSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstancePlugin struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The name of plugin.
+	PluginName string `pulumi:"pluginName"`
+	// The version of plugin.
+	Version string `pulumi:"version"`
+}
+
+// GetInstancesInstancePluginInput is an input type that accepts GetInstancesInstancePluginArgs and GetInstancesInstancePluginOutput values.
+// You can construct a concrete instance of `GetInstancesInstancePluginInput` via:
+//
+//	GetInstancesInstancePluginArgs{...}
+type GetInstancesInstancePluginInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstancePluginOutput() GetInstancesInstancePluginOutput
+	ToGetInstancesInstancePluginOutputWithContext(context.Context) GetInstancesInstancePluginOutput
+}
+
+type GetInstancesInstancePluginArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of plugin.
+	PluginName pulumi.StringInput `pulumi:"pluginName"`
+	// The version of plugin.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetInstancesInstancePluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstancePlugin)(nil)).Elem()
+}
+
+func (i GetInstancesInstancePluginArgs) ToGetInstancesInstancePluginOutput() GetInstancesInstancePluginOutput {
+	return i.ToGetInstancesInstancePluginOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstancePluginArgs) ToGetInstancesInstancePluginOutputWithContext(ctx context.Context) GetInstancesInstancePluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstancePluginOutput)
+}
+
+// GetInstancesInstancePluginArrayInput is an input type that accepts GetInstancesInstancePluginArray and GetInstancesInstancePluginArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstancePluginArrayInput` via:
+//
+//	GetInstancesInstancePluginArray{ GetInstancesInstancePluginArgs{...} }
+type GetInstancesInstancePluginArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstancePluginArrayOutput() GetInstancesInstancePluginArrayOutput
+	ToGetInstancesInstancePluginArrayOutputWithContext(context.Context) GetInstancesInstancePluginArrayOutput
+}
+
+type GetInstancesInstancePluginArray []GetInstancesInstancePluginInput
+
+func (GetInstancesInstancePluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstancePlugin)(nil)).Elem()
+}
+
+func (i GetInstancesInstancePluginArray) ToGetInstancesInstancePluginArrayOutput() GetInstancesInstancePluginArrayOutput {
+	return i.ToGetInstancesInstancePluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstancePluginArray) ToGetInstancesInstancePluginArrayOutputWithContext(ctx context.Context) GetInstancesInstancePluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstancePluginArrayOutput)
+}
+
+type GetInstancesInstancePluginOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstancePluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstancePlugin)(nil)).Elem()
+}
+
+func (o GetInstancesInstancePluginOutput) ToGetInstancesInstancePluginOutput() GetInstancesInstancePluginOutput {
+	return o
+}
+
+func (o GetInstancesInstancePluginOutput) ToGetInstancesInstancePluginOutputWithContext(ctx context.Context) GetInstancesInstancePluginOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancesInstancePluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstancePlugin) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of plugin.
+func (o GetInstancesInstancePluginOutput) PluginName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstancePlugin) string { return v.PluginName }).(pulumi.StringOutput)
+}
+
+// The version of plugin.
+func (o GetInstancesInstancePluginOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstancePlugin) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstancePluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstancePluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstancePlugin)(nil)).Elem()
+}
+
+func (o GetInstancesInstancePluginArrayOutput) ToGetInstancesInstancePluginArrayOutput() GetInstancesInstancePluginArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstancePluginArrayOutput) ToGetInstancesInstancePluginArrayOutputWithContext(ctx context.Context) GetInstancesInstancePluginArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstancePluginArrayOutput) Index(i pulumi.IntInput) GetInstancesInstancePluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstancePlugin {
+		return vs[0].([]GetInstancesInstancePlugin)[vs[1].(int)]
+	}).(GetInstancesInstancePluginOutput)
+}
+
+type GetInstancesV2Instance struct {
+	// Whether to enable cerebro.
+	CerebroEnabled bool `pulumi:"cerebroEnabled"`
+	// The cerebro private domain of instance.
+	CerebroPrivateDomain string `pulumi:"cerebroPrivateDomain"`
+	// The cerebro public domain of instance.
+	CerebroPublicDomain string `pulumi:"cerebroPublicDomain"`
+	// The charge status of instance.
+	ChargeEnabled bool `pulumi:"chargeEnabled"`
+	// The cluster id of instance.
+	ClusterId string `pulumi:"clusterId"`
+	// The create time of instance.
+	CreateTime string `pulumi:"createTime"`
+	// Whether enable deletion protection for ESCloud instance.
+	DeletionProtection bool `pulumi:"deletionProtection"`
+	// whether enable es private domain public.
+	EnableEsPrivateDomainPublic bool `pulumi:"enableEsPrivateDomainPublic"`
+	// whether enable es private network.
+	EnableEsPrivateNetwork bool `pulumi:"enableEsPrivateNetwork"`
+	// whether enable es public network.
+	EnableEsPublicNetwork bool `pulumi:"enableEsPublicNetwork"`
+	// whether enable kibana private domain public.
+	EnableKibanaPrivateDomainPublic bool `pulumi:"enableKibanaPrivateDomainPublic"`
+	// whether enable kibana private network.
+	EnableKibanaPrivateNetwork bool `pulumi:"enableKibanaPrivateNetwork"`
+	// whether enable kibana public network.
+	EnableKibanaPublicNetwork bool `pulumi:"enableKibanaPublicNetwork"`
+	// The eip address of instance.
+	EsEip string `pulumi:"esEip"`
+	// The eip id associated with the instance.
+	EsEipId string `pulumi:"esEipId"`
+	// The es inner endpoint of instance.
+	EsInnerEndpoint string `pulumi:"esInnerEndpoint"`
+	// The es private domain of instance.
+	EsPrivateDomain string `pulumi:"esPrivateDomain"`
+	// The es private endpoint of instance.
+	EsPrivateEndpoint string `pulumi:"esPrivateEndpoint"`
+	// The whitelist of es private ip.
+	EsPrivateIpWhitelist string `pulumi:"esPrivateIpWhitelist"`
+	// The es public domain of instance.
+	EsPublicDomain string `pulumi:"esPublicDomain"`
+	// The es public endpoint of instance.
+	EsPublicEndpoint string `pulumi:"esPublicEndpoint"`
+	// The whitelist of es public ip.
+	EsPublicIpWhitelist string `pulumi:"esPublicIpWhitelist"`
+	// The expire time of instance.
+	ExpireDate string `pulumi:"expireDate"`
+	// The id of instance.
+	Id string `pulumi:"id"`
+	// The configuration of instance.
+	InstanceConfigurations []GetInstancesV2InstanceInstanceConfiguration `pulumi:"instanceConfigurations"`
+	// The id of instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The eip address of kibana.
+	KibanaEip string `pulumi:"kibanaEip"`
+	// The eip id associated with kibana.
+	KibanaEipId string `pulumi:"kibanaEipId"`
+	// The kibana private domain of instance.
+	KibanaPrivateDomain string `pulumi:"kibanaPrivateDomain"`
+	// The whitelist of kibana private ip.
+	KibanaPrivateIpWhitelist string `pulumi:"kibanaPrivateIpWhitelist"`
+	// The kibana public domain of instance.
+	KibanaPublicDomain string `pulumi:"kibanaPublicDomain"`
+	// The whitelist of kibana public ip.
+	KibanaPublicIpWhitelist string `pulumi:"kibanaPublicIpWhitelist"`
+	// The main zone id of instance.
+	MainZoneId string `pulumi:"mainZoneId"`
+	// The maintenance day of instance.
+	MaintenanceDays []string `pulumi:"maintenanceDays"`
+	// The maintenance time of instance.
+	MaintenanceTime string `pulumi:"maintenanceTime"`
+	// The nodes info of instance.
+	Nodes []GetInstancesV2InstanceNode `pulumi:"nodes"`
+	// The plugin info of instance.
+	Plugins []GetInstancesV2InstancePlugin `pulumi:"plugins"`
+	// The status of instance.
+	Status string `pulumi:"status"`
+	// Whether support code node.
+	SupportCodeNode bool `pulumi:"supportCodeNode"`
+	// Tags.
+	Tags []GetInstancesV2InstanceTag `pulumi:"tags"`
+	// The total nodes of instance.
+	TotalNodes int `pulumi:"totalNodes"`
+	// The user id of instance.
+	UserId string `pulumi:"userId"`
+}
+
+// GetInstancesV2InstanceInput is an input type that accepts GetInstancesV2InstanceArgs and GetInstancesV2InstanceOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInput` via:
+//
+//	GetInstancesV2InstanceArgs{...}
+type GetInstancesV2InstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceOutput() GetInstancesV2InstanceOutput
+	ToGetInstancesV2InstanceOutputWithContext(context.Context) GetInstancesV2InstanceOutput
+}
+
+type GetInstancesV2InstanceArgs struct {
+	// Whether to enable cerebro.
+	CerebroEnabled pulumi.BoolInput `pulumi:"cerebroEnabled"`
+	// The cerebro private domain of instance.
+	CerebroPrivateDomain pulumi.StringInput `pulumi:"cerebroPrivateDomain"`
+	// The cerebro public domain of instance.
+	CerebroPublicDomain pulumi.StringInput `pulumi:"cerebroPublicDomain"`
+	// The charge status of instance.
+	ChargeEnabled pulumi.BoolInput `pulumi:"chargeEnabled"`
+	// The cluster id of instance.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The create time of instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Whether enable deletion protection for ESCloud instance.
+	DeletionProtection pulumi.BoolInput `pulumi:"deletionProtection"`
+	// whether enable es private domain public.
+	EnableEsPrivateDomainPublic pulumi.BoolInput `pulumi:"enableEsPrivateDomainPublic"`
+	// whether enable es private network.
+	EnableEsPrivateNetwork pulumi.BoolInput `pulumi:"enableEsPrivateNetwork"`
+	// whether enable es public network.
+	EnableEsPublicNetwork pulumi.BoolInput `pulumi:"enableEsPublicNetwork"`
+	// whether enable kibana private domain public.
+	EnableKibanaPrivateDomainPublic pulumi.BoolInput `pulumi:"enableKibanaPrivateDomainPublic"`
+	// whether enable kibana private network.
+	EnableKibanaPrivateNetwork pulumi.BoolInput `pulumi:"enableKibanaPrivateNetwork"`
+	// whether enable kibana public network.
+	EnableKibanaPublicNetwork pulumi.BoolInput `pulumi:"enableKibanaPublicNetwork"`
+	// The eip address of instance.
+	EsEip pulumi.StringInput `pulumi:"esEip"`
+	// The eip id associated with the instance.
+	EsEipId pulumi.StringInput `pulumi:"esEipId"`
+	// The es inner endpoint of instance.
+	EsInnerEndpoint pulumi.StringInput `pulumi:"esInnerEndpoint"`
+	// The es private domain of instance.
+	EsPrivateDomain pulumi.StringInput `pulumi:"esPrivateDomain"`
+	// The es private endpoint of instance.
+	EsPrivateEndpoint pulumi.StringInput `pulumi:"esPrivateEndpoint"`
+	// The whitelist of es private ip.
+	EsPrivateIpWhitelist pulumi.StringInput `pulumi:"esPrivateIpWhitelist"`
+	// The es public domain of instance.
+	EsPublicDomain pulumi.StringInput `pulumi:"esPublicDomain"`
+	// The es public endpoint of instance.
+	EsPublicEndpoint pulumi.StringInput `pulumi:"esPublicEndpoint"`
+	// The whitelist of es public ip.
+	EsPublicIpWhitelist pulumi.StringInput `pulumi:"esPublicIpWhitelist"`
+	// The expire time of instance.
+	ExpireDate pulumi.StringInput `pulumi:"expireDate"`
+	// The id of instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The configuration of instance.
+	InstanceConfigurations GetInstancesV2InstanceInstanceConfigurationArrayInput `pulumi:"instanceConfigurations"`
+	// The id of instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The eip address of kibana.
+	KibanaEip pulumi.StringInput `pulumi:"kibanaEip"`
+	// The eip id associated with kibana.
+	KibanaEipId pulumi.StringInput `pulumi:"kibanaEipId"`
+	// The kibana private domain of instance.
+	KibanaPrivateDomain pulumi.StringInput `pulumi:"kibanaPrivateDomain"`
+	// The whitelist of kibana private ip.
+	KibanaPrivateIpWhitelist pulumi.StringInput `pulumi:"kibanaPrivateIpWhitelist"`
+	// The kibana public domain of instance.
+	KibanaPublicDomain pulumi.StringInput `pulumi:"kibanaPublicDomain"`
+	// The whitelist of kibana public ip.
+	KibanaPublicIpWhitelist pulumi.StringInput `pulumi:"kibanaPublicIpWhitelist"`
+	// The main zone id of instance.
+	MainZoneId pulumi.StringInput `pulumi:"mainZoneId"`
+	// The maintenance day of instance.
+	MaintenanceDays pulumi.StringArrayInput `pulumi:"maintenanceDays"`
+	// The maintenance time of instance.
+	MaintenanceTime pulumi.StringInput `pulumi:"maintenanceTime"`
+	// The nodes info of instance.
+	Nodes GetInstancesV2InstanceNodeArrayInput `pulumi:"nodes"`
+	// The plugin info of instance.
+	Plugins GetInstancesV2InstancePluginArrayInput `pulumi:"plugins"`
+	// The status of instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Whether support code node.
+	SupportCodeNode pulumi.BoolInput `pulumi:"supportCodeNode"`
+	// Tags.
+	Tags GetInstancesV2InstanceTagArrayInput `pulumi:"tags"`
+	// The total nodes of instance.
+	TotalNodes pulumi.IntInput `pulumi:"totalNodes"`
+	// The user id of instance.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetInstancesV2InstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2Instance)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceArgs) ToGetInstancesV2InstanceOutput() GetInstancesV2InstanceOutput {
+	return i.ToGetInstancesV2InstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceArgs) ToGetInstancesV2InstanceOutputWithContext(ctx context.Context) GetInstancesV2InstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceOutput)
+}
+
+// GetInstancesV2InstanceArrayInput is an input type that accepts GetInstancesV2InstanceArray and GetInstancesV2InstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceArrayInput` via:
+//
+//	GetInstancesV2InstanceArray{ GetInstancesV2InstanceArgs{...} }
+type GetInstancesV2InstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceArrayOutput() GetInstancesV2InstanceArrayOutput
+	ToGetInstancesV2InstanceArrayOutputWithContext(context.Context) GetInstancesV2InstanceArrayOutput
+}
+
+type GetInstancesV2InstanceArray []GetInstancesV2InstanceInput
+
+func (GetInstancesV2InstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2Instance)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceArray) ToGetInstancesV2InstanceArrayOutput() GetInstancesV2InstanceArrayOutput {
+	return i.ToGetInstancesV2InstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceArray) ToGetInstancesV2InstanceArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceArrayOutput)
+}
+
+type GetInstancesV2InstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2Instance)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceOutput) ToGetInstancesV2InstanceOutput() GetInstancesV2InstanceOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceOutput) ToGetInstancesV2InstanceOutputWithContext(ctx context.Context) GetInstancesV2InstanceOutput {
+	return o
+}
+
+// Whether to enable cerebro.
+func (o GetInstancesV2InstanceOutput) CerebroEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.CerebroEnabled }).(pulumi.BoolOutput)
+}
+
+// The cerebro private domain of instance.
+func (o GetInstancesV2InstanceOutput) CerebroPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.CerebroPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The cerebro public domain of instance.
+func (o GetInstancesV2InstanceOutput) CerebroPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.CerebroPublicDomain }).(pulumi.StringOutput)
+}
+
+// The charge status of instance.
+func (o GetInstancesV2InstanceOutput) ChargeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.ChargeEnabled }).(pulumi.BoolOutput)
+}
+
+// The cluster id of instance.
+func (o GetInstancesV2InstanceOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The create time of instance.
+func (o GetInstancesV2InstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Whether enable deletion protection for ESCloud instance.
+func (o GetInstancesV2InstanceOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
+}
+
+// whether enable es private domain public.
+func (o GetInstancesV2InstanceOutput) EnableEsPrivateDomainPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.EnableEsPrivateDomainPublic }).(pulumi.BoolOutput)
+}
+
+// whether enable es private network.
+func (o GetInstancesV2InstanceOutput) EnableEsPrivateNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.EnableEsPrivateNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable es public network.
+func (o GetInstancesV2InstanceOutput) EnableEsPublicNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.EnableEsPublicNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana private domain public.
+func (o GetInstancesV2InstanceOutput) EnableKibanaPrivateDomainPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.EnableKibanaPrivateDomainPublic }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana private network.
+func (o GetInstancesV2InstanceOutput) EnableKibanaPrivateNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.EnableKibanaPrivateNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana public network.
+func (o GetInstancesV2InstanceOutput) EnableKibanaPublicNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.EnableKibanaPublicNetwork }).(pulumi.BoolOutput)
+}
+
+// The eip address of instance.
+func (o GetInstancesV2InstanceOutput) EsEip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsEip }).(pulumi.StringOutput)
+}
+
+// The eip id associated with the instance.
+func (o GetInstancesV2InstanceOutput) EsEipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsEipId }).(pulumi.StringOutput)
+}
+
+// The es inner endpoint of instance.
+func (o GetInstancesV2InstanceOutput) EsInnerEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsInnerEndpoint }).(pulumi.StringOutput)
+}
+
+// The es private domain of instance.
+func (o GetInstancesV2InstanceOutput) EsPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The es private endpoint of instance.
+func (o GetInstancesV2InstanceOutput) EsPrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsPrivateEndpoint }).(pulumi.StringOutput)
+}
+
+// The whitelist of es private ip.
+func (o GetInstancesV2InstanceOutput) EsPrivateIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsPrivateIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The es public domain of instance.
+func (o GetInstancesV2InstanceOutput) EsPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsPublicDomain }).(pulumi.StringOutput)
+}
+
+// The es public endpoint of instance.
+func (o GetInstancesV2InstanceOutput) EsPublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsPublicEndpoint }).(pulumi.StringOutput)
+}
+
+// The whitelist of es public ip.
+func (o GetInstancesV2InstanceOutput) EsPublicIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.EsPublicIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The expire time of instance.
+func (o GetInstancesV2InstanceOutput) ExpireDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.ExpireDate }).(pulumi.StringOutput)
+}
+
+// The id of instance.
+func (o GetInstancesV2InstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The configuration of instance.
+func (o GetInstancesV2InstanceOutput) InstanceConfigurations() GetInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) []GetInstancesV2InstanceInstanceConfiguration {
+		return v.InstanceConfigurations
+	}).(GetInstancesV2InstanceInstanceConfigurationArrayOutput)
+}
+
+// The id of instance.
+func (o GetInstancesV2InstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The eip address of kibana.
+func (o GetInstancesV2InstanceOutput) KibanaEip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.KibanaEip }).(pulumi.StringOutput)
+}
+
+// The eip id associated with kibana.
+func (o GetInstancesV2InstanceOutput) KibanaEipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.KibanaEipId }).(pulumi.StringOutput)
+}
+
+// The kibana private domain of instance.
+func (o GetInstancesV2InstanceOutput) KibanaPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.KibanaPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The whitelist of kibana private ip.
+func (o GetInstancesV2InstanceOutput) KibanaPrivateIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.KibanaPrivateIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The kibana public domain of instance.
+func (o GetInstancesV2InstanceOutput) KibanaPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.KibanaPublicDomain }).(pulumi.StringOutput)
+}
+
+// The whitelist of kibana public ip.
+func (o GetInstancesV2InstanceOutput) KibanaPublicIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.KibanaPublicIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The main zone id of instance.
+func (o GetInstancesV2InstanceOutput) MainZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.MainZoneId }).(pulumi.StringOutput)
+}
+
+// The maintenance day of instance.
+func (o GetInstancesV2InstanceOutput) MaintenanceDays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) []string { return v.MaintenanceDays }).(pulumi.StringArrayOutput)
+}
+
+// The maintenance time of instance.
+func (o GetInstancesV2InstanceOutput) MaintenanceTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.MaintenanceTime }).(pulumi.StringOutput)
+}
+
+// The nodes info of instance.
+func (o GetInstancesV2InstanceOutput) Nodes() GetInstancesV2InstanceNodeArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) []GetInstancesV2InstanceNode { return v.Nodes }).(GetInstancesV2InstanceNodeArrayOutput)
+}
+
+// The plugin info of instance.
+func (o GetInstancesV2InstanceOutput) Plugins() GetInstancesV2InstancePluginArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) []GetInstancesV2InstancePlugin { return v.Plugins }).(GetInstancesV2InstancePluginArrayOutput)
+}
+
+// The status of instance.
+func (o GetInstancesV2InstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Whether support code node.
+func (o GetInstancesV2InstanceOutput) SupportCodeNode() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) bool { return v.SupportCodeNode }).(pulumi.BoolOutput)
+}
+
+// Tags.
+func (o GetInstancesV2InstanceOutput) Tags() GetInstancesV2InstanceTagArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) []GetInstancesV2InstanceTag { return v.Tags }).(GetInstancesV2InstanceTagArrayOutput)
+}
+
+// The total nodes of instance.
+func (o GetInstancesV2InstanceOutput) TotalNodes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) int { return v.TotalNodes }).(pulumi.IntOutput)
+}
+
+// The user id of instance.
+func (o GetInstancesV2InstanceOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Instance) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2Instance)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceArrayOutput) ToGetInstancesV2InstanceArrayOutput() GetInstancesV2InstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceArrayOutput) ToGetInstancesV2InstanceArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2Instance {
+		return vs[0].([]GetInstancesV2Instance)[vs[1].(int)]
+	}).(GetInstancesV2InstanceOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfiguration struct {
+	// The user name of instance.
+	AdminUserName string `pulumi:"adminUserName"`
+	// The charge type of instance.
+	ChargeType string `pulumi:"chargeType"`
+	// The node number of cold.
+	ColdNodeNumber int `pulumi:"coldNodeNumber"`
+	// The node resource spec of cold.
+	ColdNodeResourceSpecs []GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec `pulumi:"coldNodeResourceSpecs"`
+	// The node storage spec of cold.
+	ColdNodeStorageSpecs []GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec `pulumi:"coldNodeStorageSpecs"`
+	// The node number of coordinator.
+	CoordinatorNodeNumber int `pulumi:"coordinatorNodeNumber"`
+	// The node resource spec of coordinator.
+	CoordinatorNodeResourceSpecs []GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec `pulumi:"coordinatorNodeResourceSpecs"`
+	// The node storage spec of coordinator.
+	CoordinatorNodeStorageSpecs []GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec `pulumi:"coordinatorNodeStorageSpecs"`
+	// whether enable https.
+	EnableHttps bool `pulumi:"enableHttps"`
+	// Whether enable pure master.
+	EnablePureMaster bool `pulumi:"enablePureMaster"`
+	// The node number of hot.
+	HotNodeNumber int `pulumi:"hotNodeNumber"`
+	// The node resource spec of hot.
+	HotNodeResourceSpecs []GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec `pulumi:"hotNodeResourceSpecs"`
+	// The node storage spec of hot.
+	HotNodeStorageSpecs []GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec `pulumi:"hotNodeStorageSpecs"`
+	// The name of instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The node number of kibana.
+	KibanaNodeNumber int `pulumi:"kibanaNodeNumber"`
+	// The node resource spec of kibana.
+	KibanaNodeResourceSpecs []GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec `pulumi:"kibanaNodeResourceSpecs"`
+	// The node storage spec of kibana.
+	KibanaNodeStorageSpecs []GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec `pulumi:"kibanaNodeStorageSpecs"`
+	// The node number of master.
+	MasterNodeNumber int `pulumi:"masterNodeNumber"`
+	// The node resource spec of master.
+	MasterNodeResourceSpecs []GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec `pulumi:"masterNodeResourceSpecs"`
+	// The node storage spec of master.
+	MasterNodeStorageSpecs []GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec `pulumi:"masterNodeStorageSpecs"`
+	// The period of project.
+	Period int `pulumi:"period"`
+	// The name of project.
+	ProjectName string `pulumi:"projectName"`
+	// The region info of instance.
+	RegionId string `pulumi:"regionId"`
+	// The subnet info.
+	Subnets []GetInstancesV2InstanceInstanceConfigurationSubnet `pulumi:"subnets"`
+	// The version of instance.
+	Version string `pulumi:"version"`
+	// The vpc info.
+	Vpcs []GetInstancesV2InstanceInstanceConfigurationVpc `pulumi:"vpcs"`
+	// The node number of warm.
+	WarmNodeNumber int `pulumi:"warmNodeNumber"`
+	// The node resource spec of warm.
+	WarmNodeResourceSpecs []GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec `pulumi:"warmNodeResourceSpecs"`
+	// The node storage spec of warm.
+	WarmNodeStorageSpecs []GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec `pulumi:"warmNodeStorageSpecs"`
+	// The zoneId of instance.
+	ZoneId string `pulumi:"zoneId"`
+	// The zone number of instance.
+	ZoneNumber int `pulumi:"zoneNumber"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationArgs and GetInstancesV2InstanceInstanceConfigurationOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationOutput() GetInstancesV2InstanceInstanceConfigurationOutput
+	ToGetInstancesV2InstanceInstanceConfigurationOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationArgs struct {
+	// The user name of instance.
+	AdminUserName pulumi.StringInput `pulumi:"adminUserName"`
+	// The charge type of instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The node number of cold.
+	ColdNodeNumber pulumi.IntInput `pulumi:"coldNodeNumber"`
+	// The node resource spec of cold.
+	ColdNodeResourceSpecs GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput `pulumi:"coldNodeResourceSpecs"`
+	// The node storage spec of cold.
+	ColdNodeStorageSpecs GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput `pulumi:"coldNodeStorageSpecs"`
+	// The node number of coordinator.
+	CoordinatorNodeNumber pulumi.IntInput `pulumi:"coordinatorNodeNumber"`
+	// The node resource spec of coordinator.
+	CoordinatorNodeResourceSpecs GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput `pulumi:"coordinatorNodeResourceSpecs"`
+	// The node storage spec of coordinator.
+	CoordinatorNodeStorageSpecs GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput `pulumi:"coordinatorNodeStorageSpecs"`
+	// whether enable https.
+	EnableHttps pulumi.BoolInput `pulumi:"enableHttps"`
+	// Whether enable pure master.
+	EnablePureMaster pulumi.BoolInput `pulumi:"enablePureMaster"`
+	// The node number of hot.
+	HotNodeNumber pulumi.IntInput `pulumi:"hotNodeNumber"`
+	// The node resource spec of hot.
+	HotNodeResourceSpecs GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput `pulumi:"hotNodeResourceSpecs"`
+	// The node storage spec of hot.
+	HotNodeStorageSpecs GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput `pulumi:"hotNodeStorageSpecs"`
+	// The name of instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The node number of kibana.
+	KibanaNodeNumber pulumi.IntInput `pulumi:"kibanaNodeNumber"`
+	// The node resource spec of kibana.
+	KibanaNodeResourceSpecs GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput `pulumi:"kibanaNodeResourceSpecs"`
+	// The node storage spec of kibana.
+	KibanaNodeStorageSpecs GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput `pulumi:"kibanaNodeStorageSpecs"`
+	// The node number of master.
+	MasterNodeNumber pulumi.IntInput `pulumi:"masterNodeNumber"`
+	// The node resource spec of master.
+	MasterNodeResourceSpecs GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput `pulumi:"masterNodeResourceSpecs"`
+	// The node storage spec of master.
+	MasterNodeStorageSpecs GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput `pulumi:"masterNodeStorageSpecs"`
+	// The period of project.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The name of project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region info of instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The subnet info.
+	Subnets GetInstancesV2InstanceInstanceConfigurationSubnetArrayInput `pulumi:"subnets"`
+	// The version of instance.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The vpc info.
+	Vpcs GetInstancesV2InstanceInstanceConfigurationVpcArrayInput `pulumi:"vpcs"`
+	// The node number of warm.
+	WarmNodeNumber pulumi.IntInput `pulumi:"warmNodeNumber"`
+	// The node resource spec of warm.
+	WarmNodeResourceSpecs GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput `pulumi:"warmNodeResourceSpecs"`
+	// The node storage spec of warm.
+	WarmNodeStorageSpecs GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput `pulumi:"warmNodeStorageSpecs"`
+	// The zoneId of instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The zone number of instance.
+	ZoneNumber pulumi.IntInput `pulumi:"zoneNumber"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationArgs) ToGetInstancesV2InstanceInstanceConfigurationOutput() GetInstancesV2InstanceInstanceConfigurationOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationArgs) ToGetInstancesV2InstanceInstanceConfigurationOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationArray and GetInstancesV2InstanceInstanceConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationArray{ GetInstancesV2InstanceInstanceConfigurationArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationArrayOutput() GetInstancesV2InstanceInstanceConfigurationArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationArray []GetInstancesV2InstanceInstanceConfigurationInput
+
+func (GetInstancesV2InstanceInstanceConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationArray) ToGetInstancesV2InstanceInstanceConfigurationArrayOutput() GetInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationArray) ToGetInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ToGetInstancesV2InstanceInstanceConfigurationOutput() GetInstancesV2InstanceInstanceConfigurationOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ToGetInstancesV2InstanceInstanceConfigurationOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationOutput {
+	return o
+}
+
+// The user name of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) AdminUserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.AdminUserName }).(pulumi.StringOutput)
+}
+
+// The charge type of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The node number of cold.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ColdNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.ColdNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of cold.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ColdNodeResourceSpecs() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+		return v.ColdNodeResourceSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of cold.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ColdNodeStorageSpecs() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+		return v.ColdNodeStorageSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput)
+}
+
+// The node number of coordinator.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) CoordinatorNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.CoordinatorNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of coordinator.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) CoordinatorNodeResourceSpecs() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+		return v.CoordinatorNodeResourceSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of coordinator.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) CoordinatorNodeStorageSpecs() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+		return v.CoordinatorNodeStorageSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput)
+}
+
+// whether enable https.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) EnableHttps() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) bool { return v.EnableHttps }).(pulumi.BoolOutput)
+}
+
+// Whether enable pure master.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) EnablePureMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) bool { return v.EnablePureMaster }).(pulumi.BoolOutput)
+}
+
+// The node number of hot.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) HotNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.HotNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of hot.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) HotNodeResourceSpecs() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+		return v.HotNodeResourceSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of hot.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) HotNodeStorageSpecs() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+		return v.HotNodeStorageSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput)
+}
+
+// The name of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The node number of kibana.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) KibanaNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.KibanaNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of kibana.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) KibanaNodeResourceSpecs() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+		return v.KibanaNodeResourceSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of kibana.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) KibanaNodeStorageSpecs() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+		return v.KibanaNodeStorageSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput)
+}
+
+// The node number of master.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) MasterNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.MasterNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of master.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) MasterNodeResourceSpecs() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+		return v.MasterNodeResourceSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of master.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) MasterNodeStorageSpecs() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+		return v.MasterNodeStorageSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput)
+}
+
+// The period of project.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The name of project.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region info of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The subnet info.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) Subnets() GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationSubnet {
+		return v.Subnets
+	}).(GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput)
+}
+
+// The version of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The vpc info.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) Vpcs() GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationVpc {
+		return v.Vpcs
+	}).(GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput)
+}
+
+// The node number of warm.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) WarmNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.WarmNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of warm.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) WarmNodeResourceSpecs() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+		return v.WarmNodeResourceSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of warm.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) WarmNodeStorageSpecs() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) []GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+		return v.WarmNodeStorageSpecs
+	}).(GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput)
+}
+
+// The zoneId of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The zone number of instance.
+func (o GetInstancesV2InstanceInstanceConfigurationOutput) ZoneNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfiguration) int { return v.ZoneNumber }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationArrayOutput() GetInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfiguration {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfiguration)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of resource spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs and GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of resource spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray and GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray{ GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray []GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs and GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray and GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray{ GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray []GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of resource spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs and GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of resource spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray and GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray{ GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray []GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs and GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray and GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray{ GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray []GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of resource spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs and GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of resource spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray and GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray{ GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray []GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs and GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray and GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray{ GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray []GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of resource spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs and GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of resource spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray and GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray{ GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray []GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs and GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray and GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray{ GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray []GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of resource spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs and GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of resource spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray and GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray{ GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray []GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs and GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray and GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray{ GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray []GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationSubnet struct {
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The name of subnet.
+	SubnetName string `pulumi:"subnetName"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationSubnetInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationSubnetArgs and GetInstancesV2InstanceInstanceConfigurationSubnetOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationSubnetInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationSubnetArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationSubnetInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationSubnetOutput() GetInstancesV2InstanceInstanceConfigurationSubnetOutput
+	ToGetInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationSubnetOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationSubnetArgs struct {
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The name of subnet.
+	SubnetName pulumi.StringInput `pulumi:"subnetName"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationSubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationSubnetArgs) ToGetInstancesV2InstanceInstanceConfigurationSubnetOutput() GetInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationSubnetArgs) ToGetInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationSubnetOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationSubnetArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationSubnetArray and GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationSubnetArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationSubnetArray{ GetInstancesV2InstanceInstanceConfigurationSubnetArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationSubnetArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput() GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationSubnetArray []GetInstancesV2InstanceInstanceConfigurationSubnetInput
+
+func (GetInstancesV2InstanceInstanceConfigurationSubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationSubnetArray) ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput() GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationSubnetArray) ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationSubnetOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationSubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetOutput) ToGetInstancesV2InstanceInstanceConfigurationSubnetOutput() GetInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetOutput) ToGetInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return o
+}
+
+// The id of subnet.
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationSubnet) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The name of subnet.
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetOutput) SubnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationSubnet) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput() GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationSubnet {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationSubnet)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationSubnetOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationVpc struct {
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+	// The name of vpc.
+	VpcName string `pulumi:"vpcName"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationVpcInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationVpcArgs and GetInstancesV2InstanceInstanceConfigurationVpcOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationVpcInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationVpcArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationVpcInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationVpcOutput() GetInstancesV2InstanceInstanceConfigurationVpcOutput
+	ToGetInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationVpcOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationVpcArgs struct {
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The name of vpc.
+	VpcName pulumi.StringInput `pulumi:"vpcName"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationVpcArgs) ToGetInstancesV2InstanceInstanceConfigurationVpcOutput() GetInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationVpcArgs) ToGetInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationVpcOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationVpcArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationVpcArray and GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationVpcArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationVpcArray{ GetInstancesV2InstanceInstanceConfigurationVpcArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutput() GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationVpcArray []GetInstancesV2InstanceInstanceConfigurationVpcInput
+
+func (GetInstancesV2InstanceInstanceConfigurationVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationVpcArray) ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutput() GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationVpcArray) ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationVpcOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationVpcOutput) ToGetInstancesV2InstanceInstanceConfigurationVpcOutput() GetInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationVpcOutput) ToGetInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return o
+}
+
+// The id of vpc.
+func (o GetInstancesV2InstanceInstanceConfigurationVpcOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationVpc) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The name of vpc.
+func (o GetInstancesV2InstanceInstanceConfigurationVpcOutput) VpcName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationVpc) string { return v.VpcName }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutput() GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationVpc {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationVpc)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationVpcOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of resource spec.
+	Name string `pulumi:"name"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs and GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of resource spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray and GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray{ GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray []GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of resource spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs and GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray and GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray{ GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray []GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput() GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstanceNode struct {
+	// Is cold node.
+	IsCold bool `pulumi:"isCold"`
+	// Is coordinator node.
+	IsCoordinator bool `pulumi:"isCoordinator"`
+	// Is hot node.
+	IsHot bool `pulumi:"isHot"`
+	// Is kibana node.
+	IsKibana bool `pulumi:"isKibana"`
+	// Is master node.
+	IsMaster bool `pulumi:"isMaster"`
+	// Is warm node.
+	IsWarm bool `pulumi:"isWarm"`
+	// The show name of node.
+	NodeDisplayName string `pulumi:"nodeDisplayName"`
+	// The name of node.
+	NodeName string `pulumi:"nodeName"`
+	// The node resource spec of master.
+	ResourceSpecs []GetInstancesV2InstanceNodeResourceSpec `pulumi:"resourceSpecs"`
+	// The restart times of node.
+	RestartNumber int `pulumi:"restartNumber"`
+	// The start time of node.
+	StartTime string `pulumi:"startTime"`
+	// The status of node.
+	Status string `pulumi:"status"`
+	// The node storage spec of master.
+	StorageSpecs []GetInstancesV2InstanceNodeStorageSpec `pulumi:"storageSpecs"`
+}
+
+// GetInstancesV2InstanceNodeInput is an input type that accepts GetInstancesV2InstanceNodeArgs and GetInstancesV2InstanceNodeOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceNodeInput` via:
+//
+//	GetInstancesV2InstanceNodeArgs{...}
+type GetInstancesV2InstanceNodeInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceNodeOutput() GetInstancesV2InstanceNodeOutput
+	ToGetInstancesV2InstanceNodeOutputWithContext(context.Context) GetInstancesV2InstanceNodeOutput
+}
+
+type GetInstancesV2InstanceNodeArgs struct {
+	// Is cold node.
+	IsCold pulumi.BoolInput `pulumi:"isCold"`
+	// Is coordinator node.
+	IsCoordinator pulumi.BoolInput `pulumi:"isCoordinator"`
+	// Is hot node.
+	IsHot pulumi.BoolInput `pulumi:"isHot"`
+	// Is kibana node.
+	IsKibana pulumi.BoolInput `pulumi:"isKibana"`
+	// Is master node.
+	IsMaster pulumi.BoolInput `pulumi:"isMaster"`
+	// Is warm node.
+	IsWarm pulumi.BoolInput `pulumi:"isWarm"`
+	// The show name of node.
+	NodeDisplayName pulumi.StringInput `pulumi:"nodeDisplayName"`
+	// The name of node.
+	NodeName pulumi.StringInput `pulumi:"nodeName"`
+	// The node resource spec of master.
+	ResourceSpecs GetInstancesV2InstanceNodeResourceSpecArrayInput `pulumi:"resourceSpecs"`
+	// The restart times of node.
+	RestartNumber pulumi.IntInput `pulumi:"restartNumber"`
+	// The start time of node.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// The status of node.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The node storage spec of master.
+	StorageSpecs GetInstancesV2InstanceNodeStorageSpecArrayInput `pulumi:"storageSpecs"`
+}
+
+func (GetInstancesV2InstanceNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceNodeArgs) ToGetInstancesV2InstanceNodeOutput() GetInstancesV2InstanceNodeOutput {
+	return i.ToGetInstancesV2InstanceNodeOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceNodeArgs) ToGetInstancesV2InstanceNodeOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceNodeOutput)
+}
+
+// GetInstancesV2InstanceNodeArrayInput is an input type that accepts GetInstancesV2InstanceNodeArray and GetInstancesV2InstanceNodeArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceNodeArrayInput` via:
+//
+//	GetInstancesV2InstanceNodeArray{ GetInstancesV2InstanceNodeArgs{...} }
+type GetInstancesV2InstanceNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceNodeArrayOutput() GetInstancesV2InstanceNodeArrayOutput
+	ToGetInstancesV2InstanceNodeArrayOutputWithContext(context.Context) GetInstancesV2InstanceNodeArrayOutput
+}
+
+type GetInstancesV2InstanceNodeArray []GetInstancesV2InstanceNodeInput
+
+func (GetInstancesV2InstanceNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceNodeArray) ToGetInstancesV2InstanceNodeArrayOutput() GetInstancesV2InstanceNodeArrayOutput {
+	return i.ToGetInstancesV2InstanceNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceNodeArray) ToGetInstancesV2InstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceNodeArrayOutput)
+}
+
+type GetInstancesV2InstanceNodeOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceNodeOutput) ToGetInstancesV2InstanceNodeOutput() GetInstancesV2InstanceNodeOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeOutput) ToGetInstancesV2InstanceNodeOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeOutput {
+	return o
+}
+
+// Is cold node.
+func (o GetInstancesV2InstanceNodeOutput) IsCold() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) bool { return v.IsCold }).(pulumi.BoolOutput)
+}
+
+// Is coordinator node.
+func (o GetInstancesV2InstanceNodeOutput) IsCoordinator() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) bool { return v.IsCoordinator }).(pulumi.BoolOutput)
+}
+
+// Is hot node.
+func (o GetInstancesV2InstanceNodeOutput) IsHot() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) bool { return v.IsHot }).(pulumi.BoolOutput)
+}
+
+// Is kibana node.
+func (o GetInstancesV2InstanceNodeOutput) IsKibana() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) bool { return v.IsKibana }).(pulumi.BoolOutput)
+}
+
+// Is master node.
+func (o GetInstancesV2InstanceNodeOutput) IsMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) bool { return v.IsMaster }).(pulumi.BoolOutput)
+}
+
+// Is warm node.
+func (o GetInstancesV2InstanceNodeOutput) IsWarm() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) bool { return v.IsWarm }).(pulumi.BoolOutput)
+}
+
+// The show name of node.
+func (o GetInstancesV2InstanceNodeOutput) NodeDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) string { return v.NodeDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of node.
+func (o GetInstancesV2InstanceNodeOutput) NodeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) string { return v.NodeName }).(pulumi.StringOutput)
+}
+
+// The node resource spec of master.
+func (o GetInstancesV2InstanceNodeOutput) ResourceSpecs() GetInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) []GetInstancesV2InstanceNodeResourceSpec { return v.ResourceSpecs }).(GetInstancesV2InstanceNodeResourceSpecArrayOutput)
+}
+
+// The restart times of node.
+func (o GetInstancesV2InstanceNodeOutput) RestartNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) int { return v.RestartNumber }).(pulumi.IntOutput)
+}
+
+// The start time of node.
+func (o GetInstancesV2InstanceNodeOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// The status of node.
+func (o GetInstancesV2InstanceNodeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The node storage spec of master.
+func (o GetInstancesV2InstanceNodeOutput) StorageSpecs() GetInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNode) []GetInstancesV2InstanceNodeStorageSpec { return v.StorageSpecs }).(GetInstancesV2InstanceNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceNodeArrayOutput) ToGetInstancesV2InstanceNodeArrayOutput() GetInstancesV2InstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeArrayOutput) ToGetInstancesV2InstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceNode {
+		return vs[0].([]GetInstancesV2InstanceNode)[vs[1].(int)]
+	}).(GetInstancesV2InstanceNodeOutput)
+}
+
+type GetInstancesV2InstanceNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of resource spec.
+	Description string `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+}
+
+// GetInstancesV2InstanceNodeResourceSpecInput is an input type that accepts GetInstancesV2InstanceNodeResourceSpecArgs and GetInstancesV2InstanceNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceNodeResourceSpecInput` via:
+//
+//	GetInstancesV2InstanceNodeResourceSpecArgs{...}
+type GetInstancesV2InstanceNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceNodeResourceSpecOutput() GetInstancesV2InstanceNodeResourceSpecOutput
+	ToGetInstancesV2InstanceNodeResourceSpecOutputWithContext(context.Context) GetInstancesV2InstanceNodeResourceSpecOutput
+}
+
+type GetInstancesV2InstanceNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of resource spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of resource spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+}
+
+func (GetInstancesV2InstanceNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceNodeResourceSpecArgs) ToGetInstancesV2InstanceNodeResourceSpecOutput() GetInstancesV2InstanceNodeResourceSpecOutput {
+	return i.ToGetInstancesV2InstanceNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceNodeResourceSpecArgs) ToGetInstancesV2InstanceNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceNodeResourceSpecOutput)
+}
+
+// GetInstancesV2InstanceNodeResourceSpecArrayInput is an input type that accepts GetInstancesV2InstanceNodeResourceSpecArray and GetInstancesV2InstanceNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceNodeResourceSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceNodeResourceSpecArray{ GetInstancesV2InstanceNodeResourceSpecArgs{...} }
+type GetInstancesV2InstanceNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceNodeResourceSpecArrayOutput() GetInstancesV2InstanceNodeResourceSpecArrayOutput
+	ToGetInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceNodeResourceSpecArrayOutput
+}
+
+type GetInstancesV2InstanceNodeResourceSpecArray []GetInstancesV2InstanceNodeResourceSpecInput
+
+func (GetInstancesV2InstanceNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceNodeResourceSpecArray) ToGetInstancesV2InstanceNodeResourceSpecArrayOutput() GetInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceNodeResourceSpecArray) ToGetInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceNodeResourceSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceNodeResourceSpecOutput) ToGetInstancesV2InstanceNodeResourceSpecOutput() GetInstancesV2InstanceNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeResourceSpecOutput) ToGetInstancesV2InstanceNodeResourceSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetInstancesV2InstanceNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of resource spec.
+func (o GetInstancesV2InstanceNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of resource spec.
+func (o GetInstancesV2InstanceNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetInstancesV2InstanceNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceNodeResourceSpecArrayOutput() GetInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeResourceSpecArrayOutput) ToGetInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceNodeResourceSpec {
+		return vs[0].([]GetInstancesV2InstanceNodeResourceSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceNodeResourceSpecOutput)
+}
+
+type GetInstancesV2InstanceNodeStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+}
+
+// GetInstancesV2InstanceNodeStorageSpecInput is an input type that accepts GetInstancesV2InstanceNodeStorageSpecArgs and GetInstancesV2InstanceNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceNodeStorageSpecInput` via:
+//
+//	GetInstancesV2InstanceNodeStorageSpecArgs{...}
+type GetInstancesV2InstanceNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceNodeStorageSpecOutput() GetInstancesV2InstanceNodeStorageSpecOutput
+	ToGetInstancesV2InstanceNodeStorageSpecOutputWithContext(context.Context) GetInstancesV2InstanceNodeStorageSpecOutput
+}
+
+type GetInstancesV2InstanceNodeStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+}
+
+func (GetInstancesV2InstanceNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceNodeStorageSpecArgs) ToGetInstancesV2InstanceNodeStorageSpecOutput() GetInstancesV2InstanceNodeStorageSpecOutput {
+	return i.ToGetInstancesV2InstanceNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceNodeStorageSpecArgs) ToGetInstancesV2InstanceNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceNodeStorageSpecOutput)
+}
+
+// GetInstancesV2InstanceNodeStorageSpecArrayInput is an input type that accepts GetInstancesV2InstanceNodeStorageSpecArray and GetInstancesV2InstanceNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceNodeStorageSpecArrayInput` via:
+//
+//	GetInstancesV2InstanceNodeStorageSpecArray{ GetInstancesV2InstanceNodeStorageSpecArgs{...} }
+type GetInstancesV2InstanceNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceNodeStorageSpecArrayOutput() GetInstancesV2InstanceNodeStorageSpecArrayOutput
+	ToGetInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(context.Context) GetInstancesV2InstanceNodeStorageSpecArrayOutput
+}
+
+type GetInstancesV2InstanceNodeStorageSpecArray []GetInstancesV2InstanceNodeStorageSpecInput
+
+func (GetInstancesV2InstanceNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceNodeStorageSpecArray) ToGetInstancesV2InstanceNodeStorageSpecArrayOutput() GetInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return i.ToGetInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceNodeStorageSpecArray) ToGetInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceNodeStorageSpecArrayOutput)
+}
+
+type GetInstancesV2InstanceNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceNodeStorageSpecOutput) ToGetInstancesV2InstanceNodeStorageSpecOutput() GetInstancesV2InstanceNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeStorageSpecOutput) ToGetInstancesV2InstanceNodeStorageSpecOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetInstancesV2InstanceNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetInstancesV2InstanceNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetInstancesV2InstanceNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetInstancesV2InstanceNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+type GetInstancesV2InstanceNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceNodeStorageSpecArrayOutput() GetInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeStorageSpecArrayOutput) ToGetInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceNodeStorageSpec {
+		return vs[0].([]GetInstancesV2InstanceNodeStorageSpec)[vs[1].(int)]
+	}).(GetInstancesV2InstanceNodeStorageSpecOutput)
+}
+
+type GetInstancesV2InstancePlugin struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The name of plugin.
+	PluginName string `pulumi:"pluginName"`
+	// The status of plugin.
+	Status string `pulumi:"status"`
+	// The version of plugin.
+	Version string `pulumi:"version"`
+}
+
+// GetInstancesV2InstancePluginInput is an input type that accepts GetInstancesV2InstancePluginArgs and GetInstancesV2InstancePluginOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstancePluginInput` via:
+//
+//	GetInstancesV2InstancePluginArgs{...}
+type GetInstancesV2InstancePluginInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstancePluginOutput() GetInstancesV2InstancePluginOutput
+	ToGetInstancesV2InstancePluginOutputWithContext(context.Context) GetInstancesV2InstancePluginOutput
+}
+
+type GetInstancesV2InstancePluginArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of plugin.
+	PluginName pulumi.StringInput `pulumi:"pluginName"`
+	// The status of plugin.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The version of plugin.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetInstancesV2InstancePluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstancePluginArgs) ToGetInstancesV2InstancePluginOutput() GetInstancesV2InstancePluginOutput {
+	return i.ToGetInstancesV2InstancePluginOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstancePluginArgs) ToGetInstancesV2InstancePluginOutputWithContext(ctx context.Context) GetInstancesV2InstancePluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstancePluginOutput)
+}
+
+// GetInstancesV2InstancePluginArrayInput is an input type that accepts GetInstancesV2InstancePluginArray and GetInstancesV2InstancePluginArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstancePluginArrayInput` via:
+//
+//	GetInstancesV2InstancePluginArray{ GetInstancesV2InstancePluginArgs{...} }
+type GetInstancesV2InstancePluginArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstancePluginArrayOutput() GetInstancesV2InstancePluginArrayOutput
+	ToGetInstancesV2InstancePluginArrayOutputWithContext(context.Context) GetInstancesV2InstancePluginArrayOutput
+}
+
+type GetInstancesV2InstancePluginArray []GetInstancesV2InstancePluginInput
+
+func (GetInstancesV2InstancePluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstancePluginArray) ToGetInstancesV2InstancePluginArrayOutput() GetInstancesV2InstancePluginArrayOutput {
+	return i.ToGetInstancesV2InstancePluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstancePluginArray) ToGetInstancesV2InstancePluginArrayOutputWithContext(ctx context.Context) GetInstancesV2InstancePluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstancePluginArrayOutput)
+}
+
+type GetInstancesV2InstancePluginOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstancePluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstancePluginOutput) ToGetInstancesV2InstancePluginOutput() GetInstancesV2InstancePluginOutput {
+	return o
+}
+
+func (o GetInstancesV2InstancePluginOutput) ToGetInstancesV2InstancePluginOutputWithContext(ctx context.Context) GetInstancesV2InstancePluginOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancesV2InstancePluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstancePlugin) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of plugin.
+func (o GetInstancesV2InstancePluginOutput) PluginName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstancePlugin) string { return v.PluginName }).(pulumi.StringOutput)
+}
+
+// The status of plugin.
+func (o GetInstancesV2InstancePluginOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstancePlugin) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The version of plugin.
+func (o GetInstancesV2InstancePluginOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstancePlugin) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstancePluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstancePluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstancePluginArrayOutput) ToGetInstancesV2InstancePluginArrayOutput() GetInstancesV2InstancePluginArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstancePluginArrayOutput) ToGetInstancesV2InstancePluginArrayOutputWithContext(ctx context.Context) GetInstancesV2InstancePluginArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstancePluginArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstancePluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstancePlugin {
+		return vs[0].([]GetInstancesV2InstancePlugin)[vs[1].(int)]
+	}).(GetInstancesV2InstancePluginOutput)
+}
+
+type GetInstancesV2InstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesV2InstanceTagInput is an input type that accepts GetInstancesV2InstanceTagArgs and GetInstancesV2InstanceTagOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceTagInput` via:
+//
+//	GetInstancesV2InstanceTagArgs{...}
+type GetInstancesV2InstanceTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceTagOutput() GetInstancesV2InstanceTagOutput
+	ToGetInstancesV2InstanceTagOutputWithContext(context.Context) GetInstancesV2InstanceTagOutput
+}
+
+type GetInstancesV2InstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesV2InstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceTagArgs) ToGetInstancesV2InstanceTagOutput() GetInstancesV2InstanceTagOutput {
+	return i.ToGetInstancesV2InstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceTagArgs) ToGetInstancesV2InstanceTagOutputWithContext(ctx context.Context) GetInstancesV2InstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceTagOutput)
+}
+
+// GetInstancesV2InstanceTagArrayInput is an input type that accepts GetInstancesV2InstanceTagArray and GetInstancesV2InstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2InstanceTagArrayInput` via:
+//
+//	GetInstancesV2InstanceTagArray{ GetInstancesV2InstanceTagArgs{...} }
+type GetInstancesV2InstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2InstanceTagArrayOutput() GetInstancesV2InstanceTagArrayOutput
+	ToGetInstancesV2InstanceTagArrayOutputWithContext(context.Context) GetInstancesV2InstanceTagArrayOutput
+}
+
+type GetInstancesV2InstanceTagArray []GetInstancesV2InstanceTagInput
+
+func (GetInstancesV2InstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesV2InstanceTagArray) ToGetInstancesV2InstanceTagArrayOutput() GetInstancesV2InstanceTagArrayOutput {
+	return i.ToGetInstancesV2InstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2InstanceTagArray) ToGetInstancesV2InstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2InstanceTagArrayOutput)
+}
+
+type GetInstancesV2InstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceTagOutput) ToGetInstancesV2InstanceTagOutput() GetInstancesV2InstanceTagOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceTagOutput) ToGetInstancesV2InstanceTagOutputWithContext(ctx context.Context) GetInstancesV2InstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesV2InstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesV2InstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2InstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesV2InstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2InstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesV2InstanceTagArrayOutput) ToGetInstancesV2InstanceTagArrayOutput() GetInstancesV2InstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceTagArrayOutput) ToGetInstancesV2InstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesV2InstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2InstanceTagArrayOutput) Index(i pulumi.IntInput) GetInstancesV2InstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2InstanceTag {
+		return vs[0].([]GetInstancesV2InstanceTag)[vs[1].(int)]
+	}).(GetInstancesV2InstanceTagOutput)
+}
+
+type GetInstancesV2Tag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// GetInstancesV2TagInput is an input type that accepts GetInstancesV2TagArgs and GetInstancesV2TagOutput values.
+// You can construct a concrete instance of `GetInstancesV2TagInput` via:
+//
+//	GetInstancesV2TagArgs{...}
+type GetInstancesV2TagInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2TagOutput() GetInstancesV2TagOutput
+	ToGetInstancesV2TagOutputWithContext(context.Context) GetInstancesV2TagOutput
+}
+
+type GetInstancesV2TagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetInstancesV2TagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2Tag)(nil)).Elem()
+}
+
+func (i GetInstancesV2TagArgs) ToGetInstancesV2TagOutput() GetInstancesV2TagOutput {
+	return i.ToGetInstancesV2TagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2TagArgs) ToGetInstancesV2TagOutputWithContext(ctx context.Context) GetInstancesV2TagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2TagOutput)
+}
+
+// GetInstancesV2TagArrayInput is an input type that accepts GetInstancesV2TagArray and GetInstancesV2TagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesV2TagArrayInput` via:
+//
+//	GetInstancesV2TagArray{ GetInstancesV2TagArgs{...} }
+type GetInstancesV2TagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesV2TagArrayOutput() GetInstancesV2TagArrayOutput
+	ToGetInstancesV2TagArrayOutputWithContext(context.Context) GetInstancesV2TagArrayOutput
+}
+
+type GetInstancesV2TagArray []GetInstancesV2TagInput
+
+func (GetInstancesV2TagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2Tag)(nil)).Elem()
+}
+
+func (i GetInstancesV2TagArray) ToGetInstancesV2TagArrayOutput() GetInstancesV2TagArrayOutput {
+	return i.ToGetInstancesV2TagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesV2TagArray) ToGetInstancesV2TagArrayOutputWithContext(ctx context.Context) GetInstancesV2TagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesV2TagArrayOutput)
+}
+
+type GetInstancesV2TagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2TagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesV2Tag)(nil)).Elem()
+}
+
+func (o GetInstancesV2TagOutput) ToGetInstancesV2TagOutput() GetInstancesV2TagOutput {
+	return o
+}
+
+func (o GetInstancesV2TagOutput) ToGetInstancesV2TagOutputWithContext(ctx context.Context) GetInstancesV2TagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesV2TagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesV2Tag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesV2TagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesV2Tag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetInstancesV2TagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesV2TagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesV2Tag)(nil)).Elem()
+}
+
+func (o GetInstancesV2TagArrayOutput) ToGetInstancesV2TagArrayOutput() GetInstancesV2TagArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2TagArrayOutput) ToGetInstancesV2TagArrayOutputWithContext(ctx context.Context) GetInstancesV2TagArrayOutput {
+	return o
+}
+
+func (o GetInstancesV2TagArrayOutput) Index(i pulumi.IntInput) GetInstancesV2TagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesV2Tag {
+		return vs[0].([]GetInstancesV2Tag)[vs[1].(int)]
+	}).(GetInstancesV2TagOutput)
+}
+
+type GetRegionsRegion struct {
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The id of the region.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o GetRegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetZonesZone struct {
+	// The id of the zone.
+	Id string `pulumi:"id"`
+	// The id of the zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The id of the zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of the zone.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceInstanceConfigurationInput)(nil)).Elem(), InstanceInstanceConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceInstanceConfigurationPtrInput)(nil)).Elem(), InstanceInstanceConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceInstanceConfigurationNodeSpecsAssignInput)(nil)).Elem(), InstanceInstanceConfigurationNodeSpecsAssignArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceInstanceConfigurationNodeSpecsAssignArrayInput)(nil)).Elem(), InstanceInstanceConfigurationNodeSpecsAssignArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2NetworkSpecInput)(nil)).Elem(), InstanceV2NetworkSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2NetworkSpecArrayInput)(nil)).Elem(), InstanceV2NetworkSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2NodeSpecsAssignInput)(nil)).Elem(), InstanceV2NodeSpecsAssignArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2NodeSpecsAssignArrayInput)(nil)).Elem(), InstanceV2NodeSpecsAssignArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2NodeSpecsAssignExtraPerformanceInput)(nil)).Elem(), InstanceV2NodeSpecsAssignExtraPerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2NodeSpecsAssignExtraPerformancePtrInput)(nil)).Elem(), InstanceV2NodeSpecsAssignExtraPerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2TagInput)(nil)).Elem(), InstanceV2TagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceV2TagArrayInput)(nil)).Elem(), InstanceV2TagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceInput)(nil)).Elem(), InstancesInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceArrayInput)(nil)).Elem(), InstancesInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceInstanceConfigurationInput)(nil)).Elem(), InstancesInstanceInstanceConfigurationArgs{})
@@ -2613,10 +8658,83 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationSubnetInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationSubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInstanceConfigurationVpcInput)(nil)).Elem(), GetInstancesInstanceInstanceConfigurationVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNodeInput)(nil)).Elem(), GetInstancesInstanceNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNodeArrayInput)(nil)).Elem(), GetInstancesInstanceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNodeResourceSpecInput)(nil)).Elem(), GetInstancesInstanceNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNodeStorageSpecInput)(nil)).Elem(), GetInstancesInstanceNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstancePluginInput)(nil)).Elem(), GetInstancesInstancePluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstancePluginArrayInput)(nil)).Elem(), GetInstancesInstancePluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInput)(nil)).Elem(), GetInstancesV2InstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceArrayInput)(nil)).Elem(), GetInstancesV2InstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationSubnetInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationSubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationSubnetArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationSubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationVpcInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationVpcArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceNodeInput)(nil)).Elem(), GetInstancesV2InstanceNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceNodeArrayInput)(nil)).Elem(), GetInstancesV2InstanceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceNodeResourceSpecInput)(nil)).Elem(), GetInstancesV2InstanceNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceNodeResourceSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceNodeStorageSpecInput)(nil)).Elem(), GetInstancesV2InstanceNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceNodeStorageSpecArrayInput)(nil)).Elem(), GetInstancesV2InstanceNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstancePluginInput)(nil)).Elem(), GetInstancesV2InstancePluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstancePluginArrayInput)(nil)).Elem(), GetInstancesV2InstancePluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceTagInput)(nil)).Elem(), GetInstancesV2InstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2InstanceTagArrayInput)(nil)).Elem(), GetInstancesV2InstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2TagInput)(nil)).Elem(), GetInstancesV2TagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesV2TagArrayInput)(nil)).Elem(), GetInstancesV2TagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(InstanceInstanceConfigurationOutput{})
 	pulumi.RegisterOutputType(InstanceInstanceConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(InstanceInstanceConfigurationNodeSpecsAssignOutput{})
 	pulumi.RegisterOutputType(InstanceInstanceConfigurationNodeSpecsAssignArrayOutput{})
+	pulumi.RegisterOutputType(InstanceV2NetworkSpecOutput{})
+	pulumi.RegisterOutputType(InstanceV2NetworkSpecArrayOutput{})
+	pulumi.RegisterOutputType(InstanceV2NodeSpecsAssignOutput{})
+	pulumi.RegisterOutputType(InstanceV2NodeSpecsAssignArrayOutput{})
+	pulumi.RegisterOutputType(InstanceV2NodeSpecsAssignExtraPerformanceOutput{})
+	pulumi.RegisterOutputType(InstanceV2NodeSpecsAssignExtraPerformancePtrOutput{})
+	pulumi.RegisterOutputType(InstanceV2TagOutput{})
+	pulumi.RegisterOutputType(InstanceV2TagArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceInstanceConfigurationOutput{})
@@ -2638,4 +8756,69 @@ func init() {
 	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationSubnetOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceInstanceConfigurationVpcOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceNodeOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstancePluginOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstancePluginArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationSubnetOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationSubnetArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationVpcOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceNodeOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstancePluginOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstancePluginArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2InstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2TagOutput{})
+	pulumi.RegisterOutputType(GetInstancesV2TagArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }
