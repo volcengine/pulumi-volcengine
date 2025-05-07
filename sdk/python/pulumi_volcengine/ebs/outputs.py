@@ -31,6 +31,22 @@ __all__ = [
     'VolumesVolumeExtraPerformanceResult',
     'VolumesVolumeTagResult',
     'VolumesVolumeTotalPerformanceResult',
+    'GetAutoSnapshotPoliciesAutoSnapshotPolicyResult',
+    'GetAutoSnapshotPoliciesAutoSnapshotPolicyTagResult',
+    'GetAutoSnapshotPoliciesTagResult',
+    'GetSnapshotGroupsSnapshotGroupResult',
+    'GetSnapshotGroupsSnapshotGroupSnapshotResult',
+    'GetSnapshotGroupsSnapshotGroupSnapshotTagResult',
+    'GetSnapshotGroupsSnapshotGroupTagResult',
+    'GetSnapshotsSnapshotResult',
+    'GetSnapshotsSnapshotTagResult',
+    'GetSnapshotsTagResult',
+    'GetVolumesTagResult',
+    'GetVolumesVolumeResult',
+    'GetVolumesVolumeBaselinePerformanceResult',
+    'GetVolumesVolumeExtraPerformanceResult',
+    'GetVolumesVolumeTagResult',
+    'GetVolumesVolumeTotalPerformanceResult',
 ]
 
 @pulumi.output_type
@@ -1340,6 +1356,1224 @@ class VolumesVolumeTagResult(dict):
 
 @pulumi.output_type
 class VolumesVolumeTotalPerformanceResult(dict):
+    def __init__(__self__, *,
+                 iops: int,
+                 throughput: int):
+        """
+        :param int iops: The total IOPS performance size for volume.
+        :param int throughput: The total Throughput performance size for volume. Unit: MB/s.
+        """
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The total IOPS performance size for volume.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The total Throughput performance size for volume. Unit: MB/s.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class GetAutoSnapshotPoliciesAutoSnapshotPolicyResult(dict):
+    def __init__(__self__, *,
+                 auto_snapshot_policy_id: str,
+                 auto_snapshot_policy_name: str,
+                 created_at: str,
+                 id: str,
+                 project_name: str,
+                 repeat_days: int,
+                 repeat_weekdays: Sequence[str],
+                 retention_days: int,
+                 status: str,
+                 tags: Sequence['outputs.GetAutoSnapshotPoliciesAutoSnapshotPolicyTagResult'],
+                 time_points: Sequence[str],
+                 updated_at: str,
+                 volume_nums: int):
+        """
+        :param str auto_snapshot_policy_id: The id of the auto snapshot policy.
+        :param str auto_snapshot_policy_name: The name of the auto snapshot policy.
+        :param str created_at: The creation time of the auto snapshot policy.
+        :param str id: The id of the auto snapshot policy.
+        :param str project_name: The project name of auto snapshot policy.
+        :param int repeat_days: Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+        :param Sequence[str] repeat_weekdays: The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+        :param int retention_days: The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+        :param str status: The status of the auto snapshot policy.
+        :param Sequence['GetAutoSnapshotPoliciesAutoSnapshotPolicyTagArgs'] tags: Tags.
+        :param Sequence[str] time_points: The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+        :param str updated_at: The updated time of the auto snapshot policy.
+        :param int volume_nums: The number of volumes associated with the auto snapshot policy.
+        """
+        pulumi.set(__self__, "auto_snapshot_policy_id", auto_snapshot_policy_id)
+        pulumi.set(__self__, "auto_snapshot_policy_name", auto_snapshot_policy_name)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "repeat_days", repeat_days)
+        pulumi.set(__self__, "repeat_weekdays", repeat_weekdays)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "time_points", time_points)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "volume_nums", volume_nums)
+
+    @property
+    @pulumi.getter(name="autoSnapshotPolicyId")
+    def auto_snapshot_policy_id(self) -> str:
+        """
+        The id of the auto snapshot policy.
+        """
+        return pulumi.get(self, "auto_snapshot_policy_id")
+
+    @property
+    @pulumi.getter(name="autoSnapshotPolicyName")
+    def auto_snapshot_policy_name(self) -> str:
+        """
+        The name of the auto snapshot policy.
+        """
+        return pulumi.get(self, "auto_snapshot_policy_name")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The creation time of the auto snapshot policy.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the auto snapshot policy.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of auto snapshot policy.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="repeatDays")
+    def repeat_days(self) -> int:
+        """
+        Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+        """
+        return pulumi.get(self, "repeat_days")
+
+    @property
+    @pulumi.getter(name="repeatWeekdays")
+    def repeat_weekdays(self) -> Sequence[str]:
+        """
+        The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+        """
+        return pulumi.get(self, "repeat_weekdays")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> int:
+        """
+        The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the auto snapshot policy.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetAutoSnapshotPoliciesAutoSnapshotPolicyTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="timePoints")
+    def time_points(self) -> Sequence[str]:
+        """
+        The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+        """
+        return pulumi.get(self, "time_points")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The updated time of the auto snapshot policy.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="volumeNums")
+    def volume_nums(self) -> int:
+        """
+        The number of volumes associated with the auto snapshot policy.
+        """
+        return pulumi.get(self, "volume_nums")
+
+
+@pulumi.output_type
+class GetAutoSnapshotPoliciesAutoSnapshotPolicyTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAutoSnapshotPoliciesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSnapshotGroupsSnapshotGroupResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 image_id: str,
+                 instance_id: str,
+                 name: str,
+                 project_name: str,
+                 snapshot_group_id: str,
+                 snapshots: Sequence['outputs.GetSnapshotGroupsSnapshotGroupSnapshotResult'],
+                 status: str,
+                 tags: Sequence['outputs.GetSnapshotGroupsSnapshotGroupTagResult']):
+        """
+        :param str creation_time: The creation time of the snapshot.
+        :param str description: The description of the snapshot.
+        :param str id: The id of the snapshot group.
+        :param str image_id: The image id of the snapshot.
+        :param str instance_id: The instance id of snapshot group.
+        :param str name: The name of snapshot group.
+        :param str project_name: The project name of snapshot group.
+        :param str snapshot_group_id: The id of the snapshot group.
+        :param Sequence['GetSnapshotGroupsSnapshotGroupSnapshotArgs'] snapshots: The snapshots of the snapshot group.
+        :param str status: A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+        :param Sequence['GetSnapshotGroupsSnapshotGroupTagArgs'] tags: Tags.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "snapshot_group_id", snapshot_group_id)
+        pulumi.set(__self__, "snapshots", snapshots)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the snapshot.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the snapshot.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the snapshot group.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        The image id of the snapshot.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance id of snapshot group.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of snapshot group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of snapshot group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="snapshotGroupId")
+    def snapshot_group_id(self) -> str:
+        """
+        The id of the snapshot group.
+        """
+        return pulumi.get(self, "snapshot_group_id")
+
+    @property
+    @pulumi.getter
+    def snapshots(self) -> Sequence['outputs.GetSnapshotGroupsSnapshotGroupSnapshotResult']:
+        """
+        The snapshots of the snapshot group.
+        """
+        return pulumi.get(self, "snapshots")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetSnapshotGroupsSnapshotGroupTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetSnapshotGroupsSnapshotGroupSnapshotResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 image_id: str,
+                 progress: int,
+                 project_name: str,
+                 retention_days: int,
+                 snapshot_id: str,
+                 snapshot_name: str,
+                 snapshot_type: str,
+                 status: str,
+                 tags: Sequence['outputs.GetSnapshotGroupsSnapshotGroupSnapshotTagResult'],
+                 volume_id: str,
+                 volume_kind: str,
+                 volume_name: str,
+                 volume_size: int,
+                 volume_status: str,
+                 volume_type: str,
+                 zone_id: str):
+        """
+        :param str creation_time: The creation time of the snapshot.
+        :param str description: The description of the snapshot.
+        :param str image_id: The image id of the snapshot.
+        :param int progress: The progress of the snapshot.
+        :param str project_name: The project name of snapshot group.
+        :param int retention_days: The id of the snapshot.
+        :param str snapshot_id: The id of the snapshot.
+        :param str snapshot_name: The name of the snapshot.
+        :param str snapshot_type: The type of the snapshot.
+        :param str status: A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+        :param Sequence['GetSnapshotGroupsSnapshotGroupSnapshotTagArgs'] tags: Tags.
+        :param str volume_id: The volume id of the snapshot.
+        :param str volume_kind: The volume kind of the snapshot.
+        :param str volume_name: The volume name of the snapshot.
+        :param int volume_size: The volume size of the snapshot.
+        :param str volume_status: The volume status of the snapshot.
+        :param str volume_type: The volume type of the snapshot.
+        :param str zone_id: The zone id of the snapshot.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_name", snapshot_name)
+        pulumi.set(__self__, "snapshot_type", snapshot_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "volume_id", volume_id)
+        pulumi.set(__self__, "volume_kind", volume_kind)
+        pulumi.set(__self__, "volume_name", volume_name)
+        pulumi.set(__self__, "volume_size", volume_size)
+        pulumi.set(__self__, "volume_status", volume_status)
+        pulumi.set(__self__, "volume_type", volume_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the snapshot.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the snapshot.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        The image id of the snapshot.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter
+    def progress(self) -> int:
+        """
+        The progress of the snapshot.
+        """
+        return pulumi.get(self, "progress")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of snapshot group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> int:
+        """
+        The id of the snapshot.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        The id of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotName")
+    def snapshot_name(self) -> str:
+        """
+        The name of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_name")
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> str:
+        """
+        The type of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetSnapshotGroupsSnapshotGroupSnapshotTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
+        """
+        The volume id of the snapshot.
+        """
+        return pulumi.get(self, "volume_id")
+
+    @property
+    @pulumi.getter(name="volumeKind")
+    def volume_kind(self) -> str:
+        """
+        The volume kind of the snapshot.
+        """
+        return pulumi.get(self, "volume_kind")
+
+    @property
+    @pulumi.getter(name="volumeName")
+    def volume_name(self) -> str:
+        """
+        The volume name of the snapshot.
+        """
+        return pulumi.get(self, "volume_name")
+
+    @property
+    @pulumi.getter(name="volumeSize")
+    def volume_size(self) -> int:
+        """
+        The volume size of the snapshot.
+        """
+        return pulumi.get(self, "volume_size")
+
+    @property
+    @pulumi.getter(name="volumeStatus")
+    def volume_status(self) -> str:
+        """
+        The volume status of the snapshot.
+        """
+        return pulumi.get(self, "volume_status")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
+        """
+        The volume type of the snapshot.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of the snapshot.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetSnapshotGroupsSnapshotGroupSnapshotTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSnapshotGroupsSnapshotGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSnapshotsSnapshotResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 project_name: str,
+                 retention_days: int,
+                 snapshot_id: str,
+                 snapshot_name: str,
+                 snapshot_type: str,
+                 status: str,
+                 tags: Sequence['outputs.GetSnapshotsSnapshotTagResult'],
+                 volume_id: str,
+                 volume_kind: str,
+                 volume_name: str,
+                 volume_size: int,
+                 volume_status: str,
+                 volume_type: str,
+                 zone_id: str):
+        """
+        :param str creation_time: The creation time of the snapshot.
+        :param str description: The description of the snapshot.
+        :param str id: The id of the snapshot.
+        :param str project_name: The project name of snapshot.
+        :param int retention_days: The retention days of the snapshot.
+        :param str snapshot_id: The id of the snapshot.
+        :param str snapshot_name: The name of the snapshot.
+        :param str snapshot_type: The type of the snapshot.
+        :param str status: The status of the snapshot.
+        :param Sequence['GetSnapshotsSnapshotTagArgs'] tags: Tags.
+        :param str volume_id: The volume id of the snapshot.
+        :param str volume_kind: The volume kind of the snapshot.
+        :param str volume_name: The volume name of the snapshot.
+        :param int volume_size: The volume size of the snapshot.
+        :param str volume_status: The volume status of the snapshot.
+        :param str volume_type: The volume type of the snapshot.
+        :param str zone_id: The zone id of snapshot.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_name", snapshot_name)
+        pulumi.set(__self__, "snapshot_type", snapshot_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "volume_id", volume_id)
+        pulumi.set(__self__, "volume_kind", volume_kind)
+        pulumi.set(__self__, "volume_name", volume_name)
+        pulumi.set(__self__, "volume_size", volume_size)
+        pulumi.set(__self__, "volume_status", volume_status)
+        pulumi.set(__self__, "volume_type", volume_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the snapshot.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the snapshot.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of snapshot.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> int:
+        """
+        The retention days of the snapshot.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        The id of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotName")
+    def snapshot_name(self) -> str:
+        """
+        The name of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_name")
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> str:
+        """
+        The type of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the snapshot.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetSnapshotsSnapshotTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
+        """
+        The volume id of the snapshot.
+        """
+        return pulumi.get(self, "volume_id")
+
+    @property
+    @pulumi.getter(name="volumeKind")
+    def volume_kind(self) -> str:
+        """
+        The volume kind of the snapshot.
+        """
+        return pulumi.get(self, "volume_kind")
+
+    @property
+    @pulumi.getter(name="volumeName")
+    def volume_name(self) -> str:
+        """
+        The volume name of the snapshot.
+        """
+        return pulumi.get(self, "volume_name")
+
+    @property
+    @pulumi.getter(name="volumeSize")
+    def volume_size(self) -> int:
+        """
+        The volume size of the snapshot.
+        """
+        return pulumi.get(self, "volume_size")
+
+    @property
+    @pulumi.getter(name="volumeStatus")
+    def volume_status(self) -> str:
+        """
+        The volume status of the snapshot.
+        """
+        return pulumi.get(self, "volume_status")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
+        """
+        The volume type of the snapshot.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of snapshot.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetSnapshotsSnapshotTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSnapshotsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVolumesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVolumesVolumeResult(dict):
+    def __init__(__self__, *,
+                 baseline_performances: Sequence['outputs.GetVolumesVolumeBaselinePerformanceResult'],
+                 billing_type: int,
+                 created_at: str,
+                 delete_with_instance: bool,
+                 description: str,
+                 device_name: str,
+                 expired_time: str,
+                 extra_performances: Sequence['outputs.GetVolumesVolumeExtraPerformanceResult'],
+                 id: str,
+                 image_id: str,
+                 instance_id: str,
+                 kind: str,
+                 pay_type: str,
+                 renew_type: int,
+                 size: int,
+                 status: str,
+                 tags: Sequence['outputs.GetVolumesVolumeTagResult'],
+                 total_performances: Sequence['outputs.GetVolumesVolumeTotalPerformanceResult'],
+                 trade_status: int,
+                 updated_at: str,
+                 volume_id: str,
+                 volume_name: str,
+                 volume_type: str,
+                 zone_id: str):
+        """
+        :param Sequence['GetVolumesVolumeBaselinePerformanceArgs'] baseline_performances: The baseline performance of the volume.
+        :param Sequence['GetVolumesVolumeExtraPerformanceArgs'] extra_performances: The extra performance of the volume.
+        :param str instance_id: The Id of instance.
+        :param str kind: The Kind of Volume.
+        :param Sequence['GetVolumesVolumeTagArgs'] tags: Tags.
+        :param Sequence['GetVolumesVolumeTotalPerformanceArgs'] total_performances: The baseline performance of the volume.
+        :param str volume_name: The name of Volume.
+        :param str volume_type: The type of Volume.
+        :param str zone_id: The Id of Zone.
+        """
+        pulumi.set(__self__, "baseline_performances", baseline_performances)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "delete_with_instance", delete_with_instance)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "extra_performances", extra_performances)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "pay_type", pay_type)
+        pulumi.set(__self__, "renew_type", renew_type)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "total_performances", total_performances)
+        pulumi.set(__self__, "trade_status", trade_status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "volume_id", volume_id)
+        pulumi.set(__self__, "volume_name", volume_name)
+        pulumi.set(__self__, "volume_type", volume_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="baselinePerformances")
+    def baseline_performances(self) -> Sequence['outputs.GetVolumesVolumeBaselinePerformanceResult']:
+        """
+        The baseline performance of the volume.
+        """
+        return pulumi.get(self, "baseline_performances")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> int:
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deleteWithInstance")
+    def delete_with_instance(self) -> bool:
+        return pulumi.get(self, "delete_with_instance")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="deviceName")
+    def device_name(self) -> str:
+        return pulumi.get(self, "device_name")
+
+    @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter(name="extraPerformances")
+    def extra_performances(self) -> Sequence['outputs.GetVolumesVolumeExtraPerformanceResult']:
+        """
+        The extra performance of the volume.
+        """
+        return pulumi.get(self, "extra_performances")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The Id of instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> str:
+        """
+        The Kind of Volume.
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter(name="payType")
+    def pay_type(self) -> str:
+        return pulumi.get(self, "pay_type")
+
+    @property
+    @pulumi.getter(name="renewType")
+    def renew_type(self) -> int:
+        return pulumi.get(self, "renew_type")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetVolumesVolumeTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="totalPerformances")
+    def total_performances(self) -> Sequence['outputs.GetVolumesVolumeTotalPerformanceResult']:
+        """
+        The baseline performance of the volume.
+        """
+        return pulumi.get(self, "total_performances")
+
+    @property
+    @pulumi.getter(name="tradeStatus")
+    def trade_status(self) -> int:
+        return pulumi.get(self, "trade_status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
+        return pulumi.get(self, "volume_id")
+
+    @property
+    @pulumi.getter(name="volumeName")
+    def volume_name(self) -> str:
+        """
+        The name of Volume.
+        """
+        return pulumi.get(self, "volume_name")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
+        """
+        The type of Volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The Id of Zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetVolumesVolumeBaselinePerformanceResult(dict):
+    def __init__(__self__, *,
+                 iops: int,
+                 throughput: int):
+        """
+        :param int iops: The total IOPS performance size for volume.
+        :param int throughput: The total Throughput performance size for volume. Unit: MB/s.
+        """
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The total IOPS performance size for volume.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The total Throughput performance size for volume. Unit: MB/s.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class GetVolumesVolumeExtraPerformanceResult(dict):
+    def __init__(__self__, *,
+                 extra_performance_type_id: str,
+                 iops: int,
+                 throughput: int):
+        """
+        :param str extra_performance_type_id: The type of extra performance for volume.
+        :param int iops: The total IOPS performance size for volume.
+        :param int throughput: The total Throughput performance size for volume. Unit: MB/s.
+        """
+        pulumi.set(__self__, "extra_performance_type_id", extra_performance_type_id)
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter(name="extraPerformanceTypeId")
+    def extra_performance_type_id(self) -> str:
+        """
+        The type of extra performance for volume.
+        """
+        return pulumi.get(self, "extra_performance_type_id")
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The total IOPS performance size for volume.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The total Throughput performance size for volume. Unit: MB/s.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class GetVolumesVolumeTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVolumesVolumeTotalPerformanceResult(dict):
     def __init__(__self__, *,
                  iops: int,
                  throughput: int):

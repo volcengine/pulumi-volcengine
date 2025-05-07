@@ -17,6 +17,8 @@ __all__ = [
     'financial_relations_output',
 ]
 
+warnings.warn("""volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations""", DeprecationWarning)
+
 @pulumi.output_type
 class FinancialRelationsResult:
     """
@@ -124,7 +126,7 @@ def financial_relations(account_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.financial_relation.financial_relations(account_ids=["210026****"],
+    foo = volcengine.financial_relation.get_financial_relations(account_ids=["210026****"],
         relations=["1"],
         statuses=["200"])
     ```
@@ -135,6 +137,7 @@ def financial_relations(account_ids: Optional[Sequence[str]] = None,
     :param Sequence[str] relations: A list of relation. Valid values: `1`, `4`.
     :param Sequence[str] statuses: A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
     """
+    pulumi.log.warn("""financial_relations is deprecated: volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations""")
     __args__ = dict()
     __args__['accountIds'] = account_ids
     __args__['outputFile'] = output_file
@@ -167,7 +170,7 @@ def financial_relations_output(account_ids: Optional[pulumi.Input[Optional[Seque
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.financial_relation.financial_relations(account_ids=["210026****"],
+    foo = volcengine.financial_relation.get_financial_relations(account_ids=["210026****"],
         relations=["1"],
         statuses=["200"])
     ```
@@ -178,4 +181,5 @@ def financial_relations_output(account_ids: Optional[pulumi.Input[Optional[Seque
     :param Sequence[str] relations: A list of relation. Valid values: `1`, `4`.
     :param Sequence[str] statuses: A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
     """
+    pulumi.log.warn("""financial_relations is deprecated: volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations""")
     ...

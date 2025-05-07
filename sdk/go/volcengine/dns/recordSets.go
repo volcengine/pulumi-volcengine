@@ -26,14 +26,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := dns.Zones(ctx, &dns.ZonesArgs{
+//			fooZones, err := dns.GetZones(ctx, &dns.GetZonesArgs{
 //				Key:        pulumi.StringRef("xxx"),
 //				SearchMode: pulumi.StringRef("xx"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dns.RecordSets(ctx, &dns.RecordSetsArgs{
+//			_, err = dns.GetRecordSets(ctx, &dns.GetRecordSetsArgs{
 //				Zid: fooZones.Zones[0].Zid,
 //			}, nil)
 //			if err != nil {
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets
 func RecordSets(ctx *pulumi.Context, args *RecordSetsArgs, opts ...pulumi.InvokeOption) (*RecordSetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RecordSetsResult

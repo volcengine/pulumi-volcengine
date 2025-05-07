@@ -8,6 +8,11 @@ import typing
 from .available_resources import *
 from .cloud_server import *
 from .cloud_servers import *
+from .get_available_resources import *
+from .get_cloud_servers import *
+from .get_instance_types import *
+from .get_instances import *
+from .get_vpcs import *
 from .instance import *
 from .instance_types import *
 from .instances import *

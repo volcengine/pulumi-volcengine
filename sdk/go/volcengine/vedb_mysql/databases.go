@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -79,7 +79,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vedb_mysql.DatabasesOutput(ctx, vedb_mysql.DatabasesOutputArgs{
+//			_ = vedb_mysql.GetDatabasesOutput(ctx, vedb_mysql.GetDatabasesOutputArgs{
 //				DbName:     fooDatabase.DbName,
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
@@ -88,6 +88,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vedb_mysql.Databases has been deprecated in favor of volcengine.vedb_mysql.getDatabases
 func Databases(ctx *pulumi.Context, args *DatabasesArgs, opts ...pulumi.InvokeOption) (*DatabasesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DatabasesResult

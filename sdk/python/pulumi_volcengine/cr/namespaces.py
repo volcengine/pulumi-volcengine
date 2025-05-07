@@ -17,6 +17,8 @@ __all__ = [
     'namespaces_output',
 ]
 
+warnings.warn("""volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces""", DeprecationWarning)
+
 @pulumi.output_type
 class NamespacesResult:
     """
@@ -108,7 +110,7 @@ def namespaces(names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.namespaces(names=["namespace-*"],
+    foo = volcengine.cr.get_namespaces(names=["namespace-*"],
         registry="tf-1")
     ```
 
@@ -117,6 +119,7 @@ def namespaces(names: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str registry: The target cr instance name.
     """
+    pulumi.log.warn("""namespaces is deprecated: volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces""")
     __args__ = dict()
     __args__['names'] = names
     __args__['outputFile'] = output_file
@@ -146,7 +149,7 @@ def namespaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.namespaces(names=["namespace-*"],
+    foo = volcengine.cr.get_namespaces(names=["namespace-*"],
         registry="tf-1")
     ```
 
@@ -155,4 +158,5 @@ def namespaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param str output_file: File name where to save data source results.
     :param str registry: The target cr instance name.
     """
+    pulumi.log.warn("""namespaces is deprecated: volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces""")
     ...

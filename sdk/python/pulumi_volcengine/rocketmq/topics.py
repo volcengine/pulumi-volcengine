@@ -17,6 +17,8 @@ __all__ = [
     'topics_output',
 ]
 
+warnings.warn("""volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics""", DeprecationWarning)
+
 @pulumi.output_type
 class TopicsResult:
     """
@@ -137,7 +139,7 @@ def topics(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.topics(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_topics(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -152,6 +154,7 @@ def topics(instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str topic_name: The name of the rocketmq topic. This field support fuzzy query.
     """
+    pulumi.log.warn("""topics is deprecated: volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['messageType'] = message_type
@@ -187,7 +190,7 @@ def topics_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.topics(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_topics(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -202,4 +205,5 @@ def topics_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str topic_name: The name of the rocketmq topic. This field support fuzzy query.
     """
+    pulumi.log.warn("""topics is deprecated: volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics""")
     ...

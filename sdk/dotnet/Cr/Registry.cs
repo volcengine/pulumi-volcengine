@@ -21,11 +21,28 @@ namespace Pulumi.Volcengine.Cr
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Cr.Registry("foo", new()
+    ///     // create cr registry
+    ///     var fooRegistry = new Volcengine.Cr.Registry("fooRegistry", new()
     ///     {
     ///         DeleteImmediately = false,
     ///         Password = "1qaz!QAZ",
     ///         Project = "default",
+    ///     });
+    /// 
+    ///     // create cr namespace
+    ///     var fooNamespace = new Volcengine.Cr.Namespace("fooNamespace", new()
+    ///     {
+    ///         Registry = fooRegistry.Id,
+    ///         Project = "default",
+    ///     });
+    /// 
+    ///     // create cr repository
+    ///     var fooRepository = new Volcengine.Cr.Repository("fooRepository", new()
+    ///     {
+    ///         Registry = fooRegistry.Id,
+    ///         Namespace = fooNamespace.Name,
+    ///         Description = "A test repository created by terraform.",
+    ///         AccessLevel = "Public",
     ///     });
     /// 
     /// });

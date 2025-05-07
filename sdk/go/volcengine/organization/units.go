@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := organization.Units(ctx, nil, nil)
+//			_, err := organization.GetUnits(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.organization.Units has been deprecated in favor of volcengine.organization.getUnits
 func Units(ctx *pulumi.Context, args *UnitsArgs, opts ...pulumi.InvokeOption) (*UnitsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv UnitsResult

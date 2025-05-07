@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := redis.Regions(ctx, &redis.RegionsArgs{
+//			_, err := redis.GetRegions(ctx, &redis.GetRegionsArgs{
 //				RegionId: pulumi.StringRef("cn-north-3"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.redis.Regions has been deprecated in favor of volcengine.redis.getRegions
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegionsResult

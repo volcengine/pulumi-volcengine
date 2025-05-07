@@ -17,6 +17,8 @@ __all__ = [
     'tags_output',
 ]
 
+warnings.warn("""volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags""", DeprecationWarning)
+
 @pulumi.output_type
 class TagsResult:
     """
@@ -138,7 +140,7 @@ def tags(names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.tags(namespace="test",
+    foo = volcengine.cr.get_tags(namespace="test",
         registry="enterprise-1",
         repository="repo",
         types=["Image"])
@@ -152,6 +154,7 @@ def tags(names: Optional[Sequence[str]] = None,
     :param str repository: The repository name.
     :param Sequence[str] types: The list of OCI product tag type.
     """
+    pulumi.log.warn("""tags is deprecated: volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags""")
     __args__ = dict()
     __args__['names'] = names
     __args__['namespace'] = namespace
@@ -190,7 +193,7 @@ def tags_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.tags(namespace="test",
+    foo = volcengine.cr.get_tags(namespace="test",
         registry="enterprise-1",
         repository="repo",
         types=["Image"])
@@ -204,4 +207,5 @@ def tags_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str repository: The repository name.
     :param Sequence[str] types: The list of OCI product tag type.
     """
+    pulumi.log.warn("""tags is deprecated: volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags""")
     ...

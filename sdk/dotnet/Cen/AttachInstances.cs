@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cen
 {
+    [Obsolete(@"volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances")]
     public static class AttachInstances
     {
         /// <summary>
@@ -52,7 +53,7 @@ namespace Pulumi.Volcengine.Cen
         ///         InstanceType = "VPC",
         ///     });
         /// 
-        ///     var fooAttachInstances = Volcengine.Cen.AttachInstances.Invoke(new()
+        ///     var fooAttachInstances = Volcengine.Cen.GetAttachInstances.Invoke(new()
         ///     {
         ///         CenId = fooAttachInstance.CenId,
         ///     });
@@ -104,7 +105,7 @@ namespace Pulumi.Volcengine.Cen
         ///         InstanceType = "VPC",
         ///     });
         /// 
-        ///     var fooAttachInstances = Volcengine.Cen.AttachInstances.Invoke(new()
+        ///     var fooAttachInstances = Volcengine.Cen.GetAttachInstances.Invoke(new()
         ///     {
         ///         CenId = fooAttachInstance.CenId,
         ///     });

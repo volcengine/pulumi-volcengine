@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.alb.Zones({});
+ * const foo = volcengine.alb.getZones({});
  * const vpcIpv6 = new volcengine.vpc.Vpc("vpcIpv6", {
  *     vpcName: "acc-test-vpc-ipv6",
  *     cidrBlock: "172.16.0.0/16",

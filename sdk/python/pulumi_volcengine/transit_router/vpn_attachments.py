@@ -18,6 +18,8 @@ __all__ = [
     'vpn_attachments_output',
 ]
 
+warnings.warn("""volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments""", DeprecationWarning)
+
 @pulumi.output_type
 class VpnAttachmentsResult:
     """
@@ -138,7 +140,7 @@ def vpn_attachments(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.vpn_attachments(ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
+    default = volcengine.transit_router.get_vpn_attachments(ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
         transit_router_id="tr-2d6fr7f39unsw58ozfe1ow21x")
     ```
 
@@ -149,6 +151,7 @@ def vpn_attachments(ids: Optional[Sequence[str]] = None,
     :param str transit_router_id: The id of the transit router.
     :param str vpn_connection_id: The ID of the IPSec connection.
     """
+    pulumi.log.warn("""vpn_attachments is deprecated: volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -184,7 +187,7 @@ def vpn_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.vpn_attachments(ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
+    default = volcengine.transit_router.get_vpn_attachments(ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
         transit_router_id="tr-2d6fr7f39unsw58ozfe1ow21x")
     ```
 
@@ -195,4 +198,5 @@ def vpn_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param str transit_router_id: The id of the transit router.
     :param str vpn_connection_id: The ID of the IPSec connection.
     """
+    pulumi.log.warn("""vpn_attachments is deprecated: volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments""")
     ...

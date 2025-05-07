@@ -687,6 +687,574 @@ func (o BandwidthPackagesTagFilterArrayOutput) Index(i pulumi.IntInput) Bandwidt
 	}).(BandwidthPackagesTagFilterOutput)
 }
 
+type GetBandwidthPackagesPackage struct {
+	// The bandwidth of the bandwidth package.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The id of the bandwidth package.
+	BandwidthPackageId string `pulumi:"bandwidthPackageId"`
+	// Shared bandwidth package name to be queried.
+	BandwidthPackageName string `pulumi:"bandwidthPackageName"`
+	// The billing type of the bandwidth package.
+	BillingType string `pulumi:"billingType"`
+	// The business status of the bandwidth package.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The creation time of the bandwidth package.
+	CreationTime string `pulumi:"creationTime"`
+	// The deleted time of the bandwidth package.
+	DeletedTime string `pulumi:"deletedTime"`
+	// List of public IP information included in the shared bandwidth package.
+	EipAddresses []GetBandwidthPackagesPackageEipAddress `pulumi:"eipAddresses"`
+	// The expiration time of the bandwidth package.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The id of the bandwidth package.
+	Id string `pulumi:"id"`
+	// Line types for shared bandwidth packages.
+	Isp string `pulumi:"isp"`
+	// The overdue time of the bandwidth package.
+	OverdueTime string `pulumi:"overdueTime"`
+	// The project name of the bandwidth package to be queried.
+	ProjectName string `pulumi:"projectName"`
+	// The IP protocol values for shared bandwidth packages are as follows: `IPv4`: IPv4 protocol. `IPv6`: IPv6 protocol.
+	Protocol string `pulumi:"protocol"`
+	// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+	SecurityProtectionTypes []string `pulumi:"securityProtectionTypes"`
+	// The status of the bandwidth package.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetBandwidthPackagesPackageTag `pulumi:"tags"`
+	// The update time of the bandwidth package.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetBandwidthPackagesPackageInput is an input type that accepts GetBandwidthPackagesPackageArgs and GetBandwidthPackagesPackageOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesPackageInput` via:
+//
+//	GetBandwidthPackagesPackageArgs{...}
+type GetBandwidthPackagesPackageInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesPackageOutput() GetBandwidthPackagesPackageOutput
+	ToGetBandwidthPackagesPackageOutputWithContext(context.Context) GetBandwidthPackagesPackageOutput
+}
+
+type GetBandwidthPackagesPackageArgs struct {
+	// The bandwidth of the bandwidth package.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The id of the bandwidth package.
+	BandwidthPackageId pulumi.StringInput `pulumi:"bandwidthPackageId"`
+	// Shared bandwidth package name to be queried.
+	BandwidthPackageName pulumi.StringInput `pulumi:"bandwidthPackageName"`
+	// The billing type of the bandwidth package.
+	BillingType pulumi.StringInput `pulumi:"billingType"`
+	// The business status of the bandwidth package.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The creation time of the bandwidth package.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The deleted time of the bandwidth package.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// List of public IP information included in the shared bandwidth package.
+	EipAddresses GetBandwidthPackagesPackageEipAddressArrayInput `pulumi:"eipAddresses"`
+	// The expiration time of the bandwidth package.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The id of the bandwidth package.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Line types for shared bandwidth packages.
+	Isp pulumi.StringInput `pulumi:"isp"`
+	// The overdue time of the bandwidth package.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The project name of the bandwidth package to be queried.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The IP protocol values for shared bandwidth packages are as follows: `IPv4`: IPv4 protocol. `IPv6`: IPv6 protocol.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+	SecurityProtectionTypes pulumi.StringArrayInput `pulumi:"securityProtectionTypes"`
+	// The status of the bandwidth package.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetBandwidthPackagesPackageTagArrayInput `pulumi:"tags"`
+	// The update time of the bandwidth package.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetBandwidthPackagesPackageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesPackage)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesPackageArgs) ToGetBandwidthPackagesPackageOutput() GetBandwidthPackagesPackageOutput {
+	return i.ToGetBandwidthPackagesPackageOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesPackageArgs) ToGetBandwidthPackagesPackageOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesPackageOutput)
+}
+
+// GetBandwidthPackagesPackageArrayInput is an input type that accepts GetBandwidthPackagesPackageArray and GetBandwidthPackagesPackageArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesPackageArrayInput` via:
+//
+//	GetBandwidthPackagesPackageArray{ GetBandwidthPackagesPackageArgs{...} }
+type GetBandwidthPackagesPackageArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesPackageArrayOutput() GetBandwidthPackagesPackageArrayOutput
+	ToGetBandwidthPackagesPackageArrayOutputWithContext(context.Context) GetBandwidthPackagesPackageArrayOutput
+}
+
+type GetBandwidthPackagesPackageArray []GetBandwidthPackagesPackageInput
+
+func (GetBandwidthPackagesPackageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesPackage)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesPackageArray) ToGetBandwidthPackagesPackageArrayOutput() GetBandwidthPackagesPackageArrayOutput {
+	return i.ToGetBandwidthPackagesPackageArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesPackageArray) ToGetBandwidthPackagesPackageArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesPackageArrayOutput)
+}
+
+type GetBandwidthPackagesPackageOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesPackageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesPackage)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesPackageOutput) ToGetBandwidthPackagesPackageOutput() GetBandwidthPackagesPackageOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageOutput) ToGetBandwidthPackagesPackageOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageOutput {
+	return o
+}
+
+// The bandwidth of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The id of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) BandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.BandwidthPackageId }).(pulumi.StringOutput)
+}
+
+// Shared bandwidth package name to be queried.
+func (o GetBandwidthPackagesPackageOutput) BandwidthPackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.BandwidthPackageName }).(pulumi.StringOutput)
+}
+
+// The billing type of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) BillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.BillingType }).(pulumi.StringOutput)
+}
+
+// The business status of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The creation time of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The deleted time of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// List of public IP information included in the shared bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) EipAddresses() GetBandwidthPackagesPackageEipAddressArrayOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) []GetBandwidthPackagesPackageEipAddress { return v.EipAddresses }).(GetBandwidthPackagesPackageEipAddressArrayOutput)
+}
+
+// The expiration time of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The id of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Line types for shared bandwidth packages.
+func (o GetBandwidthPackagesPackageOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+// The overdue time of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// The project name of the bandwidth package to be queried.
+func (o GetBandwidthPackagesPackageOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The IP protocol values for shared bandwidth packages are as follows: `IPv4`: IPv4 protocol. `IPv6`: IPv6 protocol.
+func (o GetBandwidthPackagesPackageOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+func (o GetBandwidthPackagesPackageOutput) SecurityProtectionTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) []string { return v.SecurityProtectionTypes }).(pulumi.StringArrayOutput)
+}
+
+// The status of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetBandwidthPackagesPackageOutput) Tags() GetBandwidthPackagesPackageTagArrayOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) []GetBandwidthPackagesPackageTag { return v.Tags }).(GetBandwidthPackagesPackageTagArrayOutput)
+}
+
+// The update time of the bandwidth package.
+func (o GetBandwidthPackagesPackageOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackage) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetBandwidthPackagesPackageArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesPackageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesPackage)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesPackageArrayOutput) ToGetBandwidthPackagesPackageArrayOutput() GetBandwidthPackagesPackageArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageArrayOutput) ToGetBandwidthPackagesPackageArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesPackageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesPackage {
+		return vs[0].([]GetBandwidthPackagesPackage)[vs[1].(int)]
+	}).(GetBandwidthPackagesPackageOutput)
+}
+
+type GetBandwidthPackagesPackageEipAddress struct {
+	// The id of the eip.
+	AllocationId string `pulumi:"allocationId"`
+	// The eip address.
+	EipAddress string `pulumi:"eipAddress"`
+}
+
+// GetBandwidthPackagesPackageEipAddressInput is an input type that accepts GetBandwidthPackagesPackageEipAddressArgs and GetBandwidthPackagesPackageEipAddressOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesPackageEipAddressInput` via:
+//
+//	GetBandwidthPackagesPackageEipAddressArgs{...}
+type GetBandwidthPackagesPackageEipAddressInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesPackageEipAddressOutput() GetBandwidthPackagesPackageEipAddressOutput
+	ToGetBandwidthPackagesPackageEipAddressOutputWithContext(context.Context) GetBandwidthPackagesPackageEipAddressOutput
+}
+
+type GetBandwidthPackagesPackageEipAddressArgs struct {
+	// The id of the eip.
+	AllocationId pulumi.StringInput `pulumi:"allocationId"`
+	// The eip address.
+	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
+}
+
+func (GetBandwidthPackagesPackageEipAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesPackageEipAddress)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesPackageEipAddressArgs) ToGetBandwidthPackagesPackageEipAddressOutput() GetBandwidthPackagesPackageEipAddressOutput {
+	return i.ToGetBandwidthPackagesPackageEipAddressOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesPackageEipAddressArgs) ToGetBandwidthPackagesPackageEipAddressOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageEipAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesPackageEipAddressOutput)
+}
+
+// GetBandwidthPackagesPackageEipAddressArrayInput is an input type that accepts GetBandwidthPackagesPackageEipAddressArray and GetBandwidthPackagesPackageEipAddressArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesPackageEipAddressArrayInput` via:
+//
+//	GetBandwidthPackagesPackageEipAddressArray{ GetBandwidthPackagesPackageEipAddressArgs{...} }
+type GetBandwidthPackagesPackageEipAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesPackageEipAddressArrayOutput() GetBandwidthPackagesPackageEipAddressArrayOutput
+	ToGetBandwidthPackagesPackageEipAddressArrayOutputWithContext(context.Context) GetBandwidthPackagesPackageEipAddressArrayOutput
+}
+
+type GetBandwidthPackagesPackageEipAddressArray []GetBandwidthPackagesPackageEipAddressInput
+
+func (GetBandwidthPackagesPackageEipAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesPackageEipAddress)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesPackageEipAddressArray) ToGetBandwidthPackagesPackageEipAddressArrayOutput() GetBandwidthPackagesPackageEipAddressArrayOutput {
+	return i.ToGetBandwidthPackagesPackageEipAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesPackageEipAddressArray) ToGetBandwidthPackagesPackageEipAddressArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageEipAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesPackageEipAddressArrayOutput)
+}
+
+type GetBandwidthPackagesPackageEipAddressOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesPackageEipAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesPackageEipAddress)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesPackageEipAddressOutput) ToGetBandwidthPackagesPackageEipAddressOutput() GetBandwidthPackagesPackageEipAddressOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageEipAddressOutput) ToGetBandwidthPackagesPackageEipAddressOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageEipAddressOutput {
+	return o
+}
+
+// The id of the eip.
+func (o GetBandwidthPackagesPackageEipAddressOutput) AllocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackageEipAddress) string { return v.AllocationId }).(pulumi.StringOutput)
+}
+
+// The eip address.
+func (o GetBandwidthPackagesPackageEipAddressOutput) EipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackageEipAddress) string { return v.EipAddress }).(pulumi.StringOutput)
+}
+
+type GetBandwidthPackagesPackageEipAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesPackageEipAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesPackageEipAddress)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesPackageEipAddressArrayOutput) ToGetBandwidthPackagesPackageEipAddressArrayOutput() GetBandwidthPackagesPackageEipAddressArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageEipAddressArrayOutput) ToGetBandwidthPackagesPackageEipAddressArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageEipAddressArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageEipAddressArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesPackageEipAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesPackageEipAddress {
+		return vs[0].([]GetBandwidthPackagesPackageEipAddress)[vs[1].(int)]
+	}).(GetBandwidthPackagesPackageEipAddressOutput)
+}
+
+type GetBandwidthPackagesPackageTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetBandwidthPackagesPackageTagInput is an input type that accepts GetBandwidthPackagesPackageTagArgs and GetBandwidthPackagesPackageTagOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesPackageTagInput` via:
+//
+//	GetBandwidthPackagesPackageTagArgs{...}
+type GetBandwidthPackagesPackageTagInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesPackageTagOutput() GetBandwidthPackagesPackageTagOutput
+	ToGetBandwidthPackagesPackageTagOutputWithContext(context.Context) GetBandwidthPackagesPackageTagOutput
+}
+
+type GetBandwidthPackagesPackageTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetBandwidthPackagesPackageTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesPackageTag)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesPackageTagArgs) ToGetBandwidthPackagesPackageTagOutput() GetBandwidthPackagesPackageTagOutput {
+	return i.ToGetBandwidthPackagesPackageTagOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesPackageTagArgs) ToGetBandwidthPackagesPackageTagOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesPackageTagOutput)
+}
+
+// GetBandwidthPackagesPackageTagArrayInput is an input type that accepts GetBandwidthPackagesPackageTagArray and GetBandwidthPackagesPackageTagArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesPackageTagArrayInput` via:
+//
+//	GetBandwidthPackagesPackageTagArray{ GetBandwidthPackagesPackageTagArgs{...} }
+type GetBandwidthPackagesPackageTagArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesPackageTagArrayOutput() GetBandwidthPackagesPackageTagArrayOutput
+	ToGetBandwidthPackagesPackageTagArrayOutputWithContext(context.Context) GetBandwidthPackagesPackageTagArrayOutput
+}
+
+type GetBandwidthPackagesPackageTagArray []GetBandwidthPackagesPackageTagInput
+
+func (GetBandwidthPackagesPackageTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesPackageTag)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesPackageTagArray) ToGetBandwidthPackagesPackageTagArrayOutput() GetBandwidthPackagesPackageTagArrayOutput {
+	return i.ToGetBandwidthPackagesPackageTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesPackageTagArray) ToGetBandwidthPackagesPackageTagArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesPackageTagArrayOutput)
+}
+
+type GetBandwidthPackagesPackageTagOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesPackageTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesPackageTag)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesPackageTagOutput) ToGetBandwidthPackagesPackageTagOutput() GetBandwidthPackagesPackageTagOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageTagOutput) ToGetBandwidthPackagesPackageTagOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetBandwidthPackagesPackageTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackageTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetBandwidthPackagesPackageTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesPackageTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetBandwidthPackagesPackageTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesPackageTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesPackageTag)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesPackageTagArrayOutput) ToGetBandwidthPackagesPackageTagArrayOutput() GetBandwidthPackagesPackageTagArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageTagArrayOutput) ToGetBandwidthPackagesPackageTagArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesPackageTagArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesPackageTagArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesPackageTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesPackageTag {
+		return vs[0].([]GetBandwidthPackagesPackageTag)[vs[1].(int)]
+	}).(GetBandwidthPackagesPackageTagOutput)
+}
+
+type GetBandwidthPackagesTagFilter struct {
+	// The key of the tag.
+	Key string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// GetBandwidthPackagesTagFilterInput is an input type that accepts GetBandwidthPackagesTagFilterArgs and GetBandwidthPackagesTagFilterOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesTagFilterInput` via:
+//
+//	GetBandwidthPackagesTagFilterArgs{...}
+type GetBandwidthPackagesTagFilterInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesTagFilterOutput() GetBandwidthPackagesTagFilterOutput
+	ToGetBandwidthPackagesTagFilterOutputWithContext(context.Context) GetBandwidthPackagesTagFilterOutput
+}
+
+type GetBandwidthPackagesTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetBandwidthPackagesTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesTagFilter)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesTagFilterArgs) ToGetBandwidthPackagesTagFilterOutput() GetBandwidthPackagesTagFilterOutput {
+	return i.ToGetBandwidthPackagesTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesTagFilterArgs) ToGetBandwidthPackagesTagFilterOutputWithContext(ctx context.Context) GetBandwidthPackagesTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesTagFilterOutput)
+}
+
+// GetBandwidthPackagesTagFilterArrayInput is an input type that accepts GetBandwidthPackagesTagFilterArray and GetBandwidthPackagesTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesTagFilterArrayInput` via:
+//
+//	GetBandwidthPackagesTagFilterArray{ GetBandwidthPackagesTagFilterArgs{...} }
+type GetBandwidthPackagesTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesTagFilterArrayOutput() GetBandwidthPackagesTagFilterArrayOutput
+	ToGetBandwidthPackagesTagFilterArrayOutputWithContext(context.Context) GetBandwidthPackagesTagFilterArrayOutput
+}
+
+type GetBandwidthPackagesTagFilterArray []GetBandwidthPackagesTagFilterInput
+
+func (GetBandwidthPackagesTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesTagFilter)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesTagFilterArray) ToGetBandwidthPackagesTagFilterArrayOutput() GetBandwidthPackagesTagFilterArrayOutput {
+	return i.ToGetBandwidthPackagesTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesTagFilterArray) ToGetBandwidthPackagesTagFilterArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesTagFilterArrayOutput)
+}
+
+type GetBandwidthPackagesTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesTagFilter)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesTagFilterOutput) ToGetBandwidthPackagesTagFilterOutput() GetBandwidthPackagesTagFilterOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesTagFilterOutput) ToGetBandwidthPackagesTagFilterOutputWithContext(ctx context.Context) GetBandwidthPackagesTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o GetBandwidthPackagesTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesTagFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The values of the tag.
+func (o GetBandwidthPackagesTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetBandwidthPackagesTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesTagFilter)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesTagFilterArrayOutput) ToGetBandwidthPackagesTagFilterArrayOutput() GetBandwidthPackagesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesTagFilterArrayOutput) ToGetBandwidthPackagesTagFilterArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesTagFilterArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesTagFilter {
+		return vs[0].([]GetBandwidthPackagesTagFilter)[vs[1].(int)]
+	}).(GetBandwidthPackagesTagFilterOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackageTagInput)(nil)).Elem(), BandwidthPackageTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackageTagArrayInput)(nil)).Elem(), BandwidthPackageTagArray{})
@@ -698,6 +1266,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesPackageTagArrayInput)(nil)).Elem(), BandwidthPackagesPackageTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesTagFilterInput)(nil)).Elem(), BandwidthPackagesTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesTagFilterArrayInput)(nil)).Elem(), BandwidthPackagesTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesPackageInput)(nil)).Elem(), GetBandwidthPackagesPackageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesPackageArrayInput)(nil)).Elem(), GetBandwidthPackagesPackageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesPackageEipAddressInput)(nil)).Elem(), GetBandwidthPackagesPackageEipAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesPackageEipAddressArrayInput)(nil)).Elem(), GetBandwidthPackagesPackageEipAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesPackageTagInput)(nil)).Elem(), GetBandwidthPackagesPackageTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesPackageTagArrayInput)(nil)).Elem(), GetBandwidthPackagesPackageTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesTagFilterInput)(nil)).Elem(), GetBandwidthPackagesTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesTagFilterArrayInput)(nil)).Elem(), GetBandwidthPackagesTagFilterArray{})
 	pulumi.RegisterOutputType(BandwidthPackageTagOutput{})
 	pulumi.RegisterOutputType(BandwidthPackageTagArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesPackageOutput{})
@@ -708,4 +1284,12 @@ func init() {
 	pulumi.RegisterOutputType(BandwidthPackagesPackageTagArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesTagFilterOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesPackageOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesPackageArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesPackageEipAddressOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesPackageEipAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesPackageTagOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesPackageTagArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesTagFilterOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesTagFilterArrayOutput{})
 }

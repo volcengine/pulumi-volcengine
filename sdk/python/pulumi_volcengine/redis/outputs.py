@@ -35,6 +35,24 @@ __all__ = [
     'PitrTimeWindowsPeriodResult',
     'RegionsRegionResult',
     'ZonesZoneResult',
+    'GetAccountsAccountResult',
+    'GetAllowListsAllowListResult',
+    'GetAllowListsAllowListAssociatedInstanceResult',
+    'GetBackupsBackupResult',
+    'GetBackupsBackupInstanceDetailResult',
+    'GetBackupsBackupInstanceDetailVpcInfoResult',
+    'GetInstancesInstanceResult',
+    'GetInstancesInstanceBackupPlanResult',
+    'GetInstancesInstanceCapacityResult',
+    'GetInstancesInstanceConfigureNodeResult',
+    'GetInstancesInstanceParamResult',
+    'GetInstancesInstanceParamOptionResult',
+    'GetInstancesInstanceTagResult',
+    'GetInstancesInstanceVisitAddrResult',
+    'GetInstancesTagResult',
+    'GetPitrTimeWindowsPeriodResult',
+    'GetRegionsRegionResult',
+    'GetZonesZoneResult',
 ]
 
 @pulumi.output_type
@@ -1846,6 +1864,1396 @@ class RegionsRegionResult(dict):
 
 @pulumi.output_type
 class ZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 zone_id: str,
+                 zone_name: str):
+        """
+        :param str id: The id of the zone.
+        :param str zone_id: The id of the zone.
+        :param str zone_name: The name of the zone.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of the zone.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
+class GetAccountsAccountResult(dict):
+    def __init__(__self__, *,
+                 account_name: str,
+                 description: str,
+                 instance_id: str,
+                 role_name: str):
+        """
+        :param str account_name: The name of the redis account.
+        :param str description: The description of the redis account.
+        :param str instance_id: The id of the Redis instance.
+        :param str role_name: The role info.
+        """
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "role_name", role_name)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> str:
+        """
+        The name of the redis account.
+        """
+        return pulumi.get(self, "account_name")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the redis account.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the Redis instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        The role info.
+        """
+        return pulumi.get(self, "role_name")
+
+
+@pulumi.output_type
+class GetAllowListsAllowListResult(dict):
+    def __init__(__self__, *,
+                 allow_list_desc: str,
+                 allow_list_id: str,
+                 allow_list_ip_num: int,
+                 allow_list_name: str,
+                 allow_list_type: str,
+                 allow_lists: Sequence[str],
+                 associated_instance_num: int,
+                 associated_instances: Sequence['outputs.GetAllowListsAllowListAssociatedInstanceResult']):
+        """
+        :param str allow_list_desc: Description of allow list.
+        :param str allow_list_id: Id of allow list.
+        :param int allow_list_ip_num: The IP number of allow list.
+        :param str allow_list_name: Name of allow list.
+        :param str allow_list_type: Type of allow list.
+        :param Sequence[str] allow_lists: Ip list of allow list.
+        :param int associated_instance_num: The number of instance that associated to allow list.
+        :param Sequence['GetAllowListsAllowListAssociatedInstanceArgs'] associated_instances: Instances associated by this allow list.
+        """
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
+        pulumi.set(__self__, "allow_list_type", allow_list_type)
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        pulumi.set(__self__, "associated_instances", associated_instances)
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> str:
+        """
+        Description of allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> str:
+        """
+        Id of allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> int:
+        """
+        The IP number of allow list.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> str:
+        """
+        Name of allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
+
+    @property
+    @pulumi.getter(name="allowListType")
+    def allow_list_type(self) -> str:
+        """
+        Type of allow list.
+        """
+        return pulumi.get(self, "allow_list_type")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        Ip list of allow list.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> int:
+        """
+        The number of instance that associated to allow list.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Sequence['outputs.GetAllowListsAllowListAssociatedInstanceResult']:
+        """
+        Instances associated by this allow list.
+        """
+        return pulumi.get(self, "associated_instances")
+
+
+@pulumi.output_type
+class GetAllowListsAllowListAssociatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_name: str,
+                 vpc: str):
+        """
+        :param str instance_id: The Id of instance.
+        :param str instance_name: Name of instance.
+        :param str vpc: Id of virtual private cloud.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The Id of instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        Name of instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> str:
+        """
+        Id of virtual private cloud.
+        """
+        return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
+class GetBackupsBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_point_id: str,
+                 backup_strategy: str,
+                 backup_type: str,
+                 end_time: str,
+                 instance_details: Sequence['outputs.GetBackupsBackupInstanceDetailResult'],
+                 instance_id: str,
+                 size: int,
+                 start_time: str,
+                 status: str):
+        """
+        :param str backup_point_id: The id of backup point.
+        :param str backup_strategy: Backup strategy.
+        :param str backup_type: Backup type.
+        :param str end_time: Query end time.
+        :param Sequence['GetBackupsBackupInstanceDetailArgs'] instance_details: Information of instance.
+        :param str instance_id: Id of instance.
+        :param int size: Size in MiB.
+        :param str start_time: Query start time.
+        :param str status: Status of backup (Creating/Available/Unavailable/Deleting).
+        """
+        pulumi.set(__self__, "backup_point_id", backup_point_id)
+        pulumi.set(__self__, "backup_strategy", backup_strategy)
+        pulumi.set(__self__, "backup_type", backup_type)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "instance_details", instance_details)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="backupPointId")
+    def backup_point_id(self) -> str:
+        """
+        The id of backup point.
+        """
+        return pulumi.get(self, "backup_point_id")
+
+    @property
+    @pulumi.getter(name="backupStrategy")
+    def backup_strategy(self) -> str:
+        """
+        Backup strategy.
+        """
+        return pulumi.get(self, "backup_strategy")
+
+    @property
+    @pulumi.getter(name="backupType")
+    def backup_type(self) -> str:
+        """
+        Backup type.
+        """
+        return pulumi.get(self, "backup_type")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        """
+        Query end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="instanceDetails")
+    def instance_details(self) -> Sequence['outputs.GetBackupsBackupInstanceDetailResult']:
+        """
+        Information of instance.
+        """
+        return pulumi.get(self, "instance_details")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Id of instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        Size in MiB.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        Query start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Status of backup (Creating/Available/Unavailable/Deleting).
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetBackupsBackupInstanceDetailResult(dict):
+    def __init__(__self__, *,
+                 account_id: int,
+                 arch_type: str,
+                 charge_type: str,
+                 engine_version: str,
+                 expired_time: str,
+                 instance_id: str,
+                 instance_name: str,
+                 maintenance_time: str,
+                 network_type: str,
+                 project_name: str,
+                 region_id: str,
+                 replicas: int,
+                 server_cpu: int,
+                 shard_capacity: int,
+                 shard_count: int,
+                 total_capacity: int,
+                 used_capacity: int,
+                 vpc_infos: Sequence['outputs.GetBackupsBackupInstanceDetailVpcInfoResult'],
+                 zone_ids: Sequence[str]):
+        """
+        :param int account_id: Id of account.
+        :param str arch_type: Arch type of instance(Standard/Cluster).
+        :param str charge_type: Charge type of instance(Postpaid/Prepaid).
+        :param str engine_version: Engine version of instance.
+        :param str expired_time: Expired time of instance.
+        :param str instance_id: Id of instance.
+        :param str instance_name: Name of instance.
+        :param str maintenance_time: The maintainable period (in UTC) of the instance.
+        :param str network_type: Network type of instance.
+        :param str project_name: Project name of instance.
+        :param str region_id: Id of region.
+        :param int replicas: Count of replica in which shard.
+        :param int server_cpu: Count of cpu cores of instance.
+        :param int shard_capacity: Capacity of shard.
+        :param int shard_count: Count of shard.
+        :param int total_capacity: Total capacity of instance.
+        :param int used_capacity: Capacity used of this instance.
+        :param Sequence['GetBackupsBackupInstanceDetailVpcInfoArgs'] vpc_infos: Information of vpc.
+        :param Sequence[str] zone_ids: List of id of zone.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "arch_type", arch_type)
+        pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "engine_version", engine_version)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "maintenance_time", maintenance_time)
+        pulumi.set(__self__, "network_type", network_type)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "replicas", replicas)
+        pulumi.set(__self__, "server_cpu", server_cpu)
+        pulumi.set(__self__, "shard_capacity", shard_capacity)
+        pulumi.set(__self__, "shard_count", shard_count)
+        pulumi.set(__self__, "total_capacity", total_capacity)
+        pulumi.set(__self__, "used_capacity", used_capacity)
+        pulumi.set(__self__, "vpc_infos", vpc_infos)
+        pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> int:
+        """
+        Id of account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="archType")
+    def arch_type(self) -> str:
+        """
+        Arch type of instance(Standard/Cluster).
+        """
+        return pulumi.get(self, "arch_type")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        Charge type of instance(Postpaid/Prepaid).
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        """
+        Engine version of instance.
+        """
+        return pulumi.get(self, "engine_version")
+
+    @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        """
+        Expired time of instance.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Id of instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        Name of instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="maintenanceTime")
+    def maintenance_time(self) -> str:
+        """
+        The maintainable period (in UTC) of the instance.
+        """
+        return pulumi.get(self, "maintenance_time")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        Network type of instance.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Project name of instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        Id of region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter
+    def replicas(self) -> int:
+        """
+        Count of replica in which shard.
+        """
+        return pulumi.get(self, "replicas")
+
+    @property
+    @pulumi.getter(name="serverCpu")
+    def server_cpu(self) -> int:
+        """
+        Count of cpu cores of instance.
+        """
+        return pulumi.get(self, "server_cpu")
+
+    @property
+    @pulumi.getter(name="shardCapacity")
+    def shard_capacity(self) -> int:
+        """
+        Capacity of shard.
+        """
+        return pulumi.get(self, "shard_capacity")
+
+    @property
+    @pulumi.getter(name="shardCount")
+    def shard_count(self) -> int:
+        """
+        Count of shard.
+        """
+        return pulumi.get(self, "shard_count")
+
+    @property
+    @pulumi.getter(name="totalCapacity")
+    def total_capacity(self) -> int:
+        """
+        Total capacity of instance.
+        """
+        return pulumi.get(self, "total_capacity")
+
+    @property
+    @pulumi.getter(name="usedCapacity")
+    def used_capacity(self) -> int:
+        """
+        Capacity used of this instance.
+        """
+        return pulumi.get(self, "used_capacity")
+
+    @property
+    @pulumi.getter(name="vpcInfos")
+    def vpc_infos(self) -> Sequence['outputs.GetBackupsBackupInstanceDetailVpcInfoResult']:
+        """
+        Information of vpc.
+        """
+        return pulumi.get(self, "vpc_infos")
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Sequence[str]:
+        """
+        List of id of zone.
+        """
+        return pulumi.get(self, "zone_ids")
+
+
+@pulumi.output_type
+class GetBackupsBackupInstanceDetailVpcInfoResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str id: Id of vpc.
+        :param str name: Name of vpc.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Id of vpc.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of vpc.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceResult(dict):
+    def __init__(__self__, *,
+                 backup_plan: 'outputs.GetInstancesInstanceBackupPlanResult',
+                 capacity: 'outputs.GetInstancesInstanceCapacityResult',
+                 charge_type: str,
+                 configure_nodes: Sequence['outputs.GetInstancesInstanceConfigureNodeResult'],
+                 create_time: str,
+                 deletion_protection: str,
+                 engine_version: str,
+                 expired_time: str,
+                 id: str,
+                 instance_id: str,
+                 instance_name: str,
+                 maintenance_time: str,
+                 multi_az: str,
+                 node_ids: Sequence[str],
+                 node_number: int,
+                 params: Sequence['outputs.GetInstancesInstanceParamResult'],
+                 project_name: str,
+                 region_id: str,
+                 shard_capacity: float,
+                 shard_number: int,
+                 sharded_cluster: int,
+                 status: str,
+                 subnet_id: str,
+                 tags: Sequence['outputs.GetInstancesInstanceTagResult'],
+                 visit_addrs: Sequence['outputs.GetInstancesInstanceVisitAddrResult'],
+                 vpc_auth_mode: str,
+                 vpc_id: str,
+                 zone_ids: Sequence[str]):
+        """
+        :param 'GetInstancesInstanceBackupPlanArgs' backup_plan: The list of backup plans.
+        :param 'GetInstancesInstanceCapacityArgs' capacity: The memory capacity information.
+        :param str charge_type: The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
+        :param Sequence['GetInstancesInstanceConfigureNodeArgs'] configure_nodes: Set the list of available zones to which the node belongs.
+        :param str create_time: The creation time of the redis instance.
+        :param str deletion_protection: whether enable deletion protection.
+        :param str engine_version: The engine version of redis instance to query. Valid values: `4.0`, `5.0`, `6.0`.
+        :param str expired_time: The expire time of the redis instance, valid when charge type is `PrePaid`.
+        :param str id: The id of the redis instance.
+        :param str instance_id: The id of redis instance to query. This field supports fuzzy queries.
+        :param str instance_name: The name of redis instance to query. This field supports fuzzy queries.
+        :param str maintenance_time: The maintainable time of the redis instance.
+        :param str multi_az: Set the availability zone deployment scheme for the instance. The value range is as follows: 
+               disabled: Single availability zone deployment scheme.
+               enabled: Multi-availability zone deployment scheme.
+               Description:
+               When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        :param Sequence[str] node_ids: The list of redis instance node IDs.
+        :param int node_number: The number of nodes in each shard.
+        :param Sequence['GetInstancesInstanceParamArgs'] params: The list of params.
+        :param str project_name: The project name of redis instance to query.
+        :param str region_id: The region id of the redis instance.
+        :param float shard_capacity: The memory capacity of each shard. Unit: GiB.
+        :param int shard_number: The number of shards in the redis instance.
+        :param int sharded_cluster: Whether enable sharded cluster for redis instance. Valid values: 0, 1.
+        :param str status: The status of redis instance to query.
+        :param str subnet_id: The subnet id of the redis instance.
+        :param Sequence['GetInstancesInstanceTagArgs'] tags: Tags.
+        :param Sequence['GetInstancesInstanceVisitAddrArgs'] visit_addrs: The list of connection information.
+        :param str vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network.
+        :param str vpc_id: The vpc id of redis instance to query. This field supports fuzzy queries.
+        :param Sequence[str] zone_ids: The list of zone ID which the redis instance belongs.
+        """
+        pulumi.set(__self__, "backup_plan", backup_plan)
+        pulumi.set(__self__, "capacity", capacity)
+        pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "configure_nodes", configure_nodes)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
+        pulumi.set(__self__, "engine_version", engine_version)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "maintenance_time", maintenance_time)
+        pulumi.set(__self__, "multi_az", multi_az)
+        pulumi.set(__self__, "node_ids", node_ids)
+        pulumi.set(__self__, "node_number", node_number)
+        pulumi.set(__self__, "params", params)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "shard_capacity", shard_capacity)
+        pulumi.set(__self__, "shard_number", shard_number)
+        pulumi.set(__self__, "sharded_cluster", sharded_cluster)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "visit_addrs", visit_addrs)
+        pulumi.set(__self__, "vpc_auth_mode", vpc_auth_mode)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="backupPlan")
+    def backup_plan(self) -> 'outputs.GetInstancesInstanceBackupPlanResult':
+        """
+        The list of backup plans.
+        """
+        return pulumi.get(self, "backup_plan")
+
+    @property
+    @pulumi.getter
+    def capacity(self) -> 'outputs.GetInstancesInstanceCapacityResult':
+        """
+        The memory capacity information.
+        """
+        return pulumi.get(self, "capacity")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="configureNodes")
+    def configure_nodes(self) -> Sequence['outputs.GetInstancesInstanceConfigureNodeResult']:
+        """
+        Set the list of available zones to which the node belongs.
+        """
+        return pulumi.get(self, "configure_nodes")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the redis instance.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> str:
+        """
+        whether enable deletion protection.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        """
+        The engine version of redis instance to query. Valid values: `4.0`, `5.0`, `6.0`.
+        """
+        return pulumi.get(self, "engine_version")
+
+    @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        """
+        The expire time of the redis instance, valid when charge type is `PrePaid`.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the redis instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of redis instance to query. This field supports fuzzy queries.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of redis instance to query. This field supports fuzzy queries.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="maintenanceTime")
+    def maintenance_time(self) -> str:
+        """
+        The maintainable time of the redis instance.
+        """
+        return pulumi.get(self, "maintenance_time")
+
+    @property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> str:
+        """
+        Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        disabled: Single availability zone deployment scheme.
+        enabled: Multi-availability zone deployment scheme.
+        Description:
+        When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        """
+        return pulumi.get(self, "multi_az")
+
+    @property
+    @pulumi.getter(name="nodeIds")
+    def node_ids(self) -> Sequence[str]:
+        """
+        The list of redis instance node IDs.
+        """
+        return pulumi.get(self, "node_ids")
+
+    @property
+    @pulumi.getter(name="nodeNumber")
+    def node_number(self) -> int:
+        """
+        The number of nodes in each shard.
+        """
+        return pulumi.get(self, "node_number")
+
+    @property
+    @pulumi.getter
+    def params(self) -> Sequence['outputs.GetInstancesInstanceParamResult']:
+        """
+        The list of params.
+        """
+        return pulumi.get(self, "params")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of redis instance to query.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region id of the redis instance.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="shardCapacity")
+    def shard_capacity(self) -> float:
+        """
+        The memory capacity of each shard. Unit: GiB.
+        """
+        return pulumi.get(self, "shard_capacity")
+
+    @property
+    @pulumi.getter(name="shardNumber")
+    def shard_number(self) -> int:
+        """
+        The number of shards in the redis instance.
+        """
+        return pulumi.get(self, "shard_number")
+
+    @property
+    @pulumi.getter(name="shardedCluster")
+    def sharded_cluster(self) -> int:
+        """
+        Whether enable sharded cluster for redis instance. Valid values: 0, 1.
+        """
+        return pulumi.get(self, "sharded_cluster")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of redis instance to query.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The subnet id of the redis instance.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInstancesInstanceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="visitAddrs")
+    def visit_addrs(self) -> Sequence['outputs.GetInstancesInstanceVisitAddrResult']:
+        """
+        The list of connection information.
+        """
+        return pulumi.get(self, "visit_addrs")
+
+    @property
+    @pulumi.getter(name="vpcAuthMode")
+    def vpc_auth_mode(self) -> str:
+        """
+        Whether to enable password-free access when connecting to an instance through a private network.
+        """
+        return pulumi.get(self, "vpc_auth_mode")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id of redis instance to query. This field supports fuzzy queries.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Sequence[str]:
+        """
+        The list of zone ID which the redis instance belongs.
+        """
+        return pulumi.get(self, "zone_ids")
+
+
+@pulumi.output_type
+class GetInstancesInstanceBackupPlanResult(dict):
+    def __init__(__self__, *,
+                 active: bool,
+                 backup_hour: int,
+                 backup_type: str,
+                 expect_next_backup_time: str,
+                 instance_id: str,
+                 last_update_time: str,
+                 periods: Sequence[int],
+                 ttl: int):
+        """
+        :param bool active: Whether enable auto backup.
+        :param int backup_hour: The time period to start performing the backup. The value range is any integer between 0 and 23, where 0 means that the system will perform the backup in the period of 00:00~01:00, 1 means that the backup will be performed in the period of 01:00~02:00, and so on.
+        :param str backup_type: The backup type.
+        :param str expect_next_backup_time: The expected time for the next backup to be performed.
+        :param str instance_id: The id of redis instance to query. This field supports fuzzy queries.
+        :param str last_update_time: The last time the backup policy was modified.
+        :param Sequence[int] periods: The backup cycle. The value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
+        :param int ttl: The number of days to keep backups, the default is 7 days.
+        """
+        pulumi.set(__self__, "active", active)
+        pulumi.set(__self__, "backup_hour", backup_hour)
+        pulumi.set(__self__, "backup_type", backup_type)
+        pulumi.set(__self__, "expect_next_backup_time", expect_next_backup_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "last_update_time", last_update_time)
+        pulumi.set(__self__, "periods", periods)
+        pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def active(self) -> bool:
+        """
+        Whether enable auto backup.
+        """
+        return pulumi.get(self, "active")
+
+    @property
+    @pulumi.getter(name="backupHour")
+    def backup_hour(self) -> int:
+        """
+        The time period to start performing the backup. The value range is any integer between 0 and 23, where 0 means that the system will perform the backup in the period of 00:00~01:00, 1 means that the backup will be performed in the period of 01:00~02:00, and so on.
+        """
+        return pulumi.get(self, "backup_hour")
+
+    @property
+    @pulumi.getter(name="backupType")
+    def backup_type(self) -> str:
+        """
+        The backup type.
+        """
+        return pulumi.get(self, "backup_type")
+
+    @property
+    @pulumi.getter(name="expectNextBackupTime")
+    def expect_next_backup_time(self) -> str:
+        """
+        The expected time for the next backup to be performed.
+        """
+        return pulumi.get(self, "expect_next_backup_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of redis instance to query. This field supports fuzzy queries.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="lastUpdateTime")
+    def last_update_time(self) -> str:
+        """
+        The last time the backup policy was modified.
+        """
+        return pulumi.get(self, "last_update_time")
+
+    @property
+    @pulumi.getter
+    def periods(self) -> Sequence[int]:
+        """
+        The backup cycle. The value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
+        """
+        return pulumi.get(self, "periods")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> int:
+        """
+        The number of days to keep backups, the default is 7 days.
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class GetInstancesInstanceCapacityResult(dict):
+    def __init__(__self__, *,
+                 total: int,
+                 used: int):
+        """
+        :param int total: The total memory capacity of the redis instance. Unit: MiB.
+        :param int used: The used memory capacity of the redis instance. Unit: MiB.
+        """
+        pulumi.set(__self__, "total", total)
+        pulumi.set(__self__, "used", used)
+
+    @property
+    @pulumi.getter
+    def total(self) -> int:
+        """
+        The total memory capacity of the redis instance. Unit: MiB.
+        """
+        return pulumi.get(self, "total")
+
+    @property
+    @pulumi.getter
+    def used(self) -> int:
+        """
+        The used memory capacity of the redis instance. Unit: MiB.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetInstancesInstanceConfigureNodeResult(dict):
+    def __init__(__self__, *,
+                 az: str):
+        """
+        :param str az: Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+               When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+        """
+        pulumi.set(__self__, "az", az)
+
+    @property
+    @pulumi.getter
+    def az(self) -> str:
+        """
+        Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+        When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+        """
+        return pulumi.get(self, "az")
+
+
+@pulumi.output_type
+class GetInstancesInstanceParamResult(dict):
+    def __init__(__self__, *,
+                 current_value: str,
+                 default_value: str,
+                 description: str,
+                 editable_for_instance: bool,
+                 need_reboot: bool,
+                 options: Sequence['outputs.GetInstancesInstanceParamOptionResult'],
+                 param_name: str,
+                 range: str,
+                 type: str,
+                 unit: str):
+        """
+        :param str current_value: Current value of the configuration parameter.
+        :param str default_value: Default value of the configuration parameter.
+        :param str description: The description of this option item.
+        :param bool editable_for_instance: Whether the current redis instance supports editing this parameter.
+        :param bool need_reboot: Whether need to reboot the redis instance when modifying this parameter.
+        :param Sequence['GetInstancesInstanceParamOptionArgs'] options: The list of options. Valid when the configuration parameter type is `Radio`.
+        :param str param_name: The name of the configuration parameter.
+        :param str range: The valid value range of the numeric type configuration parameter.
+        :param str type: The type of the configuration parameter.
+        :param str unit: The unit of the numeric type configuration parameter.
+        """
+        pulumi.set(__self__, "current_value", current_value)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "editable_for_instance", editable_for_instance)
+        pulumi.set(__self__, "need_reboot", need_reboot)
+        pulumi.set(__self__, "options", options)
+        pulumi.set(__self__, "param_name", param_name)
+        pulumi.set(__self__, "range", range)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit", unit)
+
+    @property
+    @pulumi.getter(name="currentValue")
+    def current_value(self) -> str:
+        """
+        Current value of the configuration parameter.
+        """
+        return pulumi.get(self, "current_value")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Default value of the configuration parameter.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of this option item.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="editableForInstance")
+    def editable_for_instance(self) -> bool:
+        """
+        Whether the current redis instance supports editing this parameter.
+        """
+        return pulumi.get(self, "editable_for_instance")
+
+    @property
+    @pulumi.getter(name="needReboot")
+    def need_reboot(self) -> bool:
+        """
+        Whether need to reboot the redis instance when modifying this parameter.
+        """
+        return pulumi.get(self, "need_reboot")
+
+    @property
+    @pulumi.getter
+    def options(self) -> Sequence['outputs.GetInstancesInstanceParamOptionResult']:
+        """
+        The list of options. Valid when the configuration parameter type is `Radio`.
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter(name="paramName")
+    def param_name(self) -> str:
+        """
+        The name of the configuration parameter.
+        """
+        return pulumi.get(self, "param_name")
+
+    @property
+    @pulumi.getter
+    def range(self) -> str:
+        """
+        The valid value range of the numeric type configuration parameter.
+        """
+        return pulumi.get(self, "range")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the configuration parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def unit(self) -> str:
+        """
+        The unit of the numeric type configuration parameter.
+        """
+        return pulumi.get(self, "unit")
+
+
+@pulumi.output_type
+class GetInstancesInstanceParamOptionResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 value: str):
+        """
+        :param str description: The description of this option item.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of this option item.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesInstanceVisitAddrResult(dict):
+    def __init__(__self__, *,
+                 addr_type: str,
+                 address: str,
+                 eip_id: str,
+                 port: str,
+                 vip: str,
+                 vip_v6: str):
+        """
+        :param str addr_type: The connection address type.
+        :param str address: The connection address.
+        :param str eip_id: The EIP ID bound to the instance's public network address.
+        :param str port: The connection port.
+        :param str vip: The ipv4 address of the connection address.
+        :param str vip_v6: The ipv6 address of the connection address.
+        """
+        pulumi.set(__self__, "addr_type", addr_type)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "vip", vip)
+        pulumi.set(__self__, "vip_v6", vip_v6)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> str:
+        """
+        The connection address type.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The connection address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> str:
+        """
+        The EIP ID bound to the instance's public network address.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        The connection port.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def vip(self) -> str:
+        """
+        The ipv4 address of the connection address.
+        """
+        return pulumi.get(self, "vip")
+
+    @property
+    @pulumi.getter(name="vipV6")
+    def vip_v6(self) -> str:
+        """
+        The ipv6 address of the connection address.
+        """
+        return pulumi.get(self, "vip_v6")
+
+
+@pulumi.output_type
+class GetInstancesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPitrTimeWindowsPeriodResult(dict):
+    def __init__(__self__, *,
+                 end_time: str,
+                 instance_id: str,
+                 start_time: str):
+        """
+        :param str end_time: Recoverable end time (UTC time) supported when restoring data by point in time.
+        :param str instance_id: The instance id.
+        :param str start_time: The recoverable start time (in UTC time) supported when restoring data by point in time.
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        """
+        Recoverable end time (UTC time) supported when restoring data by point in time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance id.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The recoverable start time (in UTC time) supported when restoring data by point in time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 region_name: str):
+        """
+        :param str region_id: Target region info.
+        :param str region_name: The name of region.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        Target region info.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        The name of region.
+        """
+        return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetZonesZoneResult(dict):
     def __init__(__self__, *,
                  id: str,
                  zone_id: str,

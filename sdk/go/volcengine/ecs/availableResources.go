@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.AvailableResources(ctx, &ecs.AvailableResourcesArgs{
+//			_, err := ecs.GetAvailableResources(ctx, &ecs.GetAvailableResourcesArgs{
 //				DestinationResource: "InstanceType",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources
 func AvailableResources(ctx *pulumi.Context, args *AvailableResourcesArgs, opts ...pulumi.InvokeOption) (*AvailableResourcesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AvailableResourcesResult

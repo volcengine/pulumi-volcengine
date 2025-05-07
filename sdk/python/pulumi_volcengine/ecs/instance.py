@@ -1450,21 +1450,25 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create security group
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
+        # create ecs instance
         foo_instance = volcengine.ecs.Instance("fooInstance",
             instance_name="acc-test-ecs",
             description="acc-test",
@@ -1482,6 +1486,27 @@ class Instance(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # create ebs data volume
+        foo_volume = volcengine.ebs.Volume("fooVolume",
+            volume_name="acc-test-volume",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=40,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PostPaid",
+            project_name="default")
+        # attach ebs data volume to ecs instance
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            instance_id=foo_instance.id,
+            volume_id=foo_volume.id)
+        # create eip
+        foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
+        # associate eip to ecs instance
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=foo_instance.id,
+            instance_type="EcsInstance")
         ```
 
         ## Import
@@ -1552,21 +1577,25 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create security group
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
+        # create ecs instance
         foo_instance = volcengine.ecs.Instance("fooInstance",
             instance_name="acc-test-ecs",
             description="acc-test",
@@ -1584,6 +1613,27 @@ class Instance(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # create ebs data volume
+        foo_volume = volcengine.ebs.Volume("fooVolume",
+            volume_name="acc-test-volume",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=40,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PostPaid",
+            project_name="default")
+        # attach ebs data volume to ecs instance
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            instance_id=foo_instance.id,
+            volume_id=foo_volume.id)
+        # create eip
+        foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
+        # associate eip to ecs instance
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=foo_instance.id,
+            instance_type="EcsInstance")
         ```
 
         ## Import

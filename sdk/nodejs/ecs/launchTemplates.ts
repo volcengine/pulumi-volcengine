@@ -29,12 +29,14 @@ import * as utilities from "../utilities";
  *     keyPairName: "tf-key-pair",
  *     launchTemplateName: "tf-acc-template",
  * });
- * const fooLaunchTemplates = volcengine.ecs.LaunchTemplatesOutput({
+ * const fooLaunchTemplates = volcengine.ecs.getLaunchTemplatesOutput({
  *     ids: [fooLaunchTemplate.id],
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates */
 export function launchTemplates(args?: LaunchTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<LaunchTemplatesResult> {
+    pulumi.log.warn("launchTemplates is deprecated: volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -112,11 +114,12 @@ export interface LaunchTemplatesResult {
  *     keyPairName: "tf-key-pair",
  *     launchTemplateName: "tf-acc-template",
  * });
- * const fooLaunchTemplates = volcengine.ecs.LaunchTemplatesOutput({
+ * const fooLaunchTemplates = volcengine.ecs.getLaunchTemplatesOutput({
  *     ids: [fooLaunchTemplate.id],
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates */
 export function launchTemplatesOutput(args?: LaunchTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<LaunchTemplatesResult> {
     return pulumi.output(args).apply((a: any) => launchTemplates(a, opts))
 }

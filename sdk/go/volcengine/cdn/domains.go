@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cdn.DomainsOutput(ctx, cdn.DomainsOutputArgs{
+//			_ = cdn.GetDomainsOutput(ctx, cdn.GetDomainsOutputArgs{
 //				Domain: fooCdnDomain.ID(),
 //			}, nil)
 //			return nil
@@ -103,6 +103,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cdn.Domains has been deprecated in favor of volcengine.cdn.getDomains
 func Domains(ctx *pulumi.Context, args *DomainsArgs, opts ...pulumi.InvokeOption) (*DomainsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DomainsResult

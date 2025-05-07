@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -81,7 +81,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = rds_mysql.DatabasesOutput(ctx, rds_mysql.DatabasesOutputArgs{
+//			_ = rds_mysql.GetDatabasesOutput(ctx, rds_mysql.GetDatabasesOutputArgs{
 //				DbName:     pulumi.String("acc-test"),
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
@@ -90,6 +90,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases
 func Databases(ctx *pulumi.Context, args *DatabasesArgs, opts ...pulumi.InvokeOption) (*DatabasesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DatabasesResult

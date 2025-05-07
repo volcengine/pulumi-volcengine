@@ -6,6 +6,24 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage financial relation
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const foo = new volcengine.financial_relation.FinancialRelation("foo", {
+ *     accountAlias: "acc-test-financial",
+ *     authLists: [
+ *         1,
+ *         2,
+ *         3,
+ *     ],
+ *     relation: 4,
+ *     subAccountId: 2100260000,
+ * });
+ * ```
+ *
  * ## Import
  *
  * FinancialRelation can be imported using the sub_account_id:relation:relation_id, e.g.

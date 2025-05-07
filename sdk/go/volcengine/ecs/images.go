@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//			_, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
 //				OsType:         pulumi.StringRef("Linux"),
 //				Visibility:     pulumi.StringRef("public"),
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages
 func Images(ctx *pulumi.Context, args *ImagesArgs, opts ...pulumi.InvokeOption) (*ImagesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ImagesResult

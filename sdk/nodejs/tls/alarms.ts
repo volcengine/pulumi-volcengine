@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Alarms({
+ * const default = volcengine.tls.getAlarms({
  *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms */
 export function alarms(args: AlarmsArgs, opts?: pulumi.InvokeOptions): Promise<AlarmsResult> {
+    pulumi.log.warn("alarms is deprecated: volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/alarms:Alarms", {
@@ -117,11 +119,12 @@ export interface AlarmsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Alarms({
+ * const default = volcengine.tls.getAlarms({
  *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms */
 export function alarmsOutput(args: AlarmsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AlarmsResult> {
     return pulumi.output(args).apply((a: any) => alarms(a, opts))
 }

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vke.Addons({
+ * const default = volcengine.vke.getAddons({
  *     clusterIds: ["cccctv1vqtofp49d96ujg"],
  * });
  * ```
  */
+/** @deprecated volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons */
 export function addons(args?: AddonsArgs, opts?: pulumi.InvokeOptions): Promise<AddonsResult> {
+    pulumi.log.warn("addons is deprecated: volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -112,11 +114,12 @@ export interface AddonsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vke.Addons({
+ * const default = volcengine.vke.getAddons({
  *     clusterIds: ["cccctv1vqtofp49d96ujg"],
  * });
  * ```
  */
+/** @deprecated volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons */
 export function addonsOutput(args?: AddonsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AddonsResult> {
     return pulumi.output(args).apply((a: any) => addons(a, opts))
 }

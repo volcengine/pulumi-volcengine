@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments")]
     public static class DirectConnectGatewayAttachments
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Transit_router.DirectConnectGatewayAttachments.Invoke(new()
+        ///     var foo = Volcengine.Transit_router.GetDirectConnectGatewayAttachments.Invoke(new()
         ///     {
         ///         TransitRouterId = "tr-2bzy39x27qtxc2dx0eg5qaj05",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Transit_router.DirectConnectGatewayAttachments.Invoke(new()
+        ///     var foo = Volcengine.Transit_router.GetDirectConnectGatewayAttachments.Invoke(new()
         ///     {
         ///         TransitRouterId = "tr-2bzy39x27qtxc2dx0eg5qaj05",
         ///     });

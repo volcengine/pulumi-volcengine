@@ -858,6 +858,851 @@ func (o QuotasQuotaArrayOutput) Index(i pulumi.IntInput) QuotasQuotaOutput {
 	}).(QuotasQuotaOutput)
 }
 
+type GetAccessesAccess struct {
+	// The account id of access.
+	AccessAccountId int `pulumi:"accessAccountId"`
+	// The id of access.
+	AccessId string `pulumi:"accessId"`
+	// The service name of access.
+	AccessServiceName string `pulumi:"accessServiceName"`
+	// The creation time.
+	CreatedTime string `pulumi:"createdTime"`
+	// The name of file system.
+	FsName string `pulumi:"fsName"`
+	// Whether is default access.
+	IsDefault bool `pulumi:"isDefault"`
+	// The id of security group.
+	SecurityGroupId string `pulumi:"securityGroupId"`
+	// The status of access.
+	Status string `pulumi:"status"`
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+	// Whether to enable all vpc route.
+	VpcRouteEnabled bool `pulumi:"vpcRouteEnabled"`
+}
+
+// GetAccessesAccessInput is an input type that accepts GetAccessesAccessArgs and GetAccessesAccessOutput values.
+// You can construct a concrete instance of `GetAccessesAccessInput` via:
+//
+//	GetAccessesAccessArgs{...}
+type GetAccessesAccessInput interface {
+	pulumi.Input
+
+	ToGetAccessesAccessOutput() GetAccessesAccessOutput
+	ToGetAccessesAccessOutputWithContext(context.Context) GetAccessesAccessOutput
+}
+
+type GetAccessesAccessArgs struct {
+	// The account id of access.
+	AccessAccountId pulumi.IntInput `pulumi:"accessAccountId"`
+	// The id of access.
+	AccessId pulumi.StringInput `pulumi:"accessId"`
+	// The service name of access.
+	AccessServiceName pulumi.StringInput `pulumi:"accessServiceName"`
+	// The creation time.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The name of file system.
+	FsName pulumi.StringInput `pulumi:"fsName"`
+	// Whether is default access.
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The id of security group.
+	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
+	// The status of access.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// Whether to enable all vpc route.
+	VpcRouteEnabled pulumi.BoolInput `pulumi:"vpcRouteEnabled"`
+}
+
+func (GetAccessesAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessesAccess)(nil)).Elem()
+}
+
+func (i GetAccessesAccessArgs) ToGetAccessesAccessOutput() GetAccessesAccessOutput {
+	return i.ToGetAccessesAccessOutputWithContext(context.Background())
+}
+
+func (i GetAccessesAccessArgs) ToGetAccessesAccessOutputWithContext(ctx context.Context) GetAccessesAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessesAccessOutput)
+}
+
+// GetAccessesAccessArrayInput is an input type that accepts GetAccessesAccessArray and GetAccessesAccessArrayOutput values.
+// You can construct a concrete instance of `GetAccessesAccessArrayInput` via:
+//
+//	GetAccessesAccessArray{ GetAccessesAccessArgs{...} }
+type GetAccessesAccessArrayInput interface {
+	pulumi.Input
+
+	ToGetAccessesAccessArrayOutput() GetAccessesAccessArrayOutput
+	ToGetAccessesAccessArrayOutputWithContext(context.Context) GetAccessesAccessArrayOutput
+}
+
+type GetAccessesAccessArray []GetAccessesAccessInput
+
+func (GetAccessesAccessArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessesAccess)(nil)).Elem()
+}
+
+func (i GetAccessesAccessArray) ToGetAccessesAccessArrayOutput() GetAccessesAccessArrayOutput {
+	return i.ToGetAccessesAccessArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccessesAccessArray) ToGetAccessesAccessArrayOutputWithContext(ctx context.Context) GetAccessesAccessArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessesAccessArrayOutput)
+}
+
+type GetAccessesAccessOutput struct{ *pulumi.OutputState }
+
+func (GetAccessesAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessesAccess)(nil)).Elem()
+}
+
+func (o GetAccessesAccessOutput) ToGetAccessesAccessOutput() GetAccessesAccessOutput {
+	return o
+}
+
+func (o GetAccessesAccessOutput) ToGetAccessesAccessOutputWithContext(ctx context.Context) GetAccessesAccessOutput {
+	return o
+}
+
+// The account id of access.
+func (o GetAccessesAccessOutput) AccessAccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccessesAccess) int { return v.AccessAccountId }).(pulumi.IntOutput)
+}
+
+// The id of access.
+func (o GetAccessesAccessOutput) AccessId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.AccessId }).(pulumi.StringOutput)
+}
+
+// The service name of access.
+func (o GetAccessesAccessOutput) AccessServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.AccessServiceName }).(pulumi.StringOutput)
+}
+
+// The creation time.
+func (o GetAccessesAccessOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The name of file system.
+func (o GetAccessesAccessOutput) FsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.FsName }).(pulumi.StringOutput)
+}
+
+// Whether is default access.
+func (o GetAccessesAccessOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccessesAccess) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// The id of security group.
+func (o GetAccessesAccessOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// The status of access.
+func (o GetAccessesAccessOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of subnet.
+func (o GetAccessesAccessOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The id of vpc.
+func (o GetAccessesAccessOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessesAccess) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// Whether to enable all vpc route.
+func (o GetAccessesAccessOutput) VpcRouteEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccessesAccess) bool { return v.VpcRouteEnabled }).(pulumi.BoolOutput)
+}
+
+type GetAccessesAccessArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccessesAccessArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessesAccess)(nil)).Elem()
+}
+
+func (o GetAccessesAccessArrayOutput) ToGetAccessesAccessArrayOutput() GetAccessesAccessArrayOutput {
+	return o
+}
+
+func (o GetAccessesAccessArrayOutput) ToGetAccessesAccessArrayOutputWithContext(ctx context.Context) GetAccessesAccessArrayOutput {
+	return o
+}
+
+func (o GetAccessesAccessArrayOutput) Index(i pulumi.IntInput) GetAccessesAccessOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessesAccess {
+		return vs[0].([]GetAccessesAccess)[vs[1].(int)]
+	}).(GetAccessesAccessOutput)
+}
+
+type GetFileSystemsFileSystem struct {
+	// The capacity of cache.
+	CacheCapacityTib int `pulumi:"cacheCapacityTib"`
+	// The plan of cache.
+	CachePlan string `pulumi:"cachePlan"`
+	// The creation time.
+	CreatedTime string `pulumi:"createdTime"`
+	// The ID of file system.
+	Id string `pulumi:"id"`
+	// The mode of file system.
+	Mode string `pulumi:"mode"`
+	// The point mount.
+	MountPoint string `pulumi:"mountPoint"`
+	// The name of file system.
+	Name string `pulumi:"name"`
+	// The id of region.
+	RegionId string `pulumi:"regionId"`
+	// The id of security group.
+	SecurityGroupId string `pulumi:"securityGroupId"`
+	// The status of file system.
+	Status string `pulumi:"status"`
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The tos bucket.
+	TosBucket string `pulumi:"tosBucket"`
+	// The tos prefix.
+	TosPrefix string `pulumi:"tosPrefix"`
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+	// The id of zone.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetFileSystemsFileSystemInput is an input type that accepts GetFileSystemsFileSystemArgs and GetFileSystemsFileSystemOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemInput` via:
+//
+//	GetFileSystemsFileSystemArgs{...}
+type GetFileSystemsFileSystemInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput
+	ToGetFileSystemsFileSystemOutputWithContext(context.Context) GetFileSystemsFileSystemOutput
+}
+
+type GetFileSystemsFileSystemArgs struct {
+	// The capacity of cache.
+	CacheCapacityTib pulumi.IntInput `pulumi:"cacheCapacityTib"`
+	// The plan of cache.
+	CachePlan pulumi.StringInput `pulumi:"cachePlan"`
+	// The creation time.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The ID of file system.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The mode of file system.
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// The point mount.
+	MountPoint pulumi.StringInput `pulumi:"mountPoint"`
+	// The name of file system.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The id of region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The id of security group.
+	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
+	// The status of file system.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The tos bucket.
+	TosBucket pulumi.StringInput `pulumi:"tosBucket"`
+	// The tos prefix.
+	TosPrefix pulumi.StringInput `pulumi:"tosPrefix"`
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The id of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetFileSystemsFileSystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemArgs) ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput {
+	return i.ToGetFileSystemsFileSystemOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemArgs) ToGetFileSystemsFileSystemOutputWithContext(ctx context.Context) GetFileSystemsFileSystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemOutput)
+}
+
+// GetFileSystemsFileSystemArrayInput is an input type that accepts GetFileSystemsFileSystemArray and GetFileSystemsFileSystemArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemArrayInput` via:
+//
+//	GetFileSystemsFileSystemArray{ GetFileSystemsFileSystemArgs{...} }
+type GetFileSystemsFileSystemArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput
+	ToGetFileSystemsFileSystemArrayOutputWithContext(context.Context) GetFileSystemsFileSystemArrayOutput
+}
+
+type GetFileSystemsFileSystemArray []GetFileSystemsFileSystemInput
+
+func (GetFileSystemsFileSystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemArray) ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput {
+	return i.ToGetFileSystemsFileSystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemArray) ToGetFileSystemsFileSystemArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemArrayOutput)
+}
+
+type GetFileSystemsFileSystemOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemOutput) ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemOutput) ToGetFileSystemsFileSystemOutputWithContext(ctx context.Context) GetFileSystemsFileSystemOutput {
+	return o
+}
+
+// The capacity of cache.
+func (o GetFileSystemsFileSystemOutput) CacheCapacityTib() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) int { return v.CacheCapacityTib }).(pulumi.IntOutput)
+}
+
+// The plan of cache.
+func (o GetFileSystemsFileSystemOutput) CachePlan() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.CachePlan }).(pulumi.StringOutput)
+}
+
+// The creation time.
+func (o GetFileSystemsFileSystemOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The ID of file system.
+func (o GetFileSystemsFileSystemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The mode of file system.
+func (o GetFileSystemsFileSystemOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// The point mount.
+func (o GetFileSystemsFileSystemOutput) MountPoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.MountPoint }).(pulumi.StringOutput)
+}
+
+// The name of file system.
+func (o GetFileSystemsFileSystemOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The id of region.
+func (o GetFileSystemsFileSystemOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The id of security group.
+func (o GetFileSystemsFileSystemOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// The status of file system.
+func (o GetFileSystemsFileSystemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of subnet.
+func (o GetFileSystemsFileSystemOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The tos bucket.
+func (o GetFileSystemsFileSystemOutput) TosBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.TosBucket }).(pulumi.StringOutput)
+}
+
+// The tos prefix.
+func (o GetFileSystemsFileSystemOutput) TosPrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.TosPrefix }).(pulumi.StringOutput)
+}
+
+// The id of vpc.
+func (o GetFileSystemsFileSystemOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The id of zone.
+func (o GetFileSystemsFileSystemOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetFileSystemsFileSystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) ToGetFileSystemsFileSystemArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) Index(i pulumi.IntInput) GetFileSystemsFileSystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsFileSystem {
+		return vs[0].([]GetFileSystemsFileSystem)[vs[1].(int)]
+	}).(GetFileSystemsFileSystemOutput)
+}
+
+type GetNamespacesNamespace struct {
+	// The creation time of the namespace.
+	CreatedTime string `pulumi:"createdTime"`
+	// The ID of the namespace.
+	Id string `pulumi:"id"`
+	// Whether the tos bucket is your own bucket.
+	IsMyBucket bool `pulumi:"isMyBucket"`
+	// Whether the namespace is read-only.
+	ReadOnly bool `pulumi:"readOnly"`
+	// Whether the namespace is the official service for volcengine.
+	ServiceManaged bool `pulumi:"serviceManaged"`
+	// The status of the namespace.
+	Status string `pulumi:"status"`
+	// The name of tos bucket.
+	TosBucket string `pulumi:"tosBucket"`
+	// The tos prefix.
+	TosPrefix string `pulumi:"tosPrefix"`
+}
+
+// GetNamespacesNamespaceInput is an input type that accepts GetNamespacesNamespaceArgs and GetNamespacesNamespaceOutput values.
+// You can construct a concrete instance of `GetNamespacesNamespaceInput` via:
+//
+//	GetNamespacesNamespaceArgs{...}
+type GetNamespacesNamespaceInput interface {
+	pulumi.Input
+
+	ToGetNamespacesNamespaceOutput() GetNamespacesNamespaceOutput
+	ToGetNamespacesNamespaceOutputWithContext(context.Context) GetNamespacesNamespaceOutput
+}
+
+type GetNamespacesNamespaceArgs struct {
+	// The creation time of the namespace.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The ID of the namespace.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the tos bucket is your own bucket.
+	IsMyBucket pulumi.BoolInput `pulumi:"isMyBucket"`
+	// Whether the namespace is read-only.
+	ReadOnly pulumi.BoolInput `pulumi:"readOnly"`
+	// Whether the namespace is the official service for volcengine.
+	ServiceManaged pulumi.BoolInput `pulumi:"serviceManaged"`
+	// The status of the namespace.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The name of tos bucket.
+	TosBucket pulumi.StringInput `pulumi:"tosBucket"`
+	// The tos prefix.
+	TosPrefix pulumi.StringInput `pulumi:"tosPrefix"`
+}
+
+func (GetNamespacesNamespaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (i GetNamespacesNamespaceArgs) ToGetNamespacesNamespaceOutput() GetNamespacesNamespaceOutput {
+	return i.ToGetNamespacesNamespaceOutputWithContext(context.Background())
+}
+
+func (i GetNamespacesNamespaceArgs) ToGetNamespacesNamespaceOutputWithContext(ctx context.Context) GetNamespacesNamespaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespacesNamespaceOutput)
+}
+
+// GetNamespacesNamespaceArrayInput is an input type that accepts GetNamespacesNamespaceArray and GetNamespacesNamespaceArrayOutput values.
+// You can construct a concrete instance of `GetNamespacesNamespaceArrayInput` via:
+//
+//	GetNamespacesNamespaceArray{ GetNamespacesNamespaceArgs{...} }
+type GetNamespacesNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToGetNamespacesNamespaceArrayOutput() GetNamespacesNamespaceArrayOutput
+	ToGetNamespacesNamespaceArrayOutputWithContext(context.Context) GetNamespacesNamespaceArrayOutput
+}
+
+type GetNamespacesNamespaceArray []GetNamespacesNamespaceInput
+
+func (GetNamespacesNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (i GetNamespacesNamespaceArray) ToGetNamespacesNamespaceArrayOutput() GetNamespacesNamespaceArrayOutput {
+	return i.ToGetNamespacesNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNamespacesNamespaceArray) ToGetNamespacesNamespaceArrayOutputWithContext(ctx context.Context) GetNamespacesNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespacesNamespaceArrayOutput)
+}
+
+type GetNamespacesNamespaceOutput struct{ *pulumi.OutputState }
+
+func (GetNamespacesNamespaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (o GetNamespacesNamespaceOutput) ToGetNamespacesNamespaceOutput() GetNamespacesNamespaceOutput {
+	return o
+}
+
+func (o GetNamespacesNamespaceOutput) ToGetNamespacesNamespaceOutputWithContext(ctx context.Context) GetNamespacesNamespaceOutput {
+	return o
+}
+
+// The creation time of the namespace.
+func (o GetNamespacesNamespaceOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The ID of the namespace.
+func (o GetNamespacesNamespaceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the tos bucket is your own bucket.
+func (o GetNamespacesNamespaceOutput) IsMyBucket() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) bool { return v.IsMyBucket }).(pulumi.BoolOutput)
+}
+
+// Whether the namespace is read-only.
+func (o GetNamespacesNamespaceOutput) ReadOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) bool { return v.ReadOnly }).(pulumi.BoolOutput)
+}
+
+// Whether the namespace is the official service for volcengine.
+func (o GetNamespacesNamespaceOutput) ServiceManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) bool { return v.ServiceManaged }).(pulumi.BoolOutput)
+}
+
+// The status of the namespace.
+func (o GetNamespacesNamespaceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The name of tos bucket.
+func (o GetNamespacesNamespaceOutput) TosBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.TosBucket }).(pulumi.StringOutput)
+}
+
+// The tos prefix.
+func (o GetNamespacesNamespaceOutput) TosPrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.TosPrefix }).(pulumi.StringOutput)
+}
+
+type GetNamespacesNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNamespacesNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (o GetNamespacesNamespaceArrayOutput) ToGetNamespacesNamespaceArrayOutput() GetNamespacesNamespaceArrayOutput {
+	return o
+}
+
+func (o GetNamespacesNamespaceArrayOutput) ToGetNamespacesNamespaceArrayOutputWithContext(ctx context.Context) GetNamespacesNamespaceArrayOutput {
+	return o
+}
+
+func (o GetNamespacesNamespaceArrayOutput) Index(i pulumi.IntInput) GetNamespacesNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespacesNamespace {
+		return vs[0].([]GetNamespacesNamespace)[vs[1].(int)]
+	}).(GetNamespacesNamespaceOutput)
+}
+
+type GetNsQuotasQuota struct {
+	// The ID of account.
+	AccountId int `pulumi:"accountId"`
+	// The name of fs.
+	FsName string `pulumi:"fsName"`
+	// The count of cloud fs namespace.
+	NsCount int `pulumi:"nsCount"`
+	// This file stores the number of namespaces under the instance.
+	NsCountPerFs int `pulumi:"nsCountPerFs"`
+	// The quota of cloud fs namespace.
+	NsQuota int `pulumi:"nsQuota"`
+	// This file stores the total namespace quota under the instance.
+	NsQuotaPerFs int `pulumi:"nsQuotaPerFs"`
+	// Whether is enough of cloud fs namespace.
+	QuotaEnough bool `pulumi:"quotaEnough"`
+}
+
+// GetNsQuotasQuotaInput is an input type that accepts GetNsQuotasQuotaArgs and GetNsQuotasQuotaOutput values.
+// You can construct a concrete instance of `GetNsQuotasQuotaInput` via:
+//
+//	GetNsQuotasQuotaArgs{...}
+type GetNsQuotasQuotaInput interface {
+	pulumi.Input
+
+	ToGetNsQuotasQuotaOutput() GetNsQuotasQuotaOutput
+	ToGetNsQuotasQuotaOutputWithContext(context.Context) GetNsQuotasQuotaOutput
+}
+
+type GetNsQuotasQuotaArgs struct {
+	// The ID of account.
+	AccountId pulumi.IntInput `pulumi:"accountId"`
+	// The name of fs.
+	FsName pulumi.StringInput `pulumi:"fsName"`
+	// The count of cloud fs namespace.
+	NsCount pulumi.IntInput `pulumi:"nsCount"`
+	// This file stores the number of namespaces under the instance.
+	NsCountPerFs pulumi.IntInput `pulumi:"nsCountPerFs"`
+	// The quota of cloud fs namespace.
+	NsQuota pulumi.IntInput `pulumi:"nsQuota"`
+	// This file stores the total namespace quota under the instance.
+	NsQuotaPerFs pulumi.IntInput `pulumi:"nsQuotaPerFs"`
+	// Whether is enough of cloud fs namespace.
+	QuotaEnough pulumi.BoolInput `pulumi:"quotaEnough"`
+}
+
+func (GetNsQuotasQuotaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNsQuotasQuota)(nil)).Elem()
+}
+
+func (i GetNsQuotasQuotaArgs) ToGetNsQuotasQuotaOutput() GetNsQuotasQuotaOutput {
+	return i.ToGetNsQuotasQuotaOutputWithContext(context.Background())
+}
+
+func (i GetNsQuotasQuotaArgs) ToGetNsQuotasQuotaOutputWithContext(ctx context.Context) GetNsQuotasQuotaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNsQuotasQuotaOutput)
+}
+
+// GetNsQuotasQuotaArrayInput is an input type that accepts GetNsQuotasQuotaArray and GetNsQuotasQuotaArrayOutput values.
+// You can construct a concrete instance of `GetNsQuotasQuotaArrayInput` via:
+//
+//	GetNsQuotasQuotaArray{ GetNsQuotasQuotaArgs{...} }
+type GetNsQuotasQuotaArrayInput interface {
+	pulumi.Input
+
+	ToGetNsQuotasQuotaArrayOutput() GetNsQuotasQuotaArrayOutput
+	ToGetNsQuotasQuotaArrayOutputWithContext(context.Context) GetNsQuotasQuotaArrayOutput
+}
+
+type GetNsQuotasQuotaArray []GetNsQuotasQuotaInput
+
+func (GetNsQuotasQuotaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNsQuotasQuota)(nil)).Elem()
+}
+
+func (i GetNsQuotasQuotaArray) ToGetNsQuotasQuotaArrayOutput() GetNsQuotasQuotaArrayOutput {
+	return i.ToGetNsQuotasQuotaArrayOutputWithContext(context.Background())
+}
+
+func (i GetNsQuotasQuotaArray) ToGetNsQuotasQuotaArrayOutputWithContext(ctx context.Context) GetNsQuotasQuotaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNsQuotasQuotaArrayOutput)
+}
+
+type GetNsQuotasQuotaOutput struct{ *pulumi.OutputState }
+
+func (GetNsQuotasQuotaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNsQuotasQuota)(nil)).Elem()
+}
+
+func (o GetNsQuotasQuotaOutput) ToGetNsQuotasQuotaOutput() GetNsQuotasQuotaOutput {
+	return o
+}
+
+func (o GetNsQuotasQuotaOutput) ToGetNsQuotasQuotaOutputWithContext(ctx context.Context) GetNsQuotasQuotaOutput {
+	return o
+}
+
+// The ID of account.
+func (o GetNsQuotasQuotaOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) int { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The name of fs.
+func (o GetNsQuotasQuotaOutput) FsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) string { return v.FsName }).(pulumi.StringOutput)
+}
+
+// The count of cloud fs namespace.
+func (o GetNsQuotasQuotaOutput) NsCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) int { return v.NsCount }).(pulumi.IntOutput)
+}
+
+// This file stores the number of namespaces under the instance.
+func (o GetNsQuotasQuotaOutput) NsCountPerFs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) int { return v.NsCountPerFs }).(pulumi.IntOutput)
+}
+
+// The quota of cloud fs namespace.
+func (o GetNsQuotasQuotaOutput) NsQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) int { return v.NsQuota }).(pulumi.IntOutput)
+}
+
+// This file stores the total namespace quota under the instance.
+func (o GetNsQuotasQuotaOutput) NsQuotaPerFs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) int { return v.NsQuotaPerFs }).(pulumi.IntOutput)
+}
+
+// Whether is enough of cloud fs namespace.
+func (o GetNsQuotasQuotaOutput) QuotaEnough() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNsQuotasQuota) bool { return v.QuotaEnough }).(pulumi.BoolOutput)
+}
+
+type GetNsQuotasQuotaArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNsQuotasQuotaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNsQuotasQuota)(nil)).Elem()
+}
+
+func (o GetNsQuotasQuotaArrayOutput) ToGetNsQuotasQuotaArrayOutput() GetNsQuotasQuotaArrayOutput {
+	return o
+}
+
+func (o GetNsQuotasQuotaArrayOutput) ToGetNsQuotasQuotaArrayOutputWithContext(ctx context.Context) GetNsQuotasQuotaArrayOutput {
+	return o
+}
+
+func (o GetNsQuotasQuotaArrayOutput) Index(i pulumi.IntInput) GetNsQuotasQuotaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNsQuotasQuota {
+		return vs[0].([]GetNsQuotasQuota)[vs[1].(int)]
+	}).(GetNsQuotasQuotaOutput)
+}
+
+type GetQuotasQuota struct {
+	// The ID of account.
+	AccountId int `pulumi:"accountId"`
+	// The count of cloud fs.
+	FsCount int `pulumi:"fsCount"`
+	// The quota of cloud fs.
+	FsQuota int `pulumi:"fsQuota"`
+	// Whether is enough of cloud fs.
+	QuotaEnough bool `pulumi:"quotaEnough"`
+}
+
+// GetQuotasQuotaInput is an input type that accepts GetQuotasQuotaArgs and GetQuotasQuotaOutput values.
+// You can construct a concrete instance of `GetQuotasQuotaInput` via:
+//
+//	GetQuotasQuotaArgs{...}
+type GetQuotasQuotaInput interface {
+	pulumi.Input
+
+	ToGetQuotasQuotaOutput() GetQuotasQuotaOutput
+	ToGetQuotasQuotaOutputWithContext(context.Context) GetQuotasQuotaOutput
+}
+
+type GetQuotasQuotaArgs struct {
+	// The ID of account.
+	AccountId pulumi.IntInput `pulumi:"accountId"`
+	// The count of cloud fs.
+	FsCount pulumi.IntInput `pulumi:"fsCount"`
+	// The quota of cloud fs.
+	FsQuota pulumi.IntInput `pulumi:"fsQuota"`
+	// Whether is enough of cloud fs.
+	QuotaEnough pulumi.BoolInput `pulumi:"quotaEnough"`
+}
+
+func (GetQuotasQuotaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetQuotasQuota)(nil)).Elem()
+}
+
+func (i GetQuotasQuotaArgs) ToGetQuotasQuotaOutput() GetQuotasQuotaOutput {
+	return i.ToGetQuotasQuotaOutputWithContext(context.Background())
+}
+
+func (i GetQuotasQuotaArgs) ToGetQuotasQuotaOutputWithContext(ctx context.Context) GetQuotasQuotaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetQuotasQuotaOutput)
+}
+
+// GetQuotasQuotaArrayInput is an input type that accepts GetQuotasQuotaArray and GetQuotasQuotaArrayOutput values.
+// You can construct a concrete instance of `GetQuotasQuotaArrayInput` via:
+//
+//	GetQuotasQuotaArray{ GetQuotasQuotaArgs{...} }
+type GetQuotasQuotaArrayInput interface {
+	pulumi.Input
+
+	ToGetQuotasQuotaArrayOutput() GetQuotasQuotaArrayOutput
+	ToGetQuotasQuotaArrayOutputWithContext(context.Context) GetQuotasQuotaArrayOutput
+}
+
+type GetQuotasQuotaArray []GetQuotasQuotaInput
+
+func (GetQuotasQuotaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetQuotasQuota)(nil)).Elem()
+}
+
+func (i GetQuotasQuotaArray) ToGetQuotasQuotaArrayOutput() GetQuotasQuotaArrayOutput {
+	return i.ToGetQuotasQuotaArrayOutputWithContext(context.Background())
+}
+
+func (i GetQuotasQuotaArray) ToGetQuotasQuotaArrayOutputWithContext(ctx context.Context) GetQuotasQuotaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetQuotasQuotaArrayOutput)
+}
+
+type GetQuotasQuotaOutput struct{ *pulumi.OutputState }
+
+func (GetQuotasQuotaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetQuotasQuota)(nil)).Elem()
+}
+
+func (o GetQuotasQuotaOutput) ToGetQuotasQuotaOutput() GetQuotasQuotaOutput {
+	return o
+}
+
+func (o GetQuotasQuotaOutput) ToGetQuotasQuotaOutputWithContext(ctx context.Context) GetQuotasQuotaOutput {
+	return o
+}
+
+// The ID of account.
+func (o GetQuotasQuotaOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetQuotasQuota) int { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The count of cloud fs.
+func (o GetQuotasQuotaOutput) FsCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetQuotasQuota) int { return v.FsCount }).(pulumi.IntOutput)
+}
+
+// The quota of cloud fs.
+func (o GetQuotasQuotaOutput) FsQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetQuotasQuota) int { return v.FsQuota }).(pulumi.IntOutput)
+}
+
+// Whether is enough of cloud fs.
+func (o GetQuotasQuotaOutput) QuotaEnough() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetQuotasQuota) bool { return v.QuotaEnough }).(pulumi.BoolOutput)
+}
+
+type GetQuotasQuotaArrayOutput struct{ *pulumi.OutputState }
+
+func (GetQuotasQuotaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetQuotasQuota)(nil)).Elem()
+}
+
+func (o GetQuotasQuotaArrayOutput) ToGetQuotasQuotaArrayOutput() GetQuotasQuotaArrayOutput {
+	return o
+}
+
+func (o GetQuotasQuotaArrayOutput) ToGetQuotasQuotaArrayOutputWithContext(ctx context.Context) GetQuotasQuotaArrayOutput {
+	return o
+}
+
+func (o GetQuotasQuotaArrayOutput) Index(i pulumi.IntInput) GetQuotasQuotaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetQuotasQuota {
+		return vs[0].([]GetQuotasQuota)[vs[1].(int)]
+	}).(GetQuotasQuotaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessesAccessInput)(nil)).Elem(), AccessesAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessesAccessArrayInput)(nil)).Elem(), AccessesAccessArray{})
@@ -869,6 +1714,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NsQuotasQuotaArrayInput)(nil)).Elem(), NsQuotasQuotaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuotasQuotaInput)(nil)).Elem(), QuotasQuotaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuotasQuotaArrayInput)(nil)).Elem(), QuotasQuotaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessesAccessInput)(nil)).Elem(), GetAccessesAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessesAccessArrayInput)(nil)).Elem(), GetAccessesAccessArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemInput)(nil)).Elem(), GetFileSystemsFileSystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemArrayInput)(nil)).Elem(), GetFileSystemsFileSystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespacesNamespaceInput)(nil)).Elem(), GetNamespacesNamespaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespacesNamespaceArrayInput)(nil)).Elem(), GetNamespacesNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNsQuotasQuotaInput)(nil)).Elem(), GetNsQuotasQuotaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNsQuotasQuotaArrayInput)(nil)).Elem(), GetNsQuotasQuotaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetQuotasQuotaInput)(nil)).Elem(), GetQuotasQuotaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetQuotasQuotaArrayInput)(nil)).Elem(), GetQuotasQuotaArray{})
 	pulumi.RegisterOutputType(AccessesAccessOutput{})
 	pulumi.RegisterOutputType(AccessesAccessArrayOutput{})
 	pulumi.RegisterOutputType(FileSystemsFileSystemOutput{})
@@ -879,4 +1734,14 @@ func init() {
 	pulumi.RegisterOutputType(NsQuotasQuotaArrayOutput{})
 	pulumi.RegisterOutputType(QuotasQuotaOutput{})
 	pulumi.RegisterOutputType(QuotasQuotaArrayOutput{})
+	pulumi.RegisterOutputType(GetAccessesAccessOutput{})
+	pulumi.RegisterOutputType(GetAccessesAccessArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemArrayOutput{})
+	pulumi.RegisterOutputType(GetNamespacesNamespaceOutput{})
+	pulumi.RegisterOutputType(GetNamespacesNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(GetNsQuotasQuotaOutput{})
+	pulumi.RegisterOutputType(GetNsQuotasQuotaArrayOutput{})
+	pulumi.RegisterOutputType(GetQuotasQuotaOutput{})
+	pulumi.RegisterOutputType(GetQuotasQuotaArrayOutput{})
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Eip
 {
+    [Obsolete(@"volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses")]
     public static class Addresses
     {
         /// <summary>
@@ -28,7 +29,7 @@ namespace Pulumi.Volcengine.Eip
         ///         BillingType = "PostPaidByTraffic",
         ///     });
         /// 
-        ///     var fooAddresses = Volcengine.Eip.Addresses.Invoke(new()
+        ///     var fooAddresses = Volcengine.Eip.GetAddresses.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -59,7 +60,7 @@ namespace Pulumi.Volcengine.Eip
         ///         BillingType = "PostPaidByTraffic",
         ///     });
         /// 
-        ///     var fooAddresses = Volcengine.Eip.Addresses.Invoke(new()
+        ///     var fooAddresses = Volcengine.Eip.GetAddresses.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

@@ -51,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vpc.PrefixListsOutput(ctx, vpc.PrefixListsOutputArgs{
+//			_ = vpc.GetPrefixListsOutput(ctx, vpc.GetPrefixListsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooPrefixList.ID(),
 //				},
@@ -61,6 +61,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists
 func PrefixLists(ctx *pulumi.Context, args *PrefixListsArgs, opts ...pulumi.InvokeOption) (*PrefixListsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PrefixListsResult

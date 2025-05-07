@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.Units({});
+ * const foo = volcengine.organization.getUnits({});
  * ```
  */
+/** @deprecated volcengine.organization.Units has been deprecated in favor of volcengine.organization.getUnits */
 export function units(args?: UnitsArgs, opts?: pulumi.InvokeOptions): Promise<UnitsResult> {
+    pulumi.log.warn("units is deprecated: volcengine.organization.Units has been deprecated in favor of volcengine.organization.getUnits")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface UnitsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.Units({});
+ * const foo = volcengine.organization.getUnits({});
  * ```
  */
+/** @deprecated volcengine.organization.Units has been deprecated in favor of volcengine.organization.getUnits */
 export function unitsOutput(args?: UnitsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UnitsResult> {
     return pulumi.output(args).apply((a: any) => units(a, opts))
 }

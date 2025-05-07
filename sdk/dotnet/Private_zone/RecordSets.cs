@@ -9,16 +9,51 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Private_zone
 {
+    [Obsolete(@"volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets")]
     public static class RecordSets
     {
         /// <summary>
         /// Use this data source to query detailed information of private zone record sets
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Private_zone.GetRecordSets.Invoke(new()
+        ///     {
+        ///         Zid = 2450000,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<RecordSetsResult> InvokeAsync(RecordSetsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RecordSetsResult>("volcengine:private_zone/recordSets:RecordSets", args ?? new RecordSetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of private zone record sets
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Private_zone.GetRecordSets.Invoke(new()
+        ///     {
+        ///         Zid = 2450000,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<RecordSetsResult> Invoke(RecordSetsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RecordSetsResult>("volcengine:private_zone/recordSets:RecordSets", args ?? new RecordSetsInvokeArgs(), options.WithDefaults());

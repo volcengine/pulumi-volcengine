@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -46,12 +46,14 @@ import * as utilities from "../utilities";
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooBackup.push(new volcengine.redis.Backup(`fooBackup-${range.value}`, {instanceId: fooInstance.id}));
  * }
- * const fooBackups = volcengine.redis.BackupsOutput({
+ * const fooBackups = volcengine.redis.getBackupsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups */
 export function backups(args: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
+    pulumi.log.warn("backups is deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/backups:Backups", {
@@ -129,7 +131,7 @@ export interface BackupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -160,11 +162,12 @@ export interface BackupsResult {
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooBackup.push(new volcengine.redis.Backup(`fooBackup-${range.value}`, {instanceId: fooInstance.id}));
  * }
- * const fooBackups = volcengine.redis.BackupsOutput({
+ * const fooBackups = volcengine.redis.getBackupsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups */
 export function backupsOutput(args: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
     return pulumi.output(args).apply((a: any) => backups(a, opts))
 }

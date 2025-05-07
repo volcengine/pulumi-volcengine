@@ -12,6 +12,12 @@ from .bandwidth_package_associate import *
 from .bandwidth_packages import *
 from .cen import *
 from .cens import *
+from .get_attach_instances import *
+from .get_bandwidth_packages import *
+from .get_cens import *
+from .get_inter_region_bandwidths import *
+from .get_route_entries import *
+from .get_service_route_entries import *
 from .grant_instance import *
 from .inter_region_bandwidth import *
 from .inter_region_bandwidths import *

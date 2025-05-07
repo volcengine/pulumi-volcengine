@@ -17,6 +17,8 @@ __all__ = [
     'allow_lists_output',
 ]
 
+warnings.warn("""volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists""", DeprecationWarning)
+
 @pulumi.output_type
 class AllowListsResult:
     """
@@ -124,7 +126,7 @@ def allow_lists(instance_id: Optional[str] = None,
     foo_allow_list = volcengine.redis.AllowList("fooAllowList",
         allow_lists=["192.168.0.0/24"],
         allow_list_name="acc-test-allowlist")
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -151,7 +153,7 @@ def allow_lists(instance_id: Optional[str] = None,
     foo_allow_list_associate = volcengine.redis.AllowListAssociate("fooAllowListAssociate",
         allow_list_id=foo_allow_list.id,
         instance_id=foo_instance.id)
-    foo_allow_lists = volcengine.redis.allow_lists_output(instance_id=foo_allow_list_associate.instance_id,
+    foo_allow_lists = volcengine.redis.get_allow_lists_output(instance_id=foo_allow_list_associate.instance_id,
         region_id="cn-beijing",
         name_regex=foo_allow_list.allow_list_name)
     ```
@@ -162,6 +164,7 @@ def allow_lists(instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str region_id: The Id of region.
     """
+    pulumi.log.warn("""allow_lists is deprecated: volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
@@ -197,7 +200,7 @@ def allow_lists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None
     foo_allow_list = volcengine.redis.AllowList("fooAllowList",
         allow_lists=["192.168.0.0/24"],
         allow_list_name="acc-test-allowlist")
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -224,7 +227,7 @@ def allow_lists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None
     foo_allow_list_associate = volcengine.redis.AllowListAssociate("fooAllowListAssociate",
         allow_list_id=foo_allow_list.id,
         instance_id=foo_instance.id)
-    foo_allow_lists = volcengine.redis.allow_lists_output(instance_id=foo_allow_list_associate.instance_id,
+    foo_allow_lists = volcengine.redis.get_allow_lists_output(instance_id=foo_allow_list_associate.instance_id,
         region_id="cn-beijing",
         name_regex=foo_allow_list.allow_list_name)
     ```
@@ -235,4 +238,5 @@ def allow_lists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None
     :param str output_file: File name where to save data source results.
     :param str region_id: The Id of region.
     """
+    pulumi.log.warn("""allow_lists is deprecated: volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists""")
     ...

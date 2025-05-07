@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups")]
     public static class ServerGroups
     {
         /// <summary>
@@ -56,7 +57,7 @@ namespace Pulumi.Volcengine.Alb
         ///             },
         ///         }));
         ///     }
-        ///     var fooServerGroups = Volcengine.Alb.ServerGroups.Invoke(new()
+        ///     var fooServerGroups = Volcengine.Alb.GetServerGroups.Invoke(new()
         ///     {
         ///         Ids = fooServerGroup.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -112,7 +113,7 @@ namespace Pulumi.Volcengine.Alb
         ///             },
         ///         }));
         ///     }
-        ///     var fooServerGroups = Volcengine.Alb.ServerGroups.Invoke(new()
+        ///     var fooServerGroups = Volcengine.Alb.GetServerGroups.Invoke(new()
         ///     {
         ///         Ids = fooServerGroup.Select(__item =&gt; __item.Id).ToList(),
         ///     });

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -71,13 +71,15 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [fooVpcEndpointZone],
  * });
- * const fooVpcEndpointConnections = volcengine.privatelink.VpcEndpointConnectionsOutput({
+ * const fooVpcEndpointConnections = volcengine.privatelink.getVpcEndpointConnectionsOutput({
  *     endpointId: fooVpcEndpointConnection.endpointId,
  *     serviceId: fooVpcEndpointConnection.serviceId,
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections */
 export function vpcEndpointConnections(args: VpcEndpointConnectionsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointConnectionsResult> {
+    pulumi.log.warn("vpcEndpointConnections is deprecated: volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpointConnections:VpcEndpointConnections", {
@@ -149,7 +151,7 @@ export interface VpcEndpointConnectionsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -205,12 +207,13 @@ export interface VpcEndpointConnectionsResult {
  * }, {
  *     dependsOn: [fooVpcEndpointZone],
  * });
- * const fooVpcEndpointConnections = volcengine.privatelink.VpcEndpointConnectionsOutput({
+ * const fooVpcEndpointConnections = volcengine.privatelink.getVpcEndpointConnectionsOutput({
  *     endpointId: fooVpcEndpointConnection.endpointId,
  *     serviceId: fooVpcEndpointConnection.serviceId,
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections */
 export function vpcEndpointConnectionsOutput(args: VpcEndpointConnectionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointConnectionsResult> {
     return pulumi.output(args).apply((a: any) => vpcEndpointConnections(a, opts))
 }

@@ -29,10 +29,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
@@ -40,6 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
@@ -49,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// ipv4 public clb
+//			// create ipv4 public clb
 //			_, err = clb.NewClb(ctx, "publicClb", &clb.ClbArgs{
 //				Type:             pulumi.String("public"),
 //				SubnetId:         fooSubnet.ID(),
@@ -72,7 +74,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// ipv4 private clb
+//			// create ipv4 private clb
 //			privateClb, err := clb.NewClb(ctx, "privateClb", &clb.ClbArgs{
 //				Type:             pulumi.String("private"),
 //				SubnetId:         fooSubnet.ID(),
@@ -84,6 +86,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create eip
 //			eip, err := eip.NewAddress(ctx, "eip", &eip.AddressArgs{
 //				BillingType: pulumi.String("PostPaidByBandwidth"),
 //				Bandwidth:   pulumi.Int(1),
@@ -94,6 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// associate eip to clb
 //			_, err = eip.NewAssociate(ctx, "associate", &eip.AssociateArgs{
 //				AllocationId: eip.ID(),
 //				InstanceId:   privateClb.ID(),
@@ -102,7 +106,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// ipv6 private clb
+//			// create ipv6 vpc
 //			vpcIpv6, err := vpc.NewVpc(ctx, "vpcIpv6", &vpc.VpcArgs{
 //				VpcName:    pulumi.String("acc-test-vpc-ipv6"),
 //				CidrBlock:  pulumi.String("172.16.0.0/16"),
@@ -111,6 +115,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create ipv6 subnet
 //			subnetIpv6, err := vpc.NewSubnet(ctx, "subnetIpv6", &vpc.SubnetArgs{
 //				SubnetName:    pulumi.String("acc-test-subnet-ipv6"),
 //				CidrBlock:     pulumi.String("172.16.0.0/24"),
@@ -121,6 +126,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create ipv6 private clb
 //			privateClbIpv6, err := clb.NewClb(ctx, "privateClbIpv6", &clb.ClbArgs{
 //				Type:             pulumi.String("private"),
 //				SubnetId:         subnetIpv6.ID(),
@@ -133,6 +139,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create ipv6 gateway
 //			ipv6Gateway, err := vpc.NewIpv6Gateway(ctx, "ipv6Gateway", &vpc.Ipv6GatewayArgs{
 //				VpcId: vpcIpv6.ID(),
 //			})

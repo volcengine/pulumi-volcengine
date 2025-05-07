@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwControlPolicies({
+ * const foo = volcengine.cloud_firewall.getCfwControlPolicies({
  *     actions: ["deny"],
  *     direction: "in",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwControlPolicies */
 export function cfwControlPolicies(args: CfwControlPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<CfwControlPoliciesResult> {
+    pulumi.log.warn("cfwControlPolicies is deprecated: volcengine.cloud_firewall.CfwControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwControlPolicies")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloud_firewall/cfwControlPolicies:CfwControlPolicies", {
@@ -145,12 +147,13 @@ export interface CfwControlPoliciesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwControlPolicies({
+ * const foo = volcengine.cloud_firewall.getCfwControlPolicies({
  *     actions: ["deny"],
  *     direction: "in",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwControlPolicies */
 export function cfwControlPoliciesOutput(args: CfwControlPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CfwControlPoliciesResult> {
     return pulumi.output(args).apply((a: any) => cfwControlPolicies(a, opts))
 }

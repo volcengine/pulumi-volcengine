@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Regions({});
+ * const foo = volcengine.rds_mssql.getRegions({});
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Regions has been deprecated in favor of volcengine.rds_mssql.getRegions */
 export function regions(args?: RegionsArgs, opts?: pulumi.InvokeOptions): Promise<RegionsResult> {
+    pulumi.log.warn("regions is deprecated: volcengine.rds_mssql.Regions has been deprecated in favor of volcengine.rds_mssql.getRegions")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface RegionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Regions({});
+ * const foo = volcengine.rds_mssql.getRegions({});
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Regions has been deprecated in favor of volcengine.rds_mssql.getRegions */
 export function regionsOutput(args?: RegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RegionsResult> {
     return pulumi.output(args).apply((a: any) => regions(a, opts))
 }

@@ -17,6 +17,8 @@ __all__ = [
     'sasl_users_output',
 ]
 
+warnings.warn("""volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers""", DeprecationWarning)
+
 @pulumi.output_type
 class SaslUsersResult:
     """
@@ -111,7 +113,7 @@ def sasl_users(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -153,7 +155,7 @@ def sasl_users(instance_id: Optional[str] = None,
         description="tf-test",
         all_authority=True,
         password_type="Scram")
-    default = volcengine.kafka.sasl_users_output(instance_id=foo_instance.id,
+    default = volcengine.kafka.get_sasl_users_output(instance_id=foo_instance.id,
         user_name=foo_sasl_user.user_name)
     ```
 
@@ -162,6 +164,7 @@ def sasl_users(instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str user_name: The user name, support fuzzy matching.
     """
+    pulumi.log.warn("""sasl_users is deprecated: volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
@@ -191,7 +194,7 @@ def sasl_users_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -233,7 +236,7 @@ def sasl_users_output(instance_id: Optional[pulumi.Input[str]] = None,
         description="tf-test",
         all_authority=True,
         password_type="Scram")
-    default = volcengine.kafka.sasl_users_output(instance_id=foo_instance.id,
+    default = volcengine.kafka.get_sasl_users_output(instance_id=foo_instance.id,
         user_name=foo_sasl_user.user_name)
     ```
 
@@ -242,4 +245,5 @@ def sasl_users_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str user_name: The user name, support fuzzy matching.
     """
+    pulumi.log.warn("""sasl_users is deprecated: volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers""")
     ...

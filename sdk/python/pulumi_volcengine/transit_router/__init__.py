@@ -9,6 +9,17 @@ from .bandwidth_package import *
 from .bandwidth_packages import *
 from .direct_connect_gateway_attachment import *
 from .direct_connect_gateway_attachments import *
+from .get_bandwidth_packages import *
+from .get_direct_connect_gateway_attachments import *
+from .get_grant_rules import *
+from .get_peer_attachments import *
+from .get_route_entries import *
+from .get_route_table_associations import *
+from .get_route_table_propagations import *
+from .get_route_tables import *
+from .get_transit_routers import *
+from .get_vpc_attachments import *
+from .get_vpn_attachments import *
 from .grant_rule import *
 from .grant_rules import *
 from .peer_attachment import *

@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.SamlProviders({});
+ * const foo = volcengine.iam.getSamlProviders({});
  * ```
  */
+/** @deprecated volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders */
 export function samlProviders(args?: SamlProvidersArgs, opts?: pulumi.InvokeOptions): Promise<SamlProvidersResult> {
+    pulumi.log.warn("samlProviders is deprecated: volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface SamlProvidersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.SamlProviders({});
+ * const foo = volcengine.iam.getSamlProviders({});
  * ```
  */
+/** @deprecated volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders */
 export function samlProvidersOutput(args?: SamlProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SamlProvidersResult> {
     return pulumi.output(args).apply((a: any) => samlProviders(a, opts))
 }

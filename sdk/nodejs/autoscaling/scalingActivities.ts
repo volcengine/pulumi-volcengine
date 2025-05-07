@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -102,12 +102,14 @@ import * as utilities from "../utilities";
  *     }));
  *     }
  * });
- * const fooScalingActivities = volcengine.autoscaling.ScalingActivitiesOutput({
+ * const fooScalingActivities = volcengine.autoscaling.getScalingActivitiesOutput({
  *     scalingGroupId: fooScalingGroup.id,
  * });
  * ```
  */
+/** @deprecated volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities */
 export function scalingActivities(args: ScalingActivitiesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingActivitiesResult> {
+    pulumi.log.warn("scalingActivities is deprecated: volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingActivities:ScalingActivities", {
@@ -188,7 +190,7 @@ export interface ScalingActivitiesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -203,7 +205,7 @@ export interface ScalingActivitiesResult {
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -275,11 +277,12 @@ export interface ScalingActivitiesResult {
  *     }));
  *     }
  * });
- * const fooScalingActivities = volcengine.autoscaling.ScalingActivitiesOutput({
+ * const fooScalingActivities = volcengine.autoscaling.getScalingActivitiesOutput({
  *     scalingGroupId: fooScalingGroup.id,
  * });
  * ```
  */
+/** @deprecated volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities */
 export function scalingActivitiesOutput(args: ScalingActivitiesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingActivitiesResult> {
     return pulumi.output(args).apply((a: any) => scalingActivities(a, opts))
 }

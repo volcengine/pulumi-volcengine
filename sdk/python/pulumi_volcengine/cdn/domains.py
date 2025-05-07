@@ -17,6 +17,8 @@ __all__ = [
     'domains_output',
 ]
 
+warnings.warn("""volcengine.cdn.Domains has been deprecated in favor of volcengine.cdn.getDomains""", DeprecationWarning)
+
 @pulumi.output_type
 class DomainsResult:
     """
@@ -253,7 +255,7 @@ def domains(domain: Optional[str] = None,
                 ],
             },
         }))
-    foo_domains = volcengine.cdn.domains_output(domain=foo_cdn_domain.id)
+    foo_domains = volcengine.cdn.get_domains_output(domain=foo_cdn_domain.id)
     ```
 
 
@@ -268,6 +270,7 @@ def domains(domain: Optional[str] = None,
     :param str status: The status of the domain.
     :param Sequence[str] tags: Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
     """
+    pulumi.log.warn("""domains is deprecated: volcengine.cdn.Domains has been deprecated in favor of volcengine.cdn.getDomains""")
     __args__ = dict()
     __args__['domain'] = domain
     __args__['https'] = https
@@ -366,7 +369,7 @@ def domains_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                 ],
             },
         }))
-    foo_domains = volcengine.cdn.domains_output(domain=foo_cdn_domain.id)
+    foo_domains = volcengine.cdn.get_domains_output(domain=foo_cdn_domain.id)
     ```
 
 
@@ -381,4 +384,5 @@ def domains_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     :param str status: The status of the domain.
     :param Sequence[str] tags: Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
     """
+    pulumi.log.warn("""domains is deprecated: volcengine.cdn.Domains has been deprecated in favor of volcengine.cdn.getDomains""")
     ...

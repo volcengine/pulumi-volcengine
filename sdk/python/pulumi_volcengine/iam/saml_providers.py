@@ -17,6 +17,8 @@ __all__ = [
     'saml_providers_output',
 ]
 
+warnings.warn("""volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders""", DeprecationWarning)
+
 @pulumi.output_type
 class SamlProvidersResult:
     """
@@ -88,12 +90,13 @@ def saml_providers(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.saml_providers()
+    foo = volcengine.iam.get_saml_providers()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""saml_providers is deprecated: volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -117,10 +120,11 @@ def saml_providers_output(output_file: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.saml_providers()
+    foo = volcengine.iam.get_saml_providers()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""saml_providers is deprecated: volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders""")
     ...

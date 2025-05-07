@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds.Databases(ctx, &rds.DatabasesArgs{
+//			_, err := rds.GetDatabases(ctx, &rds.GetDatabasesArgs{
 //				InstanceId: "mysql-0fdd3bab2e7c",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases
 func Databases(ctx *pulumi.Context, args *DatabasesArgs, opts ...pulumi.InvokeOption) (*DatabasesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DatabasesResult

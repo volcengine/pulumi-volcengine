@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.HealthCheckTemplates(ctx, &alb.HealthCheckTemplatesArgs{
+//			_, err := alb.GetHealthCheckTemplates(ctx, &alb.GetHealthCheckTemplatesArgs{
 //				Ids: []string{
 //					"hctpl-1iidd1tobnim874adhf708uwf",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates
 func HealthCheckTemplates(ctx *pulumi.Context, args *HealthCheckTemplatesArgs, opts ...pulumi.InvokeOption) (*HealthCheckTemplatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv HealthCheckTemplatesResult

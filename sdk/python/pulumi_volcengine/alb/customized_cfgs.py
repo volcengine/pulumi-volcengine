@@ -17,6 +17,8 @@ __all__ = [
     'customized_cfgs_output',
 ]
 
+warnings.warn("""volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs""", DeprecationWarning)
+
 @pulumi.output_type
 class CustomizedCfgsResult:
     """
@@ -147,7 +149,7 @@ def customized_cfgs(customized_cfg_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.customized_cfgs()
+    foo = volcengine.alb.get_customized_cfgs()
     ```
 
 
@@ -158,6 +160,7 @@ def customized_cfgs(customized_cfg_name: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the CustomizedCfg.
     """
+    pulumi.log.warn("""customized_cfgs is deprecated: volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs""")
     __args__ = dict()
     __args__['customizedCfgName'] = customized_cfg_name
     __args__['ids'] = ids
@@ -196,7 +199,7 @@ def customized_cfgs_output(customized_cfg_name: Optional[pulumi.Input[Optional[s
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.customized_cfgs()
+    foo = volcengine.alb.get_customized_cfgs()
     ```
 
 
@@ -207,4 +210,5 @@ def customized_cfgs_output(customized_cfg_name: Optional[pulumi.Input[Optional[s
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the CustomizedCfg.
     """
+    pulumi.log.warn("""customized_cfgs is deprecated: volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs""")
     ...

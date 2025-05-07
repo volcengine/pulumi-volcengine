@@ -18,6 +18,8 @@ __all__ = [
     'topics_output',
 ]
 
+warnings.warn("""volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics""", DeprecationWarning)
+
 @pulumi.output_type
 class TopicsResult:
     """
@@ -161,7 +163,7 @@ def topics(is_full_name: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.topics(project_id="e020c978-4f05-40e1-9167-0113d3ef****",
+    default = volcengine.tls.get_topics(project_id="e020c978-4f05-40e1-9167-0113d3ef****",
         topic_id="edf051ed-3c46-49ba-9339-bea628fe****")
     ```
 
@@ -174,6 +176,7 @@ def topics(is_full_name: Optional[bool] = None,
     :param str topic_id: The id of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
     :param str topic_name: The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
     """
+    pulumi.log.warn("""topics is deprecated: volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics""")
     __args__ = dict()
     __args__['isFullName'] = is_full_name
     __args__['nameRegex'] = name_regex
@@ -215,7 +218,7 @@ def topics_output(is_full_name: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.topics(project_id="e020c978-4f05-40e1-9167-0113d3ef****",
+    default = volcengine.tls.get_topics(project_id="e020c978-4f05-40e1-9167-0113d3ef****",
         topic_id="edf051ed-3c46-49ba-9339-bea628fe****")
     ```
 
@@ -228,4 +231,5 @@ def topics_output(is_full_name: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str topic_id: The id of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
     :param str topic_name: The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
     """
+    pulumi.log.warn("""topics is deprecated: volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics""")
     ...

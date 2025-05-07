@@ -54,6 +54,7 @@ import * as tos from "./tos";
 import * as transit_router from "./transit_router";
 import * as types from "./types";
 import * as vedb_mysql from "./vedb_mysql";
+import * as veecp from "./veecp";
 import * as veenedge from "./veenedge";
 import * as vepfs from "./vepfs";
 import * as vke from "./vke";
@@ -103,6 +104,7 @@ export {
     transit_router,
     types,
     vedb_mysql,
+    veecp,
     veenedge,
     vepfs,
     vke,

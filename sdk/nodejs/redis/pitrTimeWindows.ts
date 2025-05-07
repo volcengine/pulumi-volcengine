@@ -6,7 +6,9 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/** @deprecated volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows */
 export function pitrTimeWindows(args: PitrTimeWindowsArgs, opts?: pulumi.InvokeOptions): Promise<PitrTimeWindowsResult> {
+    pulumi.log.warn("pitrTimeWindows is deprecated: volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/pitrTimeWindows:PitrTimeWindows", {
@@ -36,6 +38,7 @@ export interface PitrTimeWindowsResult {
     readonly periods: outputs.redis.PitrTimeWindowsPeriod[];
     readonly totalCount: number;
 }
+/** @deprecated volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows */
 export function pitrTimeWindowsOutput(args: PitrTimeWindowsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PitrTimeWindowsResult> {
     return pulumi.output(args).apply((a: any) => pitrTimeWindows(a, opts))
 }

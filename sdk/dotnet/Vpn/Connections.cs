@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpn
 {
+    [Obsolete(@"volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections")]
     public static class Connections
     {
         /// <summary>
@@ -88,7 +89,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         ProjectName = "default",
         ///     });
         /// 
-        ///     var fooConnections = Volcengine.Vpn.Connections.Invoke(new()
+        ///     var fooConnections = Volcengine.Vpn.GetConnections.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -179,7 +180,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         ProjectName = "default",
         ///     });
         /// 
-        ///     var fooConnections = Volcengine.Vpn.Connections.Invoke(new()
+        ///     var fooConnections = Volcengine.Vpn.GetConnections.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

@@ -92,7 +92,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cen.ServiceRouteEntriesOutput(ctx, cen.ServiceRouteEntriesOutputArgs{
+//			_ = cen.GetServiceRouteEntriesOutput(ctx, cen.GetServiceRouteEntriesOutputArgs{
 //				CenId:                fooCen.ID(),
 //				DestinationCidrBlock: fooServiceRouteEntry.DestinationCidrBlock,
 //			}, nil)
@@ -101,6 +101,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries
 func ServiceRouteEntries(ctx *pulumi.Context, args *ServiceRouteEntriesArgs, opts ...pulumi.InvokeOption) (*ServiceRouteEntriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServiceRouteEntriesResult

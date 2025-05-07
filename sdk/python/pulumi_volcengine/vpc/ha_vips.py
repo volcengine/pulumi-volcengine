@@ -18,6 +18,8 @@ __all__ = [
     'ha_vips_output',
 ]
 
+warnings.warn("""volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips""", DeprecationWarning)
+
 @pulumi.output_type
 class HaVipsResult:
     """
@@ -200,7 +202,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -214,7 +216,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
         description="acc-test",
         subnet_id=foo_subnet.id)
     #  ip_address = "172.16.0.5"
-    foo_ha_vips = volcengine.vpc.ha_vips_output(ids=[foo_ha_vip.id])
+    foo_ha_vips = volcengine.vpc.get_ha_vips_output(ids=[foo_ha_vip.id])
     ```
 
 
@@ -229,6 +231,7 @@ def ha_vips(ha_vip_name: Optional[str] = None,
     :param Sequence[pulumi.InputType['HaVipsTagArgs']] tags: Tags.
     :param str vpc_id: The id of vpc.
     """
+    pulumi.log.warn("""ha_vips is deprecated: volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips""")
     __args__ = dict()
     __args__['haVipName'] = ha_vip_name
     __args__['ids'] = ids
@@ -279,7 +282,7 @@ def ha_vips_output(ha_vip_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -293,7 +296,7 @@ def ha_vips_output(ha_vip_name: Optional[pulumi.Input[Optional[str]]] = None,
         description="acc-test",
         subnet_id=foo_subnet.id)
     #  ip_address = "172.16.0.5"
-    foo_ha_vips = volcengine.vpc.ha_vips_output(ids=[foo_ha_vip.id])
+    foo_ha_vips = volcengine.vpc.get_ha_vips_output(ids=[foo_ha_vip.id])
     ```
 
 
@@ -308,4 +311,5 @@ def ha_vips_output(ha_vip_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['HaVipsTagArgs']] tags: Tags.
     :param str vpc_id: The id of vpc.
     """
+    pulumi.log.warn("""ha_vips is deprecated: volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips""")
     ...

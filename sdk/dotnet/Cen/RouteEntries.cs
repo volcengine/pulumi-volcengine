@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cen
 {
+    [Obsolete(@"volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries")]
     public static class RouteEntries
     {
         /// <summary>

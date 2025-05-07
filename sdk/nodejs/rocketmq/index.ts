@@ -15,6 +15,31 @@ export const allowLists: typeof import("./allowLists").allowLists = null as any;
 export const allowListsOutput: typeof import("./allowLists").allowListsOutput = null as any;
 utilities.lazyLoad(exports, ["allowLists","allowListsOutput"], () => require("./allowLists"));
 
+export { GetAccessKeysArgs, GetAccessKeysResult, GetAccessKeysOutputArgs } from "./getAccessKeys";
+export const getAccessKeys: typeof import("./getAccessKeys").getAccessKeys = null as any;
+export const getAccessKeysOutput: typeof import("./getAccessKeys").getAccessKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessKeys","getAccessKeysOutput"], () => require("./getAccessKeys"));
+
+export { GetAllowListsArgs, GetAllowListsResult, GetAllowListsOutputArgs } from "./getAllowLists";
+export const getAllowLists: typeof import("./getAllowLists").getAllowLists = null as any;
+export const getAllowListsOutput: typeof import("./getAllowLists").getAllowListsOutput = null as any;
+utilities.lazyLoad(exports, ["getAllowLists","getAllowListsOutput"], () => require("./getAllowLists"));
+
+export { GetGroupsArgs, GetGroupsResult, GetGroupsOutputArgs } from "./getGroups";
+export const getGroups: typeof import("./getGroups").getGroups = null as any;
+export const getGroupsOutput: typeof import("./getGroups").getGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getGroups","getGroupsOutput"], () => require("./getGroups"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetTopicsArgs, GetTopicsResult, GetTopicsOutputArgs } from "./getTopics";
+export const getTopics: typeof import("./getTopics").getTopics = null as any;
+export const getTopicsOutput: typeof import("./getTopics").getTopicsOutput = null as any;
+utilities.lazyLoad(exports, ["getTopics","getTopicsOutput"], () => require("./getTopics"));
+
 export { GroupsArgs, GroupsResult, GroupsOutputArgs } from "./groups";
 export const groups: typeof import("./groups").groups = null as any;
 export const groupsOutput: typeof import("./groups").groupsOutput = null as any;

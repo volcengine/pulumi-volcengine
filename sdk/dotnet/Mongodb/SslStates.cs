@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.SslStates has been deprecated in favor of volcengine.mongodb.getSslStates")]
     public static class SslStates
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -53,7 +54,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///         ShardNumber = 3,
         ///         StorageSpaceGb = 20,
         ///         SubnetId = fooSubnet.Id,
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         Tags = new[]
         ///         {
         ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
@@ -69,7 +70,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooSslStates = Volcengine.Mongodb.SslStates.Invoke(new()
+        ///     var fooSslStates = Volcengine.Mongodb.GetSslStates.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///     });
@@ -92,7 +93,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -104,7 +105,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -122,7 +123,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///         ShardNumber = 3,
         ///         StorageSpaceGb = 20,
         ///         SubnetId = fooSubnet.Id,
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         Tags = new[]
         ///         {
         ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
@@ -138,7 +139,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooSslStates = Volcengine.Mongodb.SslStates.Invoke(new()
+        ///     var fooSslStates = Volcengine.Mongodb.GetSslStates.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///     });

@@ -17,6 +17,8 @@ __all__ = [
     'topics_output',
 ]
 
+warnings.warn("""volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics""", DeprecationWarning)
+
 @pulumi.output_type
 class TopicsResult:
     """
@@ -160,7 +162,7 @@ def topics(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -218,7 +220,7 @@ def topics(instance_id: Optional[str] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = volcengine.kafka.topics_output(instance_id=foo_topic.instance_id)
+    default = volcengine.kafka.get_topics_output(instance_id=foo_topic.instance_id)
     ```
 
 
@@ -230,6 +232,7 @@ def topics(instance_id: Optional[str] = None,
     :param str topic_name: The name of kafka topic. This field supports fuzzy query.
     :param str user_name: When a user name is specified, only the access policy of the specified user for this Topic will be returned.
     """
+    pulumi.log.warn("""topics is deprecated: volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
@@ -271,7 +274,7 @@ def topics_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -329,7 +332,7 @@ def topics_output(instance_id: Optional[pulumi.Input[str]] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = volcengine.kafka.topics_output(instance_id=foo_topic.instance_id)
+    default = volcengine.kafka.get_topics_output(instance_id=foo_topic.instance_id)
     ```
 
 
@@ -341,4 +344,5 @@ def topics_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str topic_name: The name of kafka topic. This field supports fuzzy query.
     :param str user_name: When a user name is specified, only the access policy of the specified user for this Topic will be returned.
     """
+    pulumi.log.warn("""topics is deprecated: volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics""")
     ...

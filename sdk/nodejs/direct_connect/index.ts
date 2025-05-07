@@ -45,6 +45,31 @@ export const gateways: typeof import("./gateways").gateways = null as any;
 export const gatewaysOutput: typeof import("./gateways").gatewaysOutput = null as any;
 utilities.lazyLoad(exports, ["gateways","gatewaysOutput"], () => require("./gateways"));
 
+export { GetBgpPeersArgs, GetBgpPeersResult, GetBgpPeersOutputArgs } from "./getBgpPeers";
+export const getBgpPeers: typeof import("./getBgpPeers").getBgpPeers = null as any;
+export const getBgpPeersOutput: typeof import("./getBgpPeers").getBgpPeersOutput = null as any;
+utilities.lazyLoad(exports, ["getBgpPeers","getBgpPeersOutput"], () => require("./getBgpPeers"));
+
+export { GetConnectionsArgs, GetConnectionsResult, GetConnectionsOutputArgs } from "./getConnections";
+export const getConnections: typeof import("./getConnections").getConnections = null as any;
+export const getConnectionsOutput: typeof import("./getConnections").getConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getConnections","getConnectionsOutput"], () => require("./getConnections"));
+
+export { GetGatewayRoutesArgs, GetGatewayRoutesResult, GetGatewayRoutesOutputArgs } from "./getGatewayRoutes";
+export const getGatewayRoutes: typeof import("./getGatewayRoutes").getGatewayRoutes = null as any;
+export const getGatewayRoutesOutput: typeof import("./getGatewayRoutes").getGatewayRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["getGatewayRoutes","getGatewayRoutesOutput"], () => require("./getGatewayRoutes"));
+
+export { GetGatewaysArgs, GetGatewaysResult, GetGatewaysOutputArgs } from "./getGateways";
+export const getGateways: typeof import("./getGateways").getGateways = null as any;
+export const getGatewaysOutput: typeof import("./getGateways").getGatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["getGateways","getGatewaysOutput"], () => require("./getGateways"));
+
+export { GetVirtualInterfacesArgs, GetVirtualInterfacesResult, GetVirtualInterfacesOutputArgs } from "./getVirtualInterfaces";
+export const getVirtualInterfaces: typeof import("./getVirtualInterfaces").getVirtualInterfaces = null as any;
+export const getVirtualInterfacesOutput: typeof import("./getVirtualInterfaces").getVirtualInterfacesOutput = null as any;
+utilities.lazyLoad(exports, ["getVirtualInterfaces","getVirtualInterfacesOutput"], () => require("./getVirtualInterfaces"));
+
 export { VirtualInterfaceArgs, VirtualInterfaceState } from "./virtualInterface";
 export type VirtualInterface = import("./virtualInterface").VirtualInterface;
 export const VirtualInterface: typeof import("./virtualInterface").VirtualInterface = null as any;

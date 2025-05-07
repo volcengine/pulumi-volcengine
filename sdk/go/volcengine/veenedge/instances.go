@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := veenedge.Instances(ctx, &veenedge.InstancesArgs{
+//			_, err := veenedge.GetInstances(ctx, &veenedge.GetInstancesArgs{
 //				Ids: []string{
 //					"veen28*****21",
 //					"veen177110*****172",
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

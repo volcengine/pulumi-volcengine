@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cr
 {
+    [Obsolete(@"volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries")]
     public static class Registries
     {
         /// <summary>
@@ -23,11 +24,11 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Registries.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetRegistries.Invoke(new()
         ///     {
         ///         Statuses = new[]
         ///         {
-        ///             new Volcengine.Cr.Inputs.RegistriesStatusInputArgs
+        ///             new Volcengine.Cr.Inputs.GetRegistriesStatusInputArgs
         ///             {
         ///                 Condition = "Ok",
         ///                 Phase = "Running",
@@ -53,11 +54,11 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Registries.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetRegistries.Invoke(new()
         ///     {
         ///         Statuses = new[]
         ///         {
-        ///             new Volcengine.Cr.Inputs.RegistriesStatusInputArgs
+        ///             new Volcengine.Cr.Inputs.GetRegistriesStatusInputArgs
         ///             {
         ///                 Condition = "Ok",
         ///                 Phase = "Running",

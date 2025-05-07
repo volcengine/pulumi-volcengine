@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.transit_router.VpcAttachments({
+ * const default = volcengine.transit_router.getVpcAttachments({
  *     transitRouterAttachmentIds: ["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
  *     transitRouterId: "tr-2d6fr7f39unsw58ozfe1ow21x",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments */
 export function vpcAttachments(args: VpcAttachmentsArgs, opts?: pulumi.InvokeOptions): Promise<VpcAttachmentsResult> {
+    pulumi.log.warn("vpcAttachments is deprecated: volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/vpcAttachments:VpcAttachments", {
@@ -97,12 +99,13 @@ export interface VpcAttachmentsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.transit_router.VpcAttachments({
+ * const default = volcengine.transit_router.getVpcAttachments({
  *     transitRouterAttachmentIds: ["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
  *     transitRouterId: "tr-2d6fr7f39unsw58ozfe1ow21x",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments */
 export function vpcAttachmentsOutput(args: VpcAttachmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcAttachmentsResult> {
     return pulumi.output(args).apply((a: any) => vpcAttachments(a, opts))
 }

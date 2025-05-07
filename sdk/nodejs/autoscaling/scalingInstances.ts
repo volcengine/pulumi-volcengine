@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -102,13 +102,15 @@ import * as utilities from "../utilities";
  *     }));
  *     }
  * });
- * const fooScalingInstances = volcengine.autoscaling.ScalingInstancesOutput({
+ * const fooScalingInstances = volcengine.autoscaling.getScalingInstancesOutput({
  *     scalingGroupId: fooScalingGroup.id,
  *     ids: fooScalingInstanceAttachment.map(__item => __item.instanceId),
  * });
  * ```
  */
+/** @deprecated volcengine.autoscaling.ScalingInstances has been deprecated in favor of volcengine.autoscaling.getScalingInstances */
 export function scalingInstances(args: ScalingInstancesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingInstancesResult> {
+    pulumi.log.warn("scalingInstances is deprecated: volcengine.autoscaling.ScalingInstances has been deprecated in favor of volcengine.autoscaling.getScalingInstances")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingInstances:ScalingInstances", {
@@ -195,7 +197,7 @@ export interface ScalingInstancesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -210,7 +212,7 @@ export interface ScalingInstancesResult {
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -282,12 +284,13 @@ export interface ScalingInstancesResult {
  *     }));
  *     }
  * });
- * const fooScalingInstances = volcengine.autoscaling.ScalingInstancesOutput({
+ * const fooScalingInstances = volcengine.autoscaling.getScalingInstancesOutput({
  *     scalingGroupId: fooScalingGroup.id,
  *     ids: fooScalingInstanceAttachment.map(__item => __item.instanceId),
  * });
  * ```
  */
+/** @deprecated volcengine.autoscaling.ScalingInstances has been deprecated in favor of volcengine.autoscaling.getScalingInstances */
 export function scalingInstancesOutput(args: ScalingInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingInstancesResult> {
     return pulumi.output(args).apply((a: any) => scalingInstances(a, opts))
 }

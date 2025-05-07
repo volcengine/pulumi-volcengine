@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Projects({});
+ * const default = volcengine.tls.getProjects({});
  * ```
  */
+/** @deprecated volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects */
 export function projects(args?: ProjectsArgs, opts?: pulumi.InvokeOptions): Promise<ProjectsResult> {
+    pulumi.log.warn("projects is deprecated: volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -110,9 +112,10 @@ export interface ProjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Projects({});
+ * const default = volcengine.tls.getProjects({});
  * ```
  */
+/** @deprecated volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects */
 export function projectsOutput(args?: ProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ProjectsResult> {
     return pulumi.output(args).apply((a: any) => projects(a, opts))
 }

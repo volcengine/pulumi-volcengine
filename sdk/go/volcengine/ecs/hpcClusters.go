@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.HpcClusters(ctx, &ecs.HpcClustersArgs{
+//			_, err := ecs.GetHpcClusters(ctx, &ecs.GetHpcClustersArgs{
 //				ZoneId: pulumi.StringRef("cn-beijing-a"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters
 func HpcClusters(ctx *pulumi.Context, args *HpcClustersArgs, opts ...pulumi.InvokeOption) (*HpcClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv HpcClustersResult

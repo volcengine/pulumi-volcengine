@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -99,7 +99,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = rds_mysql.AllowlistsOutput(ctx, rds_mysql.AllowlistsOutputArgs{
+//			_ = rds_mysql.GetAllowlistsOutput(ctx, rds_mysql.GetAllowlistsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //				RegionId:   pulumi.String("cn-beijing"),
 //			}, nil)
@@ -108,6 +108,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.Allowlists has been deprecated in favor of volcengine.rds_mysql.getAllowlists
 func Allowlists(ctx *pulumi.Context, args *AllowlistsArgs, opts ...pulumi.InvokeOption) (*AllowlistsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowlistsResult

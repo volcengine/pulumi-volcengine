@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Repositories({
+ * const foo = volcengine.cr.getRepositories({
  *     names: ["repo*"],
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories */
 export function repositories(args: RepositoriesArgs, opts?: pulumi.InvokeOptions): Promise<RepositoriesResult> {
+    pulumi.log.warn("repositories is deprecated: volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/repositories:Repositories", {
@@ -88,12 +90,13 @@ export interface RepositoriesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Repositories({
+ * const foo = volcengine.cr.getRepositories({
  *     names: ["repo*"],
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories */
 export function repositoriesOutput(args: RepositoriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RepositoriesResult> {
     return pulumi.output(args).apply((a: any) => repositories(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ebs
 {
+    [Obsolete(@"volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies")]
     public static class AutoSnapshotPolicies
     {
         /// <summary>
@@ -53,7 +54,7 @@ namespace Pulumi.Volcengine.Ebs
         ///             },
         ///         }));
         ///     }
-        ///     var fooAutoSnapshotPolicies = Volcengine.Ebs.AutoSnapshotPolicies.Invoke(new()
+        ///     var fooAutoSnapshotPolicies = Volcengine.Ebs.GetAutoSnapshotPolicies.Invoke(new()
         ///     {
         ///         Ids = fooAutoSnapshotPolicy.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -106,7 +107,7 @@ namespace Pulumi.Volcengine.Ebs
         ///             },
         ///         }));
         ///     }
-        ///     var fooAutoSnapshotPolicies = Volcengine.Ebs.AutoSnapshotPolicies.Invoke(new()
+        ///     var fooAutoSnapshotPolicies = Volcengine.Ebs.GetAutoSnapshotPolicies.Invoke(new()
         ///     {
         ///         Ids = fooAutoSnapshotPolicy.Select(__item =&gt; __item.Id).ToList(),
         ///     });

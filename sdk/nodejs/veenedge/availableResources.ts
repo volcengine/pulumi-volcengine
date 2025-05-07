@@ -14,14 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.AvailableResources({
+ * const default = volcengine.veenedge.getAvailableResources({
  *     bandwithLimit: 20,
  *     cloudDiskType: "CloudSSD",
  *     instanceType: "ve******rge",
  * });
  * ```
  */
+/** @deprecated volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources */
 export function availableResources(args: AvailableResourcesArgs, opts?: pulumi.InvokeOptions): Promise<AvailableResourcesResult> {
+    pulumi.log.warn("availableResources is deprecated: volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:veenedge/availableResources:AvailableResources", {
@@ -83,13 +85,14 @@ export interface AvailableResourcesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.AvailableResources({
+ * const default = volcengine.veenedge.getAvailableResources({
  *     bandwithLimit: 20,
  *     cloudDiskType: "CloudSSD",
  *     instanceType: "ve******rge",
  * });
  * ```
  */
+/** @deprecated volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources */
 export function availableResourcesOutput(args: AvailableResourcesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AvailableResourcesResult> {
     return pulumi.output(args).apply((a: any) => availableResources(a, opts))
 }

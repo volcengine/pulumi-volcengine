@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -61,12 +61,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooInstances = volcengine.ecs.InstancesOutput({
+ * const fooInstances = volcengine.ecs.getInstancesOutput({
  *     ids: fooInstance.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Instances has been deprecated in favor of volcengine.ecs.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.ecs.Instances has been deprecated in favor of volcengine.ecs.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -244,7 +246,7 @@ export interface InstancesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -259,7 +261,7 @@ export interface InstancesResult {
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -290,11 +292,12 @@ export interface InstancesResult {
  *         }],
  *     }));
  * }
- * const fooInstances = volcengine.ecs.InstancesOutput({
+ * const fooInstances = volcengine.ecs.getInstancesOutput({
  *     ids: fooInstance.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Instances has been deprecated in favor of volcengine.ecs.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

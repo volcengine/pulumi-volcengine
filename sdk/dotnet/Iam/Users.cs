@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Iam
 {
+    [Obsolete(@"volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers")]
     public static class Users
     {
         /// <summary>
@@ -30,7 +31,7 @@ namespace Pulumi.Volcengine.Iam
         ///         DisplayName = "name",
         ///     });
         /// 
-        ///     var fooUsers = Volcengine.Iam.Users.Invoke(new()
+        ///     var fooUsers = Volcengine.Iam.GetUsers.Invoke(new()
         ///     {
         ///         UserNames = new[]
         ///         {
@@ -63,7 +64,7 @@ namespace Pulumi.Volcengine.Iam
         ///         DisplayName = "name",
         ///     });
         /// 
-        ///     var fooUsers = Volcengine.Iam.Users.Invoke(new()
+        ///     var fooUsers = Volcengine.Iam.GetUsers.Invoke(new()
         ///     {
         ///         UserNames = new[]
         ///         {

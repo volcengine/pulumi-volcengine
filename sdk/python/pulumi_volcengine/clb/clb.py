@@ -735,16 +735,18 @@ class Clb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        # ipv4 public clb
+        # create ipv4 public clb
         public_clb = volcengine.clb.Clb("publicClb",
             type="public",
             subnet_id=foo_subnet.id,
@@ -761,7 +763,7 @@ class Clb(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
-        # ipv4 private clb
+        # create ipv4 private clb
         private_clb = volcengine.clb.Clb("privateClb",
             type="private",
             subnet_id=foo_subnet.id,
@@ -769,27 +771,31 @@ class Clb(pulumi.CustomResource):
             load_balancer_spec="small_1",
             description="acc-test-demo",
             project_name="default")
+        # create eip
         eip = volcengine.eip.Address("eip",
             billing_type="PostPaidByBandwidth",
             bandwidth=1,
             isp="BGP",
             description="tf-test",
             project_name="default")
+        # associate eip to clb
         associate = volcengine.eip.Associate("associate",
             allocation_id=eip.id,
             instance_id=private_clb.id,
             instance_type="ClbInstance")
-        # ipv6 private clb
+        # create ipv6 vpc
         vpc_ipv6 = volcengine.vpc.Vpc("vpcIpv6",
             vpc_name="acc-test-vpc-ipv6",
             cidr_block="172.16.0.0/16",
             enable_ipv6=True)
+        # create ipv6 subnet
         subnet_ipv6 = volcengine.vpc.Subnet("subnetIpv6",
             subnet_name="acc-test-subnet-ipv6",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[1].id,
             vpc_id=vpc_ipv6.id,
             ipv6_cidr_block=1)
+        # create ipv6 private clb
         private_clb_ipv6 = volcengine.clb.Clb("privateClbIpv6",
             type="private",
             subnet_id=subnet_ipv6.id,
@@ -798,6 +804,7 @@ class Clb(pulumi.CustomResource):
             description="acc-test-demo",
             project_name="default",
             address_ip_version="DualStack")
+        # create ipv6 gateway
         ipv6_gateway = volcengine.vpc.Ipv6Gateway("ipv6Gateway", vpc_id=vpc_ipv6.id)
         foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
             ipv6_address=private_clb_ipv6.eni_ipv6_address,
@@ -850,16 +857,18 @@ class Clb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        # ipv4 public clb
+        # create ipv4 public clb
         public_clb = volcengine.clb.Clb("publicClb",
             type="public",
             subnet_id=foo_subnet.id,
@@ -876,7 +885,7 @@ class Clb(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
-        # ipv4 private clb
+        # create ipv4 private clb
         private_clb = volcengine.clb.Clb("privateClb",
             type="private",
             subnet_id=foo_subnet.id,
@@ -884,27 +893,31 @@ class Clb(pulumi.CustomResource):
             load_balancer_spec="small_1",
             description="acc-test-demo",
             project_name="default")
+        # create eip
         eip = volcengine.eip.Address("eip",
             billing_type="PostPaidByBandwidth",
             bandwidth=1,
             isp="BGP",
             description="tf-test",
             project_name="default")
+        # associate eip to clb
         associate = volcengine.eip.Associate("associate",
             allocation_id=eip.id,
             instance_id=private_clb.id,
             instance_type="ClbInstance")
-        # ipv6 private clb
+        # create ipv6 vpc
         vpc_ipv6 = volcengine.vpc.Vpc("vpcIpv6",
             vpc_name="acc-test-vpc-ipv6",
             cidr_block="172.16.0.0/16",
             enable_ipv6=True)
+        # create ipv6 subnet
         subnet_ipv6 = volcengine.vpc.Subnet("subnetIpv6",
             subnet_name="acc-test-subnet-ipv6",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[1].id,
             vpc_id=vpc_ipv6.id,
             ipv6_cidr_block=1)
+        # create ipv6 private clb
         private_clb_ipv6 = volcengine.clb.Clb("privateClbIpv6",
             type="private",
             subnet_id=subnet_ipv6.id,
@@ -913,6 +926,7 @@ class Clb(pulumi.CustomResource):
             description="acc-test-demo",
             project_name="default",
             address_ip_version="DualStack")
+        # create ipv6 gateway
         ipv6_gateway = volcengine.vpc.Ipv6Gateway("ipv6Gateway", vpc_id=vpc_ipv6.id)
         foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
             ipv6_address=private_clb_ipv6.eni_ipv6_address,

@@ -100,6 +100,50 @@ __all__ = [
     'SupportAddonsAddonVersionResult',
     'SupportAddonsAddonVersionCompatibilityResult',
     'SupportResourceTypesResourceResult',
+    'GetAddonsAddonResult',
+    'GetAddonsAddonStatusResult',
+    'GetAddonsAddonStatusConditionResult',
+    'GetAddonsStatusResult',
+    'GetClustersClusterResult',
+    'GetClustersClusterClusterConfigResult',
+    'GetClustersClusterClusterConfigApiServerEndpointsResult',
+    'GetClustersClusterClusterConfigApiServerEndpointsPrivateIpResult',
+    'GetClustersClusterClusterConfigApiServerEndpointsPublicIpResult',
+    'GetClustersClusterClusterConfigApiServerPublicAccessConfigResult',
+    'GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult',
+    'GetClustersClusterLoggingConfigResult',
+    'GetClustersClusterLoggingConfigLogSetupResult',
+    'GetClustersClusterNodeStatisticsResult',
+    'GetClustersClusterPodsConfigResult',
+    'GetClustersClusterPodsConfigFlannelConfigResult',
+    'GetClustersClusterPodsConfigVpcCniConfigResult',
+    'GetClustersClusterServicesConfigResult',
+    'GetClustersClusterStatusResult',
+    'GetClustersClusterStatusConditionResult',
+    'GetClustersClusterTagResult',
+    'GetClustersStatusResult',
+    'GetClustersTagResult',
+    'GetKubeconfigsKubeconfigResult',
+    'GetNodePoolsNodePoolResult',
+    'GetNodePoolsNodePoolDataVolumeResult',
+    'GetNodePoolsNodePoolEcsTagResult',
+    'GetNodePoolsNodePoolKubeletConfigResult',
+    'GetNodePoolsNodePoolKubeletConfigFeatureGateResult',
+    'GetNodePoolsNodePoolLabelContentResult',
+    'GetNodePoolsNodePoolNodeStatisticResult',
+    'GetNodePoolsNodePoolSystemVolumeResult',
+    'GetNodePoolsNodePoolTagResult',
+    'GetNodePoolsNodePoolTaintContentResult',
+    'GetNodePoolsStatusResult',
+    'GetNodePoolsTagResult',
+    'GetNodesNodeResult',
+    'GetNodesNodeLabelResult',
+    'GetNodesNodeTaintResult',
+    'GetNodesStatusResult',
+    'GetSupportAddonsAddonResult',
+    'GetSupportAddonsAddonVersionResult',
+    'GetSupportAddonsAddonVersionCompatibilityResult',
+    'GetSupportResourceTypesResourceResult',
 ]
 
 @pulumi.output_type
@@ -3342,7 +3386,7 @@ class NodePoolNodeConfig(dict):
                  project_name: Optional[str] = None,
                  system_volume: Optional['outputs.NodePoolNodeConfigSystemVolume'] = None):
         """
-        :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
+        :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke_get_support_resource_types datasource.
         :param 'NodePoolNodeConfigSecurityArgs' security: The Security of NodeConfig.
         :param Sequence[str] subnet_ids: The SubnetIds of NodeConfig.
         :param bool additional_container_storage_enabled: The AdditionalContainerStorageEnabled of NodeConfig.
@@ -3393,7 +3437,7 @@ class NodePoolNodeConfig(dict):
     @pulumi.getter(name="instanceTypeIds")
     def instance_type_ids(self) -> Sequence[str]:
         """
-        The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
+        The InstanceTypeIds of NodeConfig. The value can get from vke_get_support_resource_types datasource.
         """
         return pulumi.get(self, "instance_type_ids")
 
@@ -5327,6 +5371,2628 @@ class SupportAddonsAddonVersionCompatibilityResult(dict):
 
 @pulumi.output_type
 class SupportResourceTypesResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_scope: str,
+                 resource_specifications: Sequence[str],
+                 resource_type: str,
+                 zone_id: str):
+        """
+        :param str resource_scope: The scope of resource.
+        :param Sequence[str] resource_specifications: The resource specifications info.
+        :param str resource_type: The type of resource.
+        :param str zone_id: The id of zone.
+        """
+        pulumi.set(__self__, "resource_scope", resource_scope)
+        pulumi.set(__self__, "resource_specifications", resource_specifications)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="resourceScope")
+    def resource_scope(self) -> str:
+        """
+        The scope of resource.
+        """
+        return pulumi.get(self, "resource_scope")
+
+    @property
+    @pulumi.getter(name="resourceSpecifications")
+    def resource_specifications(self) -> Sequence[str]:
+        """
+        The resource specifications info.
+        """
+        return pulumi.get(self, "resource_specifications")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of resource.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetAddonsAddonResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: str,
+                 config: str,
+                 create_time: str,
+                 deploy_mode: str,
+                 deploy_node_type: str,
+                 name: str,
+                 status: 'outputs.GetAddonsAddonStatusResult',
+                 update_time: str,
+                 version: str,
+                 create_client_token: Optional[str] = None,
+                 update_client_token: Optional[str] = None):
+        """
+        :param str cluster_id: The ID of the Cluster.
+        :param str config: The config of addon.
+        :param str create_time: Addon creation time. UTC+0 time in standard RFC3339 format.
+        :param str deploy_mode: The deploy mode.
+        :param str deploy_node_type: The deploy node type.
+        :param str name: The name of the cluster.
+        :param 'GetAddonsAddonStatusArgs' status: The status of the addon.
+        :param str update_time: The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+        :param str version: The name of the cluster.
+        :param str create_client_token: ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        :param str update_client_token: The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "deploy_mode", deploy_mode)
+        pulumi.set(__self__, "deploy_node_type", deploy_node_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+        if create_client_token is not None:
+            pulumi.set(__self__, "create_client_token", create_client_token)
+        if update_client_token is not None:
+            pulumi.set(__self__, "update_client_token", update_client_token)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The ID of the Cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter
+    def config(self) -> str:
+        """
+        The config of addon.
+        """
+        return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Addon creation time. UTC+0 time in standard RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="deployMode")
+    def deploy_mode(self) -> str:
+        """
+        The deploy mode.
+        """
+        return pulumi.get(self, "deploy_mode")
+
+    @property
+    @pulumi.getter(name="deployNodeType")
+    def deploy_node_type(self) -> str:
+        """
+        The deploy node type.
+        """
+        return pulumi.get(self, "deploy_node_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> 'outputs.GetAddonsAddonStatusResult':
+        """
+        The status of the addon.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The name of the cluster.
+        """
+        return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter(name="createClientToken")
+    def create_client_token(self) -> Optional[str]:
+        """
+        ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        """
+        return pulumi.get(self, "create_client_token")
+
+    @property
+    @pulumi.getter(name="updateClientToken")
+    def update_client_token(self) -> Optional[str]:
+        """
+        The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        """
+        return pulumi.get(self, "update_client_token")
+
+
+@pulumi.output_type
+class GetAddonsAddonStatusResult(dict):
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.GetAddonsAddonStatusConditionResult'],
+                 phase: str):
+        """
+        :param Sequence['GetAddonsAddonStatusConditionArgs'] conditions: The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+        :param str phase: The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.GetAddonsAddonStatusConditionResult']:
+        """
+        The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+        """
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> str:
+        """
+        The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetAddonsAddonStatusConditionResult(dict):
+    def __init__(__self__, *,
+                 type: str):
+        """
+        :param str type: The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAddonsStatusResult(dict):
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        :param str phase: The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetClustersClusterResult(dict):
+    def __init__(__self__, *,
+                 cluster_config: 'outputs.GetClustersClusterClusterConfigResult',
+                 create_time: str,
+                 delete_protection_enabled: bool,
+                 description: str,
+                 eip_allocation_id: str,
+                 id: str,
+                 kubeconfig_private: str,
+                 kubeconfig_public: str,
+                 kubernetes_version: str,
+                 logging_configs: Sequence['outputs.GetClustersClusterLoggingConfigResult'],
+                 name: str,
+                 node_statistics: 'outputs.GetClustersClusterNodeStatisticsResult',
+                 pods_config: 'outputs.GetClustersClusterPodsConfigResult',
+                 project_name: str,
+                 services_config: 'outputs.GetClustersClusterServicesConfigResult',
+                 status: 'outputs.GetClustersClusterStatusResult',
+                 tags: Sequence['outputs.GetClustersClusterTagResult'],
+                 update_time: str,
+                 create_client_token: Optional[str] = None,
+                 update_client_token: Optional[str] = None):
+        """
+        :param 'GetClustersClusterClusterConfigArgs' cluster_config: The config of the cluster.
+        :param str create_time: Cluster creation time. UTC+0 time in standard RFC3339 format.
+        :param bool delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
+        :param str description: The description of the cluster.
+        :param str eip_allocation_id: Eip allocation Id.
+        :param str id: The ID of the Cluster.
+        :param str kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
+        :param str kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
+        :param str kubernetes_version: The Kubernetes version information corresponding to the cluster, specific to the patch version.
+        :param Sequence['GetClustersClusterLoggingConfigArgs'] logging_configs: Cluster log configuration information.
+        :param str name: The name of the cluster.
+        :param 'GetClustersClusterNodeStatisticsArgs' node_statistics: Statistics on the number of nodes corresponding to each master state in the cluster.
+        :param 'GetClustersClusterPodsConfigArgs' pods_config: The config of the pods.
+        :param str project_name: The project name of the cluster.
+        :param 'GetClustersClusterServicesConfigArgs' services_config: The config of the services.
+        :param 'GetClustersClusterStatusArgs' status: The status of the cluster.
+        :param Sequence['GetClustersClusterTagArgs'] tags: Tags.
+        :param str update_time: The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
+        :param str create_client_token: ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        :param str update_client_token: The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        """
+        pulumi.set(__self__, "cluster_config", cluster_config)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "delete_protection_enabled", delete_protection_enabled)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "eip_allocation_id", eip_allocation_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "kubeconfig_private", kubeconfig_private)
+        pulumi.set(__self__, "kubeconfig_public", kubeconfig_public)
+        pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+        pulumi.set(__self__, "logging_configs", logging_configs)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_statistics", node_statistics)
+        pulumi.set(__self__, "pods_config", pods_config)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "services_config", services_config)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        if create_client_token is not None:
+            pulumi.set(__self__, "create_client_token", create_client_token)
+        if update_client_token is not None:
+            pulumi.set(__self__, "update_client_token", update_client_token)
+
+    @property
+    @pulumi.getter(name="clusterConfig")
+    def cluster_config(self) -> 'outputs.GetClustersClusterClusterConfigResult':
+        """
+        The config of the cluster.
+        """
+        return pulumi.get(self, "cluster_config")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Cluster creation time. UTC+0 time in standard RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="deleteProtectionEnabled")
+    def delete_protection_enabled(self) -> bool:
+        """
+        The delete protection of the cluster, the value is `true` or `false`.
+        """
+        return pulumi.get(self, "delete_protection_enabled")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the cluster.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="eipAllocationId")
+    def eip_allocation_id(self) -> str:
+        """
+        Eip allocation Id.
+        """
+        return pulumi.get(self, "eip_allocation_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="kubeconfigPrivate")
+    def kubeconfig_private(self) -> str:
+        """
+        Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
+        """
+        return pulumi.get(self, "kubeconfig_private")
+
+    @property
+    @pulumi.getter(name="kubeconfigPublic")
+    def kubeconfig_public(self) -> str:
+        """
+        Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
+        """
+        return pulumi.get(self, "kubeconfig_public")
+
+    @property
+    @pulumi.getter(name="kubernetesVersion")
+    def kubernetes_version(self) -> str:
+        """
+        The Kubernetes version information corresponding to the cluster, specific to the patch version.
+        """
+        return pulumi.get(self, "kubernetes_version")
+
+    @property
+    @pulumi.getter(name="loggingConfigs")
+    def logging_configs(self) -> Sequence['outputs.GetClustersClusterLoggingConfigResult']:
+        """
+        Cluster log configuration information.
+        """
+        return pulumi.get(self, "logging_configs")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodeStatistics")
+    def node_statistics(self) -> 'outputs.GetClustersClusterNodeStatisticsResult':
+        """
+        Statistics on the number of nodes corresponding to each master state in the cluster.
+        """
+        return pulumi.get(self, "node_statistics")
+
+    @property
+    @pulumi.getter(name="podsConfig")
+    def pods_config(self) -> 'outputs.GetClustersClusterPodsConfigResult':
+        """
+        The config of the pods.
+        """
+        return pulumi.get(self, "pods_config")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="servicesConfig")
+    def services_config(self) -> 'outputs.GetClustersClusterServicesConfigResult':
+        """
+        The config of the services.
+        """
+        return pulumi.get(self, "services_config")
+
+    @property
+    @pulumi.getter
+    def status(self) -> 'outputs.GetClustersClusterStatusResult':
+        """
+        The status of the cluster.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetClustersClusterTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="createClientToken")
+    def create_client_token(self) -> Optional[str]:
+        """
+        ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        """
+        return pulumi.get(self, "create_client_token")
+
+    @property
+    @pulumi.getter(name="updateClientToken")
+    def update_client_token(self) -> Optional[str]:
+        """
+        The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+        """
+        return pulumi.get(self, "update_client_token")
+
+
+@pulumi.output_type
+class GetClustersClusterClusterConfigResult(dict):
+    def __init__(__self__, *,
+                 api_server_endpoints: 'outputs.GetClustersClusterClusterConfigApiServerEndpointsResult',
+                 api_server_public_access_config: 'outputs.GetClustersClusterClusterConfigApiServerPublicAccessConfigResult',
+                 api_server_public_access_enabled: bool,
+                 resource_public_access_default_enabled: bool,
+                 security_group_ids: Sequence[str],
+                 subnet_ids: Sequence[str],
+                 vpc_id: str):
+        """
+        :param 'GetClustersClusterClusterConfigApiServerEndpointsArgs' api_server_endpoints: Endpoint information accessed by the cluster API Server.
+        :param 'GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs' api_server_public_access_config: Cluster API Server public network access configuration.
+        :param bool api_server_public_access_enabled: Cluster API Server public network access configuration, the value is `true` or `false`.
+        :param bool resource_public_access_default_enabled: Node public network access configuration, the value is `true` or `false`.
+        :param Sequence[str] security_group_ids: The security group used by the cluster control plane and nodes.
+        :param Sequence[str] subnet_ids: A list of Pod subnet IDs for the VPC-CNI container network.
+        :param str vpc_id: The private network where the cluster control plane network resides.
+        """
+        pulumi.set(__self__, "api_server_endpoints", api_server_endpoints)
+        pulumi.set(__self__, "api_server_public_access_config", api_server_public_access_config)
+        pulumi.set(__self__, "api_server_public_access_enabled", api_server_public_access_enabled)
+        pulumi.set(__self__, "resource_public_access_default_enabled", resource_public_access_default_enabled)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="apiServerEndpoints")
+    def api_server_endpoints(self) -> 'outputs.GetClustersClusterClusterConfigApiServerEndpointsResult':
+        """
+        Endpoint information accessed by the cluster API Server.
+        """
+        return pulumi.get(self, "api_server_endpoints")
+
+    @property
+    @pulumi.getter(name="apiServerPublicAccessConfig")
+    def api_server_public_access_config(self) -> 'outputs.GetClustersClusterClusterConfigApiServerPublicAccessConfigResult':
+        """
+        Cluster API Server public network access configuration.
+        """
+        return pulumi.get(self, "api_server_public_access_config")
+
+    @property
+    @pulumi.getter(name="apiServerPublicAccessEnabled")
+    def api_server_public_access_enabled(self) -> bool:
+        """
+        Cluster API Server public network access configuration, the value is `true` or `false`.
+        """
+        return pulumi.get(self, "api_server_public_access_enabled")
+
+    @property
+    @pulumi.getter(name="resourcePublicAccessDefaultEnabled")
+    def resource_public_access_default_enabled(self) -> bool:
+        """
+        Node public network access configuration, the value is `true` or `false`.
+        """
+        return pulumi.get(self, "resource_public_access_default_enabled")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[str]:
+        """
+        The security group used by the cluster control plane and nodes.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> Sequence[str]:
+        """
+        A list of Pod subnet IDs for the VPC-CNI container network.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The private network where the cluster control plane network resides.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetClustersClusterClusterConfigApiServerEndpointsResult(dict):
+    def __init__(__self__, *,
+                 private_ip: 'outputs.GetClustersClusterClusterConfigApiServerEndpointsPrivateIpResult',
+                 public_ip: 'outputs.GetClustersClusterClusterConfigApiServerEndpointsPublicIpResult'):
+        """
+        :param 'GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs' private_ip: Endpoint address of the cluster API Server private network.
+        :param 'GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs' public_ip: Endpoint address of the cluster API Server public network.
+        """
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> 'outputs.GetClustersClusterClusterConfigApiServerEndpointsPrivateIpResult':
+        """
+        Endpoint address of the cluster API Server private network.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> 'outputs.GetClustersClusterClusterConfigApiServerEndpointsPublicIpResult':
+        """
+        Endpoint address of the cluster API Server public network.
+        """
+        return pulumi.get(self, "public_ip")
+
+
+@pulumi.output_type
+class GetClustersClusterClusterConfigApiServerEndpointsPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 ipv4: str):
+        """
+        :param str ipv4: Ipv4 address.
+        """
+        pulumi.set(__self__, "ipv4", ipv4)
+
+    @property
+    @pulumi.getter
+    def ipv4(self) -> str:
+        """
+        Ipv4 address.
+        """
+        return pulumi.get(self, "ipv4")
+
+
+@pulumi.output_type
+class GetClustersClusterClusterConfigApiServerEndpointsPublicIpResult(dict):
+    def __init__(__self__, *,
+                 ipv4: str):
+        """
+        :param str ipv4: Ipv4 address.
+        """
+        pulumi.set(__self__, "ipv4", ipv4)
+
+    @property
+    @pulumi.getter
+    def ipv4(self) -> str:
+        """
+        Ipv4 address.
+        """
+        return pulumi.get(self, "ipv4")
+
+
+@pulumi.output_type
+class GetClustersClusterClusterConfigApiServerPublicAccessConfigResult(dict):
+    def __init__(__self__, *,
+                 access_source_ipsv4s: Sequence[str],
+                 ip_family: str,
+                 public_access_network_config: 'outputs.GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult'):
+        """
+        :param Sequence[str] access_source_ipsv4s: IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+        :param str ip_family: [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        :param 'GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs' public_access_network_config: Public network access network configuration.
+        """
+        pulumi.set(__self__, "access_source_ipsv4s", access_source_ipsv4s)
+        pulumi.set(__self__, "ip_family", ip_family)
+        pulumi.set(__self__, "public_access_network_config", public_access_network_config)
+
+    @property
+    @pulumi.getter(name="accessSourceIpsv4s")
+    def access_source_ipsv4s(self) -> Sequence[str]:
+        """
+        IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+        """
+        return pulumi.get(self, "access_source_ipsv4s")
+
+    @property
+    @pulumi.getter(name="ipFamily")
+    def ip_family(self) -> str:
+        """
+        [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        """
+        return pulumi.get(self, "ip_family")
+
+    @property
+    @pulumi.getter(name="publicAccessNetworkConfig")
+    def public_access_network_config(self) -> 'outputs.GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult':
+        """
+        Public network access network configuration.
+        """
+        return pulumi.get(self, "public_access_network_config")
+
+
+@pulumi.output_type
+class GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult(dict):
+    def __init__(__self__, *,
+                 bandwidth: int,
+                 billing_type: str,
+                 isp: str):
+        """
+        :param int bandwidth: The peak bandwidth of the public IP, unit: Mbps.
+        :param str billing_type: Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param str isp: The ISP of public IP.
+        """
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "isp", isp)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The peak bandwidth of the public IP, unit: Mbps.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> str:
+        """
+        Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        """
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        """
+        The ISP of public IP.
+        """
+        return pulumi.get(self, "isp")
+
+
+@pulumi.output_type
+class GetClustersClusterLoggingConfigResult(dict):
+    def __init__(__self__, *,
+                 log_project_id: str,
+                 log_setups: Sequence['outputs.GetClustersClusterLoggingConfigLogSetupResult']):
+        """
+        :param str log_project_id: The TLS log item ID of the collection target.
+        :param Sequence['GetClustersClusterLoggingConfigLogSetupArgs'] log_setups: Cluster logging options.
+        """
+        pulumi.set(__self__, "log_project_id", log_project_id)
+        pulumi.set(__self__, "log_setups", log_setups)
+
+    @property
+    @pulumi.getter(name="logProjectId")
+    def log_project_id(self) -> str:
+        """
+        The TLS log item ID of the collection target.
+        """
+        return pulumi.get(self, "log_project_id")
+
+    @property
+    @pulumi.getter(name="logSetups")
+    def log_setups(self) -> Sequence['outputs.GetClustersClusterLoggingConfigLogSetupResult']:
+        """
+        Cluster logging options.
+        """
+        return pulumi.get(self, "log_setups")
+
+
+@pulumi.output_type
+class GetClustersClusterLoggingConfigLogSetupResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 log_ttl: int,
+                 log_type: str):
+        """
+        :param bool enabled: Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        :param int log_ttl: The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+        :param str log_type: The currently enabled log type.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "log_ttl", log_ttl)
+        pulumi.set(__self__, "log_type", log_type)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="logTtl")
+    def log_ttl(self) -> int:
+        """
+        The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+        """
+        return pulumi.get(self, "log_ttl")
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> str:
+        """
+        The currently enabled log type.
+        """
+        return pulumi.get(self, "log_type")
+
+
+@pulumi.output_type
+class GetClustersClusterNodeStatisticsResult(dict):
+    def __init__(__self__, *,
+                 creating_count: int,
+                 deleting_count: int,
+                 failed_count: int,
+                 running_count: int,
+                 stopped_count: int,
+                 total_count: int,
+                 updating_count: int):
+        """
+        :param int creating_count: Phase=Creating total number of nodes.
+        :param int deleting_count: Phase=Deleting total number of nodes.
+        :param int failed_count: Phase=Failed total number of nodes.
+        :param int running_count: Phase=Running total number of nodes.
+        :param int stopped_count: (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+        :param int total_count: The total count of Cluster query.
+        :param int updating_count: Phase=Updating total number of nodes.
+        """
+        pulumi.set(__self__, "creating_count", creating_count)
+        pulumi.set(__self__, "deleting_count", deleting_count)
+        pulumi.set(__self__, "failed_count", failed_count)
+        pulumi.set(__self__, "running_count", running_count)
+        pulumi.set(__self__, "stopped_count", stopped_count)
+        pulumi.set(__self__, "total_count", total_count)
+        pulumi.set(__self__, "updating_count", updating_count)
+
+    @property
+    @pulumi.getter(name="creatingCount")
+    def creating_count(self) -> int:
+        """
+        Phase=Creating total number of nodes.
+        """
+        return pulumi.get(self, "creating_count")
+
+    @property
+    @pulumi.getter(name="deletingCount")
+    def deleting_count(self) -> int:
+        """
+        Phase=Deleting total number of nodes.
+        """
+        return pulumi.get(self, "deleting_count")
+
+    @property
+    @pulumi.getter(name="failedCount")
+    def failed_count(self) -> int:
+        """
+        Phase=Failed total number of nodes.
+        """
+        return pulumi.get(self, "failed_count")
+
+    @property
+    @pulumi.getter(name="runningCount")
+    def running_count(self) -> int:
+        """
+        Phase=Running total number of nodes.
+        """
+        return pulumi.get(self, "running_count")
+
+    @property
+    @pulumi.getter(name="stoppedCount")
+    def stopped_count(self) -> int:
+        """
+        (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+        """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
+        return pulumi.get(self, "stopped_count")
+
+    @property
+    @pulumi.getter(name="totalCount")
+    def total_count(self) -> int:
+        """
+        The total count of Cluster query.
+        """
+        return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter(name="updatingCount")
+    def updating_count(self) -> int:
+        """
+        Phase=Updating total number of nodes.
+        """
+        return pulumi.get(self, "updating_count")
+
+
+@pulumi.output_type
+class GetClustersClusterPodsConfigResult(dict):
+    def __init__(__self__, *,
+                 flannel_config: 'outputs.GetClustersClusterPodsConfigFlannelConfigResult',
+                 pod_network_mode: str,
+                 vpc_cni_config: 'outputs.GetClustersClusterPodsConfigVpcCniConfigResult'):
+        """
+        :param 'GetClustersClusterPodsConfigFlannelConfigArgs' flannel_config: Flannel network configuration.
+        :param str pod_network_mode: Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+        :param 'GetClustersClusterPodsConfigVpcCniConfigArgs' vpc_cni_config: VPC-CNI network configuration.
+        """
+        pulumi.set(__self__, "flannel_config", flannel_config)
+        pulumi.set(__self__, "pod_network_mode", pod_network_mode)
+        pulumi.set(__self__, "vpc_cni_config", vpc_cni_config)
+
+    @property
+    @pulumi.getter(name="flannelConfig")
+    def flannel_config(self) -> 'outputs.GetClustersClusterPodsConfigFlannelConfigResult':
+        """
+        Flannel network configuration.
+        """
+        return pulumi.get(self, "flannel_config")
+
+    @property
+    @pulumi.getter(name="podNetworkMode")
+    def pod_network_mode(self) -> str:
+        """
+        Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+        """
+        return pulumi.get(self, "pod_network_mode")
+
+    @property
+    @pulumi.getter(name="vpcCniConfig")
+    def vpc_cni_config(self) -> 'outputs.GetClustersClusterPodsConfigVpcCniConfigResult':
+        """
+        VPC-CNI network configuration.
+        """
+        return pulumi.get(self, "vpc_cni_config")
+
+
+@pulumi.output_type
+class GetClustersClusterPodsConfigFlannelConfigResult(dict):
+    def __init__(__self__, *,
+                 max_pods_per_node: int,
+                 pod_cidrs: Sequence[str]):
+        """
+        :param int max_pods_per_node: The maximum number of single-node Pod instances for a Flannel container network.
+        :param Sequence[str] pod_cidrs: Pod CIDR for the Flannel container network.
+        """
+        pulumi.set(__self__, "max_pods_per_node", max_pods_per_node)
+        pulumi.set(__self__, "pod_cidrs", pod_cidrs)
+
+    @property
+    @pulumi.getter(name="maxPodsPerNode")
+    def max_pods_per_node(self) -> int:
+        """
+        The maximum number of single-node Pod instances for a Flannel container network.
+        """
+        return pulumi.get(self, "max_pods_per_node")
+
+    @property
+    @pulumi.getter(name="podCidrs")
+    def pod_cidrs(self) -> Sequence[str]:
+        """
+        Pod CIDR for the Flannel container network.
+        """
+        return pulumi.get(self, "pod_cidrs")
+
+
+@pulumi.output_type
+class GetClustersClusterPodsConfigVpcCniConfigResult(dict):
+    def __init__(__self__, *,
+                 subnet_ids: Sequence[str],
+                 vpc_id: str):
+        """
+        :param Sequence[str] subnet_ids: A list of Pod subnet IDs for the VPC-CNI container network.
+        :param str vpc_id: The private network where the cluster control plane network resides.
+        """
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> Sequence[str]:
+        """
+        A list of Pod subnet IDs for the VPC-CNI container network.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The private network where the cluster control plane network resides.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetClustersClusterServicesConfigResult(dict):
+    def __init__(__self__, *,
+                 service_cidrsv4s: Sequence[str]):
+        """
+        :param Sequence[str] service_cidrsv4s: The IPv4 private network address exposed by the service.
+        """
+        pulumi.set(__self__, "service_cidrsv4s", service_cidrsv4s)
+
+    @property
+    @pulumi.getter(name="serviceCidrsv4s")
+    def service_cidrsv4s(self) -> Sequence[str]:
+        """
+        The IPv4 private network address exposed by the service.
+        """
+        return pulumi.get(self, "service_cidrsv4s")
+
+
+@pulumi.output_type
+class GetClustersClusterStatusResult(dict):
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.GetClustersClusterStatusConditionResult'],
+                 phase: str):
+        """
+        :param Sequence['GetClustersClusterStatusConditionArgs'] conditions: The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+        :param str phase: The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.GetClustersClusterStatusConditionResult']:
+        """
+        The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+        """
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> str:
+        """
+        The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetClustersClusterStatusConditionResult(dict):
+    def __init__(__self__, *,
+                 type: str):
+        """
+        :param str type: The Type of Tags.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The Type of Tags.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetClustersClusterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 type: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str type: The Type of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The Type of Tags.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetClustersStatusResult(dict):
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+        :param str phase: The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetClustersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetKubeconfigsKubeconfigResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: str,
+                 create_time: str,
+                 expire_time: str,
+                 id: str,
+                 kubeconfig: str,
+                 kubeconfig_id: str,
+                 type: str,
+                 user_id: int):
+        """
+        :param str cluster_id: The Cluster ID of the Kubeconfig.
+        :param str create_time: The create time of the Kubeconfig.
+        :param str expire_time: The expire time of the Kubeconfig.
+        :param str id: The ID of the Kubeconfig.
+        :param str kubeconfig: Kubeconfig data with public/private network access, returned in BASE64 encoding.
+        :param str kubeconfig_id: The ID of the Kubeconfig.
+        :param str type: The type of the Kubeconfig.
+        :param int user_id: The account ID of the Kubeconfig.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "expire_time", expire_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "kubeconfig", kubeconfig)
+        pulumi.set(__self__, "kubeconfig_id", kubeconfig_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The Cluster ID of the Kubeconfig.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the Kubeconfig.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="expireTime")
+    def expire_time(self) -> str:
+        """
+        The expire time of the Kubeconfig.
+        """
+        return pulumi.get(self, "expire_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Kubeconfig.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def kubeconfig(self) -> str:
+        """
+        Kubeconfig data with public/private network access, returned in BASE64 encoding.
+        """
+        return pulumi.get(self, "kubeconfig")
+
+    @property
+    @pulumi.getter(name="kubeconfigId")
+    def kubeconfig_id(self) -> str:
+        """
+        The ID of the Kubeconfig.
+        """
+        return pulumi.get(self, "kubeconfig_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the Kubeconfig.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The account ID of the Kubeconfig.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolResult(dict):
+    def __init__(__self__, *,
+                 additional_container_storage_enabled: bool,
+                 auto_renew: bool,
+                 auto_renew_period: int,
+                 cluster_id: str,
+                 condition_types: Sequence[str],
+                 cordon: bool,
+                 create_client_token: str,
+                 create_time: str,
+                 data_volumes: Sequence['outputs.GetNodePoolsNodePoolDataVolumeResult'],
+                 desired_replicas: int,
+                 ecs_tags: Sequence['outputs.GetNodePoolsNodePoolEcsTagResult'],
+                 enabled: bool,
+                 hpc_cluster_ids: Sequence[str],
+                 id: str,
+                 image_id: str,
+                 initialize_script: str,
+                 instance_charge_type: str,
+                 instance_type_ids: Sequence[str],
+                 kube_config_auto_sync_disabled: bool,
+                 kube_config_name_prefix: str,
+                 kubelet_configs: Sequence['outputs.GetNodePoolsNodePoolKubeletConfigResult'],
+                 label_contents: Sequence['outputs.GetNodePoolsNodePoolLabelContentResult'],
+                 login_key_pair_name: str,
+                 login_type: str,
+                 max_replicas: int,
+                 min_replicas: int,
+                 name: str,
+                 name_prefix: str,
+                 node_statistics: Sequence['outputs.GetNodePoolsNodePoolNodeStatisticResult'],
+                 period: int,
+                 phase: str,
+                 priority: int,
+                 project_name: str,
+                 security_group_ids: Sequence[str],
+                 security_strategies: Sequence[str],
+                 security_strategy_enabled: bool,
+                 subnet_ids: Sequence[str],
+                 subnet_policy: str,
+                 system_volumes: Sequence['outputs.GetNodePoolsNodePoolSystemVolumeResult'],
+                 tags: Sequence['outputs.GetNodePoolsNodePoolTagResult'],
+                 taint_contents: Sequence['outputs.GetNodePoolsNodePoolTaintContentResult'],
+                 update_client_token: str,
+                 update_time: str):
+        """
+        :param bool additional_container_storage_enabled: Is AdditionalContainerStorageEnabled of NodeConfig.
+        :param bool auto_renew: Is auto renew of the PrePaid instance of NodeConfig.
+        :param int auto_renew_period: The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+        :param str cluster_id: The ClusterId of NodePool.
+        :param Sequence[str] condition_types: The Condition of Status.
+        :param bool cordon: The Cordon of KubernetesConfig.
+        :param str create_client_token: The ClientToken when successfully created.
+        :param str create_time: The CreateTime of NodePool.
+        :param Sequence['GetNodePoolsNodePoolDataVolumeArgs'] data_volumes: The DataVolume of NodeConfig.
+        :param int desired_replicas: The DesiredReplicas of AutoScaling.
+        :param Sequence['GetNodePoolsNodePoolEcsTagArgs'] ecs_tags: Tags for Ecs.
+        :param bool enabled: Is Enabled of AutoScaling.
+        :param Sequence[str] hpc_cluster_ids: The IDs of HpcCluster.
+        :param str id: The Id of NodePool.
+        :param str image_id: The ImageId of NodeConfig.
+        :param str initialize_script: The InitializeScript of NodeConfig.
+        :param str instance_charge_type: The InstanceChargeType of NodeConfig.
+        :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig.
+        :param bool kube_config_auto_sync_disabled: Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+        :param str kube_config_name_prefix: The NamePrefix of node metadata.
+        :param Sequence['GetNodePoolsNodePoolKubeletConfigArgs'] kubelet_configs: The KubeletConfig of KubernetesConfig.
+        :param Sequence['GetNodePoolsNodePoolLabelContentArgs'] label_contents: The LabelContent of KubernetesConfig.
+        :param str login_key_pair_name: The login SshKeyPairName of NodeConfig.
+        :param str login_type: The login type of NodeConfig.
+        :param int max_replicas: The MaxReplicas of AutoScaling.
+        :param int min_replicas: The MinReplicas of AutoScaling.
+        :param str name: The Name of NodePool.
+        :param str name_prefix: The NamePrefix of NodeConfig.
+        :param Sequence['GetNodePoolsNodePoolNodeStatisticArgs'] node_statistics: The NodeStatistics of NodeConfig.
+        :param int period: The period of the PrePaid instance of NodeConfig.
+        :param str phase: The Phase of Status.
+        :param int priority: The Priority of AutoScaling.
+        :param str project_name: The project name of NodeConfig.
+        :param Sequence[str] security_group_ids: The SecurityGroupIds of NodeConfig.
+        :param Sequence[str] security_strategies: The SecurityStrategies of NodeConfig.
+        :param bool security_strategy_enabled: The SecurityStrategyEnabled of NodeConfig.
+        :param Sequence[str] subnet_ids: The SubnetId of NodeConfig.
+        :param str subnet_policy: Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+        :param Sequence['GetNodePoolsNodePoolSystemVolumeArgs'] system_volumes: The SystemVolume of NodeConfig.
+        :param Sequence['GetNodePoolsNodePoolTagArgs'] tags: Tags.
+        :param Sequence['GetNodePoolsNodePoolTaintContentArgs'] taint_contents: The TaintContent of NodeConfig.
+        :param str update_client_token: The ClientToken when last update was successful.
+        :param str update_time: The UpdateTime time of NodePool.
+        """
+        pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
+        pulumi.set(__self__, "auto_renew", auto_renew)
+        pulumi.set(__self__, "auto_renew_period", auto_renew_period)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "condition_types", condition_types)
+        pulumi.set(__self__, "cordon", cordon)
+        pulumi.set(__self__, "create_client_token", create_client_token)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_volumes", data_volumes)
+        pulumi.set(__self__, "desired_replicas", desired_replicas)
+        pulumi.set(__self__, "ecs_tags", ecs_tags)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "hpc_cluster_ids", hpc_cluster_ids)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "initialize_script", initialize_script)
+        pulumi.set(__self__, "instance_charge_type", instance_charge_type)
+        pulumi.set(__self__, "instance_type_ids", instance_type_ids)
+        pulumi.set(__self__, "kube_config_auto_sync_disabled", kube_config_auto_sync_disabled)
+        pulumi.set(__self__, "kube_config_name_prefix", kube_config_name_prefix)
+        pulumi.set(__self__, "kubelet_configs", kubelet_configs)
+        pulumi.set(__self__, "label_contents", label_contents)
+        pulumi.set(__self__, "login_key_pair_name", login_key_pair_name)
+        pulumi.set(__self__, "login_type", login_type)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "min_replicas", min_replicas)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "name_prefix", name_prefix)
+        pulumi.set(__self__, "node_statistics", node_statistics)
+        pulumi.set(__self__, "period", period)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "security_strategies", security_strategies)
+        pulumi.set(__self__, "security_strategy_enabled", security_strategy_enabled)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "subnet_policy", subnet_policy)
+        pulumi.set(__self__, "system_volumes", system_volumes)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "taint_contents", taint_contents)
+        pulumi.set(__self__, "update_client_token", update_client_token)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="additionalContainerStorageEnabled")
+    def additional_container_storage_enabled(self) -> bool:
+        """
+        Is AdditionalContainerStorageEnabled of NodeConfig.
+        """
+        return pulumi.get(self, "additional_container_storage_enabled")
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> bool:
+        """
+        Is auto renew of the PrePaid instance of NodeConfig.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter(name="autoRenewPeriod")
+    def auto_renew_period(self) -> int:
+        """
+        The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+        """
+        return pulumi.get(self, "auto_renew_period")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The ClusterId of NodePool.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="conditionTypes")
+    def condition_types(self) -> Sequence[str]:
+        """
+        The Condition of Status.
+        """
+        return pulumi.get(self, "condition_types")
+
+    @property
+    @pulumi.getter
+    def cordon(self) -> bool:
+        """
+        The Cordon of KubernetesConfig.
+        """
+        return pulumi.get(self, "cordon")
+
+    @property
+    @pulumi.getter(name="createClientToken")
+    def create_client_token(self) -> str:
+        """
+        The ClientToken when successfully created.
+        """
+        return pulumi.get(self, "create_client_token")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The CreateTime of NodePool.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="dataVolumes")
+    def data_volumes(self) -> Sequence['outputs.GetNodePoolsNodePoolDataVolumeResult']:
+        """
+        The DataVolume of NodeConfig.
+        """
+        return pulumi.get(self, "data_volumes")
+
+    @property
+    @pulumi.getter(name="desiredReplicas")
+    def desired_replicas(self) -> int:
+        """
+        The DesiredReplicas of AutoScaling.
+        """
+        return pulumi.get(self, "desired_replicas")
+
+    @property
+    @pulumi.getter(name="ecsTags")
+    def ecs_tags(self) -> Sequence['outputs.GetNodePoolsNodePoolEcsTagResult']:
+        """
+        Tags for Ecs.
+        """
+        return pulumi.get(self, "ecs_tags")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Is Enabled of AutoScaling.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="hpcClusterIds")
+    def hpc_cluster_ids(self) -> Sequence[str]:
+        """
+        The IDs of HpcCluster.
+        """
+        return pulumi.get(self, "hpc_cluster_ids")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The Id of NodePool.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        The ImageId of NodeConfig.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="initializeScript")
+    def initialize_script(self) -> str:
+        """
+        The InitializeScript of NodeConfig.
+        """
+        return pulumi.get(self, "initialize_script")
+
+    @property
+    @pulumi.getter(name="instanceChargeType")
+    def instance_charge_type(self) -> str:
+        """
+        The InstanceChargeType of NodeConfig.
+        """
+        return pulumi.get(self, "instance_charge_type")
+
+    @property
+    @pulumi.getter(name="instanceTypeIds")
+    def instance_type_ids(self) -> Sequence[str]:
+        """
+        The InstanceTypeIds of NodeConfig.
+        """
+        return pulumi.get(self, "instance_type_ids")
+
+    @property
+    @pulumi.getter(name="kubeConfigAutoSyncDisabled")
+    def kube_config_auto_sync_disabled(self) -> bool:
+        """
+        Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+        """
+        return pulumi.get(self, "kube_config_auto_sync_disabled")
+
+    @property
+    @pulumi.getter(name="kubeConfigNamePrefix")
+    def kube_config_name_prefix(self) -> str:
+        """
+        The NamePrefix of node metadata.
+        """
+        return pulumi.get(self, "kube_config_name_prefix")
+
+    @property
+    @pulumi.getter(name="kubeletConfigs")
+    def kubelet_configs(self) -> Sequence['outputs.GetNodePoolsNodePoolKubeletConfigResult']:
+        """
+        The KubeletConfig of KubernetesConfig.
+        """
+        return pulumi.get(self, "kubelet_configs")
+
+    @property
+    @pulumi.getter(name="labelContents")
+    def label_contents(self) -> Sequence['outputs.GetNodePoolsNodePoolLabelContentResult']:
+        """
+        The LabelContent of KubernetesConfig.
+        """
+        return pulumi.get(self, "label_contents")
+
+    @property
+    @pulumi.getter(name="loginKeyPairName")
+    def login_key_pair_name(self) -> str:
+        """
+        The login SshKeyPairName of NodeConfig.
+        """
+        return pulumi.get(self, "login_key_pair_name")
+
+    @property
+    @pulumi.getter(name="loginType")
+    def login_type(self) -> str:
+        """
+        The login type of NodeConfig.
+        """
+        return pulumi.get(self, "login_type")
+
+    @property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> int:
+        """
+        The MaxReplicas of AutoScaling.
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> int:
+        """
+        The MinReplicas of AutoScaling.
+        """
+        return pulumi.get(self, "min_replicas")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The Name of NodePool.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> str:
+        """
+        The NamePrefix of NodeConfig.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="nodeStatistics")
+    def node_statistics(self) -> Sequence['outputs.GetNodePoolsNodePoolNodeStatisticResult']:
+        """
+        The NodeStatistics of NodeConfig.
+        """
+        return pulumi.get(self, "node_statistics")
+
+    @property
+    @pulumi.getter
+    def period(self) -> int:
+        """
+        The period of the PrePaid instance of NodeConfig.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> str:
+        """
+        The Phase of Status.
+        """
+        return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The Priority of AutoScaling.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of NodeConfig.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[str]:
+        """
+        The SecurityGroupIds of NodeConfig.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="securityStrategies")
+    def security_strategies(self) -> Sequence[str]:
+        """
+        The SecurityStrategies of NodeConfig.
+        """
+        return pulumi.get(self, "security_strategies")
+
+    @property
+    @pulumi.getter(name="securityStrategyEnabled")
+    def security_strategy_enabled(self) -> bool:
+        """
+        The SecurityStrategyEnabled of NodeConfig.
+        """
+        return pulumi.get(self, "security_strategy_enabled")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> Sequence[str]:
+        """
+        The SubnetId of NodeConfig.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter(name="subnetPolicy")
+    def subnet_policy(self) -> str:
+        """
+        Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+        """
+        return pulumi.get(self, "subnet_policy")
+
+    @property
+    @pulumi.getter(name="systemVolumes")
+    def system_volumes(self) -> Sequence['outputs.GetNodePoolsNodePoolSystemVolumeResult']:
+        """
+        The SystemVolume of NodeConfig.
+        """
+        return pulumi.get(self, "system_volumes")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetNodePoolsNodePoolTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="taintContents")
+    def taint_contents(self) -> Sequence['outputs.GetNodePoolsNodePoolTaintContentResult']:
+        """
+        The TaintContent of NodeConfig.
+        """
+        return pulumi.get(self, "taint_contents")
+
+    @property
+    @pulumi.getter(name="updateClientToken")
+    def update_client_token(self) -> str:
+        """
+        The ClientToken when last update was successful.
+        """
+        return pulumi.get(self, "update_client_token")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The UpdateTime time of NodePool.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolDataVolumeResult(dict):
+    def __init__(__self__, *,
+                 mount_point: str,
+                 size: str,
+                 type: str):
+        """
+        :param str mount_point: The target mount directory of the disk.
+        :param str size: The Size of SystemVolume.
+        :param str type: The Type of Tags.
+        """
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> str:
+        """
+        The target mount directory of the disk.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @property
+    @pulumi.getter
+    def size(self) -> str:
+        """
+        The Size of SystemVolume.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The Type of Tags.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolEcsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Taint.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Taint.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolKubeletConfigResult(dict):
+    def __init__(__self__, *,
+                 feature_gates: Sequence['outputs.GetNodePoolsNodePoolKubeletConfigFeatureGateResult'],
+                 topology_manager_policy: str,
+                 topology_manager_scope: str):
+        """
+        :param Sequence['GetNodePoolsNodePoolKubeletConfigFeatureGateArgs'] feature_gates: The FeatureGates of KubeletConfig.
+        :param str topology_manager_policy: The TopologyManagerPolicy of KubeletConfig.
+        :param str topology_manager_scope: The TopologyManagerScope of KubeletConfig.
+        """
+        pulumi.set(__self__, "feature_gates", feature_gates)
+        pulumi.set(__self__, "topology_manager_policy", topology_manager_policy)
+        pulumi.set(__self__, "topology_manager_scope", topology_manager_scope)
+
+    @property
+    @pulumi.getter(name="featureGates")
+    def feature_gates(self) -> Sequence['outputs.GetNodePoolsNodePoolKubeletConfigFeatureGateResult']:
+        """
+        The FeatureGates of KubeletConfig.
+        """
+        return pulumi.get(self, "feature_gates")
+
+    @property
+    @pulumi.getter(name="topologyManagerPolicy")
+    def topology_manager_policy(self) -> str:
+        """
+        The TopologyManagerPolicy of KubeletConfig.
+        """
+        return pulumi.get(self, "topology_manager_policy")
+
+    @property
+    @pulumi.getter(name="topologyManagerScope")
+    def topology_manager_scope(self) -> str:
+        """
+        The TopologyManagerScope of KubeletConfig.
+        """
+        return pulumi.get(self, "topology_manager_scope")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolKubeletConfigFeatureGateResult(dict):
+    def __init__(__self__, *,
+                 qos_resource_manager: bool):
+        """
+        :param bool qos_resource_manager: Whether to enable QoSResourceManager.
+        """
+        pulumi.set(__self__, "qos_resource_manager", qos_resource_manager)
+
+    @property
+    @pulumi.getter(name="qosResourceManager")
+    def qos_resource_manager(self) -> bool:
+        """
+        Whether to enable QoSResourceManager.
+        """
+        return pulumi.get(self, "qos_resource_manager")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolLabelContentResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Taint.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Taint.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolNodeStatisticResult(dict):
+    def __init__(__self__, *,
+                 creating_count: int,
+                 deleting_count: int,
+                 failed_count: int,
+                 running_count: int,
+                 starting_count: int,
+                 stopped_count: int,
+                 stopping_count: int,
+                 total_count: int,
+                 updating_count: int):
+        """
+        :param int creating_count: The CreatingCount of Node.
+        :param int deleting_count: The DeletingCount of Node.
+        :param int failed_count: The FailedCount of Node.
+        :param int running_count: The RunningCount of Node.
+        :param int starting_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+        :param int stopped_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+        :param int stopping_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+        :param int total_count: Returns the total amount of the data list.
+        :param int updating_count: The UpdatingCount of Node.
+        """
+        pulumi.set(__self__, "creating_count", creating_count)
+        pulumi.set(__self__, "deleting_count", deleting_count)
+        pulumi.set(__self__, "failed_count", failed_count)
+        pulumi.set(__self__, "running_count", running_count)
+        pulumi.set(__self__, "starting_count", starting_count)
+        pulumi.set(__self__, "stopped_count", stopped_count)
+        pulumi.set(__self__, "stopping_count", stopping_count)
+        pulumi.set(__self__, "total_count", total_count)
+        pulumi.set(__self__, "updating_count", updating_count)
+
+    @property
+    @pulumi.getter(name="creatingCount")
+    def creating_count(self) -> int:
+        """
+        The CreatingCount of Node.
+        """
+        return pulumi.get(self, "creating_count")
+
+    @property
+    @pulumi.getter(name="deletingCount")
+    def deleting_count(self) -> int:
+        """
+        The DeletingCount of Node.
+        """
+        return pulumi.get(self, "deleting_count")
+
+    @property
+    @pulumi.getter(name="failedCount")
+    def failed_count(self) -> int:
+        """
+        The FailedCount of Node.
+        """
+        return pulumi.get(self, "failed_count")
+
+    @property
+    @pulumi.getter(name="runningCount")
+    def running_count(self) -> int:
+        """
+        The RunningCount of Node.
+        """
+        return pulumi.get(self, "running_count")
+
+    @property
+    @pulumi.getter(name="startingCount")
+    def starting_count(self) -> int:
+        """
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+        """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""starting_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
+        return pulumi.get(self, "starting_count")
+
+    @property
+    @pulumi.getter(name="stoppedCount")
+    def stopped_count(self) -> int:
+        """
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+        """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
+        return pulumi.get(self, "stopped_count")
+
+    @property
+    @pulumi.getter(name="stoppingCount")
+    def stopping_count(self) -> int:
+        """
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+        """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopping_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
+        return pulumi.get(self, "stopping_count")
+
+    @property
+    @pulumi.getter(name="totalCount")
+    def total_count(self) -> int:
+        """
+        Returns the total amount of the data list.
+        """
+        return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter(name="updatingCount")
+    def updating_count(self) -> int:
+        """
+        The UpdatingCount of Node.
+        """
+        return pulumi.get(self, "updating_count")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolSystemVolumeResult(dict):
+    def __init__(__self__, *,
+                 size: str,
+                 type: str):
+        """
+        :param str size: The Size of SystemVolume.
+        :param str type: The Type of Tags.
+        """
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def size(self) -> str:
+        """
+        The Size of SystemVolume.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The Type of Tags.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 type: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str type: The Type of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The Type of Tags.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolTaintContentResult(dict):
+    def __init__(__self__, *,
+                 effect: str,
+                 key: str,
+                 value: str):
+        """
+        :param str effect: The Effect of Taint.
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> str:
+        """
+        The Effect of Taint.
+        """
+        return pulumi.get(self, "effect")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Taint.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Taint.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodePoolsStatusResult(dict):
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+        :param str phase: The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        """
+        return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetNodePoolsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodesNodeResult(dict):
+    def __init__(__self__, *,
+                 additional_container_storage_enabled: bool,
+                 cluster_id: str,
+                 condition_types: Sequence[str],
+                 container_storage_path: str,
+                 cordon: bool,
+                 create_client_token: str,
+                 create_time: str,
+                 id: str,
+                 image_id: str,
+                 initialize_script: str,
+                 instance_id: str,
+                 is_virtual: bool,
+                 labels: Sequence['outputs.GetNodesNodeLabelResult'],
+                 name: str,
+                 node_pool_id: str,
+                 phase: str,
+                 roles: Sequence[str],
+                 taints: Sequence['outputs.GetNodesNodeTaintResult'],
+                 update_time: str,
+                 zone_id: str):
+        """
+        :param bool additional_container_storage_enabled: Is Additional Container storage enables.
+        :param str cluster_id: The cluster id of node.
+        :param Sequence[str] condition_types: The Condition of Node.
+        :param str container_storage_path: The Storage Path.
+        :param bool cordon: The Cordon of KubernetesConfig.
+        :param str create_client_token: The Create Client Token.
+        :param str create_time: The create time of Node.
+        :param str id: The ID of Node.
+        :param str image_id: The ImageId of NodeConfig.
+        :param str initialize_script: The InitializeScript of NodeConfig.
+        :param str instance_id: The instance id of node.
+        :param bool is_virtual: Is virtual node.
+        :param Sequence['GetNodesNodeLabelArgs'] labels: The Label of KubernetesConfig.
+        :param str name: The Name of Node.
+        :param str node_pool_id: The node pool id.
+        :param str phase: The Phase of Node.
+        :param Sequence[str] roles: The roles of node.
+        :param Sequence['GetNodesNodeTaintArgs'] taints: The Taint of KubernetesConfig.
+        :param str update_time: The update time of Node.
+        :param str zone_id: The zone id.
+        """
+        pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "condition_types", condition_types)
+        pulumi.set(__self__, "container_storage_path", container_storage_path)
+        pulumi.set(__self__, "cordon", cordon)
+        pulumi.set(__self__, "create_client_token", create_client_token)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "initialize_script", initialize_script)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_virtual", is_virtual)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_pool_id", node_pool_id)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "taints", taints)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="additionalContainerStorageEnabled")
+    def additional_container_storage_enabled(self) -> bool:
+        """
+        Is Additional Container storage enables.
+        """
+        return pulumi.get(self, "additional_container_storage_enabled")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The cluster id of node.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="conditionTypes")
+    def condition_types(self) -> Sequence[str]:
+        """
+        The Condition of Node.
+        """
+        return pulumi.get(self, "condition_types")
+
+    @property
+    @pulumi.getter(name="containerStoragePath")
+    def container_storage_path(self) -> str:
+        """
+        The Storage Path.
+        """
+        return pulumi.get(self, "container_storage_path")
+
+    @property
+    @pulumi.getter
+    def cordon(self) -> bool:
+        """
+        The Cordon of KubernetesConfig.
+        """
+        return pulumi.get(self, "cordon")
+
+    @property
+    @pulumi.getter(name="createClientToken")
+    def create_client_token(self) -> str:
+        """
+        The Create Client Token.
+        """
+        return pulumi.get(self, "create_client_token")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of Node.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of Node.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        The ImageId of NodeConfig.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="initializeScript")
+    def initialize_script(self) -> str:
+        """
+        The InitializeScript of NodeConfig.
+        """
+        return pulumi.get(self, "initialize_script")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance id of node.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isVirtual")
+    def is_virtual(self) -> bool:
+        """
+        Is virtual node.
+        """
+        return pulumi.get(self, "is_virtual")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence['outputs.GetNodesNodeLabelResult']:
+        """
+        The Label of KubernetesConfig.
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The Name of Node.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodePoolId")
+    def node_pool_id(self) -> str:
+        """
+        The node pool id.
+        """
+        return pulumi.get(self, "node_pool_id")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> str:
+        """
+        The Phase of Node.
+        """
+        return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Sequence[str]:
+        """
+        The roles of node.
+        """
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Sequence['outputs.GetNodesNodeTaintResult']:
+        """
+        The Taint of KubernetesConfig.
+        """
+        return pulumi.get(self, "taints")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of Node.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetNodesNodeLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Taint.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Taint.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodesNodeTaintResult(dict):
+    def __init__(__self__, *,
+                 effect: str,
+                 key: str,
+                 value: str):
+        """
+        :param str effect: The Effect of Taint.
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> str:
+        """
+        The Effect of Taint.
+        """
+        return pulumi.get(self, "effect")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Taint.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Taint.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodesStatusResult(dict):
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+        :param str phase: The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        """
+        return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetSupportAddonsAddonResult(dict):
+    def __init__(__self__, *,
+                 deploy_mode: str,
+                 deploy_node_types: Sequence[str],
+                 name: str,
+                 pod_network_modes: Sequence[str],
+                 versions: Sequence['outputs.GetSupportAddonsAddonVersionResult'],
+                 categories: Optional[Sequence[str]] = None,
+                 necessary: Optional[str] = None):
+        """
+        :param str deploy_mode: The deploy model.
+        :param Sequence[str] deploy_node_types: The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deploy_mode is `Unmanaged`.
+        :param str name: The name of the addon.
+        :param Sequence[str] pod_network_modes: The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+        :param Sequence['GetSupportAddonsAddonVersionArgs'] versions: The version info of addon.
+        :param Sequence[str] categories: The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+        :param str necessary: The necessary of addon.
+        """
+        pulumi.set(__self__, "deploy_mode", deploy_mode)
+        pulumi.set(__self__, "deploy_node_types", deploy_node_types)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pod_network_modes", pod_network_modes)
+        pulumi.set(__self__, "versions", versions)
+        if categories is not None:
+            pulumi.set(__self__, "categories", categories)
+        if necessary is not None:
+            pulumi.set(__self__, "necessary", necessary)
+
+    @property
+    @pulumi.getter(name="deployMode")
+    def deploy_mode(self) -> str:
+        """
+        The deploy model.
+        """
+        return pulumi.get(self, "deploy_mode")
+
+    @property
+    @pulumi.getter(name="deployNodeTypes")
+    def deploy_node_types(self) -> Sequence[str]:
+        """
+        The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deploy_mode is `Unmanaged`.
+        """
+        return pulumi.get(self, "deploy_node_types")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the addon.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="podNetworkModes")
+    def pod_network_modes(self) -> Sequence[str]:
+        """
+        The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+        """
+        return pulumi.get(self, "pod_network_modes")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> Sequence['outputs.GetSupportAddonsAddonVersionResult']:
+        """
+        The version info of addon.
+        """
+        return pulumi.get(self, "versions")
+
+    @property
+    @pulumi.getter
+    def categories(self) -> Optional[Sequence[str]]:
+        """
+        The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+        """
+        return pulumi.get(self, "categories")
+
+    @property
+    @pulumi.getter
+    def necessary(self) -> Optional[str]:
+        """
+        The necessary of addon.
+        """
+        return pulumi.get(self, "necessary")
+
+
+@pulumi.output_type
+class GetSupportAddonsAddonVersionResult(dict):
+    def __init__(__self__, *,
+                 compatibilities: Sequence['outputs.GetSupportAddonsAddonVersionCompatibilityResult'],
+                 compatible_versions: Sequence[str],
+                 version: str):
+        """
+        :param Sequence['GetSupportAddonsAddonVersionCompatibilityArgs'] compatibilities: The compatible version list.
+        :param Sequence[str] compatible_versions: The compatible version list.
+        :param str version: The basic version info.
+        """
+        pulumi.set(__self__, "compatibilities", compatibilities)
+        pulumi.set(__self__, "compatible_versions", compatible_versions)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def compatibilities(self) -> Sequence['outputs.GetSupportAddonsAddonVersionCompatibilityResult']:
+        """
+        The compatible version list.
+        """
+        return pulumi.get(self, "compatibilities")
+
+    @property
+    @pulumi.getter(name="compatibleVersions")
+    def compatible_versions(self) -> Sequence[str]:
+        """
+        The compatible version list.
+        """
+        return pulumi.get(self, "compatible_versions")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The basic version info.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetSupportAddonsAddonVersionCompatibilityResult(dict):
+    def __init__(__self__, *,
+                 kubernetes_version: str):
+        """
+        :param str kubernetes_version: The Kubernetes Version of addon.
+        """
+        pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+
+    @property
+    @pulumi.getter(name="kubernetesVersion")
+    def kubernetes_version(self) -> str:
+        """
+        The Kubernetes Version of addon.
+        """
+        return pulumi.get(self, "kubernetes_version")
+
+
+@pulumi.output_type
+class GetSupportResourceTypesResourceResult(dict):
     def __init__(__self__, *,
                  resource_scope: str,
                  resource_specifications: Sequence[str],

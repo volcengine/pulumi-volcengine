@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules")]
     public static class Rules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.Rules.Invoke(new()
+        ///     var foo = Volcengine.Alb.GetRules.Invoke(new()
         ///     {
         ///         ListenerId = "lsn-1iidd19u4oni874adhezjkyj3",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.Rules.Invoke(new()
+        ///     var foo = Volcengine.Alb.GetRules.Invoke(new()
         ///     {
         ///         ListenerId = "lsn-1iidd19u4oni874adhezjkyj3",
         ///     });

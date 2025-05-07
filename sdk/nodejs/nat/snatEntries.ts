@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [fooAssociate],
  * });
- * const fooSnatEntries = volcengine.nat.SnatEntriesOutput({
+ * const fooSnatEntries = volcengine.nat.getSnatEntriesOutput({
  *     ids: [
  *         foo1.id,
  *         foo2.id,
@@ -74,7 +74,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries */
 export function snatEntries(args?: SnatEntriesArgs, opts?: pulumi.InvokeOptions): Promise<SnatEntriesResult> {
+    pulumi.log.warn("snatEntries is deprecated: volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -171,7 +173,7 @@ export interface SnatEntriesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -222,7 +224,7 @@ export interface SnatEntriesResult {
  * }, {
  *     dependsOn: [fooAssociate],
  * });
- * const fooSnatEntries = volcengine.nat.SnatEntriesOutput({
+ * const fooSnatEntries = volcengine.nat.getSnatEntriesOutput({
  *     ids: [
  *         foo1.id,
  *         foo2.id,
@@ -230,6 +232,7 @@ export interface SnatEntriesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries */
 export function snatEntriesOutput(args?: SnatEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SnatEntriesResult> {
     return pulumi.output(args).apply((a: any) => snatEntries(a, opts))
 }

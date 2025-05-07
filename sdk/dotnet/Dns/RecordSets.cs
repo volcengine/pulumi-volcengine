@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Dns
 {
+    [Obsolete(@"volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets")]
     public static class RecordSets
     {
         /// <summary>
@@ -23,15 +24,15 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Dns.Zones.Invoke(new()
+        ///     var fooZones = Volcengine.Dns.GetZones.Invoke(new()
         ///     {
         ///         Key = "xxx",
         ///         SearchMode = "xx",
         ///     });
         /// 
-        ///     var fooRecordSets = Volcengine.Dns.RecordSets.Invoke(new()
+        ///     var fooRecordSets = Volcengine.Dns.GetRecordSets.Invoke(new()
         ///     {
-        ///         Zid = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Zid),
+        ///         Zid = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Zid),
         ///     });
         /// 
         /// });
@@ -52,15 +53,15 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Dns.Zones.Invoke(new()
+        ///     var fooZones = Volcengine.Dns.GetZones.Invoke(new()
         ///     {
         ///         Key = "xxx",
         ///         SearchMode = "xx",
         ///     });
         /// 
-        ///     var fooRecordSets = Volcengine.Dns.RecordSets.Invoke(new()
+        ///     var fooRecordSets = Volcengine.Dns.GetRecordSets.Invoke(new()
         ///     {
-        ///         Zid = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Zid),
+        ///         Zid = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Zid),
         ///     });
         /// 
         /// });

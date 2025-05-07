@@ -1765,6 +1765,1656 @@ func (o CfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput) Index(i pulumi.IntI
 	}).(CfwVpcFirewallAclRulesVpcFirewallAclRuleOutput)
 }
 
+type GetCfwAddressBooksAddressBook struct {
+	// The address list of the address book.
+	AddressLists []string `pulumi:"addressLists"`
+	// The group type of address book. This field support fuzzy query.
+	Description string `pulumi:"description"`
+	// The group name of address book. This field support fuzzy query.
+	GroupName string `pulumi:"groupName"`
+	// The group type of address book. Valid values: `ip`, `port`, `domain`.
+	GroupType string `pulumi:"groupType"`
+	// The uuid of the address book.
+	GroupUuid string `pulumi:"groupUuid"`
+	// The uuid of the address book.
+	Id string `pulumi:"id"`
+	// The reference count of the address book.
+	RefCnt int `pulumi:"refCnt"`
+}
+
+// GetCfwAddressBooksAddressBookInput is an input type that accepts GetCfwAddressBooksAddressBookArgs and GetCfwAddressBooksAddressBookOutput values.
+// You can construct a concrete instance of `GetCfwAddressBooksAddressBookInput` via:
+//
+//	GetCfwAddressBooksAddressBookArgs{...}
+type GetCfwAddressBooksAddressBookInput interface {
+	pulumi.Input
+
+	ToGetCfwAddressBooksAddressBookOutput() GetCfwAddressBooksAddressBookOutput
+	ToGetCfwAddressBooksAddressBookOutputWithContext(context.Context) GetCfwAddressBooksAddressBookOutput
+}
+
+type GetCfwAddressBooksAddressBookArgs struct {
+	// The address list of the address book.
+	AddressLists pulumi.StringArrayInput `pulumi:"addressLists"`
+	// The group type of address book. This field support fuzzy query.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The group name of address book. This field support fuzzy query.
+	GroupName pulumi.StringInput `pulumi:"groupName"`
+	// The group type of address book. Valid values: `ip`, `port`, `domain`.
+	GroupType pulumi.StringInput `pulumi:"groupType"`
+	// The uuid of the address book.
+	GroupUuid pulumi.StringInput `pulumi:"groupUuid"`
+	// The uuid of the address book.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The reference count of the address book.
+	RefCnt pulumi.IntInput `pulumi:"refCnt"`
+}
+
+func (GetCfwAddressBooksAddressBookArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwAddressBooksAddressBook)(nil)).Elem()
+}
+
+func (i GetCfwAddressBooksAddressBookArgs) ToGetCfwAddressBooksAddressBookOutput() GetCfwAddressBooksAddressBookOutput {
+	return i.ToGetCfwAddressBooksAddressBookOutputWithContext(context.Background())
+}
+
+func (i GetCfwAddressBooksAddressBookArgs) ToGetCfwAddressBooksAddressBookOutputWithContext(ctx context.Context) GetCfwAddressBooksAddressBookOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwAddressBooksAddressBookOutput)
+}
+
+// GetCfwAddressBooksAddressBookArrayInput is an input type that accepts GetCfwAddressBooksAddressBookArray and GetCfwAddressBooksAddressBookArrayOutput values.
+// You can construct a concrete instance of `GetCfwAddressBooksAddressBookArrayInput` via:
+//
+//	GetCfwAddressBooksAddressBookArray{ GetCfwAddressBooksAddressBookArgs{...} }
+type GetCfwAddressBooksAddressBookArrayInput interface {
+	pulumi.Input
+
+	ToGetCfwAddressBooksAddressBookArrayOutput() GetCfwAddressBooksAddressBookArrayOutput
+	ToGetCfwAddressBooksAddressBookArrayOutputWithContext(context.Context) GetCfwAddressBooksAddressBookArrayOutput
+}
+
+type GetCfwAddressBooksAddressBookArray []GetCfwAddressBooksAddressBookInput
+
+func (GetCfwAddressBooksAddressBookArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwAddressBooksAddressBook)(nil)).Elem()
+}
+
+func (i GetCfwAddressBooksAddressBookArray) ToGetCfwAddressBooksAddressBookArrayOutput() GetCfwAddressBooksAddressBookArrayOutput {
+	return i.ToGetCfwAddressBooksAddressBookArrayOutputWithContext(context.Background())
+}
+
+func (i GetCfwAddressBooksAddressBookArray) ToGetCfwAddressBooksAddressBookArrayOutputWithContext(ctx context.Context) GetCfwAddressBooksAddressBookArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwAddressBooksAddressBookArrayOutput)
+}
+
+type GetCfwAddressBooksAddressBookOutput struct{ *pulumi.OutputState }
+
+func (GetCfwAddressBooksAddressBookOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwAddressBooksAddressBook)(nil)).Elem()
+}
+
+func (o GetCfwAddressBooksAddressBookOutput) ToGetCfwAddressBooksAddressBookOutput() GetCfwAddressBooksAddressBookOutput {
+	return o
+}
+
+func (o GetCfwAddressBooksAddressBookOutput) ToGetCfwAddressBooksAddressBookOutputWithContext(ctx context.Context) GetCfwAddressBooksAddressBookOutput {
+	return o
+}
+
+// The address list of the address book.
+func (o GetCfwAddressBooksAddressBookOutput) AddressLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) []string { return v.AddressLists }).(pulumi.StringArrayOutput)
+}
+
+// The group type of address book. This field support fuzzy query.
+func (o GetCfwAddressBooksAddressBookOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The group name of address book. This field support fuzzy query.
+func (o GetCfwAddressBooksAddressBookOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) string { return v.GroupName }).(pulumi.StringOutput)
+}
+
+// The group type of address book. Valid values: `ip`, `port`, `domain`.
+func (o GetCfwAddressBooksAddressBookOutput) GroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) string { return v.GroupType }).(pulumi.StringOutput)
+}
+
+// The uuid of the address book.
+func (o GetCfwAddressBooksAddressBookOutput) GroupUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) string { return v.GroupUuid }).(pulumi.StringOutput)
+}
+
+// The uuid of the address book.
+func (o GetCfwAddressBooksAddressBookOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The reference count of the address book.
+func (o GetCfwAddressBooksAddressBookOutput) RefCnt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwAddressBooksAddressBook) int { return v.RefCnt }).(pulumi.IntOutput)
+}
+
+type GetCfwAddressBooksAddressBookArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCfwAddressBooksAddressBookArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwAddressBooksAddressBook)(nil)).Elem()
+}
+
+func (o GetCfwAddressBooksAddressBookArrayOutput) ToGetCfwAddressBooksAddressBookArrayOutput() GetCfwAddressBooksAddressBookArrayOutput {
+	return o
+}
+
+func (o GetCfwAddressBooksAddressBookArrayOutput) ToGetCfwAddressBooksAddressBookArrayOutputWithContext(ctx context.Context) GetCfwAddressBooksAddressBookArrayOutput {
+	return o
+}
+
+func (o GetCfwAddressBooksAddressBookArrayOutput) Index(i pulumi.IntInput) GetCfwAddressBooksAddressBookOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCfwAddressBooksAddressBook {
+		return vs[0].([]GetCfwAddressBooksAddressBook)[vs[1].(int)]
+	}).(GetCfwAddressBooksAddressBookOutput)
+}
+
+type GetCfwControlPoliciesControlPolicy struct {
+	// The account id of the control policy.
+	AccountId string `pulumi:"accountId"`
+	// The action list of the control policy. Valid values: `accept`, `deny`, `monitor`.
+	Action string `pulumi:"action"`
+	// The description of the control policy. This field support fuzzy query.
+	Description string `pulumi:"description"`
+	// The dest port of the control policy.
+	DestPort string `pulumi:"destPort"`
+	// The dest port group type of the control policy.
+	DestPortGroupType string `pulumi:"destPortGroupType"`
+	// The dest port list of the control policy.
+	DestPortLists []string `pulumi:"destPortLists"`
+	// The dest port type of the control policy.
+	DestPortType string `pulumi:"destPortType"`
+	// The destination of the control policy. This field support fuzzy query.
+	Destination string `pulumi:"destination"`
+	// The destination cidr list of the control policy.
+	DestinationCidrLists []string `pulumi:"destinationCidrLists"`
+	// The destination group type of the control policy.
+	DestinationGroupType string `pulumi:"destinationGroupType"`
+	// The destination type of the control policy.
+	DestinationType string `pulumi:"destinationType"`
+	// The direction of control policy. Valid values: `in`, `out`.
+	Direction string `pulumi:"direction"`
+	// The effect status of the control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+	EffectStatus int `pulumi:"effectStatus"`
+	// The end time of the control policy. Unix timestamp.
+	EndTime int `pulumi:"endTime"`
+	// The hit count of the control policy.
+	HitCnt int `pulumi:"hitCnt"`
+	// The id of the control policy.
+	Id string `pulumi:"id"`
+	// Whether the control policy is effected.
+	IsEffected bool `pulumi:"isEffected"`
+	// The priority of the control policy.
+	Prio int `pulumi:"prio"`
+	// The proto list of the control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+	Proto string `pulumi:"proto"`
+	// The repeat days of the control policy.
+	RepeatDays []int `pulumi:"repeatDays"`
+	// The repeat end time of the control policy.
+	RepeatEndTime string `pulumi:"repeatEndTime"`
+	// The repeat start time of the control policy.
+	RepeatStartTime string `pulumi:"repeatStartTime"`
+	// The repeat type of the control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+	RepeatType string `pulumi:"repeatType"`
+	// The rule id of the control policy. This field support fuzzy query.
+	RuleId string `pulumi:"ruleId"`
+	// The source of the control policy. This field support fuzzy query.
+	Source string `pulumi:"source"`
+	// The source cidr list of the control policy.
+	SourceCidrLists []string `pulumi:"sourceCidrLists"`
+	// The source group type of the control policy.
+	SourceGroupType string `pulumi:"sourceGroupType"`
+	// The source type of the control policy.
+	SourceType string `pulumi:"sourceType"`
+	// The start time of the control policy. Unix timestamp.
+	StartTime int `pulumi:"startTime"`
+	// The enable status list of the control policy.
+	Status bool `pulumi:"status"`
+	// The update time of the control policy.
+	UpdateTime int `pulumi:"updateTime"`
+	// The use count of the control policy.
+	UseCount int `pulumi:"useCount"`
+}
+
+// GetCfwControlPoliciesControlPolicyInput is an input type that accepts GetCfwControlPoliciesControlPolicyArgs and GetCfwControlPoliciesControlPolicyOutput values.
+// You can construct a concrete instance of `GetCfwControlPoliciesControlPolicyInput` via:
+//
+//	GetCfwControlPoliciesControlPolicyArgs{...}
+type GetCfwControlPoliciesControlPolicyInput interface {
+	pulumi.Input
+
+	ToGetCfwControlPoliciesControlPolicyOutput() GetCfwControlPoliciesControlPolicyOutput
+	ToGetCfwControlPoliciesControlPolicyOutputWithContext(context.Context) GetCfwControlPoliciesControlPolicyOutput
+}
+
+type GetCfwControlPoliciesControlPolicyArgs struct {
+	// The account id of the control policy.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The action list of the control policy. Valid values: `accept`, `deny`, `monitor`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The description of the control policy. This field support fuzzy query.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The dest port of the control policy.
+	DestPort pulumi.StringInput `pulumi:"destPort"`
+	// The dest port group type of the control policy.
+	DestPortGroupType pulumi.StringInput `pulumi:"destPortGroupType"`
+	// The dest port list of the control policy.
+	DestPortLists pulumi.StringArrayInput `pulumi:"destPortLists"`
+	// The dest port type of the control policy.
+	DestPortType pulumi.StringInput `pulumi:"destPortType"`
+	// The destination of the control policy. This field support fuzzy query.
+	Destination pulumi.StringInput `pulumi:"destination"`
+	// The destination cidr list of the control policy.
+	DestinationCidrLists pulumi.StringArrayInput `pulumi:"destinationCidrLists"`
+	// The destination group type of the control policy.
+	DestinationGroupType pulumi.StringInput `pulumi:"destinationGroupType"`
+	// The destination type of the control policy.
+	DestinationType pulumi.StringInput `pulumi:"destinationType"`
+	// The direction of control policy. Valid values: `in`, `out`.
+	Direction pulumi.StringInput `pulumi:"direction"`
+	// The effect status of the control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+	EffectStatus pulumi.IntInput `pulumi:"effectStatus"`
+	// The end time of the control policy. Unix timestamp.
+	EndTime pulumi.IntInput `pulumi:"endTime"`
+	// The hit count of the control policy.
+	HitCnt pulumi.IntInput `pulumi:"hitCnt"`
+	// The id of the control policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the control policy is effected.
+	IsEffected pulumi.BoolInput `pulumi:"isEffected"`
+	// The priority of the control policy.
+	Prio pulumi.IntInput `pulumi:"prio"`
+	// The proto list of the control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+	Proto pulumi.StringInput `pulumi:"proto"`
+	// The repeat days of the control policy.
+	RepeatDays pulumi.IntArrayInput `pulumi:"repeatDays"`
+	// The repeat end time of the control policy.
+	RepeatEndTime pulumi.StringInput `pulumi:"repeatEndTime"`
+	// The repeat start time of the control policy.
+	RepeatStartTime pulumi.StringInput `pulumi:"repeatStartTime"`
+	// The repeat type of the control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+	RepeatType pulumi.StringInput `pulumi:"repeatType"`
+	// The rule id of the control policy. This field support fuzzy query.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The source of the control policy. This field support fuzzy query.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The source cidr list of the control policy.
+	SourceCidrLists pulumi.StringArrayInput `pulumi:"sourceCidrLists"`
+	// The source group type of the control policy.
+	SourceGroupType pulumi.StringInput `pulumi:"sourceGroupType"`
+	// The source type of the control policy.
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The start time of the control policy. Unix timestamp.
+	StartTime pulumi.IntInput `pulumi:"startTime"`
+	// The enable status list of the control policy.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// The update time of the control policy.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+	// The use count of the control policy.
+	UseCount pulumi.IntInput `pulumi:"useCount"`
+}
+
+func (GetCfwControlPoliciesControlPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwControlPoliciesControlPolicy)(nil)).Elem()
+}
+
+func (i GetCfwControlPoliciesControlPolicyArgs) ToGetCfwControlPoliciesControlPolicyOutput() GetCfwControlPoliciesControlPolicyOutput {
+	return i.ToGetCfwControlPoliciesControlPolicyOutputWithContext(context.Background())
+}
+
+func (i GetCfwControlPoliciesControlPolicyArgs) ToGetCfwControlPoliciesControlPolicyOutputWithContext(ctx context.Context) GetCfwControlPoliciesControlPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwControlPoliciesControlPolicyOutput)
+}
+
+// GetCfwControlPoliciesControlPolicyArrayInput is an input type that accepts GetCfwControlPoliciesControlPolicyArray and GetCfwControlPoliciesControlPolicyArrayOutput values.
+// You can construct a concrete instance of `GetCfwControlPoliciesControlPolicyArrayInput` via:
+//
+//	GetCfwControlPoliciesControlPolicyArray{ GetCfwControlPoliciesControlPolicyArgs{...} }
+type GetCfwControlPoliciesControlPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetCfwControlPoliciesControlPolicyArrayOutput() GetCfwControlPoliciesControlPolicyArrayOutput
+	ToGetCfwControlPoliciesControlPolicyArrayOutputWithContext(context.Context) GetCfwControlPoliciesControlPolicyArrayOutput
+}
+
+type GetCfwControlPoliciesControlPolicyArray []GetCfwControlPoliciesControlPolicyInput
+
+func (GetCfwControlPoliciesControlPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwControlPoliciesControlPolicy)(nil)).Elem()
+}
+
+func (i GetCfwControlPoliciesControlPolicyArray) ToGetCfwControlPoliciesControlPolicyArrayOutput() GetCfwControlPoliciesControlPolicyArrayOutput {
+	return i.ToGetCfwControlPoliciesControlPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCfwControlPoliciesControlPolicyArray) ToGetCfwControlPoliciesControlPolicyArrayOutputWithContext(ctx context.Context) GetCfwControlPoliciesControlPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwControlPoliciesControlPolicyArrayOutput)
+}
+
+type GetCfwControlPoliciesControlPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetCfwControlPoliciesControlPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwControlPoliciesControlPolicy)(nil)).Elem()
+}
+
+func (o GetCfwControlPoliciesControlPolicyOutput) ToGetCfwControlPoliciesControlPolicyOutput() GetCfwControlPoliciesControlPolicyOutput {
+	return o
+}
+
+func (o GetCfwControlPoliciesControlPolicyOutput) ToGetCfwControlPoliciesControlPolicyOutputWithContext(ctx context.Context) GetCfwControlPoliciesControlPolicyOutput {
+	return o
+}
+
+// The account id of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The action list of the control policy. Valid values: `accept`, `deny`, `monitor`.
+func (o GetCfwControlPoliciesControlPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The description of the control policy. This field support fuzzy query.
+func (o GetCfwControlPoliciesControlPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The dest port of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.DestPort }).(pulumi.StringOutput)
+}
+
+// The dest port group type of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestPortGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.DestPortGroupType }).(pulumi.StringOutput)
+}
+
+// The dest port list of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestPortLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) []string { return v.DestPortLists }).(pulumi.StringArrayOutput)
+}
+
+// The dest port type of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestPortType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.DestPortType }).(pulumi.StringOutput)
+}
+
+// The destination of the control policy. This field support fuzzy query.
+func (o GetCfwControlPoliciesControlPolicyOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The destination cidr list of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestinationCidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) []string { return v.DestinationCidrLists }).(pulumi.StringArrayOutput)
+}
+
+// The destination group type of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestinationGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.DestinationGroupType }).(pulumi.StringOutput)
+}
+
+// The destination type of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) DestinationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.DestinationType }).(pulumi.StringOutput)
+}
+
+// The direction of control policy. Valid values: `in`, `out`.
+func (o GetCfwControlPoliciesControlPolicyOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Direction }).(pulumi.StringOutput)
+}
+
+// The effect status of the control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+func (o GetCfwControlPoliciesControlPolicyOutput) EffectStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.EffectStatus }).(pulumi.IntOutput)
+}
+
+// The end time of the control policy. Unix timestamp.
+func (o GetCfwControlPoliciesControlPolicyOutput) EndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.EndTime }).(pulumi.IntOutput)
+}
+
+// The hit count of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) HitCnt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.HitCnt }).(pulumi.IntOutput)
+}
+
+// The id of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the control policy is effected.
+func (o GetCfwControlPoliciesControlPolicyOutput) IsEffected() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) bool { return v.IsEffected }).(pulumi.BoolOutput)
+}
+
+// The priority of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) Prio() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.Prio }).(pulumi.IntOutput)
+}
+
+// The proto list of the control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+func (o GetCfwControlPoliciesControlPolicyOutput) Proto() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Proto }).(pulumi.StringOutput)
+}
+
+// The repeat days of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) RepeatDays() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) []int { return v.RepeatDays }).(pulumi.IntArrayOutput)
+}
+
+// The repeat end time of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) RepeatEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.RepeatEndTime }).(pulumi.StringOutput)
+}
+
+// The repeat start time of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) RepeatStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.RepeatStartTime }).(pulumi.StringOutput)
+}
+
+// The repeat type of the control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+func (o GetCfwControlPoliciesControlPolicyOutput) RepeatType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.RepeatType }).(pulumi.StringOutput)
+}
+
+// The rule id of the control policy. This field support fuzzy query.
+func (o GetCfwControlPoliciesControlPolicyOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The source of the control policy. This field support fuzzy query.
+func (o GetCfwControlPoliciesControlPolicyOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The source cidr list of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) SourceCidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) []string { return v.SourceCidrLists }).(pulumi.StringArrayOutput)
+}
+
+// The source group type of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) SourceGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.SourceGroupType }).(pulumi.StringOutput)
+}
+
+// The source type of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) SourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) string { return v.SourceType }).(pulumi.StringOutput)
+}
+
+// The start time of the control policy. Unix timestamp.
+func (o GetCfwControlPoliciesControlPolicyOutput) StartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+// The enable status list of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// The update time of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+// The use count of the control policy.
+func (o GetCfwControlPoliciesControlPolicyOutput) UseCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwControlPoliciesControlPolicy) int { return v.UseCount }).(pulumi.IntOutput)
+}
+
+type GetCfwControlPoliciesControlPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCfwControlPoliciesControlPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwControlPoliciesControlPolicy)(nil)).Elem()
+}
+
+func (o GetCfwControlPoliciesControlPolicyArrayOutput) ToGetCfwControlPoliciesControlPolicyArrayOutput() GetCfwControlPoliciesControlPolicyArrayOutput {
+	return o
+}
+
+func (o GetCfwControlPoliciesControlPolicyArrayOutput) ToGetCfwControlPoliciesControlPolicyArrayOutputWithContext(ctx context.Context) GetCfwControlPoliciesControlPolicyArrayOutput {
+	return o
+}
+
+func (o GetCfwControlPoliciesControlPolicyArrayOutput) Index(i pulumi.IntInput) GetCfwControlPoliciesControlPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCfwControlPoliciesControlPolicy {
+		return vs[0].([]GetCfwControlPoliciesControlPolicy)[vs[1].(int)]
+	}).(GetCfwControlPoliciesControlPolicyOutput)
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicy struct {
+	// The account id of the dns control policy.
+	AccountId string `pulumi:"accountId"`
+	// The description of the dns control policy. This field support fuzzy query.
+	Description string `pulumi:"description"`
+	// The destination list of the dns control policy. This field support fuzzy query.
+	Destination string `pulumi:"destination"`
+	// The destination group list of the dns control policy.
+	DestinationGroupLists []string `pulumi:"destinationGroupLists"`
+	// The destination type of the dns control policy.
+	DestinationType string `pulumi:"destinationType"`
+	// The destination domain list of the dns control policy.
+	DomainLists []string `pulumi:"domainLists"`
+	// The hit count of the dns control policy.
+	HitCnt int `pulumi:"hitCnt"`
+	// The id of the dns control policy.
+	Id string `pulumi:"id"`
+	// The last hit time of the dns control policy. Unix timestamp.
+	LastHitTime int `pulumi:"lastHitTime"`
+	// The id of the dns control policy.
+	RuleId string `pulumi:"ruleId"`
+	// The source list of the dns control policy. This field support fuzzy query.
+	Sources []GetCfwDnsControlPoliciesDnsControlPolicySource `pulumi:"sources"`
+	// The enable status list of the dns control policy. This field support fuzzy query.
+	Status bool `pulumi:"status"`
+	// The use count of the dns control policy.
+	UseCount int `pulumi:"useCount"`
+}
+
+// GetCfwDnsControlPoliciesDnsControlPolicyInput is an input type that accepts GetCfwDnsControlPoliciesDnsControlPolicyArgs and GetCfwDnsControlPoliciesDnsControlPolicyOutput values.
+// You can construct a concrete instance of `GetCfwDnsControlPoliciesDnsControlPolicyInput` via:
+//
+//	GetCfwDnsControlPoliciesDnsControlPolicyArgs{...}
+type GetCfwDnsControlPoliciesDnsControlPolicyInput interface {
+	pulumi.Input
+
+	ToGetCfwDnsControlPoliciesDnsControlPolicyOutput() GetCfwDnsControlPoliciesDnsControlPolicyOutput
+	ToGetCfwDnsControlPoliciesDnsControlPolicyOutputWithContext(context.Context) GetCfwDnsControlPoliciesDnsControlPolicyOutput
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicyArgs struct {
+	// The account id of the dns control policy.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The description of the dns control policy. This field support fuzzy query.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination list of the dns control policy. This field support fuzzy query.
+	Destination pulumi.StringInput `pulumi:"destination"`
+	// The destination group list of the dns control policy.
+	DestinationGroupLists pulumi.StringArrayInput `pulumi:"destinationGroupLists"`
+	// The destination type of the dns control policy.
+	DestinationType pulumi.StringInput `pulumi:"destinationType"`
+	// The destination domain list of the dns control policy.
+	DomainLists pulumi.StringArrayInput `pulumi:"domainLists"`
+	// The hit count of the dns control policy.
+	HitCnt pulumi.IntInput `pulumi:"hitCnt"`
+	// The id of the dns control policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The last hit time of the dns control policy. Unix timestamp.
+	LastHitTime pulumi.IntInput `pulumi:"lastHitTime"`
+	// The id of the dns control policy.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The source list of the dns control policy. This field support fuzzy query.
+	Sources GetCfwDnsControlPoliciesDnsControlPolicySourceArrayInput `pulumi:"sources"`
+	// The enable status list of the dns control policy. This field support fuzzy query.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// The use count of the dns control policy.
+	UseCount pulumi.IntInput `pulumi:"useCount"`
+}
+
+func (GetCfwDnsControlPoliciesDnsControlPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicy)(nil)).Elem()
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicyArgs) ToGetCfwDnsControlPoliciesDnsControlPolicyOutput() GetCfwDnsControlPoliciesDnsControlPolicyOutput {
+	return i.ToGetCfwDnsControlPoliciesDnsControlPolicyOutputWithContext(context.Background())
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicyArgs) ToGetCfwDnsControlPoliciesDnsControlPolicyOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwDnsControlPoliciesDnsControlPolicyOutput)
+}
+
+// GetCfwDnsControlPoliciesDnsControlPolicyArrayInput is an input type that accepts GetCfwDnsControlPoliciesDnsControlPolicyArray and GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput values.
+// You can construct a concrete instance of `GetCfwDnsControlPoliciesDnsControlPolicyArrayInput` via:
+//
+//	GetCfwDnsControlPoliciesDnsControlPolicyArray{ GetCfwDnsControlPoliciesDnsControlPolicyArgs{...} }
+type GetCfwDnsControlPoliciesDnsControlPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutput() GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput
+	ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutputWithContext(context.Context) GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicyArray []GetCfwDnsControlPoliciesDnsControlPolicyInput
+
+func (GetCfwDnsControlPoliciesDnsControlPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwDnsControlPoliciesDnsControlPolicy)(nil)).Elem()
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicyArray) ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutput() GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput {
+	return i.ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicyArray) ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput)
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetCfwDnsControlPoliciesDnsControlPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicy)(nil)).Elem()
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) ToGetCfwDnsControlPoliciesDnsControlPolicyOutput() GetCfwDnsControlPoliciesDnsControlPolicyOutput {
+	return o
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) ToGetCfwDnsControlPoliciesDnsControlPolicyOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicyOutput {
+	return o
+}
+
+// The account id of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The description of the dns control policy. This field support fuzzy query.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination list of the dns control policy. This field support fuzzy query.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The destination group list of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) DestinationGroupLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) []string { return v.DestinationGroupLists }).(pulumi.StringArrayOutput)
+}
+
+// The destination type of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) DestinationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) string { return v.DestinationType }).(pulumi.StringOutput)
+}
+
+// The destination domain list of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) DomainLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) []string { return v.DomainLists }).(pulumi.StringArrayOutput)
+}
+
+// The hit count of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) HitCnt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) int { return v.HitCnt }).(pulumi.IntOutput)
+}
+
+// The id of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The last hit time of the dns control policy. Unix timestamp.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) LastHitTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) int { return v.LastHitTime }).(pulumi.IntOutput)
+}
+
+// The id of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The source list of the dns control policy. This field support fuzzy query.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) Sources() GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) []GetCfwDnsControlPoliciesDnsControlPolicySource {
+		return v.Sources
+	}).(GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput)
+}
+
+// The enable status list of the dns control policy. This field support fuzzy query.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// The use count of the dns control policy.
+func (o GetCfwDnsControlPoliciesDnsControlPolicyOutput) UseCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicy) int { return v.UseCount }).(pulumi.IntOutput)
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwDnsControlPoliciesDnsControlPolicy)(nil)).Elem()
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput) ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutput() GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput {
+	return o
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput) ToGetCfwDnsControlPoliciesDnsControlPolicyArrayOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput {
+	return o
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput) Index(i pulumi.IntInput) GetCfwDnsControlPoliciesDnsControlPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCfwDnsControlPoliciesDnsControlPolicy {
+		return vs[0].([]GetCfwDnsControlPoliciesDnsControlPolicy)[vs[1].(int)]
+	}).(GetCfwDnsControlPoliciesDnsControlPolicyOutput)
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicySource struct {
+	// The region of the source vpc.
+	Region string `pulumi:"region"`
+	// The id of the source vpc.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetCfwDnsControlPoliciesDnsControlPolicySourceInput is an input type that accepts GetCfwDnsControlPoliciesDnsControlPolicySourceArgs and GetCfwDnsControlPoliciesDnsControlPolicySourceOutput values.
+// You can construct a concrete instance of `GetCfwDnsControlPoliciesDnsControlPolicySourceInput` via:
+//
+//	GetCfwDnsControlPoliciesDnsControlPolicySourceArgs{...}
+type GetCfwDnsControlPoliciesDnsControlPolicySourceInput interface {
+	pulumi.Input
+
+	ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutput() GetCfwDnsControlPoliciesDnsControlPolicySourceOutput
+	ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutputWithContext(context.Context) GetCfwDnsControlPoliciesDnsControlPolicySourceOutput
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicySourceArgs struct {
+	// The region of the source vpc.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The id of the source vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetCfwDnsControlPoliciesDnsControlPolicySourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicySource)(nil)).Elem()
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicySourceArgs) ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutput() GetCfwDnsControlPoliciesDnsControlPolicySourceOutput {
+	return i.ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutputWithContext(context.Background())
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicySourceArgs) ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicySourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwDnsControlPoliciesDnsControlPolicySourceOutput)
+}
+
+// GetCfwDnsControlPoliciesDnsControlPolicySourceArrayInput is an input type that accepts GetCfwDnsControlPoliciesDnsControlPolicySourceArray and GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput values.
+// You can construct a concrete instance of `GetCfwDnsControlPoliciesDnsControlPolicySourceArrayInput` via:
+//
+//	GetCfwDnsControlPoliciesDnsControlPolicySourceArray{ GetCfwDnsControlPoliciesDnsControlPolicySourceArgs{...} }
+type GetCfwDnsControlPoliciesDnsControlPolicySourceArrayInput interface {
+	pulumi.Input
+
+	ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput() GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput
+	ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutputWithContext(context.Context) GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicySourceArray []GetCfwDnsControlPoliciesDnsControlPolicySourceInput
+
+func (GetCfwDnsControlPoliciesDnsControlPolicySourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwDnsControlPoliciesDnsControlPolicySource)(nil)).Elem()
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicySourceArray) ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput() GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput {
+	return i.ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetCfwDnsControlPoliciesDnsControlPolicySourceArray) ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput)
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicySourceOutput struct{ *pulumi.OutputState }
+
+func (GetCfwDnsControlPoliciesDnsControlPolicySourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicySource)(nil)).Elem()
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceOutput) ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutput() GetCfwDnsControlPoliciesDnsControlPolicySourceOutput {
+	return o
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceOutput) ToGetCfwDnsControlPoliciesDnsControlPolicySourceOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicySourceOutput {
+	return o
+}
+
+// The region of the source vpc.
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicySource) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The id of the source vpc.
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwDnsControlPoliciesDnsControlPolicySource) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwDnsControlPoliciesDnsControlPolicySource)(nil)).Elem()
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput) ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput() GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput {
+	return o
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput) ToGetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutputWithContext(ctx context.Context) GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput {
+	return o
+}
+
+func (o GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput) Index(i pulumi.IntInput) GetCfwDnsControlPoliciesDnsControlPolicySourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCfwDnsControlPoliciesDnsControlPolicySource {
+		return vs[0].([]GetCfwDnsControlPoliciesDnsControlPolicySource)[vs[1].(int)]
+	}).(GetCfwDnsControlPoliciesDnsControlPolicySourceOutput)
+}
+
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy struct {
+	// The account id of the nat firewall control policy.
+	AccountId string `pulumi:"accountId"`
+	// The action list of the nat firewall control policy. Valid values: `accept`, `deny`, `monitor`.
+	Action string `pulumi:"action"`
+	// The description of the nat firewall control policy. This field support fuzzy query.
+	Description string `pulumi:"description"`
+	// The dest port of the nat firewall control policy.
+	DestPort string `pulumi:"destPort"`
+	// The dest port group list of the nat firewall control policy.
+	DestPortGroupLists []string `pulumi:"destPortGroupLists"`
+	// The dest port group type of the nat firewall control policy.
+	DestPortGroupType string `pulumi:"destPortGroupType"`
+	// The dest port list of the nat firewall control policy.
+	DestPortLists []string `pulumi:"destPortLists"`
+	// The dest port type of the nat firewall control policy.
+	DestPortType string `pulumi:"destPortType"`
+	// The destination of the nat firewall control policy. This field support fuzzy query.
+	Destination string `pulumi:"destination"`
+	// The destination cidr list of the nat firewall control policy.
+	DestinationCidrLists []string `pulumi:"destinationCidrLists"`
+	// The destination group list of the nat firewall control policy.
+	DestinationGroupLists []string `pulumi:"destinationGroupLists"`
+	// The destination group type of the nat firewall control policy.
+	DestinationGroupType string `pulumi:"destinationGroupType"`
+	// The destination type of the nat firewall control policy.
+	DestinationType string `pulumi:"destinationType"`
+	// The direction of nat firewall control policy. Valid values: `in`, `out`.
+	Direction string `pulumi:"direction"`
+	// The effect status of the nat firewall control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+	EffectStatus int `pulumi:"effectStatus"`
+	// The end time of the nat firewall control policy. Unix timestamp.
+	EndTime int `pulumi:"endTime"`
+	// The hit count of the nat firewall control policy.
+	HitCnt int `pulumi:"hitCnt"`
+	// The id of the nat firewall control policy.
+	Id string `pulumi:"id"`
+	// Whether the nat firewall control policy is effected.
+	IsEffected bool `pulumi:"isEffected"`
+	// The nat firewall id of the nat firewall control policy.
+	NatFirewallId string `pulumi:"natFirewallId"`
+	// The name of the nat firewall.
+	NatFirewallName string `pulumi:"natFirewallName"`
+	// The priority of the nat firewall control policy.
+	Prio int `pulumi:"prio"`
+	// The proto list of the nat firewall control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+	Proto string `pulumi:"proto"`
+	// The repeat days of the nat firewall control policy.
+	RepeatDays []int `pulumi:"repeatDays"`
+	// The repeat end time of the nat firewall control policy.
+	RepeatEndTime string `pulumi:"repeatEndTime"`
+	// The repeat start time of the nat firewall control policy.
+	RepeatStartTime string `pulumi:"repeatStartTime"`
+	// The repeat type of the nat firewall control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+	RepeatType string `pulumi:"repeatType"`
+	// The rule id of the nat firewall control policy. This field support fuzzy query.
+	RuleId string `pulumi:"ruleId"`
+	// The source of the nat firewall control policy. This field support fuzzy query.
+	Source string `pulumi:"source"`
+	// The source cidr list of the nat firewall control policy.
+	SourceCidrLists []string `pulumi:"sourceCidrLists"`
+	// The source group list of the nat firewall control policy.
+	SourceGroupLists []string `pulumi:"sourceGroupLists"`
+	// The source group type of the nat firewall control policy.
+	SourceGroupType string `pulumi:"sourceGroupType"`
+	// The source type of the nat firewall control policy.
+	SourceType string `pulumi:"sourceType"`
+	// The start time of the nat firewall control policy. Unix timestamp.
+	StartTime int `pulumi:"startTime"`
+	// The enable status list of the nat firewall control policy.
+	Status bool `pulumi:"status"`
+	// The update time of the nat firewall control policy.
+	UpdateTime int `pulumi:"updateTime"`
+	// The use count of the nat firewall control policy.
+	UseCount int `pulumi:"useCount"`
+}
+
+// GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyInput is an input type that accepts GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs and GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput values.
+// You can construct a concrete instance of `GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyInput` via:
+//
+//	GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs{...}
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyInput interface {
+	pulumi.Input
+
+	ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput() GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput
+	ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutputWithContext(context.Context) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput
+}
+
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs struct {
+	// The account id of the nat firewall control policy.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The action list of the nat firewall control policy. Valid values: `accept`, `deny`, `monitor`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The description of the nat firewall control policy. This field support fuzzy query.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The dest port of the nat firewall control policy.
+	DestPort pulumi.StringInput `pulumi:"destPort"`
+	// The dest port group list of the nat firewall control policy.
+	DestPortGroupLists pulumi.StringArrayInput `pulumi:"destPortGroupLists"`
+	// The dest port group type of the nat firewall control policy.
+	DestPortGroupType pulumi.StringInput `pulumi:"destPortGroupType"`
+	// The dest port list of the nat firewall control policy.
+	DestPortLists pulumi.StringArrayInput `pulumi:"destPortLists"`
+	// The dest port type of the nat firewall control policy.
+	DestPortType pulumi.StringInput `pulumi:"destPortType"`
+	// The destination of the nat firewall control policy. This field support fuzzy query.
+	Destination pulumi.StringInput `pulumi:"destination"`
+	// The destination cidr list of the nat firewall control policy.
+	DestinationCidrLists pulumi.StringArrayInput `pulumi:"destinationCidrLists"`
+	// The destination group list of the nat firewall control policy.
+	DestinationGroupLists pulumi.StringArrayInput `pulumi:"destinationGroupLists"`
+	// The destination group type of the nat firewall control policy.
+	DestinationGroupType pulumi.StringInput `pulumi:"destinationGroupType"`
+	// The destination type of the nat firewall control policy.
+	DestinationType pulumi.StringInput `pulumi:"destinationType"`
+	// The direction of nat firewall control policy. Valid values: `in`, `out`.
+	Direction pulumi.StringInput `pulumi:"direction"`
+	// The effect status of the nat firewall control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+	EffectStatus pulumi.IntInput `pulumi:"effectStatus"`
+	// The end time of the nat firewall control policy. Unix timestamp.
+	EndTime pulumi.IntInput `pulumi:"endTime"`
+	// The hit count of the nat firewall control policy.
+	HitCnt pulumi.IntInput `pulumi:"hitCnt"`
+	// The id of the nat firewall control policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the nat firewall control policy is effected.
+	IsEffected pulumi.BoolInput `pulumi:"isEffected"`
+	// The nat firewall id of the nat firewall control policy.
+	NatFirewallId pulumi.StringInput `pulumi:"natFirewallId"`
+	// The name of the nat firewall.
+	NatFirewallName pulumi.StringInput `pulumi:"natFirewallName"`
+	// The priority of the nat firewall control policy.
+	Prio pulumi.IntInput `pulumi:"prio"`
+	// The proto list of the nat firewall control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+	Proto pulumi.StringInput `pulumi:"proto"`
+	// The repeat days of the nat firewall control policy.
+	RepeatDays pulumi.IntArrayInput `pulumi:"repeatDays"`
+	// The repeat end time of the nat firewall control policy.
+	RepeatEndTime pulumi.StringInput `pulumi:"repeatEndTime"`
+	// The repeat start time of the nat firewall control policy.
+	RepeatStartTime pulumi.StringInput `pulumi:"repeatStartTime"`
+	// The repeat type of the nat firewall control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+	RepeatType pulumi.StringInput `pulumi:"repeatType"`
+	// The rule id of the nat firewall control policy. This field support fuzzy query.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The source of the nat firewall control policy. This field support fuzzy query.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The source cidr list of the nat firewall control policy.
+	SourceCidrLists pulumi.StringArrayInput `pulumi:"sourceCidrLists"`
+	// The source group list of the nat firewall control policy.
+	SourceGroupLists pulumi.StringArrayInput `pulumi:"sourceGroupLists"`
+	// The source group type of the nat firewall control policy.
+	SourceGroupType pulumi.StringInput `pulumi:"sourceGroupType"`
+	// The source type of the nat firewall control policy.
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The start time of the nat firewall control policy. Unix timestamp.
+	StartTime pulumi.IntInput `pulumi:"startTime"`
+	// The enable status list of the nat firewall control policy.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// The update time of the nat firewall control policy.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+	// The use count of the nat firewall control policy.
+	UseCount pulumi.IntInput `pulumi:"useCount"`
+}
+
+func (GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy)(nil)).Elem()
+}
+
+func (i GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput() GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput {
+	return i.ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutputWithContext(context.Background())
+}
+
+func (i GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutputWithContext(ctx context.Context) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput)
+}
+
+// GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayInput is an input type that accepts GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray and GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput values.
+// You can construct a concrete instance of `GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayInput` via:
+//
+//	GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray{ GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs{...} }
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput() GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput
+	ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutputWithContext(context.Context) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput
+}
+
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray []GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyInput
+
+func (GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy)(nil)).Elem()
+}
+
+func (i GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput() GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput {
+	return i.ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutputWithContext(ctx context.Context) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput)
+}
+
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy)(nil)).Elem()
+}
+
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput() GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput {
+	return o
+}
+
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutputWithContext(ctx context.Context) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput {
+	return o
+}
+
+// The account id of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The action list of the nat firewall control policy. Valid values: `accept`, `deny`, `monitor`.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The description of the nat firewall control policy. This field support fuzzy query.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The dest port of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.DestPort }).(pulumi.StringOutput)
+}
+
+// The dest port group list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestPortGroupLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []string { return v.DestPortGroupLists }).(pulumi.StringArrayOutput)
+}
+
+// The dest port group type of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestPortGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.DestPortGroupType }).(pulumi.StringOutput)
+}
+
+// The dest port list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestPortLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []string { return v.DestPortLists }).(pulumi.StringArrayOutput)
+}
+
+// The dest port type of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestPortType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.DestPortType }).(pulumi.StringOutput)
+}
+
+// The destination of the nat firewall control policy. This field support fuzzy query.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The destination cidr list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestinationCidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []string {
+		return v.DestinationCidrLists
+	}).(pulumi.StringArrayOutput)
+}
+
+// The destination group list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestinationGroupLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []string {
+		return v.DestinationGroupLists
+	}).(pulumi.StringArrayOutput)
+}
+
+// The destination group type of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestinationGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.DestinationGroupType }).(pulumi.StringOutput)
+}
+
+// The destination type of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) DestinationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.DestinationType }).(pulumi.StringOutput)
+}
+
+// The direction of nat firewall control policy. Valid values: `in`, `out`.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Direction }).(pulumi.StringOutput)
+}
+
+// The effect status of the nat firewall control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) EffectStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.EffectStatus }).(pulumi.IntOutput)
+}
+
+// The end time of the nat firewall control policy. Unix timestamp.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) EndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.EndTime }).(pulumi.IntOutput)
+}
+
+// The hit count of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) HitCnt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.HitCnt }).(pulumi.IntOutput)
+}
+
+// The id of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the nat firewall control policy is effected.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) IsEffected() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) bool { return v.IsEffected }).(pulumi.BoolOutput)
+}
+
+// The nat firewall id of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) NatFirewallId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.NatFirewallId }).(pulumi.StringOutput)
+}
+
+// The name of the nat firewall.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) NatFirewallName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.NatFirewallName }).(pulumi.StringOutput)
+}
+
+// The priority of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Prio() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.Prio }).(pulumi.IntOutput)
+}
+
+// The proto list of the nat firewall control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Proto() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Proto }).(pulumi.StringOutput)
+}
+
+// The repeat days of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) RepeatDays() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []int { return v.RepeatDays }).(pulumi.IntArrayOutput)
+}
+
+// The repeat end time of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) RepeatEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.RepeatEndTime }).(pulumi.StringOutput)
+}
+
+// The repeat start time of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) RepeatStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.RepeatStartTime }).(pulumi.StringOutput)
+}
+
+// The repeat type of the nat firewall control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) RepeatType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.RepeatType }).(pulumi.StringOutput)
+}
+
+// The rule id of the nat firewall control policy. This field support fuzzy query.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The source of the nat firewall control policy. This field support fuzzy query.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The source cidr list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) SourceCidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []string { return v.SourceCidrLists }).(pulumi.StringArrayOutput)
+}
+
+// The source group list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) SourceGroupLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) []string { return v.SourceGroupLists }).(pulumi.StringArrayOutput)
+}
+
+// The source group type of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) SourceGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.SourceGroupType }).(pulumi.StringOutput)
+}
+
+// The source type of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) SourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) string { return v.SourceType }).(pulumi.StringOutput)
+}
+
+// The start time of the nat firewall control policy. Unix timestamp.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) StartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+// The enable status list of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// The update time of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+// The use count of the nat firewall control policy.
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput) UseCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy) int { return v.UseCount }).(pulumi.IntOutput)
+}
+
+type GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy)(nil)).Elem()
+}
+
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput() GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput {
+	return o
+}
+
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput) ToGetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutputWithContext(ctx context.Context) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput {
+	return o
+}
+
+func (o GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput) Index(i pulumi.IntInput) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy {
+		return vs[0].([]GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy)[vs[1].(int)]
+	}).(GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput)
+}
+
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRule struct {
+	// The account id of the vpc firewall acl rule.
+	AccountId string `pulumi:"accountId"`
+	// The action list of the vpc firewall acl rule. Valid values: `accept`, `deny`, `monitor`.
+	Action string `pulumi:"action"`
+	// The description of the vpc firewall acl rule. This field support fuzzy query.
+	Description string `pulumi:"description"`
+	// The dest port of the vpc firewall acl rule.
+	DestPort string `pulumi:"destPort"`
+	// The dest port group type of the vpc firewall acl rule.
+	DestPortGroupType string `pulumi:"destPortGroupType"`
+	// The dest port list of the vpc firewall acl rule.
+	DestPortLists []string `pulumi:"destPortLists"`
+	// The dest port type of the vpc firewall acl rule.
+	DestPortType string `pulumi:"destPortType"`
+	// The destination of the vpc firewall acl rule. This field support fuzzy query.
+	Destination string `pulumi:"destination"`
+	// The destination cidr list of the vpc firewall acl rule.
+	DestinationCidrLists []string `pulumi:"destinationCidrLists"`
+	// The destination group type of the vpc firewall acl rule.
+	DestinationGroupType string `pulumi:"destinationGroupType"`
+	// The destination type of the vpc firewall acl rule.
+	DestinationType string `pulumi:"destinationType"`
+	// The effect status of the vpc firewall acl rule. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+	EffectStatus int `pulumi:"effectStatus"`
+	// The end time of the vpc firewall acl rule. Unix timestamp.
+	EndTime int `pulumi:"endTime"`
+	// The hit count of the vpc firewall acl rule.
+	HitCnt int `pulumi:"hitCnt"`
+	// The id of the vpc firewall acl rule.
+	Id string `pulumi:"id"`
+	// Whether the vpc firewall acl rule is effected.
+	IsEffected bool `pulumi:"isEffected"`
+	// The priority of the vpc firewall acl rule.
+	Prio int `pulumi:"prio"`
+	// The proto list of the vpc firewall acl rule. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+	Proto string `pulumi:"proto"`
+	// The repeat days of the vpc firewall acl rule.
+	RepeatDays []int `pulumi:"repeatDays"`
+	// The repeat end time of the vpc firewall acl rule.
+	RepeatEndTime string `pulumi:"repeatEndTime"`
+	// The repeat start time of the vpc firewall acl rule.
+	RepeatStartTime string `pulumi:"repeatStartTime"`
+	// The repeat type of the vpc firewall acl rule. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+	RepeatType string `pulumi:"repeatType"`
+	// The rule id of the vpc firewall acl rule. This field support fuzzy query.
+	RuleId string `pulumi:"ruleId"`
+	// The source of the vpc firewall acl rule. This field support fuzzy query.
+	Source string `pulumi:"source"`
+	// The source cidr list of the vpc firewall acl rule.
+	SourceCidrLists []string `pulumi:"sourceCidrLists"`
+	// The source group type of the vpc firewall acl rule.
+	SourceGroupType string `pulumi:"sourceGroupType"`
+	// The source type of the vpc firewall acl rule.
+	SourceType string `pulumi:"sourceType"`
+	// The start time of the vpc firewall acl rule. Unix timestamp.
+	StartTime int `pulumi:"startTime"`
+	// The enable status list of the vpc firewall acl rule.
+	Status bool `pulumi:"status"`
+	// The update time of the vpc firewall acl rule.
+	UpdateTime int `pulumi:"updateTime"`
+	// The use count of the vpc firewall acl rule.
+	UseCount int `pulumi:"useCount"`
+	// The vpc firewall id of the vpc firewall acl rule.
+	VpcFirewallId string `pulumi:"vpcFirewallId"`
+	// The name of the vpc firewall.
+	VpcFirewallName string `pulumi:"vpcFirewallName"`
+}
+
+// GetCfwVpcFirewallAclRulesVpcFirewallAclRuleInput is an input type that accepts GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs and GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput values.
+// You can construct a concrete instance of `GetCfwVpcFirewallAclRulesVpcFirewallAclRuleInput` via:
+//
+//	GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs{...}
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRuleInput interface {
+	pulumi.Input
+
+	ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput() GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput
+	ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutputWithContext(context.Context) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput
+}
+
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs struct {
+	// The account id of the vpc firewall acl rule.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The action list of the vpc firewall acl rule. Valid values: `accept`, `deny`, `monitor`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The description of the vpc firewall acl rule. This field support fuzzy query.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The dest port of the vpc firewall acl rule.
+	DestPort pulumi.StringInput `pulumi:"destPort"`
+	// The dest port group type of the vpc firewall acl rule.
+	DestPortGroupType pulumi.StringInput `pulumi:"destPortGroupType"`
+	// The dest port list of the vpc firewall acl rule.
+	DestPortLists pulumi.StringArrayInput `pulumi:"destPortLists"`
+	// The dest port type of the vpc firewall acl rule.
+	DestPortType pulumi.StringInput `pulumi:"destPortType"`
+	// The destination of the vpc firewall acl rule. This field support fuzzy query.
+	Destination pulumi.StringInput `pulumi:"destination"`
+	// The destination cidr list of the vpc firewall acl rule.
+	DestinationCidrLists pulumi.StringArrayInput `pulumi:"destinationCidrLists"`
+	// The destination group type of the vpc firewall acl rule.
+	DestinationGroupType pulumi.StringInput `pulumi:"destinationGroupType"`
+	// The destination type of the vpc firewall acl rule.
+	DestinationType pulumi.StringInput `pulumi:"destinationType"`
+	// The effect status of the vpc firewall acl rule. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+	EffectStatus pulumi.IntInput `pulumi:"effectStatus"`
+	// The end time of the vpc firewall acl rule. Unix timestamp.
+	EndTime pulumi.IntInput `pulumi:"endTime"`
+	// The hit count of the vpc firewall acl rule.
+	HitCnt pulumi.IntInput `pulumi:"hitCnt"`
+	// The id of the vpc firewall acl rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the vpc firewall acl rule is effected.
+	IsEffected pulumi.BoolInput `pulumi:"isEffected"`
+	// The priority of the vpc firewall acl rule.
+	Prio pulumi.IntInput `pulumi:"prio"`
+	// The proto list of the vpc firewall acl rule. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+	Proto pulumi.StringInput `pulumi:"proto"`
+	// The repeat days of the vpc firewall acl rule.
+	RepeatDays pulumi.IntArrayInput `pulumi:"repeatDays"`
+	// The repeat end time of the vpc firewall acl rule.
+	RepeatEndTime pulumi.StringInput `pulumi:"repeatEndTime"`
+	// The repeat start time of the vpc firewall acl rule.
+	RepeatStartTime pulumi.StringInput `pulumi:"repeatStartTime"`
+	// The repeat type of the vpc firewall acl rule. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+	RepeatType pulumi.StringInput `pulumi:"repeatType"`
+	// The rule id of the vpc firewall acl rule. This field support fuzzy query.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The source of the vpc firewall acl rule. This field support fuzzy query.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The source cidr list of the vpc firewall acl rule.
+	SourceCidrLists pulumi.StringArrayInput `pulumi:"sourceCidrLists"`
+	// The source group type of the vpc firewall acl rule.
+	SourceGroupType pulumi.StringInput `pulumi:"sourceGroupType"`
+	// The source type of the vpc firewall acl rule.
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The start time of the vpc firewall acl rule. Unix timestamp.
+	StartTime pulumi.IntInput `pulumi:"startTime"`
+	// The enable status list of the vpc firewall acl rule.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// The update time of the vpc firewall acl rule.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+	// The use count of the vpc firewall acl rule.
+	UseCount pulumi.IntInput `pulumi:"useCount"`
+	// The vpc firewall id of the vpc firewall acl rule.
+	VpcFirewallId pulumi.StringInput `pulumi:"vpcFirewallId"`
+	// The name of the vpc firewall.
+	VpcFirewallName pulumi.StringInput `pulumi:"vpcFirewallName"`
+}
+
+func (GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwVpcFirewallAclRulesVpcFirewallAclRule)(nil)).Elem()
+}
+
+func (i GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput() GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput {
+	return i.ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutputWithContext(context.Background())
+}
+
+func (i GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutputWithContext(ctx context.Context) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput)
+}
+
+// GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayInput is an input type that accepts GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray and GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput values.
+// You can construct a concrete instance of `GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayInput` via:
+//
+//	GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray{ GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs{...} }
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput() GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput
+	ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutputWithContext(context.Context) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput
+}
+
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray []GetCfwVpcFirewallAclRulesVpcFirewallAclRuleInput
+
+func (GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwVpcFirewallAclRulesVpcFirewallAclRule)(nil)).Elem()
+}
+
+func (i GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput() GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput {
+	return i.ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutputWithContext(ctx context.Context) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput)
+}
+
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput struct{ *pulumi.OutputState }
+
+func (GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCfwVpcFirewallAclRulesVpcFirewallAclRule)(nil)).Elem()
+}
+
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput() GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput {
+	return o
+}
+
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutputWithContext(ctx context.Context) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput {
+	return o
+}
+
+// The account id of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The action list of the vpc firewall acl rule. Valid values: `accept`, `deny`, `monitor`.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The description of the vpc firewall acl rule. This field support fuzzy query.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The dest port of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.DestPort }).(pulumi.StringOutput)
+}
+
+// The dest port group type of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestPortGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.DestPortGroupType }).(pulumi.StringOutput)
+}
+
+// The dest port list of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestPortLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) []string { return v.DestPortLists }).(pulumi.StringArrayOutput)
+}
+
+// The dest port type of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestPortType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.DestPortType }).(pulumi.StringOutput)
+}
+
+// The destination of the vpc firewall acl rule. This field support fuzzy query.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The destination cidr list of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestinationCidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) []string { return v.DestinationCidrLists }).(pulumi.StringArrayOutput)
+}
+
+// The destination group type of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestinationGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.DestinationGroupType }).(pulumi.StringOutput)
+}
+
+// The destination type of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) DestinationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.DestinationType }).(pulumi.StringOutput)
+}
+
+// The effect status of the vpc firewall acl rule. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) EffectStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.EffectStatus }).(pulumi.IntOutput)
+}
+
+// The end time of the vpc firewall acl rule. Unix timestamp.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) EndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.EndTime }).(pulumi.IntOutput)
+}
+
+// The hit count of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) HitCnt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.HitCnt }).(pulumi.IntOutput)
+}
+
+// The id of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the vpc firewall acl rule is effected.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) IsEffected() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) bool { return v.IsEffected }).(pulumi.BoolOutput)
+}
+
+// The priority of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Prio() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.Prio }).(pulumi.IntOutput)
+}
+
+// The proto list of the vpc firewall acl rule. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Proto() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.Proto }).(pulumi.StringOutput)
+}
+
+// The repeat days of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) RepeatDays() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) []int { return v.RepeatDays }).(pulumi.IntArrayOutput)
+}
+
+// The repeat end time of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) RepeatEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.RepeatEndTime }).(pulumi.StringOutput)
+}
+
+// The repeat start time of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) RepeatStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.RepeatStartTime }).(pulumi.StringOutput)
+}
+
+// The repeat type of the vpc firewall acl rule. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) RepeatType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.RepeatType }).(pulumi.StringOutput)
+}
+
+// The rule id of the vpc firewall acl rule. This field support fuzzy query.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The source of the vpc firewall acl rule. This field support fuzzy query.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The source cidr list of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) SourceCidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) []string { return v.SourceCidrLists }).(pulumi.StringArrayOutput)
+}
+
+// The source group type of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) SourceGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.SourceGroupType }).(pulumi.StringOutput)
+}
+
+// The source type of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) SourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.SourceType }).(pulumi.StringOutput)
+}
+
+// The start time of the vpc firewall acl rule. Unix timestamp.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) StartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+// The enable status list of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// The update time of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+// The use count of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) UseCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) int { return v.UseCount }).(pulumi.IntOutput)
+}
+
+// The vpc firewall id of the vpc firewall acl rule.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) VpcFirewallId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.VpcFirewallId }).(pulumi.StringOutput)
+}
+
+// The name of the vpc firewall.
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput) VpcFirewallName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCfwVpcFirewallAclRulesVpcFirewallAclRule) string { return v.VpcFirewallName }).(pulumi.StringOutput)
+}
+
+type GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCfwVpcFirewallAclRulesVpcFirewallAclRule)(nil)).Elem()
+}
+
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput() GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput {
+	return o
+}
+
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput) ToGetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutputWithContext(ctx context.Context) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput {
+	return o
+}
+
+func (o GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput) Index(i pulumi.IntInput) GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCfwVpcFirewallAclRulesVpcFirewallAclRule {
+		return vs[0].([]GetCfwVpcFirewallAclRulesVpcFirewallAclRule)[vs[1].(int)]
+	}).(GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CfwAddressBooksAddressBookInput)(nil)).Elem(), CfwAddressBooksAddressBookArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CfwAddressBooksAddressBookArrayInput)(nil)).Elem(), CfwAddressBooksAddressBookArray{})
@@ -1780,6 +3430,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayInput)(nil)).Elem(), CfwNatFirewallControlPoliciesNatFirewallControlPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CfwVpcFirewallAclRulesVpcFirewallAclRuleInput)(nil)).Elem(), CfwVpcFirewallAclRulesVpcFirewallAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CfwVpcFirewallAclRulesVpcFirewallAclRuleArrayInput)(nil)).Elem(), CfwVpcFirewallAclRulesVpcFirewallAclRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwAddressBooksAddressBookInput)(nil)).Elem(), GetCfwAddressBooksAddressBookArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwAddressBooksAddressBookArrayInput)(nil)).Elem(), GetCfwAddressBooksAddressBookArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwControlPoliciesControlPolicyInput)(nil)).Elem(), GetCfwControlPoliciesControlPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwControlPoliciesControlPolicyArrayInput)(nil)).Elem(), GetCfwControlPoliciesControlPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicyInput)(nil)).Elem(), GetCfwDnsControlPoliciesDnsControlPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicyArrayInput)(nil)).Elem(), GetCfwDnsControlPoliciesDnsControlPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicySourceInput)(nil)).Elem(), GetCfwDnsControlPoliciesDnsControlPolicySourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwDnsControlPoliciesDnsControlPolicySourceArrayInput)(nil)).Elem(), GetCfwDnsControlPoliciesDnsControlPolicySourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyInput)(nil)).Elem(), GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayInput)(nil)).Elem(), GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwVpcFirewallAclRulesVpcFirewallAclRuleInput)(nil)).Elem(), GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayInput)(nil)).Elem(), GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArray{})
 	pulumi.RegisterOutputType(CfwAddressBooksAddressBookOutput{})
 	pulumi.RegisterOutputType(CfwAddressBooksAddressBookArrayOutput{})
 	pulumi.RegisterOutputType(CfwControlPoliciesControlPolicyOutput{})
@@ -1794,4 +3456,16 @@ func init() {
 	pulumi.RegisterOutputType(CfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput{})
 	pulumi.RegisterOutputType(CfwVpcFirewallAclRulesVpcFirewallAclRuleOutput{})
 	pulumi.RegisterOutputType(CfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetCfwAddressBooksAddressBookOutput{})
+	pulumi.RegisterOutputType(GetCfwAddressBooksAddressBookArrayOutput{})
+	pulumi.RegisterOutputType(GetCfwControlPoliciesControlPolicyOutput{})
+	pulumi.RegisterOutputType(GetCfwControlPoliciesControlPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetCfwDnsControlPoliciesDnsControlPolicyOutput{})
+	pulumi.RegisterOutputType(GetCfwDnsControlPoliciesDnsControlPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetCfwDnsControlPoliciesDnsControlPolicySourceOutput{})
+	pulumi.RegisterOutputType(GetCfwDnsControlPoliciesDnsControlPolicySourceArrayOutput{})
+	pulumi.RegisterOutputType(GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyOutput{})
+	pulumi.RegisterOutputType(GetCfwNatFirewallControlPoliciesNatFirewallControlPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetCfwVpcFirewallAclRulesVpcFirewallAclRuleOutput{})
+	pulumi.RegisterOutputType(GetCfwVpcFirewallAclRulesVpcFirewallAclRuleArrayOutput{})
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules")]
     public static class Rules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Rules.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetRules.Invoke(new()
         ///     {
         ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Rules.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetRules.Invoke(new()
         ///     {
         ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
         ///     });

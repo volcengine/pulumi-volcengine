@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_postgresql.Databases(ctx, &rds_postgresql.DatabasesArgs{
+//			_, err := rds_postgresql.GetDatabases(ctx, &rds_postgresql.GetDatabasesArgs{
 //				DbName:     pulumi.StringRef("test001"),
 //				InstanceId: "postgres-95******8233",
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases
 func Databases(ctx *pulumi.Context, args *DatabasesArgs, opts ...pulumi.InvokeOption) (*DatabasesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DatabasesResult

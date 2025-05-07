@@ -2424,6 +2424,2178 @@ func (o ZonesZoneSaleArrayOutput) Index(i pulumi.IntInput) ZonesZoneSaleOutput {
 	}).(ZonesZoneSaleOutput)
 }
 
+type GetFileSystemsFileSystem struct {
+	// The capacity of the nas file system.
+	Capacities []GetFileSystemsFileSystemCapacity `pulumi:"capacities"`
+	// The charge type of nas file system.
+	ChargeType string `pulumi:"chargeType"`
+	// The create time of the nas file system.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the nas file system.
+	Description string `pulumi:"description"`
+	// The id of the nas file system.
+	FileSystemId string `pulumi:"fileSystemId"`
+	// The name of nas file system. This field supports fuzzy queries.
+	FileSystemName string `pulumi:"fileSystemName"`
+	// The type of the nas file system.
+	FileSystemType string `pulumi:"fileSystemType"`
+	// The id of the nas file system.
+	Id string `pulumi:"id"`
+	// The project name of nas file system.
+	ProjectName string `pulumi:"projectName"`
+	// The protocol type of nas file system.
+	ProtocolType string `pulumi:"protocolType"`
+	// The region id of the nas file system.
+	RegionId string `pulumi:"regionId"`
+	// The snapshot count of the nas file system.
+	SnapshotCount int `pulumi:"snapshotCount"`
+	// The status of nas file system.
+	Status string `pulumi:"status"`
+	// The storage type of nas file system.
+	StorageType string `pulumi:"storageType"`
+	// Tags.
+	Tags []GetFileSystemsFileSystemTag `pulumi:"tags"`
+	// The update time of the nas file system.
+	UpdateTime string `pulumi:"updateTime"`
+	// The version of the nas file system.
+	Version string `pulumi:"version"`
+	// The zone id of nas file system.
+	ZoneId string `pulumi:"zoneId"`
+	// The zone name of the nas file system.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetFileSystemsFileSystemInput is an input type that accepts GetFileSystemsFileSystemArgs and GetFileSystemsFileSystemOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemInput` via:
+//
+//	GetFileSystemsFileSystemArgs{...}
+type GetFileSystemsFileSystemInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput
+	ToGetFileSystemsFileSystemOutputWithContext(context.Context) GetFileSystemsFileSystemOutput
+}
+
+type GetFileSystemsFileSystemArgs struct {
+	// The capacity of the nas file system.
+	Capacities GetFileSystemsFileSystemCapacityArrayInput `pulumi:"capacities"`
+	// The charge type of nas file system.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The create time of the nas file system.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the nas file system.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the nas file system.
+	FileSystemId pulumi.StringInput `pulumi:"fileSystemId"`
+	// The name of nas file system. This field supports fuzzy queries.
+	FileSystemName pulumi.StringInput `pulumi:"fileSystemName"`
+	// The type of the nas file system.
+	FileSystemType pulumi.StringInput `pulumi:"fileSystemType"`
+	// The id of the nas file system.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The project name of nas file system.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The protocol type of nas file system.
+	ProtocolType pulumi.StringInput `pulumi:"protocolType"`
+	// The region id of the nas file system.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The snapshot count of the nas file system.
+	SnapshotCount pulumi.IntInput `pulumi:"snapshotCount"`
+	// The status of nas file system.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The storage type of nas file system.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+	// Tags.
+	Tags GetFileSystemsFileSystemTagArrayInput `pulumi:"tags"`
+	// The update time of the nas file system.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The version of the nas file system.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The zone id of nas file system.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The zone name of the nas file system.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetFileSystemsFileSystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemArgs) ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput {
+	return i.ToGetFileSystemsFileSystemOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemArgs) ToGetFileSystemsFileSystemOutputWithContext(ctx context.Context) GetFileSystemsFileSystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemOutput)
+}
+
+// GetFileSystemsFileSystemArrayInput is an input type that accepts GetFileSystemsFileSystemArray and GetFileSystemsFileSystemArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemArrayInput` via:
+//
+//	GetFileSystemsFileSystemArray{ GetFileSystemsFileSystemArgs{...} }
+type GetFileSystemsFileSystemArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput
+	ToGetFileSystemsFileSystemArrayOutputWithContext(context.Context) GetFileSystemsFileSystemArrayOutput
+}
+
+type GetFileSystemsFileSystemArray []GetFileSystemsFileSystemInput
+
+func (GetFileSystemsFileSystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemArray) ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput {
+	return i.ToGetFileSystemsFileSystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemArray) ToGetFileSystemsFileSystemArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemArrayOutput)
+}
+
+type GetFileSystemsFileSystemOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemOutput) ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemOutput) ToGetFileSystemsFileSystemOutputWithContext(ctx context.Context) GetFileSystemsFileSystemOutput {
+	return o
+}
+
+// The capacity of the nas file system.
+func (o GetFileSystemsFileSystemOutput) Capacities() GetFileSystemsFileSystemCapacityArrayOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) []GetFileSystemsFileSystemCapacity { return v.Capacities }).(GetFileSystemsFileSystemCapacityArrayOutput)
+}
+
+// The charge type of nas file system.
+func (o GetFileSystemsFileSystemOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The create time of the nas file system.
+func (o GetFileSystemsFileSystemOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the nas file system.
+func (o GetFileSystemsFileSystemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the nas file system.
+func (o GetFileSystemsFileSystemOutput) FileSystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FileSystemId }).(pulumi.StringOutput)
+}
+
+// The name of nas file system. This field supports fuzzy queries.
+func (o GetFileSystemsFileSystemOutput) FileSystemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FileSystemName }).(pulumi.StringOutput)
+}
+
+// The type of the nas file system.
+func (o GetFileSystemsFileSystemOutput) FileSystemType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FileSystemType }).(pulumi.StringOutput)
+}
+
+// The id of the nas file system.
+func (o GetFileSystemsFileSystemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The project name of nas file system.
+func (o GetFileSystemsFileSystemOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The protocol type of nas file system.
+func (o GetFileSystemsFileSystemOutput) ProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ProtocolType }).(pulumi.StringOutput)
+}
+
+// The region id of the nas file system.
+func (o GetFileSystemsFileSystemOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The snapshot count of the nas file system.
+func (o GetFileSystemsFileSystemOutput) SnapshotCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) int { return v.SnapshotCount }).(pulumi.IntOutput)
+}
+
+// The status of nas file system.
+func (o GetFileSystemsFileSystemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The storage type of nas file system.
+func (o GetFileSystemsFileSystemOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetFileSystemsFileSystemOutput) Tags() GetFileSystemsFileSystemTagArrayOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) []GetFileSystemsFileSystemTag { return v.Tags }).(GetFileSystemsFileSystemTagArrayOutput)
+}
+
+// The update time of the nas file system.
+func (o GetFileSystemsFileSystemOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The version of the nas file system.
+func (o GetFileSystemsFileSystemOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The zone id of nas file system.
+func (o GetFileSystemsFileSystemOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The zone name of the nas file system.
+func (o GetFileSystemsFileSystemOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetFileSystemsFileSystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) ToGetFileSystemsFileSystemArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) Index(i pulumi.IntInput) GetFileSystemsFileSystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsFileSystem {
+		return vs[0].([]GetFileSystemsFileSystem)[vs[1].(int)]
+	}).(GetFileSystemsFileSystemOutput)
+}
+
+type GetFileSystemsFileSystemCapacity struct {
+	// The total capacity of the nas file system. Unit: GiB.
+	Total int `pulumi:"total"`
+	// The used capacity of the nas file system. Unit: MiB.
+	Used int `pulumi:"used"`
+}
+
+// GetFileSystemsFileSystemCapacityInput is an input type that accepts GetFileSystemsFileSystemCapacityArgs and GetFileSystemsFileSystemCapacityOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemCapacityInput` via:
+//
+//	GetFileSystemsFileSystemCapacityArgs{...}
+type GetFileSystemsFileSystemCapacityInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemCapacityOutput() GetFileSystemsFileSystemCapacityOutput
+	ToGetFileSystemsFileSystemCapacityOutputWithContext(context.Context) GetFileSystemsFileSystemCapacityOutput
+}
+
+type GetFileSystemsFileSystemCapacityArgs struct {
+	// The total capacity of the nas file system. Unit: GiB.
+	Total pulumi.IntInput `pulumi:"total"`
+	// The used capacity of the nas file system. Unit: MiB.
+	Used pulumi.IntInput `pulumi:"used"`
+}
+
+func (GetFileSystemsFileSystemCapacityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemCapacity)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemCapacityArgs) ToGetFileSystemsFileSystemCapacityOutput() GetFileSystemsFileSystemCapacityOutput {
+	return i.ToGetFileSystemsFileSystemCapacityOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemCapacityArgs) ToGetFileSystemsFileSystemCapacityOutputWithContext(ctx context.Context) GetFileSystemsFileSystemCapacityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemCapacityOutput)
+}
+
+// GetFileSystemsFileSystemCapacityArrayInput is an input type that accepts GetFileSystemsFileSystemCapacityArray and GetFileSystemsFileSystemCapacityArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemCapacityArrayInput` via:
+//
+//	GetFileSystemsFileSystemCapacityArray{ GetFileSystemsFileSystemCapacityArgs{...} }
+type GetFileSystemsFileSystemCapacityArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemCapacityArrayOutput() GetFileSystemsFileSystemCapacityArrayOutput
+	ToGetFileSystemsFileSystemCapacityArrayOutputWithContext(context.Context) GetFileSystemsFileSystemCapacityArrayOutput
+}
+
+type GetFileSystemsFileSystemCapacityArray []GetFileSystemsFileSystemCapacityInput
+
+func (GetFileSystemsFileSystemCapacityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystemCapacity)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemCapacityArray) ToGetFileSystemsFileSystemCapacityArrayOutput() GetFileSystemsFileSystemCapacityArrayOutput {
+	return i.ToGetFileSystemsFileSystemCapacityArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemCapacityArray) ToGetFileSystemsFileSystemCapacityArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemCapacityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemCapacityArrayOutput)
+}
+
+type GetFileSystemsFileSystemCapacityOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemCapacityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemCapacity)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemCapacityOutput) ToGetFileSystemsFileSystemCapacityOutput() GetFileSystemsFileSystemCapacityOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemCapacityOutput) ToGetFileSystemsFileSystemCapacityOutputWithContext(ctx context.Context) GetFileSystemsFileSystemCapacityOutput {
+	return o
+}
+
+// The total capacity of the nas file system. Unit: GiB.
+func (o GetFileSystemsFileSystemCapacityOutput) Total() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemCapacity) int { return v.Total }).(pulumi.IntOutput)
+}
+
+// The used capacity of the nas file system. Unit: MiB.
+func (o GetFileSystemsFileSystemCapacityOutput) Used() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemCapacity) int { return v.Used }).(pulumi.IntOutput)
+}
+
+type GetFileSystemsFileSystemCapacityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemCapacityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystemCapacity)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemCapacityArrayOutput) ToGetFileSystemsFileSystemCapacityArrayOutput() GetFileSystemsFileSystemCapacityArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemCapacityArrayOutput) ToGetFileSystemsFileSystemCapacityArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemCapacityArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemCapacityArrayOutput) Index(i pulumi.IntInput) GetFileSystemsFileSystemCapacityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsFileSystemCapacity {
+		return vs[0].([]GetFileSystemsFileSystemCapacity)[vs[1].(int)]
+	}).(GetFileSystemsFileSystemCapacityOutput)
+}
+
+type GetFileSystemsFileSystemTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetFileSystemsFileSystemTagInput is an input type that accepts GetFileSystemsFileSystemTagArgs and GetFileSystemsFileSystemTagOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemTagInput` via:
+//
+//	GetFileSystemsFileSystemTagArgs{...}
+type GetFileSystemsFileSystemTagInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemTagOutput() GetFileSystemsFileSystemTagOutput
+	ToGetFileSystemsFileSystemTagOutputWithContext(context.Context) GetFileSystemsFileSystemTagOutput
+}
+
+type GetFileSystemsFileSystemTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetFileSystemsFileSystemTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemTagArgs) ToGetFileSystemsFileSystemTagOutput() GetFileSystemsFileSystemTagOutput {
+	return i.ToGetFileSystemsFileSystemTagOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemTagArgs) ToGetFileSystemsFileSystemTagOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemTagOutput)
+}
+
+// GetFileSystemsFileSystemTagArrayInput is an input type that accepts GetFileSystemsFileSystemTagArray and GetFileSystemsFileSystemTagArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemTagArrayInput` via:
+//
+//	GetFileSystemsFileSystemTagArray{ GetFileSystemsFileSystemTagArgs{...} }
+type GetFileSystemsFileSystemTagArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemTagArrayOutput() GetFileSystemsFileSystemTagArrayOutput
+	ToGetFileSystemsFileSystemTagArrayOutputWithContext(context.Context) GetFileSystemsFileSystemTagArrayOutput
+}
+
+type GetFileSystemsFileSystemTagArray []GetFileSystemsFileSystemTagInput
+
+func (GetFileSystemsFileSystemTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemTagArray) ToGetFileSystemsFileSystemTagArrayOutput() GetFileSystemsFileSystemTagArrayOutput {
+	return i.ToGetFileSystemsFileSystemTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemTagArray) ToGetFileSystemsFileSystemTagArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemTagArrayOutput)
+}
+
+type GetFileSystemsFileSystemTagOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemTagOutput) ToGetFileSystemsFileSystemTagOutput() GetFileSystemsFileSystemTagOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemTagOutput) ToGetFileSystemsFileSystemTagOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetFileSystemsFileSystemTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o GetFileSystemsFileSystemTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetFileSystemsFileSystemTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetFileSystemsFileSystemTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemTagArrayOutput) ToGetFileSystemsFileSystemTagArrayOutput() GetFileSystemsFileSystemTagArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemTagArrayOutput) ToGetFileSystemsFileSystemTagArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemTagArrayOutput) Index(i pulumi.IntInput) GetFileSystemsFileSystemTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsFileSystemTag {
+		return vs[0].([]GetFileSystemsFileSystemTag)[vs[1].(int)]
+	}).(GetFileSystemsFileSystemTagOutput)
+}
+
+type GetFileSystemsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetFileSystemsTagInput is an input type that accepts GetFileSystemsTagArgs and GetFileSystemsTagOutput values.
+// You can construct a concrete instance of `GetFileSystemsTagInput` via:
+//
+//	GetFileSystemsTagArgs{...}
+type GetFileSystemsTagInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsTagOutput() GetFileSystemsTagOutput
+	ToGetFileSystemsTagOutputWithContext(context.Context) GetFileSystemsTagOutput
+}
+
+type GetFileSystemsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetFileSystemsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsTag)(nil)).Elem()
+}
+
+func (i GetFileSystemsTagArgs) ToGetFileSystemsTagOutput() GetFileSystemsTagOutput {
+	return i.ToGetFileSystemsTagOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsTagArgs) ToGetFileSystemsTagOutputWithContext(ctx context.Context) GetFileSystemsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsTagOutput)
+}
+
+// GetFileSystemsTagArrayInput is an input type that accepts GetFileSystemsTagArray and GetFileSystemsTagArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsTagArrayInput` via:
+//
+//	GetFileSystemsTagArray{ GetFileSystemsTagArgs{...} }
+type GetFileSystemsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsTagArrayOutput() GetFileSystemsTagArrayOutput
+	ToGetFileSystemsTagArrayOutputWithContext(context.Context) GetFileSystemsTagArrayOutput
+}
+
+type GetFileSystemsTagArray []GetFileSystemsTagInput
+
+func (GetFileSystemsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsTag)(nil)).Elem()
+}
+
+func (i GetFileSystemsTagArray) ToGetFileSystemsTagArrayOutput() GetFileSystemsTagArrayOutput {
+	return i.ToGetFileSystemsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsTagArray) ToGetFileSystemsTagArrayOutputWithContext(ctx context.Context) GetFileSystemsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsTagArrayOutput)
+}
+
+type GetFileSystemsTagOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsTag)(nil)).Elem()
+}
+
+func (o GetFileSystemsTagOutput) ToGetFileSystemsTagOutput() GetFileSystemsTagOutput {
+	return o
+}
+
+func (o GetFileSystemsTagOutput) ToGetFileSystemsTagOutputWithContext(ctx context.Context) GetFileSystemsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetFileSystemsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetFileSystemsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetFileSystemsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsTag)(nil)).Elem()
+}
+
+func (o GetFileSystemsTagArrayOutput) ToGetFileSystemsTagArrayOutput() GetFileSystemsTagArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsTagArrayOutput) ToGetFileSystemsTagArrayOutputWithContext(ctx context.Context) GetFileSystemsTagArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsTagArrayOutput) Index(i pulumi.IntInput) GetFileSystemsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsTag {
+		return vs[0].([]GetFileSystemsTag)[vs[1].(int)]
+	}).(GetFileSystemsTagOutput)
+}
+
+type GetMountPointsMountPoint struct {
+	// The creation time of the permission group.
+	CreateTime string `pulumi:"createTime"`
+	// The dns address.
+	Domain string `pulumi:"domain"`
+	// The address of the mount point.
+	Ip string `pulumi:"ip"`
+	// The id of the mount point.
+	MountPointId string `pulumi:"mountPointId"`
+	// The name of the mount point.
+	MountPointName string `pulumi:"mountPointName"`
+	// The struct of the permission group.
+	PermissionGroups []GetMountPointsMountPointPermissionGroup `pulumi:"permissionGroups"`
+	// The status of the mount point.
+	Status string `pulumi:"status"`
+	// The id of the subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The name of the subnet.
+	SubnetName string `pulumi:"subnetName"`
+	// The update time of the mount point.
+	UpdateTime string `pulumi:"updateTime"`
+	// The id of the vpc.
+	VpcId string `pulumi:"vpcId"`
+	// The name of the vpc.
+	VpcName string `pulumi:"vpcName"`
+}
+
+// GetMountPointsMountPointInput is an input type that accepts GetMountPointsMountPointArgs and GetMountPointsMountPointOutput values.
+// You can construct a concrete instance of `GetMountPointsMountPointInput` via:
+//
+//	GetMountPointsMountPointArgs{...}
+type GetMountPointsMountPointInput interface {
+	pulumi.Input
+
+	ToGetMountPointsMountPointOutput() GetMountPointsMountPointOutput
+	ToGetMountPointsMountPointOutputWithContext(context.Context) GetMountPointsMountPointOutput
+}
+
+type GetMountPointsMountPointArgs struct {
+	// The creation time of the permission group.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The dns address.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The address of the mount point.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The id of the mount point.
+	MountPointId pulumi.StringInput `pulumi:"mountPointId"`
+	// The name of the mount point.
+	MountPointName pulumi.StringInput `pulumi:"mountPointName"`
+	// The struct of the permission group.
+	PermissionGroups GetMountPointsMountPointPermissionGroupArrayInput `pulumi:"permissionGroups"`
+	// The status of the mount point.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of the subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The name of the subnet.
+	SubnetName pulumi.StringInput `pulumi:"subnetName"`
+	// The update time of the mount point.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The id of the vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The name of the vpc.
+	VpcName pulumi.StringInput `pulumi:"vpcName"`
+}
+
+func (GetMountPointsMountPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountPointsMountPoint)(nil)).Elem()
+}
+
+func (i GetMountPointsMountPointArgs) ToGetMountPointsMountPointOutput() GetMountPointsMountPointOutput {
+	return i.ToGetMountPointsMountPointOutputWithContext(context.Background())
+}
+
+func (i GetMountPointsMountPointArgs) ToGetMountPointsMountPointOutputWithContext(ctx context.Context) GetMountPointsMountPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountPointsMountPointOutput)
+}
+
+// GetMountPointsMountPointArrayInput is an input type that accepts GetMountPointsMountPointArray and GetMountPointsMountPointArrayOutput values.
+// You can construct a concrete instance of `GetMountPointsMountPointArrayInput` via:
+//
+//	GetMountPointsMountPointArray{ GetMountPointsMountPointArgs{...} }
+type GetMountPointsMountPointArrayInput interface {
+	pulumi.Input
+
+	ToGetMountPointsMountPointArrayOutput() GetMountPointsMountPointArrayOutput
+	ToGetMountPointsMountPointArrayOutputWithContext(context.Context) GetMountPointsMountPointArrayOutput
+}
+
+type GetMountPointsMountPointArray []GetMountPointsMountPointInput
+
+func (GetMountPointsMountPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountPointsMountPoint)(nil)).Elem()
+}
+
+func (i GetMountPointsMountPointArray) ToGetMountPointsMountPointArrayOutput() GetMountPointsMountPointArrayOutput {
+	return i.ToGetMountPointsMountPointArrayOutputWithContext(context.Background())
+}
+
+func (i GetMountPointsMountPointArray) ToGetMountPointsMountPointArrayOutputWithContext(ctx context.Context) GetMountPointsMountPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountPointsMountPointArrayOutput)
+}
+
+type GetMountPointsMountPointOutput struct{ *pulumi.OutputState }
+
+func (GetMountPointsMountPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountPointsMountPoint)(nil)).Elem()
+}
+
+func (o GetMountPointsMountPointOutput) ToGetMountPointsMountPointOutput() GetMountPointsMountPointOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointOutput) ToGetMountPointsMountPointOutputWithContext(ctx context.Context) GetMountPointsMountPointOutput {
+	return o
+}
+
+// The creation time of the permission group.
+func (o GetMountPointsMountPointOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The dns address.
+func (o GetMountPointsMountPointOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The address of the mount point.
+func (o GetMountPointsMountPointOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The id of the mount point.
+func (o GetMountPointsMountPointOutput) MountPointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.MountPointId }).(pulumi.StringOutput)
+}
+
+// The name of the mount point.
+func (o GetMountPointsMountPointOutput) MountPointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.MountPointName }).(pulumi.StringOutput)
+}
+
+// The struct of the permission group.
+func (o GetMountPointsMountPointOutput) PermissionGroups() GetMountPointsMountPointPermissionGroupArrayOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) []GetMountPointsMountPointPermissionGroup { return v.PermissionGroups }).(GetMountPointsMountPointPermissionGroupArrayOutput)
+}
+
+// The status of the mount point.
+func (o GetMountPointsMountPointOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of the subnet.
+func (o GetMountPointsMountPointOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The name of the subnet.
+func (o GetMountPointsMountPointOutput) SubnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+// The update time of the mount point.
+func (o GetMountPointsMountPointOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The id of the vpc.
+func (o GetMountPointsMountPointOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The name of the vpc.
+func (o GetMountPointsMountPointOutput) VpcName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPoint) string { return v.VpcName }).(pulumi.StringOutput)
+}
+
+type GetMountPointsMountPointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMountPointsMountPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountPointsMountPoint)(nil)).Elem()
+}
+
+func (o GetMountPointsMountPointArrayOutput) ToGetMountPointsMountPointArrayOutput() GetMountPointsMountPointArrayOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointArrayOutput) ToGetMountPointsMountPointArrayOutputWithContext(ctx context.Context) GetMountPointsMountPointArrayOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointArrayOutput) Index(i pulumi.IntInput) GetMountPointsMountPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMountPointsMountPoint {
+		return vs[0].([]GetMountPointsMountPoint)[vs[1].(int)]
+	}).(GetMountPointsMountPointOutput)
+}
+
+type GetMountPointsMountPointPermissionGroup struct {
+	// The creation time of the permission group.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the permission group.
+	Description string `pulumi:"description"`
+	// The number of the file system.
+	FileSystemCount int `pulumi:"fileSystemCount"`
+	// The file system type of the permission group.
+	FileSystemType string `pulumi:"fileSystemType"`
+	// The list of the mount point.
+	MountPoints []GetMountPointsMountPointPermissionGroupMountPoint `pulumi:"mountPoints"`
+	// The id of the permission group.
+	PermissionGroupId string `pulumi:"permissionGroupId"`
+	// The name of the permission group.
+	PermissionGroupName string `pulumi:"permissionGroupName"`
+	// The number of the permission rule.
+	PermissionRuleCount int `pulumi:"permissionRuleCount"`
+}
+
+// GetMountPointsMountPointPermissionGroupInput is an input type that accepts GetMountPointsMountPointPermissionGroupArgs and GetMountPointsMountPointPermissionGroupOutput values.
+// You can construct a concrete instance of `GetMountPointsMountPointPermissionGroupInput` via:
+//
+//	GetMountPointsMountPointPermissionGroupArgs{...}
+type GetMountPointsMountPointPermissionGroupInput interface {
+	pulumi.Input
+
+	ToGetMountPointsMountPointPermissionGroupOutput() GetMountPointsMountPointPermissionGroupOutput
+	ToGetMountPointsMountPointPermissionGroupOutputWithContext(context.Context) GetMountPointsMountPointPermissionGroupOutput
+}
+
+type GetMountPointsMountPointPermissionGroupArgs struct {
+	// The creation time of the permission group.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the permission group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The number of the file system.
+	FileSystemCount pulumi.IntInput `pulumi:"fileSystemCount"`
+	// The file system type of the permission group.
+	FileSystemType pulumi.StringInput `pulumi:"fileSystemType"`
+	// The list of the mount point.
+	MountPoints GetMountPointsMountPointPermissionGroupMountPointArrayInput `pulumi:"mountPoints"`
+	// The id of the permission group.
+	PermissionGroupId pulumi.StringInput `pulumi:"permissionGroupId"`
+	// The name of the permission group.
+	PermissionGroupName pulumi.StringInput `pulumi:"permissionGroupName"`
+	// The number of the permission rule.
+	PermissionRuleCount pulumi.IntInput `pulumi:"permissionRuleCount"`
+}
+
+func (GetMountPointsMountPointPermissionGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountPointsMountPointPermissionGroup)(nil)).Elem()
+}
+
+func (i GetMountPointsMountPointPermissionGroupArgs) ToGetMountPointsMountPointPermissionGroupOutput() GetMountPointsMountPointPermissionGroupOutput {
+	return i.ToGetMountPointsMountPointPermissionGroupOutputWithContext(context.Background())
+}
+
+func (i GetMountPointsMountPointPermissionGroupArgs) ToGetMountPointsMountPointPermissionGroupOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountPointsMountPointPermissionGroupOutput)
+}
+
+// GetMountPointsMountPointPermissionGroupArrayInput is an input type that accepts GetMountPointsMountPointPermissionGroupArray and GetMountPointsMountPointPermissionGroupArrayOutput values.
+// You can construct a concrete instance of `GetMountPointsMountPointPermissionGroupArrayInput` via:
+//
+//	GetMountPointsMountPointPermissionGroupArray{ GetMountPointsMountPointPermissionGroupArgs{...} }
+type GetMountPointsMountPointPermissionGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetMountPointsMountPointPermissionGroupArrayOutput() GetMountPointsMountPointPermissionGroupArrayOutput
+	ToGetMountPointsMountPointPermissionGroupArrayOutputWithContext(context.Context) GetMountPointsMountPointPermissionGroupArrayOutput
+}
+
+type GetMountPointsMountPointPermissionGroupArray []GetMountPointsMountPointPermissionGroupInput
+
+func (GetMountPointsMountPointPermissionGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountPointsMountPointPermissionGroup)(nil)).Elem()
+}
+
+func (i GetMountPointsMountPointPermissionGroupArray) ToGetMountPointsMountPointPermissionGroupArrayOutput() GetMountPointsMountPointPermissionGroupArrayOutput {
+	return i.ToGetMountPointsMountPointPermissionGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetMountPointsMountPointPermissionGroupArray) ToGetMountPointsMountPointPermissionGroupArrayOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountPointsMountPointPermissionGroupArrayOutput)
+}
+
+type GetMountPointsMountPointPermissionGroupOutput struct{ *pulumi.OutputState }
+
+func (GetMountPointsMountPointPermissionGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountPointsMountPointPermissionGroup)(nil)).Elem()
+}
+
+func (o GetMountPointsMountPointPermissionGroupOutput) ToGetMountPointsMountPointPermissionGroupOutput() GetMountPointsMountPointPermissionGroupOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointPermissionGroupOutput) ToGetMountPointsMountPointPermissionGroupOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupOutput {
+	return o
+}
+
+// The creation time of the permission group.
+func (o GetMountPointsMountPointPermissionGroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the permission group.
+func (o GetMountPointsMountPointPermissionGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The number of the file system.
+func (o GetMountPointsMountPointPermissionGroupOutput) FileSystemCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) int { return v.FileSystemCount }).(pulumi.IntOutput)
+}
+
+// The file system type of the permission group.
+func (o GetMountPointsMountPointPermissionGroupOutput) FileSystemType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) string { return v.FileSystemType }).(pulumi.StringOutput)
+}
+
+// The list of the mount point.
+func (o GetMountPointsMountPointPermissionGroupOutput) MountPoints() GetMountPointsMountPointPermissionGroupMountPointArrayOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) []GetMountPointsMountPointPermissionGroupMountPoint {
+		return v.MountPoints
+	}).(GetMountPointsMountPointPermissionGroupMountPointArrayOutput)
+}
+
+// The id of the permission group.
+func (o GetMountPointsMountPointPermissionGroupOutput) PermissionGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) string { return v.PermissionGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the permission group.
+func (o GetMountPointsMountPointPermissionGroupOutput) PermissionGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) string { return v.PermissionGroupName }).(pulumi.StringOutput)
+}
+
+// The number of the permission rule.
+func (o GetMountPointsMountPointPermissionGroupOutput) PermissionRuleCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroup) int { return v.PermissionRuleCount }).(pulumi.IntOutput)
+}
+
+type GetMountPointsMountPointPermissionGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMountPointsMountPointPermissionGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountPointsMountPointPermissionGroup)(nil)).Elem()
+}
+
+func (o GetMountPointsMountPointPermissionGroupArrayOutput) ToGetMountPointsMountPointPermissionGroupArrayOutput() GetMountPointsMountPointPermissionGroupArrayOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointPermissionGroupArrayOutput) ToGetMountPointsMountPointPermissionGroupArrayOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupArrayOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointPermissionGroupArrayOutput) Index(i pulumi.IntInput) GetMountPointsMountPointPermissionGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMountPointsMountPointPermissionGroup {
+		return vs[0].([]GetMountPointsMountPointPermissionGroup)[vs[1].(int)]
+	}).(GetMountPointsMountPointPermissionGroupOutput)
+}
+
+type GetMountPointsMountPointPermissionGroupMountPoint struct {
+	// The id of the file system.
+	FileSystemId string `pulumi:"fileSystemId"`
+	// The id of the mount point.
+	MountPointId string `pulumi:"mountPointId"`
+	// The name of the mount point.
+	MountPointName string `pulumi:"mountPointName"`
+}
+
+// GetMountPointsMountPointPermissionGroupMountPointInput is an input type that accepts GetMountPointsMountPointPermissionGroupMountPointArgs and GetMountPointsMountPointPermissionGroupMountPointOutput values.
+// You can construct a concrete instance of `GetMountPointsMountPointPermissionGroupMountPointInput` via:
+//
+//	GetMountPointsMountPointPermissionGroupMountPointArgs{...}
+type GetMountPointsMountPointPermissionGroupMountPointInput interface {
+	pulumi.Input
+
+	ToGetMountPointsMountPointPermissionGroupMountPointOutput() GetMountPointsMountPointPermissionGroupMountPointOutput
+	ToGetMountPointsMountPointPermissionGroupMountPointOutputWithContext(context.Context) GetMountPointsMountPointPermissionGroupMountPointOutput
+}
+
+type GetMountPointsMountPointPermissionGroupMountPointArgs struct {
+	// The id of the file system.
+	FileSystemId pulumi.StringInput `pulumi:"fileSystemId"`
+	// The id of the mount point.
+	MountPointId pulumi.StringInput `pulumi:"mountPointId"`
+	// The name of the mount point.
+	MountPointName pulumi.StringInput `pulumi:"mountPointName"`
+}
+
+func (GetMountPointsMountPointPermissionGroupMountPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountPointsMountPointPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (i GetMountPointsMountPointPermissionGroupMountPointArgs) ToGetMountPointsMountPointPermissionGroupMountPointOutput() GetMountPointsMountPointPermissionGroupMountPointOutput {
+	return i.ToGetMountPointsMountPointPermissionGroupMountPointOutputWithContext(context.Background())
+}
+
+func (i GetMountPointsMountPointPermissionGroupMountPointArgs) ToGetMountPointsMountPointPermissionGroupMountPointOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupMountPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountPointsMountPointPermissionGroupMountPointOutput)
+}
+
+// GetMountPointsMountPointPermissionGroupMountPointArrayInput is an input type that accepts GetMountPointsMountPointPermissionGroupMountPointArray and GetMountPointsMountPointPermissionGroupMountPointArrayOutput values.
+// You can construct a concrete instance of `GetMountPointsMountPointPermissionGroupMountPointArrayInput` via:
+//
+//	GetMountPointsMountPointPermissionGroupMountPointArray{ GetMountPointsMountPointPermissionGroupMountPointArgs{...} }
+type GetMountPointsMountPointPermissionGroupMountPointArrayInput interface {
+	pulumi.Input
+
+	ToGetMountPointsMountPointPermissionGroupMountPointArrayOutput() GetMountPointsMountPointPermissionGroupMountPointArrayOutput
+	ToGetMountPointsMountPointPermissionGroupMountPointArrayOutputWithContext(context.Context) GetMountPointsMountPointPermissionGroupMountPointArrayOutput
+}
+
+type GetMountPointsMountPointPermissionGroupMountPointArray []GetMountPointsMountPointPermissionGroupMountPointInput
+
+func (GetMountPointsMountPointPermissionGroupMountPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountPointsMountPointPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (i GetMountPointsMountPointPermissionGroupMountPointArray) ToGetMountPointsMountPointPermissionGroupMountPointArrayOutput() GetMountPointsMountPointPermissionGroupMountPointArrayOutput {
+	return i.ToGetMountPointsMountPointPermissionGroupMountPointArrayOutputWithContext(context.Background())
+}
+
+func (i GetMountPointsMountPointPermissionGroupMountPointArray) ToGetMountPointsMountPointPermissionGroupMountPointArrayOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupMountPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountPointsMountPointPermissionGroupMountPointArrayOutput)
+}
+
+type GetMountPointsMountPointPermissionGroupMountPointOutput struct{ *pulumi.OutputState }
+
+func (GetMountPointsMountPointPermissionGroupMountPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountPointsMountPointPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (o GetMountPointsMountPointPermissionGroupMountPointOutput) ToGetMountPointsMountPointPermissionGroupMountPointOutput() GetMountPointsMountPointPermissionGroupMountPointOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointPermissionGroupMountPointOutput) ToGetMountPointsMountPointPermissionGroupMountPointOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupMountPointOutput {
+	return o
+}
+
+// The id of the file system.
+func (o GetMountPointsMountPointPermissionGroupMountPointOutput) FileSystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroupMountPoint) string { return v.FileSystemId }).(pulumi.StringOutput)
+}
+
+// The id of the mount point.
+func (o GetMountPointsMountPointPermissionGroupMountPointOutput) MountPointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroupMountPoint) string { return v.MountPointId }).(pulumi.StringOutput)
+}
+
+// The name of the mount point.
+func (o GetMountPointsMountPointPermissionGroupMountPointOutput) MountPointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountPointsMountPointPermissionGroupMountPoint) string { return v.MountPointName }).(pulumi.StringOutput)
+}
+
+type GetMountPointsMountPointPermissionGroupMountPointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMountPointsMountPointPermissionGroupMountPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountPointsMountPointPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (o GetMountPointsMountPointPermissionGroupMountPointArrayOutput) ToGetMountPointsMountPointPermissionGroupMountPointArrayOutput() GetMountPointsMountPointPermissionGroupMountPointArrayOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointPermissionGroupMountPointArrayOutput) ToGetMountPointsMountPointPermissionGroupMountPointArrayOutputWithContext(ctx context.Context) GetMountPointsMountPointPermissionGroupMountPointArrayOutput {
+	return o
+}
+
+func (o GetMountPointsMountPointPermissionGroupMountPointArrayOutput) Index(i pulumi.IntInput) GetMountPointsMountPointPermissionGroupMountPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMountPointsMountPointPermissionGroupMountPoint {
+		return vs[0].([]GetMountPointsMountPointPermissionGroupMountPoint)[vs[1].(int)]
+	}).(GetMountPointsMountPointPermissionGroupMountPointOutput)
+}
+
+type GetPermissionGroupsFilter struct {
+	// Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+	Key string `pulumi:"key"`
+	// The value of the filter item.
+	Value string `pulumi:"value"`
+}
+
+// GetPermissionGroupsFilterInput is an input type that accepts GetPermissionGroupsFilterArgs and GetPermissionGroupsFilterOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsFilterInput` via:
+//
+//	GetPermissionGroupsFilterArgs{...}
+type GetPermissionGroupsFilterInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsFilterOutput() GetPermissionGroupsFilterOutput
+	ToGetPermissionGroupsFilterOutputWithContext(context.Context) GetPermissionGroupsFilterOutput
+}
+
+type GetPermissionGroupsFilterArgs struct {
+	// Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the filter item.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetPermissionGroupsFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsFilter)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsFilterArgs) ToGetPermissionGroupsFilterOutput() GetPermissionGroupsFilterOutput {
+	return i.ToGetPermissionGroupsFilterOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsFilterArgs) ToGetPermissionGroupsFilterOutputWithContext(ctx context.Context) GetPermissionGroupsFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsFilterOutput)
+}
+
+// GetPermissionGroupsFilterArrayInput is an input type that accepts GetPermissionGroupsFilterArray and GetPermissionGroupsFilterArrayOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsFilterArrayInput` via:
+//
+//	GetPermissionGroupsFilterArray{ GetPermissionGroupsFilterArgs{...} }
+type GetPermissionGroupsFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsFilterArrayOutput() GetPermissionGroupsFilterArrayOutput
+	ToGetPermissionGroupsFilterArrayOutputWithContext(context.Context) GetPermissionGroupsFilterArrayOutput
+}
+
+type GetPermissionGroupsFilterArray []GetPermissionGroupsFilterInput
+
+func (GetPermissionGroupsFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsFilter)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsFilterArray) ToGetPermissionGroupsFilterArrayOutput() GetPermissionGroupsFilterArrayOutput {
+	return i.ToGetPermissionGroupsFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsFilterArray) ToGetPermissionGroupsFilterArrayOutputWithContext(ctx context.Context) GetPermissionGroupsFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsFilterArrayOutput)
+}
+
+type GetPermissionGroupsFilterOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsFilter)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsFilterOutput) ToGetPermissionGroupsFilterOutput() GetPermissionGroupsFilterOutput {
+	return o
+}
+
+func (o GetPermissionGroupsFilterOutput) ToGetPermissionGroupsFilterOutputWithContext(ctx context.Context) GetPermissionGroupsFilterOutput {
+	return o
+}
+
+// Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+func (o GetPermissionGroupsFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the filter item.
+func (o GetPermissionGroupsFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetPermissionGroupsFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsFilter)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsFilterArrayOutput) ToGetPermissionGroupsFilterArrayOutput() GetPermissionGroupsFilterArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsFilterArrayOutput) ToGetPermissionGroupsFilterArrayOutputWithContext(ctx context.Context) GetPermissionGroupsFilterArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsFilterArrayOutput) Index(i pulumi.IntInput) GetPermissionGroupsFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionGroupsFilter {
+		return vs[0].([]GetPermissionGroupsFilter)[vs[1].(int)]
+	}).(GetPermissionGroupsFilterOutput)
+}
+
+type GetPermissionGroupsPermissionGroup struct {
+	// The creation time of the permission group.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the permission group.
+	Description string `pulumi:"description"`
+	// The number of the file system.
+	FileSystemCount int `pulumi:"fileSystemCount"`
+	// The file system type of the permission group.
+	FileSystemType string `pulumi:"fileSystemType"`
+	// The list of the mount point.
+	MountPoints []GetPermissionGroupsPermissionGroupMountPoint `pulumi:"mountPoints"`
+	// The id of the permission group.
+	PermissionGroupId string `pulumi:"permissionGroupId"`
+	// The name of the permission group.
+	PermissionGroupName string `pulumi:"permissionGroupName"`
+	// The number of the permission rule.
+	PermissionRuleCount int `pulumi:"permissionRuleCount"`
+	// The list of permissions rules.
+	PermissionRules []GetPermissionGroupsPermissionGroupPermissionRule `pulumi:"permissionRules"`
+}
+
+// GetPermissionGroupsPermissionGroupInput is an input type that accepts GetPermissionGroupsPermissionGroupArgs and GetPermissionGroupsPermissionGroupOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsPermissionGroupInput` via:
+//
+//	GetPermissionGroupsPermissionGroupArgs{...}
+type GetPermissionGroupsPermissionGroupInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsPermissionGroupOutput() GetPermissionGroupsPermissionGroupOutput
+	ToGetPermissionGroupsPermissionGroupOutputWithContext(context.Context) GetPermissionGroupsPermissionGroupOutput
+}
+
+type GetPermissionGroupsPermissionGroupArgs struct {
+	// The creation time of the permission group.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the permission group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The number of the file system.
+	FileSystemCount pulumi.IntInput `pulumi:"fileSystemCount"`
+	// The file system type of the permission group.
+	FileSystemType pulumi.StringInput `pulumi:"fileSystemType"`
+	// The list of the mount point.
+	MountPoints GetPermissionGroupsPermissionGroupMountPointArrayInput `pulumi:"mountPoints"`
+	// The id of the permission group.
+	PermissionGroupId pulumi.StringInput `pulumi:"permissionGroupId"`
+	// The name of the permission group.
+	PermissionGroupName pulumi.StringInput `pulumi:"permissionGroupName"`
+	// The number of the permission rule.
+	PermissionRuleCount pulumi.IntInput `pulumi:"permissionRuleCount"`
+	// The list of permissions rules.
+	PermissionRules GetPermissionGroupsPermissionGroupPermissionRuleArrayInput `pulumi:"permissionRules"`
+}
+
+func (GetPermissionGroupsPermissionGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsPermissionGroup)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsPermissionGroupArgs) ToGetPermissionGroupsPermissionGroupOutput() GetPermissionGroupsPermissionGroupOutput {
+	return i.ToGetPermissionGroupsPermissionGroupOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsPermissionGroupArgs) ToGetPermissionGroupsPermissionGroupOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsPermissionGroupOutput)
+}
+
+// GetPermissionGroupsPermissionGroupArrayInput is an input type that accepts GetPermissionGroupsPermissionGroupArray and GetPermissionGroupsPermissionGroupArrayOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsPermissionGroupArrayInput` via:
+//
+//	GetPermissionGroupsPermissionGroupArray{ GetPermissionGroupsPermissionGroupArgs{...} }
+type GetPermissionGroupsPermissionGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsPermissionGroupArrayOutput() GetPermissionGroupsPermissionGroupArrayOutput
+	ToGetPermissionGroupsPermissionGroupArrayOutputWithContext(context.Context) GetPermissionGroupsPermissionGroupArrayOutput
+}
+
+type GetPermissionGroupsPermissionGroupArray []GetPermissionGroupsPermissionGroupInput
+
+func (GetPermissionGroupsPermissionGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsPermissionGroup)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsPermissionGroupArray) ToGetPermissionGroupsPermissionGroupArrayOutput() GetPermissionGroupsPermissionGroupArrayOutput {
+	return i.ToGetPermissionGroupsPermissionGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsPermissionGroupArray) ToGetPermissionGroupsPermissionGroupArrayOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsPermissionGroupArrayOutput)
+}
+
+type GetPermissionGroupsPermissionGroupOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsPermissionGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsPermissionGroup)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsPermissionGroupOutput) ToGetPermissionGroupsPermissionGroupOutput() GetPermissionGroupsPermissionGroupOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupOutput) ToGetPermissionGroupsPermissionGroupOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupOutput {
+	return o
+}
+
+// The creation time of the permission group.
+func (o GetPermissionGroupsPermissionGroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the permission group.
+func (o GetPermissionGroupsPermissionGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The number of the file system.
+func (o GetPermissionGroupsPermissionGroupOutput) FileSystemCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) int { return v.FileSystemCount }).(pulumi.IntOutput)
+}
+
+// The file system type of the permission group.
+func (o GetPermissionGroupsPermissionGroupOutput) FileSystemType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) string { return v.FileSystemType }).(pulumi.StringOutput)
+}
+
+// The list of the mount point.
+func (o GetPermissionGroupsPermissionGroupOutput) MountPoints() GetPermissionGroupsPermissionGroupMountPointArrayOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) []GetPermissionGroupsPermissionGroupMountPoint {
+		return v.MountPoints
+	}).(GetPermissionGroupsPermissionGroupMountPointArrayOutput)
+}
+
+// The id of the permission group.
+func (o GetPermissionGroupsPermissionGroupOutput) PermissionGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) string { return v.PermissionGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the permission group.
+func (o GetPermissionGroupsPermissionGroupOutput) PermissionGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) string { return v.PermissionGroupName }).(pulumi.StringOutput)
+}
+
+// The number of the permission rule.
+func (o GetPermissionGroupsPermissionGroupOutput) PermissionRuleCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) int { return v.PermissionRuleCount }).(pulumi.IntOutput)
+}
+
+// The list of permissions rules.
+func (o GetPermissionGroupsPermissionGroupOutput) PermissionRules() GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroup) []GetPermissionGroupsPermissionGroupPermissionRule {
+		return v.PermissionRules
+	}).(GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput)
+}
+
+type GetPermissionGroupsPermissionGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsPermissionGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsPermissionGroup)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsPermissionGroupArrayOutput) ToGetPermissionGroupsPermissionGroupArrayOutput() GetPermissionGroupsPermissionGroupArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupArrayOutput) ToGetPermissionGroupsPermissionGroupArrayOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupArrayOutput) Index(i pulumi.IntInput) GetPermissionGroupsPermissionGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionGroupsPermissionGroup {
+		return vs[0].([]GetPermissionGroupsPermissionGroup)[vs[1].(int)]
+	}).(GetPermissionGroupsPermissionGroupOutput)
+}
+
+type GetPermissionGroupsPermissionGroupMountPoint struct {
+	// The id of the file system.
+	FileSystemId string `pulumi:"fileSystemId"`
+	// The id of the mount point.
+	MountPointId string `pulumi:"mountPointId"`
+	// The name of the mount point.
+	MountPointName string `pulumi:"mountPointName"`
+}
+
+// GetPermissionGroupsPermissionGroupMountPointInput is an input type that accepts GetPermissionGroupsPermissionGroupMountPointArgs and GetPermissionGroupsPermissionGroupMountPointOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsPermissionGroupMountPointInput` via:
+//
+//	GetPermissionGroupsPermissionGroupMountPointArgs{...}
+type GetPermissionGroupsPermissionGroupMountPointInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsPermissionGroupMountPointOutput() GetPermissionGroupsPermissionGroupMountPointOutput
+	ToGetPermissionGroupsPermissionGroupMountPointOutputWithContext(context.Context) GetPermissionGroupsPermissionGroupMountPointOutput
+}
+
+type GetPermissionGroupsPermissionGroupMountPointArgs struct {
+	// The id of the file system.
+	FileSystemId pulumi.StringInput `pulumi:"fileSystemId"`
+	// The id of the mount point.
+	MountPointId pulumi.StringInput `pulumi:"mountPointId"`
+	// The name of the mount point.
+	MountPointName pulumi.StringInput `pulumi:"mountPointName"`
+}
+
+func (GetPermissionGroupsPermissionGroupMountPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsPermissionGroupMountPointArgs) ToGetPermissionGroupsPermissionGroupMountPointOutput() GetPermissionGroupsPermissionGroupMountPointOutput {
+	return i.ToGetPermissionGroupsPermissionGroupMountPointOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsPermissionGroupMountPointArgs) ToGetPermissionGroupsPermissionGroupMountPointOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupMountPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsPermissionGroupMountPointOutput)
+}
+
+// GetPermissionGroupsPermissionGroupMountPointArrayInput is an input type that accepts GetPermissionGroupsPermissionGroupMountPointArray and GetPermissionGroupsPermissionGroupMountPointArrayOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsPermissionGroupMountPointArrayInput` via:
+//
+//	GetPermissionGroupsPermissionGroupMountPointArray{ GetPermissionGroupsPermissionGroupMountPointArgs{...} }
+type GetPermissionGroupsPermissionGroupMountPointArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsPermissionGroupMountPointArrayOutput() GetPermissionGroupsPermissionGroupMountPointArrayOutput
+	ToGetPermissionGroupsPermissionGroupMountPointArrayOutputWithContext(context.Context) GetPermissionGroupsPermissionGroupMountPointArrayOutput
+}
+
+type GetPermissionGroupsPermissionGroupMountPointArray []GetPermissionGroupsPermissionGroupMountPointInput
+
+func (GetPermissionGroupsPermissionGroupMountPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsPermissionGroupMountPointArray) ToGetPermissionGroupsPermissionGroupMountPointArrayOutput() GetPermissionGroupsPermissionGroupMountPointArrayOutput {
+	return i.ToGetPermissionGroupsPermissionGroupMountPointArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsPermissionGroupMountPointArray) ToGetPermissionGroupsPermissionGroupMountPointArrayOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupMountPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsPermissionGroupMountPointArrayOutput)
+}
+
+type GetPermissionGroupsPermissionGroupMountPointOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsPermissionGroupMountPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsPermissionGroupMountPointOutput) ToGetPermissionGroupsPermissionGroupMountPointOutput() GetPermissionGroupsPermissionGroupMountPointOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupMountPointOutput) ToGetPermissionGroupsPermissionGroupMountPointOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupMountPointOutput {
+	return o
+}
+
+// The id of the file system.
+func (o GetPermissionGroupsPermissionGroupMountPointOutput) FileSystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupMountPoint) string { return v.FileSystemId }).(pulumi.StringOutput)
+}
+
+// The id of the mount point.
+func (o GetPermissionGroupsPermissionGroupMountPointOutput) MountPointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupMountPoint) string { return v.MountPointId }).(pulumi.StringOutput)
+}
+
+// The name of the mount point.
+func (o GetPermissionGroupsPermissionGroupMountPointOutput) MountPointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupMountPoint) string { return v.MountPointName }).(pulumi.StringOutput)
+}
+
+type GetPermissionGroupsPermissionGroupMountPointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsPermissionGroupMountPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsPermissionGroupMountPoint)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsPermissionGroupMountPointArrayOutput) ToGetPermissionGroupsPermissionGroupMountPointArrayOutput() GetPermissionGroupsPermissionGroupMountPointArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupMountPointArrayOutput) ToGetPermissionGroupsPermissionGroupMountPointArrayOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupMountPointArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupMountPointArrayOutput) Index(i pulumi.IntInput) GetPermissionGroupsPermissionGroupMountPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionGroupsPermissionGroupMountPoint {
+		return vs[0].([]GetPermissionGroupsPermissionGroupMountPoint)[vs[1].(int)]
+	}).(GetPermissionGroupsPermissionGroupMountPointOutput)
+}
+
+type GetPermissionGroupsPermissionGroupPermissionRule struct {
+	// Client IP addresses that are allowed access.
+	CidrIp string `pulumi:"cidrIp"`
+	// The id of the permission rule.
+	PermissionRuleId string `pulumi:"permissionRuleId"`
+	// Permission group read and write rules.
+	RwMode string `pulumi:"rwMode"`
+	// Permission group user permissions.
+	UserMode string `pulumi:"userMode"`
+}
+
+// GetPermissionGroupsPermissionGroupPermissionRuleInput is an input type that accepts GetPermissionGroupsPermissionGroupPermissionRuleArgs and GetPermissionGroupsPermissionGroupPermissionRuleOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsPermissionGroupPermissionRuleInput` via:
+//
+//	GetPermissionGroupsPermissionGroupPermissionRuleArgs{...}
+type GetPermissionGroupsPermissionGroupPermissionRuleInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsPermissionGroupPermissionRuleOutput() GetPermissionGroupsPermissionGroupPermissionRuleOutput
+	ToGetPermissionGroupsPermissionGroupPermissionRuleOutputWithContext(context.Context) GetPermissionGroupsPermissionGroupPermissionRuleOutput
+}
+
+type GetPermissionGroupsPermissionGroupPermissionRuleArgs struct {
+	// Client IP addresses that are allowed access.
+	CidrIp pulumi.StringInput `pulumi:"cidrIp"`
+	// The id of the permission rule.
+	PermissionRuleId pulumi.StringInput `pulumi:"permissionRuleId"`
+	// Permission group read and write rules.
+	RwMode pulumi.StringInput `pulumi:"rwMode"`
+	// Permission group user permissions.
+	UserMode pulumi.StringInput `pulumi:"userMode"`
+}
+
+func (GetPermissionGroupsPermissionGroupPermissionRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsPermissionGroupPermissionRule)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsPermissionGroupPermissionRuleArgs) ToGetPermissionGroupsPermissionGroupPermissionRuleOutput() GetPermissionGroupsPermissionGroupPermissionRuleOutput {
+	return i.ToGetPermissionGroupsPermissionGroupPermissionRuleOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsPermissionGroupPermissionRuleArgs) ToGetPermissionGroupsPermissionGroupPermissionRuleOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupPermissionRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsPermissionGroupPermissionRuleOutput)
+}
+
+// GetPermissionGroupsPermissionGroupPermissionRuleArrayInput is an input type that accepts GetPermissionGroupsPermissionGroupPermissionRuleArray and GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput values.
+// You can construct a concrete instance of `GetPermissionGroupsPermissionGroupPermissionRuleArrayInput` via:
+//
+//	GetPermissionGroupsPermissionGroupPermissionRuleArray{ GetPermissionGroupsPermissionGroupPermissionRuleArgs{...} }
+type GetPermissionGroupsPermissionGroupPermissionRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutput() GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput
+	ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutputWithContext(context.Context) GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput
+}
+
+type GetPermissionGroupsPermissionGroupPermissionRuleArray []GetPermissionGroupsPermissionGroupPermissionRuleInput
+
+func (GetPermissionGroupsPermissionGroupPermissionRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsPermissionGroupPermissionRule)(nil)).Elem()
+}
+
+func (i GetPermissionGroupsPermissionGroupPermissionRuleArray) ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutput() GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput {
+	return i.ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionGroupsPermissionGroupPermissionRuleArray) ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput)
+}
+
+type GetPermissionGroupsPermissionGroupPermissionRuleOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsPermissionGroupPermissionRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionGroupsPermissionGroupPermissionRule)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsPermissionGroupPermissionRuleOutput) ToGetPermissionGroupsPermissionGroupPermissionRuleOutput() GetPermissionGroupsPermissionGroupPermissionRuleOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupPermissionRuleOutput) ToGetPermissionGroupsPermissionGroupPermissionRuleOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupPermissionRuleOutput {
+	return o
+}
+
+// Client IP addresses that are allowed access.
+func (o GetPermissionGroupsPermissionGroupPermissionRuleOutput) CidrIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupPermissionRule) string { return v.CidrIp }).(pulumi.StringOutput)
+}
+
+// The id of the permission rule.
+func (o GetPermissionGroupsPermissionGroupPermissionRuleOutput) PermissionRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupPermissionRule) string { return v.PermissionRuleId }).(pulumi.StringOutput)
+}
+
+// Permission group read and write rules.
+func (o GetPermissionGroupsPermissionGroupPermissionRuleOutput) RwMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupPermissionRule) string { return v.RwMode }).(pulumi.StringOutput)
+}
+
+// Permission group user permissions.
+func (o GetPermissionGroupsPermissionGroupPermissionRuleOutput) UserMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionGroupsPermissionGroupPermissionRule) string { return v.UserMode }).(pulumi.StringOutput)
+}
+
+type GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionGroupsPermissionGroupPermissionRule)(nil)).Elem()
+}
+
+func (o GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput) ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutput() GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput) ToGetPermissionGroupsPermissionGroupPermissionRuleArrayOutputWithContext(ctx context.Context) GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput {
+	return o
+}
+
+func (o GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput) Index(i pulumi.IntInput) GetPermissionGroupsPermissionGroupPermissionRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionGroupsPermissionGroupPermissionRule {
+		return vs[0].([]GetPermissionGroupsPermissionGroupPermissionRule)[vs[1].(int)]
+	}).(GetPermissionGroupsPermissionGroupPermissionRuleOutput)
+}
+
+type GetRegionsRegion struct {
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+	// The status info of region.
+	Status string `pulumi:"status"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// The status info of region.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The id of the region.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o GetRegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// The status info of region.
+func (o GetRegionsRegionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetSnapshotsSnapshot struct {
+	// The create time of snapshot.
+	CreateTime string `pulumi:"createTime"`
+	// The description of snapshot.
+	Description string `pulumi:"description"`
+	// The ID of file system.
+	FileSystemId string `pulumi:"fileSystemId"`
+	// The name of file system.
+	FileSystemName string `pulumi:"fileSystemName"`
+	// The ID of snapshot.
+	Id string `pulumi:"id"`
+	// Whether is encrypt.
+	IsEncrypt bool `pulumi:"isEncrypt"`
+	// The progress of snapshot.
+	Progress string `pulumi:"progress"`
+	// The retention days of snapshot.
+	RetentionDays int `pulumi:"retentionDays"`
+	// The ID of snapshot.
+	SnapshotId string `pulumi:"snapshotId"`
+	// The name of snapshot.
+	SnapshotName string `pulumi:"snapshotName"`
+	// The type of snapshot.
+	SnapshotType string `pulumi:"snapshotType"`
+	// The size of source.
+	SourceSize int `pulumi:"sourceSize"`
+	// The source version info.
+	SourceVersion string `pulumi:"sourceVersion"`
+	// The status of snapshot.
+	Status string `pulumi:"status"`
+	// The ID of zone.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetSnapshotsSnapshotInput is an input type that accepts GetSnapshotsSnapshotArgs and GetSnapshotsSnapshotOutput values.
+// You can construct a concrete instance of `GetSnapshotsSnapshotInput` via:
+//
+//	GetSnapshotsSnapshotArgs{...}
+type GetSnapshotsSnapshotInput interface {
+	pulumi.Input
+
+	ToGetSnapshotsSnapshotOutput() GetSnapshotsSnapshotOutput
+	ToGetSnapshotsSnapshotOutputWithContext(context.Context) GetSnapshotsSnapshotOutput
+}
+
+type GetSnapshotsSnapshotArgs struct {
+	// The create time of snapshot.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of snapshot.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of file system.
+	FileSystemId pulumi.StringInput `pulumi:"fileSystemId"`
+	// The name of file system.
+	FileSystemName pulumi.StringInput `pulumi:"fileSystemName"`
+	// The ID of snapshot.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether is encrypt.
+	IsEncrypt pulumi.BoolInput `pulumi:"isEncrypt"`
+	// The progress of snapshot.
+	Progress pulumi.StringInput `pulumi:"progress"`
+	// The retention days of snapshot.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// The ID of snapshot.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// The name of snapshot.
+	SnapshotName pulumi.StringInput `pulumi:"snapshotName"`
+	// The type of snapshot.
+	SnapshotType pulumi.StringInput `pulumi:"snapshotType"`
+	// The size of source.
+	SourceSize pulumi.IntInput `pulumi:"sourceSize"`
+	// The source version info.
+	SourceVersion pulumi.StringInput `pulumi:"sourceVersion"`
+	// The status of snapshot.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The ID of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetSnapshotsSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (i GetSnapshotsSnapshotArgs) ToGetSnapshotsSnapshotOutput() GetSnapshotsSnapshotOutput {
+	return i.ToGetSnapshotsSnapshotOutputWithContext(context.Background())
+}
+
+func (i GetSnapshotsSnapshotArgs) ToGetSnapshotsSnapshotOutputWithContext(ctx context.Context) GetSnapshotsSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSnapshotsSnapshotOutput)
+}
+
+// GetSnapshotsSnapshotArrayInput is an input type that accepts GetSnapshotsSnapshotArray and GetSnapshotsSnapshotArrayOutput values.
+// You can construct a concrete instance of `GetSnapshotsSnapshotArrayInput` via:
+//
+//	GetSnapshotsSnapshotArray{ GetSnapshotsSnapshotArgs{...} }
+type GetSnapshotsSnapshotArrayInput interface {
+	pulumi.Input
+
+	ToGetSnapshotsSnapshotArrayOutput() GetSnapshotsSnapshotArrayOutput
+	ToGetSnapshotsSnapshotArrayOutputWithContext(context.Context) GetSnapshotsSnapshotArrayOutput
+}
+
+type GetSnapshotsSnapshotArray []GetSnapshotsSnapshotInput
+
+func (GetSnapshotsSnapshotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (i GetSnapshotsSnapshotArray) ToGetSnapshotsSnapshotArrayOutput() GetSnapshotsSnapshotArrayOutput {
+	return i.ToGetSnapshotsSnapshotArrayOutputWithContext(context.Background())
+}
+
+func (i GetSnapshotsSnapshotArray) ToGetSnapshotsSnapshotArrayOutputWithContext(ctx context.Context) GetSnapshotsSnapshotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSnapshotsSnapshotArrayOutput)
+}
+
+type GetSnapshotsSnapshotOutput struct{ *pulumi.OutputState }
+
+func (GetSnapshotsSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (o GetSnapshotsSnapshotOutput) ToGetSnapshotsSnapshotOutput() GetSnapshotsSnapshotOutput {
+	return o
+}
+
+func (o GetSnapshotsSnapshotOutput) ToGetSnapshotsSnapshotOutputWithContext(ctx context.Context) GetSnapshotsSnapshotOutput {
+	return o
+}
+
+// The create time of snapshot.
+func (o GetSnapshotsSnapshotOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of snapshot.
+func (o GetSnapshotsSnapshotOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of file system.
+func (o GetSnapshotsSnapshotOutput) FileSystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.FileSystemId }).(pulumi.StringOutput)
+}
+
+// The name of file system.
+func (o GetSnapshotsSnapshotOutput) FileSystemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.FileSystemName }).(pulumi.StringOutput)
+}
+
+// The ID of snapshot.
+func (o GetSnapshotsSnapshotOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether is encrypt.
+func (o GetSnapshotsSnapshotOutput) IsEncrypt() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) bool { return v.IsEncrypt }).(pulumi.BoolOutput)
+}
+
+// The progress of snapshot.
+func (o GetSnapshotsSnapshotOutput) Progress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Progress }).(pulumi.StringOutput)
+}
+
+// The retention days of snapshot.
+func (o GetSnapshotsSnapshotOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The ID of snapshot.
+func (o GetSnapshotsSnapshotOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// The name of snapshot.
+func (o GetSnapshotsSnapshotOutput) SnapshotName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.SnapshotName }).(pulumi.StringOutput)
+}
+
+// The type of snapshot.
+func (o GetSnapshotsSnapshotOutput) SnapshotType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.SnapshotType }).(pulumi.StringOutput)
+}
+
+// The size of source.
+func (o GetSnapshotsSnapshotOutput) SourceSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) int { return v.SourceSize }).(pulumi.IntOutput)
+}
+
+// The source version info.
+func (o GetSnapshotsSnapshotOutput) SourceVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.SourceVersion }).(pulumi.StringOutput)
+}
+
+// The status of snapshot.
+func (o GetSnapshotsSnapshotOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The ID of zone.
+func (o GetSnapshotsSnapshotOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetSnapshotsSnapshotArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSnapshotsSnapshotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (o GetSnapshotsSnapshotArrayOutput) ToGetSnapshotsSnapshotArrayOutput() GetSnapshotsSnapshotArrayOutput {
+	return o
+}
+
+func (o GetSnapshotsSnapshotArrayOutput) ToGetSnapshotsSnapshotArrayOutputWithContext(ctx context.Context) GetSnapshotsSnapshotArrayOutput {
+	return o
+}
+
+func (o GetSnapshotsSnapshotArrayOutput) Index(i pulumi.IntInput) GetSnapshotsSnapshotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSnapshotsSnapshot {
+		return vs[0].([]GetSnapshotsSnapshot)[vs[1].(int)]
+	}).(GetSnapshotsSnapshotOutput)
+}
+
+type GetZonesZone struct {
+	// The id of the zone.
+	Id string `pulumi:"id"`
+	// The collection of sales info.
+	Sales []GetZonesZoneSale `pulumi:"sales"`
+	// The status info.
+	Status string `pulumi:"status"`
+	// The id of the zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The id of the zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The collection of sales info.
+	Sales GetZonesZoneSaleArrayInput `pulumi:"sales"`
+	// The status info.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of the zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The collection of sales info.
+func (o GetZonesZoneOutput) Sales() GetZonesZoneSaleArrayOutput {
+	return o.ApplyT(func(v GetZonesZone) []GetZonesZoneSale { return v.Sales }).(GetZonesZoneSaleArrayOutput)
+}
+
+// The status info.
+func (o GetZonesZoneOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of the zone.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
+type GetZonesZoneSale struct {
+	// The type of file system.
+	FileSystemType string `pulumi:"fileSystemType"`
+	// The type of protocol.
+	ProtocolType string `pulumi:"protocolType"`
+	// The status info.
+	Status string `pulumi:"status"`
+	// The type of storage.
+	StorageType string `pulumi:"storageType"`
+}
+
+// GetZonesZoneSaleInput is an input type that accepts GetZonesZoneSaleArgs and GetZonesZoneSaleOutput values.
+// You can construct a concrete instance of `GetZonesZoneSaleInput` via:
+//
+//	GetZonesZoneSaleArgs{...}
+type GetZonesZoneSaleInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneSaleOutput() GetZonesZoneSaleOutput
+	ToGetZonesZoneSaleOutputWithContext(context.Context) GetZonesZoneSaleOutput
+}
+
+type GetZonesZoneSaleArgs struct {
+	// The type of file system.
+	FileSystemType pulumi.StringInput `pulumi:"fileSystemType"`
+	// The type of protocol.
+	ProtocolType pulumi.StringInput `pulumi:"protocolType"`
+	// The status info.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The type of storage.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+}
+
+func (GetZonesZoneSaleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZoneSale)(nil)).Elem()
+}
+
+func (i GetZonesZoneSaleArgs) ToGetZonesZoneSaleOutput() GetZonesZoneSaleOutput {
+	return i.ToGetZonesZoneSaleOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneSaleArgs) ToGetZonesZoneSaleOutputWithContext(ctx context.Context) GetZonesZoneSaleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneSaleOutput)
+}
+
+// GetZonesZoneSaleArrayInput is an input type that accepts GetZonesZoneSaleArray and GetZonesZoneSaleArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneSaleArrayInput` via:
+//
+//	GetZonesZoneSaleArray{ GetZonesZoneSaleArgs{...} }
+type GetZonesZoneSaleArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneSaleArrayOutput() GetZonesZoneSaleArrayOutput
+	ToGetZonesZoneSaleArrayOutputWithContext(context.Context) GetZonesZoneSaleArrayOutput
+}
+
+type GetZonesZoneSaleArray []GetZonesZoneSaleInput
+
+func (GetZonesZoneSaleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZoneSale)(nil)).Elem()
+}
+
+func (i GetZonesZoneSaleArray) ToGetZonesZoneSaleArrayOutput() GetZonesZoneSaleArrayOutput {
+	return i.ToGetZonesZoneSaleArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneSaleArray) ToGetZonesZoneSaleArrayOutputWithContext(ctx context.Context) GetZonesZoneSaleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneSaleArrayOutput)
+}
+
+type GetZonesZoneSaleOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneSaleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZoneSale)(nil)).Elem()
+}
+
+func (o GetZonesZoneSaleOutput) ToGetZonesZoneSaleOutput() GetZonesZoneSaleOutput {
+	return o
+}
+
+func (o GetZonesZoneSaleOutput) ToGetZonesZoneSaleOutputWithContext(ctx context.Context) GetZonesZoneSaleOutput {
+	return o
+}
+
+// The type of file system.
+func (o GetZonesZoneSaleOutput) FileSystemType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZoneSale) string { return v.FileSystemType }).(pulumi.StringOutput)
+}
+
+// The type of protocol.
+func (o GetZonesZoneSaleOutput) ProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZoneSale) string { return v.ProtocolType }).(pulumi.StringOutput)
+}
+
+// The status info.
+func (o GetZonesZoneSaleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZoneSale) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The type of storage.
+func (o GetZonesZoneSaleOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZoneSale) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneSaleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneSaleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZoneSale)(nil)).Elem()
+}
+
+func (o GetZonesZoneSaleArrayOutput) ToGetZonesZoneSaleArrayOutput() GetZonesZoneSaleArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneSaleArrayOutput) ToGetZonesZoneSaleArrayOutputWithContext(ctx context.Context) GetZonesZoneSaleArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneSaleArrayOutput) Index(i pulumi.IntInput) GetZonesZoneSaleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZoneSale {
+		return vs[0].([]GetZonesZoneSale)[vs[1].(int)]
+	}).(GetZonesZoneSaleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FileSystemTagInput)(nil)).Elem(), FileSystemTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FileSystemTagArrayInput)(nil)).Elem(), FileSystemTagArray{})
@@ -2459,6 +4631,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneSaleInput)(nil)).Elem(), ZonesZoneSaleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneSaleArrayInput)(nil)).Elem(), ZonesZoneSaleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemInput)(nil)).Elem(), GetFileSystemsFileSystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemArrayInput)(nil)).Elem(), GetFileSystemsFileSystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemCapacityInput)(nil)).Elem(), GetFileSystemsFileSystemCapacityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemCapacityArrayInput)(nil)).Elem(), GetFileSystemsFileSystemCapacityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemTagInput)(nil)).Elem(), GetFileSystemsFileSystemTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemTagArrayInput)(nil)).Elem(), GetFileSystemsFileSystemTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsTagInput)(nil)).Elem(), GetFileSystemsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsTagArrayInput)(nil)).Elem(), GetFileSystemsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountPointsMountPointInput)(nil)).Elem(), GetMountPointsMountPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountPointsMountPointArrayInput)(nil)).Elem(), GetMountPointsMountPointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountPointsMountPointPermissionGroupInput)(nil)).Elem(), GetMountPointsMountPointPermissionGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountPointsMountPointPermissionGroupArrayInput)(nil)).Elem(), GetMountPointsMountPointPermissionGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountPointsMountPointPermissionGroupMountPointInput)(nil)).Elem(), GetMountPointsMountPointPermissionGroupMountPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountPointsMountPointPermissionGroupMountPointArrayInput)(nil)).Elem(), GetMountPointsMountPointPermissionGroupMountPointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsFilterInput)(nil)).Elem(), GetPermissionGroupsFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsFilterArrayInput)(nil)).Elem(), GetPermissionGroupsFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsPermissionGroupInput)(nil)).Elem(), GetPermissionGroupsPermissionGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsPermissionGroupArrayInput)(nil)).Elem(), GetPermissionGroupsPermissionGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsPermissionGroupMountPointInput)(nil)).Elem(), GetPermissionGroupsPermissionGroupMountPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsPermissionGroupMountPointArrayInput)(nil)).Elem(), GetPermissionGroupsPermissionGroupMountPointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsPermissionGroupPermissionRuleInput)(nil)).Elem(), GetPermissionGroupsPermissionGroupPermissionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionGroupsPermissionGroupPermissionRuleArrayInput)(nil)).Elem(), GetPermissionGroupsPermissionGroupPermissionRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotsSnapshotInput)(nil)).Elem(), GetSnapshotsSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotsSnapshotArrayInput)(nil)).Elem(), GetSnapshotsSnapshotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneSaleInput)(nil)).Elem(), GetZonesZoneSaleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneSaleArrayInput)(nil)).Elem(), GetZonesZoneSaleArray{})
 	pulumi.RegisterOutputType(FileSystemTagOutput{})
 	pulumi.RegisterOutputType(FileSystemTagArrayOutput{})
 	pulumi.RegisterOutputType(FileSystemsFileSystemOutput{})
@@ -2493,4 +4695,34 @@ func init() {
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneSaleOutput{})
 	pulumi.RegisterOutputType(ZonesZoneSaleArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemCapacityOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemCapacityArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemTagOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsTagOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetMountPointsMountPointOutput{})
+	pulumi.RegisterOutputType(GetMountPointsMountPointArrayOutput{})
+	pulumi.RegisterOutputType(GetMountPointsMountPointPermissionGroupOutput{})
+	pulumi.RegisterOutputType(GetMountPointsMountPointPermissionGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetMountPointsMountPointPermissionGroupMountPointOutput{})
+	pulumi.RegisterOutputType(GetMountPointsMountPointPermissionGroupMountPointArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsFilterOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsPermissionGroupOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsPermissionGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsPermissionGroupMountPointOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsPermissionGroupMountPointArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsPermissionGroupPermissionRuleOutput{})
+	pulumi.RegisterOutputType(GetPermissionGroupsPermissionGroupPermissionRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetSnapshotsSnapshotOutput{})
+	pulumi.RegisterOutputType(GetSnapshotsSnapshotArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneSaleOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneSaleArrayOutput{})
 }

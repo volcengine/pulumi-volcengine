@@ -17,6 +17,8 @@ __all__ = [
     'dnat_entries_output',
 ]
 
+warnings.warn("""volcengine.nat.DnatEntries has been deprecated in favor of volcengine.nat.getDnatEntries""", DeprecationWarning)
+
 @pulumi.output_type
 class DnatEntriesResult:
     """
@@ -189,7 +191,7 @@ def dnat_entries(dnat_entry_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -228,7 +230,7 @@ def dnat_entries(dnat_entry_name: Optional[str] = None,
         nat_gateway_id=foo_gateway.id,
         protocol="tcp",
         opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
-    foo_dnat_entries = volcengine.nat.dnat_entries_output(ids=[foo_dnat_entry.id])
+    foo_dnat_entries = volcengine.nat.get_dnat_entries_output(ids=[foo_dnat_entry.id])
     ```
 
 
@@ -242,6 +244,7 @@ def dnat_entries(dnat_entry_name: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str protocol: The network protocol.
     """
+    pulumi.log.warn("""dnat_entries is deprecated: volcengine.nat.DnatEntries has been deprecated in favor of volcengine.nat.getDnatEntries""")
     __args__ = dict()
     __args__['dnatEntryName'] = dnat_entry_name
     __args__['externalIp'] = external_ip
@@ -289,7 +292,7 @@ def dnat_entries_output(dnat_entry_name: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -328,7 +331,7 @@ def dnat_entries_output(dnat_entry_name: Optional[pulumi.Input[Optional[str]]] =
         nat_gateway_id=foo_gateway.id,
         protocol="tcp",
         opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
-    foo_dnat_entries = volcengine.nat.dnat_entries_output(ids=[foo_dnat_entry.id])
+    foo_dnat_entries = volcengine.nat.get_dnat_entries_output(ids=[foo_dnat_entry.id])
     ```
 
 
@@ -342,4 +345,5 @@ def dnat_entries_output(dnat_entry_name: Optional[pulumi.Input[Optional[str]]] =
     :param str output_file: File name where to save data source results.
     :param str protocol: The network protocol.
     """
+    pulumi.log.warn("""dnat_entries is deprecated: volcengine.nat.DnatEntries has been deprecated in favor of volcengine.nat.getDnatEntries""")
     ...

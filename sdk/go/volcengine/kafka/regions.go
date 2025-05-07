@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kafka.Regions(ctx, nil, nil)
+//			_, err := kafka.GetRegions(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.Regions has been deprecated in favor of volcengine.kafka.getRegions
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegionsResult

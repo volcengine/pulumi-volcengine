@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -93,7 +93,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = clb.ListenersOutput(ctx, clb.ListenersOutputArgs{
+//			_ = clb.GetListenersOutput(ctx, clb.GetListenersOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooListener.ID(),
 //				},
@@ -103,6 +103,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners
 func Listeners(ctx *pulumi.Context, args *ListenersArgs, opts ...pulumi.InvokeOption) (*ListenersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListenersResult

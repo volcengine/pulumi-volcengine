@@ -17,6 +17,8 @@ __all__ = [
     'accounts_output',
 ]
 
+warnings.warn("""volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts""", DeprecationWarning)
+
 @pulumi.output_type
 class AccountsResult:
     """
@@ -131,7 +133,7 @@ def accounts(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.organization.accounts(search="210061****")
+    foo = volcengine.organization.get_accounts(search="210061****")
     ```
 
 
@@ -141,6 +143,7 @@ def accounts(name_regex: Optional[str] = None,
     :param str search: The id or the show name of the account. This field supports fuzzy query.
     :param str verification_id: The id of the verification.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['orgUnitId'] = org_unit_id
@@ -176,7 +179,7 @@ def accounts_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.organization.accounts(search="210061****")
+    foo = volcengine.organization.get_accounts(search="210061****")
     ```
 
 
@@ -186,4 +189,5 @@ def accounts_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     :param str search: The id or the show name of the account. This field supports fuzzy query.
     :param str verification_id: The id of the verification.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts""")
     ...

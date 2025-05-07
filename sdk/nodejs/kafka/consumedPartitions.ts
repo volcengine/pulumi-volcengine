@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -83,14 +83,16 @@ import * as utilities from "../utilities";
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = volcengine.kafka.ConsumedPartitionsOutput({
+ * const default = volcengine.kafka.getConsumedPartitionsOutput({
  *     instanceId: fooInstance.id,
  *     groupId: fooGroup.groupId,
  *     topicName: fooTopic.topicName,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions */
 export function consumedPartitions(args: ConsumedPartitionsArgs, opts?: pulumi.InvokeOptions): Promise<ConsumedPartitionsResult> {
+    pulumi.log.warn("consumedPartitions is deprecated: volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:kafka/consumedPartitions:ConsumedPartitions", {
@@ -153,7 +155,7 @@ export interface ConsumedPartitionsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -221,13 +223,14 @@ export interface ConsumedPartitionsResult {
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = volcengine.kafka.ConsumedPartitionsOutput({
+ * const default = volcengine.kafka.getConsumedPartitionsOutput({
  *     instanceId: fooInstance.id,
  *     groupId: fooGroup.groupId,
  *     topicName: fooTopic.topicName,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions */
 export function consumedPartitionsOutput(args: ConsumedPartitionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ConsumedPartitionsResult> {
     return pulumi.output(args).apply((a: any) => consumedPartitions(a, opts))
 }

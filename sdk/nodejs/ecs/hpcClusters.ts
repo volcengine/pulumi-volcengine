@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.HpcClusters({
+ * const foo = volcengine.ecs.getHpcClusters({
  *     zoneId: "cn-beijing-a",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters */
 export function hpcClusters(args?: HpcClustersArgs, opts?: pulumi.InvokeOptions): Promise<HpcClustersResult> {
+    pulumi.log.warn("hpcClusters is deprecated: volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -79,11 +81,12 @@ export interface HpcClustersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.HpcClusters({
+ * const foo = volcengine.ecs.getHpcClusters({
  *     zoneId: "cn-beijing-a",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters */
 export function hpcClustersOutput(args?: HpcClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<HpcClustersResult> {
     return pulumi.output(args).apply((a: any) => hpcClusters(a, opts))
 }

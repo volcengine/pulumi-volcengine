@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := direct_connect.GatewayRoutes(ctx, &direct_connect.GatewayRoutesArgs{
+//			_, err := direct_connect.GetGatewayRoutes(ctx, &direct_connect.GetGatewayRoutesArgs{
 //				Ids: []string{
 //					"dcr-638ry33wmzggn3gd6gv****",
 //					"dcr-20d6tkadi2k8w65sqhgbj****",
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes
 func GatewayRoutes(ctx *pulumi.Context, args *GatewayRoutesArgs, opts ...pulumi.InvokeOption) (*GatewayRoutesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewayRoutesResult

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cr
 {
+    [Obsolete(@"volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints")]
     public static class VpcEndpoints
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cr.VpcEndpoints.Invoke(new()
+        ///     var @default = Volcengine.Cr.GetVpcEndpoints.Invoke(new()
         ///     {
         ///         Registry = "enterprise-1",
         ///         Statuses = new[]
@@ -53,7 +54,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cr.VpcEndpoints.Invoke(new()
+        ///     var @default = Volcengine.Cr.GetVpcEndpoints.Invoke(new()
         ///     {
         ///         Registry = "enterprise-1",
         ///         Statuses = new[]

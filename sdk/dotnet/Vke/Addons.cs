@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vke
 {
+    [Obsolete(@"volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons")]
     public static class Addons
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vke.Addons.Invoke(new()
+        ///     var @default = Volcengine.Vke.GetAddons.Invoke(new()
         ///     {
         ///         ClusterIds = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vke.Addons.Invoke(new()
+        ///     var @default = Volcengine.Vke.GetAddons.Invoke(new()
         ///     {
         ///         ClusterIds = new[]
         ///         {

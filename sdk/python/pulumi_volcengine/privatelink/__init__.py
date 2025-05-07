@@ -5,6 +5,11 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_vpc_endpoint_connections import *
+from .get_vpc_endpoint_service_permissions import *
+from .get_vpc_endpoint_services import *
+from .get_vpc_endpoint_zones import *
+from .get_vpc_endpoints import *
 from .security_group import *
 from .vpc_endpoint import *
 from .vpc_endpoint_connection import *

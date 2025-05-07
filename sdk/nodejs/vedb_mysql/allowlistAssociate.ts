@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *         "192.168.2.0/24",
  *     ],
  * });
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",

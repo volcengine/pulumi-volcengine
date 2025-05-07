@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Iam
 {
+    [Obsolete(@"volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments")]
     public static class UserGroupPolicyAttachments
     {
         /// <summary>
@@ -44,7 +45,7 @@ namespace Pulumi.Volcengine.Iam
         ///         UserGroupName = fooUserGroup.UserGroupName,
         ///     });
         /// 
-        ///     var fooUserGroupPolicyAttachments = Volcengine.Iam.UserGroupPolicyAttachments.Invoke(new()
+        ///     var fooUserGroupPolicyAttachments = Volcengine.Iam.GetUserGroupPolicyAttachments.Invoke(new()
         ///     {
         ///         UserGroupName = fooUserGroupPolicyAttachment.UserGroupName,
         ///     });
@@ -88,7 +89,7 @@ namespace Pulumi.Volcengine.Iam
         ///         UserGroupName = fooUserGroup.UserGroupName,
         ///     });
         /// 
-        ///     var fooUserGroupPolicyAttachments = Volcengine.Iam.UserGroupPolicyAttachments.Invoke(new()
+        ///     var fooUserGroupPolicyAttachments = Volcengine.Iam.GetUserGroupPolicyAttachments.Invoke(new()
         ///     {
         ///         UserGroupName = fooUserGroupPolicyAttachment.UserGroupName,
         ///     });

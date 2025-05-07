@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloudfs
 {
+    [Obsolete(@"volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces")]
     public static class Namespaces
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.Namespaces.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetNamespaces.Invoke(new()
         ///     {
         ///         FsName = "tf-test-fs",
         ///         NsId = "1801439850948****",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.Namespaces.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetNamespaces.Invoke(new()
         ///     {
         ///         FsName = "tf-test-fs",
         ///         NsId = "1801439850948****",

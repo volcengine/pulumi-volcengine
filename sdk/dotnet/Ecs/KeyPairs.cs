@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs")]
     public static class KeyPairs
     {
         /// <summary>
@@ -29,7 +30,7 @@ namespace Pulumi.Volcengine.Ecs
         ///         Description = "acc-test",
         ///     });
         /// 
-        ///     var fooKeyPairs = Volcengine.Ecs.KeyPairs.Invoke(new()
+        ///     var fooKeyPairs = Volcengine.Ecs.GetKeyPairs.Invoke(new()
         ///     {
         ///         KeyPairName = fooKeyPair.KeyPairName,
         ///     });
@@ -58,7 +59,7 @@ namespace Pulumi.Volcengine.Ecs
         ///         Description = "acc-test",
         ///     });
         /// 
-        ///     var fooKeyPairs = Volcengine.Ecs.KeyPairs.Invoke(new()
+        ///     var fooKeyPairs = Volcengine.Ecs.GetKeyPairs.Invoke(new()
         ///     {
         ///         KeyPairName = fooKeyPair.KeyPairName,
         ///     });

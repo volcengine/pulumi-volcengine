@@ -34,16 +34,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = fooPolicy.Description.ApplyT(func(description *string) (iam.PoliciesResult, error) {
-//				return iam.PoliciesOutput(ctx, iam.PoliciesOutputArgs{
+//			_ = fooPolicy.Description.ApplyT(func(description *string) (iam.GetPoliciesResult, error) {
+//				return iam.GetPoliciesOutput(ctx, iam.GetPoliciesOutputArgs{
 //					Query: description,
 //				}, nil), nil
-//			}).(iam.PoliciesResultOutput)
+//			}).(iam.GetPoliciesResultOutput)
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies
 func Policies(ctx *pulumi.Context, args *PoliciesArgs, opts ...pulumi.InvokeOption) (*PoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PoliciesResult

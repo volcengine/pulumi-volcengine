@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -102,7 +102,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = clb.RulesOutput(ctx, clb.RulesOutputArgs{
+//			_ = clb.GetRulesOutput(ctx, clb.GetRulesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooRule.ID(),
 //				},
@@ -113,6 +113,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules
 func Rules(ctx *pulumi.Context, args *RulesArgs, opts ...pulumi.InvokeOption) (*RulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RulesResult

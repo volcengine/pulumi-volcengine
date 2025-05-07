@@ -24,13 +24,15 @@ import * as utilities from "../utilities";
  *         strategy: "Availability",
  *     }));
  * }
- * const fooDeploymentSets = volcengine.ecs.DeploymentSetsOutput({
+ * const fooDeploymentSets = volcengine.ecs.getDeploymentSetsOutput({
  *     granularity: "switch",
  *     ids: fooDeploymentSet.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets */
 export function deploymentSets(args?: DeploymentSetsArgs, opts?: pulumi.InvokeOptions): Promise<DeploymentSetsResult> {
+    pulumi.log.warn("deploymentSets is deprecated: volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -106,12 +108,13 @@ export interface DeploymentSetsResult {
  *         strategy: "Availability",
  *     }));
  * }
- * const fooDeploymentSets = volcengine.ecs.DeploymentSetsOutput({
+ * const fooDeploymentSets = volcengine.ecs.getDeploymentSetsOutput({
  *     granularity: "switch",
  *     ids: fooDeploymentSet.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets */
 export function deploymentSetsOutput(args?: DeploymentSetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DeploymentSetsResult> {
     return pulumi.output(args).apply((a: any) => deploymentSets(a, opts))
 }

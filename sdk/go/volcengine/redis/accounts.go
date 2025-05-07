@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -78,7 +78,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = redis.AccountsOutput(ctx, redis.AccountsOutputArgs{
+//			_ = redis.GetAccountsOutput(ctx, redis.GetAccountsOutputArgs{
 //				AccountName: fooAccount.AccountName,
 //				InstanceId:  fooInstance.ID(),
 //			}, nil)
@@ -87,6 +87,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.redis.Accounts has been deprecated in favor of volcengine.redis.getAccounts
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccountsResult

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.Endpoints(ctx, &cr.EndpointsArgs{
+//			_, err := cr.GetEndpoints(ctx, &cr.GetEndpointsArgs{
 //				Registry: "tf-1",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints
 func Endpoints(ctx *pulumi.Context, args *EndpointsArgs, opts ...pulumi.InvokeOption) (*EndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EndpointsResult

@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -118,7 +118,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = privatelink.VpcEndpointConnectionsOutput(ctx, privatelink.VpcEndpointConnectionsOutputArgs{
+//			_ = privatelink.GetVpcEndpointConnectionsOutput(ctx, privatelink.GetVpcEndpointConnectionsOutputArgs{
 //				EndpointId: fooVpcEndpointConnection.EndpointId,
 //				ServiceId:  fooVpcEndpointConnection.ServiceId,
 //			}, nil)
@@ -127,6 +127,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections
 func VpcEndpointConnections(ctx *pulumi.Context, args *VpcEndpointConnectionsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointConnectionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointConnectionsResult

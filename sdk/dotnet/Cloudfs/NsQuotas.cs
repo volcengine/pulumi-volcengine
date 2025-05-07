@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloudfs
 {
+    [Obsolete(@"volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas")]
     public static class NsQuotas
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.NsQuotas.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetNsQuotas.Invoke(new()
         ///     {
         ///         FsNames = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.NsQuotas.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetNsQuotas.Invoke(new()
         ///     {
         ///         FsNames = new[]
         ///         {

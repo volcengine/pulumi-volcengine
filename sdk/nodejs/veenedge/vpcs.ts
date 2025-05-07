@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.veenedge.Vpcs({});
+ * const foo = volcengine.veenedge.getVpcs({});
  * ```
  */
+/** @deprecated volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs */
 export function vpcs(args?: VpcsArgs, opts?: pulumi.InvokeOptions): Promise<VpcsResult> {
+    pulumi.log.warn("vpcs is deprecated: volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -74,9 +76,10 @@ export interface VpcsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.veenedge.Vpcs({});
+ * const foo = volcengine.veenedge.getVpcs({});
  * ```
  */
+/** @deprecated volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs */
 export function vpcsOutput(args?: VpcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcsResult> {
     return pulumi.output(args).apply((a: any) => vpcs(a, opts))
 }

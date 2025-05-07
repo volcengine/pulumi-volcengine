@@ -5,6 +5,12 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_scaling_activities import *
+from .get_scaling_configurations import *
+from .get_scaling_groups import *
+from .get_scaling_instances import *
+from .get_scaling_lifecycle_hooks import *
+from .get_scaling_policies import *
 from .scaling_activities import *
 from .scaling_configuration import *
 from .scaling_configuration_attachment import *

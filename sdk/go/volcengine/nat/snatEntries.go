@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -106,7 +106,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = nat.SnatEntriesOutput(ctx, nat.SnatEntriesOutputArgs{
+//			_ = nat.GetSnatEntriesOutput(ctx, nat.GetSnatEntriesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					foo1.ID(),
 //					foo2.ID(),
@@ -117,6 +117,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries
 func SnatEntries(ctx *pulumi.Context, args *SnatEntriesArgs, opts ...pulumi.InvokeOption) (*SnatEntriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SnatEntriesResult

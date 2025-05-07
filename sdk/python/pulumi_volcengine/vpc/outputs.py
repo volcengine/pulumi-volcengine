@@ -61,6 +61,43 @@ __all__ = [
     'VpcsVpcResult',
     'VpcsVpcAssociateCenResult',
     'VpcsVpcTagResult',
+    'GetHaVipsHaVipResult',
+    'GetHaVipsHaVipTagResult',
+    'GetHaVipsTagResult',
+    'GetIpv6AddressBandwidthsIpv6AddressBandwidthResult',
+    'GetIpv6AddressesIpv6AddressResult',
+    'GetIpv6GatewaysIpv6GatewayResult',
+    'GetNetworkAclsNetworkAclResult',
+    'GetNetworkAclsNetworkAclEgressAclEntryResult',
+    'GetNetworkAclsNetworkAclIngressAclEntryResult',
+    'GetNetworkAclsNetworkAclResourceResult',
+    'GetNetworkAclsNetworkAclTagResult',
+    'GetNetworkAclsTagResult',
+    'GetNetworkInterfacesNetworkInterfaceResult',
+    'GetNetworkInterfacesNetworkInterfacePrivateIpSetResult',
+    'GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIpResult',
+    'GetNetworkInterfacesNetworkInterfaceTagResult',
+    'GetNetworkInterfacesTagResult',
+    'GetPrefixListsPrefixListResult',
+    'GetPrefixListsPrefixListPrefixListAssociationResult',
+    'GetPrefixListsPrefixListPrefixListEntryResult',
+    'GetPrefixListsTagFilterResult',
+    'GetRouteEntriesRouteEntryResult',
+    'GetRouteTablesRouteTableResult',
+    'GetRouteTablesRouteTableTagResult',
+    'GetRouteTablesTagResult',
+    'GetSecurityGroupRulesSecurityGroupRuleResult',
+    'GetSecurityGroupsSecurityGroupResult',
+    'GetSecurityGroupsSecurityGroupTagResult',
+    'GetSecurityGroupsTagResult',
+    'GetSubnetsSubnetResult',
+    'GetSubnetsSubnetRouteTableResult',
+    'GetSubnetsSubnetTagResult',
+    'GetSubnetsTagResult',
+    'GetVpcsTagResult',
+    'GetVpcsVpcResult',
+    'GetVpcsVpcAssociateCenResult',
+    'GetVpcsVpcTagResult',
 ]
 
 @pulumi.output_type
@@ -3573,6 +3610,2918 @@ class VpcsVpcAssociateCenResult(dict):
 
 @pulumi.output_type
 class VpcsVpcTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetHaVipsHaVipResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 associated_eip_address: str,
+                 associated_eip_id: str,
+                 associated_instance_ids: Sequence[str],
+                 associated_instance_type: str,
+                 created_at: str,
+                 description: str,
+                 ha_vip_id: str,
+                 ha_vip_name: str,
+                 id: str,
+                 ip_address: str,
+                 master_instance_id: str,
+                 project_name: str,
+                 status: str,
+                 subnet_id: str,
+                 tags: Sequence['outputs.GetHaVipsHaVipTagResult'],
+                 updated_at: str,
+                 vpc_id: str):
+        """
+        :param str account_id: The account id of the Ha Vip.
+        :param str associated_eip_address: The associated eip address of the Ha Vip.
+        :param str associated_eip_id: The associated eip id of the Ha Vip.
+        :param Sequence[str] associated_instance_ids: The associated instance ids of the Ha Vip.
+        :param str associated_instance_type: The associated instance type of the Ha Vip.
+        :param str created_at: The create time of the Ha Vip.
+        :param str description: The description of the Ha Vip.
+        :param str ha_vip_id: The id of the Ha Vip.
+        :param str ha_vip_name: The name of Ha Vip.
+        :param str id: The id of the Ha Vip.
+        :param str ip_address: The ip address of Ha Vip.
+        :param str master_instance_id: The master instance id of the Ha Vip.
+        :param str project_name: The project name of Ha Vip.
+        :param str status: The status of Ha Vip.
+        :param str subnet_id: The id of subnet.
+        :param Sequence['GetHaVipsHaVipTagArgs'] tags: Tags.
+        :param str updated_at: The update time of the Ha Vip.
+        :param str vpc_id: The id of vpc.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "associated_eip_address", associated_eip_address)
+        pulumi.set(__self__, "associated_eip_id", associated_eip_id)
+        pulumi.set(__self__, "associated_instance_ids", associated_instance_ids)
+        pulumi.set(__self__, "associated_instance_type", associated_instance_type)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ha_vip_id", ha_vip_id)
+        pulumi.set(__self__, "ha_vip_name", ha_vip_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "master_instance_id", master_instance_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the Ha Vip.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="associatedEipAddress")
+    def associated_eip_address(self) -> str:
+        """
+        The associated eip address of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_eip_address")
+
+    @property
+    @pulumi.getter(name="associatedEipId")
+    def associated_eip_id(self) -> str:
+        """
+        The associated eip id of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_eip_id")
+
+    @property
+    @pulumi.getter(name="associatedInstanceIds")
+    def associated_instance_ids(self) -> Sequence[str]:
+        """
+        The associated instance ids of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_instance_ids")
+
+    @property
+    @pulumi.getter(name="associatedInstanceType")
+    def associated_instance_type(self) -> str:
+        """
+        The associated instance type of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_instance_type")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of the Ha Vip.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Ha Vip.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="haVipId")
+    def ha_vip_id(self) -> str:
+        """
+        The id of the Ha Vip.
+        """
+        return pulumi.get(self, "ha_vip_id")
+
+    @property
+    @pulumi.getter(name="haVipName")
+    def ha_vip_name(self) -> str:
+        """
+        The name of Ha Vip.
+        """
+        return pulumi.get(self, "ha_vip_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the Ha Vip.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The ip address of Ha Vip.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="masterInstanceId")
+    def master_instance_id(self) -> str:
+        """
+        The master instance id of the Ha Vip.
+        """
+        return pulumi.get(self, "master_instance_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of Ha Vip.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of Ha Vip.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The id of subnet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetHaVipsHaVipTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of the Ha Vip.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of vpc.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetHaVipsHaVipTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetHaVipsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetIpv6AddressBandwidthsIpv6AddressBandwidthResult(dict):
+    def __init__(__self__, *,
+                 allocation_id: str,
+                 bandwidth: int,
+                 billing_type: str,
+                 business_status: str,
+                 creation_time: str,
+                 delete_time: str,
+                 id: str,
+                 instance_id: str,
+                 instance_type: str,
+                 ipv6_address: str,
+                 isp: str,
+                 lock_reason: str,
+                 network_type: str,
+                 overdue_time: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param str allocation_id: The ID of the Ipv6AddressBandwidth.
+        :param int bandwidth: Peek bandwidth of the Ipv6 address.
+        :param str billing_type: BillingType of the Ipv6 bandwidth.
+        :param str business_status: The BusinessStatus of the Ipv6AddressBandwidth.
+        :param str creation_time: Creation time of the Ipv6AddressBandwidth.
+        :param str delete_time: Delete time of the Ipv6AddressBandwidth.
+        :param str id: The ID of the Ipv6AddressBandwidth.
+        :param str instance_id: The ID of the associated instance.
+        :param str instance_type: The type of the associated instance.
+        :param str ipv6_address: The IPv6 address.
+        :param str isp: ISP of the ipv6 address.
+        :param str lock_reason: The BusinessStatus of the Ipv6AddressBandwidth.
+        :param str network_type: The network type of the ipv6 address.
+        :param str overdue_time: Overdue time of the Ipv6AddressBandwidth.
+        :param str status: The status of the Ipv6AddressBandwidth.
+        :param str update_time: Update time of the Ipv6AddressBandwidth.
+        """
+        pulumi.set(__self__, "allocation_id", allocation_id)
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "delete_time", delete_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
+        pulumi.set(__self__, "isp", isp)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "network_type", network_type)
+        pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        """
+        The ID of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "allocation_id")
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        Peek bandwidth of the Ipv6 address.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> str:
+        """
+        BillingType of the Ipv6 bandwidth.
+        """
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The BusinessStatus of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        Creation time of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="deleteTime")
+    def delete_time(self) -> str:
+        """
+        Delete time of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "delete_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the associated instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The type of the associated instance.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> str:
+        """
+        The IPv6 address.
+        """
+        return pulumi.get(self, "ipv6_address")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        """
+        ISP of the ipv6 address.
+        """
+        return pulumi.get(self, "isp")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The BusinessStatus of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        The network type of the ipv6 address.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> str:
+        """
+        Overdue time of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of the Ipv6AddressBandwidth.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetIpv6AddressesIpv6AddressResult(dict):
+    def __init__(__self__, *,
+                 ipv6_address: str):
+        """
+        :param str ipv6_address: The IPv6 address.
+        """
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> str:
+        """
+        The IPv6 address.
+        """
+        return pulumi.get(self, "ipv6_address")
+
+
+@pulumi.output_type
+class GetIpv6GatewaysIpv6GatewayResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 ipv6_gateway_id: str,
+                 name: str,
+                 status: str,
+                 update_time: str,
+                 vpc_id: str):
+        """
+        :param str creation_time: Creation time of the Ipv6Gateway.
+        :param str description: The description of the Ipv6Gateway.
+        :param str id: The ID of the Ipv6Gateway.
+        :param str ipv6_gateway_id: The ID of the Ipv6Gateway.
+        :param str name: The name of the Ipv6Gateway.
+        :param str status: The Status of the Ipv6Gateway.
+        :param str update_time: Update time of the Ipv6Gateway.
+        :param str vpc_id: The id of the VPC which the Ipv6Gateway belongs to.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ipv6_gateway_id", ipv6_gateway_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        Creation time of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv6GatewayId")
+    def ipv6_gateway_id(self) -> str:
+        """
+        The ID of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "ipv6_gateway_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of the VPC which the Ipv6Gateway belongs to.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetNetworkAclsNetworkAclResult(dict):
+    def __init__(__self__, *,
+                 acl_entry_count: int,
+                 creation_time: str,
+                 description: str,
+                 egress_acl_entries: Sequence['outputs.GetNetworkAclsNetworkAclEgressAclEntryResult'],
+                 id: str,
+                 ingress_acl_entries: Sequence['outputs.GetNetworkAclsNetworkAclIngressAclEntryResult'],
+                 network_acl_id: str,
+                 network_acl_name: str,
+                 project_name: str,
+                 resources: Sequence['outputs.GetNetworkAclsNetworkAclResourceResult'],
+                 status: str,
+                 tags: Sequence['outputs.GetNetworkAclsNetworkAclTagResult'],
+                 update_time: str,
+                 vpc_id: str):
+        """
+        :param int acl_entry_count: The count of Network acl entry.
+        :param str creation_time: Creation time of Network Acl.
+        :param str description: The description of entry.
+        :param Sequence['GetNetworkAclsNetworkAclEgressAclEntryArgs'] egress_acl_entries: The egress entries info of Network Acl.
+        :param str id: The ID of Network Acl.
+        :param Sequence['GetNetworkAclsNetworkAclIngressAclEntryArgs'] ingress_acl_entries: The ingress entries info of Network Acl.
+        :param str network_acl_id: The ID of Network Acl.
+        :param str network_acl_name: The name of Network Acl.
+        :param str project_name: The project name of the network acl.
+        :param Sequence['GetNetworkAclsNetworkAclResourceArgs'] resources: The resources info of Network Acl.
+        :param str status: The Status of Network Acl.
+        :param Sequence['GetNetworkAclsNetworkAclTagArgs'] tags: Tags.
+        :param str update_time: Update time of Network Acl.
+        :param str vpc_id: The vpc id of Network Acl.
+        """
+        pulumi.set(__self__, "acl_entry_count", acl_entry_count)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "egress_acl_entries", egress_acl_entries)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ingress_acl_entries", ingress_acl_entries)
+        pulumi.set(__self__, "network_acl_id", network_acl_id)
+        pulumi.set(__self__, "network_acl_name", network_acl_name)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="aclEntryCount")
+    def acl_entry_count(self) -> int:
+        """
+        The count of Network acl entry.
+        """
+        return pulumi.get(self, "acl_entry_count")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        Creation time of Network Acl.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of entry.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="egressAclEntries")
+    def egress_acl_entries(self) -> Sequence['outputs.GetNetworkAclsNetworkAclEgressAclEntryResult']:
+        """
+        The egress entries info of Network Acl.
+        """
+        return pulumi.get(self, "egress_acl_entries")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of Network Acl.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ingressAclEntries")
+    def ingress_acl_entries(self) -> Sequence['outputs.GetNetworkAclsNetworkAclIngressAclEntryResult']:
+        """
+        The ingress entries info of Network Acl.
+        """
+        return pulumi.get(self, "ingress_acl_entries")
+
+    @property
+    @pulumi.getter(name="networkAclId")
+    def network_acl_id(self) -> str:
+        """
+        The ID of Network Acl.
+        """
+        return pulumi.get(self, "network_acl_id")
+
+    @property
+    @pulumi.getter(name="networkAclName")
+    def network_acl_name(self) -> str:
+        """
+        The name of Network Acl.
+        """
+        return pulumi.get(self, "network_acl_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the network acl.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetNetworkAclsNetworkAclResourceResult']:
+        """
+        The resources info of Network Acl.
+        """
+        return pulumi.get(self, "resources")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status of Network Acl.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetNetworkAclsNetworkAclTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of Network Acl.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id of Network Acl.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetNetworkAclsNetworkAclEgressAclEntryResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 destination_cidr_ip: str,
+                 network_acl_entry_id: str,
+                 network_acl_entry_name: str,
+                 policy: str,
+                 port: str,
+                 priority: int,
+                 protocol: str):
+        """
+        :param str description: The description of entry.
+        :param str destination_cidr_ip: The DestinationCidrIp of entry.
+        :param str network_acl_entry_id: The id of entry.
+        :param str network_acl_entry_name: The name of entry.
+        :param str policy: The policy of entry.
+        :param str port: The port of entry.
+        :param int priority: The priority of entry.
+        :param str protocol: The protocol of entry.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_ip", destination_cidr_ip)
+        pulumi.set(__self__, "network_acl_entry_id", network_acl_entry_id)
+        pulumi.set(__self__, "network_acl_entry_name", network_acl_entry_name)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of entry.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrIp")
+    def destination_cidr_ip(self) -> str:
+        """
+        The DestinationCidrIp of entry.
+        """
+        return pulumi.get(self, "destination_cidr_ip")
+
+    @property
+    @pulumi.getter(name="networkAclEntryId")
+    def network_acl_entry_id(self) -> str:
+        """
+        The id of entry.
+        """
+        return pulumi.get(self, "network_acl_entry_id")
+
+    @property
+    @pulumi.getter(name="networkAclEntryName")
+    def network_acl_entry_name(self) -> str:
+        """
+        The name of entry.
+        """
+        return pulumi.get(self, "network_acl_entry_name")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of entry.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        The port of entry.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of entry.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of entry.
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetNetworkAclsNetworkAclIngressAclEntryResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 network_acl_entry_id: str,
+                 network_acl_entry_name: str,
+                 policy: str,
+                 port: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_ip: str):
+        """
+        :param str description: The description of entry.
+        :param str network_acl_entry_id: The id of entry.
+        :param str network_acl_entry_name: The name of entry.
+        :param str policy: The policy of entry.
+        :param str port: The port of entry.
+        :param int priority: The priority of entry.
+        :param str protocol: The protocol of entry.
+        :param str source_cidr_ip: The SourceCidrIp of entry.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "network_acl_entry_id", network_acl_entry_id)
+        pulumi.set(__self__, "network_acl_entry_name", network_acl_entry_name)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_ip", source_cidr_ip)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of entry.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="networkAclEntryId")
+    def network_acl_entry_id(self) -> str:
+        """
+        The id of entry.
+        """
+        return pulumi.get(self, "network_acl_entry_id")
+
+    @property
+    @pulumi.getter(name="networkAclEntryName")
+    def network_acl_entry_name(self) -> str:
+        """
+        The name of entry.
+        """
+        return pulumi.get(self, "network_acl_entry_name")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of entry.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        The port of entry.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of entry.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of entry.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrIp")
+    def source_cidr_ip(self) -> str:
+        """
+        The SourceCidrIp of entry.
+        """
+        return pulumi.get(self, "source_cidr_ip")
+
+
+@pulumi.output_type
+class GetNetworkAclsNetworkAclResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_id: str,
+                 status: str):
+        """
+        :param str resource_id: The resource id of Network Acl.
+        :param str status: The Status of Network Acl.
+        """
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The resource id of Network Acl.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status of Network Acl.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetNetworkAclsNetworkAclTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNetworkAclsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesNetworkInterfaceResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 associated_elastic_ip_address: str,
+                 associated_elastic_ip_id: str,
+                 created_at: str,
+                 description: str,
+                 device_id: str,
+                 id: str,
+                 ipv6_sets: Sequence[str],
+                 mac_address: str,
+                 network_interface_id: str,
+                 network_interface_name: str,
+                 port_security_enabled: bool,
+                 primary_ip_address: str,
+                 private_ip_sets: Sequence['outputs.GetNetworkInterfacesNetworkInterfacePrivateIpSetResult'],
+                 project_name: str,
+                 security_group_ids: Sequence[str],
+                 service_managed: bool,
+                 status: str,
+                 subnet_id: str,
+                 tags: Sequence['outputs.GetNetworkInterfacesNetworkInterfaceTagResult'],
+                 type: str,
+                 updated_at: str,
+                 vpc_id: str,
+                 vpc_name: str,
+                 zone_id: str):
+        """
+        :param str account_id: The account id of the ENI creator.
+        :param str associated_elastic_ip_address: The IP address of the EIP to which the ENI associates.
+        :param str associated_elastic_ip_id: The allocation id of the EIP to which the ENI associates.
+        :param str created_at: The create time of the ENI.
+        :param str description: The description of the ENI.
+        :param str device_id: The id of the device to which the ENI is bound.
+        :param str id: The id of the ENI.
+        :param Sequence[str] ipv6_sets: The IPv6 address list of the ENI.
+        :param str mac_address: The mac address of the ENI.
+        :param str network_interface_id: The id of the ENI.
+        :param str network_interface_name: A name of ENI.
+        :param bool port_security_enabled: The enable of port security.
+        :param str primary_ip_address: The primary IP address of the ENI.
+        :param Sequence['GetNetworkInterfacesNetworkInterfacePrivateIpSetArgs'] private_ip_sets: The IP address of secondary private network interface.
+        :param str project_name: The ProjectName of the ENI.
+        :param Sequence[str] security_group_ids: The list of the security group id to which the secondary ENI belongs.
+        :param bool service_managed: Whether the network card has been authorized to be used by other account services.
+        :param str status: A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
+        :param str subnet_id: An id of the subnet to which the ENI is connected.
+        :param Sequence['GetNetworkInterfacesNetworkInterfaceTagArgs'] tags: Tags.
+        :param str type: A type of ENI, Optional choice contains `primary`, `secondary`.
+        :param str updated_at: The last update time of the ENI.
+        :param str vpc_id: An id of the virtual private cloud (VPC) to which the ENI belongs.
+        :param str vpc_name: The name of the virtual private cloud (VPC) to which the ENI belongs.
+        :param str zone_id: The zone ID.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "associated_elastic_ip_address", associated_elastic_ip_address)
+        pulumi.set(__self__, "associated_elastic_ip_id", associated_elastic_ip_id)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "device_id", device_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ipv6_sets", ipv6_sets)
+        pulumi.set(__self__, "mac_address", mac_address)
+        pulumi.set(__self__, "network_interface_id", network_interface_id)
+        pulumi.set(__self__, "network_interface_name", network_interface_name)
+        pulumi.set(__self__, "port_security_enabled", port_security_enabled)
+        pulumi.set(__self__, "primary_ip_address", primary_ip_address)
+        pulumi.set(__self__, "private_ip_sets", private_ip_sets)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "service_managed", service_managed)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_name", vpc_name)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the ENI creator.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="associatedElasticIpAddress")
+    def associated_elastic_ip_address(self) -> str:
+        """
+        The IP address of the EIP to which the ENI associates.
+        """
+        return pulumi.get(self, "associated_elastic_ip_address")
+
+    @property
+    @pulumi.getter(name="associatedElasticIpId")
+    def associated_elastic_ip_id(self) -> str:
+        """
+        The allocation id of the EIP to which the ENI associates.
+        """
+        return pulumi.get(self, "associated_elastic_ip_id")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of the ENI.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the ENI.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> str:
+        """
+        The id of the device to which the ENI is bound.
+        """
+        return pulumi.get(self, "device_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the ENI.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv6Sets")
+    def ipv6_sets(self) -> Sequence[str]:
+        """
+        The IPv6 address list of the ENI.
+        """
+        return pulumi.get(self, "ipv6_sets")
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> str:
+        """
+        The mac address of the ENI.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
+        """
+        The id of the ENI.
+        """
+        return pulumi.get(self, "network_interface_id")
+
+    @property
+    @pulumi.getter(name="networkInterfaceName")
+    def network_interface_name(self) -> str:
+        """
+        A name of ENI.
+        """
+        return pulumi.get(self, "network_interface_name")
+
+    @property
+    @pulumi.getter(name="portSecurityEnabled")
+    def port_security_enabled(self) -> bool:
+        """
+        The enable of port security.
+        """
+        return pulumi.get(self, "port_security_enabled")
+
+    @property
+    @pulumi.getter(name="primaryIpAddress")
+    def primary_ip_address(self) -> str:
+        """
+        The primary IP address of the ENI.
+        """
+        return pulumi.get(self, "primary_ip_address")
+
+    @property
+    @pulumi.getter(name="privateIpSets")
+    def private_ip_sets(self) -> Sequence['outputs.GetNetworkInterfacesNetworkInterfacePrivateIpSetResult']:
+        """
+        The IP address of secondary private network interface.
+        """
+        return pulumi.get(self, "private_ip_sets")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the ENI.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[str]:
+        """
+        The list of the security group id to which the secondary ENI belongs.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="serviceManaged")
+    def service_managed(self) -> bool:
+        """
+        Whether the network card has been authorized to be used by other account services.
+        """
+        return pulumi.get(self, "service_managed")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        An id of the subnet to which the ENI is connected.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetNetworkInterfacesNetworkInterfaceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        A type of ENI, Optional choice contains `primary`, `secondary`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of the ENI.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        An id of the virtual private cloud (VPC) to which the ENI belongs.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> str:
+        """
+        The name of the virtual private cloud (VPC) to which the ENI belongs.
+        """
+        return pulumi.get(self, "vpc_name")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone ID.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesNetworkInterfacePrivateIpSetResult(dict):
+    def __init__(__self__, *,
+                 associated_elastic_ips: Sequence['outputs.GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIpResult'],
+                 primary: bool,
+                 private_ip_address: str):
+        """
+        :param Sequence['GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIpArgs'] associated_elastic_ips: The public IP that secondary private network IP associated with.
+        :param bool primary: Whether the network interface is primary IP address.
+        :param str private_ip_address: The secondary private network IP address of the network interface card.
+        """
+        pulumi.set(__self__, "associated_elastic_ips", associated_elastic_ips)
+        pulumi.set(__self__, "primary", primary)
+        pulumi.set(__self__, "private_ip_address", private_ip_address)
+
+    @property
+    @pulumi.getter(name="associatedElasticIps")
+    def associated_elastic_ips(self) -> Sequence['outputs.GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIpResult']:
+        """
+        The public IP that secondary private network IP associated with.
+        """
+        return pulumi.get(self, "associated_elastic_ips")
+
+    @property
+    @pulumi.getter
+    def primary(self) -> bool:
+        """
+        Whether the network interface is primary IP address.
+        """
+        return pulumi.get(self, "primary")
+
+    @property
+    @pulumi.getter(name="privateIpAddress")
+    def private_ip_address(self) -> str:
+        """
+        The secondary private network IP address of the network interface card.
+        """
+        return pulumi.get(self, "private_ip_address")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIpResult(dict):
+    def __init__(__self__, *,
+                 allocation_id: str,
+                 eip_address: str):
+        """
+        :param str allocation_id: The public IP ID.
+        :param str eip_address: The public IP address.
+        """
+        pulumi.set(__self__, "allocation_id", allocation_id)
+        pulumi.set(__self__, "eip_address", eip_address)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        """
+        The public IP ID.
+        """
+        return pulumi.get(self, "allocation_id")
+
+    @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> str:
+        """
+        The public IP address.
+        """
+        return pulumi.get(self, "eip_address")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesNetworkInterfaceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPrefixListsPrefixListResult(dict):
+    def __init__(__self__, *,
+                 association_count: int,
+                 cidrs: Sequence[str],
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 ip_version: str,
+                 max_entries: int,
+                 prefix_list_associations: Sequence['outputs.GetPrefixListsPrefixListPrefixListAssociationResult'],
+                 prefix_list_entries: Sequence['outputs.GetPrefixListsPrefixListPrefixListEntryResult'],
+                 prefix_list_id: str,
+                 prefix_list_name: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param int association_count: Number of associated resources for prefix list.
+        :param Sequence[str] cidrs: CIDR address block information for prefix list.
+        :param str creation_time: The creation time of the prefix list.
+        :param str description: Description.
+        :param str id: The id of the prefix list.
+        :param str ip_version: IP version of prefix list.
+        :param int max_entries: Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+        :param Sequence['GetPrefixListsPrefixListPrefixListAssociationArgs'] prefix_list_associations: Collection of resources associated with VPC prefix list.
+        :param Sequence['GetPrefixListsPrefixListPrefixListEntryArgs'] prefix_list_entries: The prefix list entries.
+        :param str prefix_list_id: The prefix list id.
+        :param str prefix_list_name: A Name of prefix list.
+        :param str status: The status of the prefix list.
+        :param str update_time: The update time of the prefix list.
+        """
+        pulumi.set(__self__, "association_count", association_count)
+        pulumi.set(__self__, "cidrs", cidrs)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "max_entries", max_entries)
+        pulumi.set(__self__, "prefix_list_associations", prefix_list_associations)
+        pulumi.set(__self__, "prefix_list_entries", prefix_list_entries)
+        pulumi.set(__self__, "prefix_list_id", prefix_list_id)
+        pulumi.set(__self__, "prefix_list_name", prefix_list_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="associationCount")
+    def association_count(self) -> int:
+        """
+        Number of associated resources for prefix list.
+        """
+        return pulumi.get(self, "association_count")
+
+    @property
+    @pulumi.getter
+    def cidrs(self) -> Sequence[str]:
+        """
+        CIDR address block information for prefix list.
+        """
+        return pulumi.get(self, "cidrs")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the prefix list.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the prefix list.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> str:
+        """
+        IP version of prefix list.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="maxEntries")
+    def max_entries(self) -> int:
+        """
+        Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+        """
+        return pulumi.get(self, "max_entries")
+
+    @property
+    @pulumi.getter(name="prefixListAssociations")
+    def prefix_list_associations(self) -> Sequence['outputs.GetPrefixListsPrefixListPrefixListAssociationResult']:
+        """
+        Collection of resources associated with VPC prefix list.
+        """
+        return pulumi.get(self, "prefix_list_associations")
+
+    @property
+    @pulumi.getter(name="prefixListEntries")
+    def prefix_list_entries(self) -> Sequence['outputs.GetPrefixListsPrefixListPrefixListEntryResult']:
+        """
+        The prefix list entries.
+        """
+        return pulumi.get(self, "prefix_list_entries")
+
+    @property
+    @pulumi.getter(name="prefixListId")
+    def prefix_list_id(self) -> str:
+        """
+        The prefix list id.
+        """
+        return pulumi.get(self, "prefix_list_id")
+
+    @property
+    @pulumi.getter(name="prefixListName")
+    def prefix_list_name(self) -> str:
+        """
+        A Name of prefix list.
+        """
+        return pulumi.get(self, "prefix_list_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the prefix list.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the prefix list.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetPrefixListsPrefixListPrefixListAssociationResult(dict):
+    def __init__(__self__, *,
+                 resource_id: str,
+                 resource_type: str):
+        """
+        :param str resource_id: Associated resource ID.
+        :param str resource_type: Related resource types.
+        """
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        Associated resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        Related resource types.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class GetPrefixListsPrefixListPrefixListEntryResult(dict):
+    def __init__(__self__, *,
+                 cidr: str,
+                 description: str,
+                 prefix_list_id: str):
+        """
+        :param str cidr: CIDR address blocks for prefix list entries.
+        :param str description: Description.
+        :param str prefix_list_id: The prefix list id.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "prefix_list_id", prefix_list_id)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
+        """
+        CIDR address blocks for prefix list entries.
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="prefixListId")
+    def prefix_list_id(self) -> str:
+        """
+        The prefix list id.
+        """
+        return pulumi.get(self, "prefix_list_id")
+
+
+@pulumi.output_type
+class GetPrefixListsTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetRouteEntriesRouteEntryResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 destination_cidr_block: str,
+                 id: str,
+                 next_hop_id: str,
+                 next_hop_name: str,
+                 next_hop_type: str,
+                 route_entry_id: str,
+                 route_entry_name: str,
+                 route_table_id: str,
+                 status: str,
+                 type: str,
+                 vpc_id: str):
+        """
+        :param str description: The description of the route entry.
+        :param str destination_cidr_block: A destination CIDR block of route entry.
+        :param str id: The id of the route entry.
+        :param str next_hop_id: An id of next hop.
+        :param str next_hop_name: The name of the next hop.
+        :param str next_hop_type: A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
+        :param str route_entry_id: The id of the route entry.
+        :param str route_entry_name: A name of route entry.
+        :param str route_table_id: An id of route table.
+        :param str status: The status of the route entry.
+        :param str type: The type of the route entry.
+        :param str vpc_id: The id of the virtual private cloud (VPC) to which the route entry belongs.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "next_hop_id", next_hop_id)
+        pulumi.set(__self__, "next_hop_name", next_hop_name)
+        pulumi.set(__self__, "next_hop_type", next_hop_type)
+        pulumi.set(__self__, "route_entry_id", route_entry_id)
+        pulumi.set(__self__, "route_entry_name", route_entry_name)
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the route entry.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        A destination CIDR block of route entry.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the route entry.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="nextHopId")
+    def next_hop_id(self) -> str:
+        """
+        An id of next hop.
+        """
+        return pulumi.get(self, "next_hop_id")
+
+    @property
+    @pulumi.getter(name="nextHopName")
+    def next_hop_name(self) -> str:
+        """
+        The name of the next hop.
+        """
+        return pulumi.get(self, "next_hop_name")
+
+    @property
+    @pulumi.getter(name="nextHopType")
+    def next_hop_type(self) -> str:
+        """
+        A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
+        """
+        return pulumi.get(self, "next_hop_type")
+
+    @property
+    @pulumi.getter(name="routeEntryId")
+    def route_entry_id(self) -> str:
+        """
+        The id of the route entry.
+        """
+        return pulumi.get(self, "route_entry_id")
+
+    @property
+    @pulumi.getter(name="routeEntryName")
+    def route_entry_name(self) -> str:
+        """
+        A name of route entry.
+        """
+        return pulumi.get(self, "route_entry_name")
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        An id of route table.
+        """
+        return pulumi.get(self, "route_table_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the route entry.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the route entry.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of the virtual private cloud (VPC) to which the route entry belongs.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetRouteTablesRouteTableResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 project_name: str,
+                 route_table_id: str,
+                 route_table_name: str,
+                 route_table_type: str,
+                 subnet_ids: Sequence[str],
+                 tags: Sequence['outputs.GetRouteTablesRouteTableTagResult'],
+                 update_time: str,
+                 vpc_id: str,
+                 vpc_name: str):
+        """
+        :param str account_id: The account id of the route table creator.
+        :param str creation_time: The create time of the route table.
+        :param str description: The description of the route table.
+        :param str id: The id of the route table.
+        :param str project_name: The ProjectName of the route table.
+        :param str route_table_id: The id of the route table.
+        :param str route_table_name: A name of route table.
+        :param str route_table_type: The type of the route table.
+        :param Sequence[str] subnet_ids: The list of the subnet ids to which the entry table associates.
+        :param Sequence['GetRouteTablesRouteTableTagArgs'] tags: Tags.
+        :param str update_time: The last update time of the route table.
+        :param str vpc_id: An id of VPC.
+        :param str vpc_name: The name of the virtual private cloud (VPC) to which the route entry belongs.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        pulumi.set(__self__, "route_table_name", route_table_name)
+        pulumi.set(__self__, "route_table_type", route_table_type)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_name", vpc_name)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the route table creator.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the route table.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the route table.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the route table.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the route table.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        The id of the route table.
+        """
+        return pulumi.get(self, "route_table_id")
+
+    @property
+    @pulumi.getter(name="routeTableName")
+    def route_table_name(self) -> str:
+        """
+        A name of route table.
+        """
+        return pulumi.get(self, "route_table_name")
+
+    @property
+    @pulumi.getter(name="routeTableType")
+    def route_table_type(self) -> str:
+        """
+        The type of the route table.
+        """
+        return pulumi.get(self, "route_table_type")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> Sequence[str]:
+        """
+        The list of the subnet ids to which the entry table associates.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetRouteTablesRouteTableTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The last update time of the route table.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        An id of VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> str:
+        """
+        The name of the virtual private cloud (VPC) to which the route entry belongs.
+        """
+        return pulumi.get(self, "vpc_name")
+
+
+@pulumi.output_type
+class GetRouteTablesRouteTableTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetRouteTablesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSecurityGroupRulesSecurityGroupRuleResult(dict):
+    def __init__(__self__, *,
+                 cidr_ip: str,
+                 creation_time: str,
+                 description: str,
+                 direction: str,
+                 policy: str,
+                 port_end: int,
+                 port_start: int,
+                 priority: int,
+                 protocol: str,
+                 security_group_id: str,
+                 source_group_id: str,
+                 update_time: str):
+        """
+        :param str cidr_ip: Cidr ip of egress/ingress Rule.
+        :param str creation_time: The creation time of security group rule.
+        :param str description: description of a group rule.
+        :param str direction: Direction of rule, ingress (inbound) or egress (outbound).
+        :param str policy: Access strategy.
+        :param int port_end: Port end of egress/ingress Rule.
+        :param int port_start: Port start of egress/ingress Rule.
+        :param int priority: Priority of a security group rule.
+        :param str protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all`.
+        :param str security_group_id: SecurityGroup ID.
+        :param str source_group_id: ID of the source security group whose access permission you want to set.
+        :param str update_time: The update time of security group rule.
+        """
+        pulumi.set(__self__, "cidr_ip", cidr_ip)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "direction", direction)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "port_end", port_end)
+        pulumi.set(__self__, "port_start", port_start)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "source_group_id", source_group_id)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="cidrIp")
+    def cidr_ip(self) -> str:
+        """
+        Cidr ip of egress/ingress Rule.
+        """
+        return pulumi.get(self, "cidr_ip")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of security group rule.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        description of a group rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def direction(self) -> str:
+        """
+        Direction of rule, ingress (inbound) or egress (outbound).
+        """
+        return pulumi.get(self, "direction")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        Access strategy.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter(name="portEnd")
+    def port_end(self) -> int:
+        """
+        Port end of egress/ingress Rule.
+        """
+        return pulumi.get(self, "port_end")
+
+    @property
+    @pulumi.getter(name="portStart")
+    def port_start(self) -> int:
+        """
+        Port start of egress/ingress Rule.
+        """
+        return pulumi.get(self, "port_start")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        Priority of a security group rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        SecurityGroup ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @property
+    @pulumi.getter(name="sourceGroupId")
+    def source_group_id(self) -> str:
+        """
+        ID of the source security group whose access permission you want to set.
+        """
+        return pulumi.get(self, "source_group_id")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of security group rule.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetSecurityGroupsSecurityGroupResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 project_name: str,
+                 security_group_id: str,
+                 security_group_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetSecurityGroupsSecurityGroupTagResult'],
+                 type: str,
+                 vpc_id: str):
+        """
+        :param str creation_time: The creation time of SecurityGroup.
+        :param str description: The description of SecurityGroup.
+        :param str id: The ID of SecurityGroup.
+        :param str project_name: The ProjectName of SecurityGroup.
+        :param str security_group_id: The ID of SecurityGroup.
+        :param str security_group_name: The Name of SecurityGroup.
+        :param str status: The Status of SecurityGroup.
+        :param Sequence['GetSecurityGroupsSecurityGroupTagArgs'] tags: Tags.
+        :param str type: A Name Regex of SecurityGroup.
+        :param str vpc_id: The ID of vpc where security group is located.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "security_group_name", security_group_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of SecurityGroup.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of SecurityGroup.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of SecurityGroup.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of SecurityGroup.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        The ID of SecurityGroup.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> str:
+        """
+        The Name of SecurityGroup.
+        """
+        return pulumi.get(self, "security_group_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status of SecurityGroup.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetSecurityGroupsSecurityGroupTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        A Name Regex of SecurityGroup.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of vpc where security group is located.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetSecurityGroupsSecurityGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSecurityGroupsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSubnetsSubnetResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 available_ip_address_count: int,
+                 cidr_block: str,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 ipv6_cidr_block: str,
+                 network_acl_id: str,
+                 route_table: 'outputs.GetSubnetsSubnetRouteTableResult',
+                 route_table_id: str,
+                 route_table_type: str,
+                 status: str,
+                 subnet_name: str,
+                 tags: Sequence['outputs.GetSubnetsSubnetTagResult'],
+                 total_ipv4_count: int,
+                 update_time: str,
+                 vpc_id: str,
+                 zone_id: str):
+        """
+        :param str account_id: The account ID which the subnet belongs to.
+        :param int available_ip_address_count: The count of available ip address.
+        :param str cidr_block: The cidr block of Subnet.
+        :param str creation_time: Creation time of Subnet.
+        :param str description: The description of Subnet.
+        :param str id: The ID of Subnet.
+        :param str ipv6_cidr_block: The IPv6 CIDR block of the VPC.
+        :param str network_acl_id: The ID of network acl which this subnet associate with.
+        :param 'GetSubnetsSubnetRouteTableArgs' route_table: The route table information.
+        :param str route_table_id: The ID of route table which subnet associated with.
+        :param str route_table_type: The route table type.
+        :param str status: The Status of Subnet.
+        :param str subnet_name: The subnet name to query.
+        :param Sequence['GetSubnetsSubnetTagArgs'] tags: Tags.
+        :param int total_ipv4_count: The Count of ipv4.
+        :param str update_time: Update time of Subnet.
+        :param str vpc_id: The ID of VPC which subnet belongs to.
+        :param str zone_id: The ID of zone which subnet belongs to.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "available_ip_address_count", available_ip_address_count)
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "network_acl_id", network_acl_id)
+        pulumi.set(__self__, "route_table", route_table)
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        pulumi.set(__self__, "route_table_type", route_table_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_name", subnet_name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "total_ipv4_count", total_ipv4_count)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID which the subnet belongs to.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="availableIpAddressCount")
+    def available_ip_address_count(self) -> int:
+        """
+        The count of available ip address.
+        """
+        return pulumi.get(self, "available_ip_address_count")
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        """
+        The cidr block of Subnet.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        Creation time of Subnet.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of Subnet.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of Subnet.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        """
+        The IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="networkAclId")
+    def network_acl_id(self) -> str:
+        """
+        The ID of network acl which this subnet associate with.
+        """
+        return pulumi.get(self, "network_acl_id")
+
+    @property
+    @pulumi.getter(name="routeTable")
+    def route_table(self) -> 'outputs.GetSubnetsSubnetRouteTableResult':
+        """
+        The route table information.
+        """
+        return pulumi.get(self, "route_table")
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        The ID of route table which subnet associated with.
+        """
+        return pulumi.get(self, "route_table_id")
+
+    @property
+    @pulumi.getter(name="routeTableType")
+    def route_table_type(self) -> str:
+        """
+        The route table type.
+        """
+        return pulumi.get(self, "route_table_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status of Subnet.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="subnetName")
+    def subnet_name(self) -> str:
+        """
+        The subnet name to query.
+        """
+        return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetSubnetsSubnetTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="totalIpv4Count")
+    def total_ipv4_count(self) -> int:
+        """
+        The Count of ipv4.
+        """
+        return pulumi.get(self, "total_ipv4_count")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of Subnet.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of VPC which subnet belongs to.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The ID of zone which subnet belongs to.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetSubnetsSubnetRouteTableResult(dict):
+    def __init__(__self__, *,
+                 route_table_id: str,
+                 route_table_type: str):
+        """
+        :param str route_table_id: The ID of route table which subnet associated with.
+        :param str route_table_type: The route table type.
+        """
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        pulumi.set(__self__, "route_table_type", route_table_type)
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        The ID of route table which subnet associated with.
+        """
+        return pulumi.get(self, "route_table_id")
+
+    @property
+    @pulumi.getter(name="routeTableType")
+    def route_table_type(self) -> str:
+        """
+        The route table type.
+        """
+        return pulumi.get(self, "route_table_type")
+
+
+@pulumi.output_type
+class GetSubnetsSubnetTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSubnetsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVpcsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVpcsVpcResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 associate_cens: Sequence['outputs.GetVpcsVpcAssociateCenResult'],
+                 auxiliary_cidr_blocks: Sequence[str],
+                 cidr_block: str,
+                 creation_time: str,
+                 description: str,
+                 dns_servers: Sequence[str],
+                 ipv6_cidr_block: str,
+                 nat_gateway_ids: Sequence[str],
+                 project_name: str,
+                 route_table_ids: Sequence[str],
+                 security_group_ids: Sequence[str],
+                 status: str,
+                 subnet_ids: Sequence[str],
+                 tags: Sequence['outputs.GetVpcsVpcTagResult'],
+                 update_time: str,
+                 vpc_id: str,
+                 vpc_name: str):
+        """
+        :param str account_id: The account ID of VPC.
+        :param Sequence['GetVpcsVpcAssociateCenArgs'] associate_cens: The associate cen list of VPC.
+        :param Sequence[str] auxiliary_cidr_blocks: The auxiliary cidr block list of VPC.
+        :param str cidr_block: The cidr block of VPC.
+        :param str creation_time: The create time of VPC.
+        :param str description: The description of VPC.
+        :param Sequence[str] dns_servers: The dns server list of VPC.
+        :param str ipv6_cidr_block: The IPv6 CIDR block of the VPC.
+        :param Sequence[str] nat_gateway_ids: The nat gateway ID list of VPC.
+        :param str project_name: The ProjectName of the VPC.
+        :param Sequence[str] route_table_ids: The route table ID list of VPC.
+        :param Sequence[str] security_group_ids: The security group ID list of VPC.
+        :param str status: The status of VPC.
+        :param Sequence[str] subnet_ids: The subnet ID list of VPC.
+        :param Sequence['GetVpcsVpcTagArgs'] tags: Tags.
+        :param str update_time: The update time of VPC.
+        :param str vpc_id: The ID of VPC.
+        :param str vpc_name: The vpc name to query.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "associate_cens", associate_cens)
+        pulumi.set(__self__, "auxiliary_cidr_blocks", auxiliary_cidr_blocks)
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dns_servers", dns_servers)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "nat_gateway_ids", nat_gateway_ids)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "route_table_ids", route_table_ids)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_name", vpc_name)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID of VPC.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="associateCens")
+    def associate_cens(self) -> Sequence['outputs.GetVpcsVpcAssociateCenResult']:
+        """
+        The associate cen list of VPC.
+        """
+        return pulumi.get(self, "associate_cens")
+
+    @property
+    @pulumi.getter(name="auxiliaryCidrBlocks")
+    def auxiliary_cidr_blocks(self) -> Sequence[str]:
+        """
+        The auxiliary cidr block list of VPC.
+        """
+        return pulumi.get(self, "auxiliary_cidr_blocks")
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        """
+        The cidr block of VPC.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of VPC.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of VPC.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dnsServers")
+    def dns_servers(self) -> Sequence[str]:
+        """
+        The dns server list of VPC.
+        """
+        return pulumi.get(self, "dns_servers")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        """
+        The IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="natGatewayIds")
+    def nat_gateway_ids(self) -> Sequence[str]:
+        """
+        The nat gateway ID list of VPC.
+        """
+        return pulumi.get(self, "nat_gateway_ids")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the VPC.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="routeTableIds")
+    def route_table_ids(self) -> Sequence[str]:
+        """
+        The route table ID list of VPC.
+        """
+        return pulumi.get(self, "route_table_ids")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[str]:
+        """
+        The security group ID list of VPC.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of VPC.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> Sequence[str]:
+        """
+        The subnet ID list of VPC.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetVpcsVpcTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of VPC.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> str:
+        """
+        The vpc name to query.
+        """
+        return pulumi.get(self, "vpc_name")
+
+
+@pulumi.output_type
+class GetVpcsVpcAssociateCenResult(dict):
+    def __init__(__self__, *,
+                 cen_id: str,
+                 cen_owner_id: str,
+                 cen_status: str):
+        """
+        :param str cen_id: The ID of CEN.
+        :param str cen_owner_id: The owner ID of CEN.
+        :param str cen_status: The status of CEN.
+        """
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "cen_owner_id", cen_owner_id)
+        pulumi.set(__self__, "cen_status", cen_status)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        The ID of CEN.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="cenOwnerId")
+    def cen_owner_id(self) -> str:
+        """
+        The owner ID of CEN.
+        """
+        return pulumi.get(self, "cen_owner_id")
+
+    @property
+    @pulumi.getter(name="cenStatus")
+    def cen_status(self) -> str:
+        """
+        The status of CEN.
+        """
+        return pulumi.get(self, "cen_status")
+
+
+@pulumi.output_type
+class GetVpcsVpcTagResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):

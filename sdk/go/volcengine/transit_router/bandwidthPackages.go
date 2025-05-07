@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = transit_router.BandwidthPackagesOutput(ctx, transit_router.BandwidthPackagesOutputArgs{
+//			_ = transit_router.GetBandwidthPackagesOutput(ctx, transit_router.GetBandwidthPackagesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooBandwidthPackage.ID(),
 //				},
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages
 func BandwidthPackages(ctx *pulumi.Context, args *BandwidthPackagesArgs, opts ...pulumi.InvokeOption) (*BandwidthPackagesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BandwidthPackagesResult

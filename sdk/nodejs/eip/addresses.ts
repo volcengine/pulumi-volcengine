@@ -16,12 +16,14 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
- * const fooAddresses = volcengine.eip.AddressesOutput({
+ * const fooAddresses = volcengine.eip.getAddressesOutput({
  *     ids: [fooAddress.id],
  * });
  * ```
  */
+/** @deprecated volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses */
 export function addresses(args?: AddressesArgs, opts?: pulumi.InvokeOptions): Promise<AddressesResult> {
+    pulumi.log.warn("addresses is deprecated: volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -137,11 +139,12 @@ export interface AddressesResult {
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
- * const fooAddresses = volcengine.eip.AddressesOutput({
+ * const fooAddresses = volcengine.eip.getAddressesOutput({
  *     ids: [fooAddress.id],
  * });
  * ```
  */
+/** @deprecated volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses */
 export function addressesOutput(args?: AddressesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AddressesResult> {
     return pulumi.output(args).apply((a: any) => addresses(a, opts))
 }

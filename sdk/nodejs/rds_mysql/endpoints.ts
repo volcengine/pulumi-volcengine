@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.Endpoints({
+ * const foo = volcengine.rds_mysql.getEndpoints({
  *     instanceId: "mysql-38c3d4f05f6e",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints */
 export function endpoints(args: EndpointsArgs, opts?: pulumi.InvokeOptions): Promise<EndpointsResult> {
+    pulumi.log.warn("endpoints is deprecated: volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_mysql/endpoints:Endpoints", {
@@ -69,11 +71,12 @@ export interface EndpointsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.Endpoints({
+ * const foo = volcengine.rds_mysql.getEndpoints({
  *     instanceId: "mysql-38c3d4f05f6e",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints */
 export function endpointsOutput(args: EndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EndpointsResult> {
     return pulumi.output(args).apply((a: any) => endpoints(a, opts))
 }

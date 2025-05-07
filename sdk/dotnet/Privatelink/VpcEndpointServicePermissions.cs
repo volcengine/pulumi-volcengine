@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Privatelink
 {
+    [Obsolete(@"volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions")]
     public static class VpcEndpointServicePermissions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -83,7 +84,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///         PermitAccountId = "210000000",
         ///     });
         /// 
-        ///     var fooVpcEndpointServicePermissions = Volcengine.Privatelink.VpcEndpointServicePermissions.Invoke(new()
+        ///     var fooVpcEndpointServicePermissions = Volcengine.Privatelink.GetVpcEndpointServicePermissions.Invoke(new()
         ///     {
         ///         PermitAccountId = fooVpcEndpointServicePermission.PermitAccountId,
         ///         ServiceId = fooVpcEndpointService.Id,
@@ -107,7 +108,7 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -119,7 +120,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -167,7 +168,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///         PermitAccountId = "210000000",
         ///     });
         /// 
-        ///     var fooVpcEndpointServicePermissions = Volcengine.Privatelink.VpcEndpointServicePermissions.Invoke(new()
+        ///     var fooVpcEndpointServicePermissions = Volcengine.Privatelink.GetVpcEndpointServicePermissions.Invoke(new()
         ///     {
         ///         PermitAccountId = fooVpcEndpointServicePermission.PermitAccountId,
         ///         ServiceId = fooVpcEndpointService.Id,

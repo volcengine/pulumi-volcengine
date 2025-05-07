@@ -20,12 +20,14 @@ import * as utilities from "../utilities";
  *     displayName: "acc-test",
  *     userGroupName: "acc-test-group",
  * });
- * const fooUserGroups = volcengine.iam.UserGroups({
+ * const fooUserGroups = volcengine.iam.getUserGroups({
  *     query: "acc-test",
  * });
  * ```
  */
+/** @deprecated volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups */
 export function userGroups(args?: UserGroupsArgs, opts?: pulumi.InvokeOptions): Promise<UserGroupsResult> {
+    pulumi.log.warn("userGroups is deprecated: volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -82,11 +84,12 @@ export interface UserGroupsResult {
  *     displayName: "acc-test",
  *     userGroupName: "acc-test-group",
  * });
- * const fooUserGroups = volcengine.iam.UserGroups({
+ * const fooUserGroups = volcengine.iam.getUserGroups({
  *     query: "acc-test",
  * });
  * ```
  */
+/** @deprecated volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups */
 export function userGroupsOutput(args?: UserGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UserGroupsResult> {
     return pulumi.output(args).apply((a: any) => userGroups(a, opts))
 }

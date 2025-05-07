@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := direct_connect.Connections(ctx, &direct_connect.ConnectionsArgs{
+//			_, err := direct_connect.GetConnections(ctx, &direct_connect.GetConnectionsArgs{
 //				DirectConnectConnectionName: pulumi.StringRef("tf_test"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections
 func Connections(ctx *pulumi.Context, args *ConnectionsArgs, opts ...pulumi.InvokeOption) (*ConnectionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ConnectionsResult

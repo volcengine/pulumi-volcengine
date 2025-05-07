@@ -17,6 +17,8 @@ __all__ = [
     'server_group_servers_output',
 ]
 
+warnings.warn("""volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers""", DeprecationWarning)
+
 @pulumi.output_type
 class ServerGroupServersResult:
     """
@@ -118,7 +120,7 @@ def server_group_servers(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -162,7 +164,7 @@ def server_group_servers(ids: Optional[Sequence[str]] = None,
         weight=100,
         port=80,
         description="This is a acc test server")
-    foo_server_group_servers = volcengine.clb.server_group_servers_output(ids=[pulumi.Output.all(foo_server_group_server.id.apply(lambda id: id.split(":")), len(foo_server_group_server.id.apply(lambda id: id.split(":")))).apply(lambda split, length: split[length - 1])],
+    foo_server_group_servers = volcengine.clb.get_server_group_servers_output(ids=[pulumi.Output.all(foo_server_group_server.id.apply(lambda id: id.split(":")), len(foo_server_group_server.id.apply(lambda id: id.split(":")))).apply(lambda split, length: split[length - 1])],
         server_group_id=foo_server_group.id)
     ```
 
@@ -172,6 +174,7 @@ def server_group_servers(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str server_group_id: The ID of the ServerGroup.
     """
+    pulumi.log.warn("""server_group_servers is deprecated: volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -204,7 +207,7 @@ def server_group_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -248,7 +251,7 @@ def server_group_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str
         weight=100,
         port=80,
         description="This is a acc test server")
-    foo_server_group_servers = volcengine.clb.server_group_servers_output(ids=[pulumi.Output.all(foo_server_group_server.id.apply(lambda id: id.split(":")), len(foo_server_group_server.id.apply(lambda id: id.split(":")))).apply(lambda split, length: split[length - 1])],
+    foo_server_group_servers = volcengine.clb.get_server_group_servers_output(ids=[pulumi.Output.all(foo_server_group_server.id.apply(lambda id: id.split(":")), len(foo_server_group_server.id.apply(lambda id: id.split(":")))).apply(lambda split, length: split[length - 1])],
         server_group_id=foo_server_group.id)
     ```
 
@@ -258,4 +261,5 @@ def server_group_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str
     :param str output_file: File name where to save data source results.
     :param str server_group_id: The ID of the ServerGroup.
     """
+    pulumi.log.warn("""server_group_servers is deprecated: volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers""")
     ...

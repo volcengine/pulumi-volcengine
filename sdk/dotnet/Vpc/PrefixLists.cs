@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists")]
     public static class PrefixLists
     {
         /// <summary>
@@ -52,7 +53,7 @@ namespace Pulumi.Volcengine.Vpc
         ///         },
         ///     });
         /// 
-        ///     var fooPrefixLists = Volcengine.Vpc.PrefixLists.Invoke(new()
+        ///     var fooPrefixLists = Volcengine.Vpc.GetPrefixLists.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -107,7 +108,7 @@ namespace Pulumi.Volcengine.Vpc
         ///         },
         ///     });
         /// 
-        ///     var fooPrefixLists = Volcengine.Vpc.PrefixLists.Invoke(new()
+        ///     var fooPrefixLists = Volcengine.Vpc.GetPrefixLists.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

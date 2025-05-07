@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vedb_mysql
 {
+    [Obsolete(@"volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists")]
     public static class Allowlists
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace Pulumi.Volcengine.Vedb_mysql
         ///         },
         ///     });
         /// 
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Vedb_mysql
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[2]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -84,7 +85,7 @@ namespace Pulumi.Volcengine.Vedb_mysql
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooAllowlists = Volcengine.Vedb_mysql.Allowlists.Invoke(new()
+        ///     var fooAllowlists = Volcengine.Vedb_mysql.GetAllowlists.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///     });
@@ -120,7 +121,7 @@ namespace Pulumi.Volcengine.Vedb_mysql
         ///         },
         ///     });
         /// 
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -132,7 +133,7 @@ namespace Pulumi.Volcengine.Vedb_mysql
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[2]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -168,7 +169,7 @@ namespace Pulumi.Volcengine.Vedb_mysql
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooAllowlists = Volcengine.Vedb_mysql.Allowlists.Invoke(new()
+        ///     var fooAllowlists = Volcengine.Vedb_mysql.GetAllowlists.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///     });

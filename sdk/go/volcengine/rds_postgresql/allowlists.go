@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_postgresql.Allowlists(ctx, nil, nil)
+//			_, err := rds_postgresql.GetAllowlists(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists
 func Allowlists(ctx *pulumi.Context, args *AllowlistsArgs, opts ...pulumi.InvokeOption) (*AllowlistsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowlistsResult

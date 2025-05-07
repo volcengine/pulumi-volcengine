@@ -17,6 +17,8 @@ __all__ = [
     'available_resources_output',
 ]
 
+warnings.warn("""volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources""", DeprecationWarning)
+
 @pulumi.output_type
 class AvailableResourcesResult:
     """
@@ -141,7 +143,7 @@ def available_resources(destination_resource: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.available_resources(destination_resource="InstanceType")
+    foo = volcengine.ecs.get_available_resources(destination_resource="InstanceType")
     ```
 
 
@@ -152,6 +154,7 @@ def available_resources(destination_resource: Optional[str] = None,
     :param str spot_strategy: The spot strategy of PostPaid instance. Valid values: `NoSpot`, `SpotAsPriceGo`. Default is `NoSpot`.
     :param str zone_id: The id of available zone.
     """
+    pulumi.log.warn("""available_resources is deprecated: volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources""")
     __args__ = dict()
     __args__['destinationResource'] = destination_resource
     __args__['instanceChargeType'] = instance_charge_type
@@ -190,7 +193,7 @@ def available_resources_output(destination_resource: Optional[pulumi.Input[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.available_resources(destination_resource="InstanceType")
+    foo = volcengine.ecs.get_available_resources(destination_resource="InstanceType")
     ```
 
 
@@ -201,4 +204,5 @@ def available_resources_output(destination_resource: Optional[pulumi.Input[str]]
     :param str spot_strategy: The spot strategy of PostPaid instance. Valid values: `NoSpot`, `SpotAsPriceGo`. Default is `NoSpot`.
     :param str zone_id: The id of available zone.
     """
+    pulumi.log.warn("""available_resources is deprecated: volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'host_groups_output',
 ]
 
+warnings.warn("""volcengine.tls.HostGroups has been deprecated in favor of volcengine.tls.getHostGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class HostGroupsResult:
     """
@@ -166,7 +168,7 @@ def host_groups(auto_update: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.host_groups(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+    default = volcengine.tls.get_host_groups(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
         host_group_name="cn")
     ```
 
@@ -179,6 +181,7 @@ def host_groups(auto_update: Optional[bool] = None,
     :param str output_file: File name where to save data source results.
     :param bool service_logging: Whether enable service logging.
     """
+    pulumi.log.warn("""host_groups is deprecated: volcengine.tls.HostGroups has been deprecated in favor of volcengine.tls.getHostGroups""")
     __args__ = dict()
     __args__['autoUpdate'] = auto_update
     __args__['hostGroupId'] = host_group_id
@@ -220,7 +223,7 @@ def host_groups_output(auto_update: Optional[pulumi.Input[Optional[bool]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.host_groups(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+    default = volcengine.tls.get_host_groups(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
         host_group_name="cn")
     ```
 
@@ -233,4 +236,5 @@ def host_groups_output(auto_update: Optional[pulumi.Input[Optional[bool]]] = Non
     :param str output_file: File name where to save data source results.
     :param bool service_logging: Whether enable service logging.
     """
+    pulumi.log.warn("""host_groups is deprecated: volcengine.tls.HostGroups has been deprecated in favor of volcengine.tls.getHostGroups""")
     ...

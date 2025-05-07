@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rocketmq.Groups(ctx, &rocketmq.GroupsArgs{
+//			_, err := rocketmq.GetGroups(ctx, &rocketmq.GetGroupsArgs{
 //				InstanceId: "rocketmq-cnoeea6b32118fc2",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups
 func Groups(ctx *pulumi.Context, args *GroupsArgs, opts ...pulumi.InvokeOption) (*GroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GroupsResult

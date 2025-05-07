@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Rules({
+ * const default = volcengine.tls.getRules({
  *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules */
 export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {
+    pulumi.log.warn("rules is deprecated: volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/rules:Rules", {
@@ -105,11 +107,12 @@ export interface RulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Rules({
+ * const default = volcengine.tls.getRules({
  *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules */
 export function rulesOutput(args: RulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RulesResult> {
     return pulumi.output(args).apply((a: any) => rules(a, opts))
 }

@@ -27,12 +27,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooCens = volcengine.cen.CensOutput({
+ * const fooCens = volcengine.cen.getCensOutput({
  *     ids: fooCen.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens */
 export function cens(args?: CensArgs, opts?: pulumi.InvokeOptions): Promise<CensResult> {
+    pulumi.log.warn("cens is deprecated: volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -117,11 +119,12 @@ export interface CensResult {
  *         }],
  *     }));
  * }
- * const fooCens = volcengine.cen.CensOutput({
+ * const fooCens = volcengine.cen.getCensOutput({
  *     ids: fooCen.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens */
 export function censOutput(args?: CensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CensResult> {
     return pulumi.output(args).apply((a: any) => cens(a, opts))
 }

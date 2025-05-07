@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.KafkaConsumers({
+ * const default = volcengine.tls.getKafkaConsumers({
  *     ids: [
  *         "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
  *         "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
@@ -23,7 +23,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers */
 export function kafkaConsumers(args?: KafkaConsumersArgs, opts?: pulumi.InvokeOptions): Promise<KafkaConsumersResult> {
+    pulumi.log.warn("kafkaConsumers is deprecated: volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -74,7 +76,7 @@ export interface KafkaConsumersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.KafkaConsumers({
+ * const default = volcengine.tls.getKafkaConsumers({
  *     ids: [
  *         "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
  *         "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
@@ -83,6 +85,7 @@ export interface KafkaConsumersResult {
  * });
  * ```
  */
+/** @deprecated volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers */
 export function kafkaConsumersOutput(args?: KafkaConsumersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<KafkaConsumersResult> {
     return pulumi.output(args).apply((a: any) => kafkaConsumers(a, opts))
 }

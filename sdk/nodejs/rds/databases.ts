@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.Databases({
+ * const default = volcengine.rds.getDatabases({
  *     instanceId: "mysql-0fdd3bab2e7c",
  * });
  * ```
  */
+/** @deprecated volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases */
 export function databases(args: DatabasesArgs, opts?: pulumi.InvokeOptions): Promise<DatabasesResult> {
+    pulumi.log.warn("databases is deprecated: volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/databases:Databases", {
@@ -84,11 +86,12 @@ export interface DatabasesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.Databases({
+ * const default = volcengine.rds.getDatabases({
  *     instanceId: "mysql-0fdd3bab2e7c",
  * });
  * ```
  */
+/** @deprecated volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases */
 export function databasesOutput(args: DatabasesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DatabasesResult> {
     return pulumi.output(args).apply((a: any) => databases(a, opts))
 }

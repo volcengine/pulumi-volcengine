@@ -18,6 +18,8 @@ __all__ = [
     'gateways_output',
 ]
 
+warnings.warn("""volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways""", DeprecationWarning)
+
 @pulumi.output_type
 class GatewaysResult:
     """
@@ -236,7 +238,7 @@ def gateways(ids: Optional[Sequence[str]] = None,
         description="acc-test",
         period=2,
         project_name="default")
-    foo_gateways = volcengine.vpn.gateways_output(ids=[foo_gateway.id])
+    foo_gateways = volcengine.vpn.get_gateways_output(ids=[foo_gateway.id])
     ```
 
 
@@ -253,6 +255,7 @@ def gateways(ids: Optional[Sequence[str]] = None,
     :param str vpc_id: A VPC ID of the VPN gateway.
     :param Sequence[str] vpn_gateway_names: A list of VPN gateway names.
     """
+    pulumi.log.warn("""gateways is deprecated: volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['ipAddress'] = ip_address
@@ -325,7 +328,7 @@ def gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
         description="acc-test",
         period=2,
         project_name="default")
-    foo_gateways = volcengine.vpn.gateways_output(ids=[foo_gateway.id])
+    foo_gateways = volcengine.vpn.get_gateways_output(ids=[foo_gateway.id])
     ```
 
 
@@ -342,4 +345,5 @@ def gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str vpc_id: A VPC ID of the VPN gateway.
     :param Sequence[str] vpn_gateway_names: A list of VPN gateway names.
     """
+    pulumi.log.warn("""gateways is deprecated: volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways""")
     ...

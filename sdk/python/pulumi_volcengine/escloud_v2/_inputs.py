@@ -15,6 +15,7 @@ __all__ = [
     'EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs',
     'EscloudInstanceV2TagArgs',
     'EscloudInstancesV2TagArgs',
+    'GetEscloudInstancesV2TagArgs',
 ]
 
 @pulumi.input_type
@@ -245,6 +246,43 @@ class EscloudInstanceV2TagArgs:
 
 @pulumi.input_type
 class EscloudInstancesV2TagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class GetEscloudInstancesV2TagArgs:
     def __init__(__self__, *,
                  key: str,
                  values: Sequence[str]):

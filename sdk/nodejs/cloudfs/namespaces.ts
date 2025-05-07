@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.Namespaces({
+ * const default = volcengine.cloudfs.getNamespaces({
  *     fsName: "tf-test-fs",
  *     nsId: "1801439850948****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces */
 export function namespaces(args: NamespacesArgs, opts?: pulumi.InvokeOptions): Promise<NamespacesResult> {
+    pulumi.log.warn("namespaces is deprecated: volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloudfs/namespaces:Namespaces", {
@@ -85,12 +87,13 @@ export interface NamespacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.Namespaces({
+ * const default = volcengine.cloudfs.getNamespaces({
  *     fsName: "tf-test-fs",
  *     nsId: "1801439850948****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces */
 export function namespacesOutput(args: NamespacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NamespacesResult> {
     return pulumi.output(args).apply((a: any) => namespaces(a, opts))
 }

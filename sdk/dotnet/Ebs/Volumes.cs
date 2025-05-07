@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ebs
 {
+    [Obsolete(@"volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes")]
     public static class Volumes
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ebs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVolume = new List&lt;Volcengine.Ebs.Volume&gt;();
         ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
@@ -36,12 +37,12 @@ namespace Pulumi.Volcengine.Ebs
         ///             Description = "acc-test",
         ///             Kind = "data",
         ///             Size = 60,
-        ///             ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///             VolumeChargeType = "PostPaid",
         ///             ProjectName = "default",
         ///         }));
         ///     }
-        ///     var fooVolumes = Volcengine.Ebs.Volumes.Invoke(new()
+        ///     var fooVolumes = Volcengine.Ebs.GetVolumes.Invoke(new()
         ///     {
         ///         Ids = fooVolume.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -64,7 +65,7 @@ namespace Pulumi.Volcengine.Ebs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVolume = new List&lt;Volcengine.Ebs.Volume&gt;();
         ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
@@ -77,12 +78,12 @@ namespace Pulumi.Volcengine.Ebs
         ///             Description = "acc-test",
         ///             Kind = "data",
         ///             Size = 60,
-        ///             ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///             VolumeChargeType = "PostPaid",
         ///             ProjectName = "default",
         ///         }));
         ///     }
-        ///     var fooVolumes = Volcengine.Ebs.Volumes.Invoke(new()
+        ///     var fooVolumes = Volcengine.Ebs.GetVolumes.Invoke(new()
         ///     {
         ///         Ids = fooVolume.Select(__item =&gt; __item.Id).ToList(),
         ///     });

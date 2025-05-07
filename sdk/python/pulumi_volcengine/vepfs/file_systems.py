@@ -17,6 +17,8 @@ __all__ = [
     'file_systems_output',
 ]
 
+warnings.warn("""volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems""", DeprecationWarning)
+
 @pulumi.output_type
 class FileSystemsResult:
     """
@@ -193,7 +195,7 @@ def file_systems(file_system_name: Optional[str] = None,
             key="k1",
             value="v1",
         )])
-    foo_file_systems = volcengine.vepfs.file_systems_output(ids=[foo_file_system.id])
+    foo_file_systems = volcengine.vepfs.get_file_systems_output(ids=[foo_file_system.id])
     ```
 
 
@@ -206,6 +208,7 @@ def file_systems(file_system_name: Optional[str] = None,
     :param str store_type: The Store Type of Vepfs File System.
     :param str zone_id: The zone id of File System.
     """
+    pulumi.log.warn("""file_systems is deprecated: volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems""")
     __args__ = dict()
     __args__['fileSystemName'] = file_system_name
     __args__['ids'] = ids
@@ -270,7 +273,7 @@ def file_systems_output(file_system_name: Optional[pulumi.Input[Optional[str]]] 
             key="k1",
             value="v1",
         )])
-    foo_file_systems = volcengine.vepfs.file_systems_output(ids=[foo_file_system.id])
+    foo_file_systems = volcengine.vepfs.get_file_systems_output(ids=[foo_file_system.id])
     ```
 
 
@@ -283,4 +286,5 @@ def file_systems_output(file_system_name: Optional[pulumi.Input[Optional[str]]] 
     :param str store_type: The Store Type of Vepfs File System.
     :param str zone_id: The zone id of File System.
     """
+    pulumi.log.warn("""file_systems is deprecated: volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems""")
     ...

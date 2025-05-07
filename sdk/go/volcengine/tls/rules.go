@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Rules(ctx, &tls.RulesArgs{
+//			_, err := tls.GetRules(ctx, &tls.GetRulesArgs{
 //				ProjectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules
 func Rules(ctx *pulumi.Context, args *RulesArgs, opts ...pulumi.InvokeOption) (*RulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RulesResult

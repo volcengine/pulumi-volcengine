@@ -4477,6 +4477,3810 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 	}).(ZonesZoneOutput)
 }
 
+type GetAccountsAccount struct {
+	// The description of account.
+	AccountDesc string `pulumi:"accountDesc"`
+	// The name of account. This field support fuzzy query.
+	AccountName string `pulumi:"accountName"`
+	// The privilege info of mongo instance.
+	AccountPrivileges []GetAccountsAccountAccountPrivilege `pulumi:"accountPrivileges"`
+	// The type of account.
+	AccountType string `pulumi:"accountType"`
+	// The database of account. This field support fuzzy query.
+	AuthDb string `pulumi:"authDb"`
+	// The create time of account.
+	CreateTime string `pulumi:"createTime"`
+	// The modify time of account.
+	ModifyTime string `pulumi:"modifyTime"`
+}
+
+// GetAccountsAccountInput is an input type that accepts GetAccountsAccountArgs and GetAccountsAccountOutput values.
+// You can construct a concrete instance of `GetAccountsAccountInput` via:
+//
+//	GetAccountsAccountArgs{...}
+type GetAccountsAccountInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountOutput() GetAccountsAccountOutput
+	ToGetAccountsAccountOutputWithContext(context.Context) GetAccountsAccountOutput
+}
+
+type GetAccountsAccountArgs struct {
+	// The description of account.
+	AccountDesc pulumi.StringInput `pulumi:"accountDesc"`
+	// The name of account. This field support fuzzy query.
+	AccountName pulumi.StringInput `pulumi:"accountName"`
+	// The privilege info of mongo instance.
+	AccountPrivileges GetAccountsAccountAccountPrivilegeArrayInput `pulumi:"accountPrivileges"`
+	// The type of account.
+	AccountType pulumi.StringInput `pulumi:"accountType"`
+	// The database of account. This field support fuzzy query.
+	AuthDb pulumi.StringInput `pulumi:"authDb"`
+	// The create time of account.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The modify time of account.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+}
+
+func (GetAccountsAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccount)(nil)).Elem()
+}
+
+func (i GetAccountsAccountArgs) ToGetAccountsAccountOutput() GetAccountsAccountOutput {
+	return i.ToGetAccountsAccountOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountArgs) ToGetAccountsAccountOutputWithContext(ctx context.Context) GetAccountsAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountOutput)
+}
+
+// GetAccountsAccountArrayInput is an input type that accepts GetAccountsAccountArray and GetAccountsAccountArrayOutput values.
+// You can construct a concrete instance of `GetAccountsAccountArrayInput` via:
+//
+//	GetAccountsAccountArray{ GetAccountsAccountArgs{...} }
+type GetAccountsAccountArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountArrayOutput() GetAccountsAccountArrayOutput
+	ToGetAccountsAccountArrayOutputWithContext(context.Context) GetAccountsAccountArrayOutput
+}
+
+type GetAccountsAccountArray []GetAccountsAccountInput
+
+func (GetAccountsAccountArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccount)(nil)).Elem()
+}
+
+func (i GetAccountsAccountArray) ToGetAccountsAccountArrayOutput() GetAccountsAccountArrayOutput {
+	return i.ToGetAccountsAccountArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountArray) ToGetAccountsAccountArrayOutputWithContext(ctx context.Context) GetAccountsAccountArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountArrayOutput)
+}
+
+type GetAccountsAccountOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccount)(nil)).Elem()
+}
+
+func (o GetAccountsAccountOutput) ToGetAccountsAccountOutput() GetAccountsAccountOutput {
+	return o
+}
+
+func (o GetAccountsAccountOutput) ToGetAccountsAccountOutputWithContext(ctx context.Context) GetAccountsAccountOutput {
+	return o
+}
+
+// The description of account.
+func (o GetAccountsAccountOutput) AccountDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountDesc }).(pulumi.StringOutput)
+}
+
+// The name of account. This field support fuzzy query.
+func (o GetAccountsAccountOutput) AccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountName }).(pulumi.StringOutput)
+}
+
+// The privilege info of mongo instance.
+func (o GetAccountsAccountOutput) AccountPrivileges() GetAccountsAccountAccountPrivilegeArrayOutput {
+	return o.ApplyT(func(v GetAccountsAccount) []GetAccountsAccountAccountPrivilege { return v.AccountPrivileges }).(GetAccountsAccountAccountPrivilegeArrayOutput)
+}
+
+// The type of account.
+func (o GetAccountsAccountOutput) AccountType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountType }).(pulumi.StringOutput)
+}
+
+// The database of account. This field support fuzzy query.
+func (o GetAccountsAccountOutput) AuthDb() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AuthDb }).(pulumi.StringOutput)
+}
+
+// The create time of account.
+func (o GetAccountsAccountOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The modify time of account.
+func (o GetAccountsAccountOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+type GetAccountsAccountArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccount)(nil)).Elem()
+}
+
+func (o GetAccountsAccountArrayOutput) ToGetAccountsAccountArrayOutput() GetAccountsAccountArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountArrayOutput) ToGetAccountsAccountArrayOutputWithContext(ctx context.Context) GetAccountsAccountArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountArrayOutput) Index(i pulumi.IntInput) GetAccountsAccountOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountsAccount {
+		return vs[0].([]GetAccountsAccount)[vs[1].(int)]
+	}).(GetAccountsAccountOutput)
+}
+
+type GetAccountsAccountAccountPrivilege struct {
+	// The Name of DB.
+	DbName string `pulumi:"dbName"`
+	// The Name of role.
+	RoleName string `pulumi:"roleName"`
+}
+
+// GetAccountsAccountAccountPrivilegeInput is an input type that accepts GetAccountsAccountAccountPrivilegeArgs and GetAccountsAccountAccountPrivilegeOutput values.
+// You can construct a concrete instance of `GetAccountsAccountAccountPrivilegeInput` via:
+//
+//	GetAccountsAccountAccountPrivilegeArgs{...}
+type GetAccountsAccountAccountPrivilegeInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountAccountPrivilegeOutput() GetAccountsAccountAccountPrivilegeOutput
+	ToGetAccountsAccountAccountPrivilegeOutputWithContext(context.Context) GetAccountsAccountAccountPrivilegeOutput
+}
+
+type GetAccountsAccountAccountPrivilegeArgs struct {
+	// The Name of DB.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+	// The Name of role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+}
+
+func (GetAccountsAccountAccountPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (i GetAccountsAccountAccountPrivilegeArgs) ToGetAccountsAccountAccountPrivilegeOutput() GetAccountsAccountAccountPrivilegeOutput {
+	return i.ToGetAccountsAccountAccountPrivilegeOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountAccountPrivilegeArgs) ToGetAccountsAccountAccountPrivilegeOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountAccountPrivilegeOutput)
+}
+
+// GetAccountsAccountAccountPrivilegeArrayInput is an input type that accepts GetAccountsAccountAccountPrivilegeArray and GetAccountsAccountAccountPrivilegeArrayOutput values.
+// You can construct a concrete instance of `GetAccountsAccountAccountPrivilegeArrayInput` via:
+//
+//	GetAccountsAccountAccountPrivilegeArray{ GetAccountsAccountAccountPrivilegeArgs{...} }
+type GetAccountsAccountAccountPrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountAccountPrivilegeArrayOutput() GetAccountsAccountAccountPrivilegeArrayOutput
+	ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(context.Context) GetAccountsAccountAccountPrivilegeArrayOutput
+}
+
+type GetAccountsAccountAccountPrivilegeArray []GetAccountsAccountAccountPrivilegeInput
+
+func (GetAccountsAccountAccountPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (i GetAccountsAccountAccountPrivilegeArray) ToGetAccountsAccountAccountPrivilegeArrayOutput() GetAccountsAccountAccountPrivilegeArrayOutput {
+	return i.ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountAccountPrivilegeArray) ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountAccountPrivilegeArrayOutput)
+}
+
+type GetAccountsAccountAccountPrivilegeOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountAccountPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (o GetAccountsAccountAccountPrivilegeOutput) ToGetAccountsAccountAccountPrivilegeOutput() GetAccountsAccountAccountPrivilegeOutput {
+	return o
+}
+
+func (o GetAccountsAccountAccountPrivilegeOutput) ToGetAccountsAccountAccountPrivilegeOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeOutput {
+	return o
+}
+
+// The Name of DB.
+func (o GetAccountsAccountAccountPrivilegeOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccountAccountPrivilege) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The Name of role.
+func (o GetAccountsAccountAccountPrivilegeOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccountAccountPrivilege) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+type GetAccountsAccountAccountPrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountAccountPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (o GetAccountsAccountAccountPrivilegeArrayOutput) ToGetAccountsAccountAccountPrivilegeArrayOutput() GetAccountsAccountAccountPrivilegeArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountAccountPrivilegeArrayOutput) ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountAccountPrivilegeArrayOutput) Index(i pulumi.IntInput) GetAccountsAccountAccountPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountsAccountAccountPrivilege {
+		return vs[0].([]GetAccountsAccountAccountPrivilege)[vs[1].(int)]
+	}).(GetAccountsAccountAccountPrivilegeOutput)
+}
+
+type GetEndpointsEndpoint struct {
+	// The list of mongodb addresses.
+	DbAddresses []GetEndpointsEndpointDbAddress `pulumi:"dbAddresses"`
+	// The ID of endpoint.
+	EndpointId string `pulumi:"endpointId"`
+	// The endpoint information.
+	EndpointStr string `pulumi:"endpointStr"`
+	// The node type corresponding to the endpoint.
+	EndpointType string `pulumi:"endpointType"`
+	// The network type of endpoint.
+	NetworkType string `pulumi:"networkType"`
+	// The object ID corresponding to the endpoint.
+	ObjectId string `pulumi:"objectId"`
+	// The subnet ID.
+	SubnetId string `pulumi:"subnetId"`
+	// The VPC ID.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetEndpointsEndpointInput is an input type that accepts GetEndpointsEndpointArgs and GetEndpointsEndpointOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointInput` via:
+//
+//	GetEndpointsEndpointArgs{...}
+type GetEndpointsEndpointInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput
+	ToGetEndpointsEndpointOutputWithContext(context.Context) GetEndpointsEndpointOutput
+}
+
+type GetEndpointsEndpointArgs struct {
+	// The list of mongodb addresses.
+	DbAddresses GetEndpointsEndpointDbAddressArrayInput `pulumi:"dbAddresses"`
+	// The ID of endpoint.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The endpoint information.
+	EndpointStr pulumi.StringInput `pulumi:"endpointStr"`
+	// The node type corresponding to the endpoint.
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The network type of endpoint.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// The object ID corresponding to the endpoint.
+	ObjectId pulumi.StringInput `pulumi:"objectId"`
+	// The subnet ID.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The VPC ID.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetEndpointsEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointArgs) ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput {
+	return i.ToGetEndpointsEndpointOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointArgs) ToGetEndpointsEndpointOutputWithContext(ctx context.Context) GetEndpointsEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointOutput)
+}
+
+// GetEndpointsEndpointArrayInput is an input type that accepts GetEndpointsEndpointArray and GetEndpointsEndpointArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointArrayInput` via:
+//
+//	GetEndpointsEndpointArray{ GetEndpointsEndpointArgs{...} }
+type GetEndpointsEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput
+	ToGetEndpointsEndpointArrayOutputWithContext(context.Context) GetEndpointsEndpointArrayOutput
+}
+
+type GetEndpointsEndpointArray []GetEndpointsEndpointInput
+
+func (GetEndpointsEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointArray) ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput {
+	return i.ToGetEndpointsEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointArray) ToGetEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointArrayOutput)
+}
+
+type GetEndpointsEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointOutput) ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointOutput) ToGetEndpointsEndpointOutputWithContext(ctx context.Context) GetEndpointsEndpointOutput {
+	return o
+}
+
+// The list of mongodb addresses.
+func (o GetEndpointsEndpointOutput) DbAddresses() GetEndpointsEndpointDbAddressArrayOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) []GetEndpointsEndpointDbAddress { return v.DbAddresses }).(GetEndpointsEndpointDbAddressArrayOutput)
+}
+
+// The ID of endpoint.
+func (o GetEndpointsEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// The endpoint information.
+func (o GetEndpointsEndpointOutput) EndpointStr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EndpointStr }).(pulumi.StringOutput)
+}
+
+// The node type corresponding to the endpoint.
+func (o GetEndpointsEndpointOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The network type of endpoint.
+func (o GetEndpointsEndpointOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// The object ID corresponding to the endpoint.
+func (o GetEndpointsEndpointOutput) ObjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.ObjectId }).(pulumi.StringOutput)
+}
+
+// The subnet ID.
+func (o GetEndpointsEndpointOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The VPC ID.
+func (o GetEndpointsEndpointOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetEndpointsEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointArrayOutput) ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointArrayOutput) ToGetEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpoint {
+		return vs[0].([]GetEndpointsEndpoint)[vs[1].(int)]
+	}).(GetEndpointsEndpointOutput)
+}
+
+type GetEndpointsEndpointDbAddress struct {
+	// The domain of mongodb connection.
+	AddressDomain string `pulumi:"addressDomain"`
+	// The IP of mongodb connection.
+	AddressIp string `pulumi:"addressIp"`
+	// The port of mongodb connection.
+	AddressPort string `pulumi:"addressPort"`
+	// The connection type of mongodb.
+	AddressType string `pulumi:"addressType"`
+	// The EIP ID bound to the instance's public network address.
+	EipId string `pulumi:"eipId"`
+	// The node ID.
+	NodeId string `pulumi:"nodeId"`
+}
+
+// GetEndpointsEndpointDbAddressInput is an input type that accepts GetEndpointsEndpointDbAddressArgs and GetEndpointsEndpointDbAddressOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointDbAddressInput` via:
+//
+//	GetEndpointsEndpointDbAddressArgs{...}
+type GetEndpointsEndpointDbAddressInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointDbAddressOutput() GetEndpointsEndpointDbAddressOutput
+	ToGetEndpointsEndpointDbAddressOutputWithContext(context.Context) GetEndpointsEndpointDbAddressOutput
+}
+
+type GetEndpointsEndpointDbAddressArgs struct {
+	// The domain of mongodb connection.
+	AddressDomain pulumi.StringInput `pulumi:"addressDomain"`
+	// The IP of mongodb connection.
+	AddressIp pulumi.StringInput `pulumi:"addressIp"`
+	// The port of mongodb connection.
+	AddressPort pulumi.StringInput `pulumi:"addressPort"`
+	// The connection type of mongodb.
+	AddressType pulumi.StringInput `pulumi:"addressType"`
+	// The EIP ID bound to the instance's public network address.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+}
+
+func (GetEndpointsEndpointDbAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointDbAddress)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointDbAddressArgs) ToGetEndpointsEndpointDbAddressOutput() GetEndpointsEndpointDbAddressOutput {
+	return i.ToGetEndpointsEndpointDbAddressOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointDbAddressArgs) ToGetEndpointsEndpointDbAddressOutputWithContext(ctx context.Context) GetEndpointsEndpointDbAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointDbAddressOutput)
+}
+
+// GetEndpointsEndpointDbAddressArrayInput is an input type that accepts GetEndpointsEndpointDbAddressArray and GetEndpointsEndpointDbAddressArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointDbAddressArrayInput` via:
+//
+//	GetEndpointsEndpointDbAddressArray{ GetEndpointsEndpointDbAddressArgs{...} }
+type GetEndpointsEndpointDbAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointDbAddressArrayOutput() GetEndpointsEndpointDbAddressArrayOutput
+	ToGetEndpointsEndpointDbAddressArrayOutputWithContext(context.Context) GetEndpointsEndpointDbAddressArrayOutput
+}
+
+type GetEndpointsEndpointDbAddressArray []GetEndpointsEndpointDbAddressInput
+
+func (GetEndpointsEndpointDbAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointDbAddress)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointDbAddressArray) ToGetEndpointsEndpointDbAddressArrayOutput() GetEndpointsEndpointDbAddressArrayOutput {
+	return i.ToGetEndpointsEndpointDbAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointDbAddressArray) ToGetEndpointsEndpointDbAddressArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointDbAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointDbAddressArrayOutput)
+}
+
+type GetEndpointsEndpointDbAddressOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointDbAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointDbAddress)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointDbAddressOutput) ToGetEndpointsEndpointDbAddressOutput() GetEndpointsEndpointDbAddressOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointDbAddressOutput) ToGetEndpointsEndpointDbAddressOutputWithContext(ctx context.Context) GetEndpointsEndpointDbAddressOutput {
+	return o
+}
+
+// The domain of mongodb connection.
+func (o GetEndpointsEndpointDbAddressOutput) AddressDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointDbAddress) string { return v.AddressDomain }).(pulumi.StringOutput)
+}
+
+// The IP of mongodb connection.
+func (o GetEndpointsEndpointDbAddressOutput) AddressIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointDbAddress) string { return v.AddressIp }).(pulumi.StringOutput)
+}
+
+// The port of mongodb connection.
+func (o GetEndpointsEndpointDbAddressOutput) AddressPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointDbAddress) string { return v.AddressPort }).(pulumi.StringOutput)
+}
+
+// The connection type of mongodb.
+func (o GetEndpointsEndpointDbAddressOutput) AddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointDbAddress) string { return v.AddressType }).(pulumi.StringOutput)
+}
+
+// The EIP ID bound to the instance's public network address.
+func (o GetEndpointsEndpointDbAddressOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointDbAddress) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The node ID.
+func (o GetEndpointsEndpointDbAddressOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointDbAddress) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+type GetEndpointsEndpointDbAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointDbAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointDbAddress)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointDbAddressArrayOutput) ToGetEndpointsEndpointDbAddressArrayOutput() GetEndpointsEndpointDbAddressArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointDbAddressArrayOutput) ToGetEndpointsEndpointDbAddressArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointDbAddressArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointDbAddressArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointDbAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpointDbAddress {
+		return vs[0].([]GetEndpointsEndpointDbAddress)[vs[1].(int)]
+	}).(GetEndpointsEndpointDbAddressOutput)
+}
+
+type GetInstanceParameterLogsParameterChangeLogs struct {
+	// The modifying time of parameter.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The new parameter value.
+	NewParameterValue string `pulumi:"newParameterValue"`
+	// The old parameter value.
+	OldParameterValue string `pulumi:"oldParameterValue"`
+	// The parameter name.
+	ParameterName string `pulumi:"parameterName"`
+	// The node type to which the parameter belongs.
+	ParameterRole string `pulumi:"parameterRole"`
+	// The status of parameter change.
+	ParameterStatus string `pulumi:"parameterStatus"`
+}
+
+// GetInstanceParameterLogsParameterChangeLogsInput is an input type that accepts GetInstanceParameterLogsParameterChangeLogsArgs and GetInstanceParameterLogsParameterChangeLogsOutput values.
+// You can construct a concrete instance of `GetInstanceParameterLogsParameterChangeLogsInput` via:
+//
+//	GetInstanceParameterLogsParameterChangeLogsArgs{...}
+type GetInstanceParameterLogsParameterChangeLogsInput interface {
+	pulumi.Input
+
+	ToGetInstanceParameterLogsParameterChangeLogsOutput() GetInstanceParameterLogsParameterChangeLogsOutput
+	ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(context.Context) GetInstanceParameterLogsParameterChangeLogsOutput
+}
+
+type GetInstanceParameterLogsParameterChangeLogsArgs struct {
+	// The modifying time of parameter.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The new parameter value.
+	NewParameterValue pulumi.StringInput `pulumi:"newParameterValue"`
+	// The old parameter value.
+	OldParameterValue pulumi.StringInput `pulumi:"oldParameterValue"`
+	// The parameter name.
+	ParameterName pulumi.StringInput `pulumi:"parameterName"`
+	// The node type to which the parameter belongs.
+	ParameterRole pulumi.StringInput `pulumi:"parameterRole"`
+	// The status of parameter change.
+	ParameterStatus pulumi.StringInput `pulumi:"parameterStatus"`
+}
+
+func (GetInstanceParameterLogsParameterChangeLogsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogs)(nil)).Elem()
+}
+
+func (i GetInstanceParameterLogsParameterChangeLogsArgs) ToGetInstanceParameterLogsParameterChangeLogsOutput() GetInstanceParameterLogsParameterChangeLogsOutput {
+	return i.ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParameterLogsParameterChangeLogsArgs) ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParameterLogsParameterChangeLogsOutput)
+}
+
+type GetInstanceParameterLogsParameterChangeLogsOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParameterLogsParameterChangeLogsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogs)(nil)).Elem()
+}
+
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) ToGetInstanceParameterLogsParameterChangeLogsOutput() GetInstanceParameterLogsParameterChangeLogsOutput {
+	return o
+}
+
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogsOutput {
+	return o
+}
+
+// The modifying time of parameter.
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The new parameter value.
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) NewParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.NewParameterValue }).(pulumi.StringOutput)
+}
+
+// The old parameter value.
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) OldParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.OldParameterValue }).(pulumi.StringOutput)
+}
+
+// The parameter name.
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) ParameterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ParameterName }).(pulumi.StringOutput)
+}
+
+// The node type to which the parameter belongs.
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) ParameterRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ParameterRole }).(pulumi.StringOutput)
+}
+
+// The status of parameter change.
+func (o GetInstanceParameterLogsParameterChangeLogsOutput) ParameterStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ParameterStatus }).(pulumi.StringOutput)
+}
+
+type GetInstanceParametersInstanceParameter struct {
+	// The checking code of parameter.
+	CheckingCode string `pulumi:"checkingCode"`
+	// Whether the parameter supports modifying.
+	ForceModify bool `pulumi:"forceModify"`
+	// Does the new parameter value need to restart the instance to take effect after modification.
+	ForceRestart bool `pulumi:"forceRestart"`
+	// The default value of parameter.
+	ParameterDefaultValue string `pulumi:"parameterDefaultValue"`
+	// The description of parameter.
+	ParameterDescription string `pulumi:"parameterDescription"`
+	// The name of parameter.
+	ParameterName string `pulumi:"parameterName"`
+	// The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+	ParameterRole string `pulumi:"parameterRole"`
+	// The type of parameter value.
+	ParameterType string `pulumi:"parameterType"`
+	// The value of parameter.
+	ParameterValue string `pulumi:"parameterValue"`
+}
+
+// GetInstanceParametersInstanceParameterInput is an input type that accepts GetInstanceParametersInstanceParameterArgs and GetInstanceParametersInstanceParameterOutput values.
+// You can construct a concrete instance of `GetInstanceParametersInstanceParameterInput` via:
+//
+//	GetInstanceParametersInstanceParameterArgs{...}
+type GetInstanceParametersInstanceParameterInput interface {
+	pulumi.Input
+
+	ToGetInstanceParametersInstanceParameterOutput() GetInstanceParametersInstanceParameterOutput
+	ToGetInstanceParametersInstanceParameterOutputWithContext(context.Context) GetInstanceParametersInstanceParameterOutput
+}
+
+type GetInstanceParametersInstanceParameterArgs struct {
+	// The checking code of parameter.
+	CheckingCode pulumi.StringInput `pulumi:"checkingCode"`
+	// Whether the parameter supports modifying.
+	ForceModify pulumi.BoolInput `pulumi:"forceModify"`
+	// Does the new parameter value need to restart the instance to take effect after modification.
+	ForceRestart pulumi.BoolInput `pulumi:"forceRestart"`
+	// The default value of parameter.
+	ParameterDefaultValue pulumi.StringInput `pulumi:"parameterDefaultValue"`
+	// The description of parameter.
+	ParameterDescription pulumi.StringInput `pulumi:"parameterDescription"`
+	// The name of parameter.
+	ParameterName pulumi.StringInput `pulumi:"parameterName"`
+	// The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+	ParameterRole pulumi.StringInput `pulumi:"parameterRole"`
+	// The type of parameter value.
+	ParameterType pulumi.StringInput `pulumi:"parameterType"`
+	// The value of parameter.
+	ParameterValue pulumi.StringInput `pulumi:"parameterValue"`
+}
+
+func (GetInstanceParametersInstanceParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParametersInstanceParameter)(nil)).Elem()
+}
+
+func (i GetInstanceParametersInstanceParameterArgs) ToGetInstanceParametersInstanceParameterOutput() GetInstanceParametersInstanceParameterOutput {
+	return i.ToGetInstanceParametersInstanceParameterOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParametersInstanceParameterArgs) ToGetInstanceParametersInstanceParameterOutputWithContext(ctx context.Context) GetInstanceParametersInstanceParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParametersInstanceParameterOutput)
+}
+
+// GetInstanceParametersInstanceParameterArrayInput is an input type that accepts GetInstanceParametersInstanceParameterArray and GetInstanceParametersInstanceParameterArrayOutput values.
+// You can construct a concrete instance of `GetInstanceParametersInstanceParameterArrayInput` via:
+//
+//	GetInstanceParametersInstanceParameterArray{ GetInstanceParametersInstanceParameterArgs{...} }
+type GetInstanceParametersInstanceParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceParametersInstanceParameterArrayOutput() GetInstanceParametersInstanceParameterArrayOutput
+	ToGetInstanceParametersInstanceParameterArrayOutputWithContext(context.Context) GetInstanceParametersInstanceParameterArrayOutput
+}
+
+type GetInstanceParametersInstanceParameterArray []GetInstanceParametersInstanceParameterInput
+
+func (GetInstanceParametersInstanceParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParametersInstanceParameter)(nil)).Elem()
+}
+
+func (i GetInstanceParametersInstanceParameterArray) ToGetInstanceParametersInstanceParameterArrayOutput() GetInstanceParametersInstanceParameterArrayOutput {
+	return i.ToGetInstanceParametersInstanceParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParametersInstanceParameterArray) ToGetInstanceParametersInstanceParameterArrayOutputWithContext(ctx context.Context) GetInstanceParametersInstanceParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParametersInstanceParameterArrayOutput)
+}
+
+type GetInstanceParametersInstanceParameterOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParametersInstanceParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParametersInstanceParameter)(nil)).Elem()
+}
+
+func (o GetInstanceParametersInstanceParameterOutput) ToGetInstanceParametersInstanceParameterOutput() GetInstanceParametersInstanceParameterOutput {
+	return o
+}
+
+func (o GetInstanceParametersInstanceParameterOutput) ToGetInstanceParametersInstanceParameterOutputWithContext(ctx context.Context) GetInstanceParametersInstanceParameterOutput {
+	return o
+}
+
+// The checking code of parameter.
+func (o GetInstanceParametersInstanceParameterOutput) CheckingCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.CheckingCode }).(pulumi.StringOutput)
+}
+
+// Whether the parameter supports modifying.
+func (o GetInstanceParametersInstanceParameterOutput) ForceModify() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) bool { return v.ForceModify }).(pulumi.BoolOutput)
+}
+
+// Does the new parameter value need to restart the instance to take effect after modification.
+func (o GetInstanceParametersInstanceParameterOutput) ForceRestart() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) bool { return v.ForceRestart }).(pulumi.BoolOutput)
+}
+
+// The default value of parameter.
+func (o GetInstanceParametersInstanceParameterOutput) ParameterDefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.ParameterDefaultValue }).(pulumi.StringOutput)
+}
+
+// The description of parameter.
+func (o GetInstanceParametersInstanceParameterOutput) ParameterDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.ParameterDescription }).(pulumi.StringOutput)
+}
+
+// The name of parameter.
+func (o GetInstanceParametersInstanceParameterOutput) ParameterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.ParameterName }).(pulumi.StringOutput)
+}
+
+// The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+func (o GetInstanceParametersInstanceParameterOutput) ParameterRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.ParameterRole }).(pulumi.StringOutput)
+}
+
+// The type of parameter value.
+func (o GetInstanceParametersInstanceParameterOutput) ParameterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.ParameterType }).(pulumi.StringOutput)
+}
+
+// The value of parameter.
+func (o GetInstanceParametersInstanceParameterOutput) ParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersInstanceParameter) string { return v.ParameterValue }).(pulumi.StringOutput)
+}
+
+type GetInstanceParametersInstanceParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParametersInstanceParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParametersInstanceParameter)(nil)).Elem()
+}
+
+func (o GetInstanceParametersInstanceParameterArrayOutput) ToGetInstanceParametersInstanceParameterArrayOutput() GetInstanceParametersInstanceParameterArrayOutput {
+	return o
+}
+
+func (o GetInstanceParametersInstanceParameterArrayOutput) ToGetInstanceParametersInstanceParameterArrayOutputWithContext(ctx context.Context) GetInstanceParametersInstanceParameterArrayOutput {
+	return o
+}
+
+func (o GetInstanceParametersInstanceParameterArrayOutput) Index(i pulumi.IntInput) GetInstanceParametersInstanceParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceParametersInstanceParameter {
+		return vs[0].([]GetInstanceParametersInstanceParameter)[vs[1].(int)]
+	}).(GetInstanceParametersInstanceParameterOutput)
+}
+
+type GetInstanceParametersParameter struct {
+	// The database engine.
+	DbEngine string `pulumi:"dbEngine"`
+	// The database engine version.
+	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// The instance ID to query.
+	InstanceId string `pulumi:"instanceId"`
+	// The list of parameters.
+	InstanceParameters []GetInstanceParametersParameterInstanceParameter `pulumi:"instanceParameters"`
+	// The total parameters queried.
+	Total string `pulumi:"total"`
+}
+
+// GetInstanceParametersParameterInput is an input type that accepts GetInstanceParametersParameterArgs and GetInstanceParametersParameterOutput values.
+// You can construct a concrete instance of `GetInstanceParametersParameterInput` via:
+//
+//	GetInstanceParametersParameterArgs{...}
+type GetInstanceParametersParameterInput interface {
+	pulumi.Input
+
+	ToGetInstanceParametersParameterOutput() GetInstanceParametersParameterOutput
+	ToGetInstanceParametersParameterOutputWithContext(context.Context) GetInstanceParametersParameterOutput
+}
+
+type GetInstanceParametersParameterArgs struct {
+	// The database engine.
+	DbEngine pulumi.StringInput `pulumi:"dbEngine"`
+	// The database engine version.
+	DbEngineVersion pulumi.StringInput `pulumi:"dbEngineVersion"`
+	// The instance ID to query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The list of parameters.
+	InstanceParameters GetInstanceParametersParameterInstanceParameterArrayInput `pulumi:"instanceParameters"`
+	// The total parameters queried.
+	Total pulumi.StringInput `pulumi:"total"`
+}
+
+func (GetInstanceParametersParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParametersParameter)(nil)).Elem()
+}
+
+func (i GetInstanceParametersParameterArgs) ToGetInstanceParametersParameterOutput() GetInstanceParametersParameterOutput {
+	return i.ToGetInstanceParametersParameterOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParametersParameterArgs) ToGetInstanceParametersParameterOutputWithContext(ctx context.Context) GetInstanceParametersParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParametersParameterOutput)
+}
+
+// GetInstanceParametersParameterArrayInput is an input type that accepts GetInstanceParametersParameterArray and GetInstanceParametersParameterArrayOutput values.
+// You can construct a concrete instance of `GetInstanceParametersParameterArrayInput` via:
+//
+//	GetInstanceParametersParameterArray{ GetInstanceParametersParameterArgs{...} }
+type GetInstanceParametersParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceParametersParameterArrayOutput() GetInstanceParametersParameterArrayOutput
+	ToGetInstanceParametersParameterArrayOutputWithContext(context.Context) GetInstanceParametersParameterArrayOutput
+}
+
+type GetInstanceParametersParameterArray []GetInstanceParametersParameterInput
+
+func (GetInstanceParametersParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParametersParameter)(nil)).Elem()
+}
+
+func (i GetInstanceParametersParameterArray) ToGetInstanceParametersParameterArrayOutput() GetInstanceParametersParameterArrayOutput {
+	return i.ToGetInstanceParametersParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParametersParameterArray) ToGetInstanceParametersParameterArrayOutputWithContext(ctx context.Context) GetInstanceParametersParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParametersParameterArrayOutput)
+}
+
+type GetInstanceParametersParameterOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParametersParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParametersParameter)(nil)).Elem()
+}
+
+func (o GetInstanceParametersParameterOutput) ToGetInstanceParametersParameterOutput() GetInstanceParametersParameterOutput {
+	return o
+}
+
+func (o GetInstanceParametersParameterOutput) ToGetInstanceParametersParameterOutputWithContext(ctx context.Context) GetInstanceParametersParameterOutput {
+	return o
+}
+
+// The database engine.
+func (o GetInstanceParametersParameterOutput) DbEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameter) string { return v.DbEngine }).(pulumi.StringOutput)
+}
+
+// The database engine version.
+func (o GetInstanceParametersParameterOutput) DbEngineVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameter) string { return v.DbEngineVersion }).(pulumi.StringOutput)
+}
+
+// The instance ID to query.
+func (o GetInstanceParametersParameterOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameter) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The list of parameters.
+func (o GetInstanceParametersParameterOutput) InstanceParameters() GetInstanceParametersParameterInstanceParameterArrayOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameter) []GetInstanceParametersParameterInstanceParameter {
+		return v.InstanceParameters
+	}).(GetInstanceParametersParameterInstanceParameterArrayOutput)
+}
+
+// The total parameters queried.
+func (o GetInstanceParametersParameterOutput) Total() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameter) string { return v.Total }).(pulumi.StringOutput)
+}
+
+type GetInstanceParametersParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParametersParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParametersParameter)(nil)).Elem()
+}
+
+func (o GetInstanceParametersParameterArrayOutput) ToGetInstanceParametersParameterArrayOutput() GetInstanceParametersParameterArrayOutput {
+	return o
+}
+
+func (o GetInstanceParametersParameterArrayOutput) ToGetInstanceParametersParameterArrayOutputWithContext(ctx context.Context) GetInstanceParametersParameterArrayOutput {
+	return o
+}
+
+func (o GetInstanceParametersParameterArrayOutput) Index(i pulumi.IntInput) GetInstanceParametersParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceParametersParameter {
+		return vs[0].([]GetInstanceParametersParameter)[vs[1].(int)]
+	}).(GetInstanceParametersParameterOutput)
+}
+
+type GetInstanceParametersParameterInstanceParameter struct {
+	// The checking code of parameter.
+	CheckingCode string `pulumi:"checkingCode"`
+	// Whether the parameter supports modifying.
+	ForceModify bool `pulumi:"forceModify"`
+	// Does the new parameter value need to restart the instance to take effect after modification.
+	ForceRestart bool `pulumi:"forceRestart"`
+	// The default value of parameter.
+	ParameterDefaultValue string `pulumi:"parameterDefaultValue"`
+	// The description of parameter.
+	ParameterDescription string `pulumi:"parameterDescription"`
+	// The name of parameter.
+	ParameterName string `pulumi:"parameterName"`
+	// The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+	ParameterRole string `pulumi:"parameterRole"`
+	// The type of parameter value.
+	ParameterType string `pulumi:"parameterType"`
+	// The value of parameter.
+	ParameterValue string `pulumi:"parameterValue"`
+}
+
+// GetInstanceParametersParameterInstanceParameterInput is an input type that accepts GetInstanceParametersParameterInstanceParameterArgs and GetInstanceParametersParameterInstanceParameterOutput values.
+// You can construct a concrete instance of `GetInstanceParametersParameterInstanceParameterInput` via:
+//
+//	GetInstanceParametersParameterInstanceParameterArgs{...}
+type GetInstanceParametersParameterInstanceParameterInput interface {
+	pulumi.Input
+
+	ToGetInstanceParametersParameterInstanceParameterOutput() GetInstanceParametersParameterInstanceParameterOutput
+	ToGetInstanceParametersParameterInstanceParameterOutputWithContext(context.Context) GetInstanceParametersParameterInstanceParameterOutput
+}
+
+type GetInstanceParametersParameterInstanceParameterArgs struct {
+	// The checking code of parameter.
+	CheckingCode pulumi.StringInput `pulumi:"checkingCode"`
+	// Whether the parameter supports modifying.
+	ForceModify pulumi.BoolInput `pulumi:"forceModify"`
+	// Does the new parameter value need to restart the instance to take effect after modification.
+	ForceRestart pulumi.BoolInput `pulumi:"forceRestart"`
+	// The default value of parameter.
+	ParameterDefaultValue pulumi.StringInput `pulumi:"parameterDefaultValue"`
+	// The description of parameter.
+	ParameterDescription pulumi.StringInput `pulumi:"parameterDescription"`
+	// The name of parameter.
+	ParameterName pulumi.StringInput `pulumi:"parameterName"`
+	// The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+	ParameterRole pulumi.StringInput `pulumi:"parameterRole"`
+	// The type of parameter value.
+	ParameterType pulumi.StringInput `pulumi:"parameterType"`
+	// The value of parameter.
+	ParameterValue pulumi.StringInput `pulumi:"parameterValue"`
+}
+
+func (GetInstanceParametersParameterInstanceParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParametersParameterInstanceParameter)(nil)).Elem()
+}
+
+func (i GetInstanceParametersParameterInstanceParameterArgs) ToGetInstanceParametersParameterInstanceParameterOutput() GetInstanceParametersParameterInstanceParameterOutput {
+	return i.ToGetInstanceParametersParameterInstanceParameterOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParametersParameterInstanceParameterArgs) ToGetInstanceParametersParameterInstanceParameterOutputWithContext(ctx context.Context) GetInstanceParametersParameterInstanceParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParametersParameterInstanceParameterOutput)
+}
+
+// GetInstanceParametersParameterInstanceParameterArrayInput is an input type that accepts GetInstanceParametersParameterInstanceParameterArray and GetInstanceParametersParameterInstanceParameterArrayOutput values.
+// You can construct a concrete instance of `GetInstanceParametersParameterInstanceParameterArrayInput` via:
+//
+//	GetInstanceParametersParameterInstanceParameterArray{ GetInstanceParametersParameterInstanceParameterArgs{...} }
+type GetInstanceParametersParameterInstanceParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceParametersParameterInstanceParameterArrayOutput() GetInstanceParametersParameterInstanceParameterArrayOutput
+	ToGetInstanceParametersParameterInstanceParameterArrayOutputWithContext(context.Context) GetInstanceParametersParameterInstanceParameterArrayOutput
+}
+
+type GetInstanceParametersParameterInstanceParameterArray []GetInstanceParametersParameterInstanceParameterInput
+
+func (GetInstanceParametersParameterInstanceParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParametersParameterInstanceParameter)(nil)).Elem()
+}
+
+func (i GetInstanceParametersParameterInstanceParameterArray) ToGetInstanceParametersParameterInstanceParameterArrayOutput() GetInstanceParametersParameterInstanceParameterArrayOutput {
+	return i.ToGetInstanceParametersParameterInstanceParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParametersParameterInstanceParameterArray) ToGetInstanceParametersParameterInstanceParameterArrayOutputWithContext(ctx context.Context) GetInstanceParametersParameterInstanceParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParametersParameterInstanceParameterArrayOutput)
+}
+
+type GetInstanceParametersParameterInstanceParameterOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParametersParameterInstanceParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParametersParameterInstanceParameter)(nil)).Elem()
+}
+
+func (o GetInstanceParametersParameterInstanceParameterOutput) ToGetInstanceParametersParameterInstanceParameterOutput() GetInstanceParametersParameterInstanceParameterOutput {
+	return o
+}
+
+func (o GetInstanceParametersParameterInstanceParameterOutput) ToGetInstanceParametersParameterInstanceParameterOutputWithContext(ctx context.Context) GetInstanceParametersParameterInstanceParameterOutput {
+	return o
+}
+
+// The checking code of parameter.
+func (o GetInstanceParametersParameterInstanceParameterOutput) CheckingCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.CheckingCode }).(pulumi.StringOutput)
+}
+
+// Whether the parameter supports modifying.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ForceModify() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) bool { return v.ForceModify }).(pulumi.BoolOutput)
+}
+
+// Does the new parameter value need to restart the instance to take effect after modification.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ForceRestart() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) bool { return v.ForceRestart }).(pulumi.BoolOutput)
+}
+
+// The default value of parameter.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ParameterDefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.ParameterDefaultValue }).(pulumi.StringOutput)
+}
+
+// The description of parameter.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ParameterDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.ParameterDescription }).(pulumi.StringOutput)
+}
+
+// The name of parameter.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ParameterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.ParameterName }).(pulumi.StringOutput)
+}
+
+// The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ParameterRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.ParameterRole }).(pulumi.StringOutput)
+}
+
+// The type of parameter value.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ParameterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.ParameterType }).(pulumi.StringOutput)
+}
+
+// The value of parameter.
+func (o GetInstanceParametersParameterInstanceParameterOutput) ParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParametersParameterInstanceParameter) string { return v.ParameterValue }).(pulumi.StringOutput)
+}
+
+type GetInstanceParametersParameterInstanceParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParametersParameterInstanceParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParametersParameterInstanceParameter)(nil)).Elem()
+}
+
+func (o GetInstanceParametersParameterInstanceParameterArrayOutput) ToGetInstanceParametersParameterInstanceParameterArrayOutput() GetInstanceParametersParameterInstanceParameterArrayOutput {
+	return o
+}
+
+func (o GetInstanceParametersParameterInstanceParameterArrayOutput) ToGetInstanceParametersParameterInstanceParameterArrayOutputWithContext(ctx context.Context) GetInstanceParametersParameterInstanceParameterArrayOutput {
+	return o
+}
+
+func (o GetInstanceParametersParameterInstanceParameterArrayOutput) Index(i pulumi.IntInput) GetInstanceParametersParameterInstanceParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceParametersParameterInstanceParameter {
+		return vs[0].([]GetInstanceParametersParameterInstanceParameter)[vs[1].(int)]
+	}).(GetInstanceParametersParameterInstanceParameterOutput)
+}
+
+type GetInstancesInstance struct {
+	// Whether to enable automatic renewal.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The charge status.
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of instance.
+	ChargeType string `pulumi:"chargeType"`
+	// The planned close time.
+	ClosedTime string `pulumi:"closedTime"`
+	// The list of config servers.
+	ConfigServers []GetInstancesInstanceConfigServer `pulumi:"configServers"`
+	// The ID of config servers.
+	ConfigServersId string `pulumi:"configServersId"`
+	// The creation time of instance.
+	CreateTime string `pulumi:"createTime"`
+	// The db engine to query, valid value contains `MongoDB`.
+	DbEngine string `pulumi:"dbEngine"`
+	// The version of db engine to query, valid value contains `MongoDB_4_0`.
+	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// The version string of database engine.
+	DbEngineVersionStr string `pulumi:"dbEngineVersionStr"`
+	// The expired time of instance.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The instance ID to query.
+	InstanceId string `pulumi:"instanceId"`
+	// The instance name to query.
+	InstanceName string `pulumi:"instanceName"`
+	// The instance status to query.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// The type of instance to query, the valid value contains `ReplicaSet` or `ShardedCluster`.
+	InstanceType string `pulumi:"instanceType"`
+	// The list of mongos.
+	Mongos []GetInstancesInstanceMongo `pulumi:"mongos"`
+	// The ID of mongos.
+	MongosId string `pulumi:"mongosId"`
+	// The node information.
+	Nodes []GetInstancesInstanceNode `pulumi:"nodes"`
+	// The private endpoint address of instance.
+	PrivateEndpoint string `pulumi:"privateEndpoint"`
+	// The project name to query.
+	ProjectName string `pulumi:"projectName"`
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber int `pulumi:"readOnlyNodeNumber"`
+	// The planned reclaim time of instance.
+	ReclaimTime string `pulumi:"reclaimTime"`
+	// The list of shards.
+	Shards []GetInstancesInstanceShard `pulumi:"shards"`
+	// Whether ssl enabled.
+	SslEnable bool `pulumi:"sslEnable"`
+	// The ssl expire time.
+	SslExpireTime string `pulumi:"sslExpireTime"`
+	// Whether ssl is valid.
+	SslIsValid bool `pulumi:"sslIsValid"`
+	// The storage type of instance.
+	StorageType string `pulumi:"storageType"`
+	// The subnet id of instance.
+	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GetInstancesInstanceTag `pulumi:"tags"`
+	// The update time of instance.
+	UpdateTime string `pulumi:"updateTime"`
+	// The vpc id of instance to query.
+	VpcId string `pulumi:"vpcId"`
+	// The zone ID to query.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInput` via:
+//
+//	GetInstancesInstanceArgs{...}
+type GetInstancesInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceOutput() GetInstancesInstanceOutput
+	ToGetInstancesInstanceOutputWithContext(context.Context) GetInstancesInstanceOutput
+}
+
+type GetInstancesInstanceArgs struct {
+	// Whether to enable automatic renewal.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The charge status.
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The planned close time.
+	ClosedTime pulumi.StringInput `pulumi:"closedTime"`
+	// The list of config servers.
+	ConfigServers GetInstancesInstanceConfigServerArrayInput `pulumi:"configServers"`
+	// The ID of config servers.
+	ConfigServersId pulumi.StringInput `pulumi:"configServersId"`
+	// The creation time of instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The db engine to query, valid value contains `MongoDB`.
+	DbEngine pulumi.StringInput `pulumi:"dbEngine"`
+	// The version of db engine to query, valid value contains `MongoDB_4_0`.
+	DbEngineVersion pulumi.StringInput `pulumi:"dbEngineVersion"`
+	// The version string of database engine.
+	DbEngineVersionStr pulumi.StringInput `pulumi:"dbEngineVersionStr"`
+	// The expired time of instance.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The instance ID to query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The instance name to query.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The instance status to query.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The type of instance to query, the valid value contains `ReplicaSet` or `ShardedCluster`.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The list of mongos.
+	Mongos GetInstancesInstanceMongoArrayInput `pulumi:"mongos"`
+	// The ID of mongos.
+	MongosId pulumi.StringInput `pulumi:"mongosId"`
+	// The node information.
+	Nodes GetInstancesInstanceNodeArrayInput `pulumi:"nodes"`
+	// The private endpoint address of instance.
+	PrivateEndpoint pulumi.StringInput `pulumi:"privateEndpoint"`
+	// The project name to query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The number of readonly node in instance.
+	ReadOnlyNodeNumber pulumi.IntInput `pulumi:"readOnlyNodeNumber"`
+	// The planned reclaim time of instance.
+	ReclaimTime pulumi.StringInput `pulumi:"reclaimTime"`
+	// The list of shards.
+	Shards GetInstancesInstanceShardArrayInput `pulumi:"shards"`
+	// Whether ssl enabled.
+	SslEnable pulumi.BoolInput `pulumi:"sslEnable"`
+	// The ssl expire time.
+	SslExpireTime pulumi.StringInput `pulumi:"sslExpireTime"`
+	// Whether ssl is valid.
+	SslIsValid pulumi.BoolInput `pulumi:"sslIsValid"`
+	// The storage type of instance.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+	// The subnet id of instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags GetInstancesInstanceTagArrayInput `pulumi:"tags"`
+	// The update time of instance.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The vpc id of instance to query.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The zone ID to query.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstance)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutput() GetInstancesInstanceOutput {
+	return i.ToGetInstancesInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceOutput)
+}
+
+// GetInstancesInstanceArrayInput is an input type that accepts GetInstancesInstanceArray and GetInstancesInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceArrayInput` via:
+//
+//	GetInstancesInstanceArray{ GetInstancesInstanceArgs{...} }
+type GetInstancesInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput
+	ToGetInstancesInstanceArrayOutputWithContext(context.Context) GetInstancesInstanceArrayOutput
+}
+
+type GetInstancesInstanceArray []GetInstancesInstanceInput
+
+func (GetInstancesInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstance)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput {
+	return i.ToGetInstancesInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutputWithContext(ctx context.Context) GetInstancesInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceArrayOutput)
+}
+
+type GetInstancesInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstance)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutput() GetInstancesInstanceOutput {
+	return o
+}
+
+func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
+	return o
+}
+
+// Whether to enable automatic renewal.
+func (o GetInstancesInstanceOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The charge status.
+func (o GetInstancesInstanceOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of instance.
+func (o GetInstancesInstanceOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The planned close time.
+func (o GetInstancesInstanceOutput) ClosedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ClosedTime }).(pulumi.StringOutput)
+}
+
+// The list of config servers.
+func (o GetInstancesInstanceOutput) ConfigServers() GetInstancesInstanceConfigServerArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceConfigServer { return v.ConfigServers }).(GetInstancesInstanceConfigServerArrayOutput)
+}
+
+// The ID of config servers.
+func (o GetInstancesInstanceOutput) ConfigServersId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ConfigServersId }).(pulumi.StringOutput)
+}
+
+// The creation time of instance.
+func (o GetInstancesInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The db engine to query, valid value contains `MongoDB`.
+func (o GetInstancesInstanceOutput) DbEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.DbEngine }).(pulumi.StringOutput)
+}
+
+// The version of db engine to query, valid value contains `MongoDB_4_0`.
+func (o GetInstancesInstanceOutput) DbEngineVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.DbEngineVersion }).(pulumi.StringOutput)
+}
+
+// The version string of database engine.
+func (o GetInstancesInstanceOutput) DbEngineVersionStr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.DbEngineVersionStr }).(pulumi.StringOutput)
+}
+
+// The expired time of instance.
+func (o GetInstancesInstanceOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The instance ID to query.
+func (o GetInstancesInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The instance name to query.
+func (o GetInstancesInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The instance status to query.
+func (o GetInstancesInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// The type of instance to query, the valid value contains `ReplicaSet` or `ShardedCluster`.
+func (o GetInstancesInstanceOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The list of mongos.
+func (o GetInstancesInstanceOutput) Mongos() GetInstancesInstanceMongoArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceMongo { return v.Mongos }).(GetInstancesInstanceMongoArrayOutput)
+}
+
+// The ID of mongos.
+func (o GetInstancesInstanceOutput) MongosId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.MongosId }).(pulumi.StringOutput)
+}
+
+// The node information.
+func (o GetInstancesInstanceOutput) Nodes() GetInstancesInstanceNodeArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceNode { return v.Nodes }).(GetInstancesInstanceNodeArrayOutput)
+}
+
+// The private endpoint address of instance.
+func (o GetInstancesInstanceOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.PrivateEndpoint }).(pulumi.StringOutput)
+}
+
+// The project name to query.
+func (o GetInstancesInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The number of readonly node in instance.
+func (o GetInstancesInstanceOutput) ReadOnlyNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.ReadOnlyNodeNumber }).(pulumi.IntOutput)
+}
+
+// The planned reclaim time of instance.
+func (o GetInstancesInstanceOutput) ReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ReclaimTime }).(pulumi.StringOutput)
+}
+
+// The list of shards.
+func (o GetInstancesInstanceOutput) Shards() GetInstancesInstanceShardArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceShard { return v.Shards }).(GetInstancesInstanceShardArrayOutput)
+}
+
+// Whether ssl enabled.
+func (o GetInstancesInstanceOutput) SslEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.SslEnable }).(pulumi.BoolOutput)
+}
+
+// The ssl expire time.
+func (o GetInstancesInstanceOutput) SslExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.SslExpireTime }).(pulumi.StringOutput)
+}
+
+// Whether ssl is valid.
+func (o GetInstancesInstanceOutput) SslIsValid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.SslIsValid }).(pulumi.BoolOutput)
+}
+
+// The storage type of instance.
+func (o GetInstancesInstanceOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// The subnet id of instance.
+func (o GetInstancesInstanceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetInstancesInstanceOutput) Tags() GetInstancesInstanceTagArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceTag { return v.Tags }).(GetInstancesInstanceTagArrayOutput)
+}
+
+// The update time of instance.
+func (o GetInstancesInstanceOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The vpc id of instance to query.
+func (o GetInstancesInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone ID to query.
+func (o GetInstancesInstanceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstance)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutputWithContext(ctx context.Context) GetInstancesInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstance {
+		return vs[0].([]GetInstancesInstance)[vs[1].(int)]
+	}).(GetInstancesInstanceOutput)
+}
+
+type GetInstancesInstanceConfigServer struct {
+	// The config server node ID.
+	ConfigServerNodeId string `pulumi:"configServerNodeId"`
+	// The nod role.
+	NodeRole string `pulumi:"nodeRole"`
+	// The node status.
+	NodeStatus string `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb float64 `pulumi:"totalMemoryGb"`
+	// The total vCPU.
+	TotalVcpu float64 `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb float64 `pulumi:"usedMemoryGb"`
+	// The used vCPU.
+	UsedVcpu float64 `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesInstanceConfigServerInput is an input type that accepts GetInstancesInstanceConfigServerArgs and GetInstancesInstanceConfigServerOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceConfigServerInput` via:
+//
+//	GetInstancesInstanceConfigServerArgs{...}
+type GetInstancesInstanceConfigServerInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceConfigServerOutput() GetInstancesInstanceConfigServerOutput
+	ToGetInstancesInstanceConfigServerOutputWithContext(context.Context) GetInstancesInstanceConfigServerOutput
+}
+
+type GetInstancesInstanceConfigServerArgs struct {
+	// The config server node ID.
+	ConfigServerNodeId pulumi.StringInput `pulumi:"configServerNodeId"`
+	// The nod role.
+	NodeRole pulumi.StringInput `pulumi:"nodeRole"`
+	// The node status.
+	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb pulumi.Float64Input `pulumi:"totalMemoryGb"`
+	// The total vCPU.
+	TotalVcpu pulumi.Float64Input `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb pulumi.Float64Input `pulumi:"usedMemoryGb"`
+	// The used vCPU.
+	UsedVcpu pulumi.Float64Input `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesInstanceConfigServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceConfigServer)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceConfigServerArgs) ToGetInstancesInstanceConfigServerOutput() GetInstancesInstanceConfigServerOutput {
+	return i.ToGetInstancesInstanceConfigServerOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceConfigServerArgs) ToGetInstancesInstanceConfigServerOutputWithContext(ctx context.Context) GetInstancesInstanceConfigServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceConfigServerOutput)
+}
+
+// GetInstancesInstanceConfigServerArrayInput is an input type that accepts GetInstancesInstanceConfigServerArray and GetInstancesInstanceConfigServerArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceConfigServerArrayInput` via:
+//
+//	GetInstancesInstanceConfigServerArray{ GetInstancesInstanceConfigServerArgs{...} }
+type GetInstancesInstanceConfigServerArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceConfigServerArrayOutput() GetInstancesInstanceConfigServerArrayOutput
+	ToGetInstancesInstanceConfigServerArrayOutputWithContext(context.Context) GetInstancesInstanceConfigServerArrayOutput
+}
+
+type GetInstancesInstanceConfigServerArray []GetInstancesInstanceConfigServerInput
+
+func (GetInstancesInstanceConfigServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceConfigServer)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceConfigServerArray) ToGetInstancesInstanceConfigServerArrayOutput() GetInstancesInstanceConfigServerArrayOutput {
+	return i.ToGetInstancesInstanceConfigServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceConfigServerArray) ToGetInstancesInstanceConfigServerArrayOutputWithContext(ctx context.Context) GetInstancesInstanceConfigServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceConfigServerArrayOutput)
+}
+
+type GetInstancesInstanceConfigServerOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceConfigServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceConfigServer)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceConfigServerOutput) ToGetInstancesInstanceConfigServerOutput() GetInstancesInstanceConfigServerOutput {
+	return o
+}
+
+func (o GetInstancesInstanceConfigServerOutput) ToGetInstancesInstanceConfigServerOutputWithContext(ctx context.Context) GetInstancesInstanceConfigServerOutput {
+	return o
+}
+
+// The config server node ID.
+func (o GetInstancesInstanceConfigServerOutput) ConfigServerNodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) string { return v.ConfigServerNodeId }).(pulumi.StringOutput)
+}
+
+// The nod role.
+func (o GetInstancesInstanceConfigServerOutput) NodeRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) string { return v.NodeRole }).(pulumi.StringOutput)
+}
+
+// The node status.
+func (o GetInstancesInstanceConfigServerOutput) NodeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) string { return v.NodeStatus }).(pulumi.StringOutput)
+}
+
+// The total memory in GB.
+func (o GetInstancesInstanceConfigServerOutput) TotalMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) float64 { return v.TotalMemoryGb }).(pulumi.Float64Output)
+}
+
+// The total vCPU.
+func (o GetInstancesInstanceConfigServerOutput) TotalVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) float64 { return v.TotalVcpu }).(pulumi.Float64Output)
+}
+
+// The used memory in GB.
+func (o GetInstancesInstanceConfigServerOutput) UsedMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) float64 { return v.UsedMemoryGb }).(pulumi.Float64Output)
+}
+
+// The used vCPU.
+func (o GetInstancesInstanceConfigServerOutput) UsedVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) float64 { return v.UsedVcpu }).(pulumi.Float64Output)
+}
+
+// The zone ID to query.
+func (o GetInstancesInstanceConfigServerOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConfigServer) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceConfigServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceConfigServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceConfigServer)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceConfigServerArrayOutput) ToGetInstancesInstanceConfigServerArrayOutput() GetInstancesInstanceConfigServerArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceConfigServerArrayOutput) ToGetInstancesInstanceConfigServerArrayOutputWithContext(ctx context.Context) GetInstancesInstanceConfigServerArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceConfigServerArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceConfigServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceConfigServer {
+		return vs[0].([]GetInstancesInstanceConfigServer)[vs[1].(int)]
+	}).(GetInstancesInstanceConfigServerOutput)
+}
+
+type GetInstancesInstanceMongo struct {
+	// The mongos node ID.
+	MongosNodeId string `pulumi:"mongosNodeId"`
+	// The node spec.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// The node status.
+	NodeStatus string `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb float64 `pulumi:"totalMemoryGb"`
+	// The total vCPU.
+	TotalVcpu float64 `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb float64 `pulumi:"usedMemoryGb"`
+	// The used vCPU.
+	UsedVcpu float64 `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesInstanceMongoInput is an input type that accepts GetInstancesInstanceMongoArgs and GetInstancesInstanceMongoOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceMongoInput` via:
+//
+//	GetInstancesInstanceMongoArgs{...}
+type GetInstancesInstanceMongoInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceMongoOutput() GetInstancesInstanceMongoOutput
+	ToGetInstancesInstanceMongoOutputWithContext(context.Context) GetInstancesInstanceMongoOutput
+}
+
+type GetInstancesInstanceMongoArgs struct {
+	// The mongos node ID.
+	MongosNodeId pulumi.StringInput `pulumi:"mongosNodeId"`
+	// The node spec.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// The node status.
+	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb pulumi.Float64Input `pulumi:"totalMemoryGb"`
+	// The total vCPU.
+	TotalVcpu pulumi.Float64Input `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb pulumi.Float64Input `pulumi:"usedMemoryGb"`
+	// The used vCPU.
+	UsedVcpu pulumi.Float64Input `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesInstanceMongoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceMongo)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceMongoArgs) ToGetInstancesInstanceMongoOutput() GetInstancesInstanceMongoOutput {
+	return i.ToGetInstancesInstanceMongoOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceMongoArgs) ToGetInstancesInstanceMongoOutputWithContext(ctx context.Context) GetInstancesInstanceMongoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceMongoOutput)
+}
+
+// GetInstancesInstanceMongoArrayInput is an input type that accepts GetInstancesInstanceMongoArray and GetInstancesInstanceMongoArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceMongoArrayInput` via:
+//
+//	GetInstancesInstanceMongoArray{ GetInstancesInstanceMongoArgs{...} }
+type GetInstancesInstanceMongoArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceMongoArrayOutput() GetInstancesInstanceMongoArrayOutput
+	ToGetInstancesInstanceMongoArrayOutputWithContext(context.Context) GetInstancesInstanceMongoArrayOutput
+}
+
+type GetInstancesInstanceMongoArray []GetInstancesInstanceMongoInput
+
+func (GetInstancesInstanceMongoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceMongo)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceMongoArray) ToGetInstancesInstanceMongoArrayOutput() GetInstancesInstanceMongoArrayOutput {
+	return i.ToGetInstancesInstanceMongoArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceMongoArray) ToGetInstancesInstanceMongoArrayOutputWithContext(ctx context.Context) GetInstancesInstanceMongoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceMongoArrayOutput)
+}
+
+type GetInstancesInstanceMongoOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceMongoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceMongo)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceMongoOutput) ToGetInstancesInstanceMongoOutput() GetInstancesInstanceMongoOutput {
+	return o
+}
+
+func (o GetInstancesInstanceMongoOutput) ToGetInstancesInstanceMongoOutputWithContext(ctx context.Context) GetInstancesInstanceMongoOutput {
+	return o
+}
+
+// The mongos node ID.
+func (o GetInstancesInstanceMongoOutput) MongosNodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) string { return v.MongosNodeId }).(pulumi.StringOutput)
+}
+
+// The node spec.
+func (o GetInstancesInstanceMongoOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// The node status.
+func (o GetInstancesInstanceMongoOutput) NodeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) string { return v.NodeStatus }).(pulumi.StringOutput)
+}
+
+// The total memory in GB.
+func (o GetInstancesInstanceMongoOutput) TotalMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) float64 { return v.TotalMemoryGb }).(pulumi.Float64Output)
+}
+
+// The total vCPU.
+func (o GetInstancesInstanceMongoOutput) TotalVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) float64 { return v.TotalVcpu }).(pulumi.Float64Output)
+}
+
+// The used memory in GB.
+func (o GetInstancesInstanceMongoOutput) UsedMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) float64 { return v.UsedMemoryGb }).(pulumi.Float64Output)
+}
+
+// The used vCPU.
+func (o GetInstancesInstanceMongoOutput) UsedVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) float64 { return v.UsedVcpu }).(pulumi.Float64Output)
+}
+
+// The zone ID to query.
+func (o GetInstancesInstanceMongoOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceMongo) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceMongoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceMongoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceMongo)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceMongoArrayOutput) ToGetInstancesInstanceMongoArrayOutput() GetInstancesInstanceMongoArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceMongoArrayOutput) ToGetInstancesInstanceMongoArrayOutputWithContext(ctx context.Context) GetInstancesInstanceMongoArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceMongoArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceMongoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceMongo {
+		return vs[0].([]GetInstancesInstanceMongo)[vs[1].(int)]
+	}).(GetInstancesInstanceMongoOutput)
+}
+
+type GetInstancesInstanceNode struct {
+	// The master-slave delay time.
+	NodeDelayTime int `pulumi:"nodeDelayTime"`
+	// The node ID.
+	NodeId string `pulumi:"nodeId"`
+	// The nod role.
+	NodeRole string `pulumi:"nodeRole"`
+	// The node spec.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// The node status.
+	NodeStatus string `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb float64 `pulumi:"totalMemoryGb"`
+	// The total storage in GB.
+	TotalStorageGb float64 `pulumi:"totalStorageGb"`
+	// The total vCPU.
+	TotalVcpu float64 `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb float64 `pulumi:"usedMemoryGb"`
+	// The used storage in GB.
+	UsedStorageGb float64 `pulumi:"usedStorageGb"`
+	// The used vCPU.
+	UsedVcpu float64 `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesInstanceNodeInput is an input type that accepts GetInstancesInstanceNodeArgs and GetInstancesInstanceNodeOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceNodeInput` via:
+//
+//	GetInstancesInstanceNodeArgs{...}
+type GetInstancesInstanceNodeInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceNodeOutput() GetInstancesInstanceNodeOutput
+	ToGetInstancesInstanceNodeOutputWithContext(context.Context) GetInstancesInstanceNodeOutput
+}
+
+type GetInstancesInstanceNodeArgs struct {
+	// The master-slave delay time.
+	NodeDelayTime pulumi.IntInput `pulumi:"nodeDelayTime"`
+	// The node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// The nod role.
+	NodeRole pulumi.StringInput `pulumi:"nodeRole"`
+	// The node spec.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// The node status.
+	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb pulumi.Float64Input `pulumi:"totalMemoryGb"`
+	// The total storage in GB.
+	TotalStorageGb pulumi.Float64Input `pulumi:"totalStorageGb"`
+	// The total vCPU.
+	TotalVcpu pulumi.Float64Input `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb pulumi.Float64Input `pulumi:"usedMemoryGb"`
+	// The used storage in GB.
+	UsedStorageGb pulumi.Float64Input `pulumi:"usedStorageGb"`
+	// The used vCPU.
+	UsedVcpu pulumi.Float64Input `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesInstanceNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceNodeArgs) ToGetInstancesInstanceNodeOutput() GetInstancesInstanceNodeOutput {
+	return i.ToGetInstancesInstanceNodeOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceNodeArgs) ToGetInstancesInstanceNodeOutputWithContext(ctx context.Context) GetInstancesInstanceNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceNodeOutput)
+}
+
+// GetInstancesInstanceNodeArrayInput is an input type that accepts GetInstancesInstanceNodeArray and GetInstancesInstanceNodeArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceNodeArrayInput` via:
+//
+//	GetInstancesInstanceNodeArray{ GetInstancesInstanceNodeArgs{...} }
+type GetInstancesInstanceNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceNodeArrayOutput() GetInstancesInstanceNodeArrayOutput
+	ToGetInstancesInstanceNodeArrayOutputWithContext(context.Context) GetInstancesInstanceNodeArrayOutput
+}
+
+type GetInstancesInstanceNodeArray []GetInstancesInstanceNodeInput
+
+func (GetInstancesInstanceNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceNodeArray) ToGetInstancesInstanceNodeArrayOutput() GetInstancesInstanceNodeArrayOutput {
+	return i.ToGetInstancesInstanceNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceNodeArray) ToGetInstancesInstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesInstanceNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceNodeArrayOutput)
+}
+
+type GetInstancesInstanceNodeOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceNodeOutput) ToGetInstancesInstanceNodeOutput() GetInstancesInstanceNodeOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeOutput) ToGetInstancesInstanceNodeOutputWithContext(ctx context.Context) GetInstancesInstanceNodeOutput {
+	return o
+}
+
+// The master-slave delay time.
+func (o GetInstancesInstanceNodeOutput) NodeDelayTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) int { return v.NodeDelayTime }).(pulumi.IntOutput)
+}
+
+// The node ID.
+func (o GetInstancesInstanceNodeOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// The nod role.
+func (o GetInstancesInstanceNodeOutput) NodeRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.NodeRole }).(pulumi.StringOutput)
+}
+
+// The node spec.
+func (o GetInstancesInstanceNodeOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// The node status.
+func (o GetInstancesInstanceNodeOutput) NodeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.NodeStatus }).(pulumi.StringOutput)
+}
+
+// The total memory in GB.
+func (o GetInstancesInstanceNodeOutput) TotalMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceNode) float64 { return v.TotalMemoryGb }).(pulumi.Float64Output)
+}
+
+// The total storage in GB.
+func (o GetInstancesInstanceNodeOutput) TotalStorageGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceNode) float64 { return v.TotalStorageGb }).(pulumi.Float64Output)
+}
+
+// The total vCPU.
+func (o GetInstancesInstanceNodeOutput) TotalVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceNode) float64 { return v.TotalVcpu }).(pulumi.Float64Output)
+}
+
+// The used memory in GB.
+func (o GetInstancesInstanceNodeOutput) UsedMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceNode) float64 { return v.UsedMemoryGb }).(pulumi.Float64Output)
+}
+
+// The used storage in GB.
+func (o GetInstancesInstanceNodeOutput) UsedStorageGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceNode) float64 { return v.UsedStorageGb }).(pulumi.Float64Output)
+}
+
+// The used vCPU.
+func (o GetInstancesInstanceNodeOutput) UsedVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceNode) float64 { return v.UsedVcpu }).(pulumi.Float64Output)
+}
+
+// The zone ID to query.
+func (o GetInstancesInstanceNodeOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceNode) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceNodeArrayOutput) ToGetInstancesInstanceNodeArrayOutput() GetInstancesInstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeArrayOutput) ToGetInstancesInstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesInstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceNodeArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceNode {
+		return vs[0].([]GetInstancesInstanceNode)[vs[1].(int)]
+	}).(GetInstancesInstanceNodeOutput)
+}
+
+type GetInstancesInstanceShard struct {
+	// The node information.
+	Nodes []GetInstancesInstanceShardNode `pulumi:"nodes"`
+	// The shard ID.
+	ShardId string `pulumi:"shardId"`
+}
+
+// GetInstancesInstanceShardInput is an input type that accepts GetInstancesInstanceShardArgs and GetInstancesInstanceShardOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceShardInput` via:
+//
+//	GetInstancesInstanceShardArgs{...}
+type GetInstancesInstanceShardInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceShardOutput() GetInstancesInstanceShardOutput
+	ToGetInstancesInstanceShardOutputWithContext(context.Context) GetInstancesInstanceShardOutput
+}
+
+type GetInstancesInstanceShardArgs struct {
+	// The node information.
+	Nodes GetInstancesInstanceShardNodeArrayInput `pulumi:"nodes"`
+	// The shard ID.
+	ShardId pulumi.StringInput `pulumi:"shardId"`
+}
+
+func (GetInstancesInstanceShardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceShard)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceShardArgs) ToGetInstancesInstanceShardOutput() GetInstancesInstanceShardOutput {
+	return i.ToGetInstancesInstanceShardOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceShardArgs) ToGetInstancesInstanceShardOutputWithContext(ctx context.Context) GetInstancesInstanceShardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceShardOutput)
+}
+
+// GetInstancesInstanceShardArrayInput is an input type that accepts GetInstancesInstanceShardArray and GetInstancesInstanceShardArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceShardArrayInput` via:
+//
+//	GetInstancesInstanceShardArray{ GetInstancesInstanceShardArgs{...} }
+type GetInstancesInstanceShardArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceShardArrayOutput() GetInstancesInstanceShardArrayOutput
+	ToGetInstancesInstanceShardArrayOutputWithContext(context.Context) GetInstancesInstanceShardArrayOutput
+}
+
+type GetInstancesInstanceShardArray []GetInstancesInstanceShardInput
+
+func (GetInstancesInstanceShardArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceShard)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceShardArray) ToGetInstancesInstanceShardArrayOutput() GetInstancesInstanceShardArrayOutput {
+	return i.ToGetInstancesInstanceShardArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceShardArray) ToGetInstancesInstanceShardArrayOutputWithContext(ctx context.Context) GetInstancesInstanceShardArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceShardArrayOutput)
+}
+
+type GetInstancesInstanceShardOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceShardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceShard)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceShardOutput) ToGetInstancesInstanceShardOutput() GetInstancesInstanceShardOutput {
+	return o
+}
+
+func (o GetInstancesInstanceShardOutput) ToGetInstancesInstanceShardOutputWithContext(ctx context.Context) GetInstancesInstanceShardOutput {
+	return o
+}
+
+// The node information.
+func (o GetInstancesInstanceShardOutput) Nodes() GetInstancesInstanceShardNodeArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShard) []GetInstancesInstanceShardNode { return v.Nodes }).(GetInstancesInstanceShardNodeArrayOutput)
+}
+
+// The shard ID.
+func (o GetInstancesInstanceShardOutput) ShardId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShard) string { return v.ShardId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceShardArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceShardArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceShard)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceShardArrayOutput) ToGetInstancesInstanceShardArrayOutput() GetInstancesInstanceShardArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceShardArrayOutput) ToGetInstancesInstanceShardArrayOutputWithContext(ctx context.Context) GetInstancesInstanceShardArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceShardArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceShardOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceShard {
+		return vs[0].([]GetInstancesInstanceShard)[vs[1].(int)]
+	}).(GetInstancesInstanceShardOutput)
+}
+
+type GetInstancesInstanceShardNode struct {
+	// The master-slave delay time.
+	NodeDelayTime int `pulumi:"nodeDelayTime"`
+	// The node ID.
+	NodeId string `pulumi:"nodeId"`
+	// The nod role.
+	NodeRole string `pulumi:"nodeRole"`
+	// The node spec.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// The node status.
+	NodeStatus string `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb float64 `pulumi:"totalMemoryGb"`
+	// The total storage in GB.
+	TotalStorageGb float64 `pulumi:"totalStorageGb"`
+	// The total vCPU.
+	TotalVcpu float64 `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb float64 `pulumi:"usedMemoryGb"`
+	// The used storage in GB.
+	UsedStorageGb float64 `pulumi:"usedStorageGb"`
+	// The used vCPU.
+	UsedVcpu float64 `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesInstanceShardNodeInput is an input type that accepts GetInstancesInstanceShardNodeArgs and GetInstancesInstanceShardNodeOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceShardNodeInput` via:
+//
+//	GetInstancesInstanceShardNodeArgs{...}
+type GetInstancesInstanceShardNodeInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceShardNodeOutput() GetInstancesInstanceShardNodeOutput
+	ToGetInstancesInstanceShardNodeOutputWithContext(context.Context) GetInstancesInstanceShardNodeOutput
+}
+
+type GetInstancesInstanceShardNodeArgs struct {
+	// The master-slave delay time.
+	NodeDelayTime pulumi.IntInput `pulumi:"nodeDelayTime"`
+	// The node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// The nod role.
+	NodeRole pulumi.StringInput `pulumi:"nodeRole"`
+	// The node spec.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// The node status.
+	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
+	// The total memory in GB.
+	TotalMemoryGb pulumi.Float64Input `pulumi:"totalMemoryGb"`
+	// The total storage in GB.
+	TotalStorageGb pulumi.Float64Input `pulumi:"totalStorageGb"`
+	// The total vCPU.
+	TotalVcpu pulumi.Float64Input `pulumi:"totalVcpu"`
+	// The used memory in GB.
+	UsedMemoryGb pulumi.Float64Input `pulumi:"usedMemoryGb"`
+	// The used storage in GB.
+	UsedStorageGb pulumi.Float64Input `pulumi:"usedStorageGb"`
+	// The used vCPU.
+	UsedVcpu pulumi.Float64Input `pulumi:"usedVcpu"`
+	// The zone ID to query.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesInstanceShardNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceShardNode)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceShardNodeArgs) ToGetInstancesInstanceShardNodeOutput() GetInstancesInstanceShardNodeOutput {
+	return i.ToGetInstancesInstanceShardNodeOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceShardNodeArgs) ToGetInstancesInstanceShardNodeOutputWithContext(ctx context.Context) GetInstancesInstanceShardNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceShardNodeOutput)
+}
+
+// GetInstancesInstanceShardNodeArrayInput is an input type that accepts GetInstancesInstanceShardNodeArray and GetInstancesInstanceShardNodeArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceShardNodeArrayInput` via:
+//
+//	GetInstancesInstanceShardNodeArray{ GetInstancesInstanceShardNodeArgs{...} }
+type GetInstancesInstanceShardNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceShardNodeArrayOutput() GetInstancesInstanceShardNodeArrayOutput
+	ToGetInstancesInstanceShardNodeArrayOutputWithContext(context.Context) GetInstancesInstanceShardNodeArrayOutput
+}
+
+type GetInstancesInstanceShardNodeArray []GetInstancesInstanceShardNodeInput
+
+func (GetInstancesInstanceShardNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceShardNode)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceShardNodeArray) ToGetInstancesInstanceShardNodeArrayOutput() GetInstancesInstanceShardNodeArrayOutput {
+	return i.ToGetInstancesInstanceShardNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceShardNodeArray) ToGetInstancesInstanceShardNodeArrayOutputWithContext(ctx context.Context) GetInstancesInstanceShardNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceShardNodeArrayOutput)
+}
+
+type GetInstancesInstanceShardNodeOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceShardNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceShardNode)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceShardNodeOutput) ToGetInstancesInstanceShardNodeOutput() GetInstancesInstanceShardNodeOutput {
+	return o
+}
+
+func (o GetInstancesInstanceShardNodeOutput) ToGetInstancesInstanceShardNodeOutputWithContext(ctx context.Context) GetInstancesInstanceShardNodeOutput {
+	return o
+}
+
+// The master-slave delay time.
+func (o GetInstancesInstanceShardNodeOutput) NodeDelayTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) int { return v.NodeDelayTime }).(pulumi.IntOutput)
+}
+
+// The node ID.
+func (o GetInstancesInstanceShardNodeOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// The nod role.
+func (o GetInstancesInstanceShardNodeOutput) NodeRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) string { return v.NodeRole }).(pulumi.StringOutput)
+}
+
+// The node spec.
+func (o GetInstancesInstanceShardNodeOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// The node status.
+func (o GetInstancesInstanceShardNodeOutput) NodeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) string { return v.NodeStatus }).(pulumi.StringOutput)
+}
+
+// The total memory in GB.
+func (o GetInstancesInstanceShardNodeOutput) TotalMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) float64 { return v.TotalMemoryGb }).(pulumi.Float64Output)
+}
+
+// The total storage in GB.
+func (o GetInstancesInstanceShardNodeOutput) TotalStorageGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) float64 { return v.TotalStorageGb }).(pulumi.Float64Output)
+}
+
+// The total vCPU.
+func (o GetInstancesInstanceShardNodeOutput) TotalVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) float64 { return v.TotalVcpu }).(pulumi.Float64Output)
+}
+
+// The used memory in GB.
+func (o GetInstancesInstanceShardNodeOutput) UsedMemoryGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) float64 { return v.UsedMemoryGb }).(pulumi.Float64Output)
+}
+
+// The used storage in GB.
+func (o GetInstancesInstanceShardNodeOutput) UsedStorageGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) float64 { return v.UsedStorageGb }).(pulumi.Float64Output)
+}
+
+// The used vCPU.
+func (o GetInstancesInstanceShardNodeOutput) UsedVcpu() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) float64 { return v.UsedVcpu }).(pulumi.Float64Output)
+}
+
+// The zone ID to query.
+func (o GetInstancesInstanceShardNodeOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceShardNode) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceShardNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceShardNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceShardNode)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceShardNodeArrayOutput) ToGetInstancesInstanceShardNodeArrayOutput() GetInstancesInstanceShardNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceShardNodeArrayOutput) ToGetInstancesInstanceShardNodeArrayOutputWithContext(ctx context.Context) GetInstancesInstanceShardNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceShardNodeArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceShardNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceShardNode {
+		return vs[0].([]GetInstancesInstanceShardNode)[vs[1].(int)]
+	}).(GetInstancesInstanceShardNodeOutput)
+}
+
+type GetInstancesInstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesInstanceTagInput is an input type that accepts GetInstancesInstanceTagArgs and GetInstancesInstanceTagOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceTagInput` via:
+//
+//	GetInstancesInstanceTagArgs{...}
+type GetInstancesInstanceTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceTagOutput() GetInstancesInstanceTagOutput
+	ToGetInstancesInstanceTagOutputWithContext(context.Context) GetInstancesInstanceTagOutput
+}
+
+type GetInstancesInstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesInstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceTagArgs) ToGetInstancesInstanceTagOutput() GetInstancesInstanceTagOutput {
+	return i.ToGetInstancesInstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceTagArgs) ToGetInstancesInstanceTagOutputWithContext(ctx context.Context) GetInstancesInstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceTagOutput)
+}
+
+// GetInstancesInstanceTagArrayInput is an input type that accepts GetInstancesInstanceTagArray and GetInstancesInstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceTagArrayInput` via:
+//
+//	GetInstancesInstanceTagArray{ GetInstancesInstanceTagArgs{...} }
+type GetInstancesInstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceTagArrayOutput() GetInstancesInstanceTagArrayOutput
+	ToGetInstancesInstanceTagArrayOutputWithContext(context.Context) GetInstancesInstanceTagArrayOutput
+}
+
+type GetInstancesInstanceTagArray []GetInstancesInstanceTagInput
+
+func (GetInstancesInstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceTagArray) ToGetInstancesInstanceTagArrayOutput() GetInstancesInstanceTagArrayOutput {
+	return i.ToGetInstancesInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceTagArray) ToGetInstancesInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesInstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceTagArrayOutput)
+}
+
+type GetInstancesInstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceTagOutput) ToGetInstancesInstanceTagOutput() GetInstancesInstanceTagOutput {
+	return o
+}
+
+func (o GetInstancesInstanceTagOutput) ToGetInstancesInstanceTagOutputWithContext(ctx context.Context) GetInstancesInstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesInstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesInstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceTagArrayOutput) ToGetInstancesInstanceTagArrayOutput() GetInstancesInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceTagArrayOutput) ToGetInstancesInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceTagArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceTag {
+		return vs[0].([]GetInstancesInstanceTag)[vs[1].(int)]
+	}).(GetInstancesInstanceTagOutput)
+}
+
+type GetInstancesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesTagInput is an input type that accepts GetInstancesTagArgs and GetInstancesTagOutput values.
+// You can construct a concrete instance of `GetInstancesTagInput` via:
+//
+//	GetInstancesTagArgs{...}
+type GetInstancesTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagOutput() GetInstancesTagOutput
+	ToGetInstancesTagOutputWithContext(context.Context) GetInstancesTagOutput
+}
+
+type GetInstancesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return i.ToGetInstancesTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagOutput)
+}
+
+// GetInstancesTagArrayInput is an input type that accepts GetInstancesTagArray and GetInstancesTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesTagArrayInput` via:
+//
+//	GetInstancesTagArray{ GetInstancesTagArgs{...} }
+type GetInstancesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput
+	ToGetInstancesTagArrayOutputWithContext(context.Context) GetInstancesTagArrayOutput
+}
+
+type GetInstancesTagArray []GetInstancesTagInput
+
+func (GetInstancesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return i.ToGetInstancesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagArrayOutput)
+}
+
+type GetInstancesTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return o
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) Index(i pulumi.IntInput) GetInstancesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesTag {
+		return vs[0].([]GetInstancesTag)[vs[1].(int)]
+	}).(GetInstancesTagOutput)
+}
+
+type GetMongoAllowListsAllowList struct {
+	// The list of IP address in allow list.
+	AllowList string `pulumi:"allowList"`
+	// The description of allow list.
+	AllowListDesc string `pulumi:"allowListDesc"`
+	// The ID of allow list.
+	AllowListId string `pulumi:"allowListId"`
+	// The number of allow list IPs.
+	AllowListIpNum int `pulumi:"allowListIpNum"`
+	// The allow list name.
+	AllowListName string `pulumi:"allowListName"`
+	// The IP address type in allow list.
+	AllowListType string `pulumi:"allowListType"`
+	// The total number of instances bound under the allow list.
+	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances []GetMongoAllowListsAllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// The project name of the allow list.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetMongoAllowListsAllowListInput is an input type that accepts GetMongoAllowListsAllowListArgs and GetMongoAllowListsAllowListOutput values.
+// You can construct a concrete instance of `GetMongoAllowListsAllowListInput` via:
+//
+//	GetMongoAllowListsAllowListArgs{...}
+type GetMongoAllowListsAllowListInput interface {
+	pulumi.Input
+
+	ToGetMongoAllowListsAllowListOutput() GetMongoAllowListsAllowListOutput
+	ToGetMongoAllowListsAllowListOutputWithContext(context.Context) GetMongoAllowListsAllowListOutput
+}
+
+type GetMongoAllowListsAllowListArgs struct {
+	// The list of IP address in allow list.
+	AllowList pulumi.StringInput `pulumi:"allowList"`
+	// The description of allow list.
+	AllowListDesc pulumi.StringInput `pulumi:"allowListDesc"`
+	// The ID of allow list.
+	AllowListId pulumi.StringInput `pulumi:"allowListId"`
+	// The number of allow list IPs.
+	AllowListIpNum pulumi.IntInput `pulumi:"allowListIpNum"`
+	// The allow list name.
+	AllowListName pulumi.StringInput `pulumi:"allowListName"`
+	// The IP address type in allow list.
+	AllowListType pulumi.StringInput `pulumi:"allowListType"`
+	// The total number of instances bound under the allow list.
+	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances GetMongoAllowListsAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetMongoAllowListsAllowListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoAllowListsAllowList)(nil)).Elem()
+}
+
+func (i GetMongoAllowListsAllowListArgs) ToGetMongoAllowListsAllowListOutput() GetMongoAllowListsAllowListOutput {
+	return i.ToGetMongoAllowListsAllowListOutputWithContext(context.Background())
+}
+
+func (i GetMongoAllowListsAllowListArgs) ToGetMongoAllowListsAllowListOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoAllowListsAllowListOutput)
+}
+
+// GetMongoAllowListsAllowListArrayInput is an input type that accepts GetMongoAllowListsAllowListArray and GetMongoAllowListsAllowListArrayOutput values.
+// You can construct a concrete instance of `GetMongoAllowListsAllowListArrayInput` via:
+//
+//	GetMongoAllowListsAllowListArray{ GetMongoAllowListsAllowListArgs{...} }
+type GetMongoAllowListsAllowListArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoAllowListsAllowListArrayOutput() GetMongoAllowListsAllowListArrayOutput
+	ToGetMongoAllowListsAllowListArrayOutputWithContext(context.Context) GetMongoAllowListsAllowListArrayOutput
+}
+
+type GetMongoAllowListsAllowListArray []GetMongoAllowListsAllowListInput
+
+func (GetMongoAllowListsAllowListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoAllowListsAllowList)(nil)).Elem()
+}
+
+func (i GetMongoAllowListsAllowListArray) ToGetMongoAllowListsAllowListArrayOutput() GetMongoAllowListsAllowListArrayOutput {
+	return i.ToGetMongoAllowListsAllowListArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoAllowListsAllowListArray) ToGetMongoAllowListsAllowListArrayOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoAllowListsAllowListArrayOutput)
+}
+
+type GetMongoAllowListsAllowListOutput struct{ *pulumi.OutputState }
+
+func (GetMongoAllowListsAllowListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoAllowListsAllowList)(nil)).Elem()
+}
+
+func (o GetMongoAllowListsAllowListOutput) ToGetMongoAllowListsAllowListOutput() GetMongoAllowListsAllowListOutput {
+	return o
+}
+
+func (o GetMongoAllowListsAllowListOutput) ToGetMongoAllowListsAllowListOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListOutput {
+	return o
+}
+
+// The list of IP address in allow list.
+func (o GetMongoAllowListsAllowListOutput) AllowList() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) string { return v.AllowList }).(pulumi.StringOutput)
+}
+
+// The description of allow list.
+func (o GetMongoAllowListsAllowListOutput) AllowListDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) string { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The ID of allow list.
+func (o GetMongoAllowListsAllowListOutput) AllowListId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) string { return v.AllowListId }).(pulumi.StringOutput)
+}
+
+// The number of allow list IPs.
+func (o GetMongoAllowListsAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) int { return v.AllowListIpNum }).(pulumi.IntOutput)
+}
+
+// The allow list name.
+func (o GetMongoAllowListsAllowListOutput) AllowListName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) string { return v.AllowListName }).(pulumi.StringOutput)
+}
+
+// The IP address type in allow list.
+func (o GetMongoAllowListsAllowListOutput) AllowListType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) string { return v.AllowListType }).(pulumi.StringOutput)
+}
+
+// The total number of instances bound under the allow list.
+func (o GetMongoAllowListsAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) int { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The list of associated instances.
+func (o GetMongoAllowListsAllowListOutput) AssociatedInstances() GetMongoAllowListsAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) []GetMongoAllowListsAllowListAssociatedInstance {
+		return v.AssociatedInstances
+	}).(GetMongoAllowListsAllowListAssociatedInstanceArrayOutput)
+}
+
+// The project name of the allow list.
+func (o GetMongoAllowListsAllowListOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowList) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetMongoAllowListsAllowListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoAllowListsAllowListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoAllowListsAllowList)(nil)).Elem()
+}
+
+func (o GetMongoAllowListsAllowListArrayOutput) ToGetMongoAllowListsAllowListArrayOutput() GetMongoAllowListsAllowListArrayOutput {
+	return o
+}
+
+func (o GetMongoAllowListsAllowListArrayOutput) ToGetMongoAllowListsAllowListArrayOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListArrayOutput {
+	return o
+}
+
+func (o GetMongoAllowListsAllowListArrayOutput) Index(i pulumi.IntInput) GetMongoAllowListsAllowListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoAllowListsAllowList {
+		return vs[0].([]GetMongoAllowListsAllowList)[vs[1].(int)]
+	}).(GetMongoAllowListsAllowListOutput)
+}
+
+type GetMongoAllowListsAllowListAssociatedInstance struct {
+	// The instance ID to query.
+	InstanceId string `pulumi:"instanceId"`
+	// The instance name that bound to the allow list.
+	InstanceName string `pulumi:"instanceName"`
+	// The project name of the allow list.
+	ProjectName string `pulumi:"projectName"`
+	// The VPC ID.
+	Vpc string `pulumi:"vpc"`
+}
+
+// GetMongoAllowListsAllowListAssociatedInstanceInput is an input type that accepts GetMongoAllowListsAllowListAssociatedInstanceArgs and GetMongoAllowListsAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `GetMongoAllowListsAllowListAssociatedInstanceInput` via:
+//
+//	GetMongoAllowListsAllowListAssociatedInstanceArgs{...}
+type GetMongoAllowListsAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToGetMongoAllowListsAllowListAssociatedInstanceOutput() GetMongoAllowListsAllowListAssociatedInstanceOutput
+	ToGetMongoAllowListsAllowListAssociatedInstanceOutputWithContext(context.Context) GetMongoAllowListsAllowListAssociatedInstanceOutput
+}
+
+type GetMongoAllowListsAllowListAssociatedInstanceArgs struct {
+	// The instance ID to query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The instance name that bound to the allow list.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The project name of the allow list.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The VPC ID.
+	Vpc pulumi.StringInput `pulumi:"vpc"`
+}
+
+func (GetMongoAllowListsAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetMongoAllowListsAllowListAssociatedInstanceArgs) ToGetMongoAllowListsAllowListAssociatedInstanceOutput() GetMongoAllowListsAllowListAssociatedInstanceOutput {
+	return i.ToGetMongoAllowListsAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i GetMongoAllowListsAllowListAssociatedInstanceArgs) ToGetMongoAllowListsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoAllowListsAllowListAssociatedInstanceOutput)
+}
+
+// GetMongoAllowListsAllowListAssociatedInstanceArrayInput is an input type that accepts GetMongoAllowListsAllowListAssociatedInstanceArray and GetMongoAllowListsAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `GetMongoAllowListsAllowListAssociatedInstanceArrayInput` via:
+//
+//	GetMongoAllowListsAllowListAssociatedInstanceArray{ GetMongoAllowListsAllowListAssociatedInstanceArgs{...} }
+type GetMongoAllowListsAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutput() GetMongoAllowListsAllowListAssociatedInstanceArrayOutput
+	ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutputWithContext(context.Context) GetMongoAllowListsAllowListAssociatedInstanceArrayOutput
+}
+
+type GetMongoAllowListsAllowListAssociatedInstanceArray []GetMongoAllowListsAllowListAssociatedInstanceInput
+
+func (GetMongoAllowListsAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetMongoAllowListsAllowListAssociatedInstanceArray) ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutput() GetMongoAllowListsAllowListAssociatedInstanceArrayOutput {
+	return i.ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoAllowListsAllowListAssociatedInstanceArray) ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoAllowListsAllowListAssociatedInstanceArrayOutput)
+}
+
+type GetMongoAllowListsAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetMongoAllowListsAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetMongoAllowListsAllowListAssociatedInstanceOutput) ToGetMongoAllowListsAllowListAssociatedInstanceOutput() GetMongoAllowListsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o GetMongoAllowListsAllowListAssociatedInstanceOutput) ToGetMongoAllowListsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// The instance ID to query.
+func (o GetMongoAllowListsAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowListAssociatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The instance name that bound to the allow list.
+func (o GetMongoAllowListsAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The project name of the allow list.
+func (o GetMongoAllowListsAllowListAssociatedInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowListAssociatedInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The VPC ID.
+func (o GetMongoAllowListsAllowListAssociatedInstanceOutput) Vpc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoAllowListsAllowListAssociatedInstance) string { return v.Vpc }).(pulumi.StringOutput)
+}
+
+type GetMongoAllowListsAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoAllowListsAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetMongoAllowListsAllowListAssociatedInstanceArrayOutput) ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutput() GetMongoAllowListsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetMongoAllowListsAllowListAssociatedInstanceArrayOutput) ToGetMongoAllowListsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetMongoAllowListsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetMongoAllowListsAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) GetMongoAllowListsAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoAllowListsAllowListAssociatedInstance {
+		return vs[0].([]GetMongoAllowListsAllowListAssociatedInstance)[vs[1].(int)]
+	}).(GetMongoAllowListsAllowListAssociatedInstanceOutput)
+}
+
+type GetRegionsRegion struct {
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The id of the region.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o GetRegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetSpecsSpecs struct {
+	// The collection of config server node specs.
+	ConfigServerNodeSpecs []GetSpecsSpecsConfigServerNodeSpec `pulumi:"configServerNodeSpecs"`
+	// The collection of mongos node specs.
+	MongosNodeSpecs []GetSpecsSpecsMongosNodeSpec `pulumi:"mongosNodeSpecs"`
+	// The collection of node specs.
+	NodeSpecs []GetSpecsSpecsNodeSpec `pulumi:"nodeSpecs"`
+	// The collection of shard node specs.
+	ShardNodeSpecs []GetSpecsSpecsShardNodeSpec `pulumi:"shardNodeSpecs"`
+}
+
+// GetSpecsSpecsInput is an input type that accepts GetSpecsSpecsArgs and GetSpecsSpecsOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsInput` via:
+//
+//	GetSpecsSpecsArgs{...}
+type GetSpecsSpecsInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsOutput() GetSpecsSpecsOutput
+	ToGetSpecsSpecsOutputWithContext(context.Context) GetSpecsSpecsOutput
+}
+
+type GetSpecsSpecsArgs struct {
+	// The collection of config server node specs.
+	ConfigServerNodeSpecs GetSpecsSpecsConfigServerNodeSpecArrayInput `pulumi:"configServerNodeSpecs"`
+	// The collection of mongos node specs.
+	MongosNodeSpecs GetSpecsSpecsMongosNodeSpecArrayInput `pulumi:"mongosNodeSpecs"`
+	// The collection of node specs.
+	NodeSpecs GetSpecsSpecsNodeSpecArrayInput `pulumi:"nodeSpecs"`
+	// The collection of shard node specs.
+	ShardNodeSpecs GetSpecsSpecsShardNodeSpecArrayInput `pulumi:"shardNodeSpecs"`
+}
+
+func (GetSpecsSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecs)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsArgs) ToGetSpecsSpecsOutput() GetSpecsSpecsOutput {
+	return i.ToGetSpecsSpecsOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsArgs) ToGetSpecsSpecsOutputWithContext(ctx context.Context) GetSpecsSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsOutput)
+}
+
+type GetSpecsSpecsOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecs)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsOutput) ToGetSpecsSpecsOutput() GetSpecsSpecsOutput {
+	return o
+}
+
+func (o GetSpecsSpecsOutput) ToGetSpecsSpecsOutputWithContext(ctx context.Context) GetSpecsSpecsOutput {
+	return o
+}
+
+// The collection of config server node specs.
+func (o GetSpecsSpecsOutput) ConfigServerNodeSpecs() GetSpecsSpecsConfigServerNodeSpecArrayOutput {
+	return o.ApplyT(func(v GetSpecsSpecs) []GetSpecsSpecsConfigServerNodeSpec { return v.ConfigServerNodeSpecs }).(GetSpecsSpecsConfigServerNodeSpecArrayOutput)
+}
+
+// The collection of mongos node specs.
+func (o GetSpecsSpecsOutput) MongosNodeSpecs() GetSpecsSpecsMongosNodeSpecArrayOutput {
+	return o.ApplyT(func(v GetSpecsSpecs) []GetSpecsSpecsMongosNodeSpec { return v.MongosNodeSpecs }).(GetSpecsSpecsMongosNodeSpecArrayOutput)
+}
+
+// The collection of node specs.
+func (o GetSpecsSpecsOutput) NodeSpecs() GetSpecsSpecsNodeSpecArrayOutput {
+	return o.ApplyT(func(v GetSpecsSpecs) []GetSpecsSpecsNodeSpec { return v.NodeSpecs }).(GetSpecsSpecsNodeSpecArrayOutput)
+}
+
+// The collection of shard node specs.
+func (o GetSpecsSpecsOutput) ShardNodeSpecs() GetSpecsSpecsShardNodeSpecArrayOutput {
+	return o.ApplyT(func(v GetSpecsSpecs) []GetSpecsSpecsShardNodeSpec { return v.ShardNodeSpecs }).(GetSpecsSpecsShardNodeSpecArrayOutput)
+}
+
+type GetSpecsSpecsConfigServerNodeSpec struct {
+	// The cpu cores.
+	CpuNum float64 `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn int `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage int `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInGb int `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage int `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// GetSpecsSpecsConfigServerNodeSpecInput is an input type that accepts GetSpecsSpecsConfigServerNodeSpecArgs and GetSpecsSpecsConfigServerNodeSpecOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsConfigServerNodeSpecInput` via:
+//
+//	GetSpecsSpecsConfigServerNodeSpecArgs{...}
+type GetSpecsSpecsConfigServerNodeSpecInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsConfigServerNodeSpecOutput() GetSpecsSpecsConfigServerNodeSpecOutput
+	ToGetSpecsSpecsConfigServerNodeSpecOutputWithContext(context.Context) GetSpecsSpecsConfigServerNodeSpecOutput
+}
+
+type GetSpecsSpecsConfigServerNodeSpecArgs struct {
+	// The cpu cores.
+	CpuNum pulumi.Float64Input `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn pulumi.IntInput `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage pulumi.IntInput `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInGb pulumi.IntInput `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage pulumi.IntInput `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (GetSpecsSpecsConfigServerNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsConfigServerNodeSpecArgs) ToGetSpecsSpecsConfigServerNodeSpecOutput() GetSpecsSpecsConfigServerNodeSpecOutput {
+	return i.ToGetSpecsSpecsConfigServerNodeSpecOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsConfigServerNodeSpecArgs) ToGetSpecsSpecsConfigServerNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsConfigServerNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsConfigServerNodeSpecOutput)
+}
+
+// GetSpecsSpecsConfigServerNodeSpecArrayInput is an input type that accepts GetSpecsSpecsConfigServerNodeSpecArray and GetSpecsSpecsConfigServerNodeSpecArrayOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsConfigServerNodeSpecArrayInput` via:
+//
+//	GetSpecsSpecsConfigServerNodeSpecArray{ GetSpecsSpecsConfigServerNodeSpecArgs{...} }
+type GetSpecsSpecsConfigServerNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsConfigServerNodeSpecArrayOutput() GetSpecsSpecsConfigServerNodeSpecArrayOutput
+	ToGetSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(context.Context) GetSpecsSpecsConfigServerNodeSpecArrayOutput
+}
+
+type GetSpecsSpecsConfigServerNodeSpecArray []GetSpecsSpecsConfigServerNodeSpecInput
+
+func (GetSpecsSpecsConfigServerNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsConfigServerNodeSpecArray) ToGetSpecsSpecsConfigServerNodeSpecArrayOutput() GetSpecsSpecsConfigServerNodeSpecArrayOutput {
+	return i.ToGetSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsConfigServerNodeSpecArray) ToGetSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsConfigServerNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsConfigServerNodeSpecArrayOutput)
+}
+
+type GetSpecsSpecsConfigServerNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsConfigServerNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) ToGetSpecsSpecsConfigServerNodeSpecOutput() GetSpecsSpecsConfigServerNodeSpecOutput {
+	return o
+}
+
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) ToGetSpecsSpecsConfigServerNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsConfigServerNodeSpecOutput {
+	return o
+}
+
+// The cpu cores.
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) CpuNum() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSpecsSpecsConfigServerNodeSpec) float64 { return v.CpuNum }).(pulumi.Float64Output)
+}
+
+// The max connections.
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) MaxConn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsConfigServerNodeSpec) int { return v.MaxConn }).(pulumi.IntOutput)
+}
+
+// The max storage.
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) MaxStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsConfigServerNodeSpec) int { return v.MaxStorage }).(pulumi.IntOutput)
+}
+
+// The memory in GB.
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) MemInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsConfigServerNodeSpec) int { return v.MemInGb }).(pulumi.IntOutput)
+}
+
+// The min storage.
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) MinStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsConfigServerNodeSpec) int { return v.MinStorage }).(pulumi.IntOutput)
+}
+
+// The shard node spec name.
+func (o GetSpecsSpecsConfigServerNodeSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpecsSpecsConfigServerNodeSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type GetSpecsSpecsConfigServerNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsConfigServerNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsConfigServerNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsConfigServerNodeSpecArrayOutput) ToGetSpecsSpecsConfigServerNodeSpecArrayOutput() GetSpecsSpecsConfigServerNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsConfigServerNodeSpecArrayOutput) ToGetSpecsSpecsConfigServerNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsConfigServerNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsConfigServerNodeSpecArrayOutput) Index(i pulumi.IntInput) GetSpecsSpecsConfigServerNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSpecsSpecsConfigServerNodeSpec {
+		return vs[0].([]GetSpecsSpecsConfigServerNodeSpec)[vs[1].(int)]
+	}).(GetSpecsSpecsConfigServerNodeSpecOutput)
+}
+
+type GetSpecsSpecsMongosNodeSpec struct {
+	// The cpu cores.
+	CpuNum float64 `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn int `pulumi:"maxConn"`
+	// The memory in GB.
+	MemInGb float64 `pulumi:"memInGb"`
+	// The shard node spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// GetSpecsSpecsMongosNodeSpecInput is an input type that accepts GetSpecsSpecsMongosNodeSpecArgs and GetSpecsSpecsMongosNodeSpecOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsMongosNodeSpecInput` via:
+//
+//	GetSpecsSpecsMongosNodeSpecArgs{...}
+type GetSpecsSpecsMongosNodeSpecInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsMongosNodeSpecOutput() GetSpecsSpecsMongosNodeSpecOutput
+	ToGetSpecsSpecsMongosNodeSpecOutputWithContext(context.Context) GetSpecsSpecsMongosNodeSpecOutput
+}
+
+type GetSpecsSpecsMongosNodeSpecArgs struct {
+	// The cpu cores.
+	CpuNum pulumi.Float64Input `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn pulumi.IntInput `pulumi:"maxConn"`
+	// The memory in GB.
+	MemInGb pulumi.Float64Input `pulumi:"memInGb"`
+	// The shard node spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (GetSpecsSpecsMongosNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsMongosNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsMongosNodeSpecArgs) ToGetSpecsSpecsMongosNodeSpecOutput() GetSpecsSpecsMongosNodeSpecOutput {
+	return i.ToGetSpecsSpecsMongosNodeSpecOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsMongosNodeSpecArgs) ToGetSpecsSpecsMongosNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsMongosNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsMongosNodeSpecOutput)
+}
+
+// GetSpecsSpecsMongosNodeSpecArrayInput is an input type that accepts GetSpecsSpecsMongosNodeSpecArray and GetSpecsSpecsMongosNodeSpecArrayOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsMongosNodeSpecArrayInput` via:
+//
+//	GetSpecsSpecsMongosNodeSpecArray{ GetSpecsSpecsMongosNodeSpecArgs{...} }
+type GetSpecsSpecsMongosNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsMongosNodeSpecArrayOutput() GetSpecsSpecsMongosNodeSpecArrayOutput
+	ToGetSpecsSpecsMongosNodeSpecArrayOutputWithContext(context.Context) GetSpecsSpecsMongosNodeSpecArrayOutput
+}
+
+type GetSpecsSpecsMongosNodeSpecArray []GetSpecsSpecsMongosNodeSpecInput
+
+func (GetSpecsSpecsMongosNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsMongosNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsMongosNodeSpecArray) ToGetSpecsSpecsMongosNodeSpecArrayOutput() GetSpecsSpecsMongosNodeSpecArrayOutput {
+	return i.ToGetSpecsSpecsMongosNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsMongosNodeSpecArray) ToGetSpecsSpecsMongosNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsMongosNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsMongosNodeSpecArrayOutput)
+}
+
+type GetSpecsSpecsMongosNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsMongosNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsMongosNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsMongosNodeSpecOutput) ToGetSpecsSpecsMongosNodeSpecOutput() GetSpecsSpecsMongosNodeSpecOutput {
+	return o
+}
+
+func (o GetSpecsSpecsMongosNodeSpecOutput) ToGetSpecsSpecsMongosNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsMongosNodeSpecOutput {
+	return o
+}
+
+// The cpu cores.
+func (o GetSpecsSpecsMongosNodeSpecOutput) CpuNum() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSpecsSpecsMongosNodeSpec) float64 { return v.CpuNum }).(pulumi.Float64Output)
+}
+
+// The max connections.
+func (o GetSpecsSpecsMongosNodeSpecOutput) MaxConn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsMongosNodeSpec) int { return v.MaxConn }).(pulumi.IntOutput)
+}
+
+// The memory in GB.
+func (o GetSpecsSpecsMongosNodeSpecOutput) MemInGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSpecsSpecsMongosNodeSpec) float64 { return v.MemInGb }).(pulumi.Float64Output)
+}
+
+// The shard node spec name.
+func (o GetSpecsSpecsMongosNodeSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpecsSpecsMongosNodeSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type GetSpecsSpecsMongosNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsMongosNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsMongosNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsMongosNodeSpecArrayOutput) ToGetSpecsSpecsMongosNodeSpecArrayOutput() GetSpecsSpecsMongosNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsMongosNodeSpecArrayOutput) ToGetSpecsSpecsMongosNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsMongosNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsMongosNodeSpecArrayOutput) Index(i pulumi.IntInput) GetSpecsSpecsMongosNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSpecsSpecsMongosNodeSpec {
+		return vs[0].([]GetSpecsSpecsMongosNodeSpec)[vs[1].(int)]
+	}).(GetSpecsSpecsMongosNodeSpecOutput)
+}
+
+type GetSpecsSpecsNodeSpec struct {
+	// The cpu cores.
+	CpuNum float64 `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn int `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage int `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInDb float64 `pulumi:"memInDb"`
+	// The min storage.
+	MinStorage int `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// GetSpecsSpecsNodeSpecInput is an input type that accepts GetSpecsSpecsNodeSpecArgs and GetSpecsSpecsNodeSpecOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsNodeSpecInput` via:
+//
+//	GetSpecsSpecsNodeSpecArgs{...}
+type GetSpecsSpecsNodeSpecInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsNodeSpecOutput() GetSpecsSpecsNodeSpecOutput
+	ToGetSpecsSpecsNodeSpecOutputWithContext(context.Context) GetSpecsSpecsNodeSpecOutput
+}
+
+type GetSpecsSpecsNodeSpecArgs struct {
+	// The cpu cores.
+	CpuNum pulumi.Float64Input `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn pulumi.IntInput `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage pulumi.IntInput `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInDb pulumi.Float64Input `pulumi:"memInDb"`
+	// The min storage.
+	MinStorage pulumi.IntInput `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (GetSpecsSpecsNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsNodeSpecArgs) ToGetSpecsSpecsNodeSpecOutput() GetSpecsSpecsNodeSpecOutput {
+	return i.ToGetSpecsSpecsNodeSpecOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsNodeSpecArgs) ToGetSpecsSpecsNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsNodeSpecOutput)
+}
+
+// GetSpecsSpecsNodeSpecArrayInput is an input type that accepts GetSpecsSpecsNodeSpecArray and GetSpecsSpecsNodeSpecArrayOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsNodeSpecArrayInput` via:
+//
+//	GetSpecsSpecsNodeSpecArray{ GetSpecsSpecsNodeSpecArgs{...} }
+type GetSpecsSpecsNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsNodeSpecArrayOutput() GetSpecsSpecsNodeSpecArrayOutput
+	ToGetSpecsSpecsNodeSpecArrayOutputWithContext(context.Context) GetSpecsSpecsNodeSpecArrayOutput
+}
+
+type GetSpecsSpecsNodeSpecArray []GetSpecsSpecsNodeSpecInput
+
+func (GetSpecsSpecsNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsNodeSpecArray) ToGetSpecsSpecsNodeSpecArrayOutput() GetSpecsSpecsNodeSpecArrayOutput {
+	return i.ToGetSpecsSpecsNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsNodeSpecArray) ToGetSpecsSpecsNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsNodeSpecArrayOutput)
+}
+
+type GetSpecsSpecsNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsNodeSpecOutput) ToGetSpecsSpecsNodeSpecOutput() GetSpecsSpecsNodeSpecOutput {
+	return o
+}
+
+func (o GetSpecsSpecsNodeSpecOutput) ToGetSpecsSpecsNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsNodeSpecOutput {
+	return o
+}
+
+// The cpu cores.
+func (o GetSpecsSpecsNodeSpecOutput) CpuNum() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSpecsSpecsNodeSpec) float64 { return v.CpuNum }).(pulumi.Float64Output)
+}
+
+// The max connections.
+func (o GetSpecsSpecsNodeSpecOutput) MaxConn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsNodeSpec) int { return v.MaxConn }).(pulumi.IntOutput)
+}
+
+// The max storage.
+func (o GetSpecsSpecsNodeSpecOutput) MaxStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsNodeSpec) int { return v.MaxStorage }).(pulumi.IntOutput)
+}
+
+// The memory in GB.
+func (o GetSpecsSpecsNodeSpecOutput) MemInDb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSpecsSpecsNodeSpec) float64 { return v.MemInDb }).(pulumi.Float64Output)
+}
+
+// The min storage.
+func (o GetSpecsSpecsNodeSpecOutput) MinStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsNodeSpec) int { return v.MinStorage }).(pulumi.IntOutput)
+}
+
+// The shard node spec name.
+func (o GetSpecsSpecsNodeSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpecsSpecsNodeSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type GetSpecsSpecsNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsNodeSpecArrayOutput) ToGetSpecsSpecsNodeSpecArrayOutput() GetSpecsSpecsNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsNodeSpecArrayOutput) ToGetSpecsSpecsNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsNodeSpecArrayOutput) Index(i pulumi.IntInput) GetSpecsSpecsNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSpecsSpecsNodeSpec {
+		return vs[0].([]GetSpecsSpecsNodeSpec)[vs[1].(int)]
+	}).(GetSpecsSpecsNodeSpecOutput)
+}
+
+type GetSpecsSpecsShardNodeSpec struct {
+	// The cpu cores.
+	CpuNum float64 `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn int `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage int `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInGb int `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage int `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// GetSpecsSpecsShardNodeSpecInput is an input type that accepts GetSpecsSpecsShardNodeSpecArgs and GetSpecsSpecsShardNodeSpecOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsShardNodeSpecInput` via:
+//
+//	GetSpecsSpecsShardNodeSpecArgs{...}
+type GetSpecsSpecsShardNodeSpecInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsShardNodeSpecOutput() GetSpecsSpecsShardNodeSpecOutput
+	ToGetSpecsSpecsShardNodeSpecOutputWithContext(context.Context) GetSpecsSpecsShardNodeSpecOutput
+}
+
+type GetSpecsSpecsShardNodeSpecArgs struct {
+	// The cpu cores.
+	CpuNum pulumi.Float64Input `pulumi:"cpuNum"`
+	// The max connections.
+	MaxConn pulumi.IntInput `pulumi:"maxConn"`
+	// The max storage.
+	MaxStorage pulumi.IntInput `pulumi:"maxStorage"`
+	// The memory in GB.
+	MemInGb pulumi.IntInput `pulumi:"memInGb"`
+	// The min storage.
+	MinStorage pulumi.IntInput `pulumi:"minStorage"`
+	// The shard node spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (GetSpecsSpecsShardNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsShardNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsShardNodeSpecArgs) ToGetSpecsSpecsShardNodeSpecOutput() GetSpecsSpecsShardNodeSpecOutput {
+	return i.ToGetSpecsSpecsShardNodeSpecOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsShardNodeSpecArgs) ToGetSpecsSpecsShardNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsShardNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsShardNodeSpecOutput)
+}
+
+// GetSpecsSpecsShardNodeSpecArrayInput is an input type that accepts GetSpecsSpecsShardNodeSpecArray and GetSpecsSpecsShardNodeSpecArrayOutput values.
+// You can construct a concrete instance of `GetSpecsSpecsShardNodeSpecArrayInput` via:
+//
+//	GetSpecsSpecsShardNodeSpecArray{ GetSpecsSpecsShardNodeSpecArgs{...} }
+type GetSpecsSpecsShardNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetSpecsSpecsShardNodeSpecArrayOutput() GetSpecsSpecsShardNodeSpecArrayOutput
+	ToGetSpecsSpecsShardNodeSpecArrayOutputWithContext(context.Context) GetSpecsSpecsShardNodeSpecArrayOutput
+}
+
+type GetSpecsSpecsShardNodeSpecArray []GetSpecsSpecsShardNodeSpecInput
+
+func (GetSpecsSpecsShardNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsShardNodeSpec)(nil)).Elem()
+}
+
+func (i GetSpecsSpecsShardNodeSpecArray) ToGetSpecsSpecsShardNodeSpecArrayOutput() GetSpecsSpecsShardNodeSpecArrayOutput {
+	return i.ToGetSpecsSpecsShardNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetSpecsSpecsShardNodeSpecArray) ToGetSpecsSpecsShardNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsShardNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpecsSpecsShardNodeSpecArrayOutput)
+}
+
+type GetSpecsSpecsShardNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsShardNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpecsSpecsShardNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsShardNodeSpecOutput) ToGetSpecsSpecsShardNodeSpecOutput() GetSpecsSpecsShardNodeSpecOutput {
+	return o
+}
+
+func (o GetSpecsSpecsShardNodeSpecOutput) ToGetSpecsSpecsShardNodeSpecOutputWithContext(ctx context.Context) GetSpecsSpecsShardNodeSpecOutput {
+	return o
+}
+
+// The cpu cores.
+func (o GetSpecsSpecsShardNodeSpecOutput) CpuNum() pulumi.Float64Output {
+	return o.ApplyT(func(v GetSpecsSpecsShardNodeSpec) float64 { return v.CpuNum }).(pulumi.Float64Output)
+}
+
+// The max connections.
+func (o GetSpecsSpecsShardNodeSpecOutput) MaxConn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsShardNodeSpec) int { return v.MaxConn }).(pulumi.IntOutput)
+}
+
+// The max storage.
+func (o GetSpecsSpecsShardNodeSpecOutput) MaxStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsShardNodeSpec) int { return v.MaxStorage }).(pulumi.IntOutput)
+}
+
+// The memory in GB.
+func (o GetSpecsSpecsShardNodeSpecOutput) MemInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsShardNodeSpec) int { return v.MemInGb }).(pulumi.IntOutput)
+}
+
+// The min storage.
+func (o GetSpecsSpecsShardNodeSpecOutput) MinStorage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSpecsSpecsShardNodeSpec) int { return v.MinStorage }).(pulumi.IntOutput)
+}
+
+// The shard node spec name.
+func (o GetSpecsSpecsShardNodeSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpecsSpecsShardNodeSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type GetSpecsSpecsShardNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSpecsSpecsShardNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpecsSpecsShardNodeSpec)(nil)).Elem()
+}
+
+func (o GetSpecsSpecsShardNodeSpecArrayOutput) ToGetSpecsSpecsShardNodeSpecArrayOutput() GetSpecsSpecsShardNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsShardNodeSpecArrayOutput) ToGetSpecsSpecsShardNodeSpecArrayOutputWithContext(ctx context.Context) GetSpecsSpecsShardNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetSpecsSpecsShardNodeSpecArrayOutput) Index(i pulumi.IntInput) GetSpecsSpecsShardNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSpecsSpecsShardNodeSpec {
+		return vs[0].([]GetSpecsSpecsShardNodeSpec)[vs[1].(int)]
+	}).(GetSpecsSpecsShardNodeSpecOutput)
+}
+
+type GetSslStatesSslState struct {
+	// The mongodb instance ID to query.
+	InstanceId string `pulumi:"instanceId"`
+	// Whetehr SSL is valid.
+	IsValid bool `pulumi:"isValid"`
+	// Whether SSL is enabled.
+	SslEnable bool `pulumi:"sslEnable"`
+	// The expire time of SSL.
+	SslExpiredTime string `pulumi:"sslExpiredTime"`
+}
+
+// GetSslStatesSslStateInput is an input type that accepts GetSslStatesSslStateArgs and GetSslStatesSslStateOutput values.
+// You can construct a concrete instance of `GetSslStatesSslStateInput` via:
+//
+//	GetSslStatesSslStateArgs{...}
+type GetSslStatesSslStateInput interface {
+	pulumi.Input
+
+	ToGetSslStatesSslStateOutput() GetSslStatesSslStateOutput
+	ToGetSslStatesSslStateOutputWithContext(context.Context) GetSslStatesSslStateOutput
+}
+
+type GetSslStatesSslStateArgs struct {
+	// The mongodb instance ID to query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Whetehr SSL is valid.
+	IsValid pulumi.BoolInput `pulumi:"isValid"`
+	// Whether SSL is enabled.
+	SslEnable pulumi.BoolInput `pulumi:"sslEnable"`
+	// The expire time of SSL.
+	SslExpiredTime pulumi.StringInput `pulumi:"sslExpiredTime"`
+}
+
+func (GetSslStatesSslStateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslStatesSslState)(nil)).Elem()
+}
+
+func (i GetSslStatesSslStateArgs) ToGetSslStatesSslStateOutput() GetSslStatesSslStateOutput {
+	return i.ToGetSslStatesSslStateOutputWithContext(context.Background())
+}
+
+func (i GetSslStatesSslStateArgs) ToGetSslStatesSslStateOutputWithContext(ctx context.Context) GetSslStatesSslStateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslStatesSslStateOutput)
+}
+
+// GetSslStatesSslStateArrayInput is an input type that accepts GetSslStatesSslStateArray and GetSslStatesSslStateArrayOutput values.
+// You can construct a concrete instance of `GetSslStatesSslStateArrayInput` via:
+//
+//	GetSslStatesSslStateArray{ GetSslStatesSslStateArgs{...} }
+type GetSslStatesSslStateArrayInput interface {
+	pulumi.Input
+
+	ToGetSslStatesSslStateArrayOutput() GetSslStatesSslStateArrayOutput
+	ToGetSslStatesSslStateArrayOutputWithContext(context.Context) GetSslStatesSslStateArrayOutput
+}
+
+type GetSslStatesSslStateArray []GetSslStatesSslStateInput
+
+func (GetSslStatesSslStateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslStatesSslState)(nil)).Elem()
+}
+
+func (i GetSslStatesSslStateArray) ToGetSslStatesSslStateArrayOutput() GetSslStatesSslStateArrayOutput {
+	return i.ToGetSslStatesSslStateArrayOutputWithContext(context.Background())
+}
+
+func (i GetSslStatesSslStateArray) ToGetSslStatesSslStateArrayOutputWithContext(ctx context.Context) GetSslStatesSslStateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslStatesSslStateArrayOutput)
+}
+
+type GetSslStatesSslStateOutput struct{ *pulumi.OutputState }
+
+func (GetSslStatesSslStateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslStatesSslState)(nil)).Elem()
+}
+
+func (o GetSslStatesSslStateOutput) ToGetSslStatesSslStateOutput() GetSslStatesSslStateOutput {
+	return o
+}
+
+func (o GetSslStatesSslStateOutput) ToGetSslStatesSslStateOutputWithContext(ctx context.Context) GetSslStatesSslStateOutput {
+	return o
+}
+
+// The mongodb instance ID to query.
+func (o GetSslStatesSslStateOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslStatesSslState) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Whetehr SSL is valid.
+func (o GetSslStatesSslStateOutput) IsValid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSslStatesSslState) bool { return v.IsValid }).(pulumi.BoolOutput)
+}
+
+// Whether SSL is enabled.
+func (o GetSslStatesSslStateOutput) SslEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSslStatesSslState) bool { return v.SslEnable }).(pulumi.BoolOutput)
+}
+
+// The expire time of SSL.
+func (o GetSslStatesSslStateOutput) SslExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslStatesSslState) string { return v.SslExpiredTime }).(pulumi.StringOutput)
+}
+
+type GetSslStatesSslStateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSslStatesSslStateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslStatesSslState)(nil)).Elem()
+}
+
+func (o GetSslStatesSslStateArrayOutput) ToGetSslStatesSslStateArrayOutput() GetSslStatesSslStateArrayOutput {
+	return o
+}
+
+func (o GetSslStatesSslStateArrayOutput) ToGetSslStatesSslStateArrayOutputWithContext(ctx context.Context) GetSslStatesSslStateArrayOutput {
+	return o
+}
+
+func (o GetSslStatesSslStateArrayOutput) Index(i pulumi.IntInput) GetSslStatesSslStateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSslStatesSslState {
+		return vs[0].([]GetSslStatesSslState)[vs[1].(int)]
+	}).(GetSslStatesSslStateOutput)
+}
+
+type GetZonesZone struct {
+	// The id of the zone.
+	Id string `pulumi:"id"`
+	// The id of the zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The id of the zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of the zone.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeInput)(nil)).Elem(), AccountAccountPrivilegeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeArrayInput)(nil)).Elem(), AccountAccountPrivilegeArray{})
@@ -4540,6 +8344,56 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SslStatesSslStateArrayInput)(nil)).Elem(), SslStatesSslStateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountInput)(nil)).Elem(), GetAccountsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountArrayInput)(nil)).Elem(), GetAccountsAccountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountAccountPrivilegeInput)(nil)).Elem(), GetAccountsAccountAccountPrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountAccountPrivilegeArrayInput)(nil)).Elem(), GetAccountsAccountAccountPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointInput)(nil)).Elem(), GetEndpointsEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointArrayInput)(nil)).Elem(), GetEndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointDbAddressInput)(nil)).Elem(), GetEndpointsEndpointDbAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointDbAddressArrayInput)(nil)).Elem(), GetEndpointsEndpointDbAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogsInput)(nil)).Elem(), GetInstanceParameterLogsParameterChangeLogsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersInstanceParameterInput)(nil)).Elem(), GetInstanceParametersInstanceParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersInstanceParameterArrayInput)(nil)).Elem(), GetInstanceParametersInstanceParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersParameterInput)(nil)).Elem(), GetInstanceParametersParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersParameterArrayInput)(nil)).Elem(), GetInstanceParametersParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersParameterInstanceParameterInput)(nil)).Elem(), GetInstanceParametersParameterInstanceParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersParameterInstanceParameterArrayInput)(nil)).Elem(), GetInstanceParametersParameterInstanceParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceConfigServerInput)(nil)).Elem(), GetInstancesInstanceConfigServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceConfigServerArrayInput)(nil)).Elem(), GetInstancesInstanceConfigServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceMongoInput)(nil)).Elem(), GetInstancesInstanceMongoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceMongoArrayInput)(nil)).Elem(), GetInstancesInstanceMongoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNodeInput)(nil)).Elem(), GetInstancesInstanceNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNodeArrayInput)(nil)).Elem(), GetInstancesInstanceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceShardInput)(nil)).Elem(), GetInstancesInstanceShardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceShardArrayInput)(nil)).Elem(), GetInstancesInstanceShardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceShardNodeInput)(nil)).Elem(), GetInstancesInstanceShardNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceShardNodeArrayInput)(nil)).Elem(), GetInstancesInstanceShardNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceTagInput)(nil)).Elem(), GetInstancesInstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceTagArrayInput)(nil)).Elem(), GetInstancesInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagInput)(nil)).Elem(), GetInstancesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagArrayInput)(nil)).Elem(), GetInstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoAllowListsAllowListInput)(nil)).Elem(), GetMongoAllowListsAllowListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoAllowListsAllowListArrayInput)(nil)).Elem(), GetMongoAllowListsAllowListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoAllowListsAllowListAssociatedInstanceInput)(nil)).Elem(), GetMongoAllowListsAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoAllowListsAllowListAssociatedInstanceArrayInput)(nil)).Elem(), GetMongoAllowListsAllowListAssociatedInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsInput)(nil)).Elem(), GetSpecsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsConfigServerNodeSpecInput)(nil)).Elem(), GetSpecsSpecsConfigServerNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsConfigServerNodeSpecArrayInput)(nil)).Elem(), GetSpecsSpecsConfigServerNodeSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsMongosNodeSpecInput)(nil)).Elem(), GetSpecsSpecsMongosNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsMongosNodeSpecArrayInput)(nil)).Elem(), GetSpecsSpecsMongosNodeSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsNodeSpecInput)(nil)).Elem(), GetSpecsSpecsNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsNodeSpecArrayInput)(nil)).Elem(), GetSpecsSpecsNodeSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsShardNodeSpecInput)(nil)).Elem(), GetSpecsSpecsShardNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpecsSpecsShardNodeSpecArrayInput)(nil)).Elem(), GetSpecsSpecsShardNodeSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslStatesSslStateInput)(nil)).Elem(), GetSslStatesSslStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslStatesSslStateArrayInput)(nil)).Elem(), GetSslStatesSslStateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeOutput{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountOutput{})
@@ -4602,4 +8456,54 @@ func init() {
 	pulumi.RegisterOutputType(SslStatesSslStateArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountAccountPrivilegeOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountAccountPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointDbAddressOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointDbAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceParameterLogsParameterChangeLogsOutput{})
+	pulumi.RegisterOutputType(GetInstanceParametersInstanceParameterOutput{})
+	pulumi.RegisterOutputType(GetInstanceParametersInstanceParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceParametersParameterOutput{})
+	pulumi.RegisterOutputType(GetInstanceParametersParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceParametersParameterInstanceParameterOutput{})
+	pulumi.RegisterOutputType(GetInstanceParametersParameterInstanceParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceConfigServerOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceConfigServerArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceMongoOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceMongoArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceNodeOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceShardOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceShardArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceShardNodeOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceShardNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoAllowListsAllowListOutput{})
+	pulumi.RegisterOutputType(GetMongoAllowListsAllowListArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoAllowListsAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(GetMongoAllowListsAllowListAssociatedInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsConfigServerNodeSpecOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsConfigServerNodeSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsMongosNodeSpecOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsMongosNodeSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsNodeSpecOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsNodeSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsShardNodeSpecOutput{})
+	pulumi.RegisterOutputType(GetSpecsSpecsShardNodeSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetSslStatesSslStateOutput{})
+	pulumi.RegisterOutputType(GetSslStatesSslStateArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }

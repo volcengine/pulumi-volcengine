@@ -17,6 +17,8 @@ __all__ = [
     'service_control_policies_output',
 ]
 
+warnings.warn("""volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies""", DeprecationWarning)
+
 @pulumi.output_type
 class ServiceControlPoliciesResult:
     """
@@ -111,7 +113,7 @@ def service_control_policies(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.organization.service_control_policies(policy_type="Custom",
+    foo = volcengine.organization.get_service_control_policies(policy_type="Custom",
         query="test")
     ```
 
@@ -120,6 +122,7 @@ def service_control_policies(output_file: Optional[str] = None,
     :param str policy_type: The type of policy. The value can be System or Custom.
     :param str query: Query policies, support policy name or description.
     """
+    pulumi.log.warn("""service_control_policies is deprecated: volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['policyType'] = policy_type
@@ -149,7 +152,7 @@ def service_control_policies_output(output_file: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.organization.service_control_policies(policy_type="Custom",
+    foo = volcengine.organization.get_service_control_policies(policy_type="Custom",
         query="test")
     ```
 
@@ -158,4 +161,5 @@ def service_control_policies_output(output_file: Optional[pulumi.Input[Optional[
     :param str policy_type: The type of policy. The value can be System or Custom.
     :param str query: Query policies, support policy name or description.
     """
+    pulumi.log.warn("""service_control_policies is deprecated: volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies""")
     ...

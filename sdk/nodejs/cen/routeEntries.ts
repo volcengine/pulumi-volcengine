@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to query detailed information of cen route entries
  */
+/** @deprecated volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries */
 export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<RouteEntriesResult> {
+    pulumi.log.warn("routeEntries is deprecated: volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/routeEntries:RouteEntries", {
@@ -93,6 +95,7 @@ export interface RouteEntriesResult {
 /**
  * Use this data source to query detailed information of cen route entries
  */
+/** @deprecated volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries */
 export function routeEntriesOutput(args: RouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteEntriesResult> {
     return pulumi.output(args).apply((a: any) => routeEntries(a, opts))
 }

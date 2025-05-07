@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Zones({});
+ * const foo = volcengine.rds_mssql.getZones({});
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Zones has been deprecated in favor of volcengine.rds_mssql.getZones */
 export function zones(args?: ZonesArgs, opts?: pulumi.InvokeOptions): Promise<ZonesResult> {
+    pulumi.log.warn("zones is deprecated: volcengine.rds_mssql.Zones has been deprecated in favor of volcengine.rds_mssql.getZones")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -68,9 +70,10 @@ export interface ZonesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Zones({});
+ * const foo = volcengine.rds_mssql.getZones({});
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Zones has been deprecated in favor of volcengine.rds_mssql.getZones */
 export function zonesOutput(args?: ZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ZonesResult> {
     return pulumi.output(args).apply((a: any) => zones(a, opts))
 }

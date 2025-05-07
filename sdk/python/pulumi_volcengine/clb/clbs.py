@@ -18,6 +18,8 @@ __all__ = [
     'clbs_output',
 ]
 
+warnings.warn("""volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs""", DeprecationWarning)
+
 @pulumi.output_type
 class ClbsResult:
     """
@@ -174,7 +176,7 @@ def clbs(eni_address: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -201,7 +203,7 @@ def clbs(eni_address: Optional[str] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_clbs = volcengine.clb.clbs_output(ids=[__item.id for __item in foo_clb])
+    foo_clbs = volcengine.clb.get_clbs_output(ids=[__item.id for __item in foo_clb])
     ```
 
 
@@ -214,6 +216,7 @@ def clbs(eni_address: Optional[str] = None,
     :param Sequence[pulumi.InputType['ClbsTagArgs']] tags: Tags.
     :param str vpc_id: The id of the VPC.
     """
+    pulumi.log.warn("""clbs is deprecated: volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs""")
     __args__ = dict()
     __args__['eniAddress'] = eni_address
     __args__['ids'] = ids
@@ -258,7 +261,7 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -285,7 +288,7 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_clbs = volcengine.clb.clbs_output(ids=[__item.id for __item in foo_clb])
+    foo_clbs = volcengine.clb.get_clbs_output(ids=[__item.id for __item in foo_clb])
     ```
 
 
@@ -298,4 +301,5 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['ClbsTagArgs']] tags: Tags.
     :param str vpc_id: The id of the VPC.
     """
+    pulumi.log.warn("""clbs is deprecated: volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs""")
     ...

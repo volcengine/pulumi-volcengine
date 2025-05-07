@@ -17,6 +17,8 @@ __all__ = [
     'zones_output',
 ]
 
+warnings.warn("""volcengine.redis.Zones has been deprecated in favor of volcengine.redis.getZones""", DeprecationWarning)
+
 @pulumi.output_type
 class ZonesResult:
     """
@@ -98,13 +100,14 @@ def zones(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.redis.zones(region_id="cn-north-3")
+    default = volcengine.redis.get_zones(region_id="cn-north-3")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str region_id: The Id of Region.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.redis.Zones has been deprecated in favor of volcengine.redis.getZones""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['regionId'] = region_id
@@ -131,11 +134,12 @@ def zones_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.redis.zones(region_id="cn-north-3")
+    default = volcengine.redis.get_zones(region_id="cn-north-3")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str region_id: The Id of Region.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.redis.Zones has been deprecated in favor of volcengine.redis.getZones""")
     ...

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -56,12 +56,14 @@ import * as utilities from "../utilities";
  *         description: "acc-test",
  *     }));
  * }
- * const fooSslVpnClientCerts = volcengine.vpn.SslVpnClientCertsOutput({
+ * const fooSslVpnClientCerts = volcengine.vpn.getSslVpnClientCertsOutput({
  *     ids: fooSslVpnClientCert.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts */
 export function sslVpnClientCerts(args?: SslVpnClientCertsArgs, opts?: pulumi.InvokeOptions): Promise<SslVpnClientCertsResult> {
+    pulumi.log.warn("sslVpnClientCerts is deprecated: volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -137,7 +139,7 @@ export interface SslVpnClientCertsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -178,11 +180,12 @@ export interface SslVpnClientCertsResult {
  *         description: "acc-test",
  *     }));
  * }
- * const fooSslVpnClientCerts = volcengine.vpn.SslVpnClientCertsOutput({
+ * const fooSslVpnClientCerts = volcengine.vpn.getSslVpnClientCertsOutput({
  *     ids: fooSslVpnClientCert.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts */
 export function sslVpnClientCertsOutput(args?: SslVpnClientCertsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SslVpnClientCertsResult> {
     return pulumi.output(args).apply((a: any) => sslVpnClientCerts(a, opts))
 }

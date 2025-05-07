@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Ebs
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
     ///     var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new()
     ///     {
@@ -30,7 +30,7 @@ namespace Pulumi.Volcengine.Ebs
     ///         Description = "acc-test",
     ///         Kind = "data",
     ///         Size = 500,
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VolumeChargeType = "PostPaid",
     ///         ProjectName = "default",
     ///     });

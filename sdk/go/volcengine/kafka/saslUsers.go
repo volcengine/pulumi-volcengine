@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -91,7 +91,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = kafka.SaslUsersOutput(ctx, kafka.SaslUsersOutputArgs{
+//			_ = kafka.GetSaslUsersOutput(ctx, kafka.GetSaslUsersOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //				UserName:   fooSaslUser.UserName,
 //			}, nil)
@@ -100,6 +100,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers
 func SaslUsers(ctx *pulumi.Context, args *SaslUsersArgs, opts ...pulumi.InvokeOption) (*SaslUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SaslUsersResult

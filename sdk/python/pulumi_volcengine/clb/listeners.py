@@ -17,6 +17,8 @@ __all__ = [
     'listeners_output',
 ]
 
+warnings.warn("""volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners""", DeprecationWarning)
+
 @pulumi.output_type
 class ListenersResult:
     """
@@ -131,7 +133,7 @@ def listeners(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -173,7 +175,7 @@ def listeners(ids: Optional[Sequence[str]] = None,
             uri="/",
         ),
         enabled="on")
-    foo_listeners = volcengine.clb.listeners_output(ids=[foo_listener.id])
+    foo_listeners = volcengine.clb.get_listeners_output(ids=[foo_listener.id])
     ```
 
 
@@ -183,6 +185,7 @@ def listeners(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of Listener.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""listeners is deprecated: volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['listenerName'] = listener_name
@@ -218,7 +221,7 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -260,7 +263,7 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
             uri="/",
         ),
         enabled="on")
-    foo_listeners = volcengine.clb.listeners_output(ids=[foo_listener.id])
+    foo_listeners = volcengine.clb.get_listeners_output(ids=[foo_listener.id])
     ```
 
 
@@ -270,4 +273,5 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     :param str name_regex: A Name Regex of Listener.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""listeners is deprecated: volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners""")
     ...

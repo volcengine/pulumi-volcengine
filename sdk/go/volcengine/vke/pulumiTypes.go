@@ -7747,7 +7747,7 @@ type NodePoolNodeConfig struct {
 	InitializeScript *string `pulumi:"initializeScript"`
 	// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
-	// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
+	// The InstanceTypeIds of NodeConfig. The value can get from vke.getSupportResourceTypes datasource.
 	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix *string `pulumi:"namePrefix"`
@@ -7793,7 +7793,7 @@ type NodePoolNodeConfigArgs struct {
 	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
 	// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
 	InstanceChargeType pulumi.StringPtrInput `pulumi:"instanceChargeType"`
-	// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
+	// The InstanceTypeIds of NodeConfig. The value can get from vke.getSupportResourceTypes datasource.
 	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
@@ -7931,7 +7931,7 @@ func (o NodePoolNodeConfigOutput) InstanceChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.InstanceChargeType }).(pulumi.StringPtrOutput)
 }
 
-// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
+// The InstanceTypeIds of NodeConfig. The value can get from vke.getSupportResourceTypes datasource.
 func (o NodePoolNodeConfigOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
 }
@@ -8080,7 +8080,7 @@ func (o NodePoolNodeConfigPtrOutput) InstanceChargeType() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
+// The InstanceTypeIds of NodeConfig. The value can get from vke.getSupportResourceTypes datasource.
 func (o NodePoolNodeConfigPtrOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfig) []string {
 		if v == nil {
@@ -11984,6 +11984,5211 @@ func (o SupportResourceTypesResourceArrayOutput) Index(i pulumi.IntInput) Suppor
 	}).(SupportResourceTypesResourceOutput)
 }
 
+type GetAddonsAddon struct {
+	// The ID of the Cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The config of addon.
+	Config string `pulumi:"config"`
+	// ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	CreateClientToken *string `pulumi:"createClientToken"`
+	// Addon creation time. UTC+0 time in standard RFC3339 format.
+	CreateTime string `pulumi:"createTime"`
+	// The deploy mode.
+	DeployMode string `pulumi:"deployMode"`
+	// The deploy node type.
+	DeployNodeType string `pulumi:"deployNodeType"`
+	// The name of the cluster.
+	Name string `pulumi:"name"`
+	// The status of the addon.
+	Status GetAddonsAddonStatus `pulumi:"status"`
+	// The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	UpdateClientToken *string `pulumi:"updateClientToken"`
+	// The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+	UpdateTime string `pulumi:"updateTime"`
+	// The name of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetAddonsAddonInput is an input type that accepts GetAddonsAddonArgs and GetAddonsAddonOutput values.
+// You can construct a concrete instance of `GetAddonsAddonInput` via:
+//
+//	GetAddonsAddonArgs{...}
+type GetAddonsAddonInput interface {
+	pulumi.Input
+
+	ToGetAddonsAddonOutput() GetAddonsAddonOutput
+	ToGetAddonsAddonOutputWithContext(context.Context) GetAddonsAddonOutput
+}
+
+type GetAddonsAddonArgs struct {
+	// The ID of the Cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The config of addon.
+	Config pulumi.StringInput `pulumi:"config"`
+	// ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	CreateClientToken pulumi.StringPtrInput `pulumi:"createClientToken"`
+	// Addon creation time. UTC+0 time in standard RFC3339 format.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The deploy mode.
+	DeployMode pulumi.StringInput `pulumi:"deployMode"`
+	// The deploy node type.
+	DeployNodeType pulumi.StringInput `pulumi:"deployNodeType"`
+	// The name of the cluster.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The status of the addon.
+	Status GetAddonsAddonStatusInput `pulumi:"status"`
+	// The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	UpdateClientToken pulumi.StringPtrInput `pulumi:"updateClientToken"`
+	// The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The name of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetAddonsAddonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsAddon)(nil)).Elem()
+}
+
+func (i GetAddonsAddonArgs) ToGetAddonsAddonOutput() GetAddonsAddonOutput {
+	return i.ToGetAddonsAddonOutputWithContext(context.Background())
+}
+
+func (i GetAddonsAddonArgs) ToGetAddonsAddonOutputWithContext(ctx context.Context) GetAddonsAddonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsAddonOutput)
+}
+
+// GetAddonsAddonArrayInput is an input type that accepts GetAddonsAddonArray and GetAddonsAddonArrayOutput values.
+// You can construct a concrete instance of `GetAddonsAddonArrayInput` via:
+//
+//	GetAddonsAddonArray{ GetAddonsAddonArgs{...} }
+type GetAddonsAddonArrayInput interface {
+	pulumi.Input
+
+	ToGetAddonsAddonArrayOutput() GetAddonsAddonArrayOutput
+	ToGetAddonsAddonArrayOutputWithContext(context.Context) GetAddonsAddonArrayOutput
+}
+
+type GetAddonsAddonArray []GetAddonsAddonInput
+
+func (GetAddonsAddonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddonsAddon)(nil)).Elem()
+}
+
+func (i GetAddonsAddonArray) ToGetAddonsAddonArrayOutput() GetAddonsAddonArrayOutput {
+	return i.ToGetAddonsAddonArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddonsAddonArray) ToGetAddonsAddonArrayOutputWithContext(ctx context.Context) GetAddonsAddonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsAddonArrayOutput)
+}
+
+type GetAddonsAddonOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsAddonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsAddon)(nil)).Elem()
+}
+
+func (o GetAddonsAddonOutput) ToGetAddonsAddonOutput() GetAddonsAddonOutput {
+	return o
+}
+
+func (o GetAddonsAddonOutput) ToGetAddonsAddonOutputWithContext(ctx context.Context) GetAddonsAddonOutput {
+	return o
+}
+
+// The ID of the Cluster.
+func (o GetAddonsAddonOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The config of addon.
+func (o GetAddonsAddonOutput) Config() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.Config }).(pulumi.StringOutput)
+}
+
+// ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+func (o GetAddonsAddonOutput) CreateClientToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAddonsAddon) *string { return v.CreateClientToken }).(pulumi.StringPtrOutput)
+}
+
+// Addon creation time. UTC+0 time in standard RFC3339 format.
+func (o GetAddonsAddonOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The deploy mode.
+func (o GetAddonsAddonOutput) DeployMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.DeployMode }).(pulumi.StringOutput)
+}
+
+// The deploy node type.
+func (o GetAddonsAddonOutput) DeployNodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.DeployNodeType }).(pulumi.StringOutput)
+}
+
+// The name of the cluster.
+func (o GetAddonsAddonOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The status of the addon.
+func (o GetAddonsAddonOutput) Status() GetAddonsAddonStatusOutput {
+	return o.ApplyT(func(v GetAddonsAddon) GetAddonsAddonStatus { return v.Status }).(GetAddonsAddonStatusOutput)
+}
+
+// The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+func (o GetAddonsAddonOutput) UpdateClientToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAddonsAddon) *string { return v.UpdateClientToken }).(pulumi.StringPtrOutput)
+}
+
+// The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+func (o GetAddonsAddonOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The name of the cluster.
+func (o GetAddonsAddonOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddon) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetAddonsAddonArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsAddonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddonsAddon)(nil)).Elem()
+}
+
+func (o GetAddonsAddonArrayOutput) ToGetAddonsAddonArrayOutput() GetAddonsAddonArrayOutput {
+	return o
+}
+
+func (o GetAddonsAddonArrayOutput) ToGetAddonsAddonArrayOutputWithContext(ctx context.Context) GetAddonsAddonArrayOutput {
+	return o
+}
+
+func (o GetAddonsAddonArrayOutput) Index(i pulumi.IntInput) GetAddonsAddonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddonsAddon {
+		return vs[0].([]GetAddonsAddon)[vs[1].(int)]
+	}).(GetAddonsAddonOutput)
+}
+
+type GetAddonsAddonStatus struct {
+	// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+	Conditions []GetAddonsAddonStatusCondition `pulumi:"conditions"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase string `pulumi:"phase"`
+}
+
+// GetAddonsAddonStatusInput is an input type that accepts GetAddonsAddonStatusArgs and GetAddonsAddonStatusOutput values.
+// You can construct a concrete instance of `GetAddonsAddonStatusInput` via:
+//
+//	GetAddonsAddonStatusArgs{...}
+type GetAddonsAddonStatusInput interface {
+	pulumi.Input
+
+	ToGetAddonsAddonStatusOutput() GetAddonsAddonStatusOutput
+	ToGetAddonsAddonStatusOutputWithContext(context.Context) GetAddonsAddonStatusOutput
+}
+
+type GetAddonsAddonStatusArgs struct {
+	// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+	Conditions GetAddonsAddonStatusConditionArrayInput `pulumi:"conditions"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase pulumi.StringInput `pulumi:"phase"`
+}
+
+func (GetAddonsAddonStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsAddonStatus)(nil)).Elem()
+}
+
+func (i GetAddonsAddonStatusArgs) ToGetAddonsAddonStatusOutput() GetAddonsAddonStatusOutput {
+	return i.ToGetAddonsAddonStatusOutputWithContext(context.Background())
+}
+
+func (i GetAddonsAddonStatusArgs) ToGetAddonsAddonStatusOutputWithContext(ctx context.Context) GetAddonsAddonStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsAddonStatusOutput)
+}
+
+type GetAddonsAddonStatusOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsAddonStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsAddonStatus)(nil)).Elem()
+}
+
+func (o GetAddonsAddonStatusOutput) ToGetAddonsAddonStatusOutput() GetAddonsAddonStatusOutput {
+	return o
+}
+
+func (o GetAddonsAddonStatusOutput) ToGetAddonsAddonStatusOutputWithContext(ctx context.Context) GetAddonsAddonStatusOutput {
+	return o
+}
+
+// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+func (o GetAddonsAddonStatusOutput) Conditions() GetAddonsAddonStatusConditionArrayOutput {
+	return o.ApplyT(func(v GetAddonsAddonStatus) []GetAddonsAddonStatusCondition { return v.Conditions }).(GetAddonsAddonStatusConditionArrayOutput)
+}
+
+// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+func (o GetAddonsAddonStatusOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddonStatus) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+type GetAddonsAddonStatusCondition struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	Type string `pulumi:"type"`
+}
+
+// GetAddonsAddonStatusConditionInput is an input type that accepts GetAddonsAddonStatusConditionArgs and GetAddonsAddonStatusConditionOutput values.
+// You can construct a concrete instance of `GetAddonsAddonStatusConditionInput` via:
+//
+//	GetAddonsAddonStatusConditionArgs{...}
+type GetAddonsAddonStatusConditionInput interface {
+	pulumi.Input
+
+	ToGetAddonsAddonStatusConditionOutput() GetAddonsAddonStatusConditionOutput
+	ToGetAddonsAddonStatusConditionOutputWithContext(context.Context) GetAddonsAddonStatusConditionOutput
+}
+
+type GetAddonsAddonStatusConditionArgs struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetAddonsAddonStatusConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (i GetAddonsAddonStatusConditionArgs) ToGetAddonsAddonStatusConditionOutput() GetAddonsAddonStatusConditionOutput {
+	return i.ToGetAddonsAddonStatusConditionOutputWithContext(context.Background())
+}
+
+func (i GetAddonsAddonStatusConditionArgs) ToGetAddonsAddonStatusConditionOutputWithContext(ctx context.Context) GetAddonsAddonStatusConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsAddonStatusConditionOutput)
+}
+
+// GetAddonsAddonStatusConditionArrayInput is an input type that accepts GetAddonsAddonStatusConditionArray and GetAddonsAddonStatusConditionArrayOutput values.
+// You can construct a concrete instance of `GetAddonsAddonStatusConditionArrayInput` via:
+//
+//	GetAddonsAddonStatusConditionArray{ GetAddonsAddonStatusConditionArgs{...} }
+type GetAddonsAddonStatusConditionArrayInput interface {
+	pulumi.Input
+
+	ToGetAddonsAddonStatusConditionArrayOutput() GetAddonsAddonStatusConditionArrayOutput
+	ToGetAddonsAddonStatusConditionArrayOutputWithContext(context.Context) GetAddonsAddonStatusConditionArrayOutput
+}
+
+type GetAddonsAddonStatusConditionArray []GetAddonsAddonStatusConditionInput
+
+func (GetAddonsAddonStatusConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (i GetAddonsAddonStatusConditionArray) ToGetAddonsAddonStatusConditionArrayOutput() GetAddonsAddonStatusConditionArrayOutput {
+	return i.ToGetAddonsAddonStatusConditionArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddonsAddonStatusConditionArray) ToGetAddonsAddonStatusConditionArrayOutputWithContext(ctx context.Context) GetAddonsAddonStatusConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsAddonStatusConditionArrayOutput)
+}
+
+type GetAddonsAddonStatusConditionOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsAddonStatusConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (o GetAddonsAddonStatusConditionOutput) ToGetAddonsAddonStatusConditionOutput() GetAddonsAddonStatusConditionOutput {
+	return o
+}
+
+func (o GetAddonsAddonStatusConditionOutput) ToGetAddonsAddonStatusConditionOutputWithContext(ctx context.Context) GetAddonsAddonStatusConditionOutput {
+	return o
+}
+
+// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+func (o GetAddonsAddonStatusConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddonsAddonStatusCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetAddonsAddonStatusConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsAddonStatusConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (o GetAddonsAddonStatusConditionArrayOutput) ToGetAddonsAddonStatusConditionArrayOutput() GetAddonsAddonStatusConditionArrayOutput {
+	return o
+}
+
+func (o GetAddonsAddonStatusConditionArrayOutput) ToGetAddonsAddonStatusConditionArrayOutputWithContext(ctx context.Context) GetAddonsAddonStatusConditionArrayOutput {
+	return o
+}
+
+func (o GetAddonsAddonStatusConditionArrayOutput) Index(i pulumi.IntInput) GetAddonsAddonStatusConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddonsAddonStatusCondition {
+		return vs[0].([]GetAddonsAddonStatusCondition)[vs[1].(int)]
+	}).(GetAddonsAddonStatusConditionOutput)
+}
+
+type GetAddonsStatus struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	ConditionsType *string `pulumi:"conditionsType"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase *string `pulumi:"phase"`
+}
+
+// GetAddonsStatusInput is an input type that accepts GetAddonsStatusArgs and GetAddonsStatusOutput values.
+// You can construct a concrete instance of `GetAddonsStatusInput` via:
+//
+//	GetAddonsStatusArgs{...}
+type GetAddonsStatusInput interface {
+	pulumi.Input
+
+	ToGetAddonsStatusOutput() GetAddonsStatusOutput
+	ToGetAddonsStatusOutputWithContext(context.Context) GetAddonsStatusOutput
+}
+
+type GetAddonsStatusArgs struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (GetAddonsStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsStatus)(nil)).Elem()
+}
+
+func (i GetAddonsStatusArgs) ToGetAddonsStatusOutput() GetAddonsStatusOutput {
+	return i.ToGetAddonsStatusOutputWithContext(context.Background())
+}
+
+func (i GetAddonsStatusArgs) ToGetAddonsStatusOutputWithContext(ctx context.Context) GetAddonsStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsStatusOutput)
+}
+
+// GetAddonsStatusArrayInput is an input type that accepts GetAddonsStatusArray and GetAddonsStatusArrayOutput values.
+// You can construct a concrete instance of `GetAddonsStatusArrayInput` via:
+//
+//	GetAddonsStatusArray{ GetAddonsStatusArgs{...} }
+type GetAddonsStatusArrayInput interface {
+	pulumi.Input
+
+	ToGetAddonsStatusArrayOutput() GetAddonsStatusArrayOutput
+	ToGetAddonsStatusArrayOutputWithContext(context.Context) GetAddonsStatusArrayOutput
+}
+
+type GetAddonsStatusArray []GetAddonsStatusInput
+
+func (GetAddonsStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddonsStatus)(nil)).Elem()
+}
+
+func (i GetAddonsStatusArray) ToGetAddonsStatusArrayOutput() GetAddonsStatusArrayOutput {
+	return i.ToGetAddonsStatusArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddonsStatusArray) ToGetAddonsStatusArrayOutputWithContext(ctx context.Context) GetAddonsStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddonsStatusArrayOutput)
+}
+
+type GetAddonsStatusOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddonsStatus)(nil)).Elem()
+}
+
+func (o GetAddonsStatusOutput) ToGetAddonsStatusOutput() GetAddonsStatusOutput {
+	return o
+}
+
+func (o GetAddonsStatusOutput) ToGetAddonsStatusOutputWithContext(ctx context.Context) GetAddonsStatusOutput {
+	return o
+}
+
+// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+func (o GetAddonsStatusOutput) ConditionsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAddonsStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
+}
+
+// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+func (o GetAddonsStatusOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAddonsStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type GetAddonsStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddonsStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddonsStatus)(nil)).Elem()
+}
+
+func (o GetAddonsStatusArrayOutput) ToGetAddonsStatusArrayOutput() GetAddonsStatusArrayOutput {
+	return o
+}
+
+func (o GetAddonsStatusArrayOutput) ToGetAddonsStatusArrayOutputWithContext(ctx context.Context) GetAddonsStatusArrayOutput {
+	return o
+}
+
+func (o GetAddonsStatusArrayOutput) Index(i pulumi.IntInput) GetAddonsStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddonsStatus {
+		return vs[0].([]GetAddonsStatus)[vs[1].(int)]
+	}).(GetAddonsStatusOutput)
+}
+
+type GetClustersCluster struct {
+	// The config of the cluster.
+	ClusterConfig GetClustersClusterClusterConfig `pulumi:"clusterConfig"`
+	// ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	CreateClientToken *string `pulumi:"createClientToken"`
+	// Cluster creation time. UTC+0 time in standard RFC3339 format.
+	CreateTime string `pulumi:"createTime"`
+	// The delete protection of the cluster, the value is `true` or `false`.
+	DeleteProtectionEnabled bool `pulumi:"deleteProtectionEnabled"`
+	// The description of the cluster.
+	Description string `pulumi:"description"`
+	// Eip allocation Id.
+	EipAllocationId string `pulumi:"eipAllocationId"`
+	// The ID of the Cluster.
+	Id string `pulumi:"id"`
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+	KubeconfigPrivate string `pulumi:"kubeconfigPrivate"`
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+	KubeconfigPublic string `pulumi:"kubeconfigPublic"`
+	// The Kubernetes version information corresponding to the cluster, specific to the patch version.
+	KubernetesVersion string `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfigs []GetClustersClusterLoggingConfig `pulumi:"loggingConfigs"`
+	// The name of the cluster.
+	Name string `pulumi:"name"`
+	// Statistics on the number of nodes corresponding to each master state in the cluster.
+	NodeStatistics GetClustersClusterNodeStatistics `pulumi:"nodeStatistics"`
+	// The config of the pods.
+	PodsConfig GetClustersClusterPodsConfig `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName string `pulumi:"projectName"`
+	// The config of the services.
+	ServicesConfig GetClustersClusterServicesConfig `pulumi:"servicesConfig"`
+	// The status of the cluster.
+	Status GetClustersClusterStatus `pulumi:"status"`
+	// Tags.
+	Tags []GetClustersClusterTag `pulumi:"tags"`
+	// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	UpdateClientToken *string `pulumi:"updateClientToken"`
+	// The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetClustersClusterInput is an input type that accepts GetClustersClusterArgs and GetClustersClusterOutput values.
+// You can construct a concrete instance of `GetClustersClusterInput` via:
+//
+//	GetClustersClusterArgs{...}
+type GetClustersClusterInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterOutput() GetClustersClusterOutput
+	ToGetClustersClusterOutputWithContext(context.Context) GetClustersClusterOutput
+}
+
+type GetClustersClusterArgs struct {
+	// The config of the cluster.
+	ClusterConfig GetClustersClusterClusterConfigInput `pulumi:"clusterConfig"`
+	// ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	CreateClientToken pulumi.StringPtrInput `pulumi:"createClientToken"`
+	// Cluster creation time. UTC+0 time in standard RFC3339 format.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The delete protection of the cluster, the value is `true` or `false`.
+	DeleteProtectionEnabled pulumi.BoolInput `pulumi:"deleteProtectionEnabled"`
+	// The description of the cluster.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Eip allocation Id.
+	EipAllocationId pulumi.StringInput `pulumi:"eipAllocationId"`
+	// The ID of the Cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+	KubeconfigPrivate pulumi.StringInput `pulumi:"kubeconfigPrivate"`
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+	KubeconfigPublic pulumi.StringInput `pulumi:"kubeconfigPublic"`
+	// The Kubernetes version information corresponding to the cluster, specific to the patch version.
+	KubernetesVersion pulumi.StringInput `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfigs GetClustersClusterLoggingConfigArrayInput `pulumi:"loggingConfigs"`
+	// The name of the cluster.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Statistics on the number of nodes corresponding to each master state in the cluster.
+	NodeStatistics GetClustersClusterNodeStatisticsInput `pulumi:"nodeStatistics"`
+	// The config of the pods.
+	PodsConfig GetClustersClusterPodsConfigInput `pulumi:"podsConfig"`
+	// The project name of the cluster.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The config of the services.
+	ServicesConfig GetClustersClusterServicesConfigInput `pulumi:"servicesConfig"`
+	// The status of the cluster.
+	Status GetClustersClusterStatusInput `pulumi:"status"`
+	// Tags.
+	Tags GetClustersClusterTagArrayInput `pulumi:"tags"`
+	// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	UpdateClientToken pulumi.StringPtrInput `pulumi:"updateClientToken"`
+	// The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetClustersClusterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterArgs) ToGetClustersClusterOutput() GetClustersClusterOutput {
+	return i.ToGetClustersClusterOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterArgs) ToGetClustersClusterOutputWithContext(ctx context.Context) GetClustersClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterOutput)
+}
+
+// GetClustersClusterArrayInput is an input type that accepts GetClustersClusterArray and GetClustersClusterArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterArrayInput` via:
+//
+//	GetClustersClusterArray{ GetClustersClusterArgs{...} }
+type GetClustersClusterArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput
+	ToGetClustersClusterArrayOutputWithContext(context.Context) GetClustersClusterArrayOutput
+}
+
+type GetClustersClusterArray []GetClustersClusterInput
+
+func (GetClustersClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterArray) ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput {
+	return i.ToGetClustersClusterArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterArray) ToGetClustersClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterArrayOutput)
+}
+
+type GetClustersClusterOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterOutput) ToGetClustersClusterOutput() GetClustersClusterOutput {
+	return o
+}
+
+func (o GetClustersClusterOutput) ToGetClustersClusterOutputWithContext(ctx context.Context) GetClustersClusterOutput {
+	return o
+}
+
+// The config of the cluster.
+func (o GetClustersClusterOutput) ClusterConfig() GetClustersClusterClusterConfigOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterClusterConfig { return v.ClusterConfig }).(GetClustersClusterClusterConfigOutput)
+}
+
+// ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+func (o GetClustersClusterOutput) CreateClientToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetClustersCluster) *string { return v.CreateClientToken }).(pulumi.StringPtrOutput)
+}
+
+// Cluster creation time. UTC+0 time in standard RFC3339 format.
+func (o GetClustersClusterOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The delete protection of the cluster, the value is `true` or `false`.
+func (o GetClustersClusterOutput) DeleteProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.DeleteProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+// The description of the cluster.
+func (o GetClustersClusterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Eip allocation Id.
+func (o GetClustersClusterOutput) EipAllocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.EipAllocationId }).(pulumi.StringOutput)
+}
+
+// The ID of the Cluster.
+func (o GetClustersClusterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+func (o GetClustersClusterOutput) KubeconfigPrivate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.KubeconfigPrivate }).(pulumi.StringOutput)
+}
+
+// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+func (o GetClustersClusterOutput) KubeconfigPublic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.KubeconfigPublic }).(pulumi.StringOutput)
+}
+
+// The Kubernetes version information corresponding to the cluster, specific to the patch version.
+func (o GetClustersClusterOutput) KubernetesVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.KubernetesVersion }).(pulumi.StringOutput)
+}
+
+// Cluster log configuration information.
+func (o GetClustersClusterOutput) LoggingConfigs() GetClustersClusterLoggingConfigArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterLoggingConfig { return v.LoggingConfigs }).(GetClustersClusterLoggingConfigArrayOutput)
+}
+
+// The name of the cluster.
+func (o GetClustersClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Statistics on the number of nodes corresponding to each master state in the cluster.
+func (o GetClustersClusterOutput) NodeStatistics() GetClustersClusterNodeStatisticsOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterNodeStatistics { return v.NodeStatistics }).(GetClustersClusterNodeStatisticsOutput)
+}
+
+// The config of the pods.
+func (o GetClustersClusterOutput) PodsConfig() GetClustersClusterPodsConfigOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterPodsConfig { return v.PodsConfig }).(GetClustersClusterPodsConfigOutput)
+}
+
+// The project name of the cluster.
+func (o GetClustersClusterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The config of the services.
+func (o GetClustersClusterOutput) ServicesConfig() GetClustersClusterServicesConfigOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterServicesConfig { return v.ServicesConfig }).(GetClustersClusterServicesConfigOutput)
+}
+
+// The status of the cluster.
+func (o GetClustersClusterOutput) Status() GetClustersClusterStatusOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterStatus { return v.Status }).(GetClustersClusterStatusOutput)
+}
+
+// Tags.
+func (o GetClustersClusterOutput) Tags() GetClustersClusterTagArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterTag { return v.Tags }).(GetClustersClusterTagArrayOutput)
+}
+
+// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+func (o GetClustersClusterOutput) UpdateClientToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetClustersCluster) *string { return v.UpdateClientToken }).(pulumi.StringPtrOutput)
+}
+
+// The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
+func (o GetClustersClusterOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterArrayOutput) ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterArrayOutput) ToGetClustersClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterArrayOutput) Index(i pulumi.IntInput) GetClustersClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersCluster {
+		return vs[0].([]GetClustersCluster)[vs[1].(int)]
+	}).(GetClustersClusterOutput)
+}
+
+type GetClustersClusterClusterConfig struct {
+	// Endpoint information accessed by the cluster API Server.
+	ApiServerEndpoints GetClustersClusterClusterConfigApiServerEndpoints `pulumi:"apiServerEndpoints"`
+	// Cluster API Server public network access configuration.
+	ApiServerPublicAccessConfig GetClustersClusterClusterConfigApiServerPublicAccessConfig `pulumi:"apiServerPublicAccessConfig"`
+	// Cluster API Server public network access configuration, the value is `true` or `false`.
+	ApiServerPublicAccessEnabled bool `pulumi:"apiServerPublicAccessEnabled"`
+	// Node public network access configuration, the value is `true` or `false`.
+	ResourcePublicAccessDefaultEnabled bool `pulumi:"resourcePublicAccessDefaultEnabled"`
+	// The security group used by the cluster control plane and nodes.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// A list of Pod subnet IDs for the VPC-CNI container network.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// The private network where the cluster control plane network resides.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetClustersClusterClusterConfigInput is an input type that accepts GetClustersClusterClusterConfigArgs and GetClustersClusterClusterConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterClusterConfigInput` via:
+//
+//	GetClustersClusterClusterConfigArgs{...}
+type GetClustersClusterClusterConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterClusterConfigOutput() GetClustersClusterClusterConfigOutput
+	ToGetClustersClusterClusterConfigOutputWithContext(context.Context) GetClustersClusterClusterConfigOutput
+}
+
+type GetClustersClusterClusterConfigArgs struct {
+	// Endpoint information accessed by the cluster API Server.
+	ApiServerEndpoints GetClustersClusterClusterConfigApiServerEndpointsInput `pulumi:"apiServerEndpoints"`
+	// Cluster API Server public network access configuration.
+	ApiServerPublicAccessConfig GetClustersClusterClusterConfigApiServerPublicAccessConfigInput `pulumi:"apiServerPublicAccessConfig"`
+	// Cluster API Server public network access configuration, the value is `true` or `false`.
+	ApiServerPublicAccessEnabled pulumi.BoolInput `pulumi:"apiServerPublicAccessEnabled"`
+	// Node public network access configuration, the value is `true` or `false`.
+	ResourcePublicAccessDefaultEnabled pulumi.BoolInput `pulumi:"resourcePublicAccessDefaultEnabled"`
+	// The security group used by the cluster control plane and nodes.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// A list of Pod subnet IDs for the VPC-CNI container network.
+	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// The private network where the cluster control plane network resides.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetClustersClusterClusterConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterClusterConfigArgs) ToGetClustersClusterClusterConfigOutput() GetClustersClusterClusterConfigOutput {
+	return i.ToGetClustersClusterClusterConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterClusterConfigArgs) ToGetClustersClusterClusterConfigOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterClusterConfigOutput)
+}
+
+type GetClustersClusterClusterConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterClusterConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterClusterConfigOutput) ToGetClustersClusterClusterConfigOutput() GetClustersClusterClusterConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterClusterConfigOutput) ToGetClustersClusterClusterConfigOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigOutput {
+	return o
+}
+
+// Endpoint information accessed by the cluster API Server.
+func (o GetClustersClusterClusterConfigOutput) ApiServerEndpoints() GetClustersClusterClusterConfigApiServerEndpointsOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) GetClustersClusterClusterConfigApiServerEndpoints {
+		return v.ApiServerEndpoints
+	}).(GetClustersClusterClusterConfigApiServerEndpointsOutput)
+}
+
+// Cluster API Server public network access configuration.
+func (o GetClustersClusterClusterConfigOutput) ApiServerPublicAccessConfig() GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) GetClustersClusterClusterConfigApiServerPublicAccessConfig {
+		return v.ApiServerPublicAccessConfig
+	}).(GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput)
+}
+
+// Cluster API Server public network access configuration, the value is `true` or `false`.
+func (o GetClustersClusterClusterConfigOutput) ApiServerPublicAccessEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) bool { return v.ApiServerPublicAccessEnabled }).(pulumi.BoolOutput)
+}
+
+// Node public network access configuration, the value is `true` or `false`.
+func (o GetClustersClusterClusterConfigOutput) ResourcePublicAccessDefaultEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) bool { return v.ResourcePublicAccessDefaultEnabled }).(pulumi.BoolOutput)
+}
+
+// The security group used by the cluster control plane and nodes.
+func (o GetClustersClusterClusterConfigOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// A list of Pod subnet IDs for the VPC-CNI container network.
+func (o GetClustersClusterClusterConfigOutput) SubnetIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// The private network where the cluster control plane network resides.
+func (o GetClustersClusterClusterConfigOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfig) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerEndpoints struct {
+	// Endpoint address of the cluster API Server private network.
+	PrivateIp GetClustersClusterClusterConfigApiServerEndpointsPrivateIp `pulumi:"privateIp"`
+	// Endpoint address of the cluster API Server public network.
+	PublicIp GetClustersClusterClusterConfigApiServerEndpointsPublicIp `pulumi:"publicIp"`
+}
+
+// GetClustersClusterClusterConfigApiServerEndpointsInput is an input type that accepts GetClustersClusterClusterConfigApiServerEndpointsArgs and GetClustersClusterClusterConfigApiServerEndpointsOutput values.
+// You can construct a concrete instance of `GetClustersClusterClusterConfigApiServerEndpointsInput` via:
+//
+//	GetClustersClusterClusterConfigApiServerEndpointsArgs{...}
+type GetClustersClusterClusterConfigApiServerEndpointsInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterClusterConfigApiServerEndpointsOutput() GetClustersClusterClusterConfigApiServerEndpointsOutput
+	ToGetClustersClusterClusterConfigApiServerEndpointsOutputWithContext(context.Context) GetClustersClusterClusterConfigApiServerEndpointsOutput
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsArgs struct {
+	// Endpoint address of the cluster API Server private network.
+	PrivateIp GetClustersClusterClusterConfigApiServerEndpointsPrivateIpInput `pulumi:"privateIp"`
+	// Endpoint address of the cluster API Server public network.
+	PublicIp GetClustersClusterClusterConfigApiServerEndpointsPublicIpInput `pulumi:"publicIp"`
+}
+
+func (GetClustersClusterClusterConfigApiServerEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpoints)(nil)).Elem()
+}
+
+func (i GetClustersClusterClusterConfigApiServerEndpointsArgs) ToGetClustersClusterClusterConfigApiServerEndpointsOutput() GetClustersClusterClusterConfigApiServerEndpointsOutput {
+	return i.ToGetClustersClusterClusterConfigApiServerEndpointsOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterClusterConfigApiServerEndpointsArgs) ToGetClustersClusterClusterConfigApiServerEndpointsOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterClusterConfigApiServerEndpointsOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterClusterConfigApiServerEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpoints)(nil)).Elem()
+}
+
+func (o GetClustersClusterClusterConfigApiServerEndpointsOutput) ToGetClustersClusterClusterConfigApiServerEndpointsOutput() GetClustersClusterClusterConfigApiServerEndpointsOutput {
+	return o
+}
+
+func (o GetClustersClusterClusterConfigApiServerEndpointsOutput) ToGetClustersClusterClusterConfigApiServerEndpointsOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerEndpointsOutput {
+	return o
+}
+
+// Endpoint address of the cluster API Server private network.
+func (o GetClustersClusterClusterConfigApiServerEndpointsOutput) PrivateIp() GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerEndpoints) GetClustersClusterClusterConfigApiServerEndpointsPrivateIp {
+		return v.PrivateIp
+	}).(GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput)
+}
+
+// Endpoint address of the cluster API Server public network.
+func (o GetClustersClusterClusterConfigApiServerEndpointsOutput) PublicIp() GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerEndpoints) GetClustersClusterClusterConfigApiServerEndpointsPublicIp {
+		return v.PublicIp
+	}).(GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsPrivateIp struct {
+	// Ipv4 address.
+	Ipv4 string `pulumi:"ipv4"`
+}
+
+// GetClustersClusterClusterConfigApiServerEndpointsPrivateIpInput is an input type that accepts GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs and GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput values.
+// You can construct a concrete instance of `GetClustersClusterClusterConfigApiServerEndpointsPrivateIpInput` via:
+//
+//	GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs{...}
+type GetClustersClusterClusterConfigApiServerEndpointsPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput() GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput
+	ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutputWithContext(context.Context) GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs struct {
+	// Ipv4 address.
+	Ipv4 pulumi.StringInput `pulumi:"ipv4"`
+}
+
+func (GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPrivateIp)(nil)).Elem()
+}
+
+func (i GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs) ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput() GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput {
+	return i.ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs) ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPrivateIp)(nil)).Elem()
+}
+
+func (o GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput) ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput() GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput {
+	return o
+}
+
+func (o GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput) ToGetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput {
+	return o
+}
+
+// Ipv4 address.
+func (o GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput) Ipv4() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerEndpointsPrivateIp) string { return v.Ipv4 }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsPublicIp struct {
+	// Ipv4 address.
+	Ipv4 string `pulumi:"ipv4"`
+}
+
+// GetClustersClusterClusterConfigApiServerEndpointsPublicIpInput is an input type that accepts GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs and GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput values.
+// You can construct a concrete instance of `GetClustersClusterClusterConfigApiServerEndpointsPublicIpInput` via:
+//
+//	GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{...}
+type GetClustersClusterClusterConfigApiServerEndpointsPublicIpInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput() GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput
+	ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutputWithContext(context.Context) GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs struct {
+	// Ipv4 address.
+	Ipv4 pulumi.StringInput `pulumi:"ipv4"`
+}
+
+func (GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPublicIp)(nil)).Elem()
+}
+
+func (i GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs) ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput() GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput {
+	return i.ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs) ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPublicIp)(nil)).Elem()
+}
+
+func (o GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput) ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput() GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput {
+	return o
+}
+
+func (o GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput) ToGetClustersClusterClusterConfigApiServerEndpointsPublicIpOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput {
+	return o
+}
+
+// Ipv4 address.
+func (o GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput) Ipv4() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerEndpointsPublicIp) string { return v.Ipv4 }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerPublicAccessConfig struct {
+	// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+	AccessSourceIpsv4s []string `pulumi:"accessSourceIpsv4s"`
+	// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+	IpFamily string `pulumi:"ipFamily"`
+	// Public network access network configuration.
+	PublicAccessNetworkConfig GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig `pulumi:"publicAccessNetworkConfig"`
+}
+
+// GetClustersClusterClusterConfigApiServerPublicAccessConfigInput is an input type that accepts GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs and GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterClusterConfigApiServerPublicAccessConfigInput` via:
+//
+//	GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs{...}
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutput() GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput
+	ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutputWithContext(context.Context) GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput
+}
+
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs struct {
+	// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+	AccessSourceIpsv4s pulumi.StringArrayInput `pulumi:"accessSourceIpsv4s"`
+	// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+	IpFamily pulumi.StringInput `pulumi:"ipFamily"`
+	// Public network access network configuration.
+	PublicAccessNetworkConfig GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput `pulumi:"publicAccessNetworkConfig"`
+}
+
+func (GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutput() GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput {
+	return i.ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutput() GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput {
+	return o
+}
+
+// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput) AccessSourceIpsv4s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfig) []string {
+		return v.AccessSourceIpsv4s
+	}).(pulumi.StringArrayOutput)
+}
+
+// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput) IpFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfig) string { return v.IpFamily }).(pulumi.StringOutput)
+}
+
+// Public network access network configuration.
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput) PublicAccessNetworkConfig() GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfig) GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig {
+		return v.PublicAccessNetworkConfig
+	}).(GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig struct {
+	// The peak bandwidth of the public IP, unit: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	BillingType string `pulumi:"billingType"`
+	// The ISP of public IP.
+	Isp string `pulumi:"isp"`
+}
+
+// GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput is an input type that accepts GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs and GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput` via:
+//
+//	GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput() GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput
+	ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutputWithContext(context.Context) GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput
+}
+
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs struct {
+	// The peak bandwidth of the public IP, unit: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	BillingType pulumi.StringInput `pulumi:"billingType"`
+	// The ISP of public IP.
+	Isp pulumi.StringInput `pulumi:"isp"`
+}
+
+func (GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput() GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput {
+	return i.ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput)
+}
+
+type GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput() GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput) ToGetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutputWithContext(ctx context.Context) GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput {
+	return o
+}
+
+// The peak bandwidth of the public IP, unit: Mbps.
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig) int {
+		return v.Bandwidth
+	}).(pulumi.IntOutput)
+}
+
+// Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput) BillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig) string {
+		return v.BillingType
+	}).(pulumi.StringOutput)
+}
+
+// The ISP of public IP.
+func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig) string {
+		return v.Isp
+	}).(pulumi.StringOutput)
+}
+
+type GetClustersClusterLoggingConfig struct {
+	// The TLS log item ID of the collection target.
+	LogProjectId string `pulumi:"logProjectId"`
+	// Cluster logging options.
+	LogSetups []GetClustersClusterLoggingConfigLogSetup `pulumi:"logSetups"`
+}
+
+// GetClustersClusterLoggingConfigInput is an input type that accepts GetClustersClusterLoggingConfigArgs and GetClustersClusterLoggingConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterLoggingConfigInput` via:
+//
+//	GetClustersClusterLoggingConfigArgs{...}
+type GetClustersClusterLoggingConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterLoggingConfigOutput() GetClustersClusterLoggingConfigOutput
+	ToGetClustersClusterLoggingConfigOutputWithContext(context.Context) GetClustersClusterLoggingConfigOutput
+}
+
+type GetClustersClusterLoggingConfigArgs struct {
+	// The TLS log item ID of the collection target.
+	LogProjectId pulumi.StringInput `pulumi:"logProjectId"`
+	// Cluster logging options.
+	LogSetups GetClustersClusterLoggingConfigLogSetupArrayInput `pulumi:"logSetups"`
+}
+
+func (GetClustersClusterLoggingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterLoggingConfigArgs) ToGetClustersClusterLoggingConfigOutput() GetClustersClusterLoggingConfigOutput {
+	return i.ToGetClustersClusterLoggingConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterLoggingConfigArgs) ToGetClustersClusterLoggingConfigOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterLoggingConfigOutput)
+}
+
+// GetClustersClusterLoggingConfigArrayInput is an input type that accepts GetClustersClusterLoggingConfigArray and GetClustersClusterLoggingConfigArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterLoggingConfigArrayInput` via:
+//
+//	GetClustersClusterLoggingConfigArray{ GetClustersClusterLoggingConfigArgs{...} }
+type GetClustersClusterLoggingConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterLoggingConfigArrayOutput() GetClustersClusterLoggingConfigArrayOutput
+	ToGetClustersClusterLoggingConfigArrayOutputWithContext(context.Context) GetClustersClusterLoggingConfigArrayOutput
+}
+
+type GetClustersClusterLoggingConfigArray []GetClustersClusterLoggingConfigInput
+
+func (GetClustersClusterLoggingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterLoggingConfigArray) ToGetClustersClusterLoggingConfigArrayOutput() GetClustersClusterLoggingConfigArrayOutput {
+	return i.ToGetClustersClusterLoggingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterLoggingConfigArray) ToGetClustersClusterLoggingConfigArrayOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterLoggingConfigArrayOutput)
+}
+
+type GetClustersClusterLoggingConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterLoggingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterLoggingConfigOutput) ToGetClustersClusterLoggingConfigOutput() GetClustersClusterLoggingConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterLoggingConfigOutput) ToGetClustersClusterLoggingConfigOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigOutput {
+	return o
+}
+
+// The TLS log item ID of the collection target.
+func (o GetClustersClusterLoggingConfigOutput) LogProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterLoggingConfig) string { return v.LogProjectId }).(pulumi.StringOutput)
+}
+
+// Cluster logging options.
+func (o GetClustersClusterLoggingConfigOutput) LogSetups() GetClustersClusterLoggingConfigLogSetupArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterLoggingConfig) []GetClustersClusterLoggingConfigLogSetup { return v.LogSetups }).(GetClustersClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type GetClustersClusterLoggingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterLoggingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterLoggingConfigArrayOutput) ToGetClustersClusterLoggingConfigArrayOutput() GetClustersClusterLoggingConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterLoggingConfigArrayOutput) ToGetClustersClusterLoggingConfigArrayOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterLoggingConfigArrayOutput) Index(i pulumi.IntInput) GetClustersClusterLoggingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterLoggingConfig {
+		return vs[0].([]GetClustersClusterLoggingConfig)[vs[1].(int)]
+	}).(GetClustersClusterLoggingConfigOutput)
+}
+
+type GetClustersClusterLoggingConfigLogSetup struct {
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled bool `pulumi:"enabled"`
+	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+	LogTtl int `pulumi:"logTtl"`
+	// The currently enabled log type.
+	LogType string `pulumi:"logType"`
+}
+
+// GetClustersClusterLoggingConfigLogSetupInput is an input type that accepts GetClustersClusterLoggingConfigLogSetupArgs and GetClustersClusterLoggingConfigLogSetupOutput values.
+// You can construct a concrete instance of `GetClustersClusterLoggingConfigLogSetupInput` via:
+//
+//	GetClustersClusterLoggingConfigLogSetupArgs{...}
+type GetClustersClusterLoggingConfigLogSetupInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterLoggingConfigLogSetupOutput() GetClustersClusterLoggingConfigLogSetupOutput
+	ToGetClustersClusterLoggingConfigLogSetupOutputWithContext(context.Context) GetClustersClusterLoggingConfigLogSetupOutput
+}
+
+type GetClustersClusterLoggingConfigLogSetupArgs struct {
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+	LogTtl pulumi.IntInput `pulumi:"logTtl"`
+	// The currently enabled log type.
+	LogType pulumi.StringInput `pulumi:"logType"`
+}
+
+func (GetClustersClusterLoggingConfigLogSetupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (i GetClustersClusterLoggingConfigLogSetupArgs) ToGetClustersClusterLoggingConfigLogSetupOutput() GetClustersClusterLoggingConfigLogSetupOutput {
+	return i.ToGetClustersClusterLoggingConfigLogSetupOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterLoggingConfigLogSetupArgs) ToGetClustersClusterLoggingConfigLogSetupOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigLogSetupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterLoggingConfigLogSetupOutput)
+}
+
+// GetClustersClusterLoggingConfigLogSetupArrayInput is an input type that accepts GetClustersClusterLoggingConfigLogSetupArray and GetClustersClusterLoggingConfigLogSetupArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterLoggingConfigLogSetupArrayInput` via:
+//
+//	GetClustersClusterLoggingConfigLogSetupArray{ GetClustersClusterLoggingConfigLogSetupArgs{...} }
+type GetClustersClusterLoggingConfigLogSetupArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterLoggingConfigLogSetupArrayOutput() GetClustersClusterLoggingConfigLogSetupArrayOutput
+	ToGetClustersClusterLoggingConfigLogSetupArrayOutputWithContext(context.Context) GetClustersClusterLoggingConfigLogSetupArrayOutput
+}
+
+type GetClustersClusterLoggingConfigLogSetupArray []GetClustersClusterLoggingConfigLogSetupInput
+
+func (GetClustersClusterLoggingConfigLogSetupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (i GetClustersClusterLoggingConfigLogSetupArray) ToGetClustersClusterLoggingConfigLogSetupArrayOutput() GetClustersClusterLoggingConfigLogSetupArrayOutput {
+	return i.ToGetClustersClusterLoggingConfigLogSetupArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterLoggingConfigLogSetupArray) ToGetClustersClusterLoggingConfigLogSetupArrayOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigLogSetupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type GetClustersClusterLoggingConfigLogSetupOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterLoggingConfigLogSetupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (o GetClustersClusterLoggingConfigLogSetupOutput) ToGetClustersClusterLoggingConfigLogSetupOutput() GetClustersClusterLoggingConfigLogSetupOutput {
+	return o
+}
+
+func (o GetClustersClusterLoggingConfigLogSetupOutput) ToGetClustersClusterLoggingConfigLogSetupOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigLogSetupOutput {
+	return o
+}
+
+// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+func (o GetClustersClusterLoggingConfigLogSetupOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersClusterLoggingConfigLogSetup) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+func (o GetClustersClusterLoggingConfigLogSetupOutput) LogTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterLoggingConfigLogSetup) int { return v.LogTtl }).(pulumi.IntOutput)
+}
+
+// The currently enabled log type.
+func (o GetClustersClusterLoggingConfigLogSetupOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterLoggingConfigLogSetup) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterLoggingConfigLogSetupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterLoggingConfigLogSetupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (o GetClustersClusterLoggingConfigLogSetupArrayOutput) ToGetClustersClusterLoggingConfigLogSetupArrayOutput() GetClustersClusterLoggingConfigLogSetupArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterLoggingConfigLogSetupArrayOutput) ToGetClustersClusterLoggingConfigLogSetupArrayOutputWithContext(ctx context.Context) GetClustersClusterLoggingConfigLogSetupArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterLoggingConfigLogSetupArrayOutput) Index(i pulumi.IntInput) GetClustersClusterLoggingConfigLogSetupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterLoggingConfigLogSetup {
+		return vs[0].([]GetClustersClusterLoggingConfigLogSetup)[vs[1].(int)]
+	}).(GetClustersClusterLoggingConfigLogSetupOutput)
+}
+
+type GetClustersClusterNodeStatistics struct {
+	// Phase=Creating total number of nodes.
+	CreatingCount int `pulumi:"creatingCount"`
+	// Phase=Deleting total number of nodes.
+	DeletingCount int `pulumi:"deletingCount"`
+	// Phase=Failed total number of nodes.
+	FailedCount int `pulumi:"failedCount"`
+	// Phase=Running total number of nodes.
+	RunningCount int `pulumi:"runningCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StoppedCount int `pulumi:"stoppedCount"`
+	// The total count of Cluster query.
+	TotalCount int `pulumi:"totalCount"`
+	// Phase=Updating total number of nodes.
+	UpdatingCount int `pulumi:"updatingCount"`
+}
+
+// GetClustersClusterNodeStatisticsInput is an input type that accepts GetClustersClusterNodeStatisticsArgs and GetClustersClusterNodeStatisticsOutput values.
+// You can construct a concrete instance of `GetClustersClusterNodeStatisticsInput` via:
+//
+//	GetClustersClusterNodeStatisticsArgs{...}
+type GetClustersClusterNodeStatisticsInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterNodeStatisticsOutput() GetClustersClusterNodeStatisticsOutput
+	ToGetClustersClusterNodeStatisticsOutputWithContext(context.Context) GetClustersClusterNodeStatisticsOutput
+}
+
+type GetClustersClusterNodeStatisticsArgs struct {
+	// Phase=Creating total number of nodes.
+	CreatingCount pulumi.IntInput `pulumi:"creatingCount"`
+	// Phase=Deleting total number of nodes.
+	DeletingCount pulumi.IntInput `pulumi:"deletingCount"`
+	// Phase=Failed total number of nodes.
+	FailedCount pulumi.IntInput `pulumi:"failedCount"`
+	// Phase=Running total number of nodes.
+	RunningCount pulumi.IntInput `pulumi:"runningCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StoppedCount pulumi.IntInput `pulumi:"stoppedCount"`
+	// The total count of Cluster query.
+	TotalCount pulumi.IntInput `pulumi:"totalCount"`
+	// Phase=Updating total number of nodes.
+	UpdatingCount pulumi.IntInput `pulumi:"updatingCount"`
+}
+
+func (GetClustersClusterNodeStatisticsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterNodeStatistics)(nil)).Elem()
+}
+
+func (i GetClustersClusterNodeStatisticsArgs) ToGetClustersClusterNodeStatisticsOutput() GetClustersClusterNodeStatisticsOutput {
+	return i.ToGetClustersClusterNodeStatisticsOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterNodeStatisticsArgs) ToGetClustersClusterNodeStatisticsOutputWithContext(ctx context.Context) GetClustersClusterNodeStatisticsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterNodeStatisticsOutput)
+}
+
+type GetClustersClusterNodeStatisticsOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterNodeStatisticsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterNodeStatistics)(nil)).Elem()
+}
+
+func (o GetClustersClusterNodeStatisticsOutput) ToGetClustersClusterNodeStatisticsOutput() GetClustersClusterNodeStatisticsOutput {
+	return o
+}
+
+func (o GetClustersClusterNodeStatisticsOutput) ToGetClustersClusterNodeStatisticsOutputWithContext(ctx context.Context) GetClustersClusterNodeStatisticsOutput {
+	return o
+}
+
+// Phase=Creating total number of nodes.
+func (o GetClustersClusterNodeStatisticsOutput) CreatingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.CreatingCount }).(pulumi.IntOutput)
+}
+
+// Phase=Deleting total number of nodes.
+func (o GetClustersClusterNodeStatisticsOutput) DeletingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.DeletingCount }).(pulumi.IntOutput)
+}
+
+// Phase=Failed total number of nodes.
+func (o GetClustersClusterNodeStatisticsOutput) FailedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.FailedCount }).(pulumi.IntOutput)
+}
+
+// Phase=Running total number of nodes.
+func (o GetClustersClusterNodeStatisticsOutput) RunningCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.RunningCount }).(pulumi.IntOutput)
+}
+
+// (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
+func (o GetClustersClusterNodeStatisticsOutput) StoppedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.StoppedCount }).(pulumi.IntOutput)
+}
+
+// The total count of Cluster query.
+func (o GetClustersClusterNodeStatisticsOutput) TotalCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// Phase=Updating total number of nodes.
+func (o GetClustersClusterNodeStatisticsOutput) UpdatingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodeStatistics) int { return v.UpdatingCount }).(pulumi.IntOutput)
+}
+
+type GetClustersClusterPodsConfig struct {
+	// Flannel network configuration.
+	FlannelConfig GetClustersClusterPodsConfigFlannelConfig `pulumi:"flannelConfig"`
+	// Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+	PodNetworkMode string `pulumi:"podNetworkMode"`
+	// VPC-CNI network configuration.
+	VpcCniConfig GetClustersClusterPodsConfigVpcCniConfig `pulumi:"vpcCniConfig"`
+}
+
+// GetClustersClusterPodsConfigInput is an input type that accepts GetClustersClusterPodsConfigArgs and GetClustersClusterPodsConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterPodsConfigInput` via:
+//
+//	GetClustersClusterPodsConfigArgs{...}
+type GetClustersClusterPodsConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterPodsConfigOutput() GetClustersClusterPodsConfigOutput
+	ToGetClustersClusterPodsConfigOutputWithContext(context.Context) GetClustersClusterPodsConfigOutput
+}
+
+type GetClustersClusterPodsConfigArgs struct {
+	// Flannel network configuration.
+	FlannelConfig GetClustersClusterPodsConfigFlannelConfigInput `pulumi:"flannelConfig"`
+	// Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+	PodNetworkMode pulumi.StringInput `pulumi:"podNetworkMode"`
+	// VPC-CNI network configuration.
+	VpcCniConfig GetClustersClusterPodsConfigVpcCniConfigInput `pulumi:"vpcCniConfig"`
+}
+
+func (GetClustersClusterPodsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterPodsConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterPodsConfigArgs) ToGetClustersClusterPodsConfigOutput() GetClustersClusterPodsConfigOutput {
+	return i.ToGetClustersClusterPodsConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterPodsConfigArgs) ToGetClustersClusterPodsConfigOutputWithContext(ctx context.Context) GetClustersClusterPodsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterPodsConfigOutput)
+}
+
+type GetClustersClusterPodsConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterPodsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterPodsConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterPodsConfigOutput) ToGetClustersClusterPodsConfigOutput() GetClustersClusterPodsConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterPodsConfigOutput) ToGetClustersClusterPodsConfigOutputWithContext(ctx context.Context) GetClustersClusterPodsConfigOutput {
+	return o
+}
+
+// Flannel network configuration.
+func (o GetClustersClusterPodsConfigOutput) FlannelConfig() GetClustersClusterPodsConfigFlannelConfigOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfig) GetClustersClusterPodsConfigFlannelConfig { return v.FlannelConfig }).(GetClustersClusterPodsConfigFlannelConfigOutput)
+}
+
+// Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+func (o GetClustersClusterPodsConfigOutput) PodNetworkMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfig) string { return v.PodNetworkMode }).(pulumi.StringOutput)
+}
+
+// VPC-CNI network configuration.
+func (o GetClustersClusterPodsConfigOutput) VpcCniConfig() GetClustersClusterPodsConfigVpcCniConfigOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfig) GetClustersClusterPodsConfigVpcCniConfig { return v.VpcCniConfig }).(GetClustersClusterPodsConfigVpcCniConfigOutput)
+}
+
+type GetClustersClusterPodsConfigFlannelConfig struct {
+	// The maximum number of single-node Pod instances for a Flannel container network.
+	MaxPodsPerNode int `pulumi:"maxPodsPerNode"`
+	// Pod CIDR for the Flannel container network.
+	PodCidrs []string `pulumi:"podCidrs"`
+}
+
+// GetClustersClusterPodsConfigFlannelConfigInput is an input type that accepts GetClustersClusterPodsConfigFlannelConfigArgs and GetClustersClusterPodsConfigFlannelConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterPodsConfigFlannelConfigInput` via:
+//
+//	GetClustersClusterPodsConfigFlannelConfigArgs{...}
+type GetClustersClusterPodsConfigFlannelConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterPodsConfigFlannelConfigOutput() GetClustersClusterPodsConfigFlannelConfigOutput
+	ToGetClustersClusterPodsConfigFlannelConfigOutputWithContext(context.Context) GetClustersClusterPodsConfigFlannelConfigOutput
+}
+
+type GetClustersClusterPodsConfigFlannelConfigArgs struct {
+	// The maximum number of single-node Pod instances for a Flannel container network.
+	MaxPodsPerNode pulumi.IntInput `pulumi:"maxPodsPerNode"`
+	// Pod CIDR for the Flannel container network.
+	PodCidrs pulumi.StringArrayInput `pulumi:"podCidrs"`
+}
+
+func (GetClustersClusterPodsConfigFlannelConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterPodsConfigFlannelConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterPodsConfigFlannelConfigArgs) ToGetClustersClusterPodsConfigFlannelConfigOutput() GetClustersClusterPodsConfigFlannelConfigOutput {
+	return i.ToGetClustersClusterPodsConfigFlannelConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterPodsConfigFlannelConfigArgs) ToGetClustersClusterPodsConfigFlannelConfigOutputWithContext(ctx context.Context) GetClustersClusterPodsConfigFlannelConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterPodsConfigFlannelConfigOutput)
+}
+
+type GetClustersClusterPodsConfigFlannelConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterPodsConfigFlannelConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterPodsConfigFlannelConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterPodsConfigFlannelConfigOutput) ToGetClustersClusterPodsConfigFlannelConfigOutput() GetClustersClusterPodsConfigFlannelConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterPodsConfigFlannelConfigOutput) ToGetClustersClusterPodsConfigFlannelConfigOutputWithContext(ctx context.Context) GetClustersClusterPodsConfigFlannelConfigOutput {
+	return o
+}
+
+// The maximum number of single-node Pod instances for a Flannel container network.
+func (o GetClustersClusterPodsConfigFlannelConfigOutput) MaxPodsPerNode() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfigFlannelConfig) int { return v.MaxPodsPerNode }).(pulumi.IntOutput)
+}
+
+// Pod CIDR for the Flannel container network.
+func (o GetClustersClusterPodsConfigFlannelConfigOutput) PodCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfigFlannelConfig) []string { return v.PodCidrs }).(pulumi.StringArrayOutput)
+}
+
+type GetClustersClusterPodsConfigVpcCniConfig struct {
+	// A list of Pod subnet IDs for the VPC-CNI container network.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// The private network where the cluster control plane network resides.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetClustersClusterPodsConfigVpcCniConfigInput is an input type that accepts GetClustersClusterPodsConfigVpcCniConfigArgs and GetClustersClusterPodsConfigVpcCniConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterPodsConfigVpcCniConfigInput` via:
+//
+//	GetClustersClusterPodsConfigVpcCniConfigArgs{...}
+type GetClustersClusterPodsConfigVpcCniConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterPodsConfigVpcCniConfigOutput() GetClustersClusterPodsConfigVpcCniConfigOutput
+	ToGetClustersClusterPodsConfigVpcCniConfigOutputWithContext(context.Context) GetClustersClusterPodsConfigVpcCniConfigOutput
+}
+
+type GetClustersClusterPodsConfigVpcCniConfigArgs struct {
+	// A list of Pod subnet IDs for the VPC-CNI container network.
+	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// The private network where the cluster control plane network resides.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetClustersClusterPodsConfigVpcCniConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterPodsConfigVpcCniConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterPodsConfigVpcCniConfigArgs) ToGetClustersClusterPodsConfigVpcCniConfigOutput() GetClustersClusterPodsConfigVpcCniConfigOutput {
+	return i.ToGetClustersClusterPodsConfigVpcCniConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterPodsConfigVpcCniConfigArgs) ToGetClustersClusterPodsConfigVpcCniConfigOutputWithContext(ctx context.Context) GetClustersClusterPodsConfigVpcCniConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterPodsConfigVpcCniConfigOutput)
+}
+
+type GetClustersClusterPodsConfigVpcCniConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterPodsConfigVpcCniConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterPodsConfigVpcCniConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterPodsConfigVpcCniConfigOutput) ToGetClustersClusterPodsConfigVpcCniConfigOutput() GetClustersClusterPodsConfigVpcCniConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterPodsConfigVpcCniConfigOutput) ToGetClustersClusterPodsConfigVpcCniConfigOutputWithContext(ctx context.Context) GetClustersClusterPodsConfigVpcCniConfigOutput {
+	return o
+}
+
+// A list of Pod subnet IDs for the VPC-CNI container network.
+func (o GetClustersClusterPodsConfigVpcCniConfigOutput) SubnetIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfigVpcCniConfig) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// The private network where the cluster control plane network resides.
+func (o GetClustersClusterPodsConfigVpcCniConfigOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterPodsConfigVpcCniConfig) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterServicesConfig struct {
+	// The IPv4 private network address exposed by the service.
+	ServiceCidrsv4s []string `pulumi:"serviceCidrsv4s"`
+}
+
+// GetClustersClusterServicesConfigInput is an input type that accepts GetClustersClusterServicesConfigArgs and GetClustersClusterServicesConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterServicesConfigInput` via:
+//
+//	GetClustersClusterServicesConfigArgs{...}
+type GetClustersClusterServicesConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterServicesConfigOutput() GetClustersClusterServicesConfigOutput
+	ToGetClustersClusterServicesConfigOutputWithContext(context.Context) GetClustersClusterServicesConfigOutput
+}
+
+type GetClustersClusterServicesConfigArgs struct {
+	// The IPv4 private network address exposed by the service.
+	ServiceCidrsv4s pulumi.StringArrayInput `pulumi:"serviceCidrsv4s"`
+}
+
+func (GetClustersClusterServicesConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterServicesConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterServicesConfigArgs) ToGetClustersClusterServicesConfigOutput() GetClustersClusterServicesConfigOutput {
+	return i.ToGetClustersClusterServicesConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterServicesConfigArgs) ToGetClustersClusterServicesConfigOutputWithContext(ctx context.Context) GetClustersClusterServicesConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterServicesConfigOutput)
+}
+
+type GetClustersClusterServicesConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterServicesConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterServicesConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterServicesConfigOutput) ToGetClustersClusterServicesConfigOutput() GetClustersClusterServicesConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterServicesConfigOutput) ToGetClustersClusterServicesConfigOutputWithContext(ctx context.Context) GetClustersClusterServicesConfigOutput {
+	return o
+}
+
+// The IPv4 private network address exposed by the service.
+func (o GetClustersClusterServicesConfigOutput) ServiceCidrsv4s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterServicesConfig) []string { return v.ServiceCidrsv4s }).(pulumi.StringArrayOutput)
+}
+
+type GetClustersClusterStatus struct {
+	// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+	Conditions []GetClustersClusterStatusCondition `pulumi:"conditions"`
+	// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+	Phase string `pulumi:"phase"`
+}
+
+// GetClustersClusterStatusInput is an input type that accepts GetClustersClusterStatusArgs and GetClustersClusterStatusOutput values.
+// You can construct a concrete instance of `GetClustersClusterStatusInput` via:
+//
+//	GetClustersClusterStatusArgs{...}
+type GetClustersClusterStatusInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterStatusOutput() GetClustersClusterStatusOutput
+	ToGetClustersClusterStatusOutputWithContext(context.Context) GetClustersClusterStatusOutput
+}
+
+type GetClustersClusterStatusArgs struct {
+	// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+	Conditions GetClustersClusterStatusConditionArrayInput `pulumi:"conditions"`
+	// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+	Phase pulumi.StringInput `pulumi:"phase"`
+}
+
+func (GetClustersClusterStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterStatus)(nil)).Elem()
+}
+
+func (i GetClustersClusterStatusArgs) ToGetClustersClusterStatusOutput() GetClustersClusterStatusOutput {
+	return i.ToGetClustersClusterStatusOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterStatusArgs) ToGetClustersClusterStatusOutputWithContext(ctx context.Context) GetClustersClusterStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterStatusOutput)
+}
+
+type GetClustersClusterStatusOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterStatus)(nil)).Elem()
+}
+
+func (o GetClustersClusterStatusOutput) ToGetClustersClusterStatusOutput() GetClustersClusterStatusOutput {
+	return o
+}
+
+func (o GetClustersClusterStatusOutput) ToGetClustersClusterStatusOutputWithContext(ctx context.Context) GetClustersClusterStatusOutput {
+	return o
+}
+
+// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+func (o GetClustersClusterStatusOutput) Conditions() GetClustersClusterStatusConditionArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterStatus) []GetClustersClusterStatusCondition { return v.Conditions }).(GetClustersClusterStatusConditionArrayOutput)
+}
+
+// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+func (o GetClustersClusterStatusOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterStatus) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterStatusCondition struct {
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+}
+
+// GetClustersClusterStatusConditionInput is an input type that accepts GetClustersClusterStatusConditionArgs and GetClustersClusterStatusConditionOutput values.
+// You can construct a concrete instance of `GetClustersClusterStatusConditionInput` via:
+//
+//	GetClustersClusterStatusConditionArgs{...}
+type GetClustersClusterStatusConditionInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterStatusConditionOutput() GetClustersClusterStatusConditionOutput
+	ToGetClustersClusterStatusConditionOutputWithContext(context.Context) GetClustersClusterStatusConditionOutput
+}
+
+type GetClustersClusterStatusConditionArgs struct {
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetClustersClusterStatusConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterStatusCondition)(nil)).Elem()
+}
+
+func (i GetClustersClusterStatusConditionArgs) ToGetClustersClusterStatusConditionOutput() GetClustersClusterStatusConditionOutput {
+	return i.ToGetClustersClusterStatusConditionOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterStatusConditionArgs) ToGetClustersClusterStatusConditionOutputWithContext(ctx context.Context) GetClustersClusterStatusConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterStatusConditionOutput)
+}
+
+// GetClustersClusterStatusConditionArrayInput is an input type that accepts GetClustersClusterStatusConditionArray and GetClustersClusterStatusConditionArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterStatusConditionArrayInput` via:
+//
+//	GetClustersClusterStatusConditionArray{ GetClustersClusterStatusConditionArgs{...} }
+type GetClustersClusterStatusConditionArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterStatusConditionArrayOutput() GetClustersClusterStatusConditionArrayOutput
+	ToGetClustersClusterStatusConditionArrayOutputWithContext(context.Context) GetClustersClusterStatusConditionArrayOutput
+}
+
+type GetClustersClusterStatusConditionArray []GetClustersClusterStatusConditionInput
+
+func (GetClustersClusterStatusConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterStatusCondition)(nil)).Elem()
+}
+
+func (i GetClustersClusterStatusConditionArray) ToGetClustersClusterStatusConditionArrayOutput() GetClustersClusterStatusConditionArrayOutput {
+	return i.ToGetClustersClusterStatusConditionArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterStatusConditionArray) ToGetClustersClusterStatusConditionArrayOutputWithContext(ctx context.Context) GetClustersClusterStatusConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterStatusConditionArrayOutput)
+}
+
+type GetClustersClusterStatusConditionOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterStatusConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterStatusCondition)(nil)).Elem()
+}
+
+func (o GetClustersClusterStatusConditionOutput) ToGetClustersClusterStatusConditionOutput() GetClustersClusterStatusConditionOutput {
+	return o
+}
+
+func (o GetClustersClusterStatusConditionOutput) ToGetClustersClusterStatusConditionOutputWithContext(ctx context.Context) GetClustersClusterStatusConditionOutput {
+	return o
+}
+
+// The Type of Tags.
+func (o GetClustersClusterStatusConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterStatusCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterStatusConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterStatusConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterStatusCondition)(nil)).Elem()
+}
+
+func (o GetClustersClusterStatusConditionArrayOutput) ToGetClustersClusterStatusConditionArrayOutput() GetClustersClusterStatusConditionArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterStatusConditionArrayOutput) ToGetClustersClusterStatusConditionArrayOutputWithContext(ctx context.Context) GetClustersClusterStatusConditionArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterStatusConditionArrayOutput) Index(i pulumi.IntInput) GetClustersClusterStatusConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterStatusCondition {
+		return vs[0].([]GetClustersClusterStatusCondition)[vs[1].(int)]
+	}).(GetClustersClusterStatusConditionOutput)
+}
+
+type GetClustersClusterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetClustersClusterTagInput is an input type that accepts GetClustersClusterTagArgs and GetClustersClusterTagOutput values.
+// You can construct a concrete instance of `GetClustersClusterTagInput` via:
+//
+//	GetClustersClusterTagArgs{...}
+type GetClustersClusterTagInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterTagOutput() GetClustersClusterTagOutput
+	ToGetClustersClusterTagOutputWithContext(context.Context) GetClustersClusterTagOutput
+}
+
+type GetClustersClusterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClustersClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterTag)(nil)).Elem()
+}
+
+func (i GetClustersClusterTagArgs) ToGetClustersClusterTagOutput() GetClustersClusterTagOutput {
+	return i.ToGetClustersClusterTagOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterTagArgs) ToGetClustersClusterTagOutputWithContext(ctx context.Context) GetClustersClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterTagOutput)
+}
+
+// GetClustersClusterTagArrayInput is an input type that accepts GetClustersClusterTagArray and GetClustersClusterTagArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterTagArrayInput` via:
+//
+//	GetClustersClusterTagArray{ GetClustersClusterTagArgs{...} }
+type GetClustersClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterTagArrayOutput() GetClustersClusterTagArrayOutput
+	ToGetClustersClusterTagArrayOutputWithContext(context.Context) GetClustersClusterTagArrayOutput
+}
+
+type GetClustersClusterTagArray []GetClustersClusterTagInput
+
+func (GetClustersClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterTag)(nil)).Elem()
+}
+
+func (i GetClustersClusterTagArray) ToGetClustersClusterTagArrayOutput() GetClustersClusterTagArrayOutput {
+	return i.ToGetClustersClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterTagArray) ToGetClustersClusterTagArrayOutputWithContext(ctx context.Context) GetClustersClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterTagArrayOutput)
+}
+
+type GetClustersClusterTagOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterTag)(nil)).Elem()
+}
+
+func (o GetClustersClusterTagOutput) ToGetClustersClusterTagOutput() GetClustersClusterTagOutput {
+	return o
+}
+
+func (o GetClustersClusterTagOutput) ToGetClustersClusterTagOutputWithContext(ctx context.Context) GetClustersClusterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetClustersClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o GetClustersClusterTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetClustersClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterTag)(nil)).Elem()
+}
+
+func (o GetClustersClusterTagArrayOutput) ToGetClustersClusterTagArrayOutput() GetClustersClusterTagArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterTagArrayOutput) ToGetClustersClusterTagArrayOutputWithContext(ctx context.Context) GetClustersClusterTagArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterTagArrayOutput) Index(i pulumi.IntInput) GetClustersClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterTag {
+		return vs[0].([]GetClustersClusterTag)[vs[1].(int)]
+	}).(GetClustersClusterTagOutput)
+}
+
+type GetClustersStatus struct {
+	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+	ConditionsType *string `pulumi:"conditionsType"`
+	// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+	Phase *string `pulumi:"phase"`
+}
+
+// GetClustersStatusInput is an input type that accepts GetClustersStatusArgs and GetClustersStatusOutput values.
+// You can construct a concrete instance of `GetClustersStatusInput` via:
+//
+//	GetClustersStatusArgs{...}
+type GetClustersStatusInput interface {
+	pulumi.Input
+
+	ToGetClustersStatusOutput() GetClustersStatusOutput
+	ToGetClustersStatusOutputWithContext(context.Context) GetClustersStatusOutput
+}
+
+type GetClustersStatusArgs struct {
+	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
+	// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (GetClustersStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersStatus)(nil)).Elem()
+}
+
+func (i GetClustersStatusArgs) ToGetClustersStatusOutput() GetClustersStatusOutput {
+	return i.ToGetClustersStatusOutputWithContext(context.Background())
+}
+
+func (i GetClustersStatusArgs) ToGetClustersStatusOutputWithContext(ctx context.Context) GetClustersStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersStatusOutput)
+}
+
+// GetClustersStatusArrayInput is an input type that accepts GetClustersStatusArray and GetClustersStatusArrayOutput values.
+// You can construct a concrete instance of `GetClustersStatusArrayInput` via:
+//
+//	GetClustersStatusArray{ GetClustersStatusArgs{...} }
+type GetClustersStatusArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersStatusArrayOutput() GetClustersStatusArrayOutput
+	ToGetClustersStatusArrayOutputWithContext(context.Context) GetClustersStatusArrayOutput
+}
+
+type GetClustersStatusArray []GetClustersStatusInput
+
+func (GetClustersStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersStatus)(nil)).Elem()
+}
+
+func (i GetClustersStatusArray) ToGetClustersStatusArrayOutput() GetClustersStatusArrayOutput {
+	return i.ToGetClustersStatusArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersStatusArray) ToGetClustersStatusArrayOutputWithContext(ctx context.Context) GetClustersStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersStatusArrayOutput)
+}
+
+type GetClustersStatusOutput struct{ *pulumi.OutputState }
+
+func (GetClustersStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersStatus)(nil)).Elem()
+}
+
+func (o GetClustersStatusOutput) ToGetClustersStatusOutput() GetClustersStatusOutput {
+	return o
+}
+
+func (o GetClustersStatusOutput) ToGetClustersStatusOutputWithContext(ctx context.Context) GetClustersStatusOutput {
+	return o
+}
+
+// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+func (o GetClustersStatusOutput) ConditionsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetClustersStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
+}
+
+// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+func (o GetClustersStatusOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetClustersStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type GetClustersStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersStatus)(nil)).Elem()
+}
+
+func (o GetClustersStatusArrayOutput) ToGetClustersStatusArrayOutput() GetClustersStatusArrayOutput {
+	return o
+}
+
+func (o GetClustersStatusArrayOutput) ToGetClustersStatusArrayOutputWithContext(ctx context.Context) GetClustersStatusArrayOutput {
+	return o
+}
+
+func (o GetClustersStatusArrayOutput) Index(i pulumi.IntInput) GetClustersStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersStatus {
+		return vs[0].([]GetClustersStatus)[vs[1].(int)]
+	}).(GetClustersStatusOutput)
+}
+
+type GetClustersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetClustersTagInput is an input type that accepts GetClustersTagArgs and GetClustersTagOutput values.
+// You can construct a concrete instance of `GetClustersTagInput` via:
+//
+//	GetClustersTagArgs{...}
+type GetClustersTagInput interface {
+	pulumi.Input
+
+	ToGetClustersTagOutput() GetClustersTagOutput
+	ToGetClustersTagOutputWithContext(context.Context) GetClustersTagOutput
+}
+
+type GetClustersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClustersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersTag)(nil)).Elem()
+}
+
+func (i GetClustersTagArgs) ToGetClustersTagOutput() GetClustersTagOutput {
+	return i.ToGetClustersTagOutputWithContext(context.Background())
+}
+
+func (i GetClustersTagArgs) ToGetClustersTagOutputWithContext(ctx context.Context) GetClustersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersTagOutput)
+}
+
+// GetClustersTagArrayInput is an input type that accepts GetClustersTagArray and GetClustersTagArrayOutput values.
+// You can construct a concrete instance of `GetClustersTagArrayInput` via:
+//
+//	GetClustersTagArray{ GetClustersTagArgs{...} }
+type GetClustersTagArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersTagArrayOutput() GetClustersTagArrayOutput
+	ToGetClustersTagArrayOutputWithContext(context.Context) GetClustersTagArrayOutput
+}
+
+type GetClustersTagArray []GetClustersTagInput
+
+func (GetClustersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersTag)(nil)).Elem()
+}
+
+func (i GetClustersTagArray) ToGetClustersTagArrayOutput() GetClustersTagArrayOutput {
+	return i.ToGetClustersTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersTagArray) ToGetClustersTagArrayOutputWithContext(ctx context.Context) GetClustersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersTagArrayOutput)
+}
+
+type GetClustersTagOutput struct{ *pulumi.OutputState }
+
+func (GetClustersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersTag)(nil)).Elem()
+}
+
+func (o GetClustersTagOutput) ToGetClustersTagOutput() GetClustersTagOutput {
+	return o
+}
+
+func (o GetClustersTagOutput) ToGetClustersTagOutputWithContext(ctx context.Context) GetClustersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetClustersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetClustersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClustersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersTag)(nil)).Elem()
+}
+
+func (o GetClustersTagArrayOutput) ToGetClustersTagArrayOutput() GetClustersTagArrayOutput {
+	return o
+}
+
+func (o GetClustersTagArrayOutput) ToGetClustersTagArrayOutputWithContext(ctx context.Context) GetClustersTagArrayOutput {
+	return o
+}
+
+func (o GetClustersTagArrayOutput) Index(i pulumi.IntInput) GetClustersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersTag {
+		return vs[0].([]GetClustersTag)[vs[1].(int)]
+	}).(GetClustersTagOutput)
+}
+
+type GetKubeconfigsKubeconfig struct {
+	// The Cluster ID of the Kubeconfig.
+	ClusterId string `pulumi:"clusterId"`
+	// The create time of the Kubeconfig.
+	CreateTime string `pulumi:"createTime"`
+	// The expire time of the Kubeconfig.
+	ExpireTime string `pulumi:"expireTime"`
+	// The ID of the Kubeconfig.
+	Id string `pulumi:"id"`
+	// Kubeconfig data with public/private network access, returned in BASE64 encoding.
+	Kubeconfig string `pulumi:"kubeconfig"`
+	// The ID of the Kubeconfig.
+	KubeconfigId string `pulumi:"kubeconfigId"`
+	// The type of the Kubeconfig.
+	Type string `pulumi:"type"`
+	// The account ID of the Kubeconfig.
+	UserId int `pulumi:"userId"`
+}
+
+// GetKubeconfigsKubeconfigInput is an input type that accepts GetKubeconfigsKubeconfigArgs and GetKubeconfigsKubeconfigOutput values.
+// You can construct a concrete instance of `GetKubeconfigsKubeconfigInput` via:
+//
+//	GetKubeconfigsKubeconfigArgs{...}
+type GetKubeconfigsKubeconfigInput interface {
+	pulumi.Input
+
+	ToGetKubeconfigsKubeconfigOutput() GetKubeconfigsKubeconfigOutput
+	ToGetKubeconfigsKubeconfigOutputWithContext(context.Context) GetKubeconfigsKubeconfigOutput
+}
+
+type GetKubeconfigsKubeconfigArgs struct {
+	// The Cluster ID of the Kubeconfig.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The create time of the Kubeconfig.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The expire time of the Kubeconfig.
+	ExpireTime pulumi.StringInput `pulumi:"expireTime"`
+	// The ID of the Kubeconfig.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Kubeconfig data with public/private network access, returned in BASE64 encoding.
+	Kubeconfig pulumi.StringInput `pulumi:"kubeconfig"`
+	// The ID of the Kubeconfig.
+	KubeconfigId pulumi.StringInput `pulumi:"kubeconfigId"`
+	// The type of the Kubeconfig.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The account ID of the Kubeconfig.
+	UserId pulumi.IntInput `pulumi:"userId"`
+}
+
+func (GetKubeconfigsKubeconfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (i GetKubeconfigsKubeconfigArgs) ToGetKubeconfigsKubeconfigOutput() GetKubeconfigsKubeconfigOutput {
+	return i.ToGetKubeconfigsKubeconfigOutputWithContext(context.Background())
+}
+
+func (i GetKubeconfigsKubeconfigArgs) ToGetKubeconfigsKubeconfigOutputWithContext(ctx context.Context) GetKubeconfigsKubeconfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeconfigsKubeconfigOutput)
+}
+
+// GetKubeconfigsKubeconfigArrayInput is an input type that accepts GetKubeconfigsKubeconfigArray and GetKubeconfigsKubeconfigArrayOutput values.
+// You can construct a concrete instance of `GetKubeconfigsKubeconfigArrayInput` via:
+//
+//	GetKubeconfigsKubeconfigArray{ GetKubeconfigsKubeconfigArgs{...} }
+type GetKubeconfigsKubeconfigArrayInput interface {
+	pulumi.Input
+
+	ToGetKubeconfigsKubeconfigArrayOutput() GetKubeconfigsKubeconfigArrayOutput
+	ToGetKubeconfigsKubeconfigArrayOutputWithContext(context.Context) GetKubeconfigsKubeconfigArrayOutput
+}
+
+type GetKubeconfigsKubeconfigArray []GetKubeconfigsKubeconfigInput
+
+func (GetKubeconfigsKubeconfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (i GetKubeconfigsKubeconfigArray) ToGetKubeconfigsKubeconfigArrayOutput() GetKubeconfigsKubeconfigArrayOutput {
+	return i.ToGetKubeconfigsKubeconfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubeconfigsKubeconfigArray) ToGetKubeconfigsKubeconfigArrayOutputWithContext(ctx context.Context) GetKubeconfigsKubeconfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeconfigsKubeconfigArrayOutput)
+}
+
+type GetKubeconfigsKubeconfigOutput struct{ *pulumi.OutputState }
+
+func (GetKubeconfigsKubeconfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (o GetKubeconfigsKubeconfigOutput) ToGetKubeconfigsKubeconfigOutput() GetKubeconfigsKubeconfigOutput {
+	return o
+}
+
+func (o GetKubeconfigsKubeconfigOutput) ToGetKubeconfigsKubeconfigOutputWithContext(ctx context.Context) GetKubeconfigsKubeconfigOutput {
+	return o
+}
+
+// The Cluster ID of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The create time of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The expire time of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) ExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.ExpireTime }).(pulumi.StringOutput)
+}
+
+// The ID of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Kubeconfig data with public/private network access, returned in BASE64 encoding.
+func (o GetKubeconfigsKubeconfigOutput) Kubeconfig() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.Kubeconfig }).(pulumi.StringOutput)
+}
+
+// The ID of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) KubeconfigId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.KubeconfigId }).(pulumi.StringOutput)
+}
+
+// The type of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The account ID of the Kubeconfig.
+func (o GetKubeconfigsKubeconfigOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKubeconfigsKubeconfig) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+type GetKubeconfigsKubeconfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubeconfigsKubeconfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (o GetKubeconfigsKubeconfigArrayOutput) ToGetKubeconfigsKubeconfigArrayOutput() GetKubeconfigsKubeconfigArrayOutput {
+	return o
+}
+
+func (o GetKubeconfigsKubeconfigArrayOutput) ToGetKubeconfigsKubeconfigArrayOutputWithContext(ctx context.Context) GetKubeconfigsKubeconfigArrayOutput {
+	return o
+}
+
+func (o GetKubeconfigsKubeconfigArrayOutput) Index(i pulumi.IntInput) GetKubeconfigsKubeconfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubeconfigsKubeconfig {
+		return vs[0].([]GetKubeconfigsKubeconfig)[vs[1].(int)]
+	}).(GetKubeconfigsKubeconfigOutput)
+}
+
+type GetNodePoolsNodePool struct {
+	// Is AdditionalContainerStorageEnabled of NodeConfig.
+	AdditionalContainerStorageEnabled bool `pulumi:"additionalContainerStorageEnabled"`
+	// Is auto renew of the PrePaid instance of NodeConfig.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+	AutoRenewPeriod int `pulumi:"autoRenewPeriod"`
+	// The ClusterId of NodePool.
+	ClusterId string `pulumi:"clusterId"`
+	// The Condition of Status.
+	ConditionTypes []string `pulumi:"conditionTypes"`
+	// The Cordon of KubernetesConfig.
+	Cordon bool `pulumi:"cordon"`
+	// The ClientToken when successfully created.
+	CreateClientToken string `pulumi:"createClientToken"`
+	// The CreateTime of NodePool.
+	CreateTime string `pulumi:"createTime"`
+	// The DataVolume of NodeConfig.
+	DataVolumes []GetNodePoolsNodePoolDataVolume `pulumi:"dataVolumes"`
+	// The DesiredReplicas of AutoScaling.
+	DesiredReplicas int `pulumi:"desiredReplicas"`
+	// Tags for Ecs.
+	EcsTags []GetNodePoolsNodePoolEcsTag `pulumi:"ecsTags"`
+	// Is Enabled of AutoScaling.
+	Enabled bool `pulumi:"enabled"`
+	// The IDs of HpcCluster.
+	HpcClusterIds []string `pulumi:"hpcClusterIds"`
+	// The Id of NodePool.
+	Id string `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId string `pulumi:"imageId"`
+	// The InitializeScript of NodeConfig.
+	InitializeScript string `pulumi:"initializeScript"`
+	// The InstanceChargeType of NodeConfig.
+	InstanceChargeType string `pulumi:"instanceChargeType"`
+	// The InstanceTypeIds of NodeConfig.
+	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
+	// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+	KubeConfigAutoSyncDisabled bool `pulumi:"kubeConfigAutoSyncDisabled"`
+	// The NamePrefix of node metadata.
+	KubeConfigNamePrefix string `pulumi:"kubeConfigNamePrefix"`
+	// The KubeletConfig of KubernetesConfig.
+	KubeletConfigs []GetNodePoolsNodePoolKubeletConfig `pulumi:"kubeletConfigs"`
+	// The LabelContent of KubernetesConfig.
+	LabelContents []GetNodePoolsNodePoolLabelContent `pulumi:"labelContents"`
+	// The login SshKeyPairName of NodeConfig.
+	LoginKeyPairName string `pulumi:"loginKeyPairName"`
+	// The login type of NodeConfig.
+	LoginType string `pulumi:"loginType"`
+	// The MaxReplicas of AutoScaling.
+	MaxReplicas int `pulumi:"maxReplicas"`
+	// The MinReplicas of AutoScaling.
+	MinReplicas int `pulumi:"minReplicas"`
+	// The Name of NodePool.
+	Name string `pulumi:"name"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix string `pulumi:"namePrefix"`
+	// The NodeStatistics of NodeConfig.
+	NodeStatistics []GetNodePoolsNodePoolNodeStatistic `pulumi:"nodeStatistics"`
+	// The period of the PrePaid instance of NodeConfig.
+	Period int `pulumi:"period"`
+	// The Phase of Status.
+	Phase string `pulumi:"phase"`
+	// The Priority of AutoScaling.
+	Priority int `pulumi:"priority"`
+	// The project name of NodeConfig.
+	ProjectName string `pulumi:"projectName"`
+	// The SecurityGroupIds of NodeConfig.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of NodeConfig.
+	SecurityStrategies []string `pulumi:"securityStrategies"`
+	// The SecurityStrategyEnabled of NodeConfig.
+	SecurityStrategyEnabled bool `pulumi:"securityStrategyEnabled"`
+	// The SubnetId of NodeConfig.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+	SubnetPolicy string `pulumi:"subnetPolicy"`
+	// The SystemVolume of NodeConfig.
+	SystemVolumes []GetNodePoolsNodePoolSystemVolume `pulumi:"systemVolumes"`
+	// Tags.
+	Tags []GetNodePoolsNodePoolTag `pulumi:"tags"`
+	// The TaintContent of NodeConfig.
+	TaintContents []GetNodePoolsNodePoolTaintContent `pulumi:"taintContents"`
+	// The ClientToken when last update was successful.
+	UpdateClientToken string `pulumi:"updateClientToken"`
+	// The UpdateTime time of NodePool.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetNodePoolsNodePoolInput is an input type that accepts GetNodePoolsNodePoolArgs and GetNodePoolsNodePoolOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolInput` via:
+//
+//	GetNodePoolsNodePoolArgs{...}
+type GetNodePoolsNodePoolInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput
+	ToGetNodePoolsNodePoolOutputWithContext(context.Context) GetNodePoolsNodePoolOutput
+}
+
+type GetNodePoolsNodePoolArgs struct {
+	// Is AdditionalContainerStorageEnabled of NodeConfig.
+	AdditionalContainerStorageEnabled pulumi.BoolInput `pulumi:"additionalContainerStorageEnabled"`
+	// Is auto renew of the PrePaid instance of NodeConfig.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+	AutoRenewPeriod pulumi.IntInput `pulumi:"autoRenewPeriod"`
+	// The ClusterId of NodePool.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The Condition of Status.
+	ConditionTypes pulumi.StringArrayInput `pulumi:"conditionTypes"`
+	// The Cordon of KubernetesConfig.
+	Cordon pulumi.BoolInput `pulumi:"cordon"`
+	// The ClientToken when successfully created.
+	CreateClientToken pulumi.StringInput `pulumi:"createClientToken"`
+	// The CreateTime of NodePool.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The DataVolume of NodeConfig.
+	DataVolumes GetNodePoolsNodePoolDataVolumeArrayInput `pulumi:"dataVolumes"`
+	// The DesiredReplicas of AutoScaling.
+	DesiredReplicas pulumi.IntInput `pulumi:"desiredReplicas"`
+	// Tags for Ecs.
+	EcsTags GetNodePoolsNodePoolEcsTagArrayInput `pulumi:"ecsTags"`
+	// Is Enabled of AutoScaling.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The IDs of HpcCluster.
+	HpcClusterIds pulumi.StringArrayInput `pulumi:"hpcClusterIds"`
+	// The Id of NodePool.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The InitializeScript of NodeConfig.
+	InitializeScript pulumi.StringInput `pulumi:"initializeScript"`
+	// The InstanceChargeType of NodeConfig.
+	InstanceChargeType pulumi.StringInput `pulumi:"instanceChargeType"`
+	// The InstanceTypeIds of NodeConfig.
+	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
+	// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+	KubeConfigAutoSyncDisabled pulumi.BoolInput `pulumi:"kubeConfigAutoSyncDisabled"`
+	// The NamePrefix of node metadata.
+	KubeConfigNamePrefix pulumi.StringInput `pulumi:"kubeConfigNamePrefix"`
+	// The KubeletConfig of KubernetesConfig.
+	KubeletConfigs GetNodePoolsNodePoolKubeletConfigArrayInput `pulumi:"kubeletConfigs"`
+	// The LabelContent of KubernetesConfig.
+	LabelContents GetNodePoolsNodePoolLabelContentArrayInput `pulumi:"labelContents"`
+	// The login SshKeyPairName of NodeConfig.
+	LoginKeyPairName pulumi.StringInput `pulumi:"loginKeyPairName"`
+	// The login type of NodeConfig.
+	LoginType pulumi.StringInput `pulumi:"loginType"`
+	// The MaxReplicas of AutoScaling.
+	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
+	// The MinReplicas of AutoScaling.
+	MinReplicas pulumi.IntInput `pulumi:"minReplicas"`
+	// The Name of NodePool.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix pulumi.StringInput `pulumi:"namePrefix"`
+	// The NodeStatistics of NodeConfig.
+	NodeStatistics GetNodePoolsNodePoolNodeStatisticArrayInput `pulumi:"nodeStatistics"`
+	// The period of the PrePaid instance of NodeConfig.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The Phase of Status.
+	Phase pulumi.StringInput `pulumi:"phase"`
+	// The Priority of AutoScaling.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The project name of NodeConfig.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The SecurityGroupIds of NodeConfig.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of NodeConfig.
+	SecurityStrategies pulumi.StringArrayInput `pulumi:"securityStrategies"`
+	// The SecurityStrategyEnabled of NodeConfig.
+	SecurityStrategyEnabled pulumi.BoolInput `pulumi:"securityStrategyEnabled"`
+	// The SubnetId of NodeConfig.
+	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+	SubnetPolicy pulumi.StringInput `pulumi:"subnetPolicy"`
+	// The SystemVolume of NodeConfig.
+	SystemVolumes GetNodePoolsNodePoolSystemVolumeArrayInput `pulumi:"systemVolumes"`
+	// Tags.
+	Tags GetNodePoolsNodePoolTagArrayInput `pulumi:"tags"`
+	// The TaintContent of NodeConfig.
+	TaintContents GetNodePoolsNodePoolTaintContentArrayInput `pulumi:"taintContents"`
+	// The ClientToken when last update was successful.
+	UpdateClientToken pulumi.StringInput `pulumi:"updateClientToken"`
+	// The UpdateTime time of NodePool.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetNodePoolsNodePoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolArgs) ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput {
+	return i.ToGetNodePoolsNodePoolOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolArgs) ToGetNodePoolsNodePoolOutputWithContext(ctx context.Context) GetNodePoolsNodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolOutput)
+}
+
+// GetNodePoolsNodePoolArrayInput is an input type that accepts GetNodePoolsNodePoolArray and GetNodePoolsNodePoolArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolArrayInput` via:
+//
+//	GetNodePoolsNodePoolArray{ GetNodePoolsNodePoolArgs{...} }
+type GetNodePoolsNodePoolArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput
+	ToGetNodePoolsNodePoolArrayOutputWithContext(context.Context) GetNodePoolsNodePoolArrayOutput
+}
+
+type GetNodePoolsNodePoolArray []GetNodePoolsNodePoolInput
+
+func (GetNodePoolsNodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolArray) ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput {
+	return i.ToGetNodePoolsNodePoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolArray) ToGetNodePoolsNodePoolArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolArrayOutput)
+}
+
+type GetNodePoolsNodePoolOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolOutput) ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolOutput) ToGetNodePoolsNodePoolOutputWithContext(ctx context.Context) GetNodePoolsNodePoolOutput {
+	return o
+}
+
+// Is AdditionalContainerStorageEnabled of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) AdditionalContainerStorageEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.AdditionalContainerStorageEnabled }).(pulumi.BoolOutput)
+}
+
+// Is auto renew of the PrePaid instance of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) AutoRenewPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.AutoRenewPeriod }).(pulumi.IntOutput)
+}
+
+// The ClusterId of NodePool.
+func (o GetNodePoolsNodePoolOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The Condition of Status.
+func (o GetNodePoolsNodePoolOutput) ConditionTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.ConditionTypes }).(pulumi.StringArrayOutput)
+}
+
+// The Cordon of KubernetesConfig.
+func (o GetNodePoolsNodePoolOutput) Cordon() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.Cordon }).(pulumi.BoolOutput)
+}
+
+// The ClientToken when successfully created.
+func (o GetNodePoolsNodePoolOutput) CreateClientToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.CreateClientToken }).(pulumi.StringOutput)
+}
+
+// The CreateTime of NodePool.
+func (o GetNodePoolsNodePoolOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The DataVolume of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) DataVolumes() GetNodePoolsNodePoolDataVolumeArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolDataVolume { return v.DataVolumes }).(GetNodePoolsNodePoolDataVolumeArrayOutput)
+}
+
+// The DesiredReplicas of AutoScaling.
+func (o GetNodePoolsNodePoolOutput) DesiredReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.DesiredReplicas }).(pulumi.IntOutput)
+}
+
+// Tags for Ecs.
+func (o GetNodePoolsNodePoolOutput) EcsTags() GetNodePoolsNodePoolEcsTagArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolEcsTag { return v.EcsTags }).(GetNodePoolsNodePoolEcsTagArrayOutput)
+}
+
+// Is Enabled of AutoScaling.
+func (o GetNodePoolsNodePoolOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The IDs of HpcCluster.
+func (o GetNodePoolsNodePoolOutput) HpcClusterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.HpcClusterIds }).(pulumi.StringArrayOutput)
+}
+
+// The Id of NodePool.
+func (o GetNodePoolsNodePoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ImageId of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The InitializeScript of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) InitializeScript() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.InitializeScript }).(pulumi.StringOutput)
+}
+
+// The InstanceChargeType of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) InstanceChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.InstanceChargeType }).(pulumi.StringOutput)
+}
+
+// The InstanceTypeIds of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) InstanceTypeIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
+}
+
+// Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+func (o GetNodePoolsNodePoolOutput) KubeConfigAutoSyncDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.KubeConfigAutoSyncDisabled }).(pulumi.BoolOutput)
+}
+
+// The NamePrefix of node metadata.
+func (o GetNodePoolsNodePoolOutput) KubeConfigNamePrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.KubeConfigNamePrefix }).(pulumi.StringOutput)
+}
+
+// The KubeletConfig of KubernetesConfig.
+func (o GetNodePoolsNodePoolOutput) KubeletConfigs() GetNodePoolsNodePoolKubeletConfigArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolKubeletConfig { return v.KubeletConfigs }).(GetNodePoolsNodePoolKubeletConfigArrayOutput)
+}
+
+// The LabelContent of KubernetesConfig.
+func (o GetNodePoolsNodePoolOutput) LabelContents() GetNodePoolsNodePoolLabelContentArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolLabelContent { return v.LabelContents }).(GetNodePoolsNodePoolLabelContentArrayOutput)
+}
+
+// The login SshKeyPairName of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) LoginKeyPairName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.LoginKeyPairName }).(pulumi.StringOutput)
+}
+
+// The login type of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) LoginType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.LoginType }).(pulumi.StringOutput)
+}
+
+// The MaxReplicas of AutoScaling.
+func (o GetNodePoolsNodePoolOutput) MaxReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.MaxReplicas }).(pulumi.IntOutput)
+}
+
+// The MinReplicas of AutoScaling.
+func (o GetNodePoolsNodePoolOutput) MinReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.MinReplicas }).(pulumi.IntOutput)
+}
+
+// The Name of NodePool.
+func (o GetNodePoolsNodePoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The NamePrefix of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) NamePrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.NamePrefix }).(pulumi.StringOutput)
+}
+
+// The NodeStatistics of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) NodeStatistics() GetNodePoolsNodePoolNodeStatisticArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolNodeStatistic { return v.NodeStatistics }).(GetNodePoolsNodePoolNodeStatisticArrayOutput)
+}
+
+// The period of the PrePaid instance of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The Phase of Status.
+func (o GetNodePoolsNodePoolOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// The Priority of AutoScaling.
+func (o GetNodePoolsNodePoolOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The project name of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The SecurityGroupIds of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategies of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) SecurityStrategies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.SecurityStrategies }).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategyEnabled of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) SecurityStrategyEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.SecurityStrategyEnabled }).(pulumi.BoolOutput)
+}
+
+// The SubnetId of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) SubnetIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+func (o GetNodePoolsNodePoolOutput) SubnetPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.SubnetPolicy }).(pulumi.StringOutput)
+}
+
+// The SystemVolume of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) SystemVolumes() GetNodePoolsNodePoolSystemVolumeArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolSystemVolume { return v.SystemVolumes }).(GetNodePoolsNodePoolSystemVolumeArrayOutput)
+}
+
+// Tags.
+func (o GetNodePoolsNodePoolOutput) Tags() GetNodePoolsNodePoolTagArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolTag { return v.Tags }).(GetNodePoolsNodePoolTagArrayOutput)
+}
+
+// The TaintContent of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) TaintContents() GetNodePoolsNodePoolTaintContentArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolTaintContent { return v.TaintContents }).(GetNodePoolsNodePoolTaintContentArrayOutput)
+}
+
+// The ClientToken when last update was successful.
+func (o GetNodePoolsNodePoolOutput) UpdateClientToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.UpdateClientToken }).(pulumi.StringOutput)
+}
+
+// The UpdateTime time of NodePool.
+func (o GetNodePoolsNodePoolOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToGetNodePoolsNodePoolArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePool {
+		return vs[0].([]GetNodePoolsNodePool)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolOutput)
+}
+
+type GetNodePoolsNodePoolDataVolume struct {
+	// The target mount directory of the disk.
+	MountPoint string `pulumi:"mountPoint"`
+	// The Size of SystemVolume.
+	Size string `pulumi:"size"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+}
+
+// GetNodePoolsNodePoolDataVolumeInput is an input type that accepts GetNodePoolsNodePoolDataVolumeArgs and GetNodePoolsNodePoolDataVolumeOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolDataVolumeInput` via:
+//
+//	GetNodePoolsNodePoolDataVolumeArgs{...}
+type GetNodePoolsNodePoolDataVolumeInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolDataVolumeOutput() GetNodePoolsNodePoolDataVolumeOutput
+	ToGetNodePoolsNodePoolDataVolumeOutputWithContext(context.Context) GetNodePoolsNodePoolDataVolumeOutput
+}
+
+type GetNodePoolsNodePoolDataVolumeArgs struct {
+	// The target mount directory of the disk.
+	MountPoint pulumi.StringInput `pulumi:"mountPoint"`
+	// The Size of SystemVolume.
+	Size pulumi.StringInput `pulumi:"size"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetNodePoolsNodePoolDataVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolDataVolume)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolDataVolumeArgs) ToGetNodePoolsNodePoolDataVolumeOutput() GetNodePoolsNodePoolDataVolumeOutput {
+	return i.ToGetNodePoolsNodePoolDataVolumeOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolDataVolumeArgs) ToGetNodePoolsNodePoolDataVolumeOutputWithContext(ctx context.Context) GetNodePoolsNodePoolDataVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolDataVolumeOutput)
+}
+
+// GetNodePoolsNodePoolDataVolumeArrayInput is an input type that accepts GetNodePoolsNodePoolDataVolumeArray and GetNodePoolsNodePoolDataVolumeArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolDataVolumeArrayInput` via:
+//
+//	GetNodePoolsNodePoolDataVolumeArray{ GetNodePoolsNodePoolDataVolumeArgs{...} }
+type GetNodePoolsNodePoolDataVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolDataVolumeArrayOutput() GetNodePoolsNodePoolDataVolumeArrayOutput
+	ToGetNodePoolsNodePoolDataVolumeArrayOutputWithContext(context.Context) GetNodePoolsNodePoolDataVolumeArrayOutput
+}
+
+type GetNodePoolsNodePoolDataVolumeArray []GetNodePoolsNodePoolDataVolumeInput
+
+func (GetNodePoolsNodePoolDataVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolDataVolume)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolDataVolumeArray) ToGetNodePoolsNodePoolDataVolumeArrayOutput() GetNodePoolsNodePoolDataVolumeArrayOutput {
+	return i.ToGetNodePoolsNodePoolDataVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolDataVolumeArray) ToGetNodePoolsNodePoolDataVolumeArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolDataVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolDataVolumeArrayOutput)
+}
+
+type GetNodePoolsNodePoolDataVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolDataVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolDataVolume)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolDataVolumeOutput) ToGetNodePoolsNodePoolDataVolumeOutput() GetNodePoolsNodePoolDataVolumeOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolDataVolumeOutput) ToGetNodePoolsNodePoolDataVolumeOutputWithContext(ctx context.Context) GetNodePoolsNodePoolDataVolumeOutput {
+	return o
+}
+
+// The target mount directory of the disk.
+func (o GetNodePoolsNodePoolDataVolumeOutput) MountPoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolDataVolume) string { return v.MountPoint }).(pulumi.StringOutput)
+}
+
+// The Size of SystemVolume.
+func (o GetNodePoolsNodePoolDataVolumeOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolDataVolume) string { return v.Size }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o GetNodePoolsNodePoolDataVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolDataVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolDataVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolDataVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolDataVolume)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolDataVolumeArrayOutput) ToGetNodePoolsNodePoolDataVolumeArrayOutput() GetNodePoolsNodePoolDataVolumeArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolDataVolumeArrayOutput) ToGetNodePoolsNodePoolDataVolumeArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolDataVolumeArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolDataVolumeArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolDataVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolDataVolume {
+		return vs[0].([]GetNodePoolsNodePoolDataVolume)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolDataVolumeOutput)
+}
+
+type GetNodePoolsNodePoolEcsTag struct {
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// GetNodePoolsNodePoolEcsTagInput is an input type that accepts GetNodePoolsNodePoolEcsTagArgs and GetNodePoolsNodePoolEcsTagOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolEcsTagInput` via:
+//
+//	GetNodePoolsNodePoolEcsTagArgs{...}
+type GetNodePoolsNodePoolEcsTagInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolEcsTagOutput() GetNodePoolsNodePoolEcsTagOutput
+	ToGetNodePoolsNodePoolEcsTagOutputWithContext(context.Context) GetNodePoolsNodePoolEcsTagOutput
+}
+
+type GetNodePoolsNodePoolEcsTagArgs struct {
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodePoolsNodePoolEcsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolEcsTagArgs) ToGetNodePoolsNodePoolEcsTagOutput() GetNodePoolsNodePoolEcsTagOutput {
+	return i.ToGetNodePoolsNodePoolEcsTagOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolEcsTagArgs) ToGetNodePoolsNodePoolEcsTagOutputWithContext(ctx context.Context) GetNodePoolsNodePoolEcsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolEcsTagOutput)
+}
+
+// GetNodePoolsNodePoolEcsTagArrayInput is an input type that accepts GetNodePoolsNodePoolEcsTagArray and GetNodePoolsNodePoolEcsTagArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolEcsTagArrayInput` via:
+//
+//	GetNodePoolsNodePoolEcsTagArray{ GetNodePoolsNodePoolEcsTagArgs{...} }
+type GetNodePoolsNodePoolEcsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolEcsTagArrayOutput() GetNodePoolsNodePoolEcsTagArrayOutput
+	ToGetNodePoolsNodePoolEcsTagArrayOutputWithContext(context.Context) GetNodePoolsNodePoolEcsTagArrayOutput
+}
+
+type GetNodePoolsNodePoolEcsTagArray []GetNodePoolsNodePoolEcsTagInput
+
+func (GetNodePoolsNodePoolEcsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolEcsTagArray) ToGetNodePoolsNodePoolEcsTagArrayOutput() GetNodePoolsNodePoolEcsTagArrayOutput {
+	return i.ToGetNodePoolsNodePoolEcsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolEcsTagArray) ToGetNodePoolsNodePoolEcsTagArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolEcsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolEcsTagArrayOutput)
+}
+
+type GetNodePoolsNodePoolEcsTagOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolEcsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolEcsTagOutput) ToGetNodePoolsNodePoolEcsTagOutput() GetNodePoolsNodePoolEcsTagOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolEcsTagOutput) ToGetNodePoolsNodePoolEcsTagOutputWithContext(ctx context.Context) GetNodePoolsNodePoolEcsTagOutput {
+	return o
+}
+
+// The Key of Taint.
+func (o GetNodePoolsNodePoolEcsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolEcsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o GetNodePoolsNodePoolEcsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolEcsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolEcsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolEcsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolEcsTagArrayOutput) ToGetNodePoolsNodePoolEcsTagArrayOutput() GetNodePoolsNodePoolEcsTagArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolEcsTagArrayOutput) ToGetNodePoolsNodePoolEcsTagArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolEcsTagArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolEcsTagArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolEcsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolEcsTag {
+		return vs[0].([]GetNodePoolsNodePoolEcsTag)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolEcsTagOutput)
+}
+
+type GetNodePoolsNodePoolKubeletConfig struct {
+	// The FeatureGates of KubeletConfig.
+	FeatureGates []GetNodePoolsNodePoolKubeletConfigFeatureGate `pulumi:"featureGates"`
+	// The TopologyManagerPolicy of KubeletConfig.
+	TopologyManagerPolicy string `pulumi:"topologyManagerPolicy"`
+	// The TopologyManagerScope of KubeletConfig.
+	TopologyManagerScope string `pulumi:"topologyManagerScope"`
+}
+
+// GetNodePoolsNodePoolKubeletConfigInput is an input type that accepts GetNodePoolsNodePoolKubeletConfigArgs and GetNodePoolsNodePoolKubeletConfigOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolKubeletConfigInput` via:
+//
+//	GetNodePoolsNodePoolKubeletConfigArgs{...}
+type GetNodePoolsNodePoolKubeletConfigInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolKubeletConfigOutput() GetNodePoolsNodePoolKubeletConfigOutput
+	ToGetNodePoolsNodePoolKubeletConfigOutputWithContext(context.Context) GetNodePoolsNodePoolKubeletConfigOutput
+}
+
+type GetNodePoolsNodePoolKubeletConfigArgs struct {
+	// The FeatureGates of KubeletConfig.
+	FeatureGates GetNodePoolsNodePoolKubeletConfigFeatureGateArrayInput `pulumi:"featureGates"`
+	// The TopologyManagerPolicy of KubeletConfig.
+	TopologyManagerPolicy pulumi.StringInput `pulumi:"topologyManagerPolicy"`
+	// The TopologyManagerScope of KubeletConfig.
+	TopologyManagerScope pulumi.StringInput `pulumi:"topologyManagerScope"`
+}
+
+func (GetNodePoolsNodePoolKubeletConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigArgs) ToGetNodePoolsNodePoolKubeletConfigOutput() GetNodePoolsNodePoolKubeletConfigOutput {
+	return i.ToGetNodePoolsNodePoolKubeletConfigOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigArgs) ToGetNodePoolsNodePoolKubeletConfigOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolKubeletConfigOutput)
+}
+
+// GetNodePoolsNodePoolKubeletConfigArrayInput is an input type that accepts GetNodePoolsNodePoolKubeletConfigArray and GetNodePoolsNodePoolKubeletConfigArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolKubeletConfigArrayInput` via:
+//
+//	GetNodePoolsNodePoolKubeletConfigArray{ GetNodePoolsNodePoolKubeletConfigArgs{...} }
+type GetNodePoolsNodePoolKubeletConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolKubeletConfigArrayOutput() GetNodePoolsNodePoolKubeletConfigArrayOutput
+	ToGetNodePoolsNodePoolKubeletConfigArrayOutputWithContext(context.Context) GetNodePoolsNodePoolKubeletConfigArrayOutput
+}
+
+type GetNodePoolsNodePoolKubeletConfigArray []GetNodePoolsNodePoolKubeletConfigInput
+
+func (GetNodePoolsNodePoolKubeletConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigArray) ToGetNodePoolsNodePoolKubeletConfigArrayOutput() GetNodePoolsNodePoolKubeletConfigArrayOutput {
+	return i.ToGetNodePoolsNodePoolKubeletConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigArray) ToGetNodePoolsNodePoolKubeletConfigArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolKubeletConfigArrayOutput)
+}
+
+type GetNodePoolsNodePoolKubeletConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolKubeletConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigOutput) ToGetNodePoolsNodePoolKubeletConfigOutput() GetNodePoolsNodePoolKubeletConfigOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigOutput) ToGetNodePoolsNodePoolKubeletConfigOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigOutput {
+	return o
+}
+
+// The FeatureGates of KubeletConfig.
+func (o GetNodePoolsNodePoolKubeletConfigOutput) FeatureGates() GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolKubeletConfig) []GetNodePoolsNodePoolKubeletConfigFeatureGate {
+		return v.FeatureGates
+	}).(GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput)
+}
+
+// The TopologyManagerPolicy of KubeletConfig.
+func (o GetNodePoolsNodePoolKubeletConfigOutput) TopologyManagerPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolKubeletConfig) string { return v.TopologyManagerPolicy }).(pulumi.StringOutput)
+}
+
+// The TopologyManagerScope of KubeletConfig.
+func (o GetNodePoolsNodePoolKubeletConfigOutput) TopologyManagerScope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolKubeletConfig) string { return v.TopologyManagerScope }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolKubeletConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolKubeletConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolKubeletConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigArrayOutput) ToGetNodePoolsNodePoolKubeletConfigArrayOutput() GetNodePoolsNodePoolKubeletConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigArrayOutput) ToGetNodePoolsNodePoolKubeletConfigArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolKubeletConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolKubeletConfig {
+		return vs[0].([]GetNodePoolsNodePoolKubeletConfig)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolKubeletConfigOutput)
+}
+
+type GetNodePoolsNodePoolKubeletConfigFeatureGate struct {
+	// Whether to enable QoSResourceManager.
+	QosResourceManager bool `pulumi:"qosResourceManager"`
+}
+
+// GetNodePoolsNodePoolKubeletConfigFeatureGateInput is an input type that accepts GetNodePoolsNodePoolKubeletConfigFeatureGateArgs and GetNodePoolsNodePoolKubeletConfigFeatureGateOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolKubeletConfigFeatureGateInput` via:
+//
+//	GetNodePoolsNodePoolKubeletConfigFeatureGateArgs{...}
+type GetNodePoolsNodePoolKubeletConfigFeatureGateInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutput() GetNodePoolsNodePoolKubeletConfigFeatureGateOutput
+	ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(context.Context) GetNodePoolsNodePoolKubeletConfigFeatureGateOutput
+}
+
+type GetNodePoolsNodePoolKubeletConfigFeatureGateArgs struct {
+	// Whether to enable QoSResourceManager.
+	QosResourceManager pulumi.BoolInput `pulumi:"qosResourceManager"`
+}
+
+func (GetNodePoolsNodePoolKubeletConfigFeatureGateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigFeatureGateArgs) ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutput() GetNodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return i.ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigFeatureGateArgs) ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolKubeletConfigFeatureGateOutput)
+}
+
+// GetNodePoolsNodePoolKubeletConfigFeatureGateArrayInput is an input type that accepts GetNodePoolsNodePoolKubeletConfigFeatureGateArray and GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolKubeletConfigFeatureGateArrayInput` via:
+//
+//	GetNodePoolsNodePoolKubeletConfigFeatureGateArray{ GetNodePoolsNodePoolKubeletConfigFeatureGateArgs{...} }
+type GetNodePoolsNodePoolKubeletConfigFeatureGateArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput() GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput
+	ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(context.Context) GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput
+}
+
+type GetNodePoolsNodePoolKubeletConfigFeatureGateArray []GetNodePoolsNodePoolKubeletConfigFeatureGateInput
+
+func (GetNodePoolsNodePoolKubeletConfigFeatureGateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigFeatureGateArray) ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput() GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return i.ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolKubeletConfigFeatureGateArray) ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput)
+}
+
+type GetNodePoolsNodePoolKubeletConfigFeatureGateOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolKubeletConfigFeatureGateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigFeatureGateOutput) ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutput() GetNodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigFeatureGateOutput) ToGetNodePoolsNodePoolKubeletConfigFeatureGateOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return o
+}
+
+// Whether to enable QoSResourceManager.
+func (o GetNodePoolsNodePoolKubeletConfigFeatureGateOutput) QosResourceManager() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolKubeletConfigFeatureGate) bool { return v.QosResourceManager }).(pulumi.BoolOutput)
+}
+
+type GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolKubeletConfigFeatureGate)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput() GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) ToGetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolKubeletConfigFeatureGateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolKubeletConfigFeatureGate {
+		return vs[0].([]GetNodePoolsNodePoolKubeletConfigFeatureGate)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolKubeletConfigFeatureGateOutput)
+}
+
+type GetNodePoolsNodePoolLabelContent struct {
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// GetNodePoolsNodePoolLabelContentInput is an input type that accepts GetNodePoolsNodePoolLabelContentArgs and GetNodePoolsNodePoolLabelContentOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolLabelContentInput` via:
+//
+//	GetNodePoolsNodePoolLabelContentArgs{...}
+type GetNodePoolsNodePoolLabelContentInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolLabelContentOutput() GetNodePoolsNodePoolLabelContentOutput
+	ToGetNodePoolsNodePoolLabelContentOutputWithContext(context.Context) GetNodePoolsNodePoolLabelContentOutput
+}
+
+type GetNodePoolsNodePoolLabelContentArgs struct {
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodePoolsNodePoolLabelContentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolLabelContent)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolLabelContentArgs) ToGetNodePoolsNodePoolLabelContentOutput() GetNodePoolsNodePoolLabelContentOutput {
+	return i.ToGetNodePoolsNodePoolLabelContentOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolLabelContentArgs) ToGetNodePoolsNodePoolLabelContentOutputWithContext(ctx context.Context) GetNodePoolsNodePoolLabelContentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolLabelContentOutput)
+}
+
+// GetNodePoolsNodePoolLabelContentArrayInput is an input type that accepts GetNodePoolsNodePoolLabelContentArray and GetNodePoolsNodePoolLabelContentArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolLabelContentArrayInput` via:
+//
+//	GetNodePoolsNodePoolLabelContentArray{ GetNodePoolsNodePoolLabelContentArgs{...} }
+type GetNodePoolsNodePoolLabelContentArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolLabelContentArrayOutput() GetNodePoolsNodePoolLabelContentArrayOutput
+	ToGetNodePoolsNodePoolLabelContentArrayOutputWithContext(context.Context) GetNodePoolsNodePoolLabelContentArrayOutput
+}
+
+type GetNodePoolsNodePoolLabelContentArray []GetNodePoolsNodePoolLabelContentInput
+
+func (GetNodePoolsNodePoolLabelContentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolLabelContent)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolLabelContentArray) ToGetNodePoolsNodePoolLabelContentArrayOutput() GetNodePoolsNodePoolLabelContentArrayOutput {
+	return i.ToGetNodePoolsNodePoolLabelContentArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolLabelContentArray) ToGetNodePoolsNodePoolLabelContentArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolLabelContentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolLabelContentArrayOutput)
+}
+
+type GetNodePoolsNodePoolLabelContentOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolLabelContentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolLabelContent)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolLabelContentOutput) ToGetNodePoolsNodePoolLabelContentOutput() GetNodePoolsNodePoolLabelContentOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolLabelContentOutput) ToGetNodePoolsNodePoolLabelContentOutputWithContext(ctx context.Context) GetNodePoolsNodePoolLabelContentOutput {
+	return o
+}
+
+// The Key of Taint.
+func (o GetNodePoolsNodePoolLabelContentOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolLabelContent) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o GetNodePoolsNodePoolLabelContentOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolLabelContent) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolLabelContentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolLabelContentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolLabelContent)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolLabelContentArrayOutput) ToGetNodePoolsNodePoolLabelContentArrayOutput() GetNodePoolsNodePoolLabelContentArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolLabelContentArrayOutput) ToGetNodePoolsNodePoolLabelContentArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolLabelContentArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolLabelContentArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolLabelContentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolLabelContent {
+		return vs[0].([]GetNodePoolsNodePoolLabelContent)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolLabelContentOutput)
+}
+
+type GetNodePoolsNodePoolNodeStatistic struct {
+	// The CreatingCount of Node.
+	CreatingCount int `pulumi:"creatingCount"`
+	// The DeletingCount of Node.
+	DeletingCount int `pulumi:"deletingCount"`
+	// The FailedCount of Node.
+	FailedCount int `pulumi:"failedCount"`
+	// The RunningCount of Node.
+	RunningCount int `pulumi:"runningCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StartingCount int `pulumi:"startingCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StoppedCount int `pulumi:"stoppedCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StoppingCount int `pulumi:"stoppingCount"`
+	// Returns the total amount of the data list.
+	TotalCount int `pulumi:"totalCount"`
+	// The UpdatingCount of Node.
+	UpdatingCount int `pulumi:"updatingCount"`
+}
+
+// GetNodePoolsNodePoolNodeStatisticInput is an input type that accepts GetNodePoolsNodePoolNodeStatisticArgs and GetNodePoolsNodePoolNodeStatisticOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolNodeStatisticInput` via:
+//
+//	GetNodePoolsNodePoolNodeStatisticArgs{...}
+type GetNodePoolsNodePoolNodeStatisticInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolNodeStatisticOutput() GetNodePoolsNodePoolNodeStatisticOutput
+	ToGetNodePoolsNodePoolNodeStatisticOutputWithContext(context.Context) GetNodePoolsNodePoolNodeStatisticOutput
+}
+
+type GetNodePoolsNodePoolNodeStatisticArgs struct {
+	// The CreatingCount of Node.
+	CreatingCount pulumi.IntInput `pulumi:"creatingCount"`
+	// The DeletingCount of Node.
+	DeletingCount pulumi.IntInput `pulumi:"deletingCount"`
+	// The FailedCount of Node.
+	FailedCount pulumi.IntInput `pulumi:"failedCount"`
+	// The RunningCount of Node.
+	RunningCount pulumi.IntInput `pulumi:"runningCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StartingCount pulumi.IntInput `pulumi:"startingCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StoppedCount pulumi.IntInput `pulumi:"stoppedCount"`
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
+	StoppingCount pulumi.IntInput `pulumi:"stoppingCount"`
+	// Returns the total amount of the data list.
+	TotalCount pulumi.IntInput `pulumi:"totalCount"`
+	// The UpdatingCount of Node.
+	UpdatingCount pulumi.IntInput `pulumi:"updatingCount"`
+}
+
+func (GetNodePoolsNodePoolNodeStatisticArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolNodeStatisticArgs) ToGetNodePoolsNodePoolNodeStatisticOutput() GetNodePoolsNodePoolNodeStatisticOutput {
+	return i.ToGetNodePoolsNodePoolNodeStatisticOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolNodeStatisticArgs) ToGetNodePoolsNodePoolNodeStatisticOutputWithContext(ctx context.Context) GetNodePoolsNodePoolNodeStatisticOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolNodeStatisticOutput)
+}
+
+// GetNodePoolsNodePoolNodeStatisticArrayInput is an input type that accepts GetNodePoolsNodePoolNodeStatisticArray and GetNodePoolsNodePoolNodeStatisticArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolNodeStatisticArrayInput` via:
+//
+//	GetNodePoolsNodePoolNodeStatisticArray{ GetNodePoolsNodePoolNodeStatisticArgs{...} }
+type GetNodePoolsNodePoolNodeStatisticArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolNodeStatisticArrayOutput() GetNodePoolsNodePoolNodeStatisticArrayOutput
+	ToGetNodePoolsNodePoolNodeStatisticArrayOutputWithContext(context.Context) GetNodePoolsNodePoolNodeStatisticArrayOutput
+}
+
+type GetNodePoolsNodePoolNodeStatisticArray []GetNodePoolsNodePoolNodeStatisticInput
+
+func (GetNodePoolsNodePoolNodeStatisticArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolNodeStatisticArray) ToGetNodePoolsNodePoolNodeStatisticArrayOutput() GetNodePoolsNodePoolNodeStatisticArrayOutput {
+	return i.ToGetNodePoolsNodePoolNodeStatisticArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolNodeStatisticArray) ToGetNodePoolsNodePoolNodeStatisticArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolNodeStatisticArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolNodeStatisticArrayOutput)
+}
+
+type GetNodePoolsNodePoolNodeStatisticOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolNodeStatisticOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolNodeStatisticOutput) ToGetNodePoolsNodePoolNodeStatisticOutput() GetNodePoolsNodePoolNodeStatisticOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolNodeStatisticOutput) ToGetNodePoolsNodePoolNodeStatisticOutputWithContext(ctx context.Context) GetNodePoolsNodePoolNodeStatisticOutput {
+	return o
+}
+
+// The CreatingCount of Node.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) CreatingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.CreatingCount }).(pulumi.IntOutput)
+}
+
+// The DeletingCount of Node.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) DeletingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.DeletingCount }).(pulumi.IntOutput)
+}
+
+// The FailedCount of Node.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) FailedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.FailedCount }).(pulumi.IntOutput)
+}
+
+// The RunningCount of Node.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) RunningCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.RunningCount }).(pulumi.IntOutput)
+}
+
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) StartingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.StartingCount }).(pulumi.IntOutput)
+}
+
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) StoppedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.StoppedCount }).(pulumi.IntOutput)
+}
+
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) StoppingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.StoppingCount }).(pulumi.IntOutput)
+}
+
+// Returns the total amount of the data list.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) TotalCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The UpdatingCount of Node.
+func (o GetNodePoolsNodePoolNodeStatisticOutput) UpdatingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolNodeStatistic) int { return v.UpdatingCount }).(pulumi.IntOutput)
+}
+
+type GetNodePoolsNodePoolNodeStatisticArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolNodeStatisticArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolNodeStatisticArrayOutput) ToGetNodePoolsNodePoolNodeStatisticArrayOutput() GetNodePoolsNodePoolNodeStatisticArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolNodeStatisticArrayOutput) ToGetNodePoolsNodePoolNodeStatisticArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolNodeStatisticArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolNodeStatisticArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolNodeStatisticOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolNodeStatistic {
+		return vs[0].([]GetNodePoolsNodePoolNodeStatistic)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolNodeStatisticOutput)
+}
+
+type GetNodePoolsNodePoolSystemVolume struct {
+	// The Size of SystemVolume.
+	Size string `pulumi:"size"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+}
+
+// GetNodePoolsNodePoolSystemVolumeInput is an input type that accepts GetNodePoolsNodePoolSystemVolumeArgs and GetNodePoolsNodePoolSystemVolumeOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolSystemVolumeInput` via:
+//
+//	GetNodePoolsNodePoolSystemVolumeArgs{...}
+type GetNodePoolsNodePoolSystemVolumeInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolSystemVolumeOutput() GetNodePoolsNodePoolSystemVolumeOutput
+	ToGetNodePoolsNodePoolSystemVolumeOutputWithContext(context.Context) GetNodePoolsNodePoolSystemVolumeOutput
+}
+
+type GetNodePoolsNodePoolSystemVolumeArgs struct {
+	// The Size of SystemVolume.
+	Size pulumi.StringInput `pulumi:"size"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetNodePoolsNodePoolSystemVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolSystemVolume)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolSystemVolumeArgs) ToGetNodePoolsNodePoolSystemVolumeOutput() GetNodePoolsNodePoolSystemVolumeOutput {
+	return i.ToGetNodePoolsNodePoolSystemVolumeOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolSystemVolumeArgs) ToGetNodePoolsNodePoolSystemVolumeOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSystemVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolSystemVolumeOutput)
+}
+
+// GetNodePoolsNodePoolSystemVolumeArrayInput is an input type that accepts GetNodePoolsNodePoolSystemVolumeArray and GetNodePoolsNodePoolSystemVolumeArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolSystemVolumeArrayInput` via:
+//
+//	GetNodePoolsNodePoolSystemVolumeArray{ GetNodePoolsNodePoolSystemVolumeArgs{...} }
+type GetNodePoolsNodePoolSystemVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolSystemVolumeArrayOutput() GetNodePoolsNodePoolSystemVolumeArrayOutput
+	ToGetNodePoolsNodePoolSystemVolumeArrayOutputWithContext(context.Context) GetNodePoolsNodePoolSystemVolumeArrayOutput
+}
+
+type GetNodePoolsNodePoolSystemVolumeArray []GetNodePoolsNodePoolSystemVolumeInput
+
+func (GetNodePoolsNodePoolSystemVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolSystemVolume)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolSystemVolumeArray) ToGetNodePoolsNodePoolSystemVolumeArrayOutput() GetNodePoolsNodePoolSystemVolumeArrayOutput {
+	return i.ToGetNodePoolsNodePoolSystemVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolSystemVolumeArray) ToGetNodePoolsNodePoolSystemVolumeArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSystemVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolSystemVolumeArrayOutput)
+}
+
+type GetNodePoolsNodePoolSystemVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolSystemVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolSystemVolume)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolSystemVolumeOutput) ToGetNodePoolsNodePoolSystemVolumeOutput() GetNodePoolsNodePoolSystemVolumeOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSystemVolumeOutput) ToGetNodePoolsNodePoolSystemVolumeOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSystemVolumeOutput {
+	return o
+}
+
+// The Size of SystemVolume.
+func (o GetNodePoolsNodePoolSystemVolumeOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolSystemVolume) string { return v.Size }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o GetNodePoolsNodePoolSystemVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolSystemVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolSystemVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolSystemVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolSystemVolume)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolSystemVolumeArrayOutput) ToGetNodePoolsNodePoolSystemVolumeArrayOutput() GetNodePoolsNodePoolSystemVolumeArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSystemVolumeArrayOutput) ToGetNodePoolsNodePoolSystemVolumeArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSystemVolumeArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSystemVolumeArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolSystemVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolSystemVolume {
+		return vs[0].([]GetNodePoolsNodePoolSystemVolume)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolSystemVolumeOutput)
+}
+
+type GetNodePoolsNodePoolTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetNodePoolsNodePoolTagInput is an input type that accepts GetNodePoolsNodePoolTagArgs and GetNodePoolsNodePoolTagOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolTagInput` via:
+//
+//	GetNodePoolsNodePoolTagArgs{...}
+type GetNodePoolsNodePoolTagInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolTagOutput() GetNodePoolsNodePoolTagOutput
+	ToGetNodePoolsNodePoolTagOutputWithContext(context.Context) GetNodePoolsNodePoolTagOutput
+}
+
+type GetNodePoolsNodePoolTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodePoolsNodePoolTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolTagArgs) ToGetNodePoolsNodePoolTagOutput() GetNodePoolsNodePoolTagOutput {
+	return i.ToGetNodePoolsNodePoolTagOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolTagArgs) ToGetNodePoolsNodePoolTagOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolTagOutput)
+}
+
+// GetNodePoolsNodePoolTagArrayInput is an input type that accepts GetNodePoolsNodePoolTagArray and GetNodePoolsNodePoolTagArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolTagArrayInput` via:
+//
+//	GetNodePoolsNodePoolTagArray{ GetNodePoolsNodePoolTagArgs{...} }
+type GetNodePoolsNodePoolTagArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolTagArrayOutput() GetNodePoolsNodePoolTagArrayOutput
+	ToGetNodePoolsNodePoolTagArrayOutputWithContext(context.Context) GetNodePoolsNodePoolTagArrayOutput
+}
+
+type GetNodePoolsNodePoolTagArray []GetNodePoolsNodePoolTagInput
+
+func (GetNodePoolsNodePoolTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolTagArray) ToGetNodePoolsNodePoolTagArrayOutput() GetNodePoolsNodePoolTagArrayOutput {
+	return i.ToGetNodePoolsNodePoolTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolTagArray) ToGetNodePoolsNodePoolTagArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolTagArrayOutput)
+}
+
+type GetNodePoolsNodePoolTagOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolTagOutput) ToGetNodePoolsNodePoolTagOutput() GetNodePoolsNodePoolTagOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolTagOutput) ToGetNodePoolsNodePoolTagOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetNodePoolsNodePoolTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o GetNodePoolsNodePoolTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetNodePoolsNodePoolTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolTagArrayOutput) ToGetNodePoolsNodePoolTagArrayOutput() GetNodePoolsNodePoolTagArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolTagArrayOutput) ToGetNodePoolsNodePoolTagArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTagArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolTagArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolTag {
+		return vs[0].([]GetNodePoolsNodePoolTag)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolTagOutput)
+}
+
+type GetNodePoolsNodePoolTaintContent struct {
+	// The Effect of Taint.
+	Effect string `pulumi:"effect"`
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// GetNodePoolsNodePoolTaintContentInput is an input type that accepts GetNodePoolsNodePoolTaintContentArgs and GetNodePoolsNodePoolTaintContentOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolTaintContentInput` via:
+//
+//	GetNodePoolsNodePoolTaintContentArgs{...}
+type GetNodePoolsNodePoolTaintContentInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolTaintContentOutput() GetNodePoolsNodePoolTaintContentOutput
+	ToGetNodePoolsNodePoolTaintContentOutputWithContext(context.Context) GetNodePoolsNodePoolTaintContentOutput
+}
+
+type GetNodePoolsNodePoolTaintContentArgs struct {
+	// The Effect of Taint.
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodePoolsNodePoolTaintContentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolTaintContent)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolTaintContentArgs) ToGetNodePoolsNodePoolTaintContentOutput() GetNodePoolsNodePoolTaintContentOutput {
+	return i.ToGetNodePoolsNodePoolTaintContentOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolTaintContentArgs) ToGetNodePoolsNodePoolTaintContentOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTaintContentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolTaintContentOutput)
+}
+
+// GetNodePoolsNodePoolTaintContentArrayInput is an input type that accepts GetNodePoolsNodePoolTaintContentArray and GetNodePoolsNodePoolTaintContentArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolTaintContentArrayInput` via:
+//
+//	GetNodePoolsNodePoolTaintContentArray{ GetNodePoolsNodePoolTaintContentArgs{...} }
+type GetNodePoolsNodePoolTaintContentArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolTaintContentArrayOutput() GetNodePoolsNodePoolTaintContentArrayOutput
+	ToGetNodePoolsNodePoolTaintContentArrayOutputWithContext(context.Context) GetNodePoolsNodePoolTaintContentArrayOutput
+}
+
+type GetNodePoolsNodePoolTaintContentArray []GetNodePoolsNodePoolTaintContentInput
+
+func (GetNodePoolsNodePoolTaintContentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolTaintContent)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolTaintContentArray) ToGetNodePoolsNodePoolTaintContentArrayOutput() GetNodePoolsNodePoolTaintContentArrayOutput {
+	return i.ToGetNodePoolsNodePoolTaintContentArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolTaintContentArray) ToGetNodePoolsNodePoolTaintContentArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTaintContentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolTaintContentArrayOutput)
+}
+
+type GetNodePoolsNodePoolTaintContentOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolTaintContentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolTaintContent)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolTaintContentOutput) ToGetNodePoolsNodePoolTaintContentOutput() GetNodePoolsNodePoolTaintContentOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolTaintContentOutput) ToGetNodePoolsNodePoolTaintContentOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTaintContentOutput {
+	return o
+}
+
+// The Effect of Taint.
+func (o GetNodePoolsNodePoolTaintContentOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolTaintContent) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// The Key of Taint.
+func (o GetNodePoolsNodePoolTaintContentOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolTaintContent) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o GetNodePoolsNodePoolTaintContentOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolTaintContent) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolTaintContentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolTaintContentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolTaintContent)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolTaintContentArrayOutput) ToGetNodePoolsNodePoolTaintContentArrayOutput() GetNodePoolsNodePoolTaintContentArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolTaintContentArrayOutput) ToGetNodePoolsNodePoolTaintContentArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolTaintContentArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolTaintContentArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolTaintContentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolTaintContent {
+		return vs[0].([]GetNodePoolsNodePoolTaintContent)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolTaintContentOutput)
+}
+
+type GetNodePoolsStatus struct {
+	// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+	ConditionsType *string `pulumi:"conditionsType"`
+	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+	Phase *string `pulumi:"phase"`
+}
+
+// GetNodePoolsStatusInput is an input type that accepts GetNodePoolsStatusArgs and GetNodePoolsStatusOutput values.
+// You can construct a concrete instance of `GetNodePoolsStatusInput` via:
+//
+//	GetNodePoolsStatusArgs{...}
+type GetNodePoolsStatusInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsStatusOutput() GetNodePoolsStatusOutput
+	ToGetNodePoolsStatusOutputWithContext(context.Context) GetNodePoolsStatusOutput
+}
+
+type GetNodePoolsStatusArgs struct {
+	// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
+	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (GetNodePoolsStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsStatus)(nil)).Elem()
+}
+
+func (i GetNodePoolsStatusArgs) ToGetNodePoolsStatusOutput() GetNodePoolsStatusOutput {
+	return i.ToGetNodePoolsStatusOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsStatusArgs) ToGetNodePoolsStatusOutputWithContext(ctx context.Context) GetNodePoolsStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsStatusOutput)
+}
+
+// GetNodePoolsStatusArrayInput is an input type that accepts GetNodePoolsStatusArray and GetNodePoolsStatusArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsStatusArrayInput` via:
+//
+//	GetNodePoolsStatusArray{ GetNodePoolsStatusArgs{...} }
+type GetNodePoolsStatusArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsStatusArrayOutput() GetNodePoolsStatusArrayOutput
+	ToGetNodePoolsStatusArrayOutputWithContext(context.Context) GetNodePoolsStatusArrayOutput
+}
+
+type GetNodePoolsStatusArray []GetNodePoolsStatusInput
+
+func (GetNodePoolsStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsStatus)(nil)).Elem()
+}
+
+func (i GetNodePoolsStatusArray) ToGetNodePoolsStatusArrayOutput() GetNodePoolsStatusArrayOutput {
+	return i.ToGetNodePoolsStatusArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsStatusArray) ToGetNodePoolsStatusArrayOutputWithContext(ctx context.Context) GetNodePoolsStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsStatusArrayOutput)
+}
+
+type GetNodePoolsStatusOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsStatus)(nil)).Elem()
+}
+
+func (o GetNodePoolsStatusOutput) ToGetNodePoolsStatusOutput() GetNodePoolsStatusOutput {
+	return o
+}
+
+func (o GetNodePoolsStatusOutput) ToGetNodePoolsStatusOutputWithContext(ctx context.Context) GetNodePoolsStatusOutput {
+	return o
+}
+
+// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+func (o GetNodePoolsStatusOutput) ConditionsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodePoolsStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
+}
+
+// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+func (o GetNodePoolsStatusOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodePoolsStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type GetNodePoolsStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsStatus)(nil)).Elem()
+}
+
+func (o GetNodePoolsStatusArrayOutput) ToGetNodePoolsStatusArrayOutput() GetNodePoolsStatusArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsStatusArrayOutput) ToGetNodePoolsStatusArrayOutputWithContext(ctx context.Context) GetNodePoolsStatusArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsStatusArrayOutput) Index(i pulumi.IntInput) GetNodePoolsStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsStatus {
+		return vs[0].([]GetNodePoolsStatus)[vs[1].(int)]
+	}).(GetNodePoolsStatusOutput)
+}
+
+type GetNodePoolsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetNodePoolsTagInput is an input type that accepts GetNodePoolsTagArgs and GetNodePoolsTagOutput values.
+// You can construct a concrete instance of `GetNodePoolsTagInput` via:
+//
+//	GetNodePoolsTagArgs{...}
+type GetNodePoolsTagInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsTagOutput() GetNodePoolsTagOutput
+	ToGetNodePoolsTagOutputWithContext(context.Context) GetNodePoolsTagOutput
+}
+
+type GetNodePoolsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodePoolsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsTag)(nil)).Elem()
+}
+
+func (i GetNodePoolsTagArgs) ToGetNodePoolsTagOutput() GetNodePoolsTagOutput {
+	return i.ToGetNodePoolsTagOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsTagArgs) ToGetNodePoolsTagOutputWithContext(ctx context.Context) GetNodePoolsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsTagOutput)
+}
+
+// GetNodePoolsTagArrayInput is an input type that accepts GetNodePoolsTagArray and GetNodePoolsTagArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsTagArrayInput` via:
+//
+//	GetNodePoolsTagArray{ GetNodePoolsTagArgs{...} }
+type GetNodePoolsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsTagArrayOutput() GetNodePoolsTagArrayOutput
+	ToGetNodePoolsTagArrayOutputWithContext(context.Context) GetNodePoolsTagArrayOutput
+}
+
+type GetNodePoolsTagArray []GetNodePoolsTagInput
+
+func (GetNodePoolsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsTag)(nil)).Elem()
+}
+
+func (i GetNodePoolsTagArray) ToGetNodePoolsTagArrayOutput() GetNodePoolsTagArrayOutput {
+	return i.ToGetNodePoolsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsTagArray) ToGetNodePoolsTagArrayOutputWithContext(ctx context.Context) GetNodePoolsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsTagArrayOutput)
+}
+
+type GetNodePoolsTagOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsTag)(nil)).Elem()
+}
+
+func (o GetNodePoolsTagOutput) ToGetNodePoolsTagOutput() GetNodePoolsTagOutput {
+	return o
+}
+
+func (o GetNodePoolsTagOutput) ToGetNodePoolsTagOutputWithContext(ctx context.Context) GetNodePoolsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetNodePoolsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetNodePoolsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsTag)(nil)).Elem()
+}
+
+func (o GetNodePoolsTagArrayOutput) ToGetNodePoolsTagArrayOutput() GetNodePoolsTagArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsTagArrayOutput) ToGetNodePoolsTagArrayOutputWithContext(ctx context.Context) GetNodePoolsTagArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsTagArrayOutput) Index(i pulumi.IntInput) GetNodePoolsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsTag {
+		return vs[0].([]GetNodePoolsTag)[vs[1].(int)]
+	}).(GetNodePoolsTagOutput)
+}
+
+type GetNodesNode struct {
+	// Is Additional Container storage enables.
+	AdditionalContainerStorageEnabled bool `pulumi:"additionalContainerStorageEnabled"`
+	// The cluster id of node.
+	ClusterId string `pulumi:"clusterId"`
+	// The Condition of Node.
+	ConditionTypes []string `pulumi:"conditionTypes"`
+	// The Storage Path.
+	ContainerStoragePath string `pulumi:"containerStoragePath"`
+	// The Cordon of KubernetesConfig.
+	Cordon bool `pulumi:"cordon"`
+	// The Create Client Token.
+	CreateClientToken string `pulumi:"createClientToken"`
+	// The create time of Node.
+	CreateTime string `pulumi:"createTime"`
+	// The ID of Node.
+	Id string `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId string `pulumi:"imageId"`
+	// The InitializeScript of NodeConfig.
+	InitializeScript string `pulumi:"initializeScript"`
+	// The instance id of node.
+	InstanceId string `pulumi:"instanceId"`
+	// Is virtual node.
+	IsVirtual bool `pulumi:"isVirtual"`
+	// The Label of KubernetesConfig.
+	Labels []GetNodesNodeLabel `pulumi:"labels"`
+	// The Name of Node.
+	Name string `pulumi:"name"`
+	// The node pool id.
+	NodePoolId string `pulumi:"nodePoolId"`
+	// The Phase of Node.
+	Phase string `pulumi:"phase"`
+	// The roles of node.
+	Roles []string `pulumi:"roles"`
+	// The Taint of KubernetesConfig.
+	Taints []GetNodesNodeTaint `pulumi:"taints"`
+	// The update time of Node.
+	UpdateTime string `pulumi:"updateTime"`
+	// The zone id.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetNodesNodeInput is an input type that accepts GetNodesNodeArgs and GetNodesNodeOutput values.
+// You can construct a concrete instance of `GetNodesNodeInput` via:
+//
+//	GetNodesNodeArgs{...}
+type GetNodesNodeInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeOutput() GetNodesNodeOutput
+	ToGetNodesNodeOutputWithContext(context.Context) GetNodesNodeOutput
+}
+
+type GetNodesNodeArgs struct {
+	// Is Additional Container storage enables.
+	AdditionalContainerStorageEnabled pulumi.BoolInput `pulumi:"additionalContainerStorageEnabled"`
+	// The cluster id of node.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The Condition of Node.
+	ConditionTypes pulumi.StringArrayInput `pulumi:"conditionTypes"`
+	// The Storage Path.
+	ContainerStoragePath pulumi.StringInput `pulumi:"containerStoragePath"`
+	// The Cordon of KubernetesConfig.
+	Cordon pulumi.BoolInput `pulumi:"cordon"`
+	// The Create Client Token.
+	CreateClientToken pulumi.StringInput `pulumi:"createClientToken"`
+	// The create time of Node.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The ID of Node.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The InitializeScript of NodeConfig.
+	InitializeScript pulumi.StringInput `pulumi:"initializeScript"`
+	// The instance id of node.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Is virtual node.
+	IsVirtual pulumi.BoolInput `pulumi:"isVirtual"`
+	// The Label of KubernetesConfig.
+	Labels GetNodesNodeLabelArrayInput `pulumi:"labels"`
+	// The Name of Node.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The node pool id.
+	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
+	// The Phase of Node.
+	Phase pulumi.StringInput `pulumi:"phase"`
+	// The roles of node.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+	// The Taint of KubernetesConfig.
+	Taints GetNodesNodeTaintArrayInput `pulumi:"taints"`
+	// The update time of Node.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The zone id.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetNodesNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNode)(nil)).Elem()
+}
+
+func (i GetNodesNodeArgs) ToGetNodesNodeOutput() GetNodesNodeOutput {
+	return i.ToGetNodesNodeOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeArgs) ToGetNodesNodeOutputWithContext(ctx context.Context) GetNodesNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeOutput)
+}
+
+// GetNodesNodeArrayInput is an input type that accepts GetNodesNodeArray and GetNodesNodeArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeArrayInput` via:
+//
+//	GetNodesNodeArray{ GetNodesNodeArgs{...} }
+type GetNodesNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput
+	ToGetNodesNodeArrayOutputWithContext(context.Context) GetNodesNodeArrayOutput
+}
+
+type GetNodesNodeArray []GetNodesNodeInput
+
+func (GetNodesNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNode)(nil)).Elem()
+}
+
+func (i GetNodesNodeArray) ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput {
+	return i.ToGetNodesNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeArray) ToGetNodesNodeArrayOutputWithContext(ctx context.Context) GetNodesNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeArrayOutput)
+}
+
+type GetNodesNodeOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNode)(nil)).Elem()
+}
+
+func (o GetNodesNodeOutput) ToGetNodesNodeOutput() GetNodesNodeOutput {
+	return o
+}
+
+func (o GetNodesNodeOutput) ToGetNodesNodeOutputWithContext(ctx context.Context) GetNodesNodeOutput {
+	return o
+}
+
+// Is Additional Container storage enables.
+func (o GetNodesNodeOutput) AdditionalContainerStorageEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.AdditionalContainerStorageEnabled }).(pulumi.BoolOutput)
+}
+
+// The cluster id of node.
+func (o GetNodesNodeOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The Condition of Node.
+func (o GetNodesNodeOutput) ConditionTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []string { return v.ConditionTypes }).(pulumi.StringArrayOutput)
+}
+
+// The Storage Path.
+func (o GetNodesNodeOutput) ContainerStoragePath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.ContainerStoragePath }).(pulumi.StringOutput)
+}
+
+// The Cordon of KubernetesConfig.
+func (o GetNodesNodeOutput) Cordon() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.Cordon }).(pulumi.BoolOutput)
+}
+
+// The Create Client Token.
+func (o GetNodesNodeOutput) CreateClientToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.CreateClientToken }).(pulumi.StringOutput)
+}
+
+// The create time of Node.
+func (o GetNodesNodeOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The ID of Node.
+func (o GetNodesNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ImageId of NodeConfig.
+func (o GetNodesNodeOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The InitializeScript of NodeConfig.
+func (o GetNodesNodeOutput) InitializeScript() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.InitializeScript }).(pulumi.StringOutput)
+}
+
+// The instance id of node.
+func (o GetNodesNodeOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Is virtual node.
+func (o GetNodesNodeOutput) IsVirtual() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.IsVirtual }).(pulumi.BoolOutput)
+}
+
+// The Label of KubernetesConfig.
+func (o GetNodesNodeOutput) Labels() GetNodesNodeLabelArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []GetNodesNodeLabel { return v.Labels }).(GetNodesNodeLabelArrayOutput)
+}
+
+// The Name of Node.
+func (o GetNodesNodeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The node pool id.
+func (o GetNodesNodeOutput) NodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.NodePoolId }).(pulumi.StringOutput)
+}
+
+// The Phase of Node.
+func (o GetNodesNodeOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// The roles of node.
+func (o GetNodesNodeOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+// The Taint of KubernetesConfig.
+func (o GetNodesNodeOutput) Taints() GetNodesNodeTaintArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []GetNodesNodeTaint { return v.Taints }).(GetNodesNodeTaintArrayOutput)
+}
+
+// The update time of Node.
+func (o GetNodesNodeOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The zone id.
+func (o GetNodesNodeOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNode)(nil)).Elem()
+}
+
+func (o GetNodesNodeArrayOutput) ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeArrayOutput) ToGetNodesNodeArrayOutputWithContext(ctx context.Context) GetNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodesNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNode {
+		return vs[0].([]GetNodesNode)[vs[1].(int)]
+	}).(GetNodesNodeOutput)
+}
+
+type GetNodesNodeLabel struct {
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// GetNodesNodeLabelInput is an input type that accepts GetNodesNodeLabelArgs and GetNodesNodeLabelOutput values.
+// You can construct a concrete instance of `GetNodesNodeLabelInput` via:
+//
+//	GetNodesNodeLabelArgs{...}
+type GetNodesNodeLabelInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeLabelOutput() GetNodesNodeLabelOutput
+	ToGetNodesNodeLabelOutputWithContext(context.Context) GetNodesNodeLabelOutput
+}
+
+type GetNodesNodeLabelArgs struct {
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodesNodeLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeLabel)(nil)).Elem()
+}
+
+func (i GetNodesNodeLabelArgs) ToGetNodesNodeLabelOutput() GetNodesNodeLabelOutput {
+	return i.ToGetNodesNodeLabelOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeLabelArgs) ToGetNodesNodeLabelOutputWithContext(ctx context.Context) GetNodesNodeLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeLabelOutput)
+}
+
+// GetNodesNodeLabelArrayInput is an input type that accepts GetNodesNodeLabelArray and GetNodesNodeLabelArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeLabelArrayInput` via:
+//
+//	GetNodesNodeLabelArray{ GetNodesNodeLabelArgs{...} }
+type GetNodesNodeLabelArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeLabelArrayOutput() GetNodesNodeLabelArrayOutput
+	ToGetNodesNodeLabelArrayOutputWithContext(context.Context) GetNodesNodeLabelArrayOutput
+}
+
+type GetNodesNodeLabelArray []GetNodesNodeLabelInput
+
+func (GetNodesNodeLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeLabel)(nil)).Elem()
+}
+
+func (i GetNodesNodeLabelArray) ToGetNodesNodeLabelArrayOutput() GetNodesNodeLabelArrayOutput {
+	return i.ToGetNodesNodeLabelArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeLabelArray) ToGetNodesNodeLabelArrayOutputWithContext(ctx context.Context) GetNodesNodeLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeLabelArrayOutput)
+}
+
+type GetNodesNodeLabelOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeLabel)(nil)).Elem()
+}
+
+func (o GetNodesNodeLabelOutput) ToGetNodesNodeLabelOutput() GetNodesNodeLabelOutput {
+	return o
+}
+
+func (o GetNodesNodeLabelOutput) ToGetNodesNodeLabelOutputWithContext(ctx context.Context) GetNodesNodeLabelOutput {
+	return o
+}
+
+// The Key of Taint.
+func (o GetNodesNodeLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeLabel) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o GetNodesNodeLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeLabel) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeLabel)(nil)).Elem()
+}
+
+func (o GetNodesNodeLabelArrayOutput) ToGetNodesNodeLabelArrayOutput() GetNodesNodeLabelArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeLabelArrayOutput) ToGetNodesNodeLabelArrayOutputWithContext(ctx context.Context) GetNodesNodeLabelArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeLabelArrayOutput) Index(i pulumi.IntInput) GetNodesNodeLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeLabel {
+		return vs[0].([]GetNodesNodeLabel)[vs[1].(int)]
+	}).(GetNodesNodeLabelOutput)
+}
+
+type GetNodesNodeTaint struct {
+	// The Effect of Taint.
+	Effect string `pulumi:"effect"`
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// GetNodesNodeTaintInput is an input type that accepts GetNodesNodeTaintArgs and GetNodesNodeTaintOutput values.
+// You can construct a concrete instance of `GetNodesNodeTaintInput` via:
+//
+//	GetNodesNodeTaintArgs{...}
+type GetNodesNodeTaintInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeTaintOutput() GetNodesNodeTaintOutput
+	ToGetNodesNodeTaintOutputWithContext(context.Context) GetNodesNodeTaintOutput
+}
+
+type GetNodesNodeTaintArgs struct {
+	// The Effect of Taint.
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodesNodeTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeTaint)(nil)).Elem()
+}
+
+func (i GetNodesNodeTaintArgs) ToGetNodesNodeTaintOutput() GetNodesNodeTaintOutput {
+	return i.ToGetNodesNodeTaintOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeTaintArgs) ToGetNodesNodeTaintOutputWithContext(ctx context.Context) GetNodesNodeTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeTaintOutput)
+}
+
+// GetNodesNodeTaintArrayInput is an input type that accepts GetNodesNodeTaintArray and GetNodesNodeTaintArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeTaintArrayInput` via:
+//
+//	GetNodesNodeTaintArray{ GetNodesNodeTaintArgs{...} }
+type GetNodesNodeTaintArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeTaintArrayOutput() GetNodesNodeTaintArrayOutput
+	ToGetNodesNodeTaintArrayOutputWithContext(context.Context) GetNodesNodeTaintArrayOutput
+}
+
+type GetNodesNodeTaintArray []GetNodesNodeTaintInput
+
+func (GetNodesNodeTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeTaint)(nil)).Elem()
+}
+
+func (i GetNodesNodeTaintArray) ToGetNodesNodeTaintArrayOutput() GetNodesNodeTaintArrayOutput {
+	return i.ToGetNodesNodeTaintArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeTaintArray) ToGetNodesNodeTaintArrayOutputWithContext(ctx context.Context) GetNodesNodeTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeTaintArrayOutput)
+}
+
+type GetNodesNodeTaintOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeTaint)(nil)).Elem()
+}
+
+func (o GetNodesNodeTaintOutput) ToGetNodesNodeTaintOutput() GetNodesNodeTaintOutput {
+	return o
+}
+
+func (o GetNodesNodeTaintOutput) ToGetNodesNodeTaintOutputWithContext(ctx context.Context) GetNodesNodeTaintOutput {
+	return o
+}
+
+// The Effect of Taint.
+func (o GetNodesNodeTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// The Key of Taint.
+func (o GetNodesNodeTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o GetNodesNodeTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeTaint)(nil)).Elem()
+}
+
+func (o GetNodesNodeTaintArrayOutput) ToGetNodesNodeTaintArrayOutput() GetNodesNodeTaintArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeTaintArrayOutput) ToGetNodesNodeTaintArrayOutputWithContext(ctx context.Context) GetNodesNodeTaintArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeTaintArrayOutput) Index(i pulumi.IntInput) GetNodesNodeTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeTaint {
+		return vs[0].([]GetNodesNodeTaint)[vs[1].(int)]
+	}).(GetNodesNodeTaintOutput)
+}
+
+type GetNodesStatus struct {
+	// The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+	ConditionsType *string `pulumi:"conditionsType"`
+	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+	Phase *string `pulumi:"phase"`
+}
+
+// GetNodesStatusInput is an input type that accepts GetNodesStatusArgs and GetNodesStatusOutput values.
+// You can construct a concrete instance of `GetNodesStatusInput` via:
+//
+//	GetNodesStatusArgs{...}
+type GetNodesStatusInput interface {
+	pulumi.Input
+
+	ToGetNodesStatusOutput() GetNodesStatusOutput
+	ToGetNodesStatusOutputWithContext(context.Context) GetNodesStatusOutput
+}
+
+type GetNodesStatusArgs struct {
+	// The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
+	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (GetNodesStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesStatus)(nil)).Elem()
+}
+
+func (i GetNodesStatusArgs) ToGetNodesStatusOutput() GetNodesStatusOutput {
+	return i.ToGetNodesStatusOutputWithContext(context.Background())
+}
+
+func (i GetNodesStatusArgs) ToGetNodesStatusOutputWithContext(ctx context.Context) GetNodesStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesStatusOutput)
+}
+
+// GetNodesStatusArrayInput is an input type that accepts GetNodesStatusArray and GetNodesStatusArrayOutput values.
+// You can construct a concrete instance of `GetNodesStatusArrayInput` via:
+//
+//	GetNodesStatusArray{ GetNodesStatusArgs{...} }
+type GetNodesStatusArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesStatusArrayOutput() GetNodesStatusArrayOutput
+	ToGetNodesStatusArrayOutputWithContext(context.Context) GetNodesStatusArrayOutput
+}
+
+type GetNodesStatusArray []GetNodesStatusInput
+
+func (GetNodesStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesStatus)(nil)).Elem()
+}
+
+func (i GetNodesStatusArray) ToGetNodesStatusArrayOutput() GetNodesStatusArrayOutput {
+	return i.ToGetNodesStatusArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesStatusArray) ToGetNodesStatusArrayOutputWithContext(ctx context.Context) GetNodesStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesStatusArrayOutput)
+}
+
+type GetNodesStatusOutput struct{ *pulumi.OutputState }
+
+func (GetNodesStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesStatus)(nil)).Elem()
+}
+
+func (o GetNodesStatusOutput) ToGetNodesStatusOutput() GetNodesStatusOutput {
+	return o
+}
+
+func (o GetNodesStatusOutput) ToGetNodesStatusOutputWithContext(ctx context.Context) GetNodesStatusOutput {
+	return o
+}
+
+// The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+func (o GetNodesStatusOutput) ConditionsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodesStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
+}
+
+// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+func (o GetNodesStatusOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodesStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type GetNodesStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesStatus)(nil)).Elem()
+}
+
+func (o GetNodesStatusArrayOutput) ToGetNodesStatusArrayOutput() GetNodesStatusArrayOutput {
+	return o
+}
+
+func (o GetNodesStatusArrayOutput) ToGetNodesStatusArrayOutputWithContext(ctx context.Context) GetNodesStatusArrayOutput {
+	return o
+}
+
+func (o GetNodesStatusArrayOutput) Index(i pulumi.IntInput) GetNodesStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesStatus {
+		return vs[0].([]GetNodesStatus)[vs[1].(int)]
+	}).(GetNodesStatusOutput)
+}
+
+type GetSupportAddonsAddon struct {
+	// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+	Categories []string `pulumi:"categories"`
+	// The deploy model.
+	DeployMode string `pulumi:"deployMode"`
+	// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+	DeployNodeTypes []string `pulumi:"deployNodeTypes"`
+	// The name of the addon.
+	Name string `pulumi:"name"`
+	// The necessary of addon.
+	Necessary *string `pulumi:"necessary"`
+	// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+	PodNetworkModes []string `pulumi:"podNetworkModes"`
+	// The version info of addon.
+	Versions []GetSupportAddonsAddonVersion `pulumi:"versions"`
+}
+
+// GetSupportAddonsAddonInput is an input type that accepts GetSupportAddonsAddonArgs and GetSupportAddonsAddonOutput values.
+// You can construct a concrete instance of `GetSupportAddonsAddonInput` via:
+//
+//	GetSupportAddonsAddonArgs{...}
+type GetSupportAddonsAddonInput interface {
+	pulumi.Input
+
+	ToGetSupportAddonsAddonOutput() GetSupportAddonsAddonOutput
+	ToGetSupportAddonsAddonOutputWithContext(context.Context) GetSupportAddonsAddonOutput
+}
+
+type GetSupportAddonsAddonArgs struct {
+	// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+	Categories pulumi.StringArrayInput `pulumi:"categories"`
+	// The deploy model.
+	DeployMode pulumi.StringInput `pulumi:"deployMode"`
+	// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+	DeployNodeTypes pulumi.StringArrayInput `pulumi:"deployNodeTypes"`
+	// The name of the addon.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The necessary of addon.
+	Necessary pulumi.StringPtrInput `pulumi:"necessary"`
+	// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+	PodNetworkModes pulumi.StringArrayInput `pulumi:"podNetworkModes"`
+	// The version info of addon.
+	Versions GetSupportAddonsAddonVersionArrayInput `pulumi:"versions"`
+}
+
+func (GetSupportAddonsAddonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportAddonsAddon)(nil)).Elem()
+}
+
+func (i GetSupportAddonsAddonArgs) ToGetSupportAddonsAddonOutput() GetSupportAddonsAddonOutput {
+	return i.ToGetSupportAddonsAddonOutputWithContext(context.Background())
+}
+
+func (i GetSupportAddonsAddonArgs) ToGetSupportAddonsAddonOutputWithContext(ctx context.Context) GetSupportAddonsAddonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportAddonsAddonOutput)
+}
+
+// GetSupportAddonsAddonArrayInput is an input type that accepts GetSupportAddonsAddonArray and GetSupportAddonsAddonArrayOutput values.
+// You can construct a concrete instance of `GetSupportAddonsAddonArrayInput` via:
+//
+//	GetSupportAddonsAddonArray{ GetSupportAddonsAddonArgs{...} }
+type GetSupportAddonsAddonArrayInput interface {
+	pulumi.Input
+
+	ToGetSupportAddonsAddonArrayOutput() GetSupportAddonsAddonArrayOutput
+	ToGetSupportAddonsAddonArrayOutputWithContext(context.Context) GetSupportAddonsAddonArrayOutput
+}
+
+type GetSupportAddonsAddonArray []GetSupportAddonsAddonInput
+
+func (GetSupportAddonsAddonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportAddonsAddon)(nil)).Elem()
+}
+
+func (i GetSupportAddonsAddonArray) ToGetSupportAddonsAddonArrayOutput() GetSupportAddonsAddonArrayOutput {
+	return i.ToGetSupportAddonsAddonArrayOutputWithContext(context.Background())
+}
+
+func (i GetSupportAddonsAddonArray) ToGetSupportAddonsAddonArrayOutputWithContext(ctx context.Context) GetSupportAddonsAddonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportAddonsAddonArrayOutput)
+}
+
+type GetSupportAddonsAddonOutput struct{ *pulumi.OutputState }
+
+func (GetSupportAddonsAddonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportAddonsAddon)(nil)).Elem()
+}
+
+func (o GetSupportAddonsAddonOutput) ToGetSupportAddonsAddonOutput() GetSupportAddonsAddonOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonOutput) ToGetSupportAddonsAddonOutputWithContext(ctx context.Context) GetSupportAddonsAddonOutput {
+	return o
+}
+
+// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+func (o GetSupportAddonsAddonOutput) Categories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) []string { return v.Categories }).(pulumi.StringArrayOutput)
+}
+
+// The deploy model.
+func (o GetSupportAddonsAddonOutput) DeployMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) string { return v.DeployMode }).(pulumi.StringOutput)
+}
+
+// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+func (o GetSupportAddonsAddonOutput) DeployNodeTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) []string { return v.DeployNodeTypes }).(pulumi.StringArrayOutput)
+}
+
+// The name of the addon.
+func (o GetSupportAddonsAddonOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The necessary of addon.
+func (o GetSupportAddonsAddonOutput) Necessary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) *string { return v.Necessary }).(pulumi.StringPtrOutput)
+}
+
+// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+func (o GetSupportAddonsAddonOutput) PodNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) []string { return v.PodNetworkModes }).(pulumi.StringArrayOutput)
+}
+
+// The version info of addon.
+func (o GetSupportAddonsAddonOutput) Versions() GetSupportAddonsAddonVersionArrayOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddon) []GetSupportAddonsAddonVersion { return v.Versions }).(GetSupportAddonsAddonVersionArrayOutput)
+}
+
+type GetSupportAddonsAddonArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSupportAddonsAddonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportAddonsAddon)(nil)).Elem()
+}
+
+func (o GetSupportAddonsAddonArrayOutput) ToGetSupportAddonsAddonArrayOutput() GetSupportAddonsAddonArrayOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonArrayOutput) ToGetSupportAddonsAddonArrayOutputWithContext(ctx context.Context) GetSupportAddonsAddonArrayOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonArrayOutput) Index(i pulumi.IntInput) GetSupportAddonsAddonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSupportAddonsAddon {
+		return vs[0].([]GetSupportAddonsAddon)[vs[1].(int)]
+	}).(GetSupportAddonsAddonOutput)
+}
+
+type GetSupportAddonsAddonVersion struct {
+	// The compatible version list.
+	Compatibilities []GetSupportAddonsAddonVersionCompatibility `pulumi:"compatibilities"`
+	// The compatible version list.
+	CompatibleVersions []string `pulumi:"compatibleVersions"`
+	// The basic version info.
+	Version string `pulumi:"version"`
+}
+
+// GetSupportAddonsAddonVersionInput is an input type that accepts GetSupportAddonsAddonVersionArgs and GetSupportAddonsAddonVersionOutput values.
+// You can construct a concrete instance of `GetSupportAddonsAddonVersionInput` via:
+//
+//	GetSupportAddonsAddonVersionArgs{...}
+type GetSupportAddonsAddonVersionInput interface {
+	pulumi.Input
+
+	ToGetSupportAddonsAddonVersionOutput() GetSupportAddonsAddonVersionOutput
+	ToGetSupportAddonsAddonVersionOutputWithContext(context.Context) GetSupportAddonsAddonVersionOutput
+}
+
+type GetSupportAddonsAddonVersionArgs struct {
+	// The compatible version list.
+	Compatibilities GetSupportAddonsAddonVersionCompatibilityArrayInput `pulumi:"compatibilities"`
+	// The compatible version list.
+	CompatibleVersions pulumi.StringArrayInput `pulumi:"compatibleVersions"`
+	// The basic version info.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetSupportAddonsAddonVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (i GetSupportAddonsAddonVersionArgs) ToGetSupportAddonsAddonVersionOutput() GetSupportAddonsAddonVersionOutput {
+	return i.ToGetSupportAddonsAddonVersionOutputWithContext(context.Background())
+}
+
+func (i GetSupportAddonsAddonVersionArgs) ToGetSupportAddonsAddonVersionOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportAddonsAddonVersionOutput)
+}
+
+// GetSupportAddonsAddonVersionArrayInput is an input type that accepts GetSupportAddonsAddonVersionArray and GetSupportAddonsAddonVersionArrayOutput values.
+// You can construct a concrete instance of `GetSupportAddonsAddonVersionArrayInput` via:
+//
+//	GetSupportAddonsAddonVersionArray{ GetSupportAddonsAddonVersionArgs{...} }
+type GetSupportAddonsAddonVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetSupportAddonsAddonVersionArrayOutput() GetSupportAddonsAddonVersionArrayOutput
+	ToGetSupportAddonsAddonVersionArrayOutputWithContext(context.Context) GetSupportAddonsAddonVersionArrayOutput
+}
+
+type GetSupportAddonsAddonVersionArray []GetSupportAddonsAddonVersionInput
+
+func (GetSupportAddonsAddonVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (i GetSupportAddonsAddonVersionArray) ToGetSupportAddonsAddonVersionArrayOutput() GetSupportAddonsAddonVersionArrayOutput {
+	return i.ToGetSupportAddonsAddonVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetSupportAddonsAddonVersionArray) ToGetSupportAddonsAddonVersionArrayOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportAddonsAddonVersionArrayOutput)
+}
+
+type GetSupportAddonsAddonVersionOutput struct{ *pulumi.OutputState }
+
+func (GetSupportAddonsAddonVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (o GetSupportAddonsAddonVersionOutput) ToGetSupportAddonsAddonVersionOutput() GetSupportAddonsAddonVersionOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonVersionOutput) ToGetSupportAddonsAddonVersionOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionOutput {
+	return o
+}
+
+// The compatible version list.
+func (o GetSupportAddonsAddonVersionOutput) Compatibilities() GetSupportAddonsAddonVersionCompatibilityArrayOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddonVersion) []GetSupportAddonsAddonVersionCompatibility {
+		return v.Compatibilities
+	}).(GetSupportAddonsAddonVersionCompatibilityArrayOutput)
+}
+
+// The compatible version list.
+func (o GetSupportAddonsAddonVersionOutput) CompatibleVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddonVersion) []string { return v.CompatibleVersions }).(pulumi.StringArrayOutput)
+}
+
+// The basic version info.
+func (o GetSupportAddonsAddonVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddonVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetSupportAddonsAddonVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSupportAddonsAddonVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (o GetSupportAddonsAddonVersionArrayOutput) ToGetSupportAddonsAddonVersionArrayOutput() GetSupportAddonsAddonVersionArrayOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonVersionArrayOutput) ToGetSupportAddonsAddonVersionArrayOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionArrayOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonVersionArrayOutput) Index(i pulumi.IntInput) GetSupportAddonsAddonVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSupportAddonsAddonVersion {
+		return vs[0].([]GetSupportAddonsAddonVersion)[vs[1].(int)]
+	}).(GetSupportAddonsAddonVersionOutput)
+}
+
+type GetSupportAddonsAddonVersionCompatibility struct {
+	// The Kubernetes Version of addon.
+	KubernetesVersion string `pulumi:"kubernetesVersion"`
+}
+
+// GetSupportAddonsAddonVersionCompatibilityInput is an input type that accepts GetSupportAddonsAddonVersionCompatibilityArgs and GetSupportAddonsAddonVersionCompatibilityOutput values.
+// You can construct a concrete instance of `GetSupportAddonsAddonVersionCompatibilityInput` via:
+//
+//	GetSupportAddonsAddonVersionCompatibilityArgs{...}
+type GetSupportAddonsAddonVersionCompatibilityInput interface {
+	pulumi.Input
+
+	ToGetSupportAddonsAddonVersionCompatibilityOutput() GetSupportAddonsAddonVersionCompatibilityOutput
+	ToGetSupportAddonsAddonVersionCompatibilityOutputWithContext(context.Context) GetSupportAddonsAddonVersionCompatibilityOutput
+}
+
+type GetSupportAddonsAddonVersionCompatibilityArgs struct {
+	// The Kubernetes Version of addon.
+	KubernetesVersion pulumi.StringInput `pulumi:"kubernetesVersion"`
+}
+
+func (GetSupportAddonsAddonVersionCompatibilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (i GetSupportAddonsAddonVersionCompatibilityArgs) ToGetSupportAddonsAddonVersionCompatibilityOutput() GetSupportAddonsAddonVersionCompatibilityOutput {
+	return i.ToGetSupportAddonsAddonVersionCompatibilityOutputWithContext(context.Background())
+}
+
+func (i GetSupportAddonsAddonVersionCompatibilityArgs) ToGetSupportAddonsAddonVersionCompatibilityOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionCompatibilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportAddonsAddonVersionCompatibilityOutput)
+}
+
+// GetSupportAddonsAddonVersionCompatibilityArrayInput is an input type that accepts GetSupportAddonsAddonVersionCompatibilityArray and GetSupportAddonsAddonVersionCompatibilityArrayOutput values.
+// You can construct a concrete instance of `GetSupportAddonsAddonVersionCompatibilityArrayInput` via:
+//
+//	GetSupportAddonsAddonVersionCompatibilityArray{ GetSupportAddonsAddonVersionCompatibilityArgs{...} }
+type GetSupportAddonsAddonVersionCompatibilityArrayInput interface {
+	pulumi.Input
+
+	ToGetSupportAddonsAddonVersionCompatibilityArrayOutput() GetSupportAddonsAddonVersionCompatibilityArrayOutput
+	ToGetSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(context.Context) GetSupportAddonsAddonVersionCompatibilityArrayOutput
+}
+
+type GetSupportAddonsAddonVersionCompatibilityArray []GetSupportAddonsAddonVersionCompatibilityInput
+
+func (GetSupportAddonsAddonVersionCompatibilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (i GetSupportAddonsAddonVersionCompatibilityArray) ToGetSupportAddonsAddonVersionCompatibilityArrayOutput() GetSupportAddonsAddonVersionCompatibilityArrayOutput {
+	return i.ToGetSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(context.Background())
+}
+
+func (i GetSupportAddonsAddonVersionCompatibilityArray) ToGetSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionCompatibilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportAddonsAddonVersionCompatibilityArrayOutput)
+}
+
+type GetSupportAddonsAddonVersionCompatibilityOutput struct{ *pulumi.OutputState }
+
+func (GetSupportAddonsAddonVersionCompatibilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (o GetSupportAddonsAddonVersionCompatibilityOutput) ToGetSupportAddonsAddonVersionCompatibilityOutput() GetSupportAddonsAddonVersionCompatibilityOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonVersionCompatibilityOutput) ToGetSupportAddonsAddonVersionCompatibilityOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionCompatibilityOutput {
+	return o
+}
+
+// The Kubernetes Version of addon.
+func (o GetSupportAddonsAddonVersionCompatibilityOutput) KubernetesVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportAddonsAddonVersionCompatibility) string { return v.KubernetesVersion }).(pulumi.StringOutput)
+}
+
+type GetSupportAddonsAddonVersionCompatibilityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSupportAddonsAddonVersionCompatibilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (o GetSupportAddonsAddonVersionCompatibilityArrayOutput) ToGetSupportAddonsAddonVersionCompatibilityArrayOutput() GetSupportAddonsAddonVersionCompatibilityArrayOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonVersionCompatibilityArrayOutput) ToGetSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(ctx context.Context) GetSupportAddonsAddonVersionCompatibilityArrayOutput {
+	return o
+}
+
+func (o GetSupportAddonsAddonVersionCompatibilityArrayOutput) Index(i pulumi.IntInput) GetSupportAddonsAddonVersionCompatibilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSupportAddonsAddonVersionCompatibility {
+		return vs[0].([]GetSupportAddonsAddonVersionCompatibility)[vs[1].(int)]
+	}).(GetSupportAddonsAddonVersionCompatibilityOutput)
+}
+
+type GetSupportResourceTypesResource struct {
+	// The scope of resource.
+	ResourceScope string `pulumi:"resourceScope"`
+	// The resource specifications info.
+	ResourceSpecifications []string `pulumi:"resourceSpecifications"`
+	// The type of resource.
+	ResourceType string `pulumi:"resourceType"`
+	// The id of zone.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetSupportResourceTypesResourceInput is an input type that accepts GetSupportResourceTypesResourceArgs and GetSupportResourceTypesResourceOutput values.
+// You can construct a concrete instance of `GetSupportResourceTypesResourceInput` via:
+//
+//	GetSupportResourceTypesResourceArgs{...}
+type GetSupportResourceTypesResourceInput interface {
+	pulumi.Input
+
+	ToGetSupportResourceTypesResourceOutput() GetSupportResourceTypesResourceOutput
+	ToGetSupportResourceTypesResourceOutputWithContext(context.Context) GetSupportResourceTypesResourceOutput
+}
+
+type GetSupportResourceTypesResourceArgs struct {
+	// The scope of resource.
+	ResourceScope pulumi.StringInput `pulumi:"resourceScope"`
+	// The resource specifications info.
+	ResourceSpecifications pulumi.StringArrayInput `pulumi:"resourceSpecifications"`
+	// The type of resource.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The id of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetSupportResourceTypesResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportResourceTypesResource)(nil)).Elem()
+}
+
+func (i GetSupportResourceTypesResourceArgs) ToGetSupportResourceTypesResourceOutput() GetSupportResourceTypesResourceOutput {
+	return i.ToGetSupportResourceTypesResourceOutputWithContext(context.Background())
+}
+
+func (i GetSupportResourceTypesResourceArgs) ToGetSupportResourceTypesResourceOutputWithContext(ctx context.Context) GetSupportResourceTypesResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportResourceTypesResourceOutput)
+}
+
+// GetSupportResourceTypesResourceArrayInput is an input type that accepts GetSupportResourceTypesResourceArray and GetSupportResourceTypesResourceArrayOutput values.
+// You can construct a concrete instance of `GetSupportResourceTypesResourceArrayInput` via:
+//
+//	GetSupportResourceTypesResourceArray{ GetSupportResourceTypesResourceArgs{...} }
+type GetSupportResourceTypesResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetSupportResourceTypesResourceArrayOutput() GetSupportResourceTypesResourceArrayOutput
+	ToGetSupportResourceTypesResourceArrayOutputWithContext(context.Context) GetSupportResourceTypesResourceArrayOutput
+}
+
+type GetSupportResourceTypesResourceArray []GetSupportResourceTypesResourceInput
+
+func (GetSupportResourceTypesResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportResourceTypesResource)(nil)).Elem()
+}
+
+func (i GetSupportResourceTypesResourceArray) ToGetSupportResourceTypesResourceArrayOutput() GetSupportResourceTypesResourceArrayOutput {
+	return i.ToGetSupportResourceTypesResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetSupportResourceTypesResourceArray) ToGetSupportResourceTypesResourceArrayOutputWithContext(ctx context.Context) GetSupportResourceTypesResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSupportResourceTypesResourceArrayOutput)
+}
+
+type GetSupportResourceTypesResourceOutput struct{ *pulumi.OutputState }
+
+func (GetSupportResourceTypesResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSupportResourceTypesResource)(nil)).Elem()
+}
+
+func (o GetSupportResourceTypesResourceOutput) ToGetSupportResourceTypesResourceOutput() GetSupportResourceTypesResourceOutput {
+	return o
+}
+
+func (o GetSupportResourceTypesResourceOutput) ToGetSupportResourceTypesResourceOutputWithContext(ctx context.Context) GetSupportResourceTypesResourceOutput {
+	return o
+}
+
+// The scope of resource.
+func (o GetSupportResourceTypesResourceOutput) ResourceScope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportResourceTypesResource) string { return v.ResourceScope }).(pulumi.StringOutput)
+}
+
+// The resource specifications info.
+func (o GetSupportResourceTypesResourceOutput) ResourceSpecifications() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSupportResourceTypesResource) []string { return v.ResourceSpecifications }).(pulumi.StringArrayOutput)
+}
+
+// The type of resource.
+func (o GetSupportResourceTypesResourceOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportResourceTypesResource) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The id of zone.
+func (o GetSupportResourceTypesResourceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSupportResourceTypesResource) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetSupportResourceTypesResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSupportResourceTypesResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSupportResourceTypesResource)(nil)).Elem()
+}
+
+func (o GetSupportResourceTypesResourceArrayOutput) ToGetSupportResourceTypesResourceArrayOutput() GetSupportResourceTypesResourceArrayOutput {
+	return o
+}
+
+func (o GetSupportResourceTypesResourceArrayOutput) ToGetSupportResourceTypesResourceArrayOutputWithContext(ctx context.Context) GetSupportResourceTypesResourceArrayOutput {
+	return o
+}
+
+func (o GetSupportResourceTypesResourceArrayOutput) Index(i pulumi.IntInput) GetSupportResourceTypesResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSupportResourceTypesResource {
+		return vs[0].([]GetSupportResourceTypesResource)[vs[1].(int)]
+	}).(GetSupportResourceTypesResourceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonInput)(nil)).Elem(), AddonsAddonArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonArrayInput)(nil)).Elem(), AddonsAddonArray{})
@@ -12150,6 +17355,81 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionCompatibilityArrayInput)(nil)).Elem(), SupportAddonsAddonVersionCompatibilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportResourceTypesResourceInput)(nil)).Elem(), SupportResourceTypesResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportResourceTypesResourceArrayInput)(nil)).Elem(), SupportResourceTypesResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsAddonInput)(nil)).Elem(), GetAddonsAddonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsAddonArrayInput)(nil)).Elem(), GetAddonsAddonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsAddonStatusInput)(nil)).Elem(), GetAddonsAddonStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsAddonStatusConditionInput)(nil)).Elem(), GetAddonsAddonStatusConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsAddonStatusConditionArrayInput)(nil)).Elem(), GetAddonsAddonStatusConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsStatusInput)(nil)).Elem(), GetAddonsStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddonsStatusArrayInput)(nil)).Elem(), GetAddonsStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterInput)(nil)).Elem(), GetClustersClusterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterArrayInput)(nil)).Elem(), GetClustersClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigInput)(nil)).Elem(), GetClustersClusterClusterConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPrivateIpInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPublicIpInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfigInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigInput)(nil)).Elem(), GetClustersClusterLoggingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigArrayInput)(nil)).Elem(), GetClustersClusterLoggingConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigLogSetupInput)(nil)).Elem(), GetClustersClusterLoggingConfigLogSetupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigLogSetupArrayInput)(nil)).Elem(), GetClustersClusterLoggingConfigLogSetupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterNodeStatisticsInput)(nil)).Elem(), GetClustersClusterNodeStatisticsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterPodsConfigInput)(nil)).Elem(), GetClustersClusterPodsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterPodsConfigFlannelConfigInput)(nil)).Elem(), GetClustersClusterPodsConfigFlannelConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterPodsConfigVpcCniConfigInput)(nil)).Elem(), GetClustersClusterPodsConfigVpcCniConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterServicesConfigInput)(nil)).Elem(), GetClustersClusterServicesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterStatusInput)(nil)).Elem(), GetClustersClusterStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterStatusConditionInput)(nil)).Elem(), GetClustersClusterStatusConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterStatusConditionArrayInput)(nil)).Elem(), GetClustersClusterStatusConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterTagInput)(nil)).Elem(), GetClustersClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterTagArrayInput)(nil)).Elem(), GetClustersClusterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersStatusInput)(nil)).Elem(), GetClustersStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersStatusArrayInput)(nil)).Elem(), GetClustersStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersTagInput)(nil)).Elem(), GetClustersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersTagArrayInput)(nil)).Elem(), GetClustersTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeconfigsKubeconfigInput)(nil)).Elem(), GetKubeconfigsKubeconfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeconfigsKubeconfigArrayInput)(nil)).Elem(), GetKubeconfigsKubeconfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolInput)(nil)).Elem(), GetNodePoolsNodePoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolArrayInput)(nil)).Elem(), GetNodePoolsNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolDataVolumeInput)(nil)).Elem(), GetNodePoolsNodePoolDataVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolDataVolumeArrayInput)(nil)).Elem(), GetNodePoolsNodePoolDataVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolEcsTagInput)(nil)).Elem(), GetNodePoolsNodePoolEcsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolEcsTagArrayInput)(nil)).Elem(), GetNodePoolsNodePoolEcsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigInput)(nil)).Elem(), GetNodePoolsNodePoolKubeletConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigArrayInput)(nil)).Elem(), GetNodePoolsNodePoolKubeletConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigFeatureGateInput)(nil)).Elem(), GetNodePoolsNodePoolKubeletConfigFeatureGateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigFeatureGateArrayInput)(nil)).Elem(), GetNodePoolsNodePoolKubeletConfigFeatureGateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolLabelContentInput)(nil)).Elem(), GetNodePoolsNodePoolLabelContentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolLabelContentArrayInput)(nil)).Elem(), GetNodePoolsNodePoolLabelContentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolNodeStatisticInput)(nil)).Elem(), GetNodePoolsNodePoolNodeStatisticArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolNodeStatisticArrayInput)(nil)).Elem(), GetNodePoolsNodePoolNodeStatisticArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSystemVolumeInput)(nil)).Elem(), GetNodePoolsNodePoolSystemVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSystemVolumeArrayInput)(nil)).Elem(), GetNodePoolsNodePoolSystemVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolTagInput)(nil)).Elem(), GetNodePoolsNodePoolTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolTagArrayInput)(nil)).Elem(), GetNodePoolsNodePoolTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolTaintContentInput)(nil)).Elem(), GetNodePoolsNodePoolTaintContentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolTaintContentArrayInput)(nil)).Elem(), GetNodePoolsNodePoolTaintContentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsStatusInput)(nil)).Elem(), GetNodePoolsStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsStatusArrayInput)(nil)).Elem(), GetNodePoolsStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsTagInput)(nil)).Elem(), GetNodePoolsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsTagArrayInput)(nil)).Elem(), GetNodePoolsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeInput)(nil)).Elem(), GetNodesNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeArrayInput)(nil)).Elem(), GetNodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeLabelInput)(nil)).Elem(), GetNodesNodeLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeLabelArrayInput)(nil)).Elem(), GetNodesNodeLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeTaintInput)(nil)).Elem(), GetNodesNodeTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeTaintArrayInput)(nil)).Elem(), GetNodesNodeTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesStatusInput)(nil)).Elem(), GetNodesStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesStatusArrayInput)(nil)).Elem(), GetNodesStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonInput)(nil)).Elem(), GetSupportAddonsAddonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonArrayInput)(nil)).Elem(), GetSupportAddonsAddonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonVersionInput)(nil)).Elem(), GetSupportAddonsAddonVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonVersionArrayInput)(nil)).Elem(), GetSupportAddonsAddonVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonVersionCompatibilityInput)(nil)).Elem(), GetSupportAddonsAddonVersionCompatibilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonVersionCompatibilityArrayInput)(nil)).Elem(), GetSupportAddonsAddonVersionCompatibilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportResourceTypesResourceInput)(nil)).Elem(), GetSupportResourceTypesResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportResourceTypesResourceArrayInput)(nil)).Elem(), GetSupportResourceTypesResourceArray{})
 	pulumi.RegisterOutputType(AddonsAddonOutput{})
 	pulumi.RegisterOutputType(AddonsAddonArrayOutput{})
 	pulumi.RegisterOutputType(AddonsAddonStatusOutput{})
@@ -12315,4 +17595,79 @@ func init() {
 	pulumi.RegisterOutputType(SupportAddonsAddonVersionCompatibilityArrayOutput{})
 	pulumi.RegisterOutputType(SupportResourceTypesResourceOutput{})
 	pulumi.RegisterOutputType(SupportResourceTypesResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetAddonsAddonOutput{})
+	pulumi.RegisterOutputType(GetAddonsAddonArrayOutput{})
+	pulumi.RegisterOutputType(GetAddonsAddonStatusOutput{})
+	pulumi.RegisterOutputType(GetAddonsAddonStatusConditionOutput{})
+	pulumi.RegisterOutputType(GetAddonsAddonStatusConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetAddonsStatusOutput{})
+	pulumi.RegisterOutputType(GetAddonsStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterClusterConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerEndpointsOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigLogSetupOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigLogSetupArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterNodeStatisticsOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterPodsConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterPodsConfigFlannelConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterPodsConfigVpcCniConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterServicesConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterStatusOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterStatusConditionOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterStatusConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterTagOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterTagArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersStatusOutput{})
+	pulumi.RegisterOutputType(GetClustersStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersTagOutput{})
+	pulumi.RegisterOutputType(GetClustersTagArrayOutput{})
+	pulumi.RegisterOutputType(GetKubeconfigsKubeconfigOutput{})
+	pulumi.RegisterOutputType(GetKubeconfigsKubeconfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolDataVolumeOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolDataVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolEcsTagOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolEcsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolKubeletConfigOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolKubeletConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolKubeletConfigFeatureGateOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolLabelContentOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolLabelContentArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolNodeStatisticOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolNodeStatisticArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolSystemVolumeOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolSystemVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolTagOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolTagArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolTaintContentOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolTaintContentArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsStatusOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsTagOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeLabelOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeTaintOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeTaintArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesStatusOutput{})
+	pulumi.RegisterOutputType(GetNodesStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetSupportAddonsAddonOutput{})
+	pulumi.RegisterOutputType(GetSupportAddonsAddonArrayOutput{})
+	pulumi.RegisterOutputType(GetSupportAddonsAddonVersionOutput{})
+	pulumi.RegisterOutputType(GetSupportAddonsAddonVersionArrayOutput{})
+	pulumi.RegisterOutputType(GetSupportAddonsAddonVersionCompatibilityOutput{})
+	pulumi.RegisterOutputType(GetSupportAddonsAddonVersionCompatibilityArrayOutput{})
+	pulumi.RegisterOutputType(GetSupportResourceTypesResourceOutput{})
+	pulumi.RegisterOutputType(GetSupportResourceTypesResourceArrayOutput{})
 }

@@ -17,6 +17,8 @@ __all__ = [
     'service_route_entries_output',
 ]
 
+warnings.warn("""volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries""", DeprecationWarning)
+
 @pulumi.output_type
 class ServiceRouteEntriesResult:
     """
@@ -179,7 +181,7 @@ def service_route_entries(cen_id: Optional[str] = None,
                 instance_id=foo_attach_instance[2].instance_id,
             ),
         ])
-    foo_service_route_entries = volcengine.cen.service_route_entries_output(cen_id=foo_cen.id,
+    foo_service_route_entries = volcengine.cen.get_service_route_entries_output(cen_id=foo_cen.id,
         destination_cidr_block=foo_service_route_entry.destination_cidr_block)
     ```
 
@@ -190,6 +192,7 @@ def service_route_entries(cen_id: Optional[str] = None,
     :param str service_region_id: A service region id.
     :param str service_vpc_id: A service VPC id.
     """
+    pulumi.log.warn("""service_route_entries is deprecated: volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries""")
     __args__ = dict()
     __args__['cenId'] = cen_id
     __args__['destinationCidrBlock'] = destination_cidr_block
@@ -264,7 +267,7 @@ def service_route_entries_output(cen_id: Optional[pulumi.Input[Optional[str]]] =
                 instance_id=foo_attach_instance[2].instance_id,
             ),
         ])
-    foo_service_route_entries = volcengine.cen.service_route_entries_output(cen_id=foo_cen.id,
+    foo_service_route_entries = volcengine.cen.get_service_route_entries_output(cen_id=foo_cen.id,
         destination_cidr_block=foo_service_route_entry.destination_cidr_block)
     ```
 
@@ -275,4 +278,5 @@ def service_route_entries_output(cen_id: Optional[pulumi.Input[Optional[str]]] =
     :param str service_region_id: A service region id.
     :param str service_vpc_id: A service VPC id.
     """
+    pulumi.log.warn("""service_route_entries is deprecated: volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries""")
     ...

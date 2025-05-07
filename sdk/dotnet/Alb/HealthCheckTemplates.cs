@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates")]
     public static class HealthCheckTemplates
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.HealthCheckTemplates.Invoke(new()
+        ///     var foo = Volcengine.Alb.GetHealthCheckTemplates.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.HealthCheckTemplates.Invoke(new()
+        ///     var foo = Volcengine.Alb.GetHealthCheckTemplates.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

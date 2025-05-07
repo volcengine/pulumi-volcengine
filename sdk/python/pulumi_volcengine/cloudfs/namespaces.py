@@ -17,6 +17,8 @@ __all__ = [
     'namespaces_output',
 ]
 
+warnings.warn("""volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces""", DeprecationWarning)
+
 @pulumi.output_type
 class NamespacesResult:
     """
@@ -121,7 +123,7 @@ def namespaces(fs_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.namespaces(fs_name="tf-test-fs",
+    default = volcengine.cloudfs.get_namespaces(fs_name="tf-test-fs",
         ns_id="1801439850948****")
     ```
 
@@ -131,6 +133,7 @@ def namespaces(fs_name: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str tos_bucket: The name of tos bucket.
     """
+    pulumi.log.warn("""namespaces is deprecated: volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces""")
     __args__ = dict()
     __args__['fsName'] = fs_name
     __args__['nsId'] = ns_id
@@ -163,7 +166,7 @@ def namespaces_output(fs_name: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.namespaces(fs_name="tf-test-fs",
+    default = volcengine.cloudfs.get_namespaces(fs_name="tf-test-fs",
         ns_id="1801439850948****")
     ```
 
@@ -173,4 +176,5 @@ def namespaces_output(fs_name: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str tos_bucket: The name of tos bucket.
     """
+    pulumi.log.warn("""namespaces is deprecated: volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces""")
     ...

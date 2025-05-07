@@ -18,6 +18,8 @@ __all__ = [
     'gateways_output',
 ]
 
+warnings.warn("""volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways""", DeprecationWarning)
+
 @pulumi.output_type
 class GatewaysResult:
     """
@@ -145,7 +147,7 @@ def gateways(cen_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.gateways(direct_connect_gateway_name="tf-test")
+    foo = volcengine.direct_connect.get_gateways(direct_connect_gateway_name="tf-test")
     ```
 
 
@@ -156,6 +158,7 @@ def gateways(cen_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['GatewaysTagFilterArgs']] tag_filters: The filter tag of direct connect.
     """
+    pulumi.log.warn("""gateways is deprecated: volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways""")
     __args__ = dict()
     __args__['cenId'] = cen_id
     __args__['directConnectGatewayName'] = direct_connect_gateway_name
@@ -194,7 +197,7 @@ def gateways_output(cen_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.gateways(direct_connect_gateway_name="tf-test")
+    foo = volcengine.direct_connect.get_gateways(direct_connect_gateway_name="tf-test")
     ```
 
 
@@ -205,4 +208,5 @@ def gateways_output(cen_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['GatewaysTagFilterArgs']] tag_filters: The filter tag of direct connect.
     """
+    pulumi.log.warn("""gateways is deprecated: volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways""")
     ...

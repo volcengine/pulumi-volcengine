@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -48,12 +48,14 @@ import * as utilities from "../utilities";
  *     auth: "SHA1",
  *     compress: true,
  * });
- * const fooSslVpnServers = volcengine.vpn.SslVpnServersOutput({
+ * const fooSslVpnServers = volcengine.vpn.getSslVpnServersOutput({
  *     ids: [fooSslVpnServer.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers */
 export function sslVpnServers(args?: SslVpnServersArgs, opts?: pulumi.InvokeOptions): Promise<SslVpnServersResult> {
+    pulumi.log.warn("sslVpnServers is deprecated: volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -123,7 +125,7 @@ export interface SslVpnServersResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -156,11 +158,12 @@ export interface SslVpnServersResult {
  *     auth: "SHA1",
  *     compress: true,
  * });
- * const fooSslVpnServers = volcengine.vpn.SslVpnServersOutput({
+ * const fooSslVpnServers = volcengine.vpn.getSslVpnServersOutput({
  *     ids: [fooSslVpnServer.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers */
 export function sslVpnServersOutput(args?: SslVpnServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SslVpnServersResult> {
     return pulumi.output(args).apply((a: any) => sslVpnServers(a, opts))
 }

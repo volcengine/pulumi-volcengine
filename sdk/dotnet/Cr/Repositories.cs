@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cr
 {
+    [Obsolete(@"volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories")]
     public static class Repositories
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Repositories.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetRepositories.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Repositories.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetRepositories.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {

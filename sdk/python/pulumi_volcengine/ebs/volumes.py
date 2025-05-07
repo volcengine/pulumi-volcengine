@@ -18,6 +18,8 @@ __all__ = [
     'volumes_output',
 ]
 
+warnings.warn("""volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes""", DeprecationWarning)
+
 @pulumi.output_type
 class VolumesResult:
     """
@@ -182,7 +184,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_volume = []
     for range in [{"value": i} for i in range(0, 3)]:
         foo_volume.append(volcengine.ebs.Volume(f"fooVolume-{range['value']}",
@@ -194,7 +196,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
             zone_id=foo_zones.zones[0].id,
             volume_charge_type="PostPaid",
             project_name="default"))
-    foo_volumes = volcengine.ebs.volumes_output(ids=[__item.id for __item in foo_volume])
+    foo_volumes = volcengine.ebs.get_volumes_output(ids=[__item.id for __item in foo_volume])
     ```
 
 
@@ -209,6 +211,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
     :param str volume_type: The type of Volume.
     :param str zone_id: The Id of Zone.
     """
+    pulumi.log.warn("""volumes is deprecated: volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['instanceId'] = instance_id
@@ -259,7 +262,7 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_volume = []
     for range in [{"value": i} for i in range(0, 3)]:
         foo_volume.append(volcengine.ebs.Volume(f"fooVolume-{range['value']}",
@@ -271,7 +274,7 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
             zone_id=foo_zones.zones[0].id,
             volume_charge_type="PostPaid",
             project_name="default"))
-    foo_volumes = volcengine.ebs.volumes_output(ids=[__item.id for __item in foo_volume])
+    foo_volumes = volcengine.ebs.get_volumes_output(ids=[__item.id for __item in foo_volume])
     ```
 
 
@@ -286,4 +289,5 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str volume_type: The type of Volume.
     :param str zone_id: The Id of Zone.
     """
+    pulumi.log.warn("""volumes is deprecated: volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes""")
     ...

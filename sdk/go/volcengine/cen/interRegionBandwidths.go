@@ -78,7 +78,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cen.InterRegionBandwidthsOutput(ctx, cen.InterRegionBandwidthsOutputArgs{
+//			_ = cen.GetInterRegionBandwidthsOutput(ctx, cen.GetInterRegionBandwidthsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooInterRegionBandwidth.ID(),
 //				},
@@ -88,6 +88,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths
 func InterRegionBandwidths(ctx *pulumi.Context, args *InterRegionBandwidthsArgs, opts ...pulumi.InvokeOption) (*InterRegionBandwidthsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InterRegionBandwidthsResult

@@ -14,14 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.financial_relation.FinancialRelations({
+ * const foo = volcengine.financial_relation.getFinancialRelations({
  *     accountIds: ["210026****"],
  *     relations: ["1"],
  *     statuses: ["200"],
  * });
  * ```
  */
+/** @deprecated volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations */
 export function financialRelations(args?: FinancialRelationsArgs, opts?: pulumi.InvokeOptions): Promise<FinancialRelationsResult> {
+    pulumi.log.warn("financialRelations is deprecated: volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -90,13 +92,14 @@ export interface FinancialRelationsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.financial_relation.FinancialRelations({
+ * const foo = volcengine.financial_relation.getFinancialRelations({
  *     accountIds: ["210026****"],
  *     relations: ["1"],
  *     statuses: ["200"],
  * });
  * ```
  */
+/** @deprecated volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations */
 export function financialRelationsOutput(args?: FinancialRelationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<FinancialRelationsResult> {
     return pulumi.output(args).apply((a: any) => financialRelations(a, opts))
 }

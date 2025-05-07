@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
  *     volumeName: "acc-test-volume",
  *     volumeType: "ESSD_PL0",

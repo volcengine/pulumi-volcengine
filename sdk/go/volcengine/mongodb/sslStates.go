@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -78,7 +78,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodb.SslStatesOutput(ctx, mongodb.SslStatesOutputArgs{
+//			_ = mongodb.GetSslStatesOutput(ctx, mongodb.GetSslStatesOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -86,6 +86,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.SslStates has been deprecated in favor of volcengine.mongodb.getSslStates
 func SslStates(ctx *pulumi.Context, args *SslStatesArgs, opts ...pulumi.InvokeOption) (*SslStatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SslStatesResult

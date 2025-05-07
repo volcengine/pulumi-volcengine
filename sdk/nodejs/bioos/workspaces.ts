@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.bioos.Workspaces({});
+ * const default = volcengine.bioos.getWorkspaces({});
  * ```
  */
+/** @deprecated volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces */
 export function workspaces(args?: WorkspacesArgs, opts?: pulumi.InvokeOptions): Promise<WorkspacesResult> {
+    pulumi.log.warn("workspaces is deprecated: volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -86,9 +88,10 @@ export interface WorkspacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.bioos.Workspaces({});
+ * const default = volcengine.bioos.getWorkspaces({});
  * ```
  */
+/** @deprecated volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces */
 export function workspacesOutput(args?: WorkspacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<WorkspacesResult> {
     return pulumi.output(args).apply((a: any) => workspaces(a, opts))
 }

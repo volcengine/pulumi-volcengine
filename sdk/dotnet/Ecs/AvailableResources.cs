@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources")]
     public static class AvailableResources
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.AvailableResources.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetAvailableResources.Invoke(new()
         ///     {
         ///         DestinationResource = "InstanceType",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.AvailableResources.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetAvailableResources.Invoke(new()
         ///     {
         ///         DestinationResource = "InstanceType",
         ///     });

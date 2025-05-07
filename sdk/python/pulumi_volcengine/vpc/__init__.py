@@ -5,6 +5,19 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_ha_vips import *
+from .get_ipv6_address_bandwidths import *
+from .get_ipv6_addresses import *
+from .get_ipv6_gateways import *
+from .get_network_acls import *
+from .get_network_interfaces import *
+from .get_prefix_lists import *
+from .get_route_entries import *
+from .get_route_tables import *
+from .get_security_group_rules import *
+from .get_security_groups import *
+from .get_subnets import *
+from .get_vpcs import *
 from .ha_vip import *
 from .ha_vip_associate import *
 from .ha_vips import *

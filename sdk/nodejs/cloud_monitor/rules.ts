@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.Rules({
+ * const foo = volcengine.cloud_monitor.getRules({
  *     ids: ["174402785374661****"],
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules */
 export function rules(args?: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {
+    pulumi.log.warn("rules is deprecated: volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -121,11 +123,12 @@ export interface RulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.Rules({
+ * const foo = volcengine.cloud_monitor.getRules({
  *     ids: ["174402785374661****"],
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules */
 export function rulesOutput(args?: RulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RulesResult> {
     return pulumi.output(args).apply((a: any) => rules(a, opts))
 }

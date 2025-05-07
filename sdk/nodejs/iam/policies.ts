@@ -20,12 +20,14 @@ import * as utilities from "../utilities";
  *     description: "acc-test",
  *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
  * });
- * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.PoliciesOutput({
+ * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.getPoliciesOutput({
  *     query: description,
  * }));
  * ```
  */
+/** @deprecated volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies */
 export function policies(args?: PoliciesArgs, opts?: pulumi.InvokeOptions): Promise<PoliciesResult> {
+    pulumi.log.warn("policies is deprecated: volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -118,11 +120,12 @@ export interface PoliciesResult {
  *     description: "acc-test",
  *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
  * });
- * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.PoliciesOutput({
+ * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.getPoliciesOutput({
  *     query: description,
  * }));
  * ```
  */
+/** @deprecated volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies */
 export function policiesOutput(args?: PoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PoliciesResult> {
     return pulumi.output(args).apply((a: any) => policies(a, opts))
 }

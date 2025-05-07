@@ -20,17 +20,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ebs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
@@ -38,6 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
@@ -47,6 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create security group
 //			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
 //				SecurityGroupName: pulumi.String("acc-test-security-group"),
 //				VpcId:             fooVpc.ID(),
@@ -54,7 +59,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//			fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				OsType:         pulumi.StringRef("Linux"),
 //				Visibility:     pulumi.StringRef("public"),
 //				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
@@ -62,7 +67,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//			// create ecs instance
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
@@ -83,6 +89,44 @@ import (
 //						Value: pulumi.String("v1"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create ebs data volume
+//			fooVolume, err := ebs.NewVolume(ctx, "fooVolume", &ebs.VolumeArgs{
+//				VolumeName:       pulumi.String("acc-test-volume"),
+//				VolumeType:       pulumi.String("ESSD_PL0"),
+//				Description:      pulumi.String("acc-test"),
+//				Kind:             pulumi.String("data"),
+//				Size:             pulumi.Int(40),
+//				ZoneId:           pulumi.String(fooZones.Zones[0].Id),
+//				VolumeChargeType: pulumi.String("PostPaid"),
+//				ProjectName:      pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// attach ebs data volume to ecs instance
+//			_, err = ebs.NewVolumeAttach(ctx, "fooVolumeAttach", &ebs.VolumeAttachArgs{
+//				InstanceId: fooInstance.ID(),
+//				VolumeId:   fooVolume.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create eip
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				BillingType: pulumi.String("PostPaidByTraffic"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// associate eip to ecs instance
+//			_, err = eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
+//				AllocationId: fooAddress.ID(),
+//				InstanceId:   fooInstance.ID(),
+//				InstanceType: pulumi.String("EcsInstance"),
 //			})
 //			if err != nil {
 //				return err

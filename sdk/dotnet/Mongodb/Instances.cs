@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances")]
     public static class Instances
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.Instances.Invoke(new()
+        ///     var foo = Volcengine.Mongodb.GetInstances.Invoke(new()
         ///     {
         ///         InstanceId = "mongo-replica-xxx",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.Instances.Invoke(new()
+        ///     var foo = Volcengine.Mongodb.GetInstances.Invoke(new()
         ///     {
         ///         InstanceId = "mongo-replica-xxx",
         ///     });

@@ -20,41 +20,45 @@ namespace Pulumi.Volcengine.Ecs
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
     ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create security group
     ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
     ///     {
     ///         SecurityGroupName = "acc-test-security-group",
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     var fooImages = Volcengine.Ecs.GetImages.Invoke(new()
     ///     {
     ///         OsType = "Linux",
     ///         Visibility = "public",
     ///         InstanceTypeId = "ecs.g1.large",
     ///     });
     /// 
+    ///     // create ecs instance
     ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
     ///     {
     ///         InstanceName = "acc-test-ecs",
     ///         Description = "acc-test",
     ///         HostName = "tf-acc-test",
-    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         ImageId = fooImages.Apply(getImagesResult =&gt; getImagesResult.Images[0]?.ImageId),
     ///         InstanceType = "ecs.g1.large",
     ///         Password = "93f0cb0614Aab12",
     ///         InstanceChargeType = "PostPaid",
@@ -74,6 +78,40 @@ namespace Pulumi.Volcengine.Ecs
     ///                 Value = "v1",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     // create ebs data volume
+    ///     var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new()
+    ///     {
+    ///         VolumeName = "acc-test-volume",
+    ///         VolumeType = "ESSD_PL0",
+    ///         Description = "acc-test",
+    ///         Kind = "data",
+    ///         Size = 40,
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         VolumeChargeType = "PostPaid",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     // attach ebs data volume to ecs instance
+    ///     var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         VolumeId = fooVolume.Id,
+    ///     });
+    /// 
+    ///     // create eip
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         BillingType = "PostPaidByTraffic",
+    ///     });
+    /// 
+    ///     // associate eip to ecs instance
+    ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+    ///     {
+    ///         AllocationId = fooAddress.Id,
+    ///         InstanceId = fooInstance.Id,
+    ///         InstanceType = "EcsInstance",
     ///     });
     /// 
     /// });

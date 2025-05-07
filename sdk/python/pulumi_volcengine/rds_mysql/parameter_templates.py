@@ -17,6 +17,8 @@ __all__ = [
     'parameter_templates_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates""", DeprecationWarning)
+
 @pulumi.output_type
 class ParameterTemplatesResult:
     """
@@ -144,7 +146,7 @@ def parameter_templates(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.parameter_templates(template_category="DBEngine",
+    foo = volcengine.rds_mysql.get_parameter_templates(template_category="DBEngine",
         template_source="User")
     ```
 
@@ -157,6 +159,7 @@ def parameter_templates(output_file: Optional[str] = None,
            MySQL_5_7: Default value. MySQL 5.7 version.
            MySQL_8_0: MySQL 8.0 version.
     """
+    pulumi.log.warn("""parameter_templates is deprecated: volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['templateCategory'] = template_category
@@ -192,7 +195,7 @@ def parameter_templates_output(output_file: Optional[pulumi.Input[Optional[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.parameter_templates(template_category="DBEngine",
+    foo = volcengine.rds_mysql.get_parameter_templates(template_category="DBEngine",
         template_source="User")
     ```
 
@@ -205,4 +208,5 @@ def parameter_templates_output(output_file: Optional[pulumi.Input[Optional[str]]
            MySQL_5_7: Default value. MySQL 5.7 version.
            MySQL_8_0: MySQL 8.0 version.
     """
+    pulumi.log.warn("""parameter_templates is deprecated: volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates""")
     ...

@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.bioos.Clusters({});
+ * const default = volcengine.bioos.getClusters({});
  * ```
  */
+/** @deprecated volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters */
 export function clusters(args?: ClustersArgs, opts?: pulumi.InvokeOptions): Promise<ClustersResult> {
+    pulumi.log.warn("clusters is deprecated: volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -92,9 +94,10 @@ export interface ClustersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.bioos.Clusters({});
+ * const default = volcengine.bioos.getClusters({});
  * ```
  */
+/** @deprecated volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters */
 export function clustersOutput(args?: ClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ClustersResult> {
     return pulumi.output(args).apply((a: any) => clusters(a, opts))
 }

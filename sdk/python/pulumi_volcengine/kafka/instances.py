@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.kafka.Instances has been deprecated in favor of volcengine.kafka.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -154,7 +156,7 @@ def instances(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -189,7 +191,7 @@ def instances(instance_id: Optional[str] = None,
                 parameter_value="70",
             ),
         ])
-    default = volcengine.kafka.instances_output(instance_id=foo_instance.id)
+    default = volcengine.kafka.get_instances_output(instance_id=foo_instance.id)
     ```
 
 
@@ -200,6 +202,7 @@ def instances(instance_id: Optional[str] = None,
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: The tags of instance.
     :param str zone_id: The zone id of instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.kafka.Instances has been deprecated in favor of volcengine.kafka.getInstances""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['instanceName'] = instance_name
@@ -238,7 +241,7 @@ def instances_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -273,7 +276,7 @@ def instances_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                 parameter_value="70",
             ),
         ])
-    default = volcengine.kafka.instances_output(instance_id=foo_instance.id)
+    default = volcengine.kafka.get_instances_output(instance_id=foo_instance.id)
     ```
 
 
@@ -284,4 +287,5 @@ def instances_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: The tags of instance.
     :param str zone_id: The zone id of instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.kafka.Instances has been deprecated in favor of volcengine.kafka.getInstances""")
     ...

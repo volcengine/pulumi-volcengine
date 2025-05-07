@@ -16,6 +16,9 @@ __all__ = [
     'GatewaysTagFilterArgs',
     'VirtualInterfaceTagArgs',
     'VirtualInterfacesTagFilterArgs',
+    'GetConnectionsTagFilterArgs',
+    'GetGatewaysTagFilterArgs',
+    'GetVirtualInterfacesTagFilterArgs',
 ]
 
 @pulumi.input_type
@@ -215,6 +218,123 @@ class VirtualInterfaceTagArgs:
 
 @pulumi.input_type
 class VirtualInterfacesTagFilterArgs:
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The tag key of cloud resource instance.
+        :param str value: The tag value of cloud resource instance.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The tag key of cloud resource instance.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The tag value of cloud resource instance.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetConnectionsTagFilterArgs:
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The tag key of cloud resource instance.
+        :param str value: The tag value of cloud resource instance.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The tag key of cloud resource instance.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The tag value of cloud resource instance.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetGatewaysTagFilterArgs:
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The tag key of cloud resource instance.
+        :param str value: The tag value of cloud resource instance.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The tag key of cloud resource instance.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The tag value of cloud resource instance.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetVirtualInterfacesTagFilterArgs:
     def __init__(__self__, *,
                  key: Optional[str] = None,
                  value: Optional[str] = None):

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVolume: volcengine.ebs.Volume[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooVolume.push(new volcengine.ebs.Volume(`fooVolume-${range.value}`, {
@@ -29,12 +29,14 @@ import * as utilities from "../utilities";
  *         projectName: "default",
  *     }));
  * }
- * const fooVolumes = volcengine.ebs.VolumesOutput({
+ * const fooVolumes = volcengine.ebs.getVolumesOutput({
  *     ids: fooVolume.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes */
 export function volumes(args?: VolumesArgs, opts?: pulumi.InvokeOptions): Promise<VolumesResult> {
+    pulumi.log.warn("volumes is deprecated: volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -137,7 +139,7 @@ export interface VolumesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVolume: volcengine.ebs.Volume[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooVolume.push(new volcengine.ebs.Volume(`fooVolume-${range.value}`, {
@@ -151,11 +153,12 @@ export interface VolumesResult {
  *         projectName: "default",
  *     }));
  * }
- * const fooVolumes = volcengine.ebs.VolumesOutput({
+ * const fooVolumes = volcengine.ebs.getVolumesOutput({
  *     ids: fooVolume.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes */
 export function volumesOutput(args?: VolumesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VolumesResult> {
     return pulumi.output(args).apply((a: any) => volumes(a, opts))
 }

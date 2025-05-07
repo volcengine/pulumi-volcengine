@@ -17,6 +17,8 @@ __all__ = [
     'accounts_output',
 ]
 
+warnings.warn("""volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts""", DeprecationWarning)
+
 @pulumi.output_type
 class AccountsResult:
     """
@@ -111,7 +113,7 @@ def accounts(account_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.accounts(instance_id="postgres-954****f7233")
+    foo = volcengine.rds_postgresql.get_accounts(instance_id="postgres-954****f7233")
     ```
 
 
@@ -119,6 +121,7 @@ def accounts(account_name: Optional[str] = None,
     :param str instance_id: The id of the RDS instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts""")
     __args__ = dict()
     __args__['accountName'] = account_name
     __args__['instanceId'] = instance_id
@@ -148,7 +151,7 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.accounts(instance_id="postgres-954****f7233")
+    foo = volcengine.rds_postgresql.get_accounts(instance_id="postgres-954****f7233")
     ```
 
 
@@ -156,4 +159,5 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The id of the RDS instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts""")
     ...

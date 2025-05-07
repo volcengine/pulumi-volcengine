@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_monitor.EventRules(ctx, &cloud_monitor.EventRulesArgs{
+//			_, err := cloud_monitor.GetEventRules(ctx, &cloud_monitor.GetEventRulesArgs{
 //				RuleName: pulumi.StringRef("tftest"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules
 func EventRules(ctx *pulumi.Context, args *EventRulesArgs, opts ...pulumi.InvokeOption) (*EventRulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EventRulesResult

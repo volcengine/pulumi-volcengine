@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Hosts(ctx, &tls.HostsArgs{
+//			_, err := tls.GetHosts(ctx, &tls.GetHostsArgs{
 //				HostGroupId: "527102e2-1e4f-45f4-a990-751152125da7",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts
 func Hosts(ctx *pulumi.Context, args *HostsArgs, opts ...pulumi.InvokeOption) (*HostsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv HostsResult

@@ -17,6 +17,8 @@ __all__ = [
     'support_resource_types_output',
 ]
 
+warnings.warn("""volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes""", DeprecationWarning)
+
 @pulumi.output_type
 class SupportResourceTypesResult:
     """
@@ -108,7 +110,7 @@ def support_resource_types(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.support_resource_types()
+    default = volcengine.vke.get_support_resource_types()
     ```
 
 
@@ -116,6 +118,7 @@ def support_resource_types(output_file: Optional[str] = None,
     :param Sequence[str] resource_types: A list of resource types. Support Ecs or Zone.
     :param Sequence[str] zone_ids: A list of zone ids. If no parameter value, all available regions is returned.
     """
+    pulumi.log.warn("""support_resource_types is deprecated: volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['resourceTypes'] = resource_types
@@ -145,7 +148,7 @@ def support_resource_types_output(output_file: Optional[pulumi.Input[Optional[st
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.support_resource_types()
+    default = volcengine.vke.get_support_resource_types()
     ```
 
 
@@ -153,4 +156,5 @@ def support_resource_types_output(output_file: Optional[pulumi.Input[Optional[st
     :param Sequence[str] resource_types: A list of resource types. Support Ecs or Zone.
     :param Sequence[str] zone_ids: A list of zone ids. If no parameter value, all available regions is returned.
     """
+    pulumi.log.warn("""support_resource_types is deprecated: volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes""")
     ...

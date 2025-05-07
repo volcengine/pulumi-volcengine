@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cr
 {
+    [Obsolete(@"volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags")]
     public static class Tags
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Tags.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetTags.Invoke(new()
         ///     {
         ///         Namespace = "test",
         ///         Registry = "enterprise-1",
@@ -52,7 +53,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Tags.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetTags.Invoke(new()
         ///     {
         ///         Namespace = "test",
         ///         Registry = "enterprise-1",

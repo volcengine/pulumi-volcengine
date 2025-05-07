@@ -170,7 +170,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly bool SupportCodeNode;
         /// <summary>
-        /// Tags.
+        /// The tags of instance.
         /// </summary>
         public readonly ImmutableArray<Outputs.EscloudInstancesV2InstanceTagResult> Tags;
         /// <summary>

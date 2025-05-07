@@ -17,6 +17,8 @@ __all__ = [
     'ns_quotas_output',
 ]
 
+warnings.warn("""volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas""", DeprecationWarning)
+
 @pulumi.output_type
 class NsQuotasResult:
     """
@@ -98,7 +100,7 @@ def ns_quotas(fs_names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.ns_quotas(fs_names=[
+    default = volcengine.cloudfs.get_ns_quotas(fs_names=[
         "tffile",
         "tftest2",
     ])
@@ -108,6 +110,7 @@ def ns_quotas(fs_names: Optional[Sequence[str]] = None,
     :param Sequence[str] fs_names: A list of fs name.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""ns_quotas is deprecated: volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas""")
     __args__ = dict()
     __args__['fsNames'] = fs_names
     __args__['outputFile'] = output_file
@@ -134,7 +137,7 @@ def ns_quotas_output(fs_names: Optional[pulumi.Input[Sequence[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.ns_quotas(fs_names=[
+    default = volcengine.cloudfs.get_ns_quotas(fs_names=[
         "tffile",
         "tftest2",
     ])
@@ -144,4 +147,5 @@ def ns_quotas_output(fs_names: Optional[pulumi.Input[Sequence[str]]] = None,
     :param Sequence[str] fs_names: A list of fs name.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""ns_quotas is deprecated: volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas""")
     ...

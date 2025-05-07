@@ -17,6 +17,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.rds.Instances has been deprecated in favor of volcengine.rds.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -183,7 +185,7 @@ def instances(create_end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.instances(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_instances(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -197,6 +199,7 @@ def instances(create_end_time: Optional[str] = None,
     :param str region: The region of the RDS instance.
     :param str zone: The available zone of the RDS instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rds.Instances has been deprecated in favor of volcengine.rds.getInstances""")
     __args__ = dict()
     __args__['createEndTime'] = create_end_time
     __args__['createStartTime'] = create_start_time
@@ -244,7 +247,7 @@ def instances_output(create_end_time: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.instances(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_instances(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -258,4 +261,5 @@ def instances_output(create_end_time: Optional[pulumi.Input[Optional[str]]] = No
     :param str region: The region of the RDS instance.
     :param str zone: The available zone of the RDS instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rds.Instances has been deprecated in favor of volcengine.rds.getInstances""")
     ...

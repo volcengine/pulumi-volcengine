@@ -17,6 +17,8 @@ __all__ = [
     'record_sets_output',
 ]
 
+warnings.warn("""volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets""", DeprecationWarning)
+
 @pulumi.output_type
 class RecordSetsResult:
     """
@@ -141,9 +143,9 @@ def record_sets(host: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.dns.zones(key="xxx",
+    foo_zones = volcengine.dns.get_zones(key="xxx",
         search_mode="xx")
-    foo_record_sets = volcengine.dns.record_sets(zid=foo_zones.zones[0].zid)
+    foo_record_sets = volcengine.dns.get_record_sets(zid=foo_zones.zones[0].zid)
     ```
 
 
@@ -154,6 +156,7 @@ def record_sets(host: Optional[str] = None,
     :param str search_mode: The matching mode for Host.
     :param int zid: The domain ID.
     """
+    pulumi.log.warn("""record_sets is deprecated: volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets""")
     __args__ = dict()
     __args__['host'] = host
     __args__['nameRegex'] = name_regex
@@ -192,9 +195,9 @@ def record_sets_output(host: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.dns.zones(key="xxx",
+    foo_zones = volcengine.dns.get_zones(key="xxx",
         search_mode="xx")
-    foo_record_sets = volcengine.dns.record_sets(zid=foo_zones.zones[0].zid)
+    foo_record_sets = volcengine.dns.get_record_sets(zid=foo_zones.zones[0].zid)
     ```
 
 
@@ -205,4 +208,5 @@ def record_sets_output(host: Optional[pulumi.Input[Optional[str]]] = None,
     :param str search_mode: The matching mode for Host.
     :param int zid: The domain ID.
     """
+    pulumi.log.warn("""record_sets is deprecated: volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets""")
     ...

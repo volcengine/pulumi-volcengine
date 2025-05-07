@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Backups({
+ * const foo = volcengine.rds_mssql.getBackups({
  *     instanceId: "mssql-40914121fd22",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups */
 export function backups(args: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
+    pulumi.log.warn("backups is deprecated: volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_mssql/backups:Backups", {
@@ -105,11 +107,12 @@ export interface BackupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Backups({
+ * const foo = volcengine.rds_mssql.getBackups({
  *     instanceId: "mssql-40914121fd22",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups */
 export function backupsOutput(args: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
     return pulumi.output(args).apply((a: any) => backups(a, opts))
 }

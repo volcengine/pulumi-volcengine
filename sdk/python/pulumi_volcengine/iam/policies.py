@@ -17,6 +17,8 @@ __all__ = [
     'policies_output',
 ]
 
+warnings.warn("""volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies""", DeprecationWarning)
+
 @pulumi.output_type
 class PoliciesResult:
     """
@@ -158,7 +160,7 @@ def policies(name_regex: Optional[str] = None,
         policy_name="acc-test-policy",
         description="acc-test",
         policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.policies_output(query=description))
+    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.get_policies_output(query=description))
     ```
 
 
@@ -170,6 +172,7 @@ def policies(name_regex: Optional[str] = None,
     :param str status: The status of policy.
     :param str user_name: The name of the IAM user.
     """
+    pulumi.log.warn("""policies is deprecated: volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -215,7 +218,7 @@ def policies_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
         policy_name="acc-test-policy",
         description="acc-test",
         policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.policies_output(query=description))
+    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.get_policies_output(query=description))
     ```
 
 
@@ -227,4 +230,5 @@ def policies_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     :param str status: The status of policy.
     :param str user_name: The name of the IAM user.
     """
+    pulumi.log.warn("""policies is deprecated: volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies""")
     ...

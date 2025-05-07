@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages")]
     public static class BandwidthPackages
     {
         /// <summary>
@@ -32,7 +33,7 @@ namespace Pulumi.Volcengine.Transit_router
         ///         RenewType = "Manual",
         ///     });
         /// 
-        ///     var fooBandwidthPackages = Volcengine.Transit_router.BandwidthPackages.Invoke(new()
+        ///     var fooBandwidthPackages = Volcengine.Transit_router.GetBandwidthPackages.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -67,7 +68,7 @@ namespace Pulumi.Volcengine.Transit_router
         ///         RenewType = "Manual",
         ///     });
         /// 
-        ///     var fooBandwidthPackages = Volcengine.Transit_router.BandwidthPackages.Invoke(new()
+        ///     var fooBandwidthPackages = Volcengine.Transit_router.GetBandwidthPackages.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

@@ -104,7 +104,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vpn.GatewayRoutesOutput(ctx, vpn.GatewayRoutesOutputArgs{
+//			_ = vpn.GetGatewayRoutesOutput(ctx, vpn.GetGatewayRoutesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooGatewayRoute.ID(),
 //				},
@@ -114,6 +114,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes
 func GatewayRoutes(ctx *pulumi.Context, args *GatewayRoutesArgs, opts ...pulumi.InvokeOption) (*GatewayRoutesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewayRoutesResult

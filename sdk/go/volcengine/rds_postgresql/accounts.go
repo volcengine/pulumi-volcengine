@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_postgresql.Accounts(ctx, &rds_postgresql.AccountsArgs{
+//			_, err := rds_postgresql.GetAccounts(ctx, &rds_postgresql.GetAccountsArgs{
 //				InstanceId: "postgres-954****f7233",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccountsResult

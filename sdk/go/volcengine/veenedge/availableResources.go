@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := veenedge.AvailableResources(ctx, &veenedge.AvailableResourcesArgs{
+//			_, err := veenedge.GetAvailableResources(ctx, &veenedge.GetAvailableResourcesArgs{
 //				BandwithLimit: 20,
 //				CloudDiskType: "CloudSSD",
 //				InstanceType:  "ve******rge",
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources
 func AvailableResources(ctx *pulumi.Context, args *AvailableResourcesArgs, opts ...pulumi.InvokeOption) (*AvailableResourcesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AvailableResourcesResult

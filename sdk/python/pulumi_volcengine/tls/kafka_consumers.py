@@ -17,6 +17,8 @@ __all__ = [
     'kafka_consumers_output',
 ]
 
+warnings.warn("""volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers""", DeprecationWarning)
+
 @pulumi.output_type
 class KafkaConsumersResult:
     """
@@ -98,7 +100,7 @@ def kafka_consumers(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.kafka_consumers(ids=[
+    default = volcengine.tls.get_kafka_consumers(ids=[
         "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
         "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
         "edf051ed-3c46-49ba-9339-bea628fedc15",
@@ -109,6 +111,7 @@ def kafka_consumers(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] ids: A list of topic IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""kafka_consumers is deprecated: volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -135,7 +138,7 @@ def kafka_consumers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.kafka_consumers(ids=[
+    default = volcengine.tls.get_kafka_consumers(ids=[
         "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
         "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
         "edf051ed-3c46-49ba-9339-bea628fedc15",
@@ -146,4 +149,5 @@ def kafka_consumers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param Sequence[str] ids: A list of topic IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""kafka_consumers is deprecated: volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers""")
     ...

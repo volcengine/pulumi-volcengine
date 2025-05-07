@@ -2253,6 +2253,1930 @@ func (o VirtualInterfacesVirtualInterfaceTagArrayOutput) Index(i pulumi.IntInput
 	}).(VirtualInterfacesVirtualInterfaceTagOutput)
 }
 
+type GetBgpPeersBgpPeer struct {
+	// The id of account.
+	AccountId string `pulumi:"accountId"`
+	// The key of auth.
+	AuthKey string `pulumi:"authKey"`
+	// The id of bgp peer.
+	BgpPeerId string `pulumi:"bgpPeerId"`
+	// The name of bgp peer.
+	BgpPeerName string `pulumi:"bgpPeerName"`
+	// The create time of bgp peer.
+	CreationTime string `pulumi:"creationTime"`
+	// The Description of bgp peer.
+	Description string `pulumi:"description"`
+	// The local asn of bgp peer.
+	LocalAsn int `pulumi:"localAsn"`
+	// The remote asn of bgp peer.
+	RemoteAsn int `pulumi:"remoteAsn"`
+	// The session status of bgp peer.
+	SessionStatus string `pulumi:"sessionStatus"`
+	// The status of bgp peer.
+	Status string `pulumi:"status"`
+	// The update time of bgp peer.
+	UpdateTime string `pulumi:"updateTime"`
+	// The id of virtual interface.
+	VirtualInterfaceId string `pulumi:"virtualInterfaceId"`
+}
+
+// GetBgpPeersBgpPeerInput is an input type that accepts GetBgpPeersBgpPeerArgs and GetBgpPeersBgpPeerOutput values.
+// You can construct a concrete instance of `GetBgpPeersBgpPeerInput` via:
+//
+//	GetBgpPeersBgpPeerArgs{...}
+type GetBgpPeersBgpPeerInput interface {
+	pulumi.Input
+
+	ToGetBgpPeersBgpPeerOutput() GetBgpPeersBgpPeerOutput
+	ToGetBgpPeersBgpPeerOutputWithContext(context.Context) GetBgpPeersBgpPeerOutput
+}
+
+type GetBgpPeersBgpPeerArgs struct {
+	// The id of account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The key of auth.
+	AuthKey pulumi.StringInput `pulumi:"authKey"`
+	// The id of bgp peer.
+	BgpPeerId pulumi.StringInput `pulumi:"bgpPeerId"`
+	// The name of bgp peer.
+	BgpPeerName pulumi.StringInput `pulumi:"bgpPeerName"`
+	// The create time of bgp peer.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The Description of bgp peer.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The local asn of bgp peer.
+	LocalAsn pulumi.IntInput `pulumi:"localAsn"`
+	// The remote asn of bgp peer.
+	RemoteAsn pulumi.IntInput `pulumi:"remoteAsn"`
+	// The session status of bgp peer.
+	SessionStatus pulumi.StringInput `pulumi:"sessionStatus"`
+	// The status of bgp peer.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of bgp peer.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The id of virtual interface.
+	VirtualInterfaceId pulumi.StringInput `pulumi:"virtualInterfaceId"`
+}
+
+func (GetBgpPeersBgpPeerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBgpPeersBgpPeer)(nil)).Elem()
+}
+
+func (i GetBgpPeersBgpPeerArgs) ToGetBgpPeersBgpPeerOutput() GetBgpPeersBgpPeerOutput {
+	return i.ToGetBgpPeersBgpPeerOutputWithContext(context.Background())
+}
+
+func (i GetBgpPeersBgpPeerArgs) ToGetBgpPeersBgpPeerOutputWithContext(ctx context.Context) GetBgpPeersBgpPeerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBgpPeersBgpPeerOutput)
+}
+
+// GetBgpPeersBgpPeerArrayInput is an input type that accepts GetBgpPeersBgpPeerArray and GetBgpPeersBgpPeerArrayOutput values.
+// You can construct a concrete instance of `GetBgpPeersBgpPeerArrayInput` via:
+//
+//	GetBgpPeersBgpPeerArray{ GetBgpPeersBgpPeerArgs{...} }
+type GetBgpPeersBgpPeerArrayInput interface {
+	pulumi.Input
+
+	ToGetBgpPeersBgpPeerArrayOutput() GetBgpPeersBgpPeerArrayOutput
+	ToGetBgpPeersBgpPeerArrayOutputWithContext(context.Context) GetBgpPeersBgpPeerArrayOutput
+}
+
+type GetBgpPeersBgpPeerArray []GetBgpPeersBgpPeerInput
+
+func (GetBgpPeersBgpPeerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBgpPeersBgpPeer)(nil)).Elem()
+}
+
+func (i GetBgpPeersBgpPeerArray) ToGetBgpPeersBgpPeerArrayOutput() GetBgpPeersBgpPeerArrayOutput {
+	return i.ToGetBgpPeersBgpPeerArrayOutputWithContext(context.Background())
+}
+
+func (i GetBgpPeersBgpPeerArray) ToGetBgpPeersBgpPeerArrayOutputWithContext(ctx context.Context) GetBgpPeersBgpPeerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBgpPeersBgpPeerArrayOutput)
+}
+
+type GetBgpPeersBgpPeerOutput struct{ *pulumi.OutputState }
+
+func (GetBgpPeersBgpPeerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBgpPeersBgpPeer)(nil)).Elem()
+}
+
+func (o GetBgpPeersBgpPeerOutput) ToGetBgpPeersBgpPeerOutput() GetBgpPeersBgpPeerOutput {
+	return o
+}
+
+func (o GetBgpPeersBgpPeerOutput) ToGetBgpPeersBgpPeerOutputWithContext(ctx context.Context) GetBgpPeersBgpPeerOutput {
+	return o
+}
+
+// The id of account.
+func (o GetBgpPeersBgpPeerOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The key of auth.
+func (o GetBgpPeersBgpPeerOutput) AuthKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.AuthKey }).(pulumi.StringOutput)
+}
+
+// The id of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) BgpPeerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.BgpPeerId }).(pulumi.StringOutput)
+}
+
+// The name of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) BgpPeerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.BgpPeerName }).(pulumi.StringOutput)
+}
+
+// The create time of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The Description of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The local asn of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) LocalAsn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) int { return v.LocalAsn }).(pulumi.IntOutput)
+}
+
+// The remote asn of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) RemoteAsn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) int { return v.RemoteAsn }).(pulumi.IntOutput)
+}
+
+// The session status of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) SessionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.SessionStatus }).(pulumi.StringOutput)
+}
+
+// The status of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of bgp peer.
+func (o GetBgpPeersBgpPeerOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The id of virtual interface.
+func (o GetBgpPeersBgpPeerOutput) VirtualInterfaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpPeersBgpPeer) string { return v.VirtualInterfaceId }).(pulumi.StringOutput)
+}
+
+type GetBgpPeersBgpPeerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBgpPeersBgpPeerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBgpPeersBgpPeer)(nil)).Elem()
+}
+
+func (o GetBgpPeersBgpPeerArrayOutput) ToGetBgpPeersBgpPeerArrayOutput() GetBgpPeersBgpPeerArrayOutput {
+	return o
+}
+
+func (o GetBgpPeersBgpPeerArrayOutput) ToGetBgpPeersBgpPeerArrayOutputWithContext(ctx context.Context) GetBgpPeersBgpPeerArrayOutput {
+	return o
+}
+
+func (o GetBgpPeersBgpPeerArrayOutput) Index(i pulumi.IntInput) GetBgpPeersBgpPeerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBgpPeersBgpPeer {
+		return vs[0].([]GetBgpPeersBgpPeer)[vs[1].(int)]
+	}).(GetBgpPeersBgpPeerOutput)
+}
+
+type GetConnectionsDirectConnectConnection struct {
+	// The account ID which the physical leased line belongs.
+	AccountId string `pulumi:"accountId"`
+	// The bandwidth of direct connect.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The dedicated line billing type,only support `1` for yearly and monthly billing currently.
+	BillingType int `pulumi:"billingType"`
+	// The dedicated line billing status.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The connection type of physical leased line,valid value contains `SharedConnection`,`DedicatedConnection`.
+	ConnectionType string `pulumi:"connectionType"`
+	// The creation time of direct connect.
+	CreationTime string `pulumi:"creationTime"`
+	// The dedicated line contact email.
+	CustomerContactEmail string `pulumi:"customerContactEmail"`
+	// The dedicated line contact phone.
+	CustomerContactPhone string `pulumi:"customerContactPhone"`
+	// The dedicated line contact name.
+	CustomerName string `pulumi:"customerName"`
+	// The expected resource force collection time.
+	DeletedTime string `pulumi:"deletedTime"`
+	// The description of direct connect connection.
+	Description string `pulumi:"description"`
+	// The ID of the physical leased line access point.
+	DirectConnectAccessPointId string `pulumi:"directConnectAccessPointId"`
+	// The ID of direct connect connection.
+	DirectConnectConnectionId string `pulumi:"directConnectConnectionId"`
+	// The name of directi connect connection.
+	DirectConnectConnectionName string `pulumi:"directConnectConnectionName"`
+	// The expect bandwidth of direct connect.
+	ExpectBandwidth int `pulumi:"expectBandwidth"`
+	// The expired time.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The operator of the physical leased line,valid value contains `ChinaTelecom`,`ChinaMobile`,`ChinaUnicom`,`ChinaOther`.
+	LineOperator string `pulumi:"lineOperator"`
+	// The account ID of physical leased line to which the shared leased line belongs.If the physical leased line type is an exclusive leased line,this parameter returns empty.
+	ParentConnectionAccountId string `pulumi:"parentConnectionAccountId"`
+	// The ID of the physical leased line to which the shared leased line belongs. If the physical leased line type is an exclusive leased line, this parameter returns empty.
+	ParentConnectionId string `pulumi:"parentConnectionId"`
+	// The peer access point of the physical leased line.
+	PeerLocation string `pulumi:"peerLocation"`
+	// The dedicated line port spec.
+	PortSpec string `pulumi:"portSpec"`
+	// The port type of direct connect.
+	PortType string `pulumi:"portType"`
+	// The status of physical leased line.
+	Status string `pulumi:"status"`
+	// All tags that physical leased line added.
+	Tags []GetConnectionsDirectConnectConnectionTag `pulumi:"tags"`
+	// The update time of direct connect.
+	UpdateTime string `pulumi:"updateTime"`
+	// The vlan ID of shared connection,if `connectionType` is `DedicatedConnection`,this parameter returns 0.
+	VlanId int `pulumi:"vlanId"`
+}
+
+// GetConnectionsDirectConnectConnectionInput is an input type that accepts GetConnectionsDirectConnectConnectionArgs and GetConnectionsDirectConnectConnectionOutput values.
+// You can construct a concrete instance of `GetConnectionsDirectConnectConnectionInput` via:
+//
+//	GetConnectionsDirectConnectConnectionArgs{...}
+type GetConnectionsDirectConnectConnectionInput interface {
+	pulumi.Input
+
+	ToGetConnectionsDirectConnectConnectionOutput() GetConnectionsDirectConnectConnectionOutput
+	ToGetConnectionsDirectConnectConnectionOutputWithContext(context.Context) GetConnectionsDirectConnectConnectionOutput
+}
+
+type GetConnectionsDirectConnectConnectionArgs struct {
+	// The account ID which the physical leased line belongs.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The bandwidth of direct connect.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The dedicated line billing type,only support `1` for yearly and monthly billing currently.
+	BillingType pulumi.IntInput `pulumi:"billingType"`
+	// The dedicated line billing status.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The connection type of physical leased line,valid value contains `SharedConnection`,`DedicatedConnection`.
+	ConnectionType pulumi.StringInput `pulumi:"connectionType"`
+	// The creation time of direct connect.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The dedicated line contact email.
+	CustomerContactEmail pulumi.StringInput `pulumi:"customerContactEmail"`
+	// The dedicated line contact phone.
+	CustomerContactPhone pulumi.StringInput `pulumi:"customerContactPhone"`
+	// The dedicated line contact name.
+	CustomerName pulumi.StringInput `pulumi:"customerName"`
+	// The expected resource force collection time.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// The description of direct connect connection.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the physical leased line access point.
+	DirectConnectAccessPointId pulumi.StringInput `pulumi:"directConnectAccessPointId"`
+	// The ID of direct connect connection.
+	DirectConnectConnectionId pulumi.StringInput `pulumi:"directConnectConnectionId"`
+	// The name of directi connect connection.
+	DirectConnectConnectionName pulumi.StringInput `pulumi:"directConnectConnectionName"`
+	// The expect bandwidth of direct connect.
+	ExpectBandwidth pulumi.IntInput `pulumi:"expectBandwidth"`
+	// The expired time.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The operator of the physical leased line,valid value contains `ChinaTelecom`,`ChinaMobile`,`ChinaUnicom`,`ChinaOther`.
+	LineOperator pulumi.StringInput `pulumi:"lineOperator"`
+	// The account ID of physical leased line to which the shared leased line belongs.If the physical leased line type is an exclusive leased line,this parameter returns empty.
+	ParentConnectionAccountId pulumi.StringInput `pulumi:"parentConnectionAccountId"`
+	// The ID of the physical leased line to which the shared leased line belongs. If the physical leased line type is an exclusive leased line, this parameter returns empty.
+	ParentConnectionId pulumi.StringInput `pulumi:"parentConnectionId"`
+	// The peer access point of the physical leased line.
+	PeerLocation pulumi.StringInput `pulumi:"peerLocation"`
+	// The dedicated line port spec.
+	PortSpec pulumi.StringInput `pulumi:"portSpec"`
+	// The port type of direct connect.
+	PortType pulumi.StringInput `pulumi:"portType"`
+	// The status of physical leased line.
+	Status pulumi.StringInput `pulumi:"status"`
+	// All tags that physical leased line added.
+	Tags GetConnectionsDirectConnectConnectionTagArrayInput `pulumi:"tags"`
+	// The update time of direct connect.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The vlan ID of shared connection,if `connectionType` is `DedicatedConnection`,this parameter returns 0.
+	VlanId pulumi.IntInput `pulumi:"vlanId"`
+}
+
+func (GetConnectionsDirectConnectConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsDirectConnectConnection)(nil)).Elem()
+}
+
+func (i GetConnectionsDirectConnectConnectionArgs) ToGetConnectionsDirectConnectConnectionOutput() GetConnectionsDirectConnectConnectionOutput {
+	return i.ToGetConnectionsDirectConnectConnectionOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsDirectConnectConnectionArgs) ToGetConnectionsDirectConnectConnectionOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsDirectConnectConnectionOutput)
+}
+
+// GetConnectionsDirectConnectConnectionArrayInput is an input type that accepts GetConnectionsDirectConnectConnectionArray and GetConnectionsDirectConnectConnectionArrayOutput values.
+// You can construct a concrete instance of `GetConnectionsDirectConnectConnectionArrayInput` via:
+//
+//	GetConnectionsDirectConnectConnectionArray{ GetConnectionsDirectConnectConnectionArgs{...} }
+type GetConnectionsDirectConnectConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionsDirectConnectConnectionArrayOutput() GetConnectionsDirectConnectConnectionArrayOutput
+	ToGetConnectionsDirectConnectConnectionArrayOutputWithContext(context.Context) GetConnectionsDirectConnectConnectionArrayOutput
+}
+
+type GetConnectionsDirectConnectConnectionArray []GetConnectionsDirectConnectConnectionInput
+
+func (GetConnectionsDirectConnectConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsDirectConnectConnection)(nil)).Elem()
+}
+
+func (i GetConnectionsDirectConnectConnectionArray) ToGetConnectionsDirectConnectConnectionArrayOutput() GetConnectionsDirectConnectConnectionArrayOutput {
+	return i.ToGetConnectionsDirectConnectConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsDirectConnectConnectionArray) ToGetConnectionsDirectConnectConnectionArrayOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsDirectConnectConnectionArrayOutput)
+}
+
+type GetConnectionsDirectConnectConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsDirectConnectConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsDirectConnectConnection)(nil)).Elem()
+}
+
+func (o GetConnectionsDirectConnectConnectionOutput) ToGetConnectionsDirectConnectConnectionOutput() GetConnectionsDirectConnectConnectionOutput {
+	return o
+}
+
+func (o GetConnectionsDirectConnectConnectionOutput) ToGetConnectionsDirectConnectConnectionOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionOutput {
+	return o
+}
+
+// The account ID which the physical leased line belongs.
+func (o GetConnectionsDirectConnectConnectionOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The bandwidth of direct connect.
+func (o GetConnectionsDirectConnectConnectionOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The dedicated line billing type,only support `1` for yearly and monthly billing currently.
+func (o GetConnectionsDirectConnectConnectionOutput) BillingType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) int { return v.BillingType }).(pulumi.IntOutput)
+}
+
+// The dedicated line billing status.
+func (o GetConnectionsDirectConnectConnectionOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The connection type of physical leased line,valid value contains `SharedConnection`,`DedicatedConnection`.
+func (o GetConnectionsDirectConnectConnectionOutput) ConnectionType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.ConnectionType }).(pulumi.StringOutput)
+}
+
+// The creation time of direct connect.
+func (o GetConnectionsDirectConnectConnectionOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The dedicated line contact email.
+func (o GetConnectionsDirectConnectConnectionOutput) CustomerContactEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.CustomerContactEmail }).(pulumi.StringOutput)
+}
+
+// The dedicated line contact phone.
+func (o GetConnectionsDirectConnectConnectionOutput) CustomerContactPhone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.CustomerContactPhone }).(pulumi.StringOutput)
+}
+
+// The dedicated line contact name.
+func (o GetConnectionsDirectConnectConnectionOutput) CustomerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.CustomerName }).(pulumi.StringOutput)
+}
+
+// The expected resource force collection time.
+func (o GetConnectionsDirectConnectConnectionOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// The description of direct connect connection.
+func (o GetConnectionsDirectConnectConnectionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the physical leased line access point.
+func (o GetConnectionsDirectConnectConnectionOutput) DirectConnectAccessPointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.DirectConnectAccessPointId }).(pulumi.StringOutput)
+}
+
+// The ID of direct connect connection.
+func (o GetConnectionsDirectConnectConnectionOutput) DirectConnectConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.DirectConnectConnectionId }).(pulumi.StringOutput)
+}
+
+// The name of directi connect connection.
+func (o GetConnectionsDirectConnectConnectionOutput) DirectConnectConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.DirectConnectConnectionName }).(pulumi.StringOutput)
+}
+
+// The expect bandwidth of direct connect.
+func (o GetConnectionsDirectConnectConnectionOutput) ExpectBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) int { return v.ExpectBandwidth }).(pulumi.IntOutput)
+}
+
+// The expired time.
+func (o GetConnectionsDirectConnectConnectionOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The operator of the physical leased line,valid value contains `ChinaTelecom`,`ChinaMobile`,`ChinaUnicom`,`ChinaOther`.
+func (o GetConnectionsDirectConnectConnectionOutput) LineOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.LineOperator }).(pulumi.StringOutput)
+}
+
+// The account ID of physical leased line to which the shared leased line belongs.If the physical leased line type is an exclusive leased line,this parameter returns empty.
+func (o GetConnectionsDirectConnectConnectionOutput) ParentConnectionAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.ParentConnectionAccountId }).(pulumi.StringOutput)
+}
+
+// The ID of the physical leased line to which the shared leased line belongs. If the physical leased line type is an exclusive leased line, this parameter returns empty.
+func (o GetConnectionsDirectConnectConnectionOutput) ParentConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.ParentConnectionId }).(pulumi.StringOutput)
+}
+
+// The peer access point of the physical leased line.
+func (o GetConnectionsDirectConnectConnectionOutput) PeerLocation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.PeerLocation }).(pulumi.StringOutput)
+}
+
+// The dedicated line port spec.
+func (o GetConnectionsDirectConnectConnectionOutput) PortSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.PortSpec }).(pulumi.StringOutput)
+}
+
+// The port type of direct connect.
+func (o GetConnectionsDirectConnectConnectionOutput) PortType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.PortType }).(pulumi.StringOutput)
+}
+
+// The status of physical leased line.
+func (o GetConnectionsDirectConnectConnectionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// All tags that physical leased line added.
+func (o GetConnectionsDirectConnectConnectionOutput) Tags() GetConnectionsDirectConnectConnectionTagArrayOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) []GetConnectionsDirectConnectConnectionTag {
+		return v.Tags
+	}).(GetConnectionsDirectConnectConnectionTagArrayOutput)
+}
+
+// The update time of direct connect.
+func (o GetConnectionsDirectConnectConnectionOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The vlan ID of shared connection,if `connectionType` is `DedicatedConnection`,this parameter returns 0.
+func (o GetConnectionsDirectConnectConnectionOutput) VlanId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnection) int { return v.VlanId }).(pulumi.IntOutput)
+}
+
+type GetConnectionsDirectConnectConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsDirectConnectConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsDirectConnectConnection)(nil)).Elem()
+}
+
+func (o GetConnectionsDirectConnectConnectionArrayOutput) ToGetConnectionsDirectConnectConnectionArrayOutput() GetConnectionsDirectConnectConnectionArrayOutput {
+	return o
+}
+
+func (o GetConnectionsDirectConnectConnectionArrayOutput) ToGetConnectionsDirectConnectConnectionArrayOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionArrayOutput {
+	return o
+}
+
+func (o GetConnectionsDirectConnectConnectionArrayOutput) Index(i pulumi.IntInput) GetConnectionsDirectConnectConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionsDirectConnectConnection {
+		return vs[0].([]GetConnectionsDirectConnectConnection)[vs[1].(int)]
+	}).(GetConnectionsDirectConnectConnectionOutput)
+}
+
+type GetConnectionsDirectConnectConnectionTag struct {
+	// The tag key.
+	Key string `pulumi:"key"`
+	// The tag value.
+	Value string `pulumi:"value"`
+}
+
+// GetConnectionsDirectConnectConnectionTagInput is an input type that accepts GetConnectionsDirectConnectConnectionTagArgs and GetConnectionsDirectConnectConnectionTagOutput values.
+// You can construct a concrete instance of `GetConnectionsDirectConnectConnectionTagInput` via:
+//
+//	GetConnectionsDirectConnectConnectionTagArgs{...}
+type GetConnectionsDirectConnectConnectionTagInput interface {
+	pulumi.Input
+
+	ToGetConnectionsDirectConnectConnectionTagOutput() GetConnectionsDirectConnectConnectionTagOutput
+	ToGetConnectionsDirectConnectConnectionTagOutputWithContext(context.Context) GetConnectionsDirectConnectConnectionTagOutput
+}
+
+type GetConnectionsDirectConnectConnectionTagArgs struct {
+	// The tag key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The tag value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetConnectionsDirectConnectConnectionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsDirectConnectConnectionTag)(nil)).Elem()
+}
+
+func (i GetConnectionsDirectConnectConnectionTagArgs) ToGetConnectionsDirectConnectConnectionTagOutput() GetConnectionsDirectConnectConnectionTagOutput {
+	return i.ToGetConnectionsDirectConnectConnectionTagOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsDirectConnectConnectionTagArgs) ToGetConnectionsDirectConnectConnectionTagOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsDirectConnectConnectionTagOutput)
+}
+
+// GetConnectionsDirectConnectConnectionTagArrayInput is an input type that accepts GetConnectionsDirectConnectConnectionTagArray and GetConnectionsDirectConnectConnectionTagArrayOutput values.
+// You can construct a concrete instance of `GetConnectionsDirectConnectConnectionTagArrayInput` via:
+//
+//	GetConnectionsDirectConnectConnectionTagArray{ GetConnectionsDirectConnectConnectionTagArgs{...} }
+type GetConnectionsDirectConnectConnectionTagArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionsDirectConnectConnectionTagArrayOutput() GetConnectionsDirectConnectConnectionTagArrayOutput
+	ToGetConnectionsDirectConnectConnectionTagArrayOutputWithContext(context.Context) GetConnectionsDirectConnectConnectionTagArrayOutput
+}
+
+type GetConnectionsDirectConnectConnectionTagArray []GetConnectionsDirectConnectConnectionTagInput
+
+func (GetConnectionsDirectConnectConnectionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsDirectConnectConnectionTag)(nil)).Elem()
+}
+
+func (i GetConnectionsDirectConnectConnectionTagArray) ToGetConnectionsDirectConnectConnectionTagArrayOutput() GetConnectionsDirectConnectConnectionTagArrayOutput {
+	return i.ToGetConnectionsDirectConnectConnectionTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsDirectConnectConnectionTagArray) ToGetConnectionsDirectConnectConnectionTagArrayOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsDirectConnectConnectionTagArrayOutput)
+}
+
+type GetConnectionsDirectConnectConnectionTagOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsDirectConnectConnectionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsDirectConnectConnectionTag)(nil)).Elem()
+}
+
+func (o GetConnectionsDirectConnectConnectionTagOutput) ToGetConnectionsDirectConnectConnectionTagOutput() GetConnectionsDirectConnectConnectionTagOutput {
+	return o
+}
+
+func (o GetConnectionsDirectConnectConnectionTagOutput) ToGetConnectionsDirectConnectConnectionTagOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionTagOutput {
+	return o
+}
+
+// The tag key.
+func (o GetConnectionsDirectConnectConnectionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnectionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The tag value.
+func (o GetConnectionsDirectConnectConnectionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsDirectConnectConnectionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetConnectionsDirectConnectConnectionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsDirectConnectConnectionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsDirectConnectConnectionTag)(nil)).Elem()
+}
+
+func (o GetConnectionsDirectConnectConnectionTagArrayOutput) ToGetConnectionsDirectConnectConnectionTagArrayOutput() GetConnectionsDirectConnectConnectionTagArrayOutput {
+	return o
+}
+
+func (o GetConnectionsDirectConnectConnectionTagArrayOutput) ToGetConnectionsDirectConnectConnectionTagArrayOutputWithContext(ctx context.Context) GetConnectionsDirectConnectConnectionTagArrayOutput {
+	return o
+}
+
+func (o GetConnectionsDirectConnectConnectionTagArrayOutput) Index(i pulumi.IntInput) GetConnectionsDirectConnectConnectionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionsDirectConnectConnectionTag {
+		return vs[0].([]GetConnectionsDirectConnectConnectionTag)[vs[1].(int)]
+	}).(GetConnectionsDirectConnectConnectionTagOutput)
+}
+
+type GetConnectionsTagFilter struct {
+	// The tag key of cloud resource instance.
+	Key *string `pulumi:"key"`
+	// The tag value of cloud resource instance.
+	Value *string `pulumi:"value"`
+}
+
+// GetConnectionsTagFilterInput is an input type that accepts GetConnectionsTagFilterArgs and GetConnectionsTagFilterOutput values.
+// You can construct a concrete instance of `GetConnectionsTagFilterInput` via:
+//
+//	GetConnectionsTagFilterArgs{...}
+type GetConnectionsTagFilterInput interface {
+	pulumi.Input
+
+	ToGetConnectionsTagFilterOutput() GetConnectionsTagFilterOutput
+	ToGetConnectionsTagFilterOutputWithContext(context.Context) GetConnectionsTagFilterOutput
+}
+
+type GetConnectionsTagFilterArgs struct {
+	// The tag key of cloud resource instance.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The tag value of cloud resource instance.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (GetConnectionsTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsTagFilter)(nil)).Elem()
+}
+
+func (i GetConnectionsTagFilterArgs) ToGetConnectionsTagFilterOutput() GetConnectionsTagFilterOutput {
+	return i.ToGetConnectionsTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsTagFilterArgs) ToGetConnectionsTagFilterOutputWithContext(ctx context.Context) GetConnectionsTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsTagFilterOutput)
+}
+
+// GetConnectionsTagFilterArrayInput is an input type that accepts GetConnectionsTagFilterArray and GetConnectionsTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetConnectionsTagFilterArrayInput` via:
+//
+//	GetConnectionsTagFilterArray{ GetConnectionsTagFilterArgs{...} }
+type GetConnectionsTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionsTagFilterArrayOutput() GetConnectionsTagFilterArrayOutput
+	ToGetConnectionsTagFilterArrayOutputWithContext(context.Context) GetConnectionsTagFilterArrayOutput
+}
+
+type GetConnectionsTagFilterArray []GetConnectionsTagFilterInput
+
+func (GetConnectionsTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsTagFilter)(nil)).Elem()
+}
+
+func (i GetConnectionsTagFilterArray) ToGetConnectionsTagFilterArrayOutput() GetConnectionsTagFilterArrayOutput {
+	return i.ToGetConnectionsTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsTagFilterArray) ToGetConnectionsTagFilterArrayOutputWithContext(ctx context.Context) GetConnectionsTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsTagFilterArrayOutput)
+}
+
+type GetConnectionsTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsTagFilter)(nil)).Elem()
+}
+
+func (o GetConnectionsTagFilterOutput) ToGetConnectionsTagFilterOutput() GetConnectionsTagFilterOutput {
+	return o
+}
+
+func (o GetConnectionsTagFilterOutput) ToGetConnectionsTagFilterOutputWithContext(ctx context.Context) GetConnectionsTagFilterOutput {
+	return o
+}
+
+// The tag key of cloud resource instance.
+func (o GetConnectionsTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetConnectionsTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The tag value of cloud resource instance.
+func (o GetConnectionsTagFilterOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetConnectionsTagFilter) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type GetConnectionsTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsTagFilter)(nil)).Elem()
+}
+
+func (o GetConnectionsTagFilterArrayOutput) ToGetConnectionsTagFilterArrayOutput() GetConnectionsTagFilterArrayOutput {
+	return o
+}
+
+func (o GetConnectionsTagFilterArrayOutput) ToGetConnectionsTagFilterArrayOutputWithContext(ctx context.Context) GetConnectionsTagFilterArrayOutput {
+	return o
+}
+
+func (o GetConnectionsTagFilterArrayOutput) Index(i pulumi.IntInput) GetConnectionsTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionsTagFilter {
+		return vs[0].([]GetConnectionsTagFilter)[vs[1].(int)]
+	}).(GetConnectionsTagFilterOutput)
+}
+
+type GetGatewayRoutesDirectConnectGatewayRoute struct {
+	// The id of account.
+	AccountId string `pulumi:"accountId"`
+	// The create time.
+	CreationTime string `pulumi:"creationTime"`
+	// The cidr block.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The id of direct connect gateway.
+	DirectConnectGatewayId string `pulumi:"directConnectGatewayId"`
+	// The id of direct connect gateway route.
+	DirectConnectGatewayRouteId string `pulumi:"directConnectGatewayRouteId"`
+	// The id of next hop.
+	NextHopId string `pulumi:"nextHopId"`
+	// The type of next hop.
+	NextHopType string `pulumi:"nextHopType"`
+	// The type of route. The value can be BGP or CEN or Static.
+	RouteType string `pulumi:"routeType"`
+	// The status info.
+	Status string `pulumi:"status"`
+}
+
+// GetGatewayRoutesDirectConnectGatewayRouteInput is an input type that accepts GetGatewayRoutesDirectConnectGatewayRouteArgs and GetGatewayRoutesDirectConnectGatewayRouteOutput values.
+// You can construct a concrete instance of `GetGatewayRoutesDirectConnectGatewayRouteInput` via:
+//
+//	GetGatewayRoutesDirectConnectGatewayRouteArgs{...}
+type GetGatewayRoutesDirectConnectGatewayRouteInput interface {
+	pulumi.Input
+
+	ToGetGatewayRoutesDirectConnectGatewayRouteOutput() GetGatewayRoutesDirectConnectGatewayRouteOutput
+	ToGetGatewayRoutesDirectConnectGatewayRouteOutputWithContext(context.Context) GetGatewayRoutesDirectConnectGatewayRouteOutput
+}
+
+type GetGatewayRoutesDirectConnectGatewayRouteArgs struct {
+	// The id of account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The create time.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The cidr block.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The id of direct connect gateway.
+	DirectConnectGatewayId pulumi.StringInput `pulumi:"directConnectGatewayId"`
+	// The id of direct connect gateway route.
+	DirectConnectGatewayRouteId pulumi.StringInput `pulumi:"directConnectGatewayRouteId"`
+	// The id of next hop.
+	NextHopId pulumi.StringInput `pulumi:"nextHopId"`
+	// The type of next hop.
+	NextHopType pulumi.StringInput `pulumi:"nextHopType"`
+	// The type of route. The value can be BGP or CEN or Static.
+	RouteType pulumi.StringInput `pulumi:"routeType"`
+	// The status info.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetGatewayRoutesDirectConnectGatewayRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewayRoutesDirectConnectGatewayRoute)(nil)).Elem()
+}
+
+func (i GetGatewayRoutesDirectConnectGatewayRouteArgs) ToGetGatewayRoutesDirectConnectGatewayRouteOutput() GetGatewayRoutesDirectConnectGatewayRouteOutput {
+	return i.ToGetGatewayRoutesDirectConnectGatewayRouteOutputWithContext(context.Background())
+}
+
+func (i GetGatewayRoutesDirectConnectGatewayRouteArgs) ToGetGatewayRoutesDirectConnectGatewayRouteOutputWithContext(ctx context.Context) GetGatewayRoutesDirectConnectGatewayRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewayRoutesDirectConnectGatewayRouteOutput)
+}
+
+// GetGatewayRoutesDirectConnectGatewayRouteArrayInput is an input type that accepts GetGatewayRoutesDirectConnectGatewayRouteArray and GetGatewayRoutesDirectConnectGatewayRouteArrayOutput values.
+// You can construct a concrete instance of `GetGatewayRoutesDirectConnectGatewayRouteArrayInput` via:
+//
+//	GetGatewayRoutesDirectConnectGatewayRouteArray{ GetGatewayRoutesDirectConnectGatewayRouteArgs{...} }
+type GetGatewayRoutesDirectConnectGatewayRouteArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutput() GetGatewayRoutesDirectConnectGatewayRouteArrayOutput
+	ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutputWithContext(context.Context) GetGatewayRoutesDirectConnectGatewayRouteArrayOutput
+}
+
+type GetGatewayRoutesDirectConnectGatewayRouteArray []GetGatewayRoutesDirectConnectGatewayRouteInput
+
+func (GetGatewayRoutesDirectConnectGatewayRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewayRoutesDirectConnectGatewayRoute)(nil)).Elem()
+}
+
+func (i GetGatewayRoutesDirectConnectGatewayRouteArray) ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutput() GetGatewayRoutesDirectConnectGatewayRouteArrayOutput {
+	return i.ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewayRoutesDirectConnectGatewayRouteArray) ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutputWithContext(ctx context.Context) GetGatewayRoutesDirectConnectGatewayRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewayRoutesDirectConnectGatewayRouteArrayOutput)
+}
+
+type GetGatewayRoutesDirectConnectGatewayRouteOutput struct{ *pulumi.OutputState }
+
+func (GetGatewayRoutesDirectConnectGatewayRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewayRoutesDirectConnectGatewayRoute)(nil)).Elem()
+}
+
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) ToGetGatewayRoutesDirectConnectGatewayRouteOutput() GetGatewayRoutesDirectConnectGatewayRouteOutput {
+	return o
+}
+
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) ToGetGatewayRoutesDirectConnectGatewayRouteOutputWithContext(ctx context.Context) GetGatewayRoutesDirectConnectGatewayRouteOutput {
+	return o
+}
+
+// The id of account.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The create time.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The cidr block.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// The id of direct connect gateway.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) DirectConnectGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.DirectConnectGatewayId }).(pulumi.StringOutput)
+}
+
+// The id of direct connect gateway route.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) DirectConnectGatewayRouteId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.DirectConnectGatewayRouteId }).(pulumi.StringOutput)
+}
+
+// The id of next hop.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) NextHopId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.NextHopId }).(pulumi.StringOutput)
+}
+
+// The type of next hop.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) NextHopType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.NextHopType }).(pulumi.StringOutput)
+}
+
+// The type of route. The value can be BGP or CEN or Static.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) RouteType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.RouteType }).(pulumi.StringOutput)
+}
+
+// The status info.
+func (o GetGatewayRoutesDirectConnectGatewayRouteOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayRoutesDirectConnectGatewayRoute) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetGatewayRoutesDirectConnectGatewayRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewayRoutesDirectConnectGatewayRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewayRoutesDirectConnectGatewayRoute)(nil)).Elem()
+}
+
+func (o GetGatewayRoutesDirectConnectGatewayRouteArrayOutput) ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutput() GetGatewayRoutesDirectConnectGatewayRouteArrayOutput {
+	return o
+}
+
+func (o GetGatewayRoutesDirectConnectGatewayRouteArrayOutput) ToGetGatewayRoutesDirectConnectGatewayRouteArrayOutputWithContext(ctx context.Context) GetGatewayRoutesDirectConnectGatewayRouteArrayOutput {
+	return o
+}
+
+func (o GetGatewayRoutesDirectConnectGatewayRouteArrayOutput) Index(i pulumi.IntInput) GetGatewayRoutesDirectConnectGatewayRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewayRoutesDirectConnectGatewayRoute {
+		return vs[0].([]GetGatewayRoutesDirectConnectGatewayRoute)[vs[1].(int)]
+	}).(GetGatewayRoutesDirectConnectGatewayRouteOutput)
+}
+
+type GetGatewaysDirectConnectGateway struct {
+	// The account ID that direct connect gateway belongs.
+	AccountId string `pulumi:"accountId"`
+	// The CEN information associated with the direct connect gateway.
+	AssociateCens []GetGatewaysDirectConnectGatewayAssociateCen `pulumi:"associateCens"`
+	// The business status of direct connect gateway.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The creation time of direct connect gateway.
+	CreationTime string `pulumi:"creationTime"`
+	// The expected resource force collection time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+	DeletedTime string `pulumi:"deletedTime"`
+	// The description of direct connect gateway.
+	Description string `pulumi:"description"`
+	// The direct connect gateway ID.
+	DirectConnectGatewayId string `pulumi:"directConnectGatewayId"`
+	// The direst connect gateway name.
+	DirectConnectGatewayName string `pulumi:"directConnectGatewayName"`
+	// The reason of the direct connect gateway locked.
+	LockReason string `pulumi:"lockReason"`
+	// The resource freeze time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+	OverdueTime string `pulumi:"overdueTime"`
+	// The status of direct connect gateway.
+	Status string `pulumi:"status"`
+	// The tags that direct connect gateway added.
+	Tags []GetGatewaysDirectConnectGatewayTag `pulumi:"tags"`
+	// The update time of direct connect gateway.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetGatewaysDirectConnectGatewayInput is an input type that accepts GetGatewaysDirectConnectGatewayArgs and GetGatewaysDirectConnectGatewayOutput values.
+// You can construct a concrete instance of `GetGatewaysDirectConnectGatewayInput` via:
+//
+//	GetGatewaysDirectConnectGatewayArgs{...}
+type GetGatewaysDirectConnectGatewayInput interface {
+	pulumi.Input
+
+	ToGetGatewaysDirectConnectGatewayOutput() GetGatewaysDirectConnectGatewayOutput
+	ToGetGatewaysDirectConnectGatewayOutputWithContext(context.Context) GetGatewaysDirectConnectGatewayOutput
+}
+
+type GetGatewaysDirectConnectGatewayArgs struct {
+	// The account ID that direct connect gateway belongs.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The CEN information associated with the direct connect gateway.
+	AssociateCens GetGatewaysDirectConnectGatewayAssociateCenArrayInput `pulumi:"associateCens"`
+	// The business status of direct connect gateway.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The creation time of direct connect gateway.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The expected resource force collection time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// The description of direct connect gateway.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The direct connect gateway ID.
+	DirectConnectGatewayId pulumi.StringInput `pulumi:"directConnectGatewayId"`
+	// The direst connect gateway name.
+	DirectConnectGatewayName pulumi.StringInput `pulumi:"directConnectGatewayName"`
+	// The reason of the direct connect gateway locked.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The resource freeze time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The status of direct connect gateway.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The tags that direct connect gateway added.
+	Tags GetGatewaysDirectConnectGatewayTagArrayInput `pulumi:"tags"`
+	// The update time of direct connect gateway.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetGatewaysDirectConnectGatewayArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysDirectConnectGateway)(nil)).Elem()
+}
+
+func (i GetGatewaysDirectConnectGatewayArgs) ToGetGatewaysDirectConnectGatewayOutput() GetGatewaysDirectConnectGatewayOutput {
+	return i.ToGetGatewaysDirectConnectGatewayOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysDirectConnectGatewayArgs) ToGetGatewaysDirectConnectGatewayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysDirectConnectGatewayOutput)
+}
+
+// GetGatewaysDirectConnectGatewayArrayInput is an input type that accepts GetGatewaysDirectConnectGatewayArray and GetGatewaysDirectConnectGatewayArrayOutput values.
+// You can construct a concrete instance of `GetGatewaysDirectConnectGatewayArrayInput` via:
+//
+//	GetGatewaysDirectConnectGatewayArray{ GetGatewaysDirectConnectGatewayArgs{...} }
+type GetGatewaysDirectConnectGatewayArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewaysDirectConnectGatewayArrayOutput() GetGatewaysDirectConnectGatewayArrayOutput
+	ToGetGatewaysDirectConnectGatewayArrayOutputWithContext(context.Context) GetGatewaysDirectConnectGatewayArrayOutput
+}
+
+type GetGatewaysDirectConnectGatewayArray []GetGatewaysDirectConnectGatewayInput
+
+func (GetGatewaysDirectConnectGatewayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysDirectConnectGateway)(nil)).Elem()
+}
+
+func (i GetGatewaysDirectConnectGatewayArray) ToGetGatewaysDirectConnectGatewayArrayOutput() GetGatewaysDirectConnectGatewayArrayOutput {
+	return i.ToGetGatewaysDirectConnectGatewayArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysDirectConnectGatewayArray) ToGetGatewaysDirectConnectGatewayArrayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysDirectConnectGatewayArrayOutput)
+}
+
+type GetGatewaysDirectConnectGatewayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysDirectConnectGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysDirectConnectGateway)(nil)).Elem()
+}
+
+func (o GetGatewaysDirectConnectGatewayOutput) ToGetGatewaysDirectConnectGatewayOutput() GetGatewaysDirectConnectGatewayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayOutput) ToGetGatewaysDirectConnectGatewayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayOutput {
+	return o
+}
+
+// The account ID that direct connect gateway belongs.
+func (o GetGatewaysDirectConnectGatewayOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The CEN information associated with the direct connect gateway.
+func (o GetGatewaysDirectConnectGatewayOutput) AssociateCens() GetGatewaysDirectConnectGatewayAssociateCenArrayOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) []GetGatewaysDirectConnectGatewayAssociateCen {
+		return v.AssociateCens
+	}).(GetGatewaysDirectConnectGatewayAssociateCenArrayOutput)
+}
+
+// The business status of direct connect gateway.
+func (o GetGatewaysDirectConnectGatewayOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The creation time of direct connect gateway.
+func (o GetGatewaysDirectConnectGatewayOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The expected resource force collection time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+func (o GetGatewaysDirectConnectGatewayOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// The description of direct connect gateway.
+func (o GetGatewaysDirectConnectGatewayOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The direct connect gateway ID.
+func (o GetGatewaysDirectConnectGatewayOutput) DirectConnectGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.DirectConnectGatewayId }).(pulumi.StringOutput)
+}
+
+// The direst connect gateway name.
+func (o GetGatewaysDirectConnectGatewayOutput) DirectConnectGatewayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.DirectConnectGatewayName }).(pulumi.StringOutput)
+}
+
+// The reason of the direct connect gateway locked.
+func (o GetGatewaysDirectConnectGatewayOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// The resource freeze time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+func (o GetGatewaysDirectConnectGatewayOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// The status of direct connect gateway.
+func (o GetGatewaysDirectConnectGatewayOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tags that direct connect gateway added.
+func (o GetGatewaysDirectConnectGatewayOutput) Tags() GetGatewaysDirectConnectGatewayTagArrayOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) []GetGatewaysDirectConnectGatewayTag { return v.Tags }).(GetGatewaysDirectConnectGatewayTagArrayOutput)
+}
+
+// The update time of direct connect gateway.
+func (o GetGatewaysDirectConnectGatewayOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGateway) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetGatewaysDirectConnectGatewayArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysDirectConnectGatewayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysDirectConnectGateway)(nil)).Elem()
+}
+
+func (o GetGatewaysDirectConnectGatewayArrayOutput) ToGetGatewaysDirectConnectGatewayArrayOutput() GetGatewaysDirectConnectGatewayArrayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayArrayOutput) ToGetGatewaysDirectConnectGatewayArrayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayArrayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayArrayOutput) Index(i pulumi.IntInput) GetGatewaysDirectConnectGatewayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewaysDirectConnectGateway {
+		return vs[0].([]GetGatewaysDirectConnectGateway)[vs[1].(int)]
+	}).(GetGatewaysDirectConnectGatewayOutput)
+}
+
+type GetGatewaysDirectConnectGatewayAssociateCen struct {
+	// The CEN ID which direct connect gateway belongs.
+	CenId string `pulumi:"cenId"`
+	// The CEN owner's ID.
+	CenOwnerId string `pulumi:"cenOwnerId"`
+	// The CEN status.
+	CenStatus string `pulumi:"cenStatus"`
+}
+
+// GetGatewaysDirectConnectGatewayAssociateCenInput is an input type that accepts GetGatewaysDirectConnectGatewayAssociateCenArgs and GetGatewaysDirectConnectGatewayAssociateCenOutput values.
+// You can construct a concrete instance of `GetGatewaysDirectConnectGatewayAssociateCenInput` via:
+//
+//	GetGatewaysDirectConnectGatewayAssociateCenArgs{...}
+type GetGatewaysDirectConnectGatewayAssociateCenInput interface {
+	pulumi.Input
+
+	ToGetGatewaysDirectConnectGatewayAssociateCenOutput() GetGatewaysDirectConnectGatewayAssociateCenOutput
+	ToGetGatewaysDirectConnectGatewayAssociateCenOutputWithContext(context.Context) GetGatewaysDirectConnectGatewayAssociateCenOutput
+}
+
+type GetGatewaysDirectConnectGatewayAssociateCenArgs struct {
+	// The CEN ID which direct connect gateway belongs.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The CEN owner's ID.
+	CenOwnerId pulumi.StringInput `pulumi:"cenOwnerId"`
+	// The CEN status.
+	CenStatus pulumi.StringInput `pulumi:"cenStatus"`
+}
+
+func (GetGatewaysDirectConnectGatewayAssociateCenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysDirectConnectGatewayAssociateCen)(nil)).Elem()
+}
+
+func (i GetGatewaysDirectConnectGatewayAssociateCenArgs) ToGetGatewaysDirectConnectGatewayAssociateCenOutput() GetGatewaysDirectConnectGatewayAssociateCenOutput {
+	return i.ToGetGatewaysDirectConnectGatewayAssociateCenOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysDirectConnectGatewayAssociateCenArgs) ToGetGatewaysDirectConnectGatewayAssociateCenOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayAssociateCenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysDirectConnectGatewayAssociateCenOutput)
+}
+
+// GetGatewaysDirectConnectGatewayAssociateCenArrayInput is an input type that accepts GetGatewaysDirectConnectGatewayAssociateCenArray and GetGatewaysDirectConnectGatewayAssociateCenArrayOutput values.
+// You can construct a concrete instance of `GetGatewaysDirectConnectGatewayAssociateCenArrayInput` via:
+//
+//	GetGatewaysDirectConnectGatewayAssociateCenArray{ GetGatewaysDirectConnectGatewayAssociateCenArgs{...} }
+type GetGatewaysDirectConnectGatewayAssociateCenArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutput() GetGatewaysDirectConnectGatewayAssociateCenArrayOutput
+	ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutputWithContext(context.Context) GetGatewaysDirectConnectGatewayAssociateCenArrayOutput
+}
+
+type GetGatewaysDirectConnectGatewayAssociateCenArray []GetGatewaysDirectConnectGatewayAssociateCenInput
+
+func (GetGatewaysDirectConnectGatewayAssociateCenArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysDirectConnectGatewayAssociateCen)(nil)).Elem()
+}
+
+func (i GetGatewaysDirectConnectGatewayAssociateCenArray) ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutput() GetGatewaysDirectConnectGatewayAssociateCenArrayOutput {
+	return i.ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysDirectConnectGatewayAssociateCenArray) ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayAssociateCenArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysDirectConnectGatewayAssociateCenArrayOutput)
+}
+
+type GetGatewaysDirectConnectGatewayAssociateCenOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysDirectConnectGatewayAssociateCenOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysDirectConnectGatewayAssociateCen)(nil)).Elem()
+}
+
+func (o GetGatewaysDirectConnectGatewayAssociateCenOutput) ToGetGatewaysDirectConnectGatewayAssociateCenOutput() GetGatewaysDirectConnectGatewayAssociateCenOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayAssociateCenOutput) ToGetGatewaysDirectConnectGatewayAssociateCenOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayAssociateCenOutput {
+	return o
+}
+
+// The CEN ID which direct connect gateway belongs.
+func (o GetGatewaysDirectConnectGatewayAssociateCenOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGatewayAssociateCen) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The CEN owner's ID.
+func (o GetGatewaysDirectConnectGatewayAssociateCenOutput) CenOwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGatewayAssociateCen) string { return v.CenOwnerId }).(pulumi.StringOutput)
+}
+
+// The CEN status.
+func (o GetGatewaysDirectConnectGatewayAssociateCenOutput) CenStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGatewayAssociateCen) string { return v.CenStatus }).(pulumi.StringOutput)
+}
+
+type GetGatewaysDirectConnectGatewayAssociateCenArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysDirectConnectGatewayAssociateCenArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysDirectConnectGatewayAssociateCen)(nil)).Elem()
+}
+
+func (o GetGatewaysDirectConnectGatewayAssociateCenArrayOutput) ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutput() GetGatewaysDirectConnectGatewayAssociateCenArrayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayAssociateCenArrayOutput) ToGetGatewaysDirectConnectGatewayAssociateCenArrayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayAssociateCenArrayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayAssociateCenArrayOutput) Index(i pulumi.IntInput) GetGatewaysDirectConnectGatewayAssociateCenOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewaysDirectConnectGatewayAssociateCen {
+		return vs[0].([]GetGatewaysDirectConnectGatewayAssociateCen)[vs[1].(int)]
+	}).(GetGatewaysDirectConnectGatewayAssociateCenOutput)
+}
+
+type GetGatewaysDirectConnectGatewayTag struct {
+	// The tag key.
+	Key string `pulumi:"key"`
+	// The tag value.
+	Value string `pulumi:"value"`
+}
+
+// GetGatewaysDirectConnectGatewayTagInput is an input type that accepts GetGatewaysDirectConnectGatewayTagArgs and GetGatewaysDirectConnectGatewayTagOutput values.
+// You can construct a concrete instance of `GetGatewaysDirectConnectGatewayTagInput` via:
+//
+//	GetGatewaysDirectConnectGatewayTagArgs{...}
+type GetGatewaysDirectConnectGatewayTagInput interface {
+	pulumi.Input
+
+	ToGetGatewaysDirectConnectGatewayTagOutput() GetGatewaysDirectConnectGatewayTagOutput
+	ToGetGatewaysDirectConnectGatewayTagOutputWithContext(context.Context) GetGatewaysDirectConnectGatewayTagOutput
+}
+
+type GetGatewaysDirectConnectGatewayTagArgs struct {
+	// The tag key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The tag value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetGatewaysDirectConnectGatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysDirectConnectGatewayTag)(nil)).Elem()
+}
+
+func (i GetGatewaysDirectConnectGatewayTagArgs) ToGetGatewaysDirectConnectGatewayTagOutput() GetGatewaysDirectConnectGatewayTagOutput {
+	return i.ToGetGatewaysDirectConnectGatewayTagOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysDirectConnectGatewayTagArgs) ToGetGatewaysDirectConnectGatewayTagOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysDirectConnectGatewayTagOutput)
+}
+
+// GetGatewaysDirectConnectGatewayTagArrayInput is an input type that accepts GetGatewaysDirectConnectGatewayTagArray and GetGatewaysDirectConnectGatewayTagArrayOutput values.
+// You can construct a concrete instance of `GetGatewaysDirectConnectGatewayTagArrayInput` via:
+//
+//	GetGatewaysDirectConnectGatewayTagArray{ GetGatewaysDirectConnectGatewayTagArgs{...} }
+type GetGatewaysDirectConnectGatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewaysDirectConnectGatewayTagArrayOutput() GetGatewaysDirectConnectGatewayTagArrayOutput
+	ToGetGatewaysDirectConnectGatewayTagArrayOutputWithContext(context.Context) GetGatewaysDirectConnectGatewayTagArrayOutput
+}
+
+type GetGatewaysDirectConnectGatewayTagArray []GetGatewaysDirectConnectGatewayTagInput
+
+func (GetGatewaysDirectConnectGatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysDirectConnectGatewayTag)(nil)).Elem()
+}
+
+func (i GetGatewaysDirectConnectGatewayTagArray) ToGetGatewaysDirectConnectGatewayTagArrayOutput() GetGatewaysDirectConnectGatewayTagArrayOutput {
+	return i.ToGetGatewaysDirectConnectGatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysDirectConnectGatewayTagArray) ToGetGatewaysDirectConnectGatewayTagArrayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysDirectConnectGatewayTagArrayOutput)
+}
+
+type GetGatewaysDirectConnectGatewayTagOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysDirectConnectGatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysDirectConnectGatewayTag)(nil)).Elem()
+}
+
+func (o GetGatewaysDirectConnectGatewayTagOutput) ToGetGatewaysDirectConnectGatewayTagOutput() GetGatewaysDirectConnectGatewayTagOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayTagOutput) ToGetGatewaysDirectConnectGatewayTagOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayTagOutput {
+	return o
+}
+
+// The tag key.
+func (o GetGatewaysDirectConnectGatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The tag value.
+func (o GetGatewaysDirectConnectGatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysDirectConnectGatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetGatewaysDirectConnectGatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysDirectConnectGatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysDirectConnectGatewayTag)(nil)).Elem()
+}
+
+func (o GetGatewaysDirectConnectGatewayTagArrayOutput) ToGetGatewaysDirectConnectGatewayTagArrayOutput() GetGatewaysDirectConnectGatewayTagArrayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayTagArrayOutput) ToGetGatewaysDirectConnectGatewayTagArrayOutputWithContext(ctx context.Context) GetGatewaysDirectConnectGatewayTagArrayOutput {
+	return o
+}
+
+func (o GetGatewaysDirectConnectGatewayTagArrayOutput) Index(i pulumi.IntInput) GetGatewaysDirectConnectGatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewaysDirectConnectGatewayTag {
+		return vs[0].([]GetGatewaysDirectConnectGatewayTag)[vs[1].(int)]
+	}).(GetGatewaysDirectConnectGatewayTagOutput)
+}
+
+type GetGatewaysTagFilter struct {
+	// The tag key of cloud resource instance.
+	Key *string `pulumi:"key"`
+	// The tag value of cloud resource instance.
+	Value *string `pulumi:"value"`
+}
+
+// GetGatewaysTagFilterInput is an input type that accepts GetGatewaysTagFilterArgs and GetGatewaysTagFilterOutput values.
+// You can construct a concrete instance of `GetGatewaysTagFilterInput` via:
+//
+//	GetGatewaysTagFilterArgs{...}
+type GetGatewaysTagFilterInput interface {
+	pulumi.Input
+
+	ToGetGatewaysTagFilterOutput() GetGatewaysTagFilterOutput
+	ToGetGatewaysTagFilterOutputWithContext(context.Context) GetGatewaysTagFilterOutput
+}
+
+type GetGatewaysTagFilterArgs struct {
+	// The tag key of cloud resource instance.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The tag value of cloud resource instance.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (GetGatewaysTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysTagFilter)(nil)).Elem()
+}
+
+func (i GetGatewaysTagFilterArgs) ToGetGatewaysTagFilterOutput() GetGatewaysTagFilterOutput {
+	return i.ToGetGatewaysTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysTagFilterArgs) ToGetGatewaysTagFilterOutputWithContext(ctx context.Context) GetGatewaysTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysTagFilterOutput)
+}
+
+// GetGatewaysTagFilterArrayInput is an input type that accepts GetGatewaysTagFilterArray and GetGatewaysTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetGatewaysTagFilterArrayInput` via:
+//
+//	GetGatewaysTagFilterArray{ GetGatewaysTagFilterArgs{...} }
+type GetGatewaysTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewaysTagFilterArrayOutput() GetGatewaysTagFilterArrayOutput
+	ToGetGatewaysTagFilterArrayOutputWithContext(context.Context) GetGatewaysTagFilterArrayOutput
+}
+
+type GetGatewaysTagFilterArray []GetGatewaysTagFilterInput
+
+func (GetGatewaysTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysTagFilter)(nil)).Elem()
+}
+
+func (i GetGatewaysTagFilterArray) ToGetGatewaysTagFilterArrayOutput() GetGatewaysTagFilterArrayOutput {
+	return i.ToGetGatewaysTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewaysTagFilterArray) ToGetGatewaysTagFilterArrayOutputWithContext(ctx context.Context) GetGatewaysTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewaysTagFilterArrayOutput)
+}
+
+type GetGatewaysTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewaysTagFilter)(nil)).Elem()
+}
+
+func (o GetGatewaysTagFilterOutput) ToGetGatewaysTagFilterOutput() GetGatewaysTagFilterOutput {
+	return o
+}
+
+func (o GetGatewaysTagFilterOutput) ToGetGatewaysTagFilterOutputWithContext(ctx context.Context) GetGatewaysTagFilterOutput {
+	return o
+}
+
+// The tag key of cloud resource instance.
+func (o GetGatewaysTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetGatewaysTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The tag value of cloud resource instance.
+func (o GetGatewaysTagFilterOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetGatewaysTagFilter) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type GetGatewaysTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewaysTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewaysTagFilter)(nil)).Elem()
+}
+
+func (o GetGatewaysTagFilterArrayOutput) ToGetGatewaysTagFilterArrayOutput() GetGatewaysTagFilterArrayOutput {
+	return o
+}
+
+func (o GetGatewaysTagFilterArrayOutput) ToGetGatewaysTagFilterArrayOutputWithContext(ctx context.Context) GetGatewaysTagFilterArrayOutput {
+	return o
+}
+
+func (o GetGatewaysTagFilterArrayOutput) Index(i pulumi.IntInput) GetGatewaysTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewaysTagFilter {
+		return vs[0].([]GetGatewaysTagFilter)[vs[1].(int)]
+	}).(GetGatewaysTagFilterOutput)
+}
+
+type GetVirtualInterfacesTagFilter struct {
+	// The tag key of cloud resource instance.
+	Key *string `pulumi:"key"`
+	// The tag value of cloud resource instance.
+	Value *string `pulumi:"value"`
+}
+
+// GetVirtualInterfacesTagFilterInput is an input type that accepts GetVirtualInterfacesTagFilterArgs and GetVirtualInterfacesTagFilterOutput values.
+// You can construct a concrete instance of `GetVirtualInterfacesTagFilterInput` via:
+//
+//	GetVirtualInterfacesTagFilterArgs{...}
+type GetVirtualInterfacesTagFilterInput interface {
+	pulumi.Input
+
+	ToGetVirtualInterfacesTagFilterOutput() GetVirtualInterfacesTagFilterOutput
+	ToGetVirtualInterfacesTagFilterOutputWithContext(context.Context) GetVirtualInterfacesTagFilterOutput
+}
+
+type GetVirtualInterfacesTagFilterArgs struct {
+	// The tag key of cloud resource instance.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The tag value of cloud resource instance.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (GetVirtualInterfacesTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVirtualInterfacesTagFilter)(nil)).Elem()
+}
+
+func (i GetVirtualInterfacesTagFilterArgs) ToGetVirtualInterfacesTagFilterOutput() GetVirtualInterfacesTagFilterOutput {
+	return i.ToGetVirtualInterfacesTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetVirtualInterfacesTagFilterArgs) ToGetVirtualInterfacesTagFilterOutputWithContext(ctx context.Context) GetVirtualInterfacesTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVirtualInterfacesTagFilterOutput)
+}
+
+// GetVirtualInterfacesTagFilterArrayInput is an input type that accepts GetVirtualInterfacesTagFilterArray and GetVirtualInterfacesTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetVirtualInterfacesTagFilterArrayInput` via:
+//
+//	GetVirtualInterfacesTagFilterArray{ GetVirtualInterfacesTagFilterArgs{...} }
+type GetVirtualInterfacesTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetVirtualInterfacesTagFilterArrayOutput() GetVirtualInterfacesTagFilterArrayOutput
+	ToGetVirtualInterfacesTagFilterArrayOutputWithContext(context.Context) GetVirtualInterfacesTagFilterArrayOutput
+}
+
+type GetVirtualInterfacesTagFilterArray []GetVirtualInterfacesTagFilterInput
+
+func (GetVirtualInterfacesTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVirtualInterfacesTagFilter)(nil)).Elem()
+}
+
+func (i GetVirtualInterfacesTagFilterArray) ToGetVirtualInterfacesTagFilterArrayOutput() GetVirtualInterfacesTagFilterArrayOutput {
+	return i.ToGetVirtualInterfacesTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetVirtualInterfacesTagFilterArray) ToGetVirtualInterfacesTagFilterArrayOutputWithContext(ctx context.Context) GetVirtualInterfacesTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVirtualInterfacesTagFilterArrayOutput)
+}
+
+type GetVirtualInterfacesTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetVirtualInterfacesTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVirtualInterfacesTagFilter)(nil)).Elem()
+}
+
+func (o GetVirtualInterfacesTagFilterOutput) ToGetVirtualInterfacesTagFilterOutput() GetVirtualInterfacesTagFilterOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesTagFilterOutput) ToGetVirtualInterfacesTagFilterOutputWithContext(ctx context.Context) GetVirtualInterfacesTagFilterOutput {
+	return o
+}
+
+// The tag key of cloud resource instance.
+func (o GetVirtualInterfacesTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The tag value of cloud resource instance.
+func (o GetVirtualInterfacesTagFilterOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesTagFilter) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type GetVirtualInterfacesTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVirtualInterfacesTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVirtualInterfacesTagFilter)(nil)).Elem()
+}
+
+func (o GetVirtualInterfacesTagFilterArrayOutput) ToGetVirtualInterfacesTagFilterArrayOutput() GetVirtualInterfacesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesTagFilterArrayOutput) ToGetVirtualInterfacesTagFilterArrayOutputWithContext(ctx context.Context) GetVirtualInterfacesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesTagFilterArrayOutput) Index(i pulumi.IntInput) GetVirtualInterfacesTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVirtualInterfacesTagFilter {
+		return vs[0].([]GetVirtualInterfacesTagFilter)[vs[1].(int)]
+	}).(GetVirtualInterfacesTagFilterOutput)
+}
+
+type GetVirtualInterfacesVirtualInterface struct {
+	// The account ID which this virtual interface belongs.
+	AccountId string `pulumi:"accountId"`
+	// The band width limit of virtual interface,in Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The BFD detect interval.
+	BfdDetectInterval int `pulumi:"bfdDetectInterval"`
+	// The BFD detect times.
+	BfdDetectMultiplier int `pulumi:"bfdDetectMultiplier"`
+	// The creation time of virtual interface.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the virtual interface.
+	Description string `pulumi:"description"`
+	// The direct connect connection ID that associated with this virtual interface.
+	DirectConnectConnectionId string `pulumi:"directConnectConnectionId"`
+	// The direct connect gateway ID that associated with this virtual interface.
+	DirectConnectGatewayId string `pulumi:"directConnectGatewayId"`
+	// Whether enable BFD detect.
+	EnableBfd bool `pulumi:"enableBfd"`
+	// Whether enable NQA detect.
+	EnableNqa bool `pulumi:"enableNqa"`
+	// The local IP that associated with this virtual interface.
+	LocalIp string `pulumi:"localIp"`
+	// The NQA detect interval.
+	NqaDetectInterval int `pulumi:"nqaDetectInterval"`
+	// The NAQ detect times.
+	NqaDetectMultiplier int `pulumi:"nqaDetectMultiplier"`
+	// The peer IP that associated with this virtual interface.
+	PeerIp string `pulumi:"peerIp"`
+	// The route type of virtual interface.
+	RouteType string `pulumi:"routeType"`
+	// The status of virtaul interface.
+	Status string `pulumi:"status"`
+	// The tags that direct connect gateway added.
+	Tags []GetVirtualInterfacesVirtualInterfaceTag `pulumi:"tags"`
+	// The update time of virtual interface.
+	UpdateTime string `pulumi:"updateTime"`
+	// The virtual interface ID.
+	VirtualInterfaceId string `pulumi:"virtualInterfaceId"`
+	// The name of virtual interface.
+	VirtualInterfaceName string `pulumi:"virtualInterfaceName"`
+	// The VLAN ID of virtual interface.
+	VlanId int `pulumi:"vlanId"`
+}
+
+// GetVirtualInterfacesVirtualInterfaceInput is an input type that accepts GetVirtualInterfacesVirtualInterfaceArgs and GetVirtualInterfacesVirtualInterfaceOutput values.
+// You can construct a concrete instance of `GetVirtualInterfacesVirtualInterfaceInput` via:
+//
+//	GetVirtualInterfacesVirtualInterfaceArgs{...}
+type GetVirtualInterfacesVirtualInterfaceInput interface {
+	pulumi.Input
+
+	ToGetVirtualInterfacesVirtualInterfaceOutput() GetVirtualInterfacesVirtualInterfaceOutput
+	ToGetVirtualInterfacesVirtualInterfaceOutputWithContext(context.Context) GetVirtualInterfacesVirtualInterfaceOutput
+}
+
+type GetVirtualInterfacesVirtualInterfaceArgs struct {
+	// The account ID which this virtual interface belongs.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The band width limit of virtual interface,in Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The BFD detect interval.
+	BfdDetectInterval pulumi.IntInput `pulumi:"bfdDetectInterval"`
+	// The BFD detect times.
+	BfdDetectMultiplier pulumi.IntInput `pulumi:"bfdDetectMultiplier"`
+	// The creation time of virtual interface.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the virtual interface.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The direct connect connection ID that associated with this virtual interface.
+	DirectConnectConnectionId pulumi.StringInput `pulumi:"directConnectConnectionId"`
+	// The direct connect gateway ID that associated with this virtual interface.
+	DirectConnectGatewayId pulumi.StringInput `pulumi:"directConnectGatewayId"`
+	// Whether enable BFD detect.
+	EnableBfd pulumi.BoolInput `pulumi:"enableBfd"`
+	// Whether enable NQA detect.
+	EnableNqa pulumi.BoolInput `pulumi:"enableNqa"`
+	// The local IP that associated with this virtual interface.
+	LocalIp pulumi.StringInput `pulumi:"localIp"`
+	// The NQA detect interval.
+	NqaDetectInterval pulumi.IntInput `pulumi:"nqaDetectInterval"`
+	// The NAQ detect times.
+	NqaDetectMultiplier pulumi.IntInput `pulumi:"nqaDetectMultiplier"`
+	// The peer IP that associated with this virtual interface.
+	PeerIp pulumi.StringInput `pulumi:"peerIp"`
+	// The route type of virtual interface.
+	RouteType pulumi.StringInput `pulumi:"routeType"`
+	// The status of virtaul interface.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The tags that direct connect gateway added.
+	Tags GetVirtualInterfacesVirtualInterfaceTagArrayInput `pulumi:"tags"`
+	// The update time of virtual interface.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The virtual interface ID.
+	VirtualInterfaceId pulumi.StringInput `pulumi:"virtualInterfaceId"`
+	// The name of virtual interface.
+	VirtualInterfaceName pulumi.StringInput `pulumi:"virtualInterfaceName"`
+	// The VLAN ID of virtual interface.
+	VlanId pulumi.IntInput `pulumi:"vlanId"`
+}
+
+func (GetVirtualInterfacesVirtualInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVirtualInterfacesVirtualInterface)(nil)).Elem()
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceArgs) ToGetVirtualInterfacesVirtualInterfaceOutput() GetVirtualInterfacesVirtualInterfaceOutput {
+	return i.ToGetVirtualInterfacesVirtualInterfaceOutputWithContext(context.Background())
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceArgs) ToGetVirtualInterfacesVirtualInterfaceOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVirtualInterfacesVirtualInterfaceOutput)
+}
+
+// GetVirtualInterfacesVirtualInterfaceArrayInput is an input type that accepts GetVirtualInterfacesVirtualInterfaceArray and GetVirtualInterfacesVirtualInterfaceArrayOutput values.
+// You can construct a concrete instance of `GetVirtualInterfacesVirtualInterfaceArrayInput` via:
+//
+//	GetVirtualInterfacesVirtualInterfaceArray{ GetVirtualInterfacesVirtualInterfaceArgs{...} }
+type GetVirtualInterfacesVirtualInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToGetVirtualInterfacesVirtualInterfaceArrayOutput() GetVirtualInterfacesVirtualInterfaceArrayOutput
+	ToGetVirtualInterfacesVirtualInterfaceArrayOutputWithContext(context.Context) GetVirtualInterfacesVirtualInterfaceArrayOutput
+}
+
+type GetVirtualInterfacesVirtualInterfaceArray []GetVirtualInterfacesVirtualInterfaceInput
+
+func (GetVirtualInterfacesVirtualInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVirtualInterfacesVirtualInterface)(nil)).Elem()
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceArray) ToGetVirtualInterfacesVirtualInterfaceArrayOutput() GetVirtualInterfacesVirtualInterfaceArrayOutput {
+	return i.ToGetVirtualInterfacesVirtualInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceArray) ToGetVirtualInterfacesVirtualInterfaceArrayOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVirtualInterfacesVirtualInterfaceArrayOutput)
+}
+
+type GetVirtualInterfacesVirtualInterfaceOutput struct{ *pulumi.OutputState }
+
+func (GetVirtualInterfacesVirtualInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVirtualInterfacesVirtualInterface)(nil)).Elem()
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceOutput) ToGetVirtualInterfacesVirtualInterfaceOutput() GetVirtualInterfacesVirtualInterfaceOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceOutput) ToGetVirtualInterfacesVirtualInterfaceOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceOutput {
+	return o
+}
+
+// The account ID which this virtual interface belongs.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The band width limit of virtual interface,in Mbps.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The BFD detect interval.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) BfdDetectInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) int { return v.BfdDetectInterval }).(pulumi.IntOutput)
+}
+
+// The BFD detect times.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) BfdDetectMultiplier() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) int { return v.BfdDetectMultiplier }).(pulumi.IntOutput)
+}
+
+// The creation time of virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The direct connect connection ID that associated with this virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) DirectConnectConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.DirectConnectConnectionId }).(pulumi.StringOutput)
+}
+
+// The direct connect gateway ID that associated with this virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) DirectConnectGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.DirectConnectGatewayId }).(pulumi.StringOutput)
+}
+
+// Whether enable BFD detect.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) EnableBfd() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) bool { return v.EnableBfd }).(pulumi.BoolOutput)
+}
+
+// Whether enable NQA detect.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) EnableNqa() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) bool { return v.EnableNqa }).(pulumi.BoolOutput)
+}
+
+// The local IP that associated with this virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) LocalIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.LocalIp }).(pulumi.StringOutput)
+}
+
+// The NQA detect interval.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) NqaDetectInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) int { return v.NqaDetectInterval }).(pulumi.IntOutput)
+}
+
+// The NAQ detect times.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) NqaDetectMultiplier() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) int { return v.NqaDetectMultiplier }).(pulumi.IntOutput)
+}
+
+// The peer IP that associated with this virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) PeerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.PeerIp }).(pulumi.StringOutput)
+}
+
+// The route type of virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) RouteType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.RouteType }).(pulumi.StringOutput)
+}
+
+// The status of virtaul interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tags that direct connect gateway added.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) Tags() GetVirtualInterfacesVirtualInterfaceTagArrayOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) []GetVirtualInterfacesVirtualInterfaceTag { return v.Tags }).(GetVirtualInterfacesVirtualInterfaceTagArrayOutput)
+}
+
+// The update time of virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The virtual interface ID.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) VirtualInterfaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.VirtualInterfaceId }).(pulumi.StringOutput)
+}
+
+// The name of virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) VirtualInterfaceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) string { return v.VirtualInterfaceName }).(pulumi.StringOutput)
+}
+
+// The VLAN ID of virtual interface.
+func (o GetVirtualInterfacesVirtualInterfaceOutput) VlanId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterface) int { return v.VlanId }).(pulumi.IntOutput)
+}
+
+type GetVirtualInterfacesVirtualInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVirtualInterfacesVirtualInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVirtualInterfacesVirtualInterface)(nil)).Elem()
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceArrayOutput) ToGetVirtualInterfacesVirtualInterfaceArrayOutput() GetVirtualInterfacesVirtualInterfaceArrayOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceArrayOutput) ToGetVirtualInterfacesVirtualInterfaceArrayOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceArrayOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceArrayOutput) Index(i pulumi.IntInput) GetVirtualInterfacesVirtualInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVirtualInterfacesVirtualInterface {
+		return vs[0].([]GetVirtualInterfacesVirtualInterface)[vs[1].(int)]
+	}).(GetVirtualInterfacesVirtualInterfaceOutput)
+}
+
+type GetVirtualInterfacesVirtualInterfaceTag struct {
+	// The tag key.
+	Key string `pulumi:"key"`
+	// The tag value.
+	Value string `pulumi:"value"`
+}
+
+// GetVirtualInterfacesVirtualInterfaceTagInput is an input type that accepts GetVirtualInterfacesVirtualInterfaceTagArgs and GetVirtualInterfacesVirtualInterfaceTagOutput values.
+// You can construct a concrete instance of `GetVirtualInterfacesVirtualInterfaceTagInput` via:
+//
+//	GetVirtualInterfacesVirtualInterfaceTagArgs{...}
+type GetVirtualInterfacesVirtualInterfaceTagInput interface {
+	pulumi.Input
+
+	ToGetVirtualInterfacesVirtualInterfaceTagOutput() GetVirtualInterfacesVirtualInterfaceTagOutput
+	ToGetVirtualInterfacesVirtualInterfaceTagOutputWithContext(context.Context) GetVirtualInterfacesVirtualInterfaceTagOutput
+}
+
+type GetVirtualInterfacesVirtualInterfaceTagArgs struct {
+	// The tag key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The tag value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetVirtualInterfacesVirtualInterfaceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVirtualInterfacesVirtualInterfaceTag)(nil)).Elem()
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceTagArgs) ToGetVirtualInterfacesVirtualInterfaceTagOutput() GetVirtualInterfacesVirtualInterfaceTagOutput {
+	return i.ToGetVirtualInterfacesVirtualInterfaceTagOutputWithContext(context.Background())
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceTagArgs) ToGetVirtualInterfacesVirtualInterfaceTagOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVirtualInterfacesVirtualInterfaceTagOutput)
+}
+
+// GetVirtualInterfacesVirtualInterfaceTagArrayInput is an input type that accepts GetVirtualInterfacesVirtualInterfaceTagArray and GetVirtualInterfacesVirtualInterfaceTagArrayOutput values.
+// You can construct a concrete instance of `GetVirtualInterfacesVirtualInterfaceTagArrayInput` via:
+//
+//	GetVirtualInterfacesVirtualInterfaceTagArray{ GetVirtualInterfacesVirtualInterfaceTagArgs{...} }
+type GetVirtualInterfacesVirtualInterfaceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetVirtualInterfacesVirtualInterfaceTagArrayOutput() GetVirtualInterfacesVirtualInterfaceTagArrayOutput
+	ToGetVirtualInterfacesVirtualInterfaceTagArrayOutputWithContext(context.Context) GetVirtualInterfacesVirtualInterfaceTagArrayOutput
+}
+
+type GetVirtualInterfacesVirtualInterfaceTagArray []GetVirtualInterfacesVirtualInterfaceTagInput
+
+func (GetVirtualInterfacesVirtualInterfaceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVirtualInterfacesVirtualInterfaceTag)(nil)).Elem()
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceTagArray) ToGetVirtualInterfacesVirtualInterfaceTagArrayOutput() GetVirtualInterfacesVirtualInterfaceTagArrayOutput {
+	return i.ToGetVirtualInterfacesVirtualInterfaceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetVirtualInterfacesVirtualInterfaceTagArray) ToGetVirtualInterfacesVirtualInterfaceTagArrayOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVirtualInterfacesVirtualInterfaceTagArrayOutput)
+}
+
+type GetVirtualInterfacesVirtualInterfaceTagOutput struct{ *pulumi.OutputState }
+
+func (GetVirtualInterfacesVirtualInterfaceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVirtualInterfacesVirtualInterfaceTag)(nil)).Elem()
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceTagOutput) ToGetVirtualInterfacesVirtualInterfaceTagOutput() GetVirtualInterfacesVirtualInterfaceTagOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceTagOutput) ToGetVirtualInterfacesVirtualInterfaceTagOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceTagOutput {
+	return o
+}
+
+// The tag key.
+func (o GetVirtualInterfacesVirtualInterfaceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterfaceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The tag value.
+func (o GetVirtualInterfacesVirtualInterfaceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVirtualInterfacesVirtualInterfaceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetVirtualInterfacesVirtualInterfaceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVirtualInterfacesVirtualInterfaceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVirtualInterfacesVirtualInterfaceTag)(nil)).Elem()
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceTagArrayOutput) ToGetVirtualInterfacesVirtualInterfaceTagArrayOutput() GetVirtualInterfacesVirtualInterfaceTagArrayOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceTagArrayOutput) ToGetVirtualInterfacesVirtualInterfaceTagArrayOutputWithContext(ctx context.Context) GetVirtualInterfacesVirtualInterfaceTagArrayOutput {
+	return o
+}
+
+func (o GetVirtualInterfacesVirtualInterfaceTagArrayOutput) Index(i pulumi.IntInput) GetVirtualInterfacesVirtualInterfaceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVirtualInterfacesVirtualInterfaceTag {
+		return vs[0].([]GetVirtualInterfacesVirtualInterfaceTag)[vs[1].(int)]
+	}).(GetVirtualInterfacesVirtualInterfaceTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BgpPeersBgpPeerInput)(nil)).Elem(), BgpPeersBgpPeerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BgpPeersBgpPeerArrayInput)(nil)).Elem(), BgpPeersBgpPeerArray{})
@@ -2284,6 +4208,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VirtualInterfacesVirtualInterfaceArrayInput)(nil)).Elem(), VirtualInterfacesVirtualInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VirtualInterfacesVirtualInterfaceTagInput)(nil)).Elem(), VirtualInterfacesVirtualInterfaceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VirtualInterfacesVirtualInterfaceTagArrayInput)(nil)).Elem(), VirtualInterfacesVirtualInterfaceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBgpPeersBgpPeerInput)(nil)).Elem(), GetBgpPeersBgpPeerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBgpPeersBgpPeerArrayInput)(nil)).Elem(), GetBgpPeersBgpPeerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsDirectConnectConnectionInput)(nil)).Elem(), GetConnectionsDirectConnectConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsDirectConnectConnectionArrayInput)(nil)).Elem(), GetConnectionsDirectConnectConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsDirectConnectConnectionTagInput)(nil)).Elem(), GetConnectionsDirectConnectConnectionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsDirectConnectConnectionTagArrayInput)(nil)).Elem(), GetConnectionsDirectConnectConnectionTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsTagFilterInput)(nil)).Elem(), GetConnectionsTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsTagFilterArrayInput)(nil)).Elem(), GetConnectionsTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayRoutesDirectConnectGatewayRouteInput)(nil)).Elem(), GetGatewayRoutesDirectConnectGatewayRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayRoutesDirectConnectGatewayRouteArrayInput)(nil)).Elem(), GetGatewayRoutesDirectConnectGatewayRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysDirectConnectGatewayInput)(nil)).Elem(), GetGatewaysDirectConnectGatewayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysDirectConnectGatewayArrayInput)(nil)).Elem(), GetGatewaysDirectConnectGatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysDirectConnectGatewayAssociateCenInput)(nil)).Elem(), GetGatewaysDirectConnectGatewayAssociateCenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysDirectConnectGatewayAssociateCenArrayInput)(nil)).Elem(), GetGatewaysDirectConnectGatewayAssociateCenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysDirectConnectGatewayTagInput)(nil)).Elem(), GetGatewaysDirectConnectGatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysDirectConnectGatewayTagArrayInput)(nil)).Elem(), GetGatewaysDirectConnectGatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysTagFilterInput)(nil)).Elem(), GetGatewaysTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysTagFilterArrayInput)(nil)).Elem(), GetGatewaysTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualInterfacesTagFilterInput)(nil)).Elem(), GetVirtualInterfacesTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualInterfacesTagFilterArrayInput)(nil)).Elem(), GetVirtualInterfacesTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualInterfacesVirtualInterfaceInput)(nil)).Elem(), GetVirtualInterfacesVirtualInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualInterfacesVirtualInterfaceArrayInput)(nil)).Elem(), GetVirtualInterfacesVirtualInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualInterfacesVirtualInterfaceTagInput)(nil)).Elem(), GetVirtualInterfacesVirtualInterfaceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualInterfacesVirtualInterfaceTagArrayInput)(nil)).Elem(), GetVirtualInterfacesVirtualInterfaceTagArray{})
 	pulumi.RegisterOutputType(BgpPeersBgpPeerOutput{})
 	pulumi.RegisterOutputType(BgpPeersBgpPeerArrayOutput{})
 	pulumi.RegisterOutputType(ConnectionTagOutput{})
@@ -2314,4 +4262,28 @@ func init() {
 	pulumi.RegisterOutputType(VirtualInterfacesVirtualInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(VirtualInterfacesVirtualInterfaceTagOutput{})
 	pulumi.RegisterOutputType(VirtualInterfacesVirtualInterfaceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetBgpPeersBgpPeerOutput{})
+	pulumi.RegisterOutputType(GetBgpPeersBgpPeerArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionsDirectConnectConnectionOutput{})
+	pulumi.RegisterOutputType(GetConnectionsDirectConnectConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionsDirectConnectConnectionTagOutput{})
+	pulumi.RegisterOutputType(GetConnectionsDirectConnectConnectionTagArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionsTagFilterOutput{})
+	pulumi.RegisterOutputType(GetConnectionsTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewayRoutesDirectConnectGatewayRouteOutput{})
+	pulumi.RegisterOutputType(GetGatewayRoutesDirectConnectGatewayRouteArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewaysDirectConnectGatewayOutput{})
+	pulumi.RegisterOutputType(GetGatewaysDirectConnectGatewayArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewaysDirectConnectGatewayAssociateCenOutput{})
+	pulumi.RegisterOutputType(GetGatewaysDirectConnectGatewayAssociateCenArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewaysDirectConnectGatewayTagOutput{})
+	pulumi.RegisterOutputType(GetGatewaysDirectConnectGatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewaysTagFilterOutput{})
+	pulumi.RegisterOutputType(GetGatewaysTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetVirtualInterfacesTagFilterOutput{})
+	pulumi.RegisterOutputType(GetVirtualInterfacesTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetVirtualInterfacesVirtualInterfaceOutput{})
+	pulumi.RegisterOutputType(GetVirtualInterfacesVirtualInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(GetVirtualInterfacesVirtualInterfaceTagOutput{})
+	pulumi.RegisterOutputType(GetVirtualInterfacesVirtualInterfaceTagArrayOutput{})
 }

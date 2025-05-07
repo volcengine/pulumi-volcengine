@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.HealthCheckTemplates({
+ * const foo = volcengine.alb.getHealthCheckTemplates({
  *     ids: ["hctpl-1iidd1tobnim874adhf708uwf"],
  * });
  * ```
  */
+/** @deprecated volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates */
 export function healthCheckTemplates(args?: HealthCheckTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<HealthCheckTemplatesResult> {
+    pulumi.log.warn("healthCheckTemplates is deprecated: volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -85,11 +87,12 @@ export interface HealthCheckTemplatesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.HealthCheckTemplates({
+ * const foo = volcengine.alb.getHealthCheckTemplates({
  *     ids: ["hctpl-1iidd1tobnim874adhf708uwf"],
  * });
  * ```
  */
+/** @deprecated volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates */
 export function healthCheckTemplatesOutput(args?: HealthCheckTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<HealthCheckTemplatesResult> {
     return pulumi.output(args).apply((a: any) => healthCheckTemplates(a, opts))
 }

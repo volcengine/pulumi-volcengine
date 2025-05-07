@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes")]
     public static class Indexes
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Indexes.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetIndexes.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Indexes.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetIndexes.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

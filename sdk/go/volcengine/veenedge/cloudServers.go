@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := veenedge.CloudServers(ctx, nil, nil)
+//			_, err := veenedge.GetCloudServers(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers
 func CloudServers(ctx *pulumi.Context, args *CloudServersArgs, opts ...pulumi.InvokeOption) (*CloudServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CloudServersResult

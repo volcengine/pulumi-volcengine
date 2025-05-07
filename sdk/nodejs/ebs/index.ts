@@ -20,6 +20,26 @@ export type AutoSnapshotPolicyAttachment = import("./autoSnapshotPolicyAttachmen
 export const AutoSnapshotPolicyAttachment: typeof import("./autoSnapshotPolicyAttachment").AutoSnapshotPolicyAttachment = null as any;
 utilities.lazyLoad(exports, ["AutoSnapshotPolicyAttachment"], () => require("./autoSnapshotPolicyAttachment"));
 
+export { GetAutoSnapshotPoliciesArgs, GetAutoSnapshotPoliciesResult, GetAutoSnapshotPoliciesOutputArgs } from "./getAutoSnapshotPolicies";
+export const getAutoSnapshotPolicies: typeof import("./getAutoSnapshotPolicies").getAutoSnapshotPolicies = null as any;
+export const getAutoSnapshotPoliciesOutput: typeof import("./getAutoSnapshotPolicies").getAutoSnapshotPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getAutoSnapshotPolicies","getAutoSnapshotPoliciesOutput"], () => require("./getAutoSnapshotPolicies"));
+
+export { GetSnapshotGroupsArgs, GetSnapshotGroupsResult, GetSnapshotGroupsOutputArgs } from "./getSnapshotGroups";
+export const getSnapshotGroups: typeof import("./getSnapshotGroups").getSnapshotGroups = null as any;
+export const getSnapshotGroupsOutput: typeof import("./getSnapshotGroups").getSnapshotGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getSnapshotGroups","getSnapshotGroupsOutput"], () => require("./getSnapshotGroups"));
+
+export { GetSnapshotsArgs, GetSnapshotsResult, GetSnapshotsOutputArgs } from "./getSnapshots";
+export const getSnapshots: typeof import("./getSnapshots").getSnapshots = null as any;
+export const getSnapshotsOutput: typeof import("./getSnapshots").getSnapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["getSnapshots","getSnapshotsOutput"], () => require("./getSnapshots"));
+
+export { GetVolumesArgs, GetVolumesResult, GetVolumesOutputArgs } from "./getVolumes";
+export const getVolumes: typeof import("./getVolumes").getVolumes = null as any;
+export const getVolumesOutput: typeof import("./getVolumes").getVolumesOutput = null as any;
+utilities.lazyLoad(exports, ["getVolumes","getVolumesOutput"], () => require("./getVolumes"));
+
 export { SnapshotArgs, SnapshotState } from "./snapshot";
 export type Snapshot = import("./snapshot").Snapshot;
 export const Snapshot: typeof import("./snapshot").Snapshot = null as any;

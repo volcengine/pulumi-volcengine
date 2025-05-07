@@ -6,7 +6,98 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Use this data source to query detailed information of escloud instances v2
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.ecs.getZones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     description: "tfdesc",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooEscloudInstanceV2 = new volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", {
+ *     instanceName: "acc-test-escloud-instance",
+ *     version: "V7_10",
+ *     zoneIds: [
+ *         fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         fooZones.then(fooZones => fooZones.zones?.[1]?.id),
+ *         fooZones.then(fooZones => fooZones.zones?.[2]?.id),
+ *     ],
+ *     subnetId: fooSubnet.id,
+ *     enableHttps: false,
+ *     adminPassword: "Password@@123",
+ *     chargeType: "PostPaid",
+ *     autoRenew: false,
+ *     period: 1,
+ *     configurationCode: "es.standard",
+ *     enablePureMaster: true,
+ *     deletionProtection: false,
+ *     projectName: "default",
+ *     nodeSpecsAssigns: [
+ *         {
+ *             type: "Master",
+ *             number: 3,
+ *             resourceSpecName: "es.x2.medium",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 20,
+ *         },
+ *         {
+ *             type: "Hot",
+ *             number: 6,
+ *             resourceSpecName: "es.x2.medium",
+ *             storageSpecName: "es.volume.essd.flexpl-standard",
+ *             storageSize: 500,
+ *             extraPerformance: {
+ *                 throughput: 65,
+ *             },
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             number: 1,
+ *             resourceSpecName: "kibana.x2.small",
+ *             storageSpecName: "",
+ *             storageSize: 0,
+ *         },
+ *     ],
+ *     networkSpecs: [
+ *         {
+ *             type: "Elasticsearch",
+ *             bandwidth: 1,
+ *             isOpen: true,
+ *             specName: "es.eip.bgp_fixed_bandwidth",
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             bandwidth: 1,
+ *             isOpen: true,
+ *             specName: "es.eip.bgp_fixed_bandwidth",
+ *         },
+ *     ],
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooEscloudInstancesV2 = volcengine.escloud_v2.getEscloudInstancesV2Output({
+ *     ids: [fooEscloudInstanceV2.id],
+ * });
+ * ```
+ */
+/** @deprecated volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2 */
 export function escloudInstancesV2(args?: EscloudInstancesV2Args, opts?: pulumi.InvokeOptions): Promise<EscloudInstancesV2Result> {
+    pulumi.log.warn("escloudInstancesV2 is deprecated: volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -27,14 +118,41 @@ export function escloudInstancesV2(args?: EscloudInstancesV2Args, opts?: pulumi.
  * A collection of arguments for invoking EscloudInstancesV2.
  */
 export interface EscloudInstancesV2Args {
+    /**
+     * The charge types of instance.
+     */
     chargeTypes?: string[];
+    /**
+     * A list of instance IDs.
+     */
     ids?: string[];
+    /**
+     * The names of instance.
+     */
     instanceNames?: string[];
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: string;
+    /**
+     * The project name of instance.
+     */
     projectName?: string;
+    /**
+     * The status of instance.
+     */
     statuses?: string[];
+    /**
+     * The tags of instance.
+     */
     tags?: inputs.escloud_v2.EscloudInstancesV2Tag[];
+    /**
+     * The versions of instance.
+     */
     versions?: string[];
+    /**
+     * The available zone IDs of instance.
+     */
     zoneIds?: string[];
 }
 
@@ -49,15 +167,117 @@ export interface EscloudInstancesV2Result {
     readonly id: string;
     readonly ids?: string[];
     readonly instanceNames?: string[];
+    /**
+     * The collection of query.
+     */
     readonly instances: outputs.escloud_v2.EscloudInstancesV2Instance[];
     readonly outputFile?: string;
+    /**
+     * The name of project.
+     */
     readonly projectName?: string;
     readonly statuses?: string[];
+    /**
+     * Tags.
+     */
     readonly tags?: outputs.escloud_v2.EscloudInstancesV2Tag[];
+    /**
+     * The total count of query.
+     */
     readonly totalCount: number;
     readonly versions?: string[];
     readonly zoneIds?: string[];
 }
+/**
+ * Use this data source to query detailed information of escloud instances v2
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.ecs.getZones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     description: "tfdesc",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooEscloudInstanceV2 = new volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", {
+ *     instanceName: "acc-test-escloud-instance",
+ *     version: "V7_10",
+ *     zoneIds: [
+ *         fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         fooZones.then(fooZones => fooZones.zones?.[1]?.id),
+ *         fooZones.then(fooZones => fooZones.zones?.[2]?.id),
+ *     ],
+ *     subnetId: fooSubnet.id,
+ *     enableHttps: false,
+ *     adminPassword: "Password@@123",
+ *     chargeType: "PostPaid",
+ *     autoRenew: false,
+ *     period: 1,
+ *     configurationCode: "es.standard",
+ *     enablePureMaster: true,
+ *     deletionProtection: false,
+ *     projectName: "default",
+ *     nodeSpecsAssigns: [
+ *         {
+ *             type: "Master",
+ *             number: 3,
+ *             resourceSpecName: "es.x2.medium",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 20,
+ *         },
+ *         {
+ *             type: "Hot",
+ *             number: 6,
+ *             resourceSpecName: "es.x2.medium",
+ *             storageSpecName: "es.volume.essd.flexpl-standard",
+ *             storageSize: 500,
+ *             extraPerformance: {
+ *                 throughput: 65,
+ *             },
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             number: 1,
+ *             resourceSpecName: "kibana.x2.small",
+ *             storageSpecName: "",
+ *             storageSize: 0,
+ *         },
+ *     ],
+ *     networkSpecs: [
+ *         {
+ *             type: "Elasticsearch",
+ *             bandwidth: 1,
+ *             isOpen: true,
+ *             specName: "es.eip.bgp_fixed_bandwidth",
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             bandwidth: 1,
+ *             isOpen: true,
+ *             specName: "es.eip.bgp_fixed_bandwidth",
+ *         },
+ *     ],
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooEscloudInstancesV2 = volcengine.escloud_v2.getEscloudInstancesV2Output({
+ *     ids: [fooEscloudInstanceV2.id],
+ * });
+ * ```
+ */
+/** @deprecated volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2 */
 export function escloudInstancesV2Output(args?: EscloudInstancesV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EscloudInstancesV2Result> {
     return pulumi.output(args).apply((a: any) => escloudInstancesV2(a, opts))
 }
@@ -66,13 +286,40 @@ export function escloudInstancesV2Output(args?: EscloudInstancesV2OutputArgs, op
  * A collection of arguments for invoking EscloudInstancesV2.
  */
 export interface EscloudInstancesV2OutputArgs {
+    /**
+     * The charge types of instance.
+     */
     chargeTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of instance IDs.
+     */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The names of instance.
+     */
     instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of instance.
+     */
     projectName?: pulumi.Input<string>;
+    /**
+     * The status of instance.
+     */
     statuses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The tags of instance.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.escloud_v2.EscloudInstancesV2TagArgs>[]>;
+    /**
+     * The versions of instance.
+     */
     versions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The available zone IDs of instance.
+     */
     zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -18,6 +18,8 @@ __all__ = [
     'zones_output',
 ]
 
+warnings.warn("""volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones""", DeprecationWarning)
+
 @pulumi.output_type
 class ZonesResult:
     """
@@ -194,7 +196,7 @@ def zones(key: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.dns.zones(tags=[volcengine.dns.ZonesTagArgs(
+    foo = volcengine.dns.get_zones(tags=[volcengine.dns.GetZonesTagArgs(
         key="xx",
         values=["xx"],
     )])
@@ -212,6 +214,7 @@ def zones(key: Optional[str] = None,
     :param Sequence[pulumi.InputType['ZonesTagArgs']] tags: Tags.
     :param str trade_code: The edition of the domain.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones""")
     __args__ = dict()
     __args__['key'] = key
     __args__['nameRegex'] = name_regex
@@ -262,7 +265,7 @@ def zones_output(key: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.dns.zones(tags=[volcengine.dns.ZonesTagArgs(
+    foo = volcengine.dns.get_zones(tags=[volcengine.dns.GetZonesTagArgs(
         key="xx",
         values=["xx"],
     )])
@@ -280,4 +283,5 @@ def zones_output(key: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['ZonesTagArgs']] tags: Tags.
     :param str trade_code: The edition of the domain.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones""")
     ...

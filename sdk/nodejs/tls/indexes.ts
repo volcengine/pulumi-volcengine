@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Indexes({
+ * const default = volcengine.tls.getIndexes({
  *     ids: ["7ce12237-6670-44a7-9d79-2e36961586e6"],
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes */
 export function indexes(args: IndexesArgs, opts?: pulumi.InvokeOptions): Promise<IndexesResult> {
+    pulumi.log.warn("indexes is deprecated: volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/indexes:Indexes", {
@@ -69,11 +71,12 @@ export interface IndexesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Indexes({
+ * const default = volcengine.tls.getIndexes({
  *     ids: ["7ce12237-6670-44a7-9d79-2e36961586e6"],
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes */
 export function indexesOutput(args: IndexesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<IndexesResult> {
     return pulumi.output(args).apply((a: any) => indexes(a, opts))
 }

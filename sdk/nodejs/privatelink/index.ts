@@ -5,6 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetVpcEndpointConnectionsArgs, GetVpcEndpointConnectionsResult, GetVpcEndpointConnectionsOutputArgs } from "./getVpcEndpointConnections";
+export const getVpcEndpointConnections: typeof import("./getVpcEndpointConnections").getVpcEndpointConnections = null as any;
+export const getVpcEndpointConnectionsOutput: typeof import("./getVpcEndpointConnections").getVpcEndpointConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcEndpointConnections","getVpcEndpointConnectionsOutput"], () => require("./getVpcEndpointConnections"));
+
+export { GetVpcEndpointServicePermissionsArgs, GetVpcEndpointServicePermissionsResult, GetVpcEndpointServicePermissionsOutputArgs } from "./getVpcEndpointServicePermissions";
+export const getVpcEndpointServicePermissions: typeof import("./getVpcEndpointServicePermissions").getVpcEndpointServicePermissions = null as any;
+export const getVpcEndpointServicePermissionsOutput: typeof import("./getVpcEndpointServicePermissions").getVpcEndpointServicePermissionsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcEndpointServicePermissions","getVpcEndpointServicePermissionsOutput"], () => require("./getVpcEndpointServicePermissions"));
+
+export { GetVpcEndpointServicesArgs, GetVpcEndpointServicesResult, GetVpcEndpointServicesOutputArgs } from "./getVpcEndpointServices";
+export const getVpcEndpointServices: typeof import("./getVpcEndpointServices").getVpcEndpointServices = null as any;
+export const getVpcEndpointServicesOutput: typeof import("./getVpcEndpointServices").getVpcEndpointServicesOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcEndpointServices","getVpcEndpointServicesOutput"], () => require("./getVpcEndpointServices"));
+
+export { GetVpcEndpointZonesArgs, GetVpcEndpointZonesResult, GetVpcEndpointZonesOutputArgs } from "./getVpcEndpointZones";
+export const getVpcEndpointZones: typeof import("./getVpcEndpointZones").getVpcEndpointZones = null as any;
+export const getVpcEndpointZonesOutput: typeof import("./getVpcEndpointZones").getVpcEndpointZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcEndpointZones","getVpcEndpointZonesOutput"], () => require("./getVpcEndpointZones"));
+
+export { GetVpcEndpointsArgs, GetVpcEndpointsResult, GetVpcEndpointsOutputArgs } from "./getVpcEndpoints";
+export const getVpcEndpoints: typeof import("./getVpcEndpoints").getVpcEndpoints = null as any;
+export const getVpcEndpointsOutput: typeof import("./getVpcEndpoints").getVpcEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcEndpoints","getVpcEndpointsOutput"], () => require("./getVpcEndpoints"));
+
 export { SecurityGroupArgs, SecurityGroupState } from "./securityGroup";
 export type SecurityGroup = import("./securityGroup").SecurityGroup;
 export const SecurityGroup: typeof import("./securityGroup").SecurityGroup = null as any;

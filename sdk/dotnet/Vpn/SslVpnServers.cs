@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpn
 {
+    [Obsolete(@"volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers")]
     public static class SslVpnServers
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Vpn
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -68,7 +69,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         Compress = true,
         ///     });
         /// 
-        ///     var fooSslVpnServers = Volcengine.Vpn.SslVpnServers.Invoke(new()
+        ///     var fooSslVpnServers = Volcengine.Vpn.GetSslVpnServers.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -94,7 +95,7 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -106,7 +107,7 @@ namespace Pulumi.Volcengine.Vpn
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -139,7 +140,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         Compress = true,
         ///     });
         /// 
-        ///     var fooSslVpnServers = Volcengine.Vpn.SslVpnServers.Invoke(new()
+        ///     var fooSslVpnServers = Volcengine.Vpn.GetSslVpnServers.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

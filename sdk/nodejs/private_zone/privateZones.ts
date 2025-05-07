@@ -8,8 +8,24 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of private zones
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.private_zone.getPrivateZones({
+ *     lineMode: 3,
+ *     recursionMode: true,
+ *     searchMode: "EXACT",
+ *     zid: 770000,
+ *     zoneName: "volces.com",
+ * });
+ * ```
  */
+/** @deprecated volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones */
 export function privateZones(args?: PrivateZonesArgs, opts?: pulumi.InvokeOptions): Promise<PrivateZonesResult> {
+    pulumi.log.warn("privateZones is deprecated: volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -111,7 +127,22 @@ export interface PrivateZonesResult {
 }
 /**
  * Use this data source to query detailed information of private zones
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.private_zone.getPrivateZones({
+ *     lineMode: 3,
+ *     recursionMode: true,
+ *     searchMode: "EXACT",
+ *     zid: 770000,
+ *     zoneName: "volces.com",
+ * });
+ * ```
  */
+/** @deprecated volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones */
 export function privateZonesOutput(args?: PrivateZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PrivateZonesResult> {
     return pulumi.output(args).apply((a: any) => privateZones(a, opts))
 }

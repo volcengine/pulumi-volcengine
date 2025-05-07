@@ -6,6 +6,35 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage private zone record
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooRecord = new volcengine.private_zone.Record("fooRecord", {
+ *     zid: 2450000,
+ *     host: "www",
+ *     type: "A",
+ *     value: "10.1.1.158",
+ *     weight: 8,
+ *     ttl: 700,
+ *     remark: "tf-test",
+ *     enable: true,
+ * });
+ * const fooRecordSets = volcengine.private_zone.getRecordSetsOutput({
+ *     zid: fooRecord.zid,
+ *     host: fooRecord.host,
+ *     searchMode: "EXACT",
+ * });
+ * const fooRecordWeightEnabler = new volcengine.private_zone.RecordWeightEnabler("fooRecordWeightEnabler", {
+ *     zid: fooRecord.zid,
+ *     recordSetId: pulumi.all([fooRecordSets, fooRecord.type]).apply(([fooRecordSets, type]) => .filter(set => set.type == type).map(set => (set.recordSetId))[0]),
+ *     weightEnabled: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * PrivateZoneRecord can be imported using the id, e.g.

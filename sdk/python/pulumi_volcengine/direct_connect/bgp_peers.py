@@ -17,6 +17,8 @@ __all__ = [
     'bgp_peers_output',
 ]
 
+warnings.warn("""volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers""", DeprecationWarning)
+
 @pulumi.output_type
 class BgpPeersResult:
     """
@@ -157,7 +159,7 @@ def bgp_peers(bgp_peer_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.bgp_peers(ids=["bgp-171w6pn39ruo04d1w33iq****"])
+    foo = volcengine.direct_connect.get_bgp_peers(ids=["bgp-171w6pn39ruo04d1w33iq****"])
     ```
 
 
@@ -169,6 +171,7 @@ def bgp_peers(bgp_peer_name: Optional[str] = None,
     :param int remote_asn: The remote asn of bgp peer.
     :param str virtual_interface_id: The id of virtual interface.
     """
+    pulumi.log.warn("""bgp_peers is deprecated: volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers""")
     __args__ = dict()
     __args__['bgpPeerName'] = bgp_peer_name
     __args__['directConnectGatewayId'] = direct_connect_gateway_id
@@ -210,7 +213,7 @@ def bgp_peers_output(bgp_peer_name: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.bgp_peers(ids=["bgp-171w6pn39ruo04d1w33iq****"])
+    foo = volcengine.direct_connect.get_bgp_peers(ids=["bgp-171w6pn39ruo04d1w33iq****"])
     ```
 
 
@@ -222,4 +225,5 @@ def bgp_peers_output(bgp_peer_name: Optional[pulumi.Input[Optional[str]]] = None
     :param int remote_asn: The remote asn of bgp peer.
     :param str virtual_interface_id: The id of virtual interface.
     """
+    pulumi.log.warn("""bgp_peers is deprecated: volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers""")
     ...

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.Rules(ctx, &alb.RulesArgs{
+//			_, err := alb.GetRules(ctx, &alb.GetRulesArgs{
 //				ListenerId: "lsn-1iidd19u4oni874adhezjkyj3",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules
 func Rules(ctx *pulumi.Context, args *RulesArgs, opts ...pulumi.InvokeOption) (*RulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RulesResult

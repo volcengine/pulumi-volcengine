@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_firewall.CfwVpcFirewallAclRules(ctx, &cloud_firewall.CfwVpcFirewallAclRulesArgs{
+//			_, err := cloud_firewall.GetCfwVpcFirewallAclRules(ctx, &cloud_firewall.GetCfwVpcFirewallAclRulesArgs{
 //				Actions: []string{
 //					"accept",
 //					"deny",
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules
 func CfwVpcFirewallAclRules(ctx *pulumi.Context, args *CfwVpcFirewallAclRulesArgs, opts ...pulumi.InvokeOption) (*CfwVpcFirewallAclRulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CfwVpcFirewallAclRulesResult

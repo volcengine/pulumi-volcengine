@@ -33,6 +33,19 @@ __all__ = [
     'InstancesInstanceTagResult',
     'InstancesTagResult',
     'SchemasSchemaResult',
+    'GetAccountsAccountResult',
+    'GetAllowlistsPostgresqlAllowListResult',
+    'GetAllowlistsPostgresqlAllowListAssociatedInstanceResult',
+    'GetDatabasesDatabaseResult',
+    'GetInstancesInstanceResult',
+    'GetInstancesInstanceChargeDetailResult',
+    'GetInstancesInstanceEndpointResult',
+    'GetInstancesInstanceEndpointAddressResult',
+    'GetInstancesInstanceEndpointReadOnlyNodeWeightResult',
+    'GetInstancesInstanceNodeResult',
+    'GetInstancesInstanceTagResult',
+    'GetInstancesTagResult',
+    'GetSchemasSchemaResult',
 ]
 
 @pulumi.output_type
@@ -2110,6 +2123,1200 @@ class InstancesTagResult(dict):
 
 @pulumi.output_type
 class SchemasSchemaResult(dict):
+    def __init__(__self__, *,
+                 db_name: str,
+                 owner: str,
+                 schema_name: str):
+        """
+        :param str db_name: The name of the database.
+        :param str owner: The owner of the schema.
+        :param str schema_name: The name of the schema.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "schema_name", schema_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        The name of the database.
+        """
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
+        """
+        The owner of the schema.
+        """
+        return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter(name="schemaName")
+    def schema_name(self) -> str:
+        """
+        The name of the schema.
+        """
+        return pulumi.get(self, "schema_name")
+
+
+@pulumi.output_type
+class GetAccountsAccountResult(dict):
+    def __init__(__self__, *,
+                 account_name: str,
+                 account_privileges: str,
+                 account_status: str,
+                 account_type: str):
+        """
+        :param str account_name: The name of the database account. This field supports fuzzy query.
+        :param str account_privileges: The privileges of the database account.
+        :param str account_status: The status of the database account.
+        :param str account_type: The type of the database account.
+        """
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "account_status", account_status)
+        pulumi.set(__self__, "account_type", account_type)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> str:
+        """
+        The name of the database account. This field supports fuzzy query.
+        """
+        return pulumi.get(self, "account_name")
+
+    @property
+    @pulumi.getter(name="accountPrivileges")
+    def account_privileges(self) -> str:
+        """
+        The privileges of the database account.
+        """
+        return pulumi.get(self, "account_privileges")
+
+    @property
+    @pulumi.getter(name="accountStatus")
+    def account_status(self) -> str:
+        """
+        The status of the database account.
+        """
+        return pulumi.get(self, "account_status")
+
+    @property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> str:
+        """
+        The type of the database account.
+        """
+        return pulumi.get(self, "account_type")
+
+
+@pulumi.output_type
+class GetAllowlistsPostgresqlAllowListResult(dict):
+    def __init__(__self__, *,
+                 allow_list_desc: str,
+                 allow_list_id: str,
+                 allow_list_ip_num: int,
+                 allow_list_name: str,
+                 allow_list_type: str,
+                 allow_lists: Sequence[str],
+                 associated_instance_num: int,
+                 associated_instances: Sequence['outputs.GetAllowlistsPostgresqlAllowListAssociatedInstanceResult'],
+                 id: str):
+        """
+        :param str allow_list_desc: The description of the postgresql allow list.
+        :param str allow_list_id: The id of the postgresql allow list.
+        :param int allow_list_ip_num: The total number of IP addresses (or address ranges) in the whitelist.
+        :param str allow_list_name: The name of the postgresql allow list.
+        :param str allow_list_type: The type of the postgresql allow list.
+        :param Sequence[str] allow_lists: The IP address or a range of IP addresses in CIDR format.
+        :param int associated_instance_num: The total number of instances bound under the whitelist.
+        :param Sequence['GetAllowlistsPostgresqlAllowListAssociatedInstanceArgs'] associated_instances: The list of postgresql instances.
+        :param str id: The id of the postgresql allow list.
+        """
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
+        pulumi.set(__self__, "allow_list_type", allow_list_type)
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        pulumi.set(__self__, "associated_instances", associated_instances)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> str:
+        """
+        The description of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> str:
+        """
+        The id of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> int:
+        """
+        The total number of IP addresses (or address ranges) in the whitelist.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> str:
+        """
+        The name of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
+
+    @property
+    @pulumi.getter(name="allowListType")
+    def allow_list_type(self) -> str:
+        """
+        The type of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_type")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        The IP address or a range of IP addresses in CIDR format.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> int:
+        """
+        The total number of instances bound under the whitelist.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Sequence['outputs.GetAllowlistsPostgresqlAllowListAssociatedInstanceResult']:
+        """
+        The list of postgresql instances.
+        """
+        return pulumi.get(self, "associated_instances")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the postgresql allow list.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetAllowlistsPostgresqlAllowListAssociatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_name: str,
+                 vpc: str):
+        """
+        :param str instance_id: The id of the postgresql Instance.
+        :param str instance_name: The name of the postgresql instance.
+        :param str vpc: The id of the vpc.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the postgresql Instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the postgresql instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> str:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
+class GetDatabasesDatabaseResult(dict):
+    def __init__(__self__, *,
+                 c_type: str,
+                 character_set_name: str,
+                 collate: str,
+                 db_name: str,
+                 db_status: str,
+                 owner: str):
+        """
+        :param str c_type: Character classification.
+        :param str character_set_name: The character set of the RDS database.
+        :param str collate: The collate of database.
+        :param str db_name: The name of the RDS database.
+        :param str db_status: The status of the RDS database.
+        :param str owner: The owner of database.
+        """
+        pulumi.set(__self__, "c_type", c_type)
+        pulumi.set(__self__, "character_set_name", character_set_name)
+        pulumi.set(__self__, "collate", collate)
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "db_status", db_status)
+        pulumi.set(__self__, "owner", owner)
+
+    @property
+    @pulumi.getter(name="cType")
+    def c_type(self) -> str:
+        """
+        Character classification.
+        """
+        return pulumi.get(self, "c_type")
+
+    @property
+    @pulumi.getter(name="characterSetName")
+    def character_set_name(self) -> str:
+        """
+        The character set of the RDS database.
+        """
+        return pulumi.get(self, "character_set_name")
+
+    @property
+    @pulumi.getter
+    def collate(self) -> str:
+        """
+        The collate of database.
+        """
+        return pulumi.get(self, "collate")
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        The name of the RDS database.
+        """
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="dbStatus")
+    def db_status(self) -> str:
+        """
+        The status of the RDS database.
+        """
+        return pulumi.get(self, "db_status")
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
+        """
+        The owner of database.
+        """
+        return pulumi.get(self, "owner")
+
+
+@pulumi.output_type
+class GetInstancesInstanceResult(dict):
+    def __init__(__self__, *,
+                 backup_use: int,
+                 charge_details: Sequence['outputs.GetInstancesInstanceChargeDetailResult'],
+                 create_time: str,
+                 data_sync_mode: str,
+                 db_engine_version: str,
+                 endpoints: Sequence['outputs.GetInstancesInstanceEndpointResult'],
+                 id: str,
+                 instance_id: str,
+                 instance_name: str,
+                 instance_status: str,
+                 instance_type: str,
+                 memory: int,
+                 node_number: int,
+                 node_spec: str,
+                 nodes: Sequence['outputs.GetInstancesInstanceNodeResult'],
+                 project_name: str,
+                 region_id: str,
+                 storage_space: int,
+                 storage_type: str,
+                 subnet_id: str,
+                 tags: Sequence['outputs.GetInstancesInstanceTagResult'],
+                 update_time: str,
+                 v_cpu: int,
+                 vpc_id: str,
+                 zone_id: str,
+                 zone_ids: Sequence[str]):
+        """
+        :param int backup_use: The instance has used backup space. Unit: GB.
+        :param Sequence['GetInstancesInstanceChargeDetailArgs'] charge_details: Payment methods.
+        :param str create_time: Node creation local time.
+        :param str data_sync_mode: Data synchronization mode.
+        :param str db_engine_version: The version of the RDS PostgreSQL instance.
+        :param Sequence['GetInstancesInstanceEndpointArgs'] endpoints: The endpoint info of the RDS instance.
+        :param str id: The ID of the RDS PostgreSQL instance.
+        :param str instance_id: The id of the RDS PostgreSQL instance.
+        :param str instance_name: The name of the RDS PostgreSQL instance.
+        :param str instance_status: The status of the RDS PostgreSQL instance.
+        :param str instance_type: The instance type of the RDS PostgreSQL instance.
+        :param int memory: Memory size in GB.
+        :param int node_number: The number of nodes.
+        :param str node_spec: General instance type, different from Custom instance type.
+        :param Sequence['GetInstancesInstanceNodeArgs'] nodes: Instance node information.
+        :param str project_name: The project name of the RDS PostgreSQL instance.
+        :param str region_id: The region of the RDS PostgreSQL instance.
+        :param int storage_space: Total instance storage space. Unit: GB.
+        :param str storage_type: Instance storage type.
+        :param str subnet_id: The subnet ID of the RDS PostgreSQL instance.
+        :param Sequence['GetInstancesInstanceTagArgs'] tags: Tags.
+        :param str update_time: The update time of the RDS PostgreSQL instance.
+        :param int v_cpu: CPU size.
+        :param str vpc_id: The vpc ID of the RDS PostgreSQL instance.
+        :param str zone_id: The available zone of the RDS PostgreSQL instance.
+        :param Sequence[str] zone_ids: ID of the availability zone where each instance is located.
+        """
+        pulumi.set(__self__, "backup_use", backup_use)
+        pulumi.set(__self__, "charge_details", charge_details)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_sync_mode", data_sync_mode)
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "node_number", node_number)
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "nodes", nodes)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "storage_space", storage_space)
+        pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "v_cpu", v_cpu)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="backupUse")
+    def backup_use(self) -> int:
+        """
+        The instance has used backup space. Unit: GB.
+        """
+        return pulumi.get(self, "backup_use")
+
+    @property
+    @pulumi.getter(name="chargeDetails")
+    def charge_details(self) -> Sequence['outputs.GetInstancesInstanceChargeDetailResult']:
+        """
+        Payment methods.
+        """
+        return pulumi.get(self, "charge_details")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Node creation local time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="dataSyncMode")
+    def data_sync_mode(self) -> str:
+        """
+        Data synchronization mode.
+        """
+        return pulumi.get(self, "data_sync_mode")
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetInstancesInstanceEndpointResult']:
+        """
+        The endpoint info of the RDS instance.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> str:
+        """
+        The status of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_status")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        Memory size in GB.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter(name="nodeNumber")
+    def node_number(self) -> int:
+        """
+        The number of nodes.
+        """
+        return pulumi.get(self, "node_number")
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        General instance type, different from Custom instance type.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter
+    def nodes(self) -> Sequence['outputs.GetInstancesInstanceNodeResult']:
+        """
+        Instance node information.
+        """
+        return pulumi.get(self, "nodes")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="storageSpace")
+    def storage_space(self) -> int:
+        """
+        Total instance storage space. Unit: GB.
+        """
+        return pulumi.get(self, "storage_space")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> str:
+        """
+        Instance storage type.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The subnet ID of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInstancesInstanceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vCpu")
+    def v_cpu(self) -> int:
+        """
+        CPU size.
+        """
+        return pulumi.get(self, "v_cpu")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc ID of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The available zone of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Sequence[str]:
+        """
+        ID of the availability zone where each instance is located.
+        """
+        return pulumi.get(self, "zone_ids")
+
+
+@pulumi.output_type
+class GetInstancesInstanceChargeDetailResult(dict):
+    def __init__(__self__, *,
+                 auto_renew: bool,
+                 charge_end_time: str,
+                 charge_start_time: str,
+                 charge_status: str,
+                 charge_type: str,
+                 overdue_reclaim_time: str,
+                 overdue_time: str,
+                 period: int,
+                 period_unit: str,
+                 temp_modify_end_time: str,
+                 temp_modify_start_time: str):
+        """
+        :param bool auto_renew: Whether to automatically renew in prepaid scenarios.
+               Autorenew_Enable
+               Autorenew_Disable (default).
+        :param str charge_end_time: Billing expiry time (yearly and monthly only).
+        :param str charge_start_time: Billing start time (pay-as-you-go & monthly subscription).
+        :param str charge_status: Pay status. Value:
+               normal - normal
+               overdue - overdue
+               .
+        :param str charge_type: The charge type of the RDS instance.
+        :param str overdue_reclaim_time: Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+        :param str overdue_time: Shutdown time in arrears (pay-as-you-go & monthly subscription).
+        :param int period: Purchase duration in prepaid scenarios. Default: 1.
+        :param str period_unit: The purchase cycle in the prepaid scenario.
+               Month - monthly subscription (default)
+               Year - Package year.
+        :param str temp_modify_end_time: Temporary upgrade of restoration time.
+        :param str temp_modify_start_time: Start time of temporary upgrade.
+        """
+        pulumi.set(__self__, "auto_renew", auto_renew)
+        pulumi.set(__self__, "charge_end_time", charge_end_time)
+        pulumi.set(__self__, "charge_start_time", charge_start_time)
+        pulumi.set(__self__, "charge_status", charge_status)
+        pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
+        pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "period", period)
+        pulumi.set(__self__, "period_unit", period_unit)
+        pulumi.set(__self__, "temp_modify_end_time", temp_modify_end_time)
+        pulumi.set(__self__, "temp_modify_start_time", temp_modify_start_time)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> bool:
+        """
+        Whether to automatically renew in prepaid scenarios.
+        Autorenew_Enable
+        Autorenew_Disable (default).
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter(name="chargeEndTime")
+    def charge_end_time(self) -> str:
+        """
+        Billing expiry time (yearly and monthly only).
+        """
+        return pulumi.get(self, "charge_end_time")
+
+    @property
+    @pulumi.getter(name="chargeStartTime")
+    def charge_start_time(self) -> str:
+        """
+        Billing start time (pay-as-you-go & monthly subscription).
+        """
+        return pulumi.get(self, "charge_start_time")
+
+    @property
+    @pulumi.getter(name="chargeStatus")
+    def charge_status(self) -> str:
+        """
+        Pay status. Value:
+        normal - normal
+        overdue - overdue
+        .
+        """
+        return pulumi.get(self, "charge_status")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the RDS instance.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="overdueReclaimTime")
+    def overdue_reclaim_time(self) -> str:
+        """
+        Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+        """
+        return pulumi.get(self, "overdue_reclaim_time")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> str:
+        """
+        Shutdown time in arrears (pay-as-you-go & monthly subscription).
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter
+    def period(self) -> int:
+        """
+        Purchase duration in prepaid scenarios. Default: 1.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> str:
+        """
+        The purchase cycle in the prepaid scenario.
+        Month - monthly subscription (default)
+        Year - Package year.
+        """
+        return pulumi.get(self, "period_unit")
+
+    @property
+    @pulumi.getter(name="tempModifyEndTime")
+    def temp_modify_end_time(self) -> str:
+        """
+        Temporary upgrade of restoration time.
+        """
+        return pulumi.get(self, "temp_modify_end_time")
+
+    @property
+    @pulumi.getter(name="tempModifyStartTime")
+    def temp_modify_start_time(self) -> str:
+        """
+        Start time of temporary upgrade.
+        """
+        return pulumi.get(self, "temp_modify_start_time")
+
+
+@pulumi.output_type
+class GetInstancesInstanceEndpointResult(dict):
+    def __init__(__self__, *,
+                 addresses: Sequence['outputs.GetInstancesInstanceEndpointAddressResult'],
+                 auto_add_new_nodes: str,
+                 description: str,
+                 enable_read_only: str,
+                 enable_read_write_splitting: str,
+                 endpoint_id: str,
+                 endpoint_name: str,
+                 endpoint_type: str,
+                 read_only_node_weights: Sequence['outputs.GetInstancesInstanceEndpointReadOnlyNodeWeightResult'],
+                 read_write_mode: str):
+        """
+        :param Sequence['GetInstancesInstanceEndpointAddressArgs'] addresses: Address list.
+        :param str auto_add_new_nodes: When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+        :param str description: Address description.
+        :param str enable_read_only: Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+        :param str enable_read_write_splitting: Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+        :param str endpoint_id: Instance connection terminal ID.
+        :param str endpoint_name: The instance connection terminal name.
+        :param str endpoint_type: Terminal type:
+               Cluster: The default terminal. (created by default)
+               Primary: Primary node terminal.
+               Custom: Custom terminal.
+               Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+               AllNode: All node terminals. (Only the operation and maintenance side).
+        :param Sequence['GetInstancesInstanceEndpointReadOnlyNodeWeightArgs'] read_only_node_weights: The list of nodes configured by the connection terminal and the corresponding read-only weights.
+        :param str read_write_mode: Read and write mode:
+               ReadWrite: read and write
+               ReadOnly: read only (default).
+        """
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "auto_add_new_nodes", auto_add_new_nodes)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable_read_only", enable_read_only)
+        pulumi.set(__self__, "enable_read_write_splitting", enable_read_write_splitting)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "read_only_node_weights", read_only_node_weights)
+        pulumi.set(__self__, "read_write_mode", read_write_mode)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Sequence['outputs.GetInstancesInstanceEndpointAddressResult']:
+        """
+        Address list.
+        """
+        return pulumi.get(self, "addresses")
+
+    @property
+    @pulumi.getter(name="autoAddNewNodes")
+    def auto_add_new_nodes(self) -> str:
+        """
+        When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+        """
+        return pulumi.get(self, "auto_add_new_nodes")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Address description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enableReadOnly")
+    def enable_read_only(self) -> str:
+        """
+        Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+        """
+        return pulumi.get(self, "enable_read_only")
+
+    @property
+    @pulumi.getter(name="enableReadWriteSplitting")
+    def enable_read_write_splitting(self) -> str:
+        """
+        Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+        """
+        return pulumi.get(self, "enable_read_write_splitting")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        """
+        Instance connection terminal ID.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> str:
+        """
+        The instance connection terminal name.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @property
+    @pulumi.getter(name="endpointType")
+    def endpoint_type(self) -> str:
+        """
+        Terminal type:
+        Cluster: The default terminal. (created by default)
+        Primary: Primary node terminal.
+        Custom: Custom terminal.
+        Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+        AllNode: All node terminals. (Only the operation and maintenance side).
+        """
+        return pulumi.get(self, "endpoint_type")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeWeights")
+    def read_only_node_weights(self) -> Sequence['outputs.GetInstancesInstanceEndpointReadOnlyNodeWeightResult']:
+        """
+        The list of nodes configured by the connection terminal and the corresponding read-only weights.
+        """
+        return pulumi.get(self, "read_only_node_weights")
+
+    @property
+    @pulumi.getter(name="readWriteMode")
+    def read_write_mode(self) -> str:
+        """
+        Read and write mode:
+        ReadWrite: read and write
+        ReadOnly: read only (default).
+        """
+        return pulumi.get(self, "read_write_mode")
+
+
+@pulumi.output_type
+class GetInstancesInstanceEndpointAddressResult(dict):
+    def __init__(__self__, *,
+                 dns_visibility: bool,
+                 domain: str,
+                 eip_id: str,
+                 ip_address: str,
+                 network_type: str,
+                 port: str,
+                 subnet_id: str):
+        """
+        :param bool dns_visibility: DNS Visibility.
+        :param str domain: Connect domain name.
+        :param str eip_id: The ID of the EIP, only valid for Public addresses.
+        :param str ip_address: The IP Address.
+        :param str network_type: Network address type, temporarily Private, Public, PublicService.
+        :param str port: The Port.
+        :param str subnet_id: The subnet ID of the RDS PostgreSQL instance.
+        """
+        pulumi.set(__self__, "dns_visibility", dns_visibility)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "network_type", network_type)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="dnsVisibility")
+    def dns_visibility(self) -> bool:
+        """
+        DNS Visibility.
+        """
+        return pulumi.get(self, "dns_visibility")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        Connect domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> str:
+        """
+        The ID of the EIP, only valid for Public addresses.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The IP Address.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        Network address type, temporarily Private, Public, PublicService.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        The Port.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The subnet ID of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetInstancesInstanceEndpointReadOnlyNodeWeightResult(dict):
+    def __init__(__self__, *,
+                 node_id: str,
+                 node_type: str,
+                 weight: int):
+        """
+        :param str node_id: Node ID.
+        :param str node_type: Node type. Value: Primary: Primary node.
+               Secondary: Standby node.
+               ReadOnly: Read-only node.
+        :param int weight: The weight of the node.
+        """
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> str:
+        """
+        Node ID.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        Node type. Value: Primary: Primary node.
+        Secondary: Standby node.
+        ReadOnly: Read-only node.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the node.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetInstancesInstanceNodeResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 instance_id: str,
+                 memory: int,
+                 node_id: str,
+                 node_spec: str,
+                 node_status: str,
+                 node_type: str,
+                 region_id: str,
+                 update_time: str,
+                 v_cpu: int,
+                 zone_id: str):
+        """
+        :param str create_time: Node creation local time.
+        :param str instance_id: The id of the RDS PostgreSQL instance.
+        :param int memory: Memory size in GB.
+        :param str node_id: Node ID.
+        :param str node_spec: General instance type, different from Custom instance type.
+        :param str node_status: Node state, value: aligned with instance state.
+        :param str node_type: Node type. Value: Primary: Primary node.
+               Secondary: Standby node.
+               ReadOnly: Read-only node.
+        :param str region_id: The region of the RDS PostgreSQL instance.
+        :param str update_time: The update time of the RDS PostgreSQL instance.
+        :param int v_cpu: CPU size.
+        :param str zone_id: The available zone of the RDS PostgreSQL instance.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_status", node_status)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "v_cpu", v_cpu)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Node creation local time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        Memory size in GB.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> str:
+        """
+        Node ID.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        General instance type, different from Custom instance type.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter(name="nodeStatus")
+    def node_status(self) -> str:
+        """
+        Node state, value: aligned with instance state.
+        """
+        return pulumi.get(self, "node_status")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        Node type. Value: Primary: Primary node.
+        Secondary: Standby node.
+        ReadOnly: Read-only node.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vCpu")
+    def v_cpu(self) -> int:
+        """
+        CPU size.
+        """
+        return pulumi.get(self, "v_cpu")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The available zone of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetInstancesInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSchemasSchemaResult(dict):
     def __init__(__self__, *,
                  db_name: str,
                  owner: str,

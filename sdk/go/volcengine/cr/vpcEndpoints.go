@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.VpcEndpoints(ctx, &cr.VpcEndpointsArgs{
+//			_, err := cr.GetVpcEndpoints(ctx, &cr.GetVpcEndpointsArgs{
 //				Registry: "enterprise-1",
 //				Statuses: []string{
 //					"Enabled",
@@ -43,6 +43,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints
 func VpcEndpoints(ctx *pulumi.Context, args *VpcEndpointsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointsResult

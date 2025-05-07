@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -55,7 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vpc.HaVipsOutput(ctx, vpc.HaVipsOutputArgs{
+//			_ = vpc.GetHaVipsOutput(ctx, vpc.GetHaVipsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooHaVip.ID(),
 //				},
@@ -65,6 +65,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips
 func HaVips(ctx *pulumi.Context, args *HaVipsArgs, opts ...pulumi.InvokeOption) (*HaVipsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv HaVipsResult

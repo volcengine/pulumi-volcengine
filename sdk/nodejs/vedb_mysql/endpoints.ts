@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -47,7 +47,7 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
- * const fooInstances = volcengine.vedb_mysql.InstancesOutput({
+ * const fooInstances = volcengine.vedb_mysql.getInstancesOutput({
  *     instanceId: fooInstance.id,
  * });
  * const fooEndpoint = new volcengine.vedb_mysql.Endpoint("fooEndpoint", {
@@ -66,13 +66,15 @@ import * as utilities from "../utilities";
  *     consistTimeout: 100000,
  *     consistTimeoutAction: "ReadMaster",
  * });
- * const fooEndpoints = volcengine.vedb_mysql.EndpointsOutput({
+ * const fooEndpoints = volcengine.vedb_mysql.getEndpointsOutput({
  *     endpointId: fooEndpoint.endpointId,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints */
 export function endpoints(args: EndpointsArgs, opts?: pulumi.InvokeOptions): Promise<EndpointsResult> {
+    pulumi.log.warn("endpoints is deprecated: volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vedb_mysql/endpoints:Endpoints", {
@@ -138,7 +140,7 @@ export interface EndpointsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -170,7 +172,7 @@ export interface EndpointsResult {
  *         },
  *     ],
  * });
- * const fooInstances = volcengine.vedb_mysql.InstancesOutput({
+ * const fooInstances = volcengine.vedb_mysql.getInstancesOutput({
  *     instanceId: fooInstance.id,
  * });
  * const fooEndpoint = new volcengine.vedb_mysql.Endpoint("fooEndpoint", {
@@ -189,12 +191,13 @@ export interface EndpointsResult {
  *     consistTimeout: 100000,
  *     consistTimeoutAction: "ReadMaster",
  * });
- * const fooEndpoints = volcengine.vedb_mysql.EndpointsOutput({
+ * const fooEndpoints = volcengine.vedb_mysql.getEndpointsOutput({
  *     endpointId: fooEndpoint.endpointId,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints */
 export function endpointsOutput(args: EndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EndpointsResult> {
     return pulumi.output(args).apply((a: any) => endpoints(a, opts))
 }

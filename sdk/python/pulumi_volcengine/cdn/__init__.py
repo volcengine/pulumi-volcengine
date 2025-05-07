@@ -10,6 +10,10 @@ from .cdn_domain import *
 from .certificates import *
 from .configs import *
 from .domains import *
+from .get_certificates import *
+from .get_configs import *
+from .get_domains import *
+from .get_shared_configs import *
 from .shared_config import *
 from .shared_configs import *
 from ._inputs import *

@@ -12,6 +12,7 @@ from .. import _utilities
 __all__ = [
     'BandwidthPackageTagArgs',
     'BandwidthPackagesTagFilterArgs',
+    'GetBandwidthPackagesTagFilterArgs',
 ]
 
 @pulumi.input_type
@@ -53,6 +54,43 @@ class BandwidthPackageTagArgs:
 
 @pulumi.input_type
 class BandwidthPackagesTagFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class GetBandwidthPackagesTagFilterArgs:
     def __init__(__self__, *,
                  key: str,
                  values: Sequence[str]):

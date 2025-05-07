@@ -3409,6 +3409,2398 @@ func (o TopicsRocketmqTopicQueueArrayOutput) Index(i pulumi.IntInput) TopicsRock
 	}).(TopicsRocketmqTopicQueueOutput)
 }
 
+type GetAccessKeysAccessKey struct {
+	// The access key id of the rocketmq key.
+	AccessKey string `pulumi:"accessKey"`
+	// The acl config of the rocketmq key.
+	AclConfigJson string `pulumi:"aclConfigJson"`
+	// The active status of the rocketmq key.
+	Actived bool `pulumi:"actived"`
+	// The default authority of the rocketmq key.
+	AllAuthority string `pulumi:"allAuthority"`
+	// The create time of the rocketmq key.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the rocketmq key.
+	Description string `pulumi:"description"`
+	// The id of rocketmq instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The secret key of the rocketmq key.
+	SecretKey string `pulumi:"secretKey"`
+	// The custom authority of the rocketmq key.
+	TopicPermissions []GetAccessKeysAccessKeyTopicPermission `pulumi:"topicPermissions"`
+}
+
+// GetAccessKeysAccessKeyInput is an input type that accepts GetAccessKeysAccessKeyArgs and GetAccessKeysAccessKeyOutput values.
+// You can construct a concrete instance of `GetAccessKeysAccessKeyInput` via:
+//
+//	GetAccessKeysAccessKeyArgs{...}
+type GetAccessKeysAccessKeyInput interface {
+	pulumi.Input
+
+	ToGetAccessKeysAccessKeyOutput() GetAccessKeysAccessKeyOutput
+	ToGetAccessKeysAccessKeyOutputWithContext(context.Context) GetAccessKeysAccessKeyOutput
+}
+
+type GetAccessKeysAccessKeyArgs struct {
+	// The access key id of the rocketmq key.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// The acl config of the rocketmq key.
+	AclConfigJson pulumi.StringInput `pulumi:"aclConfigJson"`
+	// The active status of the rocketmq key.
+	Actived pulumi.BoolInput `pulumi:"actived"`
+	// The default authority of the rocketmq key.
+	AllAuthority pulumi.StringInput `pulumi:"allAuthority"`
+	// The create time of the rocketmq key.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the rocketmq key.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of rocketmq instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The secret key of the rocketmq key.
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// The custom authority of the rocketmq key.
+	TopicPermissions GetAccessKeysAccessKeyTopicPermissionArrayInput `pulumi:"topicPermissions"`
+}
+
+func (GetAccessKeysAccessKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeysAccessKey)(nil)).Elem()
+}
+
+func (i GetAccessKeysAccessKeyArgs) ToGetAccessKeysAccessKeyOutput() GetAccessKeysAccessKeyOutput {
+	return i.ToGetAccessKeysAccessKeyOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeysAccessKeyArgs) ToGetAccessKeysAccessKeyOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeysAccessKeyOutput)
+}
+
+// GetAccessKeysAccessKeyArrayInput is an input type that accepts GetAccessKeysAccessKeyArray and GetAccessKeysAccessKeyArrayOutput values.
+// You can construct a concrete instance of `GetAccessKeysAccessKeyArrayInput` via:
+//
+//	GetAccessKeysAccessKeyArray{ GetAccessKeysAccessKeyArgs{...} }
+type GetAccessKeysAccessKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetAccessKeysAccessKeyArrayOutput() GetAccessKeysAccessKeyArrayOutput
+	ToGetAccessKeysAccessKeyArrayOutputWithContext(context.Context) GetAccessKeysAccessKeyArrayOutput
+}
+
+type GetAccessKeysAccessKeyArray []GetAccessKeysAccessKeyInput
+
+func (GetAccessKeysAccessKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeysAccessKey)(nil)).Elem()
+}
+
+func (i GetAccessKeysAccessKeyArray) ToGetAccessKeysAccessKeyArrayOutput() GetAccessKeysAccessKeyArrayOutput {
+	return i.ToGetAccessKeysAccessKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeysAccessKeyArray) ToGetAccessKeysAccessKeyArrayOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeysAccessKeyArrayOutput)
+}
+
+type GetAccessKeysAccessKeyOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeysAccessKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeysAccessKey)(nil)).Elem()
+}
+
+func (o GetAccessKeysAccessKeyOutput) ToGetAccessKeysAccessKeyOutput() GetAccessKeysAccessKeyOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyOutput) ToGetAccessKeysAccessKeyOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyOutput {
+	return o
+}
+
+// The access key id of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// The acl config of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) AclConfigJson() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.AclConfigJson }).(pulumi.StringOutput)
+}
+
+// The active status of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) Actived() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) bool { return v.Actived }).(pulumi.BoolOutput)
+}
+
+// The default authority of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) AllAuthority() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.AllAuthority }).(pulumi.StringOutput)
+}
+
+// The create time of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of rocketmq instance.
+func (o GetAccessKeysAccessKeyOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The secret key of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) string { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The custom authority of the rocketmq key.
+func (o GetAccessKeysAccessKeyOutput) TopicPermissions() GetAccessKeysAccessKeyTopicPermissionArrayOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKey) []GetAccessKeysAccessKeyTopicPermission { return v.TopicPermissions }).(GetAccessKeysAccessKeyTopicPermissionArrayOutput)
+}
+
+type GetAccessKeysAccessKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeysAccessKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeysAccessKey)(nil)).Elem()
+}
+
+func (o GetAccessKeysAccessKeyArrayOutput) ToGetAccessKeysAccessKeyArrayOutput() GetAccessKeysAccessKeyArrayOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyArrayOutput) ToGetAccessKeysAccessKeyArrayOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyArrayOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyArrayOutput) Index(i pulumi.IntInput) GetAccessKeysAccessKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessKeysAccessKey {
+		return vs[0].([]GetAccessKeysAccessKey)[vs[1].(int)]
+	}).(GetAccessKeysAccessKeyOutput)
+}
+
+type GetAccessKeysAccessKeyTopicPermission struct {
+	// The custom authority for the topic.
+	Permission string `pulumi:"permission"`
+	// The name of the rocketmq topic.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetAccessKeysAccessKeyTopicPermissionInput is an input type that accepts GetAccessKeysAccessKeyTopicPermissionArgs and GetAccessKeysAccessKeyTopicPermissionOutput values.
+// You can construct a concrete instance of `GetAccessKeysAccessKeyTopicPermissionInput` via:
+//
+//	GetAccessKeysAccessKeyTopicPermissionArgs{...}
+type GetAccessKeysAccessKeyTopicPermissionInput interface {
+	pulumi.Input
+
+	ToGetAccessKeysAccessKeyTopicPermissionOutput() GetAccessKeysAccessKeyTopicPermissionOutput
+	ToGetAccessKeysAccessKeyTopicPermissionOutputWithContext(context.Context) GetAccessKeysAccessKeyTopicPermissionOutput
+}
+
+type GetAccessKeysAccessKeyTopicPermissionArgs struct {
+	// The custom authority for the topic.
+	Permission pulumi.StringInput `pulumi:"permission"`
+	// The name of the rocketmq topic.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetAccessKeysAccessKeyTopicPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeysAccessKeyTopicPermission)(nil)).Elem()
+}
+
+func (i GetAccessKeysAccessKeyTopicPermissionArgs) ToGetAccessKeysAccessKeyTopicPermissionOutput() GetAccessKeysAccessKeyTopicPermissionOutput {
+	return i.ToGetAccessKeysAccessKeyTopicPermissionOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeysAccessKeyTopicPermissionArgs) ToGetAccessKeysAccessKeyTopicPermissionOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyTopicPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeysAccessKeyTopicPermissionOutput)
+}
+
+// GetAccessKeysAccessKeyTopicPermissionArrayInput is an input type that accepts GetAccessKeysAccessKeyTopicPermissionArray and GetAccessKeysAccessKeyTopicPermissionArrayOutput values.
+// You can construct a concrete instance of `GetAccessKeysAccessKeyTopicPermissionArrayInput` via:
+//
+//	GetAccessKeysAccessKeyTopicPermissionArray{ GetAccessKeysAccessKeyTopicPermissionArgs{...} }
+type GetAccessKeysAccessKeyTopicPermissionArrayInput interface {
+	pulumi.Input
+
+	ToGetAccessKeysAccessKeyTopicPermissionArrayOutput() GetAccessKeysAccessKeyTopicPermissionArrayOutput
+	ToGetAccessKeysAccessKeyTopicPermissionArrayOutputWithContext(context.Context) GetAccessKeysAccessKeyTopicPermissionArrayOutput
+}
+
+type GetAccessKeysAccessKeyTopicPermissionArray []GetAccessKeysAccessKeyTopicPermissionInput
+
+func (GetAccessKeysAccessKeyTopicPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeysAccessKeyTopicPermission)(nil)).Elem()
+}
+
+func (i GetAccessKeysAccessKeyTopicPermissionArray) ToGetAccessKeysAccessKeyTopicPermissionArrayOutput() GetAccessKeysAccessKeyTopicPermissionArrayOutput {
+	return i.ToGetAccessKeysAccessKeyTopicPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeysAccessKeyTopicPermissionArray) ToGetAccessKeysAccessKeyTopicPermissionArrayOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyTopicPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeysAccessKeyTopicPermissionArrayOutput)
+}
+
+type GetAccessKeysAccessKeyTopicPermissionOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeysAccessKeyTopicPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeysAccessKeyTopicPermission)(nil)).Elem()
+}
+
+func (o GetAccessKeysAccessKeyTopicPermissionOutput) ToGetAccessKeysAccessKeyTopicPermissionOutput() GetAccessKeysAccessKeyTopicPermissionOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyTopicPermissionOutput) ToGetAccessKeysAccessKeyTopicPermissionOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyTopicPermissionOutput {
+	return o
+}
+
+// The custom authority for the topic.
+func (o GetAccessKeysAccessKeyTopicPermissionOutput) Permission() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyTopicPermission) string { return v.Permission }).(pulumi.StringOutput)
+}
+
+// The name of the rocketmq topic.
+func (o GetAccessKeysAccessKeyTopicPermissionOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyTopicPermission) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetAccessKeysAccessKeyTopicPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeysAccessKeyTopicPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeysAccessKeyTopicPermission)(nil)).Elem()
+}
+
+func (o GetAccessKeysAccessKeyTopicPermissionArrayOutput) ToGetAccessKeysAccessKeyTopicPermissionArrayOutput() GetAccessKeysAccessKeyTopicPermissionArrayOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyTopicPermissionArrayOutput) ToGetAccessKeysAccessKeyTopicPermissionArrayOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyTopicPermissionArrayOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyTopicPermissionArrayOutput) Index(i pulumi.IntInput) GetAccessKeysAccessKeyTopicPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessKeysAccessKeyTopicPermission {
+		return vs[0].([]GetAccessKeysAccessKeyTopicPermission)[vs[1].(int)]
+	}).(GetAccessKeysAccessKeyTopicPermissionOutput)
+}
+
+type GetAllowListsRocketmqAllowList struct {
+	// The description of the rocketmq allow list.
+	AllowListDesc string `pulumi:"allowListDesc"`
+	// The id of the rocketmq allow list.
+	AllowListId string `pulumi:"allowListId"`
+	// The number of ip address in the rocketmq allow list.
+	AllowListIpNum int `pulumi:"allowListIpNum"`
+	// The name of the rocketmq allow list.
+	AllowListName string `pulumi:"allowListName"`
+	// The type of the rocketmq allow list.
+	AllowListType string `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format of the allow list.
+	AllowLists []string `pulumi:"allowLists"`
+	// The number of the rocketmq instances associated with the allow list.
+	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
+	// The associated instance information of the allow list.
+	AssociatedInstances []GetAllowListsRocketmqAllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// The id of the rocketmq allow list.
+	Id string `pulumi:"id"`
+}
+
+// GetAllowListsRocketmqAllowListInput is an input type that accepts GetAllowListsRocketmqAllowListArgs and GetAllowListsRocketmqAllowListOutput values.
+// You can construct a concrete instance of `GetAllowListsRocketmqAllowListInput` via:
+//
+//	GetAllowListsRocketmqAllowListArgs{...}
+type GetAllowListsRocketmqAllowListInput interface {
+	pulumi.Input
+
+	ToGetAllowListsRocketmqAllowListOutput() GetAllowListsRocketmqAllowListOutput
+	ToGetAllowListsRocketmqAllowListOutputWithContext(context.Context) GetAllowListsRocketmqAllowListOutput
+}
+
+type GetAllowListsRocketmqAllowListArgs struct {
+	// The description of the rocketmq allow list.
+	AllowListDesc pulumi.StringInput `pulumi:"allowListDesc"`
+	// The id of the rocketmq allow list.
+	AllowListId pulumi.StringInput `pulumi:"allowListId"`
+	// The number of ip address in the rocketmq allow list.
+	AllowListIpNum pulumi.IntInput `pulumi:"allowListIpNum"`
+	// The name of the rocketmq allow list.
+	AllowListName pulumi.StringInput `pulumi:"allowListName"`
+	// The type of the rocketmq allow list.
+	AllowListType pulumi.StringInput `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format of the allow list.
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// The number of the rocketmq instances associated with the allow list.
+	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
+	// The associated instance information of the allow list.
+	AssociatedInstances GetAllowListsRocketmqAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+	// The id of the rocketmq allow list.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetAllowListsRocketmqAllowListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsRocketmqAllowList)(nil)).Elem()
+}
+
+func (i GetAllowListsRocketmqAllowListArgs) ToGetAllowListsRocketmqAllowListOutput() GetAllowListsRocketmqAllowListOutput {
+	return i.ToGetAllowListsRocketmqAllowListOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsRocketmqAllowListArgs) ToGetAllowListsRocketmqAllowListOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsRocketmqAllowListOutput)
+}
+
+// GetAllowListsRocketmqAllowListArrayInput is an input type that accepts GetAllowListsRocketmqAllowListArray and GetAllowListsRocketmqAllowListArrayOutput values.
+// You can construct a concrete instance of `GetAllowListsRocketmqAllowListArrayInput` via:
+//
+//	GetAllowListsRocketmqAllowListArray{ GetAllowListsRocketmqAllowListArgs{...} }
+type GetAllowListsRocketmqAllowListArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowListsRocketmqAllowListArrayOutput() GetAllowListsRocketmqAllowListArrayOutput
+	ToGetAllowListsRocketmqAllowListArrayOutputWithContext(context.Context) GetAllowListsRocketmqAllowListArrayOutput
+}
+
+type GetAllowListsRocketmqAllowListArray []GetAllowListsRocketmqAllowListInput
+
+func (GetAllowListsRocketmqAllowListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsRocketmqAllowList)(nil)).Elem()
+}
+
+func (i GetAllowListsRocketmqAllowListArray) ToGetAllowListsRocketmqAllowListArrayOutput() GetAllowListsRocketmqAllowListArrayOutput {
+	return i.ToGetAllowListsRocketmqAllowListArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsRocketmqAllowListArray) ToGetAllowListsRocketmqAllowListArrayOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsRocketmqAllowListArrayOutput)
+}
+
+type GetAllowListsRocketmqAllowListOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsRocketmqAllowListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsRocketmqAllowList)(nil)).Elem()
+}
+
+func (o GetAllowListsRocketmqAllowListOutput) ToGetAllowListsRocketmqAllowListOutput() GetAllowListsRocketmqAllowListOutput {
+	return o
+}
+
+func (o GetAllowListsRocketmqAllowListOutput) ToGetAllowListsRocketmqAllowListOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListOutput {
+	return o
+}
+
+// The description of the rocketmq allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AllowListDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) string { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The id of the rocketmq allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AllowListId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) string { return v.AllowListId }).(pulumi.StringOutput)
+}
+
+// The number of ip address in the rocketmq allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) int { return v.AllowListIpNum }).(pulumi.IntOutput)
+}
+
+// The name of the rocketmq allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AllowListName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) string { return v.AllowListName }).(pulumi.StringOutput)
+}
+
+// The type of the rocketmq allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AllowListType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) string { return v.AllowListType }).(pulumi.StringOutput)
+}
+
+// The IP address or a range of IP addresses in CIDR format of the allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+// The number of the rocketmq instances associated with the allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) int { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The associated instance information of the allow list.
+func (o GetAllowListsRocketmqAllowListOutput) AssociatedInstances() GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) []GetAllowListsRocketmqAllowListAssociatedInstance {
+		return v.AssociatedInstances
+	}).(GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput)
+}
+
+// The id of the rocketmq allow list.
+func (o GetAllowListsRocketmqAllowListOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowList) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetAllowListsRocketmqAllowListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsRocketmqAllowListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsRocketmqAllowList)(nil)).Elem()
+}
+
+func (o GetAllowListsRocketmqAllowListArrayOutput) ToGetAllowListsRocketmqAllowListArrayOutput() GetAllowListsRocketmqAllowListArrayOutput {
+	return o
+}
+
+func (o GetAllowListsRocketmqAllowListArrayOutput) ToGetAllowListsRocketmqAllowListArrayOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListArrayOutput {
+	return o
+}
+
+func (o GetAllowListsRocketmqAllowListArrayOutput) Index(i pulumi.IntInput) GetAllowListsRocketmqAllowListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowListsRocketmqAllowList {
+		return vs[0].([]GetAllowListsRocketmqAllowList)[vs[1].(int)]
+	}).(GetAllowListsRocketmqAllowListOutput)
+}
+
+type GetAllowListsRocketmqAllowListAssociatedInstance struct {
+	// The id of the rocketmq instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the rocketmq instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The vpc id of the rocketmq instance.
+	Vpc string `pulumi:"vpc"`
+}
+
+// GetAllowListsRocketmqAllowListAssociatedInstanceInput is an input type that accepts GetAllowListsRocketmqAllowListAssociatedInstanceArgs and GetAllowListsRocketmqAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `GetAllowListsRocketmqAllowListAssociatedInstanceInput` via:
+//
+//	GetAllowListsRocketmqAllowListAssociatedInstanceArgs{...}
+type GetAllowListsRocketmqAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToGetAllowListsRocketmqAllowListAssociatedInstanceOutput() GetAllowListsRocketmqAllowListAssociatedInstanceOutput
+	ToGetAllowListsRocketmqAllowListAssociatedInstanceOutputWithContext(context.Context) GetAllowListsRocketmqAllowListAssociatedInstanceOutput
+}
+
+type GetAllowListsRocketmqAllowListAssociatedInstanceArgs struct {
+	// The id of the rocketmq instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the rocketmq instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The vpc id of the rocketmq instance.
+	Vpc pulumi.StringInput `pulumi:"vpc"`
+}
+
+func (GetAllowListsRocketmqAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsRocketmqAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetAllowListsRocketmqAllowListAssociatedInstanceArgs) ToGetAllowListsRocketmqAllowListAssociatedInstanceOutput() GetAllowListsRocketmqAllowListAssociatedInstanceOutput {
+	return i.ToGetAllowListsRocketmqAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsRocketmqAllowListAssociatedInstanceArgs) ToGetAllowListsRocketmqAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsRocketmqAllowListAssociatedInstanceOutput)
+}
+
+// GetAllowListsRocketmqAllowListAssociatedInstanceArrayInput is an input type that accepts GetAllowListsRocketmqAllowListAssociatedInstanceArray and GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `GetAllowListsRocketmqAllowListAssociatedInstanceArrayInput` via:
+//
+//	GetAllowListsRocketmqAllowListAssociatedInstanceArray{ GetAllowListsRocketmqAllowListAssociatedInstanceArgs{...} }
+type GetAllowListsRocketmqAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput() GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput
+	ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutputWithContext(context.Context) GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput
+}
+
+type GetAllowListsRocketmqAllowListAssociatedInstanceArray []GetAllowListsRocketmqAllowListAssociatedInstanceInput
+
+func (GetAllowListsRocketmqAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsRocketmqAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetAllowListsRocketmqAllowListAssociatedInstanceArray) ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput() GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput {
+	return i.ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsRocketmqAllowListAssociatedInstanceArray) ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput)
+}
+
+type GetAllowListsRocketmqAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsRocketmqAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsRocketmqAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceOutput) ToGetAllowListsRocketmqAllowListAssociatedInstanceOutput() GetAllowListsRocketmqAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceOutput) ToGetAllowListsRocketmqAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// The id of the rocketmq instance.
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowListAssociatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the rocketmq instance.
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The vpc id of the rocketmq instance.
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceOutput) Vpc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsRocketmqAllowListAssociatedInstance) string { return v.Vpc }).(pulumi.StringOutput)
+}
+
+type GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsRocketmqAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput) ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput() GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput) ToGetAllowListsRocketmqAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) GetAllowListsRocketmqAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowListsRocketmqAllowListAssociatedInstance {
+		return vs[0].([]GetAllowListsRocketmqAllowListAssociatedInstance)[vs[1].(int)]
+	}).(GetAllowListsRocketmqAllowListAssociatedInstanceOutput)
+}
+
+type GetGroupsRocketmqGroup struct {
+	// The consumed topic information of the rocketmq group.
+	ConsumedClients []GetGroupsRocketmqGroupConsumedClient `pulumi:"consumedClients"`
+	// The consumed topic information of the rocketmq group.
+	ConsumedTopics []GetGroupsRocketmqGroupConsumedTopic `pulumi:"consumedTopics"`
+	// The create time of the rocketmq group.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the rocketmq group.
+	Description string `pulumi:"description"`
+	// The id of rocketmq group. This field support fuzzy query.
+	GroupId string `pulumi:"groupId"`
+	// The type of rocketmq group. Valid values: `TCP`.
+	GroupType string `pulumi:"groupType"`
+	// Whether the subscription relationship of consumer instance groups within the group is consistent.
+	IsSubSame bool `pulumi:"isSubSame"`
+	// The message delay time of the rocketmq group. The unit is milliseconds.
+	MessageDelayTime string `pulumi:"messageDelayTime"`
+	// The message model of the rocketmq group.
+	MessageModel string `pulumi:"messageModel"`
+	// The status of the rocketmq group.
+	Status string `pulumi:"status"`
+	// The total consume rate of the rocketmq group. The unit is per second.
+	TotalConsumeRate string `pulumi:"totalConsumeRate"`
+	// The total amount of unconsumed messages.
+	TotalDiff int `pulumi:"totalDiff"`
+}
+
+// GetGroupsRocketmqGroupInput is an input type that accepts GetGroupsRocketmqGroupArgs and GetGroupsRocketmqGroupOutput values.
+// You can construct a concrete instance of `GetGroupsRocketmqGroupInput` via:
+//
+//	GetGroupsRocketmqGroupArgs{...}
+type GetGroupsRocketmqGroupInput interface {
+	pulumi.Input
+
+	ToGetGroupsRocketmqGroupOutput() GetGroupsRocketmqGroupOutput
+	ToGetGroupsRocketmqGroupOutputWithContext(context.Context) GetGroupsRocketmqGroupOutput
+}
+
+type GetGroupsRocketmqGroupArgs struct {
+	// The consumed topic information of the rocketmq group.
+	ConsumedClients GetGroupsRocketmqGroupConsumedClientArrayInput `pulumi:"consumedClients"`
+	// The consumed topic information of the rocketmq group.
+	ConsumedTopics GetGroupsRocketmqGroupConsumedTopicArrayInput `pulumi:"consumedTopics"`
+	// The create time of the rocketmq group.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the rocketmq group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of rocketmq group. This field support fuzzy query.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// The type of rocketmq group. Valid values: `TCP`.
+	GroupType pulumi.StringInput `pulumi:"groupType"`
+	// Whether the subscription relationship of consumer instance groups within the group is consistent.
+	IsSubSame pulumi.BoolInput `pulumi:"isSubSame"`
+	// The message delay time of the rocketmq group. The unit is milliseconds.
+	MessageDelayTime pulumi.StringInput `pulumi:"messageDelayTime"`
+	// The message model of the rocketmq group.
+	MessageModel pulumi.StringInput `pulumi:"messageModel"`
+	// The status of the rocketmq group.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The total consume rate of the rocketmq group. The unit is per second.
+	TotalConsumeRate pulumi.StringInput `pulumi:"totalConsumeRate"`
+	// The total amount of unconsumed messages.
+	TotalDiff pulumi.IntInput `pulumi:"totalDiff"`
+}
+
+func (GetGroupsRocketmqGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsRocketmqGroup)(nil)).Elem()
+}
+
+func (i GetGroupsRocketmqGroupArgs) ToGetGroupsRocketmqGroupOutput() GetGroupsRocketmqGroupOutput {
+	return i.ToGetGroupsRocketmqGroupOutputWithContext(context.Background())
+}
+
+func (i GetGroupsRocketmqGroupArgs) ToGetGroupsRocketmqGroupOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsRocketmqGroupOutput)
+}
+
+// GetGroupsRocketmqGroupArrayInput is an input type that accepts GetGroupsRocketmqGroupArray and GetGroupsRocketmqGroupArrayOutput values.
+// You can construct a concrete instance of `GetGroupsRocketmqGroupArrayInput` via:
+//
+//	GetGroupsRocketmqGroupArray{ GetGroupsRocketmqGroupArgs{...} }
+type GetGroupsRocketmqGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsRocketmqGroupArrayOutput() GetGroupsRocketmqGroupArrayOutput
+	ToGetGroupsRocketmqGroupArrayOutputWithContext(context.Context) GetGroupsRocketmqGroupArrayOutput
+}
+
+type GetGroupsRocketmqGroupArray []GetGroupsRocketmqGroupInput
+
+func (GetGroupsRocketmqGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsRocketmqGroup)(nil)).Elem()
+}
+
+func (i GetGroupsRocketmqGroupArray) ToGetGroupsRocketmqGroupArrayOutput() GetGroupsRocketmqGroupArrayOutput {
+	return i.ToGetGroupsRocketmqGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsRocketmqGroupArray) ToGetGroupsRocketmqGroupArrayOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsRocketmqGroupArrayOutput)
+}
+
+type GetGroupsRocketmqGroupOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsRocketmqGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsRocketmqGroup)(nil)).Elem()
+}
+
+func (o GetGroupsRocketmqGroupOutput) ToGetGroupsRocketmqGroupOutput() GetGroupsRocketmqGroupOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupOutput) ToGetGroupsRocketmqGroupOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupOutput {
+	return o
+}
+
+// The consumed topic information of the rocketmq group.
+func (o GetGroupsRocketmqGroupOutput) ConsumedClients() GetGroupsRocketmqGroupConsumedClientArrayOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) []GetGroupsRocketmqGroupConsumedClient { return v.ConsumedClients }).(GetGroupsRocketmqGroupConsumedClientArrayOutput)
+}
+
+// The consumed topic information of the rocketmq group.
+func (o GetGroupsRocketmqGroupOutput) ConsumedTopics() GetGroupsRocketmqGroupConsumedTopicArrayOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) []GetGroupsRocketmqGroupConsumedTopic { return v.ConsumedTopics }).(GetGroupsRocketmqGroupConsumedTopicArrayOutput)
+}
+
+// The create time of the rocketmq group.
+func (o GetGroupsRocketmqGroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the rocketmq group.
+func (o GetGroupsRocketmqGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of rocketmq group. This field support fuzzy query.
+func (o GetGroupsRocketmqGroupOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// The type of rocketmq group. Valid values: `TCP`.
+func (o GetGroupsRocketmqGroupOutput) GroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.GroupType }).(pulumi.StringOutput)
+}
+
+// Whether the subscription relationship of consumer instance groups within the group is consistent.
+func (o GetGroupsRocketmqGroupOutput) IsSubSame() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) bool { return v.IsSubSame }).(pulumi.BoolOutput)
+}
+
+// The message delay time of the rocketmq group. The unit is milliseconds.
+func (o GetGroupsRocketmqGroupOutput) MessageDelayTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.MessageDelayTime }).(pulumi.StringOutput)
+}
+
+// The message model of the rocketmq group.
+func (o GetGroupsRocketmqGroupOutput) MessageModel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.MessageModel }).(pulumi.StringOutput)
+}
+
+// The status of the rocketmq group.
+func (o GetGroupsRocketmqGroupOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The total consume rate of the rocketmq group. The unit is per second.
+func (o GetGroupsRocketmqGroupOutput) TotalConsumeRate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) string { return v.TotalConsumeRate }).(pulumi.StringOutput)
+}
+
+// The total amount of unconsumed messages.
+func (o GetGroupsRocketmqGroupOutput) TotalDiff() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroup) int { return v.TotalDiff }).(pulumi.IntOutput)
+}
+
+type GetGroupsRocketmqGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsRocketmqGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsRocketmqGroup)(nil)).Elem()
+}
+
+func (o GetGroupsRocketmqGroupArrayOutput) ToGetGroupsRocketmqGroupArrayOutput() GetGroupsRocketmqGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupArrayOutput) ToGetGroupsRocketmqGroupArrayOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupArrayOutput) Index(i pulumi.IntInput) GetGroupsRocketmqGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsRocketmqGroup {
+		return vs[0].([]GetGroupsRocketmqGroup)[vs[1].(int)]
+	}).(GetGroupsRocketmqGroupOutput)
+}
+
+type GetGroupsRocketmqGroupConsumedClient struct {
+	// The address of the consumed client.
+	ClientAddress string `pulumi:"clientAddress"`
+	// The id of the consumed client.
+	ClientId string `pulumi:"clientId"`
+	// The amount of message.
+	Diff int `pulumi:"diff"`
+	// The language of the consumed client.
+	Language string `pulumi:"language"`
+	// The version of the consumed client.
+	Version string `pulumi:"version"`
+}
+
+// GetGroupsRocketmqGroupConsumedClientInput is an input type that accepts GetGroupsRocketmqGroupConsumedClientArgs and GetGroupsRocketmqGroupConsumedClientOutput values.
+// You can construct a concrete instance of `GetGroupsRocketmqGroupConsumedClientInput` via:
+//
+//	GetGroupsRocketmqGroupConsumedClientArgs{...}
+type GetGroupsRocketmqGroupConsumedClientInput interface {
+	pulumi.Input
+
+	ToGetGroupsRocketmqGroupConsumedClientOutput() GetGroupsRocketmqGroupConsumedClientOutput
+	ToGetGroupsRocketmqGroupConsumedClientOutputWithContext(context.Context) GetGroupsRocketmqGroupConsumedClientOutput
+}
+
+type GetGroupsRocketmqGroupConsumedClientArgs struct {
+	// The address of the consumed client.
+	ClientAddress pulumi.StringInput `pulumi:"clientAddress"`
+	// The id of the consumed client.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The amount of message.
+	Diff pulumi.IntInput `pulumi:"diff"`
+	// The language of the consumed client.
+	Language pulumi.StringInput `pulumi:"language"`
+	// The version of the consumed client.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetGroupsRocketmqGroupConsumedClientArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsRocketmqGroupConsumedClient)(nil)).Elem()
+}
+
+func (i GetGroupsRocketmqGroupConsumedClientArgs) ToGetGroupsRocketmqGroupConsumedClientOutput() GetGroupsRocketmqGroupConsumedClientOutput {
+	return i.ToGetGroupsRocketmqGroupConsumedClientOutputWithContext(context.Background())
+}
+
+func (i GetGroupsRocketmqGroupConsumedClientArgs) ToGetGroupsRocketmqGroupConsumedClientOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedClientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsRocketmqGroupConsumedClientOutput)
+}
+
+// GetGroupsRocketmqGroupConsumedClientArrayInput is an input type that accepts GetGroupsRocketmqGroupConsumedClientArray and GetGroupsRocketmqGroupConsumedClientArrayOutput values.
+// You can construct a concrete instance of `GetGroupsRocketmqGroupConsumedClientArrayInput` via:
+//
+//	GetGroupsRocketmqGroupConsumedClientArray{ GetGroupsRocketmqGroupConsumedClientArgs{...} }
+type GetGroupsRocketmqGroupConsumedClientArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsRocketmqGroupConsumedClientArrayOutput() GetGroupsRocketmqGroupConsumedClientArrayOutput
+	ToGetGroupsRocketmqGroupConsumedClientArrayOutputWithContext(context.Context) GetGroupsRocketmqGroupConsumedClientArrayOutput
+}
+
+type GetGroupsRocketmqGroupConsumedClientArray []GetGroupsRocketmqGroupConsumedClientInput
+
+func (GetGroupsRocketmqGroupConsumedClientArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsRocketmqGroupConsumedClient)(nil)).Elem()
+}
+
+func (i GetGroupsRocketmqGroupConsumedClientArray) ToGetGroupsRocketmqGroupConsumedClientArrayOutput() GetGroupsRocketmqGroupConsumedClientArrayOutput {
+	return i.ToGetGroupsRocketmqGroupConsumedClientArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsRocketmqGroupConsumedClientArray) ToGetGroupsRocketmqGroupConsumedClientArrayOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedClientArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsRocketmqGroupConsumedClientArrayOutput)
+}
+
+type GetGroupsRocketmqGroupConsumedClientOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsRocketmqGroupConsumedClientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsRocketmqGroupConsumedClient)(nil)).Elem()
+}
+
+func (o GetGroupsRocketmqGroupConsumedClientOutput) ToGetGroupsRocketmqGroupConsumedClientOutput() GetGroupsRocketmqGroupConsumedClientOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupConsumedClientOutput) ToGetGroupsRocketmqGroupConsumedClientOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedClientOutput {
+	return o
+}
+
+// The address of the consumed client.
+func (o GetGroupsRocketmqGroupConsumedClientOutput) ClientAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedClient) string { return v.ClientAddress }).(pulumi.StringOutput)
+}
+
+// The id of the consumed client.
+func (o GetGroupsRocketmqGroupConsumedClientOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedClient) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The amount of message.
+func (o GetGroupsRocketmqGroupConsumedClientOutput) Diff() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedClient) int { return v.Diff }).(pulumi.IntOutput)
+}
+
+// The language of the consumed client.
+func (o GetGroupsRocketmqGroupConsumedClientOutput) Language() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedClient) string { return v.Language }).(pulumi.StringOutput)
+}
+
+// The version of the consumed client.
+func (o GetGroupsRocketmqGroupConsumedClientOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedClient) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetGroupsRocketmqGroupConsumedClientArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsRocketmqGroupConsumedClientArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsRocketmqGroupConsumedClient)(nil)).Elem()
+}
+
+func (o GetGroupsRocketmqGroupConsumedClientArrayOutput) ToGetGroupsRocketmqGroupConsumedClientArrayOutput() GetGroupsRocketmqGroupConsumedClientArrayOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupConsumedClientArrayOutput) ToGetGroupsRocketmqGroupConsumedClientArrayOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedClientArrayOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupConsumedClientArrayOutput) Index(i pulumi.IntInput) GetGroupsRocketmqGroupConsumedClientOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsRocketmqGroupConsumedClient {
+		return vs[0].([]GetGroupsRocketmqGroupConsumedClient)[vs[1].(int)]
+	}).(GetGroupsRocketmqGroupConsumedClientOutput)
+}
+
+type GetGroupsRocketmqGroupConsumedTopic struct {
+	// The queue number of the rocketmq topic.
+	QueueNum int `pulumi:"queueNum"`
+	// The sub string of the rocketmq topic.
+	SubString string `pulumi:"subString"`
+	// The name of the rocketmq topic.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetGroupsRocketmqGroupConsumedTopicInput is an input type that accepts GetGroupsRocketmqGroupConsumedTopicArgs and GetGroupsRocketmqGroupConsumedTopicOutput values.
+// You can construct a concrete instance of `GetGroupsRocketmqGroupConsumedTopicInput` via:
+//
+//	GetGroupsRocketmqGroupConsumedTopicArgs{...}
+type GetGroupsRocketmqGroupConsumedTopicInput interface {
+	pulumi.Input
+
+	ToGetGroupsRocketmqGroupConsumedTopicOutput() GetGroupsRocketmqGroupConsumedTopicOutput
+	ToGetGroupsRocketmqGroupConsumedTopicOutputWithContext(context.Context) GetGroupsRocketmqGroupConsumedTopicOutput
+}
+
+type GetGroupsRocketmqGroupConsumedTopicArgs struct {
+	// The queue number of the rocketmq topic.
+	QueueNum pulumi.IntInput `pulumi:"queueNum"`
+	// The sub string of the rocketmq topic.
+	SubString pulumi.StringInput `pulumi:"subString"`
+	// The name of the rocketmq topic.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetGroupsRocketmqGroupConsumedTopicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsRocketmqGroupConsumedTopic)(nil)).Elem()
+}
+
+func (i GetGroupsRocketmqGroupConsumedTopicArgs) ToGetGroupsRocketmqGroupConsumedTopicOutput() GetGroupsRocketmqGroupConsumedTopicOutput {
+	return i.ToGetGroupsRocketmqGroupConsumedTopicOutputWithContext(context.Background())
+}
+
+func (i GetGroupsRocketmqGroupConsumedTopicArgs) ToGetGroupsRocketmqGroupConsumedTopicOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedTopicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsRocketmqGroupConsumedTopicOutput)
+}
+
+// GetGroupsRocketmqGroupConsumedTopicArrayInput is an input type that accepts GetGroupsRocketmqGroupConsumedTopicArray and GetGroupsRocketmqGroupConsumedTopicArrayOutput values.
+// You can construct a concrete instance of `GetGroupsRocketmqGroupConsumedTopicArrayInput` via:
+//
+//	GetGroupsRocketmqGroupConsumedTopicArray{ GetGroupsRocketmqGroupConsumedTopicArgs{...} }
+type GetGroupsRocketmqGroupConsumedTopicArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsRocketmqGroupConsumedTopicArrayOutput() GetGroupsRocketmqGroupConsumedTopicArrayOutput
+	ToGetGroupsRocketmqGroupConsumedTopicArrayOutputWithContext(context.Context) GetGroupsRocketmqGroupConsumedTopicArrayOutput
+}
+
+type GetGroupsRocketmqGroupConsumedTopicArray []GetGroupsRocketmqGroupConsumedTopicInput
+
+func (GetGroupsRocketmqGroupConsumedTopicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsRocketmqGroupConsumedTopic)(nil)).Elem()
+}
+
+func (i GetGroupsRocketmqGroupConsumedTopicArray) ToGetGroupsRocketmqGroupConsumedTopicArrayOutput() GetGroupsRocketmqGroupConsumedTopicArrayOutput {
+	return i.ToGetGroupsRocketmqGroupConsumedTopicArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsRocketmqGroupConsumedTopicArray) ToGetGroupsRocketmqGroupConsumedTopicArrayOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedTopicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsRocketmqGroupConsumedTopicArrayOutput)
+}
+
+type GetGroupsRocketmqGroupConsumedTopicOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsRocketmqGroupConsumedTopicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsRocketmqGroupConsumedTopic)(nil)).Elem()
+}
+
+func (o GetGroupsRocketmqGroupConsumedTopicOutput) ToGetGroupsRocketmqGroupConsumedTopicOutput() GetGroupsRocketmqGroupConsumedTopicOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupConsumedTopicOutput) ToGetGroupsRocketmqGroupConsumedTopicOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedTopicOutput {
+	return o
+}
+
+// The queue number of the rocketmq topic.
+func (o GetGroupsRocketmqGroupConsumedTopicOutput) QueueNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedTopic) int { return v.QueueNum }).(pulumi.IntOutput)
+}
+
+// The sub string of the rocketmq topic.
+func (o GetGroupsRocketmqGroupConsumedTopicOutput) SubString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedTopic) string { return v.SubString }).(pulumi.StringOutput)
+}
+
+// The name of the rocketmq topic.
+func (o GetGroupsRocketmqGroupConsumedTopicOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsRocketmqGroupConsumedTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetGroupsRocketmqGroupConsumedTopicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsRocketmqGroupConsumedTopicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsRocketmqGroupConsumedTopic)(nil)).Elem()
+}
+
+func (o GetGroupsRocketmqGroupConsumedTopicArrayOutput) ToGetGroupsRocketmqGroupConsumedTopicArrayOutput() GetGroupsRocketmqGroupConsumedTopicArrayOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupConsumedTopicArrayOutput) ToGetGroupsRocketmqGroupConsumedTopicArrayOutputWithContext(ctx context.Context) GetGroupsRocketmqGroupConsumedTopicArrayOutput {
+	return o
+}
+
+func (o GetGroupsRocketmqGroupConsumedTopicArrayOutput) Index(i pulumi.IntInput) GetGroupsRocketmqGroupConsumedTopicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsRocketmqGroupConsumedTopic {
+		return vs[0].([]GetGroupsRocketmqGroupConsumedTopic)[vs[1].(int)]
+	}).(GetGroupsRocketmqGroupConsumedTopicOutput)
+}
+
+type GetInstancesRocketmqInstance struct {
+	// The account id of the rocketmq instance.
+	AccountId string `pulumi:"accountId"`
+	// Whether the private dns to public function is enabled for the rocketmq instance.
+	ApplyPrivateDnsToPublic bool `pulumi:"applyPrivateDnsToPublic"`
+	// The available queue number of the rocketmq instance.
+	AvailableQueueNumber int `pulumi:"availableQueueNumber"`
+	// The charge detail information of the rocketmq instance.
+	ChargeDetails []GetInstancesRocketmqInstanceChargeDetail `pulumi:"chargeDetails"`
+	// The compute spec of the rocketmq instance.
+	ComputeSpec string `pulumi:"computeSpec"`
+	// The connection information of the rocketmq.
+	ConnectionInfos []GetInstancesRocketmqInstanceConnectionInfo `pulumi:"connectionInfos"`
+	// The create time of the rocketmq instance.
+	CreateTime string `pulumi:"createTime"`
+	// The eip id of the rocketmq instance.
+	EipId string `pulumi:"eipId"`
+	// Whether the ssl authentication is enabled for the rocketmq instance.
+	EnableSsl bool `pulumi:"enableSsl"`
+	// The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+	FileReservedTime int `pulumi:"fileReservedTime"`
+	// The id of the rocketmq instance.
+	Id string `pulumi:"id"`
+	// The description of the rocketmq instance.
+	InstanceDescription string `pulumi:"instanceDescription"`
+	// The id of rocketmq instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of rocketmq instance. This field support fuzzy query.
+	InstanceName string `pulumi:"instanceName"`
+	// The status of rocketmq instance.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// The project name of rocketmq instance.
+	ProjectName string `pulumi:"projectName"`
+	// The region id of the rocketmq instance.
+	RegionId string `pulumi:"regionId"`
+	// The ssl mode of the rocketmq instance.
+	SslMode string `pulumi:"sslMode"`
+	// The total storage space of the rocketmq instance.
+	StorageSpace int `pulumi:"storageSpace"`
+	// The subnet id of the rocketmq instance.
+	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GetInstancesRocketmqInstanceTag `pulumi:"tags"`
+	// The used group number of the rocketmq instance.
+	UsedGroupNumber int `pulumi:"usedGroupNumber"`
+	// The used queue number of the rocketmq instance.
+	UsedQueueNumber int `pulumi:"usedQueueNumber"`
+	// The used storage space of the rocketmq instance.
+	UsedStorageSpace int `pulumi:"usedStorageSpace"`
+	// The used topic number of the rocketmq instance.
+	UsedTopicNumber int `pulumi:"usedTopicNumber"`
+	// The version of rocketmq instance. Valid values: `4.8`.
+	Version string `pulumi:"version"`
+	// The vpc id of rocketmq instance.
+	VpcId string `pulumi:"vpcId"`
+	// The zone id of rocketmq instance.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesRocketmqInstanceInput is an input type that accepts GetInstancesRocketmqInstanceArgs and GetInstancesRocketmqInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceInput` via:
+//
+//	GetInstancesRocketmqInstanceArgs{...}
+type GetInstancesRocketmqInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceOutput() GetInstancesRocketmqInstanceOutput
+	ToGetInstancesRocketmqInstanceOutputWithContext(context.Context) GetInstancesRocketmqInstanceOutput
+}
+
+type GetInstancesRocketmqInstanceArgs struct {
+	// The account id of the rocketmq instance.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// Whether the private dns to public function is enabled for the rocketmq instance.
+	ApplyPrivateDnsToPublic pulumi.BoolInput `pulumi:"applyPrivateDnsToPublic"`
+	// The available queue number of the rocketmq instance.
+	AvailableQueueNumber pulumi.IntInput `pulumi:"availableQueueNumber"`
+	// The charge detail information of the rocketmq instance.
+	ChargeDetails GetInstancesRocketmqInstanceChargeDetailArrayInput `pulumi:"chargeDetails"`
+	// The compute spec of the rocketmq instance.
+	ComputeSpec pulumi.StringInput `pulumi:"computeSpec"`
+	// The connection information of the rocketmq.
+	ConnectionInfos GetInstancesRocketmqInstanceConnectionInfoArrayInput `pulumi:"connectionInfos"`
+	// The create time of the rocketmq instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The eip id of the rocketmq instance.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// Whether the ssl authentication is enabled for the rocketmq instance.
+	EnableSsl pulumi.BoolInput `pulumi:"enableSsl"`
+	// The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+	FileReservedTime pulumi.IntInput `pulumi:"fileReservedTime"`
+	// The id of the rocketmq instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The description of the rocketmq instance.
+	InstanceDescription pulumi.StringInput `pulumi:"instanceDescription"`
+	// The id of rocketmq instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of rocketmq instance. This field support fuzzy query.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The status of rocketmq instance.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The project name of rocketmq instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region id of the rocketmq instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The ssl mode of the rocketmq instance.
+	SslMode pulumi.StringInput `pulumi:"sslMode"`
+	// The total storage space of the rocketmq instance.
+	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
+	// The subnet id of the rocketmq instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags GetInstancesRocketmqInstanceTagArrayInput `pulumi:"tags"`
+	// The used group number of the rocketmq instance.
+	UsedGroupNumber pulumi.IntInput `pulumi:"usedGroupNumber"`
+	// The used queue number of the rocketmq instance.
+	UsedQueueNumber pulumi.IntInput `pulumi:"usedQueueNumber"`
+	// The used storage space of the rocketmq instance.
+	UsedStorageSpace pulumi.IntInput `pulumi:"usedStorageSpace"`
+	// The used topic number of the rocketmq instance.
+	UsedTopicNumber pulumi.IntInput `pulumi:"usedTopicNumber"`
+	// The version of rocketmq instance. Valid values: `4.8`.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The vpc id of rocketmq instance.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The zone id of rocketmq instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesRocketmqInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceArgs) ToGetInstancesRocketmqInstanceOutput() GetInstancesRocketmqInstanceOutput {
+	return i.ToGetInstancesRocketmqInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceArgs) ToGetInstancesRocketmqInstanceOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceOutput)
+}
+
+// GetInstancesRocketmqInstanceArrayInput is an input type that accepts GetInstancesRocketmqInstanceArray and GetInstancesRocketmqInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceArrayInput` via:
+//
+//	GetInstancesRocketmqInstanceArray{ GetInstancesRocketmqInstanceArgs{...} }
+type GetInstancesRocketmqInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceArrayOutput() GetInstancesRocketmqInstanceArrayOutput
+	ToGetInstancesRocketmqInstanceArrayOutputWithContext(context.Context) GetInstancesRocketmqInstanceArrayOutput
+}
+
+type GetInstancesRocketmqInstanceArray []GetInstancesRocketmqInstanceInput
+
+func (GetInstancesRocketmqInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceArray) ToGetInstancesRocketmqInstanceArrayOutput() GetInstancesRocketmqInstanceArrayOutput {
+	return i.ToGetInstancesRocketmqInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceArray) ToGetInstancesRocketmqInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceArrayOutput)
+}
+
+type GetInstancesRocketmqInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceOutput) ToGetInstancesRocketmqInstanceOutput() GetInstancesRocketmqInstanceOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceOutput) ToGetInstancesRocketmqInstanceOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceOutput {
+	return o
+}
+
+// The account id of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Whether the private dns to public function is enabled for the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) ApplyPrivateDnsToPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) bool { return v.ApplyPrivateDnsToPublic }).(pulumi.BoolOutput)
+}
+
+// The available queue number of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) AvailableQueueNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.AvailableQueueNumber }).(pulumi.IntOutput)
+}
+
+// The charge detail information of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) ChargeDetails() GetInstancesRocketmqInstanceChargeDetailArrayOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) []GetInstancesRocketmqInstanceChargeDetail {
+		return v.ChargeDetails
+	}).(GetInstancesRocketmqInstanceChargeDetailArrayOutput)
+}
+
+// The compute spec of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) ComputeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.ComputeSpec }).(pulumi.StringOutput)
+}
+
+// The connection information of the rocketmq.
+func (o GetInstancesRocketmqInstanceOutput) ConnectionInfos() GetInstancesRocketmqInstanceConnectionInfoArrayOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) []GetInstancesRocketmqInstanceConnectionInfo {
+		return v.ConnectionInfos
+	}).(GetInstancesRocketmqInstanceConnectionInfoArrayOutput)
+}
+
+// The create time of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The eip id of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// Whether the ssl authentication is enabled for the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) EnableSsl() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) bool { return v.EnableSsl }).(pulumi.BoolOutput)
+}
+
+// The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+func (o GetInstancesRocketmqInstanceOutput) FileReservedTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.FileReservedTime }).(pulumi.IntOutput)
+}
+
+// The id of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The description of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) InstanceDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.InstanceDescription }).(pulumi.StringOutput)
+}
+
+// The id of rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of rocketmq instance. This field support fuzzy query.
+func (o GetInstancesRocketmqInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The status of rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// The project name of rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region id of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The ssl mode of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) SslMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.SslMode }).(pulumi.StringOutput)
+}
+
+// The total storage space of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) StorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
+}
+
+// The subnet id of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetInstancesRocketmqInstanceOutput) Tags() GetInstancesRocketmqInstanceTagArrayOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) []GetInstancesRocketmqInstanceTag { return v.Tags }).(GetInstancesRocketmqInstanceTagArrayOutput)
+}
+
+// The used group number of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) UsedGroupNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.UsedGroupNumber }).(pulumi.IntOutput)
+}
+
+// The used queue number of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) UsedQueueNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.UsedQueueNumber }).(pulumi.IntOutput)
+}
+
+// The used storage space of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) UsedStorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.UsedStorageSpace }).(pulumi.IntOutput)
+}
+
+// The used topic number of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) UsedTopicNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) int { return v.UsedTopicNumber }).(pulumi.IntOutput)
+}
+
+// The version of rocketmq instance. Valid values: `4.8`.
+func (o GetInstancesRocketmqInstanceOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The vpc id of rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone id of rocketmq instance.
+func (o GetInstancesRocketmqInstanceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstance) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesRocketmqInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceArrayOutput) ToGetInstancesRocketmqInstanceArrayOutput() GetInstancesRocketmqInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceArrayOutput) ToGetInstancesRocketmqInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesRocketmqInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRocketmqInstance {
+		return vs[0].([]GetInstancesRocketmqInstance)[vs[1].(int)]
+	}).(GetInstancesRocketmqInstanceOutput)
+}
+
+type GetInstancesRocketmqInstanceChargeDetail struct {
+	// Whether to enable automatic renewal.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The charge expire time of the rocketmq instance.
+	ChargeExpireTime string `pulumi:"chargeExpireTime"`
+	// The charge start time of the rocketmq instance.
+	ChargeStartTime string `pulumi:"chargeStartTime"`
+	// The charge status of the rocketmq instance.
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+	ChargeType string `pulumi:"chargeType"`
+	// The overdue reclaim time of the rocketmq instance.
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
+	// The overdue time of the rocketmq instance.
+	OverdueTime string `pulumi:"overdueTime"`
+	// The period unit of the rocketmq instance.
+	PeriodUnit string `pulumi:"periodUnit"`
+}
+
+// GetInstancesRocketmqInstanceChargeDetailInput is an input type that accepts GetInstancesRocketmqInstanceChargeDetailArgs and GetInstancesRocketmqInstanceChargeDetailOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceChargeDetailInput` via:
+//
+//	GetInstancesRocketmqInstanceChargeDetailArgs{...}
+type GetInstancesRocketmqInstanceChargeDetailInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceChargeDetailOutput() GetInstancesRocketmqInstanceChargeDetailOutput
+	ToGetInstancesRocketmqInstanceChargeDetailOutputWithContext(context.Context) GetInstancesRocketmqInstanceChargeDetailOutput
+}
+
+type GetInstancesRocketmqInstanceChargeDetailArgs struct {
+	// Whether to enable automatic renewal.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The charge expire time of the rocketmq instance.
+	ChargeExpireTime pulumi.StringInput `pulumi:"chargeExpireTime"`
+	// The charge start time of the rocketmq instance.
+	ChargeStartTime pulumi.StringInput `pulumi:"chargeStartTime"`
+	// The charge status of the rocketmq instance.
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The overdue reclaim time of the rocketmq instance.
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
+	// The overdue time of the rocketmq instance.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The period unit of the rocketmq instance.
+	PeriodUnit pulumi.StringInput `pulumi:"periodUnit"`
+}
+
+func (GetInstancesRocketmqInstanceChargeDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceChargeDetailArgs) ToGetInstancesRocketmqInstanceChargeDetailOutput() GetInstancesRocketmqInstanceChargeDetailOutput {
+	return i.ToGetInstancesRocketmqInstanceChargeDetailOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceChargeDetailArgs) ToGetInstancesRocketmqInstanceChargeDetailOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceChargeDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceChargeDetailOutput)
+}
+
+// GetInstancesRocketmqInstanceChargeDetailArrayInput is an input type that accepts GetInstancesRocketmqInstanceChargeDetailArray and GetInstancesRocketmqInstanceChargeDetailArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceChargeDetailArrayInput` via:
+//
+//	GetInstancesRocketmqInstanceChargeDetailArray{ GetInstancesRocketmqInstanceChargeDetailArgs{...} }
+type GetInstancesRocketmqInstanceChargeDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceChargeDetailArrayOutput() GetInstancesRocketmqInstanceChargeDetailArrayOutput
+	ToGetInstancesRocketmqInstanceChargeDetailArrayOutputWithContext(context.Context) GetInstancesRocketmqInstanceChargeDetailArrayOutput
+}
+
+type GetInstancesRocketmqInstanceChargeDetailArray []GetInstancesRocketmqInstanceChargeDetailInput
+
+func (GetInstancesRocketmqInstanceChargeDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceChargeDetailArray) ToGetInstancesRocketmqInstanceChargeDetailArrayOutput() GetInstancesRocketmqInstanceChargeDetailArrayOutput {
+	return i.ToGetInstancesRocketmqInstanceChargeDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceChargeDetailArray) ToGetInstancesRocketmqInstanceChargeDetailArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceChargeDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceChargeDetailArrayOutput)
+}
+
+type GetInstancesRocketmqInstanceChargeDetailOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceChargeDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) ToGetInstancesRocketmqInstanceChargeDetailOutput() GetInstancesRocketmqInstanceChargeDetailOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) ToGetInstancesRocketmqInstanceChargeDetailOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceChargeDetailOutput {
+	return o
+}
+
+// Whether to enable automatic renewal.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The charge expire time of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) ChargeExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.ChargeExpireTime }).(pulumi.StringOutput)
+}
+
+// The charge start time of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) ChargeStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.ChargeStartTime }).(pulumi.StringOutput)
+}
+
+// The charge status of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The overdue reclaim time of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
+// The overdue time of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// The period unit of the rocketmq instance.
+func (o GetInstancesRocketmqInstanceChargeDetailOutput) PeriodUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceChargeDetail) string { return v.PeriodUnit }).(pulumi.StringOutput)
+}
+
+type GetInstancesRocketmqInstanceChargeDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceChargeDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceChargeDetailArrayOutput) ToGetInstancesRocketmqInstanceChargeDetailArrayOutput() GetInstancesRocketmqInstanceChargeDetailArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceChargeDetailArrayOutput) ToGetInstancesRocketmqInstanceChargeDetailArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceChargeDetailArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceChargeDetailArrayOutput) Index(i pulumi.IntInput) GetInstancesRocketmqInstanceChargeDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRocketmqInstanceChargeDetail {
+		return vs[0].([]GetInstancesRocketmqInstanceChargeDetail)[vs[1].(int)]
+	}).(GetInstancesRocketmqInstanceChargeDetailOutput)
+}
+
+type GetInstancesRocketmqInstanceConnectionInfo struct {
+	// The endpoint address ip of the rocketmq.
+	EndpointAddressIp string `pulumi:"endpointAddressIp"`
+	// The endpoint type of the rocketmq.
+	EndpointType string `pulumi:"endpointType"`
+	// The internal endpoint of the rocketmq.
+	InternalEndpoint string `pulumi:"internalEndpoint"`
+	// The network type of the rocketmq.
+	NetworkType string `pulumi:"networkType"`
+	// The public endpoint of the rocketmq.
+	PublicEndpoint string `pulumi:"publicEndpoint"`
+}
+
+// GetInstancesRocketmqInstanceConnectionInfoInput is an input type that accepts GetInstancesRocketmqInstanceConnectionInfoArgs and GetInstancesRocketmqInstanceConnectionInfoOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceConnectionInfoInput` via:
+//
+//	GetInstancesRocketmqInstanceConnectionInfoArgs{...}
+type GetInstancesRocketmqInstanceConnectionInfoInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceConnectionInfoOutput() GetInstancesRocketmqInstanceConnectionInfoOutput
+	ToGetInstancesRocketmqInstanceConnectionInfoOutputWithContext(context.Context) GetInstancesRocketmqInstanceConnectionInfoOutput
+}
+
+type GetInstancesRocketmqInstanceConnectionInfoArgs struct {
+	// The endpoint address ip of the rocketmq.
+	EndpointAddressIp pulumi.StringInput `pulumi:"endpointAddressIp"`
+	// The endpoint type of the rocketmq.
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The internal endpoint of the rocketmq.
+	InternalEndpoint pulumi.StringInput `pulumi:"internalEndpoint"`
+	// The network type of the rocketmq.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// The public endpoint of the rocketmq.
+	PublicEndpoint pulumi.StringInput `pulumi:"publicEndpoint"`
+}
+
+func (GetInstancesRocketmqInstanceConnectionInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceConnectionInfoArgs) ToGetInstancesRocketmqInstanceConnectionInfoOutput() GetInstancesRocketmqInstanceConnectionInfoOutput {
+	return i.ToGetInstancesRocketmqInstanceConnectionInfoOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceConnectionInfoArgs) ToGetInstancesRocketmqInstanceConnectionInfoOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceConnectionInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceConnectionInfoOutput)
+}
+
+// GetInstancesRocketmqInstanceConnectionInfoArrayInput is an input type that accepts GetInstancesRocketmqInstanceConnectionInfoArray and GetInstancesRocketmqInstanceConnectionInfoArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceConnectionInfoArrayInput` via:
+//
+//	GetInstancesRocketmqInstanceConnectionInfoArray{ GetInstancesRocketmqInstanceConnectionInfoArgs{...} }
+type GetInstancesRocketmqInstanceConnectionInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceConnectionInfoArrayOutput() GetInstancesRocketmqInstanceConnectionInfoArrayOutput
+	ToGetInstancesRocketmqInstanceConnectionInfoArrayOutputWithContext(context.Context) GetInstancesRocketmqInstanceConnectionInfoArrayOutput
+}
+
+type GetInstancesRocketmqInstanceConnectionInfoArray []GetInstancesRocketmqInstanceConnectionInfoInput
+
+func (GetInstancesRocketmqInstanceConnectionInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceConnectionInfoArray) ToGetInstancesRocketmqInstanceConnectionInfoArrayOutput() GetInstancesRocketmqInstanceConnectionInfoArrayOutput {
+	return i.ToGetInstancesRocketmqInstanceConnectionInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceConnectionInfoArray) ToGetInstancesRocketmqInstanceConnectionInfoArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceConnectionInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceConnectionInfoArrayOutput)
+}
+
+type GetInstancesRocketmqInstanceConnectionInfoOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceConnectionInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) ToGetInstancesRocketmqInstanceConnectionInfoOutput() GetInstancesRocketmqInstanceConnectionInfoOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) ToGetInstancesRocketmqInstanceConnectionInfoOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceConnectionInfoOutput {
+	return o
+}
+
+// The endpoint address ip of the rocketmq.
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) EndpointAddressIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceConnectionInfo) string { return v.EndpointAddressIp }).(pulumi.StringOutput)
+}
+
+// The endpoint type of the rocketmq.
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceConnectionInfo) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The internal endpoint of the rocketmq.
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) InternalEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceConnectionInfo) string { return v.InternalEndpoint }).(pulumi.StringOutput)
+}
+
+// The network type of the rocketmq.
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceConnectionInfo) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// The public endpoint of the rocketmq.
+func (o GetInstancesRocketmqInstanceConnectionInfoOutput) PublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceConnectionInfo) string { return v.PublicEndpoint }).(pulumi.StringOutput)
+}
+
+type GetInstancesRocketmqInstanceConnectionInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceConnectionInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceConnectionInfoArrayOutput) ToGetInstancesRocketmqInstanceConnectionInfoArrayOutput() GetInstancesRocketmqInstanceConnectionInfoArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceConnectionInfoArrayOutput) ToGetInstancesRocketmqInstanceConnectionInfoArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceConnectionInfoArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceConnectionInfoArrayOutput) Index(i pulumi.IntInput) GetInstancesRocketmqInstanceConnectionInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRocketmqInstanceConnectionInfo {
+		return vs[0].([]GetInstancesRocketmqInstanceConnectionInfo)[vs[1].(int)]
+	}).(GetInstancesRocketmqInstanceConnectionInfoOutput)
+}
+
+type GetInstancesRocketmqInstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesRocketmqInstanceTagInput is an input type that accepts GetInstancesRocketmqInstanceTagArgs and GetInstancesRocketmqInstanceTagOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceTagInput` via:
+//
+//	GetInstancesRocketmqInstanceTagArgs{...}
+type GetInstancesRocketmqInstanceTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceTagOutput() GetInstancesRocketmqInstanceTagOutput
+	ToGetInstancesRocketmqInstanceTagOutputWithContext(context.Context) GetInstancesRocketmqInstanceTagOutput
+}
+
+type GetInstancesRocketmqInstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesRocketmqInstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceTagArgs) ToGetInstancesRocketmqInstanceTagOutput() GetInstancesRocketmqInstanceTagOutput {
+	return i.ToGetInstancesRocketmqInstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceTagArgs) ToGetInstancesRocketmqInstanceTagOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceTagOutput)
+}
+
+// GetInstancesRocketmqInstanceTagArrayInput is an input type that accepts GetInstancesRocketmqInstanceTagArray and GetInstancesRocketmqInstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRocketmqInstanceTagArrayInput` via:
+//
+//	GetInstancesRocketmqInstanceTagArray{ GetInstancesRocketmqInstanceTagArgs{...} }
+type GetInstancesRocketmqInstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRocketmqInstanceTagArrayOutput() GetInstancesRocketmqInstanceTagArrayOutput
+	ToGetInstancesRocketmqInstanceTagArrayOutputWithContext(context.Context) GetInstancesRocketmqInstanceTagArrayOutput
+}
+
+type GetInstancesRocketmqInstanceTagArray []GetInstancesRocketmqInstanceTagInput
+
+func (GetInstancesRocketmqInstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesRocketmqInstanceTagArray) ToGetInstancesRocketmqInstanceTagArrayOutput() GetInstancesRocketmqInstanceTagArrayOutput {
+	return i.ToGetInstancesRocketmqInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRocketmqInstanceTagArray) ToGetInstancesRocketmqInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRocketmqInstanceTagArrayOutput)
+}
+
+type GetInstancesRocketmqInstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRocketmqInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceTagOutput) ToGetInstancesRocketmqInstanceTagOutput() GetInstancesRocketmqInstanceTagOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceTagOutput) ToGetInstancesRocketmqInstanceTagOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesRocketmqInstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesRocketmqInstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRocketmqInstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesRocketmqInstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRocketmqInstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRocketmqInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesRocketmqInstanceTagArrayOutput) ToGetInstancesRocketmqInstanceTagArrayOutput() GetInstancesRocketmqInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceTagArrayOutput) ToGetInstancesRocketmqInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesRocketmqInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesRocketmqInstanceTagArrayOutput) Index(i pulumi.IntInput) GetInstancesRocketmqInstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRocketmqInstanceTag {
+		return vs[0].([]GetInstancesRocketmqInstanceTag)[vs[1].(int)]
+	}).(GetInstancesRocketmqInstanceTagOutput)
+}
+
+type GetInstancesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesTagInput is an input type that accepts GetInstancesTagArgs and GetInstancesTagOutput values.
+// You can construct a concrete instance of `GetInstancesTagInput` via:
+//
+//	GetInstancesTagArgs{...}
+type GetInstancesTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagOutput() GetInstancesTagOutput
+	ToGetInstancesTagOutputWithContext(context.Context) GetInstancesTagOutput
+}
+
+type GetInstancesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return i.ToGetInstancesTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagOutput)
+}
+
+// GetInstancesTagArrayInput is an input type that accepts GetInstancesTagArray and GetInstancesTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesTagArrayInput` via:
+//
+//	GetInstancesTagArray{ GetInstancesTagArgs{...} }
+type GetInstancesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput
+	ToGetInstancesTagArrayOutputWithContext(context.Context) GetInstancesTagArrayOutput
+}
+
+type GetInstancesTagArray []GetInstancesTagInput
+
+func (GetInstancesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return i.ToGetInstancesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagArrayOutput)
+}
+
+type GetInstancesTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return o
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) Index(i pulumi.IntInput) GetInstancesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesTag {
+		return vs[0].([]GetInstancesTag)[vs[1].(int)]
+	}).(GetInstancesTagOutput)
+}
+
+type GetTopicsRocketmqTopic struct {
+	// The access policies of the rocketmq topic.
+	AccessPolicies []GetTopicsRocketmqTopicAccessPolicy `pulumi:"accessPolicies"`
+	// The create time of the rocketmq topic.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the rocketmq topic.
+	Description string `pulumi:"description"`
+	// The groups information of the rocketmq topic.
+	Groups []GetTopicsRocketmqTopicGroup `pulumi:"groups"`
+	// The id of rocketmq instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+	// 0: Regular message
+	// 1: Transaction message
+	// 2: Partition order message
+	// 3: Global sequential message
+	// 4: Delay message.
+	MessageType int `pulumi:"messageType"`
+	// The number of the rocketmq topic queue.
+	QueueNumber int `pulumi:"queueNumber"`
+	// The queues information of the rocketmq topic.
+	Queues []GetTopicsRocketmqTopicQueue `pulumi:"queues"`
+	// The name of the rocketmq topic. This field support fuzzy query.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetTopicsRocketmqTopicInput is an input type that accepts GetTopicsRocketmqTopicArgs and GetTopicsRocketmqTopicOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicInput` via:
+//
+//	GetTopicsRocketmqTopicArgs{...}
+type GetTopicsRocketmqTopicInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicOutput() GetTopicsRocketmqTopicOutput
+	ToGetTopicsRocketmqTopicOutputWithContext(context.Context) GetTopicsRocketmqTopicOutput
+}
+
+type GetTopicsRocketmqTopicArgs struct {
+	// The access policies of the rocketmq topic.
+	AccessPolicies GetTopicsRocketmqTopicAccessPolicyArrayInput `pulumi:"accessPolicies"`
+	// The create time of the rocketmq topic.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the rocketmq topic.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The groups information of the rocketmq topic.
+	Groups GetTopicsRocketmqTopicGroupArrayInput `pulumi:"groups"`
+	// The id of rocketmq instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+	// 0: Regular message
+	// 1: Transaction message
+	// 2: Partition order message
+	// 3: Global sequential message
+	// 4: Delay message.
+	MessageType pulumi.IntInput `pulumi:"messageType"`
+	// The number of the rocketmq topic queue.
+	QueueNumber pulumi.IntInput `pulumi:"queueNumber"`
+	// The queues information of the rocketmq topic.
+	Queues GetTopicsRocketmqTopicQueueArrayInput `pulumi:"queues"`
+	// The name of the rocketmq topic. This field support fuzzy query.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetTopicsRocketmqTopicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopic)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicArgs) ToGetTopicsRocketmqTopicOutput() GetTopicsRocketmqTopicOutput {
+	return i.ToGetTopicsRocketmqTopicOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicArgs) ToGetTopicsRocketmqTopicOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicOutput)
+}
+
+// GetTopicsRocketmqTopicArrayInput is an input type that accepts GetTopicsRocketmqTopicArray and GetTopicsRocketmqTopicArrayOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicArrayInput` via:
+//
+//	GetTopicsRocketmqTopicArray{ GetTopicsRocketmqTopicArgs{...} }
+type GetTopicsRocketmqTopicArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicArrayOutput() GetTopicsRocketmqTopicArrayOutput
+	ToGetTopicsRocketmqTopicArrayOutputWithContext(context.Context) GetTopicsRocketmqTopicArrayOutput
+}
+
+type GetTopicsRocketmqTopicArray []GetTopicsRocketmqTopicInput
+
+func (GetTopicsRocketmqTopicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopic)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicArray) ToGetTopicsRocketmqTopicArrayOutput() GetTopicsRocketmqTopicArrayOutput {
+	return i.ToGetTopicsRocketmqTopicArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicArray) ToGetTopicsRocketmqTopicArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicArrayOutput)
+}
+
+type GetTopicsRocketmqTopicOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopic)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicOutput) ToGetTopicsRocketmqTopicOutput() GetTopicsRocketmqTopicOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicOutput) ToGetTopicsRocketmqTopicOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicOutput {
+	return o
+}
+
+// The access policies of the rocketmq topic.
+func (o GetTopicsRocketmqTopicOutput) AccessPolicies() GetTopicsRocketmqTopicAccessPolicyArrayOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) []GetTopicsRocketmqTopicAccessPolicy { return v.AccessPolicies }).(GetTopicsRocketmqTopicAccessPolicyArrayOutput)
+}
+
+// The create time of the rocketmq topic.
+func (o GetTopicsRocketmqTopicOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the rocketmq topic.
+func (o GetTopicsRocketmqTopicOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The groups information of the rocketmq topic.
+func (o GetTopicsRocketmqTopicOutput) Groups() GetTopicsRocketmqTopicGroupArrayOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) []GetTopicsRocketmqTopicGroup { return v.Groups }).(GetTopicsRocketmqTopicGroupArrayOutput)
+}
+
+// The id of rocketmq instance.
+func (o GetTopicsRocketmqTopicOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+// 0: Regular message
+// 1: Transaction message
+// 2: Partition order message
+// 3: Global sequential message
+// 4: Delay message.
+func (o GetTopicsRocketmqTopicOutput) MessageType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) int { return v.MessageType }).(pulumi.IntOutput)
+}
+
+// The number of the rocketmq topic queue.
+func (o GetTopicsRocketmqTopicOutput) QueueNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) int { return v.QueueNumber }).(pulumi.IntOutput)
+}
+
+// The queues information of the rocketmq topic.
+func (o GetTopicsRocketmqTopicOutput) Queues() GetTopicsRocketmqTopicQueueArrayOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) []GetTopicsRocketmqTopicQueue { return v.Queues }).(GetTopicsRocketmqTopicQueueArrayOutput)
+}
+
+// The name of the rocketmq topic. This field support fuzzy query.
+func (o GetTopicsRocketmqTopicOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetTopicsRocketmqTopicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopic)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicArrayOutput) ToGetTopicsRocketmqTopicArrayOutput() GetTopicsRocketmqTopicArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicArrayOutput) ToGetTopicsRocketmqTopicArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicArrayOutput) Index(i pulumi.IntInput) GetTopicsRocketmqTopicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsRocketmqTopic {
+		return vs[0].([]GetTopicsRocketmqTopic)[vs[1].(int)]
+	}).(GetTopicsRocketmqTopicOutput)
+}
+
+type GetTopicsRocketmqTopicAccessPolicy struct {
+	// The access key of the rocketmq key.
+	AccessKey string `pulumi:"accessKey"`
+	// The authority of the rocketmq key for the current topic.
+	Authority string `pulumi:"authority"`
+}
+
+// GetTopicsRocketmqTopicAccessPolicyInput is an input type that accepts GetTopicsRocketmqTopicAccessPolicyArgs and GetTopicsRocketmqTopicAccessPolicyOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicAccessPolicyInput` via:
+//
+//	GetTopicsRocketmqTopicAccessPolicyArgs{...}
+type GetTopicsRocketmqTopicAccessPolicyInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicAccessPolicyOutput() GetTopicsRocketmqTopicAccessPolicyOutput
+	ToGetTopicsRocketmqTopicAccessPolicyOutputWithContext(context.Context) GetTopicsRocketmqTopicAccessPolicyOutput
+}
+
+type GetTopicsRocketmqTopicAccessPolicyArgs struct {
+	// The access key of the rocketmq key.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// The authority of the rocketmq key for the current topic.
+	Authority pulumi.StringInput `pulumi:"authority"`
+}
+
+func (GetTopicsRocketmqTopicAccessPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopicAccessPolicy)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicAccessPolicyArgs) ToGetTopicsRocketmqTopicAccessPolicyOutput() GetTopicsRocketmqTopicAccessPolicyOutput {
+	return i.ToGetTopicsRocketmqTopicAccessPolicyOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicAccessPolicyArgs) ToGetTopicsRocketmqTopicAccessPolicyOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicAccessPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicAccessPolicyOutput)
+}
+
+// GetTopicsRocketmqTopicAccessPolicyArrayInput is an input type that accepts GetTopicsRocketmqTopicAccessPolicyArray and GetTopicsRocketmqTopicAccessPolicyArrayOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicAccessPolicyArrayInput` via:
+//
+//	GetTopicsRocketmqTopicAccessPolicyArray{ GetTopicsRocketmqTopicAccessPolicyArgs{...} }
+type GetTopicsRocketmqTopicAccessPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicAccessPolicyArrayOutput() GetTopicsRocketmqTopicAccessPolicyArrayOutput
+	ToGetTopicsRocketmqTopicAccessPolicyArrayOutputWithContext(context.Context) GetTopicsRocketmqTopicAccessPolicyArrayOutput
+}
+
+type GetTopicsRocketmqTopicAccessPolicyArray []GetTopicsRocketmqTopicAccessPolicyInput
+
+func (GetTopicsRocketmqTopicAccessPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopicAccessPolicy)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicAccessPolicyArray) ToGetTopicsRocketmqTopicAccessPolicyArrayOutput() GetTopicsRocketmqTopicAccessPolicyArrayOutput {
+	return i.ToGetTopicsRocketmqTopicAccessPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicAccessPolicyArray) ToGetTopicsRocketmqTopicAccessPolicyArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicAccessPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicAccessPolicyArrayOutput)
+}
+
+type GetTopicsRocketmqTopicAccessPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicAccessPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopicAccessPolicy)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicAccessPolicyOutput) ToGetTopicsRocketmqTopicAccessPolicyOutput() GetTopicsRocketmqTopicAccessPolicyOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicAccessPolicyOutput) ToGetTopicsRocketmqTopicAccessPolicyOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicAccessPolicyOutput {
+	return o
+}
+
+// The access key of the rocketmq key.
+func (o GetTopicsRocketmqTopicAccessPolicyOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicAccessPolicy) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// The authority of the rocketmq key for the current topic.
+func (o GetTopicsRocketmqTopicAccessPolicyOutput) Authority() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicAccessPolicy) string { return v.Authority }).(pulumi.StringOutput)
+}
+
+type GetTopicsRocketmqTopicAccessPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicAccessPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopicAccessPolicy)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicAccessPolicyArrayOutput) ToGetTopicsRocketmqTopicAccessPolicyArrayOutput() GetTopicsRocketmqTopicAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicAccessPolicyArrayOutput) ToGetTopicsRocketmqTopicAccessPolicyArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicAccessPolicyArrayOutput) Index(i pulumi.IntInput) GetTopicsRocketmqTopicAccessPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsRocketmqTopicAccessPolicy {
+		return vs[0].([]GetTopicsRocketmqTopicAccessPolicy)[vs[1].(int)]
+	}).(GetTopicsRocketmqTopicAccessPolicyOutput)
+}
+
+type GetTopicsRocketmqTopicGroup struct {
+	// The id of the rocketmq group.
+	GroupId string `pulumi:"groupId"`
+	// The message model of the rocketmq group.
+	MessageModel string `pulumi:"messageModel"`
+	// The sub string of the rocketmq group.
+	SubString string `pulumi:"subString"`
+}
+
+// GetTopicsRocketmqTopicGroupInput is an input type that accepts GetTopicsRocketmqTopicGroupArgs and GetTopicsRocketmqTopicGroupOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicGroupInput` via:
+//
+//	GetTopicsRocketmqTopicGroupArgs{...}
+type GetTopicsRocketmqTopicGroupInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicGroupOutput() GetTopicsRocketmqTopicGroupOutput
+	ToGetTopicsRocketmqTopicGroupOutputWithContext(context.Context) GetTopicsRocketmqTopicGroupOutput
+}
+
+type GetTopicsRocketmqTopicGroupArgs struct {
+	// The id of the rocketmq group.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// The message model of the rocketmq group.
+	MessageModel pulumi.StringInput `pulumi:"messageModel"`
+	// The sub string of the rocketmq group.
+	SubString pulumi.StringInput `pulumi:"subString"`
+}
+
+func (GetTopicsRocketmqTopicGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopicGroup)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicGroupArgs) ToGetTopicsRocketmqTopicGroupOutput() GetTopicsRocketmqTopicGroupOutput {
+	return i.ToGetTopicsRocketmqTopicGroupOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicGroupArgs) ToGetTopicsRocketmqTopicGroupOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicGroupOutput)
+}
+
+// GetTopicsRocketmqTopicGroupArrayInput is an input type that accepts GetTopicsRocketmqTopicGroupArray and GetTopicsRocketmqTopicGroupArrayOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicGroupArrayInput` via:
+//
+//	GetTopicsRocketmqTopicGroupArray{ GetTopicsRocketmqTopicGroupArgs{...} }
+type GetTopicsRocketmqTopicGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicGroupArrayOutput() GetTopicsRocketmqTopicGroupArrayOutput
+	ToGetTopicsRocketmqTopicGroupArrayOutputWithContext(context.Context) GetTopicsRocketmqTopicGroupArrayOutput
+}
+
+type GetTopicsRocketmqTopicGroupArray []GetTopicsRocketmqTopicGroupInput
+
+func (GetTopicsRocketmqTopicGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopicGroup)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicGroupArray) ToGetTopicsRocketmqTopicGroupArrayOutput() GetTopicsRocketmqTopicGroupArrayOutput {
+	return i.ToGetTopicsRocketmqTopicGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicGroupArray) ToGetTopicsRocketmqTopicGroupArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicGroupArrayOutput)
+}
+
+type GetTopicsRocketmqTopicGroupOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopicGroup)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicGroupOutput) ToGetTopicsRocketmqTopicGroupOutput() GetTopicsRocketmqTopicGroupOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicGroupOutput) ToGetTopicsRocketmqTopicGroupOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicGroupOutput {
+	return o
+}
+
+// The id of the rocketmq group.
+func (o GetTopicsRocketmqTopicGroupOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicGroup) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// The message model of the rocketmq group.
+func (o GetTopicsRocketmqTopicGroupOutput) MessageModel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicGroup) string { return v.MessageModel }).(pulumi.StringOutput)
+}
+
+// The sub string of the rocketmq group.
+func (o GetTopicsRocketmqTopicGroupOutput) SubString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicGroup) string { return v.SubString }).(pulumi.StringOutput)
+}
+
+type GetTopicsRocketmqTopicGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopicGroup)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicGroupArrayOutput) ToGetTopicsRocketmqTopicGroupArrayOutput() GetTopicsRocketmqTopicGroupArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicGroupArrayOutput) ToGetTopicsRocketmqTopicGroupArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicGroupArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicGroupArrayOutput) Index(i pulumi.IntInput) GetTopicsRocketmqTopicGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsRocketmqTopicGroup {
+		return vs[0].([]GetTopicsRocketmqTopicGroup)[vs[1].(int)]
+	}).(GetTopicsRocketmqTopicGroupOutput)
+}
+
+type GetTopicsRocketmqTopicQueue struct {
+	// The end offset of the rocketmq queue.
+	EndOffset int `pulumi:"endOffset"`
+	// The last update timestamp of the rocketmq queue.
+	LastUpdateTimestamp int `pulumi:"lastUpdateTimestamp"`
+	// The message count of the rocketmq queue.
+	MessageCount int `pulumi:"messageCount"`
+	// The id of the rocketmq queue.
+	QueueId string `pulumi:"queueId"`
+	// The start offset of the rocketmq queue.
+	StartOffset int `pulumi:"startOffset"`
+}
+
+// GetTopicsRocketmqTopicQueueInput is an input type that accepts GetTopicsRocketmqTopicQueueArgs and GetTopicsRocketmqTopicQueueOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicQueueInput` via:
+//
+//	GetTopicsRocketmqTopicQueueArgs{...}
+type GetTopicsRocketmqTopicQueueInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicQueueOutput() GetTopicsRocketmqTopicQueueOutput
+	ToGetTopicsRocketmqTopicQueueOutputWithContext(context.Context) GetTopicsRocketmqTopicQueueOutput
+}
+
+type GetTopicsRocketmqTopicQueueArgs struct {
+	// The end offset of the rocketmq queue.
+	EndOffset pulumi.IntInput `pulumi:"endOffset"`
+	// The last update timestamp of the rocketmq queue.
+	LastUpdateTimestamp pulumi.IntInput `pulumi:"lastUpdateTimestamp"`
+	// The message count of the rocketmq queue.
+	MessageCount pulumi.IntInput `pulumi:"messageCount"`
+	// The id of the rocketmq queue.
+	QueueId pulumi.StringInput `pulumi:"queueId"`
+	// The start offset of the rocketmq queue.
+	StartOffset pulumi.IntInput `pulumi:"startOffset"`
+}
+
+func (GetTopicsRocketmqTopicQueueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopicQueue)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicQueueArgs) ToGetTopicsRocketmqTopicQueueOutput() GetTopicsRocketmqTopicQueueOutput {
+	return i.ToGetTopicsRocketmqTopicQueueOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicQueueArgs) ToGetTopicsRocketmqTopicQueueOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicQueueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicQueueOutput)
+}
+
+// GetTopicsRocketmqTopicQueueArrayInput is an input type that accepts GetTopicsRocketmqTopicQueueArray and GetTopicsRocketmqTopicQueueArrayOutput values.
+// You can construct a concrete instance of `GetTopicsRocketmqTopicQueueArrayInput` via:
+//
+//	GetTopicsRocketmqTopicQueueArray{ GetTopicsRocketmqTopicQueueArgs{...} }
+type GetTopicsRocketmqTopicQueueArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsRocketmqTopicQueueArrayOutput() GetTopicsRocketmqTopicQueueArrayOutput
+	ToGetTopicsRocketmqTopicQueueArrayOutputWithContext(context.Context) GetTopicsRocketmqTopicQueueArrayOutput
+}
+
+type GetTopicsRocketmqTopicQueueArray []GetTopicsRocketmqTopicQueueInput
+
+func (GetTopicsRocketmqTopicQueueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopicQueue)(nil)).Elem()
+}
+
+func (i GetTopicsRocketmqTopicQueueArray) ToGetTopicsRocketmqTopicQueueArrayOutput() GetTopicsRocketmqTopicQueueArrayOutput {
+	return i.ToGetTopicsRocketmqTopicQueueArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsRocketmqTopicQueueArray) ToGetTopicsRocketmqTopicQueueArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicQueueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsRocketmqTopicQueueArrayOutput)
+}
+
+type GetTopicsRocketmqTopicQueueOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicQueueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsRocketmqTopicQueue)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicQueueOutput) ToGetTopicsRocketmqTopicQueueOutput() GetTopicsRocketmqTopicQueueOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicQueueOutput) ToGetTopicsRocketmqTopicQueueOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicQueueOutput {
+	return o
+}
+
+// The end offset of the rocketmq queue.
+func (o GetTopicsRocketmqTopicQueueOutput) EndOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicQueue) int { return v.EndOffset }).(pulumi.IntOutput)
+}
+
+// The last update timestamp of the rocketmq queue.
+func (o GetTopicsRocketmqTopicQueueOutput) LastUpdateTimestamp() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicQueue) int { return v.LastUpdateTimestamp }).(pulumi.IntOutput)
+}
+
+// The message count of the rocketmq queue.
+func (o GetTopicsRocketmqTopicQueueOutput) MessageCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicQueue) int { return v.MessageCount }).(pulumi.IntOutput)
+}
+
+// The id of the rocketmq queue.
+func (o GetTopicsRocketmqTopicQueueOutput) QueueId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicQueue) string { return v.QueueId }).(pulumi.StringOutput)
+}
+
+// The start offset of the rocketmq queue.
+func (o GetTopicsRocketmqTopicQueueOutput) StartOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsRocketmqTopicQueue) int { return v.StartOffset }).(pulumi.IntOutput)
+}
+
+type GetTopicsRocketmqTopicQueueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsRocketmqTopicQueueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsRocketmqTopicQueue)(nil)).Elem()
+}
+
+func (o GetTopicsRocketmqTopicQueueArrayOutput) ToGetTopicsRocketmqTopicQueueArrayOutput() GetTopicsRocketmqTopicQueueArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicQueueArrayOutput) ToGetTopicsRocketmqTopicQueueArrayOutputWithContext(ctx context.Context) GetTopicsRocketmqTopicQueueArrayOutput {
+	return o
+}
+
+func (o GetTopicsRocketmqTopicQueueArrayOutput) Index(i pulumi.IntInput) GetTopicsRocketmqTopicQueueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsRocketmqTopicQueue {
+		return vs[0].([]GetTopicsRocketmqTopicQueue)[vs[1].(int)]
+	}).(GetTopicsRocketmqTopicQueueOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyInput)(nil)).Elem(), AccessKeysAccessKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyArrayInput)(nil)).Elem(), AccessKeysAccessKeyArray{})
@@ -3458,6 +5850,38 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsRocketmqTopicGroupArrayInput)(nil)).Elem(), TopicsRocketmqTopicGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsRocketmqTopicQueueInput)(nil)).Elem(), TopicsRocketmqTopicQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsRocketmqTopicQueueArrayInput)(nil)).Elem(), TopicsRocketmqTopicQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyInput)(nil)).Elem(), GetAccessKeysAccessKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyArrayInput)(nil)).Elem(), GetAccessKeysAccessKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyTopicPermissionInput)(nil)).Elem(), GetAccessKeysAccessKeyTopicPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyTopicPermissionArrayInput)(nil)).Elem(), GetAccessKeysAccessKeyTopicPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsRocketmqAllowListInput)(nil)).Elem(), GetAllowListsRocketmqAllowListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsRocketmqAllowListArrayInput)(nil)).Elem(), GetAllowListsRocketmqAllowListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsRocketmqAllowListAssociatedInstanceInput)(nil)).Elem(), GetAllowListsRocketmqAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsRocketmqAllowListAssociatedInstanceArrayInput)(nil)).Elem(), GetAllowListsRocketmqAllowListAssociatedInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsRocketmqGroupInput)(nil)).Elem(), GetGroupsRocketmqGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsRocketmqGroupArrayInput)(nil)).Elem(), GetGroupsRocketmqGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsRocketmqGroupConsumedClientInput)(nil)).Elem(), GetGroupsRocketmqGroupConsumedClientArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsRocketmqGroupConsumedClientArrayInput)(nil)).Elem(), GetGroupsRocketmqGroupConsumedClientArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsRocketmqGroupConsumedTopicInput)(nil)).Elem(), GetGroupsRocketmqGroupConsumedTopicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsRocketmqGroupConsumedTopicArrayInput)(nil)).Elem(), GetGroupsRocketmqGroupConsumedTopicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceInput)(nil)).Elem(), GetInstancesRocketmqInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceArrayInput)(nil)).Elem(), GetInstancesRocketmqInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceChargeDetailInput)(nil)).Elem(), GetInstancesRocketmqInstanceChargeDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceChargeDetailArrayInput)(nil)).Elem(), GetInstancesRocketmqInstanceChargeDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceConnectionInfoInput)(nil)).Elem(), GetInstancesRocketmqInstanceConnectionInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceConnectionInfoArrayInput)(nil)).Elem(), GetInstancesRocketmqInstanceConnectionInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceTagInput)(nil)).Elem(), GetInstancesRocketmqInstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRocketmqInstanceTagArrayInput)(nil)).Elem(), GetInstancesRocketmqInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagInput)(nil)).Elem(), GetInstancesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagArrayInput)(nil)).Elem(), GetInstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicInput)(nil)).Elem(), GetTopicsRocketmqTopicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicArrayInput)(nil)).Elem(), GetTopicsRocketmqTopicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicAccessPolicyInput)(nil)).Elem(), GetTopicsRocketmqTopicAccessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicAccessPolicyArrayInput)(nil)).Elem(), GetTopicsRocketmqTopicAccessPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicGroupInput)(nil)).Elem(), GetTopicsRocketmqTopicGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicGroupArrayInput)(nil)).Elem(), GetTopicsRocketmqTopicGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicQueueInput)(nil)).Elem(), GetTopicsRocketmqTopicQueueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsRocketmqTopicQueueArrayInput)(nil)).Elem(), GetTopicsRocketmqTopicQueueArray{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyOutput{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyArrayOutput{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyTopicPermissionOutput{})
@@ -3506,4 +5930,36 @@ func init() {
 	pulumi.RegisterOutputType(TopicsRocketmqTopicGroupArrayOutput{})
 	pulumi.RegisterOutputType(TopicsRocketmqTopicQueueOutput{})
 	pulumi.RegisterOutputType(TopicsRocketmqTopicQueueArrayOutput{})
+	pulumi.RegisterOutputType(GetAccessKeysAccessKeyOutput{})
+	pulumi.RegisterOutputType(GetAccessKeysAccessKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetAccessKeysAccessKeyTopicPermissionOutput{})
+	pulumi.RegisterOutputType(GetAccessKeysAccessKeyTopicPermissionArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowListsRocketmqAllowListOutput{})
+	pulumi.RegisterOutputType(GetAllowListsRocketmqAllowListArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowListsRocketmqAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(GetAllowListsRocketmqAllowListAssociatedInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsRocketmqGroupOutput{})
+	pulumi.RegisterOutputType(GetGroupsRocketmqGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsRocketmqGroupConsumedClientOutput{})
+	pulumi.RegisterOutputType(GetGroupsRocketmqGroupConsumedClientArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsRocketmqGroupConsumedTopicOutput{})
+	pulumi.RegisterOutputType(GetGroupsRocketmqGroupConsumedTopicArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceChargeDetailOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceChargeDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceConnectionInfoOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceConnectionInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesRocketmqInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicAccessPolicyOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicAccessPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicGroupOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicQueueOutput{})
+	pulumi.RegisterOutputType(GetTopicsRocketmqTopicQueueArrayOutput{})
 }

@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -56,7 +56,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//			fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				NameRegex: pulumi.StringRef("veLinux 1.0 CentOS兼容版 64位"),
 //			}, nil)
 //			if err != nil {

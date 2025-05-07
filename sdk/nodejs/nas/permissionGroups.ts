@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
- * const default = volcengine.nas.PermissionGroupsOutput({
+ * const default = volcengine.nas.getPermissionGroupsOutput({
  *     filters: [{
  *         key: "PermissionGroupId",
  *         value: foo.id,
@@ -39,7 +39,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups */
 export function permissionGroups(args?: PermissionGroupsArgs, opts?: pulumi.InvokeOptions): Promise<PermissionGroupsResult> {
+    pulumi.log.warn("permissionGroups is deprecated: volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -107,7 +109,7 @@ export interface PermissionGroupsResult {
  *         },
  *     ],
  * });
- * const default = volcengine.nas.PermissionGroupsOutput({
+ * const default = volcengine.nas.getPermissionGroupsOutput({
  *     filters: [{
  *         key: "PermissionGroupId",
  *         value: foo.id,
@@ -115,6 +117,7 @@ export interface PermissionGroupsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups */
 export function permissionGroupsOutput(args?: PermissionGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PermissionGroupsResult> {
     return pulumi.output(args).apply((a: any) => permissionGroups(a, opts))
 }

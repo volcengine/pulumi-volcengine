@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_identity.PermissionSetProvisionings(ctx, &cloud_identity.PermissionSetProvisioningsArgs{
+//			_, err := cloud_identity.GetPermissionSetProvisionings(ctx, &cloud_identity.GetPermissionSetProvisioningsArgs{
 //				TargetId: pulumi.StringRef("210026****"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_identity.PermissionSetProvisionings has been deprecated in favor of volcengine.cloud_identity.getPermissionSetProvisionings
 func PermissionSetProvisionings(ctx *pulumi.Context, args *PermissionSetProvisioningsArgs, opts ...pulumi.InvokeOption) (*PermissionSetProvisioningsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PermissionSetProvisioningsResult

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages")]
     public static class Images
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.Images.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetImages.Invoke(new()
         ///     {
         ///         InstanceTypeId = "ecs.g1.large",
         ///         OsType = "Linux",
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.Images.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetImages.Invoke(new()
         ///     {
         ///         InstanceTypeId = "ecs.g1.large",
         ///         OsType = "Linux",

@@ -35,6 +35,41 @@ export type DefaultNodePoolBatchAttach = import("./defaultNodePoolBatchAttach").
 export const DefaultNodePoolBatchAttach: typeof import("./defaultNodePoolBatchAttach").DefaultNodePoolBatchAttach = null as any;
 utilities.lazyLoad(exports, ["DefaultNodePoolBatchAttach"], () => require("./defaultNodePoolBatchAttach"));
 
+export { GetAddonsArgs, GetAddonsResult, GetAddonsOutputArgs } from "./getAddons";
+export const getAddons: typeof import("./getAddons").getAddons = null as any;
+export const getAddonsOutput: typeof import("./getAddons").getAddonsOutput = null as any;
+utilities.lazyLoad(exports, ["getAddons","getAddonsOutput"], () => require("./getAddons"));
+
+export { GetClustersArgs, GetClustersResult, GetClustersOutputArgs } from "./getClusters";
+export const getClusters: typeof import("./getClusters").getClusters = null as any;
+export const getClustersOutput: typeof import("./getClusters").getClustersOutput = null as any;
+utilities.lazyLoad(exports, ["getClusters","getClustersOutput"], () => require("./getClusters"));
+
+export { GetKubeconfigsArgs, GetKubeconfigsResult, GetKubeconfigsOutputArgs } from "./getKubeconfigs";
+export const getKubeconfigs: typeof import("./getKubeconfigs").getKubeconfigs = null as any;
+export const getKubeconfigsOutput: typeof import("./getKubeconfigs").getKubeconfigsOutput = null as any;
+utilities.lazyLoad(exports, ["getKubeconfigs","getKubeconfigsOutput"], () => require("./getKubeconfigs"));
+
+export { GetNodePoolsArgs, GetNodePoolsResult, GetNodePoolsOutputArgs } from "./getNodePools";
+export const getNodePools: typeof import("./getNodePools").getNodePools = null as any;
+export const getNodePoolsOutput: typeof import("./getNodePools").getNodePoolsOutput = null as any;
+utilities.lazyLoad(exports, ["getNodePools","getNodePoolsOutput"], () => require("./getNodePools"));
+
+export { GetNodesArgs, GetNodesResult, GetNodesOutputArgs } from "./getNodes";
+export const getNodes: typeof import("./getNodes").getNodes = null as any;
+export const getNodesOutput: typeof import("./getNodes").getNodesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodes","getNodesOutput"], () => require("./getNodes"));
+
+export { GetSupportAddonsArgs, GetSupportAddonsResult, GetSupportAddonsOutputArgs } from "./getSupportAddons";
+export const getSupportAddons: typeof import("./getSupportAddons").getSupportAddons = null as any;
+export const getSupportAddonsOutput: typeof import("./getSupportAddons").getSupportAddonsOutput = null as any;
+utilities.lazyLoad(exports, ["getSupportAddons","getSupportAddonsOutput"], () => require("./getSupportAddons"));
+
+export { GetSupportResourceTypesArgs, GetSupportResourceTypesResult, GetSupportResourceTypesOutputArgs } from "./getSupportResourceTypes";
+export const getSupportResourceTypes: typeof import("./getSupportResourceTypes").getSupportResourceTypes = null as any;
+export const getSupportResourceTypesOutput: typeof import("./getSupportResourceTypes").getSupportResourceTypesOutput = null as any;
+utilities.lazyLoad(exports, ["getSupportResourceTypes","getSupportResourceTypesOutput"], () => require("./getSupportResourceTypes"));
+
 export { KubeconfigArgs, KubeconfigState } from "./kubeconfig";
 export type Kubeconfig = import("./kubeconfig").Kubeconfig;
 export const Kubeconfig: typeof import("./kubeconfig").Kubeconfig = null as any;

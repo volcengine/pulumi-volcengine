@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.alb.Zones({});
+ * const fooZones = volcengine.alb.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -51,12 +51,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooAlbs = volcengine.alb.AlbsOutput({
+ * const fooAlbs = volcengine.alb.getAlbsOutput({
  *     ids: fooAlb.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs */
 export function albs(args?: AlbsArgs, opts?: pulumi.InvokeOptions): Promise<AlbsResult> {
+    pulumi.log.warn("albs is deprecated: volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -156,7 +158,7 @@ export interface AlbsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.alb.Zones({});
+ * const fooZones = volcengine.alb.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -192,11 +194,12 @@ export interface AlbsResult {
  *         }],
  *     }));
  * }
- * const fooAlbs = volcengine.alb.AlbsOutput({
+ * const fooAlbs = volcengine.alb.getAlbsOutput({
  *     ids: fooAlb.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs */
 export function albsOutput(args?: AlbsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AlbsResult> {
     return pulumi.output(args).apply((a: any) => albs(a, opts))
 }

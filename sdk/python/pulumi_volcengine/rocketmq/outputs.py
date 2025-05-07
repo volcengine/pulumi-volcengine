@@ -35,6 +35,22 @@ __all__ = [
     'TopicsRocketmqTopicAccessPolicyResult',
     'TopicsRocketmqTopicGroupResult',
     'TopicsRocketmqTopicQueueResult',
+    'GetAccessKeysAccessKeyResult',
+    'GetAccessKeysAccessKeyTopicPermissionResult',
+    'GetAllowListsRocketmqAllowListResult',
+    'GetAllowListsRocketmqAllowListAssociatedInstanceResult',
+    'GetGroupsRocketmqGroupResult',
+    'GetGroupsRocketmqGroupConsumedClientResult',
+    'GetGroupsRocketmqGroupConsumedTopicResult',
+    'GetInstancesRocketmqInstanceResult',
+    'GetInstancesRocketmqInstanceChargeDetailResult',
+    'GetInstancesRocketmqInstanceConnectionInfoResult',
+    'GetInstancesRocketmqInstanceTagResult',
+    'GetInstancesTagResult',
+    'GetTopicsRocketmqTopicResult',
+    'GetTopicsRocketmqTopicAccessPolicyResult',
+    'GetTopicsRocketmqTopicGroupResult',
+    'GetTopicsRocketmqTopicQueueResult',
 ]
 
 @pulumi.output_type
@@ -1784,6 +1800,1305 @@ class TopicsRocketmqTopicGroupResult(dict):
 
 @pulumi.output_type
 class TopicsRocketmqTopicQueueResult(dict):
+    def __init__(__self__, *,
+                 end_offset: int,
+                 last_update_timestamp: int,
+                 message_count: int,
+                 queue_id: str,
+                 start_offset: int):
+        """
+        :param int end_offset: The end offset of the rocketmq queue.
+        :param int last_update_timestamp: The last update timestamp of the rocketmq queue.
+        :param int message_count: The message count of the rocketmq queue.
+        :param str queue_id: The id of the rocketmq queue.
+        :param int start_offset: The start offset of the rocketmq queue.
+        """
+        pulumi.set(__self__, "end_offset", end_offset)
+        pulumi.set(__self__, "last_update_timestamp", last_update_timestamp)
+        pulumi.set(__self__, "message_count", message_count)
+        pulumi.set(__self__, "queue_id", queue_id)
+        pulumi.set(__self__, "start_offset", start_offset)
+
+    @property
+    @pulumi.getter(name="endOffset")
+    def end_offset(self) -> int:
+        """
+        The end offset of the rocketmq queue.
+        """
+        return pulumi.get(self, "end_offset")
+
+    @property
+    @pulumi.getter(name="lastUpdateTimestamp")
+    def last_update_timestamp(self) -> int:
+        """
+        The last update timestamp of the rocketmq queue.
+        """
+        return pulumi.get(self, "last_update_timestamp")
+
+    @property
+    @pulumi.getter(name="messageCount")
+    def message_count(self) -> int:
+        """
+        The message count of the rocketmq queue.
+        """
+        return pulumi.get(self, "message_count")
+
+    @property
+    @pulumi.getter(name="queueId")
+    def queue_id(self) -> str:
+        """
+        The id of the rocketmq queue.
+        """
+        return pulumi.get(self, "queue_id")
+
+    @property
+    @pulumi.getter(name="startOffset")
+    def start_offset(self) -> int:
+        """
+        The start offset of the rocketmq queue.
+        """
+        return pulumi.get(self, "start_offset")
+
+
+@pulumi.output_type
+class GetAccessKeysAccessKeyResult(dict):
+    def __init__(__self__, *,
+                 access_key: str,
+                 acl_config_json: str,
+                 actived: bool,
+                 all_authority: str,
+                 create_time: str,
+                 description: str,
+                 instance_id: str,
+                 secret_key: str,
+                 topic_permissions: Sequence['outputs.GetAccessKeysAccessKeyTopicPermissionResult']):
+        """
+        :param str access_key: The access key id of the rocketmq key.
+        :param str acl_config_json: The acl config of the rocketmq key.
+        :param bool actived: The active status of the rocketmq key.
+        :param str all_authority: The default authority of the rocketmq key.
+        :param str create_time: The create time of the rocketmq key.
+        :param str description: The description of the rocketmq key.
+        :param str instance_id: The id of rocketmq instance.
+        :param str secret_key: The secret key of the rocketmq key.
+        :param Sequence['GetAccessKeysAccessKeyTopicPermissionArgs'] topic_permissions: The custom authority of the rocketmq key.
+        """
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "acl_config_json", acl_config_json)
+        pulumi.set(__self__, "actived", actived)
+        pulumi.set(__self__, "all_authority", all_authority)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "topic_permissions", topic_permissions)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
+        """
+        The access key id of the rocketmq key.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="aclConfigJson")
+    def acl_config_json(self) -> str:
+        """
+        The acl config of the rocketmq key.
+        """
+        return pulumi.get(self, "acl_config_json")
+
+    @property
+    @pulumi.getter
+    def actived(self) -> bool:
+        """
+        The active status of the rocketmq key.
+        """
+        return pulumi.get(self, "actived")
+
+    @property
+    @pulumi.getter(name="allAuthority")
+    def all_authority(self) -> str:
+        """
+        The default authority of the rocketmq key.
+        """
+        return pulumi.get(self, "all_authority")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the rocketmq key.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the rocketmq key.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of rocketmq instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        The secret key of the rocketmq key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter(name="topicPermissions")
+    def topic_permissions(self) -> Sequence['outputs.GetAccessKeysAccessKeyTopicPermissionResult']:
+        """
+        The custom authority of the rocketmq key.
+        """
+        return pulumi.get(self, "topic_permissions")
+
+
+@pulumi.output_type
+class GetAccessKeysAccessKeyTopicPermissionResult(dict):
+    def __init__(__self__, *,
+                 permission: str,
+                 topic_name: str):
+        """
+        :param str permission: The custom authority for the topic.
+        :param str topic_name: The name of the rocketmq topic.
+        """
+        pulumi.set(__self__, "permission", permission)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter
+    def permission(self) -> str:
+        """
+        The custom authority for the topic.
+        """
+        return pulumi.get(self, "permission")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of the rocketmq topic.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
+class GetAllowListsRocketmqAllowListResult(dict):
+    def __init__(__self__, *,
+                 allow_list_desc: str,
+                 allow_list_id: str,
+                 allow_list_ip_num: int,
+                 allow_list_name: str,
+                 allow_list_type: str,
+                 allow_lists: Sequence[str],
+                 associated_instance_num: int,
+                 associated_instances: Sequence['outputs.GetAllowListsRocketmqAllowListAssociatedInstanceResult'],
+                 id: str):
+        """
+        :param str allow_list_desc: The description of the rocketmq allow list.
+        :param str allow_list_id: The id of the rocketmq allow list.
+        :param int allow_list_ip_num: The number of ip address in the rocketmq allow list.
+        :param str allow_list_name: The name of the rocketmq allow list.
+        :param str allow_list_type: The type of the rocketmq allow list.
+        :param Sequence[str] allow_lists: The IP address or a range of IP addresses in CIDR format of the allow list.
+        :param int associated_instance_num: The number of the rocketmq instances associated with the allow list.
+        :param Sequence['GetAllowListsRocketmqAllowListAssociatedInstanceArgs'] associated_instances: The associated instance information of the allow list.
+        :param str id: The id of the rocketmq allow list.
+        """
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
+        pulumi.set(__self__, "allow_list_type", allow_list_type)
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        pulumi.set(__self__, "associated_instances", associated_instances)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> str:
+        """
+        The description of the rocketmq allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> str:
+        """
+        The id of the rocketmq allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> int:
+        """
+        The number of ip address in the rocketmq allow list.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> str:
+        """
+        The name of the rocketmq allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
+
+    @property
+    @pulumi.getter(name="allowListType")
+    def allow_list_type(self) -> str:
+        """
+        The type of the rocketmq allow list.
+        """
+        return pulumi.get(self, "allow_list_type")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        The IP address or a range of IP addresses in CIDR format of the allow list.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> int:
+        """
+        The number of the rocketmq instances associated with the allow list.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Sequence['outputs.GetAllowListsRocketmqAllowListAssociatedInstanceResult']:
+        """
+        The associated instance information of the allow list.
+        """
+        return pulumi.get(self, "associated_instances")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the rocketmq allow list.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetAllowListsRocketmqAllowListAssociatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_name: str,
+                 vpc: str):
+        """
+        :param str instance_id: The id of the rocketmq instance.
+        :param str instance_name: The name of the rocketmq instance.
+        :param str vpc: The vpc id of the rocketmq instance.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the rocketmq instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the rocketmq instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> str:
+        """
+        The vpc id of the rocketmq instance.
+        """
+        return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
+class GetGroupsRocketmqGroupResult(dict):
+    def __init__(__self__, *,
+                 consumed_clients: Sequence['outputs.GetGroupsRocketmqGroupConsumedClientResult'],
+                 consumed_topics: Sequence['outputs.GetGroupsRocketmqGroupConsumedTopicResult'],
+                 create_time: str,
+                 description: str,
+                 group_id: str,
+                 group_type: str,
+                 is_sub_same: bool,
+                 message_delay_time: str,
+                 message_model: str,
+                 status: str,
+                 total_consume_rate: str,
+                 total_diff: int):
+        """
+        :param Sequence['GetGroupsRocketmqGroupConsumedClientArgs'] consumed_clients: The consumed topic information of the rocketmq group.
+        :param Sequence['GetGroupsRocketmqGroupConsumedTopicArgs'] consumed_topics: The consumed topic information of the rocketmq group.
+        :param str create_time: The create time of the rocketmq group.
+        :param str description: The description of the rocketmq group.
+        :param str group_id: The id of rocketmq group. This field support fuzzy query.
+        :param str group_type: The type of rocketmq group. Valid values: `TCP`.
+        :param bool is_sub_same: Whether the subscription relationship of consumer instance groups within the group is consistent.
+        :param str message_delay_time: The message delay time of the rocketmq group. The unit is milliseconds.
+        :param str message_model: The message model of the rocketmq group.
+        :param str status: The status of the rocketmq group.
+        :param str total_consume_rate: The total consume rate of the rocketmq group. The unit is per second.
+        :param int total_diff: The total amount of unconsumed messages.
+        """
+        pulumi.set(__self__, "consumed_clients", consumed_clients)
+        pulumi.set(__self__, "consumed_topics", consumed_topics)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_type", group_type)
+        pulumi.set(__self__, "is_sub_same", is_sub_same)
+        pulumi.set(__self__, "message_delay_time", message_delay_time)
+        pulumi.set(__self__, "message_model", message_model)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "total_consume_rate", total_consume_rate)
+        pulumi.set(__self__, "total_diff", total_diff)
+
+    @property
+    @pulumi.getter(name="consumedClients")
+    def consumed_clients(self) -> Sequence['outputs.GetGroupsRocketmqGroupConsumedClientResult']:
+        """
+        The consumed topic information of the rocketmq group.
+        """
+        return pulumi.get(self, "consumed_clients")
+
+    @property
+    @pulumi.getter(name="consumedTopics")
+    def consumed_topics(self) -> Sequence['outputs.GetGroupsRocketmqGroupConsumedTopicResult']:
+        """
+        The consumed topic information of the rocketmq group.
+        """
+        return pulumi.get(self, "consumed_topics")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the rocketmq group.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the rocketmq group.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        The id of rocketmq group. This field support fuzzy query.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="groupType")
+    def group_type(self) -> str:
+        """
+        The type of rocketmq group. Valid values: `TCP`.
+        """
+        return pulumi.get(self, "group_type")
+
+    @property
+    @pulumi.getter(name="isSubSame")
+    def is_sub_same(self) -> bool:
+        """
+        Whether the subscription relationship of consumer instance groups within the group is consistent.
+        """
+        return pulumi.get(self, "is_sub_same")
+
+    @property
+    @pulumi.getter(name="messageDelayTime")
+    def message_delay_time(self) -> str:
+        """
+        The message delay time of the rocketmq group. The unit is milliseconds.
+        """
+        return pulumi.get(self, "message_delay_time")
+
+    @property
+    @pulumi.getter(name="messageModel")
+    def message_model(self) -> str:
+        """
+        The message model of the rocketmq group.
+        """
+        return pulumi.get(self, "message_model")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the rocketmq group.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="totalConsumeRate")
+    def total_consume_rate(self) -> str:
+        """
+        The total consume rate of the rocketmq group. The unit is per second.
+        """
+        return pulumi.get(self, "total_consume_rate")
+
+    @property
+    @pulumi.getter(name="totalDiff")
+    def total_diff(self) -> int:
+        """
+        The total amount of unconsumed messages.
+        """
+        return pulumi.get(self, "total_diff")
+
+
+@pulumi.output_type
+class GetGroupsRocketmqGroupConsumedClientResult(dict):
+    def __init__(__self__, *,
+                 client_address: str,
+                 client_id: str,
+                 diff: int,
+                 language: str,
+                 version: str):
+        """
+        :param str client_address: The address of the consumed client.
+        :param str client_id: The id of the consumed client.
+        :param int diff: The amount of message.
+        :param str language: The language of the consumed client.
+        :param str version: The version of the consumed client.
+        """
+        pulumi.set(__self__, "client_address", client_address)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "diff", diff)
+        pulumi.set(__self__, "language", language)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="clientAddress")
+    def client_address(self) -> str:
+        """
+        The address of the consumed client.
+        """
+        return pulumi.get(self, "client_address")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        The id of the consumed client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def diff(self) -> int:
+        """
+        The amount of message.
+        """
+        return pulumi.get(self, "diff")
+
+    @property
+    @pulumi.getter
+    def language(self) -> str:
+        """
+        The language of the consumed client.
+        """
+        return pulumi.get(self, "language")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of the consumed client.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetGroupsRocketmqGroupConsumedTopicResult(dict):
+    def __init__(__self__, *,
+                 queue_num: int,
+                 sub_string: str,
+                 topic_name: str):
+        """
+        :param int queue_num: The queue number of the rocketmq topic.
+        :param str sub_string: The sub string of the rocketmq topic.
+        :param str topic_name: The name of the rocketmq topic.
+        """
+        pulumi.set(__self__, "queue_num", queue_num)
+        pulumi.set(__self__, "sub_string", sub_string)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter(name="queueNum")
+    def queue_num(self) -> int:
+        """
+        The queue number of the rocketmq topic.
+        """
+        return pulumi.get(self, "queue_num")
+
+    @property
+    @pulumi.getter(name="subString")
+    def sub_string(self) -> str:
+        """
+        The sub string of the rocketmq topic.
+        """
+        return pulumi.get(self, "sub_string")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of the rocketmq topic.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
+class GetInstancesRocketmqInstanceResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 apply_private_dns_to_public: bool,
+                 available_queue_number: int,
+                 charge_details: Sequence['outputs.GetInstancesRocketmqInstanceChargeDetailResult'],
+                 compute_spec: str,
+                 connection_infos: Sequence['outputs.GetInstancesRocketmqInstanceConnectionInfoResult'],
+                 create_time: str,
+                 eip_id: str,
+                 enable_ssl: bool,
+                 file_reserved_time: int,
+                 id: str,
+                 instance_description: str,
+                 instance_id: str,
+                 instance_name: str,
+                 instance_status: str,
+                 project_name: str,
+                 region_id: str,
+                 ssl_mode: str,
+                 storage_space: int,
+                 subnet_id: str,
+                 tags: Sequence['outputs.GetInstancesRocketmqInstanceTagResult'],
+                 used_group_number: int,
+                 used_queue_number: int,
+                 used_storage_space: int,
+                 used_topic_number: int,
+                 version: str,
+                 vpc_id: str,
+                 zone_id: str):
+        """
+        :param str account_id: The account id of the rocketmq instance.
+        :param bool apply_private_dns_to_public: Whether the private dns to public function is enabled for the rocketmq instance.
+        :param int available_queue_number: The available queue number of the rocketmq instance.
+        :param Sequence['GetInstancesRocketmqInstanceChargeDetailArgs'] charge_details: The charge detail information of the rocketmq instance.
+        :param str compute_spec: The compute spec of the rocketmq instance.
+        :param Sequence['GetInstancesRocketmqInstanceConnectionInfoArgs'] connection_infos: The connection information of the rocketmq.
+        :param str create_time: The create time of the rocketmq instance.
+        :param str eip_id: The eip id of the rocketmq instance.
+        :param bool enable_ssl: Whether the ssl authentication is enabled for the rocketmq instance.
+        :param int file_reserved_time: The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+        :param str id: The id of the rocketmq instance.
+        :param str instance_description: The description of the rocketmq instance.
+        :param str instance_id: The id of rocketmq instance.
+        :param str instance_name: The name of rocketmq instance. This field support fuzzy query.
+        :param str instance_status: The status of rocketmq instance.
+        :param str project_name: The project name of rocketmq instance.
+        :param str region_id: The region id of the rocketmq instance.
+        :param str ssl_mode: The ssl mode of the rocketmq instance.
+        :param int storage_space: The total storage space of the rocketmq instance.
+        :param str subnet_id: The subnet id of the rocketmq instance.
+        :param Sequence['GetInstancesRocketmqInstanceTagArgs'] tags: Tags.
+        :param int used_group_number: The used group number of the rocketmq instance.
+        :param int used_queue_number: The used queue number of the rocketmq instance.
+        :param int used_storage_space: The used storage space of the rocketmq instance.
+        :param int used_topic_number: The used topic number of the rocketmq instance.
+        :param str version: The version of rocketmq instance. Valid values: `4.8`.
+        :param str vpc_id: The vpc id of rocketmq instance.
+        :param str zone_id: The zone id of rocketmq instance.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "apply_private_dns_to_public", apply_private_dns_to_public)
+        pulumi.set(__self__, "available_queue_number", available_queue_number)
+        pulumi.set(__self__, "charge_details", charge_details)
+        pulumi.set(__self__, "compute_spec", compute_spec)
+        pulumi.set(__self__, "connection_infos", connection_infos)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "enable_ssl", enable_ssl)
+        pulumi.set(__self__, "file_reserved_time", file_reserved_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_description", instance_description)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "ssl_mode", ssl_mode)
+        pulumi.set(__self__, "storage_space", storage_space)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "used_group_number", used_group_number)
+        pulumi.set(__self__, "used_queue_number", used_queue_number)
+        pulumi.set(__self__, "used_storage_space", used_storage_space)
+        pulumi.set(__self__, "used_topic_number", used_topic_number)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the rocketmq instance.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="applyPrivateDnsToPublic")
+    def apply_private_dns_to_public(self) -> bool:
+        """
+        Whether the private dns to public function is enabled for the rocketmq instance.
+        """
+        return pulumi.get(self, "apply_private_dns_to_public")
+
+    @property
+    @pulumi.getter(name="availableQueueNumber")
+    def available_queue_number(self) -> int:
+        """
+        The available queue number of the rocketmq instance.
+        """
+        return pulumi.get(self, "available_queue_number")
+
+    @property
+    @pulumi.getter(name="chargeDetails")
+    def charge_details(self) -> Sequence['outputs.GetInstancesRocketmqInstanceChargeDetailResult']:
+        """
+        The charge detail information of the rocketmq instance.
+        """
+        return pulumi.get(self, "charge_details")
+
+    @property
+    @pulumi.getter(name="computeSpec")
+    def compute_spec(self) -> str:
+        """
+        The compute spec of the rocketmq instance.
+        """
+        return pulumi.get(self, "compute_spec")
+
+    @property
+    @pulumi.getter(name="connectionInfos")
+    def connection_infos(self) -> Sequence['outputs.GetInstancesRocketmqInstanceConnectionInfoResult']:
+        """
+        The connection information of the rocketmq.
+        """
+        return pulumi.get(self, "connection_infos")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the rocketmq instance.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> str:
+        """
+        The eip id of the rocketmq instance.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @property
+    @pulumi.getter(name="enableSsl")
+    def enable_ssl(self) -> bool:
+        """
+        Whether the ssl authentication is enabled for the rocketmq instance.
+        """
+        return pulumi.get(self, "enable_ssl")
+
+    @property
+    @pulumi.getter(name="fileReservedTime")
+    def file_reserved_time(self) -> int:
+        """
+        The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+        """
+        return pulumi.get(self, "file_reserved_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the rocketmq instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceDescription")
+    def instance_description(self) -> str:
+        """
+        The description of the rocketmq instance.
+        """
+        return pulumi.get(self, "instance_description")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of rocketmq instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of rocketmq instance. This field support fuzzy query.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> str:
+        """
+        The status of rocketmq instance.
+        """
+        return pulumi.get(self, "instance_status")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of rocketmq instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region id of the rocketmq instance.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="sslMode")
+    def ssl_mode(self) -> str:
+        """
+        The ssl mode of the rocketmq instance.
+        """
+        return pulumi.get(self, "ssl_mode")
+
+    @property
+    @pulumi.getter(name="storageSpace")
+    def storage_space(self) -> int:
+        """
+        The total storage space of the rocketmq instance.
+        """
+        return pulumi.get(self, "storage_space")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The subnet id of the rocketmq instance.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInstancesRocketmqInstanceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="usedGroupNumber")
+    def used_group_number(self) -> int:
+        """
+        The used group number of the rocketmq instance.
+        """
+        return pulumi.get(self, "used_group_number")
+
+    @property
+    @pulumi.getter(name="usedQueueNumber")
+    def used_queue_number(self) -> int:
+        """
+        The used queue number of the rocketmq instance.
+        """
+        return pulumi.get(self, "used_queue_number")
+
+    @property
+    @pulumi.getter(name="usedStorageSpace")
+    def used_storage_space(self) -> int:
+        """
+        The used storage space of the rocketmq instance.
+        """
+        return pulumi.get(self, "used_storage_space")
+
+    @property
+    @pulumi.getter(name="usedTopicNumber")
+    def used_topic_number(self) -> int:
+        """
+        The used topic number of the rocketmq instance.
+        """
+        return pulumi.get(self, "used_topic_number")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of rocketmq instance. Valid values: `4.8`.
+        """
+        return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id of rocketmq instance.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of rocketmq instance.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetInstancesRocketmqInstanceChargeDetailResult(dict):
+    def __init__(__self__, *,
+                 auto_renew: bool,
+                 charge_expire_time: str,
+                 charge_start_time: str,
+                 charge_status: str,
+                 charge_type: str,
+                 overdue_reclaim_time: str,
+                 overdue_time: str,
+                 period_unit: str):
+        """
+        :param bool auto_renew: Whether to enable automatic renewal.
+        :param str charge_expire_time: The charge expire time of the rocketmq instance.
+        :param str charge_start_time: The charge start time of the rocketmq instance.
+        :param str charge_status: The charge status of the rocketmq instance.
+        :param str charge_type: The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+        :param str overdue_reclaim_time: The overdue reclaim time of the rocketmq instance.
+        :param str overdue_time: The overdue time of the rocketmq instance.
+        :param str period_unit: The period unit of the rocketmq instance.
+        """
+        pulumi.set(__self__, "auto_renew", auto_renew)
+        pulumi.set(__self__, "charge_expire_time", charge_expire_time)
+        pulumi.set(__self__, "charge_start_time", charge_start_time)
+        pulumi.set(__self__, "charge_status", charge_status)
+        pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
+        pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> bool:
+        """
+        Whether to enable automatic renewal.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter(name="chargeExpireTime")
+    def charge_expire_time(self) -> str:
+        """
+        The charge expire time of the rocketmq instance.
+        """
+        return pulumi.get(self, "charge_expire_time")
+
+    @property
+    @pulumi.getter(name="chargeStartTime")
+    def charge_start_time(self) -> str:
+        """
+        The charge start time of the rocketmq instance.
+        """
+        return pulumi.get(self, "charge_start_time")
+
+    @property
+    @pulumi.getter(name="chargeStatus")
+    def charge_status(self) -> str:
+        """
+        The charge status of the rocketmq instance.
+        """
+        return pulumi.get(self, "charge_status")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="overdueReclaimTime")
+    def overdue_reclaim_time(self) -> str:
+        """
+        The overdue reclaim time of the rocketmq instance.
+        """
+        return pulumi.get(self, "overdue_reclaim_time")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> str:
+        """
+        The overdue time of the rocketmq instance.
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> str:
+        """
+        The period unit of the rocketmq instance.
+        """
+        return pulumi.get(self, "period_unit")
+
+
+@pulumi.output_type
+class GetInstancesRocketmqInstanceConnectionInfoResult(dict):
+    def __init__(__self__, *,
+                 endpoint_address_ip: str,
+                 endpoint_type: str,
+                 internal_endpoint: str,
+                 network_type: str,
+                 public_endpoint: str):
+        """
+        :param str endpoint_address_ip: The endpoint address ip of the rocketmq.
+        :param str endpoint_type: The endpoint type of the rocketmq.
+        :param str internal_endpoint: The internal endpoint of the rocketmq.
+        :param str network_type: The network type of the rocketmq.
+        :param str public_endpoint: The public endpoint of the rocketmq.
+        """
+        pulumi.set(__self__, "endpoint_address_ip", endpoint_address_ip)
+        pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "internal_endpoint", internal_endpoint)
+        pulumi.set(__self__, "network_type", network_type)
+        pulumi.set(__self__, "public_endpoint", public_endpoint)
+
+    @property
+    @pulumi.getter(name="endpointAddressIp")
+    def endpoint_address_ip(self) -> str:
+        """
+        The endpoint address ip of the rocketmq.
+        """
+        return pulumi.get(self, "endpoint_address_ip")
+
+    @property
+    @pulumi.getter(name="endpointType")
+    def endpoint_type(self) -> str:
+        """
+        The endpoint type of the rocketmq.
+        """
+        return pulumi.get(self, "endpoint_type")
+
+    @property
+    @pulumi.getter(name="internalEndpoint")
+    def internal_endpoint(self) -> str:
+        """
+        The internal endpoint of the rocketmq.
+        """
+        return pulumi.get(self, "internal_endpoint")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        The network type of the rocketmq.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter(name="publicEndpoint")
+    def public_endpoint(self) -> str:
+        """
+        The public endpoint of the rocketmq.
+        """
+        return pulumi.get(self, "public_endpoint")
+
+
+@pulumi.output_type
+class GetInstancesRocketmqInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopicsRocketmqTopicResult(dict):
+    def __init__(__self__, *,
+                 access_policies: Sequence['outputs.GetTopicsRocketmqTopicAccessPolicyResult'],
+                 create_time: str,
+                 description: str,
+                 groups: Sequence['outputs.GetTopicsRocketmqTopicGroupResult'],
+                 instance_id: str,
+                 message_type: int,
+                 queue_number: int,
+                 queues: Sequence['outputs.GetTopicsRocketmqTopicQueueResult'],
+                 topic_name: str):
+        """
+        :param Sequence['GetTopicsRocketmqTopicAccessPolicyArgs'] access_policies: The access policies of the rocketmq topic.
+        :param str create_time: The create time of the rocketmq topic.
+        :param str description: The description of the rocketmq topic.
+        :param Sequence['GetTopicsRocketmqTopicGroupArgs'] groups: The groups information of the rocketmq topic.
+        :param str instance_id: The id of rocketmq instance.
+        :param int message_type: The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+               0: Regular message
+               1: Transaction message
+               2: Partition order message
+               3: Global sequential message
+               4: Delay message.
+        :param int queue_number: The number of the rocketmq topic queue.
+        :param Sequence['GetTopicsRocketmqTopicQueueArgs'] queues: The queues information of the rocketmq topic.
+        :param str topic_name: The name of the rocketmq topic. This field support fuzzy query.
+        """
+        pulumi.set(__self__, "access_policies", access_policies)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "groups", groups)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "message_type", message_type)
+        pulumi.set(__self__, "queue_number", queue_number)
+        pulumi.set(__self__, "queues", queues)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter(name="accessPolicies")
+    def access_policies(self) -> Sequence['outputs.GetTopicsRocketmqTopicAccessPolicyResult']:
+        """
+        The access policies of the rocketmq topic.
+        """
+        return pulumi.get(self, "access_policies")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the rocketmq topic.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the rocketmq topic.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Sequence['outputs.GetTopicsRocketmqTopicGroupResult']:
+        """
+        The groups information of the rocketmq topic.
+        """
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of rocketmq instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> int:
+        """
+        The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+        0: Regular message
+        1: Transaction message
+        2: Partition order message
+        3: Global sequential message
+        4: Delay message.
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter(name="queueNumber")
+    def queue_number(self) -> int:
+        """
+        The number of the rocketmq topic queue.
+        """
+        return pulumi.get(self, "queue_number")
+
+    @property
+    @pulumi.getter
+    def queues(self) -> Sequence['outputs.GetTopicsRocketmqTopicQueueResult']:
+        """
+        The queues information of the rocketmq topic.
+        """
+        return pulumi.get(self, "queues")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of the rocketmq topic. This field support fuzzy query.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
+class GetTopicsRocketmqTopicAccessPolicyResult(dict):
+    def __init__(__self__, *,
+                 access_key: str,
+                 authority: str):
+        """
+        :param str access_key: The access key of the rocketmq key.
+        :param str authority: The authority of the rocketmq key for the current topic.
+        """
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "authority", authority)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
+        """
+        The access key of the rocketmq key.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter
+    def authority(self) -> str:
+        """
+        The authority of the rocketmq key for the current topic.
+        """
+        return pulumi.get(self, "authority")
+
+
+@pulumi.output_type
+class GetTopicsRocketmqTopicGroupResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 message_model: str,
+                 sub_string: str):
+        """
+        :param str group_id: The id of the rocketmq group.
+        :param str message_model: The message model of the rocketmq group.
+        :param str sub_string: The sub string of the rocketmq group.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "message_model", message_model)
+        pulumi.set(__self__, "sub_string", sub_string)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        The id of the rocketmq group.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="messageModel")
+    def message_model(self) -> str:
+        """
+        The message model of the rocketmq group.
+        """
+        return pulumi.get(self, "message_model")
+
+    @property
+    @pulumi.getter(name="subString")
+    def sub_string(self) -> str:
+        """
+        The sub string of the rocketmq group.
+        """
+        return pulumi.get(self, "sub_string")
+
+
+@pulumi.output_type
+class GetTopicsRocketmqTopicQueueResult(dict):
     def __init__(__self__, *,
                  end_offset: int,
                  last_update_timestamp: int,

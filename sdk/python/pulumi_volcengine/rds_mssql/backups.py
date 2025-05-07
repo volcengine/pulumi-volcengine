@@ -17,6 +17,8 @@ __all__ = [
     'backups_output',
 ]
 
+warnings.warn("""volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class BackupsResult:
     """
@@ -150,7 +152,7 @@ def backups(backup_end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mssql.backups(instance_id="mssql-40914121fd22")
+    foo = volcengine.rds_mssql.get_backups(instance_id="mssql-40914121fd22")
     ```
 
 
@@ -161,6 +163,7 @@ def backups(backup_end_time: Optional[str] = None,
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups""")
     __args__ = dict()
     __args__['backupEndTime'] = backup_end_time
     __args__['backupId'] = backup_id
@@ -199,7 +202,7 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mssql.backups(instance_id="mssql-40914121fd22")
+    foo = volcengine.rds_mssql.get_backups(instance_id="mssql-40914121fd22")
     ```
 
 
@@ -210,4 +213,5 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups""")
     ...

@@ -15,6 +15,36 @@ export const fileSystems: typeof import("./fileSystems").fileSystems = null as a
 export const fileSystemsOutput: typeof import("./fileSystems").fileSystemsOutput = null as any;
 utilities.lazyLoad(exports, ["fileSystems","fileSystemsOutput"], () => require("./fileSystems"));
 
+export { GetFileSystemsArgs, GetFileSystemsResult, GetFileSystemsOutputArgs } from "./getFileSystems";
+export const getFileSystems: typeof import("./getFileSystems").getFileSystems = null as any;
+export const getFileSystemsOutput: typeof import("./getFileSystems").getFileSystemsOutput = null as any;
+utilities.lazyLoad(exports, ["getFileSystems","getFileSystemsOutput"], () => require("./getFileSystems"));
+
+export { GetMountPointsArgs, GetMountPointsResult, GetMountPointsOutputArgs } from "./getMountPoints";
+export const getMountPoints: typeof import("./getMountPoints").getMountPoints = null as any;
+export const getMountPointsOutput: typeof import("./getMountPoints").getMountPointsOutput = null as any;
+utilities.lazyLoad(exports, ["getMountPoints","getMountPointsOutput"], () => require("./getMountPoints"));
+
+export { GetPermissionGroupsArgs, GetPermissionGroupsResult, GetPermissionGroupsOutputArgs } from "./getPermissionGroups";
+export const getPermissionGroups: typeof import("./getPermissionGroups").getPermissionGroups = null as any;
+export const getPermissionGroupsOutput: typeof import("./getPermissionGroups").getPermissionGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getPermissionGroups","getPermissionGroupsOutput"], () => require("./getPermissionGroups"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetSnapshotsArgs, GetSnapshotsResult, GetSnapshotsOutputArgs } from "./getSnapshots";
+export const getSnapshots: typeof import("./getSnapshots").getSnapshots = null as any;
+export const getSnapshotsOutput: typeof import("./getSnapshots").getSnapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["getSnapshots","getSnapshotsOutput"], () => require("./getSnapshots"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { MountPointArgs, MountPointState } from "./mountPoint";
 export type MountPoint = import("./mountPoint").MountPoint;
 export const MountPoint: typeof import("./mountPoint").MountPoint = null as any;

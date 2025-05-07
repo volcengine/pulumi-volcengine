@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to query detailed information of scaling policies
+//
+// Deprecated: volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies
 func ScalingPolicies(ctx *pulumi.Context, args *ScalingPoliciesArgs, opts ...pulumi.InvokeOption) (*ScalingPoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingPoliciesResult

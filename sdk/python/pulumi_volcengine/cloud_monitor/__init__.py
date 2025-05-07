@@ -11,6 +11,10 @@ from .contact_groups import *
 from .contacts import *
 from .event_rule import *
 from .event_rules import *
+from .get_contact_groups import *
+from .get_contacts import *
+from .get_event_rules import *
+from .get_rules import *
 from .rule import *
 from .rules import *
 from ._inputs import *

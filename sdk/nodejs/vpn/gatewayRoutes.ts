@@ -70,12 +70,14 @@ import * as utilities from "../utilities";
  *     destinationCidrBlock: "192.168.0.0/20",
  *     nextHopId: fooConnection.id,
  * });
- * const fooGatewayRoutes = volcengine.vpn.GatewayRoutesOutput({
+ * const fooGatewayRoutes = volcengine.vpn.getGatewayRoutesOutput({
  *     ids: [fooGatewayRoute.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes */
 export function gatewayRoutes(args?: GatewayRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GatewayRoutesResult> {
+    pulumi.log.warn("gatewayRoutes is deprecated: volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -224,11 +226,12 @@ export interface GatewayRoutesResult {
  *     destinationCidrBlock: "192.168.0.0/20",
  *     nextHopId: fooConnection.id,
  * });
- * const fooGatewayRoutes = volcengine.vpn.GatewayRoutesOutput({
+ * const fooGatewayRoutes = volcengine.vpn.getGatewayRoutesOutput({
  *     ids: [fooGatewayRoute.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes */
 export function gatewayRoutesOutput(args?: GatewayRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewayRoutesResult> {
     return pulumi.output(args).apply((a: any) => gatewayRoutes(a, opts))
 }

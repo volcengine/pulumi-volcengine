@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = iam.UserGroups(ctx, &iam.UserGroupsArgs{
+//			_, err = iam.GetUserGroups(ctx, &iam.GetUserGroupsArgs{
 //				Query: pulumi.StringRef("acc-test"),
 //			}, nil)
 //			if err != nil {
@@ -45,6 +45,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups
 func UserGroups(ctx *pulumi.Context, args *UserGroupsArgs, opts ...pulumi.InvokeOption) (*UserGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv UserGroupsResult

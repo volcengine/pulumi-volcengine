@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.RouteTablePropagations(ctx, &transit_router.RouteTablePropagationsArgs{
+//			_, err := transit_router.GetRouteTablePropagations(ctx, &transit_router.GetRouteTablePropagationsArgs{
 //				TransitRouterAttachmentId: pulumi.StringRef("tr-attach-im73ng3n5kao8gbssz2ddpuq"),
 //				TransitRouterRouteTableId: "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.RouteTablePropagations has been deprecated in favor of volcengine.transit_router.getRouteTablePropagations
 func RouteTablePropagations(ctx *pulumi.Context, args *RouteTablePropagationsArgs, opts ...pulumi.InvokeOption) (*RouteTablePropagationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteTablePropagationsResult

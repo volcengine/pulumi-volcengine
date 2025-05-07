@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.Tags(ctx, &cr.TagsArgs{
+//			_, err := cr.GetTags(ctx, &cr.GetTagsArgs{
 //				Namespace:  "test",
 //				Registry:   "enterprise-1",
 //				Repository: "repo",
@@ -42,6 +42,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags
 func Tags(ctx *pulumi.Context, args *TagsArgs, opts ...pulumi.InvokeOption) (*TagsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TagsResult

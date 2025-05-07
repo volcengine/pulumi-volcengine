@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mssql.Instances(ctx, &rds_mssql.InstancesArgs{
+//			_, err := rds_mssql.GetInstances(ctx, &rds_mssql.GetInstancesArgs{
 //				InstanceId: pulumi.StringRef("mssql-d2fc5abe****"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

@@ -34,12 +34,14 @@ import * as utilities from "../utilities";
  *     period: 2,
  *     projectName: "default",
  * });
- * const fooGateways = volcengine.vpn.GatewaysOutput({
+ * const fooGateways = volcengine.vpn.getGatewaysOutput({
  *     ids: [fooGateway.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways */
 export function gateways(args?: GatewaysArgs, opts?: pulumi.InvokeOptions): Promise<GatewaysResult> {
+    pulumi.log.warn("gateways is deprecated: volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -191,11 +193,12 @@ export interface GatewaysResult {
  *     period: 2,
  *     projectName: "default",
  * });
- * const fooGateways = volcengine.vpn.GatewaysOutput({
+ * const fooGateways = volcengine.vpn.getGatewaysOutput({
  *     ids: [fooGateway.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways */
 export function gatewaysOutput(args?: GatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewaysResult> {
     return pulumi.output(args).apply((a: any) => gateways(a, opts))
 }

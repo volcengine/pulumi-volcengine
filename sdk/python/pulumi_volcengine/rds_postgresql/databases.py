@@ -17,6 +17,8 @@ __all__ = [
     'databases_output',
 ]
 
+warnings.warn("""volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases""", DeprecationWarning)
+
 @pulumi.output_type
 class DatabasesResult:
     """
@@ -111,7 +113,7 @@ def databases(db_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.databases(db_name="test001",
+    foo = volcengine.rds_postgresql.get_databases(db_name="test001",
         instance_id="postgres-95******8233")
     ```
 
@@ -120,6 +122,7 @@ def databases(db_name: Optional[str] = None,
     :param str instance_id: The id of the RDS instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""databases is deprecated: volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases""")
     __args__ = dict()
     __args__['dbName'] = db_name
     __args__['instanceId'] = instance_id
@@ -149,7 +152,7 @@ def databases_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.databases(db_name="test001",
+    foo = volcengine.rds_postgresql.get_databases(db_name="test001",
         instance_id="postgres-95******8233")
     ```
 
@@ -158,4 +161,5 @@ def databases_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The id of the RDS instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""databases is deprecated: volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases""")
     ...

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Kafka
 {
+    [Obsolete(@"volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions")]
     public static class TopicPartitions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Kafka
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -109,7 +110,7 @@ namespace Pulumi.Volcengine.Kafka
         ///         },
         ///     });
         /// 
-        ///     var @default = Volcengine.Kafka.TopicPartitions.Invoke(new()
+        ///     var @default = Volcengine.Kafka.GetTopicPartitions.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///         TopicName = fooTopic.TopicName,
@@ -138,7 +139,7 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -150,7 +151,7 @@ namespace Pulumi.Volcengine.Kafka
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -224,7 +225,7 @@ namespace Pulumi.Volcengine.Kafka
         ///         },
         ///     });
         /// 
-        ///     var @default = Volcengine.Kafka.TopicPartitions.Invoke(new()
+        ///     var @default = Volcengine.Kafka.GetTopicPartitions.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///         TopicName = fooTopic.TopicName,

@@ -17,6 +17,8 @@ __all__ = [
     'instance_specs_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs""", DeprecationWarning)
+
 @pulumi.output_type
 class InstanceSpecsResult:
     """
@@ -142,7 +144,7 @@ def instance_specs(db_engine_version: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.instance_specs(db_engine_version="MySQL_8_0",
+    foo = volcengine.rds_mysql.get_instance_specs(db_engine_version="MySQL_8_0",
         instance_type="DoubleNode")
     ```
 
@@ -155,6 +157,7 @@ def instance_specs(db_engine_version: Optional[str] = None,
     :param str spec_code: Instance specification code.
     :param str zone_id: Availability zone ID.
     """
+    pulumi.log.warn("""instance_specs is deprecated: volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs""")
     __args__ = dict()
     __args__['dbEngineVersion'] = db_engine_version
     __args__['instanceType'] = instance_type
@@ -190,7 +193,7 @@ def instance_specs_output(db_engine_version: Optional[pulumi.Input[Optional[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.instance_specs(db_engine_version="MySQL_8_0",
+    foo = volcengine.rds_mysql.get_instance_specs(db_engine_version="MySQL_8_0",
         instance_type="DoubleNode")
     ```
 
@@ -203,4 +206,5 @@ def instance_specs_output(db_engine_version: Optional[pulumi.Input[Optional[str]
     :param str spec_code: Instance specification code.
     :param str zone_id: Availability zone ID.
     """
+    pulumi.log.warn("""instance_specs is deprecated: volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs""")
     ...

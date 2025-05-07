@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *         "192.168.2.0/24",
  *     ],
  * });
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -61,12 +61,14 @@ import * as utilities from "../utilities";
  *     allowListId: fooAllowlist.id,
  *     instanceId: fooInstance.id,
  * });
- * const fooAllowlists = volcengine.vedb_mysql.AllowlistsOutput({
+ * const fooAllowlists = volcengine.vedb_mysql.getAllowlistsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists */
 export function allowlists(args: AllowlistsArgs, opts?: pulumi.InvokeOptions): Promise<AllowlistsResult> {
+    pulumi.log.warn("allowlists is deprecated: volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vedb_mysql/allowlists:Allowlists", {
@@ -142,7 +144,7 @@ export interface AllowlistsResult {
  *         "192.168.2.0/24",
  *     ],
  * });
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -178,11 +180,12 @@ export interface AllowlistsResult {
  *     allowListId: fooAllowlist.id,
  *     instanceId: fooInstance.id,
  * });
- * const fooAllowlists = volcengine.vedb_mysql.AllowlistsOutput({
+ * const fooAllowlists = volcengine.vedb_mysql.getAllowlistsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists */
 export function allowlistsOutput(args: AllowlistsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AllowlistsResult> {
     return pulumi.output(args).apply((a: any) => allowlists(a, opts))
 }

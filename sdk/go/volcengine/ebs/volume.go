@@ -28,10 +28,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
@@ -39,6 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
@@ -48,6 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create security group
 //			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
 //				SecurityGroupName: pulumi.String("acc-test-security-group"),
 //				VpcId:             fooVpc.ID(),
@@ -55,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//			fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				OsType:         pulumi.StringRef("Linux"),
 //				Visibility:     pulumi.StringRef("public"),
 //				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
@@ -63,6 +66,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create PrePaid ecs instance
 //			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
@@ -89,6 +93,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create PrePaid data volume
 //			_, err = ebs.NewVolume(ctx, "preVolume", &ebs.VolumeArgs{
 //				VolumeName:         pulumi.String("acc-test-volume"),
 //				VolumeType:         pulumi.String("ESSD_PL0"),
@@ -110,6 +115,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create PostPaid data volume
 //			_, err = ebs.NewVolume(ctx, "postVolume", &ebs.VolumeArgs{
 //				VolumeName:       pulumi.String("acc-test-volume"),
 //				VolumeType:       pulumi.String("ESSD_PL0"),

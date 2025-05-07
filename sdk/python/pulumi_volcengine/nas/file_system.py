@@ -441,25 +441,6 @@ class FileSystem(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage nas file system
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo_zones = volcengine.nas.zones()
-        foo_file_system = volcengine.nas.FileSystem("fooFileSystem",
-            file_system_name="acc-test-fs",
-            description="acc-test",
-            zone_id=foo_zones.zones[0].id,
-            capacity=103,
-            project_name="default",
-            tags=[volcengine.nas.FileSystemTagArgs(
-                key="k1",
-                value="v1",
-            )])
-        ```
-
         ## Import
 
         NasFileSystem can be imported using the id, e.g.
@@ -486,25 +467,6 @@ class FileSystem(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage nas file system
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo_zones = volcengine.nas.zones()
-        foo_file_system = volcengine.nas.FileSystem("fooFileSystem",
-            file_system_name="acc-test-fs",
-            description="acc-test",
-            zone_id=foo_zones.zones[0].id,
-            capacity=103,
-            project_name="default",
-            tags=[volcengine.nas.FileSystemTagArgs(
-                key="k1",
-                value="v1",
-            )])
-        ```
-
         ## Import
 
         NasFileSystem can be imported using the id, e.g.

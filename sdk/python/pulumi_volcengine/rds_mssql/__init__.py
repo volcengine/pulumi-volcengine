@@ -7,6 +7,10 @@ import typing
 # Export this package's modules as members:
 from .backup import *
 from .backups import *
+from .get_backups import *
+from .get_instances import *
+from .get_regions import *
+from .get_zones import *
 from .instance import *
 from .instances import *
 from .regions import *

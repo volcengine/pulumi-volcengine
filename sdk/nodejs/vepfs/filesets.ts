@@ -47,13 +47,15 @@ import * as utilities from "../utilities";
  *     fileLimit: 20,
  *     capacityLimit: 30,
  * });
- * const fooFilesets = volcengine.vepfs.FilesetsOutput({
+ * const fooFilesets = volcengine.vepfs.getFilesetsOutput({
  *     fileSystemId: fooFileSystem.id,
  *     filesetId: fooFileset.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets */
 export function filesets(args: FilesetsArgs, opts?: pulumi.InvokeOptions): Promise<FilesetsResult> {
+    pulumi.log.warn("filesets is deprecated: volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vepfs/filesets:Filesets", {
@@ -178,12 +180,13 @@ export interface FilesetsResult {
  *     fileLimit: 20,
  *     capacityLimit: 30,
  * });
- * const fooFilesets = volcengine.vepfs.FilesetsOutput({
+ * const fooFilesets = volcengine.vepfs.getFilesetsOutput({
  *     fileSystemId: fooFileSystem.id,
  *     filesetId: fooFileset.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets */
 export function filesetsOutput(args: FilesetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<FilesetsResult> {
     return pulumi.output(args).apply((a: any) => filesets(a, opts))
 }

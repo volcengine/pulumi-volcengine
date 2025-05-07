@@ -57,7 +57,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cen.AttachInstancesOutput(ctx, cen.AttachInstancesOutputArgs{
+//			_ = cen.GetAttachInstancesOutput(ctx, cen.GetAttachInstancesOutputArgs{
 //				CenId: fooAttachInstance.CenId,
 //			}, nil)
 //			return nil
@@ -65,6 +65,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances
 func AttachInstances(ctx *pulumi.Context, args *AttachInstancesArgs, opts ...pulumi.InvokeOption) (*AttachInstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AttachInstancesResult

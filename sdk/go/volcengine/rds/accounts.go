@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds.Accounts(ctx, &rds.AccountsArgs{
+//			_, err := rds.GetAccounts(ctx, &rds.GetAccountsArgs{
 //				InstanceId: "mysql-0fdd3bab2e7c",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds.Accounts has been deprecated in favor of volcengine.rds.getAccounts
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccountsResult

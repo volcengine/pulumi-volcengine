@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.AlarmNotifyGroups(ctx, nil, nil)
+//			_, err := tls.GetAlarmNotifyGroups(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups
 func AlarmNotifyGroups(ctx *pulumi.Context, args *AlarmNotifyGroupsArgs, opts ...pulumi.InvokeOption) (*AlarmNotifyGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AlarmNotifyGroupsResult

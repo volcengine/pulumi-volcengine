@@ -18,11 +18,11 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly int Cpu;
         /// <summary>
-        /// The description of resource spec.
+        /// The description of plugin.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The show name of resource spec.
+        /// The show name of storage spec.
         /// </summary>
         public readonly string DisplayName;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly int Memory;
         /// <summary>
-        /// The name of resource spec.
+        /// The name of storage spec.
         /// </summary>
         public readonly string Name;
 

@@ -17,6 +17,8 @@ __all__ = [
     'backups_output',
 ]
 
+warnings.warn("""volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class BackupsResult:
     """
@@ -108,7 +110,7 @@ def backups(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.dns.backups(zid=58846)
+    foo = volcengine.dns.get_backups(zid=58846)
     ```
 
 
@@ -116,6 +118,7 @@ def backups(name_regex: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param int zid: The ID of the domain for which you want to get the backup schedule.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -145,7 +148,7 @@ def backups_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.dns.backups(zid=58846)
+    foo = volcengine.dns.get_backups(zid=58846)
     ```
 
 
@@ -153,4 +156,5 @@ def backups_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param int zid: The ID of the domain for which you want to get the backup schedule.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups""")
     ...

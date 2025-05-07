@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := bioos.Workspaces(ctx, nil, nil)
+//			_, err := bioos.GetWorkspaces(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces
 func Workspaces(ctx *pulumi.Context, args *WorkspacesArgs, opts ...pulumi.InvokeOption) (*WorkspacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv WorkspacesResult

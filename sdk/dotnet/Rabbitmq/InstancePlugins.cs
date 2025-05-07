@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rabbitmq
 {
+    [Obsolete(@"volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins")]
     public static class InstancePlugins
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rabbitmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Rabbitmq
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -43,9 +44,9 @@ namespace Pulumi.Volcengine.Rabbitmq
         ///     {
         ///         ZoneIds = new[]
         ///         {
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[2]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
         ///         },
         ///         SubnetId = fooSubnet.Id,
         ///         Version = "3.8.18",
@@ -70,7 +71,7 @@ namespace Pulumi.Volcengine.Rabbitmq
         ///         },
         ///     });
         /// 
-        ///     var fooInstancePlugins = Volcengine.Rabbitmq.InstancePlugins.Invoke(new()
+        ///     var fooInstancePlugins = Volcengine.Rabbitmq.GetInstancePlugins.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///     });
@@ -93,7 +94,7 @@ namespace Pulumi.Volcengine.Rabbitmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -105,7 +106,7 @@ namespace Pulumi.Volcengine.Rabbitmq
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -113,9 +114,9 @@ namespace Pulumi.Volcengine.Rabbitmq
         ///     {
         ///         ZoneIds = new[]
         ///         {
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[2]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
         ///         },
         ///         SubnetId = fooSubnet.Id,
         ///         Version = "3.8.18",
@@ -140,7 +141,7 @@ namespace Pulumi.Volcengine.Rabbitmq
         ///         },
         ///     });
         /// 
-        ///     var fooInstancePlugins = Volcengine.Rabbitmq.InstancePlugins.Invoke(new()
+        ///     var fooInstancePlugins = Volcengine.Rabbitmq.GetInstancePlugins.Invoke(new()
         ///     {
         ///         InstanceId = fooInstance.Id,
         ///     });

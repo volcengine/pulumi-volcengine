@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Organization
 {
+    [Obsolete(@"volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies")]
     public static class ServiceControlPolicies
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Organization.ServiceControlPolicies.Invoke(new()
+        ///     var foo = Volcengine.Organization.GetServiceControlPolicies.Invoke(new()
         ///     {
         ///         PolicyType = "Custom",
         ///         Query = "test",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Organization.ServiceControlPolicies.Invoke(new()
+        ///     var foo = Volcengine.Organization.GetServiceControlPolicies.Invoke(new()
         ///     {
         ///         PolicyType = "Custom",
         ///         Query = "test",

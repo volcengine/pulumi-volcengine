@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := veenedge.Vpcs(ctx, nil, nil)
+//			_, err := veenedge.GetVpcs(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs
 func Vpcs(ctx *pulumi.Context, args *VpcsArgs, opts ...pulumi.InvokeOption) (*VpcsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcsResult

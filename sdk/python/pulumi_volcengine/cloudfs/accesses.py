@@ -17,6 +17,8 @@ __all__ = [
     'accesses_output',
 ]
 
+warnings.warn("""volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses""", DeprecationWarning)
+
 @pulumi.output_type
 class AccessesResult:
     """
@@ -101,13 +103,14 @@ def accesses(fs_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.accesses(fs_name="tftest2")
+    default = volcengine.cloudfs.get_accesses(fs_name="tftest2")
     ```
 
 
     :param str fs_name: The name of file system.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accesses is deprecated: volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses""")
     __args__ = dict()
     __args__['fsName'] = fs_name
     __args__['outputFile'] = output_file
@@ -134,11 +137,12 @@ def accesses_output(fs_name: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.accesses(fs_name="tftest2")
+    default = volcengine.cloudfs.get_accesses(fs_name="tftest2")
     ```
 
 
     :param str fs_name: The name of file system.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accesses is deprecated: volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses""")
     ...

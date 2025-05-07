@@ -17,6 +17,8 @@ __all__ = [
     'customer_gateways_output',
 ]
 
+warnings.warn("""volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways""", DeprecationWarning)
+
 @pulumi.output_type
 class CustomerGatewaysResult:
     """
@@ -146,7 +148,7 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
         customer_gateway_name="acc-test",
         description="acc-test",
         project_name="default")
-    foo_customer_gateways = volcengine.vpn.customer_gateways_output(ids=[foo_customer_gateway.id])
+    foo_customer_gateways = volcengine.vpn.get_customer_gateways_output(ids=[foo_customer_gateway.id])
     ```
 
 
@@ -157,6 +159,7 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the VPN customer gateway.
     """
+    pulumi.log.warn("""customer_gateways is deprecated: volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways""")
     __args__ = dict()
     __args__['customerGatewayNames'] = customer_gateway_names
     __args__['ids'] = ids
@@ -200,7 +203,7 @@ def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optio
         customer_gateway_name="acc-test",
         description="acc-test",
         project_name="default")
-    foo_customer_gateways = volcengine.vpn.customer_gateways_output(ids=[foo_customer_gateway.id])
+    foo_customer_gateways = volcengine.vpn.get_customer_gateways_output(ids=[foo_customer_gateway.id])
     ```
 
 
@@ -211,4 +214,5 @@ def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optio
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the VPN customer gateway.
     """
+    pulumi.log.warn("""customer_gateways is deprecated: volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways""")
     ...

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.Vpcs(ctx, &vpc.VpcsArgs{
+//			_, err := vpc.GetVpcs(ctx, &vpc.GetVpcsArgs{
 //				Ids: []string{
 //					"vpc-mizl7m1kqccg5smt1bdpijuj",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs
 func Vpcs(ctx *pulumi.Context, args *VpcsArgs, opts ...pulumi.InvokeOption) (*VpcsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcsResult

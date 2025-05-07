@@ -17,6 +17,8 @@ __all__ = [
     'contacts_output',
 ]
 
+warnings.warn("""volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts""", DeprecationWarning)
+
 @pulumi.output_type
 class ContactsResult:
     """
@@ -98,7 +100,7 @@ def contacts(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.contacts(ids=[
+    foo = volcengine.cloud_monitor.get_contacts(ids=[
         "17******516",
         "1712**********0",
     ])
@@ -108,6 +110,7 @@ def contacts(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] ids: A list of Contact IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""contacts is deprecated: volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -134,7 +137,7 @@ def contacts_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.contacts(ids=[
+    foo = volcengine.cloud_monitor.get_contacts(ids=[
         "17******516",
         "1712**********0",
     ])
@@ -144,4 +147,5 @@ def contacts_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
     :param Sequence[str] ids: A list of Contact IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""contacts is deprecated: volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'listeners_output',
 ]
 
+warnings.warn("""volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners""", DeprecationWarning)
+
 @pulumi.output_type
 class ListenersResult:
     """
@@ -141,6 +143,14 @@ def listeners(ids: Optional[Sequence[str]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListenersResult:
     """
     Use this data source to query detailed information of alb listeners
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.alb.get_listeners()
+    ```
 
 
     :param Sequence[str] ids: A list of Listener IDs.
@@ -150,6 +160,7 @@ def listeners(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the listener.
     """
+    pulumi.log.warn("""listeners is deprecated: volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['listenerName'] = listener_name
@@ -182,6 +193,14 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListenersResult]:
     """
     Use this data source to query detailed information of alb listeners
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.alb.get_listeners()
+    ```
 
 
     :param Sequence[str] ids: A list of Listener IDs.
@@ -191,4 +210,5 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the listener.
     """
+    pulumi.log.warn("""listeners is deprecated: volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners""")
     ...

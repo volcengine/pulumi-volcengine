@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_firewall
 {
+    [Obsolete(@"volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules")]
     public static class CfwVpcFirewallAclRules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_firewall.CfwVpcFirewallAclRules.Invoke(new()
+        ///     var foo = Volcengine.Cloud_firewall.GetCfwVpcFirewallAclRules.Invoke(new()
         ///     {
         ///         Actions = new[]
         ///         {
@@ -51,7 +52,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_firewall.CfwVpcFirewallAclRules.Invoke(new()
+        ///     var foo = Volcengine.Cloud_firewall.GetCfwVpcFirewallAclRules.Invoke(new()
         ///     {
         ///         Actions = new[]
         ///         {

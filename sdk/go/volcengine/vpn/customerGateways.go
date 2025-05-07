@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vpn.CustomerGatewaysOutput(ctx, vpn.CustomerGatewaysOutputArgs{
+//			_ = vpn.GetCustomerGatewaysOutput(ctx, vpn.GetCustomerGatewaysOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooCustomerGateway.ID(),
 //				},
@@ -45,6 +45,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways
 func CustomerGateways(ctx *pulumi.Context, args *CustomerGatewaysArgs, opts ...pulumi.InvokeOption) (*CustomerGatewaysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CustomerGatewaysResult

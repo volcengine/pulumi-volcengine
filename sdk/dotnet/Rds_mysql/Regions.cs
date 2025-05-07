@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mysql
 {
+    [Obsolete(@"volcengine.rds_mysql.Regions has been deprecated in favor of volcengine.rds_mysql.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.Regions.Invoke();
+        ///     var foo = Volcengine.Rds_mysql.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.Regions.Invoke();
+        ///     var foo = Volcengine.Rds_mysql.GetRegions.Invoke();
         /// 
         /// });
         /// ```

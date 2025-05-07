@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Organization
     /// {
     ///     var fooOrganization = new Volcengine.Organization.Organization("fooOrganization");
     /// 
-    ///     var fooUnits = Volcengine.Organization.Units.Invoke();
+    ///     var fooUnits = Volcengine.Organization.GetUnits.Invoke();
     /// 
     ///     var fooUnit = new Volcengine.Organization.Unit("fooUnit", new()
     ///     {

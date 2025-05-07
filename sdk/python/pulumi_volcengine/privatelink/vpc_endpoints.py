@@ -17,6 +17,8 @@ __all__ = [
     'vpc_endpoints_output',
 ]
 
+warnings.warn("""volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcEndpointsResult:
     """
@@ -160,7 +162,7 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -202,7 +204,7 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
             service_id=foo_vpc_endpoint_service.id,
             endpoint_name="acc-test-ep",
             description="acc-test"))
-    foo_vpc_endpoints = volcengine.privatelink.vpc_endpoints_output(ids=[__item.id for __item in foo_vpc_endpoint])
+    foo_vpc_endpoints = volcengine.privatelink.get_vpc_endpoints_output(ids=[__item.id for __item in foo_vpc_endpoint])
     ```
 
 
@@ -214,6 +216,7 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
     :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
     :param str vpc_id: The vpc id of vpc endpoint.
     """
+    pulumi.log.warn("""vpc_endpoints is deprecated: volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints""")
     __args__ = dict()
     __args__['endpointName'] = endpoint_name
     __args__['ids'] = ids
@@ -255,7 +258,7 @@ def vpc_endpoints_output(endpoint_name: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -297,7 +300,7 @@ def vpc_endpoints_output(endpoint_name: Optional[pulumi.Input[Optional[str]]] = 
             service_id=foo_vpc_endpoint_service.id,
             endpoint_name="acc-test-ep",
             description="acc-test"))
-    foo_vpc_endpoints = volcengine.privatelink.vpc_endpoints_output(ids=[__item.id for __item in foo_vpc_endpoint])
+    foo_vpc_endpoints = volcengine.privatelink.get_vpc_endpoints_output(ids=[__item.id for __item in foo_vpc_endpoint])
     ```
 
 
@@ -309,4 +312,5 @@ def vpc_endpoints_output(endpoint_name: Optional[pulumi.Input[Optional[str]]] = 
     :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
     :param str vpc_id: The vpc id of vpc endpoint.
     """
+    pulumi.log.warn("""vpc_endpoints is deprecated: volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints""")
     ...

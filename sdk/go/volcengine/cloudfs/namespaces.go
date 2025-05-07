@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudfs.Namespaces(ctx, &cloudfs.NamespacesArgs{
+//			_, err := cloudfs.GetNamespaces(ctx, &cloudfs.GetNamespacesArgs{
 //				FsName: "tf-test-fs",
 //				NsId:   pulumi.StringRef("1801439850948****"),
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloudfs.Namespaces has been deprecated in favor of volcengine.cloudfs.getNamespaces
 func Namespaces(ctx *pulumi.Context, args *NamespacesArgs, opts ...pulumi.InvokeOption) (*NamespacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NamespacesResult

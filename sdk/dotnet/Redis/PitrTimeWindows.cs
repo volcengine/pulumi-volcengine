@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Redis
 {
+    [Obsolete(@"volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows")]
     public static class PitrTimeWindows
     {
         public static Task<PitrTimeWindowsResult> InvokeAsync(PitrTimeWindowsArgs args, InvokeOptions? options = null)

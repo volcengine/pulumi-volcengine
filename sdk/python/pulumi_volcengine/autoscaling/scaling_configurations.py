@@ -17,6 +17,8 @@ __all__ = [
     'scaling_configurations_output',
 ]
 
+warnings.warn("""volcengine.autoscaling.ScalingConfigurations has been deprecated in favor of volcengine.autoscaling.getScalingConfigurations""", DeprecationWarning)
+
 @pulumi.output_type
 class ScalingConfigurationsResult:
     """
@@ -131,7 +133,7 @@ def scaling_configurations(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -143,7 +145,7 @@ def scaling_configurations(ids: Optional[Sequence[str]] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
@@ -170,7 +172,7 @@ def scaling_configurations(ids: Optional[Sequence[str]] = None,
                 size=50,
                 delete_with_instance=True,
             )]))
-    foo_scaling_configurations = volcengine.autoscaling.scaling_configurations_output(ids=[__item.id for __item in foo_scaling_configuration])
+    foo_scaling_configurations = volcengine.autoscaling.get_scaling_configurations_output(ids=[__item.id for __item in foo_scaling_configuration])
     ```
 
 
@@ -180,6 +182,7 @@ def scaling_configurations(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] scaling_configuration_names: A list of scaling configuration names.
     :param str scaling_group_id: An id of scaling group.
     """
+    pulumi.log.warn("""scaling_configurations is deprecated: volcengine.autoscaling.ScalingConfigurations has been deprecated in favor of volcengine.autoscaling.getScalingConfigurations""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -215,7 +218,7 @@ def scaling_configurations_output(ids: Optional[pulumi.Input[Optional[Sequence[s
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -227,7 +230,7 @@ def scaling_configurations_output(ids: Optional[pulumi.Input[Optional[Sequence[s
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
@@ -254,7 +257,7 @@ def scaling_configurations_output(ids: Optional[pulumi.Input[Optional[Sequence[s
                 size=50,
                 delete_with_instance=True,
             )]))
-    foo_scaling_configurations = volcengine.autoscaling.scaling_configurations_output(ids=[__item.id for __item in foo_scaling_configuration])
+    foo_scaling_configurations = volcengine.autoscaling.get_scaling_configurations_output(ids=[__item.id for __item in foo_scaling_configuration])
     ```
 
 
@@ -264,4 +267,5 @@ def scaling_configurations_output(ids: Optional[pulumi.Input[Optional[Sequence[s
     :param Sequence[str] scaling_configuration_names: A list of scaling configuration names.
     :param str scaling_group_id: An id of scaling group.
     """
+    pulumi.log.warn("""scaling_configurations is deprecated: volcengine.autoscaling.ScalingConfigurations has been deprecated in favor of volcengine.autoscaling.getScalingConfigurations""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'snat_entries_output',
 ]
 
+warnings.warn("""volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries""", DeprecationWarning)
+
 @pulumi.output_type
 class SnatEntriesResult:
     """
@@ -163,7 +165,7 @@ def snat_entries(eip_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -205,7 +207,7 @@ def snat_entries(eip_id: Optional[str] = None,
         eip_id=foo_address.id,
         source_cidr="172.16.0.0/16",
         opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
-    foo_snat_entries = volcengine.nat.snat_entries_output(ids=[
+    foo_snat_entries = volcengine.nat.get_snat_entries_output(ids=[
         foo1.id,
         foo2.id,
     ])
@@ -220,6 +222,7 @@ def snat_entries(eip_id: Optional[str] = None,
     :param str source_cidr: The SourceCidr of SNAT entry.
     :param str subnet_id: An id of the subnet that is required to access the Internet.
     """
+    pulumi.log.warn("""snat_entries is deprecated: volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries""")
     __args__ = dict()
     __args__['eipId'] = eip_id
     __args__['ids'] = ids
@@ -261,7 +264,7 @@ def snat_entries_output(eip_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -303,7 +306,7 @@ def snat_entries_output(eip_id: Optional[pulumi.Input[Optional[str]]] = None,
         eip_id=foo_address.id,
         source_cidr="172.16.0.0/16",
         opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
-    foo_snat_entries = volcengine.nat.snat_entries_output(ids=[
+    foo_snat_entries = volcengine.nat.get_snat_entries_output(ids=[
         foo1.id,
         foo2.id,
     ])
@@ -318,4 +321,5 @@ def snat_entries_output(eip_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str source_cidr: The SourceCidr of SNAT entry.
     :param str subnet_id: An id of the subnet that is required to access the Internet.
     """
+    pulumi.log.warn("""snat_entries is deprecated: volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries""")
     ...

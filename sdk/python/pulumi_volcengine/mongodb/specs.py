@@ -17,6 +17,8 @@ __all__ = [
     'specs_output',
 ]
 
+warnings.warn("""volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs""", DeprecationWarning)
+
 @pulumi.output_type
 class SpecsResult:
     """
@@ -98,13 +100,14 @@ def specs(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.specs()
+    foo = volcengine.mongodb.get_specs()
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str region_id: The region ID to query.
     """
+    pulumi.log.warn("""specs is deprecated: volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['regionId'] = region_id
@@ -131,11 +134,12 @@ def specs_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.specs()
+    foo = volcengine.mongodb.get_specs()
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str region_id: The region ID to query.
     """
+    pulumi.log.warn("""specs is deprecated: volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs""")
     ...

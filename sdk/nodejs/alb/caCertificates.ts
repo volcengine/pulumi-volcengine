@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.CaCertificates({
+ * const foo = volcengine.alb.getCaCertificates({
  *     ids: ["cert-1iidd2r9ii0hs74adhfeodxo1"],
  * });
  * ```
  */
+/** @deprecated volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates */
 export function caCertificates(args?: CaCertificatesArgs, opts?: pulumi.InvokeOptions): Promise<CaCertificatesResult> {
+    pulumi.log.warn("caCertificates is deprecated: volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -94,11 +96,12 @@ export interface CaCertificatesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.CaCertificates({
+ * const foo = volcengine.alb.getCaCertificates({
  *     ids: ["cert-1iidd2r9ii0hs74adhfeodxo1"],
  * });
  * ```
  */
+/** @deprecated volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates */
 export function caCertificatesOutput(args?: CaCertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CaCertificatesResult> {
     return pulumi.output(args).apply((a: any) => caCertificates(a, opts))
 }

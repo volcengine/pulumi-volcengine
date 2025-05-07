@@ -12,16 +12,31 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpc.Vpc("foo", {
+ * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
  *     dnsServers: [
  *         "8.8.8.8",
  *         "114.114.114.114",
  *     ],
  *     projectName: "default",
- *     vpcName: "acc-test-vpc",
+ * });
+ * // create subnet
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * // create security group
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
  * });
  * ```
  *

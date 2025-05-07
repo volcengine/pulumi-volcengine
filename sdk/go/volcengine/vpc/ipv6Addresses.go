@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.Ipv6Addresses(ctx, &vpc.Ipv6AddressesArgs{
+//			_, err := vpc.GetIpv6Addresses(ctx, &vpc.GetIpv6AddressesArgs{
 //				AssociatedInstanceId: pulumi.StringRef("i-yca53yuhj6gh9zl53kav"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses
 func Ipv6Addresses(ctx *pulumi.Context, args *Ipv6AddressesArgs, opts ...pulumi.InvokeOption) (*Ipv6AddressesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Ipv6AddressesResult

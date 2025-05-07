@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds
 {
+    [Obsolete(@"volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases")]
     public static class Databases
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds.Databases.Invoke(new()
+        ///     var @default = Volcengine.Rds.GetDatabases.Invoke(new()
         ///     {
         ///         InstanceId = "mysql-0fdd3bab2e7c",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds.Databases.Invoke(new()
+        ///     var @default = Volcengine.Rds.GetDatabases.Invoke(new()
         ///     {
         ///         InstanceId = "mysql-0fdd3bab2e7c",
         ///     });

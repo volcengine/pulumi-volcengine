@@ -15,6 +15,41 @@ export const accessKeys: typeof import("./accessKeys").accessKeys = null as any;
 export const accessKeysOutput: typeof import("./accessKeys").accessKeysOutput = null as any;
 utilities.lazyLoad(exports, ["accessKeys","accessKeysOutput"], () => require("./accessKeys"));
 
+export { GetAccessKeysArgs, GetAccessKeysResult, GetAccessKeysOutputArgs } from "./getAccessKeys";
+export const getAccessKeys: typeof import("./getAccessKeys").getAccessKeys = null as any;
+export const getAccessKeysOutput: typeof import("./getAccessKeys").getAccessKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessKeys","getAccessKeysOutput"], () => require("./getAccessKeys"));
+
+export { GetPoliciesArgs, GetPoliciesResult, GetPoliciesOutputArgs } from "./getPolicies";
+export const getPolicies: typeof import("./getPolicies").getPolicies = null as any;
+export const getPoliciesOutput: typeof import("./getPolicies").getPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getPolicies","getPoliciesOutput"], () => require("./getPolicies"));
+
+export { GetRolesArgs, GetRolesResult, GetRolesOutputArgs } from "./getRoles";
+export const getRoles: typeof import("./getRoles").getRoles = null as any;
+export const getRolesOutput: typeof import("./getRoles").getRolesOutput = null as any;
+utilities.lazyLoad(exports, ["getRoles","getRolesOutput"], () => require("./getRoles"));
+
+export { GetSamlProvidersArgs, GetSamlProvidersResult, GetSamlProvidersOutputArgs } from "./getSamlProviders";
+export const getSamlProviders: typeof import("./getSamlProviders").getSamlProviders = null as any;
+export const getSamlProvidersOutput: typeof import("./getSamlProviders").getSamlProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["getSamlProviders","getSamlProvidersOutput"], () => require("./getSamlProviders"));
+
+export { GetUserGroupPolicyAttachmentsArgs, GetUserGroupPolicyAttachmentsResult, GetUserGroupPolicyAttachmentsOutputArgs } from "./getUserGroupPolicyAttachments";
+export const getUserGroupPolicyAttachments: typeof import("./getUserGroupPolicyAttachments").getUserGroupPolicyAttachments = null as any;
+export const getUserGroupPolicyAttachmentsOutput: typeof import("./getUserGroupPolicyAttachments").getUserGroupPolicyAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getUserGroupPolicyAttachments","getUserGroupPolicyAttachmentsOutput"], () => require("./getUserGroupPolicyAttachments"));
+
+export { GetUserGroupsArgs, GetUserGroupsResult, GetUserGroupsOutputArgs } from "./getUserGroups";
+export const getUserGroups: typeof import("./getUserGroups").getUserGroups = null as any;
+export const getUserGroupsOutput: typeof import("./getUserGroups").getUserGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getUserGroups","getUserGroupsOutput"], () => require("./getUserGroups"));
+
+export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
 export { LoginProfileArgs, LoginProfileState } from "./loginProfile";
 export type LoginProfile = import("./loginProfile").LoginProfile;
 export const LoginProfile: typeof import("./loginProfile").LoginProfile = null as any;

@@ -18,6 +18,8 @@ __all__ = [
     'gateways_output',
 ]
 
+warnings.warn("""volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways""", DeprecationWarning)
+
 @pulumi.output_type
 class GatewaysResult:
     """
@@ -187,7 +189,7 @@ def gateways(description: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -210,7 +212,7 @@ def gateways(description: Optional[str] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_gateways = volcengine.nat.gateways_output(ids=[__item.id for __item in foo_gateway])
+    foo_gateways = volcengine.nat.get_gateways_output(ids=[__item.id for __item in foo_gateway])
     ```
 
 
@@ -224,6 +226,7 @@ def gateways(description: Optional[str] = None,
     :param Sequence[pulumi.InputType['GatewaysTagArgs']] tags: Tags.
     :param str vpc_id: The id of the VPC.
     """
+    pulumi.log.warn("""gateways is deprecated: volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways""")
     __args__ = dict()
     __args__['description'] = description
     __args__['ids'] = ids
@@ -271,7 +274,7 @@ def gateways_output(description: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -294,7 +297,7 @@ def gateways_output(description: Optional[pulumi.Input[Optional[str]]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_gateways = volcengine.nat.gateways_output(ids=[__item.id for __item in foo_gateway])
+    foo_gateways = volcengine.nat.get_gateways_output(ids=[__item.id for __item in foo_gateway])
     ```
 
 
@@ -308,4 +311,5 @@ def gateways_output(description: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['GatewaysTagArgs']] tags: Tags.
     :param str vpc_id: The id of the VPC.
     """
+    pulumi.log.warn("""gateways is deprecated: volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways""")
     ...

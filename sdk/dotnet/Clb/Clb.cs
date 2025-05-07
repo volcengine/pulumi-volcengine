@@ -20,23 +20,25 @@ namespace Pulumi.Volcengine.Clb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
     ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     // ipv4 public clb
+    ///     // create ipv4 public clb
     ///     var publicClb = new Volcengine.Clb.Clb("publicClb", new()
     ///     {
     ///         Type = "public",
@@ -61,7 +63,7 @@ namespace Pulumi.Volcengine.Clb
     ///         },
     ///     });
     /// 
-    ///     // ipv4 private clb
+    ///     // create ipv4 private clb
     ///     var privateClb = new Volcengine.Clb.Clb("privateClb", new()
     ///     {
     ///         Type = "private",
@@ -72,6 +74,7 @@ namespace Pulumi.Volcengine.Clb
     ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create eip
     ///     var eip = new Volcengine.Eip.Address("eip", new()
     ///     {
     ///         BillingType = "PostPaidByBandwidth",
@@ -81,6 +84,7 @@ namespace Pulumi.Volcengine.Clb
     ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // associate eip to clb
     ///     var associate = new Volcengine.Eip.Associate("associate", new()
     ///     {
     ///         AllocationId = eip.Id,
@@ -88,7 +92,7 @@ namespace Pulumi.Volcengine.Clb
     ///         InstanceType = "ClbInstance",
     ///     });
     /// 
-    ///     // ipv6 private clb
+    ///     // create ipv6 vpc
     ///     var vpcIpv6 = new Volcengine.Vpc.Vpc("vpcIpv6", new()
     ///     {
     ///         VpcName = "acc-test-vpc-ipv6",
@@ -96,15 +100,17 @@ namespace Pulumi.Volcengine.Clb
     ///         EnableIpv6 = true,
     ///     });
     /// 
+    ///     // create ipv6 subnet
     ///     var subnetIpv6 = new Volcengine.Vpc.Subnet("subnetIpv6", new()
     ///     {
     ///         SubnetName = "acc-test-subnet-ipv6",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
     ///         VpcId = vpcIpv6.Id,
     ///         Ipv6CidrBlock = 1,
     ///     });
     /// 
+    ///     // create ipv6 private clb
     ///     var privateClbIpv6 = new Volcengine.Clb.Clb("privateClbIpv6", new()
     ///     {
     ///         Type = "private",
@@ -116,6 +122,7 @@ namespace Pulumi.Volcengine.Clb
     ///         AddressIpVersion = "DualStack",
     ///     });
     /// 
+    ///     // create ipv6 gateway
     ///     var ipv6Gateway = new Volcengine.Vpc.Ipv6Gateway("ipv6Gateway", new()
     ///     {
     ///         VpcId = vpcIpv6.Id,

@@ -17,6 +17,8 @@ __all__ = [
     'scaling_activities_output',
 ]
 
+warnings.warn("""volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities""", DeprecationWarning)
+
 @pulumi.output_type
 class ScalingActivitiesResult:
     """
@@ -144,7 +146,7 @@ def scaling_activities(end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -156,7 +158,7 @@ def scaling_activities(end_time: Optional[str] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
@@ -219,7 +221,7 @@ def scaling_activities(end_time: Optional[str] = None,
                 opts=pulumi.ResourceOptions(depends_on=[foo_scaling_group_enabler])))
 
     (len(foo_instance)).apply(create_foo_scaling_instance_attachment)
-    foo_scaling_activities = volcengine.autoscaling.scaling_activities_output(scaling_group_id=foo_scaling_group.id)
+    foo_scaling_activities = volcengine.autoscaling.get_scaling_activities_output(scaling_group_id=foo_scaling_group.id)
     ```
 
 
@@ -230,6 +232,7 @@ def scaling_activities(end_time: Optional[str] = None,
     :param str start_time: A start time to start a Scaling Activity.
     :param str status_code: A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
     """
+    pulumi.log.warn("""scaling_activities is deprecated: volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities""")
     __args__ = dict()
     __args__['endTime'] = end_time
     __args__['ids'] = ids
@@ -268,7 +271,7 @@ def scaling_activities_output(end_time: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -280,7 +283,7 @@ def scaling_activities_output(end_time: Optional[pulumi.Input[Optional[str]]] = 
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
@@ -343,7 +346,7 @@ def scaling_activities_output(end_time: Optional[pulumi.Input[Optional[str]]] = 
                 opts=pulumi.ResourceOptions(depends_on=[foo_scaling_group_enabler])))
 
     (len(foo_instance)).apply(create_foo_scaling_instance_attachment)
-    foo_scaling_activities = volcengine.autoscaling.scaling_activities_output(scaling_group_id=foo_scaling_group.id)
+    foo_scaling_activities = volcengine.autoscaling.get_scaling_activities_output(scaling_group_id=foo_scaling_group.id)
     ```
 
 
@@ -354,4 +357,5 @@ def scaling_activities_output(end_time: Optional[pulumi.Input[Optional[str]]] = 
     :param str start_time: A start time to start a Scaling Activity.
     :param str status_code: A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
     """
+    pulumi.log.warn("""scaling_activities is deprecated: volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities""")
     ...

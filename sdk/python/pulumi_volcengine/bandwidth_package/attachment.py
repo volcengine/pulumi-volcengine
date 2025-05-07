@@ -125,8 +125,8 @@ class Attachment(pulumi.CustomResource):
         ipv4_attachment = volcengine.bandwidth_package.Attachment("ipv4Attachment",
             allocation_id=foo_address.id,
             bandwidth_package_id=ipv4_bandwidth_package.id)
-        foo_zones = volcengine.ecs.zones()
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
@@ -156,7 +156,7 @@ class Attachment(pulumi.CustomResource):
             subnet_id=foo_subnet.id,
             security_group_ids=[foo_security_group.id],
             ipv6_address_count=1)
-        foo_ipv6_addresses = volcengine.vpc.ipv6_addresses_output(associated_instance_id=foo_instance.id)
+        foo_ipv6_addresses = volcengine.vpc.get_ipv6_addresses_output(associated_instance_id=foo_instance.id)
         foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
             ipv6_address=foo_ipv6_addresses.ipv6_addresses[0].ipv6_address,
             billing_type="PostPaidByBandwidth",
@@ -224,8 +224,8 @@ class Attachment(pulumi.CustomResource):
         ipv4_attachment = volcengine.bandwidth_package.Attachment("ipv4Attachment",
             allocation_id=foo_address.id,
             bandwidth_package_id=ipv4_bandwidth_package.id)
-        foo_zones = volcengine.ecs.zones()
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
@@ -255,7 +255,7 @@ class Attachment(pulumi.CustomResource):
             subnet_id=foo_subnet.id,
             security_group_ids=[foo_security_group.id],
             ipv6_address_count=1)
-        foo_ipv6_addresses = volcengine.vpc.ipv6_addresses_output(associated_instance_id=foo_instance.id)
+        foo_ipv6_addresses = volcengine.vpc.get_ipv6_addresses_output(associated_instance_id=foo_instance.id)
         foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
             ipv6_address=foo_ipv6_addresses.ipv6_addresses[0].ipv6_address,
             billing_type="PostPaidByBandwidth",

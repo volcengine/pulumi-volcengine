@@ -17,6 +17,8 @@ __all__ = [
     'scaling_groups_output',
 ]
 
+warnings.warn("""volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class ScalingGroupsResult:
     """
@@ -131,7 +133,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -161,7 +163,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
                     value="v1",
                 ),
             ]))
-    default = volcengine.autoscaling.scaling_groups_output(ids=[__item.id for __item in foo_scaling_group])
+    default = volcengine.autoscaling.get_scaling_groups_output(ids=[__item.id for __item in foo_scaling_group])
     ```
 
 
@@ -171,6 +173,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
     :param str project_name: The project name of the scaling group.
     :param Sequence[str] scaling_group_names: A list of scaling group names.
     """
+    pulumi.log.warn("""scaling_groups is deprecated: volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -206,7 +209,7 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -236,7 +239,7 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
                     value="v1",
                 ),
             ]))
-    default = volcengine.autoscaling.scaling_groups_output(ids=[__item.id for __item in foo_scaling_group])
+    default = volcengine.autoscaling.get_scaling_groups_output(ids=[__item.id for __item in foo_scaling_group])
     ```
 
 
@@ -246,4 +249,5 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param str project_name: The project name of the scaling group.
     :param Sequence[str] scaling_group_names: A list of scaling group names.
     """
+    pulumi.log.warn("""scaling_groups is deprecated: volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups""")
     ...

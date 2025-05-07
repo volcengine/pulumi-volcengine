@@ -13,5 +13,8 @@ from .bucket_objects import *
 from .bucket_policy import *
 from .bucket_realtime_log import *
 from .buckets import *
+from .get_bucket_inventories import *
+from .get_bucket_objects import *
+from .get_buckets import *
 from ._inputs import *
 from . import outputs

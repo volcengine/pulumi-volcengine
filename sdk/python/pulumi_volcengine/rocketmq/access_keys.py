@@ -17,6 +17,8 @@ __all__ = [
     'access_keys_output',
 ]
 
+warnings.warn("""volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys""", DeprecationWarning)
+
 @pulumi.output_type
 class AccessKeysResult:
     """
@@ -114,7 +116,7 @@ def access_keys(access_key: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.access_keys(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_access_keys(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -122,6 +124,7 @@ def access_keys(access_key: Optional[str] = None,
     :param str instance_id: The id of rocketmq instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""access_keys is deprecated: volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys""")
     __args__ = dict()
     __args__['accessKey'] = access_key
     __args__['instanceId'] = instance_id
@@ -151,7 +154,7 @@ def access_keys_output(access_key: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.access_keys(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_access_keys(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -159,4 +162,5 @@ def access_keys_output(access_key: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The id of rocketmq instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""access_keys is deprecated: volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys""")
     ...

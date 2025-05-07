@@ -17,6 +17,8 @@ __all__ = [
     'event_rules_output',
 ]
 
+warnings.warn("""volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules""", DeprecationWarning)
+
 @pulumi.output_type
 class EventRulesResult:
     """
@@ -114,7 +116,7 @@ def event_rules(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.event_rules(rule_name="tftest")
+    foo = volcengine.cloud_monitor.get_event_rules(rule_name="tftest")
     ```
 
 
@@ -122,6 +124,7 @@ def event_rules(output_file: Optional[str] = None,
     :param str rule_name: Rule name, search rules by name using fuzzy search.
     :param str source: Event source.
     """
+    pulumi.log.warn("""event_rules is deprecated: volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['ruleName'] = rule_name
@@ -151,7 +154,7 @@ def event_rules_output(output_file: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.event_rules(rule_name="tftest")
+    foo = volcengine.cloud_monitor.get_event_rules(rule_name="tftest")
     ```
 
 
@@ -159,4 +162,5 @@ def event_rules_output(output_file: Optional[pulumi.Input[Optional[str]]] = None
     :param str rule_name: Rule name, search rules by name using fuzzy search.
     :param str source: Event source.
     """
+    pulumi.log.warn("""event_rules is deprecated: volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules""")
     ...

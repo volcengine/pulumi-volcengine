@@ -17,6 +17,8 @@ __all__ = [
     'route_entries_output',
 ]
 
+warnings.warn("""volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries""", DeprecationWarning)
+
 @pulumi.output_type
 class RouteEntriesResult:
     """
@@ -156,6 +158,7 @@ def route_entries(cen_id: Optional[str] = None,
     :param str instance_type: An instance type.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""route_entries is deprecated: volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries""")
     __args__ = dict()
     __args__['cenId'] = cen_id
     __args__['destinationCidrBlock'] = destination_cidr_block
@@ -197,4 +200,5 @@ def route_entries_output(cen_id: Optional[pulumi.Input[str]] = None,
     :param str instance_type: An instance type.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""route_entries is deprecated: volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'connections_output',
 ]
 
+warnings.warn("""volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections""", DeprecationWarning)
+
 @pulumi.output_type
 class ConnectionsResult:
     """
@@ -260,7 +262,7 @@ def connections(attach_status: Optional[str] = None,
         ipsec_config_dh_group="group2",
         ipsec_config_lifetime=9000,
         project_name="default")
-    foo_connections = volcengine.vpn.connections_output(ids=[foo_connection.id])
+    foo_connections = volcengine.vpn.get_connections_output(ids=[foo_connection.id])
     ```
 
 
@@ -277,6 +279,7 @@ def connections(attach_status: Optional[str] = None,
     :param Sequence[str] vpn_connection_names: A list of VPN connection names.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
+    pulumi.log.warn("""connections is deprecated: volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections""")
     __args__ = dict()
     __args__['attachStatus'] = attach_status
     __args__['attachType'] = attach_type
@@ -377,7 +380,7 @@ def connections_output(attach_status: Optional[pulumi.Input[Optional[str]]] = No
         ipsec_config_dh_group="group2",
         ipsec_config_lifetime=9000,
         project_name="default")
-    foo_connections = volcengine.vpn.connections_output(ids=[foo_connection.id])
+    foo_connections = volcengine.vpn.get_connections_output(ids=[foo_connection.id])
     ```
 
 
@@ -394,4 +397,5 @@ def connections_output(attach_status: Optional[pulumi.Input[Optional[str]]] = No
     :param Sequence[str] vpn_connection_names: A list of VPN connection names.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
+    pulumi.log.warn("""connections is deprecated: volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections""")
     ...

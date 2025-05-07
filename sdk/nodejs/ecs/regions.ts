@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.ecs.Regions({
+ * const default = volcengine.ecs.getRegions({
  *     ids: ["cn-beijing"],
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions */
 export function regions(args?: RegionsArgs, opts?: pulumi.InvokeOptions): Promise<RegionsResult> {
+    pulumi.log.warn("regions is deprecated: volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -70,11 +72,12 @@ export interface RegionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.ecs.Regions({
+ * const default = volcengine.ecs.getRegions({
  *     ids: ["cn-beijing"],
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions */
 export function regionsOutput(args?: RegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RegionsResult> {
     return pulumi.output(args).apply((a: any) => regions(a, opts))
 }

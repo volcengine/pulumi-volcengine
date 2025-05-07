@@ -18,6 +18,8 @@ __all__ = [
     'security_groups_output',
 ]
 
+warnings.warn("""volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class SecurityGroupsResult:
     """
@@ -158,7 +160,7 @@ def security_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
+    default = volcengine.vpc.get_security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
     ```
 
 
@@ -170,6 +172,7 @@ def security_groups(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['SecurityGroupsTagArgs']] tags: Tags.
     :param str vpc_id: The ID of vpc where security group is located.
     """
+    pulumi.log.warn("""security_groups is deprecated: volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -211,7 +214,7 @@ def security_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
+    default = volcengine.vpc.get_security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
     ```
 
 
@@ -223,4 +226,5 @@ def security_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param Sequence[pulumi.InputType['SecurityGroupsTagArgs']] tags: Tags.
     :param str vpc_id: The ID of vpc where security group is located.
     """
+    pulumi.log.warn("""security_groups is deprecated: volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups""")
     ...

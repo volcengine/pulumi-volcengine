@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.Addons(ctx, &vke.AddonsArgs{
+//			_, err := vke.GetAddons(ctx, &vke.GetAddonsArgs{
 //				ClusterIds: []string{
 //					"cccctv1vqtofp49d96ujg",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons
 func Addons(ctx *pulumi.Context, args *AddonsArgs, opts ...pulumi.InvokeOption) (*AddonsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AddonsResult

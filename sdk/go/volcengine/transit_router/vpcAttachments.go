@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.VpcAttachments(ctx, &transit_router.VpcAttachmentsArgs{
+//			_, err := transit_router.GetVpcAttachments(ctx, &transit_router.GetVpcAttachmentsArgs{
 //				TransitRouterAttachmentIds: []string{
 //					"tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments
 func VpcAttachments(ctx *pulumi.Context, args *VpcAttachmentsArgs, opts ...pulumi.InvokeOption) (*VpcAttachmentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcAttachmentsResult

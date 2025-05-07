@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.Certificates(ctx, &alb.CertificatesArgs{
+//			_, err := alb.GetCertificates(ctx, &alb.GetCertificatesArgs{
 //				CertificateName: pulumi.StringRef("tf-test"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates
 func Certificates(ctx *pulumi.Context, args *CertificatesArgs, opts ...pulumi.InvokeOption) (*CertificatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CertificatesResult

@@ -17,6 +17,8 @@ __all__ = [
     'schemas_output',
 ]
 
+warnings.warn("""volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas""", DeprecationWarning)
+
 @pulumi.output_type
 class SchemasResult:
     """
@@ -111,7 +113,7 @@ def schemas(db_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-project1",
         cidr_block="172.16.0.0/16")
@@ -168,7 +170,7 @@ def schemas(db_name: Optional[str] = None,
         instance_id=foo_instance.id,
         owner=foo_account.account_name,
         schema_name="acc-test-schema")
-    foo_schemas = volcengine.rds_postgresql.schemas_output(db_name=foo_schema.db_name,
+    foo_schemas = volcengine.rds_postgresql.get_schemas_output(db_name=foo_schema.db_name,
         instance_id=foo_instance.id)
     ```
 
@@ -177,6 +179,7 @@ def schemas(db_name: Optional[str] = None,
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""schemas is deprecated: volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas""")
     __args__ = dict()
     __args__['dbName'] = db_name
     __args__['instanceId'] = instance_id
@@ -206,7 +209,7 @@ def schemas_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-project1",
         cidr_block="172.16.0.0/16")
@@ -263,7 +266,7 @@ def schemas_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
         instance_id=foo_instance.id,
         owner=foo_account.account_name,
         schema_name="acc-test-schema")
-    foo_schemas = volcengine.rds_postgresql.schemas_output(db_name=foo_schema.db_name,
+    foo_schemas = volcengine.rds_postgresql.get_schemas_output(db_name=foo_schema.db_name,
         instance_id=foo_instance.id)
     ```
 
@@ -272,4 +275,5 @@ def schemas_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""schemas is deprecated: volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas""")
     ...

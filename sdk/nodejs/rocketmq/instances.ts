@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.Instances({
+ * const foo = volcengine.rocketmq.getInstances({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -157,11 +159,12 @@ export interface InstancesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.Instances({
+ * const foo = volcengine.rocketmq.getInstances({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

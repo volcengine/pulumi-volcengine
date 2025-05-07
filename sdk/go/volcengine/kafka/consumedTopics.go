@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -121,7 +121,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = kafka.ConsumedTopicsOutput(ctx, kafka.ConsumedTopicsOutputArgs{
+//			_ = kafka.GetConsumedTopicsOutput(ctx, kafka.GetConsumedTopicsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //				GroupId:    fooGroup.GroupId,
 //				TopicName:  fooTopic.TopicName,
@@ -131,6 +131,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics
 func ConsumedTopics(ctx *pulumi.Context, args *ConsumedTopicsArgs, opts ...pulumi.InvokeOption) (*ConsumedTopicsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ConsumedTopicsResult

@@ -14,18 +14,20 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * // ipv4 public clb
+ * // create ipv4 public clb
  * const publicClb = new volcengine.clb.Clb("publicClb", {
  *     type: "public",
  *     subnetId: fooSubnet.id,
@@ -43,7 +45,7 @@ import * as utilities from "../utilities";
  *         value: "v1",
  *     }],
  * });
- * // ipv4 private clb
+ * // create ipv4 private clb
  * const privateClb = new volcengine.clb.Clb("privateClb", {
  *     type: "private",
  *     subnetId: fooSubnet.id,
@@ -52,6 +54,7 @@ import * as utilities from "../utilities";
  *     description: "acc-test-demo",
  *     projectName: "default",
  * });
+ * // create eip
  * const eip = new volcengine.eip.Address("eip", {
  *     billingType: "PostPaidByBandwidth",
  *     bandwidth: 1,
@@ -59,17 +62,19 @@ import * as utilities from "../utilities";
  *     description: "tf-test",
  *     projectName: "default",
  * });
+ * // associate eip to clb
  * const associate = new volcengine.eip.Associate("associate", {
  *     allocationId: eip.id,
  *     instanceId: privateClb.id,
  *     instanceType: "ClbInstance",
  * });
- * // ipv6 private clb
+ * // create ipv6 vpc
  * const vpcIpv6 = new volcengine.vpc.Vpc("vpcIpv6", {
  *     vpcName: "acc-test-vpc-ipv6",
  *     cidrBlock: "172.16.0.0/16",
  *     enableIpv6: true,
  * });
+ * // create ipv6 subnet
  * const subnetIpv6 = new volcengine.vpc.Subnet("subnetIpv6", {
  *     subnetName: "acc-test-subnet-ipv6",
  *     cidrBlock: "172.16.0.0/24",
@@ -77,6 +82,7 @@ import * as utilities from "../utilities";
  *     vpcId: vpcIpv6.id,
  *     ipv6CidrBlock: 1,
  * });
+ * // create ipv6 private clb
  * const privateClbIpv6 = new volcengine.clb.Clb("privateClbIpv6", {
  *     type: "private",
  *     subnetId: subnetIpv6.id,
@@ -86,6 +92,7 @@ import * as utilities from "../utilities";
  *     projectName: "default",
  *     addressIpVersion: "DualStack",
  * });
+ * // create ipv6 gateway
  * const ipv6Gateway = new volcengine.vpc.Ipv6Gateway("ipv6Gateway", {vpcId: vpcIpv6.id});
  * const fooIpv6AddressBandwidth = new volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth", {
  *     ipv6Address: privateClbIpv6.eniIpv6Address,

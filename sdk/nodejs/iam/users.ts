@@ -20,12 +20,14 @@ import * as utilities from "../utilities";
  *     description: "acc test",
  *     displayName: "name",
  * });
- * const fooUsers = volcengine.iam.UsersOutput({
+ * const fooUsers = volcengine.iam.getUsersOutput({
  *     userNames: [fooUser.userName],
  * });
  * ```
  */
+/** @deprecated volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers */
 export function users(args?: UsersArgs, opts?: pulumi.InvokeOptions): Promise<UsersResult> {
+    pulumi.log.warn("users is deprecated: volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -88,11 +90,12 @@ export interface UsersResult {
  *     description: "acc test",
  *     displayName: "name",
  * });
- * const fooUsers = volcengine.iam.UsersOutput({
+ * const fooUsers = volcengine.iam.getUsersOutput({
  *     userNames: [fooUser.userName],
  * });
  * ```
  */
+/** @deprecated volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers */
 export function usersOutput(args?: UsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UsersResult> {
     return pulumi.output(args).apply((a: any) => users(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tos
 {
+    [Obsolete(@"volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories")]
     public static class BucketInventories
     {
         /// <summary>
@@ -59,7 +60,7 @@ namespace Pulumi.Volcengine.Tos
         ///         },
         ///     });
         /// 
-        ///     var fooBucketInventories = Volcengine.Tos.BucketInventories.Invoke(new()
+        ///     var fooBucketInventories = Volcengine.Tos.GetBucketInventories.Invoke(new()
         ///     {
         ///         BucketName = "terraform-demo",
         ///         InventoryId = fooBucketInventory.InventoryId,
@@ -119,7 +120,7 @@ namespace Pulumi.Volcengine.Tos
         ///         },
         ///     });
         /// 
-        ///     var fooBucketInventories = Volcengine.Tos.BucketInventories.Invoke(new()
+        ///     var fooBucketInventories = Volcengine.Tos.GetBucketInventories.Invoke(new()
         ///     {
         ///         BucketName = "terraform-demo",
         ///         InventoryId = fooBucketInventory.InventoryId,

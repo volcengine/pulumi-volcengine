@@ -17,6 +17,8 @@ __all__ = [
     'authorization_tokens_output',
 ]
 
+warnings.warn("""volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens""", DeprecationWarning)
+
 @pulumi.output_type
 class AuthorizationTokensResult:
     """
@@ -98,13 +100,14 @@ def authorization_tokens(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.authorization_tokens(registry="tf-1")
+    foo = volcengine.cr.get_authorization_tokens(registry="tf-1")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str registry: The cr instance name want to query.
     """
+    pulumi.log.warn("""authorization_tokens is deprecated: volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['registry'] = registry
@@ -131,11 +134,12 @@ def authorization_tokens_output(output_file: Optional[pulumi.Input[Optional[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.authorization_tokens(registry="tf-1")
+    foo = volcengine.cr.get_authorization_tokens(registry="tf-1")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str registry: The cr instance name want to query.
     """
+    pulumi.log.warn("""authorization_tokens is deprecated: volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens""")
     ...

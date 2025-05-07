@@ -17,6 +17,8 @@ __all__ = [
     'user_groups_output',
 ]
 
+warnings.warn("""volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class UserGroupsResult:
     """
@@ -102,13 +104,14 @@ def user_groups(output_file: Optional[str] = None,
         description="acc-test",
         display_name="acc-test",
         user_group_name="acc-test-group")
-    foo_user_groups = volcengine.iam.user_groups(query="acc-test")
+    foo_user_groups = volcengine.iam.get_user_groups(query="acc-test")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str query: Fuzzy search, supports searching for user group names, display names, and remarks.
     """
+    pulumi.log.warn("""user_groups is deprecated: volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['query'] = query
@@ -139,11 +142,12 @@ def user_groups_output(output_file: Optional[pulumi.Input[Optional[str]]] = None
         description="acc-test",
         display_name="acc-test",
         user_group_name="acc-test-group")
-    foo_user_groups = volcengine.iam.user_groups(query="acc-test")
+    foo_user_groups = volcengine.iam.get_user_groups(query="acc-test")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str query: Fuzzy search, supports searching for user group names, display names, and remarks.
     """
+    pulumi.log.warn("""user_groups is deprecated: volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups""")
     ...

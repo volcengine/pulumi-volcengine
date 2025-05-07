@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.Databases({
+ * const foo = volcengine.rds_postgresql.getDatabases({
  *     dbName: "test001",
  *     instanceId: "postgres-95******8233",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases */
 export function databases(args: DatabasesArgs, opts?: pulumi.InvokeOptions): Promise<DatabasesResult> {
+    pulumi.log.warn("databases is deprecated: volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_postgresql/databases:Databases", {
@@ -79,12 +81,13 @@ export interface DatabasesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.Databases({
+ * const foo = volcengine.rds_postgresql.getDatabases({
  *     dbName: "test001",
  *     instanceId: "postgres-95******8233",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases */
 export function databasesOutput(args: DatabasesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DatabasesResult> {
     return pulumi.output(args).apply((a: any) => databases(a, opts))
 }

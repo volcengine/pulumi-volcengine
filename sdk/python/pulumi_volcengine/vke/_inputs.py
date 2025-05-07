@@ -61,6 +61,12 @@ __all__ = [
     'NodePoolsStatusArgs',
     'NodePoolsTagArgs',
     'NodesStatusArgs',
+    'GetAddonsStatusArgs',
+    'GetClustersStatusArgs',
+    'GetClustersTagArgs',
+    'GetNodePoolsStatusArgs',
+    'GetNodePoolsTagArgs',
+    'GetNodesStatusArgs',
 ]
 
 @pulumi.input_type
@@ -2195,7 +2201,7 @@ class NodePoolNodeConfigArgs:
                  project_name: Optional[pulumi.Input[str]] = None,
                  system_volume: Optional[pulumi.Input['NodePoolNodeConfigSystemVolumeArgs']] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke_get_support_resource_types datasource.
         :param pulumi.Input['NodePoolNodeConfigSecurityArgs'] security: The Security of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The SubnetIds of NodeConfig.
         :param pulumi.Input[bool] additional_container_storage_enabled: The AdditionalContainerStorageEnabled of NodeConfig.
@@ -2246,7 +2252,7 @@ class NodePoolNodeConfigArgs:
     @pulumi.getter(name="instanceTypeIds")
     def instance_type_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
+        The InstanceTypeIds of NodeConfig. The value can get from vke_get_support_resource_types datasource.
         """
         return pulumi.get(self, "instance_type_ids")
 
@@ -2944,6 +2950,236 @@ class NodePoolsTagArgs:
 
 @pulumi.input_type
 class NodesStatusArgs:
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+        :param str phase: The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @conditions_type.setter
+    def conditions_type(self, value: Optional[str]):
+        pulumi.set(self, "conditions_type", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[str]):
+        pulumi.set(self, "phase", value)
+
+
+@pulumi.input_type
+class GetAddonsStatusArgs:
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        :param str phase: The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @conditions_type.setter
+    def conditions_type(self, value: Optional[str]):
+        pulumi.set(self, "conditions_type", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[str]):
+        pulumi.set(self, "phase", value)
+
+
+@pulumi.input_type
+class GetClustersStatusArgs:
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+        :param str phase: The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @conditions_type.setter
+    def conditions_type(self, value: Optional[str]):
+        pulumi.set(self, "conditions_type", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[str]):
+        pulumi.set(self, "phase", value)
+
+
+@pulumi.input_type
+class GetClustersTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetNodePoolsStatusArgs:
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+        :param str phase: The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @conditions_type.setter
+    def conditions_type(self, value: Optional[str]):
+        pulumi.set(self, "conditions_type", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[str]):
+        pulumi.set(self, "phase", value)
+
+
+@pulumi.input_type
+class GetNodePoolsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetNodesStatusArgs:
     def __init__(__self__, *,
                  conditions_type: Optional[str] = None,
                  phase: Optional[str] = None):

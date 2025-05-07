@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets")]
     public static class Subnets
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Subnets.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetSubnets.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Subnets.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetSubnets.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

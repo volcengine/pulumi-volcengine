@@ -21,26 +21,32 @@ namespace Pulumi.Volcengine.Vke
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+    /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         VpcName = "acc-test-project1",
+    ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
-    ///         SubnetName = "acc-subnet-test-2",
+    ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = "cn-beijing-a",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create security group
     ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
     ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
     ///         VpcId = fooVpc.Id,
-    ///         SecurityGroupName = "acc-test-security-group2",
     ///     });
     /// 
+    ///     // create vke cluster
     ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
     ///     {
     ///         Description = "created by terraform",
@@ -89,6 +95,157 @@ namespace Pulumi.Volcengine.Vke
     ///                 Value = "tf-v1",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.GetImages.Invoke(new()
+    ///     {
+    ///         NameRegex = "veLinux 1.0 CentOS Compatible 64 bit",
+    ///     });
+    /// 
+    ///     // create vke node pool
+    ///     var fooNodePool = new Volcengine.Vke.NodePool("fooNodePool", new()
+    ///     {
+    ///         ClusterId = fooCluster.Id,
+    ///         AutoScaling = new Volcengine.Vke.Inputs.NodePoolAutoScalingArgs
+    ///         {
+    ///             Enabled = true,
+    ///             MinReplicas = 0,
+    ///             MaxReplicas = 5,
+    ///             DesiredReplicas = 0,
+    ///             Priority = 5,
+    ///             SubnetPolicy = "ZoneBalance",
+    ///         },
+    ///         NodeConfig = new Volcengine.Vke.Inputs.NodePoolNodeConfigArgs
+    ///         {
+    ///             InstanceTypeIds = new[]
+    ///             {
+    ///                 "ecs.g1ie.xlarge",
+    ///             },
+    ///             SubnetIds = new[]
+    ///             {
+    ///                 fooSubnet.Id,
+    ///             },
+    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS Compatible 64 bit").Select(image =&gt; 
+    ///             {
+    ///                 return image.ImageId;
+    ///             }).ToList()[0],
+    ///             SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
+    ///             {
+    ///                 Type = "ESSD_PL0",
+    ///                 Size = 80,
+    ///             },
+    ///             DataVolumes = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+    ///                 {
+    ///                     Type = "ESSD_PL0",
+    ///                     Size = 80,
+    ///                     MountPoint = "/tf1",
+    ///                 },
+    ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+    ///                 {
+    ///                     Type = "ESSD_PL0",
+    ///                     Size = 60,
+    ///                     MountPoint = "/tf2",
+    ///                 },
+    ///             },
+    ///             InitializeScript = "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+    ///             Security = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityArgs
+    ///             {
+    ///                 Login = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityLoginArgs
+    ///                 {
+    ///                     Password = "UHdkMTIzNDU2",
+    ///                 },
+    ///                 SecurityStrategies = new[]
+    ///                 {
+    ///                     "Hids",
+    ///                 },
+    ///                 SecurityGroupIds = new[]
+    ///                 {
+    ///                     fooSecurityGroup.Id,
+    ///                 },
+    ///             },
+    ///             AdditionalContainerStorageEnabled = false,
+    ///             InstanceChargeType = "PostPaid",
+    ///             NamePrefix = "acc-test",
+    ///             ProjectName = "default",
+    ///             EcsTags = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigEcsTagArgs
+    ///                 {
+    ///                     Key = "ecs_k1",
+    ///                     Value = "ecs_v1",
+    ///                 },
+    ///             },
+    ///         },
+    ///         KubernetesConfig = new Volcengine.Vke.Inputs.NodePoolKubernetesConfigArgs
+    ///         {
+    ///             Labels = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolKubernetesConfigLabelArgs
+    ///                 {
+    ///                     Key = "label1",
+    ///                     Value = "value1",
+    ///                 },
+    ///             },
+    ///             Taints = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolKubernetesConfigTaintArgs
+    ///                 {
+    ///                     Key = "taint-key/node-type",
+    ///                     Value = "taint-value",
+    ///                     Effect = "NoSchedule",
+    ///                 },
+    ///             },
+    ///             Cordon = true,
+    ///             AutoSyncDisabled = false,
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vke.Inputs.NodePoolTagArgs
+    ///             {
+    ///                 Key = "node-pool-k1",
+    ///                 Value = "node-pool-v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // create ecs instance
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         HostName = "tf-acc-test",
+    ///         ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS Compatible 64 bit").Select(image =&gt; 
+    ///         {
+    ///             return image.ImageId;
+    ///         }).ToList()[0],
+    ///         InstanceType = "ecs.g1ie.xlarge",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 50,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // add the ecs instance to the vke node pool
+    ///     var fooNode = new Volcengine.Vke.Node("fooNode", new()
+    ///     {
+    ///         ClusterId = fooCluster.Id,
+    ///         InstanceId = fooInstance.Id,
+    ///         NodePoolId = fooNodePool.Id,
     ///     });
     /// 
     /// });

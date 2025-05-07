@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to query detailed information of scaling lifecycle hooks
+//
+// Deprecated: volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks
 func ScalingLifecycleHooks(ctx *pulumi.Context, args *ScalingLifecycleHooksArgs, opts ...pulumi.InvokeOption) (*ScalingLifecycleHooksResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingLifecycleHooksResult

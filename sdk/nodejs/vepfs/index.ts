@@ -25,6 +25,21 @@ export const filesets: typeof import("./filesets").filesets = null as any;
 export const filesetsOutput: typeof import("./filesets").filesetsOutput = null as any;
 utilities.lazyLoad(exports, ["filesets","filesetsOutput"], () => require("./filesets"));
 
+export { GetFileSystemsArgs, GetFileSystemsResult, GetFileSystemsOutputArgs } from "./getFileSystems";
+export const getFileSystems: typeof import("./getFileSystems").getFileSystems = null as any;
+export const getFileSystemsOutput: typeof import("./getFileSystems").getFileSystemsOutput = null as any;
+utilities.lazyLoad(exports, ["getFileSystems","getFileSystemsOutput"], () => require("./getFileSystems"));
+
+export { GetFilesetsArgs, GetFilesetsResult, GetFilesetsOutputArgs } from "./getFilesets";
+export const getFilesets: typeof import("./getFilesets").getFilesets = null as any;
+export const getFilesetsOutput: typeof import("./getFilesets").getFilesetsOutput = null as any;
+utilities.lazyLoad(exports, ["getFilesets","getFilesetsOutput"], () => require("./getFilesets"));
+
+export { GetMountServicesArgs, GetMountServicesResult, GetMountServicesOutputArgs } from "./getMountServices";
+export const getMountServices: typeof import("./getMountServices").getMountServices = null as any;
+export const getMountServicesOutput: typeof import("./getMountServices").getMountServicesOutput = null as any;
+utilities.lazyLoad(exports, ["getMountServices","getMountServicesOutput"], () => require("./getMountServices"));
+
 export { MountServiceArgs, MountServiceState } from "./mountService";
 export type MountService = import("./mountService").MountService;
 export const MountService: typeof import("./mountService").MountService = null as any;

@@ -17,6 +17,8 @@ __all__ = [
     'ip_lists_output',
 ]
 
+warnings.warn("""volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists""", DeprecationWarning)
+
 @pulumi.output_type
 class IpListsResult:
     """
@@ -108,7 +110,7 @@ def ip_lists(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.ip_lists(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_ip_lists(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -116,6 +118,7 @@ def ip_lists(instance_id: Optional[str] = None,
     :param str name_regex: A Name Regex of RDS ip list.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""ip_lists is deprecated: volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
@@ -145,7 +148,7 @@ def ip_lists_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.ip_lists(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_ip_lists(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -153,4 +156,5 @@ def ip_lists_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str name_regex: A Name Regex of RDS ip list.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""ip_lists is deprecated: volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists""")
     ...

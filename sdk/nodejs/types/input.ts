@@ -140,6 +140,28 @@ export namespace alb {
         value: pulumi.Input<string>;
     }
 
+    export interface GetAlbsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAlbsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface RuleRedirectConfig {
         /**
          * The redirect domain, only support exact domain name.
@@ -345,6 +367,28 @@ export namespace bandwidth_package {
          */
         values: pulumi.Input<pulumi.Input<string>[]>;
     }
+
+    export interface GetBandwidthPackagesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface GetBandwidthPackagesTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }
 
 export namespace bioos {
@@ -536,6 +580,50 @@ export namespace cen {
         value: pulumi.Input<string>;
     }
 
+    export interface GetBandwidthPackagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetBandwidthPackagesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetCensTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCensTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface ServiceRouteEntryPublishToInstance {
         /**
          * Cloud service access routes need to publish the network instance ID.
@@ -635,6 +723,50 @@ export namespace clb {
     }
 
     export interface ClbsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCertificatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetClbsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetClbsTagArgs {
         /**
          * The Key of Tags.
          */
@@ -899,6 +1031,50 @@ export namespace cr {
         entry?: pulumi.Input<string>;
     }
 
+    export interface GetRegistriesResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetRegistriesResourceTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetRegistriesStatus {
+        /**
+         * The condition of registry.
+         */
+        condition?: string;
+        /**
+         * The phase of status.
+         */
+        phase?: string;
+    }
+
+    export interface GetRegistriesStatusArgs {
+        /**
+         * The condition of registry.
+         */
+        condition?: pulumi.Input<string>;
+        /**
+         * The phase of status.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
     export interface RegistriesResourceTag {
         /**
          * The Key of Tags.
@@ -1105,6 +1281,72 @@ export namespace direct_connect {
         value?: pulumi.Input<string>;
     }
 
+    export interface GetConnectionsTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GetConnectionsTagFilterArgs {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetGatewaysTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GetGatewaysTagFilterArgs {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetVirtualInterfacesTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GetVirtualInterfacesTagFilterArgs {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: pulumi.Input<string>;
+    }
+
     export interface VirtualInterfaceTag {
         /**
          * The tag key.
@@ -1141,6 +1383,28 @@ export namespace direct_connect {
 }
 
 export namespace dns {
+    export interface GetZonesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetZonesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface ZoneTag {
         /**
          * The Key of Tags.
@@ -1200,6 +1464,72 @@ export namespace ebs {
     }
 
     export interface AutoSnapshotPolicyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetAutoSnapshotPoliciesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAutoSnapshotPoliciesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetSnapshotsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSnapshotsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetVolumesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVolumesTagArgs {
         /**
          * The Key of Tags.
          */
@@ -1290,6 +1620,50 @@ export namespace ebs {
 }
 
 export namespace ecs {
+    export interface GetImagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetImagesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface ImageImportTag {
         /**
          * The Key of Tags.
@@ -1507,6 +1881,28 @@ export namespace eip {
          */
         value: pulumi.Input<string>;
     }
+
+    export interface GetAddressesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAddressesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
 }
 
 export namespace escloud {
@@ -1693,6 +2089,28 @@ export namespace escloud_v2 {
          */
         values: pulumi.Input<pulumi.Input<string>[]>;
     }
+
+    export interface GetEscloudInstancesV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetEscloudInstancesV2TagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }
 
 export namespace financial_relation {
@@ -1702,6 +2120,28 @@ export namespace iam {
 }
 
 export namespace kafka {
+    export interface GetInstancesTag {
+        /**
+         * The key of tag.
+         */
+        key: string;
+        /**
+         * The value of tag.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The key of tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of tag.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstanceParameter {
         /**
          * Parameter name.
@@ -1784,6 +2224,28 @@ export namespace mongodb {
          * The role names of the account.
          */
         roleNames: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface InstanceMongo {
@@ -1909,6 +2371,50 @@ export namespace nas {
         value: pulumi.Input<string>;
     }
 
+    export interface GetFileSystemsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFileSystemsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetPermissionGroupsFilter {
+        /**
+         * Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+         */
+        key: string;
+        /**
+         * The value of the filter item.
+         */
+        value: string;
+    }
+
+    export interface GetPermissionGroupsFilterArgs {
+        /**
+         * Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of the filter item.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface PermissionGroupPermissionRule {
         /**
          * Client IP addresses that are allowed access.
@@ -1978,6 +2484,28 @@ export namespace nat {
     }
 
     export interface GatewaysTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysTagArgs {
         /**
          * The Key of Tags.
          */
@@ -2101,6 +2629,28 @@ export namespace privatelink {
 }
 
 export namespace rabbitmq {
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstanceChargeInfo {
         /**
          * Whether to automatically renew in prepaid scenarios. Default is false.
@@ -2237,6 +2787,28 @@ export namespace rds_mssql {
         dbName: pulumi.Input<string>;
     }
 
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstanceChargeInfo {
         /**
          * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
@@ -2361,6 +2933,28 @@ export namespace rds_mysql {
          * The read weight of the node increases by 100, with a maximum value of 10000.
          */
         weight: pulumi.Input<number>;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface InstanceChargeDetail {
@@ -2700,6 +3294,28 @@ export namespace rds_postgresql {
          * The id of the vpc.
          */
         vpc?: pulumi.Input<string>;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface InstanceChargeDetail {
@@ -3213,6 +3829,28 @@ export namespace redis {
         name?: pulumi.Input<string>;
     }
 
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstanceConfigureNode {
         /**
          * Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
@@ -3268,6 +3906,28 @@ export namespace redis {
 }
 
 export namespace rocketmq {
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstancesTag {
         /**
          * The Key of Tags.
@@ -3497,6 +4157,50 @@ export namespace tls {
          * Fixed: Regular execution, which means executing at a fixed time point every day.
          */
         type: pulumi.Input<string>;
+    }
+
+    export interface GetProjectsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetProjectsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTopicsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTopicsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface IndexFullText {
@@ -4115,6 +4819,160 @@ export namespace transit_router {
         value: pulumi.Input<string>;
     }
 
+    export interface GetBandwidthPackagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetBandwidthPackagesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetDirectConnectGatewayAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetDirectConnectGatewayAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetPeerAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetPeerAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetRouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRouteTablesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTransitRoutersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTransitRoutersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetVpcAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetVpnAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpnAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface PeerAttachmentTag {
         /**
          * The Key of Tags.
@@ -4364,6 +5222,28 @@ export namespace vedb_mysql {
         fullBackupPeriod: pulumi.Input<string>;
     }
 
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -4396,6 +5276,753 @@ export namespace vedb_mysql {
          */
         value: pulumi.Input<string>;
     }
+}
+
+export namespace veecp {
+    export interface BatchEdgeMachinesStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface BatchEdgeMachinesStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        edgeNodeStatusConditionType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface ClusterClusterConfig {
+        /**
+         * Cluster API Server public network access configuration information. It takes effect only when ApiServerPublicAccessEnabled=true.
+         */
+        apiServerPublicAccessConfig?: pulumi.Input<inputs.veecp.ClusterClusterConfigApiServerPublicAccessConfig>;
+        /**
+         * Cluster API Server public network access configuration, values:
+         * false: (default value). closed
+         * true: opened.
+         */
+        apiServerPublicAccessEnabled?: pulumi.Input<boolean>;
+        /**
+         * Node public network access configuration, values:
+         * false: (default value). Do not enable public network access. Existing NAT gateways and rules are not affected. true: Enable public network access. After enabling, a NAT gateway is automatically created for the cluster's private network and corresponding rules are configured. Note: This parameter cannot be modified after the cluster is created. Please configure it reasonably.
+         */
+        resourcePublicAccessDefaultEnabled?: pulumi.Input<boolean>;
+        /**
+         * The subnet ID for communication within the private network (VPC) of the cluster control plane. You can call the private network API to obtain the subnet ID. Note: When creating a cluster, please ensure that all specified SubnetIds (including but not limited to this parameter) belong to the same private network. It is recommended that you choose subnets in different availability zones as much as possible to improve the high availability of the cluster control plane. Please note that this parameter is not supported to be modified after the cluster is created. Please configure it reasonably.
+         */
+        subnetIds: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClusterClusterConfigApiServerPublicAccessConfig {
+        /**
+         * Public network access network configuration.
+         */
+        publicAccessNetworkConfig?: pulumi.Input<inputs.veecp.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig>;
+    }
+
+    export interface ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig {
+        /**
+         * The peak bandwidth of the public IP, unit: Mbps.
+         */
+        bandwidth?: pulumi.Input<number>;
+        /**
+         * Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType?: pulumi.Input<string>;
+    }
+
+    export interface ClusterLoggingConfig {
+        /**
+         * The TLS log item ID of the collection target.
+         */
+        logProjectId?: pulumi.Input<string>;
+        /**
+         * Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+         */
+        logSetups?: pulumi.Input<pulumi.Input<inputs.veecp.ClusterLoggingConfigLogSetup>[]>;
+    }
+
+    export interface ClusterLoggingConfigLogSetup {
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+         */
+        logTtl?: pulumi.Input<number>;
+        /**
+         * The current types of logs that can be enabled are:
+         * Audit: Cluster audit logs.
+         * KubeApiServer: kube-apiserver component logs.
+         * KubeScheduler: kube-scheduler component logs.
+         * KubeControllerManager: kube-controller-manager component logs.
+         */
+        logType: pulumi.Input<string>;
+    }
+
+    export interface ClusterPodsConfig {
+        /**
+         * Flannel network configuration. It can be configured only when PodNetworkMode=Flannel, but it is not mandatory.
+         */
+        flannelConfig?: pulumi.Input<inputs.veecp.ClusterPodsConfigFlannelConfig>;
+        /**
+         * Container network model, values: Flannel: Flannel network model, an independent Underlay container network solution. Combined with the global routing capability of a private network (VPC), it realizes a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution implemented based on the elastic network interface (ENI) of a private network, with high network communication performance. Description: After the cluster is created, this parameter is not supported to be modified temporarily. Please configure it reasonably.
+         */
+        podNetworkMode: pulumi.Input<string>;
+        /**
+         * VPC-CNI network configuration. PodNetworkMode=VpcCniShared, but it is not mandatory.
+         */
+        vpcCniConfig?: pulumi.Input<inputs.veecp.ClusterPodsConfigVpcCniConfig>;
+    }
+
+    export interface ClusterPodsConfigFlannelConfig {
+        /**
+         * Upper limit of the number of single-node Pod instances in the Flannel model container network. Values: 64(default value), 16, 32, 128, 256.
+         */
+        maxPodsPerNode?: pulumi.Input<number>;
+        /**
+         * Pod CIDR of Flannel model container network. Only configurable when PodNetworkMode=Flannel, but not mandatory. Note: The number of Pods in the cluster is limited by the number of IPs in this CIDR. This parameter cannot be modified after cluster creation. Please plan the Pod CIDR reasonably. Cannot conflict with the following network segments: private network network segments corresponding to ClusterConfig.SubnetIds. All clusters within the same private network's FlannelConfig.PodCidrs. All clusters within the same private network's ServiceConfig.ServiceCidrsv4. Different clusters within the same private network's FlannelConfig.PodCidrs cannot conflict.
+         */
+        podCidrs: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClusterPodsConfigVpcCniConfig {
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClusterServicesConfig {
+        /**
+         * CIDR used by services within the cluster. It cannot conflict with the following network segments: FlannelConfig.PodCidrs. SubnetIds of all clusters within the same private network or FlannelConfig.VpcConfig.SubnetIds. ServiceConfig.ServiceCidrsv4 of all clusters within the same private network (this parameter).It is stated that currently only one array element is supported. When multiple values are specified, only the first value takes effect.
+         */
+        serviceCidrsv4s: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClustersStatus {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface ClustersStatusArgs {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodeAutoCompleteConfig {
+        /**
+         * The address of the machine to be managed.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * Directly managed through the edge computing instance ID. When it is true, there is no need to provide Address. Only DirectAddInstances needs to be provided.
+         */
+        directAdd?: pulumi.Input<boolean>;
+        /**
+         * Edge computing instance ID on Volcano Engine.
+         */
+        directAddInstances?: pulumi.Input<pulumi.Input<inputs.veecp.EdgeNodeAutoCompleteConfigDirectAddInstance>[]>;
+        /**
+         * Enable/Disable automatic management.
+         */
+        enable: pulumi.Input<boolean>;
+        /**
+         * Login credentials.
+         */
+        machineAuth?: pulumi.Input<inputs.veecp.EdgeNodeAutoCompleteConfigMachineAuth>;
+    }
+
+    export interface EdgeNodeAutoCompleteConfigDirectAddInstance {
+        /**
+         * Edge service ID.
+         */
+        cloudServerIdentity: pulumi.Input<string>;
+        /**
+         * Edge computing instance ID.
+         */
+        instanceIdentity: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodeAutoCompleteConfigMachineAuth {
+        /**
+         * Authentication method. Currently only Password is open.
+         */
+        authType: pulumi.Input<string>;
+        /**
+         * SSH port, default 22.
+         */
+        sshPort: pulumi.Input<number>;
+        /**
+         * Login username.
+         */
+        user: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodePoolBillingConfigs {
+        /**
+         * Whether to automatically renew the node pool.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The pre-paid period of the node pool, in months. The value range is 1-9. This parameter takes effect only when the billingType is PrePaid.
+         */
+        prePaidPeriod: pulumi.Input<number>;
+        /**
+         * Prepaid period number.
+         */
+        prePaidPeriodNumber: pulumi.Input<number>;
+    }
+
+    export interface EdgeNodePoolElasticConfig {
+        /**
+         * The node pool elastic scaling configuration information.
+         */
+        autoScaleConfig?: pulumi.Input<inputs.veecp.EdgeNodePoolElasticConfigAutoScaleConfig>;
+        /**
+         * The ID of the edge service corresponding to the elastic node. On the edge computing node's edge service page, obtain the edge service ID.
+         */
+        cloudServerIdentity: pulumi.Input<string>;
+        instanceArea?: pulumi.Input<inputs.veecp.EdgeNodePoolElasticConfigInstanceArea>;
+    }
+
+    export interface EdgeNodePoolElasticConfigAutoScaleConfig {
+        /**
+         * The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
+         */
+        desiredReplicas: pulumi.Input<number>;
+        /**
+         * Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
+         */
+        enabled: pulumi.Input<boolean>;
+        /**
+         * The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
+         */
+        maxReplicas: pulumi.Input<number>;
+        /**
+         * The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
+         */
+        minReplicas: pulumi.Input<number>;
+        /**
+         * The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
+         */
+        priority: pulumi.Input<number>;
+    }
+
+    export interface EdgeNodePoolElasticConfigInstanceArea {
+        /**
+         * Region name. You can obtain the regions and operators supported by instance specifications through the ListAvailableResourceInfo interface.
+         */
+        areaName?: pulumi.Input<string>;
+        /**
+         * The cluster name.
+         */
+        clusterName?: pulumi.Input<string>;
+        /**
+         * Default operator. When using three-line nodes, this parameter can be configured. After configuration, this operator will be used as the default export.
+         */
+        defaultIsp?: pulumi.Input<string>;
+        /**
+         * Public network configuration of three-line nodes. If it is a single-line node, this parameter will be ignored. Value range: single_interface_multi_ip: Single network card with multiple IPs. single_interface_cmcc_ip: Single network card with China Mobile IP. Relevant permissions need to be opened by submitting a work order. single_interface_cucc_ip: Single network card with China Unicom IP. Relevant permissions need to be opened by submitting a work order. single_interface_ctcc_ip: Single network card with China Telecom IP. Relevant permissions need to be opened by submitting a work order. multi_interface_multi_ip: Multiple network cards with multiple IPs. Relevant permissions need to be opened by submitting a work order. no_interface: No public network network card. Relevant permissions need to be opened by submitting a work order. If this parameter is not configured: When there is a public network network card, singleInterfaceMultiIp is used by default. When there is no public network network card, noInterface is used by default.
+         */
+        externalNetworkMode?: pulumi.Input<string>;
+        /**
+         * Operator. You can obtain the regions and operators supported by instance specifications through the ListAvailableResourceInfo interface.
+         */
+        isp?: pulumi.Input<string>;
+        /**
+         * The subnet id.
+         */
+        subnetId?: pulumi.Input<string>;
+        /**
+         * The vpc id.
+         */
+        vpcIdentity?: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodePoolKubernetesConfig {
+        /**
+         * The Labels of KubernetesConfig.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.veecp.EdgeNodePoolKubernetesConfigLabel>[]>;
+        /**
+         * The Taints of KubernetesConfig.
+         */
+        taints?: pulumi.Input<pulumi.Input<inputs.veecp.EdgeNodePoolKubernetesConfigTaint>[]>;
+    }
+
+    export interface EdgeNodePoolKubernetesConfigLabel {
+        /**
+         * The Key of Labels.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The Value of Labels.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodePoolKubernetesConfigTaint {
+        /**
+         * The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+         */
+        effect?: pulumi.Input<string>;
+        /**
+         * The Key of Taints.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The Value of Taints.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface EdgeNodePoolsStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface EdgeNodesStatus {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: string;
+    }
+
+    export interface EdgeNodesStatusArgs {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        edgeNodeStatusConditionType?: pulumi.Input<string>;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetBatchEdgeMachinesStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetBatchEdgeMachinesStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        edgeNodeStatusConditionType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetClustersStatus {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface GetClustersStatusArgs {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetEdgeNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetEdgeNodePoolsStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetEdgeNodesStatus {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: string;
+    }
+
+    export interface GetEdgeNodesStatusArgs {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        edgeNodeStatusConditionType?: pulumi.Input<string>;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetNodePoolsStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolAutoScaling {
+        /**
+         * The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
+         */
+        desiredReplicas?: pulumi.Input<number>;
+        /**
+         * Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
+         */
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
+         */
+        maxReplicas?: pulumi.Input<number>;
+        /**
+         * The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
+         */
+        minReplicas?: pulumi.Input<number>;
+        /**
+         * The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
+         */
+        priority?: pulumi.Input<number>;
+        /**
+         * Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+         */
+        subnetPolicy?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolKubernetesConfig {
+        /**
+         * Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+         */
+        autoSyncDisabled?: pulumi.Input<boolean>;
+        /**
+         * The Cordon of KubernetesConfig.
+         */
+        cordon: pulumi.Input<boolean>;
+        /**
+         * The Labels of KubernetesConfig.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.veecp.NodePoolKubernetesConfigLabel>[]>;
+        /**
+         * The NamePrefix of node metadata.
+         */
+        namePrefix?: pulumi.Input<string>;
+        /**
+         * The Taints of KubernetesConfig.
+         */
+        taints?: pulumi.Input<pulumi.Input<inputs.veecp.NodePoolKubernetesConfigTaint>[]>;
+    }
+
+    export interface NodePoolKubernetesConfigLabel {
+        /**
+         * The Key of Labels.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The Value of Labels.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolKubernetesConfigTaint {
+        /**
+         * The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+         */
+        effect?: pulumi.Input<string>;
+        /**
+         * The Key of Taints.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The Value of Taints.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolNodeConfig {
+        /**
+         * The AdditionalContainerStorageEnabled of NodeConfig.
+         */
+        additionalContainerStorageEnabled?: pulumi.Input<boolean>;
+        /**
+         * Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+         */
+        autoRenewPeriod?: pulumi.Input<number>;
+        /**
+         * The DataVolumes of NodeConfig.
+         */
+        dataVolumes?: pulumi.Input<pulumi.Input<inputs.veecp.NodePoolNodeConfigDataVolume>[]>;
+        /**
+         * Tags for Ecs.
+         */
+        ecsTags?: pulumi.Input<pulumi.Input<inputs.veecp.NodePoolNodeConfigEcsTag>[]>;
+        /**
+         * The IDs of HpcCluster, only one ID is supported currently.
+         */
+        hpcClusterIds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ImageId of NodeConfig.
+         */
+        imageId?: pulumi.Input<string>;
+        /**
+         * The initializeScript of NodeConfig.
+         */
+        initializeScript?: pulumi.Input<string>;
+        /**
+         * The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+         */
+        instanceChargeType?: pulumi.Input<string>;
+        /**
+         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.veecp.getSupportResourceTypes datasource.
+         */
+        instanceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The NamePrefix of NodeConfig.
+         */
+        namePrefix?: pulumi.Input<string>;
+        /**
+         * The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * The Security of NodeConfig.
+         */
+        security: pulumi.Input<inputs.veecp.NodePoolNodeConfigSecurity>;
+        /**
+         * The SubnetIds of NodeConfig.
+         */
+        subnetIds: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The SystemVolume of NodeConfig.
+         */
+        systemVolume?: pulumi.Input<inputs.veecp.NodePoolNodeConfigSystemVolume>;
+    }
+
+    export interface NodePoolNodeConfigDataVolume {
+        /**
+         * The target mount directory of the disk. Must start with `/`.
+         */
+        mountPoint?: pulumi.Input<string>;
+        /**
+         * The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
+         */
+        size?: pulumi.Input<number>;
+        /**
+         * The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolNodeConfigEcsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface NodePoolNodeConfigSecurity {
+        /**
+         * The Login of Security.
+         */
+        login?: pulumi.Input<inputs.veecp.NodePoolNodeConfigSecurityLogin>;
+        /**
+         * The SecurityGroupIds of Security.
+         */
+        securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The SecurityStrategies of Security, the value can be empty or `Hids`.
+         */
+        securityStrategies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface NodePoolNodeConfigSecurityLogin {
+        /**
+         * The Password of Security, this field must be encoded with base64.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The SshKeyPairName of Security.
+         */
+        sshKeyPairName?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolNodeConfigSystemVolume {
+        /**
+         * The Size of SystemVolume, the value range in 20~2048.
+         */
+        size?: pulumi.Input<number>;
+        /**
+         * The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount?: pulumi.Input<number>;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount?: pulumi.Input<number>;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount?: pulumi.Input<number>;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount?: pulumi.Input<number>;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount?: pulumi.Input<number>;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount?: pulumi.Input<number>;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount?: pulumi.Input<number>;
+        /**
+         * The TotalCount of Node.
+         */
+        totalCount?: pulumi.Input<number>;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount?: pulumi.Input<number>;
+    }
+
+    export interface NodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface NodePoolsStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
 }
 
 export namespace veenedge {
@@ -5015,6 +6642,138 @@ export namespace vke {
         value: pulumi.Input<string>;
     }
 
+    export interface GetAddonsStatus {
+        /**
+         * The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface GetAddonsStatusArgs {
+        /**
+         * The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetClustersStatus {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface GetClustersStatusArgs {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetClustersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetClustersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetNodePoolsStatusArgs {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
+    export interface GetNodePoolsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetNodesStatus {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: string;
+    }
+
+    export interface GetNodesStatusArgs {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        conditionsType?: pulumi.Input<string>;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: pulumi.Input<string>;
+    }
+
     export interface NodeKubernetesConfig {
         /**
          * The Cordon of KubernetesConfig.
@@ -5196,7 +6955,7 @@ export namespace vke {
          */
         instanceChargeType?: pulumi.Input<string>;
         /**
-         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.SupportResourceTypes datasource.
+         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.getSupportResourceTypes datasource.
          */
         instanceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -5413,6 +7172,182 @@ export namespace vke {
 }
 
 export namespace vpc {
+    export interface GetHaVipsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetHaVipsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetNetworkAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkAclsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetNetworkInterfacesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkInterfacesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetPrefixListsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface GetPrefixListsTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetRouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRouteTablesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetSecurityGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSecurityGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetSubnetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSubnetsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetVpcsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface HaVipTag {
         /**
          * The Key of Tags.
@@ -5810,6 +7745,28 @@ export namespace vpn {
     }
 
     export interface GatewaysTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysTagArgs {
         /**
          * The Key of Tags.
          */

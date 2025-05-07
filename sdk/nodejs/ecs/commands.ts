@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.ecs.Commands({
+ * const default = volcengine.ecs.getCommands({
  *     commandId: "cmd-ychkepkhtim0tr3b****",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands */
 export function commands(args?: CommandsArgs, opts?: pulumi.InvokeOptions): Promise<CommandsResult> {
+    pulumi.log.warn("commands is deprecated: volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -112,11 +114,12 @@ export interface CommandsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.ecs.Commands({
+ * const default = volcengine.ecs.getCommands({
  *     commandId: "cmd-ychkepkhtim0tr3b****",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands */
 export function commandsOutput(args?: CommandsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CommandsResult> {
     return pulumi.output(args).apply((a: any) => commands(a, opts))
 }

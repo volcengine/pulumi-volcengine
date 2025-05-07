@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.Accounts({
+ * const foo = volcengine.organization.getAccounts({
  *     search: "210061****",
  * });
  * ```
  */
+/** @deprecated volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts */
 export function accounts(args?: AccountsArgs, opts?: pulumi.InvokeOptions): Promise<AccountsResult> {
+    pulumi.log.warn("accounts is deprecated: volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -91,11 +93,12 @@ export interface AccountsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.Accounts({
+ * const foo = volcengine.organization.getAccounts({
  *     search: "210061****",
  * });
  * ```
  */
+/** @deprecated volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts */
 export function accountsOutput(args?: AccountsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccountsResult> {
     return pulumi.output(args).apply((a: any) => accounts(a, opts))
 }

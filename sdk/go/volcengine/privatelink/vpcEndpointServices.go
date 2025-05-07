@@ -28,7 +28,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -91,13 +91,15 @@ import (
 // }
 // fooVpcEndpointService = append(fooVpcEndpointService, __res)
 // }
-// _ = privatelink.VpcEndpointServicesOutput(ctx, privatelink.VpcEndpointServicesOutputArgs{
+// _ = privatelink.GetVpcEndpointServicesOutput(ctx, privatelink.GetVpcEndpointServicesOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:privatelink-vpcEndpointServices:VpcEndpointServices.pp:42,9-36),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices
 func VpcEndpointServices(ctx *pulumi.Context, args *VpcEndpointServicesArgs, opts ...pulumi.InvokeOption) (*VpcEndpointServicesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointServicesResult

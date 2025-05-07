@@ -12,6 +12,37 @@ import (
 )
 
 // Use this data source to query detailed information of private zones
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/private_zone"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := private_zone.GetPrivateZones(ctx, &private_zone.GetPrivateZonesArgs{
+//				LineMode:      pulumi.IntRef(3),
+//				RecursionMode: pulumi.BoolRef(true),
+//				SearchMode:    pulumi.StringRef("EXACT"),
+//				Zid:           pulumi.IntRef(770000),
+//				ZoneName:      pulumi.StringRef("volces.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Deprecated: volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones
 func PrivateZones(ctx *pulumi.Context, args *PrivateZonesArgs, opts ...pulumi.InvokeOption) (*PrivateZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PrivateZonesResult

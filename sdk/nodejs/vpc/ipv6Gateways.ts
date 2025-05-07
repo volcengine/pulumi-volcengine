@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Ipv6Gateways({
+ * const default = volcengine.vpc.getIpv6Gateways({
  *     ids: ["ipv6gw-12bcapllb5ukg17q7y2sd3thx"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways */
 export function ipv6Gateways(args?: Ipv6GatewaysArgs, opts?: pulumi.InvokeOptions): Promise<Ipv6GatewaysResult> {
+    pulumi.log.warn("ipv6Gateways is deprecated: volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -91,11 +93,12 @@ export interface Ipv6GatewaysResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Ipv6Gateways({
+ * const default = volcengine.vpc.getIpv6Gateways({
  *     ids: ["ipv6gw-12bcapllb5ukg17q7y2sd3thx"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways */
 export function ipv6GatewaysOutput(args?: Ipv6GatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Ipv6GatewaysResult> {
     return pulumi.output(args).apply((a: any) => ipv6Gateways(a, opts))
 }

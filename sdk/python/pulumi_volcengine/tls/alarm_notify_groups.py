@@ -17,6 +17,8 @@ __all__ = [
     'alarm_notify_groups_output',
 ]
 
+warnings.warn("""volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class AlarmNotifyGroupsResult:
     """
@@ -137,7 +139,7 @@ def alarm_notify_groups(alarm_notify_group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.alarm_notify_groups()
+    default = volcengine.tls.get_alarm_notify_groups()
     ```
 
 
@@ -147,6 +149,7 @@ def alarm_notify_groups(alarm_notify_group_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str receiver_name: The name of the receiver.
     """
+    pulumi.log.warn("""alarm_notify_groups is deprecated: volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups""")
     __args__ = dict()
     __args__['alarmNotifyGroupId'] = alarm_notify_group_id
     __args__['alarmNotifyGroupName'] = alarm_notify_group_name
@@ -182,7 +185,7 @@ def alarm_notify_groups_output(alarm_notify_group_id: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.alarm_notify_groups()
+    default = volcengine.tls.get_alarm_notify_groups()
     ```
 
 
@@ -192,4 +195,5 @@ def alarm_notify_groups_output(alarm_notify_group_id: Optional[pulumi.Input[Opti
     :param str output_file: File name where to save data source results.
     :param str receiver_name: The name of the receiver.
     """
+    pulumi.log.warn("""alarm_notify_groups is deprecated: volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups""")
     ...

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := organization.ServiceControlPolicies(ctx, &organization.ServiceControlPoliciesArgs{
+//			_, err := organization.GetServiceControlPolicies(ctx, &organization.GetServiceControlPoliciesArgs{
 //				PolicyType: pulumi.StringRef("Custom"),
 //				Query:      pulumi.StringRef("test"),
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies
 func ServiceControlPolicies(ctx *pulumi.Context, args *ServiceControlPoliciesArgs, opts ...pulumi.InvokeOption) (*ServiceControlPoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServiceControlPoliciesResult

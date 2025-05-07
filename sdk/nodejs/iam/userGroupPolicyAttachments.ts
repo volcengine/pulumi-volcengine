@@ -30,12 +30,14 @@ import * as utilities from "../utilities";
  *     policyType: "Custom",
  *     userGroupName: fooUserGroup.userGroupName,
  * });
- * const fooUserGroupPolicyAttachments = volcengine.iam.UserGroupPolicyAttachmentsOutput({
+ * const fooUserGroupPolicyAttachments = volcengine.iam.getUserGroupPolicyAttachmentsOutput({
  *     userGroupName: fooUserGroupPolicyAttachment.userGroupName,
  * });
  * ```
  */
+/** @deprecated volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments */
 export function userGroupPolicyAttachments(args: UserGroupPolicyAttachmentsArgs, opts?: pulumi.InvokeOptions): Promise<UserGroupPolicyAttachmentsResult> {
+    pulumi.log.warn("userGroupPolicyAttachments is deprecated: volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/userGroupPolicyAttachments:UserGroupPolicyAttachments", {
@@ -101,11 +103,12 @@ export interface UserGroupPolicyAttachmentsResult {
  *     policyType: "Custom",
  *     userGroupName: fooUserGroup.userGroupName,
  * });
- * const fooUserGroupPolicyAttachments = volcengine.iam.UserGroupPolicyAttachmentsOutput({
+ * const fooUserGroupPolicyAttachments = volcengine.iam.getUserGroupPolicyAttachmentsOutput({
  *     userGroupName: fooUserGroupPolicyAttachment.userGroupName,
  * });
  * ```
  */
+/** @deprecated volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments */
 export function userGroupPolicyAttachmentsOutput(args: UserGroupPolicyAttachmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UserGroupPolicyAttachmentsResult> {
     return pulumi.output(args).apply((a: any) => userGroupPolicyAttachments(a, opts))
 }

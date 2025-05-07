@@ -592,21 +592,25 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create security group
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
+        # create PrePaid ecs instance
         foo_instance = volcengine.ecs.Instance("fooInstance",
             instance_name="acc-test-ecs",
             description="acc-test",
@@ -625,6 +629,7 @@ class Volume(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # create PrePaid data volume
         pre_volume = volcengine.ebs.Volume("preVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
@@ -640,6 +645,7 @@ class Volume(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # create PostPaid data volume
         post_volume = volcengine.ebs.Volume("postVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
@@ -697,21 +703,25 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create security group
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
+        # create PrePaid ecs instance
         foo_instance = volcengine.ecs.Instance("fooInstance",
             instance_name="acc-test-ecs",
             description="acc-test",
@@ -730,6 +740,7 @@ class Volume(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # create PrePaid data volume
         pre_volume = volcengine.ebs.Volume("preVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
@@ -745,6 +756,7 @@ class Volume(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # create PostPaid data volume
         post_volume = volcengine.ebs.Volume("postVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",

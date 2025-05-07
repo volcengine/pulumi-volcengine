@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.private_zone.ResolverEndpoints({});
+ * const foo = volcengine.private_zone.getResolverEndpoints({});
  * ```
  */
+/** @deprecated volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints */
 export function resolverEndpoints(args?: ResolverEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<ResolverEndpointsResult> {
+    pulumi.log.warn("resolverEndpoints is deprecated: volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -104,9 +106,10 @@ export interface ResolverEndpointsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.private_zone.ResolverEndpoints({});
+ * const foo = volcengine.private_zone.getResolverEndpoints({});
  * ```
  */
+/** @deprecated volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints */
 export function resolverEndpointsOutput(args?: ResolverEndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ResolverEndpointsResult> {
     return pulumi.output(args).apply((a: any) => resolverEndpoints(a, opts))
 }

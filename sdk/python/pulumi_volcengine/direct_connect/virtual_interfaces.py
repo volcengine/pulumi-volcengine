@@ -18,6 +18,8 @@ __all__ = [
     'virtual_interfaces_output',
 ]
 
+warnings.warn("""volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces""", DeprecationWarning)
+
 @pulumi.output_type
 class VirtualInterfacesResult:
     """
@@ -210,7 +212,7 @@ def virtual_interfaces(direct_connect_connection_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.virtual_interfaces(virtual_interface_name="tf-test")
+    foo = volcengine.direct_connect.get_virtual_interfaces(virtual_interface_name="tf-test")
     ```
 
 
@@ -226,6 +228,7 @@ def virtual_interfaces(direct_connect_connection_id: Optional[str] = None,
     :param str virtual_interface_name: The name of virtual interface.
     :param int vlan_id: The VLAN ID of virtual interface.
     """
+    pulumi.log.warn("""virtual_interfaces is deprecated: volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces""")
     __args__ = dict()
     __args__['directConnectConnectionId'] = direct_connect_connection_id
     __args__['directConnectGatewayId'] = direct_connect_gateway_id
@@ -279,7 +282,7 @@ def virtual_interfaces_output(direct_connect_connection_id: Optional[pulumi.Inpu
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.virtual_interfaces(virtual_interface_name="tf-test")
+    foo = volcengine.direct_connect.get_virtual_interfaces(virtual_interface_name="tf-test")
     ```
 
 
@@ -295,4 +298,5 @@ def virtual_interfaces_output(direct_connect_connection_id: Optional[pulumi.Inpu
     :param str virtual_interface_name: The name of virtual interface.
     :param int vlan_id: The VLAN ID of virtual interface.
     """
+    pulumi.log.warn("""virtual_interfaces is deprecated: volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces""")
     ...

@@ -3002,6 +3002,2287 @@ func (o ScalingPoliciesScalingPolicyArrayOutput) Index(i pulumi.IntInput) Scalin
 	}).(ScalingPoliciesScalingPolicyOutput)
 }
 
+type GetScalingActivitiesActivity struct {
+	// The Actual Type.
+	ActivityType string `pulumi:"activityType"`
+	// The Actual Adjustment Instance Number.
+	ActualAdjustInstanceNumber int `pulumi:"actualAdjustInstanceNumber"`
+	// The Cooldown time.
+	Cooldown int `pulumi:"cooldown"`
+	// The create time of Scaling Activity.
+	CreatedAt string `pulumi:"createdAt"`
+	// The Current Instance Number.
+	CurrentInstanceNumber int `pulumi:"currentInstanceNumber"`
+	// The expected run time of Scaling Activity.
+	ExpectedRunTime string `pulumi:"expectedRunTime"`
+	// The ID of Scaling Activity.
+	Id string `pulumi:"id"`
+	// The Max Instance Number.
+	MaxInstanceNumber int `pulumi:"maxInstanceNumber"`
+	// The Min Instance Number.
+	MinInstanceNumber int `pulumi:"minInstanceNumber"`
+	// The related instances.
+	RelatedInstances []GetScalingActivitiesActivityRelatedInstance `pulumi:"relatedInstances"`
+	// The Result of Scaling Activity.
+	ResultMsg string `pulumi:"resultMsg"`
+	// The ID of Scaling Activity.
+	ScalingActivityId string `pulumi:"scalingActivityId"`
+	// A Id of Scaling Group.
+	ScalingGroupId string `pulumi:"scalingGroupId"`
+	// A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
+	StatusCode string `pulumi:"statusCode"`
+	// The stopped time of Scaling Activity.
+	StoppedAt string `pulumi:"stoppedAt"`
+	// The task category of Scaling Activity.
+	TaskCategory string `pulumi:"taskCategory"`
+}
+
+// GetScalingActivitiesActivityInput is an input type that accepts GetScalingActivitiesActivityArgs and GetScalingActivitiesActivityOutput values.
+// You can construct a concrete instance of `GetScalingActivitiesActivityInput` via:
+//
+//	GetScalingActivitiesActivityArgs{...}
+type GetScalingActivitiesActivityInput interface {
+	pulumi.Input
+
+	ToGetScalingActivitiesActivityOutput() GetScalingActivitiesActivityOutput
+	ToGetScalingActivitiesActivityOutputWithContext(context.Context) GetScalingActivitiesActivityOutput
+}
+
+type GetScalingActivitiesActivityArgs struct {
+	// The Actual Type.
+	ActivityType pulumi.StringInput `pulumi:"activityType"`
+	// The Actual Adjustment Instance Number.
+	ActualAdjustInstanceNumber pulumi.IntInput `pulumi:"actualAdjustInstanceNumber"`
+	// The Cooldown time.
+	Cooldown pulumi.IntInput `pulumi:"cooldown"`
+	// The create time of Scaling Activity.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The Current Instance Number.
+	CurrentInstanceNumber pulumi.IntInput `pulumi:"currentInstanceNumber"`
+	// The expected run time of Scaling Activity.
+	ExpectedRunTime pulumi.StringInput `pulumi:"expectedRunTime"`
+	// The ID of Scaling Activity.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The Max Instance Number.
+	MaxInstanceNumber pulumi.IntInput `pulumi:"maxInstanceNumber"`
+	// The Min Instance Number.
+	MinInstanceNumber pulumi.IntInput `pulumi:"minInstanceNumber"`
+	// The related instances.
+	RelatedInstances GetScalingActivitiesActivityRelatedInstanceArrayInput `pulumi:"relatedInstances"`
+	// The Result of Scaling Activity.
+	ResultMsg pulumi.StringInput `pulumi:"resultMsg"`
+	// The ID of Scaling Activity.
+	ScalingActivityId pulumi.StringInput `pulumi:"scalingActivityId"`
+	// A Id of Scaling Group.
+	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
+	// A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
+	StatusCode pulumi.StringInput `pulumi:"statusCode"`
+	// The stopped time of Scaling Activity.
+	StoppedAt pulumi.StringInput `pulumi:"stoppedAt"`
+	// The task category of Scaling Activity.
+	TaskCategory pulumi.StringInput `pulumi:"taskCategory"`
+}
+
+func (GetScalingActivitiesActivityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingActivitiesActivity)(nil)).Elem()
+}
+
+func (i GetScalingActivitiesActivityArgs) ToGetScalingActivitiesActivityOutput() GetScalingActivitiesActivityOutput {
+	return i.ToGetScalingActivitiesActivityOutputWithContext(context.Background())
+}
+
+func (i GetScalingActivitiesActivityArgs) ToGetScalingActivitiesActivityOutputWithContext(ctx context.Context) GetScalingActivitiesActivityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingActivitiesActivityOutput)
+}
+
+// GetScalingActivitiesActivityArrayInput is an input type that accepts GetScalingActivitiesActivityArray and GetScalingActivitiesActivityArrayOutput values.
+// You can construct a concrete instance of `GetScalingActivitiesActivityArrayInput` via:
+//
+//	GetScalingActivitiesActivityArray{ GetScalingActivitiesActivityArgs{...} }
+type GetScalingActivitiesActivityArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingActivitiesActivityArrayOutput() GetScalingActivitiesActivityArrayOutput
+	ToGetScalingActivitiesActivityArrayOutputWithContext(context.Context) GetScalingActivitiesActivityArrayOutput
+}
+
+type GetScalingActivitiesActivityArray []GetScalingActivitiesActivityInput
+
+func (GetScalingActivitiesActivityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingActivitiesActivity)(nil)).Elem()
+}
+
+func (i GetScalingActivitiesActivityArray) ToGetScalingActivitiesActivityArrayOutput() GetScalingActivitiesActivityArrayOutput {
+	return i.ToGetScalingActivitiesActivityArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingActivitiesActivityArray) ToGetScalingActivitiesActivityArrayOutputWithContext(ctx context.Context) GetScalingActivitiesActivityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingActivitiesActivityArrayOutput)
+}
+
+type GetScalingActivitiesActivityOutput struct{ *pulumi.OutputState }
+
+func (GetScalingActivitiesActivityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingActivitiesActivity)(nil)).Elem()
+}
+
+func (o GetScalingActivitiesActivityOutput) ToGetScalingActivitiesActivityOutput() GetScalingActivitiesActivityOutput {
+	return o
+}
+
+func (o GetScalingActivitiesActivityOutput) ToGetScalingActivitiesActivityOutputWithContext(ctx context.Context) GetScalingActivitiesActivityOutput {
+	return o
+}
+
+// The Actual Type.
+func (o GetScalingActivitiesActivityOutput) ActivityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.ActivityType }).(pulumi.StringOutput)
+}
+
+// The Actual Adjustment Instance Number.
+func (o GetScalingActivitiesActivityOutput) ActualAdjustInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) int { return v.ActualAdjustInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The Cooldown time.
+func (o GetScalingActivitiesActivityOutput) Cooldown() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) int { return v.Cooldown }).(pulumi.IntOutput)
+}
+
+// The create time of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The Current Instance Number.
+func (o GetScalingActivitiesActivityOutput) CurrentInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) int { return v.CurrentInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The expected run time of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) ExpectedRunTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.ExpectedRunTime }).(pulumi.StringOutput)
+}
+
+// The ID of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Max Instance Number.
+func (o GetScalingActivitiesActivityOutput) MaxInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) int { return v.MaxInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The Min Instance Number.
+func (o GetScalingActivitiesActivityOutput) MinInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) int { return v.MinInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The related instances.
+func (o GetScalingActivitiesActivityOutput) RelatedInstances() GetScalingActivitiesActivityRelatedInstanceArrayOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) []GetScalingActivitiesActivityRelatedInstance {
+		return v.RelatedInstances
+	}).(GetScalingActivitiesActivityRelatedInstanceArrayOutput)
+}
+
+// The Result of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) ResultMsg() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.ResultMsg }).(pulumi.StringOutput)
+}
+
+// The ID of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) ScalingActivityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.ScalingActivityId }).(pulumi.StringOutput)
+}
+
+// A Id of Scaling Group.
+func (o GetScalingActivitiesActivityOutput) ScalingGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+// A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
+func (o GetScalingActivitiesActivityOutput) StatusCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.StatusCode }).(pulumi.StringOutput)
+}
+
+// The stopped time of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) StoppedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.StoppedAt }).(pulumi.StringOutput)
+}
+
+// The task category of Scaling Activity.
+func (o GetScalingActivitiesActivityOutput) TaskCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivity) string { return v.TaskCategory }).(pulumi.StringOutput)
+}
+
+type GetScalingActivitiesActivityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingActivitiesActivityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingActivitiesActivity)(nil)).Elem()
+}
+
+func (o GetScalingActivitiesActivityArrayOutput) ToGetScalingActivitiesActivityArrayOutput() GetScalingActivitiesActivityArrayOutput {
+	return o
+}
+
+func (o GetScalingActivitiesActivityArrayOutput) ToGetScalingActivitiesActivityArrayOutputWithContext(ctx context.Context) GetScalingActivitiesActivityArrayOutput {
+	return o
+}
+
+func (o GetScalingActivitiesActivityArrayOutput) Index(i pulumi.IntInput) GetScalingActivitiesActivityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingActivitiesActivity {
+		return vs[0].([]GetScalingActivitiesActivity)[vs[1].(int)]
+	}).(GetScalingActivitiesActivityOutput)
+}
+
+type GetScalingActivitiesActivityRelatedInstance struct {
+	// The Instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// The message of Instance.
+	Message string `pulumi:"message"`
+	// The Operation Type.
+	OperateType string `pulumi:"operateType"`
+	// The Status.
+	Status string `pulumi:"status"`
+}
+
+// GetScalingActivitiesActivityRelatedInstanceInput is an input type that accepts GetScalingActivitiesActivityRelatedInstanceArgs and GetScalingActivitiesActivityRelatedInstanceOutput values.
+// You can construct a concrete instance of `GetScalingActivitiesActivityRelatedInstanceInput` via:
+//
+//	GetScalingActivitiesActivityRelatedInstanceArgs{...}
+type GetScalingActivitiesActivityRelatedInstanceInput interface {
+	pulumi.Input
+
+	ToGetScalingActivitiesActivityRelatedInstanceOutput() GetScalingActivitiesActivityRelatedInstanceOutput
+	ToGetScalingActivitiesActivityRelatedInstanceOutputWithContext(context.Context) GetScalingActivitiesActivityRelatedInstanceOutput
+}
+
+type GetScalingActivitiesActivityRelatedInstanceArgs struct {
+	// The Instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The message of Instance.
+	Message pulumi.StringInput `pulumi:"message"`
+	// The Operation Type.
+	OperateType pulumi.StringInput `pulumi:"operateType"`
+	// The Status.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetScalingActivitiesActivityRelatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingActivitiesActivityRelatedInstance)(nil)).Elem()
+}
+
+func (i GetScalingActivitiesActivityRelatedInstanceArgs) ToGetScalingActivitiesActivityRelatedInstanceOutput() GetScalingActivitiesActivityRelatedInstanceOutput {
+	return i.ToGetScalingActivitiesActivityRelatedInstanceOutputWithContext(context.Background())
+}
+
+func (i GetScalingActivitiesActivityRelatedInstanceArgs) ToGetScalingActivitiesActivityRelatedInstanceOutputWithContext(ctx context.Context) GetScalingActivitiesActivityRelatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingActivitiesActivityRelatedInstanceOutput)
+}
+
+// GetScalingActivitiesActivityRelatedInstanceArrayInput is an input type that accepts GetScalingActivitiesActivityRelatedInstanceArray and GetScalingActivitiesActivityRelatedInstanceArrayOutput values.
+// You can construct a concrete instance of `GetScalingActivitiesActivityRelatedInstanceArrayInput` via:
+//
+//	GetScalingActivitiesActivityRelatedInstanceArray{ GetScalingActivitiesActivityRelatedInstanceArgs{...} }
+type GetScalingActivitiesActivityRelatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingActivitiesActivityRelatedInstanceArrayOutput() GetScalingActivitiesActivityRelatedInstanceArrayOutput
+	ToGetScalingActivitiesActivityRelatedInstanceArrayOutputWithContext(context.Context) GetScalingActivitiesActivityRelatedInstanceArrayOutput
+}
+
+type GetScalingActivitiesActivityRelatedInstanceArray []GetScalingActivitiesActivityRelatedInstanceInput
+
+func (GetScalingActivitiesActivityRelatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingActivitiesActivityRelatedInstance)(nil)).Elem()
+}
+
+func (i GetScalingActivitiesActivityRelatedInstanceArray) ToGetScalingActivitiesActivityRelatedInstanceArrayOutput() GetScalingActivitiesActivityRelatedInstanceArrayOutput {
+	return i.ToGetScalingActivitiesActivityRelatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingActivitiesActivityRelatedInstanceArray) ToGetScalingActivitiesActivityRelatedInstanceArrayOutputWithContext(ctx context.Context) GetScalingActivitiesActivityRelatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingActivitiesActivityRelatedInstanceArrayOutput)
+}
+
+type GetScalingActivitiesActivityRelatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetScalingActivitiesActivityRelatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingActivitiesActivityRelatedInstance)(nil)).Elem()
+}
+
+func (o GetScalingActivitiesActivityRelatedInstanceOutput) ToGetScalingActivitiesActivityRelatedInstanceOutput() GetScalingActivitiesActivityRelatedInstanceOutput {
+	return o
+}
+
+func (o GetScalingActivitiesActivityRelatedInstanceOutput) ToGetScalingActivitiesActivityRelatedInstanceOutputWithContext(ctx context.Context) GetScalingActivitiesActivityRelatedInstanceOutput {
+	return o
+}
+
+// The Instance ID.
+func (o GetScalingActivitiesActivityRelatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivityRelatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The message of Instance.
+func (o GetScalingActivitiesActivityRelatedInstanceOutput) Message() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivityRelatedInstance) string { return v.Message }).(pulumi.StringOutput)
+}
+
+// The Operation Type.
+func (o GetScalingActivitiesActivityRelatedInstanceOutput) OperateType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivityRelatedInstance) string { return v.OperateType }).(pulumi.StringOutput)
+}
+
+// The Status.
+func (o GetScalingActivitiesActivityRelatedInstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingActivitiesActivityRelatedInstance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetScalingActivitiesActivityRelatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingActivitiesActivityRelatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingActivitiesActivityRelatedInstance)(nil)).Elem()
+}
+
+func (o GetScalingActivitiesActivityRelatedInstanceArrayOutput) ToGetScalingActivitiesActivityRelatedInstanceArrayOutput() GetScalingActivitiesActivityRelatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetScalingActivitiesActivityRelatedInstanceArrayOutput) ToGetScalingActivitiesActivityRelatedInstanceArrayOutputWithContext(ctx context.Context) GetScalingActivitiesActivityRelatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetScalingActivitiesActivityRelatedInstanceArrayOutput) Index(i pulumi.IntInput) GetScalingActivitiesActivityRelatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingActivitiesActivityRelatedInstance {
+		return vs[0].([]GetScalingActivitiesActivityRelatedInstance)[vs[1].(int)]
+	}).(GetScalingActivitiesActivityRelatedInstanceOutput)
+}
+
+type GetScalingConfigurationsScalingConfiguration struct {
+	// The create time of the scaling configuration.
+	CreatedAt string `pulumi:"createdAt"`
+	// The EIP bandwidth which the scaling configuration set.
+	EipBandwidth int `pulumi:"eipBandwidth"`
+	// The EIP ISP which the scaling configuration set.
+	EipBillingType string `pulumi:"eipBillingType"`
+	// The EIP ISP which the scaling configuration set.
+	EipIsp string `pulumi:"eipIsp"`
+	// The ECS hostname which the scaling configuration set.
+	HostName string `pulumi:"hostName"`
+	// The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+	HpcClusterId string `pulumi:"hpcClusterId"`
+	// The id of the scaling configuration.
+	Id string `pulumi:"id"`
+	// The ECS image id which the scaling configuration set.
+	ImageId string `pulumi:"imageId"`
+	// The ECS instance description which the scaling configuration set.
+	InstanceDescription string `pulumi:"instanceDescription"`
+	// The ECS instance name which the scaling configuration set.
+	InstanceName string `pulumi:"instanceName"`
+	// The list of the ECS instance type which the scaling configuration set.
+	InstanceTypes []string `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount int `pulumi:"ipv6AddressCount"`
+	// The ECS key pair name which the scaling configuration set.
+	KeyPairName string `pulumi:"keyPairName"`
+	// The lifecycle state of the scaling configuration.
+	LifecycleState string `pulumi:"lifecycleState"`
+	// The project to which the instance created by the scaling configuration belongs.
+	ProjectName string `pulumi:"projectName"`
+	// The id of the scaling configuration.
+	ScalingConfigurationId string `pulumi:"scalingConfigurationId"`
+	// The name of the scaling configuration.
+	ScalingConfigurationName string `pulumi:"scalingConfigurationName"`
+	// An id of scaling group.
+	ScalingGroupId string `pulumi:"scalingGroupId"`
+	// The Ecs security enhancement strategy which the scaling configuration set.
+	SecurityEnhancementStrategy string `pulumi:"securityEnhancementStrategy"`
+	// The list of the security group id of the networkInterface which the scaling configuration set.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+	SpotStrategy string `pulumi:"spotStrategy"`
+	// The label of the instance created by the scaling configuration.
+	Tags []GetScalingConfigurationsScalingConfigurationTag `pulumi:"tags"`
+	// The create time of the scaling configuration.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ECS user data which the scaling configuration set.
+	UserData string `pulumi:"userData"`
+	// The list of volume of the scaling configuration.
+	Volumes []GetScalingConfigurationsScalingConfigurationVolume `pulumi:"volumes"`
+}
+
+// GetScalingConfigurationsScalingConfigurationInput is an input type that accepts GetScalingConfigurationsScalingConfigurationArgs and GetScalingConfigurationsScalingConfigurationOutput values.
+// You can construct a concrete instance of `GetScalingConfigurationsScalingConfigurationInput` via:
+//
+//	GetScalingConfigurationsScalingConfigurationArgs{...}
+type GetScalingConfigurationsScalingConfigurationInput interface {
+	pulumi.Input
+
+	ToGetScalingConfigurationsScalingConfigurationOutput() GetScalingConfigurationsScalingConfigurationOutput
+	ToGetScalingConfigurationsScalingConfigurationOutputWithContext(context.Context) GetScalingConfigurationsScalingConfigurationOutput
+}
+
+type GetScalingConfigurationsScalingConfigurationArgs struct {
+	// The create time of the scaling configuration.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The EIP bandwidth which the scaling configuration set.
+	EipBandwidth pulumi.IntInput `pulumi:"eipBandwidth"`
+	// The EIP ISP which the scaling configuration set.
+	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
+	// The EIP ISP which the scaling configuration set.
+	EipIsp pulumi.StringInput `pulumi:"eipIsp"`
+	// The ECS hostname which the scaling configuration set.
+	HostName pulumi.StringInput `pulumi:"hostName"`
+	// The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+	HpcClusterId pulumi.StringInput `pulumi:"hpcClusterId"`
+	// The id of the scaling configuration.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ECS image id which the scaling configuration set.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The ECS instance description which the scaling configuration set.
+	InstanceDescription pulumi.StringInput `pulumi:"instanceDescription"`
+	// The ECS instance name which the scaling configuration set.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The list of the ECS instance type which the scaling configuration set.
+	InstanceTypes pulumi.StringArrayInput `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount pulumi.IntInput `pulumi:"ipv6AddressCount"`
+	// The ECS key pair name which the scaling configuration set.
+	KeyPairName pulumi.StringInput `pulumi:"keyPairName"`
+	// The lifecycle state of the scaling configuration.
+	LifecycleState pulumi.StringInput `pulumi:"lifecycleState"`
+	// The project to which the instance created by the scaling configuration belongs.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The id of the scaling configuration.
+	ScalingConfigurationId pulumi.StringInput `pulumi:"scalingConfigurationId"`
+	// The name of the scaling configuration.
+	ScalingConfigurationName pulumi.StringInput `pulumi:"scalingConfigurationName"`
+	// An id of scaling group.
+	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
+	// The Ecs security enhancement strategy which the scaling configuration set.
+	SecurityEnhancementStrategy pulumi.StringInput `pulumi:"securityEnhancementStrategy"`
+	// The list of the security group id of the networkInterface which the scaling configuration set.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+	SpotStrategy pulumi.StringInput `pulumi:"spotStrategy"`
+	// The label of the instance created by the scaling configuration.
+	Tags GetScalingConfigurationsScalingConfigurationTagArrayInput `pulumi:"tags"`
+	// The create time of the scaling configuration.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ECS user data which the scaling configuration set.
+	UserData pulumi.StringInput `pulumi:"userData"`
+	// The list of volume of the scaling configuration.
+	Volumes GetScalingConfigurationsScalingConfigurationVolumeArrayInput `pulumi:"volumes"`
+}
+
+func (GetScalingConfigurationsScalingConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingConfigurationsScalingConfiguration)(nil)).Elem()
+}
+
+func (i GetScalingConfigurationsScalingConfigurationArgs) ToGetScalingConfigurationsScalingConfigurationOutput() GetScalingConfigurationsScalingConfigurationOutput {
+	return i.ToGetScalingConfigurationsScalingConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetScalingConfigurationsScalingConfigurationArgs) ToGetScalingConfigurationsScalingConfigurationOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingConfigurationsScalingConfigurationOutput)
+}
+
+// GetScalingConfigurationsScalingConfigurationArrayInput is an input type that accepts GetScalingConfigurationsScalingConfigurationArray and GetScalingConfigurationsScalingConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetScalingConfigurationsScalingConfigurationArrayInput` via:
+//
+//	GetScalingConfigurationsScalingConfigurationArray{ GetScalingConfigurationsScalingConfigurationArgs{...} }
+type GetScalingConfigurationsScalingConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingConfigurationsScalingConfigurationArrayOutput() GetScalingConfigurationsScalingConfigurationArrayOutput
+	ToGetScalingConfigurationsScalingConfigurationArrayOutputWithContext(context.Context) GetScalingConfigurationsScalingConfigurationArrayOutput
+}
+
+type GetScalingConfigurationsScalingConfigurationArray []GetScalingConfigurationsScalingConfigurationInput
+
+func (GetScalingConfigurationsScalingConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingConfigurationsScalingConfiguration)(nil)).Elem()
+}
+
+func (i GetScalingConfigurationsScalingConfigurationArray) ToGetScalingConfigurationsScalingConfigurationArrayOutput() GetScalingConfigurationsScalingConfigurationArrayOutput {
+	return i.ToGetScalingConfigurationsScalingConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingConfigurationsScalingConfigurationArray) ToGetScalingConfigurationsScalingConfigurationArrayOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingConfigurationsScalingConfigurationArrayOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetScalingConfigurationsScalingConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingConfigurationsScalingConfiguration)(nil)).Elem()
+}
+
+func (o GetScalingConfigurationsScalingConfigurationOutput) ToGetScalingConfigurationsScalingConfigurationOutput() GetScalingConfigurationsScalingConfigurationOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationOutput) ToGetScalingConfigurationsScalingConfigurationOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationOutput {
+	return o
+}
+
+// The create time of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The EIP bandwidth which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) EipBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) int { return v.EipBandwidth }).(pulumi.IntOutput)
+}
+
+// The EIP ISP which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) EipBillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.EipBillingType }).(pulumi.StringOutput)
+}
+
+// The EIP ISP which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) EipIsp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.EipIsp }).(pulumi.StringOutput)
+}
+
+// The ECS hostname which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) HostName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.HostName }).(pulumi.StringOutput)
+}
+
+// The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+func (o GetScalingConfigurationsScalingConfigurationOutput) HpcClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.HpcClusterId }).(pulumi.StringOutput)
+}
+
+// The id of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ECS image id which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The ECS instance description which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) InstanceDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.InstanceDescription }).(pulumi.StringOutput)
+}
+
+// The ECS instance name which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The list of the ECS instance type which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) InstanceTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) []string { return v.InstanceTypes }).(pulumi.StringArrayOutput)
+}
+
+// Assign IPv6 address to instance network card. Possible values:
+// 0: Do not assign IPv6 address.
+// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+func (o GetScalingConfigurationsScalingConfigurationOutput) Ipv6AddressCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) int { return v.Ipv6AddressCount }).(pulumi.IntOutput)
+}
+
+// The ECS key pair name which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) KeyPairName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.KeyPairName }).(pulumi.StringOutput)
+}
+
+// The lifecycle state of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) LifecycleState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.LifecycleState }).(pulumi.StringOutput)
+}
+
+// The project to which the instance created by the scaling configuration belongs.
+func (o GetScalingConfigurationsScalingConfigurationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The id of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) ScalingConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.ScalingConfigurationId }).(pulumi.StringOutput)
+}
+
+// The name of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) ScalingConfigurationName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.ScalingConfigurationName }).(pulumi.StringOutput)
+}
+
+// An id of scaling group.
+func (o GetScalingConfigurationsScalingConfigurationOutput) ScalingGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+// The Ecs security enhancement strategy which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) SecurityEnhancementStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.SecurityEnhancementStrategy }).(pulumi.StringOutput)
+}
+
+// The list of the security group id of the networkInterface which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+func (o GetScalingConfigurationsScalingConfigurationOutput) SpotStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.SpotStrategy }).(pulumi.StringOutput)
+}
+
+// The label of the instance created by the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) Tags() GetScalingConfigurationsScalingConfigurationTagArrayOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) []GetScalingConfigurationsScalingConfigurationTag {
+		return v.Tags
+	}).(GetScalingConfigurationsScalingConfigurationTagArrayOutput)
+}
+
+// The create time of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ECS user data which the scaling configuration set.
+func (o GetScalingConfigurationsScalingConfigurationOutput) UserData() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) string { return v.UserData }).(pulumi.StringOutput)
+}
+
+// The list of volume of the scaling configuration.
+func (o GetScalingConfigurationsScalingConfigurationOutput) Volumes() GetScalingConfigurationsScalingConfigurationVolumeArrayOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfiguration) []GetScalingConfigurationsScalingConfigurationVolume {
+		return v.Volumes
+	}).(GetScalingConfigurationsScalingConfigurationVolumeArrayOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingConfigurationsScalingConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingConfigurationsScalingConfiguration)(nil)).Elem()
+}
+
+func (o GetScalingConfigurationsScalingConfigurationArrayOutput) ToGetScalingConfigurationsScalingConfigurationArrayOutput() GetScalingConfigurationsScalingConfigurationArrayOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationArrayOutput) ToGetScalingConfigurationsScalingConfigurationArrayOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationArrayOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationArrayOutput) Index(i pulumi.IntInput) GetScalingConfigurationsScalingConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingConfigurationsScalingConfiguration {
+		return vs[0].([]GetScalingConfigurationsScalingConfiguration)[vs[1].(int)]
+	}).(GetScalingConfigurationsScalingConfigurationOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetScalingConfigurationsScalingConfigurationTagInput is an input type that accepts GetScalingConfigurationsScalingConfigurationTagArgs and GetScalingConfigurationsScalingConfigurationTagOutput values.
+// You can construct a concrete instance of `GetScalingConfigurationsScalingConfigurationTagInput` via:
+//
+//	GetScalingConfigurationsScalingConfigurationTagArgs{...}
+type GetScalingConfigurationsScalingConfigurationTagInput interface {
+	pulumi.Input
+
+	ToGetScalingConfigurationsScalingConfigurationTagOutput() GetScalingConfigurationsScalingConfigurationTagOutput
+	ToGetScalingConfigurationsScalingConfigurationTagOutputWithContext(context.Context) GetScalingConfigurationsScalingConfigurationTagOutput
+}
+
+type GetScalingConfigurationsScalingConfigurationTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetScalingConfigurationsScalingConfigurationTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationTag)(nil)).Elem()
+}
+
+func (i GetScalingConfigurationsScalingConfigurationTagArgs) ToGetScalingConfigurationsScalingConfigurationTagOutput() GetScalingConfigurationsScalingConfigurationTagOutput {
+	return i.ToGetScalingConfigurationsScalingConfigurationTagOutputWithContext(context.Background())
+}
+
+func (i GetScalingConfigurationsScalingConfigurationTagArgs) ToGetScalingConfigurationsScalingConfigurationTagOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingConfigurationsScalingConfigurationTagOutput)
+}
+
+// GetScalingConfigurationsScalingConfigurationTagArrayInput is an input type that accepts GetScalingConfigurationsScalingConfigurationTagArray and GetScalingConfigurationsScalingConfigurationTagArrayOutput values.
+// You can construct a concrete instance of `GetScalingConfigurationsScalingConfigurationTagArrayInput` via:
+//
+//	GetScalingConfigurationsScalingConfigurationTagArray{ GetScalingConfigurationsScalingConfigurationTagArgs{...} }
+type GetScalingConfigurationsScalingConfigurationTagArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingConfigurationsScalingConfigurationTagArrayOutput() GetScalingConfigurationsScalingConfigurationTagArrayOutput
+	ToGetScalingConfigurationsScalingConfigurationTagArrayOutputWithContext(context.Context) GetScalingConfigurationsScalingConfigurationTagArrayOutput
+}
+
+type GetScalingConfigurationsScalingConfigurationTagArray []GetScalingConfigurationsScalingConfigurationTagInput
+
+func (GetScalingConfigurationsScalingConfigurationTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingConfigurationsScalingConfigurationTag)(nil)).Elem()
+}
+
+func (i GetScalingConfigurationsScalingConfigurationTagArray) ToGetScalingConfigurationsScalingConfigurationTagArrayOutput() GetScalingConfigurationsScalingConfigurationTagArrayOutput {
+	return i.ToGetScalingConfigurationsScalingConfigurationTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingConfigurationsScalingConfigurationTagArray) ToGetScalingConfigurationsScalingConfigurationTagArrayOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingConfigurationsScalingConfigurationTagArrayOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationTagOutput struct{ *pulumi.OutputState }
+
+func (GetScalingConfigurationsScalingConfigurationTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationTag)(nil)).Elem()
+}
+
+func (o GetScalingConfigurationsScalingConfigurationTagOutput) ToGetScalingConfigurationsScalingConfigurationTagOutput() GetScalingConfigurationsScalingConfigurationTagOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationTagOutput) ToGetScalingConfigurationsScalingConfigurationTagOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetScalingConfigurationsScalingConfigurationTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfigurationTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetScalingConfigurationsScalingConfigurationTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfigurationTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingConfigurationsScalingConfigurationTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingConfigurationsScalingConfigurationTag)(nil)).Elem()
+}
+
+func (o GetScalingConfigurationsScalingConfigurationTagArrayOutput) ToGetScalingConfigurationsScalingConfigurationTagArrayOutput() GetScalingConfigurationsScalingConfigurationTagArrayOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationTagArrayOutput) ToGetScalingConfigurationsScalingConfigurationTagArrayOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationTagArrayOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationTagArrayOutput) Index(i pulumi.IntInput) GetScalingConfigurationsScalingConfigurationTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingConfigurationsScalingConfigurationTag {
+		return vs[0].([]GetScalingConfigurationsScalingConfigurationTag)[vs[1].(int)]
+	}).(GetScalingConfigurationsScalingConfigurationTagOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationVolume struct {
+	// The delete with instance flag of volume.
+	DeleteWithInstance bool `pulumi:"deleteWithInstance"`
+	// The size of volume.
+	Size int `pulumi:"size"`
+	// The type of volume.
+	VolumeType string `pulumi:"volumeType"`
+}
+
+// GetScalingConfigurationsScalingConfigurationVolumeInput is an input type that accepts GetScalingConfigurationsScalingConfigurationVolumeArgs and GetScalingConfigurationsScalingConfigurationVolumeOutput values.
+// You can construct a concrete instance of `GetScalingConfigurationsScalingConfigurationVolumeInput` via:
+//
+//	GetScalingConfigurationsScalingConfigurationVolumeArgs{...}
+type GetScalingConfigurationsScalingConfigurationVolumeInput interface {
+	pulumi.Input
+
+	ToGetScalingConfigurationsScalingConfigurationVolumeOutput() GetScalingConfigurationsScalingConfigurationVolumeOutput
+	ToGetScalingConfigurationsScalingConfigurationVolumeOutputWithContext(context.Context) GetScalingConfigurationsScalingConfigurationVolumeOutput
+}
+
+type GetScalingConfigurationsScalingConfigurationVolumeArgs struct {
+	// The delete with instance flag of volume.
+	DeleteWithInstance pulumi.BoolInput `pulumi:"deleteWithInstance"`
+	// The size of volume.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of volume.
+	VolumeType pulumi.StringInput `pulumi:"volumeType"`
+}
+
+func (GetScalingConfigurationsScalingConfigurationVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationVolume)(nil)).Elem()
+}
+
+func (i GetScalingConfigurationsScalingConfigurationVolumeArgs) ToGetScalingConfigurationsScalingConfigurationVolumeOutput() GetScalingConfigurationsScalingConfigurationVolumeOutput {
+	return i.ToGetScalingConfigurationsScalingConfigurationVolumeOutputWithContext(context.Background())
+}
+
+func (i GetScalingConfigurationsScalingConfigurationVolumeArgs) ToGetScalingConfigurationsScalingConfigurationVolumeOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingConfigurationsScalingConfigurationVolumeOutput)
+}
+
+// GetScalingConfigurationsScalingConfigurationVolumeArrayInput is an input type that accepts GetScalingConfigurationsScalingConfigurationVolumeArray and GetScalingConfigurationsScalingConfigurationVolumeArrayOutput values.
+// You can construct a concrete instance of `GetScalingConfigurationsScalingConfigurationVolumeArrayInput` via:
+//
+//	GetScalingConfigurationsScalingConfigurationVolumeArray{ GetScalingConfigurationsScalingConfigurationVolumeArgs{...} }
+type GetScalingConfigurationsScalingConfigurationVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutput() GetScalingConfigurationsScalingConfigurationVolumeArrayOutput
+	ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutputWithContext(context.Context) GetScalingConfigurationsScalingConfigurationVolumeArrayOutput
+}
+
+type GetScalingConfigurationsScalingConfigurationVolumeArray []GetScalingConfigurationsScalingConfigurationVolumeInput
+
+func (GetScalingConfigurationsScalingConfigurationVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingConfigurationsScalingConfigurationVolume)(nil)).Elem()
+}
+
+func (i GetScalingConfigurationsScalingConfigurationVolumeArray) ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutput() GetScalingConfigurationsScalingConfigurationVolumeArrayOutput {
+	return i.ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingConfigurationsScalingConfigurationVolumeArray) ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingConfigurationsScalingConfigurationVolumeArrayOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetScalingConfigurationsScalingConfigurationVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationVolume)(nil)).Elem()
+}
+
+func (o GetScalingConfigurationsScalingConfigurationVolumeOutput) ToGetScalingConfigurationsScalingConfigurationVolumeOutput() GetScalingConfigurationsScalingConfigurationVolumeOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationVolumeOutput) ToGetScalingConfigurationsScalingConfigurationVolumeOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationVolumeOutput {
+	return o
+}
+
+// The delete with instance flag of volume.
+func (o GetScalingConfigurationsScalingConfigurationVolumeOutput) DeleteWithInstance() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfigurationVolume) bool { return v.DeleteWithInstance }).(pulumi.BoolOutput)
+}
+
+// The size of volume.
+func (o GetScalingConfigurationsScalingConfigurationVolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfigurationVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of volume.
+func (o GetScalingConfigurationsScalingConfigurationVolumeOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingConfigurationsScalingConfigurationVolume) string { return v.VolumeType }).(pulumi.StringOutput)
+}
+
+type GetScalingConfigurationsScalingConfigurationVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingConfigurationsScalingConfigurationVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingConfigurationsScalingConfigurationVolume)(nil)).Elem()
+}
+
+func (o GetScalingConfigurationsScalingConfigurationVolumeArrayOutput) ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutput() GetScalingConfigurationsScalingConfigurationVolumeArrayOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationVolumeArrayOutput) ToGetScalingConfigurationsScalingConfigurationVolumeArrayOutputWithContext(ctx context.Context) GetScalingConfigurationsScalingConfigurationVolumeArrayOutput {
+	return o
+}
+
+func (o GetScalingConfigurationsScalingConfigurationVolumeArrayOutput) Index(i pulumi.IntInput) GetScalingConfigurationsScalingConfigurationVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingConfigurationsScalingConfigurationVolume {
+		return vs[0].([]GetScalingConfigurationsScalingConfigurationVolume)[vs[1].(int)]
+	}).(GetScalingConfigurationsScalingConfigurationVolumeOutput)
+}
+
+type GetScalingGroupsScalingGroup struct {
+	// The scaling configuration id which used by the scaling group.
+	ActiveScalingConfigurationId string `pulumi:"activeScalingConfigurationId"`
+	// The create time of the scaling group.
+	CreatedAt string `pulumi:"createdAt"`
+	// The list of db instance ids.
+	DbInstanceIds []string `pulumi:"dbInstanceIds"`
+	// The default cooldown interval of the scaling group.
+	DefaultCooldown int `pulumi:"defaultCooldown"`
+	// The desire instance number of the scaling group.
+	DesireInstanceNumber int `pulumi:"desireInstanceNumber"`
+	// The health check type of the scaling group.
+	HealthCheckType string `pulumi:"healthCheckType"`
+	// The id of the scaling group.
+	Id string `pulumi:"id"`
+	// The instance terminate policy of the scaling group.
+	InstanceTerminatePolicy string `pulumi:"instanceTerminatePolicy"`
+	// The ID of the launch template bound to the scaling group.
+	LaunchTemplateId string `pulumi:"launchTemplateId"`
+	// Instance start template information.
+	LaunchTemplateOverrides []GetScalingGroupsScalingGroupLaunchTemplateOverride `pulumi:"launchTemplateOverrides"`
+	// The version of the launch template bound to the scaling group.
+	LaunchTemplateVersion string `pulumi:"launchTemplateVersion"`
+	// The lifecycle state of the scaling group.
+	LifecycleState string `pulumi:"lifecycleState"`
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod int `pulumi:"loadBalancerHealthCheckGracePeriod"`
+	// The max instance number of the scaling group.
+	MaxInstanceNumber int `pulumi:"maxInstanceNumber"`
+	// The min instance number of the scaling group.
+	MinInstanceNumber int `pulumi:"minInstanceNumber"`
+	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+	MultiAzPolicy string `pulumi:"multiAzPolicy"`
+	// The project name of the scaling group.
+	ProjectName string `pulumi:"projectName"`
+	// The id of the scaling group.
+	ScalingGroupId string `pulumi:"scalingGroupId"`
+	// The name of the scaling group.
+	ScalingGroupName string `pulumi:"scalingGroupName"`
+	// The scaling mode of the scaling group.
+	ScalingMode string `pulumi:"scalingMode"`
+	// The list of server group attributes.
+	ServerGroupAttributes []GetScalingGroupsScalingGroupServerGroupAttribute `pulumi:"serverGroupAttributes"`
+	// The number of stopped instances.
+	StoppedInstanceCount int `pulumi:"stoppedInstanceCount"`
+	// The list of the subnet id to which the ENI is connected.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// Tags.
+	Tags []GetScalingGroupsScalingGroupTag `pulumi:"tags"`
+	// The total instance count of the scaling group.
+	TotalInstanceCount int `pulumi:"totalInstanceCount"`
+	// The create time of the scaling group.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The VPC id of the scaling group.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetScalingGroupsScalingGroupInput is an input type that accepts GetScalingGroupsScalingGroupArgs and GetScalingGroupsScalingGroupOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupInput` via:
+//
+//	GetScalingGroupsScalingGroupArgs{...}
+type GetScalingGroupsScalingGroupInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupOutput() GetScalingGroupsScalingGroupOutput
+	ToGetScalingGroupsScalingGroupOutputWithContext(context.Context) GetScalingGroupsScalingGroupOutput
+}
+
+type GetScalingGroupsScalingGroupArgs struct {
+	// The scaling configuration id which used by the scaling group.
+	ActiveScalingConfigurationId pulumi.StringInput `pulumi:"activeScalingConfigurationId"`
+	// The create time of the scaling group.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The list of db instance ids.
+	DbInstanceIds pulumi.StringArrayInput `pulumi:"dbInstanceIds"`
+	// The default cooldown interval of the scaling group.
+	DefaultCooldown pulumi.IntInput `pulumi:"defaultCooldown"`
+	// The desire instance number of the scaling group.
+	DesireInstanceNumber pulumi.IntInput `pulumi:"desireInstanceNumber"`
+	// The health check type of the scaling group.
+	HealthCheckType pulumi.StringInput `pulumi:"healthCheckType"`
+	// The id of the scaling group.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The instance terminate policy of the scaling group.
+	InstanceTerminatePolicy pulumi.StringInput `pulumi:"instanceTerminatePolicy"`
+	// The ID of the launch template bound to the scaling group.
+	LaunchTemplateId pulumi.StringInput `pulumi:"launchTemplateId"`
+	// Instance start template information.
+	LaunchTemplateOverrides GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput `pulumi:"launchTemplateOverrides"`
+	// The version of the launch template bound to the scaling group.
+	LaunchTemplateVersion pulumi.StringInput `pulumi:"launchTemplateVersion"`
+	// The lifecycle state of the scaling group.
+	LifecycleState pulumi.StringInput `pulumi:"lifecycleState"`
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod pulumi.IntInput `pulumi:"loadBalancerHealthCheckGracePeriod"`
+	// The max instance number of the scaling group.
+	MaxInstanceNumber pulumi.IntInput `pulumi:"maxInstanceNumber"`
+	// The min instance number of the scaling group.
+	MinInstanceNumber pulumi.IntInput `pulumi:"minInstanceNumber"`
+	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+	MultiAzPolicy pulumi.StringInput `pulumi:"multiAzPolicy"`
+	// The project name of the scaling group.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The id of the scaling group.
+	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
+	// The name of the scaling group.
+	ScalingGroupName pulumi.StringInput `pulumi:"scalingGroupName"`
+	// The scaling mode of the scaling group.
+	ScalingMode pulumi.StringInput `pulumi:"scalingMode"`
+	// The list of server group attributes.
+	ServerGroupAttributes GetScalingGroupsScalingGroupServerGroupAttributeArrayInput `pulumi:"serverGroupAttributes"`
+	// The number of stopped instances.
+	StoppedInstanceCount pulumi.IntInput `pulumi:"stoppedInstanceCount"`
+	// The list of the subnet id to which the ENI is connected.
+	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// Tags.
+	Tags GetScalingGroupsScalingGroupTagArrayInput `pulumi:"tags"`
+	// The total instance count of the scaling group.
+	TotalInstanceCount pulumi.IntInput `pulumi:"totalInstanceCount"`
+	// The create time of the scaling group.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The VPC id of the scaling group.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetScalingGroupsScalingGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroup)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupArgs) ToGetScalingGroupsScalingGroupOutput() GetScalingGroupsScalingGroupOutput {
+	return i.ToGetScalingGroupsScalingGroupOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupArgs) ToGetScalingGroupsScalingGroupOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupOutput)
+}
+
+// GetScalingGroupsScalingGroupArrayInput is an input type that accepts GetScalingGroupsScalingGroupArray and GetScalingGroupsScalingGroupArrayOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupArrayInput` via:
+//
+//	GetScalingGroupsScalingGroupArray{ GetScalingGroupsScalingGroupArgs{...} }
+type GetScalingGroupsScalingGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupArrayOutput() GetScalingGroupsScalingGroupArrayOutput
+	ToGetScalingGroupsScalingGroupArrayOutputWithContext(context.Context) GetScalingGroupsScalingGroupArrayOutput
+}
+
+type GetScalingGroupsScalingGroupArray []GetScalingGroupsScalingGroupInput
+
+func (GetScalingGroupsScalingGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroup)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupArray) ToGetScalingGroupsScalingGroupArrayOutput() GetScalingGroupsScalingGroupArrayOutput {
+	return i.ToGetScalingGroupsScalingGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupArray) ToGetScalingGroupsScalingGroupArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupArrayOutput)
+}
+
+type GetScalingGroupsScalingGroupOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroup)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupOutput) ToGetScalingGroupsScalingGroupOutput() GetScalingGroupsScalingGroupOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupOutput) ToGetScalingGroupsScalingGroupOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupOutput {
+	return o
+}
+
+// The scaling configuration id which used by the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) ActiveScalingConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.ActiveScalingConfigurationId }).(pulumi.StringOutput)
+}
+
+// The create time of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The list of db instance ids.
+func (o GetScalingGroupsScalingGroupOutput) DbInstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) []string { return v.DbInstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// The default cooldown interval of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) DefaultCooldown() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.DefaultCooldown }).(pulumi.IntOutput)
+}
+
+// The desire instance number of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) DesireInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.DesireInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The health check type of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) HealthCheckType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.HealthCheckType }).(pulumi.StringOutput)
+}
+
+// The id of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The instance terminate policy of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) InstanceTerminatePolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.InstanceTerminatePolicy }).(pulumi.StringOutput)
+}
+
+// The ID of the launch template bound to the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) LaunchTemplateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.LaunchTemplateId }).(pulumi.StringOutput)
+}
+
+// Instance start template information.
+func (o GetScalingGroupsScalingGroupOutput) LaunchTemplateOverrides() GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) []GetScalingGroupsScalingGroupLaunchTemplateOverride {
+		return v.LaunchTemplateOverrides
+	}).(GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput)
+}
+
+// The version of the launch template bound to the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) LaunchTemplateVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.LaunchTemplateVersion }).(pulumi.StringOutput)
+}
+
+// The lifecycle state of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) LifecycleState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.LifecycleState }).(pulumi.StringOutput)
+}
+
+// Grace period for health check of CLB instance in elastic group.
+func (o GetScalingGroupsScalingGroupOutput) LoadBalancerHealthCheckGracePeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.LoadBalancerHealthCheckGracePeriod }).(pulumi.IntOutput)
+}
+
+// The max instance number of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) MaxInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.MaxInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The min instance number of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) MinInstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.MinInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+func (o GetScalingGroupsScalingGroupOutput) MultiAzPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.MultiAzPolicy }).(pulumi.StringOutput)
+}
+
+// The project name of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The id of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) ScalingGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) ScalingGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.ScalingGroupName }).(pulumi.StringOutput)
+}
+
+// The scaling mode of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) ScalingMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.ScalingMode }).(pulumi.StringOutput)
+}
+
+// The list of server group attributes.
+func (o GetScalingGroupsScalingGroupOutput) ServerGroupAttributes() GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) []GetScalingGroupsScalingGroupServerGroupAttribute {
+		return v.ServerGroupAttributes
+	}).(GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput)
+}
+
+// The number of stopped instances.
+func (o GetScalingGroupsScalingGroupOutput) StoppedInstanceCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.StoppedInstanceCount }).(pulumi.IntOutput)
+}
+
+// The list of the subnet id to which the ENI is connected.
+func (o GetScalingGroupsScalingGroupOutput) SubnetIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// Tags.
+func (o GetScalingGroupsScalingGroupOutput) Tags() GetScalingGroupsScalingGroupTagArrayOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) []GetScalingGroupsScalingGroupTag { return v.Tags }).(GetScalingGroupsScalingGroupTagArrayOutput)
+}
+
+// The total instance count of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) TotalInstanceCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) int { return v.TotalInstanceCount }).(pulumi.IntOutput)
+}
+
+// The create time of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The VPC id of the scaling group.
+func (o GetScalingGroupsScalingGroupOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroup) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetScalingGroupsScalingGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroup)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupArrayOutput) ToGetScalingGroupsScalingGroupArrayOutput() GetScalingGroupsScalingGroupArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupArrayOutput) ToGetScalingGroupsScalingGroupArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupArrayOutput) Index(i pulumi.IntInput) GetScalingGroupsScalingGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingGroupsScalingGroup {
+		return vs[0].([]GetScalingGroupsScalingGroup)[vs[1].(int)]
+	}).(GetScalingGroupsScalingGroupOutput)
+}
+
+type GetScalingGroupsScalingGroupLaunchTemplateOverride struct {
+	// The instance type.
+	InstanceType string `pulumi:"instanceType"`
+	// Weight of instance specifications.
+	WeightedCapacity int `pulumi:"weightedCapacity"`
+}
+
+// GetScalingGroupsScalingGroupLaunchTemplateOverrideInput is an input type that accepts GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs and GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupLaunchTemplateOverrideInput` via:
+//
+//	GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs{...}
+type GetScalingGroupsScalingGroupLaunchTemplateOverrideInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutput() GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput
+	ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(context.Context) GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput
+}
+
+type GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs struct {
+	// The instance type.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// Weight of instance specifications.
+	WeightedCapacity pulumi.IntInput `pulumi:"weightedCapacity"`
+}
+
+func (GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutput() GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return i.ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput)
+}
+
+// GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput is an input type that accepts GetScalingGroupsScalingGroupLaunchTemplateOverrideArray and GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput` via:
+//
+//	GetScalingGroupsScalingGroupLaunchTemplateOverrideArray{ GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs{...} }
+type GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput() GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput
+	ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(context.Context) GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput
+}
+
+type GetScalingGroupsScalingGroupLaunchTemplateOverrideArray []GetScalingGroupsScalingGroupLaunchTemplateOverrideInput
+
+func (GetScalingGroupsScalingGroupLaunchTemplateOverrideArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupLaunchTemplateOverrideArray) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput() GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return i.ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupLaunchTemplateOverrideArray) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput)
+}
+
+type GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutput() GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return o
+}
+
+// The instance type.
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupLaunchTemplateOverride) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// Weight of instance specifications.
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput) WeightedCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupLaunchTemplateOverride) int { return v.WeightedCapacity }).(pulumi.IntOutput)
+}
+
+type GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput() GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) ToGetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) Index(i pulumi.IntInput) GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingGroupsScalingGroupLaunchTemplateOverride {
+		return vs[0].([]GetScalingGroupsScalingGroupLaunchTemplateOverride)[vs[1].(int)]
+	}).(GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput)
+}
+
+type GetScalingGroupsScalingGroupServerGroupAttribute struct {
+	// The load balancer id.
+	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The port receiving request of the server group.
+	Port int `pulumi:"port"`
+	// The server group id.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The weight of the instance.
+	Weight int `pulumi:"weight"`
+}
+
+// GetScalingGroupsScalingGroupServerGroupAttributeInput is an input type that accepts GetScalingGroupsScalingGroupServerGroupAttributeArgs and GetScalingGroupsScalingGroupServerGroupAttributeOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupServerGroupAttributeInput` via:
+//
+//	GetScalingGroupsScalingGroupServerGroupAttributeArgs{...}
+type GetScalingGroupsScalingGroupServerGroupAttributeInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupServerGroupAttributeOutput() GetScalingGroupsScalingGroupServerGroupAttributeOutput
+	ToGetScalingGroupsScalingGroupServerGroupAttributeOutputWithContext(context.Context) GetScalingGroupsScalingGroupServerGroupAttributeOutput
+}
+
+type GetScalingGroupsScalingGroupServerGroupAttributeArgs struct {
+	// The load balancer id.
+	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
+	// The port receiving request of the server group.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The server group id.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The weight of the instance.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetScalingGroupsScalingGroupServerGroupAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroupServerGroupAttribute)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupServerGroupAttributeArgs) ToGetScalingGroupsScalingGroupServerGroupAttributeOutput() GetScalingGroupsScalingGroupServerGroupAttributeOutput {
+	return i.ToGetScalingGroupsScalingGroupServerGroupAttributeOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupServerGroupAttributeArgs) ToGetScalingGroupsScalingGroupServerGroupAttributeOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupServerGroupAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupServerGroupAttributeOutput)
+}
+
+// GetScalingGroupsScalingGroupServerGroupAttributeArrayInput is an input type that accepts GetScalingGroupsScalingGroupServerGroupAttributeArray and GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupServerGroupAttributeArrayInput` via:
+//
+//	GetScalingGroupsScalingGroupServerGroupAttributeArray{ GetScalingGroupsScalingGroupServerGroupAttributeArgs{...} }
+type GetScalingGroupsScalingGroupServerGroupAttributeArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutput() GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput
+	ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutputWithContext(context.Context) GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput
+}
+
+type GetScalingGroupsScalingGroupServerGroupAttributeArray []GetScalingGroupsScalingGroupServerGroupAttributeInput
+
+func (GetScalingGroupsScalingGroupServerGroupAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroupServerGroupAttribute)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupServerGroupAttributeArray) ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutput() GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput {
+	return i.ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupServerGroupAttributeArray) ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput)
+}
+
+type GetScalingGroupsScalingGroupServerGroupAttributeOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupServerGroupAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroupServerGroupAttribute)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupServerGroupAttributeOutput) ToGetScalingGroupsScalingGroupServerGroupAttributeOutput() GetScalingGroupsScalingGroupServerGroupAttributeOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupServerGroupAttributeOutput) ToGetScalingGroupsScalingGroupServerGroupAttributeOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupServerGroupAttributeOutput {
+	return o
+}
+
+// The load balancer id.
+func (o GetScalingGroupsScalingGroupServerGroupAttributeOutput) LoadBalancerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupServerGroupAttribute) string { return v.LoadBalancerId }).(pulumi.StringOutput)
+}
+
+// The port receiving request of the server group.
+func (o GetScalingGroupsScalingGroupServerGroupAttributeOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupServerGroupAttribute) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The server group id.
+func (o GetScalingGroupsScalingGroupServerGroupAttributeOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupServerGroupAttribute) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The weight of the instance.
+func (o GetScalingGroupsScalingGroupServerGroupAttributeOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupServerGroupAttribute) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroupServerGroupAttribute)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput) ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutput() GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput) ToGetScalingGroupsScalingGroupServerGroupAttributeArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput) Index(i pulumi.IntInput) GetScalingGroupsScalingGroupServerGroupAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingGroupsScalingGroupServerGroupAttribute {
+		return vs[0].([]GetScalingGroupsScalingGroupServerGroupAttribute)[vs[1].(int)]
+	}).(GetScalingGroupsScalingGroupServerGroupAttributeOutput)
+}
+
+type GetScalingGroupsScalingGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetScalingGroupsScalingGroupTagInput is an input type that accepts GetScalingGroupsScalingGroupTagArgs and GetScalingGroupsScalingGroupTagOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupTagInput` via:
+//
+//	GetScalingGroupsScalingGroupTagArgs{...}
+type GetScalingGroupsScalingGroupTagInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupTagOutput() GetScalingGroupsScalingGroupTagOutput
+	ToGetScalingGroupsScalingGroupTagOutputWithContext(context.Context) GetScalingGroupsScalingGroupTagOutput
+}
+
+type GetScalingGroupsScalingGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetScalingGroupsScalingGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroupTag)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupTagArgs) ToGetScalingGroupsScalingGroupTagOutput() GetScalingGroupsScalingGroupTagOutput {
+	return i.ToGetScalingGroupsScalingGroupTagOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupTagArgs) ToGetScalingGroupsScalingGroupTagOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupTagOutput)
+}
+
+// GetScalingGroupsScalingGroupTagArrayInput is an input type that accepts GetScalingGroupsScalingGroupTagArray and GetScalingGroupsScalingGroupTagArrayOutput values.
+// You can construct a concrete instance of `GetScalingGroupsScalingGroupTagArrayInput` via:
+//
+//	GetScalingGroupsScalingGroupTagArray{ GetScalingGroupsScalingGroupTagArgs{...} }
+type GetScalingGroupsScalingGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsScalingGroupTagArrayOutput() GetScalingGroupsScalingGroupTagArrayOutput
+	ToGetScalingGroupsScalingGroupTagArrayOutputWithContext(context.Context) GetScalingGroupsScalingGroupTagArrayOutput
+}
+
+type GetScalingGroupsScalingGroupTagArray []GetScalingGroupsScalingGroupTagInput
+
+func (GetScalingGroupsScalingGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroupTag)(nil)).Elem()
+}
+
+func (i GetScalingGroupsScalingGroupTagArray) ToGetScalingGroupsScalingGroupTagArrayOutput() GetScalingGroupsScalingGroupTagArrayOutput {
+	return i.ToGetScalingGroupsScalingGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsScalingGroupTagArray) ToGetScalingGroupsScalingGroupTagArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsScalingGroupTagArrayOutput)
+}
+
+type GetScalingGroupsScalingGroupTagOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsScalingGroupTag)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupTagOutput) ToGetScalingGroupsScalingGroupTagOutput() GetScalingGroupsScalingGroupTagOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupTagOutput) ToGetScalingGroupsScalingGroupTagOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetScalingGroupsScalingGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetScalingGroupsScalingGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsScalingGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetScalingGroupsScalingGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsScalingGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsScalingGroupTag)(nil)).Elem()
+}
+
+func (o GetScalingGroupsScalingGroupTagArrayOutput) ToGetScalingGroupsScalingGroupTagArrayOutput() GetScalingGroupsScalingGroupTagArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupTagArrayOutput) ToGetScalingGroupsScalingGroupTagArrayOutputWithContext(ctx context.Context) GetScalingGroupsScalingGroupTagArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsScalingGroupTagArrayOutput) Index(i pulumi.IntInput) GetScalingGroupsScalingGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingGroupsScalingGroupTag {
+		return vs[0].([]GetScalingGroupsScalingGroupTag)[vs[1].(int)]
+	}).(GetScalingGroupsScalingGroupTagOutput)
+}
+
+type GetScalingInstancesScalingInstance struct {
+	// The time when the instance was added to the scaling group.
+	CreatedTime string `pulumi:"createdTime"`
+	// The creation type of the instances. Valid values: AutoCreated, Attached.
+	CreationType string `pulumi:"creationType"`
+	// Whether to host the instance to a scaling group.
+	Entrusted bool `pulumi:"entrusted"`
+	// The id of the scaling instance.
+	Id string `pulumi:"id"`
+	// The id of the scaling instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The id of the scaling configuration id.
+	ScalingConfigurationId string `pulumi:"scalingConfigurationId"`
+	// The id of the scaling group.
+	ScalingGroupId string `pulumi:"scalingGroupId"`
+	// The id of the scaling policy.
+	ScalingPolicyId string `pulumi:"scalingPolicyId"`
+	// The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
+	Status string `pulumi:"status"`
+}
+
+// GetScalingInstancesScalingInstanceInput is an input type that accepts GetScalingInstancesScalingInstanceArgs and GetScalingInstancesScalingInstanceOutput values.
+// You can construct a concrete instance of `GetScalingInstancesScalingInstanceInput` via:
+//
+//	GetScalingInstancesScalingInstanceArgs{...}
+type GetScalingInstancesScalingInstanceInput interface {
+	pulumi.Input
+
+	ToGetScalingInstancesScalingInstanceOutput() GetScalingInstancesScalingInstanceOutput
+	ToGetScalingInstancesScalingInstanceOutputWithContext(context.Context) GetScalingInstancesScalingInstanceOutput
+}
+
+type GetScalingInstancesScalingInstanceArgs struct {
+	// The time when the instance was added to the scaling group.
+	CreatedTime pulumi.StringInput `pulumi:"createdTime"`
+	// The creation type of the instances. Valid values: AutoCreated, Attached.
+	CreationType pulumi.StringInput `pulumi:"creationType"`
+	// Whether to host the instance to a scaling group.
+	Entrusted pulumi.BoolInput `pulumi:"entrusted"`
+	// The id of the scaling instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the scaling instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The id of the scaling configuration id.
+	ScalingConfigurationId pulumi.StringInput `pulumi:"scalingConfigurationId"`
+	// The id of the scaling group.
+	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
+	// The id of the scaling policy.
+	ScalingPolicyId pulumi.StringInput `pulumi:"scalingPolicyId"`
+	// The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetScalingInstancesScalingInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingInstancesScalingInstance)(nil)).Elem()
+}
+
+func (i GetScalingInstancesScalingInstanceArgs) ToGetScalingInstancesScalingInstanceOutput() GetScalingInstancesScalingInstanceOutput {
+	return i.ToGetScalingInstancesScalingInstanceOutputWithContext(context.Background())
+}
+
+func (i GetScalingInstancesScalingInstanceArgs) ToGetScalingInstancesScalingInstanceOutputWithContext(ctx context.Context) GetScalingInstancesScalingInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingInstancesScalingInstanceOutput)
+}
+
+// GetScalingInstancesScalingInstanceArrayInput is an input type that accepts GetScalingInstancesScalingInstanceArray and GetScalingInstancesScalingInstanceArrayOutput values.
+// You can construct a concrete instance of `GetScalingInstancesScalingInstanceArrayInput` via:
+//
+//	GetScalingInstancesScalingInstanceArray{ GetScalingInstancesScalingInstanceArgs{...} }
+type GetScalingInstancesScalingInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingInstancesScalingInstanceArrayOutput() GetScalingInstancesScalingInstanceArrayOutput
+	ToGetScalingInstancesScalingInstanceArrayOutputWithContext(context.Context) GetScalingInstancesScalingInstanceArrayOutput
+}
+
+type GetScalingInstancesScalingInstanceArray []GetScalingInstancesScalingInstanceInput
+
+func (GetScalingInstancesScalingInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingInstancesScalingInstance)(nil)).Elem()
+}
+
+func (i GetScalingInstancesScalingInstanceArray) ToGetScalingInstancesScalingInstanceArrayOutput() GetScalingInstancesScalingInstanceArrayOutput {
+	return i.ToGetScalingInstancesScalingInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingInstancesScalingInstanceArray) ToGetScalingInstancesScalingInstanceArrayOutputWithContext(ctx context.Context) GetScalingInstancesScalingInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingInstancesScalingInstanceArrayOutput)
+}
+
+type GetScalingInstancesScalingInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetScalingInstancesScalingInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingInstancesScalingInstance)(nil)).Elem()
+}
+
+func (o GetScalingInstancesScalingInstanceOutput) ToGetScalingInstancesScalingInstanceOutput() GetScalingInstancesScalingInstanceOutput {
+	return o
+}
+
+func (o GetScalingInstancesScalingInstanceOutput) ToGetScalingInstancesScalingInstanceOutputWithContext(ctx context.Context) GetScalingInstancesScalingInstanceOutput {
+	return o
+}
+
+// The time when the instance was added to the scaling group.
+func (o GetScalingInstancesScalingInstanceOutput) CreatedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.CreatedTime }).(pulumi.StringOutput)
+}
+
+// The creation type of the instances. Valid values: AutoCreated, Attached.
+func (o GetScalingInstancesScalingInstanceOutput) CreationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.CreationType }).(pulumi.StringOutput)
+}
+
+// Whether to host the instance to a scaling group.
+func (o GetScalingInstancesScalingInstanceOutput) Entrusted() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) bool { return v.Entrusted }).(pulumi.BoolOutput)
+}
+
+// The id of the scaling instance.
+func (o GetScalingInstancesScalingInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the scaling instance.
+func (o GetScalingInstancesScalingInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The id of the scaling configuration id.
+func (o GetScalingInstancesScalingInstanceOutput) ScalingConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.ScalingConfigurationId }).(pulumi.StringOutput)
+}
+
+// The id of the scaling group.
+func (o GetScalingInstancesScalingInstanceOutput) ScalingGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+// The id of the scaling policy.
+func (o GetScalingInstancesScalingInstanceOutput) ScalingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.ScalingPolicyId }).(pulumi.StringOutput)
+}
+
+// The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
+func (o GetScalingInstancesScalingInstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingInstancesScalingInstance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetScalingInstancesScalingInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingInstancesScalingInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingInstancesScalingInstance)(nil)).Elem()
+}
+
+func (o GetScalingInstancesScalingInstanceArrayOutput) ToGetScalingInstancesScalingInstanceArrayOutput() GetScalingInstancesScalingInstanceArrayOutput {
+	return o
+}
+
+func (o GetScalingInstancesScalingInstanceArrayOutput) ToGetScalingInstancesScalingInstanceArrayOutputWithContext(ctx context.Context) GetScalingInstancesScalingInstanceArrayOutput {
+	return o
+}
+
+func (o GetScalingInstancesScalingInstanceArrayOutput) Index(i pulumi.IntInput) GetScalingInstancesScalingInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingInstancesScalingInstance {
+		return vs[0].([]GetScalingInstancesScalingInstance)[vs[1].(int)]
+	}).(GetScalingInstancesScalingInstanceOutput)
+}
+
+type GetScalingLifecycleHooksLifecycleHook struct {
+	// The id of the lifecycle hook.
+	Id string `pulumi:"id"`
+	// Batch job command.
+	LifecycleCommands []GetScalingLifecycleHooksLifecycleHookLifecycleCommand `pulumi:"lifecycleCommands"`
+	// The id of the lifecycle hook.
+	LifecycleHookId string `pulumi:"lifecycleHookId"`
+	// The name of the lifecycle hook.
+	LifecycleHookName string `pulumi:"lifecycleHookName"`
+	// The policy of the lifecycle hook.
+	LifecycleHookPolicy string `pulumi:"lifecycleHookPolicy"`
+	// The timeout of the lifecycle hook.
+	LifecycleHookTimeout int `pulumi:"lifecycleHookTimeout"`
+	// The type of the lifecycle hook.
+	LifecycleHookType string `pulumi:"lifecycleHookType"`
+	// An id of scaling group id.
+	ScalingGroupId string `pulumi:"scalingGroupId"`
+}
+
+// GetScalingLifecycleHooksLifecycleHookInput is an input type that accepts GetScalingLifecycleHooksLifecycleHookArgs and GetScalingLifecycleHooksLifecycleHookOutput values.
+// You can construct a concrete instance of `GetScalingLifecycleHooksLifecycleHookInput` via:
+//
+//	GetScalingLifecycleHooksLifecycleHookArgs{...}
+type GetScalingLifecycleHooksLifecycleHookInput interface {
+	pulumi.Input
+
+	ToGetScalingLifecycleHooksLifecycleHookOutput() GetScalingLifecycleHooksLifecycleHookOutput
+	ToGetScalingLifecycleHooksLifecycleHookOutputWithContext(context.Context) GetScalingLifecycleHooksLifecycleHookOutput
+}
+
+type GetScalingLifecycleHooksLifecycleHookArgs struct {
+	// The id of the lifecycle hook.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Batch job command.
+	LifecycleCommands GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput `pulumi:"lifecycleCommands"`
+	// The id of the lifecycle hook.
+	LifecycleHookId pulumi.StringInput `pulumi:"lifecycleHookId"`
+	// The name of the lifecycle hook.
+	LifecycleHookName pulumi.StringInput `pulumi:"lifecycleHookName"`
+	// The policy of the lifecycle hook.
+	LifecycleHookPolicy pulumi.StringInput `pulumi:"lifecycleHookPolicy"`
+	// The timeout of the lifecycle hook.
+	LifecycleHookTimeout pulumi.IntInput `pulumi:"lifecycleHookTimeout"`
+	// The type of the lifecycle hook.
+	LifecycleHookType pulumi.StringInput `pulumi:"lifecycleHookType"`
+	// An id of scaling group id.
+	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
+}
+
+func (GetScalingLifecycleHooksLifecycleHookArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHook)(nil)).Elem()
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookArgs) ToGetScalingLifecycleHooksLifecycleHookOutput() GetScalingLifecycleHooksLifecycleHookOutput {
+	return i.ToGetScalingLifecycleHooksLifecycleHookOutputWithContext(context.Background())
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookArgs) ToGetScalingLifecycleHooksLifecycleHookOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingLifecycleHooksLifecycleHookOutput)
+}
+
+// GetScalingLifecycleHooksLifecycleHookArrayInput is an input type that accepts GetScalingLifecycleHooksLifecycleHookArray and GetScalingLifecycleHooksLifecycleHookArrayOutput values.
+// You can construct a concrete instance of `GetScalingLifecycleHooksLifecycleHookArrayInput` via:
+//
+//	GetScalingLifecycleHooksLifecycleHookArray{ GetScalingLifecycleHooksLifecycleHookArgs{...} }
+type GetScalingLifecycleHooksLifecycleHookArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingLifecycleHooksLifecycleHookArrayOutput() GetScalingLifecycleHooksLifecycleHookArrayOutput
+	ToGetScalingLifecycleHooksLifecycleHookArrayOutputWithContext(context.Context) GetScalingLifecycleHooksLifecycleHookArrayOutput
+}
+
+type GetScalingLifecycleHooksLifecycleHookArray []GetScalingLifecycleHooksLifecycleHookInput
+
+func (GetScalingLifecycleHooksLifecycleHookArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingLifecycleHooksLifecycleHook)(nil)).Elem()
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookArray) ToGetScalingLifecycleHooksLifecycleHookArrayOutput() GetScalingLifecycleHooksLifecycleHookArrayOutput {
+	return i.ToGetScalingLifecycleHooksLifecycleHookArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookArray) ToGetScalingLifecycleHooksLifecycleHookArrayOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingLifecycleHooksLifecycleHookArrayOutput)
+}
+
+type GetScalingLifecycleHooksLifecycleHookOutput struct{ *pulumi.OutputState }
+
+func (GetScalingLifecycleHooksLifecycleHookOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHook)(nil)).Elem()
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookOutput) ToGetScalingLifecycleHooksLifecycleHookOutput() GetScalingLifecycleHooksLifecycleHookOutput {
+	return o
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookOutput) ToGetScalingLifecycleHooksLifecycleHookOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookOutput {
+	return o
+}
+
+// The id of the lifecycle hook.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Batch job command.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) LifecycleCommands() GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) []GetScalingLifecycleHooksLifecycleHookLifecycleCommand {
+		return v.LifecycleCommands
+	}).(GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput)
+}
+
+// The id of the lifecycle hook.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) LifecycleHookId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) string { return v.LifecycleHookId }).(pulumi.StringOutput)
+}
+
+// The name of the lifecycle hook.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) LifecycleHookName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) string { return v.LifecycleHookName }).(pulumi.StringOutput)
+}
+
+// The policy of the lifecycle hook.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) LifecycleHookPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) string { return v.LifecycleHookPolicy }).(pulumi.StringOutput)
+}
+
+// The timeout of the lifecycle hook.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) LifecycleHookTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) int { return v.LifecycleHookTimeout }).(pulumi.IntOutput)
+}
+
+// The type of the lifecycle hook.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) LifecycleHookType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) string { return v.LifecycleHookType }).(pulumi.StringOutput)
+}
+
+// An id of scaling group id.
+func (o GetScalingLifecycleHooksLifecycleHookOutput) ScalingGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHook) string { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+type GetScalingLifecycleHooksLifecycleHookArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingLifecycleHooksLifecycleHookArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingLifecycleHooksLifecycleHook)(nil)).Elem()
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookArrayOutput) ToGetScalingLifecycleHooksLifecycleHookArrayOutput() GetScalingLifecycleHooksLifecycleHookArrayOutput {
+	return o
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookArrayOutput) ToGetScalingLifecycleHooksLifecycleHookArrayOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookArrayOutput {
+	return o
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookArrayOutput) Index(i pulumi.IntInput) GetScalingLifecycleHooksLifecycleHookOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingLifecycleHooksLifecycleHook {
+		return vs[0].([]GetScalingLifecycleHooksLifecycleHook)[vs[1].(int)]
+	}).(GetScalingLifecycleHooksLifecycleHookOutput)
+}
+
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommand struct {
+	// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+	CommandId string `pulumi:"commandId"`
+	// Parameters and parameter values in batch job commands.
+	// The number of parameters ranges from 0 to 60.
+	Parameters string `pulumi:"parameters"`
+}
+
+// GetScalingLifecycleHooksLifecycleHookLifecycleCommandInput is an input type that accepts GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs and GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput values.
+// You can construct a concrete instance of `GetScalingLifecycleHooksLifecycleHookLifecycleCommandInput` via:
+//
+//	GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs{...}
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommandInput interface {
+	pulumi.Input
+
+	ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput() GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput
+	ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(context.Context) GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput
+}
+
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs struct {
+	// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+	CommandId pulumi.StringInput `pulumi:"commandId"`
+	// Parameters and parameter values in batch job commands.
+	// The number of parameters ranges from 0 to 60.
+	Parameters pulumi.StringInput `pulumi:"parameters"`
+}
+
+func (GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput() GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return i.ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(context.Background())
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput)
+}
+
+// GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput is an input type that accepts GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray and GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput values.
+// You can construct a concrete instance of `GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput` via:
+//
+//	GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray{ GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs{...} }
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput() GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput
+	ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(context.Context) GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput
+}
+
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray []GetScalingLifecycleHooksLifecycleHookLifecycleCommandInput
+
+func (GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput() GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return i.ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput)
+}
+
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput struct{ *pulumi.OutputState }
+
+func (GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput() GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return o
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return o
+}
+
+// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) CommandId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHookLifecycleCommand) string { return v.CommandId }).(pulumi.StringOutput)
+}
+
+// Parameters and parameter values in batch job commands.
+// The number of parameters ranges from 0 to 60.
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) Parameters() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingLifecycleHooksLifecycleHookLifecycleCommand) string { return v.Parameters }).(pulumi.StringOutput)
+}
+
+type GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput() GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return o
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) ToGetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(ctx context.Context) GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return o
+}
+
+func (o GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) Index(i pulumi.IntInput) GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingLifecycleHooksLifecycleHookLifecycleCommand {
+		return vs[0].([]GetScalingLifecycleHooksLifecycleHookLifecycleCommand)[vs[1].(int)]
+	}).(GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput)
+}
+
+type GetScalingPoliciesScalingPolicy struct {
+	// The adjustment type of the scaling policy.
+	AdjustmentType string `pulumi:"adjustmentType"`
+	// The adjustment value of the scaling policy.
+	AdjustmentValue int `pulumi:"adjustmentValue"`
+	// The comparison operator of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionComparisonOperator string `pulumi:"alarmPolicyConditionComparisonOperator"`
+	// The metric name of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionMetricName string `pulumi:"alarmPolicyConditionMetricName"`
+	// The comparison operator of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionMetricUnit string `pulumi:"alarmPolicyConditionMetricUnit"`
+	// The threshold of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionThreshold string `pulumi:"alarmPolicyConditionThreshold"`
+	// The evaluation count of the alarm policy of the scaling policy.
+	AlarmPolicyEvaluationCount int `pulumi:"alarmPolicyEvaluationCount"`
+	// The rule type of the alarm policy of the scaling policy.
+	AlarmPolicyRuleType string `pulumi:"alarmPolicyRuleType"`
+	// The cooldown of the scaling policy.
+	Cooldown int `pulumi:"cooldown"`
+	// The id of the scaling policy.
+	Id string `pulumi:"id"`
+	// An id of the scaling group to which the scaling policy belongs.
+	ScalingGroupId string `pulumi:"scalingGroupId"`
+	// The id of the scaling policy.
+	ScalingPolicyId string `pulumi:"scalingPolicyId"`
+	// The name of the scaling policy.
+	ScalingPolicyName string `pulumi:"scalingPolicyName"`
+	// A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
+	ScalingPolicyType string `pulumi:"scalingPolicyType"`
+	// The launch time of the scheduled policy of the scaling policy.
+	ScheduledPolicyLaunchTime string `pulumi:"scheduledPolicyLaunchTime"`
+	// The recurrence end time of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceEndTime string `pulumi:"scheduledPolicyRecurrenceEndTime"`
+	// The recurrence start time of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceStartTime string `pulumi:"scheduledPolicyRecurrenceStartTime"`
+	// The recurrence type of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceType string `pulumi:"scheduledPolicyRecurrenceType"`
+	// The recurrence value of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceValue string `pulumi:"scheduledPolicyRecurrenceValue"`
+	// The status of the scaling policy.
+	Status string `pulumi:"status"`
+}
+
+// GetScalingPoliciesScalingPolicyInput is an input type that accepts GetScalingPoliciesScalingPolicyArgs and GetScalingPoliciesScalingPolicyOutput values.
+// You can construct a concrete instance of `GetScalingPoliciesScalingPolicyInput` via:
+//
+//	GetScalingPoliciesScalingPolicyArgs{...}
+type GetScalingPoliciesScalingPolicyInput interface {
+	pulumi.Input
+
+	ToGetScalingPoliciesScalingPolicyOutput() GetScalingPoliciesScalingPolicyOutput
+	ToGetScalingPoliciesScalingPolicyOutputWithContext(context.Context) GetScalingPoliciesScalingPolicyOutput
+}
+
+type GetScalingPoliciesScalingPolicyArgs struct {
+	// The adjustment type of the scaling policy.
+	AdjustmentType pulumi.StringInput `pulumi:"adjustmentType"`
+	// The adjustment value of the scaling policy.
+	AdjustmentValue pulumi.IntInput `pulumi:"adjustmentValue"`
+	// The comparison operator of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionComparisonOperator pulumi.StringInput `pulumi:"alarmPolicyConditionComparisonOperator"`
+	// The metric name of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionMetricName pulumi.StringInput `pulumi:"alarmPolicyConditionMetricName"`
+	// The comparison operator of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionMetricUnit pulumi.StringInput `pulumi:"alarmPolicyConditionMetricUnit"`
+	// The threshold of the alarm policy condition of the scaling policy.
+	AlarmPolicyConditionThreshold pulumi.StringInput `pulumi:"alarmPolicyConditionThreshold"`
+	// The evaluation count of the alarm policy of the scaling policy.
+	AlarmPolicyEvaluationCount pulumi.IntInput `pulumi:"alarmPolicyEvaluationCount"`
+	// The rule type of the alarm policy of the scaling policy.
+	AlarmPolicyRuleType pulumi.StringInput `pulumi:"alarmPolicyRuleType"`
+	// The cooldown of the scaling policy.
+	Cooldown pulumi.IntInput `pulumi:"cooldown"`
+	// The id of the scaling policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// An id of the scaling group to which the scaling policy belongs.
+	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
+	// The id of the scaling policy.
+	ScalingPolicyId pulumi.StringInput `pulumi:"scalingPolicyId"`
+	// The name of the scaling policy.
+	ScalingPolicyName pulumi.StringInput `pulumi:"scalingPolicyName"`
+	// A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
+	ScalingPolicyType pulumi.StringInput `pulumi:"scalingPolicyType"`
+	// The launch time of the scheduled policy of the scaling policy.
+	ScheduledPolicyLaunchTime pulumi.StringInput `pulumi:"scheduledPolicyLaunchTime"`
+	// The recurrence end time of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceEndTime pulumi.StringInput `pulumi:"scheduledPolicyRecurrenceEndTime"`
+	// The recurrence start time of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceStartTime pulumi.StringInput `pulumi:"scheduledPolicyRecurrenceStartTime"`
+	// The recurrence type of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceType pulumi.StringInput `pulumi:"scheduledPolicyRecurrenceType"`
+	// The recurrence value of the scheduled policy of the scaling policy.
+	ScheduledPolicyRecurrenceValue pulumi.StringInput `pulumi:"scheduledPolicyRecurrenceValue"`
+	// The status of the scaling policy.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetScalingPoliciesScalingPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingPoliciesScalingPolicy)(nil)).Elem()
+}
+
+func (i GetScalingPoliciesScalingPolicyArgs) ToGetScalingPoliciesScalingPolicyOutput() GetScalingPoliciesScalingPolicyOutput {
+	return i.ToGetScalingPoliciesScalingPolicyOutputWithContext(context.Background())
+}
+
+func (i GetScalingPoliciesScalingPolicyArgs) ToGetScalingPoliciesScalingPolicyOutputWithContext(ctx context.Context) GetScalingPoliciesScalingPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingPoliciesScalingPolicyOutput)
+}
+
+// GetScalingPoliciesScalingPolicyArrayInput is an input type that accepts GetScalingPoliciesScalingPolicyArray and GetScalingPoliciesScalingPolicyArrayOutput values.
+// You can construct a concrete instance of `GetScalingPoliciesScalingPolicyArrayInput` via:
+//
+//	GetScalingPoliciesScalingPolicyArray{ GetScalingPoliciesScalingPolicyArgs{...} }
+type GetScalingPoliciesScalingPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingPoliciesScalingPolicyArrayOutput() GetScalingPoliciesScalingPolicyArrayOutput
+	ToGetScalingPoliciesScalingPolicyArrayOutputWithContext(context.Context) GetScalingPoliciesScalingPolicyArrayOutput
+}
+
+type GetScalingPoliciesScalingPolicyArray []GetScalingPoliciesScalingPolicyInput
+
+func (GetScalingPoliciesScalingPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingPoliciesScalingPolicy)(nil)).Elem()
+}
+
+func (i GetScalingPoliciesScalingPolicyArray) ToGetScalingPoliciesScalingPolicyArrayOutput() GetScalingPoliciesScalingPolicyArrayOutput {
+	return i.ToGetScalingPoliciesScalingPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingPoliciesScalingPolicyArray) ToGetScalingPoliciesScalingPolicyArrayOutputWithContext(ctx context.Context) GetScalingPoliciesScalingPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingPoliciesScalingPolicyArrayOutput)
+}
+
+type GetScalingPoliciesScalingPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetScalingPoliciesScalingPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingPoliciesScalingPolicy)(nil)).Elem()
+}
+
+func (o GetScalingPoliciesScalingPolicyOutput) ToGetScalingPoliciesScalingPolicyOutput() GetScalingPoliciesScalingPolicyOutput {
+	return o
+}
+
+func (o GetScalingPoliciesScalingPolicyOutput) ToGetScalingPoliciesScalingPolicyOutputWithContext(ctx context.Context) GetScalingPoliciesScalingPolicyOutput {
+	return o
+}
+
+// The adjustment type of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AdjustmentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.AdjustmentType }).(pulumi.StringOutput)
+}
+
+// The adjustment value of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AdjustmentValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) int { return v.AdjustmentValue }).(pulumi.IntOutput)
+}
+
+// The comparison operator of the alarm policy condition of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AlarmPolicyConditionComparisonOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.AlarmPolicyConditionComparisonOperator }).(pulumi.StringOutput)
+}
+
+// The metric name of the alarm policy condition of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AlarmPolicyConditionMetricName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.AlarmPolicyConditionMetricName }).(pulumi.StringOutput)
+}
+
+// The comparison operator of the alarm policy condition of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AlarmPolicyConditionMetricUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.AlarmPolicyConditionMetricUnit }).(pulumi.StringOutput)
+}
+
+// The threshold of the alarm policy condition of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AlarmPolicyConditionThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.AlarmPolicyConditionThreshold }).(pulumi.StringOutput)
+}
+
+// The evaluation count of the alarm policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AlarmPolicyEvaluationCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) int { return v.AlarmPolicyEvaluationCount }).(pulumi.IntOutput)
+}
+
+// The rule type of the alarm policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) AlarmPolicyRuleType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.AlarmPolicyRuleType }).(pulumi.StringOutput)
+}
+
+// The cooldown of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) Cooldown() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) int { return v.Cooldown }).(pulumi.IntOutput)
+}
+
+// The id of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// An id of the scaling group to which the scaling policy belongs.
+func (o GetScalingPoliciesScalingPolicyOutput) ScalingGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+// The id of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScalingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScalingPolicyId }).(pulumi.StringOutput)
+}
+
+// The name of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScalingPolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScalingPolicyName }).(pulumi.StringOutput)
+}
+
+// A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
+func (o GetScalingPoliciesScalingPolicyOutput) ScalingPolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScalingPolicyType }).(pulumi.StringOutput)
+}
+
+// The launch time of the scheduled policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScheduledPolicyLaunchTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScheduledPolicyLaunchTime }).(pulumi.StringOutput)
+}
+
+// The recurrence end time of the scheduled policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScheduledPolicyRecurrenceEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScheduledPolicyRecurrenceEndTime }).(pulumi.StringOutput)
+}
+
+// The recurrence start time of the scheduled policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScheduledPolicyRecurrenceStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScheduledPolicyRecurrenceStartTime }).(pulumi.StringOutput)
+}
+
+// The recurrence type of the scheduled policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScheduledPolicyRecurrenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScheduledPolicyRecurrenceType }).(pulumi.StringOutput)
+}
+
+// The recurrence value of the scheduled policy of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) ScheduledPolicyRecurrenceValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.ScheduledPolicyRecurrenceValue }).(pulumi.StringOutput)
+}
+
+// The status of the scaling policy.
+func (o GetScalingPoliciesScalingPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPoliciesScalingPolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetScalingPoliciesScalingPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingPoliciesScalingPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingPoliciesScalingPolicy)(nil)).Elem()
+}
+
+func (o GetScalingPoliciesScalingPolicyArrayOutput) ToGetScalingPoliciesScalingPolicyArrayOutput() GetScalingPoliciesScalingPolicyArrayOutput {
+	return o
+}
+
+func (o GetScalingPoliciesScalingPolicyArrayOutput) ToGetScalingPoliciesScalingPolicyArrayOutputWithContext(ctx context.Context) GetScalingPoliciesScalingPolicyArrayOutput {
+	return o
+}
+
+func (o GetScalingPoliciesScalingPolicyArrayOutput) Index(i pulumi.IntInput) GetScalingPoliciesScalingPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingPoliciesScalingPolicy {
+		return vs[0].([]GetScalingPoliciesScalingPolicy)[vs[1].(int)]
+	}).(GetScalingPoliciesScalingPolicyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingActivitiesActivityInput)(nil)).Elem(), ScalingActivitiesActivityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingActivitiesActivityArrayInput)(nil)).Elem(), ScalingActivitiesActivityArray{})
@@ -3041,6 +5322,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput)(nil)).Elem(), ScalingLifecycleHooksLifecycleHookLifecycleCommandArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingPoliciesScalingPolicyInput)(nil)).Elem(), ScalingPoliciesScalingPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingPoliciesScalingPolicyArrayInput)(nil)).Elem(), ScalingPoliciesScalingPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingActivitiesActivityInput)(nil)).Elem(), GetScalingActivitiesActivityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingActivitiesActivityArrayInput)(nil)).Elem(), GetScalingActivitiesActivityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingActivitiesActivityRelatedInstanceInput)(nil)).Elem(), GetScalingActivitiesActivityRelatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingActivitiesActivityRelatedInstanceArrayInput)(nil)).Elem(), GetScalingActivitiesActivityRelatedInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationInput)(nil)).Elem(), GetScalingConfigurationsScalingConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationArrayInput)(nil)).Elem(), GetScalingConfigurationsScalingConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationTagInput)(nil)).Elem(), GetScalingConfigurationsScalingConfigurationTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationTagArrayInput)(nil)).Elem(), GetScalingConfigurationsScalingConfigurationTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationVolumeInput)(nil)).Elem(), GetScalingConfigurationsScalingConfigurationVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingConfigurationsScalingConfigurationVolumeArrayInput)(nil)).Elem(), GetScalingConfigurationsScalingConfigurationVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupInput)(nil)).Elem(), GetScalingGroupsScalingGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupArrayInput)(nil)).Elem(), GetScalingGroupsScalingGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupLaunchTemplateOverrideInput)(nil)).Elem(), GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput)(nil)).Elem(), GetScalingGroupsScalingGroupLaunchTemplateOverrideArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupServerGroupAttributeInput)(nil)).Elem(), GetScalingGroupsScalingGroupServerGroupAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupServerGroupAttributeArrayInput)(nil)).Elem(), GetScalingGroupsScalingGroupServerGroupAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupTagInput)(nil)).Elem(), GetScalingGroupsScalingGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupTagArrayInput)(nil)).Elem(), GetScalingGroupsScalingGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingInstancesScalingInstanceInput)(nil)).Elem(), GetScalingInstancesScalingInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingInstancesScalingInstanceArrayInput)(nil)).Elem(), GetScalingInstancesScalingInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookInput)(nil)).Elem(), GetScalingLifecycleHooksLifecycleHookArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookArrayInput)(nil)).Elem(), GetScalingLifecycleHooksLifecycleHookArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookLifecycleCommandInput)(nil)).Elem(), GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput)(nil)).Elem(), GetScalingLifecycleHooksLifecycleHookLifecycleCommandArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesScalingPolicyInput)(nil)).Elem(), GetScalingPoliciesScalingPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesScalingPolicyArrayInput)(nil)).Elem(), GetScalingPoliciesScalingPolicyArray{})
 	pulumi.RegisterOutputType(ScalingActivitiesActivityOutput{})
 	pulumi.RegisterOutputType(ScalingActivitiesActivityArrayOutput{})
 	pulumi.RegisterOutputType(ScalingActivitiesActivityRelatedInstanceOutput{})
@@ -3079,4 +5386,30 @@ func init() {
 	pulumi.RegisterOutputType(ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput{})
 	pulumi.RegisterOutputType(ScalingPoliciesScalingPolicyOutput{})
 	pulumi.RegisterOutputType(ScalingPoliciesScalingPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingActivitiesActivityOutput{})
+	pulumi.RegisterOutputType(GetScalingActivitiesActivityArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingActivitiesActivityRelatedInstanceOutput{})
+	pulumi.RegisterOutputType(GetScalingActivitiesActivityRelatedInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingConfigurationsScalingConfigurationOutput{})
+	pulumi.RegisterOutputType(GetScalingConfigurationsScalingConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingConfigurationsScalingConfigurationTagOutput{})
+	pulumi.RegisterOutputType(GetScalingConfigurationsScalingConfigurationTagArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingConfigurationsScalingConfigurationVolumeOutput{})
+	pulumi.RegisterOutputType(GetScalingConfigurationsScalingConfigurationVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupLaunchTemplateOverrideOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupServerGroupAttributeOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupTagOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingInstancesScalingInstanceOutput{})
+	pulumi.RegisterOutputType(GetScalingInstancesScalingInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingLifecycleHooksLifecycleHookOutput{})
+	pulumi.RegisterOutputType(GetScalingLifecycleHooksLifecycleHookArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingLifecycleHooksLifecycleHookLifecycleCommandOutput{})
+	pulumi.RegisterOutputType(GetScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingPoliciesScalingPolicyOutput{})
+	pulumi.RegisterOutputType(GetScalingPoliciesScalingPolicyArrayOutput{})
 }

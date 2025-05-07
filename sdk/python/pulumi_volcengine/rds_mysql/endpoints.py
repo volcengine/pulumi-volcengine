@@ -17,6 +17,8 @@ __all__ = [
     'endpoints_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class EndpointsResult:
     """
@@ -98,13 +100,14 @@ def endpoints(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.endpoints(instance_id="mysql-38c3d4f05f6e")
+    foo = volcengine.rds_mysql.get_endpoints(instance_id="mysql-38c3d4f05f6e")
     ```
 
 
     :param str instance_id: The id of the mysql instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def endpoints_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.endpoints(instance_id="mysql-38c3d4f05f6e")
+    foo = volcengine.rds_mysql.get_endpoints(instance_id="mysql-38c3d4f05f6e")
     ```
 
 
     :param str instance_id: The id of the mysql instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'buckets_output',
 ]
 
+warnings.warn("""volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets""", DeprecationWarning)
+
 @pulumi.output_type
 class BucketsResult:
     """
@@ -108,7 +110,7 @@ def buckets(bucket_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tos.buckets(name_regex="test")
+    default = volcengine.tos.get_buckets(name_regex="test")
     ```
 
 
@@ -116,6 +118,7 @@ def buckets(bucket_name: Optional[str] = None,
     :param str name_regex: A Name Regex of TOS bucket.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""buckets is deprecated: volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets""")
     __args__ = dict()
     __args__['bucketName'] = bucket_name
     __args__['nameRegex'] = name_regex
@@ -145,7 +148,7 @@ def buckets_output(bucket_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tos.buckets(name_regex="test")
+    default = volcengine.tos.get_buckets(name_regex="test")
     ```
 
 
@@ -153,4 +156,5 @@ def buckets_output(bucket_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of TOS bucket.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""buckets is deprecated: volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets""")
     ...

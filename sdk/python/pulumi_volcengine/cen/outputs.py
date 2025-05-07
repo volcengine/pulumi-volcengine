@@ -25,6 +25,17 @@ __all__ = [
     'ServiceRouteEntriesServiceRouteEntryResult',
     'ServiceRouteEntriesServiceRouteEntryPublishToInstanceResult',
     'ServiceRouteEntryPublishToInstance',
+    'GetAttachInstancesAttachInstanceResult',
+    'GetBandwidthPackagesBandwidthPackageResult',
+    'GetBandwidthPackagesBandwidthPackageTagResult',
+    'GetBandwidthPackagesTagResult',
+    'GetCensCenResult',
+    'GetCensCenTagResult',
+    'GetCensTagResult',
+    'GetInterRegionBandwidthsInterRegionBandwidthResult',
+    'GetRouteEntriesCenRouteEntryResult',
+    'GetServiceRouteEntriesServiceRouteEntryResult',
+    'GetServiceRouteEntriesServiceRouteEntryPublishToInstanceResult',
 ]
 
 @pulumi.output_type
@@ -1034,6 +1045,897 @@ class ServiceRouteEntryPublishToInstance(dict):
     @property
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[str]:
+        """
+        The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+        """
+        return pulumi.get(self, "instance_type")
+
+
+@pulumi.output_type
+class GetAttachInstancesAttachInstanceResult(dict):
+    def __init__(__self__, *,
+                 cen_id: str,
+                 creation_time: str,
+                 instance_id: str,
+                 instance_owner_id: str,
+                 instance_region_id: str,
+                 instance_type: str,
+                 status: str):
+        """
+        :param str cen_id: A cen ID.
+        :param str creation_time: The create time of the cen attaching instance.
+        :param str instance_id: An instance ID.
+        :param str instance_owner_id: The owner ID of the instance.
+        :param str instance_region_id: A region id of instance.
+        :param str instance_type: An instance type.
+        :param str status: The status of the cen attaching instance.
+        """
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_owner_id", instance_owner_id)
+        pulumi.set(__self__, "instance_region_id", instance_region_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        A cen ID.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the cen attaching instance.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        An instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceOwnerId")
+    def instance_owner_id(self) -> str:
+        """
+        The owner ID of the instance.
+        """
+        return pulumi.get(self, "instance_owner_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> str:
+        """
+        A region id of instance.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        An instance type.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen attaching instance.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetBandwidthPackagesBandwidthPackageResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 bandwidth: int,
+                 billing_type: str,
+                 business_status: str,
+                 cen_bandwidth_package_id: str,
+                 cen_bandwidth_package_name: str,
+                 cen_ids: Sequence[str],
+                 creation_time: str,
+                 deleted_time: str,
+                 description: str,
+                 expired_time: str,
+                 id: str,
+                 local_geographic_region_set_id: str,
+                 peer_geographic_region_set_id: str,
+                 project_name: str,
+                 remaining_bandwidth: int,
+                 status: str,
+                 tags: Sequence['outputs.GetBandwidthPackagesBandwidthPackageTagResult'],
+                 update_time: str):
+        """
+        :param str account_id: The account ID of the cen bandwidth package.
+        :param int bandwidth: The bandwidth of the cen bandwidth package.
+        :param str billing_type: The billing type of the cen bandwidth package.
+        :param str business_status: The business status of the cen bandwidth package.
+        :param str cen_bandwidth_package_id: The ID of the cen bandwidth package.
+        :param str cen_bandwidth_package_name: The name of the cen bandwidth package.
+        :param Sequence[str] cen_ids: The cen IDs of the bandwidth package.
+        :param str creation_time: The create time of the cen bandwidth package.
+        :param str deleted_time: The deleted time of the cen bandwidth package.
+        :param str description: The description of the cen bandwidth package.
+        :param str expired_time: The expired time of the cen bandwidth package.
+        :param str id: The ID of the cen bandwidth package.
+        :param str local_geographic_region_set_id: A local geographic region set id.
+        :param str peer_geographic_region_set_id: A peer geographic region set id.
+        :param str project_name: The ProjectName of the cen bandwidth package.
+        :param int remaining_bandwidth: The remain bandwidth of the cen bandwidth package.
+        :param str status: The status of the cen bandwidth package.
+        :param Sequence['GetBandwidthPackagesBandwidthPackageTagArgs'] tags: Tags.
+        :param str update_time: The update time of the cen bandwidth package.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "cen_bandwidth_package_id", cen_bandwidth_package_id)
+        pulumi.set(__self__, "cen_bandwidth_package_name", cen_bandwidth_package_name)
+        pulumi.set(__self__, "cen_ids", cen_ids)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "deleted_time", deleted_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
+        pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "remaining_bandwidth", remaining_bandwidth)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID of the cen bandwidth package.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The bandwidth of the cen bandwidth package.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> str:
+        """
+        The billing type of the cen bandwidth package.
+        """
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of the cen bandwidth package.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageId")
+    def cen_bandwidth_package_id(self) -> str:
+        """
+        The ID of the cen bandwidth package.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_id")
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageName")
+    def cen_bandwidth_package_name(self) -> str:
+        """
+        The name of the cen bandwidth package.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_name")
+
+    @property
+    @pulumi.getter(name="cenIds")
+    def cen_ids(self) -> Sequence[str]:
+        """
+        The cen IDs of the bandwidth package.
+        """
+        return pulumi.get(self, "cen_ids")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the cen bandwidth package.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="deletedTime")
+    def deleted_time(self) -> str:
+        """
+        The deleted time of the cen bandwidth package.
+        """
+        return pulumi.get(self, "deleted_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the cen bandwidth package.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        """
+        The expired time of the cen bandwidth package.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the cen bandwidth package.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="localGeographicRegionSetId")
+    def local_geographic_region_set_id(self) -> str:
+        """
+        A local geographic region set id.
+        """
+        return pulumi.get(self, "local_geographic_region_set_id")
+
+    @property
+    @pulumi.getter(name="peerGeographicRegionSetId")
+    def peer_geographic_region_set_id(self) -> str:
+        """
+        A peer geographic region set id.
+        """
+        return pulumi.get(self, "peer_geographic_region_set_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the cen bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="remainingBandwidth")
+    def remaining_bandwidth(self) -> int:
+        """
+        The remain bandwidth of the cen bandwidth package.
+        """
+        return pulumi.get(self, "remaining_bandwidth")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen bandwidth package.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetBandwidthPackagesBandwidthPackageTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the cen bandwidth package.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetBandwidthPackagesBandwidthPackageTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetBandwidthPackagesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCensCenResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 cen_bandwidth_package_ids: Sequence[str],
+                 cen_id: str,
+                 cen_name: str,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetCensCenTagResult'],
+                 update_time: str):
+        """
+        :param str account_id: The account ID of the cen.
+        :param Sequence[str] cen_bandwidth_package_ids: A list of bandwidth package IDs of the cen.
+        :param str cen_id: The ID of the cen.
+        :param str cen_name: The name of the cen.
+        :param str creation_time: The create time of the cen.
+        :param str description: The description of the cen.
+        :param str id: The ID of the cen.
+        :param str project_name: The ProjectName of the cen instance.
+        :param str status: The status of the cen.
+        :param Sequence['GetCensCenTagArgs'] tags: Tags.
+        :param str update_time: The update time of the cen.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "cen_bandwidth_package_ids", cen_bandwidth_package_ids)
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "cen_name", cen_name)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID of the cen.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageIds")
+    def cen_bandwidth_package_ids(self) -> Sequence[str]:
+        """
+        A list of bandwidth package IDs of the cen.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_ids")
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        The ID of the cen.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="cenName")
+    def cen_name(self) -> str:
+        """
+        The name of the cen.
+        """
+        return pulumi.get(self, "cen_name")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the cen.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the cen.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the cen.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the cen instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetCensCenTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the cen.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetCensCenTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCensTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
+    def __init__(__self__, *,
+                 bandwidth: int,
+                 cen_id: str,
+                 creation_time: str,
+                 id: str,
+                 inter_region_bandwidth_id: str,
+                 local_region_id: str,
+                 peer_region_id: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param int bandwidth: The bandwidth of the cen inter region bandwidth.
+        :param str cen_id: The cen ID of the cen inter region bandwidth.
+        :param str creation_time: The create time of the cen inter region bandwidth.
+        :param str id: The ID of the cen inter region bandwidth.
+        :param str inter_region_bandwidth_id: The ID of the cen inter region bandwidth.
+        :param str local_region_id: The local region id of the cen inter region bandwidth.
+        :param str peer_region_id: The peer region id of the cen inter region bandwidth.
+        :param str status: The status of the cen inter region bandwidth.
+        :param str update_time: The update time of the cen inter region bandwidth.
+        """
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "inter_region_bandwidth_id", inter_region_bandwidth_id)
+        pulumi.set(__self__, "local_region_id", local_region_id)
+        pulumi.set(__self__, "peer_region_id", peer_region_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The bandwidth of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        The cen ID of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="interRegionBandwidthId")
+    def inter_region_bandwidth_id(self) -> str:
+        """
+        The ID of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "inter_region_bandwidth_id")
+
+    @property
+    @pulumi.getter(name="localRegionId")
+    def local_region_id(self) -> str:
+        """
+        The local region id of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "local_region_id")
+
+    @property
+    @pulumi.getter(name="peerRegionId")
+    def peer_region_id(self) -> str:
+        """
+        The peer region id of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "peer_region_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetRouteEntriesCenRouteEntryResult(dict):
+    def __init__(__self__, *,
+                 as_paths: Sequence[str],
+                 cen_id: str,
+                 destination_cidr_block: str,
+                 instance_id: str,
+                 instance_region_id: str,
+                 instance_type: str,
+                 publish_status: str,
+                 status: str):
+        """
+        :param Sequence[str] as_paths: The AS path of the cen route entry.
+        :param str cen_id: A cen ID.
+        :param str destination_cidr_block: A destination cidr block.
+        :param str instance_id: An instance ID.
+        :param str instance_region_id: An instance region ID.
+        :param str instance_type: An instance type.
+        :param str publish_status: The publish status of the cen route entry.
+        :param str status: The status of the cen route entry.
+        """
+        pulumi.set(__self__, "as_paths", as_paths)
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_region_id", instance_region_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "publish_status", publish_status)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="asPaths")
+    def as_paths(self) -> Sequence[str]:
+        """
+        The AS path of the cen route entry.
+        """
+        return pulumi.get(self, "as_paths")
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        A cen ID.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        A destination cidr block.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        An instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> str:
+        """
+        An instance region ID.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        An instance type.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="publishStatus")
+    def publish_status(self) -> str:
+        """
+        The publish status of the cen route entry.
+        """
+        return pulumi.get(self, "publish_status")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen route entry.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetServiceRouteEntriesServiceRouteEntryResult(dict):
+    def __init__(__self__, *,
+                 cen_id: str,
+                 creation_time: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 publish_mode: str,
+                 publish_to_instances: Sequence['outputs.GetServiceRouteEntriesServiceRouteEntryPublishToInstanceResult'],
+                 service_region_id: str,
+                 service_vpc_id: str,
+                 status: str):
+        """
+        :param str cen_id: A cen ID.
+        :param str creation_time: The create time of the cen service route entry.
+        :param str description: The description of the cen service route entry.
+        :param str destination_cidr_block: A destination cidr block.
+        :param str publish_mode: Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+        :param Sequence['GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs'] publish_to_instances: The publish instances. A maximum of 100 can be uploaded in one request.
+        :param str service_region_id: A service region id.
+        :param str service_vpc_id: A service VPC id.
+        :param str status: The status of the cen service route entry.
+        """
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "publish_mode", publish_mode)
+        pulumi.set(__self__, "publish_to_instances", publish_to_instances)
+        pulumi.set(__self__, "service_region_id", service_region_id)
+        pulumi.set(__self__, "service_vpc_id", service_vpc_id)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        A cen ID.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the cen service route entry.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the cen service route entry.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        A destination cidr block.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="publishMode")
+    def publish_mode(self) -> str:
+        """
+        Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+        """
+        return pulumi.get(self, "publish_mode")
+
+    @property
+    @pulumi.getter(name="publishToInstances")
+    def publish_to_instances(self) -> Sequence['outputs.GetServiceRouteEntriesServiceRouteEntryPublishToInstanceResult']:
+        """
+        The publish instances. A maximum of 100 can be uploaded in one request.
+        """
+        return pulumi.get(self, "publish_to_instances")
+
+    @property
+    @pulumi.getter(name="serviceRegionId")
+    def service_region_id(self) -> str:
+        """
+        A service region id.
+        """
+        return pulumi.get(self, "service_region_id")
+
+    @property
+    @pulumi.getter(name="serviceVpcId")
+    def service_vpc_id(self) -> str:
+        """
+        A service VPC id.
+        """
+        return pulumi.get(self, "service_vpc_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen service route entry.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetServiceRouteEntriesServiceRouteEntryPublishToInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_region_id: str,
+                 instance_type: str):
+        """
+        :param str instance_id: Cloud service access routes need to publish the network instance ID.
+        :param str instance_region_id: The region where the cloud service access route needs to be published.
+        :param str instance_type: The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_region_id", instance_region_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Cloud service access routes need to publish the network instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> str:
+        """
+        The region where the cloud service access route needs to be published.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
         """
         The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
         """

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Veenedge
 {
+    [Obsolete(@"volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs")]
     public static class Vpcs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Veenedge.Vpcs.Invoke();
+        ///     var foo = Volcengine.Veenedge.GetVpcs.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Veenedge.Vpcs.Invoke();
+        ///     var foo = Volcengine.Veenedge.GetVpcs.Invoke();
         /// 
         /// });
         /// ```

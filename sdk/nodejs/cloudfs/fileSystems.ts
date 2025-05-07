@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.FileSystems({
+ * const default = volcengine.cloudfs.getFileSystems({
  *     fsName: "tftest2",
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems */
 export function fileSystems(args?: FileSystemsArgs, opts?: pulumi.InvokeOptions): Promise<FileSystemsResult> {
+    pulumi.log.warn("fileSystems is deprecated: volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -82,11 +84,12 @@ export interface FileSystemsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.FileSystems({
+ * const default = volcengine.cloudfs.getFileSystems({
  *     fsName: "tftest2",
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems */
 export function fileSystemsOutput(args?: FileSystemsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<FileSystemsResult> {
     return pulumi.output(args).apply((a: any) => fileSystems(a, opts))
 }

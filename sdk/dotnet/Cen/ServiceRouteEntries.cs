@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cen
 {
+    [Obsolete(@"volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries")]
     public static class ServiceRouteEntries
     {
         /// <summary>
@@ -85,7 +86,7 @@ namespace Pulumi.Volcengine.Cen
         ///         },
         ///     });
         /// 
-        ///     var fooServiceRouteEntries = Volcengine.Cen.ServiceRouteEntries.Invoke(new()
+        ///     var fooServiceRouteEntries = Volcengine.Cen.GetServiceRouteEntries.Invoke(new()
         ///     {
         ///         CenId = fooCen.Id,
         ///         DestinationCidrBlock = fooServiceRouteEntry.DestinationCidrBlock,
@@ -171,7 +172,7 @@ namespace Pulumi.Volcengine.Cen
         ///         },
         ///     });
         /// 
-        ///     var fooServiceRouteEntries = Volcengine.Cen.ServiceRouteEntries.Invoke(new()
+        ///     var fooServiceRouteEntries = Volcengine.Cen.GetServiceRouteEntries.Invoke(new()
         ///     {
         ///         CenId = fooCen.Id,
         ///         DestinationCidrBlock = fooServiceRouteEntry.DestinationCidrBlock,

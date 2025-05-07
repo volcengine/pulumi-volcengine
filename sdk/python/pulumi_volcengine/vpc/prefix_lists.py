@@ -18,6 +18,8 @@ __all__ = [
     'prefix_lists_output',
 ]
 
+warnings.warn("""volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists""", DeprecationWarning)
+
 @pulumi.output_type
 class PrefixListsResult:
     """
@@ -154,7 +156,7 @@ def prefix_lists(ids: Optional[Sequence[str]] = None,
             key="tf-key1",
             value="tf-value1",
         )])
-    foo_prefix_lists = volcengine.vpc.prefix_lists_output(ids=[foo_prefix_list.id])
+    foo_prefix_lists = volcengine.vpc.get_prefix_lists_output(ids=[foo_prefix_list.id])
     ```
 
 
@@ -164,6 +166,7 @@ def prefix_lists(ids: Optional[Sequence[str]] = None,
     :param str prefix_list_name: A Name of prefix list.
     :param Sequence[pulumi.InputType['PrefixListsTagFilterArgs']] tag_filters: List of tag filters.
     """
+    pulumi.log.warn("""prefix_lists is deprecated: volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['ipVersion'] = ip_version
@@ -218,7 +221,7 @@ def prefix_lists_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
             key="tf-key1",
             value="tf-value1",
         )])
-    foo_prefix_lists = volcengine.vpc.prefix_lists_output(ids=[foo_prefix_list.id])
+    foo_prefix_lists = volcengine.vpc.get_prefix_lists_output(ids=[foo_prefix_list.id])
     ```
 
 
@@ -228,4 +231,5 @@ def prefix_lists_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param str prefix_list_name: A Name of prefix list.
     :param Sequence[pulumi.InputType['PrefixListsTagFilterArgs']] tag_filters: List of tag filters.
     """
+    pulumi.log.warn("""prefix_lists is deprecated: volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists""")
     ...

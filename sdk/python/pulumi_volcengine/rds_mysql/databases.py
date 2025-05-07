@@ -17,6 +17,8 @@ __all__ = [
     'databases_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases""", DeprecationWarning)
+
 @pulumi.output_type
 class DatabasesResult:
     """
@@ -121,7 +123,7 @@ def databases(db_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-project1",
         cidr_block="172.16.0.0/16")
@@ -155,7 +157,7 @@ def databases(db_name: Optional[str] = None,
     foo_database = volcengine.rds_mysql.Database("fooDatabase",
         db_name="acc-test",
         instance_id=foo_instance.id)
-    foo_databases = volcengine.rds_mysql.databases_output(db_name="acc-test",
+    foo_databases = volcengine.rds_mysql.get_databases_output(db_name="acc-test",
         instance_id=foo_instance.id)
     ```
 
@@ -165,6 +167,7 @@ def databases(db_name: Optional[str] = None,
     :param str name_regex: A Name Regex of RDS database.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""databases is deprecated: volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases""")
     __args__ = dict()
     __args__['dbName'] = db_name
     __args__['instanceId'] = instance_id
@@ -197,7 +200,7 @@ def databases_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-project1",
         cidr_block="172.16.0.0/16")
@@ -231,7 +234,7 @@ def databases_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     foo_database = volcengine.rds_mysql.Database("fooDatabase",
         db_name="acc-test",
         instance_id=foo_instance.id)
-    foo_databases = volcengine.rds_mysql.databases_output(db_name="acc-test",
+    foo_databases = volcengine.rds_mysql.get_databases_output(db_name="acc-test",
         instance_id=foo_instance.id)
     ```
 
@@ -241,4 +244,5 @@ def databases_output(db_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of RDS database.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""databases is deprecated: volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases""")
     ...

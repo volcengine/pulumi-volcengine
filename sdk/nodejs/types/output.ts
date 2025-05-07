@@ -617,6 +617,1037 @@ export namespace alb {
         protocol: string;
     }
 
+    export interface GetAclsAcl {
+        /**
+         * The entries info of acl.
+         */
+        aclEntries: outputs.alb.GetAclsAclAclEntry[];
+        /**
+         * The count of acl entry.
+         */
+        aclEntryCount: number;
+        /**
+         * The ID of Acl.
+         */
+        aclId: string;
+        /**
+         * The name of acl.
+         */
+        aclName: string;
+        /**
+         * Creation time of Acl.
+         */
+        createTime: string;
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The ID of Acl.
+         */
+        id: string;
+        /**
+         * The listeners of acl.
+         */
+        listeners: outputs.alb.GetAclsAclListener[];
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * Update time of Acl.
+         */
+        updateTime: string;
+    }
+
+    export interface GetAclsAclAclEntry {
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The info of entry.
+         */
+        entry: string;
+    }
+
+    export interface GetAclsAclListener {
+        /**
+         * The type of acl.
+         */
+        aclType: string;
+        /**
+         * The ID of Listener.
+         */
+        listenerId: string;
+        /**
+         * The Name of Listener.
+         */
+        listenerName: string;
+        /**
+         * The port info of listener.
+         */
+        port: number;
+        /**
+         * The protocol info of listener.
+         */
+        protocol: string;
+    }
+
+    export interface GetAlbsAlb {
+        /**
+         * The access log information of the Alb.
+         */
+        accessLogs: outputs.alb.GetAlbsAlbAccessLog[];
+        /**
+         * The address ip version of the Alb, valid value: `IPv4`, `DualStack`.
+         */
+        addressIpVersion: string;
+        /**
+         * The business status of the Alb, valid value:`Normal`, `FinancialLocked`.
+         */
+        businessStatus: string;
+        /**
+         * The create time of the Alb.
+         */
+        createTime: string;
+        /**
+         * The deletion protection function of the Alb instance is turned on or off.
+         */
+        deleteProtection: string;
+        /**
+         * The expected deleted time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+         */
+        deletedTime: string;
+        /**
+         * The description of the Alb.
+         */
+        description: string;
+        /**
+         * The DNS name.
+         */
+        dnsName: string;
+        /**
+         * The health log information of the Alb.
+         */
+        healthLogs: outputs.alb.GetAlbsAlbHealthLog[];
+        /**
+         * The ID of the Alb.
+         */
+        id: string;
+        /**
+         * The listener information of the Alb.
+         */
+        listeners: outputs.alb.GetAlbsAlbListener[];
+        /**
+         * The billing type of the Alb.
+         */
+        loadBalancerBillingType: number;
+        /**
+         * The ID of the Alb.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the Alb.
+         */
+        loadBalancerName: string;
+        /**
+         * The local addresses of the Alb.
+         */
+        localAddresses: string[];
+        /**
+         * The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+         */
+        lockReason: string;
+        /**
+         * The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the Alb.
+         */
+        projectName: string;
+        /**
+         * The status of the Alb.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.GetAlbsAlbTag[];
+        /**
+         * The tls access log information of the Alb.
+         */
+        tlsAccessLogs: outputs.alb.GetAlbsAlbTlsAccessLog[];
+        /**
+         * The type of the Alb, valid value: `public`, `private`.
+         */
+        type: string;
+        /**
+         * The update time of the Alb.
+         */
+        updateTime: string;
+        /**
+         * The vpc id which Alb belongs to.
+         */
+        vpcId: string;
+        /**
+         * Configuration information of the Alb instance in different Availability Zones.
+         */
+        zoneMappings: outputs.alb.GetAlbsAlbZoneMapping[];
+    }
+
+    export interface GetAlbsAlbAccessLog {
+        /**
+         * The bucket name where the logs are stored.
+         */
+        bucketName: string;
+        /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+    }
+
+    export interface GetAlbsAlbHealthLog {
+        /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The TLS project id bound to the access log.
+         */
+        projectId: string;
+        /**
+         * The TLS topic id bound to the access log.
+         */
+        topicId: string;
+    }
+
+    export interface GetAlbsAlbListener {
+        /**
+         * The listener id of the Alb.
+         */
+        listenerId: string;
+        /**
+         * The listener name of the Alb.
+         */
+        listenerName: string;
+    }
+
+    export interface GetAlbsAlbTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAlbsAlbTlsAccessLog {
+        /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The TLS project id bound to the access log.
+         */
+        projectId: string;
+        /**
+         * The TLS topic id bound to the access log.
+         */
+        topicId: string;
+    }
+
+    export interface GetAlbsAlbZoneMapping {
+        /**
+         * The IP address information of the Alb in this availability zone.
+         */
+        loadBalancerAddresses: outputs.alb.GetAlbsAlbZoneMappingLoadBalancerAddress[];
+        /**
+         * The subnet id of the Alb in this availability zone.
+         */
+        subnetId: string;
+        /**
+         * The availability zone id of the Alb.
+         */
+        zoneId: string;
+    }
+
+    export interface GetAlbsAlbZoneMappingLoadBalancerAddress {
+        /**
+         * The Eip address of the Alb.
+         */
+        eipAddress: string;
+        /**
+         * The Eip id of alb instance in this availability zone.
+         */
+        eipId: string;
+        /**
+         * The Eip information of the Alb in this availability zone.
+         */
+        eips: outputs.alb.GetAlbsAlbZoneMappingLoadBalancerAddressEip[];
+        /**
+         * The private ip address of the Alb.
+         */
+        eniAddress: string;
+        /**
+         * The Eni id of the Alb in this availability zone.
+         */
+        eniId: string;
+        /**
+         * The Eni Ipv6 address of the Alb in this availability zone.
+         */
+        eniIpv6Address: string;
+        /**
+         * The Ipv6 Eip id of alb instance in this availability zone.
+         */
+        ipv6EipId: string;
+        /**
+         * The Ipv6 Eip information of the Alb in this availability zone.
+         */
+        ipv6Eips: outputs.alb.GetAlbsAlbZoneMappingLoadBalancerAddressIpv6Eip[];
+    }
+
+    export interface GetAlbsAlbZoneMappingLoadBalancerAddressEip {
+        /**
+         * The association mode of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+         */
+        associationMode: string;
+        /**
+         * The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The Eip address of the Alb.
+         */
+        eipAddress: string;
+        /**
+         * The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        eipBillingType: string;
+        /**
+         * The Eip type of the Alb.
+         */
+        eipType: string;
+        /**
+         * The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+         */
+        isp: string;
+        /**
+         * The pop locations of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+         */
+        popLocations: outputs.alb.GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocation[];
+        /**
+         * The security protection types of the Alb.
+         */
+        securityProtectionTypes: string[];
+    }
+
+    export interface GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocation {
+        /**
+         * The pop id of the Anycast Eip.
+         */
+        popId: string;
+        /**
+         * The pop name of the Anycast Eip.
+         */
+        popName: string;
+    }
+
+    export interface GetAlbsAlbZoneMappingLoadBalancerAddressIpv6Eip {
+        /**
+         * The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the Ipv6 Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+         */
+        isp: string;
+    }
+
+    export interface GetAlbsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCaCertificatesCertificate {
+        /**
+         * The ID of the CA certificate.
+         */
+        caCertificateId: string;
+        /**
+         * The name of the CA certificate.
+         */
+        caCertificateName: string;
+        /**
+         * The type of the CA certificate.
+         */
+        certificateType: string;
+        /**
+         * The create time of the CA Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the CA certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the CA Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the CA Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID list of the CA Listener.
+         */
+        listeners: string[];
+        /**
+         * The project name of the CA certificate.
+         */
+        projectName: string;
+        /**
+         * The status of the CA Certificate.
+         */
+        status: string;
+    }
+
+    export interface GetCertificatesCertificate {
+        /**
+         * The ID of the Certificate.
+         */
+        certificateId: string;
+        /**
+         * The Name of Certificate.
+         */
+        certificateName: string;
+        /**
+         * The type of the Certificate.
+         */
+        certificateType: string;
+        /**
+         * The create time of the Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the Certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID of the Certificate.
+         */
+        id: string;
+        /**
+         * The ID list of the Listener.
+         */
+        listeners: string[];
+        /**
+         * The ProjectName of the Certificate.
+         */
+        projectName: string;
+        /**
+         * The status of the Certificate.
+         */
+        status: string;
+    }
+
+    export interface GetCustomizedCfgsCfg {
+        /**
+         * The create time of CustomizedCfg.
+         */
+        createTime: string;
+        /**
+         * The content of CustomizedCfg.
+         */
+        customizedCfgContent: string;
+        /**
+         * The ID of CustomizedCfg.
+         */
+        customizedCfgId: string;
+        /**
+         * The name of the CustomizedCfg.
+         */
+        customizedCfgName: string;
+        /**
+         * The description of CustomizedCfg.
+         */
+        description: string;
+        /**
+         * The ID of CustomizedCfg.
+         */
+        id: string;
+        /**
+         * The listeners of CustomizedCfg.
+         */
+        listeners: outputs.alb.GetCustomizedCfgsCfgListener[];
+        /**
+         * The project name of the CustomizedCfg.
+         */
+        projectName: string;
+        /**
+         * The status of CustomizedCfg.
+         */
+        status: string;
+        /**
+         * The update time of CustomizedCfg.
+         */
+        updateTime: string;
+    }
+
+    export interface GetCustomizedCfgsCfgListener {
+        /**
+         * The id of the listener.
+         */
+        listenerId: string;
+        /**
+         * The Name of Listener.
+         */
+        listenerName: string;
+        /**
+         * The port info of listener.
+         */
+        port: number;
+        /**
+         * The protocol info of listener.
+         */
+        protocol: string;
+    }
+
+    export interface GetHealthCheckTemplatesHealthCheckTemplate {
+        /**
+         * The description of health check template.
+         */
+        description: string;
+        /**
+         * The domain name to health check.
+         */
+        healthCheckDomain: string;
+        /**
+         * The normal HTTP status code for health check, the default is http_2xx, http_3xx, separated by commas.
+         */
+        healthCheckHttpCode: string;
+        /**
+         * The HTTP version of health check.
+         */
+        healthCheckHttpVersion: string;
+        /**
+         * The interval for performing health checks, the default value is 2, and the value is 1-300.
+         */
+        healthCheckInterval: number;
+        /**
+         * The health check method,default is `GET`,support `GET` and ``HEAD.
+         */
+        healthCheckMethod: string;
+        /**
+         * The protocol of health check,only support HTTP.
+         */
+        healthCheckProtocol: string;
+        /**
+         * The ID of health check template.
+         */
+        healthCheckTemplateId: string;
+        /**
+         * The name of health check template to query.
+         */
+        healthCheckTemplateName: string;
+        /**
+         * The timeout of health check response,the default value is 2, and the value is 1-60.
+         */
+        healthCheckTimeout: number;
+        /**
+         * The uri to health check,default is `/`.
+         */
+        healthCheckUri: string;
+        /**
+         * The healthy threshold of the health check, the default is 3, the value is 2-10.
+         */
+        healthyThreshold: number;
+        /**
+         * The id of the health check template.
+         */
+        id: string;
+        /**
+         * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
+         */
+        unhealthyThreshold: number;
+    }
+
+    export interface GetListenerDomainExtensionsDomainExtension {
+        /**
+         * The server certificate ID that domain used.
+         */
+        certificateId: string;
+        /**
+         * The domain.
+         */
+        domain: string;
+        /**
+         * The extension domain ID.
+         */
+        domainExtensionId: string;
+        /**
+         * The ID of the Listener.
+         */
+        id: string;
+        /**
+         * A Listener ID.
+         */
+        listenerId: string;
+    }
+
+    export interface GetListenersListener {
+        /**
+         * The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
+         */
+        aclIds: string[];
+        /**
+         * Whether to enable the access control function,valid value is on or off.
+         */
+        aclStatus: string;
+        /**
+         * The access control type.
+         */
+        aclType: string;
+        /**
+         * CA certificate ID associated with HTTPS listener.
+         */
+        caCertificateId: string;
+        /**
+         * The certificate id associated with the listener. Source is `certCenter`.
+         */
+        certCenterCertificateId: string;
+        /**
+         * The server certificate ID that domain used.
+         */
+        certificateId: string;
+        /**
+         * The source of the certificate.
+         */
+        certificateSource: string;
+        /**
+         * The create time of the Listener.
+         */
+        createTime: string;
+        /**
+         * The customized configuration ID, the value is empty string when not bound.
+         */
+        customizedCfgId: string;
+        /**
+         * The description of listener.
+         */
+        description: string;
+        /**
+         * The HTTPS listener association list of extension domains for.
+         */
+        domainExtensions: outputs.alb.GetListenersListenerDomainExtension[];
+        /**
+         * The HTTP2 feature switch,valid value is on or off.
+         */
+        enableHttp2: string;
+        /**
+         * The QUIC feature switch,valid value is on or off.
+         */
+        enableQuic: string;
+        /**
+         * The enable status of the Listener.
+         */
+        enabled: string;
+        /**
+         * The ID of the Listener.
+         */
+        id: string;
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the Listener.
+         */
+        listenerName: string;
+        /**
+         * The id of the Alb.
+         */
+        loadBalancerId: string;
+        /**
+         * The port receiving request of the Listener.
+         */
+        port: number;
+        /**
+         * The project name of the listener.
+         */
+        projectName: string;
+        /**
+         * The protocol of the Listener.
+         */
+        protocol: string;
+        /**
+         * The ID of server group.
+         */
+        serverGroupId: string;
+        /**
+         * The list of server groups with associated listeners.
+         */
+        serverGroups: outputs.alb.GetListenersListenerServerGroup[];
+        /**
+         * The status of the Listener.
+         */
+        status: string;
+        /**
+         * The update time of the Listener.
+         */
+        updateTime: string;
+    }
+
+    export interface GetListenersListenerDomainExtension {
+        /**
+         * The server certificate ID that domain used.
+         */
+        certificateId: string;
+        /**
+         * The domain.
+         */
+        domain: string;
+        /**
+         * The extension domain ID.
+         */
+        domainExtensionId: string;
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+    }
+
+    export interface GetListenersListenerServerGroup {
+        /**
+         * The ID of server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of server group.
+         */
+        serverGroupName: string;
+    }
+
+    export interface GetRulesRule {
+        /**
+         * The Description of Rule.
+         */
+        description: string;
+        /**
+         * The Domain of Rule.
+         */
+        domain: string;
+        /**
+         * The Id of Rule.
+         */
+        id: string;
+        /**
+         * Redirect related configuration.
+         */
+        redirectConfigs: outputs.alb.GetRulesRuleRedirectConfig[];
+        /**
+         * The list of rewrite configurations.
+         */
+        rewriteConfigs: outputs.alb.GetRulesRuleRewriteConfig[];
+        /**
+         * Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
+         * on: enable.
+         * off: disable.
+         */
+        rewriteEnabled: string;
+        /**
+         * The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
+         */
+        ruleAction: string;
+        /**
+         * The Id of Rule.
+         */
+        ruleId: string;
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * Forwarding rule QPS rate limiting switch:
+         * on: enable.
+         * off: disable (default).
+         */
+        trafficLimitEnabled: string;
+        /**
+         * When Rules.N.TrafficLimitEnabled is turned on, this field is required. Requests per second. Valid values are between 100 and 100000.
+         */
+        trafficLimitQps: number;
+        /**
+         * The Url of Rule.
+         */
+        url: string;
+    }
+
+    export interface GetRulesRuleRedirectConfig {
+        /**
+         * The redirect domain.
+         */
+        redirectDomain: string;
+        /**
+         * The redirect HTTP code,support 301(default), 302, 307, 308.
+         */
+        redirectHttpCode: string;
+        /**
+         * The redirect port.
+         */
+        redirectPort: string;
+        /**
+         * The redirect protocol,support HTTP,HTTPS(default).
+         */
+        redirectProtocol: string;
+        /**
+         * The redirect URI.
+         */
+        redirectUri: string;
+    }
+
+    export interface GetRulesRuleRewriteConfig {
+        /**
+         * Rewrite path.
+         */
+        rewritePath: string;
+    }
+
+    export interface GetServerGroupServersServer {
+        /**
+         * The description of the instance.
+         */
+        description: string;
+        /**
+         * The server id of instance in ServerGroup.
+         */
+        id: string;
+        /**
+         * The ID of ecs instance or the network card bound to ecs instance.
+         */
+        instanceId: string;
+        /**
+         * The private ip of the instance.
+         */
+        ip: string;
+        /**
+         * The port receiving request.
+         */
+        port: number;
+        /**
+         * The server id of instance in ServerGroup.
+         */
+        serverId: string;
+        /**
+         * The type of instance. Optional choice contains `ecs`, `eni`.
+         */
+        type: string;
+        /**
+         * The weight of the instance.
+         */
+        weight: number;
+    }
+
+    export interface GetServerGroupsServerGroup {
+        /**
+         * The create time of the Alb server group.
+         */
+        createTime: string;
+        /**
+         * The description of the server group server.
+         */
+        description: string;
+        /**
+         * The health check config of the Alb server group.
+         */
+        healthChecks: outputs.alb.GetServerGroupsServerGroupHealthCheck[];
+        /**
+         * The ID of the Alb server group.
+         */
+        id: string;
+        /**
+         * The listener information of the Alb server group.
+         */
+        listeners: string[];
+        /**
+         * The project name of Alb server group.
+         */
+        projectName: string;
+        /**
+         * The scheduler algorithm of the Alb server group.
+         */
+        scheduler: string;
+        /**
+         * The server count of the Alb server group.
+         */
+        serverCount: number;
+        /**
+         * The ID of the Alb server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the Alb server group.
+         */
+        serverGroupName: string;
+        /**
+         * The type of Alb server group. Valid values: `instance`, `ip`.
+         */
+        serverGroupType: string;
+        /**
+         * The server information of the Alb server group.
+         */
+        servers: outputs.alb.GetServerGroupsServerGroupServer[];
+        /**
+         * The status of the Alb server group.
+         */
+        status: string;
+        /**
+         * The sticky session config of the Alb server group.
+         */
+        stickySessionConfigs: outputs.alb.GetServerGroupsServerGroupStickySessionConfig[];
+        /**
+         * The update time of the Alb server group.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of the Alb server group.
+         */
+        vpcId: string;
+    }
+
+    export interface GetServerGroupsServerGroupHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * The enable status of health check function.
+         */
+        enabled: string;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthyThreshold: number;
+        /**
+         * The normal http status code of health check.
+         */
+        httpCode?: string;
+        /**
+         * The http version of health check.
+         */
+        httpVersion?: string;
+        /**
+         * The interval executing health check.
+         */
+        interval: number;
+        /**
+         * The method of health check.
+         */
+        method: string;
+        /**
+         * The protocol of health check.
+         */
+        protocol?: string;
+        /**
+         * The response timeout of health check.
+         */
+        timeout?: number;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        unhealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface GetServerGroupsServerGroupServer {
+        /**
+         * The description of the server group server.
+         */
+        description: string;
+        /**
+         * The id of the ecs instance or the network interface.
+         */
+        instanceId: string;
+        /**
+         * The private ip of the server group server.
+         */
+        ip: string;
+        /**
+         * The port receiving request of the server group server.
+         */
+        port: number;
+        /**
+         * Whether to enable the remote IP function.
+         */
+        remoteEnabled: string;
+        /**
+         * The id of the server group server.
+         */
+        serverId: string;
+        /**
+         * The type of the server group server.
+         */
+        type: string;
+        /**
+         * The weight of the server group server.
+         */
+        weight: number;
+    }
+
+    export interface GetServerGroupsServerGroupStickySessionConfig {
+        /**
+         * The cookie name of the sticky session.
+         */
+        cookie: string;
+        /**
+         * The cookie timeout of the sticky session.
+         */
+        cookieTimeout: number;
+        /**
+         * The enable status of sticky session.
+         */
+        stickySessionEnabled: string;
+        /**
+         * The cookie handle type of the sticky session.
+         */
+        stickySessionType: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
     export interface HealthCheckTemplatesHealthCheckTemplate {
         /**
          * The description of health check template.
@@ -1226,6 +2257,544 @@ export namespace alb {
 }
 
 export namespace autoscaling {
+    export interface GetScalingActivitiesActivity {
+        /**
+         * The Actual Type.
+         */
+        activityType: string;
+        /**
+         * The Actual Adjustment Instance Number.
+         */
+        actualAdjustInstanceNumber: number;
+        /**
+         * The Cooldown time.
+         */
+        cooldown: number;
+        /**
+         * The create time of Scaling Activity.
+         */
+        createdAt: string;
+        /**
+         * The Current Instance Number.
+         */
+        currentInstanceNumber: number;
+        /**
+         * The expected run time of Scaling Activity.
+         */
+        expectedRunTime: string;
+        /**
+         * The ID of Scaling Activity.
+         */
+        id: string;
+        /**
+         * The Max Instance Number.
+         */
+        maxInstanceNumber: number;
+        /**
+         * The Min Instance Number.
+         */
+        minInstanceNumber: number;
+        /**
+         * The related instances.
+         */
+        relatedInstances: outputs.autoscaling.GetScalingActivitiesActivityRelatedInstance[];
+        /**
+         * The Result of Scaling Activity.
+         */
+        resultMsg: string;
+        /**
+         * The ID of Scaling Activity.
+         */
+        scalingActivityId: string;
+        /**
+         * A Id of Scaling Group.
+         */
+        scalingGroupId: string;
+        /**
+         * A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
+         */
+        statusCode: string;
+        /**
+         * The stopped time of Scaling Activity.
+         */
+        stoppedAt: string;
+        /**
+         * The task category of Scaling Activity.
+         */
+        taskCategory: string;
+    }
+
+    export interface GetScalingActivitiesActivityRelatedInstance {
+        /**
+         * The Instance ID.
+         */
+        instanceId: string;
+        /**
+         * The message of Instance.
+         */
+        message: string;
+        /**
+         * The Operation Type.
+         */
+        operateType: string;
+        /**
+         * The Status.
+         */
+        status: string;
+    }
+
+    export interface GetScalingConfigurationsScalingConfiguration {
+        /**
+         * The create time of the scaling configuration.
+         */
+        createdAt: string;
+        /**
+         * The EIP bandwidth which the scaling configuration set.
+         */
+        eipBandwidth: number;
+        /**
+         * The EIP ISP which the scaling configuration set.
+         */
+        eipBillingType: string;
+        /**
+         * The EIP ISP which the scaling configuration set.
+         */
+        eipIsp: string;
+        /**
+         * The ECS hostname which the scaling configuration set.
+         */
+        hostName: string;
+        /**
+         * The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+         */
+        hpcClusterId: string;
+        /**
+         * The id of the scaling configuration.
+         */
+        id: string;
+        /**
+         * The ECS image id which the scaling configuration set.
+         */
+        imageId: string;
+        /**
+         * The ECS instance description which the scaling configuration set.
+         */
+        instanceDescription: string;
+        /**
+         * The ECS instance name which the scaling configuration set.
+         */
+        instanceName: string;
+        /**
+         * The list of the ECS instance type which the scaling configuration set.
+         */
+        instanceTypes: string[];
+        /**
+         * Assign IPv6 address to instance network card. Possible values:
+         * 0: Do not assign IPv6 address.
+         * 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+         */
+        ipv6AddressCount: number;
+        /**
+         * The ECS key pair name which the scaling configuration set.
+         */
+        keyPairName: string;
+        /**
+         * The lifecycle state of the scaling configuration.
+         */
+        lifecycleState: string;
+        /**
+         * The project to which the instance created by the scaling configuration belongs.
+         */
+        projectName: string;
+        /**
+         * The id of the scaling configuration.
+         */
+        scalingConfigurationId: string;
+        /**
+         * The name of the scaling configuration.
+         */
+        scalingConfigurationName: string;
+        /**
+         * An id of scaling group.
+         */
+        scalingGroupId: string;
+        /**
+         * The Ecs security enhancement strategy which the scaling configuration set.
+         */
+        securityEnhancementStrategy: string;
+        /**
+         * The list of the security group id of the networkInterface which the scaling configuration set.
+         */
+        securityGroupIds: string[];
+        /**
+         * The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+         */
+        spotStrategy: string;
+        /**
+         * The label of the instance created by the scaling configuration.
+         */
+        tags: outputs.autoscaling.GetScalingConfigurationsScalingConfigurationTag[];
+        /**
+         * The create time of the scaling configuration.
+         */
+        updatedAt: string;
+        /**
+         * The ECS user data which the scaling configuration set.
+         */
+        userData: string;
+        /**
+         * The list of volume of the scaling configuration.
+         */
+        volumes: outputs.autoscaling.GetScalingConfigurationsScalingConfigurationVolume[];
+    }
+
+    export interface GetScalingConfigurationsScalingConfigurationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetScalingConfigurationsScalingConfigurationVolume {
+        /**
+         * The delete with instance flag of volume.
+         */
+        deleteWithInstance: boolean;
+        /**
+         * The size of volume.
+         */
+        size: number;
+        /**
+         * The type of volume.
+         */
+        volumeType: string;
+    }
+
+    export interface GetScalingGroupsScalingGroup {
+        /**
+         * The scaling configuration id which used by the scaling group.
+         */
+        activeScalingConfigurationId: string;
+        /**
+         * The create time of the scaling group.
+         */
+        createdAt: string;
+        /**
+         * The list of db instance ids.
+         */
+        dbInstanceIds: string[];
+        /**
+         * The default cooldown interval of the scaling group.
+         */
+        defaultCooldown: number;
+        /**
+         * The desire instance number of the scaling group.
+         */
+        desireInstanceNumber: number;
+        /**
+         * The health check type of the scaling group.
+         */
+        healthCheckType: string;
+        /**
+         * The id of the scaling group.
+         */
+        id: string;
+        /**
+         * The instance terminate policy of the scaling group.
+         */
+        instanceTerminatePolicy: string;
+        /**
+         * The ID of the launch template bound to the scaling group.
+         */
+        launchTemplateId: string;
+        /**
+         * Instance start template information.
+         */
+        launchTemplateOverrides: outputs.autoscaling.GetScalingGroupsScalingGroupLaunchTemplateOverride[];
+        /**
+         * The version of the launch template bound to the scaling group.
+         */
+        launchTemplateVersion: string;
+        /**
+         * The lifecycle state of the scaling group.
+         */
+        lifecycleState: string;
+        /**
+         * Grace period for health check of CLB instance in elastic group.
+         */
+        loadBalancerHealthCheckGracePeriod: number;
+        /**
+         * The max instance number of the scaling group.
+         */
+        maxInstanceNumber: number;
+        /**
+         * The min instance number of the scaling group.
+         */
+        minInstanceNumber: number;
+        /**
+         * The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+         */
+        multiAzPolicy: string;
+        /**
+         * The project name of the scaling group.
+         */
+        projectName: string;
+        /**
+         * The id of the scaling group.
+         */
+        scalingGroupId: string;
+        /**
+         * The name of the scaling group.
+         */
+        scalingGroupName: string;
+        /**
+         * The scaling mode of the scaling group.
+         */
+        scalingMode: string;
+        /**
+         * The list of server group attributes.
+         */
+        serverGroupAttributes: outputs.autoscaling.GetScalingGroupsScalingGroupServerGroupAttribute[];
+        /**
+         * The number of stopped instances.
+         */
+        stoppedInstanceCount: number;
+        /**
+         * The list of the subnet id to which the ENI is connected.
+         */
+        subnetIds: string[];
+        /**
+         * Tags.
+         */
+        tags: outputs.autoscaling.GetScalingGroupsScalingGroupTag[];
+        /**
+         * The total instance count of the scaling group.
+         */
+        totalInstanceCount: number;
+        /**
+         * The create time of the scaling group.
+         */
+        updatedAt: string;
+        /**
+         * The VPC id of the scaling group.
+         */
+        vpcId: string;
+    }
+
+    export interface GetScalingGroupsScalingGroupLaunchTemplateOverride {
+        /**
+         * The instance type.
+         */
+        instanceType: string;
+        /**
+         * Weight of instance specifications.
+         */
+        weightedCapacity: number;
+    }
+
+    export interface GetScalingGroupsScalingGroupServerGroupAttribute {
+        /**
+         * The load balancer id.
+         */
+        loadBalancerId: string;
+        /**
+         * The port receiving request of the server group.
+         */
+        port: number;
+        /**
+         * The server group id.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the instance.
+         */
+        weight: number;
+    }
+
+    export interface GetScalingGroupsScalingGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetScalingInstancesScalingInstance {
+        /**
+         * The time when the instance was added to the scaling group.
+         */
+        createdTime: string;
+        /**
+         * The creation type of the instances. Valid values: AutoCreated, Attached.
+         */
+        creationType: string;
+        /**
+         * Whether to host the instance to a scaling group.
+         */
+        entrusted: boolean;
+        /**
+         * The id of the scaling instance.
+         */
+        id: string;
+        /**
+         * The id of the scaling instance.
+         */
+        instanceId: string;
+        /**
+         * The id of the scaling configuration id.
+         */
+        scalingConfigurationId: string;
+        /**
+         * The id of the scaling group.
+         */
+        scalingGroupId: string;
+        /**
+         * The id of the scaling policy.
+         */
+        scalingPolicyId: string;
+        /**
+         * The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
+         */
+        status: string;
+    }
+
+    export interface GetScalingLifecycleHooksLifecycleHook {
+        /**
+         * The id of the lifecycle hook.
+         */
+        id: string;
+        /**
+         * Batch job command.
+         */
+        lifecycleCommands: outputs.autoscaling.GetScalingLifecycleHooksLifecycleHookLifecycleCommand[];
+        /**
+         * The id of the lifecycle hook.
+         */
+        lifecycleHookId: string;
+        /**
+         * The name of the lifecycle hook.
+         */
+        lifecycleHookName: string;
+        /**
+         * The policy of the lifecycle hook.
+         */
+        lifecycleHookPolicy: string;
+        /**
+         * The timeout of the lifecycle hook.
+         */
+        lifecycleHookTimeout: number;
+        /**
+         * The type of the lifecycle hook.
+         */
+        lifecycleHookType: string;
+        /**
+         * An id of scaling group id.
+         */
+        scalingGroupId: string;
+    }
+
+    export interface GetScalingLifecycleHooksLifecycleHookLifecycleCommand {
+        /**
+         * Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+         */
+        commandId: string;
+        /**
+         * Parameters and parameter values in batch job commands.
+         * The number of parameters ranges from 0 to 60.
+         */
+        parameters: string;
+    }
+
+    export interface GetScalingPoliciesScalingPolicy {
+        /**
+         * The adjustment type of the scaling policy.
+         */
+        adjustmentType: string;
+        /**
+         * The adjustment value of the scaling policy.
+         */
+        adjustmentValue: number;
+        /**
+         * The comparison operator of the alarm policy condition of the scaling policy.
+         */
+        alarmPolicyConditionComparisonOperator: string;
+        /**
+         * The metric name of the alarm policy condition of the scaling policy.
+         */
+        alarmPolicyConditionMetricName: string;
+        /**
+         * The comparison operator of the alarm policy condition of the scaling policy.
+         */
+        alarmPolicyConditionMetricUnit: string;
+        /**
+         * The threshold of the alarm policy condition of the scaling policy.
+         */
+        alarmPolicyConditionThreshold: string;
+        /**
+         * The evaluation count of the alarm policy of the scaling policy.
+         */
+        alarmPolicyEvaluationCount: number;
+        /**
+         * The rule type of the alarm policy of the scaling policy.
+         */
+        alarmPolicyRuleType: string;
+        /**
+         * The cooldown of the scaling policy.
+         */
+        cooldown: number;
+        /**
+         * The id of the scaling policy.
+         */
+        id: string;
+        /**
+         * An id of the scaling group to which the scaling policy belongs.
+         */
+        scalingGroupId: string;
+        /**
+         * The id of the scaling policy.
+         */
+        scalingPolicyId: string;
+        /**
+         * The name of the scaling policy.
+         */
+        scalingPolicyName: string;
+        /**
+         * A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
+         */
+        scalingPolicyType: string;
+        /**
+         * The launch time of the scheduled policy of the scaling policy.
+         */
+        scheduledPolicyLaunchTime: string;
+        /**
+         * The recurrence end time of the scheduled policy of the scaling policy.
+         */
+        scheduledPolicyRecurrenceEndTime: string;
+        /**
+         * The recurrence start time of the scheduled policy of the scaling policy.
+         */
+        scheduledPolicyRecurrenceStartTime: string;
+        /**
+         * The recurrence type of the scheduled policy of the scaling policy.
+         */
+        scheduledPolicyRecurrenceType: string;
+        /**
+         * The recurrence value of the scheduled policy of the scaling policy.
+         */
+        scheduledPolicyRecurrenceValue: string;
+        /**
+         * The status of the scaling policy.
+         */
+        status: string;
+    }
+
     export interface ScalingActivitiesActivity {
         /**
          * The Actual Type.
@@ -1961,6 +3530,114 @@ export namespace bandwidth_package {
         values: string[];
     }
 
+    export interface GetBandwidthPackagesPackage {
+        /**
+         * The bandwidth of the bandwidth package.
+         */
+        bandwidth: number;
+        /**
+         * The id of the bandwidth package.
+         */
+        bandwidthPackageId: string;
+        /**
+         * Shared bandwidth package name to be queried.
+         */
+        bandwidthPackageName: string;
+        /**
+         * The billing type of the bandwidth package.
+         */
+        billingType: string;
+        /**
+         * The business status of the bandwidth package.
+         */
+        businessStatus: string;
+        /**
+         * The creation time of the bandwidth package.
+         */
+        creationTime: string;
+        /**
+         * The deleted time of the bandwidth package.
+         */
+        deletedTime: string;
+        /**
+         * List of public IP information included in the shared bandwidth package.
+         */
+        eipAddresses: outputs.bandwidth_package.GetBandwidthPackagesPackageEipAddress[];
+        /**
+         * The expiration time of the bandwidth package.
+         */
+        expiredTime: string;
+        /**
+         * The id of the bandwidth package.
+         */
+        id: string;
+        /**
+         * Line types for shared bandwidth packages.
+         */
+        isp: string;
+        /**
+         * The overdue time of the bandwidth package.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the bandwidth package to be queried.
+         */
+        projectName: string;
+        /**
+         * The IP protocol values for shared bandwidth packages are as follows: `IPv4`: IPv4 protocol. `IPv6`: IPv6 protocol.
+         */
+        protocol: string;
+        /**
+         * Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+         */
+        securityProtectionTypes: string[];
+        /**
+         * The status of the bandwidth package.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.bandwidth_package.GetBandwidthPackagesPackageTag[];
+        /**
+         * The update time of the bandwidth package.
+         */
+        updateTime: string;
+    }
+
+    export interface GetBandwidthPackagesPackageEipAddress {
+        /**
+         * The id of the eip.
+         */
+        allocationId: string;
+        /**
+         * The eip address.
+         */
+        eipAddress: string;
+    }
+
+    export interface GetBandwidthPackagesPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetBandwidthPackagesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
 }
 
 export namespace bioos {
@@ -2034,6 +3711,99 @@ export namespace bioos {
          * Whether to enable a shared cluster. This value must be `true`.
          */
         enable: boolean;
+    }
+
+    export interface GetClustersItem {
+        /**
+         * Whether there is a bound workspace.
+         */
+        bound: boolean;
+        /**
+         * The description of the cluster.
+         */
+        description: string;
+        /**
+         * The id of the bioos cluster.
+         */
+        id: string;
+        /**
+         * The name of the cluster.
+         */
+        name: string;
+        /**
+         * whether it is a public cluster.
+         */
+        public: boolean;
+        /**
+         * The configuration of the shared cluster.
+         */
+        sharedConfigs: outputs.bioos.GetClustersItemSharedConfig[];
+        /**
+         * The start time of the cluster.
+         */
+        startTime: number;
+        /**
+         * The status of the clusters.
+         */
+        status: string;
+        /**
+         * The end time of the cluster.
+         */
+        stoppedTime: number;
+        /**
+         * The id of the vke cluster.
+         */
+        vkeConfigId: string;
+        /**
+         * The name of the StorageClass that the vke cluster has installed.
+         */
+        vkeConfigStorageClass: string;
+    }
+
+    export interface GetClustersItemSharedConfig {
+        /**
+         * Whether to enable a shared cluster. This value must be `true`.
+         */
+        enable: boolean;
+    }
+
+    export interface GetWorkspacesItem {
+        /**
+         * The URL of the cover.
+         */
+        coverDownloadUrl: string;
+        /**
+         * The creation time of the workspace.
+         */
+        createTime: number;
+        /**
+         * The description of the workspace.
+         */
+        description: string;
+        /**
+         * The id of the workspace.
+         */
+        id: string;
+        /**
+         * The name of the workspace.
+         */
+        name: string;
+        /**
+         * The name of the owner of the workspace.
+         */
+        ownerName: string;
+        /**
+         * The role of the user.
+         */
+        role: string;
+        /**
+         * S3 bucket address.
+         */
+        s3Bucket: string;
+        /**
+         * The update time of the workspace.
+         */
+        updateTime: number;
     }
 
     export interface WorkspacesItem {
@@ -2273,6 +4043,300 @@ export namespace cdn {
          * The value of the tag.
          */
         value: string;
+    }
+
+    export interface GetCertificatesCertInfo {
+        /**
+         * ID indicating the certificate.
+         */
+        certId: string;
+        /**
+         * The domain name to which the certificate is issued.
+         */
+        certName: string;
+        /**
+         * The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+         */
+        configuredDomain: string;
+        /**
+         * The remark of the cert.
+         */
+        desc: string;
+        /**
+         * The domain names included in the SAN field of the certificate.
+         */
+        dnsName: string;
+        /**
+         * The issuance time of the certificate is indicated. The unit is Unix timestamp.
+         */
+        effectiveTime: number;
+        /**
+         * The expiration time of the certificate is indicated. The unit is Unix timestamp.
+         */
+        expireTime: number;
+        /**
+         * Specify the location for storing the certificate. The parameter can take the following values: `volcCertCenter`: indicates that the certificate will be stored in the certificate center.`cdnCertHosting`: indicates that the certificate will be hosted on the content delivery network.
+         */
+        source: string;
+        /**
+         * Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+         */
+        status: string;
+    }
+
+    export interface GetConfigsDomainConfig {
+        /**
+         * The cname of the domain.
+         */
+        cname: string;
+        /**
+         * The create time of the domain.
+         */
+        createTime: number;
+        /**
+         * The domain name.
+         */
+        domain: string;
+        /**
+         * Indicates whether the configuration of this domain name is allowed to be changed.
+         */
+        lockStatus: string;
+        /**
+         * The project name.
+         */
+        project: string;
+        /**
+         * The service region of the domain.
+         */
+        serviceRegion: string;
+        /**
+         * The service type of the domain.
+         */
+        serviceType: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+        /**
+         * The update time of the domain.
+         */
+        updateTime: number;
+    }
+
+    export interface GetDomainsDomain {
+        /**
+         * The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+         */
+        backupOrigins: string[];
+        /**
+         * Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `targetHost`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cacheSharedOn`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+         */
+        cacheShared: string;
+        /**
+         * If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is targetHost or an empty value, the parameter value is empty.
+         */
+        cacheSharedTargetHost: string;
+        /**
+         * The CNAME address of the domain is automatically assigned when adding the domain.
+         */
+        cname: string;
+        /**
+         * The creation time of the domain.
+         */
+        createTime: number;
+        /**
+         * Search by specifying domain name keywords, with fuzzy matching.
+         */
+        domain: string;
+        /**
+         * Indicates the locked status of the accelerated domain.
+         */
+        domainLocks: outputs.cdn.GetDomainsDomainDomainLock[];
+        /**
+         * Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+         */
+        https: boolean;
+        /**
+         * Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+         */
+        ipv6: boolean;
+        /**
+         * Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+         */
+        isConflictDomain: boolean;
+        /**
+         * Configure the origin protocol for the accelerated domain.
+         */
+        originProtocol: string;
+        /**
+         * Specify a primary origin server for filtering accelerated domains.
+         */
+        primaryOrigins: string[];
+        /**
+         * The project name of the domain.
+         */
+        project: string;
+        /**
+         * Indicates the acceleration area. The parameter can take the following values: `chineseMainland`: Indicates mainland China. `global`: Indicates global. `outsideChineseMainland`: Indicates global (excluding mainland China).
+         */
+        serviceRegion: string;
+        /**
+         * The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+         */
+        serviceType: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+        /**
+         * Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+         */
+        tags: outputs.cdn.GetDomainsDomainTag[];
+        /**
+         * The update time of the domain.
+         */
+        updateTime: number;
+    }
+
+    export interface GetDomainsDomainDomainLock {
+        /**
+         * If the Status is on, this parameter value records the reason for the lock.
+         */
+        remark: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+    }
+
+    export interface GetDomainsDomainTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface GetSharedConfigsConfigData {
+        /**
+         * The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+         */
+        allowIpAccessRules: outputs.cdn.GetSharedConfigsConfigDataAllowIpAccessRule[];
+        /**
+         * The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+         */
+        allowRefererAccessRules: outputs.cdn.GetSharedConfigsConfigDataAllowRefererAccessRule[];
+        /**
+         * The configuration for a common list is represented by ConfigType common_match_list.
+         */
+        commonMatchLists: outputs.cdn.GetSharedConfigsConfigDataCommonMatchList[];
+        /**
+         * The name of the shared config.
+         */
+        configName: string;
+        /**
+         * The type of the shared config.
+         */
+        configType: string;
+        /**
+         * The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+         */
+        denyIpAccessRules: outputs.cdn.GetSharedConfigsConfigDataDenyIpAccessRule[];
+        /**
+         * The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+         */
+        denyRefererAccessRules: outputs.cdn.GetSharedConfigsConfigDataDenyRefererAccessRule[];
+        /**
+         * The number of domains.
+         */
+        domainCount: number;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+        /**
+         * The update time of the shared config.
+         */
+        updateTime: number;
+    }
+
+    export interface GetSharedConfigsConfigDataAllowIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataAllowRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType[];
+    }
+
+    export interface GetSharedConfigsConfigDataAllowRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataCommonMatchList {
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.GetSharedConfigsConfigDataCommonMatchListCommonType[];
+    }
+
+    export interface GetSharedConfigsConfigDataCommonMatchListCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataDenyIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface GetSharedConfigsConfigDataDenyRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType[];
+    }
+
+    export interface GetSharedConfigsConfigDataDenyRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
     }
 
     export interface SharedConfigAllowIpAccessRule {
@@ -2694,6 +4758,335 @@ export namespace cen {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface GetAttachInstancesAttachInstance {
+        /**
+         * A cen ID.
+         */
+        cenId: string;
+        /**
+         * The create time of the cen attaching instance.
+         */
+        creationTime: string;
+        /**
+         * An instance ID.
+         */
+        instanceId: string;
+        /**
+         * The owner ID of the instance.
+         */
+        instanceOwnerId: string;
+        /**
+         * A region id of instance.
+         */
+        instanceRegionId: string;
+        /**
+         * An instance type.
+         */
+        instanceType: string;
+        /**
+         * The status of the cen attaching instance.
+         */
+        status: string;
+    }
+
+    export interface GetBandwidthPackagesBandwidthPackage {
+        /**
+         * The account ID of the cen bandwidth package.
+         */
+        accountId: string;
+        /**
+         * The bandwidth of the cen bandwidth package.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the cen bandwidth package.
+         */
+        billingType: string;
+        /**
+         * The business status of the cen bandwidth package.
+         */
+        businessStatus: string;
+        /**
+         * The ID of the cen bandwidth package.
+         */
+        cenBandwidthPackageId: string;
+        /**
+         * The name of the cen bandwidth package.
+         */
+        cenBandwidthPackageName: string;
+        /**
+         * The cen IDs of the bandwidth package.
+         */
+        cenIds: string[];
+        /**
+         * The create time of the cen bandwidth package.
+         */
+        creationTime: string;
+        /**
+         * The deleted time of the cen bandwidth package.
+         */
+        deletedTime: string;
+        /**
+         * The description of the cen bandwidth package.
+         */
+        description: string;
+        /**
+         * The expired time of the cen bandwidth package.
+         */
+        expiredTime: string;
+        /**
+         * The ID of the cen bandwidth package.
+         */
+        id: string;
+        /**
+         * A local geographic region set id.
+         */
+        localGeographicRegionSetId: string;
+        /**
+         * A peer geographic region set id.
+         */
+        peerGeographicRegionSetId: string;
+        /**
+         * The ProjectName of the cen bandwidth package.
+         */
+        projectName: string;
+        /**
+         * The remain bandwidth of the cen bandwidth package.
+         */
+        remainingBandwidth: number;
+        /**
+         * The status of the cen bandwidth package.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.cen.GetBandwidthPackagesBandwidthPackageTag[];
+        /**
+         * The update time of the cen bandwidth package.
+         */
+        updateTime: string;
+    }
+
+    export interface GetBandwidthPackagesBandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetBandwidthPackagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCensCen {
+        /**
+         * The account ID of the cen.
+         */
+        accountId: string;
+        /**
+         * A list of bandwidth package IDs of the cen.
+         */
+        cenBandwidthPackageIds: string[];
+        /**
+         * The ID of the cen.
+         */
+        cenId: string;
+        /**
+         * The name of the cen.
+         */
+        cenName: string;
+        /**
+         * The create time of the cen.
+         */
+        creationTime: string;
+        /**
+         * The description of the cen.
+         */
+        description: string;
+        /**
+         * The ID of the cen.
+         */
+        id: string;
+        /**
+         * The ProjectName of the cen instance.
+         */
+        projectName: string;
+        /**
+         * The status of the cen.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.cen.GetCensCenTag[];
+        /**
+         * The update time of the cen.
+         */
+        updateTime: string;
+    }
+
+    export interface GetCensCenTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCensTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInterRegionBandwidthsInterRegionBandwidth {
+        /**
+         * The bandwidth of the cen inter region bandwidth.
+         */
+        bandwidth: number;
+        /**
+         * The cen ID of the cen inter region bandwidth.
+         */
+        cenId: string;
+        /**
+         * The create time of the cen inter region bandwidth.
+         */
+        creationTime: string;
+        /**
+         * The ID of the cen inter region bandwidth.
+         */
+        id: string;
+        /**
+         * The ID of the cen inter region bandwidth.
+         */
+        interRegionBandwidthId: string;
+        /**
+         * The local region id of the cen inter region bandwidth.
+         */
+        localRegionId: string;
+        /**
+         * The peer region id of the cen inter region bandwidth.
+         */
+        peerRegionId: string;
+        /**
+         * The status of the cen inter region bandwidth.
+         */
+        status: string;
+        /**
+         * The update time of the cen inter region bandwidth.
+         */
+        updateTime: string;
+    }
+
+    export interface GetRouteEntriesCenRouteEntry {
+        /**
+         * The AS path of the cen route entry.
+         */
+        asPaths: string[];
+        /**
+         * A cen ID.
+         */
+        cenId: string;
+        /**
+         * A destination cidr block.
+         */
+        destinationCidrBlock: string;
+        /**
+         * An instance ID.
+         */
+        instanceId: string;
+        /**
+         * An instance region ID.
+         */
+        instanceRegionId: string;
+        /**
+         * An instance type.
+         */
+        instanceType: string;
+        /**
+         * The publish status of the cen route entry.
+         */
+        publishStatus: string;
+        /**
+         * The status of the cen route entry.
+         */
+        status: string;
+    }
+
+    export interface GetServiceRouteEntriesServiceRouteEntry {
+        /**
+         * A cen ID.
+         */
+        cenId: string;
+        /**
+         * The create time of the cen service route entry.
+         */
+        creationTime: string;
+        /**
+         * The description of the cen service route entry.
+         */
+        description: string;
+        /**
+         * A destination cidr block.
+         */
+        destinationCidrBlock: string;
+        /**
+         * Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+         */
+        publishMode: string;
+        /**
+         * The publish instances. A maximum of 100 can be uploaded in one request.
+         */
+        publishToInstances: outputs.cen.GetServiceRouteEntriesServiceRouteEntryPublishToInstance[];
+        /**
+         * A service region id.
+         */
+        serviceRegionId: string;
+        /**
+         * A service VPC id.
+         */
+        serviceVpcId: string;
+        /**
+         * The status of the cen service route entry.
+         */
+        status: string;
+    }
+
+    export interface GetServiceRouteEntriesServiceRouteEntryPublishToInstance {
+        /**
+         * Cloud service access routes need to publish the network instance ID.
+         */
+        instanceId: string;
+        /**
+         * The region where the cloud service access route needs to be published.
+         */
+        instanceRegionId: string;
+        /**
+         * The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+         */
+        instanceType: string;
     }
 
     export interface InterRegionBandwidthsInterRegionBandwidth {
@@ -3207,6 +5600,567 @@ export namespace clb {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface GetAclsAcl {
+        /**
+         * The count of acl entry.
+         */
+        aclEntryCount: number;
+        /**
+         * The ID of Acl.
+         */
+        aclId: string;
+        /**
+         * The name of acl.
+         */
+        aclName: string;
+        /**
+         * Creation time of Acl.
+         */
+        createTime: string;
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The ID of Acl.
+         */
+        id: string;
+        /**
+         * The listeners of Acl.
+         */
+        listeners: string[];
+        /**
+         * The ProjectName of Acl.
+         */
+        projectName: string;
+        /**
+         * Update time of Acl.
+         */
+        updateTime: string;
+    }
+
+    export interface GetCertificatesCertificate {
+        /**
+         * The ID of the Certificate.
+         */
+        certificateId: string;
+        /**
+         * The name of the Certificate.
+         */
+        certificateName: string;
+        /**
+         * The create time of the Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the Certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID of the Certificate.
+         */
+        id: string;
+        /**
+         * The ID list of the Listener.
+         */
+        listeners: string[];
+        /**
+         * The ProjectName of Certificate.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.clb.GetCertificatesCertificateTag[];
+    }
+
+    export interface GetCertificatesCertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetClbsClb {
+        /**
+         * The address ip version of the Clb.
+         */
+        addressIpVersion: string;
+        /**
+         * The business status of the Clb.
+         */
+        businessStatus: string;
+        /**
+         * The create time of the Clb.
+         */
+        createTime: string;
+        /**
+         * The expected recycle time of the Clb.
+         */
+        deletedTime: string;
+        /**
+         * The description of the Clb.
+         */
+        description: string;
+        /**
+         * The Eip address of the Clb.
+         */
+        eipAddress: string;
+        /**
+         * The eip billing config of the Clb.
+         */
+        eipBillingConfigs: outputs.clb.GetClbsClbEipBillingConfig[];
+        /**
+         * The Eip ID of the Clb.
+         */
+        eipId: string;
+        /**
+         * The private ip address of the Clb.
+         */
+        eniAddress: string;
+        /**
+         * The Eni ID of the Clb.
+         */
+        eniId: string;
+        /**
+         * The eni ipv6 address of the Clb.
+         */
+        eniIpv6Address: string;
+        /**
+         * The expired time of the CLB.
+         */
+        expiredTime: string;
+        /**
+         * The ID of the Clb.
+         */
+        id: string;
+        /**
+         * The billing status of the CLB.
+         */
+        instanceStatus: number;
+        /**
+         * The ipv6 address bandwidth information of the Clb.
+         */
+        ipv6AddressBandwidths: outputs.clb.GetClbsClbIpv6AddressBandwidth[];
+        /**
+         * The Ipv6 Eip ID of the Clb.
+         */
+        ipv6EipId: string;
+        /**
+         * The billing type of the Clb.
+         */
+        loadBalancerBillingType: string;
+        /**
+         * The ID of the Clb.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the Clb.
+         */
+        loadBalancerName: string;
+        /**
+         * The specifications of the Clb.
+         */
+        loadBalancerSpec: string;
+        /**
+         * The reason why Clb is locked.
+         */
+        lockReason: string;
+        /**
+         * The master zone ID of the CLB.
+         */
+        masterZoneId: string;
+        /**
+         * The modification protection reason of the Clb.
+         */
+        modificationProtectionReason: string;
+        /**
+         * The modification protection status of the Clb.
+         */
+        modificationProtectionStatus: string;
+        /**
+         * The over reclaim time of the CLB.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of the Clb.
+         */
+        overdueTime: string;
+        /**
+         * The ProjectName of Clb.
+         */
+        projectName: string;
+        /**
+         * The reclaim time of the CLB.
+         */
+        reclaimTime: string;
+        /**
+         * The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+         */
+        remainRenewTimes: number;
+        /**
+         * The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+         */
+        renewPeriodTimes: number;
+        /**
+         * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+         */
+        renewType: string;
+        /**
+         * The slave zone ID of the CLB.
+         */
+        slaveZoneId: string;
+        /**
+         * The status of the Clb.
+         */
+        status: string;
+        /**
+         * The subnet ID of the Clb.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.clb.GetClbsClbTag[];
+        /**
+         * The type of the Clb.
+         */
+        type: string;
+        /**
+         * The update time of the Clb.
+         */
+        updateTime: string;
+        /**
+         * The id of the VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface GetClbsClbEipBillingConfig {
+        /**
+         * The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+         */
+        eipBillingType: string;
+        /**
+         * The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+         */
+        isp: string;
+    }
+
+    export interface GetClbsClbIpv6AddressBandwidth {
+        /**
+         * The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The bandwidth package id of the Ipv6 EIP assigned to CLB.
+         */
+        bandwidthPackageId: string;
+        /**
+         * The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+         */
+        isp: string;
+        /**
+         * The network type of the CLB Ipv6 address.
+         */
+        networkType: string;
+    }
+
+    export interface GetClbsClbTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetClbsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersListener {
+        /**
+         * The acl ID list to which the Listener is bound.
+         */
+        aclIds: string[];
+        /**
+         * The acl status of the Listener.
+         */
+        aclStatus: string;
+        /**
+         * The acl type of the Listener.
+         */
+        aclType: string;
+        /**
+         * The bandwidth of the Listener. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The ID of the certificate which is associated with the Listener.
+         */
+        certificateId: string;
+        /**
+         * Whether to enable connection drain of the Listener.
+         */
+        connectionDrainEnabled: string;
+        /**
+         * The connection drain timeout of the Listener.
+         */
+        connectionDrainTimeout: number;
+        /**
+         * The name of the cookie for session persistence configured on the backend server.
+         */
+        cookie: string;
+        /**
+         * The create time of the Listener.
+         */
+        createTime: string;
+        /**
+         * The enable status of the Listener.
+         */
+        enabled: string;
+        /**
+         * The domain of health check.
+         */
+        healthCheckDomain: string;
+        /**
+         * The enable status of health check function.
+         */
+        healthCheckEnabled: string;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthCheckHealthyThreshold: number;
+        /**
+         * The normal http status code of health check.
+         */
+        healthCheckHttpCode: string;
+        /**
+         * The interval executing health check.
+         */
+        healthCheckInterval: number;
+        /**
+         * The method of health check.
+         */
+        healthCheckMethod: string;
+        /**
+         * The response timeout of health check.
+         */
+        healthCheckTimeout: number;
+        /**
+         * The expected response string for the health check.
+         */
+        healthCheckUdpExpect: string;
+        /**
+         * A request string to perform a health check.
+         */
+        healthCheckUdpRequest: string;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        healthCheckUnHealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        healthCheckUri: string;
+        /**
+         * The ID of the Listener.
+         */
+        id: string;
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the Listener.
+         */
+        listenerName: string;
+        /**
+         * The persistence timeout of the Listener.
+         */
+        persistenceTimeout: number;
+        /**
+         * The persistence type of the Listener.
+         */
+        persistenceType: string;
+        /**
+         * The port receiving request of the Listener.
+         */
+        port: number;
+        /**
+         * The protocol of the Listener.
+         */
+        protocol: string;
+        /**
+         * Whether to enable proxy protocol.
+         */
+        proxyProtocolType: string;
+        /**
+         * The ID of the backend server group which is associated with the Listener.
+         */
+        serverGroupId: string;
+        /**
+         * The status of the Listener.
+         */
+        status: string;
+        /**
+         * The update time of the Listener.
+         */
+        updateTime: string;
+    }
+
+    export interface GetRulesRule {
+        /**
+         * The Description of Rule.
+         */
+        description: string;
+        /**
+         * The Domain of Rule.
+         */
+        domain: string;
+        /**
+         * The Id of Rule.
+         */
+        id: string;
+        /**
+         * The Id of Rule.
+         */
+        ruleId: string;
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * The Url of Rule.
+         */
+        url: string;
+    }
+
+    export interface GetServerGroupServersServer {
+        /**
+         * The description of the instance.
+         */
+        description: string;
+        /**
+         * The server id of instance in ServerGroup.
+         */
+        id: string;
+        /**
+         * The ID of ecs instance or the network card bound to ecs instance.
+         */
+        instanceId: string;
+        /**
+         * The private ip of the instance.
+         */
+        ip: string;
+        /**
+         * The port receiving request.
+         */
+        port: number;
+        /**
+         * The server id of instance in ServerGroup.
+         */
+        serverId: string;
+        /**
+         * The type of instance. Optional choice contains `ecs`, `eni`.
+         */
+        type: string;
+        /**
+         * The weight of the instance.
+         */
+        weight: number;
+    }
+
+    export interface GetServerGroupsGroup {
+        /**
+         * The address ip version of the ServerGroup.
+         */
+        addressIpVersion: string;
+        /**
+         * The create time of the ServerGroup.
+         */
+        createTime: string;
+        /**
+         * The description of the ServerGroup.
+         */
+        description: string;
+        /**
+         * The ID of the ServerGroup.
+         */
+        id: string;
+        /**
+         * The ID of the ServerGroup.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the ServerGroup.
+         */
+        serverGroupName: string;
+        /**
+         * The update time of the ServerGroup.
+         */
+        updateTime: string;
+    }
+
+    export interface GetZonesMasterZone {
+        /**
+         * The slave zones list.
+         */
+        slaveZones: outputs.clb.GetZonesMasterZoneSlaveZone[];
+        /**
+         * The master zone id.
+         */
+        zoneId: string;
+    }
+
+    export interface GetZonesMasterZoneSlaveZone {
+        /**
+         * The master zone id.
+         */
+        zoneId: string;
     }
 
     export interface ListenerHealthCheck {
@@ -4026,9 +6980,788 @@ export namespace cloud_firewall {
         vpcFirewallName: string;
     }
 
+    export interface GetCfwAddressBooksAddressBook {
+        /**
+         * The address list of the address book.
+         */
+        addressLists: string[];
+        /**
+         * The group type of address book. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The group name of address book. This field support fuzzy query.
+         */
+        groupName: string;
+        /**
+         * The group type of address book. Valid values: `ip`, `port`, `domain`.
+         */
+        groupType: string;
+        /**
+         * The uuid of the address book.
+         */
+        groupUuid: string;
+        /**
+         * The uuid of the address book.
+         */
+        id: string;
+        /**
+         * The reference count of the address book.
+         */
+        refCnt: number;
+    }
+
+    export interface GetCfwControlPoliciesControlPolicy {
+        /**
+         * The account id of the control policy.
+         */
+        accountId: string;
+        /**
+         * The action list of the control policy. Valid values: `accept`, `deny`, `monitor`.
+         */
+        action: string;
+        /**
+         * The description of the control policy. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The dest port of the control policy.
+         */
+        destPort: string;
+        /**
+         * The dest port group type of the control policy.
+         */
+        destPortGroupType: string;
+        /**
+         * The dest port list of the control policy.
+         */
+        destPortLists: string[];
+        /**
+         * The dest port type of the control policy.
+         */
+        destPortType: string;
+        /**
+         * The destination of the control policy. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination cidr list of the control policy.
+         */
+        destinationCidrLists: string[];
+        /**
+         * The destination group type of the control policy.
+         */
+        destinationGroupType: string;
+        /**
+         * The destination type of the control policy.
+         */
+        destinationType: string;
+        /**
+         * The direction of control policy. Valid values: `in`, `out`.
+         */
+        direction: string;
+        /**
+         * The effect status of the control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+         */
+        effectStatus: number;
+        /**
+         * The end time of the control policy. Unix timestamp.
+         */
+        endTime: number;
+        /**
+         * The hit count of the control policy.
+         */
+        hitCnt: number;
+        /**
+         * The id of the control policy.
+         */
+        id: string;
+        /**
+         * Whether the control policy is effected.
+         */
+        isEffected: boolean;
+        /**
+         * The priority of the control policy.
+         */
+        prio: number;
+        /**
+         * The proto list of the control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+         */
+        proto: string;
+        /**
+         * The repeat days of the control policy.
+         */
+        repeatDays: number[];
+        /**
+         * The repeat end time of the control policy.
+         */
+        repeatEndTime: string;
+        /**
+         * The repeat start time of the control policy.
+         */
+        repeatStartTime: string;
+        /**
+         * The repeat type of the control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+         */
+        repeatType: string;
+        /**
+         * The rule id of the control policy. This field support fuzzy query.
+         */
+        ruleId: string;
+        /**
+         * The source of the control policy. This field support fuzzy query.
+         */
+        source: string;
+        /**
+         * The source cidr list of the control policy.
+         */
+        sourceCidrLists: string[];
+        /**
+         * The source group type of the control policy.
+         */
+        sourceGroupType: string;
+        /**
+         * The source type of the control policy.
+         */
+        sourceType: string;
+        /**
+         * The start time of the control policy. Unix timestamp.
+         */
+        startTime: number;
+        /**
+         * The enable status list of the control policy.
+         */
+        status: boolean;
+        /**
+         * The update time of the control policy.
+         */
+        updateTime: number;
+        /**
+         * The use count of the control policy.
+         */
+        useCount: number;
+    }
+
+    export interface GetCfwDnsControlPoliciesDnsControlPolicy {
+        /**
+         * The account id of the dns control policy.
+         */
+        accountId: string;
+        /**
+         * The description of the dns control policy. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The destination list of the dns control policy. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination group list of the dns control policy.
+         */
+        destinationGroupLists: string[];
+        /**
+         * The destination type of the dns control policy.
+         */
+        destinationType: string;
+        /**
+         * The destination domain list of the dns control policy.
+         */
+        domainLists: string[];
+        /**
+         * The hit count of the dns control policy.
+         */
+        hitCnt: number;
+        /**
+         * The id of the dns control policy.
+         */
+        id: string;
+        /**
+         * The last hit time of the dns control policy. Unix timestamp.
+         */
+        lastHitTime: number;
+        /**
+         * The id of the dns control policy.
+         */
+        ruleId: string;
+        /**
+         * The source list of the dns control policy. This field support fuzzy query.
+         */
+        sources: outputs.cloud_firewall.GetCfwDnsControlPoliciesDnsControlPolicySource[];
+        /**
+         * The enable status list of the dns control policy. This field support fuzzy query.
+         */
+        status: boolean;
+        /**
+         * The use count of the dns control policy.
+         */
+        useCount: number;
+    }
+
+    export interface GetCfwDnsControlPoliciesDnsControlPolicySource {
+        /**
+         * The region of the source vpc.
+         */
+        region: string;
+        /**
+         * The id of the source vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface GetCfwNatFirewallControlPoliciesNatFirewallControlPolicy {
+        /**
+         * The account id of the nat firewall control policy.
+         */
+        accountId: string;
+        /**
+         * The action list of the nat firewall control policy. Valid values: `accept`, `deny`, `monitor`.
+         */
+        action: string;
+        /**
+         * The description of the nat firewall control policy. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The dest port of the nat firewall control policy.
+         */
+        destPort: string;
+        /**
+         * The dest port group list of the nat firewall control policy.
+         */
+        destPortGroupLists: string[];
+        /**
+         * The dest port group type of the nat firewall control policy.
+         */
+        destPortGroupType: string;
+        /**
+         * The dest port list of the nat firewall control policy.
+         */
+        destPortLists: string[];
+        /**
+         * The dest port type of the nat firewall control policy.
+         */
+        destPortType: string;
+        /**
+         * The destination of the nat firewall control policy. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination cidr list of the nat firewall control policy.
+         */
+        destinationCidrLists: string[];
+        /**
+         * The destination group list of the nat firewall control policy.
+         */
+        destinationGroupLists: string[];
+        /**
+         * The destination group type of the nat firewall control policy.
+         */
+        destinationGroupType: string;
+        /**
+         * The destination type of the nat firewall control policy.
+         */
+        destinationType: string;
+        /**
+         * The direction of nat firewall control policy. Valid values: `in`, `out`.
+         */
+        direction: string;
+        /**
+         * The effect status of the nat firewall control policy. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+         */
+        effectStatus: number;
+        /**
+         * The end time of the nat firewall control policy. Unix timestamp.
+         */
+        endTime: number;
+        /**
+         * The hit count of the nat firewall control policy.
+         */
+        hitCnt: number;
+        /**
+         * The id of the nat firewall control policy.
+         */
+        id: string;
+        /**
+         * Whether the nat firewall control policy is effected.
+         */
+        isEffected: boolean;
+        /**
+         * The nat firewall id of the nat firewall control policy.
+         */
+        natFirewallId: string;
+        /**
+         * The name of the nat firewall.
+         */
+        natFirewallName: string;
+        /**
+         * The priority of the nat firewall control policy.
+         */
+        prio: number;
+        /**
+         * The proto list of the nat firewall control policy. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+         */
+        proto: string;
+        /**
+         * The repeat days of the nat firewall control policy.
+         */
+        repeatDays: number[];
+        /**
+         * The repeat end time of the nat firewall control policy.
+         */
+        repeatEndTime: string;
+        /**
+         * The repeat start time of the nat firewall control policy.
+         */
+        repeatStartTime: string;
+        /**
+         * The repeat type of the nat firewall control policy. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+         */
+        repeatType: string;
+        /**
+         * The rule id of the nat firewall control policy. This field support fuzzy query.
+         */
+        ruleId: string;
+        /**
+         * The source of the nat firewall control policy. This field support fuzzy query.
+         */
+        source: string;
+        /**
+         * The source cidr list of the nat firewall control policy.
+         */
+        sourceCidrLists: string[];
+        /**
+         * The source group list of the nat firewall control policy.
+         */
+        sourceGroupLists: string[];
+        /**
+         * The source group type of the nat firewall control policy.
+         */
+        sourceGroupType: string;
+        /**
+         * The source type of the nat firewall control policy.
+         */
+        sourceType: string;
+        /**
+         * The start time of the nat firewall control policy. Unix timestamp.
+         */
+        startTime: number;
+        /**
+         * The enable status list of the nat firewall control policy.
+         */
+        status: boolean;
+        /**
+         * The update time of the nat firewall control policy.
+         */
+        updateTime: number;
+        /**
+         * The use count of the nat firewall control policy.
+         */
+        useCount: number;
+    }
+
+    export interface GetCfwVpcFirewallAclRulesVpcFirewallAclRule {
+        /**
+         * The account id of the vpc firewall acl rule.
+         */
+        accountId: string;
+        /**
+         * The action list of the vpc firewall acl rule. Valid values: `accept`, `deny`, `monitor`.
+         */
+        action: string;
+        /**
+         * The description of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        description: string;
+        /**
+         * The dest port of the vpc firewall acl rule.
+         */
+        destPort: string;
+        /**
+         * The dest port group type of the vpc firewall acl rule.
+         */
+        destPortGroupType: string;
+        /**
+         * The dest port list of the vpc firewall acl rule.
+         */
+        destPortLists: string[];
+        /**
+         * The dest port type of the vpc firewall acl rule.
+         */
+        destPortType: string;
+        /**
+         * The destination of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        destination: string;
+        /**
+         * The destination cidr list of the vpc firewall acl rule.
+         */
+        destinationCidrLists: string[];
+        /**
+         * The destination group type of the vpc firewall acl rule.
+         */
+        destinationGroupType: string;
+        /**
+         * The destination type of the vpc firewall acl rule.
+         */
+        destinationType: string;
+        /**
+         * The effect status of the vpc firewall acl rule. 1: Not yet effective, 2: Issued in progress, 3: Effective.
+         */
+        effectStatus: number;
+        /**
+         * The end time of the vpc firewall acl rule. Unix timestamp.
+         */
+        endTime: number;
+        /**
+         * The hit count of the vpc firewall acl rule.
+         */
+        hitCnt: number;
+        /**
+         * The id of the vpc firewall acl rule.
+         */
+        id: string;
+        /**
+         * Whether the vpc firewall acl rule is effected.
+         */
+        isEffected: boolean;
+        /**
+         * The priority of the vpc firewall acl rule.
+         */
+        prio: number;
+        /**
+         * The proto list of the vpc firewall acl rule. Valid values: `TCP`, `ICMP`, `UDP`, `ANY`. When the destinationType is `domain`, The proto must be `TCP`.
+         */
+        proto: string;
+        /**
+         * The repeat days of the vpc firewall acl rule.
+         */
+        repeatDays: number[];
+        /**
+         * The repeat end time of the vpc firewall acl rule.
+         */
+        repeatEndTime: string;
+        /**
+         * The repeat start time of the vpc firewall acl rule.
+         */
+        repeatStartTime: string;
+        /**
+         * The repeat type of the vpc firewall acl rule. Valid values: `Permanent`, `Once`, `Daily`, `Weekly`, `Monthly`.
+         */
+        repeatType: string;
+        /**
+         * The rule id of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        ruleId: string;
+        /**
+         * The source of the vpc firewall acl rule. This field support fuzzy query.
+         */
+        source: string;
+        /**
+         * The source cidr list of the vpc firewall acl rule.
+         */
+        sourceCidrLists: string[];
+        /**
+         * The source group type of the vpc firewall acl rule.
+         */
+        sourceGroupType: string;
+        /**
+         * The source type of the vpc firewall acl rule.
+         */
+        sourceType: string;
+        /**
+         * The start time of the vpc firewall acl rule. Unix timestamp.
+         */
+        startTime: number;
+        /**
+         * The enable status list of the vpc firewall acl rule.
+         */
+        status: boolean;
+        /**
+         * The update time of the vpc firewall acl rule.
+         */
+        updateTime: number;
+        /**
+         * The use count of the vpc firewall acl rule.
+         */
+        useCount: number;
+        /**
+         * The vpc firewall id of the vpc firewall acl rule.
+         */
+        vpcFirewallId: string;
+        /**
+         * The name of the vpc firewall.
+         */
+        vpcFirewallName: string;
+    }
+
 }
 
 export namespace cloud_identity {
+    export interface GetGroupsGroup {
+        /**
+         * The created time of the cloud identity group.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity group.
+         */
+        description: string;
+        /**
+         * The display name of cloud identity group.
+         */
+        displayName: string;
+        /**
+         * The id of the cloud identity group.
+         */
+        groupId: string;
+        /**
+         * The name of cloud identity group.
+         */
+        groupName: string;
+        /**
+         * The id of the cloud identity group.
+         */
+        id: string;
+        /**
+         * The join type of cloud identity group. Valid values: `Auto`, `Manual`.
+         */
+        joinType: string;
+        /**
+         * The source of the cloud identity group.
+         */
+        source: string;
+        /**
+         * The updated time of the cloud identity group.
+         */
+        updatedTime: string;
+    }
+
+    export interface GetPermissionSetAssignmentsAssignment {
+        /**
+         * The create time of the cloud identity permission set assignment.
+         */
+        createTime: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The id of cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        permissionSetName: string;
+        /**
+         * The principal id of cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
+         */
+        principalId: string;
+        /**
+         * The principal type of cloud identity permission set. Valid values: `User`, `Group`.
+         */
+        principalType: string;
+        /**
+         * The target account id of cloud identity permission set assignment.
+         */
+        targetId: string;
+    }
+
+    export interface GetPermissionSetProvisioningsPermissionProvisioning {
+        /**
+         * The create time of the cloud identity permission set provisioning.
+         */
+        createTime: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The id of cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        permissionSetName: string;
+        /**
+         * The target account id of cloud identity permission set.
+         */
+        targetId: string;
+        /**
+         * The update time of the cloud identity permission set provisioning.
+         */
+        updateTime: string;
+    }
+
+    export interface GetPermissionSetsPermissionSet {
+        /**
+         * The create time of the cloud identity permission set.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity permission set.
+         */
+        description: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        name: string;
+        /**
+         * The policies of the cloud identity permission set.
+         */
+        permissionPolicies: outputs.cloud_identity.GetPermissionSetsPermissionSetPermissionPolicy[];
+        /**
+         * The id of the cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The relay state of the cloud identity permission set.
+         */
+        relayState: string;
+        /**
+         * The session duration of the cloud identity permission set.
+         */
+        sessionDuration: number;
+        /**
+         * The updated time of the cloud identity permission set.
+         */
+        updatedTime: string;
+    }
+
+    export interface GetPermissionSetsPermissionSetPermissionPolicy {
+        /**
+         * The create time of the cloud identity permission set policy.
+         */
+        createTime: string;
+        /**
+         * The document of the cloud identity permission set policy.
+         */
+        permissionPolicyDocument: string;
+        /**
+         * The name of the cloud identity permission set policy.
+         */
+        permissionPolicyName: string;
+        /**
+         * The type of the cloud identity permission set policy.
+         */
+        permissionPolicyType: string;
+    }
+
+    export interface GetUserProvisioningsUserProvisioning {
+        /**
+         * The created time of the cloud identity user provisioning.
+         */
+        createdTime: string;
+        /**
+         * The deletion strategy of the cloud identity user provisioning.
+         */
+        deletionStrategy: string;
+        /**
+         * The department names of the cloud identity user provisioning.
+         */
+        departmentNames: string[];
+        /**
+         * The description of the cloud identity user provisioning.
+         */
+        description: string;
+        /**
+         * The duplication strategy of the cloud identity user provisioning.
+         */
+        duplicationStrategy: string;
+        /**
+         * The duplication suffix of the cloud identity user provisioning.
+         */
+        duplicationSuffix: string;
+        /**
+         * The id of the cloud identity user provisioning.
+         */
+        id: string;
+        /**
+         * The identity source strategy of the cloud identity user provisioning.
+         */
+        identitySourceStrategy: string;
+        /**
+         * The principal id of the cloud identity user provisioning.
+         */
+        principalId: string;
+        /**
+         * The principal name of the cloud identity user provisioning.
+         */
+        principalName: string;
+        /**
+         * The principal type of the cloud identity user provisioning.
+         */
+        principalType: string;
+        /**
+         * The status of the cloud identity user provisioning.
+         */
+        provisionStatus: string;
+        /**
+         * The target account id of the cloud identity user provisioning.
+         */
+        targetId: string;
+        /**
+         * The updated time of the cloud identity user provisioning.
+         */
+        updatedTime: string;
+        /**
+         * The id of the cloud identity user provisioning.
+         */
+        userProvisioningId: string;
+    }
+
+    export interface GetUsersUser {
+        /**
+         * The created time of the cloud identity user.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity user.
+         */
+        description: string;
+        /**
+         * The display name of cloud identity user.
+         */
+        displayName: string;
+        /**
+         * The email of the cloud identity user.
+         */
+        email: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        id: string;
+        /**
+         * The identity type of the cloud identity user.
+         */
+        identityType: string;
+        /**
+         * The phone of the cloud identity user.
+         */
+        phone: string;
+        /**
+         * The source of cloud identity user. Valid values: `Sync`, `Manual`.
+         */
+        source: string;
+        /**
+         * The updated time of the cloud identity user.
+         */
+        updatedTime: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        userId: string;
+        /**
+         * The name of cloud identity user.
+         */
+        userName: string;
+    }
+
     export interface GroupMember {
         /**
          * The description of the cloud identity group.
@@ -4636,6 +8369,356 @@ export namespace cloud_monitor {
         topicName: string;
     }
 
+    export interface GetContactGroupsGroup {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * Contact information in the contact group.
+         */
+        contacts: outputs.cloud_monitor.GetContactGroupsGroupContact[];
+        /**
+         * The create time.
+         */
+        createdAt: string;
+        /**
+         * The description of the contact group.
+         */
+        description: string;
+        /**
+         * The id of the contact group.
+         */
+        id: string;
+        /**
+         * Search for keywords in contact group names, supports fuzzy search.
+         */
+        name: string;
+        /**
+         * The update time.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetContactGroupsGroupContact {
+        /**
+         * The email of contact.
+         */
+        email: string;
+        /**
+         * The id of the contact group.
+         */
+        id: string;
+        /**
+         * Search for keywords in contact group names, supports fuzzy search.
+         */
+        name: string;
+        /**
+         * The phone of contact.
+         */
+        phone: string;
+    }
+
+    export interface GetContactsContact {
+        /**
+         * The email of contact.
+         */
+        email: string;
+        /**
+         * The ID of contact.
+         */
+        id: string;
+        /**
+         * The name of contact.
+         */
+        name: string;
+        /**
+         * The phone of contact.
+         */
+        phone: string;
+    }
+
+    export interface GetEventRulesRule {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * When the alarm notification method is phone, SMS, or email, the triggered alarm contact group ID.
+         */
+        contactGroupIds: string[];
+        /**
+         * List of contact methods.
+         */
+        contactMethods: string[];
+        /**
+         * The create time.
+         */
+        createdAt: number;
+        /**
+         * The description of the rule.
+         */
+        description: string;
+        /**
+         * The end time of the rule.
+         */
+        effectEndAt: string;
+        /**
+         * The start time of the rule.
+         */
+        effectStartAt: string;
+        /**
+         * When the alarm notification method is alarm callback, it triggers the callback address.
+         */
+        endpoint: string;
+        /**
+         * The name of the event bus.
+         */
+        eventBusName: string;
+        /**
+         * The source of the event.
+         */
+        eventSource: string;
+        /**
+         * The event type.
+         */
+        eventTypes: string[];
+        /**
+         * Filter mode, also known as event matching rules. Custom matching rules are not currently supported.
+         */
+        filterPatterns: outputs.cloud_monitor.GetEventRulesRuleFilterPattern[];
+        /**
+         * The id of the rule.
+         */
+        id: string;
+        /**
+         * The level of the rule.
+         */
+        level: string;
+        /**
+         * The triggered message queue when the alarm notification method is Kafka message queue.
+         */
+        messageQueues: outputs.cloud_monitor.GetEventRulesRuleMessageQueue[];
+        /**
+         * The name of the region.
+         */
+        region: string;
+        /**
+         * The id of the rule.
+         */
+        ruleId: string;
+        /**
+         * Rule name, search rules by name using fuzzy search.
+         */
+        ruleName: string;
+        /**
+         * Enable the state of the rule.
+         */
+        status: string;
+        /**
+         * The alarm method for log service triggers the configuration of the log service.
+         */
+        tlsTargets: outputs.cloud_monitor.GetEventRulesRuleTlsTarget[];
+        /**
+         * The updated time.
+         */
+        updatedAt: number;
+    }
+
+    export interface GetEventRulesRuleFilterPattern {
+        /**
+         * Event source.
+         */
+        source: string;
+        /**
+         * The message queue type, only support kafka now.
+         */
+        types: string[];
+    }
+
+    export interface GetEventRulesRuleMessageQueue {
+        /**
+         * The kafka instance id.
+         */
+        instanceId: string;
+        /**
+         * The name of the region.
+         */
+        region: string;
+        /**
+         * The topic name.
+         */
+        topic: string;
+        /**
+         * The message queue type, only support kafka now.
+         */
+        type: string;
+        /**
+         * The vpc id.
+         */
+        vpcId: string;
+    }
+
+    export interface GetEventRulesRuleTlsTarget {
+        /**
+         * The project id.
+         */
+        projectId: string;
+        /**
+         * The project name.
+         */
+        projectName: string;
+        /**
+         * The Chinese region name.
+         */
+        regionNameCn: string;
+        /**
+         * The English region name.
+         */
+        regionNameEn: string;
+        /**
+         * The topic id.
+         */
+        topicId: string;
+        /**
+         * The topic name.
+         */
+        topicName: string;
+    }
+
+    export interface GetRulesRule {
+        /**
+         * The alert methods of the cloud monitor rule.
+         */
+        alertMethods: string[];
+        /**
+         * The alert state of the cloud monitor rule. Valid values: `altering`, `normal`.
+         */
+        alertState: string;
+        /**
+         * The condition operator of the cloud monitor rule. Valid values: `&&`, `||`.
+         */
+        conditionOperator: string;
+        /**
+         * The conditions of the cloud monitor rule.
+         */
+        conditions: outputs.cloud_monitor.GetRulesRuleCondition[];
+        /**
+         * The contact group ids of the cloud monitor rule.
+         */
+        contactGroupIds: string[];
+        /**
+         * The created time of the cloud monitor rule.
+         */
+        createdAt: string;
+        /**
+         * The description of the cloud monitor rule.
+         */
+        description: string;
+        /**
+         * The effect end time of the cloud monitor rule.
+         */
+        effectEndAt: string;
+        /**
+         * The effect start time of the cloud monitor rule.
+         */
+        effectStartAt: string;
+        /**
+         * The enable state of the cloud monitor rule. Valid values: `enable`, `disable`.
+         */
+        enableState: string;
+        /**
+         * The evaluation count of the cloud monitor rule.
+         */
+        evaluationCount: number;
+        /**
+         * The id of the cloud monitor rule.
+         */
+        id: string;
+        /**
+         * The level of the cloud monitor rule. Valid values: `critical`, `warning`, `notice`.
+         */
+        level: string;
+        /**
+         * Whether to enable the multiple conditions function of the cloud monitor rule.
+         */
+        multipleConditions: boolean;
+        /**
+         * The namespace of the cloud monitor rule.
+         */
+        namespace: string;
+        /**
+         * The original dimensions of the cloud monitor rule.
+         */
+        originalDimensions: outputs.cloud_monitor.GetRulesRuleOriginalDimension[];
+        /**
+         * The region id of the cloud monitor rule.
+         */
+        regions: string[];
+        /**
+         * The name of the cloud monitor rule. This field support fuzzy query.
+         */
+        ruleName: string;
+        /**
+         * The silence time of the cloud monitor rule. Unit in minutes.
+         */
+        silenceTime: number;
+        /**
+         * The sub namespace of the cloud monitor rule.
+         */
+        subNamespace: string;
+        /**
+         * The updated time of the cloud monitor rule.
+         */
+        updatedAt: string;
+        /**
+         * The web hook of the cloud monitor rule.
+         */
+        webHook: string;
+        /**
+         * The webhook id list of the cloud monitor rule.
+         */
+        webhookIds: string[];
+    }
+
+    export interface GetRulesRuleCondition {
+        /**
+         * The comparison operation of the cloud monitor rule.
+         */
+        comparisonOperator: string;
+        /**
+         * The metric name of the cloud monitor rule.
+         */
+        metricName: string;
+        /**
+         * The metric unit of the cloud monitor rule.
+         */
+        metricUnit: string;
+        /**
+         * The period of the cloud monitor rule.
+         */
+        period: string;
+        /**
+         * The statistics of the cloud monitor rule.
+         */
+        statistics: string;
+        /**
+         * The threshold of the cloud monitor rule.
+         */
+        threshold: string;
+    }
+
+    export interface GetRulesRuleOriginalDimension {
+        /**
+         * The key of the dimension.
+         */
+        key: string;
+        /**
+         * The value of the dimension.
+         */
+        values: string[];
+    }
+
     export interface RuleCondition {
         /**
          * The comparison operation of the cloud monitor rule. Valid values: `>`, `>=`, `<`, `<=`, `!=`, `=`.
@@ -4927,6 +9010,201 @@ export namespace cloudfs {
         zoneId: string;
     }
 
+    export interface GetAccessesAccess {
+        /**
+         * The account id of access.
+         */
+        accessAccountId: number;
+        /**
+         * The id of access.
+         */
+        accessId: string;
+        /**
+         * The service name of access.
+         */
+        accessServiceName: string;
+        /**
+         * The creation time.
+         */
+        createdTime: string;
+        /**
+         * The name of file system.
+         */
+        fsName: string;
+        /**
+         * Whether is default access.
+         */
+        isDefault: boolean;
+        /**
+         * The id of security group.
+         */
+        securityGroupId: string;
+        /**
+         * The status of access.
+         */
+        status: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * Whether to enable all vpc route.
+         */
+        vpcRouteEnabled: boolean;
+    }
+
+    export interface GetFileSystemsFileSystem {
+        /**
+         * The capacity of cache.
+         */
+        cacheCapacityTib: number;
+        /**
+         * The plan of cache.
+         */
+        cachePlan: string;
+        /**
+         * The creation time.
+         */
+        createdTime: string;
+        /**
+         * The ID of file system.
+         */
+        id: string;
+        /**
+         * The mode of file system.
+         */
+        mode: string;
+        /**
+         * The point mount.
+         */
+        mountPoint: string;
+        /**
+         * The name of file system.
+         */
+        name: string;
+        /**
+         * The id of region.
+         */
+        regionId: string;
+        /**
+         * The id of security group.
+         */
+        securityGroupId: string;
+        /**
+         * The status of file system.
+         */
+        status: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The tos bucket.
+         */
+        tosBucket: string;
+        /**
+         * The tos prefix.
+         */
+        tosPrefix: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetNamespacesNamespace {
+        /**
+         * The creation time of the namespace.
+         */
+        createdTime: string;
+        /**
+         * The ID of the namespace.
+         */
+        id: string;
+        /**
+         * Whether the tos bucket is your own bucket.
+         */
+        isMyBucket: boolean;
+        /**
+         * Whether the namespace is read-only.
+         */
+        readOnly: boolean;
+        /**
+         * Whether the namespace is the official service for volcengine.
+         */
+        serviceManaged: boolean;
+        /**
+         * The status of the namespace.
+         */
+        status: string;
+        /**
+         * The name of tos bucket.
+         */
+        tosBucket: string;
+        /**
+         * The tos prefix.
+         */
+        tosPrefix: string;
+    }
+
+    export interface GetNsQuotasQuota {
+        /**
+         * The ID of account.
+         */
+        accountId: number;
+        /**
+         * The name of fs.
+         */
+        fsName: string;
+        /**
+         * The count of cloud fs namespace.
+         */
+        nsCount: number;
+        /**
+         * This file stores the number of namespaces under the instance.
+         */
+        nsCountPerFs: number;
+        /**
+         * The quota of cloud fs namespace.
+         */
+        nsQuota: number;
+        /**
+         * This file stores the total namespace quota under the instance.
+         */
+        nsQuotaPerFs: number;
+        /**
+         * Whether is enough of cloud fs namespace.
+         */
+        quotaEnough: boolean;
+    }
+
+    export interface GetQuotasQuota {
+        /**
+         * The ID of account.
+         */
+        accountId: number;
+        /**
+         * The count of cloud fs.
+         */
+        fsCount: number;
+        /**
+         * The quota of cloud fs.
+         */
+        fsQuota: number;
+        /**
+         * Whether is enough of cloud fs.
+         */
+        quotaEnough: boolean;
+    }
+
     export interface NamespacesNamespace {
         /**
          * The creation time of the namespace.
@@ -5091,6 +9369,298 @@ export namespace cr {
          * The ip of the acl policy.
          */
         entry: string;
+    }
+
+    export interface GetAuthorizationTokensToken {
+        /**
+         * The expiration time of the temporary access token.
+         */
+        expireTime: string;
+        /**
+         * The Temporary access token.
+         */
+        token: string;
+        /**
+         * The username for login repository instance.
+         */
+        username: string;
+    }
+
+    export interface GetEndpointsEndpoint {
+        /**
+         * The list of acl policies.
+         */
+        aclPolicies: outputs.cr.GetEndpointsEndpointAclPolicy[];
+        /**
+         * Whether public endpoint is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The CR instance name.
+         */
+        registry: string;
+        /**
+         * The status of public endpoint.
+         */
+        status: string;
+    }
+
+    export interface GetEndpointsEndpointAclPolicy {
+        /**
+         * The description of the acl policy.
+         */
+        description: string;
+        /**
+         * The ip of the acl policy.
+         */
+        entry: string;
+    }
+
+    export interface GetNamespacesNamespace {
+        /**
+         * The time when namespace created.
+         */
+        createTime: string;
+        /**
+         * The name of OCI repository.
+         */
+        name: string;
+        /**
+         * The ProjectName of the CrNamespace.
+         */
+        project: string;
+    }
+
+    export interface GetRegistriesRegistry {
+        /**
+         * The charge type of registry.
+         */
+        chargeType: string;
+        /**
+         * The creation time of registry.
+         */
+        createTime: string;
+        /**
+         * The domain of registry.
+         */
+        domains: outputs.cr.GetRegistriesRegistryDomain[];
+        /**
+         * The name of registry.
+         */
+        name: string;
+        /**
+         * The ProjectName of the cr registry.
+         */
+        project: string;
+        /**
+         * The tags of cr registry.
+         */
+        resourceTags: outputs.cr.GetRegistriesRegistryResourceTag[];
+        /**
+         * The status of registry.
+         */
+        status: outputs.cr.GetRegistriesRegistryStatus;
+        /**
+         * The type of registry.
+         */
+        type: string;
+        /**
+         * The status of user.
+         */
+        userStatus: string;
+        /**
+         * The username of cr instance.
+         */
+        username: string;
+    }
+
+    export interface GetRegistriesRegistryDomain {
+        /**
+         * The domain of registry.
+         */
+        domain: string;
+        /**
+         * The type of registry.
+         */
+        type: string;
+    }
+
+    export interface GetRegistriesRegistryResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRegistriesRegistryStatus {
+        /**
+         * The condition of registry.
+         */
+        conditions: string[];
+        /**
+         * The phase status of registry.
+         */
+        phase: string;
+    }
+
+    export interface GetRegistriesResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetRegistriesStatus {
+        /**
+         * The condition of registry.
+         */
+        condition?: string;
+        /**
+         * The phase of status.
+         */
+        phase?: string;
+    }
+
+    export interface GetRepositoriesRepository {
+        /**
+         * The access level of repository.
+         */
+        accessLevel: string;
+        /**
+         * The creation time of repository.
+         */
+        createTime: string;
+        /**
+         * The description of repository.
+         */
+        description: string;
+        /**
+         * The name of repository.
+         */
+        name: string;
+        /**
+         * The namespace of repository.
+         */
+        namespace: string;
+        /**
+         * The last update time of repository.
+         */
+        updateTime: string;
+    }
+
+    export interface GetTagsTag {
+        /**
+         * The chart attribute,valid when tag type is Chart.
+         */
+        chartAttribute: outputs.cr.GetTagsTagChartAttribute;
+        /**
+         * The digest of image.
+         */
+        digest: string;
+        /**
+         * The list of image attributes,valid when tag type is Image.
+         */
+        imageAttributes: outputs.cr.GetTagsTagImageAttribute[];
+        /**
+         * The name of OCI product tag.
+         */
+        name: string;
+        /**
+         * The last push time of OCI product.
+         */
+        pushTime: string;
+        /**
+         * The size of OCI product.
+         */
+        size: number;
+        /**
+         * The type of OCI product tag.
+         */
+        type: string;
+    }
+
+    export interface GetTagsTagChartAttribute {
+        /**
+         * The Helm version.
+         */
+        apiVersion: string;
+        /**
+         * The name of OCI product tag.
+         */
+        name: string;
+        /**
+         * The Helm Chart version.
+         */
+        version: string;
+    }
+
+    export interface GetTagsTagImageAttribute {
+        /**
+         * The image architecture.
+         */
+        architecture: string;
+        /**
+         * The image author.
+         */
+        author: string;
+        /**
+         * The digest of image.
+         */
+        digest: string;
+        /**
+         * The iamge os.
+         */
+        os: string;
+    }
+
+    export interface GetVpcEndpointsEndpoint {
+        /**
+         * The CR registry name.
+         */
+        registry: string;
+        /**
+         * List of vpc information.
+         */
+        vpcs: outputs.cr.GetVpcEndpointsEndpointVpc[];
+    }
+
+    export interface GetVpcEndpointsEndpointVpc {
+        /**
+         * The id of the account.
+         */
+        accountId: number;
+        /**
+         * The creation time.
+         */
+        createTime: string;
+        /**
+         * The IP address of the mirror repository in the VPC.
+         */
+        ip: string;
+        /**
+         * The region id.
+         */
+        region: string;
+        /**
+         * The status of the vpc endpoint.
+         */
+        status: string;
+        /**
+         * The ID of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The ID of the vpc.
+         */
+        vpcId: string;
     }
 
     export interface NamespacesNamespace {
@@ -5769,6 +10339,426 @@ export namespace direct_connect {
         value?: string;
     }
 
+    export interface GetBgpPeersBgpPeer {
+        /**
+         * The id of account.
+         */
+        accountId: string;
+        /**
+         * The key of auth.
+         */
+        authKey: string;
+        /**
+         * The id of bgp peer.
+         */
+        bgpPeerId: string;
+        /**
+         * The name of bgp peer.
+         */
+        bgpPeerName: string;
+        /**
+         * The create time of bgp peer.
+         */
+        creationTime: string;
+        /**
+         * The Description of bgp peer.
+         */
+        description: string;
+        /**
+         * The local asn of bgp peer.
+         */
+        localAsn: number;
+        /**
+         * The remote asn of bgp peer.
+         */
+        remoteAsn: number;
+        /**
+         * The session status of bgp peer.
+         */
+        sessionStatus: string;
+        /**
+         * The status of bgp peer.
+         */
+        status: string;
+        /**
+         * The update time of bgp peer.
+         */
+        updateTime: string;
+        /**
+         * The id of virtual interface.
+         */
+        virtualInterfaceId: string;
+    }
+
+    export interface GetConnectionsDirectConnectConnection {
+        /**
+         * The account ID which the physical leased line belongs.
+         */
+        accountId: string;
+        /**
+         * The bandwidth of direct connect.
+         */
+        bandwidth: number;
+        /**
+         * The dedicated line billing type,only support `1` for yearly and monthly billing currently.
+         */
+        billingType: number;
+        /**
+         * The dedicated line billing status.
+         */
+        businessStatus: string;
+        /**
+         * The connection type of physical leased line,valid value contains `SharedConnection`,`DedicatedConnection`.
+         */
+        connectionType: string;
+        /**
+         * The creation time of direct connect.
+         */
+        creationTime: string;
+        /**
+         * The dedicated line contact email.
+         */
+        customerContactEmail: string;
+        /**
+         * The dedicated line contact phone.
+         */
+        customerContactPhone: string;
+        /**
+         * The dedicated line contact name.
+         */
+        customerName: string;
+        /**
+         * The expected resource force collection time.
+         */
+        deletedTime: string;
+        /**
+         * The description of direct connect connection.
+         */
+        description: string;
+        /**
+         * The ID of the physical leased line access point.
+         */
+        directConnectAccessPointId: string;
+        /**
+         * The ID of direct connect connection.
+         */
+        directConnectConnectionId: string;
+        /**
+         * The name of directi connect connection.
+         */
+        directConnectConnectionName: string;
+        /**
+         * The expect bandwidth of direct connect.
+         */
+        expectBandwidth: number;
+        /**
+         * The expired time.
+         */
+        expiredTime: string;
+        /**
+         * The operator of the physical leased line,valid value contains `ChinaTelecom`,`ChinaMobile`,`ChinaUnicom`,`ChinaOther`.
+         */
+        lineOperator: string;
+        /**
+         * The account ID of physical leased line to which the shared leased line belongs.If the physical leased line type is an exclusive leased line,this parameter returns empty.
+         */
+        parentConnectionAccountId: string;
+        /**
+         * The ID of the physical leased line to which the shared leased line belongs. If the physical leased line type is an exclusive leased line, this parameter returns empty.
+         */
+        parentConnectionId: string;
+        /**
+         * The peer access point of the physical leased line.
+         */
+        peerLocation: string;
+        /**
+         * The dedicated line port spec.
+         */
+        portSpec: string;
+        /**
+         * The port type of direct connect.
+         */
+        portType: string;
+        /**
+         * The status of physical leased line.
+         */
+        status: string;
+        /**
+         * All tags that physical leased line added.
+         */
+        tags: outputs.direct_connect.GetConnectionsDirectConnectConnectionTag[];
+        /**
+         * The update time of direct connect.
+         */
+        updateTime: string;
+        /**
+         * The vlan ID of shared connection,if `connectionType` is `DedicatedConnection`,this parameter returns 0.
+         */
+        vlanId: number;
+    }
+
+    export interface GetConnectionsDirectConnectConnectionTag {
+        /**
+         * The tag key.
+         */
+        key: string;
+        /**
+         * The tag value.
+         */
+        value: string;
+    }
+
+    export interface GetConnectionsTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GetGatewayRoutesDirectConnectGatewayRoute {
+        /**
+         * The id of account.
+         */
+        accountId: string;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The cidr block.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The id of direct connect gateway.
+         */
+        directConnectGatewayId: string;
+        /**
+         * The id of direct connect gateway route.
+         */
+        directConnectGatewayRouteId: string;
+        /**
+         * The id of next hop.
+         */
+        nextHopId: string;
+        /**
+         * The type of next hop.
+         */
+        nextHopType: string;
+        /**
+         * The type of route. The value can be BGP or CEN or Static.
+         */
+        routeType: string;
+        /**
+         * The status info.
+         */
+        status: string;
+    }
+
+    export interface GetGatewaysDirectConnectGateway {
+        /**
+         * The account ID that direct connect gateway belongs.
+         */
+        accountId: string;
+        /**
+         * The CEN information associated with the direct connect gateway.
+         */
+        associateCens: outputs.direct_connect.GetGatewaysDirectConnectGatewayAssociateCen[];
+        /**
+         * The business status of direct connect gateway.
+         */
+        businessStatus: string;
+        /**
+         * The creation time of direct connect gateway.
+         */
+        creationTime: string;
+        /**
+         * The expected resource force collection time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+         */
+        deletedTime: string;
+        /**
+         * The description of direct connect gateway.
+         */
+        description: string;
+        /**
+         * The direct connect gateway ID.
+         */
+        directConnectGatewayId: string;
+        /**
+         * The direst connect gateway name.
+         */
+        directConnectGatewayName: string;
+        /**
+         * The reason of the direct connect gateway locked.
+         */
+        lockReason: string;
+        /**
+         * The resource freeze time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+         */
+        overdueTime: string;
+        /**
+         * The status of direct connect gateway.
+         */
+        status: string;
+        /**
+         * The tags that direct connect gateway added.
+         */
+        tags: outputs.direct_connect.GetGatewaysDirectConnectGatewayTag[];
+        /**
+         * The update time of direct connect gateway.
+         */
+        updateTime: string;
+    }
+
+    export interface GetGatewaysDirectConnectGatewayAssociateCen {
+        /**
+         * The CEN ID which direct connect gateway belongs.
+         */
+        cenId: string;
+        /**
+         * The CEN owner's ID.
+         */
+        cenOwnerId: string;
+        /**
+         * The CEN status.
+         */
+        cenStatus: string;
+    }
+
+    export interface GetGatewaysDirectConnectGatewayTag {
+        /**
+         * The tag key.
+         */
+        key: string;
+        /**
+         * The tag value.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GetVirtualInterfacesTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GetVirtualInterfacesVirtualInterface {
+        /**
+         * The account ID which this virtual interface belongs.
+         */
+        accountId: string;
+        /**
+         * The band width limit of virtual interface,in Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The BFD detect interval.
+         */
+        bfdDetectInterval: number;
+        /**
+         * The BFD detect times.
+         */
+        bfdDetectMultiplier: number;
+        /**
+         * The creation time of virtual interface.
+         */
+        creationTime: string;
+        /**
+         * The description of the virtual interface.
+         */
+        description: string;
+        /**
+         * The direct connect connection ID that associated with this virtual interface.
+         */
+        directConnectConnectionId: string;
+        /**
+         * The direct connect gateway ID that associated with this virtual interface.
+         */
+        directConnectGatewayId: string;
+        /**
+         * Whether enable BFD detect.
+         */
+        enableBfd: boolean;
+        /**
+         * Whether enable NQA detect.
+         */
+        enableNqa: boolean;
+        /**
+         * The local IP that associated with this virtual interface.
+         */
+        localIp: string;
+        /**
+         * The NQA detect interval.
+         */
+        nqaDetectInterval: number;
+        /**
+         * The NAQ detect times.
+         */
+        nqaDetectMultiplier: number;
+        /**
+         * The peer IP that associated with this virtual interface.
+         */
+        peerIp: string;
+        /**
+         * The route type of virtual interface.
+         */
+        routeType: string;
+        /**
+         * The status of virtaul interface.
+         */
+        status: string;
+        /**
+         * The tags that direct connect gateway added.
+         */
+        tags: outputs.direct_connect.GetVirtualInterfacesVirtualInterfaceTag[];
+        /**
+         * The update time of virtual interface.
+         */
+        updateTime: string;
+        /**
+         * The virtual interface ID.
+         */
+        virtualInterfaceId: string;
+        /**
+         * The name of virtual interface.
+         */
+        virtualInterfaceName: string;
+        /**
+         * The VLAN ID of virtual interface.
+         */
+        vlanId: number;
+    }
+
+    export interface GetVirtualInterfacesVirtualInterfaceTag {
+        /**
+         * The tag key.
+         */
+        key: string;
+        /**
+         * The tag value.
+         */
+        value: string;
+    }
+
     export interface VirtualInterfaceTag {
         /**
          * The tag key.
@@ -5905,6 +10895,228 @@ export namespace dns {
          * The number of DNS records in the backup.
          */
         recordCount: number;
+    }
+
+    export interface GetBackupsBackupInfo {
+        /**
+         * The ID of the backup.
+         */
+        backupId: string;
+        /**
+         * The time when the backup was created. The time zone is UTC + 8.
+         */
+        backupTime: string;
+        /**
+         * The number of DNS records in the backup.
+         */
+        recordCount: number;
+    }
+
+    export interface GetRecordSetsRecordSet {
+        /**
+         * The domain prefix of the record set.
+         */
+        host: string;
+        /**
+         * The ID of the DNS record set.
+         */
+        id: string;
+        /**
+         * The line code corresponding to the DNS record set.
+         */
+        line: string;
+        /**
+         * The domain prefix contained in the DNS record set, in PQDN (Partially Qualified Domain Name) format.
+         */
+        pqdn: string;
+        /**
+         * The type of DNS records in the DNS record set.
+         */
+        type: string;
+        /**
+         * Indicates whether load balancing is enabled for the DNS record set.
+         */
+        weightEnabled: boolean;
+    }
+
+    export interface GetRecordsRecord {
+        /**
+         * The creation time of the domain.
+         */
+        createdAt: string;
+        /**
+         * Indicates whether the DNS record is enabled.
+         */
+        enable: boolean;
+        /**
+         * Domain prefix of the DNS record.
+         */
+        host: string;
+        /**
+         * Line of the DNS record.
+         */
+        line: string;
+        /**
+         * The account ID that called this API.
+         */
+        operators: string[];
+        /**
+         * The hostname included in the DNS record, in PQDN (Partially Qualified Domain Name) format.
+         */
+        pqdn: string;
+        /**
+         * The ID of the DNS record.
+         */
+        recordId: string;
+        /**
+         * The ID of the record set to which the DNS record belongs.
+         */
+        recordSetId: string;
+        /**
+         * The remark of the DNS record.
+         */
+        remark: string;
+        /**
+         * The tag information of the DNS record.
+         */
+        tags: string[];
+        /**
+         * The Time to Live (TTL) of the DNS record. The unit is seconds.
+         */
+        ttl: number;
+        /**
+         * Type of the DNS record.
+         */
+        type: string;
+        /**
+         * The most recent update time of the domain.
+         */
+        updatedAt: string;
+        /**
+         * Value of the DNS record.
+         */
+        value: string;
+        /**
+         * The weight of the DNS record.
+         */
+        weight: number;
+    }
+
+    export interface GetZonesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The list of DNS servers allocated to the domain by BytePlus DNS.
+         */
+        allocateDnsServerLists: string[];
+        /**
+         * Whether automatic domain renewal is enabled.
+         */
+        autoRenew: boolean;
+        /**
+         * The most recent update time of the domain.
+         */
+        cacheStage: number;
+        /**
+         * The creation time of the domain.
+         */
+        createdAt: string;
+        /**
+         * The version of DNS DDoS protection service.
+         */
+        dnsSecurity: string;
+        /**
+         * The expiration time of the domain.
+         */
+        expiredTime: number;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The ID of the instance.
+         */
+        instanceId: string;
+        /**
+         * The ID of the instance. For free edition, the value of this field is null.
+         */
+        instanceNo: string;
+        /**
+         * Indicates whether the configuration of NS servers is correct. If the configuration is correct, the status of the domain in BytePlus DNS is Active.
+         */
+        isNsCorrect: boolean;
+        /**
+         * Whether the domain is a subdomain.
+         */
+        isSubDomain: boolean;
+        /**
+         * The ID of the account that last updated this domain.
+         */
+        lastOperator: string;
+        /**
+         * The ProjectName of the domain.
+         */
+        projectName: string;
+        /**
+         * The list of DNS servers actually used by the domain.
+         */
+        realDnsServerLists: string[];
+        /**
+         * The total number of DNS records contained in the domain.
+         */
+        recordCount: number;
+        /**
+         * The remarks for the domain.
+         */
+        remark: string;
+        /**
+         * The status of the domain.
+         */
+        stage: number;
+        /**
+         * The domain prefix of the subdomain. If the domain is not a subdomain, this parameter is null.
+         */
+        subDomainHost: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.dns.GetZonesZoneTag[];
+        /**
+         * The edition of the domain.
+         */
+        tradeCode: string;
+        /**
+         * The most recent update time of the domain.
+         */
+        updatedAt: string;
+        /**
+         * The ID of the domain.
+         */
+        zid: number;
+        /**
+         * The domain name.
+         */
+        zoneName: string;
+    }
+
+    export interface GetZonesZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RecordSetsRecordSet {
@@ -6214,6 +11426,433 @@ export namespace ebs {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface GetAutoSnapshotPoliciesAutoSnapshotPolicy {
+        /**
+         * The id of the auto snapshot policy.
+         */
+        autoSnapshotPolicyId: string;
+        /**
+         * The name of the auto snapshot policy.
+         */
+        autoSnapshotPolicyName: string;
+        /**
+         * The creation time of the auto snapshot policy.
+         */
+        createdAt: string;
+        /**
+         * The id of the auto snapshot policy.
+         */
+        id: string;
+        /**
+         * The project name of auto snapshot policy.
+         */
+        projectName: string;
+        /**
+         * Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+         */
+        repeatDays: number;
+        /**
+         * The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+         */
+        repeatWeekdays: string[];
+        /**
+         * The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The status of the auto snapshot policy.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.GetAutoSnapshotPoliciesAutoSnapshotPolicyTag[];
+        /**
+         * The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+         */
+        timePoints: string[];
+        /**
+         * The updated time of the auto snapshot policy.
+         */
+        updatedAt: string;
+        /**
+         * The number of volumes associated with the auto snapshot policy.
+         */
+        volumeNums: number;
+    }
+
+    export interface GetAutoSnapshotPoliciesAutoSnapshotPolicyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAutoSnapshotPoliciesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSnapshotGroupsSnapshotGroup {
+        /**
+         * The creation time of the snapshot.
+         */
+        creationTime: string;
+        /**
+         * The description of the snapshot.
+         */
+        description: string;
+        /**
+         * The id of the snapshot group.
+         */
+        id: string;
+        /**
+         * The image id of the snapshot.
+         */
+        imageId: string;
+        /**
+         * The instance id of snapshot group.
+         */
+        instanceId: string;
+        /**
+         * The name of snapshot group.
+         */
+        name: string;
+        /**
+         * The project name of snapshot group.
+         */
+        projectName: string;
+        /**
+         * The id of the snapshot group.
+         */
+        snapshotGroupId: string;
+        /**
+         * The snapshots of the snapshot group.
+         */
+        snapshots: outputs.ebs.GetSnapshotGroupsSnapshotGroupSnapshot[];
+        /**
+         * A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.GetSnapshotGroupsSnapshotGroupTag[];
+    }
+
+    export interface GetSnapshotGroupsSnapshotGroupSnapshot {
+        /**
+         * The creation time of the snapshot.
+         */
+        creationTime: string;
+        /**
+         * The description of the snapshot.
+         */
+        description: string;
+        /**
+         * The image id of the snapshot.
+         */
+        imageId: string;
+        /**
+         * The progress of the snapshot.
+         */
+        progress: number;
+        /**
+         * The project name of snapshot group.
+         */
+        projectName: string;
+        /**
+         * The id of the snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The id of the snapshot.
+         */
+        snapshotId: string;
+        /**
+         * The name of the snapshot.
+         */
+        snapshotName: string;
+        /**
+         * The type of the snapshot.
+         */
+        snapshotType: string;
+        /**
+         * A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.GetSnapshotGroupsSnapshotGroupSnapshotTag[];
+        /**
+         * The volume id of the snapshot.
+         */
+        volumeId: string;
+        /**
+         * The volume kind of the snapshot.
+         */
+        volumeKind: string;
+        /**
+         * The volume name of the snapshot.
+         */
+        volumeName: string;
+        /**
+         * The volume size of the snapshot.
+         */
+        volumeSize: number;
+        /**
+         * The volume status of the snapshot.
+         */
+        volumeStatus: string;
+        /**
+         * The volume type of the snapshot.
+         */
+        volumeType: string;
+        /**
+         * The zone id of the snapshot.
+         */
+        zoneId: string;
+    }
+
+    export interface GetSnapshotGroupsSnapshotGroupSnapshotTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSnapshotGroupsSnapshotGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSnapshotsSnapshot {
+        /**
+         * The creation time of the snapshot.
+         */
+        creationTime: string;
+        /**
+         * The description of the snapshot.
+         */
+        description: string;
+        /**
+         * The id of the snapshot.
+         */
+        id: string;
+        /**
+         * The project name of snapshot.
+         */
+        projectName: string;
+        /**
+         * The retention days of the snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The id of the snapshot.
+         */
+        snapshotId: string;
+        /**
+         * The name of the snapshot.
+         */
+        snapshotName: string;
+        /**
+         * The type of the snapshot.
+         */
+        snapshotType: string;
+        /**
+         * The status of the snapshot.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.GetSnapshotsSnapshotTag[];
+        /**
+         * The volume id of the snapshot.
+         */
+        volumeId: string;
+        /**
+         * The volume kind of the snapshot.
+         */
+        volumeKind: string;
+        /**
+         * The volume name of the snapshot.
+         */
+        volumeName: string;
+        /**
+         * The volume size of the snapshot.
+         */
+        volumeSize: number;
+        /**
+         * The volume status of the snapshot.
+         */
+        volumeStatus: string;
+        /**
+         * The volume type of the snapshot.
+         */
+        volumeType: string;
+        /**
+         * The zone id of snapshot.
+         */
+        zoneId: string;
+    }
+
+    export interface GetSnapshotsSnapshotTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSnapshotsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVolumesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVolumesVolume {
+        /**
+         * The baseline performance of the volume.
+         */
+        baselinePerformances: outputs.ebs.GetVolumesVolumeBaselinePerformance[];
+        billingType: number;
+        createdAt: string;
+        deleteWithInstance: boolean;
+        description: string;
+        deviceName: string;
+        expiredTime: string;
+        /**
+         * The extra performance of the volume.
+         */
+        extraPerformances: outputs.ebs.GetVolumesVolumeExtraPerformance[];
+        id: string;
+        imageId: string;
+        /**
+         * The Id of instance.
+         */
+        instanceId: string;
+        /**
+         * The Kind of Volume.
+         */
+        kind: string;
+        payType: string;
+        renewType: number;
+        size: number;
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.GetVolumesVolumeTag[];
+        /**
+         * The baseline performance of the volume.
+         */
+        totalPerformances: outputs.ebs.GetVolumesVolumeTotalPerformance[];
+        tradeStatus: number;
+        updatedAt: string;
+        volumeId: string;
+        /**
+         * The name of Volume.
+         */
+        volumeName: string;
+        /**
+         * The type of Volume.
+         */
+        volumeType: string;
+        /**
+         * The Id of Zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetVolumesVolumeBaselinePerformance {
+        /**
+         * The total IOPS performance size for volume.
+         */
+        iops: number;
+        /**
+         * The total Throughput performance size for volume. Unit: MB/s.
+         */
+        throughput: number;
+    }
+
+    export interface GetVolumesVolumeExtraPerformance {
+        /**
+         * The type of extra performance for volume.
+         */
+        extraPerformanceTypeId: string;
+        /**
+         * The total IOPS performance size for volume.
+         */
+        iops: number;
+        /**
+         * The total Throughput performance size for volume. Unit: MB/s.
+         */
+        throughput: number;
+    }
+
+    export interface GetVolumesVolumeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVolumesVolumeTotalPerformance {
+        /**
+         * The total IOPS performance size for volume.
+         */
+        iops: number;
+        /**
+         * The total Throughput performance size for volume. Unit: MB/s.
+         */
+        throughput: number;
     }
 
     export interface SnapshotGroupTag {
@@ -6719,6 +12358,972 @@ export namespace ecs {
          * The strategy of ECS DeploymentSet.
          */
         strategy: string;
+    }
+
+    export interface GetAvailableResourcesAvailableZone {
+        /**
+         * The resource information of the available zone.
+         */
+        availableResources: outputs.ecs.GetAvailableResourcesAvailableZoneAvailableResource[];
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+         */
+        status: string;
+        /**
+         * The id of available zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetAvailableResourcesAvailableZoneAvailableResource {
+        /**
+         * The supported resource information.
+         */
+        supportedResources: outputs.ecs.GetAvailableResourcesAvailableZoneAvailableResourceSupportedResource[];
+        /**
+         * The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+         */
+        type: string;
+    }
+
+    export interface GetAvailableResourcesAvailableZoneAvailableResourceSupportedResource {
+        /**
+         * The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+         */
+        status: string;
+        /**
+         * The value of the resource.
+         */
+        value: string;
+    }
+
+    export interface GetCommandsCommand {
+        /**
+         * The base64 encoded content of the ecs command.
+         */
+        commandContent: string;
+        /**
+         * The id of ecs command.
+         */
+        commandId: string;
+        /**
+         * The provider of public command. When this field is not specified, query for custom commands.
+         */
+        commandProvider: string;
+        /**
+         * The create time of the ecs command.
+         */
+        createdAt: string;
+        /**
+         * The description of the ecs command.
+         */
+        description: string;
+        /**
+         * The id of the ecs command.
+         */
+        id: string;
+        /**
+         * The invocation times of the ecs command. Public commands do not display the invocation times.
+         */
+        invocationTimes: number;
+        /**
+         * The name of ecs command. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The timeout of the ecs command.
+         */
+        timeout: number;
+        /**
+         * The type of ecs command. Valid values: `Shell`.
+         */
+        type: string;
+        /**
+         * The update time of the ecs command.
+         */
+        updatedAt: string;
+        /**
+         * The username of the ecs command.
+         */
+        username: string;
+        /**
+         * The working directory of the ecs command.
+         */
+        workingDir: string;
+    }
+
+    export interface GetDeploymentSetsDeploymentSet {
+        /**
+         * The ID of ECS DeploymentSet.
+         */
+        deploymentSetId: string;
+        /**
+         * The name of ECS DeploymentSet.
+         */
+        deploymentSetName: string;
+        /**
+         * The description of ECS DeploymentSet.
+         */
+        description: string;
+        /**
+         * The granularity of ECS DeploymentSet.Valid values: switch, host, rack.
+         */
+        granularity: string;
+        /**
+         * The strategy of ECS DeploymentSet.
+         */
+        strategy: string;
+    }
+
+    export interface GetHpcClustersHpcCluster {
+        /**
+         * The created time of the hpc cluster.
+         */
+        createdAt: string;
+        /**
+         * The description of the hpc cluster.
+         */
+        description: string;
+        /**
+         * The id of the hpc cluster.
+         */
+        hpcClusterId: string;
+        /**
+         * The id of the hpc cluster.
+         */
+        id: string;
+        /**
+         * The name of the hpc cluster.
+         */
+        name: string;
+        /**
+         * The updated time of the hpc cluster.
+         */
+        updatedAt: string;
+        /**
+         * The vpc id of the hpc cluster.
+         */
+        vpcId: string;
+        /**
+         * The zone id of the hpc cluster.
+         */
+        zoneId: string;
+    }
+
+    export interface GetImageSharePermissionsAccount {
+        /**
+         * The shared account id of the image.
+         */
+        accountId: string;
+    }
+
+    export interface GetImagesImage {
+        /**
+         * The architecture of Image.
+         */
+        architecture: string;
+        /**
+         * The boot mode of Image.
+         */
+        bootMode: string;
+        /**
+         * The create time of Image.
+         */
+        createdAt: string;
+        /**
+         * The description of Image.
+         */
+        description: string;
+        /**
+         * The ID of Image.
+         */
+        imageId: string;
+        /**
+         * The name of Image.
+         */
+        imageName: string;
+        /**
+         * Whether the Image support cloud-init.
+         */
+        isSupportCloudInit: boolean;
+        /**
+         * The name of Image operating system.
+         */
+        osName: string;
+        /**
+         * The operating system type of Image.
+         */
+        osType: string;
+        /**
+         * The platform of Image.
+         */
+        platform: string;
+        /**
+         * The platform version of Image.
+         */
+        platformVersion: string;
+        /**
+         * The share mode of Image.
+         */
+        shareStatus: string;
+        /**
+         * The size(GiB) of Image.
+         */
+        size: number;
+        /**
+         * A list of Image status, the value can be `available` or `creating` or `error`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetImagesImageTag[];
+        /**
+         * The update time of Image.
+         */
+        updatedAt: string;
+        /**
+         * The visibility of Image.
+         */
+        visibility: string;
+    }
+
+    export interface GetImagesImageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetImagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstanceTypesInstanceType {
+        /**
+         * The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+         */
+        baselineCredit: number;
+        /**
+         * The GPU device info of Instance.
+         */
+        gpus: outputs.ecs.GetInstanceTypesInstanceTypeGpus[];
+        /**
+         * The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+         */
+        initialCredit: number;
+        /**
+         * The instance type family.
+         */
+        instanceTypeFamily: string;
+        /**
+         * The id of the instance type.
+         */
+        instanceTypeId: string;
+        /**
+         * Local disk configuration information corresponding to instance specifications.
+         */
+        localVolumes: outputs.ecs.GetInstanceTypesInstanceTypeLocalVolume[];
+        /**
+         * Memory information of instance specifications.
+         */
+        memories: outputs.ecs.GetInstanceTypesInstanceTypeMemory[];
+        /**
+         * Network information of instance specifications.
+         */
+        networks: outputs.ecs.GetInstanceTypesInstanceTypeNetwork[];
+        /**
+         * CPU information of instance specifications.
+         */
+        processors: outputs.ecs.GetInstanceTypesInstanceTypeProcessor[];
+        /**
+         * RDMA Specification Information.
+         */
+        rdmas: outputs.ecs.GetInstanceTypesInstanceTypeRdma[];
+        /**
+         * Cloud disk information for instance specifications.
+         */
+        volumes: outputs.ecs.GetInstanceTypesInstanceTypeVolume[];
+    }
+
+    export interface GetInstanceTypesInstanceTypeGpus {
+        /**
+         * GPU device information list.
+         */
+        gpuDevices: outputs.ecs.GetInstanceTypesInstanceTypeGpusGpuDevice[];
+    }
+
+    export interface GetInstanceTypesInstanceTypeGpusGpuDevice {
+        /**
+         * The number of local disks mounted on the instance.
+         */
+        count: number;
+        /**
+         * Memory information of instance specifications.
+         */
+        memories: outputs.ecs.GetInstanceTypesInstanceTypeGpusGpuDeviceMemory[];
+        /**
+         * The Product Name of GPU device.
+         */
+        productName: string;
+    }
+
+    export interface GetInstanceTypesInstanceTypeGpusGpuDeviceMemory {
+        /**
+         * The Encrypted Memory Size of GPU device.
+         */
+        encryptedSize: number;
+        /**
+         * Memory size, unit: MiB.
+         */
+        size: number;
+    }
+
+    export interface GetInstanceTypesInstanceTypeLocalVolume {
+        /**
+         * The number of local disks mounted on the instance.
+         */
+        count: number;
+        /**
+         * Memory size, unit: MiB.
+         */
+        size: number;
+        /**
+         * The type of volume.
+         */
+        volumeType: string;
+    }
+
+    export interface GetInstanceTypesInstanceTypeMemory {
+        /**
+         * The Encrypted Memory Size of GPU device.
+         */
+        encryptedSize: number;
+        /**
+         * Memory size, unit: MiB.
+         */
+        size: number;
+    }
+
+    export interface GetInstanceTypesInstanceTypeNetwork {
+        /**
+         * Network benchmark bandwidth capacity (out/in), unit: Mbps.
+         */
+        baselineBandwidthMbps: number;
+        /**
+         * Peak network bandwidth capacity (out/in), unit: Mbps.
+         */
+        maximumBandwidthMbps: number;
+        /**
+         * Maximum number of elastic network interfaces supported for attachment.
+         */
+        maximumNetworkInterfaces: number;
+        /**
+         * Maximum number of IPv4 addresses for a single elastic network interface.
+         */
+        maximumPrivateIpv4AddressesPerNetworkInterface: number;
+        /**
+         * Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+         */
+        maximumQueuesPerNetworkInterface: number;
+        /**
+         * Network packet sending and receiving capacity (in+out), unit: Kpps.
+         */
+        maximumThroughputKpps: number;
+    }
+
+    export interface GetInstanceTypesInstanceTypeProcessor {
+        /**
+         * CPU clock speed, unit: GHz.
+         */
+        baseFrequency: number;
+        /**
+         * The number of ECS instance CPU cores.
+         */
+        cpus: number;
+        /**
+         * CPU model.
+         */
+        model: string;
+        /**
+         * CPU Turbo Boost, unit: GHz.
+         */
+        turboFrequency: number;
+    }
+
+    export interface GetInstanceTypesInstanceTypeRdma {
+        /**
+         * Number of RDMA network cards.
+         */
+        rdmaNetworkInterfaces: number;
+    }
+
+    export interface GetInstanceTypesInstanceTypeVolume {
+        /**
+         * The maximum number of volumes.
+         */
+        maximumCount: number;
+        /**
+         * List of supported volume types.
+         */
+        supportedVolumeTypes: string[];
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The number of ECS instance CPU cores.
+         */
+        cpus: number;
+        /**
+         * The create time of ECS instance.
+         */
+        createdAt: string;
+        /**
+         * The ID of DeploymentSet.
+         */
+        deploymentSetId: string;
+        /**
+         * The description of ECS instance.
+         */
+        description: string;
+        /**
+         * The GPU device info of Instance.
+         */
+        gpuDevices: outputs.ecs.GetInstancesInstanceGpuDevice[];
+        /**
+         * The host name of ECS instance.
+         */
+        hostName: string;
+        /**
+         * The image ID of ECS instance.
+         */
+        imageId: string;
+        /**
+         * The charge type of ECS instance.
+         */
+        instanceChargeType: string;
+        /**
+         * The ID of ECS instance.
+         */
+        instanceId: string;
+        /**
+         * The name of ECS instance. This field support fuzzy query.
+         */
+        instanceName: string;
+        /**
+         * The spec type of ECS instance.
+         */
+        instanceType: string;
+        /**
+         * The number of IPv6 addresses of the ECS instance.
+         */
+        ipv6AddressCount: number;
+        /**
+         * A list of ipv6 addresses.
+         */
+        ipv6Addresses: string[];
+        /**
+         * The Flag of GPU instance.If the instance is GPU,The flag is true.
+         */
+        isGpu: boolean;
+        /**
+         * The ssh key ID of ECS instance.
+         */
+        keyPairId: string;
+        /**
+         * The key pair name of ECS instance.
+         */
+        keyPairName: string;
+        /**
+         * The memory size of ECS instance.
+         */
+        memorySize: number;
+        /**
+         * The networkInterface detail collection of ECS instance.
+         */
+        networkInterfaces: outputs.ecs.GetInstancesInstanceNetworkInterface[];
+        /**
+         * The os name of ECS instance.
+         */
+        osName: string;
+        /**
+         * The os type of ECS instance.
+         */
+        osType: string;
+        /**
+         * The ProjectName of ECS instance.
+         */
+        projectName: string;
+        /**
+         * The spot price limit of ECS instance.
+         */
+        spotPriceLimit: number;
+        /**
+         * The spot strategy of ECS instance.
+         */
+        spotStrategy: string;
+        /**
+         * The status of ECS instance.
+         */
+        status: string;
+        /**
+         * The stop mode of ECS instance.
+         */
+        stoppedMode: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetInstancesInstanceTag[];
+        /**
+         * The update time of ECS instance.
+         */
+        updatedAt: string;
+        /**
+         * The volume detail collection of volume.
+         */
+        volumes: outputs.ecs.GetInstancesInstanceVolume[];
+        /**
+         * The VPC ID of ECS instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone ID of ECS instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceGpuDevice {
+        /**
+         * The Count of GPU device.
+         */
+        count: number;
+        /**
+         * The Encrypted Memory Size of GPU device.
+         */
+        encryptedMemorySize: number;
+        /**
+         * The memory size of ECS instance.
+         */
+        memorySize: number;
+        /**
+         * The Product Name of GPU device.
+         */
+        productName: string;
+    }
+
+    export interface GetInstancesInstanceNetworkInterface {
+        /**
+         * The mac address of networkInterface.
+         */
+        macAddress: string;
+        /**
+         * The ID of networkInterface.
+         */
+        networkInterfaceId: string;
+        /**
+         * The primary ip address of ECS instance.
+         */
+        primaryIpAddress: string;
+        /**
+         * The subnet ID of networkInterface.
+         */
+        subnetId: string;
+        /**
+         * The type of networkInterface.
+         */
+        type: string;
+        /**
+         * The VPC ID of ECS instance.
+         */
+        vpcId: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesInstanceVolume {
+        /**
+         * The delete with instance flag of volume.
+         */
+        deleteWithInstance: boolean;
+        /**
+         * The size of volume.
+         */
+        size: number;
+        /**
+         * The ID of volume.
+         */
+        volumeId: string;
+        /**
+         * The Name of volume.
+         */
+        volumeName: string;
+        /**
+         * The type of volume.
+         */
+        volumeType: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInvocationResultsInvocationResult {
+        /**
+         * The id of ecs command.
+         */
+        commandId: string;
+        /**
+         * The end time of the ecs invocation in the instance.
+         */
+        endTime: string;
+        /**
+         * The error code of the ecs invocation.
+         */
+        errorCode: string;
+        /**
+         * The error message of the ecs invocation.
+         */
+        errorMessage: string;
+        /**
+         * The exit code of the ecs command.
+         */
+        exitCode: number;
+        /**
+         * The id of the ecs invocation result.
+         */
+        id: string;
+        /**
+         * The id of ecs instance.
+         */
+        instanceId: string;
+        /**
+         * The id of ecs invocation.
+         */
+        invocationId: string;
+        /**
+         * The id of the ecs invocation result.
+         */
+        invocationResultId: string;
+        /**
+         * The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+         */
+        invocationResultStatus: string;
+        /**
+         * The base64 encoded output message of the ecs invocation.
+         */
+        output: string;
+        /**
+         * The start time of the ecs invocation in the instance.
+         */
+        startTime: string;
+        /**
+         * The username of the ecs command.
+         */
+        username: string;
+    }
+
+    export interface GetInvocationsInvocation {
+        /**
+         * The base64 encoded content of the ecs command.
+         */
+        commandContent: string;
+        /**
+         * The description of the ecs command.
+         */
+        commandDescription: string;
+        /**
+         * The id of ecs command.
+         */
+        commandId: string;
+        /**
+         * The name of ecs command. This field support fuzzy query.
+         */
+        commandName: string;
+        /**
+         * The provider of the ecs command.
+         */
+        commandProvider: string;
+        /**
+         * The type of ecs command. Valid values: `Shell`.
+         */
+        commandType: string;
+        /**
+         * The end time of the ecs invocation.
+         */
+        endTime: string;
+        /**
+         * The frequency of the ecs invocation.
+         */
+        frequency: string;
+        /**
+         * The id of the ecs invocation.
+         */
+        id: string;
+        /**
+         * The list of ECS instance IDs.
+         */
+        instanceIds: string[];
+        /**
+         * The instance number of the ecs invocation.
+         */
+        instanceNumber: number;
+        /**
+         * The description of the ecs invocation.
+         */
+        invocationDescription: string;
+        /**
+         * The id of ecs invocation.
+         */
+        invocationId: string;
+        /**
+         * The name of ecs invocation. This field support fuzzy query.
+         */
+        invocationName: string;
+        /**
+         * The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+         */
+        invocationStatus: string;
+        /**
+         * The launch time of the ecs invocation.
+         */
+        launchTime: string;
+        /**
+         * The recurrence end time of the ecs invocation.
+         */
+        recurrenceEndTime: string;
+        /**
+         * The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+         */
+        repeatMode: string;
+        /**
+         * The start time of the ecs invocation.
+         */
+        startTime: string;
+        /**
+         * The timeout of the ecs command.
+         */
+        timeout: number;
+        /**
+         * The username of the ecs command.
+         */
+        username: string;
+        /**
+         * The working directory of the ecs command.
+         */
+        workingDir: string;
+    }
+
+    export interface GetKeyPairsKeyPair {
+        /**
+         * The creation time of key pair.
+         */
+        createdAt: string;
+        /**
+         * The description of key pair.
+         */
+        description: string;
+        /**
+         * The finger print info.
+         */
+        fingerPrint: string;
+        /**
+         * The id of key pair.
+         */
+        id: string;
+        /**
+         * The id of key pair.
+         */
+        keyPairId: string;
+        /**
+         * Name of key pair.
+         */
+        keyPairName: string;
+        /**
+         * The update time of key pair.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetLaunchTemplatesLaunchTemplate {
+        /**
+         * The created time of the launch template.
+         */
+        createdAt: string;
+        /**
+         * The default version of the launch template.
+         */
+        defaultVersionNumber: number;
+        /**
+         * The description of the instance.
+         */
+        description: string;
+        /**
+         * The EIP bandwidth which the scaling configuration set.
+         */
+        eipBandwidth: number;
+        /**
+         * The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
+         */
+        eipBillingType: string;
+        /**
+         * The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
+         */
+        eipIsp: string;
+        /**
+         * The host name of the instance.
+         */
+        hostName: string;
+        /**
+         * The hpc cluster id.
+         */
+        hpcClusterId: string;
+        /**
+         * The id of the launch template.
+         */
+        id: string;
+        /**
+         * The image id.
+         */
+        imageId: string;
+        /**
+         * The charge type of the instance and volume.
+         */
+        instanceChargeType: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+        /**
+         * When you log in to the instance using the SSH key pair, enter the name of the key pair.
+         */
+        keyPairName: string;
+        /**
+         * The latest version of the launch template.
+         */
+        latestVersionNumber: number;
+        /**
+         * The id of the launch template.
+         */
+        launchTemplateId: string;
+        /**
+         * The name of the launch template.
+         */
+        launchTemplateName: string;
+        /**
+         * The list of network interfaces.
+         */
+        networkInterfaces: outputs.ecs.GetLaunchTemplatesLaunchTemplateNetworkInterface[];
+        /**
+         * Whether to open the security reinforcement.
+         */
+        securityEnhancementStrategy: string;
+        /**
+         * The index of the ordered suffix.
+         */
+        suffixIndex: number;
+        /**
+         * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
+         */
+        uniqueSuffix: boolean;
+        /**
+         * The updated time of the launch template.
+         */
+        updatedAt: string;
+        /**
+         * The latest version description of the launch template.
+         */
+        versionDescription: string;
+        /**
+         * The list of volume of the scaling configuration.
+         */
+        volumes: outputs.ecs.GetLaunchTemplatesLaunchTemplateVolume[];
+        /**
+         * The vpc id.
+         */
+        vpcId: string;
+        /**
+         * The zone ID of the instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetLaunchTemplatesLaunchTemplateNetworkInterface {
+        /**
+         * The security group ID associated with the NIC.
+         */
+        securityGroupIds: string[];
+        /**
+         * The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
+         */
+        subnetId: string;
+    }
+
+    export interface GetLaunchTemplatesLaunchTemplateVolume {
+        /**
+         * The delete with instance flag of volume. Valid values: true, false. Default value: true.
+         */
+        deleteWithInstance: boolean;
+        /**
+         * The size of volume.
+         */
+        size: number;
+        /**
+         * The type of volume.
+         */
+        volumeType: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        id: string;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
     }
 
     export interface HpcClustersHpcCluster {
@@ -7833,9 +14438,646 @@ export namespace eip {
         value: string;
     }
 
+    export interface GetAddressesAddress {
+        /**
+         * The id of the EIP address.
+         */
+        allocationId: string;
+        /**
+         * The allocation time of the EIP.
+         */
+        allocationTime: string;
+        /**
+         * The peek bandwidth of the EIP.
+         */
+        bandwidth: number;
+        /**
+         * The id of the bandwidth package.
+         */
+        bandwidthPackageId: string;
+        /**
+         * The billing type of the EIP.
+         */
+        billingType: string;
+        /**
+         * The business status of the EIP.
+         */
+        businessStatus: string;
+        /**
+         * The deleted time of the EIP.
+         */
+        deletedTime: string;
+        /**
+         * The description of the EIP.
+         */
+        description: string;
+        /**
+         * The EIP ip address of the EIP.
+         */
+        eipAddress: string;
+        /**
+         * The expired time of the EIP.
+         */
+        expiredTime: string;
+        /**
+         * The id of the EIP address.
+         */
+        id: string;
+        /**
+         * The instance id which be associated to the EIP.
+         */
+        instanceId: string;
+        /**
+         * The type of the associated instance.
+         */
+        instanceType: string;
+        /**
+         * An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+         */
+        isp: string;
+        /**
+         * The lock reason of the EIP.
+         */
+        lockReason: string;
+        /**
+         * A name of EIP.
+         */
+        name: string;
+        /**
+         * The overdue time of the EIP.
+         */
+        overdueTime: string;
+        /**
+         * The ProjectName of EIP.
+         */
+        projectName: string;
+        /**
+         * Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+         */
+        securityProtectionTypes: string[];
+        /**
+         * A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.eip.GetAddressesAddressTag[];
+        /**
+         * The last update time of the EIP.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetAddressesAddressTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAddressesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
 }
 
 export namespace escloud {
+    export interface GetInstancesInstance {
+        /**
+         * The charge status of instance.
+         */
+        chargeEnabled: boolean;
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * whether enable es private network.
+         */
+        enableEsPrivateNetwork: boolean;
+        /**
+         * whether enable es public network.
+         */
+        enableEsPublicNetwork: boolean;
+        /**
+         * whether enable kibana private network.
+         */
+        enableKibanaPrivateNetwork: boolean;
+        /**
+         * whether enable kibana public network.
+         */
+        enableKibanaPublicNetwork: boolean;
+        /**
+         * The es inner endpoint of instance.
+         */
+        esInnerEndpoint: string;
+        /**
+         * The es private domain of instance.
+         */
+        esPrivateDomain: string;
+        /**
+         * The es private endpoint of instance.
+         */
+        esPrivateEndpoint: string;
+        /**
+         * The es public domain of instance.
+         */
+        esPublicDomain: string;
+        /**
+         * The es public endpoint of instance.
+         */
+        esPublicEndpoint: string;
+        /**
+         * The expire time of instance.
+         */
+        expireDate: string;
+        /**
+         * The Id of instance.
+         */
+        id: string;
+        /**
+         * The configuration of instance.
+         */
+        instanceConfiguration: outputs.escloud.GetInstancesInstanceInstanceConfiguration;
+        /**
+         * The Id of instance.
+         */
+        instanceId: string;
+        /**
+         * The kibana private domain of instance.
+         */
+        kibanaPrivateDomain: string;
+        /**
+         * The kibana public domain of instance.
+         */
+        kibanaPublicDomain: string;
+        /**
+         * The maintenance day of instance.
+         */
+        maintenanceDays: string[];
+        /**
+         * The maintenance time of instance.
+         */
+        maintenanceTime: string;
+        /**
+         * The namespace of instance.
+         */
+        namespace: string;
+        /**
+         * The nodes info of instance.
+         */
+        nodes: outputs.escloud.GetInstancesInstanceNode[];
+        /**
+         * The plugin info of instance.
+         */
+        plugins: outputs.escloud.GetInstancesInstancePlugin[];
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The total nodes of instance.
+         */
+        totalNodes: number;
+        /**
+         * The user id of instance.
+         */
+        userId: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfiguration {
+        /**
+         * The user name of instance.
+         */
+        adminUserName: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * whether enable https.
+         */
+        enableHttps: boolean;
+        /**
+         * Whether enable pure master.
+         */
+        enablePureMaster: boolean;
+        /**
+         * The node number of host.
+         */
+        hotNodeNumber: number;
+        /**
+         * The node resource spec of host.
+         */
+        hotNodeResourceSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec;
+        /**
+         * The node storage spec of host.
+         */
+        hotNodeStorageSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The node number of kibana.
+         */
+        kibanaNodeNumber: number;
+        /**
+         * The node resource spec of kibana.
+         */
+        kibanaNodeResourceSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec;
+        /**
+         * The node storage spec of kibana.
+         */
+        kibanaNodeStorageSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec;
+        /**
+         * The node number of master.
+         */
+        masterNodeNumber: number;
+        /**
+         * The node resource spec of master.
+         */
+        masterNodeResourceSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec;
+        /**
+         * The node storage spec of master.
+         */
+        masterNodeStorageSpec: outputs.escloud.GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec;
+        /**
+         * The period of project.
+         */
+        period: number;
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * The region info of instance.
+         */
+        regionId: string;
+        /**
+         * The subnet info.
+         */
+        subnet: outputs.escloud.GetInstancesInstanceInstanceConfigurationSubnet;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+        /**
+         * The vpc info.
+         */
+        vpc: outputs.escloud.GetInstancesInstanceInstanceConfigurationVpc;
+        /**
+         * The zoneId of instance.
+         */
+        zoneId: string;
+        /**
+         * The zone number of instance.
+         */
+        zoneNumber: number;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationHotNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationHotNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationSubnet {
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of subnet.
+         */
+        subnetName: string;
+    }
+
+    export interface GetInstancesInstanceInstanceConfigurationVpc {
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface GetInstancesInstanceNode {
+        /**
+         * Is cold node.
+         */
+        isCold: boolean;
+        /**
+         * Is hot node.
+         */
+        isHot: boolean;
+        /**
+         * Is kibana node.
+         */
+        isKibana: boolean;
+        /**
+         * Is master node.
+         */
+        isMaster: boolean;
+        /**
+         * Is warm node.
+         */
+        isWarm: boolean;
+        /**
+         * The show name of node.
+         */
+        nodeDisplayName: string;
+        /**
+         * The name of node.
+         */
+        nodeName: string;
+        /**
+         * The node resource spec of master.
+         */
+        resourceSpec: outputs.escloud.GetInstancesInstanceNodeResourceSpec;
+        /**
+         * The restart times of node.
+         */
+        restartNumber: number;
+        /**
+         * The start time of node.
+         */
+        startTime: string;
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The node storage spec of master.
+         */
+        storageSpec: outputs.escloud.GetInstancesInstanceNodeStorageSpec;
+    }
+
+    export interface GetInstancesInstanceNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstanceNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+        /**
+         * The type of storage spec.
+         */
+        type: string;
+    }
+
+    export interface GetInstancesInstancePlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
     export interface InstanceInstanceConfiguration {
         /**
          * The password of administrator account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -8680,7 +15922,7 @@ export namespace escloud_v2 {
          */
         supportCodeNode: boolean;
         /**
-         * Tags.
+         * The tags of instance.
          */
         tags: outputs.escloud_v2.EscloudInstancesV2InstanceTag[];
         /**
@@ -8779,7 +16021,7 @@ export namespace escloud_v2 {
          */
         period: number;
         /**
-         * The name of project.
+         * The project name of instance.
          */
         projectName: string;
         /**
@@ -8791,7 +16033,7 @@ export namespace escloud_v2 {
          */
         subnets: outputs.escloud_v2.EscloudInstancesV2InstanceInstanceConfigurationSubnet[];
         /**
-         * The version of instance.
+         * The version of plugin.
          */
         version: string;
         /**
@@ -8826,11 +16068,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -8838,14 +16080,14 @@ export namespace escloud_v2 {
          */
         memory: number;
         /**
-         * The name of resource spec.
+         * The name of storage spec.
          */
         name: string;
     }
 
     export interface EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -8876,11 +16118,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -8888,14 +16130,14 @@ export namespace escloud_v2 {
          */
         memory: number;
         /**
-         * The name of resource spec.
+         * The name of storage spec.
          */
         name: string;
     }
 
     export interface EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -8926,11 +16168,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -8938,14 +16180,14 @@ export namespace escloud_v2 {
          */
         memory: number;
         /**
-         * The name of resource spec.
+         * The name of storage spec.
          */
         name: string;
     }
 
     export interface EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -8976,11 +16218,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -8988,14 +16230,14 @@ export namespace escloud_v2 {
          */
         memory: number;
         /**
-         * The name of resource spec.
+         * The name of storage spec.
          */
         name: string;
     }
 
     export interface EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -9026,11 +16268,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -9038,14 +16280,14 @@ export namespace escloud_v2 {
          */
         memory: number;
         /**
-         * The name of resource spec.
+         * The name of storage spec.
          */
         name: string;
     }
 
     export interface EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -9098,11 +16340,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -9110,14 +16352,14 @@ export namespace escloud_v2 {
          */
         memory: number;
         /**
-         * The name of resource spec.
+         * The name of storage spec.
          */
         name: string;
     }
 
     export interface EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -9188,7 +16430,7 @@ export namespace escloud_v2 {
          */
         startTime: string;
         /**
-         * The status of node.
+         * The status of instance.
          */
         status: string;
         /**
@@ -9203,11 +16445,11 @@ export namespace escloud_v2 {
          */
         cpu: number;
         /**
-         * The description of resource spec.
+         * The description of plugin.
          */
         description: string;
         /**
-         * The show name of resource spec.
+         * The show name of storage spec.
          */
         displayName: string;
         /**
@@ -9218,7 +16460,7 @@ export namespace escloud_v2 {
 
     export interface EscloudInstancesV2InstanceNodeStorageSpec {
         /**
-         * The description of storage spec.
+         * The description of plugin.
          */
         description: string;
         /**
@@ -9245,7 +16487,7 @@ export namespace escloud_v2 {
          */
         pluginName: string;
         /**
-         * The status of plugin.
+         * The status of instance.
          */
         status: string;
         /**
@@ -9266,6 +16508,760 @@ export namespace escloud_v2 {
     }
 
     export interface EscloudInstancesV2Tag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetEscloudInstancesV2Instance {
+        /**
+         * Whether to enable cerebro.
+         */
+        cerebroEnabled: boolean;
+        /**
+         * The cerebro private domain of instance.
+         */
+        cerebroPrivateDomain: string;
+        /**
+         * The cerebro public domain of instance.
+         */
+        cerebroPublicDomain: string;
+        /**
+         * The charge status of instance.
+         */
+        chargeEnabled: boolean;
+        /**
+         * The cluster id of instance.
+         */
+        clusterId: string;
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * Whether enable deletion protection for ESCloud instance.
+         */
+        deletionProtection: boolean;
+        /**
+         * whether enable es private domain public.
+         */
+        enableEsPrivateDomainPublic: boolean;
+        /**
+         * whether enable es private network.
+         */
+        enableEsPrivateNetwork: boolean;
+        /**
+         * whether enable es public network.
+         */
+        enableEsPublicNetwork: boolean;
+        /**
+         * whether enable kibana private domain public.
+         */
+        enableKibanaPrivateDomainPublic: boolean;
+        /**
+         * whether enable kibana private network.
+         */
+        enableKibanaPrivateNetwork: boolean;
+        /**
+         * whether enable kibana public network.
+         */
+        enableKibanaPublicNetwork: boolean;
+        /**
+         * The eip address of instance.
+         */
+        esEip: string;
+        /**
+         * The eip id associated with the instance.
+         */
+        esEipId: string;
+        /**
+         * The es inner endpoint of instance.
+         */
+        esInnerEndpoint: string;
+        /**
+         * The es private domain of instance.
+         */
+        esPrivateDomain: string;
+        /**
+         * The es private endpoint of instance.
+         */
+        esPrivateEndpoint: string;
+        /**
+         * The whitelist of es private ip.
+         */
+        esPrivateIpWhitelist: string;
+        /**
+         * The es public domain of instance.
+         */
+        esPublicDomain: string;
+        /**
+         * The es public endpoint of instance.
+         */
+        esPublicEndpoint: string;
+        /**
+         * The whitelist of es public ip.
+         */
+        esPublicIpWhitelist: string;
+        /**
+         * The expire time of instance.
+         */
+        expireDate: string;
+        /**
+         * The id of instance.
+         */
+        id: string;
+        /**
+         * The configuration of instance.
+         */
+        instanceConfigurations: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfiguration[];
+        /**
+         * The id of instance.
+         */
+        instanceId: string;
+        /**
+         * The eip address of kibana.
+         */
+        kibanaEip: string;
+        /**
+         * The eip id associated with kibana.
+         */
+        kibanaEipId: string;
+        /**
+         * The kibana private domain of instance.
+         */
+        kibanaPrivateDomain: string;
+        /**
+         * The whitelist of kibana private ip.
+         */
+        kibanaPrivateIpWhitelist: string;
+        /**
+         * The kibana public domain of instance.
+         */
+        kibanaPublicDomain: string;
+        /**
+         * The whitelist of kibana public ip.
+         */
+        kibanaPublicIpWhitelist: string;
+        /**
+         * The main zone id of instance.
+         */
+        mainZoneId: string;
+        /**
+         * The maintenance day of instance.
+         */
+        maintenanceDays: string[];
+        /**
+         * The maintenance time of instance.
+         */
+        maintenanceTime: string;
+        /**
+         * The nodes info of instance.
+         */
+        nodes: outputs.escloud_v2.GetEscloudInstancesV2InstanceNode[];
+        /**
+         * The plugin info of instance.
+         */
+        plugins: outputs.escloud_v2.GetEscloudInstancesV2InstancePlugin[];
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * Whether support code node.
+         */
+        supportCodeNode: boolean;
+        /**
+         * The tags of instance.
+         */
+        tags: outputs.escloud_v2.GetEscloudInstancesV2InstanceTag[];
+        /**
+         * The total nodes of instance.
+         */
+        totalNodes: number;
+        /**
+         * The user id of instance.
+         */
+        userId: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfiguration {
+        /**
+         * The user name of instance.
+         */
+        adminUserName: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * The node number of cold.
+         */
+        coldNodeNumber: number;
+        /**
+         * The node resource spec of cold.
+         */
+        coldNodeResourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec[];
+        /**
+         * The node storage spec of cold.
+         */
+        coldNodeStorageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec[];
+        /**
+         * The node number of coordinator.
+         */
+        coordinatorNodeNumber: number;
+        /**
+         * The node resource spec of coordinator.
+         */
+        coordinatorNodeResourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec[];
+        /**
+         * The node storage spec of coordinator.
+         */
+        coordinatorNodeStorageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec[];
+        /**
+         * whether enable https.
+         */
+        enableHttps: boolean;
+        /**
+         * Whether enable pure master.
+         */
+        enablePureMaster: boolean;
+        /**
+         * The node number of hot.
+         */
+        hotNodeNumber: number;
+        /**
+         * The node resource spec of hot.
+         */
+        hotNodeResourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec[];
+        /**
+         * The node storage spec of hot.
+         */
+        hotNodeStorageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec[];
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The node number of kibana.
+         */
+        kibanaNodeNumber: number;
+        /**
+         * The node resource spec of kibana.
+         */
+        kibanaNodeResourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec[];
+        /**
+         * The node storage spec of kibana.
+         */
+        kibanaNodeStorageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec[];
+        /**
+         * The node number of master.
+         */
+        masterNodeNumber: number;
+        /**
+         * The node resource spec of master.
+         */
+        masterNodeResourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec[];
+        /**
+         * The node storage spec of master.
+         */
+        masterNodeStorageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec[];
+        /**
+         * The period of project.
+         */
+        period: number;
+        /**
+         * The project name of instance.
+         */
+        projectName: string;
+        /**
+         * The region info of instance.
+         */
+        regionId: string;
+        /**
+         * The subnet info.
+         */
+        subnets: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationSubnet[];
+        /**
+         * The version of plugin.
+         */
+        version: string;
+        /**
+         * The vpc info.
+         */
+        vpcs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationVpc[];
+        /**
+         * The node number of warm.
+         */
+        warmNodeNumber: number;
+        /**
+         * The node resource spec of warm.
+         */
+        warmNodeResourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec[];
+        /**
+         * The node storage spec of warm.
+         */
+        warmNodeStorageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec[];
+        /**
+         * The zoneId of instance.
+         */
+        zoneId: string;
+        /**
+         * The zone number of instance.
+         */
+        zoneNumber: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationSubnet {
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of subnet.
+         */
+        subnetName: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationVpc {
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceNode {
+        /**
+         * Is cold node.
+         */
+        isCold: boolean;
+        /**
+         * Is coordinator node.
+         */
+        isCoordinator: boolean;
+        /**
+         * Is hot node.
+         */
+        isHot: boolean;
+        /**
+         * Is kibana node.
+         */
+        isKibana: boolean;
+        /**
+         * Is master node.
+         */
+        isMaster: boolean;
+        /**
+         * Is warm node.
+         */
+        isWarm: boolean;
+        /**
+         * The show name of node.
+         */
+        nodeDisplayName: string;
+        /**
+         * The name of node.
+         */
+        nodeName: string;
+        /**
+         * The node resource spec of master.
+         */
+        resourceSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceNodeResourceSpec[];
+        /**
+         * The restart times of node.
+         */
+        restartNumber: number;
+        /**
+         * The start time of node.
+         */
+        startTime: string;
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The node storage spec of master.
+         */
+        storageSpecs: outputs.escloud_v2.GetEscloudInstancesV2InstanceNodeStorageSpec[];
+    }
+
+    export interface GetEscloudInstancesV2InstanceNodeResourceSpec {
+        /**
+         * The cpu info of resource spec.
+         */
+        cpu: number;
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory info of resource spec.
+         */
+        memory: number;
+    }
+
+    export interface GetEscloudInstancesV2InstanceNodeStorageSpec {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The show name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec.
+         */
+        minSize: number;
+    }
+
+    export interface GetEscloudInstancesV2InstancePlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface GetEscloudInstancesV2InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetEscloudInstancesV2Tag {
         /**
          * The Key of Tags.
          */
@@ -9353,6 +17349,80 @@ export namespace financial_relation {
         authStatus: number;
     }
 
+    export interface GetFinancialRelationsFinancialRelation {
+        /**
+         * The display name of the sub account.
+         */
+        accountAlias: string;
+        /**
+         * The authorization info of the financial relation.
+         */
+        authInfos: outputs.financial_relation.GetFinancialRelationsFinancialRelationAuthInfo[];
+        /**
+         * The filiation of the financial relation.
+         */
+        filiation: number;
+        /**
+         * The filiation description of the financial relation.
+         */
+        filiationDesc: string;
+        /**
+         * The id of the major account.
+         */
+        majorAccountId: number;
+        /**
+         * The name of the major account.
+         */
+        majorAccountName: string;
+        /**
+         * A list of relation. Valid values: `1`, `4`.
+         */
+        relation: number;
+        /**
+         * The relation description of the financial.
+         */
+        relationDesc: string;
+        /**
+         * The id of the financial relation.
+         */
+        relationId: string;
+        /**
+         * A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
+         */
+        status: number;
+        /**
+         * The status description of the financial relation.
+         */
+        statusDesc: string;
+        /**
+         * The id of the sub account.
+         */
+        subAccountId: number;
+        /**
+         * The name of the sub account.
+         */
+        subAccountName: string;
+        /**
+         * The update time of the financial relation.
+         */
+        updateTime: string;
+    }
+
+    export interface GetFinancialRelationsFinancialRelationAuthInfo {
+        /**
+         * The auth id of the financial relation.
+         */
+        authId: string;
+        /**
+         * The auth list of the financial relation.
+         */
+        authLists: number[];
+        /**
+         * The auth status of the financial relation.
+         */
+        authStatus: number;
+    }
+
 }
 
 export namespace iam {
@@ -9375,6 +17445,243 @@ export namespace iam {
         updateDate: string;
         /**
          * The user names.
+         */
+        userName: string;
+    }
+
+    export interface GetAccessKeysAccessKeyMetadata {
+        /**
+         * The user access key id.
+         */
+        accessKeyId: string;
+        /**
+         * The user access key create date.
+         */
+        createDate: string;
+        /**
+         * The user access key status.
+         */
+        status: string;
+        /**
+         * The user access key update date.
+         */
+        updateDate: string;
+        /**
+         * The user names.
+         */
+        userName: string;
+    }
+
+    export interface GetPoliciesPolicy {
+        /**
+         * The create time of the Policy.
+         */
+        createDate: string;
+        /**
+         * The description of the Policy.
+         */
+        description: string;
+        /**
+         * The ID of the Policy.
+         */
+        id: string;
+        /**
+         * The document of the Policy.
+         */
+        policyDocument: string;
+        /**
+         * The name of the Policy.
+         */
+        policyName: string;
+        /**
+         * The resource name of the Policy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the Policy.
+         */
+        policyType: string;
+        /**
+         * The role attach time of the Policy.The data show only query with role_name.
+         */
+        roleAttachDate: string;
+        /**
+         * The name of the IAM role.
+         */
+        roleName: string;
+        /**
+         * The update time of the Policy.
+         */
+        updateDate: string;
+        /**
+         * The user attach time of the Policy.The data show only query with user_name.
+         */
+        userAttachDate: string;
+        /**
+         * The name of the IAM user.
+         */
+        userName: string;
+    }
+
+    export interface GetRolesRole {
+        /**
+         * The create time of the Role.
+         */
+        createDate: string;
+        /**
+         * The description of the Role.
+         */
+        description: string;
+        /**
+         * The ID of the Role.
+         */
+        id: string;
+        /**
+         * The name of the Role, comma separated.
+         */
+        roleName: string;
+        /**
+         * The resource name of the Role.
+         */
+        trn: string;
+        /**
+         * The trust policy document of the Role.
+         */
+        trustPolicyDocument: string;
+    }
+
+    export interface GetSamlProvidersProvider {
+        /**
+         * Identity provider creation time, such as 20150123T123318Z.
+         */
+        createDate: string;
+        /**
+         * The description of the SAML provider.
+         */
+        description: string;
+        /**
+         * Metadata document, encoded in Base64.
+         */
+        encodedSamlMetadataDocument: string;
+        /**
+         * The name of the SAML provider.
+         */
+        samlProviderName: string;
+        /**
+         * SSO types, 1. Role-based SSO, 2. User-based SSO.
+         */
+        ssoType: number;
+        /**
+         * User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+         */
+        status: number;
+        /**
+         * The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+         */
+        trn: string;
+        /**
+         * Identity provider update time, such as: 20150123T123318Z.
+         */
+        updateDate: string;
+    }
+
+    export interface GetUserGroupPolicyAttachmentsPolicy {
+        /**
+         * Attached time.
+         */
+        attachDate: string;
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * Name of the policy.
+         */
+        policyName: string;
+        /**
+         * Resource name of the strategy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the policy.
+         */
+        policyType: string;
+    }
+
+    export interface GetUserGroupsUserGroup {
+        /**
+         * The id of the account.
+         */
+        accountId: number;
+        /**
+         * The creation date of the user group.
+         */
+        createDate: string;
+        /**
+         * The description of the user group.
+         */
+        description: string;
+        /**
+         * The display name of the user group.
+         */
+        displayName: string;
+        /**
+         * The update date of the user group.
+         */
+        updateDate: string;
+        /**
+         * The name of the user group.
+         */
+        userGroupName: string;
+    }
+
+    export interface GetUsersUser {
+        /**
+         * Main account ID to which the sub-user belongs.
+         */
+        accountId: string;
+        /**
+         * The create date of the user.
+         */
+        createDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The email of the user.
+         */
+        email: string;
+        /**
+         * Whether the email has been verified.
+         */
+        emailIsVerify: boolean;
+        /**
+         * The mobile phone of the user.
+         */
+        mobilePhone: string;
+        /**
+         * Whether the phone number has been verified.
+         */
+        mobilePhoneIsVerify: boolean;
+        /**
+         * The trn of the user.
+         */
+        trn: string;
+        /**
+         * The update date of the user.
+         */
+        updateDate: string;
+        /**
+         * The id of the user.
+         */
+        userId: string;
+        /**
+         * The name of the user.
          */
         userName: string;
     }
@@ -9632,6 +17939,411 @@ export namespace kafka {
          * The name of kafka topic. This field supports fuzzy query.
          */
         topicName: string;
+    }
+
+    export interface GetConsumedPartitionsConsumedPartition {
+        /**
+         * The total amount of message accumulation in this topic partition for the consumer group.
+         */
+        accumulation: number;
+        /**
+         * The consumed client info of partition.
+         */
+        consumedClient: string;
+        /**
+         * The consumed offset of partition.
+         */
+        consumedOffset: number;
+        /**
+         * The end offset of partition.
+         */
+        endOffset: number;
+        /**
+         * The index number of partition.
+         */
+        partitionId: number;
+        /**
+         * The start offset of partition.
+         */
+        startOffset: number;
+    }
+
+    export interface GetConsumedTopicsConsumedTopic {
+        /**
+         * The total amount of message accumulation in this topic for the consumer group.
+         */
+        accumulation: number;
+        /**
+         * The name of kafka topic. This field supports fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface GetGroupsGroup {
+        /**
+         * The id of kafka group, support fuzzy matching.
+         */
+        groupId: string;
+        /**
+         * The state of kafka group.
+         */
+        state: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The id of account.
+         */
+        accountId: string;
+        /**
+         * The auto renew status of instance.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge expire time of instance.
+         */
+        chargeExpireTime: string;
+        /**
+         * The charge start time of instance.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status of instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * The compute spec of instance.
+         */
+        computeSpec: string;
+        /**
+         * Connection info of the instance.
+         */
+        connectionInfos: outputs.kafka.GetInstancesInstanceConnectionInfo[];
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * The id of eip.
+         */
+        eipId: string;
+        /**
+         * The id of instance.
+         */
+        id: string;
+        /**
+         * The description of instance.
+         */
+        instanceDescription: string;
+        /**
+         * The id of instance.
+         */
+        instanceId: string;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The status of instance.
+         */
+        instanceStatus: string;
+        /**
+         * The overdue reclaim time of instance.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of instance.
+         */
+        overdueTime: string;
+        /**
+         * Parameters of the instance.
+         */
+        parameters: outputs.kafka.GetInstancesInstanceParameter[];
+        /**
+         * The period unit of instance.
+         */
+        periodUnit: string;
+        /**
+         * Whether enable private domain on public.
+         */
+        privateDomainOnPublic: boolean;
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * The id of region.
+         */
+        regionId: string;
+        /**
+         * The storage space of instance.
+         */
+        storageSpace: number;
+        /**
+         * The storage type of instance.
+         */
+        storageType: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The tags of instance.
+         */
+        tags: outputs.kafka.GetInstancesInstanceTag[];
+        /**
+         * The usable partition number of instance.
+         */
+        usablePartitionNumber: number;
+        /**
+         * The used group number of instance.
+         */
+        usedGroupNumber: number;
+        /**
+         * The used partition number of instance.
+         */
+        usedPartitionNumber: number;
+        /**
+         * The used storage space of instance.
+         */
+        usedStorageSpace: number;
+        /**
+         * The used topic number of instance.
+         */
+        usedTopicNumber: number;
+        /**
+         * The version of instance.
+         */
+        version: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The zone id of instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceConnectionInfo {
+        /**
+         * The endpoint type of instance.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of instance.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of instance.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of instance.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface GetInstancesInstanceParameter {
+        /**
+         * Parameter name.
+         */
+        parameterName: string;
+        /**
+         * Parameter value.
+         */
+        parameterValue: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The key of tag.
+         */
+        key: string;
+        /**
+         * The value of tag.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The key of tag.
+         */
+        key: string;
+        /**
+         * The value of tag.
+         */
+        value: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The description of region.
+         */
+        description: string;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+        /**
+         * The status of region.
+         */
+        status: string;
+    }
+
+    export interface GetSaslUsersUser {
+        /**
+         * Whether this user has read and write permissions for all topics.
+         */
+        allAuthority: boolean;
+        /**
+         * The create time.
+         */
+        createTime: string;
+        /**
+         * The description of user.
+         */
+        description: string;
+        /**
+         * The type of password.
+         */
+        passwordType: string;
+        /**
+         * The user name, support fuzzy matching.
+         */
+        userName: string;
+    }
+
+    export interface GetTopicPartitionsPartition {
+        /**
+         * The end offset of partition leader.
+         */
+        endOffset: number;
+        /**
+         * The insync replica info.
+         */
+        insyncReplicas: number[];
+        /**
+         * The leader info of partition.
+         */
+        leader: number;
+        /**
+         * The count of message.
+         */
+        messageCount: number;
+        /**
+         * The index number of partition.
+         */
+        partitionId: number;
+        /**
+         * The replica info.
+         */
+        replicas: number[];
+        /**
+         * The start offset of partition leader.
+         */
+        startOffset: number;
+        /**
+         * The under insync replica info.
+         */
+        underInsyncReplicas: number[];
+    }
+
+    export interface GetTopicsTopic {
+        /**
+         * The access policies info of the kafka topic.
+         */
+        accessPolicies: outputs.kafka.GetTopicsTopicAccessPolicy[];
+        /**
+         * Whether the kafka topic is configured to be accessible by all users.
+         */
+        allAuthority: boolean;
+        /**
+         * The create time of the kafka topic.
+         */
+        createTime: string;
+        /**
+         * The description of the kafka topic.
+         */
+        description: string;
+        /**
+         * The parameters of the kafka topic.
+         */
+        parameters: outputs.kafka.GetTopicsTopicParameters;
+        /**
+         * The number of partition in kafka topic.
+         */
+        partitionNumber: number;
+        /**
+         * The number of replica in kafka topic.
+         */
+        replicaNumber: number;
+        /**
+         * The status of the kafka topic.
+         */
+        status: string;
+        /**
+         * The name of kafka topic. This field supports fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface GetTopicsTopicAccessPolicy {
+        /**
+         * The access policy of SASL user.
+         */
+        accessPolicy: string;
+        /**
+         * When a user name is specified, only the access policy of the specified user for this Topic will be returned.
+         */
+        userName: string;
+    }
+
+    export interface GetTopicsTopicParameters {
+        /**
+         * The retention hours of log.
+         */
+        logRetentionHours: number;
+        /**
+         * The max byte of message.
+         */
+        messageMaxByte: number;
+        /**
+         * The min number of sync replica.
+         */
+        minInsyncReplicaNumber: number;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The status of the zone.
+         */
+        status: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
     export interface GroupsGroup {
@@ -10165,6 +18877,796 @@ export namespace mongodb {
          * The node ID.
          */
         nodeId: string;
+    }
+
+    export interface GetAccountsAccount {
+        /**
+         * The description of account.
+         */
+        accountDesc: string;
+        /**
+         * The name of account. This field support fuzzy query.
+         */
+        accountName: string;
+        /**
+         * The privilege info of mongo instance.
+         */
+        accountPrivileges: outputs.mongodb.GetAccountsAccountAccountPrivilege[];
+        /**
+         * The type of account.
+         */
+        accountType: string;
+        /**
+         * The database of account. This field support fuzzy query.
+         */
+        authDb: string;
+        /**
+         * The create time of account.
+         */
+        createTime: string;
+        /**
+         * The modify time of account.
+         */
+        modifyTime: string;
+    }
+
+    export interface GetAccountsAccountAccountPrivilege {
+        /**
+         * The Name of DB.
+         */
+        dbName: string;
+        /**
+         * The Name of role.
+         */
+        roleName: string;
+    }
+
+    export interface GetEndpointsEndpoint {
+        /**
+         * The list of mongodb addresses.
+         */
+        dbAddresses: outputs.mongodb.GetEndpointsEndpointDbAddress[];
+        /**
+         * The ID of endpoint.
+         */
+        endpointId: string;
+        /**
+         * The endpoint information.
+         */
+        endpointStr: string;
+        /**
+         * The node type corresponding to the endpoint.
+         */
+        endpointType: string;
+        /**
+         * The network type of endpoint.
+         */
+        networkType: string;
+        /**
+         * The object ID corresponding to the endpoint.
+         */
+        objectId: string;
+        /**
+         * The subnet ID.
+         */
+        subnetId: string;
+        /**
+         * The VPC ID.
+         */
+        vpcId: string;
+    }
+
+    export interface GetEndpointsEndpointDbAddress {
+        /**
+         * The domain of mongodb connection.
+         */
+        addressDomain: string;
+        /**
+         * The IP of mongodb connection.
+         */
+        addressIp: string;
+        /**
+         * The port of mongodb connection.
+         */
+        addressPort: string;
+        /**
+         * The connection type of mongodb.
+         */
+        addressType: string;
+        /**
+         * The EIP ID bound to the instance's public network address.
+         */
+        eipId: string;
+        /**
+         * The node ID.
+         */
+        nodeId: string;
+    }
+
+    export interface GetInstanceParameterLogsParameterChangeLogs {
+        /**
+         * The modifying time of parameter.
+         */
+        modifyTime: string;
+        /**
+         * The new parameter value.
+         */
+        newParameterValue: string;
+        /**
+         * The old parameter value.
+         */
+        oldParameterValue: string;
+        /**
+         * The parameter name.
+         */
+        parameterName: string;
+        /**
+         * The node type to which the parameter belongs.
+         */
+        parameterRole: string;
+        /**
+         * The status of parameter change.
+         */
+        parameterStatus: string;
+    }
+
+    export interface GetInstanceParametersInstanceParameter {
+        /**
+         * The checking code of parameter.
+         */
+        checkingCode: string;
+        /**
+         * Whether the parameter supports modifying.
+         */
+        forceModify: boolean;
+        /**
+         * Does the new parameter value need to restart the instance to take effect after modification.
+         */
+        forceRestart: boolean;
+        /**
+         * The default value of parameter.
+         */
+        parameterDefaultValue: string;
+        /**
+         * The description of parameter.
+         */
+        parameterDescription: string;
+        /**
+         * The name of parameter.
+         */
+        parameterName: string;
+        /**
+         * The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+         */
+        parameterRole: string;
+        /**
+         * The type of parameter value.
+         */
+        parameterType: string;
+        /**
+         * The value of parameter.
+         */
+        parameterValue: string;
+    }
+
+    export interface GetInstanceParametersParameter {
+        /**
+         * The database engine.
+         */
+        dbEngine: string;
+        /**
+         * The database engine version.
+         */
+        dbEngineVersion: string;
+        /**
+         * The instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * The list of parameters.
+         */
+        instanceParameters: outputs.mongodb.GetInstanceParametersParameterInstanceParameter[];
+        /**
+         * The total parameters queried.
+         */
+        total: string;
+    }
+
+    export interface GetInstanceParametersParameterInstanceParameter {
+        /**
+         * The checking code of parameter.
+         */
+        checkingCode: string;
+        /**
+         * Whether the parameter supports modifying.
+         */
+        forceModify: boolean;
+        /**
+         * Does the new parameter value need to restart the instance to take effect after modification.
+         */
+        forceRestart: boolean;
+        /**
+         * The default value of parameter.
+         */
+        parameterDefaultValue: string;
+        /**
+         * The description of parameter.
+         */
+        parameterDescription: string;
+        /**
+         * The name of parameter.
+         */
+        parameterName: string;
+        /**
+         * The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+         */
+        parameterRole: string;
+        /**
+         * The type of parameter value.
+         */
+        parameterType: string;
+        /**
+         * The value of parameter.
+         */
+        parameterValue: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * Whether to enable automatic renewal.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge status.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * The planned close time.
+         */
+        closedTime: string;
+        /**
+         * The list of config servers.
+         */
+        configServers: outputs.mongodb.GetInstancesInstanceConfigServer[];
+        /**
+         * The ID of config servers.
+         */
+        configServersId: string;
+        /**
+         * The creation time of instance.
+         */
+        createTime: string;
+        /**
+         * The db engine to query, valid value contains `MongoDB`.
+         */
+        dbEngine: string;
+        /**
+         * The version of db engine to query, valid value contains `MongoDB_4_0`.
+         */
+        dbEngineVersion: string;
+        /**
+         * The version string of database engine.
+         */
+        dbEngineVersionStr: string;
+        /**
+         * The expired time of instance.
+         */
+        expiredTime: string;
+        /**
+         * The instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * The instance name to query.
+         */
+        instanceName: string;
+        /**
+         * The instance status to query.
+         */
+        instanceStatus: string;
+        /**
+         * The type of instance to query, the valid value contains `ReplicaSet` or `ShardedCluster`.
+         */
+        instanceType: string;
+        /**
+         * The list of mongos.
+         */
+        mongos: outputs.mongodb.GetInstancesInstanceMongo[];
+        /**
+         * The ID of mongos.
+         */
+        mongosId: string;
+        /**
+         * The node information.
+         */
+        nodes: outputs.mongodb.GetInstancesInstanceNode[];
+        /**
+         * The private endpoint address of instance.
+         */
+        privateEndpoint: string;
+        /**
+         * The project name to query.
+         */
+        projectName: string;
+        /**
+         * The number of readonly node in instance.
+         */
+        readOnlyNodeNumber: number;
+        /**
+         * The planned reclaim time of instance.
+         */
+        reclaimTime: string;
+        /**
+         * The list of shards.
+         */
+        shards: outputs.mongodb.GetInstancesInstanceShard[];
+        /**
+         * Whether ssl enabled.
+         */
+        sslEnable: boolean;
+        /**
+         * The ssl expire time.
+         */
+        sslExpireTime: string;
+        /**
+         * Whether ssl is valid.
+         */
+        sslIsValid: boolean;
+        /**
+         * The storage type of instance.
+         */
+        storageType: string;
+        /**
+         * The subnet id of instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.mongodb.GetInstancesInstanceTag[];
+        /**
+         * The update time of instance.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of instance to query.
+         */
+        vpcId: string;
+        /**
+         * The zone ID to query.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceConfigServer {
+        /**
+         * The config server node ID.
+         */
+        configServerNodeId: string;
+        /**
+         * The nod role.
+         */
+        nodeRole: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+        /**
+         * The total memory in GB.
+         */
+        totalMemoryGb: number;
+        /**
+         * The total vCPU.
+         */
+        totalVcpu: number;
+        /**
+         * The used memory in GB.
+         */
+        usedMemoryGb: number;
+        /**
+         * The used vCPU.
+         */
+        usedVcpu: number;
+        /**
+         * The zone ID to query.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceMongo {
+        /**
+         * The mongos node ID.
+         */
+        mongosNodeId: string;
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+        /**
+         * The total memory in GB.
+         */
+        totalMemoryGb: number;
+        /**
+         * The total vCPU.
+         */
+        totalVcpu: number;
+        /**
+         * The used memory in GB.
+         */
+        usedMemoryGb: number;
+        /**
+         * The used vCPU.
+         */
+        usedVcpu: number;
+        /**
+         * The zone ID to query.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceNode {
+        /**
+         * The master-slave delay time.
+         */
+        nodeDelayTime: number;
+        /**
+         * The node ID.
+         */
+        nodeId: string;
+        /**
+         * The nod role.
+         */
+        nodeRole: string;
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+        /**
+         * The total memory in GB.
+         */
+        totalMemoryGb: number;
+        /**
+         * The total storage in GB.
+         */
+        totalStorageGb: number;
+        /**
+         * The total vCPU.
+         */
+        totalVcpu: number;
+        /**
+         * The used memory in GB.
+         */
+        usedMemoryGb: number;
+        /**
+         * The used storage in GB.
+         */
+        usedStorageGb: number;
+        /**
+         * The used vCPU.
+         */
+        usedVcpu: number;
+        /**
+         * The zone ID to query.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceShard {
+        /**
+         * The node information.
+         */
+        nodes: outputs.mongodb.GetInstancesInstanceShardNode[];
+        /**
+         * The shard ID.
+         */
+        shardId: string;
+    }
+
+    export interface GetInstancesInstanceShardNode {
+        /**
+         * The master-slave delay time.
+         */
+        nodeDelayTime: number;
+        /**
+         * The node ID.
+         */
+        nodeId: string;
+        /**
+         * The nod role.
+         */
+        nodeRole: string;
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+        /**
+         * The total memory in GB.
+         */
+        totalMemoryGb: number;
+        /**
+         * The total storage in GB.
+         */
+        totalStorageGb: number;
+        /**
+         * The total vCPU.
+         */
+        totalVcpu: number;
+        /**
+         * The used memory in GB.
+         */
+        usedMemoryGb: number;
+        /**
+         * The used storage in GB.
+         */
+        usedStorageGb: number;
+        /**
+         * The used vCPU.
+         */
+        usedVcpu: number;
+        /**
+         * The zone ID to query.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetMongoAllowListsAllowList {
+        /**
+         * The list of IP address in allow list.
+         */
+        allowList: string;
+        /**
+         * The description of allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The ID of allow list.
+         */
+        allowListId: string;
+        /**
+         * The number of allow list IPs.
+         */
+        allowListIpNum: number;
+        /**
+         * The allow list name.
+         */
+        allowListName: string;
+        /**
+         * The IP address type in allow list.
+         */
+        allowListType: string;
+        /**
+         * The total number of instances bound under the allow list.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of associated instances.
+         */
+        associatedInstances: outputs.mongodb.GetMongoAllowListsAllowListAssociatedInstance[];
+        /**
+         * The project name of the allow list.
+         */
+        projectName: string;
+    }
+
+    export interface GetMongoAllowListsAllowListAssociatedInstance {
+        /**
+         * The instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * The instance name that bound to the allow list.
+         */
+        instanceName: string;
+        /**
+         * The project name of the allow list.
+         */
+        projectName: string;
+        /**
+         * The VPC ID.
+         */
+        vpc: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface GetSpecsSpecs {
+        /**
+         * The collection of config server node specs.
+         */
+        configServerNodeSpecs: outputs.mongodb.GetSpecsSpecsConfigServerNodeSpec[];
+        /**
+         * The collection of mongos node specs.
+         */
+        mongosNodeSpecs: outputs.mongodb.GetSpecsSpecsMongosNodeSpec[];
+        /**
+         * The collection of node specs.
+         */
+        nodeSpecs: outputs.mongodb.GetSpecsSpecsNodeSpec[];
+        /**
+         * The collection of shard node specs.
+         */
+        shardNodeSpecs: outputs.mongodb.GetSpecsSpecsShardNodeSpec[];
+    }
+
+    export interface GetSpecsSpecsConfigServerNodeSpec {
+        /**
+         * The cpu cores.
+         */
+        cpuNum: number;
+        /**
+         * The max connections.
+         */
+        maxConn: number;
+        /**
+         * The max storage.
+         */
+        maxStorage: number;
+        /**
+         * The memory in GB.
+         */
+        memInGb: number;
+        /**
+         * The min storage.
+         */
+        minStorage: number;
+        /**
+         * The shard node spec name.
+         */
+        specName: string;
+    }
+
+    export interface GetSpecsSpecsMongosNodeSpec {
+        /**
+         * The cpu cores.
+         */
+        cpuNum: number;
+        /**
+         * The max connections.
+         */
+        maxConn: number;
+        /**
+         * The memory in GB.
+         */
+        memInGb: number;
+        /**
+         * The shard node spec name.
+         */
+        specName: string;
+    }
+
+    export interface GetSpecsSpecsNodeSpec {
+        /**
+         * The cpu cores.
+         */
+        cpuNum: number;
+        /**
+         * The max connections.
+         */
+        maxConn: number;
+        /**
+         * The max storage.
+         */
+        maxStorage: number;
+        /**
+         * The memory in GB.
+         */
+        memInDb: number;
+        /**
+         * The min storage.
+         */
+        minStorage: number;
+        /**
+         * The shard node spec name.
+         */
+        specName: string;
+    }
+
+    export interface GetSpecsSpecsShardNodeSpec {
+        /**
+         * The cpu cores.
+         */
+        cpuNum: number;
+        /**
+         * The max connections.
+         */
+        maxConn: number;
+        /**
+         * The max storage.
+         */
+        maxStorage: number;
+        /**
+         * The memory in GB.
+         */
+        memInGb: number;
+        /**
+         * The min storage.
+         */
+        minStorage: number;
+        /**
+         * The shard node spec name.
+         */
+        specName: string;
+    }
+
+    export interface GetSslStatesSslState {
+        /**
+         * The mongodb instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * Whetehr SSL is valid.
+         */
+        isValid: boolean;
+        /**
+         * Whether SSL is enabled.
+         */
+        sslEnable: boolean;
+        /**
+         * The expire time of SSL.
+         */
+        sslExpiredTime: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
     export interface InstanceMongo {
@@ -11048,6 +20550,427 @@ export namespace nas {
         value: string;
     }
 
+    export interface GetFileSystemsFileSystem {
+        /**
+         * The capacity of the nas file system.
+         */
+        capacities: outputs.nas.GetFileSystemsFileSystemCapacity[];
+        /**
+         * The charge type of nas file system.
+         */
+        chargeType: string;
+        /**
+         * The create time of the nas file system.
+         */
+        createTime: string;
+        /**
+         * The description of the nas file system.
+         */
+        description: string;
+        /**
+         * The id of the nas file system.
+         */
+        fileSystemId: string;
+        /**
+         * The name of nas file system. This field supports fuzzy queries.
+         */
+        fileSystemName: string;
+        /**
+         * The type of the nas file system.
+         */
+        fileSystemType: string;
+        /**
+         * The id of the nas file system.
+         */
+        id: string;
+        /**
+         * The project name of nas file system.
+         */
+        projectName: string;
+        /**
+         * The protocol type of nas file system.
+         */
+        protocolType: string;
+        /**
+         * The region id of the nas file system.
+         */
+        regionId: string;
+        /**
+         * The snapshot count of the nas file system.
+         */
+        snapshotCount: number;
+        /**
+         * The status of nas file system.
+         */
+        status: string;
+        /**
+         * The storage type of nas file system.
+         */
+        storageType: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nas.GetFileSystemsFileSystemTag[];
+        /**
+         * The update time of the nas file system.
+         */
+        updateTime: string;
+        /**
+         * The version of the nas file system.
+         */
+        version: string;
+        /**
+         * The zone id of nas file system.
+         */
+        zoneId: string;
+        /**
+         * The zone name of the nas file system.
+         */
+        zoneName: string;
+    }
+
+    export interface GetFileSystemsFileSystemCapacity {
+        /**
+         * The total capacity of the nas file system. Unit: GiB.
+         */
+        total: number;
+        /**
+         * The used capacity of the nas file system. Unit: MiB.
+         */
+        used: number;
+    }
+
+    export interface GetFileSystemsFileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFileSystemsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetMountPointsMountPoint {
+        /**
+         * The creation time of the permission group.
+         */
+        createTime: string;
+        /**
+         * The dns address.
+         */
+        domain: string;
+        /**
+         * The address of the mount point.
+         */
+        ip: string;
+        /**
+         * The id of the mount point.
+         */
+        mountPointId: string;
+        /**
+         * The name of the mount point.
+         */
+        mountPointName: string;
+        /**
+         * The struct of the permission group.
+         */
+        permissionGroups: outputs.nas.GetMountPointsMountPointPermissionGroup[];
+        /**
+         * The status of the mount point.
+         */
+        status: string;
+        /**
+         * The id of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of the subnet.
+         */
+        subnetName: string;
+        /**
+         * The update time of the mount point.
+         */
+        updateTime: string;
+        /**
+         * The id of the vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of the vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface GetMountPointsMountPointPermissionGroup {
+        /**
+         * The creation time of the permission group.
+         */
+        createTime: string;
+        /**
+         * The description of the permission group.
+         */
+        description: string;
+        /**
+         * The number of the file system.
+         */
+        fileSystemCount: number;
+        /**
+         * The file system type of the permission group.
+         */
+        fileSystemType: string;
+        /**
+         * The list of the mount point.
+         */
+        mountPoints: outputs.nas.GetMountPointsMountPointPermissionGroupMountPoint[];
+        /**
+         * The id of the permission group.
+         */
+        permissionGroupId: string;
+        /**
+         * The name of the permission group.
+         */
+        permissionGroupName: string;
+        /**
+         * The number of the permission rule.
+         */
+        permissionRuleCount: number;
+    }
+
+    export interface GetMountPointsMountPointPermissionGroupMountPoint {
+        /**
+         * The id of the file system.
+         */
+        fileSystemId: string;
+        /**
+         * The id of the mount point.
+         */
+        mountPointId: string;
+        /**
+         * The name of the mount point.
+         */
+        mountPointName: string;
+    }
+
+    export interface GetPermissionGroupsFilter {
+        /**
+         * Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+         */
+        key: string;
+        /**
+         * The value of the filter item.
+         */
+        value: string;
+    }
+
+    export interface GetPermissionGroupsPermissionGroup {
+        /**
+         * The creation time of the permission group.
+         */
+        createTime: string;
+        /**
+         * The description of the permission group.
+         */
+        description: string;
+        /**
+         * The number of the file system.
+         */
+        fileSystemCount: number;
+        /**
+         * The file system type of the permission group.
+         */
+        fileSystemType: string;
+        /**
+         * The list of the mount point.
+         */
+        mountPoints: outputs.nas.GetPermissionGroupsPermissionGroupMountPoint[];
+        /**
+         * The id of the permission group.
+         */
+        permissionGroupId: string;
+        /**
+         * The name of the permission group.
+         */
+        permissionGroupName: string;
+        /**
+         * The number of the permission rule.
+         */
+        permissionRuleCount: number;
+        /**
+         * The list of permissions rules.
+         */
+        permissionRules: outputs.nas.GetPermissionGroupsPermissionGroupPermissionRule[];
+    }
+
+    export interface GetPermissionGroupsPermissionGroupMountPoint {
+        /**
+         * The id of the file system.
+         */
+        fileSystemId: string;
+        /**
+         * The id of the mount point.
+         */
+        mountPointId: string;
+        /**
+         * The name of the mount point.
+         */
+        mountPointName: string;
+    }
+
+    export interface GetPermissionGroupsPermissionGroupPermissionRule {
+        /**
+         * Client IP addresses that are allowed access.
+         */
+        cidrIp: string;
+        /**
+         * The id of the permission rule.
+         */
+        permissionRuleId: string;
+        /**
+         * Permission group read and write rules.
+         */
+        rwMode: string;
+        /**
+         * Permission group user permissions.
+         */
+        userMode: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+        /**
+         * The status info of region.
+         */
+        status: string;
+    }
+
+    export interface GetSnapshotsSnapshot {
+        /**
+         * The create time of snapshot.
+         */
+        createTime: string;
+        /**
+         * The description of snapshot.
+         */
+        description: string;
+        /**
+         * The ID of file system.
+         */
+        fileSystemId: string;
+        /**
+         * The name of file system.
+         */
+        fileSystemName: string;
+        /**
+         * The ID of snapshot.
+         */
+        id: string;
+        /**
+         * Whether is encrypt.
+         */
+        isEncrypt: boolean;
+        /**
+         * The progress of snapshot.
+         */
+        progress: string;
+        /**
+         * The retention days of snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The ID of snapshot.
+         */
+        snapshotId: string;
+        /**
+         * The name of snapshot.
+         */
+        snapshotName: string;
+        /**
+         * The type of snapshot.
+         */
+        snapshotType: string;
+        /**
+         * The size of source.
+         */
+        sourceSize: number;
+        /**
+         * The source version info.
+         */
+        sourceVersion: string;
+        /**
+         * The status of snapshot.
+         */
+        status: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The collection of sales info.
+         */
+        sales: outputs.nas.GetZonesZoneSale[];
+        /**
+         * The status info.
+         */
+        status: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
+    export interface GetZonesZoneSale {
+        /**
+         * The type of file system.
+         */
+        fileSystemType: string;
+        /**
+         * The type of protocol.
+         */
+        protocolType: string;
+        /**
+         * The status info.
+         */
+        status: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
     export interface MountPointsMountPoint {
         /**
          * The creation time of the permission group.
@@ -11539,6 +21462,196 @@ export namespace nat {
         value: string;
     }
 
+    export interface GetDnatEntriesDnatEntry {
+        /**
+         * The ID of the DNAT entry.
+         */
+        dnatEntryId: string;
+        /**
+         * The name of the DNAT entry.
+         */
+        dnatEntryName: string;
+        /**
+         * Provides the public IP address for public network access.
+         */
+        externalIp: string;
+        /**
+         * The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
+         */
+        externalPort: string;
+        /**
+         * Provides the internal IP address.
+         */
+        internalIp: string;
+        /**
+         * The port or port segment on which the cloud server instance provides services to the public network.
+         */
+        internalPort: string;
+        /**
+         * The id of the NAT gateway.
+         */
+        natGatewayId: string;
+        /**
+         * The network protocol.
+         */
+        protocol: string;
+        /**
+         * The network status.
+         */
+        status: string;
+    }
+
+    export interface GetGatewaysNatGateway {
+        /**
+         * The billing type of the NatGateway.
+         */
+        billingType: string;
+        /**
+         * Whether the NatGateway is locked.
+         */
+        businessStatus: string;
+        /**
+         * The creation time of the NatGateway.
+         */
+        creationTime: string;
+        /**
+         * The deleted time of the NatGateway.
+         */
+        deletedTime: string;
+        /**
+         * The description of the NatGateway.
+         */
+        description: string;
+        /**
+         * The eip addresses of the NatGateway.
+         */
+        eipAddresses: outputs.nat.GetGatewaysNatGatewayEipAddress[];
+        /**
+         * The ID of the NatGateway.
+         */
+        id: string;
+        /**
+         * The reason why locking NatGateway.
+         */
+        lockReason: string;
+        /**
+         * The ID of the NatGateway.
+         */
+        natGatewayId: string;
+        /**
+         * The name of the NatGateway.
+         */
+        natGatewayName: string;
+        /**
+         * The ID of the network interface.
+         */
+        networkInterfaceId: string;
+        /**
+         * The overdue time of the NatGateway.
+         */
+        overdueTime: string;
+        /**
+         * The specification of the NatGateway.
+         */
+        spec: string;
+        /**
+         * The status of the NatGateway.
+         */
+        status: string;
+        /**
+         * The id of the Subnet.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nat.GetGatewaysNatGatewayTag[];
+        /**
+         * The update time of the NatGateway.
+         */
+        updatedAt: string;
+        /**
+         * The id of the VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface GetGatewaysNatGatewayEipAddress {
+        /**
+         * The ID of Eip.
+         */
+        allocationId: string;
+        /**
+         * The address of Eip.
+         */
+        eipAddress: string;
+        /**
+         * The using status of Eip.
+         */
+        usingStatus: string;
+    }
+
+    export interface GetGatewaysNatGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSnatEntriesSnatEntry {
+        /**
+         * The public ip address used by the SNAT entry.
+         */
+        eipAddress: string;
+        /**
+         * An id of the public ip address used by the SNAT entry.
+         */
+        eipId: string;
+        /**
+         * The id of the SNAT entry.
+         */
+        id: string;
+        /**
+         * An id of the nat gateway to which the entry belongs.
+         */
+        natGatewayId: string;
+        /**
+         * The id of the SNAT entry.
+         */
+        snatEntryId: string;
+        /**
+         * A name of SNAT entry.
+         */
+        snatEntryName: string;
+        /**
+         * The SourceCidr of SNAT entry.
+         */
+        sourceCidr: string;
+        /**
+         * The status of the SNAT entry.
+         */
+        status: string;
+        /**
+         * An id of the subnet that is required to access the Internet.
+         */
+        subnetId: string;
+    }
+
     export interface SnatEntriesSnatEntry {
         /**
          * The public ip address used by the SNAT entry.
@@ -11690,6 +21803,241 @@ export namespace organization {
         value: string;
     }
 
+    export interface GetAccountsAccount {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * The name of the account.
+         */
+        accountName: string;
+        /**
+         * Whether to allow the account enable console. `0` means allowed, `1` means not allowed.
+         */
+        allowConsole: number;
+        /**
+         * Whether to allow exit the organization. `0` means allowed, `1` means not allowed.
+         */
+        allowExit: number;
+        /**
+         * The created time of the account.
+         */
+        createdTime: string;
+        /**
+         * The delete uk of the account.
+         */
+        deleteUk: string;
+        /**
+         * The deleted time of the account.
+         */
+        deletedTime: string;
+        /**
+         * The description of the account.
+         */
+        description: string;
+        /**
+         * The name of the iam role.
+         */
+        iamRole: string;
+        /**
+         * The id of the account.
+         */
+        id: string;
+        /**
+         * Whether the account is owner. `0` means not owner, `1` means owner.
+         */
+        isOwner: number;
+        /**
+         * The join type of the account. `0` means create, `1` means invitation.
+         */
+        joinType: number;
+        /**
+         * The id of the organization.
+         */
+        orgId: string;
+        /**
+         * The type of the organization. `1` means business organization.
+         */
+        orgType: number;
+        /**
+         * The id of the organization unit.
+         */
+        orgUnitId: string;
+        /**
+         * The name of the organization unit.
+         */
+        orgUnitName: string;
+        /**
+         * The id of the organization verification.
+         */
+        orgVerificationId: string;
+        /**
+         * The owner id of the account.
+         */
+        owner: string;
+        /**
+         * The show name of the account.
+         */
+        showName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.organization.GetAccountsAccountTag[];
+        /**
+         * The updated time of the account.
+         */
+        updatedTime: string;
+    }
+
+    export interface GetAccountsAccountTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetOrganizationsOrganization {
+        /**
+         * The account id of the organization owner.
+         */
+        accountId: number;
+        /**
+         * The account name of the organization owner.
+         */
+        accountName: string;
+        /**
+         * The created time of the organization.
+         */
+        createdTime: string;
+        /**
+         * The delete uk of the organization.
+         */
+        deleteUk: string;
+        /**
+         * The deleted time of the organization.
+         */
+        deletedTime: string;
+        /**
+         * The description of the organization.
+         */
+        description: string;
+        /**
+         * The id of the organization.
+         */
+        id: string;
+        /**
+         * The main name of the organization owner.
+         */
+        mainName: string;
+        /**
+         * The name of the organization.
+         */
+        name: string;
+        /**
+         * The owner id of the organization.
+         */
+        owner: string;
+        /**
+         * The status of the organization.
+         */
+        status: number;
+        /**
+         * The type of the organization.
+         */
+        type: number;
+        /**
+         * The updated time of the organization.
+         */
+        updatedTime: string;
+    }
+
+    export interface GetServiceControlPoliciesPolicy {
+        /**
+         * The create time of the Policy.
+         */
+        createDate: string;
+        /**
+         * The description of the Policy.
+         */
+        description: string;
+        /**
+         * The ID of the Policy.
+         */
+        id: string;
+        /**
+         * The name of the Policy.
+         */
+        policyName: string;
+        /**
+         * The type of policy. The value can be System or Custom.
+         */
+        policyType: string;
+        /**
+         * The statement of the Policy.
+         */
+        statement: string;
+        /**
+         * The update time of the Policy.
+         */
+        updateDate: string;
+    }
+
+    export interface GetUnitsUnit {
+        /**
+         * The created time of the organization unit.
+         */
+        createdTime: string;
+        /**
+         * Delete marker.
+         */
+        deleteUk: string;
+        /**
+         * The deleted time of the organization unit.
+         */
+        deletedTime: string;
+        /**
+         * The depth of the organization unit.
+         */
+        depth: number;
+        /**
+         * The description of the organization unit.
+         */
+        description: string;
+        /**
+         * The id of the organization unit.
+         */
+        id: string;
+        /**
+         * The name of the organization unit.
+         */
+        name: string;
+        /**
+         * The id of the organization.
+         */
+        orgId: string;
+        /**
+         * The organization type.
+         */
+        orgType: number;
+        /**
+         * The owner of the organization unit.
+         */
+        owner: string;
+        /**
+         * Parent Unit ID.
+         */
+        parentId: string;
+        /**
+         * The updated time of the organization unit.
+         */
+        updatedTime: string;
+    }
+
     export interface OrganizationsOrganization {
         /**
          * The account id of the organization owner.
@@ -11830,6 +22178,294 @@ export namespace organization {
 }
 
 export namespace private_zone {
+    export interface GetPrivateZonesPrivateZone {
+        /**
+         * The Bind vpc info of the private zone.
+         */
+        bindVpcs: outputs.private_zone.GetPrivateZonesPrivateZoneBindVpc[];
+        /**
+         * The created time of the private zone.
+         */
+        createdAt: string;
+        /**
+         * The id of the private zone.
+         */
+        id: string;
+        /**
+         * The account id of the last operator who created the private zone.
+         */
+        lastOperator: string;
+        /**
+         * The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+         */
+        lineMode: number;
+        /**
+         * The record count of the private zone.
+         */
+        recordCount: number;
+        /**
+         * Whether the recursion mode of Private Zone is enabled.
+         */
+        recursionMode: boolean;
+        /**
+         * The region of Private Zone.
+         */
+        regions: string[];
+        /**
+         * The remark of the private zone.
+         */
+        remark: string;
+        /**
+         * The updated time of the private zone.
+         */
+        updatedAt: string;
+        /**
+         * The zid of Private Zone.
+         */
+        zid: number;
+        /**
+         * The name of Private Zone.
+         */
+        zoneName: string;
+    }
+
+    export interface GetPrivateZonesPrivateZoneBindVpc {
+        /**
+         * The account id of the bind vpc.
+         */
+        accountId: string;
+        /**
+         * The id of the private zone.
+         */
+        id: string;
+        /**
+         * The region of Private Zone.
+         */
+        region: string;
+        /**
+         * The region name of the bind vpc.
+         */
+        regionName: string;
+    }
+
+    export interface GetRecordSetsRecordSet {
+        /**
+         * The Complete domain name of the private zone record.
+         */
+        fqdn: string;
+        /**
+         * The host of Private Zone Record Set.
+         */
+        host: string;
+        /**
+         * The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true.
+         */
+        line: string;
+        /**
+         * The id of Private Zone Record Set.
+         */
+        recordSetId: string;
+        /**
+         * The type of the private zone record.
+         */
+        type: string;
+        /**
+         * Whether to enable the load balance of the private zone record set.
+         */
+        weightEnabled: boolean;
+    }
+
+    export interface GetRecordsRecord {
+        /**
+         * The created time of the private zone record.
+         */
+        createdAt: string;
+        /**
+         * Whether the private zone record is enabling.
+         */
+        enable: boolean;
+        /**
+         * The host of Private Zone Record.
+         */
+        host: string;
+        /**
+         * The last operator account id of Private Zone Record.
+         */
+        lastOperator: string;
+        /**
+         * The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+         */
+        line: string;
+        /**
+         * The id of Private Zone Record.
+         */
+        recordId: string;
+        /**
+         * The remark of the private zone record.
+         */
+        remark: string;
+        /**
+         * The ttl of the private zone record. Unit: second.
+         */
+        ttl: number;
+        /**
+         * The type of Private Zone Record.
+         */
+        type: string;
+        /**
+         * The updated time of the private zone record.
+         */
+        updatedAt: string;
+        /**
+         * The value of Private Zone Record.
+         */
+        value: string;
+        /**
+         * The weight of the private zone record.
+         */
+        weight: number;
+        /**
+         * The zid of Private Zone.
+         */
+        zid: number;
+    }
+
+    export interface GetResolverEndpointsEndpoint {
+        /**
+         * The created time of the endpoint.
+         */
+        createdAt: string;
+        /**
+         * The direction of the private zone resolver endpoint.
+         */
+        direction: string;
+        /**
+         * The endpoint id.
+         */
+        endpointId: number;
+        /**
+         * The id of the endpoint.
+         */
+        id: string;
+        /**
+         * List of IP configurations.
+         */
+        ipConfigs: outputs.private_zone.GetResolverEndpointsEndpointIpConfig[];
+        /**
+         * The name of the private zone resolver endpoint.
+         */
+        name: string;
+        /**
+         * The security group id of the endpoint.
+         */
+        securityGroupId: string;
+        /**
+         * The status of the private zone resolver endpoint.
+         */
+        status: string;
+        /**
+         * The updated time of the endpoint.
+         */
+        updatedAt: string;
+        /**
+         * The vpc ID of the private zone resolver endpoint.
+         */
+        vpcId: string;
+        /**
+         * The vpc region of the endpoint.
+         */
+        vpcRegion: string;
+    }
+
+    export interface GetResolverEndpointsEndpointIpConfig {
+        /**
+         * The availability zone id of the endpoint.
+         */
+        azId: string;
+        /**
+         * The IP address of the endpoint.
+         */
+        ip: string;
+        /**
+         * The subnet id of the endpoint.
+         */
+        subnetId: string;
+    }
+
+    export interface GetResolverRulesRule {
+        bindVpcs: outputs.private_zone.GetResolverRulesRuleBindVpc[];
+        /**
+         * The created time of the rule.
+         */
+        createdAt: string;
+        /**
+         * ID of the exit terminal node.
+         */
+        endpointId: number;
+        /**
+         * The IP address and port of the DNS server outside of the VPC.
+         */
+        forwardIps: outputs.private_zone.GetResolverRulesRuleForwardIp[];
+        /**
+         * The id of the rule.
+         */
+        id: string;
+        /**
+         * The ISP of the exit IP address of the recursive DNS server.
+         */
+        line: number;
+        /**
+         * The name of the rule.
+         */
+        name: string;
+        /**
+         * The id of the rule.
+         */
+        ruleId: number;
+        /**
+         * The type of the rule.
+         */
+        type: string;
+        /**
+         * The updated time of the rule.
+         */
+        updatedAt: string;
+        /**
+         * The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
+         */
+        zoneNames: string[];
+    }
+
+    export interface GetResolverRulesRuleBindVpc {
+        /**
+         * The account id of the bind vpc.
+         */
+        accountId: string;
+        /**
+         * The id of the rule.
+         */
+        id: string;
+        /**
+         * The region of the bind vpc.
+         */
+        region: string;
+        /**
+         * The region name of the bind vpc.
+         */
+        regionName: string;
+    }
+
+    export interface GetResolverRulesRuleForwardIp {
+        /**
+         * The IP address of the DNS server outside of the VPC.
+         */
+        ip: string;
+        /**
+         * The port of the DNS server outside of the VPC.
+         */
+        port: number;
+    }
+
     export interface PrivateZoneVpc {
         /**
          * The region of the bind vpc. The default value is the region of the default provider config.
@@ -12169,6 +22805,255 @@ export namespace private_zone {
 }
 
 export namespace privatelink {
+    export interface GetVpcEndpointConnectionsConnection {
+        /**
+         * The status of the connection.
+         */
+        connectionStatus: string;
+        /**
+         * The create time of the connection.
+         */
+        creationTime: string;
+        /**
+         * The id of the vpc endpoint.
+         */
+        endpointId: string;
+        /**
+         * The account id of the vpc endpoint.
+         */
+        endpointOwnerAccountId: string;
+        /**
+         * The vpc id of the vpc endpoint.
+         */
+        endpointVpcId: string;
+        /**
+         * The id of the vpc endpoint service.
+         */
+        serviceId: string;
+        /**
+         * The update time of the connection.
+         */
+        updateTime: string;
+        /**
+         * The available zones.
+         */
+        zones: outputs.privatelink.GetVpcEndpointConnectionsConnectionZone[];
+    }
+
+    export interface GetVpcEndpointConnectionsConnectionZone {
+        /**
+         * The id of the network interface.
+         */
+        networkInterfaceId: string;
+        /**
+         * The ip address of the network interface.
+         */
+        networkInterfaceIp: string;
+        /**
+         * The id of the resource.
+         */
+        resourceId: string;
+        /**
+         * The id of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The domain of the zone.
+         */
+        zoneDomain: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The status of the zone.
+         */
+        zoneStatus: string;
+    }
+
+    export interface GetVpcEndpointServicePermissionsPermission {
+        /**
+         * The Id of permit account.
+         */
+        permitAccountId: string;
+    }
+
+    export interface GetVpcEndpointServicesService {
+        /**
+         * Whether auto accept node connect.
+         */
+        autoAcceptEnabled: boolean;
+        /**
+         * The create time of service.
+         */
+        creationTime: string;
+        /**
+         * The description of service.
+         */
+        description: string;
+        /**
+         * The Id of service.
+         */
+        id: string;
+        /**
+         * The resources info.
+         */
+        resources: outputs.privatelink.GetVpcEndpointServicesServiceResource[];
+        /**
+         * The domain of service.
+         */
+        serviceDomain: string;
+        /**
+         * The Id of service.
+         */
+        serviceId: string;
+        /**
+         * The name of vpc endpoint service.
+         */
+        serviceName: string;
+        /**
+         * The resource type of service.
+         */
+        serviceResourceType: string;
+        /**
+         * The type of service.
+         */
+        serviceType: string;
+        /**
+         * The status of service.
+         */
+        status: string;
+        /**
+         * The update time of service.
+         */
+        updateTime: string;
+        /**
+         * The IDs of zones.
+         */
+        zoneIds: string[];
+    }
+
+    export interface GetVpcEndpointServicesServiceResource {
+        /**
+         * The id of resource.
+         */
+        resourceId: string;
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The zone id of resource.
+         */
+        zoneId: string;
+    }
+
+    export interface GetVpcEndpointZonesVpcEndpointZone {
+        /**
+         * The Id of vpc endpoint zone.
+         */
+        id: string;
+        /**
+         * The network interface id of vpc endpoint.
+         */
+        networkInterfaceId: string;
+        /**
+         * The network interface ip of vpc endpoint.
+         */
+        networkInterfaceIp: string;
+        /**
+         * The status of vpc endpoint service.
+         */
+        serviceStatus: string;
+        /**
+         * The subnet id of vpc endpoint.
+         */
+        subnetId: string;
+        /**
+         * The domain of vpc endpoint zone.
+         */
+        zoneDomain: string;
+        /**
+         * The Id of vpc endpoint zone.
+         */
+        zoneId: string;
+        /**
+         * The status of vpc endpoint zone.
+         */
+        zoneStatus: string;
+    }
+
+    export interface GetVpcEndpointsVpcEndpoint {
+        /**
+         * Whether the vpc endpoint is locked.
+         */
+        businessStatus: string;
+        /**
+         * The connection  status of vpc endpoint.
+         */
+        connectionStatus: string;
+        /**
+         * The create time of vpc endpoint.
+         */
+        creationTime: string;
+        /**
+         * The delete time of vpc endpoint.
+         */
+        deletedTime: string;
+        /**
+         * The description of vpc endpoint.
+         */
+        description: string;
+        /**
+         * The domain of vpc endpoint.
+         */
+        endpointDomain: string;
+        /**
+         * The Id of vpc endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of vpc endpoint.
+         */
+        endpointName: string;
+        /**
+         * The type of vpc endpoint.
+         */
+        endpointType: string;
+        /**
+         * The Id of vpc endpoint.
+         */
+        id: string;
+        /**
+         * Whether to enable private dns name.
+         */
+        privateDnsEnabled: boolean;
+        /**
+         * The private dns name of vpc endpoint.
+         */
+        privateDnsName: string;
+        /**
+         * The Id of vpc endpoint service.
+         */
+        serviceId: string;
+        /**
+         * The name of vpc endpoint service.
+         */
+        serviceName: string;
+        /**
+         * The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+         */
+        status: string;
+        /**
+         * The update time of vpc endpoint.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of vpc endpoint.
+         */
+        vpcId: string;
+    }
+
     export interface VpcEndpointConnectionZone {
         /**
          * The id of the network interface.
@@ -12463,6 +23348,220 @@ export namespace privatelink {
 }
 
 export namespace rabbitmq {
+    export interface GetInstancePluginsPlugin {
+        /**
+         * The description of plugin.
+         */
+        description: string;
+        /**
+         * The disable prompt of plugin.
+         */
+        disablePrompt: string;
+        /**
+         * The enable prompt of plugin.
+         */
+        enablePrompt: string;
+        /**
+         * Whether plugin is enabled.
+         */
+        enabled: boolean;
+        /**
+         * Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+         */
+        needRebootOnChange: boolean;
+        /**
+         * The name of plugin.
+         */
+        pluginName: string;
+        /**
+         * The port of plugin.
+         */
+        port: number;
+        /**
+         * The version of plugin.
+         */
+        version: string;
+    }
+
+    export interface GetInstancesRabbitmqInstance {
+        /**
+         * The account id of the rabbitmq instance.
+         */
+        accountId: string;
+        /**
+         * Whether enable the public network parsing function of the rabbitmq instance.
+         */
+        applyPrivateDnsToPublic: boolean;
+        /**
+         * The type of the rabbitmq instance.
+         */
+        archType: string;
+        /**
+         * The charge detail information of the rabbitmq instance.
+         */
+        chargeDetails: outputs.rabbitmq.GetInstancesRabbitmqInstanceChargeDetail[];
+        /**
+         * The compute specification of the rabbitmq instance.
+         */
+        computeSpec: string;
+        /**
+         * The create time of the rabbitmq instance.
+         */
+        createTime: string;
+        /**
+         * The eip id of the rabbitmq instance.
+         */
+        eipId: string;
+        /**
+         * The endpoint info of the rabbitmq instance.
+         */
+        endpoints: outputs.rabbitmq.GetInstancesRabbitmqInstanceEndpoint[];
+        /**
+         * The id of the rabbitmq instance.
+         */
+        id: string;
+        /**
+         * The WebUI admin user name of the rabbitmq instance.
+         */
+        initUserName: string;
+        /**
+         * The description of the rabbitmq instance.
+         */
+        instanceDescription: string;
+        /**
+         * The id of rabbitmq instance. This field supports fuzzy query.
+         */
+        instanceId: string;
+        /**
+         * The name of rabbitmq instance. This field supports fuzzy query.
+         */
+        instanceName: string;
+        /**
+         * The status of rabbitmq instance.
+         */
+        instanceStatus: string;
+        /**
+         * The project name of rabbitmq instance.
+         */
+        projectName: string;
+        /**
+         * The region description of the rabbitmq instance.
+         */
+        regionDescription: string;
+        /**
+         * The region id of the rabbitmq instance.
+         */
+        regionId: string;
+        /**
+         * The total storage space of the rabbitmq instance. Unit: GiB.
+         */
+        storageSpace: number;
+        /**
+         * The subnet id of the rabbitmq instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rabbitmq.GetInstancesRabbitmqInstanceTag[];
+        /**
+         * The used storage space of the rabbitmq instance. Unit: GiB.
+         */
+        usedStorageSpace: number;
+        /**
+         * The version of the rabbitmq instance.
+         */
+        version: string;
+        /**
+         * The vpc id of rabbitmq instance. This field supports fuzzy query.
+         */
+        vpcId: string;
+        /**
+         * The zone description of the rabbitmq instance.
+         */
+        zoneDescription: string;
+        /**
+         * The zone id of rabbitmq instance. This field supports fuzzy query.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesRabbitmqInstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge end time of the rabbitmq instance.
+         */
+        chargeEndTime: string;
+        /**
+         * The charge expire time of the rabbitmq instance.
+         */
+        chargeExpireTime: string;
+        /**
+         * The charge start time of the rabbitmq instance.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status of the rabbitmq instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of rabbitmq instance.
+         */
+        chargeType: string;
+        /**
+         * The overdue reclaim time of the rabbitmq instance.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of the rabbitmq instance.
+         */
+        overdueTime: string;
+    }
+
+    export interface GetInstancesRabbitmqInstanceEndpoint {
+        /**
+         * The endpoint type of the rabbitmq instance.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of the rabbitmq instance.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of the rabbitmq instance.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of the rabbitmq instance.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface GetInstancesRabbitmqInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface InstanceChargeInfo {
         /**
          * Whether to automatically renew in prepaid scenarios. Default is false.
@@ -12803,6 +23902,276 @@ export namespace rds {
          * The ID of the RDS database.
          */
         id: string;
+    }
+
+    export interface GetAccountsRdsAccount {
+        /**
+         * The name of the database account.
+         */
+        accountName: string;
+        /**
+         * The status of the database account.
+         */
+        accountStatus: string;
+        /**
+         * The type of the database account.
+         */
+        accountType: string;
+        /**
+         * The privilege detail list of RDS instance account.
+         */
+        dbPrivileges: outputs.rds.GetAccountsRdsAccountDbPrivilege[];
+        /**
+         * The ID of the RDS instance account.
+         */
+        id: string;
+    }
+
+    export interface GetAccountsRdsAccountDbPrivilege {
+        /**
+         * The privilege type of the account.
+         */
+        accountPrivilege: string;
+        /**
+         * The privilege string of the account.
+         */
+        accountPrivilegeStr: string;
+        /**
+         * The name of database.
+         */
+        dbName: string;
+    }
+
+    export interface GetDatabasesRdsDatabase {
+        /**
+         * The account names of the RDS database.
+         */
+        accountNames: string;
+        /**
+         * The character set of the RDS database.
+         */
+        characterSetName: string;
+        /**
+         * The name of the RDS database.
+         */
+        dbName: string;
+        /**
+         * The status of the RDS database.
+         */
+        dbStatus: string;
+        /**
+         * The ID of the RDS database.
+         */
+        id: string;
+    }
+
+    export interface GetInstancesRdsInstance {
+        /**
+         * The charge status of the RDS instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the RDS instance.
+         */
+        chargeType: string;
+        /**
+         * The connection info ot the RDS instance.
+         */
+        connectionInfo: outputs.rds.GetInstancesRdsInstanceConnectionInfo;
+        /**
+         * The create time of the RDS instance.
+         */
+        createTime: string;
+        /**
+         * The engine of the RDS instance.
+         */
+        dbEngine: string;
+        /**
+         * The engine version of the RDS instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the RDS instance.
+         */
+        id: string;
+        /**
+         * The id of the RDS instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the RDS instance.
+         */
+        instanceName: string;
+        /**
+         * The spec type detail of RDS instance.
+         */
+        instanceSpec: outputs.rds.GetInstancesRdsInstanceInstanceSpec;
+        /**
+         * The status of the RDS instance.
+         */
+        instanceStatus: string;
+        /**
+         * The type of the RDS instance.
+         */
+        instanceType: string;
+        /**
+         * The ID list of read only instance.
+         */
+        readOnlyInstanceIds?: string[];
+        /**
+         * The region of the RDS instance.
+         */
+        region: string;
+        /**
+         * The total storage GB of the RDS instance.
+         */
+        storageSpaceGb: number;
+        /**
+         * The update time of the RDS instance.
+         */
+        updateTime: string;
+        /**
+         * The vpc ID of the RDS instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the RDS instance.
+         */
+        zone: string;
+    }
+
+    export interface GetInstancesRdsInstanceConnectionInfo {
+        /**
+         * Whether global read-only is enabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * The internal domain of the RDS instance.
+         */
+        internalDomain: string;
+        /**
+         * The interval port of the RDS instance.
+         */
+        internalPort: string;
+        /**
+         * The public domain of the RDS instance.
+         */
+        publicDomain: string;
+        /**
+         * The public port of the RDS instance.
+         */
+        publicPort: string;
+    }
+
+    export interface GetInstancesRdsInstanceInstanceSpec {
+        /**
+         * The cpu core count of spec type.
+         */
+        cpuNum: number;
+        /**
+         * The memory size(GB) of spec type.
+         */
+        memInGb: number;
+        /**
+         * The name of spec type.
+         */
+        specName: string;
+    }
+
+    export interface GetIpListsRdsIpList {
+        /**
+         * The name of the RDS ip list.
+         */
+        groupName: string;
+        /**
+         * The ID of the RDS ip list.
+         */
+        id: string;
+        /**
+         * The list of IP address.
+         */
+        ipLists: string[];
+    }
+
+    export interface GetParameterTemplatesRdsParameterTemplate {
+        /**
+         * Creation time.
+         */
+        createTime: string;
+        /**
+         * The ID of the RDS parameter template.
+         */
+        id: string;
+        /**
+         * Whether the template contains parameters that need to be restarted.
+         */
+        needRestart: boolean;
+        /**
+         * The number of parameters the template contains.
+         */
+        parameterNum: number;
+        /**
+         * The description of the RDS parameter template.
+         */
+        templateDesc: string;
+        /**
+         * The ID of the RDS parameter template.
+         */
+        templateId: string;
+        /**
+         * The name of the RDS parameter template.
+         */
+        templateName: string;
+        /**
+         * Parameters contained in the template.
+         */
+        templateParams: outputs.rds.GetParameterTemplatesRdsParameterTemplateTemplateParam[];
+        /**
+         * Parameter template database type, range of values:
+         * MySQL - MySQL database.
+         */
+        templateType: string;
+        /**
+         * Parameter template database version, value range:
+         * MySQL_Community_5_7 - MySQL 5.7
+         * MySQL_8_0 - MySQL 8.0.
+         */
+        templateTypeVersion: string;
+        /**
+         * Update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetParameterTemplatesRdsParameterTemplateTemplateParam {
+        /**
+         * Parameter default value.
+         */
+        defaultValue: string;
+        /**
+         * Parameter description.
+         */
+        description: string;
+        /**
+         * Parameter name.
+         */
+        name: string;
+        /**
+         * Whether the modified parameters need to be restarted to take effect.
+         */
+        restart: boolean;
+        /**
+         * Parameter running value.
+         */
+        runningValue: string;
+        /**
+         * Parameter value range.
+         */
+        valueRange: string;
     }
 
     export interface InstanceConnectionInfo {
@@ -13150,6 +24519,470 @@ export namespace rds_mssql {
          * Download link expiration time.
          */
         linkExpiredTime: string;
+    }
+
+    export interface GetBackupsBackup {
+        /**
+         * The detail of the database.
+         */
+        backupDatabaseDetails: outputs.rds_mssql.GetBackupsBackupBackupDatabaseDetail[];
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * The size of the backup file.
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * The name of the backup method.
+         */
+        backupMethod: string;
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The type of the backup create.
+         */
+        createType: string;
+        /**
+         * The id of the backup.
+         */
+        id: string;
+    }
+
+    export interface GetBackupsBackupBackupDatabaseDetail {
+        /**
+         * External backup download link.
+         */
+        backupDownloadLinkEip: string;
+        /**
+         * Intranet backup download link.
+         */
+        backupDownloadLinkInner: string;
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file.
+         */
+        backupFileSize: number;
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The name of the database.
+         */
+        databaseName: string;
+        /**
+         * Backup file preparation progress, unit: %.
+         */
+        downloadProgress: number;
+        /**
+         * Download status.
+         */
+        downloadStatus: string;
+        /**
+         * Download link expiration time.
+         */
+        linkExpiredTime: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The used backup space of the instance. Unit: GiB.
+         */
+        backupUse: number;
+        /**
+         * The charge detail.
+         */
+        chargeDetails: outputs.rds_mssql.GetInstancesInstanceChargeDetail[];
+        /**
+         * The connection info of the instance.
+         */
+        connectionInfos: outputs.rds_mssql.GetInstancesInstanceConnectionInfo[];
+        /**
+         * Node creation time.
+         */
+        createTime: string;
+        /**
+         * Compatible version. Valid values: `SQLServer_2019_Std`, `SQLServer_2019_Web`, `SQLServer_2019_Ent`.
+         */
+        dbEngineVersion: string;
+        /**
+         * The id of the instance.
+         */
+        id: string;
+        /**
+         * The inner version of the instance.
+         */
+        innerVersion: string;
+        /**
+         * The instance category.
+         */
+        instanceCategory: string;
+        /**
+         * Id of the instance.
+         */
+        instanceId: string;
+        /**
+         * Name of the instance.
+         */
+        instanceName: string;
+        /**
+         * Status of the instance.
+         */
+        instanceStatus: string;
+        /**
+         * Instance type. Valid values: `HA`, `Basic`, `Cluster`.
+         */
+        instanceType: string;
+        /**
+         * The Memory.
+         */
+        memory: number;
+        /**
+         * Node detail information.
+         */
+        nodeDetailInfos: outputs.rds_mssql.GetInstancesInstanceNodeDetailInfo[];
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The count of instance parameters.
+         */
+        parameterCount: number;
+        /**
+         * The list of instance parameters.
+         */
+        parameters: outputs.rds_mssql.GetInstancesInstanceParameter[];
+        /**
+         * The port of the instance.
+         */
+        port: string;
+        /**
+         * The id of the primary instance.
+         */
+        primaryInstanceId: string;
+        /**
+         * The project name.
+         */
+        projectName: string;
+        /**
+         * The number of read only instance.
+         */
+        readOnlyNumber: number;
+        /**
+         * The region id.
+         */
+        regionId: string;
+        /**
+         * Server sorting rules.
+         */
+        serverCollation: string;
+        /**
+         * Whether to enable slow query function.
+         */
+        slowQueryEnable: boolean;
+        /**
+         * The slow query time. Unit: second.
+         */
+        slowQueryTime: string;
+        /**
+         * The storage space.
+         */
+        storageSpace: number;
+        /**
+         * The storage type.
+         */
+        storageType: string;
+        /**
+         * The used storage space.
+         */
+        storageUse: number;
+        /**
+         * The subnet id.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rds_mssql.GetInstancesInstanceTag[];
+        /**
+         * The time zone.
+         */
+        timeZone: string;
+        /**
+         * The update time of the instance.
+         */
+        updateTime: string;
+        /**
+         * The CPU size of the instance. For example: 1 represents 1U.
+         */
+        vCpu: number;
+        /**
+         * The vpc id.
+         */
+        vpcId: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceChargeDetail {
+        /**
+         * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when ChargeType is Prepaid.
+         */
+        autoRenew: boolean;
+        /**
+         * Charge end time.
+         */
+        chargeEndTime: string;
+        /**
+         * Charge start time.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * Expected release time when overdue fees are shut down.
+         */
+        overdueReclaimTime: string;
+        /**
+         * Time for Disconnection due to Unpaid Fees.
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in a prepaid scenario.
+         */
+        period: number;
+        /**
+         * Purchase cycle in prepaid scenarios. This parameter can be set when ChargeType is Prepaid.
+         */
+        periodUnit: string;
+    }
+
+    export interface GetInstancesInstanceConnectionInfo {
+        /**
+         * The address info.
+         */
+        addresses: outputs.rds_mssql.GetInstancesInstanceConnectionInfoAddress[];
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * The endpoint id.
+         */
+        endpointId: string;
+        /**
+         * The endpoint name.
+         */
+        endpointName: string;
+        /**
+         * The endpoint type.
+         */
+        endpointType: string;
+    }
+
+    export interface GetInstancesInstanceConnectionInfoAddress {
+        /**
+         * Whether to enable private to public network resolution.
+         */
+        dnsVisibility: boolean;
+        /**
+         * The domain.
+         */
+        domain: string;
+        /**
+         * The eip id for public address.
+         */
+        eipId: string;
+        /**
+         * The ip address.
+         */
+        ipAddress: string;
+        /**
+         * The network type.
+         */
+        networkType: string;
+        /**
+         * The port of the instance.
+         */
+        port: string;
+        /**
+         * The subnet id.
+         */
+        subnetId: string;
+    }
+
+    export interface GetInstancesInstanceNodeDetailInfo {
+        /**
+         * Node creation time.
+         */
+        createTime: string;
+        /**
+         * Id of the instance.
+         */
+        instanceId: string;
+        /**
+         * The Memory.
+         */
+        memory: number;
+        /**
+         * The Node ID.
+         */
+        nodeId: string;
+        /**
+         * The node ip.
+         */
+        nodeIp: string;
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+        /**
+         * The node type.
+         */
+        nodeType: string;
+        /**
+         * The region id.
+         */
+        regionId: string;
+        /**
+         * The update time of the instance.
+         */
+        updateTime: string;
+        /**
+         * The CPU size of the instance. For example: 1 represents 1U.
+         */
+        vCpu: number;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceParameter {
+        /**
+         * The valid value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Indicates whether the parameter running value can be modified.
+         */
+        forceModify: boolean;
+        /**
+         * Indicates whether the instance needs to be restarted to take effect after modifying the running value of the parameter.
+         */
+        forceRestart: boolean;
+        /**
+         * The default value of the parameter.
+         */
+        parameterDefaultValue: string;
+        /**
+         * The description of the parameter.
+         */
+        parameterDescription: string;
+        /**
+         * The name of the parameter.
+         */
+        parameterName: string;
+        /**
+         * The type of the parameter.
+         */
+        parameterType: string;
+        /**
+         * The value of the parameter.
+         */
+        parameterValue: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
     export interface InstanceChargeInfo {
@@ -13966,6 +25799,964 @@ export namespace rds_mysql {
          * The weight of the node.
          */
         weight: number;
+    }
+
+    export interface GetAccountsAccount {
+        /**
+         * The name of the database account. This field supports fuzzy query.
+         */
+        accountName: string;
+        /**
+         * The privilege detail list of RDS mysql instance account.
+         */
+        accountPrivileges: outputs.rds_mysql.GetAccountsAccountAccountPrivilege[];
+        /**
+         * The status of the database account.
+         */
+        accountStatus: string;
+        /**
+         * The type of the database account.
+         */
+        accountType: string;
+    }
+
+    export interface GetAccountsAccountAccountPrivilege {
+        /**
+         * The privilege type of the account.
+         */
+        accountPrivilege: string;
+        /**
+         * The privilege detail of the account.
+         */
+        accountPrivilegeDetail: string;
+        /**
+         * The name of database.
+         */
+        dbName: string;
+    }
+
+    export interface GetAllowlistsAllowList {
+        /**
+         * White list category. Values:
+         * Ordinary: Ordinary white list. Default: Default white list. Description: When this parameter is used as a request parameter, the default value is Ordinary.
+         */
+        allowListCategory: string;
+        /**
+         * The description of the allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the allow list.
+         */
+        allowListId: string;
+        /**
+         * The total number of IP addresses (or address ranges) in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format.
+         */
+        allowLists: string[];
+        /**
+         * The total number of instances bound under the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of instances.
+         */
+        associatedInstances: outputs.rds_mysql.GetAllowlistsAllowListAssociatedInstance[];
+        /**
+         * Whitelist information for the associated security group.
+         */
+        securityGroupBindInfos: outputs.rds_mysql.GetAllowlistsAllowListSecurityGroupBindInfo[];
+        /**
+         * IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+         */
+        userAllowLists: string[];
+    }
+
+    export interface GetAllowlistsAllowListAssociatedInstance {
+        /**
+         * Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+        /**
+         * The id of the vpc.
+         */
+        vpc: string;
+    }
+
+    export interface GetAllowlistsAllowListSecurityGroupBindInfo {
+        /**
+         * The schema for the associated security group.
+         * IngressDirectionIp: Incoming Direction IP.
+         * AssociateEcsIp: Associate ECSIP.
+         * explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+         */
+        bindMode: string;
+        /**
+         * The ip list of the security group.
+         */
+        ipLists: string[];
+        /**
+         * The security group id of the allow list.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the security group.
+         */
+        securityGroupName: string;
+    }
+
+    export interface GetBackupsBackup {
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * Backup file name.
+         */
+        backupFileName: string;
+        /**
+         * Backup file size, in bytes.
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * Backup type, value: Physical: Physical backup. Default value. Logical: Logical backup. Description: There is no default value. When this field is not passed, backups of all states under the query conditions limited by other fields are returned.
+         */
+        backupMethod: string;
+        /**
+         * The region where the backup is located.
+         */
+        backupRegion: string;
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * Backup status, values: Success: Success. Failed: Failed. Running: In progress. Description: There is no default value. When this field is not passed, all backups in all states under the query conditions limited by other fields are returned.
+         */
+        backupStatus: string;
+        /**
+         * Backup method, value: Full: Full backup under physical backup type or library table backup under logical backup type. Increment: Incremental backup under physical backup type. DumpAll: Full database backup under logical backup type. Description: There is no default value. When this field is not passed, all backups of all methods under the query conditions limited by other fields are returned.
+         */
+        backupType: string;
+        /**
+         * The time point of a consistent snapshot is in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        consistentTime: string;
+        /**
+         * Creator of backup. Values: System: System. User: User. Description: There is no default value. When this field is not passed, all types of backups under the query conditions limited by other fields are returned.
+         */
+        createType: string;
+        /**
+         * The database table information contained in the backup set can include up to 10,000 tables.
+         * Explanation:
+         * When the database is empty, this field is not returned.
+         */
+        dbTableInfos: outputs.rds_mysql.GetBackupsBackupDbTableInfo[];
+        /**
+         * Download status. Values:
+         * NotDownload: Not downloaded.
+         * Success: Downloaded.
+         * Failed: Download failed.
+         * Running: Downloading.
+         */
+        downloadStatus: string;
+        /**
+         * Error message.
+         */
+        errorMessage: string;
+        /**
+         * Expired time of backup, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        expiredTime: string;
+        /**
+         * The id of the backup.
+         */
+        id: string;
+        /**
+         * Is the data backup encrypted? Value:
+         * true: Encrypted.
+         * false: Not encrypted.
+         */
+        isEncrypted: boolean;
+        /**
+         * Whether the backup has expired. Value:
+         * true: Expired.
+         * false: Not expired.
+         */
+        isExpired: boolean;
+    }
+
+    export interface GetBackupsBackupDbTableInfo {
+        /**
+         * Database name.
+         */
+        database: string;
+        /**
+         * Table names.
+         */
+        tables: string[];
+    }
+
+    export interface GetDatabasesDatabase {
+        /**
+         * The character set of the RDS database.
+         */
+        characterSetName: string;
+        /**
+         * The privilege detail list of RDS mysql instance database.
+         */
+        databasePrivileges: outputs.rds_mysql.GetDatabasesDatabaseDatabasePrivilege[];
+        /**
+         * The name of the RDS database.
+         */
+        dbName: string;
+    }
+
+    export interface GetDatabasesDatabaseDatabasePrivilege {
+        /**
+         * The name of account.
+         */
+        accountName: string;
+        /**
+         * The privilege type of the account.
+         */
+        accountPrivilege: string;
+        /**
+         * The privilege detail of the account.
+         */
+        accountPrivilegeDetail: string;
+    }
+
+    export interface GetEndpointsEndpoint {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_mysql.GetEndpointsEndpointAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * The description of the mysql endpoint.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * The id of the mysql endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of the mysql endpoint.
+         */
+        endpointName: string;
+        /**
+         * The endpoint type of the mysql endpoint.
+         */
+        endpointType: string;
+        /**
+         * The id of the mysql endpoint.
+         */
+        id: string;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights: outputs.rds_mysql.GetEndpointsEndpointReadOnlyNodeWeight[];
+        /**
+         * The read write mode.
+         */
+        readWriteMode: string;
+    }
+
+    export interface GetEndpointsEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * The Port.
+         */
+        port: string;
+        /**
+         * Subnet ID, valid only for private addresses.
+         */
+        subnetId: string;
+    }
+
+    export interface GetEndpointsEndpointReadOnlyNodeWeight {
+        /**
+         * The ID of the node.
+         */
+        nodeId: string;
+        /**
+         * The type of the node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
+    }
+
+    export interface GetInstanceSpecsInstanceSpec {
+        /**
+         * Default value of maximum number of connections.
+         */
+        connection: number;
+        /**
+         * Compatible version. Values:
+         * MySQL_5_7: MySQL 5.7 version. Default value.
+         * MySQL_8_0: MySQL 8.0 version.
+         */
+        dbEngineVersion: string;
+        /**
+         * Instance type. The value is DoubleNode.
+         */
+        instanceType: string;
+        /**
+         * Maximum IOPS per second.
+         */
+        iops: number;
+        /**
+         * Memory size, in GB.
+         */
+        memory: number;
+        /**
+         * Queries Per Second (QPS).
+         */
+        qps: number;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * Instance specification code.
+         */
+        specCode: string;
+        /**
+         * Instance specification type. Values:
+         * General: Exclusive specification (formerly "General Purpose").
+         * Shared: General specification (formerly "Shared Type").
+         */
+        specFamily: string;
+        /**
+         * The status of the available zone where the specification is located includes the following statuses:
+         * Normal: On sale.
+         * Soldout: Sold out.
+         */
+        specStatus: string;
+        /**
+         * Maximum storage space, in GB.
+         */
+        storageMax: number;
+        /**
+         * Minimum storage space, in GB.
+         */
+        storageMin: number;
+        /**
+         * Disk step size, in GB.
+         */
+        storageStep: number;
+        /**
+         * Number of vCPUs.
+         */
+        vcpu: number;
+        /**
+         * Availability zone ID.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesRdsMysqlInstance {
+        /**
+         * The version of allow list.
+         */
+        allowListVersion: string;
+        /**
+         * The instance has used backup space. Unit: GB.
+         */
+        backupUse: number;
+        /**
+         * Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+         * true: Yes.
+         * false: No.
+         */
+        binlogDump: boolean;
+        /**
+         * Payment methods.
+         */
+        chargeDetail: outputs.rds_mysql.GetInstancesRdsMysqlInstanceChargeDetail;
+        /**
+         * Connection pool type.
+         */
+        connectionPoolType: string;
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * Data synchronization mode.
+         */
+        dataSyncMode: string;
+        /**
+         * The version of the RDS instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+         * Creating: The proxy is being started.
+         * Running: The proxy is running.
+         * Shutdown: The proxy is closed.
+         * Deleting: The proxy is being closed.
+         */
+        dbProxyStatus: string;
+        /**
+         * The endpoint info of the RDS instance.
+         */
+        endpoints: outputs.rds_mysql.GetInstancesRdsMysqlInstanceEndpoint[];
+        /**
+         * Feature status.
+         */
+        featureStates: outputs.rds_mysql.GetInstancesRdsMysqlInstanceFeatureState[];
+        /**
+         * Whether to enable global read-only.
+         * true: Yes.
+         * false: No.
+         */
+        globalReadOnly: boolean;
+        /**
+         * The ID of the RDS instance.
+         */
+        id: string;
+        /**
+         * The id of the RDS instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the RDS instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the RDS instance.
+         */
+        instanceStatus: string;
+        /**
+         * Whether the table name is case sensitive, the default value is 1.
+         * Ranges:
+         * 0: Table names are stored as fixed and table names are case-sensitive.
+         * 1: Table names will be stored in lowercase and table names are not case sensitive.
+         */
+        lowerCaseTableNames: string;
+        /**
+         * Maintenance Window.
+         */
+        maintenanceWindows: outputs.rds_mysql.GetInstancesRdsMysqlInstanceMaintenanceWindow[];
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * Average CPU usage of the instance master node in nearly one minute.
+         */
+        nodeCpuUsedPercentage: number;
+        /**
+         * Average memory usage of the instance master node in nearly one minute.
+         */
+        nodeMemoryUsedPercentage: number;
+        /**
+         * The number of nodes.
+         */
+        nodeNumber: number;
+        /**
+         * Average disk usage of the instance master node in nearly one minute.
+         */
+        nodeSpaceUsedPercentage: number;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Instance node information.
+         */
+        nodes: outputs.rds_mysql.GetInstancesRdsMysqlInstanceNode[];
+        /**
+         * The project name of the RDS instance.
+         */
+        projectName: string;
+        /**
+         * The region of the RDS instance.
+         */
+        regionId: string;
+        /**
+         * Total instance storage space. Unit: GB.
+         */
+        storageSpace: number;
+        /**
+         * Instance storage type.
+         */
+        storageType: string;
+        /**
+         * The instance has used storage space. Unit: GB.
+         */
+        storageUse: number;
+        /**
+         * The subnet ID of the RDS instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rds_mysql.GetInstancesRdsMysqlInstanceTag[];
+        /**
+         * Time zone.
+         */
+        timeZone: string;
+        /**
+         * The update time of the RDS instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The vpc ID of the RDS instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the RDS instance.
+         */
+        zoneId: string;
+        /**
+         * List of availability zones where each node of the instance is located.
+         */
+        zoneIds: string[];
+    }
+
+    export interface GetInstancesRdsMysqlInstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
+         */
+        autoRenew: boolean;
+        /**
+         * Billing expiry time (yearly and monthly only).
+         */
+        chargeEndTime: string;
+        /**
+         * Billing start time (pay-as-you-go & monthly subscription).
+         */
+        chargeStartTime: string;
+        /**
+         * Pay status. Value:
+         * normal - normal
+         * overdue - overdue
+         * .
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the RDS instance.
+         */
+        chargeType: string;
+        /**
+         * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Shutdown time in arrears (pay-as-you-go & monthly subscription).
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period: number;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit: string;
+        /**
+         * Restore time of temporary upgrade.
+         */
+        tempModifyEndTime: string;
+        /**
+         * Temporary upgrade start time.
+         */
+        tempModifyStartTime: string;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceEndpoint {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_mysql.GetInstancesRdsMysqlInstanceEndpointAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * Address description.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * Instance connection terminal ID.
+         */
+        endpointId: string;
+        /**
+         * The instance connection terminal name.
+         */
+        endpointName: string;
+        /**
+         * Terminal type:
+         * Cluster: The default terminal. (created by default)
+         * Primary: Primary node terminal.
+         * Custom: Custom terminal.
+         * Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+         * AllNode: All node terminals. (Only the operation and maintenance side).
+         */
+        endpointType: string;
+        /**
+         * Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+         */
+        idleConnectionReclaim: boolean;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        nodeWeights: outputs.rds_mysql.GetInstancesRdsMysqlInstanceEndpointNodeWeight[];
+        /**
+         * Read and write mode:
+         * ReadWrite: read and write
+         * ReadOnly: read only (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * The Port.
+         */
+        port: string;
+        /**
+         * The subnet ID of the RDS instance.
+         */
+        subnetId: string;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceEndpointNodeWeight {
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceFeatureState {
+        /**
+         * Whether it is enabled. Values:
+         * true: Enabled.
+         * false: Disabled.
+         */
+        enable: boolean;
+        /**
+         * Feature name.
+         */
+        featureName: string;
+        /**
+         * Whether it support this function. Value:
+         * true: Supported.
+         * false: Not supported.
+         */
+        support: boolean;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceMaintenanceWindow {
+        /**
+         * DayKind of maintainable window. Value: Week. Month.
+         */
+        dayKind: string;
+        /**
+         * Days of maintainable window of the month.
+         */
+        dayOfMonths: number[];
+        /**
+         * Days of maintainable window of the week.
+         */
+        dayOfWeeks: string[];
+        /**
+         * The maintainable time of the RDS instance.
+         */
+        maintenanceTime: string;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceNode {
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * The id of the RDS instance.
+         */
+        instanceId: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Node state, value: aligned with instance state.
+         */
+        nodeStatus: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The region of the RDS instance.
+         */
+        regionId: string;
+        /**
+         * The update time of the RDS instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the RDS instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesRdsMysqlInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetParameterTemplatesTemplate {
+        /**
+         * The account ID.
+         */
+        accountId: string;
+        /**
+         * Creation time.
+         */
+        createTime: string;
+        /**
+         * Does the template contain parameters that require restart.
+         */
+        needRestart: boolean;
+        /**
+         * The number of parameters contained in the template.
+         */
+        parameterNum: number;
+        /**
+         * The project to which the template belongs.
+         */
+        projectName: string;
+        /**
+         * Template category, with a value of DBEngine (database engine parameters).
+         */
+        templateCategory: string;
+        /**
+         * Parameter template description.
+         */
+        templateDesc: string;
+        /**
+         * Parameter template ID.
+         */
+        templateId: string;
+        /**
+         * Parameter template name.
+         */
+        templateName: string;
+        /**
+         * Parameters contained in the template.
+         */
+        templateParams: outputs.rds_mysql.GetParameterTemplatesTemplateTemplateParam[];
+        /**
+         * Parameter template source, value range: System. User.
+         */
+        templateSource: string;
+        /**
+         * Database type of parameter template. The default value is Mysql.
+         */
+        templateType: string;
+        /**
+         * Database version of parameter template. Value range:
+         * MySQL_5_7: Default value. MySQL 5.7 version.
+         * MySQL_8_0: MySQL 8.0 version.
+         */
+        templateTypeVersion: string;
+        /**
+         * Modification time of the template.
+         */
+        updateTime: string;
+    }
+
+    export interface GetParameterTemplatesTemplateTemplateParam {
+        /**
+         * Parameter default value.
+         */
+        defaultValue: string;
+        /**
+         * Parameter description.
+         */
+        description: string;
+        /**
+         * Instance parameter name.
+         * Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+         */
+        name: string;
+        /**
+         * Is it necessary to restart the instance for the changes to take effect.
+         */
+        restart: boolean;
+        /**
+         * Parameter running value.
+         * Description: When making requests with CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+         */
+        runningValue: string;
+        /**
+         * Value range of parameters.
+         */
+        valueRange: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
     export interface InstanceChargeDetail {
@@ -15005,6 +27796,451 @@ export namespace rds_postgresql {
         owner: string;
     }
 
+    export interface GetAccountsAccount {
+        /**
+         * The name of the database account. This field supports fuzzy query.
+         */
+        accountName: string;
+        /**
+         * The privileges of the database account.
+         */
+        accountPrivileges: string;
+        /**
+         * The status of the database account.
+         */
+        accountStatus: string;
+        /**
+         * The type of the database account.
+         */
+        accountType: string;
+    }
+
+    export interface GetAllowlistsPostgresqlAllowList {
+        /**
+         * The description of the postgresql allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the postgresql allow list.
+         */
+        allowListId: string;
+        /**
+         * The total number of IP addresses (or address ranges) in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the postgresql allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the postgresql allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format.
+         */
+        allowLists: string[];
+        /**
+         * The total number of instances bound under the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of postgresql instances.
+         */
+        associatedInstances: outputs.rds_postgresql.GetAllowlistsPostgresqlAllowListAssociatedInstance[];
+        /**
+         * The id of the postgresql allow list.
+         */
+        id: string;
+    }
+
+    export interface GetAllowlistsPostgresqlAllowListAssociatedInstance {
+        /**
+         * The id of the postgresql Instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the postgresql instance.
+         */
+        instanceName: string;
+        /**
+         * The id of the vpc.
+         */
+        vpc: string;
+    }
+
+    export interface GetDatabasesDatabase {
+        /**
+         * Character classification.
+         */
+        cType: string;
+        /**
+         * The character set of the RDS database.
+         */
+        characterSetName: string;
+        /**
+         * The collate of database.
+         */
+        collate: string;
+        /**
+         * The name of the RDS database.
+         */
+        dbName: string;
+        /**
+         * The status of the RDS database.
+         */
+        dbStatus: string;
+        /**
+         * The owner of database.
+         */
+        owner: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The instance has used backup space. Unit: GB.
+         */
+        backupUse: number;
+        /**
+         * Payment methods.
+         */
+        chargeDetails: outputs.rds_postgresql.GetInstancesInstanceChargeDetail[];
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * Data synchronization mode.
+         */
+        dataSyncMode: string;
+        /**
+         * The version of the RDS PostgreSQL instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The endpoint info of the RDS instance.
+         */
+        endpoints: outputs.rds_postgresql.GetInstancesInstanceEndpoint[];
+        /**
+         * The ID of the RDS PostgreSQL instance.
+         */
+        id: string;
+        /**
+         * The id of the RDS PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the RDS PostgreSQL instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the RDS PostgreSQL instance.
+         */
+        instanceStatus: string;
+        /**
+         * The instance type of the RDS PostgreSQL instance.
+         */
+        instanceType: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * The number of nodes.
+         */
+        nodeNumber: number;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Instance node information.
+         */
+        nodes: outputs.rds_postgresql.GetInstancesInstanceNode[];
+        /**
+         * The project name of the RDS PostgreSQL instance.
+         */
+        projectName: string;
+        /**
+         * The region of the RDS PostgreSQL instance.
+         */
+        regionId: string;
+        /**
+         * Total instance storage space. Unit: GB.
+         */
+        storageSpace: number;
+        /**
+         * Instance storage type.
+         */
+        storageType: string;
+        /**
+         * The subnet ID of the RDS PostgreSQL instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rds_postgresql.GetInstancesInstanceTag[];
+        /**
+         * The update time of the RDS PostgreSQL instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The vpc ID of the RDS PostgreSQL instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the RDS PostgreSQL instance.
+         */
+        zoneId: string;
+        /**
+         * ID of the availability zone where each instance is located.
+         */
+        zoneIds: string[];
+    }
+
+    export interface GetInstancesInstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
+         */
+        autoRenew: boolean;
+        /**
+         * Billing expiry time (yearly and monthly only).
+         */
+        chargeEndTime: string;
+        /**
+         * Billing start time (pay-as-you-go & monthly subscription).
+         */
+        chargeStartTime: string;
+        /**
+         * Pay status. Value:
+         * normal - normal
+         * overdue - overdue
+         * .
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the RDS instance.
+         */
+        chargeType: string;
+        /**
+         * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Shutdown time in arrears (pay-as-you-go & monthly subscription).
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period: number;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit: string;
+        /**
+         * Temporary upgrade of restoration time.
+         */
+        tempModifyEndTime: string;
+        /**
+         * Start time of temporary upgrade.
+         */
+        tempModifyStartTime: string;
+    }
+
+    export interface GetInstancesInstanceEndpoint {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_postgresql.GetInstancesInstanceEndpointAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * Address description.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * Instance connection terminal ID.
+         */
+        endpointId: string;
+        /**
+         * The instance connection terminal name.
+         */
+        endpointName: string;
+        /**
+         * Terminal type:
+         * Cluster: The default terminal. (created by default)
+         * Primary: Primary node terminal.
+         * Custom: Custom terminal.
+         * Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+         * AllNode: All node terminals. (Only the operation and maintenance side).
+         */
+        endpointType: string;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights: outputs.rds_postgresql.GetInstancesInstanceEndpointReadOnlyNodeWeight[];
+        /**
+         * Read and write mode:
+         * ReadWrite: read and write
+         * ReadOnly: read only (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface GetInstancesInstanceEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * The Port.
+         */
+        port: string;
+        /**
+         * The subnet ID of the RDS PostgreSQL instance.
+         */
+        subnetId: string;
+    }
+
+    export interface GetInstancesInstanceEndpointReadOnlyNodeWeight {
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
+    }
+
+    export interface GetInstancesInstanceNode {
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * The id of the RDS PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Node state, value: aligned with instance state.
+         */
+        nodeStatus: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The region of the RDS PostgreSQL instance.
+         */
+        regionId: string;
+        /**
+         * The update time of the RDS PostgreSQL instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the RDS PostgreSQL instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSchemasSchema {
+        /**
+         * The name of the database.
+         */
+        dbName: string;
+        /**
+         * The owner of the schema.
+         */
+        owner: string;
+        /**
+         * The name of the schema.
+         */
+        schemaName: string;
+    }
+
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
@@ -15596,6 +28832,332 @@ export namespace rds_postgresql {
 }
 
 export namespace rds_v2 {
+    export interface GetRdsInstancesV2RdsInstance {
+        /**
+         * Payment methods.
+         */
+        chargeDetail: outputs.rds_v2.GetRdsInstancesV2RdsInstanceChargeDetail;
+        /**
+         * The connection info ot the RDS instance.
+         */
+        connectionInfos: outputs.rds_v2.GetRdsInstancesV2RdsInstanceConnectionInfo[];
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * The engine of the RDS instance.
+         */
+        dbEngine: string;
+        /**
+         * The version of the RDS instance, Value:
+         * MySQL Community:
+         * MySQL_5.7 - MySQL 5.7
+         * MySQL_8_0 - MySQL 8.0
+         * PostgreSQL Community:
+         * PostgreSQL_11 - PostgreSQL 11
+         * PostgreSQL_12 - PostgreSQL 12
+         * Microsoft SQL Server: Not available at this time
+         * SQLServer_2019 - SQL Server 2019
+         * veDB for MySQL:
+         * MySQL_8_0 - MySQL 8.0
+         * veDB for PostgreSQL:
+         * PostgreSQL_13 - PostgreSQL 13.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the RDS instance.
+         */
+        id: string;
+        /**
+         * The id of the RDS instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the RDS instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the RDS instance, Value:
+         * Running - running
+         * Creating - Creating
+         * Deleting - Deleting
+         * Restarting - Restarting
+         * Restoring - Restoring
+         * Updating - changing
+         * Upgrading - Upgrading
+         * Error - the error.
+         */
+        instanceStatus: string;
+        /**
+         * The type of the RDS instance, Value:
+         * Value:
+         * RDS for MySQL:
+         * HA - high availability version;
+         * RDS for PostgreSQL:
+         * HA - high availability version;
+         * Microsoft SQL Server: Not available at this time
+         * Enterprise - Enterprise Edition
+         * Standard - Standard Edition
+         * Web - Web version
+         * veDB for MySQL:
+         * Cluster - Cluster Edition
+         * veDB for PostgreSQL:
+         * Cluster - Cluster Edition
+         * MySQL Sharding:
+         * HA - high availability version;.
+         */
+        instanceType: string;
+        /**
+         * Instance node information.
+         */
+        nodeDetailInfos: outputs.rds_v2.GetRdsInstancesV2RdsInstanceNodeDetailInfo[];
+        /**
+         * The number of nodes.
+         */
+        nodeNumber: number;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Instance intranet port.
+         */
+        port: string;
+        /**
+         * Subordinate to the project.
+         */
+        projectName: string;
+        /**
+         * The region of the RDS instance.
+         */
+        regionId: string;
+        /**
+         * The number of shards.
+         */
+        shardNumber: number;
+        /**
+         * Total instance storage space. Unit: GB.
+         */
+        storageSpace: number;
+        /**
+         * Instance storage type. When the database type is MySQL/PostgreSQL/SQL_Server/MySQL Sharding, the value is:
+         * LocalSSD - local SSD disk
+         * When the database type is veDB_MySQL/veDB_PostgreSQL, the value is:
+         * DistributedStorage - Distributed Storage.
+         */
+        storageType: string;
+        /**
+         * The instance has used storage space. Unit: GB.
+         */
+        storageUse: number;
+        /**
+         * The subnet ID of the RDS instance.
+         */
+        subnetId: string;
+        /**
+         * Time zone.
+         */
+        timeZone: string;
+        /**
+         * The vpc ID of the RDS instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the RDS instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetRdsInstancesV2RdsInstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
+         */
+        autoRenew: boolean;
+        /**
+         * Billing expiry time (yearly and monthly only).
+         */
+        chargeEndTime: string;
+        /**
+         * Billing start time (pay-as-you-go & monthly subscription).
+         */
+        chargeStartTime: string;
+        /**
+         * Pay status. Value:
+         * normal - normal
+         * overdue - overdue
+         * .
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the RDS instance.
+         */
+        chargeType: string;
+        /**
+         * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Shutdown time in arrears (pay-as-you-go & monthly subscription).
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period: number;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit: string;
+    }
+
+    export interface GetRdsInstancesV2RdsInstanceConnectionInfo {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_v2.GetRdsInstancesV2RdsInstanceConnectionInfoAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * Address description.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * Instance connection terminal ID.
+         */
+        endpointId: string;
+        /**
+         * The instance connection terminal name.
+         */
+        endpointName: string;
+        /**
+         * Terminal type:
+         * Cluster: The default terminal. (created by default)
+         * Primary: Primary node terminal.
+         * Custom: Custom terminal.
+         * Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+         * AllNode: All node terminals. (Only the operation and maintenance side).
+         */
+        endpointType: string;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights: outputs.rds_v2.GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight[];
+        /**
+         * Read and write mode:
+         * ReadWrite: read and write
+         * ReadOnly: read only (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface GetRdsInstancesV2RdsInstanceConnectionInfoAddress {
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * Instance intranet port.
+         */
+        port: string;
+        /**
+         * The subnet ID of the RDS instance.
+         */
+        subnetId: string;
+    }
+
+    export interface GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight {
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
+    }
+
+    export interface GetRdsInstancesV2RdsInstanceNodeDetailInfo {
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * The id of the RDS instance.
+         */
+        instanceId: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Node state, value: aligned with instance state.
+         */
+        nodeStatus: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The region of the RDS instance.
+         */
+        regionId: string;
+        /**
+         * Node updates local time.
+         */
+        updateTime: string;
+        /**
+         * CPU size. For example: 1 means 1U.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the RDS instance.
+         */
+        zoneId: string;
+    }
+
     export interface RdsInstanceV2ChargeInfo {
         /**
          * Whether to automatically renew in prepaid scenarios.
@@ -16363,6 +29925,521 @@ export namespace redis {
         name: string;
     }
 
+    export interface GetAccountsAccount {
+        /**
+         * The name of the redis account.
+         */
+        accountName: string;
+        /**
+         * The description of the redis account.
+         */
+        description: string;
+        /**
+         * The id of the Redis instance.
+         */
+        instanceId: string;
+        /**
+         * The role info.
+         */
+        roleName: string;
+    }
+
+    export interface GetAllowListsAllowList {
+        /**
+         * Description of allow list.
+         */
+        allowListDesc: string;
+        /**
+         * Id of allow list.
+         */
+        allowListId: string;
+        /**
+         * The IP number of allow list.
+         */
+        allowListIpNum: number;
+        /**
+         * Name of allow list.
+         */
+        allowListName: string;
+        /**
+         * Type of allow list.
+         */
+        allowListType: string;
+        /**
+         * Ip list of allow list.
+         */
+        allowLists: string[];
+        /**
+         * The number of instance that associated to allow list.
+         */
+        associatedInstanceNum: number;
+        /**
+         * Instances associated by this allow list.
+         */
+        associatedInstances: outputs.redis.GetAllowListsAllowListAssociatedInstance[];
+    }
+
+    export interface GetAllowListsAllowListAssociatedInstance {
+        /**
+         * The Id of instance.
+         */
+        instanceId: string;
+        /**
+         * Name of instance.
+         */
+        instanceName: string;
+        /**
+         * Id of virtual private cloud.
+         */
+        vpc: string;
+    }
+
+    export interface GetBackupsBackup {
+        /**
+         * The id of backup point.
+         */
+        backupPointId: string;
+        /**
+         * Backup strategy.
+         */
+        backupStrategy: string;
+        /**
+         * Backup type.
+         */
+        backupType: string;
+        /**
+         * Query end time.
+         */
+        endTime: string;
+        /**
+         * Information of instance.
+         */
+        instanceDetails: outputs.redis.GetBackupsBackupInstanceDetail[];
+        /**
+         * Id of instance.
+         */
+        instanceId: string;
+        /**
+         * Size in MiB.
+         */
+        size: number;
+        /**
+         * Query start time.
+         */
+        startTime: string;
+        /**
+         * Status of backup (Creating/Available/Unavailable/Deleting).
+         */
+        status: string;
+    }
+
+    export interface GetBackupsBackupInstanceDetail {
+        /**
+         * Id of account.
+         */
+        accountId: number;
+        /**
+         * Arch type of instance(Standard/Cluster).
+         */
+        archType: string;
+        /**
+         * Charge type of instance(Postpaid/Prepaid).
+         */
+        chargeType: string;
+        /**
+         * Engine version of instance.
+         */
+        engineVersion: string;
+        /**
+         * Expired time of instance.
+         */
+        expiredTime: string;
+        /**
+         * Id of instance.
+         */
+        instanceId: string;
+        /**
+         * Name of instance.
+         */
+        instanceName: string;
+        /**
+         * The maintainable period (in UTC) of the instance.
+         */
+        maintenanceTime: string;
+        /**
+         * Network type of instance.
+         */
+        networkType: string;
+        /**
+         * Project name of instance.
+         */
+        projectName: string;
+        /**
+         * Id of region.
+         */
+        regionId: string;
+        /**
+         * Count of replica in which shard.
+         */
+        replicas: number;
+        /**
+         * Count of cpu cores of instance.
+         */
+        serverCpu: number;
+        /**
+         * Capacity of shard.
+         */
+        shardCapacity: number;
+        /**
+         * Count of shard.
+         */
+        shardCount: number;
+        /**
+         * Total capacity of instance.
+         */
+        totalCapacity: number;
+        /**
+         * Capacity used of this instance.
+         */
+        usedCapacity: number;
+        /**
+         * Information of vpc.
+         */
+        vpcInfos: outputs.redis.GetBackupsBackupInstanceDetailVpcInfo[];
+        /**
+         * List of id of zone.
+         */
+        zoneIds: string[];
+    }
+
+    export interface GetBackupsBackupInstanceDetailVpcInfo {
+        /**
+         * Id of vpc.
+         */
+        id: string;
+        /**
+         * Name of vpc.
+         */
+        name: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The list of backup plans.
+         */
+        backupPlan: outputs.redis.GetInstancesInstanceBackupPlan;
+        /**
+         * The memory capacity information.
+         */
+        capacity: outputs.redis.GetInstancesInstanceCapacity;
+        /**
+         * The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * Set the list of available zones to which the node belongs.
+         */
+        configureNodes: outputs.redis.GetInstancesInstanceConfigureNode[];
+        /**
+         * The creation time of the redis instance.
+         */
+        createTime: string;
+        /**
+         * whether enable deletion protection.
+         */
+        deletionProtection: string;
+        /**
+         * The engine version of redis instance to query. Valid values: `4.0`, `5.0`, `6.0`.
+         */
+        engineVersion: string;
+        /**
+         * The expire time of the redis instance, valid when charge type is `PrePaid`.
+         */
+        expiredTime: string;
+        /**
+         * The id of the redis instance.
+         */
+        id: string;
+        /**
+         * The id of redis instance to query. This field supports fuzzy queries.
+         */
+        instanceId: string;
+        /**
+         * The name of redis instance to query. This field supports fuzzy queries.
+         */
+        instanceName: string;
+        /**
+         * The maintainable time of the redis instance.
+         */
+        maintenanceTime: string;
+        /**
+         * Set the availability zone deployment scheme for the instance. The value range is as follows: 
+         * disabled: Single availability zone deployment scheme.
+         * enabled: Multi-availability zone deployment scheme.
+         * Description:
+         * When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+         */
+        multiAz: string;
+        /**
+         * The list of redis instance node IDs.
+         */
+        nodeIds: string[];
+        /**
+         * The number of nodes in each shard.
+         */
+        nodeNumber: number;
+        /**
+         * The list of params.
+         */
+        params: outputs.redis.GetInstancesInstanceParam[];
+        /**
+         * The project name of redis instance to query.
+         */
+        projectName: string;
+        /**
+         * The region id of the redis instance.
+         */
+        regionId: string;
+        /**
+         * The memory capacity of each shard. Unit: GiB.
+         */
+        shardCapacity: number;
+        /**
+         * The number of shards in the redis instance.
+         */
+        shardNumber: number;
+        /**
+         * Whether enable sharded cluster for redis instance. Valid values: 0, 1.
+         */
+        shardedCluster: number;
+        /**
+         * The status of redis instance to query.
+         */
+        status: string;
+        /**
+         * The subnet id of the redis instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.redis.GetInstancesInstanceTag[];
+        /**
+         * The list of connection information.
+         */
+        visitAddrs: outputs.redis.GetInstancesInstanceVisitAddr[];
+        /**
+         * Whether to enable password-free access when connecting to an instance through a private network.
+         */
+        vpcAuthMode: string;
+        /**
+         * The vpc id of redis instance to query. This field supports fuzzy queries.
+         */
+        vpcId: string;
+        /**
+         * The list of zone ID which the redis instance belongs.
+         */
+        zoneIds: string[];
+    }
+
+    export interface GetInstancesInstanceBackupPlan {
+        /**
+         * Whether enable auto backup.
+         */
+        active: boolean;
+        /**
+         * The time period to start performing the backup. The value range is any integer between 0 and 23, where 0 means that the system will perform the backup in the period of 00:00~01:00, 1 means that the backup will be performed in the period of 01:00~02:00, and so on.
+         */
+        backupHour: number;
+        /**
+         * The backup type.
+         */
+        backupType: string;
+        /**
+         * The expected time for the next backup to be performed.
+         */
+        expectNextBackupTime: string;
+        /**
+         * The id of redis instance to query. This field supports fuzzy queries.
+         */
+        instanceId: string;
+        /**
+         * The last time the backup policy was modified.
+         */
+        lastUpdateTime: string;
+        /**
+         * The backup cycle. The value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
+         */
+        periods: number[];
+        /**
+         * The number of days to keep backups, the default is 7 days.
+         */
+        ttl: number;
+    }
+
+    export interface GetInstancesInstanceCapacity {
+        /**
+         * The total memory capacity of the redis instance. Unit: MiB.
+         */
+        total: number;
+        /**
+         * The used memory capacity of the redis instance. Unit: MiB.
+         */
+        used: number;
+    }
+
+    export interface GetInstancesInstanceConfigureNode {
+        /**
+         * Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+         * When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+         */
+        az: string;
+    }
+
+    export interface GetInstancesInstanceParam {
+        /**
+         * Current value of the configuration parameter.
+         */
+        currentValue: string;
+        /**
+         * Default value of the configuration parameter.
+         */
+        defaultValue: string;
+        /**
+         * The description of this option item.
+         */
+        description: string;
+        /**
+         * Whether the current redis instance supports editing this parameter.
+         */
+        editableForInstance: boolean;
+        /**
+         * Whether need to reboot the redis instance when modifying this parameter.
+         */
+        needReboot: boolean;
+        /**
+         * The list of options. Valid when the configuration parameter type is `Radio`.
+         */
+        options: outputs.redis.GetInstancesInstanceParamOption[];
+        /**
+         * The name of the configuration parameter.
+         */
+        paramName: string;
+        /**
+         * The valid value range of the numeric type configuration parameter.
+         */
+        range: string;
+        /**
+         * The type of the configuration parameter.
+         */
+        type: string;
+        /**
+         * The unit of the numeric type configuration parameter.
+         */
+        unit: string;
+    }
+
+    export interface GetInstancesInstanceParamOption {
+        /**
+         * The description of this option item.
+         */
+        description: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesInstanceVisitAddr {
+        /**
+         * The connection address type.
+         */
+        addrType: string;
+        /**
+         * The connection address.
+         */
+        address: string;
+        /**
+         * The EIP ID bound to the instance's public network address.
+         */
+        eipId: string;
+        /**
+         * The connection port.
+         */
+        port: string;
+        /**
+         * The ipv4 address of the connection address.
+         */
+        vip: string;
+        /**
+         * The ipv6 address of the connection address.
+         */
+        vipV6: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetPitrTimeWindowsPeriod {
+        /**
+         * Recoverable end time (UTC time) supported when restoring data by point in time.
+         */
+        endTime: string;
+        /**
+         * The instance id.
+         */
+        instanceId: string;
+        /**
+         * The recoverable start time (in UTC time) supported when restoring data by point in time.
+         */
+        startTime: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * Target region info.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
     export interface InstanceConfigureNode {
         /**
          * Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
@@ -16815,6 +30892,487 @@ export namespace rocketmq {
          * The vpc id of the rocketmq instance.
          */
         vpc: string;
+    }
+
+    export interface GetAccessKeysAccessKey {
+        /**
+         * The access key id of the rocketmq key.
+         */
+        accessKey: string;
+        /**
+         * The acl config of the rocketmq key.
+         */
+        aclConfigJson: string;
+        /**
+         * The active status of the rocketmq key.
+         */
+        actived: boolean;
+        /**
+         * The default authority of the rocketmq key.
+         */
+        allAuthority: string;
+        /**
+         * The create time of the rocketmq key.
+         */
+        createTime: string;
+        /**
+         * The description of the rocketmq key.
+         */
+        description: string;
+        /**
+         * The id of rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The secret key of the rocketmq key.
+         */
+        secretKey: string;
+        /**
+         * The custom authority of the rocketmq key.
+         */
+        topicPermissions: outputs.rocketmq.GetAccessKeysAccessKeyTopicPermission[];
+    }
+
+    export interface GetAccessKeysAccessKeyTopicPermission {
+        /**
+         * The custom authority for the topic.
+         */
+        permission: string;
+        /**
+         * The name of the rocketmq topic.
+         */
+        topicName: string;
+    }
+
+    export interface GetAllowListsRocketmqAllowList {
+        /**
+         * The description of the rocketmq allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the rocketmq allow list.
+         */
+        allowListId: string;
+        /**
+         * The number of ip address in the rocketmq allow list.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the rocketmq allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the rocketmq allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format of the allow list.
+         */
+        allowLists: string[];
+        /**
+         * The number of the rocketmq instances associated with the allow list.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The associated instance information of the allow list.
+         */
+        associatedInstances: outputs.rocketmq.GetAllowListsRocketmqAllowListAssociatedInstance[];
+        /**
+         * The id of the rocketmq allow list.
+         */
+        id: string;
+    }
+
+    export interface GetAllowListsRocketmqAllowListAssociatedInstance {
+        /**
+         * The id of the rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the rocketmq instance.
+         */
+        instanceName: string;
+        /**
+         * The vpc id of the rocketmq instance.
+         */
+        vpc: string;
+    }
+
+    export interface GetGroupsRocketmqGroup {
+        /**
+         * The consumed topic information of the rocketmq group.
+         */
+        consumedClients: outputs.rocketmq.GetGroupsRocketmqGroupConsumedClient[];
+        /**
+         * The consumed topic information of the rocketmq group.
+         */
+        consumedTopics: outputs.rocketmq.GetGroupsRocketmqGroupConsumedTopic[];
+        /**
+         * The create time of the rocketmq group.
+         */
+        createTime: string;
+        /**
+         * The description of the rocketmq group.
+         */
+        description: string;
+        /**
+         * The id of rocketmq group. This field support fuzzy query.
+         */
+        groupId: string;
+        /**
+         * The type of rocketmq group. Valid values: `TCP`.
+         */
+        groupType: string;
+        /**
+         * Whether the subscription relationship of consumer instance groups within the group is consistent.
+         */
+        isSubSame: boolean;
+        /**
+         * The message delay time of the rocketmq group. The unit is milliseconds.
+         */
+        messageDelayTime: string;
+        /**
+         * The message model of the rocketmq group.
+         */
+        messageModel: string;
+        /**
+         * The status of the rocketmq group.
+         */
+        status: string;
+        /**
+         * The total consume rate of the rocketmq group. The unit is per second.
+         */
+        totalConsumeRate: string;
+        /**
+         * The total amount of unconsumed messages.
+         */
+        totalDiff: number;
+    }
+
+    export interface GetGroupsRocketmqGroupConsumedClient {
+        /**
+         * The address of the consumed client.
+         */
+        clientAddress: string;
+        /**
+         * The id of the consumed client.
+         */
+        clientId: string;
+        /**
+         * The amount of message.
+         */
+        diff: number;
+        /**
+         * The language of the consumed client.
+         */
+        language: string;
+        /**
+         * The version of the consumed client.
+         */
+        version: string;
+    }
+
+    export interface GetGroupsRocketmqGroupConsumedTopic {
+        /**
+         * The queue number of the rocketmq topic.
+         */
+        queueNum: number;
+        /**
+         * The sub string of the rocketmq topic.
+         */
+        subString: string;
+        /**
+         * The name of the rocketmq topic.
+         */
+        topicName: string;
+    }
+
+    export interface GetInstancesRocketmqInstance {
+        /**
+         * The account id of the rocketmq instance.
+         */
+        accountId: string;
+        /**
+         * Whether the private dns to public function is enabled for the rocketmq instance.
+         */
+        applyPrivateDnsToPublic: boolean;
+        /**
+         * The available queue number of the rocketmq instance.
+         */
+        availableQueueNumber: number;
+        /**
+         * The charge detail information of the rocketmq instance.
+         */
+        chargeDetails: outputs.rocketmq.GetInstancesRocketmqInstanceChargeDetail[];
+        /**
+         * The compute spec of the rocketmq instance.
+         */
+        computeSpec: string;
+        /**
+         * The connection information of the rocketmq.
+         */
+        connectionInfos: outputs.rocketmq.GetInstancesRocketmqInstanceConnectionInfo[];
+        /**
+         * The create time of the rocketmq instance.
+         */
+        createTime: string;
+        /**
+         * The eip id of the rocketmq instance.
+         */
+        eipId: string;
+        /**
+         * Whether the ssl authentication is enabled for the rocketmq instance.
+         */
+        enableSsl: boolean;
+        /**
+         * The reserved time of messages on the RocketMQ server of the message queue. Messages that exceed the reserved time will be cleared after expiration. The unit is in hours.
+         */
+        fileReservedTime: number;
+        /**
+         * The id of the rocketmq instance.
+         */
+        id: string;
+        /**
+         * The description of the rocketmq instance.
+         */
+        instanceDescription: string;
+        /**
+         * The id of rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The name of rocketmq instance. This field support fuzzy query.
+         */
+        instanceName: string;
+        /**
+         * The status of rocketmq instance.
+         */
+        instanceStatus: string;
+        /**
+         * The project name of rocketmq instance.
+         */
+        projectName: string;
+        /**
+         * The region id of the rocketmq instance.
+         */
+        regionId: string;
+        /**
+         * The ssl mode of the rocketmq instance.
+         */
+        sslMode: string;
+        /**
+         * The total storage space of the rocketmq instance.
+         */
+        storageSpace: number;
+        /**
+         * The subnet id of the rocketmq instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rocketmq.GetInstancesRocketmqInstanceTag[];
+        /**
+         * The used group number of the rocketmq instance.
+         */
+        usedGroupNumber: number;
+        /**
+         * The used queue number of the rocketmq instance.
+         */
+        usedQueueNumber: number;
+        /**
+         * The used storage space of the rocketmq instance.
+         */
+        usedStorageSpace: number;
+        /**
+         * The used topic number of the rocketmq instance.
+         */
+        usedTopicNumber: number;
+        /**
+         * The version of rocketmq instance. Valid values: `4.8`.
+         */
+        version: string;
+        /**
+         * The vpc id of rocketmq instance.
+         */
+        vpcId: string;
+        /**
+         * The zone id of rocketmq instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesRocketmqInstanceChargeDetail {
+        /**
+         * Whether to enable automatic renewal.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge expire time of the rocketmq instance.
+         */
+        chargeExpireTime: string;
+        /**
+         * The charge start time of the rocketmq instance.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status of the rocketmq instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of rocketmq instance. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * The overdue reclaim time of the rocketmq instance.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of the rocketmq instance.
+         */
+        overdueTime: string;
+        /**
+         * The period unit of the rocketmq instance.
+         */
+        periodUnit: string;
+    }
+
+    export interface GetInstancesRocketmqInstanceConnectionInfo {
+        /**
+         * The endpoint address ip of the rocketmq.
+         */
+        endpointAddressIp: string;
+        /**
+         * The endpoint type of the rocketmq.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of the rocketmq.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of the rocketmq.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of the rocketmq.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface GetInstancesRocketmqInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTopicsRocketmqTopic {
+        /**
+         * The access policies of the rocketmq topic.
+         */
+        accessPolicies: outputs.rocketmq.GetTopicsRocketmqTopicAccessPolicy[];
+        /**
+         * The create time of the rocketmq topic.
+         */
+        createTime: string;
+        /**
+         * The description of the rocketmq topic.
+         */
+        description: string;
+        /**
+         * The groups information of the rocketmq topic.
+         */
+        groups: outputs.rocketmq.GetTopicsRocketmqTopicGroup[];
+        /**
+         * The id of rocketmq instance.
+         */
+        instanceId: string;
+        /**
+         * The type of the rocketmq message. Setting this parameter means filtering the Topic list based on the specified message type. The value explanation is as follows:
+         * 0: Regular message
+         * 1: Transaction message
+         * 2: Partition order message
+         * 3: Global sequential message
+         * 4: Delay message.
+         */
+        messageType: number;
+        /**
+         * The number of the rocketmq topic queue.
+         */
+        queueNumber: number;
+        /**
+         * The queues information of the rocketmq topic.
+         */
+        queues: outputs.rocketmq.GetTopicsRocketmqTopicQueue[];
+        /**
+         * The name of the rocketmq topic. This field support fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface GetTopicsRocketmqTopicAccessPolicy {
+        /**
+         * The access key of the rocketmq key.
+         */
+        accessKey: string;
+        /**
+         * The authority of the rocketmq key for the current topic.
+         */
+        authority: string;
+    }
+
+    export interface GetTopicsRocketmqTopicGroup {
+        /**
+         * The id of the rocketmq group.
+         */
+        groupId: string;
+        /**
+         * The message model of the rocketmq group.
+         */
+        messageModel: string;
+        /**
+         * The sub string of the rocketmq group.
+         */
+        subString: string;
+    }
+
+    export interface GetTopicsRocketmqTopicQueue {
+        /**
+         * The end offset of the rocketmq queue.
+         */
+        endOffset: number;
+        /**
+         * The last update timestamp of the rocketmq queue.
+         */
+        lastUpdateTimestamp: number;
+        /**
+         * The message count of the rocketmq queue.
+         */
+        messageCount: number;
+        /**
+         * The id of the rocketmq queue.
+         */
+        queueId: string;
+        /**
+         * The start offset of the rocketmq queue.
+         */
+        startOffset: number;
     }
 
     export interface GroupsRocketmqGroup {
@@ -17625,6 +32183,1254 @@ export namespace tls {
          * Execution cycle type.
          */
         type: string;
+    }
+
+    export interface GetAlarmNotifyGroupsGroup {
+        /**
+         * The id of the alarm notify group.
+         */
+        alarmNotifyGroupId: string;
+        /**
+         * The name of the alarm notify group.
+         */
+        alarmNotifyGroupName: string;
+        /**
+         * The create time the notification.
+         */
+        createTime: string;
+        /**
+         * The name of the iam project.
+         */
+        iamProjectName: string;
+        /**
+         * The modification time the notification.
+         */
+        modifyTime: string;
+        /**
+         * The notify group type.
+         */
+        notifyTypes: string[];
+        /**
+         * List of IAM users to receive alerts.
+         */
+        receivers: outputs.tls.GetAlarmNotifyGroupsGroupReceiver[];
+    }
+
+    export interface GetAlarmNotifyGroupsGroupReceiver {
+        /**
+         * The end time.
+         */
+        endTime: string;
+        /**
+         * The list of the receiver channels.
+         */
+        receiverChannels: string[];
+        /**
+         * List of the receiver names.
+         */
+        receiverNames: string[];
+        /**
+         * The receiver type.
+         */
+        receiverType: string;
+        /**
+         * The start time.
+         */
+        startTime: string;
+    }
+
+    export interface GetAlarmsAlarm {
+        /**
+         * The alarm id.
+         */
+        alarmId: string;
+        /**
+         * The alarm name.
+         */
+        alarmName: string;
+        /**
+         * List of notification groups corresponding to the alarm.
+         */
+        alarmNotifyGroups: outputs.tls.GetAlarmsAlarmAlarmNotifyGroup[];
+        /**
+         * Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+         */
+        alarmPeriod: number;
+        /**
+         * Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+         */
+        alarmPeriodDetails: outputs.tls.GetAlarmsAlarmAlarmPeriodDetail[];
+        /**
+         * Alarm trigger condition.
+         */
+        condition: string;
+        /**
+         * The create time.
+         */
+        createTime: string;
+        /**
+         * The modify time.
+         */
+        modifyTime: string;
+        /**
+         * The project id.
+         */
+        projectId: string;
+        /**
+         * Search and analyze sentences, 1~3 can be configured.
+         */
+        queryRequests: outputs.tls.GetAlarmsAlarmQueryRequest[];
+        /**
+         * The execution period of the alarm task.
+         */
+        requestCycles: outputs.tls.GetAlarmsAlarmRequestCycle[];
+        /**
+         * The status.
+         */
+        status: boolean;
+        /**
+         * Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+         */
+        triggerPeriod: number;
+        /**
+         * Customize the alarm notification content.
+         */
+        userDefineMsg: string;
+    }
+
+    export interface GetAlarmsAlarmAlarmNotifyGroup {
+        /**
+         * The id of the notify group.
+         */
+        alarmNotifyGroupId: string;
+        /**
+         * Name of the notification group.
+         */
+        alarmNotifyGroupName: string;
+        /**
+         * The create time.
+         */
+        createTime: string;
+        /**
+         * The iam project name.
+         */
+        iamProjectName: string;
+        /**
+         * The modify time.
+         */
+        modifyTime: string;
+        /**
+         * The notify group type.
+         */
+        notifyTypes: string[];
+        /**
+         * List of IAM users to receive alerts.
+         */
+        receivers: outputs.tls.GetAlarmsAlarmAlarmNotifyGroupReceiver[];
+    }
+
+    export interface GetAlarmsAlarmAlarmNotifyGroupReceiver {
+        /**
+         * The end time.
+         */
+        endTime: string;
+        /**
+         * The list of the receiver channels.
+         */
+        receiverChannels: string[];
+        /**
+         * List of the receiver names.
+         */
+        receiverNames: string[];
+        /**
+         * The receiver type.
+         */
+        receiverType: string;
+        /**
+         * The start time.
+         */
+        startTime: string;
+    }
+
+    export interface GetAlarmsAlarmAlarmPeriodDetail {
+        /**
+         * Email alarm period, the unit is minutes, and the value range is 1~1440.
+         */
+        email: number;
+        /**
+         * Customize the webhook alarm period, the unit is minutes, and the value range is 1~1440.
+         */
+        generalWebhook: number;
+        /**
+         * Telephone alarm cycle, the unit is minutes, and the value range is 10~1440.
+         */
+        phone: number;
+        /**
+         * SMS alarm cycle, the unit is minutes, and the value range is 10~1440.
+         */
+        sms: number;
+    }
+
+    export interface GetAlarmsAlarmQueryRequest {
+        /**
+         * The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
+         */
+        endTimeOffset: number;
+        /**
+         * Alarm object sequence number; increments from 1.
+         */
+        number: number;
+        /**
+         * Query statement, the maximum supported length is 1024.
+         */
+        query: string;
+        /**
+         * The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
+         */
+        startTimeOffset: number;
+        /**
+         * The topic id.
+         */
+        topicId: string;
+        /**
+         * The topic name.
+         */
+        topicName: string;
+    }
+
+    export interface GetAlarmsAlarmRequestCycle {
+        /**
+         * The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
+         */
+        time: number;
+        /**
+         * Execution cycle type.
+         */
+        type: string;
+    }
+
+    export interface GetHostGroupsInfo {
+        /**
+         * The abnormal heartbeat status count of host.
+         */
+        abnormalHeartbeatStatusCount: number;
+        /**
+         * The latest version of log collector.
+         */
+        agentLatestVersion: string;
+        /**
+         * Whether enable auto update.
+         */
+        autoUpdate: boolean;
+        /**
+         * The create time of host group.
+         */
+        createTime: string;
+        /**
+         * The count of host.
+         */
+        hostCount: number;
+        /**
+         * The id of host group.
+         */
+        hostGroupId: string;
+        /**
+         * The name of host group.
+         */
+        hostGroupName: string;
+        /**
+         * The type of host group.
+         */
+        hostGroupType: string;
+        /**
+         * The identifier of host.
+         */
+        hostIdentifier: string;
+        /**
+         * The ip list of host group.
+         */
+        hostIpLists: string[];
+        /**
+         * The project name of iam.
+         */
+        iamProjectName: string;
+        /**
+         * The modify time of host group.
+         */
+        modifyTime: string;
+        /**
+         * The normal heartbeat status count of host.
+         */
+        normalHeartbeatStatusCount: number;
+        /**
+         * The rule count of host.
+         */
+        ruleCount: number;
+        /**
+         * Whether enable service logging.
+         */
+        serviceLogging: boolean;
+        /**
+         * The update end time of log collector.
+         */
+        updateEndTime: string;
+        /**
+         * The update start time of log collector.
+         */
+        updateStartTime: string;
+    }
+
+    export interface GetHostsHostInfo {
+        /**
+         * The the heartbeat status.
+         */
+        heartbeatStatus: number;
+        /**
+         * The id of host group.
+         */
+        hostGroupId: string;
+        /**
+         * The ip address.
+         */
+        ip: string;
+        /**
+         * The version of log collector.
+         */
+        logCollectorVersion: string;
+    }
+
+    export interface GetIndexesTlsIndex {
+        /**
+         * The create time of the tls index.
+         */
+        createTime: string;
+        /**
+         * The FullText index of the tls topic.
+         */
+        fullText: outputs.tls.GetIndexesTlsIndexFullText;
+        /**
+         * The topic id of the tls index.
+         */
+        id: string;
+        /**
+         * The KeyValue index of the tls topic.
+         */
+        keyValues: outputs.tls.GetIndexesTlsIndexKeyValue[];
+        /**
+         * The modify time of the tls index.
+         */
+        modifyTime: string;
+        /**
+         * The topic id of the tls index.
+         */
+        topicId: string;
+        /**
+         * The reserved field index configuration of the tls topic.
+         */
+        userInnerKeyValues: outputs.tls.GetIndexesTlsIndexUserInnerKeyValue[];
+    }
+
+    export interface GetIndexesTlsIndexFullText {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+    }
+
+    export interface GetIndexesTlsIndexKeyValue {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values.
+         */
+        indexAll: boolean;
+        /**
+         * The JSON subfield key value index.
+         */
+        jsonKeys: outputs.tls.GetIndexesTlsIndexKeyValueJsonKey[];
+        /**
+         * The key of the KeyValue index.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag: boolean;
+        /**
+         * The type of value.
+         */
+        valueType: string;
+    }
+
+    export interface GetIndexesTlsIndexKeyValueJsonKey {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+        /**
+         * The key of the KeyValue index.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag: boolean;
+        /**
+         * The type of value.
+         */
+        valueType: string;
+    }
+
+    export interface GetIndexesTlsIndexUserInnerKeyValue {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+        /**
+         * The JSON subfield key value index.
+         */
+        jsonKeys: outputs.tls.GetIndexesTlsIndexUserInnerKeyValueJsonKey[];
+        /**
+         * The key of the KeyValue index.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag: boolean;
+        /**
+         * The type of value.
+         */
+        valueType: string;
+    }
+
+    export interface GetIndexesTlsIndexUserInnerKeyValueJsonKey {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+        /**
+         * The key of the KeyValue index.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag: boolean;
+        /**
+         * The type of value.
+         */
+        valueType: string;
+    }
+
+    export interface GetKafkaConsumersData {
+        /**
+         * Whether allow consume.
+         */
+        allowConsume: boolean;
+        /**
+         * The topic of consume.
+         */
+        consumeTopic: string;
+        /**
+         * The ID of Topic.
+         */
+        topicId: string;
+    }
+
+    export interface GetProjectsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetProjectsTlsProject {
+        /**
+         * The create time of the tls project.
+         */
+        createTime: string;
+        /**
+         * The description of the tls project.
+         */
+        description: string;
+        /**
+         * The IAM project name of the tls project.
+         */
+        iamProjectName: string;
+        /**
+         * The ID of the tls project.
+         */
+        id: string;
+        /**
+         * The inner net domain of the tls project.
+         */
+        innerNetDomain: string;
+        /**
+         * The id of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+         */
+        projectId: string;
+        /**
+         * The name of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.tls.GetProjectsTlsProjectTag[];
+        /**
+         * The count of topics in the tls project.
+         */
+        topicCount: number;
+    }
+
+    export interface GetProjectsTlsProjectTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRuleAppliersRule {
+        /**
+         * Container collection rules.
+         */
+        containerRules: outputs.tls.GetRuleAppliersRuleContainerRule[];
+        /**
+         * The creation time.
+         */
+        createTime: string;
+        /**
+         * Collect the blacklist list.
+         */
+        excludePaths: outputs.tls.GetRuleAppliersRuleExcludePath[];
+        /**
+         * The extract rule.
+         */
+        extractRules: outputs.tls.GetRuleAppliersRuleExtractRule[];
+        /**
+         * The collection type.
+         */
+        inputType: number;
+        /**
+         * Log sample.
+         */
+        logSample: string;
+        /**
+         * The log type.
+         */
+        logType: string;
+        /**
+         * The modification time.
+         */
+        modifyTime: string;
+        /**
+         * Collection path list.
+         */
+        paths: string[];
+        /**
+         * The rule id.
+         */
+        ruleId: string;
+        /**
+         * The rule name.
+         */
+        ruleName: string;
+        /**
+         * The topic id.
+         */
+        topicId: string;
+        /**
+         * The topic name.
+         */
+        topicName: string;
+        /**
+         * User-defined collection rules.
+         */
+        userDefineRules: outputs.tls.GetRuleAppliersRuleUserDefineRule[];
+    }
+
+    export interface GetRuleAppliersRuleContainerRule {
+        /**
+         * The name of the container to be collected.
+         */
+        containerNameRegex: string;
+        /**
+         * Whether to add environment variables as log tags to raw log data.
+         */
+        envTag: {[key: string]: any};
+        /**
+         * The container environment variable blacklist is used to specify the range of containers not to be collected.
+         */
+        excludeContainerEnvRegex: {[key: string]: any};
+        /**
+         * The container Label blacklist is used to specify the range of containers not to be collected.
+         */
+        excludeContainerLabelRegex: {[key: string]: any};
+        /**
+         * The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+         */
+        includeContainerEnvRegex: {[key: string]: any};
+        /**
+         * The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+         */
+        includeContainerLabelRegex: {[key: string]: any};
+        /**
+         * Collection rules for Kubernetes containers.
+         */
+        kubernetesRules: outputs.tls.GetRuleAppliersRuleContainerRuleKubernetesRule[];
+        /**
+         * The collection mode.
+         */
+        stream: string;
+    }
+
+    export interface GetRuleAppliersRuleContainerRuleKubernetesRule {
+        /**
+         * Whether to add Kubernetes Annotation as a log tag to the raw log data.
+         */
+        annotationTag: {[key: string]: any};
+        /**
+         * Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+         */
+        excludePodLabelRegex: {[key: string]: any};
+        /**
+         * The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+         */
+        includePodLabelRegex: {[key: string]: any};
+        /**
+         * Whether to add Kubernetes Label as a log label to the original log data.
+         */
+        labelTag: {[key: string]: any};
+        /**
+         * The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+         */
+        namespaceNameRegex: string;
+        /**
+         * The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+         */
+        podNameRegex: string;
+        /**
+         * Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+         */
+        workloadNameRegex: string;
+        /**
+         * Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+         */
+        workloadType: string;
+    }
+
+    export interface GetRuleAppliersRuleExcludePath {
+        /**
+         * The type of the log template.
+         */
+        type: string;
+        /**
+         * Collection path.
+         */
+        value: string;
+    }
+
+    export interface GetRuleAppliersRuleExtractRule {
+        /**
+         * The first log line needs to match the regular expression.
+         */
+        beginRegex: string;
+        /**
+         * The delimiter of the log.
+         */
+        delimiter: string;
+        /**
+         * The filter key list.
+         */
+        filterKeyRegexes: outputs.tls.GetRuleAppliersRuleExtractRuleFilterKeyRegex[];
+        /**
+         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+         */
+        keys: string[];
+        /**
+         * The entire log needs to match the regular expression.
+         */
+        logRegex: string;
+        /**
+         * Automatically extract log fields according to the specified log template.
+         */
+        logTemplates: outputs.tls.GetRuleAppliersRuleExtractRuleLogTemplate[];
+        /**
+         * Parsing format of the time field.
+         */
+        timeFormat: string;
+        /**
+         * The field name of the log time field.
+         */
+        timeKey: string;
+        /**
+         * When uploading the failed log, the key name of the failed log.
+         */
+        unMatchLogKey: string;
+        /**
+         * Whether to upload the log of parsing failure.
+         */
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface GetRuleAppliersRuleExtractRuleFilterKeyRegex {
+        /**
+         * The name of the filter key.
+         */
+        key: string;
+        /**
+         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+         */
+        regex: string;
+    }
+
+    export interface GetRuleAppliersRuleExtractRuleLogTemplate {
+        /**
+         * Log template content.
+         */
+        format: string;
+        /**
+         * The type of the log template.
+         */
+        type: string;
+    }
+
+    export interface GetRuleAppliersRuleUserDefineRule {
+        /**
+         * LogCollector extension configuration.
+         */
+        advanceds: outputs.tls.GetRuleAppliersRuleUserDefineRuleAdvanced[];
+        /**
+         * Whether to upload raw logs.
+         */
+        enableRawLog: boolean;
+        /**
+         * Add constant fields to logs.
+         */
+        fields: {[key: string]: any};
+        /**
+         * Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+         */
+        parsePathRules: outputs.tls.GetRuleAppliersRuleUserDefineRuleParsePathRule[];
+        /**
+         * Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+         */
+        plugins: outputs.tls.GetRuleAppliersRuleUserDefineRulePlugin[];
+        /**
+         * Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+         */
+        shardHashKeys: outputs.tls.GetRuleAppliersRuleUserDefineRuleShardHashKey[];
+        /**
+         * LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+         */
+        tailFiles: boolean;
+    }
+
+    export interface GetRuleAppliersRuleUserDefineRuleAdvanced {
+        /**
+         * Whether to release the log file handle after reading to the end of the log file. The default is false.
+         */
+        closeEof: boolean;
+        /**
+         * The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+         */
+        closeInactive: number;
+        /**
+         * After the log file is removed, whether to release the handle of the log file. The default is false.
+         */
+        closeRemoved: boolean;
+        /**
+         * After the log file is renamed, whether to release the handle of the log file. The default is false.
+         */
+        closeRenamed: boolean;
+        /**
+         * The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+         */
+        closeTimeout: number;
+    }
+
+    export interface GetRuleAppliersRuleUserDefineRuleParsePathRule {
+        /**
+         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+         */
+        keys: string[];
+        /**
+         * Sample capture path for a real scene.
+         */
+        pathSample: string;
+        /**
+         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+         */
+        regex: string;
+    }
+
+    export interface GetRuleAppliersRuleUserDefineRulePlugin {
+        /**
+         * LogCollector plugin.
+         */
+        processors: string;
+    }
+
+    export interface GetRuleAppliersRuleUserDefineRuleShardHashKey {
+        /**
+         * The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+         */
+        hashKey: string;
+    }
+
+    export interface GetRulesRule {
+        /**
+         * Container collection rules.
+         */
+        containerRules: outputs.tls.GetRulesRuleContainerRule[];
+        /**
+         * The creation time.
+         */
+        createTime: string;
+        /**
+         * Collect the blacklist list.
+         */
+        excludePaths: outputs.tls.GetRulesRuleExcludePath[];
+        /**
+         * The extract rule.
+         */
+        extractRules: outputs.tls.GetRulesRuleExtractRule[];
+        /**
+         * The collection type.
+         */
+        inputType: number;
+        /**
+         * Log sample.
+         */
+        logSample: string;
+        /**
+         * The log type.
+         */
+        logType: string;
+        /**
+         * The modification time.
+         */
+        modifyTime: string;
+        /**
+         * Collection path list.
+         */
+        paths: string[];
+        /**
+         * The rule id.
+         */
+        ruleId: string;
+        /**
+         * The rule name.
+         */
+        ruleName: string;
+        /**
+         * The topic id.
+         */
+        topicId: string;
+        /**
+         * The topic name.
+         */
+        topicName: string;
+        /**
+         * User-defined collection rules.
+         */
+        userDefineRules: outputs.tls.GetRulesRuleUserDefineRule[];
+    }
+
+    export interface GetRulesRuleContainerRule {
+        /**
+         * The name of the container to be collected.
+         */
+        containerNameRegex: string;
+        /**
+         * Whether to add environment variables as log tags to raw log data.
+         */
+        envTag: {[key: string]: any};
+        /**
+         * The container environment variable blacklist is used to specify the range of containers not to be collected.
+         */
+        excludeContainerEnvRegex: {[key: string]: any};
+        /**
+         * The container Label blacklist is used to specify the range of containers not to be collected.
+         */
+        excludeContainerLabelRegex: {[key: string]: any};
+        /**
+         * The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+         */
+        includeContainerEnvRegex: {[key: string]: any};
+        /**
+         * The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+         */
+        includeContainerLabelRegex: {[key: string]: any};
+        /**
+         * Collection rules for Kubernetes containers.
+         */
+        kubernetesRules: outputs.tls.GetRulesRuleContainerRuleKubernetesRule[];
+        /**
+         * The collection mode.
+         */
+        stream: string;
+    }
+
+    export interface GetRulesRuleContainerRuleKubernetesRule {
+        /**
+         * Whether to add Kubernetes Annotation as a log tag to the raw log data.
+         */
+        annotationTag: {[key: string]: any};
+        /**
+         * Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+         */
+        excludePodLabelRegex: {[key: string]: any};
+        /**
+         * The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+         */
+        includePodLabelRegex: {[key: string]: any};
+        /**
+         * Whether to add Kubernetes Label as a log label to the original log data.
+         */
+        labelTag: {[key: string]: any};
+        /**
+         * The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+         */
+        namespaceNameRegex: string;
+        /**
+         * The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+         */
+        podNameRegex: string;
+        /**
+         * Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+         */
+        workloadNameRegex: string;
+        /**
+         * Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+         */
+        workloadType: string;
+    }
+
+    export interface GetRulesRuleExcludePath {
+        /**
+         * The type of the log template.
+         */
+        type: string;
+        /**
+         * Collection path.
+         */
+        value: string;
+    }
+
+    export interface GetRulesRuleExtractRule {
+        /**
+         * The first log line needs to match the regular expression.
+         */
+        beginRegex: string;
+        /**
+         * The delimiter of the log.
+         */
+        delimiter: string;
+        /**
+         * The filter key list.
+         */
+        filterKeyRegexes: outputs.tls.GetRulesRuleExtractRuleFilterKeyRegex[];
+        /**
+         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+         */
+        keys: string[];
+        /**
+         * The entire log needs to match the regular expression.
+         */
+        logRegex: string;
+        /**
+         * Automatically extract log fields according to the specified log template.
+         */
+        logTemplates: outputs.tls.GetRulesRuleExtractRuleLogTemplate[];
+        /**
+         * Parsing format of the time field.
+         */
+        timeFormat: string;
+        /**
+         * The field name of the log time field.
+         */
+        timeKey: string;
+        /**
+         * When uploading the failed log, the key name of the failed log.
+         */
+        unMatchLogKey: string;
+        /**
+         * Whether to upload the log of parsing failure.
+         */
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface GetRulesRuleExtractRuleFilterKeyRegex {
+        /**
+         * The name of the filter key.
+         */
+        key: string;
+        /**
+         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+         */
+        regex: string;
+    }
+
+    export interface GetRulesRuleExtractRuleLogTemplate {
+        /**
+         * Log template content.
+         */
+        format: string;
+        /**
+         * The type of the log template.
+         */
+        type: string;
+    }
+
+    export interface GetRulesRuleUserDefineRule {
+        /**
+         * LogCollector extension configuration.
+         */
+        advanceds: outputs.tls.GetRulesRuleUserDefineRuleAdvanced[];
+        /**
+         * Whether to upload raw logs.
+         */
+        enableRawLog: boolean;
+        /**
+         * Add constant fields to logs.
+         */
+        fields: {[key: string]: any};
+        /**
+         * Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+         */
+        parsePathRules: outputs.tls.GetRulesRuleUserDefineRuleParsePathRule[];
+        /**
+         * Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+         */
+        plugins: outputs.tls.GetRulesRuleUserDefineRulePlugin[];
+        /**
+         * Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+         */
+        shardHashKeys: outputs.tls.GetRulesRuleUserDefineRuleShardHashKey[];
+        /**
+         * LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+         */
+        tailFiles: boolean;
+    }
+
+    export interface GetRulesRuleUserDefineRuleAdvanced {
+        /**
+         * Whether to release the log file handle after reading to the end of the log file. The default is false.
+         */
+        closeEof: boolean;
+        /**
+         * The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+         */
+        closeInactive: number;
+        /**
+         * After the log file is removed, whether to release the handle of the log file. The default is false.
+         */
+        closeRemoved: boolean;
+        /**
+         * After the log file is renamed, whether to release the handle of the log file. The default is false.
+         */
+        closeRenamed: boolean;
+        /**
+         * The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+         */
+        closeTimeout: number;
+    }
+
+    export interface GetRulesRuleUserDefineRuleParsePathRule {
+        /**
+         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+         */
+        keys: string[];
+        /**
+         * Sample capture path for a real scene.
+         */
+        pathSample: string;
+        /**
+         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+         */
+        regex: string;
+    }
+
+    export interface GetRulesRuleUserDefineRulePlugin {
+        /**
+         * LogCollector plugin.
+         */
+        processors: string[];
+    }
+
+    export interface GetRulesRuleUserDefineRuleShardHashKey {
+        /**
+         * The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+         */
+        hashKey: string;
+    }
+
+    export interface GetShardsShard {
+        /**
+         * The end key info.
+         */
+        exclusiveEndKey: string;
+        /**
+         * The begin key info.
+         */
+        inclusiveBeginKey: string;
+        /**
+         * The modify time.
+         */
+        modifyTime: string;
+        /**
+         * The id of shard.
+         */
+        shardId: number;
+        /**
+         * The status of shard.
+         */
+        status: string;
+        /**
+         * The stop write time.
+         */
+        stopWriteTime: string;
+        /**
+         * The id of topic.
+         */
+        topicId: string;
+    }
+
+    export interface GetTopicsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTopicsTlsTopic {
+        /**
+         * Whether to enable automatic partition splitting function of the tls topic.
+         */
+        autoSplit: boolean;
+        /**
+         * The create time of the tls topic.
+         */
+        createTime: string;
+        /**
+         * The description of the tls topic.
+         */
+        description: string;
+        /**
+         * Whether to enable WebTracking function of the tls topic.
+         */
+        enableTracking: boolean;
+        /**
+         * The ID of the tls topic.
+         */
+        id: string;
+        /**
+         * The max count of shards in the tls topic.
+         */
+        maxSplitShard: number;
+        /**
+         * The modify time of the tls topic.
+         */
+        modifyTime: string;
+        /**
+         * The project id of tls topic.
+         */
+        projectId: string;
+        /**
+         * The count of shards in the tls topic.
+         */
+        shardCount: number;
+        /**
+         * Tags.
+         */
+        tags: outputs.tls.GetTopicsTlsTopicTag[];
+        /**
+         * The format of the time field.
+         */
+        timeFormat: string;
+        /**
+         * The name of the time field.
+         */
+        timeKey: string;
+        /**
+         * The id of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+         */
+        topicId: string;
+        /**
+         * The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+         */
+        topicName: string;
+        /**
+         * The data storage time of the tls topic. Unit: Day.
+         */
+        ttl: number;
+    }
+
+    export interface GetTopicsTlsTopicTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface HostGroupsInfo {
@@ -19287,6 +35093,158 @@ export namespace tos {
         prefix: string;
     }
 
+    export interface GetBucketInventoriesInventoryConfiguration {
+        /**
+         * The name the TOS bucket.
+         */
+        bucketName: string;
+        /**
+         * The destination information of the bucket inventory.
+         */
+        destinations: outputs.tos.GetBucketInventoriesInventoryConfigurationDestination[];
+        /**
+         * The filter of the bucket inventory.
+         */
+        filters: outputs.tos.GetBucketInventoriesInventoryConfigurationFilter[];
+        /**
+         * The name of the bucket inventory.
+         */
+        id: string;
+        /**
+         * The export version of object. Valid values: `All`, `Current`.
+         */
+        includedObjectVersions: string;
+        /**
+         * Whether to enable the bucket inventory.
+         */
+        isEnabled: boolean;
+        /**
+         * The information exported from the bucket inventory.
+         */
+        optionalFields: outputs.tos.GetBucketInventoriesInventoryConfigurationOptionalField[];
+        /**
+         * The export schedule of the bucket inventory.
+         */
+        schedules: outputs.tos.GetBucketInventoriesInventoryConfigurationSchedule[];
+    }
+
+    export interface GetBucketInventoriesInventoryConfigurationDestination {
+        /**
+         * The destination tos bucket information of the bucket inventory.
+         */
+        tosBucketDestinations: outputs.tos.GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination[];
+    }
+
+    export interface GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination {
+        /**
+         * The account id of the destination tos bucket.
+         */
+        accountId: string;
+        /**
+         * The name of the destination tos bucket.
+         */
+        bucket: string;
+        /**
+         * The format of the bucket inventory. Valid values: `CSV`.
+         */
+        format: string;
+        /**
+         * The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+         */
+        prefix: string;
+        /**
+         * The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+         */
+        role: string;
+    }
+
+    export interface GetBucketInventoriesInventoryConfigurationFilter {
+        /**
+         * The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+         */
+        prefix: string;
+    }
+
+    export interface GetBucketInventoriesInventoryConfigurationOptionalField {
+        /**
+         * The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+         */
+        fields: string[];
+    }
+
+    export interface GetBucketInventoriesInventoryConfigurationSchedule {
+        /**
+         * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+         */
+        frequency: string;
+    }
+
+    export interface GetBucketObjectsObject {
+        /**
+         * The content the TOS Object when content type is json or text and xml.
+         */
+        content: string;
+        /**
+         * The name the TOS Object.
+         */
+        name: string;
+        /**
+         * The name the TOS Object size.
+         */
+        size: number;
+        /**
+         * The name the TOS Object storage class.
+         */
+        storageClass: string;
+    }
+
+    export interface GetBucketsBucket {
+        /**
+         * The create date of the TOS bucket.
+         */
+        creationDate: string;
+        /**
+         * The extranet endpoint of the TOS bucket.
+         */
+        extranetEndpoint: string;
+        /**
+         * The intranet endpoint the TOS bucket.
+         */
+        intranetEndpoint: string;
+        /**
+         * (**Deprecated**) The Field is Deprecated. The truncated the TOS bucket.
+         *
+         * @deprecated The Field is Deprecated.
+         */
+        isTruncated: boolean;
+        /**
+         * The location of the TOS bucket.
+         */
+        location: string;
+        /**
+         * (**Deprecated**) The Field is Deprecated. The marker the TOS bucket.
+         *
+         * @deprecated The Field is Deprecated.
+         */
+        marker: string;
+        /**
+         * (**Deprecated**) The Field is Deprecated. The max keys the TOS bucket.
+         *
+         * @deprecated The Field is Deprecated.
+         */
+        maxKeys: number;
+        /**
+         * The name the TOS bucket.
+         */
+        name: string;
+        /**
+         * (**Deprecated**) The Field is Deprecated. The prefix the TOS bucket.
+         *
+         * @deprecated The Field is Deprecated.
+         */
+        prefix: string;
+    }
+
 }
 
 export namespace transit_router {
@@ -19506,6 +35464,706 @@ export namespace transit_router {
     }
 
     export interface DirectConnectGatewayAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetBandwidthPackagesBandwidthPackage {
+        /**
+         * The account id.
+         */
+        accountId: string;
+        /**
+         * The detailed information on cross regional connections associated with bandwidth packets.
+         */
+        allocations: outputs.transit_router.GetBandwidthPackagesBandwidthPackageAllocation[];
+        /**
+         * The bandwidth peak of the transit router bandwidth package. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the transit router bandwidth package.
+         */
+        billingType: string;
+        /**
+         * The business status of the transit router bandwidth package.
+         */
+        businessStatus: string;
+        /**
+         * The create time of the transit router bandwidth package.
+         */
+        creationTime: string;
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        deleteTime: string;
+        /**
+         * The description of the transit router bandwidth package.
+         */
+        description: string;
+        /**
+         * The expired time of the transit router bandwidth package.
+         */
+        expiredTime: string;
+        /**
+         * The id of the transit router bandwidth package.
+         */
+        id: string;
+        /**
+         * The local geographic region set ID.
+         */
+        localGeographicRegionSetId: string;
+        /**
+         * The peer geographic region set ID.
+         */
+        peerGeographicRegionSetId: string;
+        /**
+         * The ProjectName of the TransitRouter bandwidth package.
+         */
+        projectName: string;
+        /**
+         * The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
+         */
+        remainingBandwidth: number;
+        /**
+         * The status of the transit router bandwidth package.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetBandwidthPackagesBandwidthPackageTag[];
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterBandwidthPackageId: string;
+        /**
+         * The name of the TransitRouter bandwidth package.
+         */
+        transitRouterBandwidthPackageName: string;
+        /**
+         * The update time of the transit router bandwidth package.
+         */
+        updateTime: string;
+    }
+
+    export interface GetBandwidthPackagesBandwidthPackageAllocation {
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        allocateTime: string;
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        deleteTime: string;
+        /**
+         * The local region id of the transit router.
+         */
+        localRegionId: string;
+        /**
+         * The ID of the peer attachment.
+         */
+        transitRouterPeerAttachmentId: string;
+    }
+
+    export interface GetBandwidthPackagesBandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetBandwidthPackagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetDirectConnectGatewayAttachmentsAttachment {
+        /**
+         * The account id.
+         */
+        accountId: string;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * ID of the direct connection gateway.
+         */
+        directConnectGatewayId: string;
+        /**
+         * The status of the network instance connection.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetDirectConnectGatewayAttachmentsAttachmentTag[];
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of the transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetDirectConnectGatewayAttachmentsAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetDirectConnectGatewayAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGrantRulesRule {
+        /**
+         * The creation time of the rule.
+         */
+        creationTime: string;
+        /**
+         * The description of the rule.
+         */
+        description: string;
+        /**
+         * The id of the grant account.
+         */
+        grantAccountId: string;
+        /**
+         * The status of the rule.
+         */
+        status: string;
+        /**
+         * The id of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time of the rule.
+         */
+        updateTime: string;
+    }
+
+    export interface GetPeerAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetPeerAttachmentsTransitRouterAttachment {
+        /**
+         * The bandwidth of the transit router peer attachment.
+         */
+        bandwidth: number;
+        /**
+         * The creation time of the transit router peer attachment.
+         */
+        creationTime: string;
+        /**
+         * The description of the transit router peer attachment.
+         */
+        description: string;
+        /**
+         * The id of the transit router peer attachment.
+         */
+        id: string;
+        /**
+         * The id of peer transit router.
+         */
+        peerTransitRouterId: string;
+        /**
+         * The region id of peer transit router.
+         */
+        peerTransitRouterRegionId: string;
+        /**
+         * The status of the transit router peer attachment.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetPeerAttachmentsTransitRouterAttachmentTag[];
+        /**
+         * The id of the transit router peer attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of transit router peer attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The bandwidth package id of the transit router peer attachment.
+         */
+        transitRouterBandwidthPackageId: string;
+        /**
+         * The id of local transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The route table id of the transit router peer attachment.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The update time of the transit router peer attachment.
+         */
+        updateTime: string;
+    }
+
+    export interface GetPeerAttachmentsTransitRouterAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRouteEntriesEntry {
+        /**
+         * The as path of the route entry.
+         */
+        asPath: string;
+        /**
+         * The creation time of the route entry.
+         */
+        creationTime: string;
+        /**
+         * Description of the transit router route entry.
+         */
+        description: string;
+        /**
+         * The target network segment of the route entry.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The status of the route entry.
+         */
+        status: string;
+        /**
+         * The id of the route entry.
+         */
+        transitRouterRouteEntryId: string;
+        /**
+         * The name of the route entry.
+         */
+        transitRouterRouteEntryName: string;
+        /**
+         * The next hot id of the routing entry.
+         */
+        transitRouterRouteEntryNextHopId: string;
+        /**
+         * The next hop type of the routing entry. The value can be Attachment or BlackHole.
+         */
+        transitRouterRouteEntryNextHopType: string;
+        /**
+         * The type of the route entry.
+         */
+        transitRouterRouteEntryType: string;
+        /**
+         * The update time of the route entry.
+         */
+        updateTime: string;
+    }
+
+    export interface GetRouteTableAssociationsAssociation {
+        /**
+         * The status of the route table.
+         */
+        status: string;
+        /**
+         * The ID of the network instance connection.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The ID of the routing table associated with the transit router instance.
+         */
+        transitRouterRouteTableId: string;
+    }
+
+    export interface GetRouteTablePropagationsPropagation {
+        /**
+         * The creation time of the route table propagation.
+         */
+        creationTime: string;
+        /**
+         * The status of the route table.
+         */
+        status: string;
+        /**
+         * The ID of the network instance connection.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The ID of the routing table associated with the transit router instance.
+         */
+        transitRouterRouteTableId: string;
+    }
+
+    export interface GetRouteTablesRouteTable {
+        /**
+         * The creation time of the route table.
+         */
+        creationTime: string;
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * The status of the route table.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetRouteTablesRouteTableTag[];
+        /**
+         * The id of the route table.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The name of the route table.
+         */
+        transitRouterRouteTableName: string;
+        /**
+         * The type of the route table. The value can be System or Custom.
+         */
+        transitRouterRouteTableType: string;
+        /**
+         * The update time of the route table.
+         */
+        updateTime: string;
+    }
+
+    export interface GetRouteTablesRouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTransitRoutersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTransitRoutersTransitRouter {
+        /**
+         * The ID of account.
+         */
+        accountId: string;
+        /**
+         * The asn of the transit router.
+         */
+        asn: number;
+        /**
+         * The business status of the transit router.
+         */
+        businessStatus: string;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * The grant status of the transit router.
+         */
+        grantStatus: string;
+        /**
+         * The ID of the transit router.
+         */
+        id: string;
+        /**
+         * The overdue time.
+         */
+        overdueTime: string;
+        /**
+         * The ProjectName of the transit router.
+         */
+        projectName: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetTransitRoutersTransitRouterTag[];
+        /**
+         * The attachments of transit router.
+         */
+        transitRouterAttachments: outputs.transit_router.GetTransitRoutersTransitRouterTransitRouterAttachment[];
+        /**
+         * The ID of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The name info.
+         */
+        transitRouterName: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetTransitRoutersTransitRouterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTransitRoutersTransitRouterTransitRouterAttachment {
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The id of resource.
+         */
+        resourceId: string;
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * The id of transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of transit router route table.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetVpcAttachmentsAttachment {
+        /**
+         * The collection of attach points.
+         */
+        attachPoints: outputs.transit_router.GetVpcAttachmentsAttachmentAttachPoint[];
+        /**
+         * Whether to auto publish route of the transit router to vpc instance.
+         */
+        autoPublishRouteEnabled: boolean;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetVpcAttachmentsAttachmentTag[];
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of the transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface GetVpcAttachmentsAttachmentAttachPoint {
+        /**
+         * The ID of network interface.
+         */
+        networkInterfaceId: string;
+        /**
+         * The ID of subnet.
+         */
+        subnetId: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetVpcAttachmentsAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpnAttachmentsAttachment {
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.GetVpnAttachmentsAttachmentTag[];
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of the transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The ID of the IPSec connection.
+         */
+        vpnConnectionId: string;
+        /**
+         * The ID of the availability zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetVpnAttachmentsAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpnAttachmentsTag {
         /**
          * The Key of Tags.
          */
@@ -20484,6 +37142,483 @@ export namespace vedb_mysql {
         subnetId: string;
     }
 
+    export interface GetAccountsAccount {
+        /**
+         * The name of the database account. This field supports fuzzy query.
+         */
+        accountName: string;
+        /**
+         * The privilege detail list of RDS mysql instance account.
+         */
+        accountPrivileges: outputs.vedb_mysql.GetAccountsAccountAccountPrivilege[];
+        /**
+         * The type of the database account.
+         */
+        accountType: string;
+    }
+
+    export interface GetAccountsAccountAccountPrivilege {
+        /**
+         * The privilege type of the account.
+         */
+        accountPrivilege: string;
+        /**
+         * The privilege detail of the account.
+         */
+        accountPrivilegeDetail: string;
+        /**
+         * The name of database.
+         */
+        dbName: string;
+    }
+
+    export interface GetAllowlistsAllowList {
+        /**
+         * The description of the allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the allow list.
+         */
+        allowListId: string;
+        /**
+         * The total number of IP addresses (or address ranges) in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format.
+         */
+        allowLists: string[];
+        /**
+         * The total number of instances bound under the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of instances.
+         */
+        associatedInstances: outputs.vedb_mysql.GetAllowlistsAllowListAssociatedInstance[];
+    }
+
+    export interface GetAllowlistsAllowListAssociatedInstance {
+        /**
+         * Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+        /**
+         * The id of the vpc.
+         */
+        vpc: string;
+    }
+
+    export interface GetBackupsBackup {
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * The size of the backup file.
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * Backup method. Currently, only physical backup is supported. The value is Physical.
+         */
+        backupMethod: string;
+        /**
+         * Data backup strategy for instances.
+         */
+        backupPolicies: outputs.vedb_mysql.GetBackupsBackupBackupPolicy[];
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The time point of consistent backup, in the format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        consistentTime: string;
+        /**
+         * The type of the backup create.
+         */
+        createType: string;
+        /**
+         * The id of the backup.
+         */
+        id: string;
+    }
+
+    export interface GetBackupsBackupBackupPolicy {
+        /**
+         * Data backup retention period, value: 7 to 30 days.
+         */
+        backupRetentionPeriod: number;
+        /**
+         * The time for executing the backup task. The interval window is two hours. Format: HH:mmZ-HH:mmZ (UTC time).
+         */
+        backupTime: string;
+        /**
+         * Whether to enable continuous backup. The value is fixed as true.
+         */
+        continueBackup: boolean;
+        /**
+         * Full backup period. Multiple values are separated by English commas (,). Values:
+         * Monday: Monday.
+         * Tuesday: Tuesday.
+         * Wednesday: Wednesday.
+         * Thursday: Thursday.
+         * Friday: Friday.
+         * Saturday: Saturday.
+         * Sunday: Sunday.
+         */
+        fullBackupPeriod: string;
+        /**
+         * The id of the instance.
+         */
+        instanceId: string;
+    }
+
+    export interface GetDatabasesDatabase {
+        /**
+         * Database character set: utf8mb4 (default), utf8, latin1, ascii.
+         */
+        characterSetName: string;
+        databasesPrivileges: outputs.vedb_mysql.GetDatabasesDatabaseDatabasesPrivilege[];
+        /**
+         * Database name.
+         */
+        dbName: string;
+    }
+
+    export interface GetDatabasesDatabaseDatabasesPrivilege {
+        /**
+         * Account name that requires authorization.
+         */
+        accountName: string;
+        /**
+         * Authorization database privilege types: 
+         * ReadWrite: Read and write privilege.
+         *  ReadOnly: Read-only privilege.
+         *  DDLOnly: Only DDL privilege.
+         *  DMLOnly: Only DML privilege.
+         *  Custom: Custom privilege.
+         */
+        accountPrivilege: string;
+        /**
+         * The specific SQL operation permissions contained in the permission type are separated by English commas (,) between multiple strings.
+         *  When used as a request parameter in the CreateDatabase interface, when the AccountPrivilege value is Custom, this parameter is required. Value range (multiple selections allowed): SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER. When used as a return parameter in the DescribeDatabases interface, regardless of the value of AccountPrivilege, the details of the SQL operation permissions contained in this permission type are returned. For the specific SQL operation permissions contained in each permission type, please refer to the account permission list.
+         */
+        accountPrivilegeDetail: string;
+    }
+
+    export interface GetEndpointsEndpoint {
+        /**
+         * The address information.
+         */
+        addresses: outputs.vedb_mysql.GetEndpointsEndpointAddress[];
+        /**
+         * Set whether newly created read-only nodes will automatically join this connection endpoint. Values:
+         * true: Automatically join.
+         * false: Do not automatically join (default).
+         */
+        autoAddNewNodes: boolean;
+        /**
+         * Consistency level. For detailed introduction of consistency level, please refer to consistency level. Value range:
+         * Eventual: eventual consistency.
+         * Session: session consistency.
+         * Global: global consistency.
+         * Description
+         * When the value of ReadWriteMode is ReadWrite, the selectable consistency levels are Eventual, Session (default), and Global.
+         * When the value of ReadWriteMode is ReadOnly, the consistency level is Eventual by default and cannot be changed.
+         */
+        consistLevel: string;
+        /**
+         * When there is a large delay, the timeout period for read-only nodes to synchronize the latest data, in us. The value range is from 1us to 100000000us, and the default value is 10000us.
+         * Explanation
+         * This parameter takes effect only when the value of ConsistLevel is Global or Session.
+         */
+        consistTimeout: number;
+        /**
+         * Timeout policy after data synchronization timeout of read-only nodes supports the following two policies:
+         * ReturnError: Return SQL error (wait replication complete timeout, please retry).
+         * ReadMaster: Send a request to the master node (default).
+         * Description
+         * This parameter takes effect only when the value of ConsistLevel is Global or Session.
+         */
+        consistTimeoutAction: string;
+        /**
+         * Description information for connecting endpoint. The length cannot exceed 200 characters.
+         */
+        description: string;
+        /**
+         * Set whether to enable transaction splitting. For detailed introduction to transaction splitting, please refer to transaction splitting. Value range:
+         * true: Enabled (default).
+         * false: Disabled.
+         * Description
+         * Only when the value of ReadWriteMode is ReadWrite, is enabling transaction splitting supported.
+         */
+        distributedTransaction: boolean;
+        /**
+         * The id of the endpoint.
+         */
+        endpointId: string;
+        /**
+         * Connect the endpoint name. The setting rules are as follows:
+         * It cannot start with a number or a hyphen (-).
+         * It can only contain Chinese characters, letters, numbers, underscores (_), and hyphens (-).
+         * The length is 1 to 64 characters.
+         */
+        endpointName: string;
+        /**
+         * Connect terminal type. The value is fixed as Custom, indicating a custom terminal.
+         */
+        endpointType: string;
+        /**
+         * The id of the endpoint.
+         */
+        id: string;
+        /**
+         * The master node accepts read requests. Value range:
+         * true: (default) After enabling the master node to accept read functions, non-transactional read requests will be sent to the master node or read-only nodes in a load-balanced mode according to the number of active requests.
+         * false: After disabling the master node from accepting read requests, at this time, the master node only accepts transactional read requests, and non-transactional read requests will not be sent to the master node.
+         * Description
+         * Only when the value of ReadWriteMode is ReadWrite, enabling the master node to accept reads is supported.
+         */
+        masterAcceptReadRequests: boolean;
+        /**
+         * Connect the node IDs associated with the endpoint.The filling rules are as follows:
+         * When the value of ReadWriteMode is ReadWrite, at least two nodes must be passed in, and the master node must be passed in.
+         * When the value of ReadWriteMode is ReadOnly, one or more read-only nodes can be passed in.
+         */
+        nodeIds: string[];
+        /**
+         * Endpoint read-write mode. Values:
+         * ReadWrite: Read and write terminal.
+         * ReadOnly: Read-only terminal (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface GetEndpointsEndpointAddress {
+        /**
+         * Parsing method. Currently, the return value can only be false (Volcengine private network parsing).
+         */
+        dnsVisibility: boolean;
+        /**
+         * Instance intranet access domain name.
+         */
+        domain: string;
+        /**
+         * The EIP id.
+         */
+        eipId: string;
+        /**
+         * IP address.
+         */
+        ipAddress: string;
+        /**
+         * Network type:
+         * Private: Private network VPC.
+         * Public: Public network access.
+         */
+        networkType: string;
+        /**
+         * Instance intranet access port.
+         */
+        port: string;
+        /**
+         * Subnet ID. The subnet must belong to the selected availability zone.
+         * Description
+         * A subnet is an IP address block within a private network. All cloud resources in a private network must be deployed within a subnet. The subnet assigns private IP addresses to cloud resources.
+         */
+        subnetId: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * Whether auto-renewal is enabled in the prepaid scenario. Values:
+         * true: Auto-renewal is enabled.
+         * false: Auto-renewal is not enabled.
+         */
+        autoRenew: boolean;
+        /**
+         * The billing expiration time in the prepaid scenario, in the format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        chargeEndTime: string;
+        /**
+         * The time when billing starts. Format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        chargeStartTime: string;
+        /**
+         * Payment status:
+         * Normal: Normal.
+         * Overdue: In arrears.
+         * Shutdown: Shut down.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the veDB Mysql instance.
+         */
+        chargeType: string;
+        /**
+         * The create time of the veDB Mysql instance.
+         */
+        createTime: string;
+        /**
+         * The version of the veDB Mysql instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the veDB Mysql instance.
+         */
+        id: string;
+        /**
+         * The id of the veDB Mysql instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the veDB Mysql instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the veDB Mysql instance.
+         */
+        instanceStatus: string;
+        /**
+         * Whether the table name is case sensitive, the default value is 1.
+         * Ranges:
+         * 0: Table names are stored as fixed and table names are case-sensitive.
+         * 1: Table names will be stored in lowercase and table names are not case sensitive.
+         */
+        lowerCaseTableNames: string;
+        /**
+         * Detailed information of instance nodes.
+         */
+        nodes: outputs.vedb_mysql.GetInstancesInstanceNode[];
+        /**
+         * Expected release time when shut down due to arrears. Format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Overdue shutdown time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        overdueTime: string;
+        /**
+         * Total storage capacity in GiB for prepaid services.
+         */
+        prePaidStorageInGb: number;
+        /**
+         * The project name of the veDB Mysql instance.
+         */
+        projectName: string;
+        /**
+         * The region id.
+         */
+        regionId: string;
+        /**
+         * Storage billing type. Values:
+         * PostPaid: Pay-as-you-go (postpaid).
+         * PrePaid: Monthly/yearly subscription (prepaid).
+         */
+        storageChargeType: string;
+        /**
+         * Used storage size, unit: GiB.
+         */
+        storageUsedGib: number;
+        /**
+         * The subnet ID of the veDB Mysql instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vedb_mysql.GetInstancesInstanceTag[];
+        /**
+         * Time zone.
+         */
+        timeZone: string;
+        /**
+         * The vpc ID of the veDB Mysql instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the veDB Mysql instance.
+         */
+        zoneIds: string;
+    }
+
+    export interface GetInstancesInstanceNode {
+        /**
+         * Memory size, in GiB.
+         */
+        memory: number;
+        /**
+         * The id of the node.
+         */
+        nodeId: string;
+        /**
+         * Node specification of an instance.
+         */
+        nodeSpec: string;
+        /**
+         * Node type. Values:
+         * Primary: Primary node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * CPU size. For example, when the value is 1, it means the CPU size is 1U.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the veDB Mysql instance.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -20657,6 +37792,2701 @@ export namespace vedb_mysql {
          * The Value of Tags.
          */
         value: string;
+    }
+
+}
+
+export namespace veecp {
+    export interface AddonsAddon {
+        /**
+         * The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+         */
+        categories?: string[];
+        /**
+         * The deploy model.
+         */
+        deployMode: string;
+        /**
+         * The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+         */
+        deployNodeTypes: string[];
+        /**
+         * The name of the addon.
+         */
+        name: string;
+        /**
+         * The necessary of addon.
+         */
+        necessary?: string;
+        /**
+         * The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+         */
+        podNetworkModes: string[];
+        /**
+         * The version info of addon.
+         */
+        versions: outputs.veecp.AddonsAddonVersion[];
+    }
+
+    export interface AddonsAddonVersion {
+        /**
+         * The compatible version list.
+         */
+        compatibilities: outputs.veecp.AddonsAddonVersionCompatibility[];
+        /**
+         * The compatible version list.
+         */
+        compatibleVersions: string[];
+        /**
+         * The basic version info.
+         */
+        version: string;
+    }
+
+    export interface AddonsAddonVersionCompatibility {
+        /**
+         * The Kubernetes Version of addon.
+         */
+        kubernetesVersion: string;
+    }
+
+    export interface BatchEdgeMachinesMachine {
+        /**
+         * The bootstrap script.
+         */
+        bootstrapScript: string;
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * Edge node type.
+         */
+        edgeNodeType: string;
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * Edge: Edge node pool. If the return value is empty, it is the central node pool.
+         */
+        profile: string;
+        /**
+         * The TTL time.
+         */
+        ttlTime: number;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+    }
+
+    export interface BatchEdgeMachinesStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface ClusterClusterConfig {
+        /**
+         * Cluster API Server public network access configuration information. It takes effect only when ApiServerPublicAccessEnabled=true.
+         */
+        apiServerPublicAccessConfig?: outputs.veecp.ClusterClusterConfigApiServerPublicAccessConfig;
+        /**
+         * Cluster API Server public network access configuration, values:
+         * false: (default value). closed
+         * true: opened.
+         */
+        apiServerPublicAccessEnabled?: boolean;
+        /**
+         * Node public network access configuration, values:
+         * false: (default value). Do not enable public network access. Existing NAT gateways and rules are not affected. true: Enable public network access. After enabling, a NAT gateway is automatically created for the cluster's private network and corresponding rules are configured. Note: This parameter cannot be modified after the cluster is created. Please configure it reasonably.
+         */
+        resourcePublicAccessDefaultEnabled?: boolean;
+        /**
+         * The subnet ID for communication within the private network (VPC) of the cluster control plane. You can call the private network API to obtain the subnet ID. Note: When creating a cluster, please ensure that all specified SubnetIds (including but not limited to this parameter) belong to the same private network. It is recommended that you choose subnets in different availability zones as much as possible to improve the high availability of the cluster control plane. Please note that this parameter is not supported to be modified after the cluster is created. Please configure it reasonably.
+         */
+        subnetIds: string[];
+    }
+
+    export interface ClusterClusterConfigApiServerPublicAccessConfig {
+        /**
+         * Public network access network configuration.
+         */
+        publicAccessNetworkConfig?: outputs.veecp.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig;
+    }
+
+    export interface ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig {
+        /**
+         * The peak bandwidth of the public IP, unit: Mbps.
+         */
+        bandwidth?: number;
+        /**
+         * Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType?: string;
+    }
+
+    export interface ClusterLoggingConfig {
+        /**
+         * The TLS log item ID of the collection target.
+         */
+        logProjectId: string;
+        /**
+         * Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+         */
+        logSetups?: outputs.veecp.ClusterLoggingConfigLogSetup[];
+    }
+
+    export interface ClusterLoggingConfigLogSetup {
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled?: boolean;
+        /**
+         * The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+         */
+        logTtl?: number;
+        /**
+         * The current types of logs that can be enabled are:
+         * Audit: Cluster audit logs.
+         * KubeApiServer: kube-apiserver component logs.
+         * KubeScheduler: kube-scheduler component logs.
+         * KubeControllerManager: kube-controller-manager component logs.
+         */
+        logType: string;
+    }
+
+    export interface ClusterPodsConfig {
+        /**
+         * Flannel network configuration. It can be configured only when PodNetworkMode=Flannel, but it is not mandatory.
+         */
+        flannelConfig?: outputs.veecp.ClusterPodsConfigFlannelConfig;
+        /**
+         * Container network model, values: Flannel: Flannel network model, an independent Underlay container network solution. Combined with the global routing capability of a private network (VPC), it realizes a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution implemented based on the elastic network interface (ENI) of a private network, with high network communication performance. Description: After the cluster is created, this parameter is not supported to be modified temporarily. Please configure it reasonably.
+         */
+        podNetworkMode: string;
+        /**
+         * VPC-CNI network configuration. PodNetworkMode=VpcCniShared, but it is not mandatory.
+         */
+        vpcCniConfig?: outputs.veecp.ClusterPodsConfigVpcCniConfig;
+    }
+
+    export interface ClusterPodsConfigFlannelConfig {
+        /**
+         * Upper limit of the number of single-node Pod instances in the Flannel model container network. Values: 64(default value), 16, 32, 128, 256.
+         */
+        maxPodsPerNode?: number;
+        /**
+         * Pod CIDR of Flannel model container network. Only configurable when PodNetworkMode=Flannel, but not mandatory. Note: The number of Pods in the cluster is limited by the number of IPs in this CIDR. This parameter cannot be modified after cluster creation. Please plan the Pod CIDR reasonably. Cannot conflict with the following network segments: private network network segments corresponding to ClusterConfig.SubnetIds. All clusters within the same private network's FlannelConfig.PodCidrs. All clusters within the same private network's ServiceConfig.ServiceCidrsv4. Different clusters within the same private network's FlannelConfig.PodCidrs cannot conflict.
+         */
+        podCidrs: string[];
+    }
+
+    export interface ClusterPodsConfigVpcCniConfig {
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+    }
+
+    export interface ClusterServicesConfig {
+        /**
+         * CIDR used by services within the cluster. It cannot conflict with the following network segments: FlannelConfig.PodCidrs. SubnetIds of all clusters within the same private network or FlannelConfig.VpcConfig.SubnetIds. ServiceConfig.ServiceCidrsv4 of all clusters within the same private network (this parameter).It is stated that currently only one array element is supported. When multiple values are specified, only the first value takes effect.
+         */
+        serviceCidrsv4s: string[];
+    }
+
+    export interface ClustersCluster {
+        /**
+         * The config of the cluster.
+         */
+        clusterConfig: outputs.veecp.ClustersClusterClusterConfig;
+        /**
+         * ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        createClientToken: string;
+        /**
+         * Cluster creation time. UTC+0 time in standard RFC3339 format.
+         */
+        createTime: string;
+        /**
+         * Cluster deletion protection. Values: true: Enable deletion protection. false: Disable deletion protection.
+         */
+        deleteProtectionEnabled: boolean;
+        /**
+         * Cluster description information.
+         */
+        description: string;
+        /**
+         * The ID of the cluster.
+         */
+        id: string;
+        /**
+         * Kubernetes version information corresponding to the cluster, specific to the patch version.
+         */
+        kubernetesVersion: string;
+        /**
+         * Cluster log configuration information.
+         */
+        loggingConfigs: outputs.veecp.ClustersClusterLoggingConfig[];
+        /**
+         * Cluster name.
+         */
+        name: string;
+        /**
+         * Statistics on the number of nodes corresponding to each master state in the cluster.
+         */
+        nodeStatistics: outputs.veecp.ClustersClusterNodeStatistics;
+        /**
+         * The config of the pods.
+         */
+        podsConfig: outputs.veecp.ClustersClusterPodsConfig;
+        /**
+         * The config of the services.
+         */
+        servicesConfig: outputs.veecp.ClustersClusterServicesConfig;
+        /**
+         * Cluster status. For detailed instructions, please refer to ClusterStatusResponse.
+         */
+        statuses: outputs.veecp.ClustersClusterStatus[];
+        /**
+         * The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        updateClientToken: string;
+        /**
+         * The time when the cluster last accepted a request and executed or completed execution. UTC+0 time in standard RFC3339 format.
+         */
+        updateTime: string;
+    }
+
+    export interface ClustersClusterClusterConfig {
+        /**
+         * Endpoint information accessed by the cluster API Server.
+         */
+        apiServerEndpoints: outputs.veecp.ClustersClusterClusterConfigApiServerEndpoints;
+        /**
+         * Cluster API Server public network access configuration.
+         */
+        apiServerPublicAccessConfig: outputs.veecp.ClustersClusterClusterConfigApiServerPublicAccessConfig;
+        /**
+         * Cluster API Server public network access configuration, the value is `true` or `false`.
+         */
+        apiServerPublicAccessEnabled: boolean;
+        /**
+         * Node public network access configuration, the value is `true` or `false`.
+         */
+        resourcePublicAccessDefaultEnabled: boolean;
+        /**
+         * The security group used by the cluster control plane and nodes.
+         */
+        securityGroupIds: string[];
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+        /**
+         * The private network where the cluster control plane network resides.
+         */
+        vpcId: string;
+    }
+
+    export interface ClustersClusterClusterConfigApiServerEndpoints {
+        /**
+         * Endpoint address of the cluster API Server private network.
+         */
+        privateIp: outputs.veecp.ClustersClusterClusterConfigApiServerEndpointsPrivateIp;
+        /**
+         * Endpoint address of the cluster API Server public network.
+         */
+        publicIp: outputs.veecp.ClustersClusterClusterConfigApiServerEndpointsPublicIp;
+    }
+
+    export interface ClustersClusterClusterConfigApiServerEndpointsPrivateIp {
+        /**
+         * Ipv4 address.
+         */
+        ipv4: string;
+    }
+
+    export interface ClustersClusterClusterConfigApiServerEndpointsPublicIp {
+        /**
+         * Ipv4 address.
+         */
+        ipv4: string;
+    }
+
+    export interface ClustersClusterClusterConfigApiServerPublicAccessConfig {
+        /**
+         * IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+         */
+        accessSourceIpsv4s: string[];
+        /**
+         * [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+         */
+        ipFamily: string;
+        /**
+         * Public network access network configuration.
+         */
+        publicAccessNetworkConfig: outputs.veecp.ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig;
+    }
+
+    export interface ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig {
+        /**
+         * The peak bandwidth of the public IP, unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of public IP.
+         */
+        isp: string;
+    }
+
+    export interface ClustersClusterLoggingConfig {
+        /**
+         * The TLS log item ID of the collection target.
+         */
+        logProjectId: string;
+        /**
+         * Cluster logging options.
+         */
+        logSetups: outputs.veecp.ClustersClusterLoggingConfigLogSetup[];
+    }
+
+    export interface ClustersClusterLoggingConfigLogSetup {
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled: boolean;
+        /**
+         * The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+         */
+        logTtl: number;
+        /**
+         * The currently enabled log type.
+         */
+        logType: string;
+    }
+
+    export interface ClustersClusterNodeStatistics {
+        /**
+         * Phase=Creating total number of nodes.
+         */
+        creatingCount: number;
+        /**
+         * Phase=Deleting total number of nodes.
+         */
+        deletingCount: number;
+        /**
+         * Phase=Failed total number of nodes.
+         */
+        failedCount: number;
+        /**
+         * Phase=Running total number of nodes.
+         */
+        runningCount: number;
+        /**
+         * Phase=Starting total number of nodes.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * Phase=Stopping total number of nodes.
+         */
+        stoppingCount: number;
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * Phase=Updating total number of nodes.
+         */
+        updatingCount: number;
+    }
+
+    export interface ClustersClusterPodsConfig {
+        /**
+         * Flannel network configuration.
+         */
+        flannelConfig: outputs.veecp.ClustersClusterPodsConfigFlannelConfig;
+        /**
+         * Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+         */
+        podNetworkMode: string;
+        /**
+         * VPC-CNI network configuration.
+         */
+        vpcCniConfig: outputs.veecp.ClustersClusterPodsConfigVpcCniConfig;
+    }
+
+    export interface ClustersClusterPodsConfigFlannelConfig {
+        /**
+         * The maximum number of single-node Pod instances for a Flannel container network.
+         */
+        maxPodsPerNode: number;
+        /**
+         * Pod CIDR for the Flannel container network.
+         */
+        podCidrs: string[];
+    }
+
+    export interface ClustersClusterPodsConfigVpcCniConfig {
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+        /**
+         * The private network where the cluster control plane network resides.
+         */
+        vpcId: string;
+    }
+
+    export interface ClustersClusterServicesConfig {
+        /**
+         * The IPv4 private network address exposed by the service.
+         */
+        serviceCidrsv4s: string[];
+    }
+
+    export interface ClustersClusterStatus {
+        /**
+         * The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+         */
+        conditions: outputs.veecp.ClustersClusterStatusCondition[];
+        /**
+         * Cluster status. The value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+         */
+        phase: string;
+    }
+
+    export interface ClustersClusterStatusCondition {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+         */
+        type: string;
+    }
+
+    export interface ClustersStatus {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface EdgeNodeAutoCompleteConfig {
+        /**
+         * The address of the machine to be managed.
+         */
+        address?: string;
+        /**
+         * Directly managed through the edge computing instance ID. When it is true, there is no need to provide Address. Only DirectAddInstances needs to be provided.
+         */
+        directAdd?: boolean;
+        /**
+         * Edge computing instance ID on Volcano Engine.
+         */
+        directAddInstances?: outputs.veecp.EdgeNodeAutoCompleteConfigDirectAddInstance[];
+        /**
+         * Enable/Disable automatic management.
+         */
+        enable: boolean;
+        /**
+         * Login credentials.
+         */
+        machineAuth?: outputs.veecp.EdgeNodeAutoCompleteConfigMachineAuth;
+    }
+
+    export interface EdgeNodeAutoCompleteConfigDirectAddInstance {
+        /**
+         * Edge service ID.
+         */
+        cloudServerIdentity: string;
+        /**
+         * Edge computing instance ID.
+         */
+        instanceIdentity: string;
+    }
+
+    export interface EdgeNodeAutoCompleteConfigMachineAuth {
+        /**
+         * Authentication method. Currently only Password is open.
+         */
+        authType: string;
+        /**
+         * SSH port, default 22.
+         */
+        sshPort: number;
+        /**
+         * Login username.
+         */
+        user: string;
+    }
+
+    export interface EdgeNodePoolBillingConfigs {
+        /**
+         * Whether to automatically renew the node pool.
+         */
+        autoRenew?: boolean;
+        /**
+         * The pre-paid period of the node pool, in months. The value range is 1-9. This parameter takes effect only when the billingType is PrePaid.
+         */
+        prePaidPeriod: number;
+        /**
+         * Prepaid period number.
+         */
+        prePaidPeriodNumber: number;
+    }
+
+    export interface EdgeNodePoolElasticConfig {
+        /**
+         * The node pool elastic scaling configuration information.
+         */
+        autoScaleConfig: outputs.veecp.EdgeNodePoolElasticConfigAutoScaleConfig;
+        /**
+         * The ID of the edge service corresponding to the elastic node. On the edge computing node's edge service page, obtain the edge service ID.
+         */
+        cloudServerIdentity: string;
+        instanceArea: outputs.veecp.EdgeNodePoolElasticConfigInstanceArea;
+    }
+
+    export interface EdgeNodePoolElasticConfigAutoScaleConfig {
+        /**
+         * The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
+         */
+        desiredReplicas: number;
+        /**
+         * Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
+         */
+        enabled: boolean;
+        /**
+         * The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
+         */
+        maxReplicas: number;
+        /**
+         * The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
+         */
+        minReplicas: number;
+        /**
+         * The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
+         */
+        priority: number;
+    }
+
+    export interface EdgeNodePoolElasticConfigInstanceArea {
+        /**
+         * Region name. You can obtain the regions and operators supported by instance specifications through the ListAvailableResourceInfo interface.
+         */
+        areaName: string;
+        /**
+         * The cluster name.
+         */
+        clusterName: string;
+        /**
+         * Default operator. When using three-line nodes, this parameter can be configured. After configuration, this operator will be used as the default export.
+         */
+        defaultIsp: string;
+        /**
+         * Public network configuration of three-line nodes. If it is a single-line node, this parameter will be ignored. Value range: single_interface_multi_ip: Single network card with multiple IPs. single_interface_cmcc_ip: Single network card with China Mobile IP. Relevant permissions need to be opened by submitting a work order. single_interface_cucc_ip: Single network card with China Unicom IP. Relevant permissions need to be opened by submitting a work order. single_interface_ctcc_ip: Single network card with China Telecom IP. Relevant permissions need to be opened by submitting a work order. multi_interface_multi_ip: Multiple network cards with multiple IPs. Relevant permissions need to be opened by submitting a work order. no_interface: No public network network card. Relevant permissions need to be opened by submitting a work order. If this parameter is not configured: When there is a public network network card, singleInterfaceMultiIp is used by default. When there is no public network network card, noInterface is used by default.
+         */
+        externalNetworkMode: string;
+        /**
+         * Operator. You can obtain the regions and operators supported by instance specifications through the ListAvailableResourceInfo interface.
+         */
+        isp: string;
+        /**
+         * The subnet id.
+         */
+        subnetId?: string;
+        /**
+         * The vpc id.
+         */
+        vpcIdentity: string;
+    }
+
+    export interface EdgeNodePoolKubernetesConfig {
+        /**
+         * The Labels of KubernetesConfig.
+         */
+        labels?: outputs.veecp.EdgeNodePoolKubernetesConfigLabel[];
+        /**
+         * The Taints of KubernetesConfig.
+         */
+        taints?: outputs.veecp.EdgeNodePoolKubernetesConfigTaint[];
+    }
+
+    export interface EdgeNodePoolKubernetesConfigLabel {
+        /**
+         * The Key of Labels.
+         */
+        key?: string;
+        /**
+         * The Value of Labels.
+         */
+        value?: string;
+    }
+
+    export interface EdgeNodePoolKubernetesConfigTaint {
+        /**
+         * The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+         */
+        effect?: string;
+        /**
+         * The Key of Taints.
+         */
+        key?: string;
+        /**
+         * The Value of Taints.
+         */
+        value?: string;
+    }
+
+    export interface EdgeNodePoolsNodePool {
+        /**
+         * The billing configuration.
+         */
+        billingConfigs: outputs.veecp.EdgeNodePoolsNodePoolBillingConfig[];
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * Elastic scaling configuration of node pool.
+         */
+        elasticConfigs: outputs.veecp.EdgeNodePoolsNodePoolElasticConfig[];
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The LabelContent of KubernetesConfig.
+         */
+        labelContents: outputs.veecp.EdgeNodePoolsNodePoolLabelContent[];
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The method of adding nodes to the node pool.
+         */
+        nodeAddMethods: string[];
+        /**
+         * The NodeStatistics of NodeConfig.
+         */
+        nodeStatistics: outputs.veecp.EdgeNodePoolsNodePoolNodeStatistic[];
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * Edge: Edge node pool. If the return value is empty, it is the central node pool.
+         */
+        profile: string;
+        /**
+         * The TaintContent of NodeConfig.
+         */
+        taintContents: outputs.veecp.EdgeNodePoolsNodePoolTaintContent[];
+        /**
+         * Node pool type, machine-set: central node pool. edge-machine-set: edge node pool. edge-machine-pool: edge elastic node pool.
+         */
+        type: string;
+        /**
+         * The ClientToken when last update was successful.
+         */
+        updateClientToken: string;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+        /**
+         * The static node pool specifies the node pool to associate with the VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface EdgeNodePoolsNodePoolBillingConfig {
+        /**
+         * Whether to automatically renew the node pool.
+         */
+        autoRenew: boolean;
+        /**
+         * The pre-paid period of the node pool, in months. The value range is 1-9. This parameter takes effect only when the billingType is PrePaid.
+         */
+        prePaidPeriod: number;
+        /**
+         * Prepaid period number.
+         */
+        prePaidPeriodNumber: number;
+    }
+
+    export interface EdgeNodePoolsNodePoolElasticConfig {
+        /**
+         * The auto scaling configuration.
+         */
+        autoScaleConfigs: outputs.veecp.EdgeNodePoolsNodePoolElasticConfigAutoScaleConfig[];
+        /**
+         * Cloud server identity.
+         */
+        cloudServerIdentity: string;
+        /**
+         * The information of instance area.
+         */
+        instanceAreas: outputs.veecp.EdgeNodePoolsNodePoolElasticConfigInstanceArea[];
+    }
+
+    export interface EdgeNodePoolsNodePoolElasticConfigAutoScaleConfig {
+        /**
+         * The DesiredReplicas of AutoScaling.
+         */
+        desiredReplicas: number;
+        /**
+         * Whether to enable auto scaling.
+         */
+        enabled: boolean;
+        /**
+         * The maximum number of nodes.
+         */
+        maxReplicas: number;
+        /**
+         * The minimum number of nodes.
+         */
+        minReplicas: number;
+        /**
+         * The Priority of AutoScaling.
+         */
+        priority: number;
+    }
+
+    export interface EdgeNodePoolsNodePoolElasticConfigInstanceArea {
+        /**
+         * Region name. You can obtain the regions and operators supported by instance specifications through the ListAvailableResourceInfo interface.
+         */
+        areaName: string;
+        /**
+         * Cluster name.
+         */
+        clusterName: string;
+        /**
+         * Default operator. When using three-line nodes, this parameter can be configured. After configuration, this operator will be used as the default export.
+         */
+        defaultIsp: string;
+        /**
+         * Public network configuration of three-line nodes. If it is a single-line node, this parameter will be ignored. Value range: single_interface_multi_ip: Single network card with multiple IPs. single_interface_cmcc_ip: Single network card with China Mobile IP. Relevant permissions need to be opened by submitting a work order. single_interface_cucc_ip: Single network card with China Unicom IP. Relevant permissions need to be opened by submitting a work order. single_interface_ctcc_ip: Single network card with China Telecom IP. Relevant permissions need to be opened by submitting a work order. multi_interface_multi_ip: Multiple network cards with multiple IPs. Relevant permissions need to be opened by submitting a work order. no_interface: No public network network card. Relevant permissions need to be opened by submitting a work order. If this parameter is not configured: When there is a public network network card, singleInterfaceMultiIp is used by default. When there is no public network network card, noInterface is used by default.
+         */
+        externalNetworkMode: string;
+        /**
+         * Operator. You can obtain the regions and operators supported by the instance specification through the ListAvailableResourceInfo interface.
+         */
+        isp: string;
+        /**
+         * Subnet ID.
+         */
+        subnetIdentity: string;
+        /**
+         * VPC ID.
+         */
+        vpcIdentity: string;
+    }
+
+    export interface EdgeNodePoolsNodePoolLabelContent {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface EdgeNodePoolsNodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount: number;
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
+    export interface EdgeNodePoolsNodePoolTaintContent {
+        /**
+         * The Effect of Taint.
+         */
+        effect: string;
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface EdgeNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface EdgeNodesNode {
+        /**
+         * The bootstrap script of node.
+         */
+        bootstrapScript: string;
+        /**
+         * The cluster id of node.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Node.
+         */
+        conditionTypes: string[];
+        /**
+         * The Create Client Token.
+         */
+        createClientToken: string;
+        /**
+         * The create time of Node.
+         */
+        createTime: string;
+        /**
+         * The edge node type of node.
+         */
+        edgeNodeType: string;
+        /**
+         * The ID of Node.
+         */
+        id: string;
+        /**
+         * The instance id of node.
+         */
+        instanceId: string;
+        /**
+         * The Name of Node.
+         */
+        name: string;
+        /**
+         * The node pool id.
+         */
+        nodePoolId: string;
+        /**
+         * The Phase of Node.
+         */
+        phase: string;
+        /**
+         * The profile of node. Distinguish between edge and central nodes.
+         */
+        profile: string;
+        /**
+         * The provider id of node.
+         */
+        providerId: string;
+        /**
+         * The update time of Node.
+         */
+        updateTime: string;
+    }
+
+    export interface EdgeNodesStatus {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: string;
+    }
+
+    export interface GetAddonsAddon {
+        /**
+         * The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+         */
+        categories?: string[];
+        /**
+         * The deploy model.
+         */
+        deployMode: string;
+        /**
+         * The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+         */
+        deployNodeTypes: string[];
+        /**
+         * The name of the addon.
+         */
+        name: string;
+        /**
+         * The necessary of addon.
+         */
+        necessary?: string;
+        /**
+         * The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+         */
+        podNetworkModes: string[];
+        /**
+         * The version info of addon.
+         */
+        versions: outputs.veecp.GetAddonsAddonVersion[];
+    }
+
+    export interface GetAddonsAddonVersion {
+        /**
+         * The compatible version list.
+         */
+        compatibilities: outputs.veecp.GetAddonsAddonVersionCompatibility[];
+        /**
+         * The compatible version list.
+         */
+        compatibleVersions: string[];
+        /**
+         * The basic version info.
+         */
+        version: string;
+    }
+
+    export interface GetAddonsAddonVersionCompatibility {
+        /**
+         * The Kubernetes Version of addon.
+         */
+        kubernetesVersion: string;
+    }
+
+    export interface GetBatchEdgeMachinesMachine {
+        /**
+         * The bootstrap script.
+         */
+        bootstrapScript: string;
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * Edge node type.
+         */
+        edgeNodeType: string;
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * Edge: Edge node pool. If the return value is empty, it is the central node pool.
+         */
+        profile: string;
+        /**
+         * The TTL time.
+         */
+        ttlTime: number;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+    }
+
+    export interface GetBatchEdgeMachinesStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetClustersCluster {
+        /**
+         * The config of the cluster.
+         */
+        clusterConfig: outputs.veecp.GetClustersClusterClusterConfig;
+        /**
+         * ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        createClientToken: string;
+        /**
+         * Cluster creation time. UTC+0 time in standard RFC3339 format.
+         */
+        createTime: string;
+        /**
+         * Cluster deletion protection. Values: true: Enable deletion protection. false: Disable deletion protection.
+         */
+        deleteProtectionEnabled: boolean;
+        /**
+         * Cluster description information.
+         */
+        description: string;
+        /**
+         * The ID of the cluster.
+         */
+        id: string;
+        /**
+         * Kubernetes version information corresponding to the cluster, specific to the patch version.
+         */
+        kubernetesVersion: string;
+        /**
+         * Cluster log configuration information.
+         */
+        loggingConfigs: outputs.veecp.GetClustersClusterLoggingConfig[];
+        /**
+         * Cluster name.
+         */
+        name: string;
+        /**
+         * Statistics on the number of nodes corresponding to each master state in the cluster.
+         */
+        nodeStatistics: outputs.veecp.GetClustersClusterNodeStatistics;
+        /**
+         * The config of the pods.
+         */
+        podsConfig: outputs.veecp.GetClustersClusterPodsConfig;
+        /**
+         * The config of the services.
+         */
+        servicesConfig: outputs.veecp.GetClustersClusterServicesConfig;
+        /**
+         * Cluster status. For detailed instructions, please refer to ClusterStatusResponse.
+         */
+        statuses: outputs.veecp.GetClustersClusterStatus[];
+        /**
+         * The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        updateClientToken: string;
+        /**
+         * The time when the cluster last accepted a request and executed or completed execution. UTC+0 time in standard RFC3339 format.
+         */
+        updateTime: string;
+    }
+
+    export interface GetClustersClusterClusterConfig {
+        /**
+         * Endpoint information accessed by the cluster API Server.
+         */
+        apiServerEndpoints: outputs.veecp.GetClustersClusterClusterConfigApiServerEndpoints;
+        /**
+         * Cluster API Server public network access configuration.
+         */
+        apiServerPublicAccessConfig: outputs.veecp.GetClustersClusterClusterConfigApiServerPublicAccessConfig;
+        /**
+         * Cluster API Server public network access configuration, the value is `true` or `false`.
+         */
+        apiServerPublicAccessEnabled: boolean;
+        /**
+         * Node public network access configuration, the value is `true` or `false`.
+         */
+        resourcePublicAccessDefaultEnabled: boolean;
+        /**
+         * The security group used by the cluster control plane and nodes.
+         */
+        securityGroupIds: string[];
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+        /**
+         * The private network where the cluster control plane network resides.
+         */
+        vpcId: string;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerEndpoints {
+        /**
+         * Endpoint address of the cluster API Server private network.
+         */
+        privateIp: outputs.veecp.GetClustersClusterClusterConfigApiServerEndpointsPrivateIp;
+        /**
+         * Endpoint address of the cluster API Server public network.
+         */
+        publicIp: outputs.veecp.GetClustersClusterClusterConfigApiServerEndpointsPublicIp;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerEndpointsPrivateIp {
+        /**
+         * Ipv4 address.
+         */
+        ipv4: string;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerEndpointsPublicIp {
+        /**
+         * Ipv4 address.
+         */
+        ipv4: string;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerPublicAccessConfig {
+        /**
+         * IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+         */
+        accessSourceIpsv4s: string[];
+        /**
+         * [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+         */
+        ipFamily: string;
+        /**
+         * Public network access network configuration.
+         */
+        publicAccessNetworkConfig: outputs.veecp.GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig {
+        /**
+         * The peak bandwidth of the public IP, unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of public IP.
+         */
+        isp: string;
+    }
+
+    export interface GetClustersClusterLoggingConfig {
+        /**
+         * The TLS log item ID of the collection target.
+         */
+        logProjectId: string;
+        /**
+         * Cluster logging options.
+         */
+        logSetups: outputs.veecp.GetClustersClusterLoggingConfigLogSetup[];
+    }
+
+    export interface GetClustersClusterLoggingConfigLogSetup {
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled: boolean;
+        /**
+         * The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+         */
+        logTtl: number;
+        /**
+         * The currently enabled log type.
+         */
+        logType: string;
+    }
+
+    export interface GetClustersClusterNodeStatistics {
+        /**
+         * Phase=Creating total number of nodes.
+         */
+        creatingCount: number;
+        /**
+         * Phase=Deleting total number of nodes.
+         */
+        deletingCount: number;
+        /**
+         * Phase=Failed total number of nodes.
+         */
+        failedCount: number;
+        /**
+         * Phase=Running total number of nodes.
+         */
+        runningCount: number;
+        /**
+         * Phase=Starting total number of nodes.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * Phase=Stopping total number of nodes.
+         */
+        stoppingCount: number;
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * Phase=Updating total number of nodes.
+         */
+        updatingCount: number;
+    }
+
+    export interface GetClustersClusterPodsConfig {
+        /**
+         * Flannel network configuration.
+         */
+        flannelConfig: outputs.veecp.GetClustersClusterPodsConfigFlannelConfig;
+        /**
+         * Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+         */
+        podNetworkMode: string;
+        /**
+         * VPC-CNI network configuration.
+         */
+        vpcCniConfig: outputs.veecp.GetClustersClusterPodsConfigVpcCniConfig;
+    }
+
+    export interface GetClustersClusterPodsConfigFlannelConfig {
+        /**
+         * The maximum number of single-node Pod instances for a Flannel container network.
+         */
+        maxPodsPerNode: number;
+        /**
+         * Pod CIDR for the Flannel container network.
+         */
+        podCidrs: string[];
+    }
+
+    export interface GetClustersClusterPodsConfigVpcCniConfig {
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+        /**
+         * The private network where the cluster control plane network resides.
+         */
+        vpcId: string;
+    }
+
+    export interface GetClustersClusterServicesConfig {
+        /**
+         * The IPv4 private network address exposed by the service.
+         */
+        serviceCidrsv4s: string[];
+    }
+
+    export interface GetClustersClusterStatus {
+        /**
+         * The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+         */
+        conditions: outputs.veecp.GetClustersClusterStatusCondition[];
+        /**
+         * Cluster status. The value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+         */
+        phase: string;
+    }
+
+    export interface GetClustersClusterStatusCondition {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+         */
+        type: string;
+    }
+
+    export interface GetClustersStatus {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface GetEdgeNodePoolsNodePool {
+        /**
+         * The billing configuration.
+         */
+        billingConfigs: outputs.veecp.GetEdgeNodePoolsNodePoolBillingConfig[];
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * Elastic scaling configuration of node pool.
+         */
+        elasticConfigs: outputs.veecp.GetEdgeNodePoolsNodePoolElasticConfig[];
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The LabelContent of KubernetesConfig.
+         */
+        labelContents: outputs.veecp.GetEdgeNodePoolsNodePoolLabelContent[];
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The method of adding nodes to the node pool.
+         */
+        nodeAddMethods: string[];
+        /**
+         * The NodeStatistics of NodeConfig.
+         */
+        nodeStatistics: outputs.veecp.GetEdgeNodePoolsNodePoolNodeStatistic[];
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * Edge: Edge node pool. If the return value is empty, it is the central node pool.
+         */
+        profile: string;
+        /**
+         * The TaintContent of NodeConfig.
+         */
+        taintContents: outputs.veecp.GetEdgeNodePoolsNodePoolTaintContent[];
+        /**
+         * Node pool type, machine-set: central node pool. edge-machine-set: edge node pool. edge-machine-pool: edge elastic node pool.
+         */
+        type: string;
+        /**
+         * The ClientToken when last update was successful.
+         */
+        updateClientToken: string;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+        /**
+         * The static node pool specifies the node pool to associate with the VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface GetEdgeNodePoolsNodePoolBillingConfig {
+        /**
+         * Whether to automatically renew the node pool.
+         */
+        autoRenew: boolean;
+        /**
+         * The pre-paid period of the node pool, in months. The value range is 1-9. This parameter takes effect only when the billingType is PrePaid.
+         */
+        prePaidPeriod: number;
+        /**
+         * Prepaid period number.
+         */
+        prePaidPeriodNumber: number;
+    }
+
+    export interface GetEdgeNodePoolsNodePoolElasticConfig {
+        /**
+         * The auto scaling configuration.
+         */
+        autoScaleConfigs: outputs.veecp.GetEdgeNodePoolsNodePoolElasticConfigAutoScaleConfig[];
+        /**
+         * Cloud server identity.
+         */
+        cloudServerIdentity: string;
+        /**
+         * The information of instance area.
+         */
+        instanceAreas: outputs.veecp.GetEdgeNodePoolsNodePoolElasticConfigInstanceArea[];
+    }
+
+    export interface GetEdgeNodePoolsNodePoolElasticConfigAutoScaleConfig {
+        /**
+         * The DesiredReplicas of AutoScaling.
+         */
+        desiredReplicas: number;
+        /**
+         * Whether to enable auto scaling.
+         */
+        enabled: boolean;
+        /**
+         * The maximum number of nodes.
+         */
+        maxReplicas: number;
+        /**
+         * The minimum number of nodes.
+         */
+        minReplicas: number;
+        /**
+         * The Priority of AutoScaling.
+         */
+        priority: number;
+    }
+
+    export interface GetEdgeNodePoolsNodePoolElasticConfigInstanceArea {
+        /**
+         * Region name. You can obtain the regions and operators supported by instance specifications through the ListAvailableResourceInfo interface.
+         */
+        areaName: string;
+        /**
+         * Cluster name.
+         */
+        clusterName: string;
+        /**
+         * Default operator. When using three-line nodes, this parameter can be configured. After configuration, this operator will be used as the default export.
+         */
+        defaultIsp: string;
+        /**
+         * Public network configuration of three-line nodes. If it is a single-line node, this parameter will be ignored. Value range: single_interface_multi_ip: Single network card with multiple IPs. single_interface_cmcc_ip: Single network card with China Mobile IP. Relevant permissions need to be opened by submitting a work order. single_interface_cucc_ip: Single network card with China Unicom IP. Relevant permissions need to be opened by submitting a work order. single_interface_ctcc_ip: Single network card with China Telecom IP. Relevant permissions need to be opened by submitting a work order. multi_interface_multi_ip: Multiple network cards with multiple IPs. Relevant permissions need to be opened by submitting a work order. no_interface: No public network network card. Relevant permissions need to be opened by submitting a work order. If this parameter is not configured: When there is a public network network card, singleInterfaceMultiIp is used by default. When there is no public network network card, noInterface is used by default.
+         */
+        externalNetworkMode: string;
+        /**
+         * Operator. You can obtain the regions and operators supported by the instance specification through the ListAvailableResourceInfo interface.
+         */
+        isp: string;
+        /**
+         * Subnet ID.
+         */
+        subnetIdentity: string;
+        /**
+         * VPC ID.
+         */
+        vpcIdentity: string;
+    }
+
+    export interface GetEdgeNodePoolsNodePoolLabelContent {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetEdgeNodePoolsNodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount: number;
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
+    export interface GetEdgeNodePoolsNodePoolTaintContent {
+        /**
+         * The Effect of Taint.
+         */
+        effect: string;
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetEdgeNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetEdgeNodesNode {
+        /**
+         * The bootstrap script of node.
+         */
+        bootstrapScript: string;
+        /**
+         * The cluster id of node.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Node.
+         */
+        conditionTypes: string[];
+        /**
+         * The Create Client Token.
+         */
+        createClientToken: string;
+        /**
+         * The create time of Node.
+         */
+        createTime: string;
+        /**
+         * The edge node type of node.
+         */
+        edgeNodeType: string;
+        /**
+         * The ID of Node.
+         */
+        id: string;
+        /**
+         * The instance id of node.
+         */
+        instanceId: string;
+        /**
+         * The Name of Node.
+         */
+        name: string;
+        /**
+         * The node pool id.
+         */
+        nodePoolId: string;
+        /**
+         * The Phase of Node.
+         */
+        phase: string;
+        /**
+         * The profile of node. Distinguish between edge and central nodes.
+         */
+        profile: string;
+        /**
+         * The provider id of node.
+         */
+        providerId: string;
+        /**
+         * The update time of Node.
+         */
+        updateTime: string;
+    }
+
+    export interface GetEdgeNodesStatus {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        edgeNodeStatusConditionType?: string;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: string;
+    }
+
+    export interface GetNodePoolsNodePool {
+        /**
+         * Is AdditionalContainerStorageEnabled of NodeConfig.
+         */
+        additionalContainerStorageEnabled: boolean;
+        /**
+         * Is auto renew of the PrePaid instance of NodeConfig.
+         */
+        autoRenew: boolean;
+        /**
+         * The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+         */
+        autoRenewPeriod: number;
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The Cordon of KubernetesConfig.
+         */
+        cordon: boolean;
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * The DataVolume of NodeConfig.
+         */
+        dataVolumes: outputs.veecp.GetNodePoolsNodePoolDataVolume[];
+        /**
+         * The DesiredReplicas of AutoScaling.
+         */
+        desiredReplicas: number;
+        /**
+         * Tags for Ecs.
+         */
+        ecsTags: outputs.veecp.GetNodePoolsNodePoolEcsTag[];
+        /**
+         * Is Enabled of AutoScaling.
+         */
+        enabled: boolean;
+        /**
+         * The IDs of HpcCluster.
+         */
+        hpcClusterIds: string[];
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The ImageId of NodeConfig.
+         */
+        imageId: string;
+        /**
+         * The InitializeScript of NodeConfig.
+         */
+        initializeScript: string;
+        /**
+         * The InstanceChargeType of NodeConfig.
+         */
+        instanceChargeType: string;
+        /**
+         * The InstanceTypeIds of NodeConfig.
+         */
+        instanceTypeIds: string[];
+        /**
+         * The NamePrefix of node metadata.
+         */
+        kubeConfigNamePrefix: string;
+        /**
+         * The LabelContent of KubernetesConfig.
+         */
+        labelContents: outputs.veecp.GetNodePoolsNodePoolLabelContent[];
+        /**
+         * The login SshKeyPairName of NodeConfig.
+         */
+        loginKeyPairName: string;
+        /**
+         * The login type of NodeConfig.
+         */
+        loginType: string;
+        /**
+         * The MaxReplicas of AutoScaling.
+         */
+        maxReplicas: number;
+        /**
+         * The MinReplicas of AutoScaling.
+         */
+        minReplicas: number;
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The NamePrefix of NodeConfig.
+         */
+        namePrefix: string;
+        /**
+         * The NodeStatistics of NodeConfig.
+         */
+        nodeStatistics: outputs.veecp.GetNodePoolsNodePoolNodeStatistic[];
+        /**
+         * The period of the PrePaid instance of NodeConfig.
+         */
+        period: number;
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * The Priority of AutoScaling.
+         */
+        priority: number;
+        /**
+         * The SecurityGroupIds of NodeConfig.
+         */
+        securityGroupIds: string[];
+        /**
+         * The SecurityStrategies of NodeConfig.
+         */
+        securityStrategies: string[];
+        /**
+         * The SecurityStrategyEnabled of NodeConfig.
+         */
+        securityStrategyEnabled: boolean;
+        /**
+         * The SubnetId of NodeConfig.
+         */
+        subnetIds: string[];
+        /**
+         * Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+         */
+        subnetPolicy: string;
+        /**
+         * The SystemVolume of NodeConfig.
+         */
+        systemVolumes: outputs.veecp.GetNodePoolsNodePoolSystemVolume[];
+        /**
+         * Tags of the NodePool.
+         */
+        tags: outputs.veecp.GetNodePoolsNodePoolTag[];
+        /**
+         * The TaintContent of NodeConfig.
+         */
+        taintContents: outputs.veecp.GetNodePoolsNodePoolTaintContent[];
+        /**
+         * The ClientToken when last update was successful.
+         */
+        updateClientToken: string;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+    }
+
+    export interface GetNodePoolsNodePoolDataVolume {
+        /**
+         * The target mount directory of the disk.
+         */
+        mountPoint: string;
+        /**
+         * The Size of SystemVolume.
+         */
+        size: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface GetNodePoolsNodePoolEcsTag {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsNodePoolLabelContent {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsNodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount: number;
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
+    export interface GetNodePoolsNodePoolSystemVolume {
+        /**
+         * The Size of SystemVolume.
+         */
+        size: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface GetNodePoolsNodePoolTag {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsNodePoolTaintContent {
+        /**
+         * The Effect of Taint.
+         */
+        effect: string;
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetSupportAddonsAddon {
+        /**
+         * The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+         */
+        categories?: string[];
+        /**
+         * The deploy model, the value is `Managed` or `Unmanaged`.
+         */
+        deployModes: string[];
+        /**
+         * The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+         */
+        deployNodeTypes: string[];
+        /**
+         * The name of the addon.
+         */
+        name: string;
+        /**
+         * The necessary of addon.
+         */
+        necessary?: string;
+        /**
+         * The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+         */
+        podNetworkModes: string[];
+        /**
+         * The version info of addon.
+         */
+        versions: outputs.veecp.GetSupportAddonsAddonVersion[];
+    }
+
+    export interface GetSupportAddonsAddonVersion {
+        /**
+         * The compatible version list.
+         */
+        compatibilities: outputs.veecp.GetSupportAddonsAddonVersionCompatibility[];
+        /**
+         * The compatible version list.
+         */
+        compatibleVersions: string[];
+        /**
+         * The basic version info.
+         */
+        version: string;
+    }
+
+    export interface GetSupportAddonsAddonVersionCompatibility {
+        /**
+         * The Kubernetes Version of addon.
+         */
+        kubernetesVersion: string;
+    }
+
+    export interface GetSupportResourceTypesResource {
+        /**
+         * The scope of resource.
+         */
+        resourceScope: string;
+        /**
+         * The resource specifications info.
+         */
+        resourceSpecifications: string[];
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface NodePoolAutoScaling {
+        /**
+         * The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
+         */
+        desiredReplicas: number;
+        /**
+         * Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
+         */
+        enabled: boolean;
+        /**
+         * The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
+         */
+        maxReplicas?: number;
+        /**
+         * The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
+         */
+        minReplicas: number;
+        /**
+         * The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
+         */
+        priority: number;
+        /**
+         * Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+         */
+        subnetPolicy: string;
+    }
+
+    export interface NodePoolKubernetesConfig {
+        /**
+         * Whether to disable the function of automatically synchronizing labels and taints to existing nodes. Default is false.
+         */
+        autoSyncDisabled: boolean;
+        /**
+         * The Cordon of KubernetesConfig.
+         */
+        cordon: boolean;
+        /**
+         * The Labels of KubernetesConfig.
+         */
+        labels?: outputs.veecp.NodePoolKubernetesConfigLabel[];
+        /**
+         * The NamePrefix of node metadata.
+         */
+        namePrefix?: string;
+        /**
+         * The Taints of KubernetesConfig.
+         */
+        taints?: outputs.veecp.NodePoolKubernetesConfigTaint[];
+    }
+
+    export interface NodePoolKubernetesConfigLabel {
+        /**
+         * The Key of Labels.
+         */
+        key?: string;
+        /**
+         * The Value of Labels.
+         */
+        value?: string;
+    }
+
+    export interface NodePoolKubernetesConfigTaint {
+        /**
+         * The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+         */
+        effect?: string;
+        /**
+         * The Key of Taints.
+         */
+        key?: string;
+        /**
+         * The Value of Taints.
+         */
+        value?: string;
+    }
+
+    export interface NodePoolNodeConfig {
+        /**
+         * The AdditionalContainerStorageEnabled of NodeConfig.
+         */
+        additionalContainerStorageEnabled?: boolean;
+        /**
+         * Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+         */
+        autoRenew: boolean;
+        /**
+         * The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+         */
+        autoRenewPeriod: number;
+        /**
+         * The DataVolumes of NodeConfig.
+         */
+        dataVolumes?: outputs.veecp.NodePoolNodeConfigDataVolume[];
+        /**
+         * Tags for Ecs.
+         */
+        ecsTags?: outputs.veecp.NodePoolNodeConfigEcsTag[];
+        /**
+         * The IDs of HpcCluster, only one ID is supported currently.
+         */
+        hpcClusterIds?: string[];
+        /**
+         * The ImageId of NodeConfig.
+         */
+        imageId: string;
+        /**
+         * The initializeScript of NodeConfig.
+         */
+        initializeScript?: string;
+        /**
+         * The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+         */
+        instanceChargeType?: string;
+        /**
+         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.veecp.getSupportResourceTypes datasource.
+         */
+        instanceTypeIds: string[];
+        /**
+         * The NamePrefix of NodeConfig.
+         */
+        namePrefix?: string;
+        /**
+         * The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+         */
+        period: number;
+        /**
+         * The Security of NodeConfig.
+         */
+        security: outputs.veecp.NodePoolNodeConfigSecurity;
+        /**
+         * The SubnetIds of NodeConfig.
+         */
+        subnetIds: string[];
+        /**
+         * The SystemVolume of NodeConfig.
+         */
+        systemVolume: outputs.veecp.NodePoolNodeConfigSystemVolume;
+    }
+
+    export interface NodePoolNodeConfigDataVolume {
+        /**
+         * The target mount directory of the disk. Must start with `/`.
+         */
+        mountPoint?: string;
+        /**
+         * The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
+         */
+        size?: number;
+        /**
+         * The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
+         */
+        type?: string;
+    }
+
+    export interface NodePoolNodeConfigEcsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NodePoolNodeConfigSecurity {
+        /**
+         * The Login of Security.
+         */
+        login?: outputs.veecp.NodePoolNodeConfigSecurityLogin;
+        /**
+         * The SecurityGroupIds of Security.
+         */
+        securityGroupIds: string[];
+        /**
+         * The SecurityStrategies of Security, the value can be empty or `Hids`.
+         */
+        securityStrategies?: string[];
+    }
+
+    export interface NodePoolNodeConfigSecurityLogin {
+        /**
+         * The Password of Security, this field must be encoded with base64.
+         */
+        password?: string;
+        /**
+         * The SshKeyPairName of Security.
+         */
+        sshKeyPairName?: string;
+    }
+
+    export interface NodePoolNodeConfigSystemVolume {
+        /**
+         * The Size of SystemVolume, the value range in 20~2048.
+         */
+        size: number;
+        /**
+         * The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+         */
+        type: string;
+    }
+
+    export interface NodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount: number;
+        /**
+         * The TotalCount of Node.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
+    export interface NodePoolsNodePool {
+        /**
+         * Is AdditionalContainerStorageEnabled of NodeConfig.
+         */
+        additionalContainerStorageEnabled: boolean;
+        /**
+         * Is auto renew of the PrePaid instance of NodeConfig.
+         */
+        autoRenew: boolean;
+        /**
+         * The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+         */
+        autoRenewPeriod: number;
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The Cordon of KubernetesConfig.
+         */
+        cordon: boolean;
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * The DataVolume of NodeConfig.
+         */
+        dataVolumes: outputs.veecp.NodePoolsNodePoolDataVolume[];
+        /**
+         * The DesiredReplicas of AutoScaling.
+         */
+        desiredReplicas: number;
+        /**
+         * Tags for Ecs.
+         */
+        ecsTags: outputs.veecp.NodePoolsNodePoolEcsTag[];
+        /**
+         * Is Enabled of AutoScaling.
+         */
+        enabled: boolean;
+        /**
+         * The IDs of HpcCluster.
+         */
+        hpcClusterIds: string[];
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The ImageId of NodeConfig.
+         */
+        imageId: string;
+        /**
+         * The InitializeScript of NodeConfig.
+         */
+        initializeScript: string;
+        /**
+         * The InstanceChargeType of NodeConfig.
+         */
+        instanceChargeType: string;
+        /**
+         * The InstanceTypeIds of NodeConfig.
+         */
+        instanceTypeIds: string[];
+        /**
+         * The NamePrefix of node metadata.
+         */
+        kubeConfigNamePrefix: string;
+        /**
+         * The LabelContent of KubernetesConfig.
+         */
+        labelContents: outputs.veecp.NodePoolsNodePoolLabelContent[];
+        /**
+         * The login SshKeyPairName of NodeConfig.
+         */
+        loginKeyPairName: string;
+        /**
+         * The login type of NodeConfig.
+         */
+        loginType: string;
+        /**
+         * The MaxReplicas of AutoScaling.
+         */
+        maxReplicas: number;
+        /**
+         * The MinReplicas of AutoScaling.
+         */
+        minReplicas: number;
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The NamePrefix of NodeConfig.
+         */
+        namePrefix: string;
+        /**
+         * The NodeStatistics of NodeConfig.
+         */
+        nodeStatistics: outputs.veecp.NodePoolsNodePoolNodeStatistic[];
+        /**
+         * The period of the PrePaid instance of NodeConfig.
+         */
+        period: number;
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * The Priority of AutoScaling.
+         */
+        priority: number;
+        /**
+         * The SecurityGroupIds of NodeConfig.
+         */
+        securityGroupIds: string[];
+        /**
+         * The SecurityStrategies of NodeConfig.
+         */
+        securityStrategies: string[];
+        /**
+         * The SecurityStrategyEnabled of NodeConfig.
+         */
+        securityStrategyEnabled: boolean;
+        /**
+         * The SubnetId of NodeConfig.
+         */
+        subnetIds: string[];
+        /**
+         * Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+         */
+        subnetPolicy: string;
+        /**
+         * The SystemVolume of NodeConfig.
+         */
+        systemVolumes: outputs.veecp.NodePoolsNodePoolSystemVolume[];
+        /**
+         * Tags of the NodePool.
+         */
+        tags: outputs.veecp.NodePoolsNodePoolTag[];
+        /**
+         * The TaintContent of NodeConfig.
+         */
+        taintContents: outputs.veecp.NodePoolsNodePoolTaintContent[];
+        /**
+         * The ClientToken when last update was successful.
+         */
+        updateClientToken: string;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+    }
+
+    export interface NodePoolsNodePoolDataVolume {
+        /**
+         * The target mount directory of the disk.
+         */
+        mountPoint: string;
+        /**
+         * The Size of SystemVolume.
+         */
+        size: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface NodePoolsNodePoolEcsTag {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface NodePoolsNodePoolLabelContent {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface NodePoolsNodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount: number;
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
+    export interface NodePoolsNodePoolSystemVolume {
+        /**
+         * The Size of SystemVolume.
+         */
+        size: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface NodePoolsNodePoolTag {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface NodePoolsNodePoolTaintContent {
+        /**
+         * The Effect of Taint.
+         */
+        effect: string;
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface NodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface SupportAddonsAddon {
+        /**
+         * The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+         */
+        categories?: string[];
+        /**
+         * The deploy model, the value is `Managed` or `Unmanaged`.
+         */
+        deployModes: string[];
+        /**
+         * The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+         */
+        deployNodeTypes: string[];
+        /**
+         * The name of the addon.
+         */
+        name: string;
+        /**
+         * The necessary of addon.
+         */
+        necessary?: string;
+        /**
+         * The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+         */
+        podNetworkModes: string[];
+        /**
+         * The version info of addon.
+         */
+        versions: outputs.veecp.SupportAddonsAddonVersion[];
+    }
+
+    export interface SupportAddonsAddonVersion {
+        /**
+         * The compatible version list.
+         */
+        compatibilities: outputs.veecp.SupportAddonsAddonVersionCompatibility[];
+        /**
+         * The compatible version list.
+         */
+        compatibleVersions: string[];
+        /**
+         * The basic version info.
+         */
+        version: string;
+    }
+
+    export interface SupportAddonsAddonVersionCompatibility {
+        /**
+         * The Kubernetes Version of addon.
+         */
+        kubernetesVersion: string;
+    }
+
+    export interface SupportResourceTypesResource {
+        /**
+         * The scope of resource.
+         */
+        resourceScope: string;
+        /**
+         * The resource specifications info.
+         */
+        resourceSpecifications: string[];
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
     }
 
 }
@@ -21127,6 +40957,935 @@ export namespace veenedge {
          * The type of storage.
          */
         storageType: string;
+    }
+
+    export interface GetAvailableResourcesRegion {
+        /**
+         * The config of area.
+         */
+        area: outputs.veenedge.GetAvailableResourcesRegionArea;
+        /**
+         * The config of city.
+         */
+        city: outputs.veenedge.GetAvailableResourcesRegionCity;
+        /**
+         * The config of cluster.
+         */
+        cluster: outputs.veenedge.GetAvailableResourcesRegionCluster;
+        /**
+         * The config of country.
+         */
+        country: outputs.veenedge.GetAvailableResourcesRegionCountry;
+        /**
+         * The config of isp.
+         */
+        isp: outputs.veenedge.GetAvailableResourcesRegionIsp;
+    }
+
+    export interface GetAvailableResourcesRegionArea {
+        /**
+         * The english name of region.
+         */
+        enName: string;
+        /**
+         * The id of region.
+         */
+        id: string;
+        /**
+         * The name of region.
+         */
+        name: string;
+    }
+
+    export interface GetAvailableResourcesRegionCity {
+        /**
+         * The english name of region.
+         */
+        enName: string;
+        /**
+         * The id of region.
+         */
+        id: string;
+        /**
+         * The name of region.
+         */
+        name: string;
+    }
+
+    export interface GetAvailableResourcesRegionCluster {
+        /**
+         * The english name of region.
+         */
+        enName: string;
+        /**
+         * The id of region.
+         */
+        id: string;
+        /**
+         * The name of region.
+         */
+        name: string;
+    }
+
+    export interface GetAvailableResourcesRegionCountry {
+        /**
+         * The english name of region.
+         */
+        enName: string;
+        /**
+         * The id of region.
+         */
+        id: string;
+        /**
+         * The name of region.
+         */
+        name: string;
+    }
+
+    export interface GetAvailableResourcesRegionIsp {
+        /**
+         * The english name of region.
+         */
+        enName: string;
+        /**
+         * The id of region.
+         */
+        id: string;
+        /**
+         * The name of region.
+         */
+        name: string;
+    }
+
+    export interface GetCloudServersCloudServer {
+        /**
+         * The config of billing.
+         */
+        billingConfig: outputs.veenedge.GetCloudServersCloudServerBillingConfig;
+        /**
+         * The Id of cloud server.
+         */
+        cloudServerIdentity: string;
+        /**
+         * The cpu info of cloud server.
+         */
+        cpu: string;
+        /**
+         * The create time info.
+         */
+        createTime: number;
+        /**
+         * The config of custom data.
+         */
+        customData: outputs.veenedge.GetCloudServersCloudServerCustomData;
+        /**
+         * The config of gpu.
+         */
+        gpu: outputs.veenedge.GetCloudServersCloudServerGpu;
+        /**
+         * The Id of cloud server.
+         */
+        id: string;
+        /**
+         * The config of image.
+         */
+        image: outputs.veenedge.GetCloudServersCloudServerImage;
+        /**
+         * The count of instance.
+         */
+        instanceCount: number;
+        /**
+         * The status of instances.
+         */
+        instanceStatuses: outputs.veenedge.GetCloudServersCloudServerInstanceStatus[];
+        /**
+         * The memory info of cloud server.
+         */
+        mem: string;
+        /**
+         * The name of cloud server.
+         */
+        name: string;
+        /**
+         * The config of network.
+         */
+        network: outputs.veenedge.GetCloudServersCloudServerNetwork;
+        /**
+         * The config of schedule strategy.
+         */
+        scheduleStrategyConfigs: outputs.veenedge.GetCloudServersCloudServerScheduleStrategyConfigs;
+        /**
+         * The config of secret.
+         */
+        secretConfig: outputs.veenedge.GetCloudServersCloudServerSecretConfig;
+        /**
+         * The server area count number.
+         */
+        serverAreaCount: number;
+        /**
+         * The area level of cloud server.
+         */
+        serverAreaLevel: string;
+        /**
+         * The server areas info.
+         */
+        serverAreas: outputs.veenedge.GetCloudServersCloudServerServerArea[];
+        /**
+         * The spec info of cloud server.
+         */
+        spec: string;
+        /**
+         * The Chinese spec info of cloud server.
+         */
+        specDisplay: string;
+        /**
+         * The spec summary of cloud server.
+         */
+        specSum: {[key: string]: any};
+        /**
+         * The config of storage.
+         */
+        storage: outputs.veenedge.GetCloudServersCloudServerStorage;
+        /**
+         * The update time info.
+         */
+        updateTime: number;
+    }
+
+    export interface GetCloudServersCloudServerBillingConfig {
+        /**
+         * The bandwidth billing method.
+         */
+        bandwidthBillingMethod: string;
+        /**
+         * The computing billing method.
+         */
+        computingBillingMethod: string;
+    }
+
+    export interface GetCloudServersCloudServerCustomData {
+        /**
+         * The data info.
+         */
+        data: string;
+    }
+
+    export interface GetCloudServersCloudServerGpu {
+        /**
+         * The list gpu info.
+         */
+        gpuses: outputs.veenedge.GetCloudServersCloudServerGpuGpus[];
+    }
+
+    export interface GetCloudServersCloudServerGpuGpus {
+        /**
+         * The spec of gpu.
+         */
+        gpuSpec: outputs.veenedge.GetCloudServersCloudServerGpuGpusGpuSpec;
+        /**
+         * The number of gpu.
+         */
+        num: number;
+    }
+
+    export interface GetCloudServersCloudServerGpuGpusGpuSpec {
+        /**
+         * The type of gpu.
+         */
+        gpuType: string;
+    }
+
+    export interface GetCloudServersCloudServerImage {
+        /**
+         * The id of image.
+         */
+        imageIdentity: string;
+        /**
+         * The name of image.
+         */
+        imageName: string;
+        /**
+         * The property of system.
+         */
+        property: string;
+        /**
+         * The arch of system.
+         */
+        systemArch: string;
+        /**
+         * The bit of system.
+         */
+        systemBit: string;
+        /**
+         * The type of system.
+         */
+        systemType: string;
+        /**
+         * The version of system.
+         */
+        systemVersion: string;
+    }
+
+    export interface GetCloudServersCloudServerInstanceStatus {
+        /**
+         * The count of instance.
+         */
+        instanceCount: number;
+        /**
+         * The status info.
+         */
+        status: string;
+    }
+
+    export interface GetCloudServersCloudServerNetwork {
+        /**
+         * The peak of bandwidth.
+         */
+        bandwidthPeak: string;
+        /**
+         * Whether enable ipv6.
+         */
+        enableIpv6: boolean;
+        /**
+         * The internal peak of bandwidth.
+         */
+        internalBandwidthPeak: string;
+    }
+
+    export interface GetCloudServersCloudServerScheduleStrategyConfigs {
+        /**
+         * The price strategy.
+         */
+        priceStrategy: string;
+        /**
+         * The schedule strategy.
+         */
+        scheduleStrategy: string;
+    }
+
+    export interface GetCloudServersCloudServerSecretConfig {
+        /**
+         * The data of secret.
+         */
+        secretData: string;
+        /**
+         * The type of secret.
+         */
+        secretType: number;
+    }
+
+    export interface GetCloudServersCloudServerServerArea {
+        /**
+         * The area info.
+         */
+        area: string;
+        /**
+         * The number of instance.
+         */
+        instanceNum: number;
+        /**
+         * The isp info.
+         */
+        isp: string;
+    }
+
+    export interface GetCloudServersCloudServerStorage {
+        /**
+         * The disk info of data.
+         */
+        dataDisk: outputs.veenedge.GetCloudServersCloudServerStorageDataDisk;
+        /**
+         * The disk list info of data.
+         */
+        dataDiskLists: outputs.veenedge.GetCloudServersCloudServerStorageDataDiskList[];
+        /**
+         * The disk info of system.
+         */
+        systemDisk: outputs.veenedge.GetCloudServersCloudServerStorageSystemDisk;
+    }
+
+    export interface GetCloudServersCloudServerStorageDataDisk {
+        /**
+         * The capacity of storage.
+         */
+        capacity: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
+    export interface GetCloudServersCloudServerStorageDataDiskList {
+        /**
+         * The capacity of storage.
+         */
+        capacity: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
+    export interface GetCloudServersCloudServerStorageSystemDisk {
+        /**
+         * The capacity of storage.
+         */
+        capacity: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
+    export interface GetInstanceTypesInstanceTypeConfig {
+        /**
+         * The cpu of instance type.
+         */
+        cpu: number;
+        /**
+         * The gpu of instance type.
+         */
+        gpu: number;
+        /**
+         * The gpu spec of instance.
+         */
+        gpuSpec: string;
+        /**
+         * The type of instance.
+         */
+        instanceType: string;
+        /**
+         * The type family of instance.
+         */
+        instanceTypeFamily: string;
+        /**
+         * The name of instance type family.
+         */
+        instanceTypeFamilyName: string;
+        /**
+         * The memory of instance type.
+         */
+        memory: number;
+        /**
+         * The config of storage.
+         */
+        storages: outputs.veenedge.GetInstanceTypesInstanceTypeConfigStorage[];
+    }
+
+    export interface GetInstanceTypesInstanceTypeConfigStorage {
+        /**
+         * The amount of local storage.
+         */
+        localStorageAmount: number;
+        /**
+         * The capacity of local storage.
+         */
+        localStorageCapacity: number;
+        /**
+         * The local storage category.
+         */
+        localStorageCategory: string;
+        /**
+         * The unit of local storage.
+         */
+        localStorageUnit: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The id of cloud server.
+         */
+        cloudServerIdentity: string;
+        /**
+         * The name of cloud server.
+         */
+        cloudServerName: string;
+        /**
+         * The cluster info.
+         */
+        cluster: outputs.veenedge.GetInstancesInstanceCluster;
+        /**
+         * The cpu of instance.
+         */
+        cpu: string;
+        /**
+         * The create time of instance.
+         */
+        createTime: number;
+        /**
+         * The creator of instance.
+         */
+        creator: string;
+        /**
+         * The delete time of instance.
+         */
+        deleteTime: number;
+        /**
+         * The end time of instance.
+         */
+        endTime: number;
+        /**
+         * The config of gpu.
+         */
+        gpu: outputs.veenedge.GetInstancesInstanceGpu;
+        /**
+         * The Id of instance.
+         */
+        id: string;
+        /**
+         * The config of image.
+         */
+        image: outputs.veenedge.GetInstancesInstanceImage;
+        /**
+         * The Id of instance.
+         */
+        instanceIdentity: string;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The memory of instance.
+         */
+        mem: string;
+        /**
+         * The config of network.
+         */
+        network: outputs.veenedge.GetInstancesInstanceNetwork;
+        /**
+         * The spec of instance.
+         */
+        spec: string;
+        /**
+         * The spec display of instance.
+         */
+        specDisplay: string;
+        /**
+         * The start time of instance.
+         */
+        startTime: number;
+        /**
+         * The status of instance.
+         */
+        status: string;
+        /**
+         * The config of storage.
+         */
+        storage: outputs.veenedge.GetInstancesInstanceStorage;
+        /**
+         * The subnet cidr.
+         */
+        subnetCidr: string;
+        /**
+         * The update time of instance.
+         */
+        updateTime: number;
+        /**
+         * The id of vpc.
+         */
+        vpcIdentity: string;
+    }
+
+    export interface GetInstancesInstanceCluster {
+        /**
+         * The alias of cluster.
+         */
+        alias: string;
+        /**
+         * The city of cluster.
+         */
+        city: string;
+        /**
+         * The name of cluster.
+         */
+        clusterName: string;
+        /**
+         * The country of cluster.
+         */
+        country: string;
+        /**
+         * The isp info.
+         */
+        isp: string;
+        /**
+         * The level of cluster.
+         */
+        level: string;
+        /**
+         * The province of cluster.
+         */
+        province: string;
+        /**
+         * The region of cluster.
+         */
+        region: string;
+    }
+
+    export interface GetInstancesInstanceGpu {
+        /**
+         * The list gpu info.
+         */
+        gpuses: outputs.veenedge.GetInstancesInstanceGpuGpus[];
+    }
+
+    export interface GetInstancesInstanceGpuGpus {
+        /**
+         * The spec of gpu.
+         */
+        gpuSpec: outputs.veenedge.GetInstancesInstanceGpuGpusGpuSpec;
+        /**
+         * The number of gpu.
+         */
+        num: number;
+    }
+
+    export interface GetInstancesInstanceGpuGpusGpuSpec {
+        /**
+         * The type of gpu.
+         */
+        gpuType: string;
+    }
+
+    export interface GetInstancesInstanceImage {
+        /**
+         * The id of image.
+         */
+        imageIdentity: string;
+        /**
+         * The name of image.
+         */
+        imageName: string;
+        /**
+         * The property of system.
+         */
+        property: string;
+        /**
+         * The arch of system.
+         */
+        systemArch: string;
+        /**
+         * The bit of system.
+         */
+        systemBit: string;
+        /**
+         * The type of system.
+         */
+        systemType: string;
+        /**
+         * The version of system.
+         */
+        systemVersion: string;
+    }
+
+    export interface GetInstancesInstanceNetwork {
+        /**
+         * Whether enable ipv6.
+         */
+        enableIpv6: boolean;
+        /**
+         * The external interface of network.
+         */
+        externalInterface: outputs.veenedge.GetInstancesInstanceNetworkExternalInterface;
+        /**
+         * The internal interface of network.
+         */
+        internalInterface: outputs.veenedge.GetInstancesInstanceNetworkInternalInterface;
+        /**
+         * The passthrough info.
+         */
+        vfPassthrough: boolean;
+    }
+
+    export interface GetInstancesInstanceNetworkExternalInterface {
+        /**
+         * The peak of bandwidth.
+         */
+        bandwidthPeak: string;
+        /**
+         * The ipv6 address.
+         */
+        ip6Addr: string;
+        /**
+         * The ip address.
+         */
+        ipAddr: string;
+        /**
+         * The ips of network.
+         */
+        ips: outputs.veenedge.GetInstancesInstanceNetworkExternalInterfaceIp[];
+        /**
+         * The mac address.
+         */
+        macAddr: string;
+        /**
+         * The mask info.
+         */
+        mask: string;
+        /**
+         * The ipv6 mask info.
+         */
+        mask6: string;
+    }
+
+    export interface GetInstancesInstanceNetworkExternalInterfaceIp {
+        /**
+         * The ip address.
+         */
+        addr: string;
+        /**
+         * The version of ip address.
+         */
+        ipVersion: string;
+        /**
+         * The isp info.
+         */
+        isp: string;
+        /**
+         * The mask info.
+         */
+        mask: string;
+    }
+
+    export interface GetInstancesInstanceNetworkInternalInterface {
+        /**
+         * The peak of bandwidth.
+         */
+        bandwidthPeak: string;
+        /**
+         * The ipv6 address.
+         */
+        ip6Addr: string;
+        /**
+         * The ip address.
+         */
+        ipAddr: string;
+        /**
+         * The ips of network.
+         */
+        ips: outputs.veenedge.GetInstancesInstanceNetworkInternalInterfaceIp[];
+        /**
+         * The mac address.
+         */
+        macAddr: string;
+        /**
+         * The mask info.
+         */
+        mask: string;
+        /**
+         * The ipv6 mask info.
+         */
+        mask6: string;
+    }
+
+    export interface GetInstancesInstanceNetworkInternalInterfaceIp {
+        /**
+         * The ip address.
+         */
+        addr: string;
+        /**
+         * The version of ip address.
+         */
+        ipVersion: string;
+        /**
+         * The isp info.
+         */
+        isp: string;
+        /**
+         * The mask info.
+         */
+        mask: string;
+    }
+
+    export interface GetInstancesInstanceStorage {
+        /**
+         * The disk info of data.
+         */
+        dataDisk: outputs.veenedge.GetInstancesInstanceStorageDataDisk;
+        /**
+         * The disk list info of data.
+         */
+        dataDiskLists: outputs.veenedge.GetInstancesInstanceStorageDataDiskList[];
+        /**
+         * The disk info of system.
+         */
+        systemDisk: outputs.veenedge.GetInstancesInstanceStorageSystemDisk;
+    }
+
+    export interface GetInstancesInstanceStorageDataDisk {
+        /**
+         * The capacity of storage.
+         */
+        capacity: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
+    export interface GetInstancesInstanceStorageDataDiskList {
+        /**
+         * The capacity of storage.
+         */
+        capacity: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
+    export interface GetInstancesInstanceStorageSystemDisk {
+        /**
+         * The capacity of storage.
+         */
+        capacity: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
+    }
+
+    export interface GetVpcsVpcInstance {
+        /**
+         * The account id.
+         */
+        accountIdentity: number;
+        /**
+         * The cluster info.
+         */
+        cluster: outputs.veenedge.GetVpcsVpcInstanceCluster;
+        /**
+         * The cluster vpc id.
+         */
+        clusterVpcId: number;
+        /**
+         * The creation time.
+         */
+        createTime: number;
+        /**
+         * The description of VPC.
+         */
+        desc: string;
+        /**
+         * The ID of VPC.
+         */
+        id: string;
+        /**
+         * Is default vpc.
+         */
+        isDefault: boolean;
+        /**
+         * The resource statistic info.
+         */
+        resourceStatistics: outputs.veenedge.GetVpcsVpcInstanceResourceStatistic[];
+        /**
+         * The status of VPC.
+         */
+        status: string;
+        /**
+         * The subnets info.
+         */
+        subNets: outputs.veenedge.GetVpcsVpcInstanceSubNet[];
+        /**
+         * The update time of VPC.
+         */
+        updateTime: number;
+        /**
+         * The id of user.
+         */
+        userIdentity: number;
+        /**
+         * The ID of VPC.
+         */
+        vpcIdentity: string;
+        /**
+         * The name of VPC.
+         */
+        vpcName: string;
+        /**
+         * The namespace of VPC.
+         */
+        vpcNs: string;
+    }
+
+    export interface GetVpcsVpcInstanceCluster {
+        /**
+         * The alias of cluster.
+         */
+        alias: string;
+        /**
+         * The city of cluster.
+         */
+        city: string;
+        /**
+         * The name of cluster.
+         */
+        clusterName: string;
+        /**
+         * The country of cluster.
+         */
+        country: string;
+        /**
+         * The isp of cluster.
+         */
+        isp: string;
+        /**
+         * The level of cluster.
+         */
+        level: string;
+        /**
+         * The province of cluster.
+         */
+        province: string;
+        /**
+         * The region of cluster.
+         */
+        region: string;
+    }
+
+    export interface GetVpcsVpcInstanceResourceStatistic {
+        /**
+         * The count of instance.
+         */
+        veenInstanceCount: number;
+        /**
+         * The count of load balancers.
+         */
+        veewLbInstanceCount: number;
+        /**
+         * The count of security groups.
+         */
+        veewSgInstanceCount: number;
+    }
+
+    export interface GetVpcsVpcInstanceSubNet {
+        /**
+         * The account id.
+         */
+        accountIdentity: number;
+        /**
+         * The ip of cidr.
+         */
+        cidrIp: string;
+        /**
+         * The mask of cidr.
+         */
+        cidrMask: number;
+        /**
+         * The creation time.
+         */
+        createTime: number;
+        /**
+         * The id of subnet.
+         */
+        subnetIdentity: string;
+        /**
+         * The update time of VPC.
+         */
+        updateTime: number;
+        /**
+         * The id of user.
+         */
+        userIdentity: number;
     }
 
     export interface InstanceTypesInstanceTypeConfig {
@@ -21876,6 +42635,283 @@ export namespace vepfs {
          * The query status list of Vepfs Fileset.
          */
         status: string;
+    }
+
+    export interface GetFileSystemsFileSystem {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * The bandwidth info of the vepfs file system.
+         */
+        bandwidth: number;
+        /**
+         * The capacity info of the vepfs file system.
+         */
+        capacityInfo: outputs.vepfs.GetFileSystemsFileSystemCapacityInfo;
+        /**
+         * The charge status of the vepfs file system.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the vepfs file system.
+         */
+        chargeType: string;
+        /**
+         * The create time of the vepfs file system.
+         */
+        createTime: string;
+        /**
+         * The description of the vepfs file system.
+         */
+        description: string;
+        /**
+         * The expire time of the vepfs file system.
+         */
+        expireTime: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        fileSystemId: string;
+        /**
+         * The Name of Vepfs File System. This field support fuzzy query.
+         */
+        fileSystemName: string;
+        /**
+         * The type of the vepfs file system.
+         */
+        fileSystemType: string;
+        /**
+         * The free time of the vepfs file system.
+         */
+        freeTime: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        id: string;
+        /**
+         * The last modify time of the vepfs file system.
+         */
+        lastModifyTime: string;
+        /**
+         * The project of Vepfs File System.
+         */
+        project: string;
+        /**
+         * The protocol type of the vepfs file system.
+         */
+        protocolType: string;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The query status list of Vepfs File System.
+         */
+        status: string;
+        /**
+         * The stop service time of the vepfs file system.
+         */
+        stopServiceTime: string;
+        /**
+         * The Store Type of Vepfs File System.
+         */
+        storeType: string;
+        /**
+         * The store type cn name of the vepfs file system.
+         */
+        storeTypeCn: string;
+        /**
+         * The tags of the vepfs file system.
+         */
+        tags: outputs.vepfs.GetFileSystemsFileSystemTag[];
+        /**
+         * The version info of the vepfs file system.
+         */
+        version: string;
+        /**
+         * The zone id of File System.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
+    export interface GetFileSystemsFileSystemCapacityInfo {
+        /**
+         * The total size. Unit: TiB.
+         */
+        totalTib: number;
+        /**
+         * The used size. Unit: GiB.
+         */
+        usedGib: number;
+    }
+
+    export interface GetFileSystemsFileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFilesetsFileset {
+        /**
+         * The bandwidth Qos of the vepfs fileset.
+         */
+        bandwidthQos: number;
+        /**
+         * The capacity limit of the vepfs fileset. Unit: GiB.
+         */
+        capacityLimit: number;
+        /**
+         * The used capacity of the vepfs fileset. Unit: GiB.
+         */
+        capacityUsed: number;
+        /**
+         * The create time of the vepfs fileset.
+         */
+        createTime: string;
+        /**
+         * Quota for the number of files or directories. A return of 0 indicates that there is no quota limit set for the number of directories after the file.
+         */
+        fileLimit: number;
+        /**
+         * The used file number of the vepfs fileset.
+         */
+        fileUsed: number;
+        /**
+         * The id of Vepfs Fileset.
+         */
+        filesetId: string;
+        /**
+         * The name of Vepfs Fileset. This field support fuzzy query.
+         */
+        filesetName: string;
+        /**
+         * The path of Vepfs Fileset. This field support fuzzy query.
+         */
+        filesetPath: string;
+        /**
+         * The id of the vepfs fileset.
+         */
+        id: string;
+        /**
+         * The IOPS Qos of the vepfs fileset.
+         */
+        iopsQos: number;
+        /**
+         * The max number of inode in the vepfs fileset.
+         */
+        maxInodeNum: number;
+        /**
+         * The query status list of Vepfs Fileset.
+         */
+        status: string;
+    }
+
+    export interface GetMountServicesMountService {
+        /**
+         * The account id of the vepfs file system.
+         */
+        accountId: string;
+        /**
+         * The attached file system info of the mount service.
+         */
+        attachFileSystems: outputs.vepfs.GetMountServicesMountServiceAttachFileSystem[];
+        /**
+         * The created time of the mount service.
+         */
+        createTime: string;
+        /**
+         * The id of the mount service.
+         */
+        id: string;
+        /**
+         * The id of mount service.
+         */
+        mountServiceId: string;
+        /**
+         * The name of mount service. This field support fuzzy query.
+         */
+        mountServiceName: string;
+        /**
+         * The nodes info of the mount service.
+         */
+        nodes: outputs.vepfs.GetMountServicesMountServiceNode[];
+        /**
+         * The project of the mount service.
+         */
+        project: string;
+        /**
+         * The region id of the mount service.
+         */
+        regionId: string;
+        /**
+         * The query status list of mount service.
+         */
+        status: string;
+        /**
+         * The subnet id of the mount service.
+         */
+        subnetId: string;
+        /**
+         * The vpc id of the mount service.
+         */
+        vpcId: string;
+        /**
+         * The zone id of the mount service.
+         */
+        zoneId: string;
+        /**
+         * The zone name of the mount service.
+         */
+        zoneName: string;
+    }
+
+    export interface GetMountServicesMountServiceAttachFileSystem {
+        /**
+         * The account id of the vepfs file system.
+         */
+        accountId: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        customerPath: string;
+        /**
+         * The id of Vepfs File System.
+         */
+        fileSystemId: string;
+        /**
+         * The name of the vepfs file system.
+         */
+        fileSystemName: string;
+        /**
+         * The query status list of mount service.
+         */
+        status: string;
+    }
+
+    export interface GetMountServicesMountServiceNode {
+        /**
+         * The default password of ecs instance.
+         */
+        defaultPassword: string;
+        /**
+         * The id of ecs instance.
+         */
+        nodeId: string;
     }
 
     export interface MountServiceAttachFileSystem {
@@ -22821,6 +43857,978 @@ export namespace vke {
         value: string;
     }
 
+    export interface GetAddonsAddon {
+        /**
+         * The ID of the Cluster.
+         */
+        clusterId: string;
+        /**
+         * The config of addon.
+         */
+        config: string;
+        /**
+         * ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        createClientToken?: string;
+        /**
+         * Addon creation time. UTC+0 time in standard RFC3339 format.
+         */
+        createTime: string;
+        /**
+         * The deploy mode.
+         */
+        deployMode: string;
+        /**
+         * The deploy node type.
+         */
+        deployNodeType: string;
+        /**
+         * The name of the cluster.
+         */
+        name: string;
+        /**
+         * The status of the addon.
+         */
+        status: outputs.vke.GetAddonsAddonStatus;
+        /**
+         * The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        updateClientToken?: string;
+        /**
+         * The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+         */
+        updateTime: string;
+        /**
+         * The name of the cluster.
+         */
+        version: string;
+    }
+
+    export interface GetAddonsAddonStatus {
+        /**
+         * The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+         */
+        conditions: outputs.vke.GetAddonsAddonStatusCondition[];
+        /**
+         * The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+         */
+        phase: string;
+    }
+
+    export interface GetAddonsAddonStatusCondition {
+        /**
+         * The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+         */
+        type: string;
+    }
+
+    export interface GetAddonsStatus {
+        /**
+         * The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface GetClustersCluster {
+        /**
+         * The config of the cluster.
+         */
+        clusterConfig: outputs.vke.GetClustersClusterClusterConfig;
+        /**
+         * ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        createClientToken?: string;
+        /**
+         * Cluster creation time. UTC+0 time in standard RFC3339 format.
+         */
+        createTime: string;
+        /**
+         * The delete protection of the cluster, the value is `true` or `false`.
+         */
+        deleteProtectionEnabled: boolean;
+        /**
+         * The description of the cluster.
+         */
+        description: string;
+        /**
+         * Eip allocation Id.
+         */
+        eipAllocationId: string;
+        /**
+         * The ID of the Cluster.
+         */
+        id: string;
+        /**
+         * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+         */
+        kubeconfigPrivate: string;
+        /**
+         * Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
+         */
+        kubeconfigPublic: string;
+        /**
+         * The Kubernetes version information corresponding to the cluster, specific to the patch version.
+         */
+        kubernetesVersion: string;
+        /**
+         * Cluster log configuration information.
+         */
+        loggingConfigs: outputs.vke.GetClustersClusterLoggingConfig[];
+        /**
+         * The name of the cluster.
+         */
+        name: string;
+        /**
+         * Statistics on the number of nodes corresponding to each master state in the cluster.
+         */
+        nodeStatistics: outputs.vke.GetClustersClusterNodeStatistics;
+        /**
+         * The config of the pods.
+         */
+        podsConfig: outputs.vke.GetClustersClusterPodsConfig;
+        /**
+         * The project name of the cluster.
+         */
+        projectName: string;
+        /**
+         * The config of the services.
+         */
+        servicesConfig: outputs.vke.GetClustersClusterServicesConfig;
+        /**
+         * The status of the cluster.
+         */
+        status: outputs.vke.GetClustersClusterStatus;
+        /**
+         * Tags.
+         */
+        tags: outputs.vke.GetClustersClusterTag[];
+        /**
+         * The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+         */
+        updateClientToken?: string;
+        /**
+         * The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
+         */
+        updateTime: string;
+    }
+
+    export interface GetClustersClusterClusterConfig {
+        /**
+         * Endpoint information accessed by the cluster API Server.
+         */
+        apiServerEndpoints: outputs.vke.GetClustersClusterClusterConfigApiServerEndpoints;
+        /**
+         * Cluster API Server public network access configuration.
+         */
+        apiServerPublicAccessConfig: outputs.vke.GetClustersClusterClusterConfigApiServerPublicAccessConfig;
+        /**
+         * Cluster API Server public network access configuration, the value is `true` or `false`.
+         */
+        apiServerPublicAccessEnabled: boolean;
+        /**
+         * Node public network access configuration, the value is `true` or `false`.
+         */
+        resourcePublicAccessDefaultEnabled: boolean;
+        /**
+         * The security group used by the cluster control plane and nodes.
+         */
+        securityGroupIds: string[];
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+        /**
+         * The private network where the cluster control plane network resides.
+         */
+        vpcId: string;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerEndpoints {
+        /**
+         * Endpoint address of the cluster API Server private network.
+         */
+        privateIp: outputs.vke.GetClustersClusterClusterConfigApiServerEndpointsPrivateIp;
+        /**
+         * Endpoint address of the cluster API Server public network.
+         */
+        publicIp: outputs.vke.GetClustersClusterClusterConfigApiServerEndpointsPublicIp;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerEndpointsPrivateIp {
+        /**
+         * Ipv4 address.
+         */
+        ipv4: string;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerEndpointsPublicIp {
+        /**
+         * Ipv4 address.
+         */
+        ipv4: string;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerPublicAccessConfig {
+        /**
+         * IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+         */
+        accessSourceIpsv4s: string[];
+        /**
+         * [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+         */
+        ipFamily: string;
+        /**
+         * Public network access network configuration.
+         */
+        publicAccessNetworkConfig: outputs.vke.GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig;
+    }
+
+    export interface GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig {
+        /**
+         * The peak bandwidth of the public IP, unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * Billing type of public IP, the value is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of public IP.
+         */
+        isp: string;
+    }
+
+    export interface GetClustersClusterLoggingConfig {
+        /**
+         * The TLS log item ID of the collection target.
+         */
+        logProjectId: string;
+        /**
+         * Cluster logging options.
+         */
+        logSetups: outputs.vke.GetClustersClusterLoggingConfigLogSetup[];
+    }
+
+    export interface GetClustersClusterLoggingConfigLogSetup {
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled: boolean;
+        /**
+         * The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+         */
+        logTtl: number;
+        /**
+         * The currently enabled log type.
+         */
+        logType: string;
+    }
+
+    export interface GetClustersClusterNodeStatistics {
+        /**
+         * Phase=Creating total number of nodes.
+         */
+        creatingCount: number;
+        /**
+         * Phase=Deleting total number of nodes.
+         */
+        deletingCount: number;
+        /**
+         * Phase=Failed total number of nodes.
+         */
+        failedCount: number;
+        /**
+         * Phase=Running total number of nodes.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * The total count of Cluster query.
+         */
+        totalCount: number;
+        /**
+         * Phase=Updating total number of nodes.
+         */
+        updatingCount: number;
+    }
+
+    export interface GetClustersClusterPodsConfig {
+        /**
+         * Flannel network configuration.
+         */
+        flannelConfig: outputs.vke.GetClustersClusterPodsConfigFlannelConfig;
+        /**
+         * Container Pod Network Type (CNI), the value is `Flannel` or `VpcCniShared`.
+         */
+        podNetworkMode: string;
+        /**
+         * VPC-CNI network configuration.
+         */
+        vpcCniConfig: outputs.vke.GetClustersClusterPodsConfigVpcCniConfig;
+    }
+
+    export interface GetClustersClusterPodsConfigFlannelConfig {
+        /**
+         * The maximum number of single-node Pod instances for a Flannel container network.
+         */
+        maxPodsPerNode: number;
+        /**
+         * Pod CIDR for the Flannel container network.
+         */
+        podCidrs: string[];
+    }
+
+    export interface GetClustersClusterPodsConfigVpcCniConfig {
+        /**
+         * A list of Pod subnet IDs for the VPC-CNI container network.
+         */
+        subnetIds: string[];
+        /**
+         * The private network where the cluster control plane network resides.
+         */
+        vpcId: string;
+    }
+
+    export interface GetClustersClusterServicesConfig {
+        /**
+         * The IPv4 private network address exposed by the service.
+         */
+        serviceCidrsv4s: string[];
+    }
+
+    export interface GetClustersClusterStatus {
+        /**
+         * The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+         */
+        conditions: outputs.vke.GetClustersClusterStatusCondition[];
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase: string;
+    }
+
+    export interface GetClustersClusterStatusCondition {
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface GetClustersClusterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetClustersStatus {
+        /**
+         * The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
+         */
+        conditionsType?: string;
+        /**
+         * The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
+         */
+        phase?: string;
+    }
+
+    export interface GetClustersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetKubeconfigsKubeconfig {
+        /**
+         * The Cluster ID of the Kubeconfig.
+         */
+        clusterId: string;
+        /**
+         * The create time of the Kubeconfig.
+         */
+        createTime: string;
+        /**
+         * The expire time of the Kubeconfig.
+         */
+        expireTime: string;
+        /**
+         * The ID of the Kubeconfig.
+         */
+        id: string;
+        /**
+         * Kubeconfig data with public/private network access, returned in BASE64 encoding.
+         */
+        kubeconfig: string;
+        /**
+         * The ID of the Kubeconfig.
+         */
+        kubeconfigId: string;
+        /**
+         * The type of the Kubeconfig.
+         */
+        type: string;
+        /**
+         * The account ID of the Kubeconfig.
+         */
+        userId: number;
+    }
+
+    export interface GetNodePoolsNodePool {
+        /**
+         * Is AdditionalContainerStorageEnabled of NodeConfig.
+         */
+        additionalContainerStorageEnabled: boolean;
+        /**
+         * Is auto renew of the PrePaid instance of NodeConfig.
+         */
+        autoRenew: boolean;
+        /**
+         * The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+         */
+        autoRenewPeriod: number;
+        /**
+         * The ClusterId of NodePool.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Status.
+         */
+        conditionTypes: string[];
+        /**
+         * The Cordon of KubernetesConfig.
+         */
+        cordon: boolean;
+        /**
+         * The ClientToken when successfully created.
+         */
+        createClientToken: string;
+        /**
+         * The CreateTime of NodePool.
+         */
+        createTime: string;
+        /**
+         * The DataVolume of NodeConfig.
+         */
+        dataVolumes: outputs.vke.GetNodePoolsNodePoolDataVolume[];
+        /**
+         * The DesiredReplicas of AutoScaling.
+         */
+        desiredReplicas: number;
+        /**
+         * Tags for Ecs.
+         */
+        ecsTags: outputs.vke.GetNodePoolsNodePoolEcsTag[];
+        /**
+         * Is Enabled of AutoScaling.
+         */
+        enabled: boolean;
+        /**
+         * The IDs of HpcCluster.
+         */
+        hpcClusterIds: string[];
+        /**
+         * The Id of NodePool.
+         */
+        id: string;
+        /**
+         * The ImageId of NodeConfig.
+         */
+        imageId: string;
+        /**
+         * The InitializeScript of NodeConfig.
+         */
+        initializeScript: string;
+        /**
+         * The InstanceChargeType of NodeConfig.
+         */
+        instanceChargeType: string;
+        /**
+         * The InstanceTypeIds of NodeConfig.
+         */
+        instanceTypeIds: string[];
+        /**
+         * Whether to disable the function of automatically synchronizing labels and taints to existing nodes.
+         */
+        kubeConfigAutoSyncDisabled: boolean;
+        /**
+         * The NamePrefix of node metadata.
+         */
+        kubeConfigNamePrefix: string;
+        /**
+         * The KubeletConfig of KubernetesConfig.
+         */
+        kubeletConfigs: outputs.vke.GetNodePoolsNodePoolKubeletConfig[];
+        /**
+         * The LabelContent of KubernetesConfig.
+         */
+        labelContents: outputs.vke.GetNodePoolsNodePoolLabelContent[];
+        /**
+         * The login SshKeyPairName of NodeConfig.
+         */
+        loginKeyPairName: string;
+        /**
+         * The login type of NodeConfig.
+         */
+        loginType: string;
+        /**
+         * The MaxReplicas of AutoScaling.
+         */
+        maxReplicas: number;
+        /**
+         * The MinReplicas of AutoScaling.
+         */
+        minReplicas: number;
+        /**
+         * The Name of NodePool.
+         */
+        name: string;
+        /**
+         * The NamePrefix of NodeConfig.
+         */
+        namePrefix: string;
+        /**
+         * The NodeStatistics of NodeConfig.
+         */
+        nodeStatistics: outputs.vke.GetNodePoolsNodePoolNodeStatistic[];
+        /**
+         * The period of the PrePaid instance of NodeConfig.
+         */
+        period: number;
+        /**
+         * The Phase of Status.
+         */
+        phase: string;
+        /**
+         * The Priority of AutoScaling.
+         */
+        priority: number;
+        /**
+         * The project name of NodeConfig.
+         */
+        projectName: string;
+        /**
+         * The SecurityGroupIds of NodeConfig.
+         */
+        securityGroupIds: string[];
+        /**
+         * The SecurityStrategies of NodeConfig.
+         */
+        securityStrategies: string[];
+        /**
+         * The SecurityStrategyEnabled of NodeConfig.
+         */
+        securityStrategyEnabled: boolean;
+        /**
+         * The SubnetId of NodeConfig.
+         */
+        subnetIds: string[];
+        /**
+         * Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+         */
+        subnetPolicy: string;
+        /**
+         * The SystemVolume of NodeConfig.
+         */
+        systemVolumes: outputs.vke.GetNodePoolsNodePoolSystemVolume[];
+        /**
+         * Tags.
+         */
+        tags: outputs.vke.GetNodePoolsNodePoolTag[];
+        /**
+         * The TaintContent of NodeConfig.
+         */
+        taintContents: outputs.vke.GetNodePoolsNodePoolTaintContent[];
+        /**
+         * The ClientToken when last update was successful.
+         */
+        updateClientToken: string;
+        /**
+         * The UpdateTime time of NodePool.
+         */
+        updateTime: string;
+    }
+
+    export interface GetNodePoolsNodePoolDataVolume {
+        /**
+         * The target mount directory of the disk.
+         */
+        mountPoint: string;
+        /**
+         * The Size of SystemVolume.
+         */
+        size: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface GetNodePoolsNodePoolEcsTag {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsNodePoolKubeletConfig {
+        /**
+         * The FeatureGates of KubeletConfig.
+         */
+        featureGates: outputs.vke.GetNodePoolsNodePoolKubeletConfigFeatureGate[];
+        /**
+         * The TopologyManagerPolicy of KubeletConfig.
+         */
+        topologyManagerPolicy: string;
+        /**
+         * The TopologyManagerScope of KubeletConfig.
+         */
+        topologyManagerScope: string;
+    }
+
+    export interface GetNodePoolsNodePoolKubeletConfigFeatureGate {
+        /**
+         * Whether to enable QoSResourceManager.
+         */
+        qosResourceManager: boolean;
+    }
+
+    export interface GetNodePoolsNodePoolLabelContent {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsNodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        startingCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppedCount: number;
+        /**
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
+         */
+        stoppingCount: number;
+        /**
+         * Returns the total amount of the data list.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
+    export interface GetNodePoolsNodePoolSystemVolume {
+        /**
+         * The Size of SystemVolume.
+         */
+        size: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+    }
+
+    export interface GetNodePoolsNodePoolTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsNodePoolTaintContent {
+        /**
+         * The Effect of Taint.
+         */
+        effect: string;
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodePoolsStatus {
+        /**
+         * Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         */
+        phase?: string;
+    }
+
+    export interface GetNodePoolsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNodesNode {
+        /**
+         * Is Additional Container storage enables.
+         */
+        additionalContainerStorageEnabled: boolean;
+        /**
+         * The cluster id of node.
+         */
+        clusterId: string;
+        /**
+         * The Condition of Node.
+         */
+        conditionTypes: string[];
+        /**
+         * The Storage Path.
+         */
+        containerStoragePath: string;
+        /**
+         * The Cordon of KubernetesConfig.
+         */
+        cordon: boolean;
+        /**
+         * The Create Client Token.
+         */
+        createClientToken: string;
+        /**
+         * The create time of Node.
+         */
+        createTime: string;
+        /**
+         * The ID of Node.
+         */
+        id: string;
+        /**
+         * The ImageId of NodeConfig.
+         */
+        imageId: string;
+        /**
+         * The InitializeScript of NodeConfig.
+         */
+        initializeScript: string;
+        /**
+         * The instance id of node.
+         */
+        instanceId: string;
+        /**
+         * Is virtual node.
+         */
+        isVirtual: boolean;
+        /**
+         * The Label of KubernetesConfig.
+         */
+        labels: outputs.vke.GetNodesNodeLabel[];
+        /**
+         * The Name of Node.
+         */
+        name: string;
+        /**
+         * The node pool id.
+         */
+        nodePoolId: string;
+        /**
+         * The Phase of Node.
+         */
+        phase: string;
+        /**
+         * The roles of node.
+         */
+        roles: string[];
+        /**
+         * The Taint of KubernetesConfig.
+         */
+        taints: outputs.vke.GetNodesNodeTaint[];
+        /**
+         * The update time of Node.
+         */
+        updateTime: string;
+        /**
+         * The zone id.
+         */
+        zoneId: string;
+    }
+
+    export interface GetNodesNodeLabel {
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodesNodeTaint {
+        /**
+         * The Effect of Taint.
+         */
+        effect: string;
+        /**
+         * The Key of Taint.
+         */
+        key: string;
+        /**
+         * The Value of Taint.
+         */
+        value: string;
+    }
+
+    export interface GetNodesStatus {
+        /**
+         * The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
+         */
+        conditionsType?: string;
+        /**
+         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         */
+        phase?: string;
+    }
+
+    export interface GetSupportAddonsAddon {
+        /**
+         * The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+         */
+        categories?: string[];
+        /**
+         * The deploy model.
+         */
+        deployMode: string;
+        /**
+         * The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+         */
+        deployNodeTypes: string[];
+        /**
+         * The name of the addon.
+         */
+        name: string;
+        /**
+         * The necessary of addon.
+         */
+        necessary?: string;
+        /**
+         * The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+         */
+        podNetworkModes: string[];
+        /**
+         * The version info of addon.
+         */
+        versions: outputs.vke.GetSupportAddonsAddonVersion[];
+    }
+
+    export interface GetSupportAddonsAddonVersion {
+        /**
+         * The compatible version list.
+         */
+        compatibilities: outputs.vke.GetSupportAddonsAddonVersionCompatibility[];
+        /**
+         * The compatible version list.
+         */
+        compatibleVersions: string[];
+        /**
+         * The basic version info.
+         */
+        version: string;
+    }
+
+    export interface GetSupportAddonsAddonVersionCompatibility {
+        /**
+         * The Kubernetes Version of addon.
+         */
+        kubernetesVersion: string;
+    }
+
+    export interface GetSupportResourceTypesResource {
+        /**
+         * The scope of resource.
+         */
+        resourceScope: string;
+        /**
+         * The resource specifications info.
+         */
+        resourceSpecifications: string[];
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
+    }
+
     export interface KubeconfigsKubeconfig {
         /**
          * The Cluster ID of the Kubeconfig.
@@ -23037,7 +45045,7 @@ export namespace vke {
          */
         instanceChargeType?: string;
         /**
-         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.SupportResourceTypes datasource.
+         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.getSupportResourceTypes datasource.
          */
         instanceTypeIds: string[];
         /**
@@ -23722,6 +45730,1081 @@ export namespace vke {
 }
 
 export namespace vpc {
+    export interface GetHaVipsHaVip {
+        /**
+         * The account id of the Ha Vip.
+         */
+        accountId: string;
+        /**
+         * The associated eip address of the Ha Vip.
+         */
+        associatedEipAddress: string;
+        /**
+         * The associated eip id of the Ha Vip.
+         */
+        associatedEipId: string;
+        /**
+         * The associated instance ids of the Ha Vip.
+         */
+        associatedInstanceIds: string[];
+        /**
+         * The associated instance type of the Ha Vip.
+         */
+        associatedInstanceType: string;
+        /**
+         * The create time of the Ha Vip.
+         */
+        createdAt: string;
+        /**
+         * The description of the Ha Vip.
+         */
+        description: string;
+        /**
+         * The id of the Ha Vip.
+         */
+        haVipId: string;
+        /**
+         * The name of Ha Vip.
+         */
+        haVipName: string;
+        /**
+         * The id of the Ha Vip.
+         */
+        id: string;
+        /**
+         * The ip address of Ha Vip.
+         */
+        ipAddress: string;
+        /**
+         * The master instance id of the Ha Vip.
+         */
+        masterInstanceId: string;
+        /**
+         * The project name of Ha Vip.
+         */
+        projectName: string;
+        /**
+         * The status of Ha Vip.
+         */
+        status: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetHaVipsHaVipTag[];
+        /**
+         * The update time of the Ha Vip.
+         */
+        updatedAt: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface GetHaVipsHaVipTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetHaVipsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetIpv6AddressBandwidthsIpv6AddressBandwidth {
+        /**
+         * The ID of the Ipv6AddressBandwidth.
+         */
+        allocationId: string;
+        /**
+         * Peek bandwidth of the Ipv6 address.
+         */
+        bandwidth: number;
+        /**
+         * BillingType of the Ipv6 bandwidth.
+         */
+        billingType: string;
+        /**
+         * The BusinessStatus of the Ipv6AddressBandwidth.
+         */
+        businessStatus: string;
+        /**
+         * Creation time of the Ipv6AddressBandwidth.
+         */
+        creationTime: string;
+        /**
+         * Delete time of the Ipv6AddressBandwidth.
+         */
+        deleteTime: string;
+        /**
+         * The ID of the Ipv6AddressBandwidth.
+         */
+        id: string;
+        /**
+         * The ID of the associated instance.
+         */
+        instanceId: string;
+        /**
+         * The type of the associated instance.
+         */
+        instanceType: string;
+        /**
+         * The IPv6 address.
+         */
+        ipv6Address: string;
+        /**
+         * ISP of the ipv6 address.
+         */
+        isp: string;
+        /**
+         * The BusinessStatus of the Ipv6AddressBandwidth.
+         */
+        lockReason: string;
+        /**
+         * The network type of the ipv6 address.
+         */
+        networkType: string;
+        /**
+         * Overdue time of the Ipv6AddressBandwidth.
+         */
+        overdueTime: string;
+        /**
+         * The status of the Ipv6AddressBandwidth.
+         */
+        status: string;
+        /**
+         * Update time of the Ipv6AddressBandwidth.
+         */
+        updateTime: string;
+    }
+
+    export interface GetIpv6AddressesIpv6Address {
+        /**
+         * The IPv6 address.
+         */
+        ipv6Address: string;
+    }
+
+    export interface GetIpv6GatewaysIpv6Gateway {
+        /**
+         * Creation time of the Ipv6Gateway.
+         */
+        creationTime: string;
+        /**
+         * The description of the Ipv6Gateway.
+         */
+        description: string;
+        /**
+         * The ID of the Ipv6Gateway.
+         */
+        id: string;
+        /**
+         * The ID of the Ipv6Gateway.
+         */
+        ipv6GatewayId: string;
+        /**
+         * The name of the Ipv6Gateway.
+         */
+        name: string;
+        /**
+         * The Status of the Ipv6Gateway.
+         */
+        status: string;
+        /**
+         * Update time of the Ipv6Gateway.
+         */
+        updateTime: string;
+        /**
+         * The id of the VPC which the Ipv6Gateway belongs to.
+         */
+        vpcId: string;
+    }
+
+    export interface GetNetworkAclsNetworkAcl {
+        /**
+         * The count of Network acl entry.
+         */
+        aclEntryCount: number;
+        /**
+         * Creation time of Network Acl.
+         */
+        creationTime: string;
+        /**
+         * The description of entry.
+         */
+        description: string;
+        /**
+         * The egress entries info of Network Acl.
+         */
+        egressAclEntries: outputs.vpc.GetNetworkAclsNetworkAclEgressAclEntry[];
+        /**
+         * The ID of Network Acl.
+         */
+        id: string;
+        /**
+         * The ingress entries info of Network Acl.
+         */
+        ingressAclEntries: outputs.vpc.GetNetworkAclsNetworkAclIngressAclEntry[];
+        /**
+         * The ID of Network Acl.
+         */
+        networkAclId: string;
+        /**
+         * The name of Network Acl.
+         */
+        networkAclName: string;
+        /**
+         * The project name of the network acl.
+         */
+        projectName: string;
+        /**
+         * The resources info of Network Acl.
+         */
+        resources: outputs.vpc.GetNetworkAclsNetworkAclResource[];
+        /**
+         * The Status of Network Acl.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetNetworkAclsNetworkAclTag[];
+        /**
+         * Update time of Network Acl.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of Network Acl.
+         */
+        vpcId: string;
+    }
+
+    export interface GetNetworkAclsNetworkAclEgressAclEntry {
+        /**
+         * The description of entry.
+         */
+        description: string;
+        /**
+         * The DestinationCidrIp of entry.
+         */
+        destinationCidrIp: string;
+        /**
+         * The id of entry.
+         */
+        networkAclEntryId: string;
+        /**
+         * The name of entry.
+         */
+        networkAclEntryName: string;
+        /**
+         * The policy of entry.
+         */
+        policy: string;
+        /**
+         * The port of entry.
+         */
+        port: string;
+        /**
+         * The priority of entry.
+         */
+        priority: number;
+        /**
+         * The protocol of entry.
+         */
+        protocol: string;
+    }
+
+    export interface GetNetworkAclsNetworkAclIngressAclEntry {
+        /**
+         * The description of entry.
+         */
+        description: string;
+        /**
+         * The id of entry.
+         */
+        networkAclEntryId: string;
+        /**
+         * The name of entry.
+         */
+        networkAclEntryName: string;
+        /**
+         * The policy of entry.
+         */
+        policy: string;
+        /**
+         * The port of entry.
+         */
+        port: string;
+        /**
+         * The priority of entry.
+         */
+        priority: number;
+        /**
+         * The protocol of entry.
+         */
+        protocol: string;
+        /**
+         * The SourceCidrIp of entry.
+         */
+        sourceCidrIp: string;
+    }
+
+    export interface GetNetworkAclsNetworkAclResource {
+        /**
+         * The resource id of Network Acl.
+         */
+        resourceId: string;
+        /**
+         * The Status of Network Acl.
+         */
+        status: string;
+    }
+
+    export interface GetNetworkAclsNetworkAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkInterfacesNetworkInterface {
+        /**
+         * The account id of the ENI creator.
+         */
+        accountId: string;
+        /**
+         * The IP address of the EIP to which the ENI associates.
+         */
+        associatedElasticIpAddress: string;
+        /**
+         * The allocation id of the EIP to which the ENI associates.
+         */
+        associatedElasticIpId: string;
+        /**
+         * The create time of the ENI.
+         */
+        createdAt: string;
+        /**
+         * The description of the ENI.
+         */
+        description: string;
+        /**
+         * The id of the device to which the ENI is bound.
+         */
+        deviceId: string;
+        /**
+         * The id of the ENI.
+         */
+        id: string;
+        /**
+         * The IPv6 address list of the ENI.
+         */
+        ipv6Sets: string[];
+        /**
+         * The mac address of the ENI.
+         */
+        macAddress: string;
+        /**
+         * The id of the ENI.
+         */
+        networkInterfaceId: string;
+        /**
+         * A name of ENI.
+         */
+        networkInterfaceName: string;
+        /**
+         * The enable of port security.
+         */
+        portSecurityEnabled: boolean;
+        /**
+         * The primary IP address of the ENI.
+         */
+        primaryIpAddress: string;
+        /**
+         * The IP address of secondary private network interface.
+         */
+        privateIpSets: outputs.vpc.GetNetworkInterfacesNetworkInterfacePrivateIpSet[];
+        /**
+         * The ProjectName of the ENI.
+         */
+        projectName: string;
+        /**
+         * The list of the security group id to which the secondary ENI belongs.
+         */
+        securityGroupIds: string[];
+        /**
+         * Whether the network card has been authorized to be used by other account services.
+         */
+        serviceManaged: boolean;
+        /**
+         * A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
+         */
+        status: string;
+        /**
+         * An id of the subnet to which the ENI is connected.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetNetworkInterfacesNetworkInterfaceTag[];
+        /**
+         * A type of ENI, Optional choice contains `primary`, `secondary`.
+         */
+        type: string;
+        /**
+         * The last update time of the ENI.
+         */
+        updatedAt: string;
+        /**
+         * An id of the virtual private cloud (VPC) to which the ENI belongs.
+         */
+        vpcId: string;
+        /**
+         * The name of the virtual private cloud (VPC) to which the ENI belongs.
+         */
+        vpcName: string;
+        /**
+         * The zone ID.
+         */
+        zoneId: string;
+    }
+
+    export interface GetNetworkInterfacesNetworkInterfacePrivateIpSet {
+        /**
+         * The public IP that secondary private network IP associated with.
+         */
+        associatedElasticIps: outputs.vpc.GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIp[];
+        /**
+         * Whether the network interface is primary IP address.
+         */
+        primary: boolean;
+        /**
+         * The secondary private network IP address of the network interface card.
+         */
+        privateIpAddress: string;
+    }
+
+    export interface GetNetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIp {
+        /**
+         * The public IP ID.
+         */
+        allocationId: string;
+        /**
+         * The public IP address.
+         */
+        eipAddress: string;
+    }
+
+    export interface GetNetworkInterfacesNetworkInterfaceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkInterfacesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetPrefixListsPrefixList {
+        /**
+         * Number of associated resources for prefix list.
+         */
+        associationCount: number;
+        /**
+         * CIDR address block information for prefix list.
+         */
+        cidrs: string[];
+        /**
+         * The creation time of the prefix list.
+         */
+        creationTime: string;
+        /**
+         * Description.
+         */
+        description: string;
+        /**
+         * The id of the prefix list.
+         */
+        id: string;
+        /**
+         * IP version of prefix list.
+         */
+        ipVersion: string;
+        /**
+         * Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+         */
+        maxEntries: number;
+        /**
+         * Collection of resources associated with VPC prefix list.
+         */
+        prefixListAssociations: outputs.vpc.GetPrefixListsPrefixListPrefixListAssociation[];
+        /**
+         * The prefix list entries.
+         */
+        prefixListEntries: outputs.vpc.GetPrefixListsPrefixListPrefixListEntry[];
+        /**
+         * The prefix list id.
+         */
+        prefixListId: string;
+        /**
+         * A Name of prefix list.
+         */
+        prefixListName: string;
+        /**
+         * The status of the prefix list.
+         */
+        status: string;
+        /**
+         * The update time of the prefix list.
+         */
+        updateTime: string;
+    }
+
+    export interface GetPrefixListsPrefixListPrefixListAssociation {
+        /**
+         * Associated resource ID.
+         */
+        resourceId: string;
+        /**
+         * Related resource types.
+         */
+        resourceType: string;
+    }
+
+    export interface GetPrefixListsPrefixListPrefixListEntry {
+        /**
+         * CIDR address blocks for prefix list entries.
+         */
+        cidr: string;
+        /**
+         * Description.
+         */
+        description: string;
+        /**
+         * The prefix list id.
+         */
+        prefixListId: string;
+    }
+
+    export interface GetPrefixListsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface GetRouteEntriesRouteEntry {
+        /**
+         * The description of the route entry.
+         */
+        description: string;
+        /**
+         * A destination CIDR block of route entry.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The id of the route entry.
+         */
+        id: string;
+        /**
+         * An id of next hop.
+         */
+        nextHopId: string;
+        /**
+         * The name of the next hop.
+         */
+        nextHopName: string;
+        /**
+         * A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
+         */
+        nextHopType: string;
+        /**
+         * The id of the route entry.
+         */
+        routeEntryId: string;
+        /**
+         * A name of route entry.
+         */
+        routeEntryName: string;
+        /**
+         * An id of route table.
+         */
+        routeTableId: string;
+        /**
+         * The status of the route entry.
+         */
+        status: string;
+        /**
+         * The type of the route entry.
+         */
+        type: string;
+        /**
+         * The id of the virtual private cloud (VPC) to which the route entry belongs.
+         */
+        vpcId: string;
+    }
+
+    export interface GetRouteTablesRouteTable {
+        /**
+         * The account id of the route table creator.
+         */
+        accountId: string;
+        /**
+         * The create time of the route table.
+         */
+        creationTime: string;
+        /**
+         * The description of the route table.
+         */
+        description: string;
+        /**
+         * The id of the route table.
+         */
+        id: string;
+        /**
+         * The ProjectName of the route table.
+         */
+        projectName: string;
+        /**
+         * The id of the route table.
+         */
+        routeTableId: string;
+        /**
+         * A name of route table.
+         */
+        routeTableName: string;
+        /**
+         * The type of the route table.
+         */
+        routeTableType: string;
+        /**
+         * The list of the subnet ids to which the entry table associates.
+         */
+        subnetIds: string[];
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetRouteTablesRouteTableTag[];
+        /**
+         * The last update time of the route table.
+         */
+        updateTime: string;
+        /**
+         * An id of VPC.
+         */
+        vpcId: string;
+        /**
+         * The name of the virtual private cloud (VPC) to which the route entry belongs.
+         */
+        vpcName: string;
+    }
+
+    export interface GetRouteTablesRouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSecurityGroupRulesSecurityGroupRule {
+        /**
+         * Cidr ip of egress/ingress Rule.
+         */
+        cidrIp: string;
+        /**
+         * The creation time of security group rule.
+         */
+        creationTime: string;
+        /**
+         * description of a group rule.
+         */
+        description: string;
+        /**
+         * Direction of rule, ingress (inbound) or egress (outbound).
+         */
+        direction: string;
+        /**
+         * Access strategy.
+         */
+        policy: string;
+        /**
+         * Port end of egress/ingress Rule.
+         */
+        portEnd: number;
+        /**
+         * Port start of egress/ingress Rule.
+         */
+        portStart: number;
+        /**
+         * Priority of a security group rule.
+         */
+        priority: number;
+        /**
+         * Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all`.
+         */
+        protocol: string;
+        /**
+         * SecurityGroup ID.
+         */
+        securityGroupId: string;
+        /**
+         * ID of the source security group whose access permission you want to set.
+         */
+        sourceGroupId: string;
+        /**
+         * The update time of security group rule.
+         */
+        updateTime: string;
+    }
+
+    export interface GetSecurityGroupsSecurityGroup {
+        /**
+         * The creation time of SecurityGroup.
+         */
+        creationTime: string;
+        /**
+         * The description of SecurityGroup.
+         */
+        description: string;
+        /**
+         * The ID of SecurityGroup.
+         */
+        id: string;
+        /**
+         * The ProjectName of SecurityGroup.
+         */
+        projectName: string;
+        /**
+         * The ID of SecurityGroup.
+         */
+        securityGroupId: string;
+        /**
+         * The Name of SecurityGroup.
+         */
+        securityGroupName: string;
+        /**
+         * The Status of SecurityGroup.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetSecurityGroupsSecurityGroupTag[];
+        /**
+         * A Name Regex of SecurityGroup.
+         */
+        type: string;
+        /**
+         * The ID of vpc where security group is located.
+         */
+        vpcId: string;
+    }
+
+    export interface GetSecurityGroupsSecurityGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSecurityGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSubnetsSubnet {
+        /**
+         * The account ID which the subnet belongs to.
+         */
+        accountId: string;
+        /**
+         * The count of available ip address.
+         */
+        availableIpAddressCount: number;
+        /**
+         * The cidr block of Subnet.
+         */
+        cidrBlock: string;
+        /**
+         * Creation time of Subnet.
+         */
+        creationTime: string;
+        /**
+         * The description of Subnet.
+         */
+        description: string;
+        /**
+         * The ID of Subnet.
+         */
+        id: string;
+        /**
+         * The IPv6 CIDR block of the VPC.
+         */
+        ipv6CidrBlock: string;
+        /**
+         * The ID of network acl which this subnet associate with.
+         */
+        networkAclId: string;
+        /**
+         * The route table information.
+         */
+        routeTable: outputs.vpc.GetSubnetsSubnetRouteTable;
+        /**
+         * The ID of route table which subnet associated with.
+         */
+        routeTableId: string;
+        /**
+         * The route table type.
+         */
+        routeTableType: string;
+        /**
+         * The Status of Subnet.
+         */
+        status: string;
+        /**
+         * The subnet name to query.
+         */
+        subnetName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetSubnetsSubnetTag[];
+        /**
+         * The Count of ipv4.
+         */
+        totalIpv4Count: number;
+        /**
+         * Update time of Subnet.
+         */
+        updateTime: string;
+        /**
+         * The ID of VPC which subnet belongs to.
+         */
+        vpcId: string;
+        /**
+         * The ID of zone which subnet belongs to.
+         */
+        zoneId: string;
+    }
+
+    export interface GetSubnetsSubnetRouteTable {
+        /**
+         * The ID of route table which subnet associated with.
+         */
+        routeTableId: string;
+        /**
+         * The route table type.
+         */
+        routeTableType: string;
+    }
+
+    export interface GetSubnetsSubnetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSubnetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcsVpc {
+        /**
+         * The account ID of VPC.
+         */
+        accountId: string;
+        /**
+         * The associate cen list of VPC.
+         */
+        associateCens: outputs.vpc.GetVpcsVpcAssociateCen[];
+        /**
+         * The auxiliary cidr block list of VPC.
+         */
+        auxiliaryCidrBlocks: string[];
+        /**
+         * The cidr block of VPC.
+         */
+        cidrBlock: string;
+        /**
+         * The create time of VPC.
+         */
+        creationTime: string;
+        /**
+         * The description of VPC.
+         */
+        description: string;
+        /**
+         * The dns server list of VPC.
+         */
+        dnsServers: string[];
+        /**
+         * The IPv6 CIDR block of the VPC.
+         */
+        ipv6CidrBlock: string;
+        /**
+         * The nat gateway ID list of VPC.
+         */
+        natGatewayIds: string[];
+        /**
+         * The ProjectName of the VPC.
+         */
+        projectName: string;
+        /**
+         * The route table ID list of VPC.
+         */
+        routeTableIds: string[];
+        /**
+         * The security group ID list of VPC.
+         */
+        securityGroupIds: string[];
+        /**
+         * The status of VPC.
+         */
+        status: string;
+        /**
+         * The subnet ID list of VPC.
+         */
+        subnetIds: string[];
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetVpcsVpcTag[];
+        /**
+         * The update time of VPC.
+         */
+        updateTime: string;
+        /**
+         * The ID of VPC.
+         */
+        vpcId: string;
+        /**
+         * The vpc name to query.
+         */
+        vpcName: string;
+    }
+
+    export interface GetVpcsVpcAssociateCen {
+        /**
+         * The ID of CEN.
+         */
+        cenId: string;
+        /**
+         * The owner ID of CEN.
+         */
+        cenOwnerId: string;
+        /**
+         * The status of CEN.
+         */
+        cenStatus: string;
+    }
+
+    export interface GetVpcsVpcTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface HaVipTag {
         /**
          * The Key of Tags.
@@ -25358,6 +48441,495 @@ export namespace vpn {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface GetConnectionsVpnConnection {
+        /**
+         * The account ID of the VPN connection.
+         */
+        accountId: string;
+        /**
+         * The attach status of VPN connection.
+         */
+        attachStatus: string;
+        /**
+         * The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+         */
+        attachType: string;
+        /**
+         * The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
+         */
+        businessStatus: string;
+        /**
+         * The connect status of the VPN connection.
+         */
+        connectStatus: string;
+        /**
+         * The create time of VPN connection.
+         */
+        creationTime: string;
+        /**
+         * An ID of customer gateway.
+         */
+        customerGatewayId: string;
+        /**
+         * The delete time of resource, valid when the attach type is 'TransitRouter'.
+         */
+        deletedTime: string;
+        /**
+         * The description of the VPN connection.
+         */
+        description: string;
+        /**
+         * The dpd action of the VPN connection.
+         */
+        dpdAction: string;
+        /**
+         * The ID of the VPN connection.
+         */
+        id: string;
+        /**
+         * The auth alg of the ike config of the VPN connection.
+         */
+        ikeConfigAuthAlg: string;
+        /**
+         * The dk group of the ike config of the VPN connection.
+         */
+        ikeConfigDhGroup: string;
+        /**
+         * The enc alg of the ike config of the VPN connection.
+         */
+        ikeConfigEncAlg: string;
+        /**
+         * The lifetime of the ike config of the VPN connection.
+         */
+        ikeConfigLifetime: number;
+        /**
+         * The localId of the ike config of the VPN connection.
+         */
+        ikeConfigLocalId: string;
+        /**
+         * The mode of the ike config of the VPN connection.
+         */
+        ikeConfigMode: string;
+        /**
+         * The psk of the ike config of the VPN connection.
+         */
+        ikeConfigPsk: string;
+        /**
+         * The remote id of the ike config of the VPN connection.
+         */
+        ikeConfigRemoteId: string;
+        /**
+         * The version of the ike config of the VPN connection.
+         */
+        ikeConfigVersion: string;
+        /**
+         * The ip address of transit router, valid when the attach type is 'TransitRouter'.
+         */
+        ipAddress: string;
+        /**
+         * The auth alg of the ipsec config of the VPN connection.
+         */
+        ipsecConfigAuthAlg: string;
+        /**
+         * The dh group of the ipsec config of the VPN connection.
+         */
+        ipsecConfigDhGroup: string;
+        /**
+         * The enc alg of the ipsec config of the VPN connection.
+         */
+        ipsecConfigEncAlg: string;
+        /**
+         * The lifetime of the ike config of the VPN connection.
+         */
+        ipsecConfigLifetime: number;
+        /**
+         * The local subnet of the VPN connection.
+         */
+        localSubnets: string[];
+        /**
+         * Whether to enable the connection log.
+         */
+        logEnabled: boolean;
+        /**
+         * The nat traversal of the VPN connection.
+         */
+        natTraversal: boolean;
+        /**
+         * Whether to initiate negotiation mode immediately.
+         */
+        negotiateInstantly: boolean;
+        /**
+         * The overdue time of resource, valid when the attach type is 'TransitRouter'.
+         */
+        overdueTime: string;
+        /**
+         * The remote subnet of the VPN connection.
+         */
+        remoteSubnets: string[];
+        /**
+         * The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+         */
+        status: string;
+        /**
+         * An ID of transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time of VPN connection.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPN connection.
+         */
+        vpnConnectionId: string;
+        /**
+         * The name of the VPN connection.
+         */
+        vpnConnectionName: string;
+        /**
+         * An ID of VPN gateway.
+         */
+        vpnGatewayId: string;
+        /**
+         * The zone id of transit router, valid when the attach type is 'TransitRouter'.
+         */
+        zoneId: string;
+    }
+
+    export interface GetCustomerGatewaysCustomerGateway {
+        /**
+         * The account ID of the customer gateway.
+         */
+        accountId: string;
+        /**
+         * The connection count of the customer gateway.
+         */
+        connectionCount: number;
+        /**
+         * The create time of customer gateway.
+         */
+        creationTime: string;
+        /**
+         * The ID of the customer gateway.
+         */
+        customerGatewayId: string;
+        /**
+         * The name of the customer gateway.
+         */
+        customerGatewayName: string;
+        /**
+         * The description of the customer gateway.
+         */
+        description: string;
+        /**
+         * The ID of the customer gateway.
+         */
+        id: string;
+        /**
+         * A IP address of the customer gateway.
+         */
+        ipAddress: string;
+        /**
+         * The status of the customer gateway.
+         */
+        status: string;
+        /**
+         * The update time of customer gateway.
+         */
+        updateTime: string;
+    }
+
+    export interface GetGatewayRoutesVpnGatewayRoute {
+        /**
+         * The create time of VPN gateway route.
+         */
+        creationTime: string;
+        /**
+         * A destination cidr block.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The ID of the VPN gateway route.
+         */
+        id: string;
+        /**
+         * An ID of next hop.
+         */
+        nextHopId: string;
+        /**
+         * The status of the VPN gateway route.
+         */
+        status: string;
+        /**
+         * The update time of VPN gateway route.
+         */
+        updateTime: string;
+        /**
+         * An ID of VPN gateway.
+         */
+        vpnGatewayId: string;
+        /**
+         * The ID of the VPN gateway route.
+         */
+        vpnGatewayRouteId: string;
+    }
+
+    export interface GetGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysVpnGateway {
+        /**
+         * The account ID of the VPN gateway.
+         */
+        accountId: string;
+        /**
+         * The bandwidth of the VPN gateway.
+         */
+        bandwidth: number;
+        /**
+         * The BillingType of the VPN gateway.
+         */
+        billingType: string;
+        /**
+         * The business status of the VPN gateway.
+         */
+        businessStatus: string;
+        /**
+         * The connection count of the VPN gateway.
+         */
+        connectionCount: number;
+        /**
+         * The create time of VPN gateway.
+         */
+        creationTime: string;
+        /**
+         * The deleted time of the VPN gateway.
+         */
+        deletedTime: string;
+        /**
+         * The description of the VPN gateway.
+         */
+        description: string;
+        /**
+         * The expired time of the VPN gateway.
+         */
+        expiredTime: string;
+        /**
+         * The ID of the VPN gateway.
+         */
+        id: string;
+        /**
+         * A IP address of the VPN gateway.
+         */
+        ipAddress: string;
+        /**
+         * Whether IPSec is enabled.
+         */
+        ipsecEnabled: boolean;
+        /**
+         * The lock reason of the VPN gateway.
+         */
+        lockReason: string;
+        /**
+         * The project name of the VPN gateway.
+         */
+        projectName: string;
+        /**
+         * The route count of the VPN gateway.
+         */
+        routeCount: number;
+        /**
+         * Whether ssl is enabled.
+         */
+        sslEnabled: boolean;
+        /**
+         * The max connections of ssl.
+         */
+        sslMaxConnections: number;
+        /**
+         * The status of the VPN gateway.
+         */
+        status: string;
+        /**
+         * A subnet ID of the VPN gateway.
+         */
+        subnetId?: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpn.GetGatewaysVpnGatewayTag[];
+        /**
+         * The update time of VPN gateway.
+         */
+        updateTime: string;
+        /**
+         * A VPC ID of the VPN gateway.
+         */
+        vpcId: string;
+        /**
+         * The ID of the VPN gateway.
+         */
+        vpnGatewayId: string;
+        /**
+         * The name of the VPN gateway.
+         */
+        vpnGatewayName: string;
+    }
+
+    export interface GetGatewaysVpnGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSslVpnClientCertsSslVpnClientCert {
+        /**
+         * The CA certificate.
+         */
+        caCertificate: string;
+        /**
+         * The status of the ssl vpn client cert.
+         */
+        certificateStatus: string;
+        /**
+         * The client certificate.
+         */
+        clientCertificate: string;
+        /**
+         * The key of the ssl vpn client.
+         */
+        clientKey: string;
+        /**
+         * The creation time of the ssl vpn client cert.
+         */
+        creationTime: string;
+        /**
+         * The description of the ssl vpn client cert.
+         */
+        description: string;
+        /**
+         * The expired time of the ssl vpn client cert.
+         */
+        expiredTime: string;
+        /**
+         * The id of the ssl vpn client cert.
+         */
+        id: string;
+        /**
+         * The config of the open vpn client.
+         */
+        openVpnClientConfig: string;
+        /**
+         * The id of the ssl vpn client cert.
+         */
+        sslVpnClientCertId: string;
+        /**
+         * The name of the ssl vpn client cert.
+         */
+        sslVpnClientCertName: string;
+        /**
+         * The id of the ssl vpn server.
+         */
+        sslVpnServerId: string;
+        /**
+         * The status of the ssl vpn client.
+         */
+        status: string;
+        /**
+         * The update time of the ssl vpn client cert.
+         */
+        updateTime: string;
+    }
+
+    export interface GetSslVpnServersSslVpnServer {
+        /**
+         * The authentication algorithm of the SSL server.
+         * Values:
+         * `SHA1` (default)
+         * `MD5`
+         * `None` (do not use encryption).
+         */
+        auth: string;
+        /**
+         * The encryption algorithm of the SSL server.
+         * Values:
+         * `AES-128-CBC` (default)
+         * `AES-192-CBC`
+         * `AES-256-CBC`
+         * `None` (do not use encryption).
+         */
+        cipher: string;
+        /**
+         * SSL client network segment.
+         */
+        clientIpPool: string;
+        /**
+         * Whether to compress the transmitted data. The default value is false.
+         */
+        compress: boolean;
+        /**
+         * The creation time.
+         */
+        creationTime: string;
+        /**
+         * The description of the ssl server.
+         */
+        description: string;
+        /**
+         * The SSL VPN server id.
+         */
+        id: string;
+        /**
+         * The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+         */
+        localSubnets: string[];
+        /**
+         * The port of the ssl server.
+         */
+        port: number;
+        /**
+         * The project name of the ssl server.
+         */
+        projectName: string;
+        /**
+         * The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+         */
+        protocol: string;
+        /**
+         * The id of the ssl vpn server.
+         */
+        sslVpnServerId: string;
+        /**
+         * The name of the ssl vpn server.
+         */
+        sslVpnServerName: string;
+        /**
+         * The status of the ssl vpn server.
+         */
+        status: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The id of the vpn gateway.
+         */
+        vpnGatewayId: string;
     }
 
     export interface SslVpnClientCertsSslVpnClientCert {

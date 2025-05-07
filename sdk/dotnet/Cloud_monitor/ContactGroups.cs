@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_monitor
 {
+    [Obsolete(@"volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups")]
     public static class ContactGroups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_monitor.ContactGroups.Invoke(new()
+        ///     var foo = Volcengine.Cloud_monitor.GetContactGroups.Invoke(new()
         ///     {
         ///         Name = "tftest",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_monitor.ContactGroups.Invoke(new()
+        ///     var foo = Volcengine.Cloud_monitor.GetContactGroups.Invoke(new()
         ///     {
         ///         Name = "tftest",
         ///     });

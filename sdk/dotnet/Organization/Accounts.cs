@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Organization
 {
+    [Obsolete(@"volcengine.organization.Accounts has been deprecated in favor of volcengine.organization.getAccounts")]
     public static class Accounts
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Organization.Accounts.Invoke(new()
+        ///     var foo = Volcengine.Organization.GetAccounts.Invoke(new()
         ///     {
         ///         Search = "210061****",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Organization.Accounts.Invoke(new()
+        ///     var foo = Volcengine.Organization.GetAccounts.Invoke(new()
         ///     {
         ///         Search = "210061****",
         ///     });

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs")]
     public static class Specs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.Specs.Invoke();
+        ///     var foo = Volcengine.Mongodb.GetSpecs.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.Specs.Invoke();
+        ///     var foo = Volcengine.Mongodb.GetSpecs.Invoke();
         /// 
         /// });
         /// ```

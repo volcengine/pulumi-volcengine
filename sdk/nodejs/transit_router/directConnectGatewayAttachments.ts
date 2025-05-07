@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.transit_router.DirectConnectGatewayAttachments({
+ * const foo = volcengine.transit_router.getDirectConnectGatewayAttachments({
  *     transitRouterId: "tr-2bzy39x27qtxc2dx0eg5qaj05",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments */
 export function directConnectGatewayAttachments(args: DirectConnectGatewayAttachmentsArgs, opts?: pulumi.InvokeOptions): Promise<DirectConnectGatewayAttachmentsResult> {
+    pulumi.log.warn("directConnectGatewayAttachments is deprecated: volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/directConnectGatewayAttachments:DirectConnectGatewayAttachments", {
@@ -96,11 +98,12 @@ export interface DirectConnectGatewayAttachmentsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.transit_router.DirectConnectGatewayAttachments({
+ * const foo = volcengine.transit_router.getDirectConnectGatewayAttachments({
  *     transitRouterId: "tr-2bzy39x27qtxc2dx0eg5qaj05",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments */
 export function directConnectGatewayAttachmentsOutput(args: DirectConnectGatewayAttachmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DirectConnectGatewayAttachmentsResult> {
     return pulumi.output(args).apply((a: any) => directConnectGatewayAttachments(a, opts))
 }

@@ -17,6 +17,8 @@ __all__ = [
     'roles_output',
 ]
 
+warnings.warn("""volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles""", DeprecationWarning)
+
 @pulumi.output_type
 class RolesResult:
     """
@@ -133,7 +135,7 @@ def roles(name_regex: Optional[str] = None,
         max_session_duration=3600,
         role_name="acc-test-role2",
         trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"ecs\\"]}}]}")
-    foo = volcengine.iam.roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
+    foo = volcengine.iam.get_roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
     ```
 
 
@@ -142,6 +144,7 @@ def roles(name_regex: Optional[str] = None,
     :param str query: The query field of Role.
     :param str role_name: The name of the Role, comma separated.
     """
+    pulumi.log.warn("""roles is deprecated: volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -186,7 +189,7 @@ def roles_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
         max_session_duration=3600,
         role_name="acc-test-role2",
         trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"ecs\\"]}}]}")
-    foo = volcengine.iam.roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
+    foo = volcengine.iam.get_roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
     ```
 
 
@@ -195,4 +198,5 @@ def roles_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     :param str query: The query field of Role.
     :param str role_name: The name of the Role, comma separated.
     """
+    pulumi.log.warn("""roles is deprecated: volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles""")
     ...

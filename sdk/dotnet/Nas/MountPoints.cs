@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nas
 {
+    [Obsolete(@"volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints")]
     public static class MountPoints
     {
         /// <summary>

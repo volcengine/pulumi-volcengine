@@ -17,6 +17,8 @@ __all__ = [
     'instance_plugins_output',
 ]
 
+warnings.warn("""volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancePluginsResult:
     """
@@ -108,7 +110,7 @@ def instance_plugins(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -139,7 +141,7 @@ def instance_plugins(instance_id: Optional[str] = None,
             key="k1",
             value="v1",
         )])
-    foo_instance_plugins = volcengine.rabbitmq.instance_plugins_output(instance_id=foo_instance.id)
+    foo_instance_plugins = volcengine.rabbitmq.get_instance_plugins_output(instance_id=foo_instance.id)
     ```
 
 
@@ -147,6 +149,7 @@ def instance_plugins(instance_id: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""instance_plugins is deprecated: volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
@@ -176,7 +179,7 @@ def instance_plugins_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -207,7 +210,7 @@ def instance_plugins_output(instance_id: Optional[pulumi.Input[str]] = None,
             key="k1",
             value="v1",
         )])
-    foo_instance_plugins = volcengine.rabbitmq.instance_plugins_output(instance_id=foo_instance.id)
+    foo_instance_plugins = volcengine.rabbitmq.get_instance_plugins_output(instance_id=foo_instance.id)
     ```
 
 
@@ -215,4 +218,5 @@ def instance_plugins_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""instance_plugins is deprecated: volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins""")
     ...

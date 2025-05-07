@@ -17,6 +17,8 @@ __all__ = [
     'snapshots_output',
 ]
 
+warnings.warn("""volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots""", DeprecationWarning)
+
 @pulumi.output_type
 class SnapshotsResult:
     """
@@ -150,7 +152,7 @@ def snapshots(file_system_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.nas.snapshots(file_system_id="enas-cnbj5c18f02afe0e",
+    default = volcengine.nas.get_snapshots(file_system_id="enas-cnbj5c18f02afe0e",
         ids=[
             "snap-022c648fed8b",
             "snap-e53591b05fbd",
@@ -165,6 +167,7 @@ def snapshots(file_system_id: Optional[str] = None,
     :param str snapshot_type: The type of snapshot.
     :param str status: The status of snapshot.
     """
+    pulumi.log.warn("""snapshots is deprecated: volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots""")
     __args__ = dict()
     __args__['fileSystemId'] = file_system_id
     __args__['ids'] = ids
@@ -203,7 +206,7 @@ def snapshots_output(file_system_id: Optional[pulumi.Input[Optional[str]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.nas.snapshots(file_system_id="enas-cnbj5c18f02afe0e",
+    default = volcengine.nas.get_snapshots(file_system_id="enas-cnbj5c18f02afe0e",
         ids=[
             "snap-022c648fed8b",
             "snap-e53591b05fbd",
@@ -218,4 +221,5 @@ def snapshots_output(file_system_id: Optional[pulumi.Input[Optional[str]]] = Non
     :param str snapshot_type: The type of snapshot.
     :param str status: The status of snapshot.
     """
+    pulumi.log.warn("""snapshots is deprecated: volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots""")
     ...

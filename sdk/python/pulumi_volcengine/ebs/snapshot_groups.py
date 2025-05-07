@@ -17,6 +17,8 @@ __all__ = [
     'snapshot_groups_output',
 ]
 
+warnings.warn("""volcengine.ebs.SnapshotGroups has been deprecated in favor of volcengine.ebs.getSnapshotGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class SnapshotGroupsResult:
     """
@@ -160,7 +162,7 @@ def snapshot_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -172,7 +174,7 @@ def snapshot_groups(ids: Optional[Sequence[str]] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g3il.large")
     foo_instance = volcengine.ecs.Instance("fooInstance",
@@ -217,7 +219,7 @@ def snapshot_groups(ids: Optional[Sequence[str]] = None,
             value="v1",
         )],
         opts=pulumi.ResourceOptions(depends_on=[foo_volume_attach]))
-    foo_snapshot_groups = volcengine.ebs.snapshot_groups_output(ids=[foo_snapshot_group.id])
+    foo_snapshot_groups = volcengine.ebs.get_snapshot_groups_output(ids=[foo_snapshot_group.id])
     ```
 
 
@@ -229,6 +231,7 @@ def snapshot_groups(ids: Optional[Sequence[str]] = None,
     :param str project_name: The project name of snapshot group.
     :param Sequence[str] statuses: A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
     """
+    pulumi.log.warn("""snapshot_groups is deprecated: volcengine.ebs.SnapshotGroups has been deprecated in favor of volcengine.ebs.getSnapshotGroups""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['instanceId'] = instance_id
@@ -270,7 +273,7 @@ def snapshot_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -282,7 +285,7 @@ def snapshot_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g3il.large")
     foo_instance = volcengine.ecs.Instance("fooInstance",
@@ -327,7 +330,7 @@ def snapshot_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
             value="v1",
         )],
         opts=pulumi.ResourceOptions(depends_on=[foo_volume_attach]))
-    foo_snapshot_groups = volcengine.ebs.snapshot_groups_output(ids=[foo_snapshot_group.id])
+    foo_snapshot_groups = volcengine.ebs.get_snapshot_groups_output(ids=[foo_snapshot_group.id])
     ```
 
 
@@ -339,4 +342,5 @@ def snapshot_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param str project_name: The project name of snapshot group.
     :param Sequence[str] statuses: A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
     """
+    pulumi.log.warn("""snapshot_groups is deprecated: volcengine.ebs.SnapshotGroups has been deprecated in favor of volcengine.ebs.getSnapshotGroups""")
     ...

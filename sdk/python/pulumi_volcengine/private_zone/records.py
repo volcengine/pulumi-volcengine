@@ -17,6 +17,8 @@ __all__ = [
     'records_output',
 ]
 
+warnings.warn("""volcengine.private_zone.Records has been deprecated in favor of volcengine.private_zone.getRecords""", DeprecationWarning)
+
 @pulumi.output_type
 class RecordsResult:
     """
@@ -193,6 +195,15 @@ def records(host: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRecordsResult:
     """
     Use this data source to query detailed information of private zone records
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.private_zone.get_records(record_id="907925684878276****",
+        zid=2450000)
+    ```
 
 
     :param str host: The host of Private Zone Record.
@@ -206,6 +217,7 @@ def records(host: Optional[str] = None,
     :param str value: The value of Private Zone Record.
     :param int zid: The zid of Private Zone.
     """
+    pulumi.log.warn("""records is deprecated: volcengine.private_zone.Records has been deprecated in favor of volcengine.private_zone.getRecords""")
     __args__ = dict()
     __args__['host'] = host
     __args__['lastOperator'] = last_operator
@@ -250,6 +262,15 @@ def records_output(host: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RecordsResult]:
     """
     Use this data source to query detailed information of private zone records
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.private_zone.get_records(record_id="907925684878276****",
+        zid=2450000)
+    ```
 
 
     :param str host: The host of Private Zone Record.
@@ -263,4 +284,5 @@ def records_output(host: Optional[pulumi.Input[Optional[str]]] = None,
     :param str value: The value of Private Zone Record.
     :param int zid: The zid of Private Zone.
     """
+    pulumi.log.warn("""records is deprecated: volcengine.private_zone.Records has been deprecated in favor of volcengine.private_zone.getRecords""")
     ...

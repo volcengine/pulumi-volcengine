@@ -29,7 +29,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -79,13 +79,15 @@ import (
 // }
 // fooClb = append(fooClb, __res)
 // }
-// _ = clb.ClbsOutput(ctx, clb.ClbsOutputArgs{
+// _ = clb.GetClbsOutput(ctx, clb.GetClbsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:clb-clbs:Clbs.pp:34,9-21),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs
 func Clbs(ctx *pulumi.Context, args *ClbsArgs, opts ...pulumi.InvokeOption) (*ClbsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ClbsResult

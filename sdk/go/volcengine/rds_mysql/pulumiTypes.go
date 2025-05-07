@@ -6542,6 +6542,4367 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 	}).(ZonesZoneOutput)
 }
 
+type GetAccountsAccount struct {
+	// The name of the database account. This field supports fuzzy query.
+	AccountName string `pulumi:"accountName"`
+	// The privilege detail list of RDS mysql instance account.
+	AccountPrivileges []GetAccountsAccountAccountPrivilege `pulumi:"accountPrivileges"`
+	// The status of the database account.
+	AccountStatus string `pulumi:"accountStatus"`
+	// The type of the database account.
+	AccountType string `pulumi:"accountType"`
+}
+
+// GetAccountsAccountInput is an input type that accepts GetAccountsAccountArgs and GetAccountsAccountOutput values.
+// You can construct a concrete instance of `GetAccountsAccountInput` via:
+//
+//	GetAccountsAccountArgs{...}
+type GetAccountsAccountInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountOutput() GetAccountsAccountOutput
+	ToGetAccountsAccountOutputWithContext(context.Context) GetAccountsAccountOutput
+}
+
+type GetAccountsAccountArgs struct {
+	// The name of the database account. This field supports fuzzy query.
+	AccountName pulumi.StringInput `pulumi:"accountName"`
+	// The privilege detail list of RDS mysql instance account.
+	AccountPrivileges GetAccountsAccountAccountPrivilegeArrayInput `pulumi:"accountPrivileges"`
+	// The status of the database account.
+	AccountStatus pulumi.StringInput `pulumi:"accountStatus"`
+	// The type of the database account.
+	AccountType pulumi.StringInput `pulumi:"accountType"`
+}
+
+func (GetAccountsAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccount)(nil)).Elem()
+}
+
+func (i GetAccountsAccountArgs) ToGetAccountsAccountOutput() GetAccountsAccountOutput {
+	return i.ToGetAccountsAccountOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountArgs) ToGetAccountsAccountOutputWithContext(ctx context.Context) GetAccountsAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountOutput)
+}
+
+// GetAccountsAccountArrayInput is an input type that accepts GetAccountsAccountArray and GetAccountsAccountArrayOutput values.
+// You can construct a concrete instance of `GetAccountsAccountArrayInput` via:
+//
+//	GetAccountsAccountArray{ GetAccountsAccountArgs{...} }
+type GetAccountsAccountArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountArrayOutput() GetAccountsAccountArrayOutput
+	ToGetAccountsAccountArrayOutputWithContext(context.Context) GetAccountsAccountArrayOutput
+}
+
+type GetAccountsAccountArray []GetAccountsAccountInput
+
+func (GetAccountsAccountArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccount)(nil)).Elem()
+}
+
+func (i GetAccountsAccountArray) ToGetAccountsAccountArrayOutput() GetAccountsAccountArrayOutput {
+	return i.ToGetAccountsAccountArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountArray) ToGetAccountsAccountArrayOutputWithContext(ctx context.Context) GetAccountsAccountArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountArrayOutput)
+}
+
+type GetAccountsAccountOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccount)(nil)).Elem()
+}
+
+func (o GetAccountsAccountOutput) ToGetAccountsAccountOutput() GetAccountsAccountOutput {
+	return o
+}
+
+func (o GetAccountsAccountOutput) ToGetAccountsAccountOutputWithContext(ctx context.Context) GetAccountsAccountOutput {
+	return o
+}
+
+// The name of the database account. This field supports fuzzy query.
+func (o GetAccountsAccountOutput) AccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountName }).(pulumi.StringOutput)
+}
+
+// The privilege detail list of RDS mysql instance account.
+func (o GetAccountsAccountOutput) AccountPrivileges() GetAccountsAccountAccountPrivilegeArrayOutput {
+	return o.ApplyT(func(v GetAccountsAccount) []GetAccountsAccountAccountPrivilege { return v.AccountPrivileges }).(GetAccountsAccountAccountPrivilegeArrayOutput)
+}
+
+// The status of the database account.
+func (o GetAccountsAccountOutput) AccountStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountStatus }).(pulumi.StringOutput)
+}
+
+// The type of the database account.
+func (o GetAccountsAccountOutput) AccountType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountType }).(pulumi.StringOutput)
+}
+
+type GetAccountsAccountArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccount)(nil)).Elem()
+}
+
+func (o GetAccountsAccountArrayOutput) ToGetAccountsAccountArrayOutput() GetAccountsAccountArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountArrayOutput) ToGetAccountsAccountArrayOutputWithContext(ctx context.Context) GetAccountsAccountArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountArrayOutput) Index(i pulumi.IntInput) GetAccountsAccountOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountsAccount {
+		return vs[0].([]GetAccountsAccount)[vs[1].(int)]
+	}).(GetAccountsAccountOutput)
+}
+
+type GetAccountsAccountAccountPrivilege struct {
+	// The privilege type of the account.
+	AccountPrivilege string `pulumi:"accountPrivilege"`
+	// The privilege detail of the account.
+	AccountPrivilegeDetail string `pulumi:"accountPrivilegeDetail"`
+	// The name of database.
+	DbName string `pulumi:"dbName"`
+}
+
+// GetAccountsAccountAccountPrivilegeInput is an input type that accepts GetAccountsAccountAccountPrivilegeArgs and GetAccountsAccountAccountPrivilegeOutput values.
+// You can construct a concrete instance of `GetAccountsAccountAccountPrivilegeInput` via:
+//
+//	GetAccountsAccountAccountPrivilegeArgs{...}
+type GetAccountsAccountAccountPrivilegeInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountAccountPrivilegeOutput() GetAccountsAccountAccountPrivilegeOutput
+	ToGetAccountsAccountAccountPrivilegeOutputWithContext(context.Context) GetAccountsAccountAccountPrivilegeOutput
+}
+
+type GetAccountsAccountAccountPrivilegeArgs struct {
+	// The privilege type of the account.
+	AccountPrivilege pulumi.StringInput `pulumi:"accountPrivilege"`
+	// The privilege detail of the account.
+	AccountPrivilegeDetail pulumi.StringInput `pulumi:"accountPrivilegeDetail"`
+	// The name of database.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+}
+
+func (GetAccountsAccountAccountPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (i GetAccountsAccountAccountPrivilegeArgs) ToGetAccountsAccountAccountPrivilegeOutput() GetAccountsAccountAccountPrivilegeOutput {
+	return i.ToGetAccountsAccountAccountPrivilegeOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountAccountPrivilegeArgs) ToGetAccountsAccountAccountPrivilegeOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountAccountPrivilegeOutput)
+}
+
+// GetAccountsAccountAccountPrivilegeArrayInput is an input type that accepts GetAccountsAccountAccountPrivilegeArray and GetAccountsAccountAccountPrivilegeArrayOutput values.
+// You can construct a concrete instance of `GetAccountsAccountAccountPrivilegeArrayInput` via:
+//
+//	GetAccountsAccountAccountPrivilegeArray{ GetAccountsAccountAccountPrivilegeArgs{...} }
+type GetAccountsAccountAccountPrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountsAccountAccountPrivilegeArrayOutput() GetAccountsAccountAccountPrivilegeArrayOutput
+	ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(context.Context) GetAccountsAccountAccountPrivilegeArrayOutput
+}
+
+type GetAccountsAccountAccountPrivilegeArray []GetAccountsAccountAccountPrivilegeInput
+
+func (GetAccountsAccountAccountPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (i GetAccountsAccountAccountPrivilegeArray) ToGetAccountsAccountAccountPrivilegeArrayOutput() GetAccountsAccountAccountPrivilegeArrayOutput {
+	return i.ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountsAccountAccountPrivilegeArray) ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsAccountAccountPrivilegeArrayOutput)
+}
+
+type GetAccountsAccountAccountPrivilegeOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountAccountPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (o GetAccountsAccountAccountPrivilegeOutput) ToGetAccountsAccountAccountPrivilegeOutput() GetAccountsAccountAccountPrivilegeOutput {
+	return o
+}
+
+func (o GetAccountsAccountAccountPrivilegeOutput) ToGetAccountsAccountAccountPrivilegeOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeOutput {
+	return o
+}
+
+// The privilege type of the account.
+func (o GetAccountsAccountAccountPrivilegeOutput) AccountPrivilege() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccountAccountPrivilege) string { return v.AccountPrivilege }).(pulumi.StringOutput)
+}
+
+// The privilege detail of the account.
+func (o GetAccountsAccountAccountPrivilegeOutput) AccountPrivilegeDetail() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccountAccountPrivilege) string { return v.AccountPrivilegeDetail }).(pulumi.StringOutput)
+}
+
+// The name of database.
+func (o GetAccountsAccountAccountPrivilegeOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccountAccountPrivilege) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+type GetAccountsAccountAccountPrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsAccountAccountPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsAccountAccountPrivilege)(nil)).Elem()
+}
+
+func (o GetAccountsAccountAccountPrivilegeArrayOutput) ToGetAccountsAccountAccountPrivilegeArrayOutput() GetAccountsAccountAccountPrivilegeArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountAccountPrivilegeArrayOutput) ToGetAccountsAccountAccountPrivilegeArrayOutputWithContext(ctx context.Context) GetAccountsAccountAccountPrivilegeArrayOutput {
+	return o
+}
+
+func (o GetAccountsAccountAccountPrivilegeArrayOutput) Index(i pulumi.IntInput) GetAccountsAccountAccountPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountsAccountAccountPrivilege {
+		return vs[0].([]GetAccountsAccountAccountPrivilege)[vs[1].(int)]
+	}).(GetAccountsAccountAccountPrivilegeOutput)
+}
+
+type GetAllowlistsAllowList struct {
+	// White list category. Values:
+	// Ordinary: Ordinary white list. Default: Default white list. Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory string `pulumi:"allowListCategory"`
+	// The description of the allow list.
+	AllowListDesc string `pulumi:"allowListDesc"`
+	// The id of the allow list.
+	AllowListId string `pulumi:"allowListId"`
+	// The total number of IP addresses (or address ranges) in the whitelist.
+	AllowListIpNum int `pulumi:"allowListIpNum"`
+	// The name of the allow list.
+	AllowListName string `pulumi:"allowListName"`
+	// The type of the allow list.
+	AllowListType string `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format.
+	AllowLists []string `pulumi:"allowLists"`
+	// The total number of instances bound under the whitelist.
+	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
+	// The list of instances.
+	AssociatedInstances []GetAllowlistsAllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos []GetAllowlistsAllowListSecurityGroupBindInfo `pulumi:"securityGroupBindInfos"`
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists []string `pulumi:"userAllowLists"`
+}
+
+// GetAllowlistsAllowListInput is an input type that accepts GetAllowlistsAllowListArgs and GetAllowlistsAllowListOutput values.
+// You can construct a concrete instance of `GetAllowlistsAllowListInput` via:
+//
+//	GetAllowlistsAllowListArgs{...}
+type GetAllowlistsAllowListInput interface {
+	pulumi.Input
+
+	ToGetAllowlistsAllowListOutput() GetAllowlistsAllowListOutput
+	ToGetAllowlistsAllowListOutputWithContext(context.Context) GetAllowlistsAllowListOutput
+}
+
+type GetAllowlistsAllowListArgs struct {
+	// White list category. Values:
+	// Ordinary: Ordinary white list. Default: Default white list. Description: When this parameter is used as a request parameter, the default value is Ordinary.
+	AllowListCategory pulumi.StringInput `pulumi:"allowListCategory"`
+	// The description of the allow list.
+	AllowListDesc pulumi.StringInput `pulumi:"allowListDesc"`
+	// The id of the allow list.
+	AllowListId pulumi.StringInput `pulumi:"allowListId"`
+	// The total number of IP addresses (or address ranges) in the whitelist.
+	AllowListIpNum pulumi.IntInput `pulumi:"allowListIpNum"`
+	// The name of the allow list.
+	AllowListName pulumi.StringInput `pulumi:"allowListName"`
+	// The type of the allow list.
+	AllowListType pulumi.StringInput `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format.
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// The total number of instances bound under the whitelist.
+	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
+	// The list of instances.
+	AssociatedInstances GetAllowlistsAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+	// Whitelist information for the associated security group.
+	SecurityGroupBindInfos GetAllowlistsAllowListSecurityGroupBindInfoArrayInput `pulumi:"securityGroupBindInfos"`
+	// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+	UserAllowLists pulumi.StringArrayInput `pulumi:"userAllowLists"`
+}
+
+func (GetAllowlistsAllowListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowlistsAllowList)(nil)).Elem()
+}
+
+func (i GetAllowlistsAllowListArgs) ToGetAllowlistsAllowListOutput() GetAllowlistsAllowListOutput {
+	return i.ToGetAllowlistsAllowListOutputWithContext(context.Background())
+}
+
+func (i GetAllowlistsAllowListArgs) ToGetAllowlistsAllowListOutputWithContext(ctx context.Context) GetAllowlistsAllowListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowlistsAllowListOutput)
+}
+
+// GetAllowlistsAllowListArrayInput is an input type that accepts GetAllowlistsAllowListArray and GetAllowlistsAllowListArrayOutput values.
+// You can construct a concrete instance of `GetAllowlistsAllowListArrayInput` via:
+//
+//	GetAllowlistsAllowListArray{ GetAllowlistsAllowListArgs{...} }
+type GetAllowlistsAllowListArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowlistsAllowListArrayOutput() GetAllowlistsAllowListArrayOutput
+	ToGetAllowlistsAllowListArrayOutputWithContext(context.Context) GetAllowlistsAllowListArrayOutput
+}
+
+type GetAllowlistsAllowListArray []GetAllowlistsAllowListInput
+
+func (GetAllowlistsAllowListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowlistsAllowList)(nil)).Elem()
+}
+
+func (i GetAllowlistsAllowListArray) ToGetAllowlistsAllowListArrayOutput() GetAllowlistsAllowListArrayOutput {
+	return i.ToGetAllowlistsAllowListArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowlistsAllowListArray) ToGetAllowlistsAllowListArrayOutputWithContext(ctx context.Context) GetAllowlistsAllowListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowlistsAllowListArrayOutput)
+}
+
+type GetAllowlistsAllowListOutput struct{ *pulumi.OutputState }
+
+func (GetAllowlistsAllowListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowlistsAllowList)(nil)).Elem()
+}
+
+func (o GetAllowlistsAllowListOutput) ToGetAllowlistsAllowListOutput() GetAllowlistsAllowListOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListOutput) ToGetAllowlistsAllowListOutputWithContext(ctx context.Context) GetAllowlistsAllowListOutput {
+	return o
+}
+
+// White list category. Values:
+// Ordinary: Ordinary white list. Default: Default white list. Description: When this parameter is used as a request parameter, the default value is Ordinary.
+func (o GetAllowlistsAllowListOutput) AllowListCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) string { return v.AllowListCategory }).(pulumi.StringOutput)
+}
+
+// The description of the allow list.
+func (o GetAllowlistsAllowListOutput) AllowListDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) string { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The id of the allow list.
+func (o GetAllowlistsAllowListOutput) AllowListId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) string { return v.AllowListId }).(pulumi.StringOutput)
+}
+
+// The total number of IP addresses (or address ranges) in the whitelist.
+func (o GetAllowlistsAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) int { return v.AllowListIpNum }).(pulumi.IntOutput)
+}
+
+// The name of the allow list.
+func (o GetAllowlistsAllowListOutput) AllowListName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) string { return v.AllowListName }).(pulumi.StringOutput)
+}
+
+// The type of the allow list.
+func (o GetAllowlistsAllowListOutput) AllowListType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) string { return v.AllowListType }).(pulumi.StringOutput)
+}
+
+// The IP address or a range of IP addresses in CIDR format.
+func (o GetAllowlistsAllowListOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+// The total number of instances bound under the whitelist.
+func (o GetAllowlistsAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) int { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The list of instances.
+func (o GetAllowlistsAllowListOutput) AssociatedInstances() GetAllowlistsAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) []GetAllowlistsAllowListAssociatedInstance {
+		return v.AssociatedInstances
+	}).(GetAllowlistsAllowListAssociatedInstanceArrayOutput)
+}
+
+// Whitelist information for the associated security group.
+func (o GetAllowlistsAllowListOutput) SecurityGroupBindInfos() GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) []GetAllowlistsAllowListSecurityGroupBindInfo {
+		return v.SecurityGroupBindInfos
+	}).(GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput)
+}
+
+// IP addresses outside the security group that need to be added to the whitelist. IP addresses or IP address segments in CIDR format can be entered. Note: This field cannot be used simultaneously with AllowList.
+func (o GetAllowlistsAllowListOutput) UserAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowList) []string { return v.UserAllowLists }).(pulumi.StringArrayOutput)
+}
+
+type GetAllowlistsAllowListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowlistsAllowListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowlistsAllowList)(nil)).Elem()
+}
+
+func (o GetAllowlistsAllowListArrayOutput) ToGetAllowlistsAllowListArrayOutput() GetAllowlistsAllowListArrayOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListArrayOutput) ToGetAllowlistsAllowListArrayOutputWithContext(ctx context.Context) GetAllowlistsAllowListArrayOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListArrayOutput) Index(i pulumi.IntInput) GetAllowlistsAllowListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowlistsAllowList {
+		return vs[0].([]GetAllowlistsAllowList)[vs[1].(int)]
+	}).(GetAllowlistsAllowListOutput)
+}
+
+type GetAllowlistsAllowListAssociatedInstance struct {
+	// Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The id of the vpc.
+	Vpc string `pulumi:"vpc"`
+}
+
+// GetAllowlistsAllowListAssociatedInstanceInput is an input type that accepts GetAllowlistsAllowListAssociatedInstanceArgs and GetAllowlistsAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `GetAllowlistsAllowListAssociatedInstanceInput` via:
+//
+//	GetAllowlistsAllowListAssociatedInstanceArgs{...}
+type GetAllowlistsAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToGetAllowlistsAllowListAssociatedInstanceOutput() GetAllowlistsAllowListAssociatedInstanceOutput
+	ToGetAllowlistsAllowListAssociatedInstanceOutputWithContext(context.Context) GetAllowlistsAllowListAssociatedInstanceOutput
+}
+
+type GetAllowlistsAllowListAssociatedInstanceArgs struct {
+	// Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The id of the vpc.
+	Vpc pulumi.StringInput `pulumi:"vpc"`
+}
+
+func (GetAllowlistsAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowlistsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetAllowlistsAllowListAssociatedInstanceArgs) ToGetAllowlistsAllowListAssociatedInstanceOutput() GetAllowlistsAllowListAssociatedInstanceOutput {
+	return i.ToGetAllowlistsAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i GetAllowlistsAllowListAssociatedInstanceArgs) ToGetAllowlistsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetAllowlistsAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowlistsAllowListAssociatedInstanceOutput)
+}
+
+// GetAllowlistsAllowListAssociatedInstanceArrayInput is an input type that accepts GetAllowlistsAllowListAssociatedInstanceArray and GetAllowlistsAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `GetAllowlistsAllowListAssociatedInstanceArrayInput` via:
+//
+//	GetAllowlistsAllowListAssociatedInstanceArray{ GetAllowlistsAllowListAssociatedInstanceArgs{...} }
+type GetAllowlistsAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowlistsAllowListAssociatedInstanceArrayOutput() GetAllowlistsAllowListAssociatedInstanceArrayOutput
+	ToGetAllowlistsAllowListAssociatedInstanceArrayOutputWithContext(context.Context) GetAllowlistsAllowListAssociatedInstanceArrayOutput
+}
+
+type GetAllowlistsAllowListAssociatedInstanceArray []GetAllowlistsAllowListAssociatedInstanceInput
+
+func (GetAllowlistsAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowlistsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetAllowlistsAllowListAssociatedInstanceArray) ToGetAllowlistsAllowListAssociatedInstanceArrayOutput() GetAllowlistsAllowListAssociatedInstanceArrayOutput {
+	return i.ToGetAllowlistsAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowlistsAllowListAssociatedInstanceArray) ToGetAllowlistsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetAllowlistsAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowlistsAllowListAssociatedInstanceArrayOutput)
+}
+
+type GetAllowlistsAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetAllowlistsAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowlistsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetAllowlistsAllowListAssociatedInstanceOutput) ToGetAllowlistsAllowListAssociatedInstanceOutput() GetAllowlistsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListAssociatedInstanceOutput) ToGetAllowlistsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetAllowlistsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
+func (o GetAllowlistsAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListAssociatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the instance.
+func (o GetAllowlistsAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The id of the vpc.
+func (o GetAllowlistsAllowListAssociatedInstanceOutput) Vpc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListAssociatedInstance) string { return v.Vpc }).(pulumi.StringOutput)
+}
+
+type GetAllowlistsAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowlistsAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowlistsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetAllowlistsAllowListAssociatedInstanceArrayOutput) ToGetAllowlistsAllowListAssociatedInstanceArrayOutput() GetAllowlistsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListAssociatedInstanceArrayOutput) ToGetAllowlistsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetAllowlistsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) GetAllowlistsAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowlistsAllowListAssociatedInstance {
+		return vs[0].([]GetAllowlistsAllowListAssociatedInstance)[vs[1].(int)]
+	}).(GetAllowlistsAllowListAssociatedInstanceOutput)
+}
+
+type GetAllowlistsAllowListSecurityGroupBindInfo struct {
+	// The schema for the associated security group.
+	// IngressDirectionIp: Incoming Direction IP.
+	// AssociateEcsIp: Associate ECSIP.
+	// explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+	BindMode string `pulumi:"bindMode"`
+	// The ip list of the security group.
+	IpLists []string `pulumi:"ipLists"`
+	// The security group id of the allow list.
+	SecurityGroupId string `pulumi:"securityGroupId"`
+	// The name of the security group.
+	SecurityGroupName string `pulumi:"securityGroupName"`
+}
+
+// GetAllowlistsAllowListSecurityGroupBindInfoInput is an input type that accepts GetAllowlistsAllowListSecurityGroupBindInfoArgs and GetAllowlistsAllowListSecurityGroupBindInfoOutput values.
+// You can construct a concrete instance of `GetAllowlistsAllowListSecurityGroupBindInfoInput` via:
+//
+//	GetAllowlistsAllowListSecurityGroupBindInfoArgs{...}
+type GetAllowlistsAllowListSecurityGroupBindInfoInput interface {
+	pulumi.Input
+
+	ToGetAllowlistsAllowListSecurityGroupBindInfoOutput() GetAllowlistsAllowListSecurityGroupBindInfoOutput
+	ToGetAllowlistsAllowListSecurityGroupBindInfoOutputWithContext(context.Context) GetAllowlistsAllowListSecurityGroupBindInfoOutput
+}
+
+type GetAllowlistsAllowListSecurityGroupBindInfoArgs struct {
+	// The schema for the associated security group.
+	// IngressDirectionIp: Incoming Direction IP.
+	// AssociateEcsIp: Associate ECSIP.
+	// explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+	BindMode pulumi.StringInput `pulumi:"bindMode"`
+	// The ip list of the security group.
+	IpLists pulumi.StringArrayInput `pulumi:"ipLists"`
+	// The security group id of the allow list.
+	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
+	// The name of the security group.
+	SecurityGroupName pulumi.StringInput `pulumi:"securityGroupName"`
+}
+
+func (GetAllowlistsAllowListSecurityGroupBindInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowlistsAllowListSecurityGroupBindInfo)(nil)).Elem()
+}
+
+func (i GetAllowlistsAllowListSecurityGroupBindInfoArgs) ToGetAllowlistsAllowListSecurityGroupBindInfoOutput() GetAllowlistsAllowListSecurityGroupBindInfoOutput {
+	return i.ToGetAllowlistsAllowListSecurityGroupBindInfoOutputWithContext(context.Background())
+}
+
+func (i GetAllowlistsAllowListSecurityGroupBindInfoArgs) ToGetAllowlistsAllowListSecurityGroupBindInfoOutputWithContext(ctx context.Context) GetAllowlistsAllowListSecurityGroupBindInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowlistsAllowListSecurityGroupBindInfoOutput)
+}
+
+// GetAllowlistsAllowListSecurityGroupBindInfoArrayInput is an input type that accepts GetAllowlistsAllowListSecurityGroupBindInfoArray and GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput values.
+// You can construct a concrete instance of `GetAllowlistsAllowListSecurityGroupBindInfoArrayInput` via:
+//
+//	GetAllowlistsAllowListSecurityGroupBindInfoArray{ GetAllowlistsAllowListSecurityGroupBindInfoArgs{...} }
+type GetAllowlistsAllowListSecurityGroupBindInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutput() GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput
+	ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutputWithContext(context.Context) GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput
+}
+
+type GetAllowlistsAllowListSecurityGroupBindInfoArray []GetAllowlistsAllowListSecurityGroupBindInfoInput
+
+func (GetAllowlistsAllowListSecurityGroupBindInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowlistsAllowListSecurityGroupBindInfo)(nil)).Elem()
+}
+
+func (i GetAllowlistsAllowListSecurityGroupBindInfoArray) ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutput() GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput {
+	return i.ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowlistsAllowListSecurityGroupBindInfoArray) ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutputWithContext(ctx context.Context) GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput)
+}
+
+type GetAllowlistsAllowListSecurityGroupBindInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAllowlistsAllowListSecurityGroupBindInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowlistsAllowListSecurityGroupBindInfo)(nil)).Elem()
+}
+
+func (o GetAllowlistsAllowListSecurityGroupBindInfoOutput) ToGetAllowlistsAllowListSecurityGroupBindInfoOutput() GetAllowlistsAllowListSecurityGroupBindInfoOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListSecurityGroupBindInfoOutput) ToGetAllowlistsAllowListSecurityGroupBindInfoOutputWithContext(ctx context.Context) GetAllowlistsAllowListSecurityGroupBindInfoOutput {
+	return o
+}
+
+// The schema for the associated security group.
+// IngressDirectionIp: Incoming Direction IP.
+// AssociateEcsIp: Associate ECSIP.
+// explain: In the CreateAllowList interface, SecurityGroupBindInfoObject BindMode and SecurityGroupId fields are required.
+func (o GetAllowlistsAllowListSecurityGroupBindInfoOutput) BindMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListSecurityGroupBindInfo) string { return v.BindMode }).(pulumi.StringOutput)
+}
+
+// The ip list of the security group.
+func (o GetAllowlistsAllowListSecurityGroupBindInfoOutput) IpLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListSecurityGroupBindInfo) []string { return v.IpLists }).(pulumi.StringArrayOutput)
+}
+
+// The security group id of the allow list.
+func (o GetAllowlistsAllowListSecurityGroupBindInfoOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListSecurityGroupBindInfo) string { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the security group.
+func (o GetAllowlistsAllowListSecurityGroupBindInfoOutput) SecurityGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowlistsAllowListSecurityGroupBindInfo) string { return v.SecurityGroupName }).(pulumi.StringOutput)
+}
+
+type GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowlistsAllowListSecurityGroupBindInfo)(nil)).Elem()
+}
+
+func (o GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput) ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutput() GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput) ToGetAllowlistsAllowListSecurityGroupBindInfoArrayOutputWithContext(ctx context.Context) GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput {
+	return o
+}
+
+func (o GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput) Index(i pulumi.IntInput) GetAllowlistsAllowListSecurityGroupBindInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowlistsAllowListSecurityGroupBindInfo {
+		return vs[0].([]GetAllowlistsAllowListSecurityGroupBindInfo)[vs[1].(int)]
+	}).(GetAllowlistsAllowListSecurityGroupBindInfoOutput)
+}
+
+type GetBackupsBackup struct {
+	// The end time of the backup.
+	BackupEndTime string `pulumi:"backupEndTime"`
+	// Backup file name.
+	BackupFileName string `pulumi:"backupFileName"`
+	// Backup file size, in bytes.
+	BackupFileSize int `pulumi:"backupFileSize"`
+	// The id of the backup.
+	BackupId string `pulumi:"backupId"`
+	// Backup type, value: Physical: Physical backup. Default value. Logical: Logical backup. Description: There is no default value. When this field is not passed, backups of all states under the query conditions limited by other fields are returned.
+	BackupMethod string `pulumi:"backupMethod"`
+	// The region where the backup is located.
+	BackupRegion string `pulumi:"backupRegion"`
+	// The start time of the backup.
+	BackupStartTime string `pulumi:"backupStartTime"`
+	// Backup status, values: Success: Success. Failed: Failed. Running: In progress. Description: There is no default value. When this field is not passed, all backups in all states under the query conditions limited by other fields are returned.
+	BackupStatus string `pulumi:"backupStatus"`
+	// Backup method, value: Full: Full backup under physical backup type or library table backup under logical backup type. Increment: Incremental backup under physical backup type. DumpAll: Full database backup under logical backup type. Description: There is no default value. When this field is not passed, all backups of all methods under the query conditions limited by other fields are returned.
+	BackupType string `pulumi:"backupType"`
+	// The time point of a consistent snapshot is in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+	ConsistentTime string `pulumi:"consistentTime"`
+	// Creator of backup. Values: System: System. User: User. Description: There is no default value. When this field is not passed, all types of backups under the query conditions limited by other fields are returned.
+	CreateType string `pulumi:"createType"`
+	// The database table information contained in the backup set can include up to 10,000 tables.
+	// Explanation:
+	// When the database is empty, this field is not returned.
+	DbTableInfos []GetBackupsBackupDbTableInfo `pulumi:"dbTableInfos"`
+	// Download status. Values:
+	// NotDownload: Not downloaded.
+	// Success: Downloaded.
+	// Failed: Download failed.
+	// Running: Downloading.
+	DownloadStatus string `pulumi:"downloadStatus"`
+	// Error message.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// Expired time of backup, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The id of the backup.
+	Id string `pulumi:"id"`
+	// Is the data backup encrypted? Value:
+	// true: Encrypted.
+	// false: Not encrypted.
+	IsEncrypted bool `pulumi:"isEncrypted"`
+	// Whether the backup has expired. Value:
+	// true: Expired.
+	// false: Not expired.
+	IsExpired bool `pulumi:"isExpired"`
+}
+
+// GetBackupsBackupInput is an input type that accepts GetBackupsBackupArgs and GetBackupsBackupOutput values.
+// You can construct a concrete instance of `GetBackupsBackupInput` via:
+//
+//	GetBackupsBackupArgs{...}
+type GetBackupsBackupInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupOutput() GetBackupsBackupOutput
+	ToGetBackupsBackupOutputWithContext(context.Context) GetBackupsBackupOutput
+}
+
+type GetBackupsBackupArgs struct {
+	// The end time of the backup.
+	BackupEndTime pulumi.StringInput `pulumi:"backupEndTime"`
+	// Backup file name.
+	BackupFileName pulumi.StringInput `pulumi:"backupFileName"`
+	// Backup file size, in bytes.
+	BackupFileSize pulumi.IntInput `pulumi:"backupFileSize"`
+	// The id of the backup.
+	BackupId pulumi.StringInput `pulumi:"backupId"`
+	// Backup type, value: Physical: Physical backup. Default value. Logical: Logical backup. Description: There is no default value. When this field is not passed, backups of all states under the query conditions limited by other fields are returned.
+	BackupMethod pulumi.StringInput `pulumi:"backupMethod"`
+	// The region where the backup is located.
+	BackupRegion pulumi.StringInput `pulumi:"backupRegion"`
+	// The start time of the backup.
+	BackupStartTime pulumi.StringInput `pulumi:"backupStartTime"`
+	// Backup status, values: Success: Success. Failed: Failed. Running: In progress. Description: There is no default value. When this field is not passed, all backups in all states under the query conditions limited by other fields are returned.
+	BackupStatus pulumi.StringInput `pulumi:"backupStatus"`
+	// Backup method, value: Full: Full backup under physical backup type or library table backup under logical backup type. Increment: Incremental backup under physical backup type. DumpAll: Full database backup under logical backup type. Description: There is no default value. When this field is not passed, all backups of all methods under the query conditions limited by other fields are returned.
+	BackupType pulumi.StringInput `pulumi:"backupType"`
+	// The time point of a consistent snapshot is in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+	ConsistentTime pulumi.StringInput `pulumi:"consistentTime"`
+	// Creator of backup. Values: System: System. User: User. Description: There is no default value. When this field is not passed, all types of backups under the query conditions limited by other fields are returned.
+	CreateType pulumi.StringInput `pulumi:"createType"`
+	// The database table information contained in the backup set can include up to 10,000 tables.
+	// Explanation:
+	// When the database is empty, this field is not returned.
+	DbTableInfos GetBackupsBackupDbTableInfoArrayInput `pulumi:"dbTableInfos"`
+	// Download status. Values:
+	// NotDownload: Not downloaded.
+	// Success: Downloaded.
+	// Failed: Download failed.
+	// Running: Downloading.
+	DownloadStatus pulumi.StringInput `pulumi:"downloadStatus"`
+	// Error message.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// Expired time of backup, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The id of the backup.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Is the data backup encrypted? Value:
+	// true: Encrypted.
+	// false: Not encrypted.
+	IsEncrypted pulumi.BoolInput `pulumi:"isEncrypted"`
+	// Whether the backup has expired. Value:
+	// true: Expired.
+	// false: Not expired.
+	IsExpired pulumi.BoolInput `pulumi:"isExpired"`
+}
+
+func (GetBackupsBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackup)(nil)).Elem()
+}
+
+func (i GetBackupsBackupArgs) ToGetBackupsBackupOutput() GetBackupsBackupOutput {
+	return i.ToGetBackupsBackupOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupArgs) ToGetBackupsBackupOutputWithContext(ctx context.Context) GetBackupsBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupOutput)
+}
+
+// GetBackupsBackupArrayInput is an input type that accepts GetBackupsBackupArray and GetBackupsBackupArrayOutput values.
+// You can construct a concrete instance of `GetBackupsBackupArrayInput` via:
+//
+//	GetBackupsBackupArray{ GetBackupsBackupArgs{...} }
+type GetBackupsBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupArrayOutput() GetBackupsBackupArrayOutput
+	ToGetBackupsBackupArrayOutputWithContext(context.Context) GetBackupsBackupArrayOutput
+}
+
+type GetBackupsBackupArray []GetBackupsBackupInput
+
+func (GetBackupsBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackup)(nil)).Elem()
+}
+
+func (i GetBackupsBackupArray) ToGetBackupsBackupArrayOutput() GetBackupsBackupArrayOutput {
+	return i.ToGetBackupsBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupArray) ToGetBackupsBackupArrayOutputWithContext(ctx context.Context) GetBackupsBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupArrayOutput)
+}
+
+type GetBackupsBackupOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackup)(nil)).Elem()
+}
+
+func (o GetBackupsBackupOutput) ToGetBackupsBackupOutput() GetBackupsBackupOutput {
+	return o
+}
+
+func (o GetBackupsBackupOutput) ToGetBackupsBackupOutputWithContext(ctx context.Context) GetBackupsBackupOutput {
+	return o
+}
+
+// The end time of the backup.
+func (o GetBackupsBackupOutput) BackupEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupEndTime }).(pulumi.StringOutput)
+}
+
+// Backup file name.
+func (o GetBackupsBackupOutput) BackupFileName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupFileName }).(pulumi.StringOutput)
+}
+
+// Backup file size, in bytes.
+func (o GetBackupsBackupOutput) BackupFileSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupsBackup) int { return v.BackupFileSize }).(pulumi.IntOutput)
+}
+
+// The id of the backup.
+func (o GetBackupsBackupOutput) BackupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupId }).(pulumi.StringOutput)
+}
+
+// Backup type, value: Physical: Physical backup. Default value. Logical: Logical backup. Description: There is no default value. When this field is not passed, backups of all states under the query conditions limited by other fields are returned.
+func (o GetBackupsBackupOutput) BackupMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupMethod }).(pulumi.StringOutput)
+}
+
+// The region where the backup is located.
+func (o GetBackupsBackupOutput) BackupRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupRegion }).(pulumi.StringOutput)
+}
+
+// The start time of the backup.
+func (o GetBackupsBackupOutput) BackupStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupStartTime }).(pulumi.StringOutput)
+}
+
+// Backup status, values: Success: Success. Failed: Failed. Running: In progress. Description: There is no default value. When this field is not passed, all backups in all states under the query conditions limited by other fields are returned.
+func (o GetBackupsBackupOutput) BackupStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupStatus }).(pulumi.StringOutput)
+}
+
+// Backup method, value: Full: Full backup under physical backup type or library table backup under logical backup type. Increment: Incremental backup under physical backup type. DumpAll: Full database backup under logical backup type. Description: There is no default value. When this field is not passed, all backups of all methods under the query conditions limited by other fields are returned.
+func (o GetBackupsBackupOutput) BackupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.BackupType }).(pulumi.StringOutput)
+}
+
+// The time point of a consistent snapshot is in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+func (o GetBackupsBackupOutput) ConsistentTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.ConsistentTime }).(pulumi.StringOutput)
+}
+
+// Creator of backup. Values: System: System. User: User. Description: There is no default value. When this field is not passed, all types of backups under the query conditions limited by other fields are returned.
+func (o GetBackupsBackupOutput) CreateType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.CreateType }).(pulumi.StringOutput)
+}
+
+// The database table information contained in the backup set can include up to 10,000 tables.
+// Explanation:
+// When the database is empty, this field is not returned.
+func (o GetBackupsBackupOutput) DbTableInfos() GetBackupsBackupDbTableInfoArrayOutput {
+	return o.ApplyT(func(v GetBackupsBackup) []GetBackupsBackupDbTableInfo { return v.DbTableInfos }).(GetBackupsBackupDbTableInfoArrayOutput)
+}
+
+// Download status. Values:
+// NotDownload: Not downloaded.
+// Success: Downloaded.
+// Failed: Download failed.
+// Running: Downloading.
+func (o GetBackupsBackupOutput) DownloadStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.DownloadStatus }).(pulumi.StringOutput)
+}
+
+// Error message.
+func (o GetBackupsBackupOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Expired time of backup, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+func (o GetBackupsBackupOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The id of the backup.
+func (o GetBackupsBackupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Is the data backup encrypted? Value:
+// true: Encrypted.
+// false: Not encrypted.
+func (o GetBackupsBackupOutput) IsEncrypted() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBackupsBackup) bool { return v.IsEncrypted }).(pulumi.BoolOutput)
+}
+
+// Whether the backup has expired. Value:
+// true: Expired.
+// false: Not expired.
+func (o GetBackupsBackupOutput) IsExpired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBackupsBackup) bool { return v.IsExpired }).(pulumi.BoolOutput)
+}
+
+type GetBackupsBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackup)(nil)).Elem()
+}
+
+func (o GetBackupsBackupArrayOutput) ToGetBackupsBackupArrayOutput() GetBackupsBackupArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupArrayOutput) ToGetBackupsBackupArrayOutputWithContext(ctx context.Context) GetBackupsBackupArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupArrayOutput) Index(i pulumi.IntInput) GetBackupsBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupsBackup {
+		return vs[0].([]GetBackupsBackup)[vs[1].(int)]
+	}).(GetBackupsBackupOutput)
+}
+
+type GetBackupsBackupDbTableInfo struct {
+	// Database name.
+	Database string `pulumi:"database"`
+	// Table names.
+	Tables []string `pulumi:"tables"`
+}
+
+// GetBackupsBackupDbTableInfoInput is an input type that accepts GetBackupsBackupDbTableInfoArgs and GetBackupsBackupDbTableInfoOutput values.
+// You can construct a concrete instance of `GetBackupsBackupDbTableInfoInput` via:
+//
+//	GetBackupsBackupDbTableInfoArgs{...}
+type GetBackupsBackupDbTableInfoInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupDbTableInfoOutput() GetBackupsBackupDbTableInfoOutput
+	ToGetBackupsBackupDbTableInfoOutputWithContext(context.Context) GetBackupsBackupDbTableInfoOutput
+}
+
+type GetBackupsBackupDbTableInfoArgs struct {
+	// Database name.
+	Database pulumi.StringInput `pulumi:"database"`
+	// Table names.
+	Tables pulumi.StringArrayInput `pulumi:"tables"`
+}
+
+func (GetBackupsBackupDbTableInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackupDbTableInfo)(nil)).Elem()
+}
+
+func (i GetBackupsBackupDbTableInfoArgs) ToGetBackupsBackupDbTableInfoOutput() GetBackupsBackupDbTableInfoOutput {
+	return i.ToGetBackupsBackupDbTableInfoOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupDbTableInfoArgs) ToGetBackupsBackupDbTableInfoOutputWithContext(ctx context.Context) GetBackupsBackupDbTableInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupDbTableInfoOutput)
+}
+
+// GetBackupsBackupDbTableInfoArrayInput is an input type that accepts GetBackupsBackupDbTableInfoArray and GetBackupsBackupDbTableInfoArrayOutput values.
+// You can construct a concrete instance of `GetBackupsBackupDbTableInfoArrayInput` via:
+//
+//	GetBackupsBackupDbTableInfoArray{ GetBackupsBackupDbTableInfoArgs{...} }
+type GetBackupsBackupDbTableInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupDbTableInfoArrayOutput() GetBackupsBackupDbTableInfoArrayOutput
+	ToGetBackupsBackupDbTableInfoArrayOutputWithContext(context.Context) GetBackupsBackupDbTableInfoArrayOutput
+}
+
+type GetBackupsBackupDbTableInfoArray []GetBackupsBackupDbTableInfoInput
+
+func (GetBackupsBackupDbTableInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackupDbTableInfo)(nil)).Elem()
+}
+
+func (i GetBackupsBackupDbTableInfoArray) ToGetBackupsBackupDbTableInfoArrayOutput() GetBackupsBackupDbTableInfoArrayOutput {
+	return i.ToGetBackupsBackupDbTableInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupDbTableInfoArray) ToGetBackupsBackupDbTableInfoArrayOutputWithContext(ctx context.Context) GetBackupsBackupDbTableInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupDbTableInfoArrayOutput)
+}
+
+type GetBackupsBackupDbTableInfoOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupDbTableInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackupDbTableInfo)(nil)).Elem()
+}
+
+func (o GetBackupsBackupDbTableInfoOutput) ToGetBackupsBackupDbTableInfoOutput() GetBackupsBackupDbTableInfoOutput {
+	return o
+}
+
+func (o GetBackupsBackupDbTableInfoOutput) ToGetBackupsBackupDbTableInfoOutputWithContext(ctx context.Context) GetBackupsBackupDbTableInfoOutput {
+	return o
+}
+
+// Database name.
+func (o GetBackupsBackupDbTableInfoOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackupDbTableInfo) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// Table names.
+func (o GetBackupsBackupDbTableInfoOutput) Tables() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBackupsBackupDbTableInfo) []string { return v.Tables }).(pulumi.StringArrayOutput)
+}
+
+type GetBackupsBackupDbTableInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupDbTableInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackupDbTableInfo)(nil)).Elem()
+}
+
+func (o GetBackupsBackupDbTableInfoArrayOutput) ToGetBackupsBackupDbTableInfoArrayOutput() GetBackupsBackupDbTableInfoArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupDbTableInfoArrayOutput) ToGetBackupsBackupDbTableInfoArrayOutputWithContext(ctx context.Context) GetBackupsBackupDbTableInfoArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupDbTableInfoArrayOutput) Index(i pulumi.IntInput) GetBackupsBackupDbTableInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupsBackupDbTableInfo {
+		return vs[0].([]GetBackupsBackupDbTableInfo)[vs[1].(int)]
+	}).(GetBackupsBackupDbTableInfoOutput)
+}
+
+type GetDatabasesDatabase struct {
+	// The character set of the RDS database.
+	CharacterSetName string `pulumi:"characterSetName"`
+	// The privilege detail list of RDS mysql instance database.
+	DatabasePrivileges []GetDatabasesDatabaseDatabasePrivilege `pulumi:"databasePrivileges"`
+	// The name of the RDS database.
+	DbName string `pulumi:"dbName"`
+}
+
+// GetDatabasesDatabaseInput is an input type that accepts GetDatabasesDatabaseArgs and GetDatabasesDatabaseOutput values.
+// You can construct a concrete instance of `GetDatabasesDatabaseInput` via:
+//
+//	GetDatabasesDatabaseArgs{...}
+type GetDatabasesDatabaseInput interface {
+	pulumi.Input
+
+	ToGetDatabasesDatabaseOutput() GetDatabasesDatabaseOutput
+	ToGetDatabasesDatabaseOutputWithContext(context.Context) GetDatabasesDatabaseOutput
+}
+
+type GetDatabasesDatabaseArgs struct {
+	// The character set of the RDS database.
+	CharacterSetName pulumi.StringInput `pulumi:"characterSetName"`
+	// The privilege detail list of RDS mysql instance database.
+	DatabasePrivileges GetDatabasesDatabaseDatabasePrivilegeArrayInput `pulumi:"databasePrivileges"`
+	// The name of the RDS database.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+}
+
+func (GetDatabasesDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (i GetDatabasesDatabaseArgs) ToGetDatabasesDatabaseOutput() GetDatabasesDatabaseOutput {
+	return i.ToGetDatabasesDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesDatabaseArgs) ToGetDatabasesDatabaseOutputWithContext(ctx context.Context) GetDatabasesDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesDatabaseOutput)
+}
+
+// GetDatabasesDatabaseArrayInput is an input type that accepts GetDatabasesDatabaseArray and GetDatabasesDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetDatabasesDatabaseArrayInput` via:
+//
+//	GetDatabasesDatabaseArray{ GetDatabasesDatabaseArgs{...} }
+type GetDatabasesDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabasesDatabaseArrayOutput() GetDatabasesDatabaseArrayOutput
+	ToGetDatabasesDatabaseArrayOutputWithContext(context.Context) GetDatabasesDatabaseArrayOutput
+}
+
+type GetDatabasesDatabaseArray []GetDatabasesDatabaseInput
+
+func (GetDatabasesDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (i GetDatabasesDatabaseArray) ToGetDatabasesDatabaseArrayOutput() GetDatabasesDatabaseArrayOutput {
+	return i.ToGetDatabasesDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesDatabaseArray) ToGetDatabasesDatabaseArrayOutputWithContext(ctx context.Context) GetDatabasesDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesDatabaseArrayOutput)
+}
+
+type GetDatabasesDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (o GetDatabasesDatabaseOutput) ToGetDatabasesDatabaseOutput() GetDatabasesDatabaseOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseOutput) ToGetDatabasesDatabaseOutputWithContext(ctx context.Context) GetDatabasesDatabaseOutput {
+	return o
+}
+
+// The character set of the RDS database.
+func (o GetDatabasesDatabaseOutput) CharacterSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabase) string { return v.CharacterSetName }).(pulumi.StringOutput)
+}
+
+// The privilege detail list of RDS mysql instance database.
+func (o GetDatabasesDatabaseOutput) DatabasePrivileges() GetDatabasesDatabaseDatabasePrivilegeArrayOutput {
+	return o.ApplyT(func(v GetDatabasesDatabase) []GetDatabasesDatabaseDatabasePrivilege { return v.DatabasePrivileges }).(GetDatabasesDatabaseDatabasePrivilegeArrayOutput)
+}
+
+// The name of the RDS database.
+func (o GetDatabasesDatabaseOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabase) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+type GetDatabasesDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (o GetDatabasesDatabaseArrayOutput) ToGetDatabasesDatabaseArrayOutput() GetDatabasesDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseArrayOutput) ToGetDatabasesDatabaseArrayOutputWithContext(ctx context.Context) GetDatabasesDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseArrayOutput) Index(i pulumi.IntInput) GetDatabasesDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabasesDatabase {
+		return vs[0].([]GetDatabasesDatabase)[vs[1].(int)]
+	}).(GetDatabasesDatabaseOutput)
+}
+
+type GetDatabasesDatabaseDatabasePrivilege struct {
+	// The name of account.
+	AccountName string `pulumi:"accountName"`
+	// The privilege type of the account.
+	AccountPrivilege string `pulumi:"accountPrivilege"`
+	// The privilege detail of the account.
+	AccountPrivilegeDetail string `pulumi:"accountPrivilegeDetail"`
+}
+
+// GetDatabasesDatabaseDatabasePrivilegeInput is an input type that accepts GetDatabasesDatabaseDatabasePrivilegeArgs and GetDatabasesDatabaseDatabasePrivilegeOutput values.
+// You can construct a concrete instance of `GetDatabasesDatabaseDatabasePrivilegeInput` via:
+//
+//	GetDatabasesDatabaseDatabasePrivilegeArgs{...}
+type GetDatabasesDatabaseDatabasePrivilegeInput interface {
+	pulumi.Input
+
+	ToGetDatabasesDatabaseDatabasePrivilegeOutput() GetDatabasesDatabaseDatabasePrivilegeOutput
+	ToGetDatabasesDatabaseDatabasePrivilegeOutputWithContext(context.Context) GetDatabasesDatabaseDatabasePrivilegeOutput
+}
+
+type GetDatabasesDatabaseDatabasePrivilegeArgs struct {
+	// The name of account.
+	AccountName pulumi.StringInput `pulumi:"accountName"`
+	// The privilege type of the account.
+	AccountPrivilege pulumi.StringInput `pulumi:"accountPrivilege"`
+	// The privilege detail of the account.
+	AccountPrivilegeDetail pulumi.StringInput `pulumi:"accountPrivilegeDetail"`
+}
+
+func (GetDatabasesDatabaseDatabasePrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesDatabaseDatabasePrivilege)(nil)).Elem()
+}
+
+func (i GetDatabasesDatabaseDatabasePrivilegeArgs) ToGetDatabasesDatabaseDatabasePrivilegeOutput() GetDatabasesDatabaseDatabasePrivilegeOutput {
+	return i.ToGetDatabasesDatabaseDatabasePrivilegeOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesDatabaseDatabasePrivilegeArgs) ToGetDatabasesDatabaseDatabasePrivilegeOutputWithContext(ctx context.Context) GetDatabasesDatabaseDatabasePrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesDatabaseDatabasePrivilegeOutput)
+}
+
+// GetDatabasesDatabaseDatabasePrivilegeArrayInput is an input type that accepts GetDatabasesDatabaseDatabasePrivilegeArray and GetDatabasesDatabaseDatabasePrivilegeArrayOutput values.
+// You can construct a concrete instance of `GetDatabasesDatabaseDatabasePrivilegeArrayInput` via:
+//
+//	GetDatabasesDatabaseDatabasePrivilegeArray{ GetDatabasesDatabaseDatabasePrivilegeArgs{...} }
+type GetDatabasesDatabaseDatabasePrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabasesDatabaseDatabasePrivilegeArrayOutput() GetDatabasesDatabaseDatabasePrivilegeArrayOutput
+	ToGetDatabasesDatabaseDatabasePrivilegeArrayOutputWithContext(context.Context) GetDatabasesDatabaseDatabasePrivilegeArrayOutput
+}
+
+type GetDatabasesDatabaseDatabasePrivilegeArray []GetDatabasesDatabaseDatabasePrivilegeInput
+
+func (GetDatabasesDatabaseDatabasePrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesDatabaseDatabasePrivilege)(nil)).Elem()
+}
+
+func (i GetDatabasesDatabaseDatabasePrivilegeArray) ToGetDatabasesDatabaseDatabasePrivilegeArrayOutput() GetDatabasesDatabaseDatabasePrivilegeArrayOutput {
+	return i.ToGetDatabasesDatabaseDatabasePrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesDatabaseDatabasePrivilegeArray) ToGetDatabasesDatabaseDatabasePrivilegeArrayOutputWithContext(ctx context.Context) GetDatabasesDatabaseDatabasePrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesDatabaseDatabasePrivilegeArrayOutput)
+}
+
+type GetDatabasesDatabaseDatabasePrivilegeOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesDatabaseDatabasePrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesDatabaseDatabasePrivilege)(nil)).Elem()
+}
+
+func (o GetDatabasesDatabaseDatabasePrivilegeOutput) ToGetDatabasesDatabaseDatabasePrivilegeOutput() GetDatabasesDatabaseDatabasePrivilegeOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseDatabasePrivilegeOutput) ToGetDatabasesDatabaseDatabasePrivilegeOutputWithContext(ctx context.Context) GetDatabasesDatabaseDatabasePrivilegeOutput {
+	return o
+}
+
+// The name of account.
+func (o GetDatabasesDatabaseDatabasePrivilegeOutput) AccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabaseDatabasePrivilege) string { return v.AccountName }).(pulumi.StringOutput)
+}
+
+// The privilege type of the account.
+func (o GetDatabasesDatabaseDatabasePrivilegeOutput) AccountPrivilege() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabaseDatabasePrivilege) string { return v.AccountPrivilege }).(pulumi.StringOutput)
+}
+
+// The privilege detail of the account.
+func (o GetDatabasesDatabaseDatabasePrivilegeOutput) AccountPrivilegeDetail() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabaseDatabasePrivilege) string { return v.AccountPrivilegeDetail }).(pulumi.StringOutput)
+}
+
+type GetDatabasesDatabaseDatabasePrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesDatabaseDatabasePrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesDatabaseDatabasePrivilege)(nil)).Elem()
+}
+
+func (o GetDatabasesDatabaseDatabasePrivilegeArrayOutput) ToGetDatabasesDatabaseDatabasePrivilegeArrayOutput() GetDatabasesDatabaseDatabasePrivilegeArrayOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseDatabasePrivilegeArrayOutput) ToGetDatabasesDatabaseDatabasePrivilegeArrayOutputWithContext(ctx context.Context) GetDatabasesDatabaseDatabasePrivilegeArrayOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseDatabasePrivilegeArrayOutput) Index(i pulumi.IntInput) GetDatabasesDatabaseDatabasePrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabasesDatabaseDatabasePrivilege {
+		return vs[0].([]GetDatabasesDatabaseDatabasePrivilege)[vs[1].(int)]
+	}).(GetDatabasesDatabaseDatabasePrivilegeOutput)
+}
+
+type GetEndpointsEndpoint struct {
+	// Address list.
+	Addresses []GetEndpointsEndpointAddress `pulumi:"addresses"`
+	// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+	AutoAddNewNodes string `pulumi:"autoAddNewNodes"`
+	// The description of the mysql endpoint.
+	Description string `pulumi:"description"`
+	// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadOnly string `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadWriteSplitting string `pulumi:"enableReadWriteSplitting"`
+	// The id of the mysql endpoint.
+	EndpointId string `pulumi:"endpointId"`
+	// The name of the mysql endpoint.
+	EndpointName string `pulumi:"endpointName"`
+	// The endpoint type of the mysql endpoint.
+	EndpointType string `pulumi:"endpointType"`
+	// The id of the mysql endpoint.
+	Id string `pulumi:"id"`
+	// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+	ReadOnlyNodeWeights []GetEndpointsEndpointReadOnlyNodeWeight `pulumi:"readOnlyNodeWeights"`
+	// The read write mode.
+	ReadWriteMode string `pulumi:"readWriteMode"`
+}
+
+// GetEndpointsEndpointInput is an input type that accepts GetEndpointsEndpointArgs and GetEndpointsEndpointOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointInput` via:
+//
+//	GetEndpointsEndpointArgs{...}
+type GetEndpointsEndpointInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput
+	ToGetEndpointsEndpointOutputWithContext(context.Context) GetEndpointsEndpointOutput
+}
+
+type GetEndpointsEndpointArgs struct {
+	// Address list.
+	Addresses GetEndpointsEndpointAddressArrayInput `pulumi:"addresses"`
+	// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+	AutoAddNewNodes pulumi.StringInput `pulumi:"autoAddNewNodes"`
+	// The description of the mysql endpoint.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadOnly pulumi.StringInput `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadWriteSplitting pulumi.StringInput `pulumi:"enableReadWriteSplitting"`
+	// The id of the mysql endpoint.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The name of the mysql endpoint.
+	EndpointName pulumi.StringInput `pulumi:"endpointName"`
+	// The endpoint type of the mysql endpoint.
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The id of the mysql endpoint.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+	ReadOnlyNodeWeights GetEndpointsEndpointReadOnlyNodeWeightArrayInput `pulumi:"readOnlyNodeWeights"`
+	// The read write mode.
+	ReadWriteMode pulumi.StringInput `pulumi:"readWriteMode"`
+}
+
+func (GetEndpointsEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointArgs) ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput {
+	return i.ToGetEndpointsEndpointOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointArgs) ToGetEndpointsEndpointOutputWithContext(ctx context.Context) GetEndpointsEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointOutput)
+}
+
+// GetEndpointsEndpointArrayInput is an input type that accepts GetEndpointsEndpointArray and GetEndpointsEndpointArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointArrayInput` via:
+//
+//	GetEndpointsEndpointArray{ GetEndpointsEndpointArgs{...} }
+type GetEndpointsEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput
+	ToGetEndpointsEndpointArrayOutputWithContext(context.Context) GetEndpointsEndpointArrayOutput
+}
+
+type GetEndpointsEndpointArray []GetEndpointsEndpointInput
+
+func (GetEndpointsEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointArray) ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput {
+	return i.ToGetEndpointsEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointArray) ToGetEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointArrayOutput)
+}
+
+type GetEndpointsEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointOutput) ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointOutput) ToGetEndpointsEndpointOutputWithContext(ctx context.Context) GetEndpointsEndpointOutput {
+	return o
+}
+
+// Address list.
+func (o GetEndpointsEndpointOutput) Addresses() GetEndpointsEndpointAddressArrayOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) []GetEndpointsEndpointAddress { return v.Addresses }).(GetEndpointsEndpointAddressArrayOutput)
+}
+
+// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+func (o GetEndpointsEndpointOutput) AutoAddNewNodes() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.AutoAddNewNodes }).(pulumi.StringOutput)
+}
+
+// The description of the mysql endpoint.
+func (o GetEndpointsEndpointOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+func (o GetEndpointsEndpointOutput) EnableReadOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EnableReadOnly }).(pulumi.StringOutput)
+}
+
+// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+func (o GetEndpointsEndpointOutput) EnableReadWriteSplitting() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EnableReadWriteSplitting }).(pulumi.StringOutput)
+}
+
+// The id of the mysql endpoint.
+func (o GetEndpointsEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// The name of the mysql endpoint.
+func (o GetEndpointsEndpointOutput) EndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EndpointName }).(pulumi.StringOutput)
+}
+
+// The endpoint type of the mysql endpoint.
+func (o GetEndpointsEndpointOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The id of the mysql endpoint.
+func (o GetEndpointsEndpointOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+func (o GetEndpointsEndpointOutput) ReadOnlyNodeWeights() GetEndpointsEndpointReadOnlyNodeWeightArrayOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) []GetEndpointsEndpointReadOnlyNodeWeight { return v.ReadOnlyNodeWeights }).(GetEndpointsEndpointReadOnlyNodeWeightArrayOutput)
+}
+
+// The read write mode.
+func (o GetEndpointsEndpointOutput) ReadWriteMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.ReadWriteMode }).(pulumi.StringOutput)
+}
+
+type GetEndpointsEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointArrayOutput) ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointArrayOutput) ToGetEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpoint {
+		return vs[0].([]GetEndpointsEndpoint)[vs[1].(int)]
+	}).(GetEndpointsEndpointOutput)
+}
+
+type GetEndpointsEndpointAddress struct {
+	// DNS Visibility.
+	DnsVisibility bool `pulumi:"dnsVisibility"`
+	// Connect domain name.
+	Domain string `pulumi:"domain"`
+	// The ID of the EIP, only valid for Public addresses.
+	EipId string `pulumi:"eipId"`
+	// The IP Address.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address type, temporarily Private, Public, PublicService.
+	NetworkType string `pulumi:"networkType"`
+	// The Port.
+	Port string `pulumi:"port"`
+	// Subnet ID, valid only for private addresses.
+	SubnetId string `pulumi:"subnetId"`
+}
+
+// GetEndpointsEndpointAddressInput is an input type that accepts GetEndpointsEndpointAddressArgs and GetEndpointsEndpointAddressOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointAddressInput` via:
+//
+//	GetEndpointsEndpointAddressArgs{...}
+type GetEndpointsEndpointAddressInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointAddressOutput() GetEndpointsEndpointAddressOutput
+	ToGetEndpointsEndpointAddressOutputWithContext(context.Context) GetEndpointsEndpointAddressOutput
+}
+
+type GetEndpointsEndpointAddressArgs struct {
+	// DNS Visibility.
+	DnsVisibility pulumi.BoolInput `pulumi:"dnsVisibility"`
+	// Connect domain name.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The ID of the EIP, only valid for Public addresses.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The IP Address.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address type, temporarily Private, Public, PublicService.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// The Port.
+	Port pulumi.StringInput `pulumi:"port"`
+	// Subnet ID, valid only for private addresses.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+}
+
+func (GetEndpointsEndpointAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointAddress)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointAddressArgs) ToGetEndpointsEndpointAddressOutput() GetEndpointsEndpointAddressOutput {
+	return i.ToGetEndpointsEndpointAddressOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointAddressArgs) ToGetEndpointsEndpointAddressOutputWithContext(ctx context.Context) GetEndpointsEndpointAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointAddressOutput)
+}
+
+// GetEndpointsEndpointAddressArrayInput is an input type that accepts GetEndpointsEndpointAddressArray and GetEndpointsEndpointAddressArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointAddressArrayInput` via:
+//
+//	GetEndpointsEndpointAddressArray{ GetEndpointsEndpointAddressArgs{...} }
+type GetEndpointsEndpointAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointAddressArrayOutput() GetEndpointsEndpointAddressArrayOutput
+	ToGetEndpointsEndpointAddressArrayOutputWithContext(context.Context) GetEndpointsEndpointAddressArrayOutput
+}
+
+type GetEndpointsEndpointAddressArray []GetEndpointsEndpointAddressInput
+
+func (GetEndpointsEndpointAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointAddress)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointAddressArray) ToGetEndpointsEndpointAddressArrayOutput() GetEndpointsEndpointAddressArrayOutput {
+	return i.ToGetEndpointsEndpointAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointAddressArray) ToGetEndpointsEndpointAddressArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointAddressArrayOutput)
+}
+
+type GetEndpointsEndpointAddressOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointAddress)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointAddressOutput) ToGetEndpointsEndpointAddressOutput() GetEndpointsEndpointAddressOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointAddressOutput) ToGetEndpointsEndpointAddressOutputWithContext(ctx context.Context) GetEndpointsEndpointAddressOutput {
+	return o
+}
+
+// DNS Visibility.
+func (o GetEndpointsEndpointAddressOutput) DnsVisibility() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) bool { return v.DnsVisibility }).(pulumi.BoolOutput)
+}
+
+// Connect domain name.
+func (o GetEndpointsEndpointAddressOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The ID of the EIP, only valid for Public addresses.
+func (o GetEndpointsEndpointAddressOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The IP Address.
+func (o GetEndpointsEndpointAddressOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address type, temporarily Private, Public, PublicService.
+func (o GetEndpointsEndpointAddressOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// The Port.
+func (o GetEndpointsEndpointAddressOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// Subnet ID, valid only for private addresses.
+func (o GetEndpointsEndpointAddressOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAddress) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+type GetEndpointsEndpointAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointAddress)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointAddressArrayOutput) ToGetEndpointsEndpointAddressArrayOutput() GetEndpointsEndpointAddressArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointAddressArrayOutput) ToGetEndpointsEndpointAddressArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointAddressArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointAddressArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpointAddress {
+		return vs[0].([]GetEndpointsEndpointAddress)[vs[1].(int)]
+	}).(GetEndpointsEndpointAddressOutput)
+}
+
+type GetEndpointsEndpointReadOnlyNodeWeight struct {
+	// The ID of the node.
+	NodeId string `pulumi:"nodeId"`
+	// The type of the node.
+	NodeType string `pulumi:"nodeType"`
+	// The weight of the node.
+	Weight int `pulumi:"weight"`
+}
+
+// GetEndpointsEndpointReadOnlyNodeWeightInput is an input type that accepts GetEndpointsEndpointReadOnlyNodeWeightArgs and GetEndpointsEndpointReadOnlyNodeWeightOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointReadOnlyNodeWeightInput` via:
+//
+//	GetEndpointsEndpointReadOnlyNodeWeightArgs{...}
+type GetEndpointsEndpointReadOnlyNodeWeightInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointReadOnlyNodeWeightOutput() GetEndpointsEndpointReadOnlyNodeWeightOutput
+	ToGetEndpointsEndpointReadOnlyNodeWeightOutputWithContext(context.Context) GetEndpointsEndpointReadOnlyNodeWeightOutput
+}
+
+type GetEndpointsEndpointReadOnlyNodeWeightArgs struct {
+	// The ID of the node.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// The type of the node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// The weight of the node.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetEndpointsEndpointReadOnlyNodeWeightArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointReadOnlyNodeWeightArgs) ToGetEndpointsEndpointReadOnlyNodeWeightOutput() GetEndpointsEndpointReadOnlyNodeWeightOutput {
+	return i.ToGetEndpointsEndpointReadOnlyNodeWeightOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointReadOnlyNodeWeightArgs) ToGetEndpointsEndpointReadOnlyNodeWeightOutputWithContext(ctx context.Context) GetEndpointsEndpointReadOnlyNodeWeightOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointReadOnlyNodeWeightOutput)
+}
+
+// GetEndpointsEndpointReadOnlyNodeWeightArrayInput is an input type that accepts GetEndpointsEndpointReadOnlyNodeWeightArray and GetEndpointsEndpointReadOnlyNodeWeightArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointReadOnlyNodeWeightArrayInput` via:
+//
+//	GetEndpointsEndpointReadOnlyNodeWeightArray{ GetEndpointsEndpointReadOnlyNodeWeightArgs{...} }
+type GetEndpointsEndpointReadOnlyNodeWeightArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutput() GetEndpointsEndpointReadOnlyNodeWeightArrayOutput
+	ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutputWithContext(context.Context) GetEndpointsEndpointReadOnlyNodeWeightArrayOutput
+}
+
+type GetEndpointsEndpointReadOnlyNodeWeightArray []GetEndpointsEndpointReadOnlyNodeWeightInput
+
+func (GetEndpointsEndpointReadOnlyNodeWeightArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointReadOnlyNodeWeightArray) ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutput() GetEndpointsEndpointReadOnlyNodeWeightArrayOutput {
+	return i.ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointReadOnlyNodeWeightArray) ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointReadOnlyNodeWeightArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointReadOnlyNodeWeightArrayOutput)
+}
+
+type GetEndpointsEndpointReadOnlyNodeWeightOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointReadOnlyNodeWeightOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointReadOnlyNodeWeightOutput) ToGetEndpointsEndpointReadOnlyNodeWeightOutput() GetEndpointsEndpointReadOnlyNodeWeightOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointReadOnlyNodeWeightOutput) ToGetEndpointsEndpointReadOnlyNodeWeightOutputWithContext(ctx context.Context) GetEndpointsEndpointReadOnlyNodeWeightOutput {
+	return o
+}
+
+// The ID of the node.
+func (o GetEndpointsEndpointReadOnlyNodeWeightOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointReadOnlyNodeWeight) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// The type of the node.
+func (o GetEndpointsEndpointReadOnlyNodeWeightOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointReadOnlyNodeWeight) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// The weight of the node.
+func (o GetEndpointsEndpointReadOnlyNodeWeightOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointReadOnlyNodeWeight) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetEndpointsEndpointReadOnlyNodeWeightArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointReadOnlyNodeWeightArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointReadOnlyNodeWeightArrayOutput) ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutput() GetEndpointsEndpointReadOnlyNodeWeightArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointReadOnlyNodeWeightArrayOutput) ToGetEndpointsEndpointReadOnlyNodeWeightArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointReadOnlyNodeWeightArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointReadOnlyNodeWeightArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointReadOnlyNodeWeightOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpointReadOnlyNodeWeight {
+		return vs[0].([]GetEndpointsEndpointReadOnlyNodeWeight)[vs[1].(int)]
+	}).(GetEndpointsEndpointReadOnlyNodeWeightOutput)
+}
+
+type GetInstanceSpecsInstanceSpec struct {
+	// Default value of maximum number of connections.
+	Connection int `pulumi:"connection"`
+	// Compatible version. Values:
+	// MySQL_5_7: MySQL 5.7 version. Default value.
+	// MySQL_8_0: MySQL 8.0 version.
+	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// Instance type. The value is DoubleNode.
+	InstanceType string `pulumi:"instanceType"`
+	// Maximum IOPS per second.
+	Iops int `pulumi:"iops"`
+	// Memory size, in GB.
+	Memory int `pulumi:"memory"`
+	// Queries Per Second (QPS).
+	Qps int `pulumi:"qps"`
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// Instance specification code.
+	SpecCode string `pulumi:"specCode"`
+	// Instance specification type. Values:
+	// General: Exclusive specification (formerly "General Purpose").
+	// Shared: General specification (formerly "Shared Type").
+	SpecFamily string `pulumi:"specFamily"`
+	// The status of the available zone where the specification is located includes the following statuses:
+	// Normal: On sale.
+	// Soldout: Sold out.
+	SpecStatus string `pulumi:"specStatus"`
+	// Maximum storage space, in GB.
+	StorageMax int `pulumi:"storageMax"`
+	// Minimum storage space, in GB.
+	StorageMin int `pulumi:"storageMin"`
+	// Disk step size, in GB.
+	StorageStep int `pulumi:"storageStep"`
+	// Number of vCPUs.
+	Vcpu int `pulumi:"vcpu"`
+	// Availability zone ID.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstanceSpecsInstanceSpecInput is an input type that accepts GetInstanceSpecsInstanceSpecArgs and GetInstanceSpecsInstanceSpecOutput values.
+// You can construct a concrete instance of `GetInstanceSpecsInstanceSpecInput` via:
+//
+//	GetInstanceSpecsInstanceSpecArgs{...}
+type GetInstanceSpecsInstanceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstanceSpecsInstanceSpecOutput() GetInstanceSpecsInstanceSpecOutput
+	ToGetInstanceSpecsInstanceSpecOutputWithContext(context.Context) GetInstanceSpecsInstanceSpecOutput
+}
+
+type GetInstanceSpecsInstanceSpecArgs struct {
+	// Default value of maximum number of connections.
+	Connection pulumi.IntInput `pulumi:"connection"`
+	// Compatible version. Values:
+	// MySQL_5_7: MySQL 5.7 version. Default value.
+	// MySQL_8_0: MySQL 8.0 version.
+	DbEngineVersion pulumi.StringInput `pulumi:"dbEngineVersion"`
+	// Instance type. The value is DoubleNode.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// Maximum IOPS per second.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// Memory size, in GB.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// Queries Per Second (QPS).
+	Qps pulumi.IntInput `pulumi:"qps"`
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// Instance specification code.
+	SpecCode pulumi.StringInput `pulumi:"specCode"`
+	// Instance specification type. Values:
+	// General: Exclusive specification (formerly "General Purpose").
+	// Shared: General specification (formerly "Shared Type").
+	SpecFamily pulumi.StringInput `pulumi:"specFamily"`
+	// The status of the available zone where the specification is located includes the following statuses:
+	// Normal: On sale.
+	// Soldout: Sold out.
+	SpecStatus pulumi.StringInput `pulumi:"specStatus"`
+	// Maximum storage space, in GB.
+	StorageMax pulumi.IntInput `pulumi:"storageMax"`
+	// Minimum storage space, in GB.
+	StorageMin pulumi.IntInput `pulumi:"storageMin"`
+	// Disk step size, in GB.
+	StorageStep pulumi.IntInput `pulumi:"storageStep"`
+	// Number of vCPUs.
+	Vcpu pulumi.IntInput `pulumi:"vcpu"`
+	// Availability zone ID.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstanceSpecsInstanceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceSpecsInstanceSpec)(nil)).Elem()
+}
+
+func (i GetInstanceSpecsInstanceSpecArgs) ToGetInstanceSpecsInstanceSpecOutput() GetInstanceSpecsInstanceSpecOutput {
+	return i.ToGetInstanceSpecsInstanceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSpecsInstanceSpecArgs) ToGetInstanceSpecsInstanceSpecOutputWithContext(ctx context.Context) GetInstanceSpecsInstanceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSpecsInstanceSpecOutput)
+}
+
+// GetInstanceSpecsInstanceSpecArrayInput is an input type that accepts GetInstanceSpecsInstanceSpecArray and GetInstanceSpecsInstanceSpecArrayOutput values.
+// You can construct a concrete instance of `GetInstanceSpecsInstanceSpecArrayInput` via:
+//
+//	GetInstanceSpecsInstanceSpecArray{ GetInstanceSpecsInstanceSpecArgs{...} }
+type GetInstanceSpecsInstanceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceSpecsInstanceSpecArrayOutput() GetInstanceSpecsInstanceSpecArrayOutput
+	ToGetInstanceSpecsInstanceSpecArrayOutputWithContext(context.Context) GetInstanceSpecsInstanceSpecArrayOutput
+}
+
+type GetInstanceSpecsInstanceSpecArray []GetInstanceSpecsInstanceSpecInput
+
+func (GetInstanceSpecsInstanceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceSpecsInstanceSpec)(nil)).Elem()
+}
+
+func (i GetInstanceSpecsInstanceSpecArray) ToGetInstanceSpecsInstanceSpecArrayOutput() GetInstanceSpecsInstanceSpecArrayOutput {
+	return i.ToGetInstanceSpecsInstanceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSpecsInstanceSpecArray) ToGetInstanceSpecsInstanceSpecArrayOutputWithContext(ctx context.Context) GetInstanceSpecsInstanceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSpecsInstanceSpecArrayOutput)
+}
+
+type GetInstanceSpecsInstanceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceSpecsInstanceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceSpecsInstanceSpec)(nil)).Elem()
+}
+
+func (o GetInstanceSpecsInstanceSpecOutput) ToGetInstanceSpecsInstanceSpecOutput() GetInstanceSpecsInstanceSpecOutput {
+	return o
+}
+
+func (o GetInstanceSpecsInstanceSpecOutput) ToGetInstanceSpecsInstanceSpecOutputWithContext(ctx context.Context) GetInstanceSpecsInstanceSpecOutput {
+	return o
+}
+
+// Default value of maximum number of connections.
+func (o GetInstanceSpecsInstanceSpecOutput) Connection() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.Connection }).(pulumi.IntOutput)
+}
+
+// Compatible version. Values:
+// MySQL_5_7: MySQL 5.7 version. Default value.
+// MySQL_8_0: MySQL 8.0 version.
+func (o GetInstanceSpecsInstanceSpecOutput) DbEngineVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.DbEngineVersion }).(pulumi.StringOutput)
+}
+
+// Instance type. The value is DoubleNode.
+func (o GetInstanceSpecsInstanceSpecOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// Maximum IOPS per second.
+func (o GetInstanceSpecsInstanceSpecOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// Memory size, in GB.
+func (o GetInstanceSpecsInstanceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// Queries Per Second (QPS).
+func (o GetInstanceSpecsInstanceSpecOutput) Qps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.Qps }).(pulumi.IntOutput)
+}
+
+// The id of the region.
+func (o GetInstanceSpecsInstanceSpecOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// Instance specification code.
+func (o GetInstanceSpecsInstanceSpecOutput) SpecCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.SpecCode }).(pulumi.StringOutput)
+}
+
+// Instance specification type. Values:
+// General: Exclusive specification (formerly "General Purpose").
+// Shared: General specification (formerly "Shared Type").
+func (o GetInstanceSpecsInstanceSpecOutput) SpecFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.SpecFamily }).(pulumi.StringOutput)
+}
+
+// The status of the available zone where the specification is located includes the following statuses:
+// Normal: On sale.
+// Soldout: Sold out.
+func (o GetInstanceSpecsInstanceSpecOutput) SpecStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.SpecStatus }).(pulumi.StringOutput)
+}
+
+// Maximum storage space, in GB.
+func (o GetInstanceSpecsInstanceSpecOutput) StorageMax() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.StorageMax }).(pulumi.IntOutput)
+}
+
+// Minimum storage space, in GB.
+func (o GetInstanceSpecsInstanceSpecOutput) StorageMin() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.StorageMin }).(pulumi.IntOutput)
+}
+
+// Disk step size, in GB.
+func (o GetInstanceSpecsInstanceSpecOutput) StorageStep() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.StorageStep }).(pulumi.IntOutput)
+}
+
+// Number of vCPUs.
+func (o GetInstanceSpecsInstanceSpecOutput) Vcpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) int { return v.Vcpu }).(pulumi.IntOutput)
+}
+
+// Availability zone ID.
+func (o GetInstanceSpecsInstanceSpecOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSpecsInstanceSpec) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstanceSpecsInstanceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceSpecsInstanceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceSpecsInstanceSpec)(nil)).Elem()
+}
+
+func (o GetInstanceSpecsInstanceSpecArrayOutput) ToGetInstanceSpecsInstanceSpecArrayOutput() GetInstanceSpecsInstanceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstanceSpecsInstanceSpecArrayOutput) ToGetInstanceSpecsInstanceSpecArrayOutputWithContext(ctx context.Context) GetInstanceSpecsInstanceSpecArrayOutput {
+	return o
+}
+
+func (o GetInstanceSpecsInstanceSpecArrayOutput) Index(i pulumi.IntInput) GetInstanceSpecsInstanceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceSpecsInstanceSpec {
+		return vs[0].([]GetInstanceSpecsInstanceSpec)[vs[1].(int)]
+	}).(GetInstanceSpecsInstanceSpecOutput)
+}
+
+type GetInstancesRdsMysqlInstance struct {
+	// The version of allow list.
+	AllowListVersion string `pulumi:"allowListVersion"`
+	// The instance has used backup space. Unit: GB.
+	BackupUse int `pulumi:"backupUse"`
+	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+	// true: Yes.
+	// false: No.
+	BinlogDump bool `pulumi:"binlogDump"`
+	// Payment methods.
+	ChargeDetail GetInstancesRdsMysqlInstanceChargeDetail `pulumi:"chargeDetail"`
+	// Connection pool type.
+	ConnectionPoolType string `pulumi:"connectionPoolType"`
+	// Node creation local time.
+	CreateTime string `pulumi:"createTime"`
+	// Data synchronization mode.
+	DataSyncMode string `pulumi:"dataSyncMode"`
+	// The version of the RDS instance.
+	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+	// Creating: The proxy is being started.
+	// Running: The proxy is running.
+	// Shutdown: The proxy is closed.
+	// Deleting: The proxy is being closed.
+	DbProxyStatus string `pulumi:"dbProxyStatus"`
+	// The endpoint info of the RDS instance.
+	Endpoints []GetInstancesRdsMysqlInstanceEndpoint `pulumi:"endpoints"`
+	// Feature status.
+	FeatureStates []GetInstancesRdsMysqlInstanceFeatureState `pulumi:"featureStates"`
+	// Whether to enable global read-only.
+	// true: Yes.
+	// false: No.
+	GlobalReadOnly bool `pulumi:"globalReadOnly"`
+	// The ID of the RDS instance.
+	Id string `pulumi:"id"`
+	// The id of the RDS instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the RDS instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The status of the RDS instance.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// Whether the table name is case sensitive, the default value is 1.
+	// Ranges:
+	// 0: Table names are stored as fixed and table names are case-sensitive.
+	// 1: Table names will be stored in lowercase and table names are not case sensitive.
+	LowerCaseTableNames string `pulumi:"lowerCaseTableNames"`
+	// Maintenance Window.
+	MaintenanceWindows []GetInstancesRdsMysqlInstanceMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// Memory size in GB.
+	Memory int `pulumi:"memory"`
+	// Average CPU usage of the instance master node in nearly one minute.
+	NodeCpuUsedPercentage float64 `pulumi:"nodeCpuUsedPercentage"`
+	// Average memory usage of the instance master node in nearly one minute.
+	NodeMemoryUsedPercentage float64 `pulumi:"nodeMemoryUsedPercentage"`
+	// The number of nodes.
+	NodeNumber int `pulumi:"nodeNumber"`
+	// Average disk usage of the instance master node in nearly one minute.
+	NodeSpaceUsedPercentage float64 `pulumi:"nodeSpaceUsedPercentage"`
+	// General instance type, different from Custom instance type.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// Instance node information.
+	Nodes []GetInstancesRdsMysqlInstanceNode `pulumi:"nodes"`
+	// The project name of the RDS instance.
+	ProjectName string `pulumi:"projectName"`
+	// The region of the RDS instance.
+	RegionId string `pulumi:"regionId"`
+	// Total instance storage space. Unit: GB.
+	StorageSpace int `pulumi:"storageSpace"`
+	// Instance storage type.
+	StorageType string `pulumi:"storageType"`
+	// The instance has used storage space. Unit: GB.
+	StorageUse int `pulumi:"storageUse"`
+	// The subnet ID of the RDS instance.
+	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GetInstancesRdsMysqlInstanceTag `pulumi:"tags"`
+	// Time zone.
+	TimeZone string `pulumi:"timeZone"`
+	// The update time of the RDS instance.
+	UpdateTime string `pulumi:"updateTime"`
+	// CPU size.
+	VCpu int `pulumi:"vCpu"`
+	// The vpc ID of the RDS instance.
+	VpcId string `pulumi:"vpcId"`
+	// The available zone of the RDS instance.
+	ZoneId string `pulumi:"zoneId"`
+	// List of availability zones where each node of the instance is located.
+	ZoneIds []string `pulumi:"zoneIds"`
+}
+
+// GetInstancesRdsMysqlInstanceInput is an input type that accepts GetInstancesRdsMysqlInstanceArgs and GetInstancesRdsMysqlInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceInput` via:
+//
+//	GetInstancesRdsMysqlInstanceArgs{...}
+type GetInstancesRdsMysqlInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceOutput() GetInstancesRdsMysqlInstanceOutput
+	ToGetInstancesRdsMysqlInstanceOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceOutput
+}
+
+type GetInstancesRdsMysqlInstanceArgs struct {
+	// The version of allow list.
+	AllowListVersion pulumi.StringInput `pulumi:"allowListVersion"`
+	// The instance has used backup space. Unit: GB.
+	BackupUse pulumi.IntInput `pulumi:"backupUse"`
+	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+	// true: Yes.
+	// false: No.
+	BinlogDump pulumi.BoolInput `pulumi:"binlogDump"`
+	// Payment methods.
+	ChargeDetail GetInstancesRdsMysqlInstanceChargeDetailInput `pulumi:"chargeDetail"`
+	// Connection pool type.
+	ConnectionPoolType pulumi.StringInput `pulumi:"connectionPoolType"`
+	// Node creation local time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Data synchronization mode.
+	DataSyncMode pulumi.StringInput `pulumi:"dataSyncMode"`
+	// The version of the RDS instance.
+	DbEngineVersion pulumi.StringInput `pulumi:"dbEngineVersion"`
+	// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+	// Creating: The proxy is being started.
+	// Running: The proxy is running.
+	// Shutdown: The proxy is closed.
+	// Deleting: The proxy is being closed.
+	DbProxyStatus pulumi.StringInput `pulumi:"dbProxyStatus"`
+	// The endpoint info of the RDS instance.
+	Endpoints GetInstancesRdsMysqlInstanceEndpointArrayInput `pulumi:"endpoints"`
+	// Feature status.
+	FeatureStates GetInstancesRdsMysqlInstanceFeatureStateArrayInput `pulumi:"featureStates"`
+	// Whether to enable global read-only.
+	// true: Yes.
+	// false: No.
+	GlobalReadOnly pulumi.BoolInput `pulumi:"globalReadOnly"`
+	// The ID of the RDS instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the RDS instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the RDS instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The status of the RDS instance.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// Whether the table name is case sensitive, the default value is 1.
+	// Ranges:
+	// 0: Table names are stored as fixed and table names are case-sensitive.
+	// 1: Table names will be stored in lowercase and table names are not case sensitive.
+	LowerCaseTableNames pulumi.StringInput `pulumi:"lowerCaseTableNames"`
+	// Maintenance Window.
+	MaintenanceWindows GetInstancesRdsMysqlInstanceMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
+	// Memory size in GB.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// Average CPU usage of the instance master node in nearly one minute.
+	NodeCpuUsedPercentage pulumi.Float64Input `pulumi:"nodeCpuUsedPercentage"`
+	// Average memory usage of the instance master node in nearly one minute.
+	NodeMemoryUsedPercentage pulumi.Float64Input `pulumi:"nodeMemoryUsedPercentage"`
+	// The number of nodes.
+	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
+	// Average disk usage of the instance master node in nearly one minute.
+	NodeSpaceUsedPercentage pulumi.Float64Input `pulumi:"nodeSpaceUsedPercentage"`
+	// General instance type, different from Custom instance type.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// Instance node information.
+	Nodes GetInstancesRdsMysqlInstanceNodeArrayInput `pulumi:"nodes"`
+	// The project name of the RDS instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region of the RDS instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// Total instance storage space. Unit: GB.
+	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
+	// Instance storage type.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+	// The instance has used storage space. Unit: GB.
+	StorageUse pulumi.IntInput `pulumi:"storageUse"`
+	// The subnet ID of the RDS instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags GetInstancesRdsMysqlInstanceTagArrayInput `pulumi:"tags"`
+	// Time zone.
+	TimeZone pulumi.StringInput `pulumi:"timeZone"`
+	// The update time of the RDS instance.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// CPU size.
+	VCpu pulumi.IntInput `pulumi:"vCpu"`
+	// The vpc ID of the RDS instance.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The available zone of the RDS instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// List of availability zones where each node of the instance is located.
+	ZoneIds pulumi.StringArrayInput `pulumi:"zoneIds"`
+}
+
+func (GetInstancesRdsMysqlInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceArgs) ToGetInstancesRdsMysqlInstanceOutput() GetInstancesRdsMysqlInstanceOutput {
+	return i.ToGetInstancesRdsMysqlInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceArgs) ToGetInstancesRdsMysqlInstanceOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceOutput)
+}
+
+// GetInstancesRdsMysqlInstanceArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceArray and GetInstancesRdsMysqlInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceArray{ GetInstancesRdsMysqlInstanceArgs{...} }
+type GetInstancesRdsMysqlInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceArrayOutput() GetInstancesRdsMysqlInstanceArrayOutput
+	ToGetInstancesRdsMysqlInstanceArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceArray []GetInstancesRdsMysqlInstanceInput
+
+func (GetInstancesRdsMysqlInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceArray) ToGetInstancesRdsMysqlInstanceArrayOutput() GetInstancesRdsMysqlInstanceArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceArray) ToGetInstancesRdsMysqlInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceOutput) ToGetInstancesRdsMysqlInstanceOutput() GetInstancesRdsMysqlInstanceOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceOutput) ToGetInstancesRdsMysqlInstanceOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceOutput {
+	return o
+}
+
+// The version of allow list.
+func (o GetInstancesRdsMysqlInstanceOutput) AllowListVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.AllowListVersion }).(pulumi.StringOutput)
+}
+
+// The instance has used backup space. Unit: GB.
+func (o GetInstancesRdsMysqlInstanceOutput) BackupUse() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.BackupUse }).(pulumi.IntOutput)
+}
+
+// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
+// true: Yes.
+// false: No.
+func (o GetInstancesRdsMysqlInstanceOutput) BinlogDump() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) bool { return v.BinlogDump }).(pulumi.BoolOutput)
+}
+
+// Payment methods.
+func (o GetInstancesRdsMysqlInstanceOutput) ChargeDetail() GetInstancesRdsMysqlInstanceChargeDetailOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) GetInstancesRdsMysqlInstanceChargeDetail { return v.ChargeDetail }).(GetInstancesRdsMysqlInstanceChargeDetailOutput)
+}
+
+// Connection pool type.
+func (o GetInstancesRdsMysqlInstanceOutput) ConnectionPoolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.ConnectionPoolType }).(pulumi.StringOutput)
+}
+
+// Node creation local time.
+func (o GetInstancesRdsMysqlInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Data synchronization mode.
+func (o GetInstancesRdsMysqlInstanceOutput) DataSyncMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DataSyncMode }).(pulumi.StringOutput)
+}
+
+// The version of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) DbEngineVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DbEngineVersion }).(pulumi.StringOutput)
+}
+
+// The running status of the proxy instance. This parameter is returned only when the database proxy is enabled. Values:
+// Creating: The proxy is being started.
+// Running: The proxy is running.
+// Shutdown: The proxy is closed.
+// Deleting: The proxy is being closed.
+func (o GetInstancesRdsMysqlInstanceOutput) DbProxyStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DbProxyStatus }).(pulumi.StringOutput)
+}
+
+// The endpoint info of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) Endpoints() GetInstancesRdsMysqlInstanceEndpointArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceEndpoint { return v.Endpoints }).(GetInstancesRdsMysqlInstanceEndpointArrayOutput)
+}
+
+// Feature status.
+func (o GetInstancesRdsMysqlInstanceOutput) FeatureStates() GetInstancesRdsMysqlInstanceFeatureStateArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceFeatureState {
+		return v.FeatureStates
+	}).(GetInstancesRdsMysqlInstanceFeatureStateArrayOutput)
+}
+
+// Whether to enable global read-only.
+// true: Yes.
+// false: No.
+func (o GetInstancesRdsMysqlInstanceOutput) GlobalReadOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) bool { return v.GlobalReadOnly }).(pulumi.BoolOutput)
+}
+
+// The ID of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The status of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// Whether the table name is case sensitive, the default value is 1.
+// Ranges:
+// 0: Table names are stored as fixed and table names are case-sensitive.
+// 1: Table names will be stored in lowercase and table names are not case sensitive.
+func (o GetInstancesRdsMysqlInstanceOutput) LowerCaseTableNames() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.LowerCaseTableNames }).(pulumi.StringOutput)
+}
+
+// Maintenance Window.
+func (o GetInstancesRdsMysqlInstanceOutput) MaintenanceWindows() GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceMaintenanceWindow {
+		return v.MaintenanceWindows
+	}).(GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput)
+}
+
+// Memory size in GB.
+func (o GetInstancesRdsMysqlInstanceOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// Average CPU usage of the instance master node in nearly one minute.
+func (o GetInstancesRdsMysqlInstanceOutput) NodeCpuUsedPercentage() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) float64 { return v.NodeCpuUsedPercentage }).(pulumi.Float64Output)
+}
+
+// Average memory usage of the instance master node in nearly one minute.
+func (o GetInstancesRdsMysqlInstanceOutput) NodeMemoryUsedPercentage() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) float64 { return v.NodeMemoryUsedPercentage }).(pulumi.Float64Output)
+}
+
+// The number of nodes.
+func (o GetInstancesRdsMysqlInstanceOutput) NodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.NodeNumber }).(pulumi.IntOutput)
+}
+
+// Average disk usage of the instance master node in nearly one minute.
+func (o GetInstancesRdsMysqlInstanceOutput) NodeSpaceUsedPercentage() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) float64 { return v.NodeSpaceUsedPercentage }).(pulumi.Float64Output)
+}
+
+// General instance type, different from Custom instance type.
+func (o GetInstancesRdsMysqlInstanceOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// Instance node information.
+func (o GetInstancesRdsMysqlInstanceOutput) Nodes() GetInstancesRdsMysqlInstanceNodeArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceNode { return v.Nodes }).(GetInstancesRdsMysqlInstanceNodeArrayOutput)
+}
+
+// The project name of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// Total instance storage space. Unit: GB.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
+}
+
+// Instance storage type.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// The instance has used storage space. Unit: GB.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageUse() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageUse }).(pulumi.IntOutput)
+}
+
+// The subnet ID of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetInstancesRdsMysqlInstanceOutput) Tags() GetInstancesRdsMysqlInstanceTagArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceTag { return v.Tags }).(GetInstancesRdsMysqlInstanceTagArrayOutput)
+}
+
+// Time zone.
+func (o GetInstancesRdsMysqlInstanceOutput) TimeZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.TimeZone }).(pulumi.StringOutput)
+}
+
+// The update time of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// CPU size.
+func (o GetInstancesRdsMysqlInstanceOutput) VCpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.VCpu }).(pulumi.IntOutput)
+}
+
+// The vpc ID of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The available zone of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// List of availability zones where each node of the instance is located.
+func (o GetInstancesRdsMysqlInstanceOutput) ZoneIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []string { return v.ZoneIds }).(pulumi.StringArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceArrayOutput) ToGetInstancesRdsMysqlInstanceArrayOutput() GetInstancesRdsMysqlInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceArrayOutput) ToGetInstancesRdsMysqlInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstance {
+		return vs[0].([]GetInstancesRdsMysqlInstance)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceOutput)
+}
+
+type GetInstancesRdsMysqlInstanceChargeDetail struct {
+	// Whether to automatically renew in prepaid scenarios.
+	// Autorenew_Enable
+	// Autorenew_Disable (default).
+	AutoRenew bool `pulumi:"autoRenew"`
+	// Billing expiry time (yearly and monthly only).
+	ChargeEndTime string `pulumi:"chargeEndTime"`
+	// Billing start time (pay-as-you-go & monthly subscription).
+	ChargeStartTime string `pulumi:"chargeStartTime"`
+	// Pay status. Value:
+	// normal - normal
+	// overdue - overdue
+	// .
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of the RDS instance.
+	ChargeType string `pulumi:"chargeType"`
+	// Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
+	// Shutdown time in arrears (pay-as-you-go & monthly subscription).
+	OverdueTime string `pulumi:"overdueTime"`
+	// Purchase duration in prepaid scenarios. Default: 1.
+	Period int `pulumi:"period"`
+	// The purchase cycle in the prepaid scenario.
+	// Month - monthly subscription (default)
+	// Year - Package year.
+	PeriodUnit string `pulumi:"periodUnit"`
+	// Restore time of temporary upgrade.
+	TempModifyEndTime string `pulumi:"tempModifyEndTime"`
+	// Temporary upgrade start time.
+	TempModifyStartTime string `pulumi:"tempModifyStartTime"`
+}
+
+// GetInstancesRdsMysqlInstanceChargeDetailInput is an input type that accepts GetInstancesRdsMysqlInstanceChargeDetailArgs and GetInstancesRdsMysqlInstanceChargeDetailOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceChargeDetailInput` via:
+//
+//	GetInstancesRdsMysqlInstanceChargeDetailArgs{...}
+type GetInstancesRdsMysqlInstanceChargeDetailInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceChargeDetailOutput() GetInstancesRdsMysqlInstanceChargeDetailOutput
+	ToGetInstancesRdsMysqlInstanceChargeDetailOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceChargeDetailOutput
+}
+
+type GetInstancesRdsMysqlInstanceChargeDetailArgs struct {
+	// Whether to automatically renew in prepaid scenarios.
+	// Autorenew_Enable
+	// Autorenew_Disable (default).
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// Billing expiry time (yearly and monthly only).
+	ChargeEndTime pulumi.StringInput `pulumi:"chargeEndTime"`
+	// Billing start time (pay-as-you-go & monthly subscription).
+	ChargeStartTime pulumi.StringInput `pulumi:"chargeStartTime"`
+	// Pay status. Value:
+	// normal - normal
+	// overdue - overdue
+	// .
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of the RDS instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
+	// Shutdown time in arrears (pay-as-you-go & monthly subscription).
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// Purchase duration in prepaid scenarios. Default: 1.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The purchase cycle in the prepaid scenario.
+	// Month - monthly subscription (default)
+	// Year - Package year.
+	PeriodUnit pulumi.StringInput `pulumi:"periodUnit"`
+	// Restore time of temporary upgrade.
+	TempModifyEndTime pulumi.StringInput `pulumi:"tempModifyEndTime"`
+	// Temporary upgrade start time.
+	TempModifyStartTime pulumi.StringInput `pulumi:"tempModifyStartTime"`
+}
+
+func (GetInstancesRdsMysqlInstanceChargeDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceChargeDetail)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceChargeDetailArgs) ToGetInstancesRdsMysqlInstanceChargeDetailOutput() GetInstancesRdsMysqlInstanceChargeDetailOutput {
+	return i.ToGetInstancesRdsMysqlInstanceChargeDetailOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceChargeDetailArgs) ToGetInstancesRdsMysqlInstanceChargeDetailOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceChargeDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceChargeDetailOutput)
+}
+
+type GetInstancesRdsMysqlInstanceChargeDetailOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceChargeDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceChargeDetail)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) ToGetInstancesRdsMysqlInstanceChargeDetailOutput() GetInstancesRdsMysqlInstanceChargeDetailOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) ToGetInstancesRdsMysqlInstanceChargeDetailOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceChargeDetailOutput {
+	return o
+}
+
+// Whether to automatically renew in prepaid scenarios.
+// Autorenew_Enable
+// Autorenew_Disable (default).
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// Billing expiry time (yearly and monthly only).
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) ChargeEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.ChargeEndTime }).(pulumi.StringOutput)
+}
+
+// Billing start time (pay-as-you-go & monthly subscription).
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) ChargeStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.ChargeStartTime }).(pulumi.StringOutput)
+}
+
+// Pay status. Value:
+// normal - normal
+// overdue - overdue
+// .
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
+// Shutdown time in arrears (pay-as-you-go & monthly subscription).
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// Purchase duration in prepaid scenarios. Default: 1.
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The purchase cycle in the prepaid scenario.
+// Month - monthly subscription (default)
+// Year - Package year.
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) PeriodUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.PeriodUnit }).(pulumi.StringOutput)
+}
+
+// Restore time of temporary upgrade.
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) TempModifyEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.TempModifyEndTime }).(pulumi.StringOutput)
+}
+
+// Temporary upgrade start time.
+func (o GetInstancesRdsMysqlInstanceChargeDetailOutput) TempModifyStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceChargeDetail) string { return v.TempModifyStartTime }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpoint struct {
+	// Address list.
+	Addresses []GetInstancesRdsMysqlInstanceEndpointAddress `pulumi:"addresses"`
+	// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+	AutoAddNewNodes string `pulumi:"autoAddNewNodes"`
+	// Address description.
+	Description string `pulumi:"description"`
+	// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadOnly string `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadWriteSplitting string `pulumi:"enableReadWriteSplitting"`
+	// Instance connection terminal ID.
+	EndpointId string `pulumi:"endpointId"`
+	// The instance connection terminal name.
+	EndpointName string `pulumi:"endpointName"`
+	// Terminal type:
+	// Cluster: The default terminal. (created by default)
+	// Primary: Primary node terminal.
+	// Custom: Custom terminal.
+	// Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+	// AllNode: All node terminals. (Only the operation and maintenance side).
+	EndpointType string `pulumi:"endpointType"`
+	// Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+	IdleConnectionReclaim bool `pulumi:"idleConnectionReclaim"`
+	// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+	NodeWeights []GetInstancesRdsMysqlInstanceEndpointNodeWeight `pulumi:"nodeWeights"`
+	// Read and write mode:
+	// ReadWrite: read and write
+	// ReadOnly: read only (default).
+	ReadWriteMode string `pulumi:"readWriteMode"`
+}
+
+// GetInstancesRdsMysqlInstanceEndpointInput is an input type that accepts GetInstancesRdsMysqlInstanceEndpointArgs and GetInstancesRdsMysqlInstanceEndpointOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceEndpointInput` via:
+//
+//	GetInstancesRdsMysqlInstanceEndpointArgs{...}
+type GetInstancesRdsMysqlInstanceEndpointInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceEndpointOutput() GetInstancesRdsMysqlInstanceEndpointOutput
+	ToGetInstancesRdsMysqlInstanceEndpointOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceEndpointOutput
+}
+
+type GetInstancesRdsMysqlInstanceEndpointArgs struct {
+	// Address list.
+	Addresses GetInstancesRdsMysqlInstanceEndpointAddressArrayInput `pulumi:"addresses"`
+	// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+	AutoAddNewNodes pulumi.StringInput `pulumi:"autoAddNewNodes"`
+	// Address description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadOnly pulumi.StringInput `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadWriteSplitting pulumi.StringInput `pulumi:"enableReadWriteSplitting"`
+	// Instance connection terminal ID.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The instance connection terminal name.
+	EndpointName pulumi.StringInput `pulumi:"endpointName"`
+	// Terminal type:
+	// Cluster: The default terminal. (created by default)
+	// Primary: Primary node terminal.
+	// Custom: Custom terminal.
+	// Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+	// AllNode: All node terminals. (Only the operation and maintenance side).
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+	IdleConnectionReclaim pulumi.BoolInput `pulumi:"idleConnectionReclaim"`
+	// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+	NodeWeights GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayInput `pulumi:"nodeWeights"`
+	// Read and write mode:
+	// ReadWrite: read and write
+	// ReadOnly: read only (default).
+	ReadWriteMode pulumi.StringInput `pulumi:"readWriteMode"`
+}
+
+func (GetInstancesRdsMysqlInstanceEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpoint)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointArgs) ToGetInstancesRdsMysqlInstanceEndpointOutput() GetInstancesRdsMysqlInstanceEndpointOutput {
+	return i.ToGetInstancesRdsMysqlInstanceEndpointOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointArgs) ToGetInstancesRdsMysqlInstanceEndpointOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceEndpointOutput)
+}
+
+// GetInstancesRdsMysqlInstanceEndpointArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceEndpointArray and GetInstancesRdsMysqlInstanceEndpointArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceEndpointArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceEndpointArray{ GetInstancesRdsMysqlInstanceEndpointArgs{...} }
+type GetInstancesRdsMysqlInstanceEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceEndpointArrayOutput() GetInstancesRdsMysqlInstanceEndpointArrayOutput
+	ToGetInstancesRdsMysqlInstanceEndpointArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceEndpointArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceEndpointArray []GetInstancesRdsMysqlInstanceEndpointInput
+
+func (GetInstancesRdsMysqlInstanceEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceEndpoint)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointArray) ToGetInstancesRdsMysqlInstanceEndpointArrayOutput() GetInstancesRdsMysqlInstanceEndpointArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointArray) ToGetInstancesRdsMysqlInstanceEndpointArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceEndpointArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpoint)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) ToGetInstancesRdsMysqlInstanceEndpointOutput() GetInstancesRdsMysqlInstanceEndpointOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) ToGetInstancesRdsMysqlInstanceEndpointOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointOutput {
+	return o
+}
+
+// Address list.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) Addresses() GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) []GetInstancesRdsMysqlInstanceEndpointAddress {
+		return v.Addresses
+	}).(GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput)
+}
+
+// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) AutoAddNewNodes() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.AutoAddNewNodes }).(pulumi.StringOutput)
+}
+
+// Address description.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) EnableReadOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.EnableReadOnly }).(pulumi.StringOutput)
+}
+
+// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) EnableReadWriteSplitting() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.EnableReadWriteSplitting }).(pulumi.StringOutput)
+}
+
+// Instance connection terminal ID.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// The instance connection terminal name.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) EndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.EndpointName }).(pulumi.StringOutput)
+}
+
+// Terminal type:
+// Cluster: The default terminal. (created by default)
+// Primary: Primary node terminal.
+// Custom: Custom terminal.
+// Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+// AllNode: All node terminals. (Only the operation and maintenance side).
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// Whether the idle connection reclaim function is enabled. true: Enabled. false: Disabled.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) IdleConnectionReclaim() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) bool { return v.IdleConnectionReclaim }).(pulumi.BoolOutput)
+}
+
+// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) NodeWeights() GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) []GetInstancesRdsMysqlInstanceEndpointNodeWeight {
+		return v.NodeWeights
+	}).(GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput)
+}
+
+// Read and write mode:
+// ReadWrite: read and write
+// ReadOnly: read only (default).
+func (o GetInstancesRdsMysqlInstanceEndpointOutput) ReadWriteMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpoint) string { return v.ReadWriteMode }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceEndpoint)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointArrayOutput) ToGetInstancesRdsMysqlInstanceEndpointArrayOutput() GetInstancesRdsMysqlInstanceEndpointArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointArrayOutput) ToGetInstancesRdsMysqlInstanceEndpointArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceEndpoint {
+		return vs[0].([]GetInstancesRdsMysqlInstanceEndpoint)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceEndpointOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointAddress struct {
+	// DNS Visibility.
+	DnsVisibility bool `pulumi:"dnsVisibility"`
+	// Connect domain name.
+	Domain string `pulumi:"domain"`
+	// The ID of the EIP, only valid for Public addresses.
+	EipId string `pulumi:"eipId"`
+	// The IP Address.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address type, temporarily Private, Public, PublicService.
+	NetworkType string `pulumi:"networkType"`
+	// The Port.
+	Port string `pulumi:"port"`
+	// The subnet ID of the RDS instance.
+	SubnetId string `pulumi:"subnetId"`
+}
+
+// GetInstancesRdsMysqlInstanceEndpointAddressInput is an input type that accepts GetInstancesRdsMysqlInstanceEndpointAddressArgs and GetInstancesRdsMysqlInstanceEndpointAddressOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceEndpointAddressInput` via:
+//
+//	GetInstancesRdsMysqlInstanceEndpointAddressArgs{...}
+type GetInstancesRdsMysqlInstanceEndpointAddressInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceEndpointAddressOutput() GetInstancesRdsMysqlInstanceEndpointAddressOutput
+	ToGetInstancesRdsMysqlInstanceEndpointAddressOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceEndpointAddressOutput
+}
+
+type GetInstancesRdsMysqlInstanceEndpointAddressArgs struct {
+	// DNS Visibility.
+	DnsVisibility pulumi.BoolInput `pulumi:"dnsVisibility"`
+	// Connect domain name.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The ID of the EIP, only valid for Public addresses.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The IP Address.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address type, temporarily Private, Public, PublicService.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// The Port.
+	Port pulumi.StringInput `pulumi:"port"`
+	// The subnet ID of the RDS instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+}
+
+func (GetInstancesRdsMysqlInstanceEndpointAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointAddress)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointAddressArgs) ToGetInstancesRdsMysqlInstanceEndpointAddressOutput() GetInstancesRdsMysqlInstanceEndpointAddressOutput {
+	return i.ToGetInstancesRdsMysqlInstanceEndpointAddressOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointAddressArgs) ToGetInstancesRdsMysqlInstanceEndpointAddressOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceEndpointAddressOutput)
+}
+
+// GetInstancesRdsMysqlInstanceEndpointAddressArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceEndpointAddressArray and GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceEndpointAddressArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceEndpointAddressArray{ GetInstancesRdsMysqlInstanceEndpointAddressArgs{...} }
+type GetInstancesRdsMysqlInstanceEndpointAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutput() GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput
+	ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceEndpointAddressArray []GetInstancesRdsMysqlInstanceEndpointAddressInput
+
+func (GetInstancesRdsMysqlInstanceEndpointAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceEndpointAddress)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointAddressArray) ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutput() GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointAddressArray) ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointAddressOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceEndpointAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointAddress)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) ToGetInstancesRdsMysqlInstanceEndpointAddressOutput() GetInstancesRdsMysqlInstanceEndpointAddressOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) ToGetInstancesRdsMysqlInstanceEndpointAddressOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointAddressOutput {
+	return o
+}
+
+// DNS Visibility.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) DnsVisibility() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) bool { return v.DnsVisibility }).(pulumi.BoolOutput)
+}
+
+// Connect domain name.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The ID of the EIP, only valid for Public addresses.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The IP Address.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address type, temporarily Private, Public, PublicService.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// The Port.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// The subnet ID of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceEndpointAddressOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointAddress) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceEndpointAddress)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput) ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutput() GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput) ToGetInstancesRdsMysqlInstanceEndpointAddressArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceEndpointAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceEndpointAddress {
+		return vs[0].([]GetInstancesRdsMysqlInstanceEndpointAddress)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceEndpointAddressOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointNodeWeight struct {
+	// Node ID.
+	NodeId string `pulumi:"nodeId"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType string `pulumi:"nodeType"`
+	// The weight of the node.
+	Weight int `pulumi:"weight"`
+}
+
+// GetInstancesRdsMysqlInstanceEndpointNodeWeightInput is an input type that accepts GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs and GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceEndpointNodeWeightInput` via:
+//
+//	GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs{...}
+type GetInstancesRdsMysqlInstanceEndpointNodeWeightInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutput() GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput
+	ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput
+}
+
+type GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs struct {
+	// Node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// The weight of the node.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointNodeWeight)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutput() GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput {
+	return i.ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput)
+}
+
+// GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceEndpointNodeWeightArray and GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceEndpointNodeWeightArray{ GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs{...} }
+type GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput() GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput
+	ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceEndpointNodeWeightArray []GetInstancesRdsMysqlInstanceEndpointNodeWeightInput
+
+func (GetInstancesRdsMysqlInstanceEndpointNodeWeightArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceEndpointNodeWeight)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointNodeWeightArray) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput() GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceEndpointNodeWeightArray) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointNodeWeight)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutput() GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput {
+	return o
+}
+
+// Node ID.
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointNodeWeight) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// Node type. Value: Primary: Primary node.
+// Secondary: Standby node.
+// ReadOnly: Read-only node.
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointNodeWeight) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// The weight of the node.
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceEndpointNodeWeight) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceEndpointNodeWeight)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput() GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput) ToGetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceEndpointNodeWeight {
+		return vs[0].([]GetInstancesRdsMysqlInstanceEndpointNodeWeight)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput)
+}
+
+type GetInstancesRdsMysqlInstanceFeatureState struct {
+	// Whether it is enabled. Values:
+	// true: Enabled.
+	// false: Disabled.
+	Enable bool `pulumi:"enable"`
+	// Feature name.
+	FeatureName string `pulumi:"featureName"`
+	// Whether it support this function. Value:
+	// true: Supported.
+	// false: Not supported.
+	Support bool `pulumi:"support"`
+}
+
+// GetInstancesRdsMysqlInstanceFeatureStateInput is an input type that accepts GetInstancesRdsMysqlInstanceFeatureStateArgs and GetInstancesRdsMysqlInstanceFeatureStateOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceFeatureStateInput` via:
+//
+//	GetInstancesRdsMysqlInstanceFeatureStateArgs{...}
+type GetInstancesRdsMysqlInstanceFeatureStateInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceFeatureStateOutput() GetInstancesRdsMysqlInstanceFeatureStateOutput
+	ToGetInstancesRdsMysqlInstanceFeatureStateOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceFeatureStateOutput
+}
+
+type GetInstancesRdsMysqlInstanceFeatureStateArgs struct {
+	// Whether it is enabled. Values:
+	// true: Enabled.
+	// false: Disabled.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Feature name.
+	FeatureName pulumi.StringInput `pulumi:"featureName"`
+	// Whether it support this function. Value:
+	// true: Supported.
+	// false: Not supported.
+	Support pulumi.BoolInput `pulumi:"support"`
+}
+
+func (GetInstancesRdsMysqlInstanceFeatureStateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceFeatureState)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceFeatureStateArgs) ToGetInstancesRdsMysqlInstanceFeatureStateOutput() GetInstancesRdsMysqlInstanceFeatureStateOutput {
+	return i.ToGetInstancesRdsMysqlInstanceFeatureStateOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceFeatureStateArgs) ToGetInstancesRdsMysqlInstanceFeatureStateOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceFeatureStateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceFeatureStateOutput)
+}
+
+// GetInstancesRdsMysqlInstanceFeatureStateArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceFeatureStateArray and GetInstancesRdsMysqlInstanceFeatureStateArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceFeatureStateArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceFeatureStateArray{ GetInstancesRdsMysqlInstanceFeatureStateArgs{...} }
+type GetInstancesRdsMysqlInstanceFeatureStateArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutput() GetInstancesRdsMysqlInstanceFeatureStateArrayOutput
+	ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceFeatureStateArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceFeatureStateArray []GetInstancesRdsMysqlInstanceFeatureStateInput
+
+func (GetInstancesRdsMysqlInstanceFeatureStateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceFeatureState)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceFeatureStateArray) ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutput() GetInstancesRdsMysqlInstanceFeatureStateArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceFeatureStateArray) ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceFeatureStateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceFeatureStateArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceFeatureStateOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceFeatureStateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceFeatureState)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceFeatureStateOutput) ToGetInstancesRdsMysqlInstanceFeatureStateOutput() GetInstancesRdsMysqlInstanceFeatureStateOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceFeatureStateOutput) ToGetInstancesRdsMysqlInstanceFeatureStateOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceFeatureStateOutput {
+	return o
+}
+
+// Whether it is enabled. Values:
+// true: Enabled.
+// false: Disabled.
+func (o GetInstancesRdsMysqlInstanceFeatureStateOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceFeatureState) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Feature name.
+func (o GetInstancesRdsMysqlInstanceFeatureStateOutput) FeatureName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceFeatureState) string { return v.FeatureName }).(pulumi.StringOutput)
+}
+
+// Whether it support this function. Value:
+// true: Supported.
+// false: Not supported.
+func (o GetInstancesRdsMysqlInstanceFeatureStateOutput) Support() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceFeatureState) bool { return v.Support }).(pulumi.BoolOutput)
+}
+
+type GetInstancesRdsMysqlInstanceFeatureStateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceFeatureStateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceFeatureState)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceFeatureStateArrayOutput) ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutput() GetInstancesRdsMysqlInstanceFeatureStateArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceFeatureStateArrayOutput) ToGetInstancesRdsMysqlInstanceFeatureStateArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceFeatureStateArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceFeatureStateArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceFeatureStateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceFeatureState {
+		return vs[0].([]GetInstancesRdsMysqlInstanceFeatureState)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceFeatureStateOutput)
+}
+
+type GetInstancesRdsMysqlInstanceMaintenanceWindow struct {
+	// DayKind of maintainable window. Value: Week. Month.
+	DayKind string `pulumi:"dayKind"`
+	// Days of maintainable window of the month.
+	DayOfMonths []int `pulumi:"dayOfMonths"`
+	// Days of maintainable window of the week.
+	DayOfWeeks []string `pulumi:"dayOfWeeks"`
+	// The maintainable time of the RDS instance.
+	MaintenanceTime string `pulumi:"maintenanceTime"`
+}
+
+// GetInstancesRdsMysqlInstanceMaintenanceWindowInput is an input type that accepts GetInstancesRdsMysqlInstanceMaintenanceWindowArgs and GetInstancesRdsMysqlInstanceMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceMaintenanceWindowInput` via:
+//
+//	GetInstancesRdsMysqlInstanceMaintenanceWindowArgs{...}
+type GetInstancesRdsMysqlInstanceMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutput() GetInstancesRdsMysqlInstanceMaintenanceWindowOutput
+	ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceMaintenanceWindowOutput
+}
+
+type GetInstancesRdsMysqlInstanceMaintenanceWindowArgs struct {
+	// DayKind of maintainable window. Value: Week. Month.
+	DayKind pulumi.StringInput `pulumi:"dayKind"`
+	// Days of maintainable window of the month.
+	DayOfMonths pulumi.IntArrayInput `pulumi:"dayOfMonths"`
+	// Days of maintainable window of the week.
+	DayOfWeeks pulumi.StringArrayInput `pulumi:"dayOfWeeks"`
+	// The maintainable time of the RDS instance.
+	MaintenanceTime pulumi.StringInput `pulumi:"maintenanceTime"`
+}
+
+func (GetInstancesRdsMysqlInstanceMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceMaintenanceWindowArgs) ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutput() GetInstancesRdsMysqlInstanceMaintenanceWindowOutput {
+	return i.ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceMaintenanceWindowArgs) ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceMaintenanceWindowOutput)
+}
+
+// GetInstancesRdsMysqlInstanceMaintenanceWindowArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceMaintenanceWindowArray and GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceMaintenanceWindowArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceMaintenanceWindowArray{ GetInstancesRdsMysqlInstanceMaintenanceWindowArgs{...} }
+type GetInstancesRdsMysqlInstanceMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput() GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput
+	ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceMaintenanceWindowArray []GetInstancesRdsMysqlInstanceMaintenanceWindowInput
+
+func (GetInstancesRdsMysqlInstanceMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceMaintenanceWindowArray) ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput() GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceMaintenanceWindowArray) ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutput() GetInstancesRdsMysqlInstanceMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) ToGetInstancesRdsMysqlInstanceMaintenanceWindowOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceMaintenanceWindowOutput {
+	return o
+}
+
+// DayKind of maintainable window. Value: Week. Month.
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) DayKind() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceMaintenanceWindow) string { return v.DayKind }).(pulumi.StringOutput)
+}
+
+// Days of maintainable window of the month.
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) DayOfMonths() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceMaintenanceWindow) []int { return v.DayOfMonths }).(pulumi.IntArrayOutput)
+}
+
+// Days of maintainable window of the week.
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) DayOfWeeks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceMaintenanceWindow) []string { return v.DayOfWeeks }).(pulumi.StringArrayOutput)
+}
+
+// The maintainable time of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowOutput) MaintenanceTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceMaintenanceWindow) string { return v.MaintenanceTime }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput) ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput() GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput) ToGetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceMaintenanceWindow {
+		return vs[0].([]GetInstancesRdsMysqlInstanceMaintenanceWindow)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceMaintenanceWindowOutput)
+}
+
+type GetInstancesRdsMysqlInstanceNode struct {
+	// Node creation local time.
+	CreateTime string `pulumi:"createTime"`
+	// The id of the RDS instance.
+	InstanceId string `pulumi:"instanceId"`
+	// Memory size in GB.
+	Memory int `pulumi:"memory"`
+	// Node ID.
+	NodeId string `pulumi:"nodeId"`
+	// General instance type, different from Custom instance type.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// Node state, value: aligned with instance state.
+	NodeStatus string `pulumi:"nodeStatus"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType string `pulumi:"nodeType"`
+	// The region of the RDS instance.
+	RegionId string `pulumi:"regionId"`
+	// The update time of the RDS instance.
+	UpdateTime string `pulumi:"updateTime"`
+	// CPU size.
+	VCpu int `pulumi:"vCpu"`
+	// The available zone of the RDS instance.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesRdsMysqlInstanceNodeInput is an input type that accepts GetInstancesRdsMysqlInstanceNodeArgs and GetInstancesRdsMysqlInstanceNodeOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceNodeInput` via:
+//
+//	GetInstancesRdsMysqlInstanceNodeArgs{...}
+type GetInstancesRdsMysqlInstanceNodeInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceNodeOutput() GetInstancesRdsMysqlInstanceNodeOutput
+	ToGetInstancesRdsMysqlInstanceNodeOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceNodeOutput
+}
+
+type GetInstancesRdsMysqlInstanceNodeArgs struct {
+	// Node creation local time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The id of the RDS instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Memory size in GB.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// Node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// General instance type, different from Custom instance type.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// Node state, value: aligned with instance state.
+	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// The region of the RDS instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The update time of the RDS instance.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// CPU size.
+	VCpu pulumi.IntInput `pulumi:"vCpu"`
+	// The available zone of the RDS instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesRdsMysqlInstanceNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceNodeArgs) ToGetInstancesRdsMysqlInstanceNodeOutput() GetInstancesRdsMysqlInstanceNodeOutput {
+	return i.ToGetInstancesRdsMysqlInstanceNodeOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceNodeArgs) ToGetInstancesRdsMysqlInstanceNodeOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceNodeOutput)
+}
+
+// GetInstancesRdsMysqlInstanceNodeArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceNodeArray and GetInstancesRdsMysqlInstanceNodeArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceNodeArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceNodeArray{ GetInstancesRdsMysqlInstanceNodeArgs{...} }
+type GetInstancesRdsMysqlInstanceNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceNodeArrayOutput() GetInstancesRdsMysqlInstanceNodeArrayOutput
+	ToGetInstancesRdsMysqlInstanceNodeArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceNodeArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceNodeArray []GetInstancesRdsMysqlInstanceNodeInput
+
+func (GetInstancesRdsMysqlInstanceNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceNode)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceNodeArray) ToGetInstancesRdsMysqlInstanceNodeArrayOutput() GetInstancesRdsMysqlInstanceNodeArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceNodeArray) ToGetInstancesRdsMysqlInstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceNodeArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceNodeOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceNodeOutput) ToGetInstancesRdsMysqlInstanceNodeOutput() GetInstancesRdsMysqlInstanceNodeOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceNodeOutput) ToGetInstancesRdsMysqlInstanceNodeOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceNodeOutput {
+	return o
+}
+
+// Node creation local time.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The id of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Memory size in GB.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// Node ID.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// General instance type, different from Custom instance type.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// Node state, value: aligned with instance state.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) NodeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.NodeStatus }).(pulumi.StringOutput)
+}
+
+// Node type. Value: Primary: Primary node.
+// Secondary: Standby node.
+// ReadOnly: Read-only node.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// The region of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The update time of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// CPU size.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) VCpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) int { return v.VCpu }).(pulumi.IntOutput)
+}
+
+// The available zone of the RDS instance.
+func (o GetInstancesRdsMysqlInstanceNodeOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsMysqlInstanceNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceNode)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceNodeArrayOutput) ToGetInstancesRdsMysqlInstanceNodeArrayOutput() GetInstancesRdsMysqlInstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceNodeArrayOutput) ToGetInstancesRdsMysqlInstanceNodeArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceNodeArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceNode {
+		return vs[0].([]GetInstancesRdsMysqlInstanceNode)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceNodeOutput)
+}
+
+type GetInstancesRdsMysqlInstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesRdsMysqlInstanceTagInput is an input type that accepts GetInstancesRdsMysqlInstanceTagArgs and GetInstancesRdsMysqlInstanceTagOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceTagInput` via:
+//
+//	GetInstancesRdsMysqlInstanceTagArgs{...}
+type GetInstancesRdsMysqlInstanceTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceTagOutput() GetInstancesRdsMysqlInstanceTagOutput
+	ToGetInstancesRdsMysqlInstanceTagOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceTagOutput
+}
+
+type GetInstancesRdsMysqlInstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesRdsMysqlInstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceTagArgs) ToGetInstancesRdsMysqlInstanceTagOutput() GetInstancesRdsMysqlInstanceTagOutput {
+	return i.ToGetInstancesRdsMysqlInstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceTagArgs) ToGetInstancesRdsMysqlInstanceTagOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceTagOutput)
+}
+
+// GetInstancesRdsMysqlInstanceTagArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceTagArray and GetInstancesRdsMysqlInstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceTagArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceTagArray{ GetInstancesRdsMysqlInstanceTagArgs{...} }
+type GetInstancesRdsMysqlInstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceTagArrayOutput() GetInstancesRdsMysqlInstanceTagArrayOutput
+	ToGetInstancesRdsMysqlInstanceTagArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceTagArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceTagArray []GetInstancesRdsMysqlInstanceTagInput
+
+func (GetInstancesRdsMysqlInstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceTagArray) ToGetInstancesRdsMysqlInstanceTagArrayOutput() GetInstancesRdsMysqlInstanceTagArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceTagArray) ToGetInstancesRdsMysqlInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceTagArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceTagOutput) ToGetInstancesRdsMysqlInstanceTagOutput() GetInstancesRdsMysqlInstanceTagOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceTagOutput) ToGetInstancesRdsMysqlInstanceTagOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesRdsMysqlInstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesRdsMysqlInstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsMysqlInstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceTagArrayOutput) ToGetInstancesRdsMysqlInstanceTagArrayOutput() GetInstancesRdsMysqlInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceTagArrayOutput) ToGetInstancesRdsMysqlInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceTagArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceTag {
+		return vs[0].([]GetInstancesRdsMysqlInstanceTag)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceTagOutput)
+}
+
+type GetInstancesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesTagInput is an input type that accepts GetInstancesTagArgs and GetInstancesTagOutput values.
+// You can construct a concrete instance of `GetInstancesTagInput` via:
+//
+//	GetInstancesTagArgs{...}
+type GetInstancesTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagOutput() GetInstancesTagOutput
+	ToGetInstancesTagOutputWithContext(context.Context) GetInstancesTagOutput
+}
+
+type GetInstancesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return i.ToGetInstancesTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagOutput)
+}
+
+// GetInstancesTagArrayInput is an input type that accepts GetInstancesTagArray and GetInstancesTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesTagArrayInput` via:
+//
+//	GetInstancesTagArray{ GetInstancesTagArgs{...} }
+type GetInstancesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput
+	ToGetInstancesTagArrayOutputWithContext(context.Context) GetInstancesTagArrayOutput
+}
+
+type GetInstancesTagArray []GetInstancesTagInput
+
+func (GetInstancesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return i.ToGetInstancesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagArrayOutput)
+}
+
+type GetInstancesTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return o
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) Index(i pulumi.IntInput) GetInstancesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesTag {
+		return vs[0].([]GetInstancesTag)[vs[1].(int)]
+	}).(GetInstancesTagOutput)
+}
+
+type GetParameterTemplatesTemplate struct {
+	// The account ID.
+	AccountId string `pulumi:"accountId"`
+	// Creation time.
+	CreateTime string `pulumi:"createTime"`
+	// Does the template contain parameters that require restart.
+	NeedRestart bool `pulumi:"needRestart"`
+	// The number of parameters contained in the template.
+	ParameterNum int `pulumi:"parameterNum"`
+	// The project to which the template belongs.
+	ProjectName string `pulumi:"projectName"`
+	// Template category, with a value of DBEngine (database engine parameters).
+	TemplateCategory string `pulumi:"templateCategory"`
+	// Parameter template description.
+	TemplateDesc string `pulumi:"templateDesc"`
+	// Parameter template ID.
+	TemplateId string `pulumi:"templateId"`
+	// Parameter template name.
+	TemplateName string `pulumi:"templateName"`
+	// Parameters contained in the template.
+	TemplateParams []GetParameterTemplatesTemplateTemplateParam `pulumi:"templateParams"`
+	// Parameter template source, value range: System. User.
+	TemplateSource string `pulumi:"templateSource"`
+	// Database type of parameter template. The default value is Mysql.
+	TemplateType string `pulumi:"templateType"`
+	// Database version of parameter template. Value range:
+	// MySQL_5_7: Default value. MySQL 5.7 version.
+	// MySQL_8_0: MySQL 8.0 version.
+	TemplateTypeVersion string `pulumi:"templateTypeVersion"`
+	// Modification time of the template.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetParameterTemplatesTemplateInput is an input type that accepts GetParameterTemplatesTemplateArgs and GetParameterTemplatesTemplateOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesTemplateInput` via:
+//
+//	GetParameterTemplatesTemplateArgs{...}
+type GetParameterTemplatesTemplateInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesTemplateOutput() GetParameterTemplatesTemplateOutput
+	ToGetParameterTemplatesTemplateOutputWithContext(context.Context) GetParameterTemplatesTemplateOutput
+}
+
+type GetParameterTemplatesTemplateArgs struct {
+	// The account ID.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// Creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Does the template contain parameters that require restart.
+	NeedRestart pulumi.BoolInput `pulumi:"needRestart"`
+	// The number of parameters contained in the template.
+	ParameterNum pulumi.IntInput `pulumi:"parameterNum"`
+	// The project to which the template belongs.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Template category, with a value of DBEngine (database engine parameters).
+	TemplateCategory pulumi.StringInput `pulumi:"templateCategory"`
+	// Parameter template description.
+	TemplateDesc pulumi.StringInput `pulumi:"templateDesc"`
+	// Parameter template ID.
+	TemplateId pulumi.StringInput `pulumi:"templateId"`
+	// Parameter template name.
+	TemplateName pulumi.StringInput `pulumi:"templateName"`
+	// Parameters contained in the template.
+	TemplateParams GetParameterTemplatesTemplateTemplateParamArrayInput `pulumi:"templateParams"`
+	// Parameter template source, value range: System. User.
+	TemplateSource pulumi.StringInput `pulumi:"templateSource"`
+	// Database type of parameter template. The default value is Mysql.
+	TemplateType pulumi.StringInput `pulumi:"templateType"`
+	// Database version of parameter template. Value range:
+	// MySQL_5_7: Default value. MySQL 5.7 version.
+	// MySQL_8_0: MySQL 8.0 version.
+	TemplateTypeVersion pulumi.StringInput `pulumi:"templateTypeVersion"`
+	// Modification time of the template.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetParameterTemplatesTemplateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesTemplate)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesTemplateArgs) ToGetParameterTemplatesTemplateOutput() GetParameterTemplatesTemplateOutput {
+	return i.ToGetParameterTemplatesTemplateOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesTemplateArgs) ToGetParameterTemplatesTemplateOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesTemplateOutput)
+}
+
+// GetParameterTemplatesTemplateArrayInput is an input type that accepts GetParameterTemplatesTemplateArray and GetParameterTemplatesTemplateArrayOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesTemplateArrayInput` via:
+//
+//	GetParameterTemplatesTemplateArray{ GetParameterTemplatesTemplateArgs{...} }
+type GetParameterTemplatesTemplateArrayInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesTemplateArrayOutput() GetParameterTemplatesTemplateArrayOutput
+	ToGetParameterTemplatesTemplateArrayOutputWithContext(context.Context) GetParameterTemplatesTemplateArrayOutput
+}
+
+type GetParameterTemplatesTemplateArray []GetParameterTemplatesTemplateInput
+
+func (GetParameterTemplatesTemplateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesTemplate)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesTemplateArray) ToGetParameterTemplatesTemplateArrayOutput() GetParameterTemplatesTemplateArrayOutput {
+	return i.ToGetParameterTemplatesTemplateArrayOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesTemplateArray) ToGetParameterTemplatesTemplateArrayOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesTemplateArrayOutput)
+}
+
+type GetParameterTemplatesTemplateOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesTemplate)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesTemplateOutput) ToGetParameterTemplatesTemplateOutput() GetParameterTemplatesTemplateOutput {
+	return o
+}
+
+func (o GetParameterTemplatesTemplateOutput) ToGetParameterTemplatesTemplateOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateOutput {
+	return o
+}
+
+// The account ID.
+func (o GetParameterTemplatesTemplateOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Creation time.
+func (o GetParameterTemplatesTemplateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Does the template contain parameters that require restart.
+func (o GetParameterTemplatesTemplateOutput) NeedRestart() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) bool { return v.NeedRestart }).(pulumi.BoolOutput)
+}
+
+// The number of parameters contained in the template.
+func (o GetParameterTemplatesTemplateOutput) ParameterNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) int { return v.ParameterNum }).(pulumi.IntOutput)
+}
+
+// The project to which the template belongs.
+func (o GetParameterTemplatesTemplateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Template category, with a value of DBEngine (database engine parameters).
+func (o GetParameterTemplatesTemplateOutput) TemplateCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateCategory }).(pulumi.StringOutput)
+}
+
+// Parameter template description.
+func (o GetParameterTemplatesTemplateOutput) TemplateDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateDesc }).(pulumi.StringOutput)
+}
+
+// Parameter template ID.
+func (o GetParameterTemplatesTemplateOutput) TemplateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateId }).(pulumi.StringOutput)
+}
+
+// Parameter template name.
+func (o GetParameterTemplatesTemplateOutput) TemplateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateName }).(pulumi.StringOutput)
+}
+
+// Parameters contained in the template.
+func (o GetParameterTemplatesTemplateOutput) TemplateParams() GetParameterTemplatesTemplateTemplateParamArrayOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) []GetParameterTemplatesTemplateTemplateParam {
+		return v.TemplateParams
+	}).(GetParameterTemplatesTemplateTemplateParamArrayOutput)
+}
+
+// Parameter template source, value range: System. User.
+func (o GetParameterTemplatesTemplateOutput) TemplateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateSource }).(pulumi.StringOutput)
+}
+
+// Database type of parameter template. The default value is Mysql.
+func (o GetParameterTemplatesTemplateOutput) TemplateType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateType }).(pulumi.StringOutput)
+}
+
+// Database version of parameter template. Value range:
+// MySQL_5_7: Default value. MySQL 5.7 version.
+// MySQL_8_0: MySQL 8.0 version.
+func (o GetParameterTemplatesTemplateOutput) TemplateTypeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.TemplateTypeVersion }).(pulumi.StringOutput)
+}
+
+// Modification time of the template.
+func (o GetParameterTemplatesTemplateOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplate) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetParameterTemplatesTemplateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesTemplateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesTemplate)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesTemplateArrayOutput) ToGetParameterTemplatesTemplateArrayOutput() GetParameterTemplatesTemplateArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesTemplateArrayOutput) ToGetParameterTemplatesTemplateArrayOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesTemplateArrayOutput) Index(i pulumi.IntInput) GetParameterTemplatesTemplateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetParameterTemplatesTemplate {
+		return vs[0].([]GetParameterTemplatesTemplate)[vs[1].(int)]
+	}).(GetParameterTemplatesTemplateOutput)
+}
+
+type GetParameterTemplatesTemplateTemplateParam struct {
+	// Parameter default value.
+	DefaultValue string `pulumi:"defaultValue"`
+	// Parameter description.
+	Description string `pulumi:"description"`
+	// Instance parameter name.
+	// Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+	Name string `pulumi:"name"`
+	// Is it necessary to restart the instance for the changes to take effect.
+	Restart bool `pulumi:"restart"`
+	// Parameter running value.
+	// Description: When making requests with CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+	RunningValue string `pulumi:"runningValue"`
+	// Value range of parameters.
+	ValueRange string `pulumi:"valueRange"`
+}
+
+// GetParameterTemplatesTemplateTemplateParamInput is an input type that accepts GetParameterTemplatesTemplateTemplateParamArgs and GetParameterTemplatesTemplateTemplateParamOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesTemplateTemplateParamInput` via:
+//
+//	GetParameterTemplatesTemplateTemplateParamArgs{...}
+type GetParameterTemplatesTemplateTemplateParamInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesTemplateTemplateParamOutput() GetParameterTemplatesTemplateTemplateParamOutput
+	ToGetParameterTemplatesTemplateTemplateParamOutputWithContext(context.Context) GetParameterTemplatesTemplateTemplateParamOutput
+}
+
+type GetParameterTemplatesTemplateTemplateParamArgs struct {
+	// Parameter default value.
+	DefaultValue pulumi.StringInput `pulumi:"defaultValue"`
+	// Parameter description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Instance parameter name.
+	// Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is it necessary to restart the instance for the changes to take effect.
+	Restart pulumi.BoolInput `pulumi:"restart"`
+	// Parameter running value.
+	// Description: When making requests with CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+	RunningValue pulumi.StringInput `pulumi:"runningValue"`
+	// Value range of parameters.
+	ValueRange pulumi.StringInput `pulumi:"valueRange"`
+}
+
+func (GetParameterTemplatesTemplateTemplateParamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesTemplateTemplateParam)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesTemplateTemplateParamArgs) ToGetParameterTemplatesTemplateTemplateParamOutput() GetParameterTemplatesTemplateTemplateParamOutput {
+	return i.ToGetParameterTemplatesTemplateTemplateParamOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesTemplateTemplateParamArgs) ToGetParameterTemplatesTemplateTemplateParamOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateTemplateParamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesTemplateTemplateParamOutput)
+}
+
+// GetParameterTemplatesTemplateTemplateParamArrayInput is an input type that accepts GetParameterTemplatesTemplateTemplateParamArray and GetParameterTemplatesTemplateTemplateParamArrayOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesTemplateTemplateParamArrayInput` via:
+//
+//	GetParameterTemplatesTemplateTemplateParamArray{ GetParameterTemplatesTemplateTemplateParamArgs{...} }
+type GetParameterTemplatesTemplateTemplateParamArrayInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesTemplateTemplateParamArrayOutput() GetParameterTemplatesTemplateTemplateParamArrayOutput
+	ToGetParameterTemplatesTemplateTemplateParamArrayOutputWithContext(context.Context) GetParameterTemplatesTemplateTemplateParamArrayOutput
+}
+
+type GetParameterTemplatesTemplateTemplateParamArray []GetParameterTemplatesTemplateTemplateParamInput
+
+func (GetParameterTemplatesTemplateTemplateParamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesTemplateTemplateParam)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesTemplateTemplateParamArray) ToGetParameterTemplatesTemplateTemplateParamArrayOutput() GetParameterTemplatesTemplateTemplateParamArrayOutput {
+	return i.ToGetParameterTemplatesTemplateTemplateParamArrayOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesTemplateTemplateParamArray) ToGetParameterTemplatesTemplateTemplateParamArrayOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateTemplateParamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesTemplateTemplateParamArrayOutput)
+}
+
+type GetParameterTemplatesTemplateTemplateParamOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesTemplateTemplateParamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesTemplateTemplateParam)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesTemplateTemplateParamOutput) ToGetParameterTemplatesTemplateTemplateParamOutput() GetParameterTemplatesTemplateTemplateParamOutput {
+	return o
+}
+
+func (o GetParameterTemplatesTemplateTemplateParamOutput) ToGetParameterTemplatesTemplateTemplateParamOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateTemplateParamOutput {
+	return o
+}
+
+// Parameter default value.
+func (o GetParameterTemplatesTemplateTemplateParamOutput) DefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplateTemplateParam) string { return v.DefaultValue }).(pulumi.StringOutput)
+}
+
+// Parameter description.
+func (o GetParameterTemplatesTemplateTemplateParamOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplateTemplateParam) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Instance parameter name.
+// Description: When using CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+func (o GetParameterTemplatesTemplateTemplateParamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplateTemplateParam) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Is it necessary to restart the instance for the changes to take effect.
+func (o GetParameterTemplatesTemplateTemplateParamOutput) Restart() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplateTemplateParam) bool { return v.Restart }).(pulumi.BoolOutput)
+}
+
+// Parameter running value.
+// Description: When making requests with CreateParameterTemplate and ModifyParameterTemplate as request parameters, only Name and RunningValue need to be passed in.
+func (o GetParameterTemplatesTemplateTemplateParamOutput) RunningValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplateTemplateParam) string { return v.RunningValue }).(pulumi.StringOutput)
+}
+
+// Value range of parameters.
+func (o GetParameterTemplatesTemplateTemplateParamOutput) ValueRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesTemplateTemplateParam) string { return v.ValueRange }).(pulumi.StringOutput)
+}
+
+type GetParameterTemplatesTemplateTemplateParamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesTemplateTemplateParamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesTemplateTemplateParam)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesTemplateTemplateParamArrayOutput) ToGetParameterTemplatesTemplateTemplateParamArrayOutput() GetParameterTemplatesTemplateTemplateParamArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesTemplateTemplateParamArrayOutput) ToGetParameterTemplatesTemplateTemplateParamArrayOutputWithContext(ctx context.Context) GetParameterTemplatesTemplateTemplateParamArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesTemplateTemplateParamArrayOutput) Index(i pulumi.IntInput) GetParameterTemplatesTemplateTemplateParamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetParameterTemplatesTemplateTemplateParam {
+		return vs[0].([]GetParameterTemplatesTemplateTemplateParam)[vs[1].(int)]
+	}).(GetParameterTemplatesTemplateTemplateParamOutput)
+}
+
+type GetRegionsRegion struct {
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The id of the region.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o GetRegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetZonesZone struct {
+	// The description of the zone.
+	Description string `pulumi:"description"`
+	// The id of the zone.
+	Id string `pulumi:"id"`
+	// The id of the zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The description of the zone.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The description of the zone.
+func (o GetZonesZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of the zone.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeInput)(nil)).Elem(), AccountAccountPrivilegeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeArrayInput)(nil)).Elem(), AccountAccountPrivilegeArray{})
@@ -6626,6 +10987,59 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountInput)(nil)).Elem(), GetAccountsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountArrayInput)(nil)).Elem(), GetAccountsAccountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountAccountPrivilegeInput)(nil)).Elem(), GetAccountsAccountAccountPrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountAccountPrivilegeArrayInput)(nil)).Elem(), GetAccountsAccountAccountPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowlistsAllowListInput)(nil)).Elem(), GetAllowlistsAllowListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowlistsAllowListArrayInput)(nil)).Elem(), GetAllowlistsAllowListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowlistsAllowListAssociatedInstanceInput)(nil)).Elem(), GetAllowlistsAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowlistsAllowListAssociatedInstanceArrayInput)(nil)).Elem(), GetAllowlistsAllowListAssociatedInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowlistsAllowListSecurityGroupBindInfoInput)(nil)).Elem(), GetAllowlistsAllowListSecurityGroupBindInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowlistsAllowListSecurityGroupBindInfoArrayInput)(nil)).Elem(), GetAllowlistsAllowListSecurityGroupBindInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupInput)(nil)).Elem(), GetBackupsBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupArrayInput)(nil)).Elem(), GetBackupsBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupDbTableInfoInput)(nil)).Elem(), GetBackupsBackupDbTableInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupDbTableInfoArrayInput)(nil)).Elem(), GetBackupsBackupDbTableInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseInput)(nil)).Elem(), GetDatabasesDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseArrayInput)(nil)).Elem(), GetDatabasesDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseDatabasePrivilegeInput)(nil)).Elem(), GetDatabasesDatabaseDatabasePrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseDatabasePrivilegeArrayInput)(nil)).Elem(), GetDatabasesDatabaseDatabasePrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointInput)(nil)).Elem(), GetEndpointsEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointArrayInput)(nil)).Elem(), GetEndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointAddressInput)(nil)).Elem(), GetEndpointsEndpointAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointAddressArrayInput)(nil)).Elem(), GetEndpointsEndpointAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointReadOnlyNodeWeightInput)(nil)).Elem(), GetEndpointsEndpointReadOnlyNodeWeightArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointReadOnlyNodeWeightArrayInput)(nil)).Elem(), GetEndpointsEndpointReadOnlyNodeWeightArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSpecsInstanceSpecInput)(nil)).Elem(), GetInstanceSpecsInstanceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSpecsInstanceSpecArrayInput)(nil)).Elem(), GetInstanceSpecsInstanceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceChargeDetailInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceChargeDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointAddressInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointAddressArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointNodeWeightInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointNodeWeightArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointNodeWeightArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceFeatureStateInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceFeatureStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceFeatureStateArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceFeatureStateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceMaintenanceWindowInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceMaintenanceWindowArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceNodeInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceNodeArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceTagInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceTagArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagInput)(nil)).Elem(), GetInstancesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagArrayInput)(nil)).Elem(), GetInstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateInput)(nil)).Elem(), GetParameterTemplatesTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateArrayInput)(nil)).Elem(), GetParameterTemplatesTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateTemplateParamInput)(nil)).Elem(), GetParameterTemplatesTemplateTemplateParamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateTemplateParamArrayInput)(nil)).Elem(), GetParameterTemplatesTemplateTemplateParamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeOutput{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountOutput{})
@@ -6709,4 +11123,57 @@ func init() {
 	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountAccountPrivilegeOutput{})
+	pulumi.RegisterOutputType(GetAccountsAccountAccountPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowlistsAllowListOutput{})
+	pulumi.RegisterOutputType(GetAllowlistsAllowListArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowlistsAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(GetAllowlistsAllowListAssociatedInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowlistsAllowListSecurityGroupBindInfoOutput{})
+	pulumi.RegisterOutputType(GetAllowlistsAllowListSecurityGroupBindInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupDbTableInfoOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupDbTableInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabasesDatabaseOutput{})
+	pulumi.RegisterOutputType(GetDatabasesDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabasesDatabaseDatabasePrivilegeOutput{})
+	pulumi.RegisterOutputType(GetDatabasesDatabaseDatabasePrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointAddressOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointReadOnlyNodeWeightOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointReadOnlyNodeWeightArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceSpecsInstanceSpecOutput{})
+	pulumi.RegisterOutputType(GetInstanceSpecsInstanceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceChargeDetailOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointAddressOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointNodeWeightOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointNodeWeightArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceFeatureStateOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceFeatureStateArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceNodeOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesTemplateOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesTemplateArrayOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesTemplateTemplateParamOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesTemplateTemplateParamArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }

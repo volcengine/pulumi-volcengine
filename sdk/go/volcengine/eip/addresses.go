@@ -32,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = eip.AddressesOutput(ctx, eip.AddressesOutputArgs{
+//			_ = eip.GetAddressesOutput(ctx, eip.GetAddressesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooAddress.ID(),
 //				},
@@ -42,6 +42,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses
 func Addresses(ctx *pulumi.Context, args *AddressesArgs, opts ...pulumi.InvokeOption) (*AddressesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AddressesResult

@@ -17,6 +17,8 @@ __all__ = [
     'gateway_routes_output',
 ]
 
+warnings.warn("""volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes""", DeprecationWarning)
+
 @pulumi.output_type
 class GatewayRoutesResult:
     """
@@ -209,7 +211,7 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
         vpn_gateway_id=foo_gateway.id,
         destination_cidr_block="192.168.0.0/20",
         next_hop_id=foo_connection.id)
-    foo_gateway_routes = volcengine.vpn.gateway_routes_output(ids=[foo_gateway_route.id])
+    foo_gateway_routes = volcengine.vpn.get_gateway_routes_output(ids=[foo_gateway_route.id])
     ```
 
 
@@ -221,6 +223,7 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
     :param str status: The status of the VPN gateway route.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
+    pulumi.log.warn("""gateway_routes is deprecated: volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes""")
     __args__ = dict()
     __args__['destinationCidrBlock'] = destination_cidr_block
     __args__['ids'] = ids
@@ -311,7 +314,7 @@ def gateway_routes_output(destination_cidr_block: Optional[pulumi.Input[Optional
         vpn_gateway_id=foo_gateway.id,
         destination_cidr_block="192.168.0.0/20",
         next_hop_id=foo_connection.id)
-    foo_gateway_routes = volcengine.vpn.gateway_routes_output(ids=[foo_gateway_route.id])
+    foo_gateway_routes = volcengine.vpn.get_gateway_routes_output(ids=[foo_gateway_route.id])
     ```
 
 
@@ -323,4 +326,5 @@ def gateway_routes_output(destination_cidr_block: Optional[pulumi.Input[Optional
     :param str status: The status of the VPN gateway route.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
+    pulumi.log.warn("""gateway_routes is deprecated: volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes""")
     ...

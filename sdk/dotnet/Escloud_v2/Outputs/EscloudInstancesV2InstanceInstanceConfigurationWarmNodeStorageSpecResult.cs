@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
     public sealed class EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecResult
     {
         /// <summary>
-        /// The description of storage spec.
+        /// The description of plugin.
         /// </summary>
         public readonly string Description;
         /// <summary>

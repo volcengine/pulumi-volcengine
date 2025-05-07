@@ -1829,6 +1829,1389 @@ func (o ResolverRulesRuleForwardIpArrayOutput) Index(i pulumi.IntInput) Resolver
 	}).(ResolverRulesRuleForwardIpOutput)
 }
 
+type GetPrivateZonesPrivateZone struct {
+	// The Bind vpc info of the private zone.
+	BindVpcs []GetPrivateZonesPrivateZoneBindVpc `pulumi:"bindVpcs"`
+	// The created time of the private zone.
+	CreatedAt string `pulumi:"createdAt"`
+	// The id of the private zone.
+	Id string `pulumi:"id"`
+	// The account id of the last operator who created the private zone.
+	LastOperator string `pulumi:"lastOperator"`
+	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+	LineMode int `pulumi:"lineMode"`
+	// The record count of the private zone.
+	RecordCount int `pulumi:"recordCount"`
+	// Whether the recursion mode of Private Zone is enabled.
+	RecursionMode bool `pulumi:"recursionMode"`
+	// The region of Private Zone.
+	Regions []string `pulumi:"regions"`
+	// The remark of the private zone.
+	Remark string `pulumi:"remark"`
+	// The updated time of the private zone.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The zid of Private Zone.
+	Zid int `pulumi:"zid"`
+	// The name of Private Zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetPrivateZonesPrivateZoneInput is an input type that accepts GetPrivateZonesPrivateZoneArgs and GetPrivateZonesPrivateZoneOutput values.
+// You can construct a concrete instance of `GetPrivateZonesPrivateZoneInput` via:
+//
+//	GetPrivateZonesPrivateZoneArgs{...}
+type GetPrivateZonesPrivateZoneInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesPrivateZoneOutput() GetPrivateZonesPrivateZoneOutput
+	ToGetPrivateZonesPrivateZoneOutputWithContext(context.Context) GetPrivateZonesPrivateZoneOutput
+}
+
+type GetPrivateZonesPrivateZoneArgs struct {
+	// The Bind vpc info of the private zone.
+	BindVpcs GetPrivateZonesPrivateZoneBindVpcArrayInput `pulumi:"bindVpcs"`
+	// The created time of the private zone.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The id of the private zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The account id of the last operator who created the private zone.
+	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
+	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+	LineMode pulumi.IntInput `pulumi:"lineMode"`
+	// The record count of the private zone.
+	RecordCount pulumi.IntInput `pulumi:"recordCount"`
+	// Whether the recursion mode of Private Zone is enabled.
+	RecursionMode pulumi.BoolInput `pulumi:"recursionMode"`
+	// The region of Private Zone.
+	Regions pulumi.StringArrayInput `pulumi:"regions"`
+	// The remark of the private zone.
+	Remark pulumi.StringInput `pulumi:"remark"`
+	// The updated time of the private zone.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The zid of Private Zone.
+	Zid pulumi.IntInput `pulumi:"zid"`
+	// The name of Private Zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetPrivateZonesPrivateZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesPrivateZone)(nil)).Elem()
+}
+
+func (i GetPrivateZonesPrivateZoneArgs) ToGetPrivateZonesPrivateZoneOutput() GetPrivateZonesPrivateZoneOutput {
+	return i.ToGetPrivateZonesPrivateZoneOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesPrivateZoneArgs) ToGetPrivateZonesPrivateZoneOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesPrivateZoneOutput)
+}
+
+// GetPrivateZonesPrivateZoneArrayInput is an input type that accepts GetPrivateZonesPrivateZoneArray and GetPrivateZonesPrivateZoneArrayOutput values.
+// You can construct a concrete instance of `GetPrivateZonesPrivateZoneArrayInput` via:
+//
+//	GetPrivateZonesPrivateZoneArray{ GetPrivateZonesPrivateZoneArgs{...} }
+type GetPrivateZonesPrivateZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesPrivateZoneArrayOutput() GetPrivateZonesPrivateZoneArrayOutput
+	ToGetPrivateZonesPrivateZoneArrayOutputWithContext(context.Context) GetPrivateZonesPrivateZoneArrayOutput
+}
+
+type GetPrivateZonesPrivateZoneArray []GetPrivateZonesPrivateZoneInput
+
+func (GetPrivateZonesPrivateZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesPrivateZone)(nil)).Elem()
+}
+
+func (i GetPrivateZonesPrivateZoneArray) ToGetPrivateZonesPrivateZoneArrayOutput() GetPrivateZonesPrivateZoneArrayOutput {
+	return i.ToGetPrivateZonesPrivateZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesPrivateZoneArray) ToGetPrivateZonesPrivateZoneArrayOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesPrivateZoneArrayOutput)
+}
+
+type GetPrivateZonesPrivateZoneOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesPrivateZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesPrivateZone)(nil)).Elem()
+}
+
+func (o GetPrivateZonesPrivateZoneOutput) ToGetPrivateZonesPrivateZoneOutput() GetPrivateZonesPrivateZoneOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneOutput) ToGetPrivateZonesPrivateZoneOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneOutput {
+	return o
+}
+
+// The Bind vpc info of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) BindVpcs() GetPrivateZonesPrivateZoneBindVpcArrayOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) []GetPrivateZonesPrivateZoneBindVpc { return v.BindVpcs }).(GetPrivateZonesPrivateZoneBindVpcArrayOutput)
+}
+
+// The created time of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The id of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The account id of the last operator who created the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) LastOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.LastOperator }).(pulumi.StringOutput)
+}
+
+// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+func (o GetPrivateZonesPrivateZoneOutput) LineMode() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) int { return v.LineMode }).(pulumi.IntOutput)
+}
+
+// The record count of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) RecordCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) int { return v.RecordCount }).(pulumi.IntOutput)
+}
+
+// Whether the recursion mode of Private Zone is enabled.
+func (o GetPrivateZonesPrivateZoneOutput) RecursionMode() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) bool { return v.RecursionMode }).(pulumi.BoolOutput)
+}
+
+// The region of Private Zone.
+func (o GetPrivateZonesPrivateZoneOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) []string { return v.Regions }).(pulumi.StringArrayOutput)
+}
+
+// The remark of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) Remark() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// The updated time of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The zid of Private Zone.
+func (o GetPrivateZonesPrivateZoneOutput) Zid() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) int { return v.Zid }).(pulumi.IntOutput)
+}
+
+// The name of Private Zone.
+func (o GetPrivateZonesPrivateZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetPrivateZonesPrivateZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesPrivateZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesPrivateZone)(nil)).Elem()
+}
+
+func (o GetPrivateZonesPrivateZoneArrayOutput) ToGetPrivateZonesPrivateZoneArrayOutput() GetPrivateZonesPrivateZoneArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneArrayOutput) ToGetPrivateZonesPrivateZoneArrayOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneArrayOutput) Index(i pulumi.IntInput) GetPrivateZonesPrivateZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateZonesPrivateZone {
+		return vs[0].([]GetPrivateZonesPrivateZone)[vs[1].(int)]
+	}).(GetPrivateZonesPrivateZoneOutput)
+}
+
+type GetPrivateZonesPrivateZoneBindVpc struct {
+	// The account id of the bind vpc.
+	AccountId string `pulumi:"accountId"`
+	// The id of the private zone.
+	Id string `pulumi:"id"`
+	// The region of Private Zone.
+	Region string `pulumi:"region"`
+	// The region name of the bind vpc.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetPrivateZonesPrivateZoneBindVpcInput is an input type that accepts GetPrivateZonesPrivateZoneBindVpcArgs and GetPrivateZonesPrivateZoneBindVpcOutput values.
+// You can construct a concrete instance of `GetPrivateZonesPrivateZoneBindVpcInput` via:
+//
+//	GetPrivateZonesPrivateZoneBindVpcArgs{...}
+type GetPrivateZonesPrivateZoneBindVpcInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesPrivateZoneBindVpcOutput() GetPrivateZonesPrivateZoneBindVpcOutput
+	ToGetPrivateZonesPrivateZoneBindVpcOutputWithContext(context.Context) GetPrivateZonesPrivateZoneBindVpcOutput
+}
+
+type GetPrivateZonesPrivateZoneBindVpcArgs struct {
+	// The account id of the bind vpc.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The id of the private zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The region of Private Zone.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The region name of the bind vpc.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetPrivateZonesPrivateZoneBindVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesPrivateZoneBindVpc)(nil)).Elem()
+}
+
+func (i GetPrivateZonesPrivateZoneBindVpcArgs) ToGetPrivateZonesPrivateZoneBindVpcOutput() GetPrivateZonesPrivateZoneBindVpcOutput {
+	return i.ToGetPrivateZonesPrivateZoneBindVpcOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesPrivateZoneBindVpcArgs) ToGetPrivateZonesPrivateZoneBindVpcOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneBindVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesPrivateZoneBindVpcOutput)
+}
+
+// GetPrivateZonesPrivateZoneBindVpcArrayInput is an input type that accepts GetPrivateZonesPrivateZoneBindVpcArray and GetPrivateZonesPrivateZoneBindVpcArrayOutput values.
+// You can construct a concrete instance of `GetPrivateZonesPrivateZoneBindVpcArrayInput` via:
+//
+//	GetPrivateZonesPrivateZoneBindVpcArray{ GetPrivateZonesPrivateZoneBindVpcArgs{...} }
+type GetPrivateZonesPrivateZoneBindVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesPrivateZoneBindVpcArrayOutput() GetPrivateZonesPrivateZoneBindVpcArrayOutput
+	ToGetPrivateZonesPrivateZoneBindVpcArrayOutputWithContext(context.Context) GetPrivateZonesPrivateZoneBindVpcArrayOutput
+}
+
+type GetPrivateZonesPrivateZoneBindVpcArray []GetPrivateZonesPrivateZoneBindVpcInput
+
+func (GetPrivateZonesPrivateZoneBindVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesPrivateZoneBindVpc)(nil)).Elem()
+}
+
+func (i GetPrivateZonesPrivateZoneBindVpcArray) ToGetPrivateZonesPrivateZoneBindVpcArrayOutput() GetPrivateZonesPrivateZoneBindVpcArrayOutput {
+	return i.ToGetPrivateZonesPrivateZoneBindVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesPrivateZoneBindVpcArray) ToGetPrivateZonesPrivateZoneBindVpcArrayOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneBindVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesPrivateZoneBindVpcArrayOutput)
+}
+
+type GetPrivateZonesPrivateZoneBindVpcOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesPrivateZoneBindVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesPrivateZoneBindVpc)(nil)).Elem()
+}
+
+func (o GetPrivateZonesPrivateZoneBindVpcOutput) ToGetPrivateZonesPrivateZoneBindVpcOutput() GetPrivateZonesPrivateZoneBindVpcOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneBindVpcOutput) ToGetPrivateZonesPrivateZoneBindVpcOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneBindVpcOutput {
+	return o
+}
+
+// The account id of the bind vpc.
+func (o GetPrivateZonesPrivateZoneBindVpcOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZoneBindVpc) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The id of the private zone.
+func (o GetPrivateZonesPrivateZoneBindVpcOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZoneBindVpc) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The region of Private Zone.
+func (o GetPrivateZonesPrivateZoneBindVpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZoneBindVpc) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The region name of the bind vpc.
+func (o GetPrivateZonesPrivateZoneBindVpcOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZoneBindVpc) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetPrivateZonesPrivateZoneBindVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesPrivateZoneBindVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesPrivateZoneBindVpc)(nil)).Elem()
+}
+
+func (o GetPrivateZonesPrivateZoneBindVpcArrayOutput) ToGetPrivateZonesPrivateZoneBindVpcArrayOutput() GetPrivateZonesPrivateZoneBindVpcArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneBindVpcArrayOutput) ToGetPrivateZonesPrivateZoneBindVpcArrayOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneBindVpcArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneBindVpcArrayOutput) Index(i pulumi.IntInput) GetPrivateZonesPrivateZoneBindVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateZonesPrivateZoneBindVpc {
+		return vs[0].([]GetPrivateZonesPrivateZoneBindVpc)[vs[1].(int)]
+	}).(GetPrivateZonesPrivateZoneBindVpcOutput)
+}
+
+type GetRecordSetsRecordSet struct {
+	// The Complete domain name of the private zone record.
+	Fqdn string `pulumi:"fqdn"`
+	// The host of Private Zone Record Set.
+	Host string `pulumi:"host"`
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true.
+	Line string `pulumi:"line"`
+	// The id of Private Zone Record Set.
+	RecordSetId string `pulumi:"recordSetId"`
+	// The type of the private zone record.
+	Type string `pulumi:"type"`
+	// Whether to enable the load balance of the private zone record set.
+	WeightEnabled bool `pulumi:"weightEnabled"`
+}
+
+// GetRecordSetsRecordSetInput is an input type that accepts GetRecordSetsRecordSetArgs and GetRecordSetsRecordSetOutput values.
+// You can construct a concrete instance of `GetRecordSetsRecordSetInput` via:
+//
+//	GetRecordSetsRecordSetArgs{...}
+type GetRecordSetsRecordSetInput interface {
+	pulumi.Input
+
+	ToGetRecordSetsRecordSetOutput() GetRecordSetsRecordSetOutput
+	ToGetRecordSetsRecordSetOutputWithContext(context.Context) GetRecordSetsRecordSetOutput
+}
+
+type GetRecordSetsRecordSetArgs struct {
+	// The Complete domain name of the private zone record.
+	Fqdn pulumi.StringInput `pulumi:"fqdn"`
+	// The host of Private Zone Record Set.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true.
+	Line pulumi.StringInput `pulumi:"line"`
+	// The id of Private Zone Record Set.
+	RecordSetId pulumi.StringInput `pulumi:"recordSetId"`
+	// The type of the private zone record.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Whether to enable the load balance of the private zone record set.
+	WeightEnabled pulumi.BoolInput `pulumi:"weightEnabled"`
+}
+
+func (GetRecordSetsRecordSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (i GetRecordSetsRecordSetArgs) ToGetRecordSetsRecordSetOutput() GetRecordSetsRecordSetOutput {
+	return i.ToGetRecordSetsRecordSetOutputWithContext(context.Background())
+}
+
+func (i GetRecordSetsRecordSetArgs) ToGetRecordSetsRecordSetOutputWithContext(ctx context.Context) GetRecordSetsRecordSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordSetsRecordSetOutput)
+}
+
+// GetRecordSetsRecordSetArrayInput is an input type that accepts GetRecordSetsRecordSetArray and GetRecordSetsRecordSetArrayOutput values.
+// You can construct a concrete instance of `GetRecordSetsRecordSetArrayInput` via:
+//
+//	GetRecordSetsRecordSetArray{ GetRecordSetsRecordSetArgs{...} }
+type GetRecordSetsRecordSetArrayInput interface {
+	pulumi.Input
+
+	ToGetRecordSetsRecordSetArrayOutput() GetRecordSetsRecordSetArrayOutput
+	ToGetRecordSetsRecordSetArrayOutputWithContext(context.Context) GetRecordSetsRecordSetArrayOutput
+}
+
+type GetRecordSetsRecordSetArray []GetRecordSetsRecordSetInput
+
+func (GetRecordSetsRecordSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (i GetRecordSetsRecordSetArray) ToGetRecordSetsRecordSetArrayOutput() GetRecordSetsRecordSetArrayOutput {
+	return i.ToGetRecordSetsRecordSetArrayOutputWithContext(context.Background())
+}
+
+func (i GetRecordSetsRecordSetArray) ToGetRecordSetsRecordSetArrayOutputWithContext(ctx context.Context) GetRecordSetsRecordSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordSetsRecordSetArrayOutput)
+}
+
+type GetRecordSetsRecordSetOutput struct{ *pulumi.OutputState }
+
+func (GetRecordSetsRecordSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (o GetRecordSetsRecordSetOutput) ToGetRecordSetsRecordSetOutput() GetRecordSetsRecordSetOutput {
+	return o
+}
+
+func (o GetRecordSetsRecordSetOutput) ToGetRecordSetsRecordSetOutputWithContext(ctx context.Context) GetRecordSetsRecordSetOutput {
+	return o
+}
+
+// The Complete domain name of the private zone record.
+func (o GetRecordSetsRecordSetOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+// The host of Private Zone Record Set.
+func (o GetRecordSetsRecordSetOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true.
+func (o GetRecordSetsRecordSetOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Line }).(pulumi.StringOutput)
+}
+
+// The id of Private Zone Record Set.
+func (o GetRecordSetsRecordSetOutput) RecordSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.RecordSetId }).(pulumi.StringOutput)
+}
+
+// The type of the private zone record.
+func (o GetRecordSetsRecordSetOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Whether to enable the load balance of the private zone record set.
+func (o GetRecordSetsRecordSetOutput) WeightEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) bool { return v.WeightEnabled }).(pulumi.BoolOutput)
+}
+
+type GetRecordSetsRecordSetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRecordSetsRecordSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (o GetRecordSetsRecordSetArrayOutput) ToGetRecordSetsRecordSetArrayOutput() GetRecordSetsRecordSetArrayOutput {
+	return o
+}
+
+func (o GetRecordSetsRecordSetArrayOutput) ToGetRecordSetsRecordSetArrayOutputWithContext(ctx context.Context) GetRecordSetsRecordSetArrayOutput {
+	return o
+}
+
+func (o GetRecordSetsRecordSetArrayOutput) Index(i pulumi.IntInput) GetRecordSetsRecordSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRecordSetsRecordSet {
+		return vs[0].([]GetRecordSetsRecordSet)[vs[1].(int)]
+	}).(GetRecordSetsRecordSetOutput)
+}
+
+type GetRecordsRecord struct {
+	// The created time of the private zone record.
+	CreatedAt string `pulumi:"createdAt"`
+	// Whether the private zone record is enabling.
+	Enable bool `pulumi:"enable"`
+	// The host of Private Zone Record.
+	Host string `pulumi:"host"`
+	// The last operator account id of Private Zone Record.
+	LastOperator string `pulumi:"lastOperator"`
+	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	Line string `pulumi:"line"`
+	// The id of Private Zone Record.
+	RecordId string `pulumi:"recordId"`
+	// The remark of the private zone record.
+	Remark string `pulumi:"remark"`
+	// The ttl of the private zone record. Unit: second.
+	Ttl int `pulumi:"ttl"`
+	// The type of Private Zone Record.
+	Type string `pulumi:"type"`
+	// The updated time of the private zone record.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The value of Private Zone Record.
+	Value string `pulumi:"value"`
+	// The weight of the private zone record.
+	Weight int `pulumi:"weight"`
+	// The zid of Private Zone.
+	Zid int `pulumi:"zid"`
+}
+
+// GetRecordsRecordInput is an input type that accepts GetRecordsRecordArgs and GetRecordsRecordOutput values.
+// You can construct a concrete instance of `GetRecordsRecordInput` via:
+//
+//	GetRecordsRecordArgs{...}
+type GetRecordsRecordInput interface {
+	pulumi.Input
+
+	ToGetRecordsRecordOutput() GetRecordsRecordOutput
+	ToGetRecordsRecordOutputWithContext(context.Context) GetRecordsRecordOutput
+}
+
+type GetRecordsRecordArgs struct {
+	// The created time of the private zone record.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Whether the private zone record is enabling.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// The host of Private Zone Record.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The last operator account id of Private Zone Record.
+	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
+	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	Line pulumi.StringInput `pulumi:"line"`
+	// The id of Private Zone Record.
+	RecordId pulumi.StringInput `pulumi:"recordId"`
+	// The remark of the private zone record.
+	Remark pulumi.StringInput `pulumi:"remark"`
+	// The ttl of the private zone record. Unit: second.
+	Ttl pulumi.IntInput `pulumi:"ttl"`
+	// The type of Private Zone Record.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The updated time of the private zone record.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The value of Private Zone Record.
+	Value pulumi.StringInput `pulumi:"value"`
+	// The weight of the private zone record.
+	Weight pulumi.IntInput `pulumi:"weight"`
+	// The zid of Private Zone.
+	Zid pulumi.IntInput `pulumi:"zid"`
+}
+
+func (GetRecordsRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordsRecord)(nil)).Elem()
+}
+
+func (i GetRecordsRecordArgs) ToGetRecordsRecordOutput() GetRecordsRecordOutput {
+	return i.ToGetRecordsRecordOutputWithContext(context.Background())
+}
+
+func (i GetRecordsRecordArgs) ToGetRecordsRecordOutputWithContext(ctx context.Context) GetRecordsRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordsRecordOutput)
+}
+
+// GetRecordsRecordArrayInput is an input type that accepts GetRecordsRecordArray and GetRecordsRecordArrayOutput values.
+// You can construct a concrete instance of `GetRecordsRecordArrayInput` via:
+//
+//	GetRecordsRecordArray{ GetRecordsRecordArgs{...} }
+type GetRecordsRecordArrayInput interface {
+	pulumi.Input
+
+	ToGetRecordsRecordArrayOutput() GetRecordsRecordArrayOutput
+	ToGetRecordsRecordArrayOutputWithContext(context.Context) GetRecordsRecordArrayOutput
+}
+
+type GetRecordsRecordArray []GetRecordsRecordInput
+
+func (GetRecordsRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordsRecord)(nil)).Elem()
+}
+
+func (i GetRecordsRecordArray) ToGetRecordsRecordArrayOutput() GetRecordsRecordArrayOutput {
+	return i.ToGetRecordsRecordArrayOutputWithContext(context.Background())
+}
+
+func (i GetRecordsRecordArray) ToGetRecordsRecordArrayOutputWithContext(ctx context.Context) GetRecordsRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordsRecordArrayOutput)
+}
+
+type GetRecordsRecordOutput struct{ *pulumi.OutputState }
+
+func (GetRecordsRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordsRecord)(nil)).Elem()
+}
+
+func (o GetRecordsRecordOutput) ToGetRecordsRecordOutput() GetRecordsRecordOutput {
+	return o
+}
+
+func (o GetRecordsRecordOutput) ToGetRecordsRecordOutputWithContext(ctx context.Context) GetRecordsRecordOutput {
+	return o
+}
+
+// The created time of the private zone record.
+func (o GetRecordsRecordOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Whether the private zone record is enabling.
+func (o GetRecordsRecordOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRecordsRecord) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// The host of Private Zone Record.
+func (o GetRecordsRecordOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The last operator account id of Private Zone Record.
+func (o GetRecordsRecordOutput) LastOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.LastOperator }).(pulumi.StringOutput)
+}
+
+// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+func (o GetRecordsRecordOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Line }).(pulumi.StringOutput)
+}
+
+// The id of Private Zone Record.
+func (o GetRecordsRecordOutput) RecordId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.RecordId }).(pulumi.StringOutput)
+}
+
+// The remark of the private zone record.
+func (o GetRecordsRecordOutput) Remark() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// The ttl of the private zone record. Unit: second.
+func (o GetRecordsRecordOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRecordsRecord) int { return v.Ttl }).(pulumi.IntOutput)
+}
+
+// The type of Private Zone Record.
+func (o GetRecordsRecordOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The updated time of the private zone record.
+func (o GetRecordsRecordOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The value of Private Zone Record.
+func (o GetRecordsRecordOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Value }).(pulumi.StringOutput)
+}
+
+// The weight of the private zone record.
+func (o GetRecordsRecordOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRecordsRecord) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+// The zid of Private Zone.
+func (o GetRecordsRecordOutput) Zid() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRecordsRecord) int { return v.Zid }).(pulumi.IntOutput)
+}
+
+type GetRecordsRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRecordsRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordsRecord)(nil)).Elem()
+}
+
+func (o GetRecordsRecordArrayOutput) ToGetRecordsRecordArrayOutput() GetRecordsRecordArrayOutput {
+	return o
+}
+
+func (o GetRecordsRecordArrayOutput) ToGetRecordsRecordArrayOutputWithContext(ctx context.Context) GetRecordsRecordArrayOutput {
+	return o
+}
+
+func (o GetRecordsRecordArrayOutput) Index(i pulumi.IntInput) GetRecordsRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRecordsRecord {
+		return vs[0].([]GetRecordsRecord)[vs[1].(int)]
+	}).(GetRecordsRecordOutput)
+}
+
+type GetResolverEndpointsEndpoint struct {
+	// The created time of the endpoint.
+	CreatedAt string `pulumi:"createdAt"`
+	// The direction of the private zone resolver endpoint.
+	Direction string `pulumi:"direction"`
+	// The endpoint id.
+	EndpointId int `pulumi:"endpointId"`
+	// The id of the endpoint.
+	Id string `pulumi:"id"`
+	// List of IP configurations.
+	IpConfigs []GetResolverEndpointsEndpointIpConfig `pulumi:"ipConfigs"`
+	// The name of the private zone resolver endpoint.
+	Name string `pulumi:"name"`
+	// The security group id of the endpoint.
+	SecurityGroupId string `pulumi:"securityGroupId"`
+	// The status of the private zone resolver endpoint.
+	Status string `pulumi:"status"`
+	// The updated time of the endpoint.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The vpc ID of the private zone resolver endpoint.
+	VpcId string `pulumi:"vpcId"`
+	// The vpc region of the endpoint.
+	VpcRegion string `pulumi:"vpcRegion"`
+}
+
+// GetResolverEndpointsEndpointInput is an input type that accepts GetResolverEndpointsEndpointArgs and GetResolverEndpointsEndpointOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsEndpointInput` via:
+//
+//	GetResolverEndpointsEndpointArgs{...}
+type GetResolverEndpointsEndpointInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsEndpointOutput() GetResolverEndpointsEndpointOutput
+	ToGetResolverEndpointsEndpointOutputWithContext(context.Context) GetResolverEndpointsEndpointOutput
+}
+
+type GetResolverEndpointsEndpointArgs struct {
+	// The created time of the endpoint.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The direction of the private zone resolver endpoint.
+	Direction pulumi.StringInput `pulumi:"direction"`
+	// The endpoint id.
+	EndpointId pulumi.IntInput `pulumi:"endpointId"`
+	// The id of the endpoint.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of IP configurations.
+	IpConfigs GetResolverEndpointsEndpointIpConfigArrayInput `pulumi:"ipConfigs"`
+	// The name of the private zone resolver endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The security group id of the endpoint.
+	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
+	// The status of the private zone resolver endpoint.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The updated time of the endpoint.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The vpc ID of the private zone resolver endpoint.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The vpc region of the endpoint.
+	VpcRegion pulumi.StringInput `pulumi:"vpcRegion"`
+}
+
+func (GetResolverEndpointsEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsEndpointArgs) ToGetResolverEndpointsEndpointOutput() GetResolverEndpointsEndpointOutput {
+	return i.ToGetResolverEndpointsEndpointOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsEndpointArgs) ToGetResolverEndpointsEndpointOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsEndpointOutput)
+}
+
+// GetResolverEndpointsEndpointArrayInput is an input type that accepts GetResolverEndpointsEndpointArray and GetResolverEndpointsEndpointArrayOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsEndpointArrayInput` via:
+//
+//	GetResolverEndpointsEndpointArray{ GetResolverEndpointsEndpointArgs{...} }
+type GetResolverEndpointsEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsEndpointArrayOutput() GetResolverEndpointsEndpointArrayOutput
+	ToGetResolverEndpointsEndpointArrayOutputWithContext(context.Context) GetResolverEndpointsEndpointArrayOutput
+}
+
+type GetResolverEndpointsEndpointArray []GetResolverEndpointsEndpointInput
+
+func (GetResolverEndpointsEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsEndpointArray) ToGetResolverEndpointsEndpointArrayOutput() GetResolverEndpointsEndpointArrayOutput {
+	return i.ToGetResolverEndpointsEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsEndpointArray) ToGetResolverEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsEndpointArrayOutput)
+}
+
+type GetResolverEndpointsEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsEndpointOutput) ToGetResolverEndpointsEndpointOutput() GetResolverEndpointsEndpointOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointOutput) ToGetResolverEndpointsEndpointOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointOutput {
+	return o
+}
+
+// The created time of the endpoint.
+func (o GetResolverEndpointsEndpointOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The direction of the private zone resolver endpoint.
+func (o GetResolverEndpointsEndpointOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.Direction }).(pulumi.StringOutput)
+}
+
+// The endpoint id.
+func (o GetResolverEndpointsEndpointOutput) EndpointId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) int { return v.EndpointId }).(pulumi.IntOutput)
+}
+
+// The id of the endpoint.
+func (o GetResolverEndpointsEndpointOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IP configurations.
+func (o GetResolverEndpointsEndpointOutput) IpConfigs() GetResolverEndpointsEndpointIpConfigArrayOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) []GetResolverEndpointsEndpointIpConfig { return v.IpConfigs }).(GetResolverEndpointsEndpointIpConfigArrayOutput)
+}
+
+// The name of the private zone resolver endpoint.
+func (o GetResolverEndpointsEndpointOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The security group id of the endpoint.
+func (o GetResolverEndpointsEndpointOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// The status of the private zone resolver endpoint.
+func (o GetResolverEndpointsEndpointOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The updated time of the endpoint.
+func (o GetResolverEndpointsEndpointOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The vpc ID of the private zone resolver endpoint.
+func (o GetResolverEndpointsEndpointOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The vpc region of the endpoint.
+func (o GetResolverEndpointsEndpointOutput) VpcRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.VpcRegion }).(pulumi.StringOutput)
+}
+
+type GetResolverEndpointsEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsEndpointArrayOutput) ToGetResolverEndpointsEndpointArrayOutput() GetResolverEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointArrayOutput) ToGetResolverEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) GetResolverEndpointsEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverEndpointsEndpoint {
+		return vs[0].([]GetResolverEndpointsEndpoint)[vs[1].(int)]
+	}).(GetResolverEndpointsEndpointOutput)
+}
+
+type GetResolverEndpointsEndpointIpConfig struct {
+	// The availability zone id of the endpoint.
+	AzId string `pulumi:"azId"`
+	// The IP address of the endpoint.
+	Ip string `pulumi:"ip"`
+	// The subnet id of the endpoint.
+	SubnetId string `pulumi:"subnetId"`
+}
+
+// GetResolverEndpointsEndpointIpConfigInput is an input type that accepts GetResolverEndpointsEndpointIpConfigArgs and GetResolverEndpointsEndpointIpConfigOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsEndpointIpConfigInput` via:
+//
+//	GetResolverEndpointsEndpointIpConfigArgs{...}
+type GetResolverEndpointsEndpointIpConfigInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsEndpointIpConfigOutput() GetResolverEndpointsEndpointIpConfigOutput
+	ToGetResolverEndpointsEndpointIpConfigOutputWithContext(context.Context) GetResolverEndpointsEndpointIpConfigOutput
+}
+
+type GetResolverEndpointsEndpointIpConfigArgs struct {
+	// The availability zone id of the endpoint.
+	AzId pulumi.StringInput `pulumi:"azId"`
+	// The IP address of the endpoint.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The subnet id of the endpoint.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+}
+
+func (GetResolverEndpointsEndpointIpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsEndpointIpConfig)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsEndpointIpConfigArgs) ToGetResolverEndpointsEndpointIpConfigOutput() GetResolverEndpointsEndpointIpConfigOutput {
+	return i.ToGetResolverEndpointsEndpointIpConfigOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsEndpointIpConfigArgs) ToGetResolverEndpointsEndpointIpConfigOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointIpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsEndpointIpConfigOutput)
+}
+
+// GetResolverEndpointsEndpointIpConfigArrayInput is an input type that accepts GetResolverEndpointsEndpointIpConfigArray and GetResolverEndpointsEndpointIpConfigArrayOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsEndpointIpConfigArrayInput` via:
+//
+//	GetResolverEndpointsEndpointIpConfigArray{ GetResolverEndpointsEndpointIpConfigArgs{...} }
+type GetResolverEndpointsEndpointIpConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsEndpointIpConfigArrayOutput() GetResolverEndpointsEndpointIpConfigArrayOutput
+	ToGetResolverEndpointsEndpointIpConfigArrayOutputWithContext(context.Context) GetResolverEndpointsEndpointIpConfigArrayOutput
+}
+
+type GetResolverEndpointsEndpointIpConfigArray []GetResolverEndpointsEndpointIpConfigInput
+
+func (GetResolverEndpointsEndpointIpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsEndpointIpConfig)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsEndpointIpConfigArray) ToGetResolverEndpointsEndpointIpConfigArrayOutput() GetResolverEndpointsEndpointIpConfigArrayOutput {
+	return i.ToGetResolverEndpointsEndpointIpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsEndpointIpConfigArray) ToGetResolverEndpointsEndpointIpConfigArrayOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointIpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsEndpointIpConfigArrayOutput)
+}
+
+type GetResolverEndpointsEndpointIpConfigOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsEndpointIpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsEndpointIpConfig)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsEndpointIpConfigOutput) ToGetResolverEndpointsEndpointIpConfigOutput() GetResolverEndpointsEndpointIpConfigOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointIpConfigOutput) ToGetResolverEndpointsEndpointIpConfigOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointIpConfigOutput {
+	return o
+}
+
+// The availability zone id of the endpoint.
+func (o GetResolverEndpointsEndpointIpConfigOutput) AzId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpointIpConfig) string { return v.AzId }).(pulumi.StringOutput)
+}
+
+// The IP address of the endpoint.
+func (o GetResolverEndpointsEndpointIpConfigOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpointIpConfig) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The subnet id of the endpoint.
+func (o GetResolverEndpointsEndpointIpConfigOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpointIpConfig) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+type GetResolverEndpointsEndpointIpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsEndpointIpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsEndpointIpConfig)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsEndpointIpConfigArrayOutput) ToGetResolverEndpointsEndpointIpConfigArrayOutput() GetResolverEndpointsEndpointIpConfigArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointIpConfigArrayOutput) ToGetResolverEndpointsEndpointIpConfigArrayOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointIpConfigArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointIpConfigArrayOutput) Index(i pulumi.IntInput) GetResolverEndpointsEndpointIpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverEndpointsEndpointIpConfig {
+		return vs[0].([]GetResolverEndpointsEndpointIpConfig)[vs[1].(int)]
+	}).(GetResolverEndpointsEndpointIpConfigOutput)
+}
+
+type GetResolverRulesRule struct {
+	BindVpcs []GetResolverRulesRuleBindVpc `pulumi:"bindVpcs"`
+	// The created time of the rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// ID of the exit terminal node.
+	EndpointId int `pulumi:"endpointId"`
+	// The IP address and port of the DNS server outside of the VPC.
+	ForwardIps []GetResolverRulesRuleForwardIp `pulumi:"forwardIps"`
+	// The id of the rule.
+	Id string `pulumi:"id"`
+	// The ISP of the exit IP address of the recursive DNS server.
+	Line int `pulumi:"line"`
+	// The name of the rule.
+	Name string `pulumi:"name"`
+	// The id of the rule.
+	RuleId int `pulumi:"ruleId"`
+	// The type of the rule.
+	Type string `pulumi:"type"`
+	// The updated time of the rule.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
+	ZoneNames []string `pulumi:"zoneNames"`
+}
+
+// GetResolverRulesRuleInput is an input type that accepts GetResolverRulesRuleArgs and GetResolverRulesRuleOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleInput` via:
+//
+//	GetResolverRulesRuleArgs{...}
+type GetResolverRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleOutput() GetResolverRulesRuleOutput
+	ToGetResolverRulesRuleOutputWithContext(context.Context) GetResolverRulesRuleOutput
+}
+
+type GetResolverRulesRuleArgs struct {
+	BindVpcs GetResolverRulesRuleBindVpcArrayInput `pulumi:"bindVpcs"`
+	// The created time of the rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// ID of the exit terminal node.
+	EndpointId pulumi.IntInput `pulumi:"endpointId"`
+	// The IP address and port of the DNS server outside of the VPC.
+	ForwardIps GetResolverRulesRuleForwardIpArrayInput `pulumi:"forwardIps"`
+	// The id of the rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ISP of the exit IP address of the recursive DNS server.
+	Line pulumi.IntInput `pulumi:"line"`
+	// The name of the rule.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The id of the rule.
+	RuleId pulumi.IntInput `pulumi:"ruleId"`
+	// The type of the rule.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The updated time of the rule.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
+	ZoneNames pulumi.StringArrayInput `pulumi:"zoneNames"`
+}
+
+func (GetResolverRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRule)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleArgs) ToGetResolverRulesRuleOutput() GetResolverRulesRuleOutput {
+	return i.ToGetResolverRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleArgs) ToGetResolverRulesRuleOutputWithContext(ctx context.Context) GetResolverRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleOutput)
+}
+
+// GetResolverRulesRuleArrayInput is an input type that accepts GetResolverRulesRuleArray and GetResolverRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleArrayInput` via:
+//
+//	GetResolverRulesRuleArray{ GetResolverRulesRuleArgs{...} }
+type GetResolverRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleArrayOutput() GetResolverRulesRuleArrayOutput
+	ToGetResolverRulesRuleArrayOutputWithContext(context.Context) GetResolverRulesRuleArrayOutput
+}
+
+type GetResolverRulesRuleArray []GetResolverRulesRuleInput
+
+func (GetResolverRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRule)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleArray) ToGetResolverRulesRuleArrayOutput() GetResolverRulesRuleArrayOutput {
+	return i.ToGetResolverRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleArray) ToGetResolverRulesRuleArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleArrayOutput)
+}
+
+type GetResolverRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRule)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleOutput) ToGetResolverRulesRuleOutput() GetResolverRulesRuleOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleOutput) ToGetResolverRulesRuleOutputWithContext(ctx context.Context) GetResolverRulesRuleOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleOutput) BindVpcs() GetResolverRulesRuleBindVpcArrayOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) []GetResolverRulesRuleBindVpc { return v.BindVpcs }).(GetResolverRulesRuleBindVpcArrayOutput)
+}
+
+// The created time of the rule.
+func (o GetResolverRulesRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// ID of the exit terminal node.
+func (o GetResolverRulesRuleOutput) EndpointId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) int { return v.EndpointId }).(pulumi.IntOutput)
+}
+
+// The IP address and port of the DNS server outside of the VPC.
+func (o GetResolverRulesRuleOutput) ForwardIps() GetResolverRulesRuleForwardIpArrayOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) []GetResolverRulesRuleForwardIp { return v.ForwardIps }).(GetResolverRulesRuleForwardIpArrayOutput)
+}
+
+// The id of the rule.
+func (o GetResolverRulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ISP of the exit IP address of the recursive DNS server.
+func (o GetResolverRulesRuleOutput) Line() pulumi.IntOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) int { return v.Line }).(pulumi.IntOutput)
+}
+
+// The name of the rule.
+func (o GetResolverRulesRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The id of the rule.
+func (o GetResolverRulesRuleOutput) RuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) int { return v.RuleId }).(pulumi.IntOutput)
+}
+
+// The type of the rule.
+func (o GetResolverRulesRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The updated time of the rule.
+func (o GetResolverRulesRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
+func (o GetResolverRulesRuleOutput) ZoneNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) []string { return v.ZoneNames }).(pulumi.StringArrayOutput)
+}
+
+type GetResolverRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRule)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleArrayOutput) ToGetResolverRulesRuleArrayOutput() GetResolverRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleArrayOutput) ToGetResolverRulesRuleArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleArrayOutput) Index(i pulumi.IntInput) GetResolverRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverRulesRule {
+		return vs[0].([]GetResolverRulesRule)[vs[1].(int)]
+	}).(GetResolverRulesRuleOutput)
+}
+
+type GetResolverRulesRuleBindVpc struct {
+	// The account id of the bind vpc.
+	AccountId string `pulumi:"accountId"`
+	// The id of the rule.
+	Id string `pulumi:"id"`
+	// The region of the bind vpc.
+	Region string `pulumi:"region"`
+	// The region name of the bind vpc.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetResolverRulesRuleBindVpcInput is an input type that accepts GetResolverRulesRuleBindVpcArgs and GetResolverRulesRuleBindVpcOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleBindVpcInput` via:
+//
+//	GetResolverRulesRuleBindVpcArgs{...}
+type GetResolverRulesRuleBindVpcInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleBindVpcOutput() GetResolverRulesRuleBindVpcOutput
+	ToGetResolverRulesRuleBindVpcOutputWithContext(context.Context) GetResolverRulesRuleBindVpcOutput
+}
+
+type GetResolverRulesRuleBindVpcArgs struct {
+	// The account id of the bind vpc.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The id of the rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The region of the bind vpc.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The region name of the bind vpc.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetResolverRulesRuleBindVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRuleBindVpc)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleBindVpcArgs) ToGetResolverRulesRuleBindVpcOutput() GetResolverRulesRuleBindVpcOutput {
+	return i.ToGetResolverRulesRuleBindVpcOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleBindVpcArgs) ToGetResolverRulesRuleBindVpcOutputWithContext(ctx context.Context) GetResolverRulesRuleBindVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleBindVpcOutput)
+}
+
+// GetResolverRulesRuleBindVpcArrayInput is an input type that accepts GetResolverRulesRuleBindVpcArray and GetResolverRulesRuleBindVpcArrayOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleBindVpcArrayInput` via:
+//
+//	GetResolverRulesRuleBindVpcArray{ GetResolverRulesRuleBindVpcArgs{...} }
+type GetResolverRulesRuleBindVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleBindVpcArrayOutput() GetResolverRulesRuleBindVpcArrayOutput
+	ToGetResolverRulesRuleBindVpcArrayOutputWithContext(context.Context) GetResolverRulesRuleBindVpcArrayOutput
+}
+
+type GetResolverRulesRuleBindVpcArray []GetResolverRulesRuleBindVpcInput
+
+func (GetResolverRulesRuleBindVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRuleBindVpc)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleBindVpcArray) ToGetResolverRulesRuleBindVpcArrayOutput() GetResolverRulesRuleBindVpcArrayOutput {
+	return i.ToGetResolverRulesRuleBindVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleBindVpcArray) ToGetResolverRulesRuleBindVpcArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleBindVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleBindVpcArrayOutput)
+}
+
+type GetResolverRulesRuleBindVpcOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleBindVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRuleBindVpc)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleBindVpcOutput) ToGetResolverRulesRuleBindVpcOutput() GetResolverRulesRuleBindVpcOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleBindVpcOutput) ToGetResolverRulesRuleBindVpcOutputWithContext(ctx context.Context) GetResolverRulesRuleBindVpcOutput {
+	return o
+}
+
+// The account id of the bind vpc.
+func (o GetResolverRulesRuleBindVpcOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleBindVpc) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The id of the rule.
+func (o GetResolverRulesRuleBindVpcOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleBindVpc) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The region of the bind vpc.
+func (o GetResolverRulesRuleBindVpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleBindVpc) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The region name of the bind vpc.
+func (o GetResolverRulesRuleBindVpcOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleBindVpc) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetResolverRulesRuleBindVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleBindVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRuleBindVpc)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleBindVpcArrayOutput) ToGetResolverRulesRuleBindVpcArrayOutput() GetResolverRulesRuleBindVpcArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleBindVpcArrayOutput) ToGetResolverRulesRuleBindVpcArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleBindVpcArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleBindVpcArrayOutput) Index(i pulumi.IntInput) GetResolverRulesRuleBindVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverRulesRuleBindVpc {
+		return vs[0].([]GetResolverRulesRuleBindVpc)[vs[1].(int)]
+	}).(GetResolverRulesRuleBindVpcOutput)
+}
+
+type GetResolverRulesRuleForwardIp struct {
+	// The IP address of the DNS server outside of the VPC.
+	Ip string `pulumi:"ip"`
+	// The port of the DNS server outside of the VPC.
+	Port int `pulumi:"port"`
+}
+
+// GetResolverRulesRuleForwardIpInput is an input type that accepts GetResolverRulesRuleForwardIpArgs and GetResolverRulesRuleForwardIpOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleForwardIpInput` via:
+//
+//	GetResolverRulesRuleForwardIpArgs{...}
+type GetResolverRulesRuleForwardIpInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleForwardIpOutput() GetResolverRulesRuleForwardIpOutput
+	ToGetResolverRulesRuleForwardIpOutputWithContext(context.Context) GetResolverRulesRuleForwardIpOutput
+}
+
+type GetResolverRulesRuleForwardIpArgs struct {
+	// The IP address of the DNS server outside of the VPC.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The port of the DNS server outside of the VPC.
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetResolverRulesRuleForwardIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRuleForwardIp)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleForwardIpArgs) ToGetResolverRulesRuleForwardIpOutput() GetResolverRulesRuleForwardIpOutput {
+	return i.ToGetResolverRulesRuleForwardIpOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleForwardIpArgs) ToGetResolverRulesRuleForwardIpOutputWithContext(ctx context.Context) GetResolverRulesRuleForwardIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleForwardIpOutput)
+}
+
+// GetResolverRulesRuleForwardIpArrayInput is an input type that accepts GetResolverRulesRuleForwardIpArray and GetResolverRulesRuleForwardIpArrayOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleForwardIpArrayInput` via:
+//
+//	GetResolverRulesRuleForwardIpArray{ GetResolverRulesRuleForwardIpArgs{...} }
+type GetResolverRulesRuleForwardIpArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleForwardIpArrayOutput() GetResolverRulesRuleForwardIpArrayOutput
+	ToGetResolverRulesRuleForwardIpArrayOutputWithContext(context.Context) GetResolverRulesRuleForwardIpArrayOutput
+}
+
+type GetResolverRulesRuleForwardIpArray []GetResolverRulesRuleForwardIpInput
+
+func (GetResolverRulesRuleForwardIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRuleForwardIp)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleForwardIpArray) ToGetResolverRulesRuleForwardIpArrayOutput() GetResolverRulesRuleForwardIpArrayOutput {
+	return i.ToGetResolverRulesRuleForwardIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleForwardIpArray) ToGetResolverRulesRuleForwardIpArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleForwardIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleForwardIpArrayOutput)
+}
+
+type GetResolverRulesRuleForwardIpOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleForwardIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRuleForwardIp)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleForwardIpOutput) ToGetResolverRulesRuleForwardIpOutput() GetResolverRulesRuleForwardIpOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleForwardIpOutput) ToGetResolverRulesRuleForwardIpOutputWithContext(ctx context.Context) GetResolverRulesRuleForwardIpOutput {
+	return o
+}
+
+// The IP address of the DNS server outside of the VPC.
+func (o GetResolverRulesRuleForwardIpOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleForwardIp) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The port of the DNS server outside of the VPC.
+func (o GetResolverRulesRuleForwardIpOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleForwardIp) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type GetResolverRulesRuleForwardIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleForwardIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRuleForwardIp)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleForwardIpArrayOutput) ToGetResolverRulesRuleForwardIpArrayOutput() GetResolverRulesRuleForwardIpArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleForwardIpArrayOutput) ToGetResolverRulesRuleForwardIpArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleForwardIpArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleForwardIpArrayOutput) Index(i pulumi.IntInput) GetResolverRulesRuleForwardIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverRulesRuleForwardIp {
+		return vs[0].([]GetResolverRulesRuleForwardIp)[vs[1].(int)]
+	}).(GetResolverRulesRuleForwardIpOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZoneVpcInput)(nil)).Elem(), PrivateZoneVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZoneVpcArrayInput)(nil)).Elem(), PrivateZoneVpcArray{})
@@ -1856,6 +3239,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleBindVpcArrayInput)(nil)).Elem(), ResolverRulesRuleBindVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleForwardIpInput)(nil)).Elem(), ResolverRulesRuleForwardIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleForwardIpArrayInput)(nil)).Elem(), ResolverRulesRuleForwardIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneInput)(nil)).Elem(), GetPrivateZonesPrivateZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneArrayInput)(nil)).Elem(), GetPrivateZonesPrivateZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneBindVpcInput)(nil)).Elem(), GetPrivateZonesPrivateZoneBindVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneBindVpcArrayInput)(nil)).Elem(), GetPrivateZonesPrivateZoneBindVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordSetsRecordSetInput)(nil)).Elem(), GetRecordSetsRecordSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordSetsRecordSetArrayInput)(nil)).Elem(), GetRecordSetsRecordSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordsRecordInput)(nil)).Elem(), GetRecordsRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordsRecordArrayInput)(nil)).Elem(), GetRecordsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointInput)(nil)).Elem(), GetResolverEndpointsEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointArrayInput)(nil)).Elem(), GetResolverEndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointIpConfigInput)(nil)).Elem(), GetResolverEndpointsEndpointIpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointIpConfigArrayInput)(nil)).Elem(), GetResolverEndpointsEndpointIpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleInput)(nil)).Elem(), GetResolverRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleArrayInput)(nil)).Elem(), GetResolverRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleBindVpcInput)(nil)).Elem(), GetResolverRulesRuleBindVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleBindVpcArrayInput)(nil)).Elem(), GetResolverRulesRuleBindVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleForwardIpInput)(nil)).Elem(), GetResolverRulesRuleForwardIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleForwardIpArrayInput)(nil)).Elem(), GetResolverRulesRuleForwardIpArray{})
 	pulumi.RegisterOutputType(PrivateZoneVpcOutput{})
 	pulumi.RegisterOutputType(PrivateZoneVpcArrayOutput{})
 	pulumi.RegisterOutputType(PrivateZonesPrivateZoneOutput{})
@@ -1882,4 +3283,22 @@ func init() {
 	pulumi.RegisterOutputType(ResolverRulesRuleBindVpcArrayOutput{})
 	pulumi.RegisterOutputType(ResolverRulesRuleForwardIpOutput{})
 	pulumi.RegisterOutputType(ResolverRulesRuleForwardIpArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneBindVpcOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneBindVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetRecordSetsRecordSetOutput{})
+	pulumi.RegisterOutputType(GetRecordSetsRecordSetArrayOutput{})
+	pulumi.RegisterOutputType(GetRecordsRecordOutput{})
+	pulumi.RegisterOutputType(GetRecordsRecordArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsEndpointOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsEndpointIpConfigOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsEndpointIpConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleBindVpcOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleBindVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleForwardIpOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleForwardIpArrayOutput{})
 }

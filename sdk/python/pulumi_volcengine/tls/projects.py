@@ -18,6 +18,8 @@ __all__ = [
     'projects_output',
 ]
 
+warnings.warn("""volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects""", DeprecationWarning)
+
 @pulumi.output_type
 class ProjectsResult:
     """
@@ -161,7 +163,7 @@ def projects(iam_project_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.projects()
+    default = volcengine.tls.get_projects()
     ```
 
 
@@ -173,6 +175,7 @@ def projects(iam_project_name: Optional[str] = None,
     :param str project_name: The name of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
     :param Sequence[pulumi.InputType['ProjectsTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""projects is deprecated: volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects""")
     __args__ = dict()
     __args__['iamProjectName'] = iam_project_name
     __args__['isFullName'] = is_full_name
@@ -214,7 +217,7 @@ def projects_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.projects()
+    default = volcengine.tls.get_projects()
     ```
 
 
@@ -226,4 +229,5 @@ def projects_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = No
     :param str project_name: The name of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
     :param Sequence[pulumi.InputType['ProjectsTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""projects is deprecated: volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects""")
     ...

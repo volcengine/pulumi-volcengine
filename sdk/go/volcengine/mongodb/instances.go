@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.Instances(ctx, &mongodb.InstancesArgs{
+//			_, err := mongodb.GetInstances(ctx, &mongodb.GetInstancesArgs{
 //				InstanceId: pulumi.StringRef("mongo-replica-xxx"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

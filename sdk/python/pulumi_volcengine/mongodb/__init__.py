@@ -9,6 +9,16 @@ from .account import *
 from .accounts import *
 from .endpoint import *
 from .endpoints import *
+from .get_accounts import *
+from .get_endpoints import *
+from .get_instance_parameter_logs import *
+from .get_instance_parameters import *
+from .get_instances import *
+from .get_mongo_allow_lists import *
+from .get_regions import *
+from .get_specs import *
+from .get_ssl_states import *
+from .get_zones import *
 from .instance import *
 from .instance_parameter import *
 from .instance_parameter_logs import *

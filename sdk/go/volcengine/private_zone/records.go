@@ -12,6 +12,34 @@ import (
 )
 
 // Use this data source to query detailed information of private zone records
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/private_zone"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := private_zone.GetRecords(ctx, &private_zone.GetRecordsArgs{
+//				RecordId: pulumi.StringRef("907925684878276****"),
+//				Zid:      pulumi.IntRef(2450000),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Deprecated: volcengine.private_zone.Records has been deprecated in favor of volcengine.private_zone.getRecords
 func Records(ctx *pulumi.Context, args *RecordsArgs, opts ...pulumi.InvokeOption) (*RecordsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RecordsResult

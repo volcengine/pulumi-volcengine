@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.mongodb.Specs({});
+ * const foo = volcengine.mongodb.getSpecs({});
  * ```
  */
+/** @deprecated volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs */
 export function specs(args?: SpecsArgs, opts?: pulumi.InvokeOptions): Promise<SpecsResult> {
+    pulumi.log.warn("specs is deprecated: volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -68,9 +70,10 @@ export interface SpecsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.mongodb.Specs({});
+ * const foo = volcengine.mongodb.getSpecs({});
  * ```
  */
+/** @deprecated volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs */
 export function specsOutput(args?: SpecsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SpecsResult> {
     return pulumi.output(args).apply((a: any) => specs(a, opts))
 }

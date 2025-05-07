@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_monitor.Rules(ctx, &cloud_monitor.RulesArgs{
+//			_, err := cloud_monitor.GetRules(ctx, &cloud_monitor.GetRulesArgs{
 //				Ids: []string{
 //					"174402785374661****",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules
 func Rules(ctx *pulumi.Context, args *RulesArgs, opts ...pulumi.InvokeOption) (*RulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RulesResult

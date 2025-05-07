@@ -17,6 +17,8 @@ __all__ = [
     'invocation_results_output',
 ]
 
+warnings.warn("""volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults""", DeprecationWarning)
+
 @pulumi.output_type
 class InvocationResultsResult:
     """
@@ -140,7 +142,7 @@ def invocation_results(command_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.invocation_results(invocation_id="ivk-ych9y4vujvl8j01c****",
+    default = volcengine.ecs.get_invocation_results(invocation_id="ivk-ych9y4vujvl8j01c****",
         invocation_result_statuses=["Success"])
     ```
 
@@ -151,6 +153,7 @@ def invocation_results(command_id: Optional[str] = None,
     :param Sequence[str] invocation_result_statuses: The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""invocation_results is deprecated: volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults""")
     __args__ = dict()
     __args__['commandId'] = command_id
     __args__['instanceId'] = instance_id
@@ -186,7 +189,7 @@ def invocation_results_output(command_id: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.invocation_results(invocation_id="ivk-ych9y4vujvl8j01c****",
+    default = volcengine.ecs.get_invocation_results(invocation_id="ivk-ych9y4vujvl8j01c****",
         invocation_result_statuses=["Success"])
     ```
 
@@ -197,4 +200,5 @@ def invocation_results_output(command_id: Optional[pulumi.Input[Optional[str]]] 
     :param Sequence[str] invocation_result_statuses: The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""invocation_results is deprecated: volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults""")
     ...

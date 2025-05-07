@@ -17,6 +17,8 @@ __all__ = [
     'resolver_rules_output',
 ]
 
+warnings.warn("""volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules""", DeprecationWarning)
+
 @pulumi.output_type
 class ResolverRulesResult:
     """
@@ -137,7 +139,7 @@ def resolver_rules(endpoint_id: Optional[int] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.private_zone.resolver_rules()
+    foo = volcengine.private_zone.get_resolver_rules()
     ```
 
 
@@ -147,6 +149,7 @@ def resolver_rules(endpoint_id: Optional[int] = None,
     :param str output_file: File name where to save data source results.
     :param str zone_name: The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
     """
+    pulumi.log.warn("""resolver_rules is deprecated: volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules""")
     __args__ = dict()
     __args__['endpointId'] = endpoint_id
     __args__['name'] = name
@@ -182,7 +185,7 @@ def resolver_rules_output(endpoint_id: Optional[pulumi.Input[Optional[int]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.private_zone.resolver_rules()
+    foo = volcengine.private_zone.get_resolver_rules()
     ```
 
 
@@ -192,4 +195,5 @@ def resolver_rules_output(endpoint_id: Optional[pulumi.Input[Optional[int]]] = N
     :param str output_file: File name where to save data source results.
     :param str zone_name: The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
     """
+    pulumi.log.warn("""resolver_rules is deprecated: volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules""")
     ...

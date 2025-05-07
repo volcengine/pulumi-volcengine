@@ -26,10 +26,29 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.NewRegistry(ctx, "foo", &cr.RegistryArgs{
+//			// create cr registry
+//			fooRegistry, err := cr.NewRegistry(ctx, "fooRegistry", &cr.RegistryArgs{
 //				DeleteImmediately: pulumi.Bool(false),
 //				Password:          pulumi.String("1qaz!QAZ"),
 //				Project:           pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create cr namespace
+//			fooNamespace, err := cr.NewNamespace(ctx, "fooNamespace", &cr.NamespaceArgs{
+//				Registry: fooRegistry.ID(),
+//				Project:  pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create cr repository
+//			_, err = cr.NewRepository(ctx, "fooRepository", &cr.RepositoryArgs{
+//				Registry:    fooRegistry.ID(),
+//				Namespace:   fooNamespace.Name,
+//				Description: pulumi.String("A test repository created by terraform."),
+//				AccessLevel: pulumi.String("Public"),
 //			})
 //			if err != nil {
 //				return err

@@ -27,7 +27,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := nas.Zones(ctx, nil, nil);
+// fooZones, err := nas.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -55,13 +55,15 @@ import (
 // }
 // fooFileSystem = append(fooFileSystem, __res)
 // }
-// _ = nas.FileSystemsOutput(ctx, nas.FileSystemsOutputArgs{
+// _ = nas.GetFileSystemsOutput(ctx, nas.GetFileSystemsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:nas-fileSystems:FileSystems.pp:18,9-28),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems
 func FileSystems(ctx *pulumi.Context, args *FileSystemsArgs, opts ...pulumi.InvokeOption) (*FileSystemsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FileSystemsResult

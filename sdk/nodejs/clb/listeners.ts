@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -62,12 +62,14 @@ import * as utilities from "../utilities";
  *     },
  *     enabled: "on",
  * });
- * const fooListeners = volcengine.clb.ListenersOutput({
+ * const fooListeners = volcengine.clb.getListenersOutput({
  *     ids: [fooListener.id],
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners */
 export function listeners(args?: ListenersArgs, opts?: pulumi.InvokeOptions): Promise<ListenersResult> {
+    pulumi.log.warn("listeners is deprecated: volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -140,7 +142,7 @@ export interface ListenersResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -187,11 +189,12 @@ export interface ListenersResult {
  *     },
  *     enabled: "on",
  * });
- * const fooListeners = volcengine.clb.ListenersOutput({
+ * const fooListeners = volcengine.clb.getListenersOutput({
  *     ids: [fooListener.id],
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners */
 export function listenersOutput(args?: ListenersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListenersResult> {
     return pulumi.output(args).apply((a: any) => listeners(a, opts))
 }

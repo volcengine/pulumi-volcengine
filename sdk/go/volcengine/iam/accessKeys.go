@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.AccessKeys(ctx, nil, nil)
+//			_, err := iam.GetAccessKeys(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys
 func AccessKeys(ctx *pulumi.Context, args *AccessKeysArgs, opts ...pulumi.InvokeOption) (*AccessKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccessKeysResult

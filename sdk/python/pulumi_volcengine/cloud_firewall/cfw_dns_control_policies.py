@@ -17,6 +17,8 @@ __all__ = [
     'cfw_dns_control_policies_output',
 ]
 
+warnings.warn("""volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies""", DeprecationWarning)
+
 @pulumi.output_type
 class CfwDnsControlPoliciesResult:
     """
@@ -171,7 +173,7 @@ def cfw_dns_control_policies(description: Optional[str] = None,
             vpc_id=foo_vpc.id,
             region="cn-beijing",
         )])
-    foo_cfw_dns_control_policies = volcengine.cloud_firewall.cfw_dns_control_policies_output(ids=[foo_cfw_dns_control_policy.id])
+    foo_cfw_dns_control_policies = volcengine.cloud_firewall.get_cfw_dns_control_policies_output(ids=[foo_cfw_dns_control_policy.id])
     ```
 
 
@@ -183,6 +185,7 @@ def cfw_dns_control_policies(description: Optional[str] = None,
     :param Sequence[str] sources: The source list of the dns control policy. This field support fuzzy query.
     :param Sequence[bool] statuses: The enable status list of the dns control policy. This field support fuzzy query.
     """
+    pulumi.log.warn("""cfw_dns_control_policies is deprecated: volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies""")
     __args__ = dict()
     __args__['description'] = description
     __args__['destinations'] = destinations
@@ -235,7 +238,7 @@ def cfw_dns_control_policies_output(description: Optional[pulumi.Input[Optional[
             vpc_id=foo_vpc.id,
             region="cn-beijing",
         )])
-    foo_cfw_dns_control_policies = volcengine.cloud_firewall.cfw_dns_control_policies_output(ids=[foo_cfw_dns_control_policy.id])
+    foo_cfw_dns_control_policies = volcengine.cloud_firewall.get_cfw_dns_control_policies_output(ids=[foo_cfw_dns_control_policy.id])
     ```
 
 
@@ -247,4 +250,5 @@ def cfw_dns_control_policies_output(description: Optional[pulumi.Input[Optional[
     :param Sequence[str] sources: The source list of the dns control policy. This field support fuzzy query.
     :param Sequence[bool] statuses: The enable status list of the dns control policy. This field support fuzzy query.
     """
+    pulumi.log.warn("""cfw_dns_control_policies is deprecated: volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies""")
     ...

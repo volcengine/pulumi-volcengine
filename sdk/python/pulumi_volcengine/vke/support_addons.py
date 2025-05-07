@@ -17,6 +17,8 @@ __all__ = [
     'support_addons_output',
 ]
 
+warnings.warn("""volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons""", DeprecationWarning)
+
 @pulumi.output_type
 class SupportAddonsResult:
     """
@@ -167,7 +169,7 @@ def support_addons(categories: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.support_addons(categories=["Monitor"],
+    default = volcengine.vke.get_support_addons(categories=["Monitor"],
         name="metrics-server")
     ```
 
@@ -181,6 +183,7 @@ def support_addons(categories: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] pod_network_modes: The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
     """
+    pulumi.log.warn("""support_addons is deprecated: volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons""")
     __args__ = dict()
     __args__['categories'] = categories
     __args__['deployModes'] = deploy_modes
@@ -225,7 +228,7 @@ def support_addons_output(categories: Optional[pulumi.Input[Optional[Sequence[st
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.support_addons(categories=["Monitor"],
+    default = volcengine.vke.get_support_addons(categories=["Monitor"],
         name="metrics-server")
     ```
 
@@ -239,4 +242,5 @@ def support_addons_output(categories: Optional[pulumi.Input[Optional[Sequence[st
     :param str output_file: File name where to save data source results.
     :param Sequence[str] pod_network_modes: The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
     """
+    pulumi.log.warn("""support_addons is deprecated: volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons""")
     ...

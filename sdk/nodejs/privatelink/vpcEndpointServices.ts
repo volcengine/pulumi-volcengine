@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -54,12 +54,14 @@ import * as utilities from "../utilities";
  *         autoAcceptEnabled: true,
  *     }));
  * }
- * const fooVpcEndpointServices = volcengine.privatelink.VpcEndpointServicesOutput({
+ * const fooVpcEndpointServices = volcengine.privatelink.getVpcEndpointServicesOutput({
  *     ids: fooVpcEndpointService.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices */
 export function vpcEndpointServices(args?: VpcEndpointServicesArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointServicesResult> {
+    pulumi.log.warn("vpcEndpointServices is deprecated: volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -126,7 +128,7 @@ export interface VpcEndpointServicesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -165,11 +167,12 @@ export interface VpcEndpointServicesResult {
  *         autoAcceptEnabled: true,
  *     }));
  * }
- * const fooVpcEndpointServices = volcengine.privatelink.VpcEndpointServicesOutput({
+ * const fooVpcEndpointServices = volcengine.privatelink.getVpcEndpointServicesOutput({
  *     ids: fooVpcEndpointService.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices */
 export function vpcEndpointServicesOutput(args?: VpcEndpointServicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointServicesResult> {
     return pulumi.output(args).apply((a: any) => vpcEndpointServices(a, opts))
 }

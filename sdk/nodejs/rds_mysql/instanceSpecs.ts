@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.InstanceSpecs({
+ * const foo = volcengine.rds_mysql.getInstanceSpecs({
  *     dbEngineVersion: "MySQL_8_0",
  *     instanceType: "DoubleNode",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs */
 export function instanceSpecs(args?: InstanceSpecsArgs, opts?: pulumi.InvokeOptions): Promise<InstanceSpecsResult> {
+    pulumi.log.warn("instanceSpecs is deprecated: volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -105,12 +107,13 @@ export interface InstanceSpecsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.InstanceSpecs({
+ * const foo = volcengine.rds_mysql.getInstanceSpecs({
  *     dbEngineVersion: "MySQL_8_0",
  *     instanceType: "DoubleNode",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs */
 export function instanceSpecsOutput(args?: InstanceSpecsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceSpecsResult> {
     return pulumi.output(args).apply((a: any) => instanceSpecs(a, opts))
 }

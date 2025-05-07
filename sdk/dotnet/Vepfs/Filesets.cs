@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vepfs
 {
+    [Obsolete(@"volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets")]
     public static class Filesets
     {
         /// <summary>
@@ -67,7 +68,7 @@ namespace Pulumi.Volcengine.Vepfs
         ///         CapacityLimit = 30,
         ///     });
         /// 
-        ///     var fooFilesets = Volcengine.Vepfs.Filesets.Invoke(new()
+        ///     var fooFilesets = Volcengine.Vepfs.GetFilesets.Invoke(new()
         ///     {
         ///         FileSystemId = fooFileSystem.Id,
         ///         FilesetId = fooFileset.Id,
@@ -135,7 +136,7 @@ namespace Pulumi.Volcengine.Vepfs
         ///         CapacityLimit = 30,
         ///     });
         /// 
-        ///     var fooFilesets = Volcengine.Vepfs.Filesets.Invoke(new()
+        ///     var fooFilesets = Volcengine.Vepfs.GetFilesets.Invoke(new()
         ///     {
         ///         FileSystemId = fooFileSystem.Id,
         ///         FilesetId = fooFileset.Id,

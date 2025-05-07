@@ -13,6 +13,54 @@ import (
 )
 
 // Provides a resource to manage private zone record weight enabler
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/private_zone"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooRecord, err := private_zone.NewRecord(ctx, "fooRecord", &private_zone.RecordArgs{
+// Zid: pulumi.Int(2450000),
+// Host: pulumi.String("www"),
+// Type: pulumi.String("A"),
+// Value: pulumi.String("10.1.1.158"),
+// Weight: pulumi.Int(8),
+// Ttl: pulumi.Int(700),
+// Remark: pulumi.String("tf-test"),
+// Enable: pulumi.Bool(true),
+// })
+// if err != nil {
+// return err
+// }
+// fooRecordSets := private_zone.GetRecordSetsOutput(ctx, private_zone.GetRecordSetsOutputArgs{
+// Zid: fooRecord.Zid,
+// Host: fooRecord.Host,
+// SearchMode: pulumi.String("EXACT"),
+// }, nil);
+// _, err = private_zone.NewRecordWeightEnabler(ctx, "fooRecordWeightEnabler", &private_zone.RecordWeightEnablerArgs{
+// Zid: fooRecord.Zid,
+// RecordSetId: pulumi.All(fooRecordSets,fooRecord.Type).ApplyT(func(_args []interface{}) (*string, error) {
+// fooRecordSets := _args[0].(private_zone.GetRecordSetsResult)
+// type := _args[1].(string)
+// return "TODO: For expression"[0], nil
+// }).(pulumi.StringPtrOutput),
+// WeightEnabled: pulumi.Bool(true),
+// })
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
+//
 // ## Import
 //
 // PrivateZoneRecordWeightEnabler can be imported using the zid:record_set_id, e.g.

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cen
 {
+    [Obsolete(@"volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages")]
     public static class BandwidthPackages
     {
         /// <summary>
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Cen
         ///             },
         ///         }));
         ///     }
-        ///     var fooBandwidthPackages = Volcengine.Cen.BandwidthPackages.Invoke(new()
+        ///     var fooBandwidthPackages = Volcengine.Cen.GetBandwidthPackages.Invoke(new()
         ///     {
         ///         Ids = fooBandwidthPackage.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -96,7 +97,7 @@ namespace Pulumi.Volcengine.Cen
         ///             },
         ///         }));
         ///     }
-        ///     var fooBandwidthPackages = Volcengine.Cen.BandwidthPackages.Invoke(new()
+        ///     var fooBandwidthPackages = Volcengine.Cen.GetBandwidthPackages.Invoke(new()
         ///     {
         ///         Ids = fooBandwidthPackage.Select(__item =&gt; __item.Id).ToList(),
         ///     });

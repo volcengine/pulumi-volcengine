@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -61,13 +61,15 @@ import * as utilities from "../utilities";
  *     allAuthority: true,
  *     passwordType: "Scram",
  * });
- * const default = volcengine.kafka.SaslUsersOutput({
+ * const default = volcengine.kafka.getSaslUsersOutput({
  *     instanceId: fooInstance.id,
  *     userName: fooSaslUser.userName,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers */
 export function saslUsers(args: SaslUsersArgs, opts?: pulumi.InvokeOptions): Promise<SaslUsersResult> {
+    pulumi.log.warn("saslUsers is deprecated: volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:kafka/saslUsers:SaslUsers", {
@@ -127,7 +129,7 @@ export interface SaslUsersResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -173,12 +175,13 @@ export interface SaslUsersResult {
  *     allAuthority: true,
  *     passwordType: "Scram",
  * });
- * const default = volcengine.kafka.SaslUsersOutput({
+ * const default = volcengine.kafka.getSaslUsersOutput({
  *     instanceId: fooInstance.id,
  *     userName: fooSaslUser.userName,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.SaslUsers has been deprecated in favor of volcengine.kafka.getSaslUsers */
 export function saslUsersOutput(args: SaslUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SaslUsersResult> {
     return pulumi.output(args).apply((a: any) => saslUsers(a, opts))
 }

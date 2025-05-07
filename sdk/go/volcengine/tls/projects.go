@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Projects(ctx, nil, nil)
+//			_, err := tls.GetProjects(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects
 func Projects(ctx *pulumi.Context, args *ProjectsArgs, opts ...pulumi.InvokeOption) (*ProjectsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ProjectsResult

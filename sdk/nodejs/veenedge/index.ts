@@ -20,6 +20,31 @@ export const cloudServers: typeof import("./cloudServers").cloudServers = null a
 export const cloudServersOutput: typeof import("./cloudServers").cloudServersOutput = null as any;
 utilities.lazyLoad(exports, ["cloudServers","cloudServersOutput"], () => require("./cloudServers"));
 
+export { GetAvailableResourcesArgs, GetAvailableResourcesResult, GetAvailableResourcesOutputArgs } from "./getAvailableResources";
+export const getAvailableResources: typeof import("./getAvailableResources").getAvailableResources = null as any;
+export const getAvailableResourcesOutput: typeof import("./getAvailableResources").getAvailableResourcesOutput = null as any;
+utilities.lazyLoad(exports, ["getAvailableResources","getAvailableResourcesOutput"], () => require("./getAvailableResources"));
+
+export { GetCloudServersArgs, GetCloudServersResult, GetCloudServersOutputArgs } from "./getCloudServers";
+export const getCloudServers: typeof import("./getCloudServers").getCloudServers = null as any;
+export const getCloudServersOutput: typeof import("./getCloudServers").getCloudServersOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudServers","getCloudServersOutput"], () => require("./getCloudServers"));
+
+export { GetInstanceTypesArgs, GetInstanceTypesResult, GetInstanceTypesOutputArgs } from "./getInstanceTypes";
+export const getInstanceTypes: typeof import("./getInstanceTypes").getInstanceTypes = null as any;
+export const getInstanceTypesOutput: typeof import("./getInstanceTypes").getInstanceTypesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceTypes","getInstanceTypesOutput"], () => require("./getInstanceTypes"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
+export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
+export const getVpcsOutput: typeof import("./getVpcs").getVpcsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcs","getVpcsOutput"], () => require("./getVpcs"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;

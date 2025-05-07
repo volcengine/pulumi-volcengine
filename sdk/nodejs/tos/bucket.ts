@@ -14,7 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const _default = new volcengine.tos.Bucket("default", {
+ * // create tos bucket
+ * const fooBucket = new volcengine.tos.Bucket("fooBucket", {
+ *     bucketName: "tf-acc-test-bucket",
+ *     publicAcl: "private",
+ *     azRedundancy: "multi-az",
+ *     enableVersion: true,
+ *     bucketAclDelivered: true,
  *     accountAcls: [
  *         {
  *             accountId: "1",
@@ -25,16 +31,24 @@ import * as utilities from "../utilities";
  *             permission: "WRITE_ACP",
  *         },
  *     ],
- *     azRedundancy: "multi-az",
- *     bucketAclDelivered: true,
- *     bucketName: "tf-acc-test-bucket-0123-3",
- *     enableVersion: true,
  *     projectName: "default",
- *     publicAcl: "private",
  *     tags: [{
  *         key: "k1",
  *         value: "v1",
  *     }],
+ * });
+ * // create tos bucket policy
+ * const fooBucketPolicy = new volcengine.tos.BucketPolicy("fooBucketPolicy", {
+ *     bucketName: fooBucket.id,
+ *     policy: pulumi.jsonStringify({
+ *         Statement: [{
+ *             Sid: "test",
+ *             Effect: "Allow",
+ *             Principal: ["AccountId/subUserName"],
+ *             Action: ["tos:List*"],
+ *             Resource: [pulumi.interpolate`trn:tos:::${fooBucket.id}`],
+ *         }],
+ *     }),
  * });
  * ```
  *

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mssql.Regions(ctx, nil, nil)
+//			_, err := rds_mssql.GetRegions(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mssql.Regions has been deprecated in favor of volcengine.rds_mssql.getRegions
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegionsResult

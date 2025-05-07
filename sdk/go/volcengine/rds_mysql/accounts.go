@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -97,7 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = rds_mysql.AccountsOutput(ctx, rds_mysql.AccountsOutputArgs{
+//			_ = rds_mysql.GetAccountsOutput(ctx, rds_mysql.GetAccountsOutputArgs{
 //				InstanceId:  fooInstance.ID(),
 //				AccountName: fooAccount.AccountName,
 //			}, nil)
@@ -106,6 +106,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.Accounts has been deprecated in favor of volcengine.rds_mysql.getAccounts
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccountsResult

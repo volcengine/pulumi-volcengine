@@ -17,6 +17,8 @@ __all__ = [
     'vpcs_output',
 ]
 
+warnings.warn("""volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcsResult:
     """
@@ -108,7 +110,7 @@ def vpcs(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.veenedge.vpcs()
+    foo = volcengine.veenedge.get_vpcs()
     ```
 
 
@@ -116,6 +118,7 @@ def vpcs(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of Vpc.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""vpcs is deprecated: volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -145,7 +148,7 @@ def vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.veenedge.vpcs()
+    foo = volcengine.veenedge.get_vpcs()
     ```
 
 
@@ -153,4 +156,5 @@ def vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str name_regex: A Name Regex of Vpc.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""vpcs is deprecated: volcengine.veenedge.Vpcs has been deprecated in favor of volcengine.veenedge.getVpcs""")
     ...

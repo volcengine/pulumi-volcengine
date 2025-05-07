@@ -8,6 +8,10 @@ import typing
 from .auto_snapshot_policies import *
 from .auto_snapshot_policy import *
 from .auto_snapshot_policy_attachment import *
+from .get_auto_snapshot_policies import *
+from .get_snapshot_groups import *
+from .get_snapshots import *
+from .get_volumes import *
 from .snapshot import *
 from .snapshot_group import *
 from .snapshot_groups import *

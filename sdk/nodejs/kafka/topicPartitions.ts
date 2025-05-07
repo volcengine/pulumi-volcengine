@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -78,7 +78,7 @@ import * as utilities from "../utilities";
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = pulumi.all([fooInstance.id, fooTopic.topicName]).apply(([id, topicName]) => volcengine.kafka.TopicPartitionsOutput({
+ * const default = pulumi.all([fooInstance.id, fooTopic.topicName]).apply(([id, topicName]) => volcengine.kafka.getTopicPartitionsOutput({
  *     instanceId: id,
  *     topicName: topicName,
  *     partitionIds: [
@@ -88,7 +88,9 @@ import * as utilities from "../utilities";
  * }));
  * ```
  */
+/** @deprecated volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions */
 export function topicPartitions(args: TopicPartitionsArgs, opts?: pulumi.InvokeOptions): Promise<TopicPartitionsResult> {
+    pulumi.log.warn("topicPartitions is deprecated: volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:kafka/topicPartitions:TopicPartitions", {
@@ -157,7 +159,7 @@ export interface TopicPartitionsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -220,7 +222,7 @@ export interface TopicPartitionsResult {
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = pulumi.all([fooInstance.id, fooTopic.topicName]).apply(([id, topicName]) => volcengine.kafka.TopicPartitionsOutput({
+ * const default = pulumi.all([fooInstance.id, fooTopic.topicName]).apply(([id, topicName]) => volcengine.kafka.getTopicPartitionsOutput({
  *     instanceId: id,
  *     topicName: topicName,
  *     partitionIds: [
@@ -230,6 +232,7 @@ export interface TopicPartitionsResult {
  * }));
  * ```
  */
+/** @deprecated volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions */
 export function topicPartitionsOutput(args: TopicPartitionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TopicPartitionsResult> {
     return pulumi.output(args).apply((a: any) => topicPartitions(a, opts))
 }

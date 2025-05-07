@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudfs.Accesses(ctx, &cloudfs.AccessesArgs{
+//			_, err := cloudfs.GetAccesses(ctx, &cloudfs.GetAccessesArgs{
 //				FsName: "tftest2",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses
 func Accesses(ctx *pulumi.Context, args *AccessesArgs, opts ...pulumi.InvokeOption) (*AccessesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccessesResult

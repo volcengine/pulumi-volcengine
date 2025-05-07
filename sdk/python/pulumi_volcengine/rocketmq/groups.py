@@ -17,6 +17,8 @@ __all__ = [
     'groups_output',
 ]
 
+warnings.warn("""volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class GroupsResult:
     """
@@ -124,7 +126,7 @@ def groups(group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.groups(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_groups(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -133,6 +135,7 @@ def groups(group_id: Optional[str] = None,
     :param str instance_id: The id of rocketmq instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""groups is deprecated: volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups""")
     __args__ = dict()
     __args__['groupId'] = group_id
     __args__['groupType'] = group_type
@@ -165,7 +168,7 @@ def groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.groups(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_groups(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -174,4 +177,5 @@ def groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The id of rocketmq instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""groups is deprecated: volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups""")
     ...

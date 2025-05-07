@@ -607,7 +607,7 @@ type EscloudInstancesV2Instance struct {
 	Status string `pulumi:"status"`
 	// Whether support code node.
 	SupportCodeNode bool `pulumi:"supportCodeNode"`
-	// Tags.
+	// The tags of instance.
 	Tags []EscloudInstancesV2InstanceTag `pulumi:"tags"`
 	// The total nodes of instance.
 	TotalNodes int `pulumi:"totalNodes"`
@@ -705,7 +705,7 @@ type EscloudInstancesV2InstanceArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// Whether support code node.
 	SupportCodeNode pulumi.BoolInput `pulumi:"supportCodeNode"`
-	// Tags.
+	// The tags of instance.
 	Tags EscloudInstancesV2InstanceTagArrayInput `pulumi:"tags"`
 	// The total nodes of instance.
 	TotalNodes pulumi.IntInput `pulumi:"totalNodes"`
@@ -961,7 +961,7 @@ func (o EscloudInstancesV2InstanceOutput) SupportCodeNode() pulumi.BoolOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Instance) bool { return v.SupportCodeNode }).(pulumi.BoolOutput)
 }
 
-// Tags.
+// The tags of instance.
 func (o EscloudInstancesV2InstanceOutput) Tags() EscloudInstancesV2InstanceTagArrayOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Instance) []EscloudInstancesV2InstanceTag { return v.Tags }).(EscloudInstancesV2InstanceTagArrayOutput)
 }
@@ -1039,13 +1039,13 @@ type EscloudInstancesV2InstanceInstanceConfiguration struct {
 	MasterNodeStorageSpecs []EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec `pulumi:"masterNodeStorageSpecs"`
 	// The period of project.
 	Period int `pulumi:"period"`
-	// The name of project.
+	// The project name of instance.
 	ProjectName string `pulumi:"projectName"`
 	// The region info of instance.
 	RegionId string `pulumi:"regionId"`
 	// The subnet info.
 	Subnets []EscloudInstancesV2InstanceInstanceConfigurationSubnet `pulumi:"subnets"`
-	// The version of instance.
+	// The version of plugin.
 	Version string `pulumi:"version"`
 	// The vpc info.
 	Vpcs []EscloudInstancesV2InstanceInstanceConfigurationVpc `pulumi:"vpcs"`
@@ -1115,13 +1115,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationArgs struct {
 	MasterNodeStorageSpecs EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput `pulumi:"masterNodeStorageSpecs"`
 	// The period of project.
 	Period pulumi.IntInput `pulumi:"period"`
-	// The name of project.
+	// The project name of instance.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The region info of instance.
 	RegionId pulumi.StringInput `pulumi:"regionId"`
 	// The subnet info.
 	Subnets EscloudInstancesV2InstanceInstanceConfigurationSubnetArrayInput `pulumi:"subnets"`
-	// The version of instance.
+	// The version of plugin.
 	Version pulumi.StringInput `pulumi:"version"`
 	// The vpc info.
 	Vpcs EscloudInstancesV2InstanceInstanceConfigurationVpcArrayInput `pulumi:"vpcs"`
@@ -1313,7 +1313,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationOutput) Period() pulumi.I
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfiguration) int { return v.Period }).(pulumi.IntOutput)
 }
 
-// The name of project.
+// The project name of instance.
 func (o EscloudInstancesV2InstanceInstanceConfigurationOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfiguration) string { return v.ProjectName }).(pulumi.StringOutput)
 }
@@ -1330,7 +1330,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationOutput) Subnets() Escloud
 	}).(EscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput)
 }
 
-// The version of instance.
+// The version of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfiguration) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -1394,13 +1394,13 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationArrayOutput) Index(i pulu
 type EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name string `pulumi:"name"`
 }
 
@@ -1418,13 +1418,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput in
 type EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1484,14 +1484,14 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutpu
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string {
 		return v.Description
 	}).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string {
 		return v.DisplayName
@@ -1503,7 +1503,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutpu
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
 }
 
-// The name of resource spec.
+// The name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1529,7 +1529,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -1555,7 +1555,7 @@ type EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput int
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -1620,7 +1620,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string {
 		return v.Description
@@ -1677,13 +1677,13 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayO
 type EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name string `pulumi:"name"`
 }
 
@@ -1701,13 +1701,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecI
 type EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1767,14 +1767,14 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSp
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
 		return v.Description
 	}).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
 		return v.DisplayName
@@ -1788,7 +1788,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSp
 	}).(pulumi.IntOutput)
 }
 
-// The name of resource spec.
+// The name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
 		return v.Name
@@ -1816,7 +1816,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSp
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -1842,7 +1842,7 @@ type EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecIn
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -1907,7 +1907,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpe
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string {
 		return v.Description
@@ -1970,13 +1970,13 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpe
 type EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name string `pulumi:"name"`
 }
 
@@ -1994,13 +1994,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput int
 type EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2060,14 +2060,14 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string {
 		return v.Description
 	}).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string {
 		return v.DisplayName
@@ -2079,7 +2079,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
 }
 
-// The name of resource spec.
+// The name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2105,7 +2105,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayO
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -2131,7 +2131,7 @@ type EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput inte
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -2196,7 +2196,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput)
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -2249,13 +2249,13 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOu
 type EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name string `pulumi:"name"`
 }
 
@@ -2273,13 +2273,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput 
 type EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2339,14 +2339,14 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOut
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string {
 		return v.Description
 	}).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string {
 		return v.DisplayName
@@ -2358,7 +2358,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOut
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
 }
 
-// The name of resource spec.
+// The name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2384,7 +2384,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArr
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -2410,7 +2410,7 @@ type EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput i
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -2475,7 +2475,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutp
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string {
 		return v.Description
@@ -2532,13 +2532,13 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArra
 type EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name string `pulumi:"name"`
 }
 
@@ -2556,13 +2556,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput 
 type EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2622,14 +2622,14 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOut
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string {
 		return v.Description
 	}).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string {
 		return v.DisplayName
@@ -2641,7 +2641,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOut
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
 }
 
-// The name of resource spec.
+// The name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2667,7 +2667,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArr
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -2693,7 +2693,7 @@ type EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput i
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -2758,7 +2758,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutp
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string {
 		return v.Description
@@ -3027,13 +3027,13 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput) Index(i p
 type EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name string `pulumi:"name"`
 }
 
@@ -3051,13 +3051,13 @@ type EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput in
 type EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The name of resource spec.
+	// The name of storage spec.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -3117,14 +3117,14 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutpu
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string {
 		return v.Description
 	}).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string {
 		return v.DisplayName
@@ -3136,7 +3136,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutpu
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
 }
 
-// The name of resource spec.
+// The name of storage spec.
 func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3162,7 +3162,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -3188,7 +3188,7 @@ type EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput int
 }
 
 type EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -3253,7 +3253,7 @@ func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string {
 		return v.Description
@@ -3330,7 +3330,7 @@ type EscloudInstancesV2InstanceNode struct {
 	RestartNumber int `pulumi:"restartNumber"`
 	// The start time of node.
 	StartTime string `pulumi:"startTime"`
-	// The status of node.
+	// The status of instance.
 	Status string `pulumi:"status"`
 	// The node storage spec of master.
 	StorageSpecs []EscloudInstancesV2InstanceNodeStorageSpec `pulumi:"storageSpecs"`
@@ -3370,7 +3370,7 @@ type EscloudInstancesV2InstanceNodeArgs struct {
 	RestartNumber pulumi.IntInput `pulumi:"restartNumber"`
 	// The start time of node.
 	StartTime pulumi.StringInput `pulumi:"startTime"`
-	// The status of node.
+	// The status of instance.
 	Status pulumi.StringInput `pulumi:"status"`
 	// The node storage spec of master.
 	StorageSpecs EscloudInstancesV2InstanceNodeStorageSpecArrayInput `pulumi:"storageSpecs"`
@@ -3484,7 +3484,7 @@ func (o EscloudInstancesV2InstanceNodeOutput) StartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceNode) string { return v.StartTime }).(pulumi.StringOutput)
 }
 
-// The status of node.
+// The status of instance.
 func (o EscloudInstancesV2InstanceNodeOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceNode) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -3519,9 +3519,9 @@ func (o EscloudInstancesV2InstanceNodeArrayOutput) Index(i pulumi.IntInput) Escl
 type EscloudInstancesV2InstanceNodeResourceSpec struct {
 	// The cpu info of resource spec.
 	Cpu int `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory int `pulumi:"memory"`
@@ -3541,9 +3541,9 @@ type EscloudInstancesV2InstanceNodeResourceSpecInput interface {
 type EscloudInstancesV2InstanceNodeResourceSpecArgs struct {
 	// The cpu info of resource spec.
 	Cpu pulumi.IntInput `pulumi:"cpu"`
-	// The description of resource spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The show name of resource spec.
+	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The memory info of resource spec.
 	Memory pulumi.IntInput `pulumi:"memory"`
@@ -3605,12 +3605,12 @@ func (o EscloudInstancesV2InstanceNodeResourceSpecOutput) Cpu() pulumi.IntOutput
 	return o.ApplyT(func(v EscloudInstancesV2InstanceNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
-// The description of resource spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceNodeResourceSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The show name of resource spec.
+// The show name of storage spec.
 func (o EscloudInstancesV2InstanceNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
 }
@@ -3641,7 +3641,7 @@ func (o EscloudInstancesV2InstanceNodeResourceSpecArrayOutput) Index(i pulumi.In
 }
 
 type EscloudInstancesV2InstanceNodeStorageSpec struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description string `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName string `pulumi:"displayName"`
@@ -3663,7 +3663,7 @@ type EscloudInstancesV2InstanceNodeStorageSpecInput interface {
 }
 
 type EscloudInstancesV2InstanceNodeStorageSpecArgs struct {
-	// The description of storage spec.
+	// The description of plugin.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The show name of storage spec.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
@@ -3724,7 +3724,7 @@ func (o EscloudInstancesV2InstanceNodeStorageSpecOutput) ToEscloudInstancesV2Ins
 	return o
 }
 
-// The description of storage spec.
+// The description of plugin.
 func (o EscloudInstancesV2InstanceNodeStorageSpecOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstanceNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -3769,7 +3769,7 @@ type EscloudInstancesV2InstancePlugin struct {
 	Description string `pulumi:"description"`
 	// The name of plugin.
 	PluginName string `pulumi:"pluginName"`
-	// The status of plugin.
+	// The status of instance.
 	Status string `pulumi:"status"`
 	// The version of plugin.
 	Version string `pulumi:"version"`
@@ -3791,7 +3791,7 @@ type EscloudInstancesV2InstancePluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The name of plugin.
 	PluginName pulumi.StringInput `pulumi:"pluginName"`
-	// The status of plugin.
+	// The status of instance.
 	Status pulumi.StringInput `pulumi:"status"`
 	// The version of plugin.
 	Version pulumi.StringInput `pulumi:"version"`
@@ -3858,7 +3858,7 @@ func (o EscloudInstancesV2InstancePluginOutput) PluginName() pulumi.StringOutput
 	return o.ApplyT(func(v EscloudInstancesV2InstancePlugin) string { return v.PluginName }).(pulumi.StringOutput)
 }
 
-// The status of plugin.
+// The status of instance.
 func (o EscloudInstancesV2InstancePluginOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v EscloudInstancesV2InstancePlugin) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -4100,6 +4100,3586 @@ func (o EscloudInstancesV2TagArrayOutput) Index(i pulumi.IntInput) EscloudInstan
 	}).(EscloudInstancesV2TagOutput)
 }
 
+type GetEscloudInstancesV2Instance struct {
+	// Whether to enable cerebro.
+	CerebroEnabled bool `pulumi:"cerebroEnabled"`
+	// The cerebro private domain of instance.
+	CerebroPrivateDomain string `pulumi:"cerebroPrivateDomain"`
+	// The cerebro public domain of instance.
+	CerebroPublicDomain string `pulumi:"cerebroPublicDomain"`
+	// The charge status of instance.
+	ChargeEnabled bool `pulumi:"chargeEnabled"`
+	// The cluster id of instance.
+	ClusterId string `pulumi:"clusterId"`
+	// The create time of instance.
+	CreateTime string `pulumi:"createTime"`
+	// Whether enable deletion protection for ESCloud instance.
+	DeletionProtection bool `pulumi:"deletionProtection"`
+	// whether enable es private domain public.
+	EnableEsPrivateDomainPublic bool `pulumi:"enableEsPrivateDomainPublic"`
+	// whether enable es private network.
+	EnableEsPrivateNetwork bool `pulumi:"enableEsPrivateNetwork"`
+	// whether enable es public network.
+	EnableEsPublicNetwork bool `pulumi:"enableEsPublicNetwork"`
+	// whether enable kibana private domain public.
+	EnableKibanaPrivateDomainPublic bool `pulumi:"enableKibanaPrivateDomainPublic"`
+	// whether enable kibana private network.
+	EnableKibanaPrivateNetwork bool `pulumi:"enableKibanaPrivateNetwork"`
+	// whether enable kibana public network.
+	EnableKibanaPublicNetwork bool `pulumi:"enableKibanaPublicNetwork"`
+	// The eip address of instance.
+	EsEip string `pulumi:"esEip"`
+	// The eip id associated with the instance.
+	EsEipId string `pulumi:"esEipId"`
+	// The es inner endpoint of instance.
+	EsInnerEndpoint string `pulumi:"esInnerEndpoint"`
+	// The es private domain of instance.
+	EsPrivateDomain string `pulumi:"esPrivateDomain"`
+	// The es private endpoint of instance.
+	EsPrivateEndpoint string `pulumi:"esPrivateEndpoint"`
+	// The whitelist of es private ip.
+	EsPrivateIpWhitelist string `pulumi:"esPrivateIpWhitelist"`
+	// The es public domain of instance.
+	EsPublicDomain string `pulumi:"esPublicDomain"`
+	// The es public endpoint of instance.
+	EsPublicEndpoint string `pulumi:"esPublicEndpoint"`
+	// The whitelist of es public ip.
+	EsPublicIpWhitelist string `pulumi:"esPublicIpWhitelist"`
+	// The expire time of instance.
+	ExpireDate string `pulumi:"expireDate"`
+	// The id of instance.
+	Id string `pulumi:"id"`
+	// The configuration of instance.
+	InstanceConfigurations []GetEscloudInstancesV2InstanceInstanceConfiguration `pulumi:"instanceConfigurations"`
+	// The id of instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The eip address of kibana.
+	KibanaEip string `pulumi:"kibanaEip"`
+	// The eip id associated with kibana.
+	KibanaEipId string `pulumi:"kibanaEipId"`
+	// The kibana private domain of instance.
+	KibanaPrivateDomain string `pulumi:"kibanaPrivateDomain"`
+	// The whitelist of kibana private ip.
+	KibanaPrivateIpWhitelist string `pulumi:"kibanaPrivateIpWhitelist"`
+	// The kibana public domain of instance.
+	KibanaPublicDomain string `pulumi:"kibanaPublicDomain"`
+	// The whitelist of kibana public ip.
+	KibanaPublicIpWhitelist string `pulumi:"kibanaPublicIpWhitelist"`
+	// The main zone id of instance.
+	MainZoneId string `pulumi:"mainZoneId"`
+	// The maintenance day of instance.
+	MaintenanceDays []string `pulumi:"maintenanceDays"`
+	// The maintenance time of instance.
+	MaintenanceTime string `pulumi:"maintenanceTime"`
+	// The nodes info of instance.
+	Nodes []GetEscloudInstancesV2InstanceNode `pulumi:"nodes"`
+	// The plugin info of instance.
+	Plugins []GetEscloudInstancesV2InstancePlugin `pulumi:"plugins"`
+	// The status of instance.
+	Status string `pulumi:"status"`
+	// Whether support code node.
+	SupportCodeNode bool `pulumi:"supportCodeNode"`
+	// The tags of instance.
+	Tags []GetEscloudInstancesV2InstanceTag `pulumi:"tags"`
+	// The total nodes of instance.
+	TotalNodes int `pulumi:"totalNodes"`
+	// The user id of instance.
+	UserId string `pulumi:"userId"`
+}
+
+// GetEscloudInstancesV2InstanceInput is an input type that accepts GetEscloudInstancesV2InstanceArgs and GetEscloudInstancesV2InstanceOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInput` via:
+//
+//	GetEscloudInstancesV2InstanceArgs{...}
+type GetEscloudInstancesV2InstanceInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceOutput() GetEscloudInstancesV2InstanceOutput
+	ToGetEscloudInstancesV2InstanceOutputWithContext(context.Context) GetEscloudInstancesV2InstanceOutput
+}
+
+type GetEscloudInstancesV2InstanceArgs struct {
+	// Whether to enable cerebro.
+	CerebroEnabled pulumi.BoolInput `pulumi:"cerebroEnabled"`
+	// The cerebro private domain of instance.
+	CerebroPrivateDomain pulumi.StringInput `pulumi:"cerebroPrivateDomain"`
+	// The cerebro public domain of instance.
+	CerebroPublicDomain pulumi.StringInput `pulumi:"cerebroPublicDomain"`
+	// The charge status of instance.
+	ChargeEnabled pulumi.BoolInput `pulumi:"chargeEnabled"`
+	// The cluster id of instance.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The create time of instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Whether enable deletion protection for ESCloud instance.
+	DeletionProtection pulumi.BoolInput `pulumi:"deletionProtection"`
+	// whether enable es private domain public.
+	EnableEsPrivateDomainPublic pulumi.BoolInput `pulumi:"enableEsPrivateDomainPublic"`
+	// whether enable es private network.
+	EnableEsPrivateNetwork pulumi.BoolInput `pulumi:"enableEsPrivateNetwork"`
+	// whether enable es public network.
+	EnableEsPublicNetwork pulumi.BoolInput `pulumi:"enableEsPublicNetwork"`
+	// whether enable kibana private domain public.
+	EnableKibanaPrivateDomainPublic pulumi.BoolInput `pulumi:"enableKibanaPrivateDomainPublic"`
+	// whether enable kibana private network.
+	EnableKibanaPrivateNetwork pulumi.BoolInput `pulumi:"enableKibanaPrivateNetwork"`
+	// whether enable kibana public network.
+	EnableKibanaPublicNetwork pulumi.BoolInput `pulumi:"enableKibanaPublicNetwork"`
+	// The eip address of instance.
+	EsEip pulumi.StringInput `pulumi:"esEip"`
+	// The eip id associated with the instance.
+	EsEipId pulumi.StringInput `pulumi:"esEipId"`
+	// The es inner endpoint of instance.
+	EsInnerEndpoint pulumi.StringInput `pulumi:"esInnerEndpoint"`
+	// The es private domain of instance.
+	EsPrivateDomain pulumi.StringInput `pulumi:"esPrivateDomain"`
+	// The es private endpoint of instance.
+	EsPrivateEndpoint pulumi.StringInput `pulumi:"esPrivateEndpoint"`
+	// The whitelist of es private ip.
+	EsPrivateIpWhitelist pulumi.StringInput `pulumi:"esPrivateIpWhitelist"`
+	// The es public domain of instance.
+	EsPublicDomain pulumi.StringInput `pulumi:"esPublicDomain"`
+	// The es public endpoint of instance.
+	EsPublicEndpoint pulumi.StringInput `pulumi:"esPublicEndpoint"`
+	// The whitelist of es public ip.
+	EsPublicIpWhitelist pulumi.StringInput `pulumi:"esPublicIpWhitelist"`
+	// The expire time of instance.
+	ExpireDate pulumi.StringInput `pulumi:"expireDate"`
+	// The id of instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The configuration of instance.
+	InstanceConfigurations GetEscloudInstancesV2InstanceInstanceConfigurationArrayInput `pulumi:"instanceConfigurations"`
+	// The id of instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The eip address of kibana.
+	KibanaEip pulumi.StringInput `pulumi:"kibanaEip"`
+	// The eip id associated with kibana.
+	KibanaEipId pulumi.StringInput `pulumi:"kibanaEipId"`
+	// The kibana private domain of instance.
+	KibanaPrivateDomain pulumi.StringInput `pulumi:"kibanaPrivateDomain"`
+	// The whitelist of kibana private ip.
+	KibanaPrivateIpWhitelist pulumi.StringInput `pulumi:"kibanaPrivateIpWhitelist"`
+	// The kibana public domain of instance.
+	KibanaPublicDomain pulumi.StringInput `pulumi:"kibanaPublicDomain"`
+	// The whitelist of kibana public ip.
+	KibanaPublicIpWhitelist pulumi.StringInput `pulumi:"kibanaPublicIpWhitelist"`
+	// The main zone id of instance.
+	MainZoneId pulumi.StringInput `pulumi:"mainZoneId"`
+	// The maintenance day of instance.
+	MaintenanceDays pulumi.StringArrayInput `pulumi:"maintenanceDays"`
+	// The maintenance time of instance.
+	MaintenanceTime pulumi.StringInput `pulumi:"maintenanceTime"`
+	// The nodes info of instance.
+	Nodes GetEscloudInstancesV2InstanceNodeArrayInput `pulumi:"nodes"`
+	// The plugin info of instance.
+	Plugins GetEscloudInstancesV2InstancePluginArrayInput `pulumi:"plugins"`
+	// The status of instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Whether support code node.
+	SupportCodeNode pulumi.BoolInput `pulumi:"supportCodeNode"`
+	// The tags of instance.
+	Tags GetEscloudInstancesV2InstanceTagArrayInput `pulumi:"tags"`
+	// The total nodes of instance.
+	TotalNodes pulumi.IntInput `pulumi:"totalNodes"`
+	// The user id of instance.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetEscloudInstancesV2InstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2Instance)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceArgs) ToGetEscloudInstancesV2InstanceOutput() GetEscloudInstancesV2InstanceOutput {
+	return i.ToGetEscloudInstancesV2InstanceOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceArgs) ToGetEscloudInstancesV2InstanceOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceOutput)
+}
+
+// GetEscloudInstancesV2InstanceArrayInput is an input type that accepts GetEscloudInstancesV2InstanceArray and GetEscloudInstancesV2InstanceArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceArray{ GetEscloudInstancesV2InstanceArgs{...} }
+type GetEscloudInstancesV2InstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceArrayOutput() GetEscloudInstancesV2InstanceArrayOutput
+	ToGetEscloudInstancesV2InstanceArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceArray []GetEscloudInstancesV2InstanceInput
+
+func (GetEscloudInstancesV2InstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2Instance)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceArray) ToGetEscloudInstancesV2InstanceArrayOutput() GetEscloudInstancesV2InstanceArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceArray) ToGetEscloudInstancesV2InstanceArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2Instance)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceOutput) ToGetEscloudInstancesV2InstanceOutput() GetEscloudInstancesV2InstanceOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceOutput) ToGetEscloudInstancesV2InstanceOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceOutput {
+	return o
+}
+
+// Whether to enable cerebro.
+func (o GetEscloudInstancesV2InstanceOutput) CerebroEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.CerebroEnabled }).(pulumi.BoolOutput)
+}
+
+// The cerebro private domain of instance.
+func (o GetEscloudInstancesV2InstanceOutput) CerebroPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.CerebroPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The cerebro public domain of instance.
+func (o GetEscloudInstancesV2InstanceOutput) CerebroPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.CerebroPublicDomain }).(pulumi.StringOutput)
+}
+
+// The charge status of instance.
+func (o GetEscloudInstancesV2InstanceOutput) ChargeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.ChargeEnabled }).(pulumi.BoolOutput)
+}
+
+// The cluster id of instance.
+func (o GetEscloudInstancesV2InstanceOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The create time of instance.
+func (o GetEscloudInstancesV2InstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Whether enable deletion protection for ESCloud instance.
+func (o GetEscloudInstancesV2InstanceOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
+}
+
+// whether enable es private domain public.
+func (o GetEscloudInstancesV2InstanceOutput) EnableEsPrivateDomainPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.EnableEsPrivateDomainPublic }).(pulumi.BoolOutput)
+}
+
+// whether enable es private network.
+func (o GetEscloudInstancesV2InstanceOutput) EnableEsPrivateNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.EnableEsPrivateNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable es public network.
+func (o GetEscloudInstancesV2InstanceOutput) EnableEsPublicNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.EnableEsPublicNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana private domain public.
+func (o GetEscloudInstancesV2InstanceOutput) EnableKibanaPrivateDomainPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.EnableKibanaPrivateDomainPublic }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana private network.
+func (o GetEscloudInstancesV2InstanceOutput) EnableKibanaPrivateNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.EnableKibanaPrivateNetwork }).(pulumi.BoolOutput)
+}
+
+// whether enable kibana public network.
+func (o GetEscloudInstancesV2InstanceOutput) EnableKibanaPublicNetwork() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.EnableKibanaPublicNetwork }).(pulumi.BoolOutput)
+}
+
+// The eip address of instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsEip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsEip }).(pulumi.StringOutput)
+}
+
+// The eip id associated with the instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsEipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsEipId }).(pulumi.StringOutput)
+}
+
+// The es inner endpoint of instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsInnerEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsInnerEndpoint }).(pulumi.StringOutput)
+}
+
+// The es private domain of instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The es private endpoint of instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsPrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsPrivateEndpoint }).(pulumi.StringOutput)
+}
+
+// The whitelist of es private ip.
+func (o GetEscloudInstancesV2InstanceOutput) EsPrivateIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsPrivateIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The es public domain of instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsPublicDomain }).(pulumi.StringOutput)
+}
+
+// The es public endpoint of instance.
+func (o GetEscloudInstancesV2InstanceOutput) EsPublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsPublicEndpoint }).(pulumi.StringOutput)
+}
+
+// The whitelist of es public ip.
+func (o GetEscloudInstancesV2InstanceOutput) EsPublicIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.EsPublicIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The expire time of instance.
+func (o GetEscloudInstancesV2InstanceOutput) ExpireDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.ExpireDate }).(pulumi.StringOutput)
+}
+
+// The id of instance.
+func (o GetEscloudInstancesV2InstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The configuration of instance.
+func (o GetEscloudInstancesV2InstanceOutput) InstanceConfigurations() GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) []GetEscloudInstancesV2InstanceInstanceConfiguration {
+		return v.InstanceConfigurations
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput)
+}
+
+// The id of instance.
+func (o GetEscloudInstancesV2InstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The eip address of kibana.
+func (o GetEscloudInstancesV2InstanceOutput) KibanaEip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.KibanaEip }).(pulumi.StringOutput)
+}
+
+// The eip id associated with kibana.
+func (o GetEscloudInstancesV2InstanceOutput) KibanaEipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.KibanaEipId }).(pulumi.StringOutput)
+}
+
+// The kibana private domain of instance.
+func (o GetEscloudInstancesV2InstanceOutput) KibanaPrivateDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.KibanaPrivateDomain }).(pulumi.StringOutput)
+}
+
+// The whitelist of kibana private ip.
+func (o GetEscloudInstancesV2InstanceOutput) KibanaPrivateIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.KibanaPrivateIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The kibana public domain of instance.
+func (o GetEscloudInstancesV2InstanceOutput) KibanaPublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.KibanaPublicDomain }).(pulumi.StringOutput)
+}
+
+// The whitelist of kibana public ip.
+func (o GetEscloudInstancesV2InstanceOutput) KibanaPublicIpWhitelist() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.KibanaPublicIpWhitelist }).(pulumi.StringOutput)
+}
+
+// The main zone id of instance.
+func (o GetEscloudInstancesV2InstanceOutput) MainZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.MainZoneId }).(pulumi.StringOutput)
+}
+
+// The maintenance day of instance.
+func (o GetEscloudInstancesV2InstanceOutput) MaintenanceDays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) []string { return v.MaintenanceDays }).(pulumi.StringArrayOutput)
+}
+
+// The maintenance time of instance.
+func (o GetEscloudInstancesV2InstanceOutput) MaintenanceTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.MaintenanceTime }).(pulumi.StringOutput)
+}
+
+// The nodes info of instance.
+func (o GetEscloudInstancesV2InstanceOutput) Nodes() GetEscloudInstancesV2InstanceNodeArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) []GetEscloudInstancesV2InstanceNode { return v.Nodes }).(GetEscloudInstancesV2InstanceNodeArrayOutput)
+}
+
+// The plugin info of instance.
+func (o GetEscloudInstancesV2InstanceOutput) Plugins() GetEscloudInstancesV2InstancePluginArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) []GetEscloudInstancesV2InstancePlugin { return v.Plugins }).(GetEscloudInstancesV2InstancePluginArrayOutput)
+}
+
+// The status of instance.
+func (o GetEscloudInstancesV2InstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Whether support code node.
+func (o GetEscloudInstancesV2InstanceOutput) SupportCodeNode() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) bool { return v.SupportCodeNode }).(pulumi.BoolOutput)
+}
+
+// The tags of instance.
+func (o GetEscloudInstancesV2InstanceOutput) Tags() GetEscloudInstancesV2InstanceTagArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) []GetEscloudInstancesV2InstanceTag { return v.Tags }).(GetEscloudInstancesV2InstanceTagArrayOutput)
+}
+
+// The total nodes of instance.
+func (o GetEscloudInstancesV2InstanceOutput) TotalNodes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) int { return v.TotalNodes }).(pulumi.IntOutput)
+}
+
+// The user id of instance.
+func (o GetEscloudInstancesV2InstanceOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Instance) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2Instance)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceArrayOutput) ToGetEscloudInstancesV2InstanceArrayOutput() GetEscloudInstancesV2InstanceArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceArrayOutput) ToGetEscloudInstancesV2InstanceArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2Instance {
+		return vs[0].([]GetEscloudInstancesV2Instance)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfiguration struct {
+	// The user name of instance.
+	AdminUserName string `pulumi:"adminUserName"`
+	// The charge type of instance.
+	ChargeType string `pulumi:"chargeType"`
+	// The node number of cold.
+	ColdNodeNumber int `pulumi:"coldNodeNumber"`
+	// The node resource spec of cold.
+	ColdNodeResourceSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec `pulumi:"coldNodeResourceSpecs"`
+	// The node storage spec of cold.
+	ColdNodeStorageSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec `pulumi:"coldNodeStorageSpecs"`
+	// The node number of coordinator.
+	CoordinatorNodeNumber int `pulumi:"coordinatorNodeNumber"`
+	// The node resource spec of coordinator.
+	CoordinatorNodeResourceSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec `pulumi:"coordinatorNodeResourceSpecs"`
+	// The node storage spec of coordinator.
+	CoordinatorNodeStorageSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec `pulumi:"coordinatorNodeStorageSpecs"`
+	// whether enable https.
+	EnableHttps bool `pulumi:"enableHttps"`
+	// Whether enable pure master.
+	EnablePureMaster bool `pulumi:"enablePureMaster"`
+	// The node number of hot.
+	HotNodeNumber int `pulumi:"hotNodeNumber"`
+	// The node resource spec of hot.
+	HotNodeResourceSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec `pulumi:"hotNodeResourceSpecs"`
+	// The node storage spec of hot.
+	HotNodeStorageSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec `pulumi:"hotNodeStorageSpecs"`
+	// The name of instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The node number of kibana.
+	KibanaNodeNumber int `pulumi:"kibanaNodeNumber"`
+	// The node resource spec of kibana.
+	KibanaNodeResourceSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec `pulumi:"kibanaNodeResourceSpecs"`
+	// The node storage spec of kibana.
+	KibanaNodeStorageSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec `pulumi:"kibanaNodeStorageSpecs"`
+	// The node number of master.
+	MasterNodeNumber int `pulumi:"masterNodeNumber"`
+	// The node resource spec of master.
+	MasterNodeResourceSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec `pulumi:"masterNodeResourceSpecs"`
+	// The node storage spec of master.
+	MasterNodeStorageSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec `pulumi:"masterNodeStorageSpecs"`
+	// The period of project.
+	Period int `pulumi:"period"`
+	// The project name of instance.
+	ProjectName string `pulumi:"projectName"`
+	// The region info of instance.
+	RegionId string `pulumi:"regionId"`
+	// The subnet info.
+	Subnets []GetEscloudInstancesV2InstanceInstanceConfigurationSubnet `pulumi:"subnets"`
+	// The version of plugin.
+	Version string `pulumi:"version"`
+	// The vpc info.
+	Vpcs []GetEscloudInstancesV2InstanceInstanceConfigurationVpc `pulumi:"vpcs"`
+	// The node number of warm.
+	WarmNodeNumber int `pulumi:"warmNodeNumber"`
+	// The node resource spec of warm.
+	WarmNodeResourceSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec `pulumi:"warmNodeResourceSpecs"`
+	// The node storage spec of warm.
+	WarmNodeStorageSpecs []GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec `pulumi:"warmNodeStorageSpecs"`
+	// The zoneId of instance.
+	ZoneId string `pulumi:"zoneId"`
+	// The zone number of instance.
+	ZoneNumber int `pulumi:"zoneNumber"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationArgs and GetEscloudInstancesV2InstanceInstanceConfigurationOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationOutput() GetEscloudInstancesV2InstanceInstanceConfigurationOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationArgs struct {
+	// The user name of instance.
+	AdminUserName pulumi.StringInput `pulumi:"adminUserName"`
+	// The charge type of instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The node number of cold.
+	ColdNodeNumber pulumi.IntInput `pulumi:"coldNodeNumber"`
+	// The node resource spec of cold.
+	ColdNodeResourceSpecs GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput `pulumi:"coldNodeResourceSpecs"`
+	// The node storage spec of cold.
+	ColdNodeStorageSpecs GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput `pulumi:"coldNodeStorageSpecs"`
+	// The node number of coordinator.
+	CoordinatorNodeNumber pulumi.IntInput `pulumi:"coordinatorNodeNumber"`
+	// The node resource spec of coordinator.
+	CoordinatorNodeResourceSpecs GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput `pulumi:"coordinatorNodeResourceSpecs"`
+	// The node storage spec of coordinator.
+	CoordinatorNodeStorageSpecs GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput `pulumi:"coordinatorNodeStorageSpecs"`
+	// whether enable https.
+	EnableHttps pulumi.BoolInput `pulumi:"enableHttps"`
+	// Whether enable pure master.
+	EnablePureMaster pulumi.BoolInput `pulumi:"enablePureMaster"`
+	// The node number of hot.
+	HotNodeNumber pulumi.IntInput `pulumi:"hotNodeNumber"`
+	// The node resource spec of hot.
+	HotNodeResourceSpecs GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput `pulumi:"hotNodeResourceSpecs"`
+	// The node storage spec of hot.
+	HotNodeStorageSpecs GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput `pulumi:"hotNodeStorageSpecs"`
+	// The name of instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The node number of kibana.
+	KibanaNodeNumber pulumi.IntInput `pulumi:"kibanaNodeNumber"`
+	// The node resource spec of kibana.
+	KibanaNodeResourceSpecs GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput `pulumi:"kibanaNodeResourceSpecs"`
+	// The node storage spec of kibana.
+	KibanaNodeStorageSpecs GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput `pulumi:"kibanaNodeStorageSpecs"`
+	// The node number of master.
+	MasterNodeNumber pulumi.IntInput `pulumi:"masterNodeNumber"`
+	// The node resource spec of master.
+	MasterNodeResourceSpecs GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput `pulumi:"masterNodeResourceSpecs"`
+	// The node storage spec of master.
+	MasterNodeStorageSpecs GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput `pulumi:"masterNodeStorageSpecs"`
+	// The period of project.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The project name of instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region info of instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The subnet info.
+	Subnets GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayInput `pulumi:"subnets"`
+	// The version of plugin.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The vpc info.
+	Vpcs GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayInput `pulumi:"vpcs"`
+	// The node number of warm.
+	WarmNodeNumber pulumi.IntInput `pulumi:"warmNodeNumber"`
+	// The node resource spec of warm.
+	WarmNodeResourceSpecs GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput `pulumi:"warmNodeResourceSpecs"`
+	// The node storage spec of warm.
+	WarmNodeStorageSpecs GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput `pulumi:"warmNodeStorageSpecs"`
+	// The zoneId of instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The zone number of instance.
+	ZoneNumber pulumi.IntInput `pulumi:"zoneNumber"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationOutput() GetEscloudInstancesV2InstanceInstanceConfigurationOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationArray and GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationArray{ GetEscloudInstancesV2InstanceInstanceConfigurationArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationArray []GetEscloudInstancesV2InstanceInstanceConfigurationInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationOutput() GetEscloudInstancesV2InstanceInstanceConfigurationOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationOutput {
+	return o
+}
+
+// The user name of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) AdminUserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.AdminUserName }).(pulumi.StringOutput)
+}
+
+// The charge type of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The node number of cold.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ColdNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.ColdNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of cold.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ColdNodeResourceSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+		return v.ColdNodeResourceSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of cold.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ColdNodeStorageSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+		return v.ColdNodeStorageSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput)
+}
+
+// The node number of coordinator.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) CoordinatorNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.CoordinatorNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of coordinator.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) CoordinatorNodeResourceSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+		return v.CoordinatorNodeResourceSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of coordinator.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) CoordinatorNodeStorageSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+		return v.CoordinatorNodeStorageSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput)
+}
+
+// whether enable https.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) EnableHttps() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) bool { return v.EnableHttps }).(pulumi.BoolOutput)
+}
+
+// Whether enable pure master.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) EnablePureMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) bool { return v.EnablePureMaster }).(pulumi.BoolOutput)
+}
+
+// The node number of hot.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) HotNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.HotNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of hot.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) HotNodeResourceSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+		return v.HotNodeResourceSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of hot.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) HotNodeStorageSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+		return v.HotNodeStorageSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput)
+}
+
+// The name of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The node number of kibana.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) KibanaNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.KibanaNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of kibana.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) KibanaNodeResourceSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+		return v.KibanaNodeResourceSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of kibana.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) KibanaNodeStorageSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+		return v.KibanaNodeStorageSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput)
+}
+
+// The node number of master.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) MasterNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.MasterNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of master.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) MasterNodeResourceSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+		return v.MasterNodeResourceSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of master.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) MasterNodeStorageSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+		return v.MasterNodeStorageSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput)
+}
+
+// The period of project.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The project name of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region info of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The subnet info.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) Subnets() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationSubnet {
+		return v.Subnets
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput)
+}
+
+// The version of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The vpc info.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) Vpcs() GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationVpc {
+		return v.Vpcs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput)
+}
+
+// The node number of warm.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) WarmNodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.WarmNodeNumber }).(pulumi.IntOutput)
+}
+
+// The node resource spec of warm.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) WarmNodeResourceSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+		return v.WarmNodeResourceSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput)
+}
+
+// The node storage spec of warm.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) WarmNodeStorageSpecs() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) []GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+		return v.WarmNodeStorageSpecs
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput)
+}
+
+// The zoneId of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The zone number of instance.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationOutput) ZoneNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfiguration) int { return v.ZoneNumber }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfiguration)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfiguration {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfiguration)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) int {
+		return v.Cpu
+	}).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) int {
+		return v.Memory
+	}).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec) string {
+		return v.Name
+	}).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) int {
+		return v.MaxSize
+	}).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) int {
+		return v.MinSize
+	}).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) string {
+		return v.Name
+	}).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec) int {
+		return v.Size
+	}).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnet struct {
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The name of subnet.
+	SubnetName string `pulumi:"subnetName"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationSubnetInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs and GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationSubnetInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnetInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs struct {
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The name of subnet.
+	SubnetName pulumi.StringInput `pulumi:"subnetName"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray and GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray{ GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray []GetEscloudInstancesV2InstanceInstanceConfigurationSubnetInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return o
+}
+
+// The id of subnet.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationSubnet) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The name of subnet.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput) SubnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationSubnet) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationSubnet)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationSubnet {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationSubnet)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpc struct {
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+	// The name of vpc.
+	VpcName string `pulumi:"vpcName"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationVpcInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs and GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationVpcInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpcInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput() GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs struct {
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The name of vpc.
+	VpcName pulumi.StringInput `pulumi:"vpcName"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput() GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray and GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray{ GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray []GetEscloudInstancesV2InstanceInstanceConfigurationVpcInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput() GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return o
+}
+
+// The id of vpc.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationVpc) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The name of vpc.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput) VpcName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationVpc) string { return v.VpcName }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationVpc)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationVpc {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationVpc)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs and GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray and GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray{ GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray []GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string {
+		return v.Description
+	}).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceNode struct {
+	// Is cold node.
+	IsCold bool `pulumi:"isCold"`
+	// Is coordinator node.
+	IsCoordinator bool `pulumi:"isCoordinator"`
+	// Is hot node.
+	IsHot bool `pulumi:"isHot"`
+	// Is kibana node.
+	IsKibana bool `pulumi:"isKibana"`
+	// Is master node.
+	IsMaster bool `pulumi:"isMaster"`
+	// Is warm node.
+	IsWarm bool `pulumi:"isWarm"`
+	// The show name of node.
+	NodeDisplayName string `pulumi:"nodeDisplayName"`
+	// The name of node.
+	NodeName string `pulumi:"nodeName"`
+	// The node resource spec of master.
+	ResourceSpecs []GetEscloudInstancesV2InstanceNodeResourceSpec `pulumi:"resourceSpecs"`
+	// The restart times of node.
+	RestartNumber int `pulumi:"restartNumber"`
+	// The start time of node.
+	StartTime string `pulumi:"startTime"`
+	// The status of instance.
+	Status string `pulumi:"status"`
+	// The node storage spec of master.
+	StorageSpecs []GetEscloudInstancesV2InstanceNodeStorageSpec `pulumi:"storageSpecs"`
+}
+
+// GetEscloudInstancesV2InstanceNodeInput is an input type that accepts GetEscloudInstancesV2InstanceNodeArgs and GetEscloudInstancesV2InstanceNodeOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceNodeInput` via:
+//
+//	GetEscloudInstancesV2InstanceNodeArgs{...}
+type GetEscloudInstancesV2InstanceNodeInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceNodeOutput() GetEscloudInstancesV2InstanceNodeOutput
+	ToGetEscloudInstancesV2InstanceNodeOutputWithContext(context.Context) GetEscloudInstancesV2InstanceNodeOutput
+}
+
+type GetEscloudInstancesV2InstanceNodeArgs struct {
+	// Is cold node.
+	IsCold pulumi.BoolInput `pulumi:"isCold"`
+	// Is coordinator node.
+	IsCoordinator pulumi.BoolInput `pulumi:"isCoordinator"`
+	// Is hot node.
+	IsHot pulumi.BoolInput `pulumi:"isHot"`
+	// Is kibana node.
+	IsKibana pulumi.BoolInput `pulumi:"isKibana"`
+	// Is master node.
+	IsMaster pulumi.BoolInput `pulumi:"isMaster"`
+	// Is warm node.
+	IsWarm pulumi.BoolInput `pulumi:"isWarm"`
+	// The show name of node.
+	NodeDisplayName pulumi.StringInput `pulumi:"nodeDisplayName"`
+	// The name of node.
+	NodeName pulumi.StringInput `pulumi:"nodeName"`
+	// The node resource spec of master.
+	ResourceSpecs GetEscloudInstancesV2InstanceNodeResourceSpecArrayInput `pulumi:"resourceSpecs"`
+	// The restart times of node.
+	RestartNumber pulumi.IntInput `pulumi:"restartNumber"`
+	// The start time of node.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// The status of instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The node storage spec of master.
+	StorageSpecs GetEscloudInstancesV2InstanceNodeStorageSpecArrayInput `pulumi:"storageSpecs"`
+}
+
+func (GetEscloudInstancesV2InstanceNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceNodeArgs) ToGetEscloudInstancesV2InstanceNodeOutput() GetEscloudInstancesV2InstanceNodeOutput {
+	return i.ToGetEscloudInstancesV2InstanceNodeOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceNodeArgs) ToGetEscloudInstancesV2InstanceNodeOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceNodeOutput)
+}
+
+// GetEscloudInstancesV2InstanceNodeArrayInput is an input type that accepts GetEscloudInstancesV2InstanceNodeArray and GetEscloudInstancesV2InstanceNodeArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceNodeArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceNodeArray{ GetEscloudInstancesV2InstanceNodeArgs{...} }
+type GetEscloudInstancesV2InstanceNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceNodeArrayOutput() GetEscloudInstancesV2InstanceNodeArrayOutput
+	ToGetEscloudInstancesV2InstanceNodeArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceNodeArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceNodeArray []GetEscloudInstancesV2InstanceNodeInput
+
+func (GetEscloudInstancesV2InstanceNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceNodeArray) ToGetEscloudInstancesV2InstanceNodeArrayOutput() GetEscloudInstancesV2InstanceNodeArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceNodeArray) ToGetEscloudInstancesV2InstanceNodeArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceNodeArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceNodeOutput) ToGetEscloudInstancesV2InstanceNodeOutput() GetEscloudInstancesV2InstanceNodeOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeOutput) ToGetEscloudInstancesV2InstanceNodeOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeOutput {
+	return o
+}
+
+// Is cold node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) IsCold() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) bool { return v.IsCold }).(pulumi.BoolOutput)
+}
+
+// Is coordinator node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) IsCoordinator() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) bool { return v.IsCoordinator }).(pulumi.BoolOutput)
+}
+
+// Is hot node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) IsHot() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) bool { return v.IsHot }).(pulumi.BoolOutput)
+}
+
+// Is kibana node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) IsKibana() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) bool { return v.IsKibana }).(pulumi.BoolOutput)
+}
+
+// Is master node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) IsMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) bool { return v.IsMaster }).(pulumi.BoolOutput)
+}
+
+// Is warm node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) IsWarm() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) bool { return v.IsWarm }).(pulumi.BoolOutput)
+}
+
+// The show name of node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) NodeDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) string { return v.NodeDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) NodeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) string { return v.NodeName }).(pulumi.StringOutput)
+}
+
+// The node resource spec of master.
+func (o GetEscloudInstancesV2InstanceNodeOutput) ResourceSpecs() GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) []GetEscloudInstancesV2InstanceNodeResourceSpec {
+		return v.ResourceSpecs
+	}).(GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput)
+}
+
+// The restart times of node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) RestartNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) int { return v.RestartNumber }).(pulumi.IntOutput)
+}
+
+// The start time of node.
+func (o GetEscloudInstancesV2InstanceNodeOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// The status of instance.
+func (o GetEscloudInstancesV2InstanceNodeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The node storage spec of master.
+func (o GetEscloudInstancesV2InstanceNodeOutput) StorageSpecs() GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNode) []GetEscloudInstancesV2InstanceNodeStorageSpec {
+		return v.StorageSpecs
+	}).(GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceNode)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceNodeArrayOutput) ToGetEscloudInstancesV2InstanceNodeArrayOutput() GetEscloudInstancesV2InstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeArrayOutput) ToGetEscloudInstancesV2InstanceNodeArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceNode {
+		return vs[0].([]GetEscloudInstancesV2InstanceNode)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceNodeOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeResourceSpec struct {
+	// The cpu info of resource spec.
+	Cpu int `pulumi:"cpu"`
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory int `pulumi:"memory"`
+}
+
+// GetEscloudInstancesV2InstanceNodeResourceSpecInput is an input type that accepts GetEscloudInstancesV2InstanceNodeResourceSpecArgs and GetEscloudInstancesV2InstanceNodeResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceNodeResourceSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceNodeResourceSpecArgs{...}
+type GetEscloudInstancesV2InstanceNodeResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceNodeResourceSpecOutput() GetEscloudInstancesV2InstanceNodeResourceSpecOutput
+	ToGetEscloudInstancesV2InstanceNodeResourceSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceNodeResourceSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceNodeResourceSpecArgs struct {
+	// The cpu info of resource spec.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory info of resource spec.
+	Memory pulumi.IntInput `pulumi:"memory"`
+}
+
+func (GetEscloudInstancesV2InstanceNodeResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceNodeResourceSpecOutput() GetEscloudInstancesV2InstanceNodeResourceSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceNodeResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceNodeResourceSpecArgs) ToGetEscloudInstancesV2InstanceNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceNodeResourceSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceNodeResourceSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceNodeResourceSpecArray and GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceNodeResourceSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceNodeResourceSpecArray{ GetEscloudInstancesV2InstanceNodeResourceSpecArgs{...} }
+type GetEscloudInstancesV2InstanceNodeResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceNodeResourceSpecArray []GetEscloudInstancesV2InstanceNodeResourceSpecInput
+
+func (GetEscloudInstancesV2InstanceNodeResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceNodeResourceSpecArray) ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceNodeResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceNodeResourceSpecOutput() GetEscloudInstancesV2InstanceNodeResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecOutput) ToGetEscloudInstancesV2InstanceNodeResourceSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeResourceSpecOutput {
+	return o
+}
+
+// The cpu info of resource spec.
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory info of resource spec.
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceNodeResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput() GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput) ToGetEscloudInstancesV2InstanceNodeResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceNodeResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceNodeResourceSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceNodeResourceSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceNodeResourceSpecOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeStorageSpec struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize int `pulumi:"minSize"`
+}
+
+// GetEscloudInstancesV2InstanceNodeStorageSpecInput is an input type that accepts GetEscloudInstancesV2InstanceNodeStorageSpecArgs and GetEscloudInstancesV2InstanceNodeStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceNodeStorageSpecInput` via:
+//
+//	GetEscloudInstancesV2InstanceNodeStorageSpecArgs{...}
+type GetEscloudInstancesV2InstanceNodeStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceNodeStorageSpecOutput() GetEscloudInstancesV2InstanceNodeStorageSpecOutput
+	ToGetEscloudInstancesV2InstanceNodeStorageSpecOutputWithContext(context.Context) GetEscloudInstancesV2InstanceNodeStorageSpecOutput
+}
+
+type GetEscloudInstancesV2InstanceNodeStorageSpecArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The show name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+}
+
+func (GetEscloudInstancesV2InstanceNodeStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceNodeStorageSpecOutput() GetEscloudInstancesV2InstanceNodeStorageSpecOutput {
+	return i.ToGetEscloudInstancesV2InstanceNodeStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceNodeStorageSpecArgs) ToGetEscloudInstancesV2InstanceNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceNodeStorageSpecOutput)
+}
+
+// GetEscloudInstancesV2InstanceNodeStorageSpecArrayInput is an input type that accepts GetEscloudInstancesV2InstanceNodeStorageSpecArray and GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceNodeStorageSpecArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceNodeStorageSpecArray{ GetEscloudInstancesV2InstanceNodeStorageSpecArgs{...} }
+type GetEscloudInstancesV2InstanceNodeStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput
+	ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceNodeStorageSpecArray []GetEscloudInstancesV2InstanceNodeStorageSpecInput
+
+func (GetEscloudInstancesV2InstanceNodeStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceNodeStorageSpecArray) ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceNodeStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceNodeStorageSpecOutput() GetEscloudInstancesV2InstanceNodeStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecOutput) ToGetEscloudInstancesV2InstanceNodeStorageSpecOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeStorageSpecOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The show name of storage spec.
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec.
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec.
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceNodeStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+type GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceNodeStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput() GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput) ToGetEscloudInstancesV2InstanceNodeStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceNodeStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceNodeStorageSpec {
+		return vs[0].([]GetEscloudInstancesV2InstanceNodeStorageSpec)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceNodeStorageSpecOutput)
+}
+
+type GetEscloudInstancesV2InstancePlugin struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The name of plugin.
+	PluginName string `pulumi:"pluginName"`
+	// The status of instance.
+	Status string `pulumi:"status"`
+	// The version of plugin.
+	Version string `pulumi:"version"`
+}
+
+// GetEscloudInstancesV2InstancePluginInput is an input type that accepts GetEscloudInstancesV2InstancePluginArgs and GetEscloudInstancesV2InstancePluginOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstancePluginInput` via:
+//
+//	GetEscloudInstancesV2InstancePluginArgs{...}
+type GetEscloudInstancesV2InstancePluginInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstancePluginOutput() GetEscloudInstancesV2InstancePluginOutput
+	ToGetEscloudInstancesV2InstancePluginOutputWithContext(context.Context) GetEscloudInstancesV2InstancePluginOutput
+}
+
+type GetEscloudInstancesV2InstancePluginArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of plugin.
+	PluginName pulumi.StringInput `pulumi:"pluginName"`
+	// The status of instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The version of plugin.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetEscloudInstancesV2InstancePluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstancePluginArgs) ToGetEscloudInstancesV2InstancePluginOutput() GetEscloudInstancesV2InstancePluginOutput {
+	return i.ToGetEscloudInstancesV2InstancePluginOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstancePluginArgs) ToGetEscloudInstancesV2InstancePluginOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstancePluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstancePluginOutput)
+}
+
+// GetEscloudInstancesV2InstancePluginArrayInput is an input type that accepts GetEscloudInstancesV2InstancePluginArray and GetEscloudInstancesV2InstancePluginArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstancePluginArrayInput` via:
+//
+//	GetEscloudInstancesV2InstancePluginArray{ GetEscloudInstancesV2InstancePluginArgs{...} }
+type GetEscloudInstancesV2InstancePluginArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstancePluginArrayOutput() GetEscloudInstancesV2InstancePluginArrayOutput
+	ToGetEscloudInstancesV2InstancePluginArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstancePluginArrayOutput
+}
+
+type GetEscloudInstancesV2InstancePluginArray []GetEscloudInstancesV2InstancePluginInput
+
+func (GetEscloudInstancesV2InstancePluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstancePluginArray) ToGetEscloudInstancesV2InstancePluginArrayOutput() GetEscloudInstancesV2InstancePluginArrayOutput {
+	return i.ToGetEscloudInstancesV2InstancePluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstancePluginArray) ToGetEscloudInstancesV2InstancePluginArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstancePluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstancePluginArrayOutput)
+}
+
+type GetEscloudInstancesV2InstancePluginOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstancePluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstancePluginOutput) ToGetEscloudInstancesV2InstancePluginOutput() GetEscloudInstancesV2InstancePluginOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstancePluginOutput) ToGetEscloudInstancesV2InstancePluginOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstancePluginOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetEscloudInstancesV2InstancePluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstancePlugin) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of plugin.
+func (o GetEscloudInstancesV2InstancePluginOutput) PluginName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstancePlugin) string { return v.PluginName }).(pulumi.StringOutput)
+}
+
+// The status of instance.
+func (o GetEscloudInstancesV2InstancePluginOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstancePlugin) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The version of plugin.
+func (o GetEscloudInstancesV2InstancePluginOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstancePlugin) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstancePluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstancePluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstancePlugin)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstancePluginArrayOutput) ToGetEscloudInstancesV2InstancePluginArrayOutput() GetEscloudInstancesV2InstancePluginArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstancePluginArrayOutput) ToGetEscloudInstancesV2InstancePluginArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstancePluginArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstancePluginArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstancePluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstancePlugin {
+		return vs[0].([]GetEscloudInstancesV2InstancePlugin)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstancePluginOutput)
+}
+
+type GetEscloudInstancesV2InstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetEscloudInstancesV2InstanceTagInput is an input type that accepts GetEscloudInstancesV2InstanceTagArgs and GetEscloudInstancesV2InstanceTagOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceTagInput` via:
+//
+//	GetEscloudInstancesV2InstanceTagArgs{...}
+type GetEscloudInstancesV2InstanceTagInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceTagOutput() GetEscloudInstancesV2InstanceTagOutput
+	ToGetEscloudInstancesV2InstanceTagOutputWithContext(context.Context) GetEscloudInstancesV2InstanceTagOutput
+}
+
+type GetEscloudInstancesV2InstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetEscloudInstancesV2InstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceTagArgs) ToGetEscloudInstancesV2InstanceTagOutput() GetEscloudInstancesV2InstanceTagOutput {
+	return i.ToGetEscloudInstancesV2InstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceTagArgs) ToGetEscloudInstancesV2InstanceTagOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceTagOutput)
+}
+
+// GetEscloudInstancesV2InstanceTagArrayInput is an input type that accepts GetEscloudInstancesV2InstanceTagArray and GetEscloudInstancesV2InstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2InstanceTagArrayInput` via:
+//
+//	GetEscloudInstancesV2InstanceTagArray{ GetEscloudInstancesV2InstanceTagArgs{...} }
+type GetEscloudInstancesV2InstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2InstanceTagArrayOutput() GetEscloudInstancesV2InstanceTagArrayOutput
+	ToGetEscloudInstancesV2InstanceTagArrayOutputWithContext(context.Context) GetEscloudInstancesV2InstanceTagArrayOutput
+}
+
+type GetEscloudInstancesV2InstanceTagArray []GetEscloudInstancesV2InstanceTagInput
+
+func (GetEscloudInstancesV2InstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2InstanceTagArray) ToGetEscloudInstancesV2InstanceTagArrayOutput() GetEscloudInstancesV2InstanceTagArrayOutput {
+	return i.ToGetEscloudInstancesV2InstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2InstanceTagArray) ToGetEscloudInstancesV2InstanceTagArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2InstanceTagArrayOutput)
+}
+
+type GetEscloudInstancesV2InstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceTagOutput) ToGetEscloudInstancesV2InstanceTagOutput() GetEscloudInstancesV2InstanceTagOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceTagOutput) ToGetEscloudInstancesV2InstanceTagOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetEscloudInstancesV2InstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetEscloudInstancesV2InstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2InstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetEscloudInstancesV2InstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2InstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2InstanceTag)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2InstanceTagArrayOutput) ToGetEscloudInstancesV2InstanceTagArrayOutput() GetEscloudInstancesV2InstanceTagArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceTagArrayOutput) ToGetEscloudInstancesV2InstanceTagArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2InstanceTagArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2InstanceTagArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2InstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2InstanceTag {
+		return vs[0].([]GetEscloudInstancesV2InstanceTag)[vs[1].(int)]
+	}).(GetEscloudInstancesV2InstanceTagOutput)
+}
+
+type GetEscloudInstancesV2Tag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// GetEscloudInstancesV2TagInput is an input type that accepts GetEscloudInstancesV2TagArgs and GetEscloudInstancesV2TagOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2TagInput` via:
+//
+//	GetEscloudInstancesV2TagArgs{...}
+type GetEscloudInstancesV2TagInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2TagOutput() GetEscloudInstancesV2TagOutput
+	ToGetEscloudInstancesV2TagOutputWithContext(context.Context) GetEscloudInstancesV2TagOutput
+}
+
+type GetEscloudInstancesV2TagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetEscloudInstancesV2TagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2Tag)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2TagArgs) ToGetEscloudInstancesV2TagOutput() GetEscloudInstancesV2TagOutput {
+	return i.ToGetEscloudInstancesV2TagOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2TagArgs) ToGetEscloudInstancesV2TagOutputWithContext(ctx context.Context) GetEscloudInstancesV2TagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2TagOutput)
+}
+
+// GetEscloudInstancesV2TagArrayInput is an input type that accepts GetEscloudInstancesV2TagArray and GetEscloudInstancesV2TagArrayOutput values.
+// You can construct a concrete instance of `GetEscloudInstancesV2TagArrayInput` via:
+//
+//	GetEscloudInstancesV2TagArray{ GetEscloudInstancesV2TagArgs{...} }
+type GetEscloudInstancesV2TagArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudInstancesV2TagArrayOutput() GetEscloudInstancesV2TagArrayOutput
+	ToGetEscloudInstancesV2TagArrayOutputWithContext(context.Context) GetEscloudInstancesV2TagArrayOutput
+}
+
+type GetEscloudInstancesV2TagArray []GetEscloudInstancesV2TagInput
+
+func (GetEscloudInstancesV2TagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2Tag)(nil)).Elem()
+}
+
+func (i GetEscloudInstancesV2TagArray) ToGetEscloudInstancesV2TagArrayOutput() GetEscloudInstancesV2TagArrayOutput {
+	return i.ToGetEscloudInstancesV2TagArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudInstancesV2TagArray) ToGetEscloudInstancesV2TagArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2TagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudInstancesV2TagArrayOutput)
+}
+
+type GetEscloudInstancesV2TagOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2TagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudInstancesV2Tag)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2TagOutput) ToGetEscloudInstancesV2TagOutput() GetEscloudInstancesV2TagOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2TagOutput) ToGetEscloudInstancesV2TagOutputWithContext(ctx context.Context) GetEscloudInstancesV2TagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetEscloudInstancesV2TagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Tag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetEscloudInstancesV2TagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEscloudInstancesV2Tag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetEscloudInstancesV2TagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudInstancesV2TagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudInstancesV2Tag)(nil)).Elem()
+}
+
+func (o GetEscloudInstancesV2TagArrayOutput) ToGetEscloudInstancesV2TagArrayOutput() GetEscloudInstancesV2TagArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2TagArrayOutput) ToGetEscloudInstancesV2TagArrayOutputWithContext(ctx context.Context) GetEscloudInstancesV2TagArrayOutput {
+	return o
+}
+
+func (o GetEscloudInstancesV2TagArrayOutput) Index(i pulumi.IntInput) GetEscloudInstancesV2TagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudInstancesV2Tag {
+		return vs[0].([]GetEscloudInstancesV2Tag)[vs[1].(int)]
+	}).(GetEscloudInstancesV2TagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstanceV2NetworkSpecInput)(nil)).Elem(), EscloudInstanceV2NetworkSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstanceV2NetworkSpecArrayInput)(nil)).Elem(), EscloudInstanceV2NetworkSpecArray{})
@@ -4153,6 +7733,50 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstancesV2InstanceTagArrayInput)(nil)).Elem(), EscloudInstancesV2InstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstancesV2TagInput)(nil)).Elem(), EscloudInstancesV2TagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstancesV2TagArrayInput)(nil)).Elem(), EscloudInstancesV2TagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInput)(nil)).Elem(), GetEscloudInstancesV2InstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationSubnetInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationVpcInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeInput)(nil)).Elem(), GetEscloudInstancesV2InstanceNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeResourceSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceNodeResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeResourceSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceNodeResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeStorageSpecInput)(nil)).Elem(), GetEscloudInstancesV2InstanceNodeStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceNodeStorageSpecArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceNodeStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstancePluginInput)(nil)).Elem(), GetEscloudInstancesV2InstancePluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstancePluginArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstancePluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceTagInput)(nil)).Elem(), GetEscloudInstancesV2InstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceTagArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2TagInput)(nil)).Elem(), GetEscloudInstancesV2TagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2TagArrayInput)(nil)).Elem(), GetEscloudInstancesV2TagArray{})
 	pulumi.RegisterOutputType(EscloudInstanceV2NetworkSpecOutput{})
 	pulumi.RegisterOutputType(EscloudInstanceV2NetworkSpecArrayOutput{})
 	pulumi.RegisterOutputType(EscloudInstanceV2NodeSpecsAssignOutput{})
@@ -4205,4 +7829,48 @@ func init() {
 	pulumi.RegisterOutputType(EscloudInstancesV2InstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(EscloudInstancesV2TagOutput{})
 	pulumi.RegisterOutputType(EscloudInstancesV2TagArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationCoordinatorNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationHotNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationKibanaNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationMasterNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationSubnetOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationSubnetArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationVpcOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationWarmNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceNodeOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceNodeResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceNodeResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceNodeStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceNodeStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstancePluginOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstancePluginArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceTagOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2TagOutput{})
+	pulumi.RegisterOutputType(GetEscloudInstancesV2TagArrayOutput{})
 }

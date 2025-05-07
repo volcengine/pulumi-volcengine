@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -42,12 +42,14 @@ import * as utilities from "../utilities";
  *     port: 6381,
  *     projectName: "default",
  * });
- * const fooInstances = volcengine.redis.InstancesOutput({
+ * const fooInstances = volcengine.redis.getInstancesOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.Instances has been deprecated in favor of volcengine.redis.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.redis.Instances has been deprecated in favor of volcengine.redis.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -186,7 +188,7 @@ export interface InstancesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -213,11 +215,12 @@ export interface InstancesResult {
  *     port: 6381,
  *     projectName: "default",
  * });
- * const fooInstances = volcengine.redis.InstancesOutput({
+ * const fooInstances = volcengine.redis.getInstancesOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.Instances has been deprecated in favor of volcengine.redis.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

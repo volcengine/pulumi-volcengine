@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cloud_firewall.CfwDnsControlPoliciesOutput(ctx, cloud_firewall.CfwDnsControlPoliciesOutputArgs{
+//			_ = cloud_firewall.GetCfwDnsControlPoliciesOutput(ctx, cloud_firewall.GetCfwDnsControlPoliciesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooCfwDnsControlPolicy.ID(),
 //				},
@@ -58,6 +58,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies
 func CfwDnsControlPolicies(ctx *pulumi.Context, args *CfwDnsControlPoliciesArgs, opts ...pulumi.InvokeOption) (*CfwDnsControlPoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CfwDnsControlPoliciesResult

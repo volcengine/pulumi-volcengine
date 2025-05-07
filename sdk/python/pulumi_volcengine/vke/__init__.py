@@ -11,6 +11,13 @@ from .cluster import *
 from .clusters import *
 from .default_node_pool import *
 from .default_node_pool_batch_attach import *
+from .get_addons import *
+from .get_clusters import *
+from .get_kubeconfigs import *
+from .get_node_pools import *
+from .get_nodes import *
+from .get_support_addons import *
+from .get_support_resource_types import *
 from .kubeconfig import *
 from .kubeconfigs import *
 from .node import *

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Redis
 {
+    [Obsolete(@"volcengine.redis.Zones has been deprecated in favor of volcengine.redis.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Redis.Zones.Invoke(new()
+        ///     var @default = Volcengine.Redis.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "cn-north-3",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Redis.Zones.Invoke(new()
+        ///     var @default = Volcengine.Redis.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "cn-north-3",
         ///     });

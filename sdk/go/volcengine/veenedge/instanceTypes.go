@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := veenedge.InstanceTypes(ctx, nil, nil)
+//			_, err := veenedge.GetInstanceTypes(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes
 func InstanceTypes(ctx *pulumi.Context, args *InstanceTypesArgs, opts ...pulumi.InvokeOption) (*InstanceTypesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstanceTypesResult

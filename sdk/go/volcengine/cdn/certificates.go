@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cdn.CertificatesOutput(ctx, cdn.CertificatesOutputArgs{
+//			_ = cdn.GetCertificatesOutput(ctx, cdn.GetCertificatesOutputArgs{
 //				Source: fooCdnCertificate.Source,
 //			}, nil)
 //			return nil
@@ -43,6 +43,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cdn.Certificates has been deprecated in favor of volcengine.cdn.getCertificates
 func Certificates(ctx *pulumi.Context, args *CertificatesArgs, opts ...pulumi.InvokeOption) (*CertificatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CertificatesResult

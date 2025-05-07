@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = ecs.KeyPairsOutput(ctx, ecs.KeyPairsOutputArgs{
+//			_ = ecs.GetKeyPairsOutput(ctx, ecs.GetKeyPairsOutputArgs{
 //				KeyPairName: fooKeyPair.KeyPairName,
 //			}, nil)
 //			return nil
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs
 func KeyPairs(ctx *pulumi.Context, args *KeyPairsArgs, opts ...pulumi.InvokeOption) (*KeyPairsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv KeyPairsResult

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts")]
     public static class Hosts
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Hosts.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetHosts.Invoke(new()
         ///     {
         ///         HostGroupId = "527102e2-1e4f-45f4-a990-751152125da7",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Hosts.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetHosts.Invoke(new()
         ///     {
         ///         HostGroupId = "527102e2-1e4f-45f4-a990-751152125da7",
         ///     });

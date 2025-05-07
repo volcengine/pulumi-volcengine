@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rocketmq.Topics(ctx, &rocketmq.TopicsArgs{
+//			_, err := rocketmq.GetTopics(ctx, &rocketmq.GetTopicsArgs{
 //				InstanceId: "rocketmq-cnoeea6b32118fc2",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics
 func Topics(ctx *pulumi.Context, args *TopicsArgs, opts ...pulumi.InvokeOption) (*TopicsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TopicsResult

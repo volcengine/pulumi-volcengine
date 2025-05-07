@@ -57,12 +57,14 @@ import * as utilities from "../utilities";
  *         value: "tf-v1",
  *     }],
  * });
- * const fooClusters = volcengine.vke.ClustersOutput({
+ * const fooClusters = volcengine.vke.getClustersOutput({
  *     ids: [fooCluster.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters */
 export function clusters(args?: ClustersArgs, opts?: pulumi.InvokeOptions): Promise<ClustersResult> {
+    pulumi.log.warn("clusters is deprecated: volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -234,11 +236,12 @@ export interface ClustersResult {
  *         value: "tf-v1",
  *     }],
  * });
- * const fooClusters = volcengine.vke.ClustersOutput({
+ * const fooClusters = volcengine.vke.getClustersOutput({
  *     ids: [fooCluster.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters */
 export function clustersOutput(args?: ClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ClustersResult> {
     return pulumi.output(args).apply((a: any) => clusters(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_postgresql
 {
+    [Obsolete(@"volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists")]
     public static class Allowlists
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_postgresql.Allowlists.Invoke();
+        ///     var foo = Volcengine.Rds_postgresql.GetAllowlists.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_postgresql.Allowlists.Invoke();
+        ///     var foo = Volcengine.Rds_postgresql.GetAllowlists.Invoke();
         /// 
         /// });
         /// ```

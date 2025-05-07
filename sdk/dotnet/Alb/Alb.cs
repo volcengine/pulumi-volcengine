@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Alb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = Volcengine.Alb.Zones.Invoke();
+    ///     var foo = Volcengine.Alb.GetZones.Invoke();
     /// 
     ///     var vpcIpv6 = new Volcengine.Vpc.Vpc("vpcIpv6", new()
     ///     {
@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Alb
     ///     {
     ///         SubnetName = "acc-test-subnet-ipv6-1",
     ///         CidrBlock = "172.16.1.0/24",
-    ///         ZoneId = foo.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = foo.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = vpcIpv6.Id,
     ///         Ipv6CidrBlock = 1,
     ///     });
@@ -43,7 +43,7 @@ namespace Pulumi.Volcengine.Alb
     ///     {
     ///         SubnetName = "acc-test-subnet-ipv6-2",
     ///         CidrBlock = "172.16.2.0/24",
-    ///         ZoneId = foo.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
+    ///         ZoneId = foo.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
     ///         VpcId = vpcIpv6.Id,
     ///         Ipv6CidrBlock = 2,
     ///     });

@@ -8,5 +8,6 @@ import typing
 from .attachment import *
 from .bandwidth_package import *
 from .bandwidth_packages import *
+from .get_bandwidth_packages import *
 from ._inputs import *
 from . import outputs

@@ -17,6 +17,8 @@ __all__ = [
     'regions_output',
 ]
 
+warnings.warn("""volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions""", DeprecationWarning)
+
 @pulumi.output_type
 class RegionsResult:
     """
@@ -98,13 +100,14 @@ def regions(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.regions(ids=["cn-beijing"])
+    default = volcengine.ecs.get_regions(ids=["cn-beijing"])
     ```
 
 
     :param Sequence[str] ids: A list of region ids.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""regions is deprecated: volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def regions_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.regions(ids=["cn-beijing"])
+    default = volcengine.ecs.get_regions(ids=["cn-beijing"])
     ```
 
 
     :param Sequence[str] ids: A list of region ids.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""regions is deprecated: volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions""")
     ...

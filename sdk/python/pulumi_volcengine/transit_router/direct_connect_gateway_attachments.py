@@ -18,6 +18,8 @@ __all__ = [
     'direct_connect_gateway_attachments_output',
 ]
 
+warnings.warn("""volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments""", DeprecationWarning)
+
 @pulumi.output_type
 class DirectConnectGatewayAttachmentsResult:
     """
@@ -138,7 +140,7 @@ def direct_connect_gateway_attachments(direct_connect_gateway_id: Optional[str] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.transit_router.direct_connect_gateway_attachments(transit_router_id="tr-2bzy39x27qtxc2dx0eg5qaj05")
+    foo = volcengine.transit_router.get_direct_connect_gateway_attachments(transit_router_id="tr-2bzy39x27qtxc2dx0eg5qaj05")
     ```
 
 
@@ -148,6 +150,7 @@ def direct_connect_gateway_attachments(direct_connect_gateway_id: Optional[str] 
     :param Sequence[str] transit_router_attachment_ids: ID of the network instance connection.
     :param str transit_router_id: The id of the transit router.
     """
+    pulumi.log.warn("""direct_connect_gateway_attachments is deprecated: volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments""")
     __args__ = dict()
     __args__['directConnectGatewayId'] = direct_connect_gateway_id
     __args__['outputFile'] = output_file
@@ -183,7 +186,7 @@ def direct_connect_gateway_attachments_output(direct_connect_gateway_id: Optiona
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.transit_router.direct_connect_gateway_attachments(transit_router_id="tr-2bzy39x27qtxc2dx0eg5qaj05")
+    foo = volcengine.transit_router.get_direct_connect_gateway_attachments(transit_router_id="tr-2bzy39x27qtxc2dx0eg5qaj05")
     ```
 
 
@@ -193,4 +196,5 @@ def direct_connect_gateway_attachments_output(direct_connect_gateway_id: Optiona
     :param Sequence[str] transit_router_attachment_ids: ID of the network instance connection.
     :param str transit_router_id: The id of the transit router.
     """
+    pulumi.log.warn("""direct_connect_gateway_attachments is deprecated: volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments""")
     ...

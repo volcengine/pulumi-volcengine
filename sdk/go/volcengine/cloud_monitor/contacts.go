@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_monitor.Contacts(ctx, &cloud_monitor.ContactsArgs{
+//			_, err := cloud_monitor.GetContacts(ctx, &cloud_monitor.GetContactsArgs{
 //				Ids: []string{
 //					"17******516",
 //					"1712**********0",
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts
 func Contacts(ctx *pulumi.Context, args *ContactsArgs, opts ...pulumi.InvokeOption) (*ContactsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ContactsResult

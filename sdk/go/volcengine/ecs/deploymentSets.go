@@ -44,7 +44,7 @@ import (
 // }
 // fooDeploymentSet = append(fooDeploymentSet, __res)
 // }
-// _ = ecs.DeploymentSetsOutput(ctx, ecs.DeploymentSetsOutputArgs{
+// _ = ecs.GetDeploymentSetsOutput(ctx, ecs.GetDeploymentSetsOutputArgs{
 // Granularity: pulumi.String("switch"),
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:ecs-deploymentSets:DeploymentSets.pp:12,17-39),
 // }, nil);
@@ -52,6 +52,8 @@ import (
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets
 func DeploymentSets(ctx *pulumi.Context, args *DeploymentSetsArgs, opts ...pulumi.InvokeOption) (*DeploymentSetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DeploymentSetsResult

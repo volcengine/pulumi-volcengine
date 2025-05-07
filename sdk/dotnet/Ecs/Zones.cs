@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.Zones has been deprecated in favor of volcengine.ecs.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.Zones.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetZones.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.Zones.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetZones.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

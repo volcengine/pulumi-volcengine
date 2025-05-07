@@ -14,14 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.Images({
+ * const foo = volcengine.ecs.getImages({
  *     instanceTypeId: "ecs.g1.large",
  *     osType: "Linux",
  *     visibility: "public",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages */
 export function images(args?: ImagesArgs, opts?: pulumi.InvokeOptions): Promise<ImagesResult> {
+    pulumi.log.warn("images is deprecated: volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -153,13 +155,14 @@ export interface ImagesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.Images({
+ * const foo = volcengine.ecs.getImages({
  *     instanceTypeId: "ecs.g1.large",
  *     osType: "Linux",
  *     visibility: "public",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages */
 export function imagesOutput(args?: ImagesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ImagesResult> {
     return pulumi.output(args).apply((a: any) => images(a, opts))
 }

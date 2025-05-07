@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands")]
     public static class Commands
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.Commands.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetCommands.Invoke(new()
         ///     {
         ///         CommandId = "cmd-ychkepkhtim0tr3b****",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.Commands.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetCommands.Invoke(new()
         ///     {
         ///         CommandId = "cmd-ychkepkhtim0tr3b****",
         ///     });

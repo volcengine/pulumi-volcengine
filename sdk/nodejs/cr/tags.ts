@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Tags({
+ * const foo = volcengine.cr.getTags({
  *     namespace: "test",
  *     registry: "enterprise-1",
  *     repository: "repo",
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags */
 export function tags(args: TagsArgs, opts?: pulumi.InvokeOptions): Promise<TagsResult> {
+    pulumi.log.warn("tags is deprecated: volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/tags:Tags", {
@@ -96,7 +98,7 @@ export interface TagsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Tags({
+ * const foo = volcengine.cr.getTags({
  *     namespace: "test",
  *     registry: "enterprise-1",
  *     repository: "repo",
@@ -104,6 +106,7 @@ export interface TagsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Tags has been deprecated in favor of volcengine.cr.getTags */
 export function tagsOutput(args: TagsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TagsResult> {
     return pulumi.output(args).apply((a: any) => tags(a, opts))
 }

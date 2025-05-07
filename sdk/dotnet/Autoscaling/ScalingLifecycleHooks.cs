@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Autoscaling
 {
+    [Obsolete(@"volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks")]
     public static class ScalingLifecycleHooks
     {
         /// <summary>
