@@ -18,6 +18,8 @@ __all__ = [
     'vpcs_output',
 ]
 
+warnings.warn("""volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcsResult:
     """
@@ -148,7 +150,7 @@ def vpcs(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
+    default = volcengine.vpc.get_vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
     ```
 
 
@@ -159,6 +161,7 @@ def vpcs(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['VpcsTagArgs']] tags: Tags.
     :param str vpc_name: The vpc name to query.
     """
+    pulumi.log.warn("""vpcs is deprecated: volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -197,7 +200,7 @@ def vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
+    default = volcengine.vpc.get_vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
     ```
 
 
@@ -208,4 +211,5 @@ def vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param Sequence[pulumi.InputType['VpcsTagArgs']] tags: Tags.
     :param str vpc_name: The vpc name to query.
     """
+    pulumi.log.warn("""vpcs is deprecated: volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs""")
     ...

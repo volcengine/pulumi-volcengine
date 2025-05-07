@@ -17,6 +17,8 @@ __all__ = [
     'instance_types_output',
 ]
 
+warnings.warn("""volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes""", DeprecationWarning)
+
 @pulumi.output_type
 class InstanceTypesResult:
     """
@@ -88,12 +90,13 @@ def instance_types(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.instance_types()
+    default = volcengine.veenedge.get_instance_types()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""instance_types is deprecated: volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -117,10 +120,11 @@ def instance_types_output(output_file: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.instance_types()
+    default = volcengine.veenedge.get_instance_types()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""instance_types is deprecated: volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes""")
     ...

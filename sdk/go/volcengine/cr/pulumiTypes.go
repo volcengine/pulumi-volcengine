@@ -2814,6 +2814,1873 @@ func (o VpcEndpointsEndpointVpcArrayOutput) Index(i pulumi.IntInput) VpcEndpoint
 	}).(VpcEndpointsEndpointVpcOutput)
 }
 
+type GetAuthorizationTokensToken struct {
+	// The expiration time of the temporary access token.
+	ExpireTime string `pulumi:"expireTime"`
+	// The Temporary access token.
+	Token string `pulumi:"token"`
+	// The username for login repository instance.
+	Username string `pulumi:"username"`
+}
+
+// GetAuthorizationTokensTokenInput is an input type that accepts GetAuthorizationTokensTokenArgs and GetAuthorizationTokensTokenOutput values.
+// You can construct a concrete instance of `GetAuthorizationTokensTokenInput` via:
+//
+//	GetAuthorizationTokensTokenArgs{...}
+type GetAuthorizationTokensTokenInput interface {
+	pulumi.Input
+
+	ToGetAuthorizationTokensTokenOutput() GetAuthorizationTokensTokenOutput
+	ToGetAuthorizationTokensTokenOutputWithContext(context.Context) GetAuthorizationTokensTokenOutput
+}
+
+type GetAuthorizationTokensTokenArgs struct {
+	// The expiration time of the temporary access token.
+	ExpireTime pulumi.StringInput `pulumi:"expireTime"`
+	// The Temporary access token.
+	Token pulumi.StringInput `pulumi:"token"`
+	// The username for login repository instance.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAuthorizationTokensTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthorizationTokensToken)(nil)).Elem()
+}
+
+func (i GetAuthorizationTokensTokenArgs) ToGetAuthorizationTokensTokenOutput() GetAuthorizationTokensTokenOutput {
+	return i.ToGetAuthorizationTokensTokenOutputWithContext(context.Background())
+}
+
+func (i GetAuthorizationTokensTokenArgs) ToGetAuthorizationTokensTokenOutputWithContext(ctx context.Context) GetAuthorizationTokensTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAuthorizationTokensTokenOutput)
+}
+
+// GetAuthorizationTokensTokenArrayInput is an input type that accepts GetAuthorizationTokensTokenArray and GetAuthorizationTokensTokenArrayOutput values.
+// You can construct a concrete instance of `GetAuthorizationTokensTokenArrayInput` via:
+//
+//	GetAuthorizationTokensTokenArray{ GetAuthorizationTokensTokenArgs{...} }
+type GetAuthorizationTokensTokenArrayInput interface {
+	pulumi.Input
+
+	ToGetAuthorizationTokensTokenArrayOutput() GetAuthorizationTokensTokenArrayOutput
+	ToGetAuthorizationTokensTokenArrayOutputWithContext(context.Context) GetAuthorizationTokensTokenArrayOutput
+}
+
+type GetAuthorizationTokensTokenArray []GetAuthorizationTokensTokenInput
+
+func (GetAuthorizationTokensTokenArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAuthorizationTokensToken)(nil)).Elem()
+}
+
+func (i GetAuthorizationTokensTokenArray) ToGetAuthorizationTokensTokenArrayOutput() GetAuthorizationTokensTokenArrayOutput {
+	return i.ToGetAuthorizationTokensTokenArrayOutputWithContext(context.Background())
+}
+
+func (i GetAuthorizationTokensTokenArray) ToGetAuthorizationTokensTokenArrayOutputWithContext(ctx context.Context) GetAuthorizationTokensTokenArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAuthorizationTokensTokenArrayOutput)
+}
+
+type GetAuthorizationTokensTokenOutput struct{ *pulumi.OutputState }
+
+func (GetAuthorizationTokensTokenOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthorizationTokensToken)(nil)).Elem()
+}
+
+func (o GetAuthorizationTokensTokenOutput) ToGetAuthorizationTokensTokenOutput() GetAuthorizationTokensTokenOutput {
+	return o
+}
+
+func (o GetAuthorizationTokensTokenOutput) ToGetAuthorizationTokensTokenOutputWithContext(ctx context.Context) GetAuthorizationTokensTokenOutput {
+	return o
+}
+
+// The expiration time of the temporary access token.
+func (o GetAuthorizationTokensTokenOutput) ExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthorizationTokensToken) string { return v.ExpireTime }).(pulumi.StringOutput)
+}
+
+// The Temporary access token.
+func (o GetAuthorizationTokensTokenOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthorizationTokensToken) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// The username for login repository instance.
+func (o GetAuthorizationTokensTokenOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthorizationTokensToken) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetAuthorizationTokensTokenArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAuthorizationTokensTokenArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAuthorizationTokensToken)(nil)).Elem()
+}
+
+func (o GetAuthorizationTokensTokenArrayOutput) ToGetAuthorizationTokensTokenArrayOutput() GetAuthorizationTokensTokenArrayOutput {
+	return o
+}
+
+func (o GetAuthorizationTokensTokenArrayOutput) ToGetAuthorizationTokensTokenArrayOutputWithContext(ctx context.Context) GetAuthorizationTokensTokenArrayOutput {
+	return o
+}
+
+func (o GetAuthorizationTokensTokenArrayOutput) Index(i pulumi.IntInput) GetAuthorizationTokensTokenOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAuthorizationTokensToken {
+		return vs[0].([]GetAuthorizationTokensToken)[vs[1].(int)]
+	}).(GetAuthorizationTokensTokenOutput)
+}
+
+type GetEndpointsEndpoint struct {
+	// The list of acl policies.
+	AclPolicies []GetEndpointsEndpointAclPolicy `pulumi:"aclPolicies"`
+	// Whether public endpoint is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// The CR instance name.
+	Registry string `pulumi:"registry"`
+	// The status of public endpoint.
+	Status string `pulumi:"status"`
+}
+
+// GetEndpointsEndpointInput is an input type that accepts GetEndpointsEndpointArgs and GetEndpointsEndpointOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointInput` via:
+//
+//	GetEndpointsEndpointArgs{...}
+type GetEndpointsEndpointInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput
+	ToGetEndpointsEndpointOutputWithContext(context.Context) GetEndpointsEndpointOutput
+}
+
+type GetEndpointsEndpointArgs struct {
+	// The list of acl policies.
+	AclPolicies GetEndpointsEndpointAclPolicyArrayInput `pulumi:"aclPolicies"`
+	// Whether public endpoint is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The CR instance name.
+	Registry pulumi.StringInput `pulumi:"registry"`
+	// The status of public endpoint.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetEndpointsEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointArgs) ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput {
+	return i.ToGetEndpointsEndpointOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointArgs) ToGetEndpointsEndpointOutputWithContext(ctx context.Context) GetEndpointsEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointOutput)
+}
+
+// GetEndpointsEndpointArrayInput is an input type that accepts GetEndpointsEndpointArray and GetEndpointsEndpointArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointArrayInput` via:
+//
+//	GetEndpointsEndpointArray{ GetEndpointsEndpointArgs{...} }
+type GetEndpointsEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput
+	ToGetEndpointsEndpointArrayOutputWithContext(context.Context) GetEndpointsEndpointArrayOutput
+}
+
+type GetEndpointsEndpointArray []GetEndpointsEndpointInput
+
+func (GetEndpointsEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointArray) ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput {
+	return i.ToGetEndpointsEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointArray) ToGetEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointArrayOutput)
+}
+
+type GetEndpointsEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointOutput) ToGetEndpointsEndpointOutput() GetEndpointsEndpointOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointOutput) ToGetEndpointsEndpointOutputWithContext(ctx context.Context) GetEndpointsEndpointOutput {
+	return o
+}
+
+// The list of acl policies.
+func (o GetEndpointsEndpointOutput) AclPolicies() GetEndpointsEndpointAclPolicyArrayOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) []GetEndpointsEndpointAclPolicy { return v.AclPolicies }).(GetEndpointsEndpointAclPolicyArrayOutput)
+}
+
+// Whether public endpoint is enabled.
+func (o GetEndpointsEndpointOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The CR instance name.
+func (o GetEndpointsEndpointOutput) Registry() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.Registry }).(pulumi.StringOutput)
+}
+
+// The status of public endpoint.
+func (o GetEndpointsEndpointOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetEndpointsEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointArrayOutput) ToGetEndpointsEndpointArrayOutput() GetEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointArrayOutput) ToGetEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpoint {
+		return vs[0].([]GetEndpointsEndpoint)[vs[1].(int)]
+	}).(GetEndpointsEndpointOutput)
+}
+
+type GetEndpointsEndpointAclPolicy struct {
+	// The description of the acl policy.
+	Description string `pulumi:"description"`
+	// The ip of the acl policy.
+	Entry string `pulumi:"entry"`
+}
+
+// GetEndpointsEndpointAclPolicyInput is an input type that accepts GetEndpointsEndpointAclPolicyArgs and GetEndpointsEndpointAclPolicyOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointAclPolicyInput` via:
+//
+//	GetEndpointsEndpointAclPolicyArgs{...}
+type GetEndpointsEndpointAclPolicyInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointAclPolicyOutput() GetEndpointsEndpointAclPolicyOutput
+	ToGetEndpointsEndpointAclPolicyOutputWithContext(context.Context) GetEndpointsEndpointAclPolicyOutput
+}
+
+type GetEndpointsEndpointAclPolicyArgs struct {
+	// The description of the acl policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ip of the acl policy.
+	Entry pulumi.StringInput `pulumi:"entry"`
+}
+
+func (GetEndpointsEndpointAclPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointAclPolicyArgs) ToGetEndpointsEndpointAclPolicyOutput() GetEndpointsEndpointAclPolicyOutput {
+	return i.ToGetEndpointsEndpointAclPolicyOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointAclPolicyArgs) ToGetEndpointsEndpointAclPolicyOutputWithContext(ctx context.Context) GetEndpointsEndpointAclPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointAclPolicyOutput)
+}
+
+// GetEndpointsEndpointAclPolicyArrayInput is an input type that accepts GetEndpointsEndpointAclPolicyArray and GetEndpointsEndpointAclPolicyArrayOutput values.
+// You can construct a concrete instance of `GetEndpointsEndpointAclPolicyArrayInput` via:
+//
+//	GetEndpointsEndpointAclPolicyArray{ GetEndpointsEndpointAclPolicyArgs{...} }
+type GetEndpointsEndpointAclPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetEndpointsEndpointAclPolicyArrayOutput() GetEndpointsEndpointAclPolicyArrayOutput
+	ToGetEndpointsEndpointAclPolicyArrayOutputWithContext(context.Context) GetEndpointsEndpointAclPolicyArrayOutput
+}
+
+type GetEndpointsEndpointAclPolicyArray []GetEndpointsEndpointAclPolicyInput
+
+func (GetEndpointsEndpointAclPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (i GetEndpointsEndpointAclPolicyArray) ToGetEndpointsEndpointAclPolicyArrayOutput() GetEndpointsEndpointAclPolicyArrayOutput {
+	return i.ToGetEndpointsEndpointAclPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetEndpointsEndpointAclPolicyArray) ToGetEndpointsEndpointAclPolicyArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointAclPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEndpointsEndpointAclPolicyArrayOutput)
+}
+
+type GetEndpointsEndpointAclPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointAclPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointAclPolicyOutput) ToGetEndpointsEndpointAclPolicyOutput() GetEndpointsEndpointAclPolicyOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointAclPolicyOutput) ToGetEndpointsEndpointAclPolicyOutputWithContext(ctx context.Context) GetEndpointsEndpointAclPolicyOutput {
+	return o
+}
+
+// The description of the acl policy.
+func (o GetEndpointsEndpointAclPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAclPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ip of the acl policy.
+func (o GetEndpointsEndpointAclPolicyOutput) Entry() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEndpointsEndpointAclPolicy) string { return v.Entry }).(pulumi.StringOutput)
+}
+
+type GetEndpointsEndpointAclPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEndpointsEndpointAclPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEndpointsEndpointAclPolicy)(nil)).Elem()
+}
+
+func (o GetEndpointsEndpointAclPolicyArrayOutput) ToGetEndpointsEndpointAclPolicyArrayOutput() GetEndpointsEndpointAclPolicyArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointAclPolicyArrayOutput) ToGetEndpointsEndpointAclPolicyArrayOutputWithContext(ctx context.Context) GetEndpointsEndpointAclPolicyArrayOutput {
+	return o
+}
+
+func (o GetEndpointsEndpointAclPolicyArrayOutput) Index(i pulumi.IntInput) GetEndpointsEndpointAclPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEndpointsEndpointAclPolicy {
+		return vs[0].([]GetEndpointsEndpointAclPolicy)[vs[1].(int)]
+	}).(GetEndpointsEndpointAclPolicyOutput)
+}
+
+type GetNamespacesNamespace struct {
+	// The time when namespace created.
+	CreateTime string `pulumi:"createTime"`
+	// The name of OCI repository.
+	Name string `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project string `pulumi:"project"`
+}
+
+// GetNamespacesNamespaceInput is an input type that accepts GetNamespacesNamespaceArgs and GetNamespacesNamespaceOutput values.
+// You can construct a concrete instance of `GetNamespacesNamespaceInput` via:
+//
+//	GetNamespacesNamespaceArgs{...}
+type GetNamespacesNamespaceInput interface {
+	pulumi.Input
+
+	ToGetNamespacesNamespaceOutput() GetNamespacesNamespaceOutput
+	ToGetNamespacesNamespaceOutputWithContext(context.Context) GetNamespacesNamespaceOutput
+}
+
+type GetNamespacesNamespaceArgs struct {
+	// The time when namespace created.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The name of OCI repository.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ProjectName of the CrNamespace.
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (GetNamespacesNamespaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (i GetNamespacesNamespaceArgs) ToGetNamespacesNamespaceOutput() GetNamespacesNamespaceOutput {
+	return i.ToGetNamespacesNamespaceOutputWithContext(context.Background())
+}
+
+func (i GetNamespacesNamespaceArgs) ToGetNamespacesNamespaceOutputWithContext(ctx context.Context) GetNamespacesNamespaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespacesNamespaceOutput)
+}
+
+// GetNamespacesNamespaceArrayInput is an input type that accepts GetNamespacesNamespaceArray and GetNamespacesNamespaceArrayOutput values.
+// You can construct a concrete instance of `GetNamespacesNamespaceArrayInput` via:
+//
+//	GetNamespacesNamespaceArray{ GetNamespacesNamespaceArgs{...} }
+type GetNamespacesNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToGetNamespacesNamespaceArrayOutput() GetNamespacesNamespaceArrayOutput
+	ToGetNamespacesNamespaceArrayOutputWithContext(context.Context) GetNamespacesNamespaceArrayOutput
+}
+
+type GetNamespacesNamespaceArray []GetNamespacesNamespaceInput
+
+func (GetNamespacesNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (i GetNamespacesNamespaceArray) ToGetNamespacesNamespaceArrayOutput() GetNamespacesNamespaceArrayOutput {
+	return i.ToGetNamespacesNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNamespacesNamespaceArray) ToGetNamespacesNamespaceArrayOutputWithContext(ctx context.Context) GetNamespacesNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespacesNamespaceArrayOutput)
+}
+
+type GetNamespacesNamespaceOutput struct{ *pulumi.OutputState }
+
+func (GetNamespacesNamespaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (o GetNamespacesNamespaceOutput) ToGetNamespacesNamespaceOutput() GetNamespacesNamespaceOutput {
+	return o
+}
+
+func (o GetNamespacesNamespaceOutput) ToGetNamespacesNamespaceOutputWithContext(ctx context.Context) GetNamespacesNamespaceOutput {
+	return o
+}
+
+// The time when namespace created.
+func (o GetNamespacesNamespaceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The name of OCI repository.
+func (o GetNamespacesNamespaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the CrNamespace.
+func (o GetNamespacesNamespaceOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.Project }).(pulumi.StringOutput)
+}
+
+type GetNamespacesNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNamespacesNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespacesNamespace)(nil)).Elem()
+}
+
+func (o GetNamespacesNamespaceArrayOutput) ToGetNamespacesNamespaceArrayOutput() GetNamespacesNamespaceArrayOutput {
+	return o
+}
+
+func (o GetNamespacesNamespaceArrayOutput) ToGetNamespacesNamespaceArrayOutputWithContext(ctx context.Context) GetNamespacesNamespaceArrayOutput {
+	return o
+}
+
+func (o GetNamespacesNamespaceArrayOutput) Index(i pulumi.IntInput) GetNamespacesNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespacesNamespace {
+		return vs[0].([]GetNamespacesNamespace)[vs[1].(int)]
+	}).(GetNamespacesNamespaceOutput)
+}
+
+type GetRegistriesRegistry struct {
+	// The charge type of registry.
+	ChargeType string `pulumi:"chargeType"`
+	// The creation time of registry.
+	CreateTime string `pulumi:"createTime"`
+	// The domain of registry.
+	Domains []GetRegistriesRegistryDomain `pulumi:"domains"`
+	// The name of registry.
+	Name string `pulumi:"name"`
+	// The ProjectName of the cr registry.
+	Project string `pulumi:"project"`
+	// The tags of cr registry.
+	ResourceTags []GetRegistriesRegistryResourceTag `pulumi:"resourceTags"`
+	// The status of registry.
+	Status GetRegistriesRegistryStatus `pulumi:"status"`
+	// The type of registry.
+	Type string `pulumi:"type"`
+	// The status of user.
+	UserStatus string `pulumi:"userStatus"`
+	// The username of cr instance.
+	Username string `pulumi:"username"`
+}
+
+// GetRegistriesRegistryInput is an input type that accepts GetRegistriesRegistryArgs and GetRegistriesRegistryOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryInput` via:
+//
+//	GetRegistriesRegistryArgs{...}
+type GetRegistriesRegistryInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryOutput() GetRegistriesRegistryOutput
+	ToGetRegistriesRegistryOutputWithContext(context.Context) GetRegistriesRegistryOutput
+}
+
+type GetRegistriesRegistryArgs struct {
+	// The charge type of registry.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The creation time of registry.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The domain of registry.
+	Domains GetRegistriesRegistryDomainArrayInput `pulumi:"domains"`
+	// The name of registry.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ProjectName of the cr registry.
+	Project pulumi.StringInput `pulumi:"project"`
+	// The tags of cr registry.
+	ResourceTags GetRegistriesRegistryResourceTagArrayInput `pulumi:"resourceTags"`
+	// The status of registry.
+	Status GetRegistriesRegistryStatusInput `pulumi:"status"`
+	// The type of registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The status of user.
+	UserStatus pulumi.StringInput `pulumi:"userStatus"`
+	// The username of cr instance.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetRegistriesRegistryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistry)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryArgs) ToGetRegistriesRegistryOutput() GetRegistriesRegistryOutput {
+	return i.ToGetRegistriesRegistryOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryArgs) ToGetRegistriesRegistryOutputWithContext(ctx context.Context) GetRegistriesRegistryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryOutput)
+}
+
+// GetRegistriesRegistryArrayInput is an input type that accepts GetRegistriesRegistryArray and GetRegistriesRegistryArrayOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryArrayInput` via:
+//
+//	GetRegistriesRegistryArray{ GetRegistriesRegistryArgs{...} }
+type GetRegistriesRegistryArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryArrayOutput() GetRegistriesRegistryArrayOutput
+	ToGetRegistriesRegistryArrayOutputWithContext(context.Context) GetRegistriesRegistryArrayOutput
+}
+
+type GetRegistriesRegistryArray []GetRegistriesRegistryInput
+
+func (GetRegistriesRegistryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistry)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryArray) ToGetRegistriesRegistryArrayOutput() GetRegistriesRegistryArrayOutput {
+	return i.ToGetRegistriesRegistryArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryArray) ToGetRegistriesRegistryArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryArrayOutput)
+}
+
+type GetRegistriesRegistryOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistry)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryOutput) ToGetRegistriesRegistryOutput() GetRegistriesRegistryOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryOutput) ToGetRegistriesRegistryOutputWithContext(ctx context.Context) GetRegistriesRegistryOutput {
+	return o
+}
+
+// The charge type of registry.
+func (o GetRegistriesRegistryOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The creation time of registry.
+func (o GetRegistriesRegistryOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The domain of registry.
+func (o GetRegistriesRegistryOutput) Domains() GetRegistriesRegistryDomainArrayOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) []GetRegistriesRegistryDomain { return v.Domains }).(GetRegistriesRegistryDomainArrayOutput)
+}
+
+// The name of registry.
+func (o GetRegistriesRegistryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cr registry.
+func (o GetRegistriesRegistryOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The tags of cr registry.
+func (o GetRegistriesRegistryOutput) ResourceTags() GetRegistriesRegistryResourceTagArrayOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) []GetRegistriesRegistryResourceTag { return v.ResourceTags }).(GetRegistriesRegistryResourceTagArrayOutput)
+}
+
+// The status of registry.
+func (o GetRegistriesRegistryOutput) Status() GetRegistriesRegistryStatusOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) GetRegistriesRegistryStatus { return v.Status }).(GetRegistriesRegistryStatusOutput)
+}
+
+// The type of registry.
+func (o GetRegistriesRegistryOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The status of user.
+func (o GetRegistriesRegistryOutput) UserStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.UserStatus }).(pulumi.StringOutput)
+}
+
+// The username of cr instance.
+func (o GetRegistriesRegistryOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetRegistriesRegistryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistry)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryArrayOutput) ToGetRegistriesRegistryArrayOutput() GetRegistriesRegistryArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryArrayOutput) ToGetRegistriesRegistryArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryArrayOutput) Index(i pulumi.IntInput) GetRegistriesRegistryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesRegistry {
+		return vs[0].([]GetRegistriesRegistry)[vs[1].(int)]
+	}).(GetRegistriesRegistryOutput)
+}
+
+type GetRegistriesRegistryDomain struct {
+	// The domain of registry.
+	Domain string `pulumi:"domain"`
+	// The type of registry.
+	Type string `pulumi:"type"`
+}
+
+// GetRegistriesRegistryDomainInput is an input type that accepts GetRegistriesRegistryDomainArgs and GetRegistriesRegistryDomainOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryDomainInput` via:
+//
+//	GetRegistriesRegistryDomainArgs{...}
+type GetRegistriesRegistryDomainInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryDomainOutput() GetRegistriesRegistryDomainOutput
+	ToGetRegistriesRegistryDomainOutputWithContext(context.Context) GetRegistriesRegistryDomainOutput
+}
+
+type GetRegistriesRegistryDomainArgs struct {
+	// The domain of registry.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The type of registry.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRegistriesRegistryDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryDomain)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryDomainArgs) ToGetRegistriesRegistryDomainOutput() GetRegistriesRegistryDomainOutput {
+	return i.ToGetRegistriesRegistryDomainOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryDomainArgs) ToGetRegistriesRegistryDomainOutputWithContext(ctx context.Context) GetRegistriesRegistryDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryDomainOutput)
+}
+
+// GetRegistriesRegistryDomainArrayInput is an input type that accepts GetRegistriesRegistryDomainArray and GetRegistriesRegistryDomainArrayOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryDomainArrayInput` via:
+//
+//	GetRegistriesRegistryDomainArray{ GetRegistriesRegistryDomainArgs{...} }
+type GetRegistriesRegistryDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryDomainArrayOutput() GetRegistriesRegistryDomainArrayOutput
+	ToGetRegistriesRegistryDomainArrayOutputWithContext(context.Context) GetRegistriesRegistryDomainArrayOutput
+}
+
+type GetRegistriesRegistryDomainArray []GetRegistriesRegistryDomainInput
+
+func (GetRegistriesRegistryDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistryDomain)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryDomainArray) ToGetRegistriesRegistryDomainArrayOutput() GetRegistriesRegistryDomainArrayOutput {
+	return i.ToGetRegistriesRegistryDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryDomainArray) ToGetRegistriesRegistryDomainArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryDomainArrayOutput)
+}
+
+type GetRegistriesRegistryDomainOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryDomain)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryDomainOutput) ToGetRegistriesRegistryDomainOutput() GetRegistriesRegistryDomainOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryDomainOutput) ToGetRegistriesRegistryDomainOutputWithContext(ctx context.Context) GetRegistriesRegistryDomainOutput {
+	return o
+}
+
+// The domain of registry.
+func (o GetRegistriesRegistryDomainOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryDomain) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The type of registry.
+func (o GetRegistriesRegistryDomainOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryDomain) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRegistriesRegistryDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistryDomain)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryDomainArrayOutput) ToGetRegistriesRegistryDomainArrayOutput() GetRegistriesRegistryDomainArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryDomainArrayOutput) ToGetRegistriesRegistryDomainArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryDomainArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryDomainArrayOutput) Index(i pulumi.IntInput) GetRegistriesRegistryDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesRegistryDomain {
+		return vs[0].([]GetRegistriesRegistryDomain)[vs[1].(int)]
+	}).(GetRegistriesRegistryDomainOutput)
+}
+
+type GetRegistriesRegistryResourceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetRegistriesRegistryResourceTagInput is an input type that accepts GetRegistriesRegistryResourceTagArgs and GetRegistriesRegistryResourceTagOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryResourceTagInput` via:
+//
+//	GetRegistriesRegistryResourceTagArgs{...}
+type GetRegistriesRegistryResourceTagInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryResourceTagOutput() GetRegistriesRegistryResourceTagOutput
+	ToGetRegistriesRegistryResourceTagOutputWithContext(context.Context) GetRegistriesRegistryResourceTagOutput
+}
+
+type GetRegistriesRegistryResourceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRegistriesRegistryResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryResourceTagArgs) ToGetRegistriesRegistryResourceTagOutput() GetRegistriesRegistryResourceTagOutput {
+	return i.ToGetRegistriesRegistryResourceTagOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryResourceTagArgs) ToGetRegistriesRegistryResourceTagOutputWithContext(ctx context.Context) GetRegistriesRegistryResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryResourceTagOutput)
+}
+
+// GetRegistriesRegistryResourceTagArrayInput is an input type that accepts GetRegistriesRegistryResourceTagArray and GetRegistriesRegistryResourceTagArrayOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryResourceTagArrayInput` via:
+//
+//	GetRegistriesRegistryResourceTagArray{ GetRegistriesRegistryResourceTagArgs{...} }
+type GetRegistriesRegistryResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryResourceTagArrayOutput() GetRegistriesRegistryResourceTagArrayOutput
+	ToGetRegistriesRegistryResourceTagArrayOutputWithContext(context.Context) GetRegistriesRegistryResourceTagArrayOutput
+}
+
+type GetRegistriesRegistryResourceTagArray []GetRegistriesRegistryResourceTagInput
+
+func (GetRegistriesRegistryResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryResourceTagArray) ToGetRegistriesRegistryResourceTagArrayOutput() GetRegistriesRegistryResourceTagArrayOutput {
+	return i.ToGetRegistriesRegistryResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryResourceTagArray) ToGetRegistriesRegistryResourceTagArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryResourceTagArrayOutput)
+}
+
+type GetRegistriesRegistryResourceTagOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryResourceTagOutput) ToGetRegistriesRegistryResourceTagOutput() GetRegistriesRegistryResourceTagOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryResourceTagOutput) ToGetRegistriesRegistryResourceTagOutputWithContext(ctx context.Context) GetRegistriesRegistryResourceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetRegistriesRegistryResourceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryResourceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetRegistriesRegistryResourceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryResourceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRegistriesRegistryResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistryResourceTag)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryResourceTagArrayOutput) ToGetRegistriesRegistryResourceTagArrayOutput() GetRegistriesRegistryResourceTagArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryResourceTagArrayOutput) ToGetRegistriesRegistryResourceTagArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryResourceTagArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryResourceTagArrayOutput) Index(i pulumi.IntInput) GetRegistriesRegistryResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesRegistryResourceTag {
+		return vs[0].([]GetRegistriesRegistryResourceTag)[vs[1].(int)]
+	}).(GetRegistriesRegistryResourceTagOutput)
+}
+
+type GetRegistriesRegistryStatus struct {
+	// The condition of registry.
+	Conditions []string `pulumi:"conditions"`
+	// The phase status of registry.
+	Phase string `pulumi:"phase"`
+}
+
+// GetRegistriesRegistryStatusInput is an input type that accepts GetRegistriesRegistryStatusArgs and GetRegistriesRegistryStatusOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryStatusInput` via:
+//
+//	GetRegistriesRegistryStatusArgs{...}
+type GetRegistriesRegistryStatusInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryStatusOutput() GetRegistriesRegistryStatusOutput
+	ToGetRegistriesRegistryStatusOutputWithContext(context.Context) GetRegistriesRegistryStatusOutput
+}
+
+type GetRegistriesRegistryStatusArgs struct {
+	// The condition of registry.
+	Conditions pulumi.StringArrayInput `pulumi:"conditions"`
+	// The phase status of registry.
+	Phase pulumi.StringInput `pulumi:"phase"`
+}
+
+func (GetRegistriesRegistryStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryStatus)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryStatusArgs) ToGetRegistriesRegistryStatusOutput() GetRegistriesRegistryStatusOutput {
+	return i.ToGetRegistriesRegistryStatusOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryStatusArgs) ToGetRegistriesRegistryStatusOutputWithContext(ctx context.Context) GetRegistriesRegistryStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryStatusOutput)
+}
+
+type GetRegistriesRegistryStatusOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryStatus)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryStatusOutput) ToGetRegistriesRegistryStatusOutput() GetRegistriesRegistryStatusOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryStatusOutput) ToGetRegistriesRegistryStatusOutputWithContext(ctx context.Context) GetRegistriesRegistryStatusOutput {
+	return o
+}
+
+// The condition of registry.
+func (o GetRegistriesRegistryStatusOutput) Conditions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryStatus) []string { return v.Conditions }).(pulumi.StringArrayOutput)
+}
+
+// The phase status of registry.
+func (o GetRegistriesRegistryStatusOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryStatus) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+type GetRegistriesResourceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// GetRegistriesResourceTagInput is an input type that accepts GetRegistriesResourceTagArgs and GetRegistriesResourceTagOutput values.
+// You can construct a concrete instance of `GetRegistriesResourceTagInput` via:
+//
+//	GetRegistriesResourceTagArgs{...}
+type GetRegistriesResourceTagInput interface {
+	pulumi.Input
+
+	ToGetRegistriesResourceTagOutput() GetRegistriesResourceTagOutput
+	ToGetRegistriesResourceTagOutputWithContext(context.Context) GetRegistriesResourceTagOutput
+}
+
+type GetRegistriesResourceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRegistriesResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesResourceTag)(nil)).Elem()
+}
+
+func (i GetRegistriesResourceTagArgs) ToGetRegistriesResourceTagOutput() GetRegistriesResourceTagOutput {
+	return i.ToGetRegistriesResourceTagOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesResourceTagArgs) ToGetRegistriesResourceTagOutputWithContext(ctx context.Context) GetRegistriesResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesResourceTagOutput)
+}
+
+// GetRegistriesResourceTagArrayInput is an input type that accepts GetRegistriesResourceTagArray and GetRegistriesResourceTagArrayOutput values.
+// You can construct a concrete instance of `GetRegistriesResourceTagArrayInput` via:
+//
+//	GetRegistriesResourceTagArray{ GetRegistriesResourceTagArgs{...} }
+type GetRegistriesResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistriesResourceTagArrayOutput() GetRegistriesResourceTagArrayOutput
+	ToGetRegistriesResourceTagArrayOutputWithContext(context.Context) GetRegistriesResourceTagArrayOutput
+}
+
+type GetRegistriesResourceTagArray []GetRegistriesResourceTagInput
+
+func (GetRegistriesResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesResourceTag)(nil)).Elem()
+}
+
+func (i GetRegistriesResourceTagArray) ToGetRegistriesResourceTagArrayOutput() GetRegistriesResourceTagArrayOutput {
+	return i.ToGetRegistriesResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesResourceTagArray) ToGetRegistriesResourceTagArrayOutputWithContext(ctx context.Context) GetRegistriesResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesResourceTagArrayOutput)
+}
+
+type GetRegistriesResourceTagOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesResourceTag)(nil)).Elem()
+}
+
+func (o GetRegistriesResourceTagOutput) ToGetRegistriesResourceTagOutput() GetRegistriesResourceTagOutput {
+	return o
+}
+
+func (o GetRegistriesResourceTagOutput) ToGetRegistriesResourceTagOutputWithContext(ctx context.Context) GetRegistriesResourceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetRegistriesResourceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesResourceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetRegistriesResourceTagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistriesResourceTag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRegistriesResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesResourceTag)(nil)).Elem()
+}
+
+func (o GetRegistriesResourceTagArrayOutput) ToGetRegistriesResourceTagArrayOutput() GetRegistriesResourceTagArrayOutput {
+	return o
+}
+
+func (o GetRegistriesResourceTagArrayOutput) ToGetRegistriesResourceTagArrayOutputWithContext(ctx context.Context) GetRegistriesResourceTagArrayOutput {
+	return o
+}
+
+func (o GetRegistriesResourceTagArrayOutput) Index(i pulumi.IntInput) GetRegistriesResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesResourceTag {
+		return vs[0].([]GetRegistriesResourceTag)[vs[1].(int)]
+	}).(GetRegistriesResourceTagOutput)
+}
+
+type GetRegistriesStatus struct {
+	// The condition of registry.
+	Condition *string `pulumi:"condition"`
+	// The phase of status.
+	Phase *string `pulumi:"phase"`
+}
+
+// GetRegistriesStatusInput is an input type that accepts GetRegistriesStatusArgs and GetRegistriesStatusOutput values.
+// You can construct a concrete instance of `GetRegistriesStatusInput` via:
+//
+//	GetRegistriesStatusArgs{...}
+type GetRegistriesStatusInput interface {
+	pulumi.Input
+
+	ToGetRegistriesStatusOutput() GetRegistriesStatusOutput
+	ToGetRegistriesStatusOutputWithContext(context.Context) GetRegistriesStatusOutput
+}
+
+type GetRegistriesStatusArgs struct {
+	// The condition of registry.
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
+	// The phase of status.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (GetRegistriesStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesStatus)(nil)).Elem()
+}
+
+func (i GetRegistriesStatusArgs) ToGetRegistriesStatusOutput() GetRegistriesStatusOutput {
+	return i.ToGetRegistriesStatusOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesStatusArgs) ToGetRegistriesStatusOutputWithContext(ctx context.Context) GetRegistriesStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesStatusOutput)
+}
+
+// GetRegistriesStatusArrayInput is an input type that accepts GetRegistriesStatusArray and GetRegistriesStatusArrayOutput values.
+// You can construct a concrete instance of `GetRegistriesStatusArrayInput` via:
+//
+//	GetRegistriesStatusArray{ GetRegistriesStatusArgs{...} }
+type GetRegistriesStatusArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistriesStatusArrayOutput() GetRegistriesStatusArrayOutput
+	ToGetRegistriesStatusArrayOutputWithContext(context.Context) GetRegistriesStatusArrayOutput
+}
+
+type GetRegistriesStatusArray []GetRegistriesStatusInput
+
+func (GetRegistriesStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesStatus)(nil)).Elem()
+}
+
+func (i GetRegistriesStatusArray) ToGetRegistriesStatusArrayOutput() GetRegistriesStatusArrayOutput {
+	return i.ToGetRegistriesStatusArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesStatusArray) ToGetRegistriesStatusArrayOutputWithContext(ctx context.Context) GetRegistriesStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesStatusArrayOutput)
+}
+
+type GetRegistriesStatusOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesStatus)(nil)).Elem()
+}
+
+func (o GetRegistriesStatusOutput) ToGetRegistriesStatusOutput() GetRegistriesStatusOutput {
+	return o
+}
+
+func (o GetRegistriesStatusOutput) ToGetRegistriesStatusOutputWithContext(ctx context.Context) GetRegistriesStatusOutput {
+	return o
+}
+
+// The condition of registry.
+func (o GetRegistriesStatusOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistriesStatus) *string { return v.Condition }).(pulumi.StringPtrOutput)
+}
+
+// The phase of status.
+func (o GetRegistriesStatusOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistriesStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type GetRegistriesStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesStatus)(nil)).Elem()
+}
+
+func (o GetRegistriesStatusArrayOutput) ToGetRegistriesStatusArrayOutput() GetRegistriesStatusArrayOutput {
+	return o
+}
+
+func (o GetRegistriesStatusArrayOutput) ToGetRegistriesStatusArrayOutputWithContext(ctx context.Context) GetRegistriesStatusArrayOutput {
+	return o
+}
+
+func (o GetRegistriesStatusArrayOutput) Index(i pulumi.IntInput) GetRegistriesStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesStatus {
+		return vs[0].([]GetRegistriesStatus)[vs[1].(int)]
+	}).(GetRegistriesStatusOutput)
+}
+
+type GetRepositoriesRepository struct {
+	// The access level of repository.
+	AccessLevel string `pulumi:"accessLevel"`
+	// The creation time of repository.
+	CreateTime string `pulumi:"createTime"`
+	// The description of repository.
+	Description string `pulumi:"description"`
+	// The name of repository.
+	Name string `pulumi:"name"`
+	// The namespace of repository.
+	Namespace string `pulumi:"namespace"`
+	// The last update time of repository.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetRepositoriesRepositoryInput is an input type that accepts GetRepositoriesRepositoryArgs and GetRepositoriesRepositoryOutput values.
+// You can construct a concrete instance of `GetRepositoriesRepositoryInput` via:
+//
+//	GetRepositoriesRepositoryArgs{...}
+type GetRepositoriesRepositoryInput interface {
+	pulumi.Input
+
+	ToGetRepositoriesRepositoryOutput() GetRepositoriesRepositoryOutput
+	ToGetRepositoriesRepositoryOutputWithContext(context.Context) GetRepositoriesRepositoryOutput
+}
+
+type GetRepositoriesRepositoryArgs struct {
+	// The access level of repository.
+	AccessLevel pulumi.StringInput `pulumi:"accessLevel"`
+	// The creation time of repository.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of repository.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of repository.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The namespace of repository.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// The last update time of repository.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetRepositoriesRepositoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRepositoriesRepository)(nil)).Elem()
+}
+
+func (i GetRepositoriesRepositoryArgs) ToGetRepositoriesRepositoryOutput() GetRepositoriesRepositoryOutput {
+	return i.ToGetRepositoriesRepositoryOutputWithContext(context.Background())
+}
+
+func (i GetRepositoriesRepositoryArgs) ToGetRepositoriesRepositoryOutputWithContext(ctx context.Context) GetRepositoriesRepositoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRepositoriesRepositoryOutput)
+}
+
+// GetRepositoriesRepositoryArrayInput is an input type that accepts GetRepositoriesRepositoryArray and GetRepositoriesRepositoryArrayOutput values.
+// You can construct a concrete instance of `GetRepositoriesRepositoryArrayInput` via:
+//
+//	GetRepositoriesRepositoryArray{ GetRepositoriesRepositoryArgs{...} }
+type GetRepositoriesRepositoryArrayInput interface {
+	pulumi.Input
+
+	ToGetRepositoriesRepositoryArrayOutput() GetRepositoriesRepositoryArrayOutput
+	ToGetRepositoriesRepositoryArrayOutputWithContext(context.Context) GetRepositoriesRepositoryArrayOutput
+}
+
+type GetRepositoriesRepositoryArray []GetRepositoriesRepositoryInput
+
+func (GetRepositoriesRepositoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRepositoriesRepository)(nil)).Elem()
+}
+
+func (i GetRepositoriesRepositoryArray) ToGetRepositoriesRepositoryArrayOutput() GetRepositoriesRepositoryArrayOutput {
+	return i.ToGetRepositoriesRepositoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetRepositoriesRepositoryArray) ToGetRepositoriesRepositoryArrayOutputWithContext(ctx context.Context) GetRepositoriesRepositoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRepositoriesRepositoryArrayOutput)
+}
+
+type GetRepositoriesRepositoryOutput struct{ *pulumi.OutputState }
+
+func (GetRepositoriesRepositoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRepositoriesRepository)(nil)).Elem()
+}
+
+func (o GetRepositoriesRepositoryOutput) ToGetRepositoriesRepositoryOutput() GetRepositoriesRepositoryOutput {
+	return o
+}
+
+func (o GetRepositoriesRepositoryOutput) ToGetRepositoriesRepositoryOutputWithContext(ctx context.Context) GetRepositoriesRepositoryOutput {
+	return o
+}
+
+// The access level of repository.
+func (o GetRepositoriesRepositoryOutput) AccessLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRepositoriesRepository) string { return v.AccessLevel }).(pulumi.StringOutput)
+}
+
+// The creation time of repository.
+func (o GetRepositoriesRepositoryOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRepositoriesRepository) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of repository.
+func (o GetRepositoriesRepositoryOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRepositoriesRepository) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of repository.
+func (o GetRepositoriesRepositoryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRepositoriesRepository) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace of repository.
+func (o GetRepositoriesRepositoryOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRepositoriesRepository) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// The last update time of repository.
+func (o GetRepositoriesRepositoryOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRepositoriesRepository) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetRepositoriesRepositoryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRepositoriesRepositoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRepositoriesRepository)(nil)).Elem()
+}
+
+func (o GetRepositoriesRepositoryArrayOutput) ToGetRepositoriesRepositoryArrayOutput() GetRepositoriesRepositoryArrayOutput {
+	return o
+}
+
+func (o GetRepositoriesRepositoryArrayOutput) ToGetRepositoriesRepositoryArrayOutputWithContext(ctx context.Context) GetRepositoriesRepositoryArrayOutput {
+	return o
+}
+
+func (o GetRepositoriesRepositoryArrayOutput) Index(i pulumi.IntInput) GetRepositoriesRepositoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRepositoriesRepository {
+		return vs[0].([]GetRepositoriesRepository)[vs[1].(int)]
+	}).(GetRepositoriesRepositoryOutput)
+}
+
+type GetTagsTag struct {
+	// The chart attribute,valid when tag type is Chart.
+	ChartAttribute GetTagsTagChartAttribute `pulumi:"chartAttribute"`
+	// The digest of image.
+	Digest string `pulumi:"digest"`
+	// The list of image attributes,valid when tag type is Image.
+	ImageAttributes []GetTagsTagImageAttribute `pulumi:"imageAttributes"`
+	// The name of OCI product tag.
+	Name string `pulumi:"name"`
+	// The last push time of OCI product.
+	PushTime string `pulumi:"pushTime"`
+	// The size of OCI product.
+	Size int `pulumi:"size"`
+	// The type of OCI product tag.
+	Type string `pulumi:"type"`
+}
+
+// GetTagsTagInput is an input type that accepts GetTagsTagArgs and GetTagsTagOutput values.
+// You can construct a concrete instance of `GetTagsTagInput` via:
+//
+//	GetTagsTagArgs{...}
+type GetTagsTagInput interface {
+	pulumi.Input
+
+	ToGetTagsTagOutput() GetTagsTagOutput
+	ToGetTagsTagOutputWithContext(context.Context) GetTagsTagOutput
+}
+
+type GetTagsTagArgs struct {
+	// The chart attribute,valid when tag type is Chart.
+	ChartAttribute GetTagsTagChartAttributeInput `pulumi:"chartAttribute"`
+	// The digest of image.
+	Digest pulumi.StringInput `pulumi:"digest"`
+	// The list of image attributes,valid when tag type is Image.
+	ImageAttributes GetTagsTagImageAttributeArrayInput `pulumi:"imageAttributes"`
+	// The name of OCI product tag.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The last push time of OCI product.
+	PushTime pulumi.StringInput `pulumi:"pushTime"`
+	// The size of OCI product.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of OCI product tag.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetTagsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTag)(nil)).Elem()
+}
+
+func (i GetTagsTagArgs) ToGetTagsTagOutput() GetTagsTagOutput {
+	return i.ToGetTagsTagOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagArgs) ToGetTagsTagOutputWithContext(ctx context.Context) GetTagsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagOutput)
+}
+
+// GetTagsTagArrayInput is an input type that accepts GetTagsTagArray and GetTagsTagArrayOutput values.
+// You can construct a concrete instance of `GetTagsTagArrayInput` via:
+//
+//	GetTagsTagArray{ GetTagsTagArgs{...} }
+type GetTagsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTagsTagArrayOutput() GetTagsTagArrayOutput
+	ToGetTagsTagArrayOutputWithContext(context.Context) GetTagsTagArrayOutput
+}
+
+type GetTagsTagArray []GetTagsTagInput
+
+func (GetTagsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsTag)(nil)).Elem()
+}
+
+func (i GetTagsTagArray) ToGetTagsTagArrayOutput() GetTagsTagArrayOutput {
+	return i.ToGetTagsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagArray) ToGetTagsTagArrayOutputWithContext(ctx context.Context) GetTagsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagArrayOutput)
+}
+
+type GetTagsTagOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTag)(nil)).Elem()
+}
+
+func (o GetTagsTagOutput) ToGetTagsTagOutput() GetTagsTagOutput {
+	return o
+}
+
+func (o GetTagsTagOutput) ToGetTagsTagOutputWithContext(ctx context.Context) GetTagsTagOutput {
+	return o
+}
+
+// The chart attribute,valid when tag type is Chart.
+func (o GetTagsTagOutput) ChartAttribute() GetTagsTagChartAttributeOutput {
+	return o.ApplyT(func(v GetTagsTag) GetTagsTagChartAttribute { return v.ChartAttribute }).(GetTagsTagChartAttributeOutput)
+}
+
+// The digest of image.
+func (o GetTagsTagOutput) Digest() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTag) string { return v.Digest }).(pulumi.StringOutput)
+}
+
+// The list of image attributes,valid when tag type is Image.
+func (o GetTagsTagOutput) ImageAttributes() GetTagsTagImageAttributeArrayOutput {
+	return o.ApplyT(func(v GetTagsTag) []GetTagsTagImageAttribute { return v.ImageAttributes }).(GetTagsTagImageAttributeArrayOutput)
+}
+
+// The name of OCI product tag.
+func (o GetTagsTagOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTag) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The last push time of OCI product.
+func (o GetTagsTagOutput) PushTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTag) string { return v.PushTime }).(pulumi.StringOutput)
+}
+
+// The size of OCI product.
+func (o GetTagsTagOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTagsTag) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of OCI product tag.
+func (o GetTagsTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetTagsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsTag)(nil)).Elem()
+}
+
+func (o GetTagsTagArrayOutput) ToGetTagsTagArrayOutput() GetTagsTagArrayOutput {
+	return o
+}
+
+func (o GetTagsTagArrayOutput) ToGetTagsTagArrayOutputWithContext(ctx context.Context) GetTagsTagArrayOutput {
+	return o
+}
+
+func (o GetTagsTagArrayOutput) Index(i pulumi.IntInput) GetTagsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTagsTag {
+		return vs[0].([]GetTagsTag)[vs[1].(int)]
+	}).(GetTagsTagOutput)
+}
+
+type GetTagsTagChartAttribute struct {
+	// The Helm version.
+	ApiVersion string `pulumi:"apiVersion"`
+	// The name of OCI product tag.
+	Name string `pulumi:"name"`
+	// The Helm Chart version.
+	Version string `pulumi:"version"`
+}
+
+// GetTagsTagChartAttributeInput is an input type that accepts GetTagsTagChartAttributeArgs and GetTagsTagChartAttributeOutput values.
+// You can construct a concrete instance of `GetTagsTagChartAttributeInput` via:
+//
+//	GetTagsTagChartAttributeArgs{...}
+type GetTagsTagChartAttributeInput interface {
+	pulumi.Input
+
+	ToGetTagsTagChartAttributeOutput() GetTagsTagChartAttributeOutput
+	ToGetTagsTagChartAttributeOutputWithContext(context.Context) GetTagsTagChartAttributeOutput
+}
+
+type GetTagsTagChartAttributeArgs struct {
+	// The Helm version.
+	ApiVersion pulumi.StringInput `pulumi:"apiVersion"`
+	// The name of OCI product tag.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Helm Chart version.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetTagsTagChartAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTagChartAttribute)(nil)).Elem()
+}
+
+func (i GetTagsTagChartAttributeArgs) ToGetTagsTagChartAttributeOutput() GetTagsTagChartAttributeOutput {
+	return i.ToGetTagsTagChartAttributeOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagChartAttributeArgs) ToGetTagsTagChartAttributeOutputWithContext(ctx context.Context) GetTagsTagChartAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagChartAttributeOutput)
+}
+
+type GetTagsTagChartAttributeOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagChartAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTagChartAttribute)(nil)).Elem()
+}
+
+func (o GetTagsTagChartAttributeOutput) ToGetTagsTagChartAttributeOutput() GetTagsTagChartAttributeOutput {
+	return o
+}
+
+func (o GetTagsTagChartAttributeOutput) ToGetTagsTagChartAttributeOutputWithContext(ctx context.Context) GetTagsTagChartAttributeOutput {
+	return o
+}
+
+// The Helm version.
+func (o GetTagsTagChartAttributeOutput) ApiVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagChartAttribute) string { return v.ApiVersion }).(pulumi.StringOutput)
+}
+
+// The name of OCI product tag.
+func (o GetTagsTagChartAttributeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagChartAttribute) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Helm Chart version.
+func (o GetTagsTagChartAttributeOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagChartAttribute) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetTagsTagImageAttribute struct {
+	// The image architecture.
+	Architecture string `pulumi:"architecture"`
+	// The image author.
+	Author string `pulumi:"author"`
+	// The digest of image.
+	Digest string `pulumi:"digest"`
+	// The iamge os.
+	Os string `pulumi:"os"`
+}
+
+// GetTagsTagImageAttributeInput is an input type that accepts GetTagsTagImageAttributeArgs and GetTagsTagImageAttributeOutput values.
+// You can construct a concrete instance of `GetTagsTagImageAttributeInput` via:
+//
+//	GetTagsTagImageAttributeArgs{...}
+type GetTagsTagImageAttributeInput interface {
+	pulumi.Input
+
+	ToGetTagsTagImageAttributeOutput() GetTagsTagImageAttributeOutput
+	ToGetTagsTagImageAttributeOutputWithContext(context.Context) GetTagsTagImageAttributeOutput
+}
+
+type GetTagsTagImageAttributeArgs struct {
+	// The image architecture.
+	Architecture pulumi.StringInput `pulumi:"architecture"`
+	// The image author.
+	Author pulumi.StringInput `pulumi:"author"`
+	// The digest of image.
+	Digest pulumi.StringInput `pulumi:"digest"`
+	// The iamge os.
+	Os pulumi.StringInput `pulumi:"os"`
+}
+
+func (GetTagsTagImageAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTagImageAttribute)(nil)).Elem()
+}
+
+func (i GetTagsTagImageAttributeArgs) ToGetTagsTagImageAttributeOutput() GetTagsTagImageAttributeOutput {
+	return i.ToGetTagsTagImageAttributeOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagImageAttributeArgs) ToGetTagsTagImageAttributeOutputWithContext(ctx context.Context) GetTagsTagImageAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagImageAttributeOutput)
+}
+
+// GetTagsTagImageAttributeArrayInput is an input type that accepts GetTagsTagImageAttributeArray and GetTagsTagImageAttributeArrayOutput values.
+// You can construct a concrete instance of `GetTagsTagImageAttributeArrayInput` via:
+//
+//	GetTagsTagImageAttributeArray{ GetTagsTagImageAttributeArgs{...} }
+type GetTagsTagImageAttributeArrayInput interface {
+	pulumi.Input
+
+	ToGetTagsTagImageAttributeArrayOutput() GetTagsTagImageAttributeArrayOutput
+	ToGetTagsTagImageAttributeArrayOutputWithContext(context.Context) GetTagsTagImageAttributeArrayOutput
+}
+
+type GetTagsTagImageAttributeArray []GetTagsTagImageAttributeInput
+
+func (GetTagsTagImageAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsTagImageAttribute)(nil)).Elem()
+}
+
+func (i GetTagsTagImageAttributeArray) ToGetTagsTagImageAttributeArrayOutput() GetTagsTagImageAttributeArrayOutput {
+	return i.ToGetTagsTagImageAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagImageAttributeArray) ToGetTagsTagImageAttributeArrayOutputWithContext(ctx context.Context) GetTagsTagImageAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagImageAttributeArrayOutput)
+}
+
+type GetTagsTagImageAttributeOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagImageAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTagImageAttribute)(nil)).Elem()
+}
+
+func (o GetTagsTagImageAttributeOutput) ToGetTagsTagImageAttributeOutput() GetTagsTagImageAttributeOutput {
+	return o
+}
+
+func (o GetTagsTagImageAttributeOutput) ToGetTagsTagImageAttributeOutputWithContext(ctx context.Context) GetTagsTagImageAttributeOutput {
+	return o
+}
+
+// The image architecture.
+func (o GetTagsTagImageAttributeOutput) Architecture() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagImageAttribute) string { return v.Architecture }).(pulumi.StringOutput)
+}
+
+// The image author.
+func (o GetTagsTagImageAttributeOutput) Author() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagImageAttribute) string { return v.Author }).(pulumi.StringOutput)
+}
+
+// The digest of image.
+func (o GetTagsTagImageAttributeOutput) Digest() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagImageAttribute) string { return v.Digest }).(pulumi.StringOutput)
+}
+
+// The iamge os.
+func (o GetTagsTagImageAttributeOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTagImageAttribute) string { return v.Os }).(pulumi.StringOutput)
+}
+
+type GetTagsTagImageAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagImageAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsTagImageAttribute)(nil)).Elem()
+}
+
+func (o GetTagsTagImageAttributeArrayOutput) ToGetTagsTagImageAttributeArrayOutput() GetTagsTagImageAttributeArrayOutput {
+	return o
+}
+
+func (o GetTagsTagImageAttributeArrayOutput) ToGetTagsTagImageAttributeArrayOutputWithContext(ctx context.Context) GetTagsTagImageAttributeArrayOutput {
+	return o
+}
+
+func (o GetTagsTagImageAttributeArrayOutput) Index(i pulumi.IntInput) GetTagsTagImageAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTagsTagImageAttribute {
+		return vs[0].([]GetTagsTagImageAttribute)[vs[1].(int)]
+	}).(GetTagsTagImageAttributeOutput)
+}
+
+type GetVpcEndpointsEndpoint struct {
+	// The CR registry name.
+	Registry string `pulumi:"registry"`
+	// List of vpc information.
+	Vpcs []GetVpcEndpointsEndpointVpc `pulumi:"vpcs"`
+}
+
+// GetVpcEndpointsEndpointInput is an input type that accepts GetVpcEndpointsEndpointArgs and GetVpcEndpointsEndpointOutput values.
+// You can construct a concrete instance of `GetVpcEndpointsEndpointInput` via:
+//
+//	GetVpcEndpointsEndpointArgs{...}
+type GetVpcEndpointsEndpointInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointsEndpointOutput() GetVpcEndpointsEndpointOutput
+	ToGetVpcEndpointsEndpointOutputWithContext(context.Context) GetVpcEndpointsEndpointOutput
+}
+
+type GetVpcEndpointsEndpointArgs struct {
+	// The CR registry name.
+	Registry pulumi.StringInput `pulumi:"registry"`
+	// List of vpc information.
+	Vpcs GetVpcEndpointsEndpointVpcArrayInput `pulumi:"vpcs"`
+}
+
+func (GetVpcEndpointsEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetVpcEndpointsEndpointArgs) ToGetVpcEndpointsEndpointOutput() GetVpcEndpointsEndpointOutput {
+	return i.ToGetVpcEndpointsEndpointOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointsEndpointArgs) ToGetVpcEndpointsEndpointOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointsEndpointOutput)
+}
+
+// GetVpcEndpointsEndpointArrayInput is an input type that accepts GetVpcEndpointsEndpointArray and GetVpcEndpointsEndpointArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointsEndpointArrayInput` via:
+//
+//	GetVpcEndpointsEndpointArray{ GetVpcEndpointsEndpointArgs{...} }
+type GetVpcEndpointsEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointsEndpointArrayOutput() GetVpcEndpointsEndpointArrayOutput
+	ToGetVpcEndpointsEndpointArrayOutputWithContext(context.Context) GetVpcEndpointsEndpointArrayOutput
+}
+
+type GetVpcEndpointsEndpointArray []GetVpcEndpointsEndpointInput
+
+func (GetVpcEndpointsEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetVpcEndpointsEndpointArray) ToGetVpcEndpointsEndpointArrayOutput() GetVpcEndpointsEndpointArrayOutput {
+	return i.ToGetVpcEndpointsEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointsEndpointArray) ToGetVpcEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointsEndpointArrayOutput)
+}
+
+type GetVpcEndpointsEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointsEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetVpcEndpointsEndpointOutput) ToGetVpcEndpointsEndpointOutput() GetVpcEndpointsEndpointOutput {
+	return o
+}
+
+func (o GetVpcEndpointsEndpointOutput) ToGetVpcEndpointsEndpointOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointOutput {
+	return o
+}
+
+// The CR registry name.
+func (o GetVpcEndpointsEndpointOutput) Registry() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpoint) string { return v.Registry }).(pulumi.StringOutput)
+}
+
+// List of vpc information.
+func (o GetVpcEndpointsEndpointOutput) Vpcs() GetVpcEndpointsEndpointVpcArrayOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpoint) []GetVpcEndpointsEndpointVpc { return v.Vpcs }).(GetVpcEndpointsEndpointVpcArrayOutput)
+}
+
+type GetVpcEndpointsEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointsEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetVpcEndpointsEndpointArrayOutput) ToGetVpcEndpointsEndpointArrayOutput() GetVpcEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointsEndpointArrayOutput) ToGetVpcEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointsEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointsEndpoint {
+		return vs[0].([]GetVpcEndpointsEndpoint)[vs[1].(int)]
+	}).(GetVpcEndpointsEndpointOutput)
+}
+
+type GetVpcEndpointsEndpointVpc struct {
+	// The id of the account.
+	AccountId int `pulumi:"accountId"`
+	// The creation time.
+	CreateTime string `pulumi:"createTime"`
+	// The IP address of the mirror repository in the VPC.
+	Ip string `pulumi:"ip"`
+	// The region id.
+	Region string `pulumi:"region"`
+	// The status of the vpc endpoint.
+	Status string `pulumi:"status"`
+	// The ID of the subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The ID of the vpc.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetVpcEndpointsEndpointVpcInput is an input type that accepts GetVpcEndpointsEndpointVpcArgs and GetVpcEndpointsEndpointVpcOutput values.
+// You can construct a concrete instance of `GetVpcEndpointsEndpointVpcInput` via:
+//
+//	GetVpcEndpointsEndpointVpcArgs{...}
+type GetVpcEndpointsEndpointVpcInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointsEndpointVpcOutput() GetVpcEndpointsEndpointVpcOutput
+	ToGetVpcEndpointsEndpointVpcOutputWithContext(context.Context) GetVpcEndpointsEndpointVpcOutput
+}
+
+type GetVpcEndpointsEndpointVpcArgs struct {
+	// The id of the account.
+	AccountId pulumi.IntInput `pulumi:"accountId"`
+	// The creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The IP address of the mirror repository in the VPC.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The region id.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The status of the vpc endpoint.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The ID of the subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The ID of the vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetVpcEndpointsEndpointVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointsEndpointVpc)(nil)).Elem()
+}
+
+func (i GetVpcEndpointsEndpointVpcArgs) ToGetVpcEndpointsEndpointVpcOutput() GetVpcEndpointsEndpointVpcOutput {
+	return i.ToGetVpcEndpointsEndpointVpcOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointsEndpointVpcArgs) ToGetVpcEndpointsEndpointVpcOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointsEndpointVpcOutput)
+}
+
+// GetVpcEndpointsEndpointVpcArrayInput is an input type that accepts GetVpcEndpointsEndpointVpcArray and GetVpcEndpointsEndpointVpcArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointsEndpointVpcArrayInput` via:
+//
+//	GetVpcEndpointsEndpointVpcArray{ GetVpcEndpointsEndpointVpcArgs{...} }
+type GetVpcEndpointsEndpointVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointsEndpointVpcArrayOutput() GetVpcEndpointsEndpointVpcArrayOutput
+	ToGetVpcEndpointsEndpointVpcArrayOutputWithContext(context.Context) GetVpcEndpointsEndpointVpcArrayOutput
+}
+
+type GetVpcEndpointsEndpointVpcArray []GetVpcEndpointsEndpointVpcInput
+
+func (GetVpcEndpointsEndpointVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointsEndpointVpc)(nil)).Elem()
+}
+
+func (i GetVpcEndpointsEndpointVpcArray) ToGetVpcEndpointsEndpointVpcArrayOutput() GetVpcEndpointsEndpointVpcArrayOutput {
+	return i.ToGetVpcEndpointsEndpointVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointsEndpointVpcArray) ToGetVpcEndpointsEndpointVpcArrayOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointsEndpointVpcArrayOutput)
+}
+
+type GetVpcEndpointsEndpointVpcOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointsEndpointVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointsEndpointVpc)(nil)).Elem()
+}
+
+func (o GetVpcEndpointsEndpointVpcOutput) ToGetVpcEndpointsEndpointVpcOutput() GetVpcEndpointsEndpointVpcOutput {
+	return o
+}
+
+func (o GetVpcEndpointsEndpointVpcOutput) ToGetVpcEndpointsEndpointVpcOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointVpcOutput {
+	return o
+}
+
+// The id of the account.
+func (o GetVpcEndpointsEndpointVpcOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) int { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The creation time.
+func (o GetVpcEndpointsEndpointVpcOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The IP address of the mirror repository in the VPC.
+func (o GetVpcEndpointsEndpointVpcOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The region id.
+func (o GetVpcEndpointsEndpointVpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The status of the vpc endpoint.
+func (o GetVpcEndpointsEndpointVpcOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The ID of the subnet.
+func (o GetVpcEndpointsEndpointVpcOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The ID of the vpc.
+func (o GetVpcEndpointsEndpointVpcOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsEndpointVpc) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetVpcEndpointsEndpointVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointsEndpointVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointsEndpointVpc)(nil)).Elem()
+}
+
+func (o GetVpcEndpointsEndpointVpcArrayOutput) ToGetVpcEndpointsEndpointVpcArrayOutput() GetVpcEndpointsEndpointVpcArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointsEndpointVpcArrayOutput) ToGetVpcEndpointsEndpointVpcArrayOutputWithContext(ctx context.Context) GetVpcEndpointsEndpointVpcArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointsEndpointVpcArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointsEndpointVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointsEndpointVpc {
+		return vs[0].([]GetVpcEndpointsEndpointVpc)[vs[1].(int)]
+	}).(GetVpcEndpointsEndpointVpcOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthorizationTokensTokenInput)(nil)).Elem(), AuthorizationTokensTokenArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthorizationTokensTokenArrayInput)(nil)).Elem(), AuthorizationTokensTokenArray{})
@@ -2861,6 +4728,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointsEndpointArrayInput)(nil)).Elem(), VpcEndpointsEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointsEndpointVpcInput)(nil)).Elem(), VpcEndpointsEndpointVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointsEndpointVpcArrayInput)(nil)).Elem(), VpcEndpointsEndpointVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAuthorizationTokensTokenInput)(nil)).Elem(), GetAuthorizationTokensTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAuthorizationTokensTokenArrayInput)(nil)).Elem(), GetAuthorizationTokensTokenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointInput)(nil)).Elem(), GetEndpointsEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointArrayInput)(nil)).Elem(), GetEndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointAclPolicyInput)(nil)).Elem(), GetEndpointsEndpointAclPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointAclPolicyArrayInput)(nil)).Elem(), GetEndpointsEndpointAclPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespacesNamespaceInput)(nil)).Elem(), GetNamespacesNamespaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespacesNamespaceArrayInput)(nil)).Elem(), GetNamespacesNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryInput)(nil)).Elem(), GetRegistriesRegistryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryArrayInput)(nil)).Elem(), GetRegistriesRegistryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryDomainInput)(nil)).Elem(), GetRegistriesRegistryDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryDomainArrayInput)(nil)).Elem(), GetRegistriesRegistryDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryResourceTagInput)(nil)).Elem(), GetRegistriesRegistryResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryResourceTagArrayInput)(nil)).Elem(), GetRegistriesRegistryResourceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryStatusInput)(nil)).Elem(), GetRegistriesRegistryStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesResourceTagInput)(nil)).Elem(), GetRegistriesResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesResourceTagArrayInput)(nil)).Elem(), GetRegistriesResourceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesStatusInput)(nil)).Elem(), GetRegistriesStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesStatusArrayInput)(nil)).Elem(), GetRegistriesStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRepositoriesRepositoryInput)(nil)).Elem(), GetRepositoriesRepositoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRepositoriesRepositoryArrayInput)(nil)).Elem(), GetRepositoriesRepositoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagInput)(nil)).Elem(), GetTagsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagArrayInput)(nil)).Elem(), GetTagsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagChartAttributeInput)(nil)).Elem(), GetTagsTagChartAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagImageAttributeInput)(nil)).Elem(), GetTagsTagImageAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagImageAttributeArrayInput)(nil)).Elem(), GetTagsTagImageAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointsEndpointInput)(nil)).Elem(), GetVpcEndpointsEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointsEndpointArrayInput)(nil)).Elem(), GetVpcEndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointsEndpointVpcInput)(nil)).Elem(), GetVpcEndpointsEndpointVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointsEndpointVpcArrayInput)(nil)).Elem(), GetVpcEndpointsEndpointVpcArray{})
 	pulumi.RegisterOutputType(AuthorizationTokensTokenOutput{})
 	pulumi.RegisterOutputType(AuthorizationTokensTokenArrayOutput{})
 	pulumi.RegisterOutputType(EndpointAclPolicyTypeOutput{})
@@ -2907,4 +4804,34 @@ func init() {
 	pulumi.RegisterOutputType(VpcEndpointsEndpointArrayOutput{})
 	pulumi.RegisterOutputType(VpcEndpointsEndpointVpcOutput{})
 	pulumi.RegisterOutputType(VpcEndpointsEndpointVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetAuthorizationTokensTokenOutput{})
+	pulumi.RegisterOutputType(GetAuthorizationTokensTokenArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointAclPolicyOutput{})
+	pulumi.RegisterOutputType(GetEndpointsEndpointAclPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetNamespacesNamespaceOutput{})
+	pulumi.RegisterOutputType(GetNamespacesNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryDomainOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryDomainArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryResourceTagOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryResourceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryStatusOutput{})
+	pulumi.RegisterOutputType(GetRegistriesResourceTagOutput{})
+	pulumi.RegisterOutputType(GetRegistriesResourceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistriesStatusOutput{})
+	pulumi.RegisterOutputType(GetRegistriesStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetRepositoriesRepositoryOutput{})
+	pulumi.RegisterOutputType(GetRepositoriesRepositoryArrayOutput{})
+	pulumi.RegisterOutputType(GetTagsTagOutput{})
+	pulumi.RegisterOutputType(GetTagsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTagsTagChartAttributeOutput{})
+	pulumi.RegisterOutputType(GetTagsTagImageAttributeOutput{})
+	pulumi.RegisterOutputType(GetTagsTagImageAttributeArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointsEndpointOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointsEndpointVpcOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointsEndpointVpcArrayOutput{})
 }

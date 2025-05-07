@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudfs.NsQuotas(ctx, &cloudfs.NsQuotasArgs{
+//			_, err := cloudfs.GetNsQuotas(ctx, &cloudfs.GetNsQuotasArgs{
 //				FsNames: []string{
 //					"tffile",
 //					"tftest2",
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas
 func NsQuotas(ctx *pulumi.Context, args *NsQuotasArgs, opts ...pulumi.InvokeOption) (*NsQuotasResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NsQuotasResult

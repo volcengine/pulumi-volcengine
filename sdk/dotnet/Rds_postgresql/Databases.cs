@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_postgresql
 {
+    [Obsolete(@"volcengine.rds_postgresql.Databases has been deprecated in favor of volcengine.rds_postgresql.getDatabases")]
     public static class Databases
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_postgresql.Databases.Invoke(new()
+        ///     var foo = Volcengine.Rds_postgresql.GetDatabases.Invoke(new()
         ///     {
         ///         DbName = "test001",
         ///         InstanceId = "postgres-95******8233",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_postgresql.Databases.Invoke(new()
+        ///     var foo = Volcengine.Rds_postgresql.GetDatabases.Invoke(new()
         ///     {
         ///         DbName = "test001",
         ///         InstanceId = "postgres-95******8233",

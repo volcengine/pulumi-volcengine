@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -49,12 +49,14 @@ import * as utilities from "../utilities";
  *         ],
  *     }));
  * }
- * const default = volcengine.autoscaling.ScalingGroupsOutput({
+ * const default = volcengine.autoscaling.getScalingGroupsOutput({
  *     ids: fooScalingGroup.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups */
 export function scalingGroups(args?: ScalingGroupsArgs, opts?: pulumi.InvokeOptions): Promise<ScalingGroupsResult> {
+    pulumi.log.warn("scalingGroups is deprecated: volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -127,7 +129,7 @@ export interface ScalingGroupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -161,11 +163,12 @@ export interface ScalingGroupsResult {
  *         ],
  *     }));
  * }
- * const default = volcengine.autoscaling.ScalingGroupsOutput({
+ * const default = volcengine.autoscaling.getScalingGroupsOutput({
  *     ids: fooScalingGroup.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups */
 export function scalingGroupsOutput(args?: ScalingGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingGroupsResult> {
     return pulumi.output(args).apply((a: any) => scalingGroups(a, opts))
 }

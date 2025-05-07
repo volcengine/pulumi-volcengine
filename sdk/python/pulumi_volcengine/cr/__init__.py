@@ -9,6 +9,13 @@ from .authorization_tokens import *
 from .endpoint import *
 from .endpoint_acl_policy import *
 from .endpoints import *
+from .get_authorization_tokens import *
+from .get_endpoints import *
+from .get_namespaces import *
+from .get_registries import *
+from .get_repositories import *
+from .get_tags import *
+from .get_vpc_endpoints import *
 from .namespace import *
 from .namespaces import *
 from .registries import *

@@ -38,12 +38,14 @@ import * as utilities from "../utilities";
  *         value: "v1",
  *     }],
  * });
- * const fooFileSystems = volcengine.vepfs.FileSystemsOutput({
+ * const fooFileSystems = volcengine.vepfs.getFileSystemsOutput({
  *     ids: [fooFileSystem.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems */
 export function fileSystems(args?: FileSystemsArgs, opts?: pulumi.InvokeOptions): Promise<FileSystemsResult> {
+    pulumi.log.warn("fileSystems is deprecated: volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -169,11 +171,12 @@ export interface FileSystemsResult {
  *         value: "v1",
  *     }],
  * });
- * const fooFileSystems = volcengine.vepfs.FileSystemsOutput({
+ * const fooFileSystems = volcengine.vepfs.getFileSystemsOutput({
  *     ids: [fooFileSystem.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems */
 export function fileSystemsOutput(args?: FileSystemsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<FileSystemsResult> {
     return pulumi.output(args).apply((a: any) => fileSystems(a, opts))
 }

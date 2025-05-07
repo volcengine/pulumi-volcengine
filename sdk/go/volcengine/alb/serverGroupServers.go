@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.ServerGroupServers(ctx, &alb.ServerGroupServersArgs{
+//			_, err := alb.GetServerGroupServers(ctx, &alb.GetServerGroupServersArgs{
 //				ServerGroupId: "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers
 func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts ...pulumi.InvokeOption) (*ServerGroupServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServerGroupServersResult

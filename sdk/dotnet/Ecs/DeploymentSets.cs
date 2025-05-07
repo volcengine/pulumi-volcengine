@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets")]
     public static class DeploymentSets
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Ecs
         ///             Strategy = "Availability",
         ///         }));
         ///     }
-        ///     var fooDeploymentSets = Volcengine.Ecs.DeploymentSets.Invoke(new()
+        ///     var fooDeploymentSets = Volcengine.Ecs.GetDeploymentSets.Invoke(new()
         ///     {
         ///         Granularity = "switch",
         ///         Ids = fooDeploymentSet.Select(__item =&gt; __item.Id).ToList(),
@@ -71,7 +72,7 @@ namespace Pulumi.Volcengine.Ecs
         ///             Strategy = "Availability",
         ///         }));
         ///     }
-        ///     var fooDeploymentSets = Volcengine.Ecs.DeploymentSets.Invoke(new()
+        ///     var fooDeploymentSets = Volcengine.Ecs.GetDeploymentSets.Invoke(new()
         ///     {
         ///         Granularity = "switch",
         ///         Ids = fooDeploymentSet.Select(__item =&gt; __item.Id).ToList(),

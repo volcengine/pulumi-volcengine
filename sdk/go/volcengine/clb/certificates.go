@@ -79,13 +79,15 @@ import (
 // }
 // fooCertificate = append(fooCertificate, __res)
 // }
-// _ = clb.CertificatesOutput(ctx, clb.CertificatesOutputArgs{
+// _ = clb.GetCertificatesOutput(ctx, clb.GetCertificatesOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:clb-certificates:Certificates.pp:16,9-29),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates
 func Certificates(ctx *pulumi.Context, args *CertificatesArgs, opts ...pulumi.InvokeOption) (*CertificatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CertificatesResult

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.NetworkAcls({
+ * const default = volcengine.vpc.getNetworkAcls({
  *     networkAclName: "ms-tf-acl",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls */
 export function networkAcls(args?: NetworkAclsArgs, opts?: pulumi.InvokeOptions): Promise<NetworkAclsResult> {
+    pulumi.log.warn("networkAcls is deprecated: volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -118,11 +120,12 @@ export interface NetworkAclsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.NetworkAcls({
+ * const default = volcengine.vpc.getNetworkAcls({
  *     networkAclName: "ms-tf-acl",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls */
 export function networkAclsOutput(args?: NetworkAclsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NetworkAclsResult> {
     return pulumi.output(args).apply((a: any) => networkAcls(a, opts))
 }

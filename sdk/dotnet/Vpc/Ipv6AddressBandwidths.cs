@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths")]
     public static class Ipv6AddressBandwidths
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Ipv6AddressBandwidths.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetIpv6AddressBandwidths.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Ipv6AddressBandwidths.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetIpv6AddressBandwidths.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

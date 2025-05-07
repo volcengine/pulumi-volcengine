@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces")]
     public static class NetworkInterfaces
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.NetworkInterfaces.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetNetworkInterfaces.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.NetworkInterfaces.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetNetworkInterfaces.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

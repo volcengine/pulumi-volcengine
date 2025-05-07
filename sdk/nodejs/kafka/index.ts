@@ -15,6 +15,51 @@ export const consumedTopics: typeof import("./consumedTopics").consumedTopics = 
 export const consumedTopicsOutput: typeof import("./consumedTopics").consumedTopicsOutput = null as any;
 utilities.lazyLoad(exports, ["consumedTopics","consumedTopicsOutput"], () => require("./consumedTopics"));
 
+export { GetConsumedPartitionsArgs, GetConsumedPartitionsResult, GetConsumedPartitionsOutputArgs } from "./getConsumedPartitions";
+export const getConsumedPartitions: typeof import("./getConsumedPartitions").getConsumedPartitions = null as any;
+export const getConsumedPartitionsOutput: typeof import("./getConsumedPartitions").getConsumedPartitionsOutput = null as any;
+utilities.lazyLoad(exports, ["getConsumedPartitions","getConsumedPartitionsOutput"], () => require("./getConsumedPartitions"));
+
+export { GetConsumedTopicsArgs, GetConsumedTopicsResult, GetConsumedTopicsOutputArgs } from "./getConsumedTopics";
+export const getConsumedTopics: typeof import("./getConsumedTopics").getConsumedTopics = null as any;
+export const getConsumedTopicsOutput: typeof import("./getConsumedTopics").getConsumedTopicsOutput = null as any;
+utilities.lazyLoad(exports, ["getConsumedTopics","getConsumedTopicsOutput"], () => require("./getConsumedTopics"));
+
+export { GetGroupsArgs, GetGroupsResult, GetGroupsOutputArgs } from "./getGroups";
+export const getGroups: typeof import("./getGroups").getGroups = null as any;
+export const getGroupsOutput: typeof import("./getGroups").getGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getGroups","getGroupsOutput"], () => require("./getGroups"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetSaslUsersArgs, GetSaslUsersResult, GetSaslUsersOutputArgs } from "./getSaslUsers";
+export const getSaslUsers: typeof import("./getSaslUsers").getSaslUsers = null as any;
+export const getSaslUsersOutput: typeof import("./getSaslUsers").getSaslUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getSaslUsers","getSaslUsersOutput"], () => require("./getSaslUsers"));
+
+export { GetTopicPartitionsArgs, GetTopicPartitionsResult, GetTopicPartitionsOutputArgs } from "./getTopicPartitions";
+export const getTopicPartitions: typeof import("./getTopicPartitions").getTopicPartitions = null as any;
+export const getTopicPartitionsOutput: typeof import("./getTopicPartitions").getTopicPartitionsOutput = null as any;
+utilities.lazyLoad(exports, ["getTopicPartitions","getTopicPartitionsOutput"], () => require("./getTopicPartitions"));
+
+export { GetTopicsArgs, GetTopicsResult, GetTopicsOutputArgs } from "./getTopics";
+export const getTopics: typeof import("./getTopics").getTopics = null as any;
+export const getTopicsOutput: typeof import("./getTopics").getTopicsOutput = null as any;
+utilities.lazyLoad(exports, ["getTopics","getTopicsOutput"], () => require("./getTopics"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Instances({
+ * const foo = volcengine.rds_mssql.getInstances({
  *     instanceId: "mssql-d2fc5abe****",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -154,11 +156,12 @@ export interface InstancesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mssql.Instances({
+ * const foo = volcengine.rds_mssql.getInstances({
  *     instanceId: "mssql-d2fc5abe****",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

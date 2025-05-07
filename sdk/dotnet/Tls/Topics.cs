@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics")]
     public static class Topics
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Topics.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetTopics.Invoke(new()
         ///     {
         ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
         ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Topics.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetTopics.Invoke(new()
         ///     {
         ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
         ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",

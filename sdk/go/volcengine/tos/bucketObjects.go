@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tos.BucketObjects(ctx, &tos.BucketObjectsArgs{
+//			_, err := tos.GetBucketObjects(ctx, &tos.GetBucketObjectsArgs{
 //				BucketName: "test",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tos.BucketObjects has been deprecated in favor of volcengine.tos.getBucketObjects
 func BucketObjects(ctx *pulumi.Context, args *BucketObjectsArgs, opts ...pulumi.InvokeOption) (*BucketObjectsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BucketObjectsResult

@@ -17,6 +17,8 @@ __all__ = [
     'certificates_output',
 ]
 
+warnings.warn("""volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates""", DeprecationWarning)
+
 @pulumi.output_type
 class CertificatesResult:
     """
@@ -111,7 +113,7 @@ def certificates(certificate_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.alb.certificates(certificate_name="tf-test")
+    default = volcengine.alb.get_certificates(certificate_name="tf-test")
     ```
 
 
@@ -119,6 +121,7 @@ def certificates(certificate_name: Optional[str] = None,
     :param Sequence[str] ids: The list of Certificate IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""certificates is deprecated: volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates""")
     __args__ = dict()
     __args__['certificateName'] = certificate_name
     __args__['ids'] = ids
@@ -148,7 +151,7 @@ def certificates_output(certificate_name: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.alb.certificates(certificate_name="tf-test")
+    default = volcengine.alb.get_certificates(certificate_name="tf-test")
     ```
 
 
@@ -156,4 +159,5 @@ def certificates_output(certificate_name: Optional[pulumi.Input[Optional[str]]] 
     :param Sequence[str] ids: The list of Certificate IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""certificates is deprecated: volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates""")
     ...

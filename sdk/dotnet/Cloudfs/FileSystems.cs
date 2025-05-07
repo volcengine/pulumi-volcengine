@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloudfs
 {
+    [Obsolete(@"volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems")]
     public static class FileSystems
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.FileSystems.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetFileSystems.Invoke(new()
         ///     {
         ///         FsName = "tftest2",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.FileSystems.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetFileSystems.Invoke(new()
         ///     {
         ///         FsName = "tftest2",
         ///     });

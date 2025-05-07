@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud
 {
+    [Obsolete(@"volcengine.escloud.Zones has been deprecated in favor of volcengine.escloud.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Zones.Invoke(new()
+        ///     var @default = Volcengine.Escloud.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "xxx",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Zones.Invoke(new()
+        ///     var @default = Volcengine.Escloud.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "xxx",
         ///     });

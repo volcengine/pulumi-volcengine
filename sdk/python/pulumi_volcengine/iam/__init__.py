@@ -7,6 +7,13 @@ import typing
 # Export this package's modules as members:
 from .access_key import *
 from .access_keys import *
+from .get_access_keys import *
+from .get_policies import *
+from .get_roles import *
+from .get_saml_providers import *
+from .get_user_group_policy_attachments import *
+from .get_user_groups import *
+from .get_users import *
 from .login_profile import *
 from .policies import *
 from .policy import *

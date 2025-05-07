@@ -17,6 +17,8 @@ __all__ = [
     'server_groups_output',
 ]
 
+warnings.warn("""volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class ServerGroupsResult:
     """
@@ -131,7 +133,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -155,7 +157,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
         load_balancer_id=foo_clb.id,
         server_group_name="acc-test-create",
         description="hello demo11")
-    foo_server_groups = volcengine.clb.server_groups_output(ids=[foo_server_group.id])
+    foo_server_groups = volcengine.clb.get_server_groups_output(ids=[foo_server_group.id])
     ```
 
 
@@ -165,6 +167,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str server_group_name: The name of the ServerGroup.
     """
+    pulumi.log.warn("""server_groups is deprecated: volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['loadBalancerId'] = load_balancer_id
@@ -200,7 +203,7 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -224,7 +227,7 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
         load_balancer_id=foo_clb.id,
         server_group_name="acc-test-create",
         description="hello demo11")
-    foo_server_groups = volcengine.clb.server_groups_output(ids=[foo_server_group.id])
+    foo_server_groups = volcengine.clb.get_server_groups_output(ids=[foo_server_group.id])
     ```
 
 
@@ -234,4 +237,5 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param str output_file: File name where to save data source results.
     :param str server_group_name: The name of the ServerGroup.
     """
+    pulumi.log.warn("""server_groups is deprecated: volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups""")
     ...

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_firewall.CfwNatFirewallControlPolicies(ctx, &cloud_firewall.CfwNatFirewallControlPoliciesArgs{
+//			_, err := cloud_firewall.GetCfwNatFirewallControlPolicies(ctx, &cloud_firewall.GetCfwNatFirewallControlPoliciesArgs{
 //				Direction:     "in",
 //				NatFirewallId: "nfw-ydmkayvjsw2vsavx****",
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies
 func CfwNatFirewallControlPolicies(ctx *pulumi.Context, args *CfwNatFirewallControlPoliciesArgs, opts ...pulumi.InvokeOption) (*CfwNatFirewallControlPoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CfwNatFirewallControlPoliciesResult

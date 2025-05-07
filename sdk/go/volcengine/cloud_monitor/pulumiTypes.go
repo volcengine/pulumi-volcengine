@@ -2576,6 +2576,1606 @@ func (o RulesRuleOriginalDimensionArrayOutput) Index(i pulumi.IntInput) RulesRul
 	}).(RulesRuleOriginalDimensionOutput)
 }
 
+type GetContactGroupsGroup struct {
+	// The id of the account.
+	AccountId string `pulumi:"accountId"`
+	// Contact information in the contact group.
+	Contacts []GetContactGroupsGroupContact `pulumi:"contacts"`
+	// The create time.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the contact group.
+	Description string `pulumi:"description"`
+	// The id of the contact group.
+	Id string `pulumi:"id"`
+	// Search for keywords in contact group names, supports fuzzy search.
+	Name string `pulumi:"name"`
+	// The update time.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetContactGroupsGroupInput is an input type that accepts GetContactGroupsGroupArgs and GetContactGroupsGroupOutput values.
+// You can construct a concrete instance of `GetContactGroupsGroupInput` via:
+//
+//	GetContactGroupsGroupArgs{...}
+type GetContactGroupsGroupInput interface {
+	pulumi.Input
+
+	ToGetContactGroupsGroupOutput() GetContactGroupsGroupOutput
+	ToGetContactGroupsGroupOutputWithContext(context.Context) GetContactGroupsGroupOutput
+}
+
+type GetContactGroupsGroupArgs struct {
+	// The id of the account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// Contact information in the contact group.
+	Contacts GetContactGroupsGroupContactArrayInput `pulumi:"contacts"`
+	// The create time.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the contact group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the contact group.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Search for keywords in contact group names, supports fuzzy search.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The update time.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetContactGroupsGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContactGroupsGroup)(nil)).Elem()
+}
+
+func (i GetContactGroupsGroupArgs) ToGetContactGroupsGroupOutput() GetContactGroupsGroupOutput {
+	return i.ToGetContactGroupsGroupOutputWithContext(context.Background())
+}
+
+func (i GetContactGroupsGroupArgs) ToGetContactGroupsGroupOutputWithContext(ctx context.Context) GetContactGroupsGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContactGroupsGroupOutput)
+}
+
+// GetContactGroupsGroupArrayInput is an input type that accepts GetContactGroupsGroupArray and GetContactGroupsGroupArrayOutput values.
+// You can construct a concrete instance of `GetContactGroupsGroupArrayInput` via:
+//
+//	GetContactGroupsGroupArray{ GetContactGroupsGroupArgs{...} }
+type GetContactGroupsGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetContactGroupsGroupArrayOutput() GetContactGroupsGroupArrayOutput
+	ToGetContactGroupsGroupArrayOutputWithContext(context.Context) GetContactGroupsGroupArrayOutput
+}
+
+type GetContactGroupsGroupArray []GetContactGroupsGroupInput
+
+func (GetContactGroupsGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContactGroupsGroup)(nil)).Elem()
+}
+
+func (i GetContactGroupsGroupArray) ToGetContactGroupsGroupArrayOutput() GetContactGroupsGroupArrayOutput {
+	return i.ToGetContactGroupsGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetContactGroupsGroupArray) ToGetContactGroupsGroupArrayOutputWithContext(ctx context.Context) GetContactGroupsGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContactGroupsGroupArrayOutput)
+}
+
+type GetContactGroupsGroupOutput struct{ *pulumi.OutputState }
+
+func (GetContactGroupsGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContactGroupsGroup)(nil)).Elem()
+}
+
+func (o GetContactGroupsGroupOutput) ToGetContactGroupsGroupOutput() GetContactGroupsGroupOutput {
+	return o
+}
+
+func (o GetContactGroupsGroupOutput) ToGetContactGroupsGroupOutputWithContext(ctx context.Context) GetContactGroupsGroupOutput {
+	return o
+}
+
+// The id of the account.
+func (o GetContactGroupsGroupOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Contact information in the contact group.
+func (o GetContactGroupsGroupOutput) Contacts() GetContactGroupsGroupContactArrayOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) []GetContactGroupsGroupContact { return v.Contacts }).(GetContactGroupsGroupContactArrayOutput)
+}
+
+// The create time.
+func (o GetContactGroupsGroupOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the contact group.
+func (o GetContactGroupsGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the contact group.
+func (o GetContactGroupsGroupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Search for keywords in contact group names, supports fuzzy search.
+func (o GetContactGroupsGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The update time.
+func (o GetContactGroupsGroupOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroup) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetContactGroupsGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContactGroupsGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContactGroupsGroup)(nil)).Elem()
+}
+
+func (o GetContactGroupsGroupArrayOutput) ToGetContactGroupsGroupArrayOutput() GetContactGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetContactGroupsGroupArrayOutput) ToGetContactGroupsGroupArrayOutputWithContext(ctx context.Context) GetContactGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetContactGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetContactGroupsGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContactGroupsGroup {
+		return vs[0].([]GetContactGroupsGroup)[vs[1].(int)]
+	}).(GetContactGroupsGroupOutput)
+}
+
+type GetContactGroupsGroupContact struct {
+	// The email of contact.
+	Email string `pulumi:"email"`
+	// The id of the contact group.
+	Id string `pulumi:"id"`
+	// Search for keywords in contact group names, supports fuzzy search.
+	Name string `pulumi:"name"`
+	// The phone of contact.
+	Phone string `pulumi:"phone"`
+}
+
+// GetContactGroupsGroupContactInput is an input type that accepts GetContactGroupsGroupContactArgs and GetContactGroupsGroupContactOutput values.
+// You can construct a concrete instance of `GetContactGroupsGroupContactInput` via:
+//
+//	GetContactGroupsGroupContactArgs{...}
+type GetContactGroupsGroupContactInput interface {
+	pulumi.Input
+
+	ToGetContactGroupsGroupContactOutput() GetContactGroupsGroupContactOutput
+	ToGetContactGroupsGroupContactOutputWithContext(context.Context) GetContactGroupsGroupContactOutput
+}
+
+type GetContactGroupsGroupContactArgs struct {
+	// The email of contact.
+	Email pulumi.StringInput `pulumi:"email"`
+	// The id of the contact group.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Search for keywords in contact group names, supports fuzzy search.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The phone of contact.
+	Phone pulumi.StringInput `pulumi:"phone"`
+}
+
+func (GetContactGroupsGroupContactArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContactGroupsGroupContact)(nil)).Elem()
+}
+
+func (i GetContactGroupsGroupContactArgs) ToGetContactGroupsGroupContactOutput() GetContactGroupsGroupContactOutput {
+	return i.ToGetContactGroupsGroupContactOutputWithContext(context.Background())
+}
+
+func (i GetContactGroupsGroupContactArgs) ToGetContactGroupsGroupContactOutputWithContext(ctx context.Context) GetContactGroupsGroupContactOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContactGroupsGroupContactOutput)
+}
+
+// GetContactGroupsGroupContactArrayInput is an input type that accepts GetContactGroupsGroupContactArray and GetContactGroupsGroupContactArrayOutput values.
+// You can construct a concrete instance of `GetContactGroupsGroupContactArrayInput` via:
+//
+//	GetContactGroupsGroupContactArray{ GetContactGroupsGroupContactArgs{...} }
+type GetContactGroupsGroupContactArrayInput interface {
+	pulumi.Input
+
+	ToGetContactGroupsGroupContactArrayOutput() GetContactGroupsGroupContactArrayOutput
+	ToGetContactGroupsGroupContactArrayOutputWithContext(context.Context) GetContactGroupsGroupContactArrayOutput
+}
+
+type GetContactGroupsGroupContactArray []GetContactGroupsGroupContactInput
+
+func (GetContactGroupsGroupContactArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContactGroupsGroupContact)(nil)).Elem()
+}
+
+func (i GetContactGroupsGroupContactArray) ToGetContactGroupsGroupContactArrayOutput() GetContactGroupsGroupContactArrayOutput {
+	return i.ToGetContactGroupsGroupContactArrayOutputWithContext(context.Background())
+}
+
+func (i GetContactGroupsGroupContactArray) ToGetContactGroupsGroupContactArrayOutputWithContext(ctx context.Context) GetContactGroupsGroupContactArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContactGroupsGroupContactArrayOutput)
+}
+
+type GetContactGroupsGroupContactOutput struct{ *pulumi.OutputState }
+
+func (GetContactGroupsGroupContactOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContactGroupsGroupContact)(nil)).Elem()
+}
+
+func (o GetContactGroupsGroupContactOutput) ToGetContactGroupsGroupContactOutput() GetContactGroupsGroupContactOutput {
+	return o
+}
+
+func (o GetContactGroupsGroupContactOutput) ToGetContactGroupsGroupContactOutputWithContext(ctx context.Context) GetContactGroupsGroupContactOutput {
+	return o
+}
+
+// The email of contact.
+func (o GetContactGroupsGroupContactOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroupContact) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The id of the contact group.
+func (o GetContactGroupsGroupContactOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroupContact) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Search for keywords in contact group names, supports fuzzy search.
+func (o GetContactGroupsGroupContactOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroupContact) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The phone of contact.
+func (o GetContactGroupsGroupContactOutput) Phone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactGroupsGroupContact) string { return v.Phone }).(pulumi.StringOutput)
+}
+
+type GetContactGroupsGroupContactArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContactGroupsGroupContactArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContactGroupsGroupContact)(nil)).Elem()
+}
+
+func (o GetContactGroupsGroupContactArrayOutput) ToGetContactGroupsGroupContactArrayOutput() GetContactGroupsGroupContactArrayOutput {
+	return o
+}
+
+func (o GetContactGroupsGroupContactArrayOutput) ToGetContactGroupsGroupContactArrayOutputWithContext(ctx context.Context) GetContactGroupsGroupContactArrayOutput {
+	return o
+}
+
+func (o GetContactGroupsGroupContactArrayOutput) Index(i pulumi.IntInput) GetContactGroupsGroupContactOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContactGroupsGroupContact {
+		return vs[0].([]GetContactGroupsGroupContact)[vs[1].(int)]
+	}).(GetContactGroupsGroupContactOutput)
+}
+
+type GetContactsContact struct {
+	// The email of contact.
+	Email string `pulumi:"email"`
+	// The ID of contact.
+	Id string `pulumi:"id"`
+	// The name of contact.
+	Name string `pulumi:"name"`
+	// The phone of contact.
+	Phone string `pulumi:"phone"`
+}
+
+// GetContactsContactInput is an input type that accepts GetContactsContactArgs and GetContactsContactOutput values.
+// You can construct a concrete instance of `GetContactsContactInput` via:
+//
+//	GetContactsContactArgs{...}
+type GetContactsContactInput interface {
+	pulumi.Input
+
+	ToGetContactsContactOutput() GetContactsContactOutput
+	ToGetContactsContactOutputWithContext(context.Context) GetContactsContactOutput
+}
+
+type GetContactsContactArgs struct {
+	// The email of contact.
+	Email pulumi.StringInput `pulumi:"email"`
+	// The ID of contact.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of contact.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The phone of contact.
+	Phone pulumi.StringInput `pulumi:"phone"`
+}
+
+func (GetContactsContactArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContactsContact)(nil)).Elem()
+}
+
+func (i GetContactsContactArgs) ToGetContactsContactOutput() GetContactsContactOutput {
+	return i.ToGetContactsContactOutputWithContext(context.Background())
+}
+
+func (i GetContactsContactArgs) ToGetContactsContactOutputWithContext(ctx context.Context) GetContactsContactOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContactsContactOutput)
+}
+
+// GetContactsContactArrayInput is an input type that accepts GetContactsContactArray and GetContactsContactArrayOutput values.
+// You can construct a concrete instance of `GetContactsContactArrayInput` via:
+//
+//	GetContactsContactArray{ GetContactsContactArgs{...} }
+type GetContactsContactArrayInput interface {
+	pulumi.Input
+
+	ToGetContactsContactArrayOutput() GetContactsContactArrayOutput
+	ToGetContactsContactArrayOutputWithContext(context.Context) GetContactsContactArrayOutput
+}
+
+type GetContactsContactArray []GetContactsContactInput
+
+func (GetContactsContactArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContactsContact)(nil)).Elem()
+}
+
+func (i GetContactsContactArray) ToGetContactsContactArrayOutput() GetContactsContactArrayOutput {
+	return i.ToGetContactsContactArrayOutputWithContext(context.Background())
+}
+
+func (i GetContactsContactArray) ToGetContactsContactArrayOutputWithContext(ctx context.Context) GetContactsContactArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContactsContactArrayOutput)
+}
+
+type GetContactsContactOutput struct{ *pulumi.OutputState }
+
+func (GetContactsContactOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContactsContact)(nil)).Elem()
+}
+
+func (o GetContactsContactOutput) ToGetContactsContactOutput() GetContactsContactOutput {
+	return o
+}
+
+func (o GetContactsContactOutput) ToGetContactsContactOutputWithContext(ctx context.Context) GetContactsContactOutput {
+	return o
+}
+
+// The email of contact.
+func (o GetContactsContactOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactsContact) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The ID of contact.
+func (o GetContactsContactOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactsContact) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of contact.
+func (o GetContactsContactOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactsContact) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The phone of contact.
+func (o GetContactsContactOutput) Phone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContactsContact) string { return v.Phone }).(pulumi.StringOutput)
+}
+
+type GetContactsContactArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContactsContactArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContactsContact)(nil)).Elem()
+}
+
+func (o GetContactsContactArrayOutput) ToGetContactsContactArrayOutput() GetContactsContactArrayOutput {
+	return o
+}
+
+func (o GetContactsContactArrayOutput) ToGetContactsContactArrayOutputWithContext(ctx context.Context) GetContactsContactArrayOutput {
+	return o
+}
+
+func (o GetContactsContactArrayOutput) Index(i pulumi.IntInput) GetContactsContactOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContactsContact {
+		return vs[0].([]GetContactsContact)[vs[1].(int)]
+	}).(GetContactsContactOutput)
+}
+
+type GetEventRulesRule struct {
+	// The id of the account.
+	AccountId string `pulumi:"accountId"`
+	// When the alarm notification method is phone, SMS, or email, the triggered alarm contact group ID.
+	ContactGroupIds []string `pulumi:"contactGroupIds"`
+	// List of contact methods.
+	ContactMethods []string `pulumi:"contactMethods"`
+	// The create time.
+	CreatedAt int `pulumi:"createdAt"`
+	// The description of the rule.
+	Description string `pulumi:"description"`
+	// The end time of the rule.
+	EffectEndAt string `pulumi:"effectEndAt"`
+	// The start time of the rule.
+	EffectStartAt string `pulumi:"effectStartAt"`
+	// When the alarm notification method is alarm callback, it triggers the callback address.
+	Endpoint string `pulumi:"endpoint"`
+	// The name of the event bus.
+	EventBusName string `pulumi:"eventBusName"`
+	// The source of the event.
+	EventSource string `pulumi:"eventSource"`
+	// The event type.
+	EventTypes []string `pulumi:"eventTypes"`
+	// Filter mode, also known as event matching rules. Custom matching rules are not currently supported.
+	FilterPatterns []GetEventRulesRuleFilterPattern `pulumi:"filterPatterns"`
+	// The id of the rule.
+	Id string `pulumi:"id"`
+	// The level of the rule.
+	Level string `pulumi:"level"`
+	// The triggered message queue when the alarm notification method is Kafka message queue.
+	MessageQueues []GetEventRulesRuleMessageQueue `pulumi:"messageQueues"`
+	// The name of the region.
+	Region string `pulumi:"region"`
+	// The id of the rule.
+	RuleId string `pulumi:"ruleId"`
+	// Rule name, search rules by name using fuzzy search.
+	RuleName string `pulumi:"ruleName"`
+	// Enable the state of the rule.
+	Status string `pulumi:"status"`
+	// The alarm method for log service triggers the configuration of the log service.
+	TlsTargets []GetEventRulesRuleTlsTarget `pulumi:"tlsTargets"`
+	// The updated time.
+	UpdatedAt int `pulumi:"updatedAt"`
+}
+
+// GetEventRulesRuleInput is an input type that accepts GetEventRulesRuleArgs and GetEventRulesRuleOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleInput` via:
+//
+//	GetEventRulesRuleArgs{...}
+type GetEventRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleOutput() GetEventRulesRuleOutput
+	ToGetEventRulesRuleOutputWithContext(context.Context) GetEventRulesRuleOutput
+}
+
+type GetEventRulesRuleArgs struct {
+	// The id of the account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// When the alarm notification method is phone, SMS, or email, the triggered alarm contact group ID.
+	ContactGroupIds pulumi.StringArrayInput `pulumi:"contactGroupIds"`
+	// List of contact methods.
+	ContactMethods pulumi.StringArrayInput `pulumi:"contactMethods"`
+	// The create time.
+	CreatedAt pulumi.IntInput `pulumi:"createdAt"`
+	// The description of the rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The end time of the rule.
+	EffectEndAt pulumi.StringInput `pulumi:"effectEndAt"`
+	// The start time of the rule.
+	EffectStartAt pulumi.StringInput `pulumi:"effectStartAt"`
+	// When the alarm notification method is alarm callback, it triggers the callback address.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// The name of the event bus.
+	EventBusName pulumi.StringInput `pulumi:"eventBusName"`
+	// The source of the event.
+	EventSource pulumi.StringInput `pulumi:"eventSource"`
+	// The event type.
+	EventTypes pulumi.StringArrayInput `pulumi:"eventTypes"`
+	// Filter mode, also known as event matching rules. Custom matching rules are not currently supported.
+	FilterPatterns GetEventRulesRuleFilterPatternArrayInput `pulumi:"filterPatterns"`
+	// The id of the rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The level of the rule.
+	Level pulumi.StringInput `pulumi:"level"`
+	// The triggered message queue when the alarm notification method is Kafka message queue.
+	MessageQueues GetEventRulesRuleMessageQueueArrayInput `pulumi:"messageQueues"`
+	// The name of the region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The id of the rule.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// Rule name, search rules by name using fuzzy search.
+	RuleName pulumi.StringInput `pulumi:"ruleName"`
+	// Enable the state of the rule.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The alarm method for log service triggers the configuration of the log service.
+	TlsTargets GetEventRulesRuleTlsTargetArrayInput `pulumi:"tlsTargets"`
+	// The updated time.
+	UpdatedAt pulumi.IntInput `pulumi:"updatedAt"`
+}
+
+func (GetEventRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRule)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleArgs) ToGetEventRulesRuleOutput() GetEventRulesRuleOutput {
+	return i.ToGetEventRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleArgs) ToGetEventRulesRuleOutputWithContext(ctx context.Context) GetEventRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleOutput)
+}
+
+// GetEventRulesRuleArrayInput is an input type that accepts GetEventRulesRuleArray and GetEventRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleArrayInput` via:
+//
+//	GetEventRulesRuleArray{ GetEventRulesRuleArgs{...} }
+type GetEventRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleArrayOutput() GetEventRulesRuleArrayOutput
+	ToGetEventRulesRuleArrayOutputWithContext(context.Context) GetEventRulesRuleArrayOutput
+}
+
+type GetEventRulesRuleArray []GetEventRulesRuleInput
+
+func (GetEventRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRule)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleArray) ToGetEventRulesRuleArrayOutput() GetEventRulesRuleArrayOutput {
+	return i.ToGetEventRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleArray) ToGetEventRulesRuleArrayOutputWithContext(ctx context.Context) GetEventRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleArrayOutput)
+}
+
+type GetEventRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRule)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleOutput) ToGetEventRulesRuleOutput() GetEventRulesRuleOutput {
+	return o
+}
+
+func (o GetEventRulesRuleOutput) ToGetEventRulesRuleOutputWithContext(ctx context.Context) GetEventRulesRuleOutput {
+	return o
+}
+
+// The id of the account.
+func (o GetEventRulesRuleOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// When the alarm notification method is phone, SMS, or email, the triggered alarm contact group ID.
+func (o GetEventRulesRuleOutput) ContactGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRule) []string { return v.ContactGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// List of contact methods.
+func (o GetEventRulesRuleOutput) ContactMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRule) []string { return v.ContactMethods }).(pulumi.StringArrayOutput)
+}
+
+// The create time.
+func (o GetEventRulesRuleOutput) CreatedAt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEventRulesRule) int { return v.CreatedAt }).(pulumi.IntOutput)
+}
+
+// The description of the rule.
+func (o GetEventRulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The end time of the rule.
+func (o GetEventRulesRuleOutput) EffectEndAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.EffectEndAt }).(pulumi.StringOutput)
+}
+
+// The start time of the rule.
+func (o GetEventRulesRuleOutput) EffectStartAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.EffectStartAt }).(pulumi.StringOutput)
+}
+
+// When the alarm notification method is alarm callback, it triggers the callback address.
+func (o GetEventRulesRuleOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// The name of the event bus.
+func (o GetEventRulesRuleOutput) EventBusName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.EventBusName }).(pulumi.StringOutput)
+}
+
+// The source of the event.
+func (o GetEventRulesRuleOutput) EventSource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.EventSource }).(pulumi.StringOutput)
+}
+
+// The event type.
+func (o GetEventRulesRuleOutput) EventTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRule) []string { return v.EventTypes }).(pulumi.StringArrayOutput)
+}
+
+// Filter mode, also known as event matching rules. Custom matching rules are not currently supported.
+func (o GetEventRulesRuleOutput) FilterPatterns() GetEventRulesRuleFilterPatternArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRule) []GetEventRulesRuleFilterPattern { return v.FilterPatterns }).(GetEventRulesRuleFilterPatternArrayOutput)
+}
+
+// The id of the rule.
+func (o GetEventRulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The level of the rule.
+func (o GetEventRulesRuleOutput) Level() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.Level }).(pulumi.StringOutput)
+}
+
+// The triggered message queue when the alarm notification method is Kafka message queue.
+func (o GetEventRulesRuleOutput) MessageQueues() GetEventRulesRuleMessageQueueArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRule) []GetEventRulesRuleMessageQueue { return v.MessageQueues }).(GetEventRulesRuleMessageQueueArrayOutput)
+}
+
+// The name of the region.
+func (o GetEventRulesRuleOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The id of the rule.
+func (o GetEventRulesRuleOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// Rule name, search rules by name using fuzzy search.
+func (o GetEventRulesRuleOutput) RuleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.RuleName }).(pulumi.StringOutput)
+}
+
+// Enable the state of the rule.
+func (o GetEventRulesRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The alarm method for log service triggers the configuration of the log service.
+func (o GetEventRulesRuleOutput) TlsTargets() GetEventRulesRuleTlsTargetArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRule) []GetEventRulesRuleTlsTarget { return v.TlsTargets }).(GetEventRulesRuleTlsTargetArrayOutput)
+}
+
+// The updated time.
+func (o GetEventRulesRuleOutput) UpdatedAt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEventRulesRule) int { return v.UpdatedAt }).(pulumi.IntOutput)
+}
+
+type GetEventRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRule)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleArrayOutput) ToGetEventRulesRuleArrayOutput() GetEventRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleArrayOutput) ToGetEventRulesRuleArrayOutputWithContext(ctx context.Context) GetEventRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleArrayOutput) Index(i pulumi.IntInput) GetEventRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventRulesRule {
+		return vs[0].([]GetEventRulesRule)[vs[1].(int)]
+	}).(GetEventRulesRuleOutput)
+}
+
+type GetEventRulesRuleFilterPattern struct {
+	// Event source.
+	Source string `pulumi:"source"`
+	// The message queue type, only support kafka now.
+	Types []string `pulumi:"types"`
+}
+
+// GetEventRulesRuleFilterPatternInput is an input type that accepts GetEventRulesRuleFilterPatternArgs and GetEventRulesRuleFilterPatternOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleFilterPatternInput` via:
+//
+//	GetEventRulesRuleFilterPatternArgs{...}
+type GetEventRulesRuleFilterPatternInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleFilterPatternOutput() GetEventRulesRuleFilterPatternOutput
+	ToGetEventRulesRuleFilterPatternOutputWithContext(context.Context) GetEventRulesRuleFilterPatternOutput
+}
+
+type GetEventRulesRuleFilterPatternArgs struct {
+	// Event source.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The message queue type, only support kafka now.
+	Types pulumi.StringArrayInput `pulumi:"types"`
+}
+
+func (GetEventRulesRuleFilterPatternArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRuleFilterPattern)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleFilterPatternArgs) ToGetEventRulesRuleFilterPatternOutput() GetEventRulesRuleFilterPatternOutput {
+	return i.ToGetEventRulesRuleFilterPatternOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleFilterPatternArgs) ToGetEventRulesRuleFilterPatternOutputWithContext(ctx context.Context) GetEventRulesRuleFilterPatternOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleFilterPatternOutput)
+}
+
+// GetEventRulesRuleFilterPatternArrayInput is an input type that accepts GetEventRulesRuleFilterPatternArray and GetEventRulesRuleFilterPatternArrayOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleFilterPatternArrayInput` via:
+//
+//	GetEventRulesRuleFilterPatternArray{ GetEventRulesRuleFilterPatternArgs{...} }
+type GetEventRulesRuleFilterPatternArrayInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleFilterPatternArrayOutput() GetEventRulesRuleFilterPatternArrayOutput
+	ToGetEventRulesRuleFilterPatternArrayOutputWithContext(context.Context) GetEventRulesRuleFilterPatternArrayOutput
+}
+
+type GetEventRulesRuleFilterPatternArray []GetEventRulesRuleFilterPatternInput
+
+func (GetEventRulesRuleFilterPatternArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRuleFilterPattern)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleFilterPatternArray) ToGetEventRulesRuleFilterPatternArrayOutput() GetEventRulesRuleFilterPatternArrayOutput {
+	return i.ToGetEventRulesRuleFilterPatternArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleFilterPatternArray) ToGetEventRulesRuleFilterPatternArrayOutputWithContext(ctx context.Context) GetEventRulesRuleFilterPatternArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleFilterPatternArrayOutput)
+}
+
+type GetEventRulesRuleFilterPatternOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleFilterPatternOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRuleFilterPattern)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleFilterPatternOutput) ToGetEventRulesRuleFilterPatternOutput() GetEventRulesRuleFilterPatternOutput {
+	return o
+}
+
+func (o GetEventRulesRuleFilterPatternOutput) ToGetEventRulesRuleFilterPatternOutputWithContext(ctx context.Context) GetEventRulesRuleFilterPatternOutput {
+	return o
+}
+
+// Event source.
+func (o GetEventRulesRuleFilterPatternOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleFilterPattern) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The message queue type, only support kafka now.
+func (o GetEventRulesRuleFilterPatternOutput) Types() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEventRulesRuleFilterPattern) []string { return v.Types }).(pulumi.StringArrayOutput)
+}
+
+type GetEventRulesRuleFilterPatternArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleFilterPatternArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRuleFilterPattern)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleFilterPatternArrayOutput) ToGetEventRulesRuleFilterPatternArrayOutput() GetEventRulesRuleFilterPatternArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleFilterPatternArrayOutput) ToGetEventRulesRuleFilterPatternArrayOutputWithContext(ctx context.Context) GetEventRulesRuleFilterPatternArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleFilterPatternArrayOutput) Index(i pulumi.IntInput) GetEventRulesRuleFilterPatternOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventRulesRuleFilterPattern {
+		return vs[0].([]GetEventRulesRuleFilterPattern)[vs[1].(int)]
+	}).(GetEventRulesRuleFilterPatternOutput)
+}
+
+type GetEventRulesRuleMessageQueue struct {
+	// The kafka instance id.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the region.
+	Region string `pulumi:"region"`
+	// The topic name.
+	Topic string `pulumi:"topic"`
+	// The message queue type, only support kafka now.
+	Type string `pulumi:"type"`
+	// The vpc id.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetEventRulesRuleMessageQueueInput is an input type that accepts GetEventRulesRuleMessageQueueArgs and GetEventRulesRuleMessageQueueOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleMessageQueueInput` via:
+//
+//	GetEventRulesRuleMessageQueueArgs{...}
+type GetEventRulesRuleMessageQueueInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleMessageQueueOutput() GetEventRulesRuleMessageQueueOutput
+	ToGetEventRulesRuleMessageQueueOutputWithContext(context.Context) GetEventRulesRuleMessageQueueOutput
+}
+
+type GetEventRulesRuleMessageQueueArgs struct {
+	// The kafka instance id.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The topic name.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// The message queue type, only support kafka now.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The vpc id.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetEventRulesRuleMessageQueueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRuleMessageQueue)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleMessageQueueArgs) ToGetEventRulesRuleMessageQueueOutput() GetEventRulesRuleMessageQueueOutput {
+	return i.ToGetEventRulesRuleMessageQueueOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleMessageQueueArgs) ToGetEventRulesRuleMessageQueueOutputWithContext(ctx context.Context) GetEventRulesRuleMessageQueueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleMessageQueueOutput)
+}
+
+// GetEventRulesRuleMessageQueueArrayInput is an input type that accepts GetEventRulesRuleMessageQueueArray and GetEventRulesRuleMessageQueueArrayOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleMessageQueueArrayInput` via:
+//
+//	GetEventRulesRuleMessageQueueArray{ GetEventRulesRuleMessageQueueArgs{...} }
+type GetEventRulesRuleMessageQueueArrayInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleMessageQueueArrayOutput() GetEventRulesRuleMessageQueueArrayOutput
+	ToGetEventRulesRuleMessageQueueArrayOutputWithContext(context.Context) GetEventRulesRuleMessageQueueArrayOutput
+}
+
+type GetEventRulesRuleMessageQueueArray []GetEventRulesRuleMessageQueueInput
+
+func (GetEventRulesRuleMessageQueueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRuleMessageQueue)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleMessageQueueArray) ToGetEventRulesRuleMessageQueueArrayOutput() GetEventRulesRuleMessageQueueArrayOutput {
+	return i.ToGetEventRulesRuleMessageQueueArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleMessageQueueArray) ToGetEventRulesRuleMessageQueueArrayOutputWithContext(ctx context.Context) GetEventRulesRuleMessageQueueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleMessageQueueArrayOutput)
+}
+
+type GetEventRulesRuleMessageQueueOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleMessageQueueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRuleMessageQueue)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleMessageQueueOutput) ToGetEventRulesRuleMessageQueueOutput() GetEventRulesRuleMessageQueueOutput {
+	return o
+}
+
+func (o GetEventRulesRuleMessageQueueOutput) ToGetEventRulesRuleMessageQueueOutputWithContext(ctx context.Context) GetEventRulesRuleMessageQueueOutput {
+	return o
+}
+
+// The kafka instance id.
+func (o GetEventRulesRuleMessageQueueOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleMessageQueue) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the region.
+func (o GetEventRulesRuleMessageQueueOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleMessageQueue) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The topic name.
+func (o GetEventRulesRuleMessageQueueOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleMessageQueue) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// The message queue type, only support kafka now.
+func (o GetEventRulesRuleMessageQueueOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleMessageQueue) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The vpc id.
+func (o GetEventRulesRuleMessageQueueOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleMessageQueue) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetEventRulesRuleMessageQueueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleMessageQueueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRuleMessageQueue)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleMessageQueueArrayOutput) ToGetEventRulesRuleMessageQueueArrayOutput() GetEventRulesRuleMessageQueueArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleMessageQueueArrayOutput) ToGetEventRulesRuleMessageQueueArrayOutputWithContext(ctx context.Context) GetEventRulesRuleMessageQueueArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleMessageQueueArrayOutput) Index(i pulumi.IntInput) GetEventRulesRuleMessageQueueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventRulesRuleMessageQueue {
+		return vs[0].([]GetEventRulesRuleMessageQueue)[vs[1].(int)]
+	}).(GetEventRulesRuleMessageQueueOutput)
+}
+
+type GetEventRulesRuleTlsTarget struct {
+	// The project id.
+	ProjectId string `pulumi:"projectId"`
+	// The project name.
+	ProjectName string `pulumi:"projectName"`
+	// The Chinese region name.
+	RegionNameCn string `pulumi:"regionNameCn"`
+	// The English region name.
+	RegionNameEn string `pulumi:"regionNameEn"`
+	// The topic id.
+	TopicId string `pulumi:"topicId"`
+	// The topic name.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetEventRulesRuleTlsTargetInput is an input type that accepts GetEventRulesRuleTlsTargetArgs and GetEventRulesRuleTlsTargetOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleTlsTargetInput` via:
+//
+//	GetEventRulesRuleTlsTargetArgs{...}
+type GetEventRulesRuleTlsTargetInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleTlsTargetOutput() GetEventRulesRuleTlsTargetOutput
+	ToGetEventRulesRuleTlsTargetOutputWithContext(context.Context) GetEventRulesRuleTlsTargetOutput
+}
+
+type GetEventRulesRuleTlsTargetArgs struct {
+	// The project id.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The project name.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The Chinese region name.
+	RegionNameCn pulumi.StringInput `pulumi:"regionNameCn"`
+	// The English region name.
+	RegionNameEn pulumi.StringInput `pulumi:"regionNameEn"`
+	// The topic id.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The topic name.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetEventRulesRuleTlsTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRuleTlsTarget)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleTlsTargetArgs) ToGetEventRulesRuleTlsTargetOutput() GetEventRulesRuleTlsTargetOutput {
+	return i.ToGetEventRulesRuleTlsTargetOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleTlsTargetArgs) ToGetEventRulesRuleTlsTargetOutputWithContext(ctx context.Context) GetEventRulesRuleTlsTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleTlsTargetOutput)
+}
+
+// GetEventRulesRuleTlsTargetArrayInput is an input type that accepts GetEventRulesRuleTlsTargetArray and GetEventRulesRuleTlsTargetArrayOutput values.
+// You can construct a concrete instance of `GetEventRulesRuleTlsTargetArrayInput` via:
+//
+//	GetEventRulesRuleTlsTargetArray{ GetEventRulesRuleTlsTargetArgs{...} }
+type GetEventRulesRuleTlsTargetArrayInput interface {
+	pulumi.Input
+
+	ToGetEventRulesRuleTlsTargetArrayOutput() GetEventRulesRuleTlsTargetArrayOutput
+	ToGetEventRulesRuleTlsTargetArrayOutputWithContext(context.Context) GetEventRulesRuleTlsTargetArrayOutput
+}
+
+type GetEventRulesRuleTlsTargetArray []GetEventRulesRuleTlsTargetInput
+
+func (GetEventRulesRuleTlsTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRuleTlsTarget)(nil)).Elem()
+}
+
+func (i GetEventRulesRuleTlsTargetArray) ToGetEventRulesRuleTlsTargetArrayOutput() GetEventRulesRuleTlsTargetArrayOutput {
+	return i.ToGetEventRulesRuleTlsTargetArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventRulesRuleTlsTargetArray) ToGetEventRulesRuleTlsTargetArrayOutputWithContext(ctx context.Context) GetEventRulesRuleTlsTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventRulesRuleTlsTargetArrayOutput)
+}
+
+type GetEventRulesRuleTlsTargetOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleTlsTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventRulesRuleTlsTarget)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleTlsTargetOutput) ToGetEventRulesRuleTlsTargetOutput() GetEventRulesRuleTlsTargetOutput {
+	return o
+}
+
+func (o GetEventRulesRuleTlsTargetOutput) ToGetEventRulesRuleTlsTargetOutputWithContext(ctx context.Context) GetEventRulesRuleTlsTargetOutput {
+	return o
+}
+
+// The project id.
+func (o GetEventRulesRuleTlsTargetOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleTlsTarget) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The project name.
+func (o GetEventRulesRuleTlsTargetOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleTlsTarget) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The Chinese region name.
+func (o GetEventRulesRuleTlsTargetOutput) RegionNameCn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleTlsTarget) string { return v.RegionNameCn }).(pulumi.StringOutput)
+}
+
+// The English region name.
+func (o GetEventRulesRuleTlsTargetOutput) RegionNameEn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleTlsTarget) string { return v.RegionNameEn }).(pulumi.StringOutput)
+}
+
+// The topic id.
+func (o GetEventRulesRuleTlsTargetOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleTlsTarget) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The topic name.
+func (o GetEventRulesRuleTlsTargetOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventRulesRuleTlsTarget) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetEventRulesRuleTlsTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventRulesRuleTlsTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventRulesRuleTlsTarget)(nil)).Elem()
+}
+
+func (o GetEventRulesRuleTlsTargetArrayOutput) ToGetEventRulesRuleTlsTargetArrayOutput() GetEventRulesRuleTlsTargetArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleTlsTargetArrayOutput) ToGetEventRulesRuleTlsTargetArrayOutputWithContext(ctx context.Context) GetEventRulesRuleTlsTargetArrayOutput {
+	return o
+}
+
+func (o GetEventRulesRuleTlsTargetArrayOutput) Index(i pulumi.IntInput) GetEventRulesRuleTlsTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventRulesRuleTlsTarget {
+		return vs[0].([]GetEventRulesRuleTlsTarget)[vs[1].(int)]
+	}).(GetEventRulesRuleTlsTargetOutput)
+}
+
+type GetRulesRule struct {
+	// The alert methods of the cloud monitor rule.
+	AlertMethods []string `pulumi:"alertMethods"`
+	// The alert state of the cloud monitor rule. Valid values: `altering`, `normal`.
+	AlertState string `pulumi:"alertState"`
+	// The condition operator of the cloud monitor rule. Valid values: `&&`, `||`.
+	ConditionOperator string `pulumi:"conditionOperator"`
+	// The conditions of the cloud monitor rule.
+	Conditions []GetRulesRuleCondition `pulumi:"conditions"`
+	// The contact group ids of the cloud monitor rule.
+	ContactGroupIds []string `pulumi:"contactGroupIds"`
+	// The created time of the cloud monitor rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the cloud monitor rule.
+	Description string `pulumi:"description"`
+	// The effect end time of the cloud monitor rule.
+	EffectEndAt string `pulumi:"effectEndAt"`
+	// The effect start time of the cloud monitor rule.
+	EffectStartAt string `pulumi:"effectStartAt"`
+	// The enable state of the cloud monitor rule. Valid values: `enable`, `disable`.
+	EnableState string `pulumi:"enableState"`
+	// The evaluation count of the cloud monitor rule.
+	EvaluationCount int `pulumi:"evaluationCount"`
+	// The id of the cloud monitor rule.
+	Id string `pulumi:"id"`
+	// The level of the cloud monitor rule. Valid values: `critical`, `warning`, `notice`.
+	Level string `pulumi:"level"`
+	// Whether to enable the multiple conditions function of the cloud monitor rule.
+	MultipleConditions bool `pulumi:"multipleConditions"`
+	// The namespace of the cloud monitor rule.
+	Namespace string `pulumi:"namespace"`
+	// The original dimensions of the cloud monitor rule.
+	OriginalDimensions []GetRulesRuleOriginalDimension `pulumi:"originalDimensions"`
+	// The region id of the cloud monitor rule.
+	Regions []string `pulumi:"regions"`
+	// The name of the cloud monitor rule. This field support fuzzy query.
+	RuleName string `pulumi:"ruleName"`
+	// The silence time of the cloud monitor rule. Unit in minutes.
+	SilenceTime int `pulumi:"silenceTime"`
+	// The sub namespace of the cloud monitor rule.
+	SubNamespace string `pulumi:"subNamespace"`
+	// The updated time of the cloud monitor rule.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The web hook of the cloud monitor rule.
+	WebHook string `pulumi:"webHook"`
+	// The webhook id list of the cloud monitor rule.
+	WebhookIds []string `pulumi:"webhookIds"`
+}
+
+// GetRulesRuleInput is an input type that accepts GetRulesRuleArgs and GetRulesRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleInput` via:
+//
+//	GetRulesRuleArgs{...}
+type GetRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleOutput() GetRulesRuleOutput
+	ToGetRulesRuleOutputWithContext(context.Context) GetRulesRuleOutput
+}
+
+type GetRulesRuleArgs struct {
+	// The alert methods of the cloud monitor rule.
+	AlertMethods pulumi.StringArrayInput `pulumi:"alertMethods"`
+	// The alert state of the cloud monitor rule. Valid values: `altering`, `normal`.
+	AlertState pulumi.StringInput `pulumi:"alertState"`
+	// The condition operator of the cloud monitor rule. Valid values: `&&`, `||`.
+	ConditionOperator pulumi.StringInput `pulumi:"conditionOperator"`
+	// The conditions of the cloud monitor rule.
+	Conditions GetRulesRuleConditionArrayInput `pulumi:"conditions"`
+	// The contact group ids of the cloud monitor rule.
+	ContactGroupIds pulumi.StringArrayInput `pulumi:"contactGroupIds"`
+	// The created time of the cloud monitor rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the cloud monitor rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The effect end time of the cloud monitor rule.
+	EffectEndAt pulumi.StringInput `pulumi:"effectEndAt"`
+	// The effect start time of the cloud monitor rule.
+	EffectStartAt pulumi.StringInput `pulumi:"effectStartAt"`
+	// The enable state of the cloud monitor rule. Valid values: `enable`, `disable`.
+	EnableState pulumi.StringInput `pulumi:"enableState"`
+	// The evaluation count of the cloud monitor rule.
+	EvaluationCount pulumi.IntInput `pulumi:"evaluationCount"`
+	// The id of the cloud monitor rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The level of the cloud monitor rule. Valid values: `critical`, `warning`, `notice`.
+	Level pulumi.StringInput `pulumi:"level"`
+	// Whether to enable the multiple conditions function of the cloud monitor rule.
+	MultipleConditions pulumi.BoolInput `pulumi:"multipleConditions"`
+	// The namespace of the cloud monitor rule.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// The original dimensions of the cloud monitor rule.
+	OriginalDimensions GetRulesRuleOriginalDimensionArrayInput `pulumi:"originalDimensions"`
+	// The region id of the cloud monitor rule.
+	Regions pulumi.StringArrayInput `pulumi:"regions"`
+	// The name of the cloud monitor rule. This field support fuzzy query.
+	RuleName pulumi.StringInput `pulumi:"ruleName"`
+	// The silence time of the cloud monitor rule. Unit in minutes.
+	SilenceTime pulumi.IntInput `pulumi:"silenceTime"`
+	// The sub namespace of the cloud monitor rule.
+	SubNamespace pulumi.StringInput `pulumi:"subNamespace"`
+	// The updated time of the cloud monitor rule.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The web hook of the cloud monitor rule.
+	WebHook pulumi.StringInput `pulumi:"webHook"`
+	// The webhook id list of the cloud monitor rule.
+	WebhookIds pulumi.StringArrayInput `pulumi:"webhookIds"`
+}
+
+func (GetRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleArgs) ToGetRulesRuleOutput() GetRulesRuleOutput {
+	return i.ToGetRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleArgs) ToGetRulesRuleOutputWithContext(ctx context.Context) GetRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleOutput)
+}
+
+// GetRulesRuleArrayInput is an input type that accepts GetRulesRuleArray and GetRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleArrayInput` via:
+//
+//	GetRulesRuleArray{ GetRulesRuleArgs{...} }
+type GetRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput
+	ToGetRulesRuleArrayOutputWithContext(context.Context) GetRulesRuleArrayOutput
+}
+
+type GetRulesRuleArray []GetRulesRuleInput
+
+func (GetRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleArray) ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput {
+	return i.ToGetRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleArray) ToGetRulesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleArrayOutput)
+}
+
+type GetRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleOutput) ToGetRulesRuleOutput() GetRulesRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleOutput) ToGetRulesRuleOutputWithContext(ctx context.Context) GetRulesRuleOutput {
+	return o
+}
+
+// The alert methods of the cloud monitor rule.
+func (o GetRulesRuleOutput) AlertMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []string { return v.AlertMethods }).(pulumi.StringArrayOutput)
+}
+
+// The alert state of the cloud monitor rule. Valid values: `altering`, `normal`.
+func (o GetRulesRuleOutput) AlertState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.AlertState }).(pulumi.StringOutput)
+}
+
+// The condition operator of the cloud monitor rule. Valid values: `&&`, `||`.
+func (o GetRulesRuleOutput) ConditionOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.ConditionOperator }).(pulumi.StringOutput)
+}
+
+// The conditions of the cloud monitor rule.
+func (o GetRulesRuleOutput) Conditions() GetRulesRuleConditionArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleCondition { return v.Conditions }).(GetRulesRuleConditionArrayOutput)
+}
+
+// The contact group ids of the cloud monitor rule.
+func (o GetRulesRuleOutput) ContactGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []string { return v.ContactGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The created time of the cloud monitor rule.
+func (o GetRulesRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the cloud monitor rule.
+func (o GetRulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The effect end time of the cloud monitor rule.
+func (o GetRulesRuleOutput) EffectEndAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.EffectEndAt }).(pulumi.StringOutput)
+}
+
+// The effect start time of the cloud monitor rule.
+func (o GetRulesRuleOutput) EffectStartAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.EffectStartAt }).(pulumi.StringOutput)
+}
+
+// The enable state of the cloud monitor rule. Valid values: `enable`, `disable`.
+func (o GetRulesRuleOutput) EnableState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.EnableState }).(pulumi.StringOutput)
+}
+
+// The evaluation count of the cloud monitor rule.
+func (o GetRulesRuleOutput) EvaluationCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRule) int { return v.EvaluationCount }).(pulumi.IntOutput)
+}
+
+// The id of the cloud monitor rule.
+func (o GetRulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The level of the cloud monitor rule. Valid values: `critical`, `warning`, `notice`.
+func (o GetRulesRuleOutput) Level() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Level }).(pulumi.StringOutput)
+}
+
+// Whether to enable the multiple conditions function of the cloud monitor rule.
+func (o GetRulesRuleOutput) MultipleConditions() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRule) bool { return v.MultipleConditions }).(pulumi.BoolOutput)
+}
+
+// The namespace of the cloud monitor rule.
+func (o GetRulesRuleOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// The original dimensions of the cloud monitor rule.
+func (o GetRulesRuleOutput) OriginalDimensions() GetRulesRuleOriginalDimensionArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleOriginalDimension { return v.OriginalDimensions }).(GetRulesRuleOriginalDimensionArrayOutput)
+}
+
+// The region id of the cloud monitor rule.
+func (o GetRulesRuleOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []string { return v.Regions }).(pulumi.StringArrayOutput)
+}
+
+// The name of the cloud monitor rule. This field support fuzzy query.
+func (o GetRulesRuleOutput) RuleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.RuleName }).(pulumi.StringOutput)
+}
+
+// The silence time of the cloud monitor rule. Unit in minutes.
+func (o GetRulesRuleOutput) SilenceTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRule) int { return v.SilenceTime }).(pulumi.IntOutput)
+}
+
+// The sub namespace of the cloud monitor rule.
+func (o GetRulesRuleOutput) SubNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.SubNamespace }).(pulumi.StringOutput)
+}
+
+// The updated time of the cloud monitor rule.
+func (o GetRulesRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The web hook of the cloud monitor rule.
+func (o GetRulesRuleOutput) WebHook() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.WebHook }).(pulumi.StringOutput)
+}
+
+// The webhook id list of the cloud monitor rule.
+func (o GetRulesRuleOutput) WebhookIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []string { return v.WebhookIds }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleArrayOutput) ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleArrayOutput) ToGetRulesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRule {
+		return vs[0].([]GetRulesRule)[vs[1].(int)]
+	}).(GetRulesRuleOutput)
+}
+
+type GetRulesRuleCondition struct {
+	// The comparison operation of the cloud monitor rule.
+	ComparisonOperator string `pulumi:"comparisonOperator"`
+	// The metric name of the cloud monitor rule.
+	MetricName string `pulumi:"metricName"`
+	// The metric unit of the cloud monitor rule.
+	MetricUnit string `pulumi:"metricUnit"`
+	// The period of the cloud monitor rule.
+	Period string `pulumi:"period"`
+	// The statistics of the cloud monitor rule.
+	Statistics string `pulumi:"statistics"`
+	// The threshold of the cloud monitor rule.
+	Threshold string `pulumi:"threshold"`
+}
+
+// GetRulesRuleConditionInput is an input type that accepts GetRulesRuleConditionArgs and GetRulesRuleConditionOutput values.
+// You can construct a concrete instance of `GetRulesRuleConditionInput` via:
+//
+//	GetRulesRuleConditionArgs{...}
+type GetRulesRuleConditionInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleConditionOutput() GetRulesRuleConditionOutput
+	ToGetRulesRuleConditionOutputWithContext(context.Context) GetRulesRuleConditionOutput
+}
+
+type GetRulesRuleConditionArgs struct {
+	// The comparison operation of the cloud monitor rule.
+	ComparisonOperator pulumi.StringInput `pulumi:"comparisonOperator"`
+	// The metric name of the cloud monitor rule.
+	MetricName pulumi.StringInput `pulumi:"metricName"`
+	// The metric unit of the cloud monitor rule.
+	MetricUnit pulumi.StringInput `pulumi:"metricUnit"`
+	// The period of the cloud monitor rule.
+	Period pulumi.StringInput `pulumi:"period"`
+	// The statistics of the cloud monitor rule.
+	Statistics pulumi.StringInput `pulumi:"statistics"`
+	// The threshold of the cloud monitor rule.
+	Threshold pulumi.StringInput `pulumi:"threshold"`
+}
+
+func (GetRulesRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleCondition)(nil)).Elem()
+}
+
+func (i GetRulesRuleConditionArgs) ToGetRulesRuleConditionOutput() GetRulesRuleConditionOutput {
+	return i.ToGetRulesRuleConditionOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleConditionArgs) ToGetRulesRuleConditionOutputWithContext(ctx context.Context) GetRulesRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleConditionOutput)
+}
+
+// GetRulesRuleConditionArrayInput is an input type that accepts GetRulesRuleConditionArray and GetRulesRuleConditionArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleConditionArrayInput` via:
+//
+//	GetRulesRuleConditionArray{ GetRulesRuleConditionArgs{...} }
+type GetRulesRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleConditionArrayOutput() GetRulesRuleConditionArrayOutput
+	ToGetRulesRuleConditionArrayOutputWithContext(context.Context) GetRulesRuleConditionArrayOutput
+}
+
+type GetRulesRuleConditionArray []GetRulesRuleConditionInput
+
+func (GetRulesRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleCondition)(nil)).Elem()
+}
+
+func (i GetRulesRuleConditionArray) ToGetRulesRuleConditionArrayOutput() GetRulesRuleConditionArrayOutput {
+	return i.ToGetRulesRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleConditionArray) ToGetRulesRuleConditionArrayOutputWithContext(ctx context.Context) GetRulesRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleConditionArrayOutput)
+}
+
+type GetRulesRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleCondition)(nil)).Elem()
+}
+
+func (o GetRulesRuleConditionOutput) ToGetRulesRuleConditionOutput() GetRulesRuleConditionOutput {
+	return o
+}
+
+func (o GetRulesRuleConditionOutput) ToGetRulesRuleConditionOutputWithContext(ctx context.Context) GetRulesRuleConditionOutput {
+	return o
+}
+
+// The comparison operation of the cloud monitor rule.
+func (o GetRulesRuleConditionOutput) ComparisonOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleCondition) string { return v.ComparisonOperator }).(pulumi.StringOutput)
+}
+
+// The metric name of the cloud monitor rule.
+func (o GetRulesRuleConditionOutput) MetricName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleCondition) string { return v.MetricName }).(pulumi.StringOutput)
+}
+
+// The metric unit of the cloud monitor rule.
+func (o GetRulesRuleConditionOutput) MetricUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleCondition) string { return v.MetricUnit }).(pulumi.StringOutput)
+}
+
+// The period of the cloud monitor rule.
+func (o GetRulesRuleConditionOutput) Period() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleCondition) string { return v.Period }).(pulumi.StringOutput)
+}
+
+// The statistics of the cloud monitor rule.
+func (o GetRulesRuleConditionOutput) Statistics() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleCondition) string { return v.Statistics }).(pulumi.StringOutput)
+}
+
+// The threshold of the cloud monitor rule.
+func (o GetRulesRuleConditionOutput) Threshold() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleCondition) string { return v.Threshold }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleCondition)(nil)).Elem()
+}
+
+func (o GetRulesRuleConditionArrayOutput) ToGetRulesRuleConditionArrayOutput() GetRulesRuleConditionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleConditionArrayOutput) ToGetRulesRuleConditionArrayOutputWithContext(ctx context.Context) GetRulesRuleConditionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleConditionArrayOutput) Index(i pulumi.IntInput) GetRulesRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleCondition {
+		return vs[0].([]GetRulesRuleCondition)[vs[1].(int)]
+	}).(GetRulesRuleConditionOutput)
+}
+
+type GetRulesRuleOriginalDimension struct {
+	// The key of the dimension.
+	Key string `pulumi:"key"`
+	// The value of the dimension.
+	Values []string `pulumi:"values"`
+}
+
+// GetRulesRuleOriginalDimensionInput is an input type that accepts GetRulesRuleOriginalDimensionArgs and GetRulesRuleOriginalDimensionOutput values.
+// You can construct a concrete instance of `GetRulesRuleOriginalDimensionInput` via:
+//
+//	GetRulesRuleOriginalDimensionArgs{...}
+type GetRulesRuleOriginalDimensionInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleOriginalDimensionOutput() GetRulesRuleOriginalDimensionOutput
+	ToGetRulesRuleOriginalDimensionOutputWithContext(context.Context) GetRulesRuleOriginalDimensionOutput
+}
+
+type GetRulesRuleOriginalDimensionArgs struct {
+	// The key of the dimension.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the dimension.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRulesRuleOriginalDimensionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleOriginalDimension)(nil)).Elem()
+}
+
+func (i GetRulesRuleOriginalDimensionArgs) ToGetRulesRuleOriginalDimensionOutput() GetRulesRuleOriginalDimensionOutput {
+	return i.ToGetRulesRuleOriginalDimensionOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleOriginalDimensionArgs) ToGetRulesRuleOriginalDimensionOutputWithContext(ctx context.Context) GetRulesRuleOriginalDimensionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleOriginalDimensionOutput)
+}
+
+// GetRulesRuleOriginalDimensionArrayInput is an input type that accepts GetRulesRuleOriginalDimensionArray and GetRulesRuleOriginalDimensionArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleOriginalDimensionArrayInput` via:
+//
+//	GetRulesRuleOriginalDimensionArray{ GetRulesRuleOriginalDimensionArgs{...} }
+type GetRulesRuleOriginalDimensionArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleOriginalDimensionArrayOutput() GetRulesRuleOriginalDimensionArrayOutput
+	ToGetRulesRuleOriginalDimensionArrayOutputWithContext(context.Context) GetRulesRuleOriginalDimensionArrayOutput
+}
+
+type GetRulesRuleOriginalDimensionArray []GetRulesRuleOriginalDimensionInput
+
+func (GetRulesRuleOriginalDimensionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleOriginalDimension)(nil)).Elem()
+}
+
+func (i GetRulesRuleOriginalDimensionArray) ToGetRulesRuleOriginalDimensionArrayOutput() GetRulesRuleOriginalDimensionArrayOutput {
+	return i.ToGetRulesRuleOriginalDimensionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleOriginalDimensionArray) ToGetRulesRuleOriginalDimensionArrayOutputWithContext(ctx context.Context) GetRulesRuleOriginalDimensionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleOriginalDimensionArrayOutput)
+}
+
+type GetRulesRuleOriginalDimensionOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleOriginalDimensionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleOriginalDimension)(nil)).Elem()
+}
+
+func (o GetRulesRuleOriginalDimensionOutput) ToGetRulesRuleOriginalDimensionOutput() GetRulesRuleOriginalDimensionOutput {
+	return o
+}
+
+func (o GetRulesRuleOriginalDimensionOutput) ToGetRulesRuleOriginalDimensionOutputWithContext(ctx context.Context) GetRulesRuleOriginalDimensionOutput {
+	return o
+}
+
+// The key of the dimension.
+func (o GetRulesRuleOriginalDimensionOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleOriginalDimension) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the dimension.
+func (o GetRulesRuleOriginalDimensionOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleOriginalDimension) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleOriginalDimensionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleOriginalDimensionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleOriginalDimension)(nil)).Elem()
+}
+
+func (o GetRulesRuleOriginalDimensionArrayOutput) ToGetRulesRuleOriginalDimensionArrayOutput() GetRulesRuleOriginalDimensionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleOriginalDimensionArrayOutput) ToGetRulesRuleOriginalDimensionArrayOutputWithContext(ctx context.Context) GetRulesRuleOriginalDimensionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleOriginalDimensionArrayOutput) Index(i pulumi.IntInput) GetRulesRuleOriginalDimensionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleOriginalDimension {
+		return vs[0].([]GetRulesRuleOriginalDimension)[vs[1].(int)]
+	}).(GetRulesRuleOriginalDimensionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactGroupsGroupInput)(nil)).Elem(), ContactGroupsGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactGroupsGroupArrayInput)(nil)).Elem(), ContactGroupsGroupArray{})
@@ -2611,6 +4211,26 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleConditionArrayInput)(nil)).Elem(), RulesRuleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleOriginalDimensionInput)(nil)).Elem(), RulesRuleOriginalDimensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleOriginalDimensionArrayInput)(nil)).Elem(), RulesRuleOriginalDimensionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupInput)(nil)).Elem(), GetContactGroupsGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupArrayInput)(nil)).Elem(), GetContactGroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupContactInput)(nil)).Elem(), GetContactGroupsGroupContactArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupContactArrayInput)(nil)).Elem(), GetContactGroupsGroupContactArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContactsContactInput)(nil)).Elem(), GetContactsContactArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContactsContactArrayInput)(nil)).Elem(), GetContactsContactArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleInput)(nil)).Elem(), GetEventRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleArrayInput)(nil)).Elem(), GetEventRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleFilterPatternInput)(nil)).Elem(), GetEventRulesRuleFilterPatternArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleFilterPatternArrayInput)(nil)).Elem(), GetEventRulesRuleFilterPatternArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleMessageQueueInput)(nil)).Elem(), GetEventRulesRuleMessageQueueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleMessageQueueArrayInput)(nil)).Elem(), GetEventRulesRuleMessageQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleTlsTargetInput)(nil)).Elem(), GetEventRulesRuleTlsTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEventRulesRuleTlsTargetArrayInput)(nil)).Elem(), GetEventRulesRuleTlsTargetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleInput)(nil)).Elem(), GetRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleArrayInput)(nil)).Elem(), GetRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleConditionInput)(nil)).Elem(), GetRulesRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleConditionArrayInput)(nil)).Elem(), GetRulesRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleOriginalDimensionInput)(nil)).Elem(), GetRulesRuleOriginalDimensionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleOriginalDimensionArrayInput)(nil)).Elem(), GetRulesRuleOriginalDimensionArray{})
 	pulumi.RegisterOutputType(ContactGroupsGroupOutput{})
 	pulumi.RegisterOutputType(ContactGroupsGroupArrayOutput{})
 	pulumi.RegisterOutputType(ContactGroupsGroupContactOutput{})
@@ -2645,4 +4265,24 @@ func init() {
 	pulumi.RegisterOutputType(RulesRuleConditionArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleOriginalDimensionOutput{})
 	pulumi.RegisterOutputType(RulesRuleOriginalDimensionArrayOutput{})
+	pulumi.RegisterOutputType(GetContactGroupsGroupOutput{})
+	pulumi.RegisterOutputType(GetContactGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetContactGroupsGroupContactOutput{})
+	pulumi.RegisterOutputType(GetContactGroupsGroupContactArrayOutput{})
+	pulumi.RegisterOutputType(GetContactsContactOutput{})
+	pulumi.RegisterOutputType(GetContactsContactArrayOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleFilterPatternOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleFilterPatternArrayOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleMessageQueueOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleMessageQueueArrayOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleTlsTargetOutput{})
+	pulumi.RegisterOutputType(GetEventRulesRuleTlsTargetArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleConditionOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleOriginalDimensionOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleOriginalDimensionArrayOutput{})
 }

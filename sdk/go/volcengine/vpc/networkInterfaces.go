@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NetworkInterfaces(ctx, &vpc.NetworkInterfacesArgs{
+//			_, err := vpc.GetNetworkInterfaces(ctx, &vpc.GetNetworkInterfacesArgs{
 //				Ids: []string{
 //					"eni-2744htx2w0j5s7fap8t3ivwze",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces
 func NetworkInterfaces(ctx *pulumi.Context, args *NetworkInterfacesArgs, opts ...pulumi.InvokeOption) (*NetworkInterfacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NetworkInterfacesResult

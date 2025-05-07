@@ -17,6 +17,8 @@ __all__ = [
     'key_pairs_output',
 ]
 
+warnings.warn("""volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs""", DeprecationWarning)
+
 @pulumi.output_type
 class KeyPairsResult:
     """
@@ -147,7 +149,7 @@ def key_pairs(finger_print: Optional[str] = None,
     foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
         key_pair_name="acc-test-key-name",
         description="acc-test")
-    foo_key_pairs = volcengine.ecs.key_pairs_output(key_pair_name=foo_key_pair.key_pair_name)
+    foo_key_pairs = volcengine.ecs.get_key_pairs_output(key_pair_name=foo_key_pair.key_pair_name)
     ```
 
 
@@ -158,6 +160,7 @@ def key_pairs(finger_print: Optional[str] = None,
     :param str name_regex: A Name Regex of ECS key pairs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""key_pairs is deprecated: volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs""")
     __args__ = dict()
     __args__['fingerPrint'] = finger_print
     __args__['keyPairIds'] = key_pair_ids
@@ -199,7 +202,7 @@ def key_pairs_output(finger_print: Optional[pulumi.Input[Optional[str]]] = None,
     foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
         key_pair_name="acc-test-key-name",
         description="acc-test")
-    foo_key_pairs = volcengine.ecs.key_pairs_output(key_pair_name=foo_key_pair.key_pair_name)
+    foo_key_pairs = volcengine.ecs.get_key_pairs_output(key_pair_name=foo_key_pair.key_pair_name)
     ```
 
 
@@ -210,4 +213,5 @@ def key_pairs_output(finger_print: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of ECS key pairs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""key_pairs is deprecated: volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs""")
     ...

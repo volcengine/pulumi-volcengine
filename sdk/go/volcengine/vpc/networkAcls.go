@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NetworkAcls(ctx, &vpc.NetworkAclsArgs{
+//			_, err := vpc.GetNetworkAcls(ctx, &vpc.GetNetworkAclsArgs{
 //				NetworkAclName: pulumi.StringRef("ms-tf-acl"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls
 func NetworkAcls(ctx *pulumi.Context, args *NetworkAclsArgs, opts ...pulumi.InvokeOption) (*NetworkAclsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NetworkAclsResult

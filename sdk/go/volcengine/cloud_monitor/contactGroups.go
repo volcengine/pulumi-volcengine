@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_monitor.ContactGroups(ctx, &cloud_monitor.ContactGroupsArgs{
+//			_, err := cloud_monitor.GetContactGroups(ctx, &cloud_monitor.GetContactGroupsArgs{
 //				Name: pulumi.StringRef("tftest"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups
 func ContactGroups(ctx *pulumi.Context, args *ContactGroupsArgs, opts ...pulumi.InvokeOption) (*ContactGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ContactGroupsResult

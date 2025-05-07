@@ -8,5 +8,6 @@ import typing
 from .escloud_instance_v2 import *
 from .escloud_instances_v2 import *
 from .escloud_ip_white_list import *
+from .get_escloud_instances_v2 import *
 from ._inputs import *
 from . import outputs

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Subnets({
+ * const default = volcengine.vpc.getSubnets({
  *     ids: ["subnet-274zsa5kfmj287fap8soo5e19"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets */
 export function subnets(args?: SubnetsArgs, opts?: pulumi.InvokeOptions): Promise<SubnetsResult> {
+    pulumi.log.warn("subnets is deprecated: volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -121,11 +123,12 @@ export interface SubnetsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Subnets({
+ * const default = volcengine.vpc.getSubnets({
  *     ids: ["subnet-274zsa5kfmj287fap8soo5e19"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets */
 export function subnetsOutput(args?: SubnetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SubnetsResult> {
     return pulumi.output(args).apply((a: any) => subnets(a, opts))
 }

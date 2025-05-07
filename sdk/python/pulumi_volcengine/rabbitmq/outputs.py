@@ -20,6 +20,12 @@ __all__ = [
     'InstancesRabbitmqInstanceEndpointResult',
     'InstancesRabbitmqInstanceTagResult',
     'InstancesTagResult',
+    'GetInstancePluginsPluginResult',
+    'GetInstancesRabbitmqInstanceResult',
+    'GetInstancesRabbitmqInstanceChargeDetailResult',
+    'GetInstancesRabbitmqInstanceEndpointResult',
+    'GetInstancesRabbitmqInstanceTagResult',
+    'GetInstancesTagResult',
 ]
 
 @pulumi.output_type
@@ -758,6 +764,587 @@ class InstancesRabbitmqInstanceTagResult(dict):
 
 @pulumi.output_type
 class InstancesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancePluginsPluginResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 disable_prompt: str,
+                 enable_prompt: str,
+                 enabled: bool,
+                 need_reboot_on_change: bool,
+                 plugin_name: str,
+                 port: int,
+                 version: str):
+        """
+        :param str description: The description of plugin.
+        :param str disable_prompt: The disable prompt of plugin.
+        :param str enable_prompt: The enable prompt of plugin.
+        :param bool enabled: Whether plugin is enabled.
+        :param bool need_reboot_on_change: Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+        :param str plugin_name: The name of plugin.
+        :param int port: The port of plugin.
+        :param str version: The version of plugin.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disable_prompt", disable_prompt)
+        pulumi.set(__self__, "enable_prompt", enable_prompt)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "need_reboot_on_change", need_reboot_on_change)
+        pulumi.set(__self__, "plugin_name", plugin_name)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="disablePrompt")
+    def disable_prompt(self) -> str:
+        """
+        The disable prompt of plugin.
+        """
+        return pulumi.get(self, "disable_prompt")
+
+    @property
+    @pulumi.getter(name="enablePrompt")
+    def enable_prompt(self) -> str:
+        """
+        The enable prompt of plugin.
+        """
+        return pulumi.get(self, "enable_prompt")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether plugin is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="needRebootOnChange")
+    def need_reboot_on_change(self) -> bool:
+        """
+        Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+        """
+        return pulumi.get(self, "need_reboot_on_change")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> str:
+        """
+        The name of plugin.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port of plugin.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of plugin.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetInstancesRabbitmqInstanceResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 apply_private_dns_to_public: bool,
+                 arch_type: str,
+                 charge_details: Sequence['outputs.GetInstancesRabbitmqInstanceChargeDetailResult'],
+                 compute_spec: str,
+                 create_time: str,
+                 eip_id: str,
+                 endpoints: Sequence['outputs.GetInstancesRabbitmqInstanceEndpointResult'],
+                 id: str,
+                 init_user_name: str,
+                 instance_description: str,
+                 instance_id: str,
+                 instance_name: str,
+                 instance_status: str,
+                 project_name: str,
+                 region_description: str,
+                 region_id: str,
+                 storage_space: int,
+                 subnet_id: str,
+                 tags: Sequence['outputs.GetInstancesRabbitmqInstanceTagResult'],
+                 used_storage_space: int,
+                 version: str,
+                 vpc_id: str,
+                 zone_description: str,
+                 zone_id: str):
+        """
+        :param str account_id: The account id of the rabbitmq instance.
+        :param bool apply_private_dns_to_public: Whether enable the public network parsing function of the rabbitmq instance.
+        :param str arch_type: The type of the rabbitmq instance.
+        :param Sequence['GetInstancesRabbitmqInstanceChargeDetailArgs'] charge_details: The charge detail information of the rabbitmq instance.
+        :param str compute_spec: The compute specification of the rabbitmq instance.
+        :param str create_time: The create time of the rabbitmq instance.
+        :param str eip_id: The eip id of the rabbitmq instance.
+        :param Sequence['GetInstancesRabbitmqInstanceEndpointArgs'] endpoints: The endpoint info of the rabbitmq instance.
+        :param str id: The id of the rabbitmq instance.
+        :param str init_user_name: The WebUI admin user name of the rabbitmq instance.
+        :param str instance_description: The description of the rabbitmq instance.
+        :param str instance_id: The id of rabbitmq instance. This field supports fuzzy query.
+        :param str instance_name: The name of rabbitmq instance. This field supports fuzzy query.
+        :param str instance_status: The status of rabbitmq instance.
+        :param str project_name: The project name of rabbitmq instance.
+        :param str region_description: The region description of the rabbitmq instance.
+        :param str region_id: The region id of the rabbitmq instance.
+        :param int storage_space: The total storage space of the rabbitmq instance. Unit: GiB.
+        :param str subnet_id: The subnet id of the rabbitmq instance.
+        :param Sequence['GetInstancesRabbitmqInstanceTagArgs'] tags: Tags.
+        :param int used_storage_space: The used storage space of the rabbitmq instance. Unit: GiB.
+        :param str version: The version of the rabbitmq instance.
+        :param str vpc_id: The vpc id of rabbitmq instance. This field supports fuzzy query.
+        :param str zone_description: The zone description of the rabbitmq instance.
+        :param str zone_id: The zone id of rabbitmq instance. This field supports fuzzy query.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "apply_private_dns_to_public", apply_private_dns_to_public)
+        pulumi.set(__self__, "arch_type", arch_type)
+        pulumi.set(__self__, "charge_details", charge_details)
+        pulumi.set(__self__, "compute_spec", compute_spec)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "init_user_name", init_user_name)
+        pulumi.set(__self__, "instance_description", instance_description)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_description", region_description)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "storage_space", storage_space)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "used_storage_space", used_storage_space)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_description", zone_description)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the rabbitmq instance.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="applyPrivateDnsToPublic")
+    def apply_private_dns_to_public(self) -> bool:
+        """
+        Whether enable the public network parsing function of the rabbitmq instance.
+        """
+        return pulumi.get(self, "apply_private_dns_to_public")
+
+    @property
+    @pulumi.getter(name="archType")
+    def arch_type(self) -> str:
+        """
+        The type of the rabbitmq instance.
+        """
+        return pulumi.get(self, "arch_type")
+
+    @property
+    @pulumi.getter(name="chargeDetails")
+    def charge_details(self) -> Sequence['outputs.GetInstancesRabbitmqInstanceChargeDetailResult']:
+        """
+        The charge detail information of the rabbitmq instance.
+        """
+        return pulumi.get(self, "charge_details")
+
+    @property
+    @pulumi.getter(name="computeSpec")
+    def compute_spec(self) -> str:
+        """
+        The compute specification of the rabbitmq instance.
+        """
+        return pulumi.get(self, "compute_spec")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the rabbitmq instance.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> str:
+        """
+        The eip id of the rabbitmq instance.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetInstancesRabbitmqInstanceEndpointResult']:
+        """
+        The endpoint info of the rabbitmq instance.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the rabbitmq instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="initUserName")
+    def init_user_name(self) -> str:
+        """
+        The WebUI admin user name of the rabbitmq instance.
+        """
+        return pulumi.get(self, "init_user_name")
+
+    @property
+    @pulumi.getter(name="instanceDescription")
+    def instance_description(self) -> str:
+        """
+        The description of the rabbitmq instance.
+        """
+        return pulumi.get(self, "instance_description")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of rabbitmq instance. This field supports fuzzy query.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of rabbitmq instance. This field supports fuzzy query.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> str:
+        """
+        The status of rabbitmq instance.
+        """
+        return pulumi.get(self, "instance_status")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of rabbitmq instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="regionDescription")
+    def region_description(self) -> str:
+        """
+        The region description of the rabbitmq instance.
+        """
+        return pulumi.get(self, "region_description")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region id of the rabbitmq instance.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="storageSpace")
+    def storage_space(self) -> int:
+        """
+        The total storage space of the rabbitmq instance. Unit: GiB.
+        """
+        return pulumi.get(self, "storage_space")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The subnet id of the rabbitmq instance.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInstancesRabbitmqInstanceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="usedStorageSpace")
+    def used_storage_space(self) -> int:
+        """
+        The used storage space of the rabbitmq instance. Unit: GiB.
+        """
+        return pulumi.get(self, "used_storage_space")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of the rabbitmq instance.
+        """
+        return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id of rabbitmq instance. This field supports fuzzy query.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneDescription")
+    def zone_description(self) -> str:
+        """
+        The zone description of the rabbitmq instance.
+        """
+        return pulumi.get(self, "zone_description")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of rabbitmq instance. This field supports fuzzy query.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetInstancesRabbitmqInstanceChargeDetailResult(dict):
+    def __init__(__self__, *,
+                 auto_renew: bool,
+                 charge_end_time: str,
+                 charge_expire_time: str,
+                 charge_start_time: str,
+                 charge_status: str,
+                 charge_type: str,
+                 overdue_reclaim_time: str,
+                 overdue_time: str):
+        """
+        :param bool auto_renew: Whether to automatically renew in prepaid scenarios.
+        :param str charge_end_time: The charge end time of the rabbitmq instance.
+        :param str charge_expire_time: The charge expire time of the rabbitmq instance.
+        :param str charge_start_time: The charge start time of the rabbitmq instance.
+        :param str charge_status: The charge status of the rabbitmq instance.
+        :param str charge_type: The charge type of rabbitmq instance.
+        :param str overdue_reclaim_time: The overdue reclaim time of the rabbitmq instance.
+        :param str overdue_time: The overdue time of the rabbitmq instance.
+        """
+        pulumi.set(__self__, "auto_renew", auto_renew)
+        pulumi.set(__self__, "charge_end_time", charge_end_time)
+        pulumi.set(__self__, "charge_expire_time", charge_expire_time)
+        pulumi.set(__self__, "charge_start_time", charge_start_time)
+        pulumi.set(__self__, "charge_status", charge_status)
+        pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
+        pulumi.set(__self__, "overdue_time", overdue_time)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> bool:
+        """
+        Whether to automatically renew in prepaid scenarios.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter(name="chargeEndTime")
+    def charge_end_time(self) -> str:
+        """
+        The charge end time of the rabbitmq instance.
+        """
+        return pulumi.get(self, "charge_end_time")
+
+    @property
+    @pulumi.getter(name="chargeExpireTime")
+    def charge_expire_time(self) -> str:
+        """
+        The charge expire time of the rabbitmq instance.
+        """
+        return pulumi.get(self, "charge_expire_time")
+
+    @property
+    @pulumi.getter(name="chargeStartTime")
+    def charge_start_time(self) -> str:
+        """
+        The charge start time of the rabbitmq instance.
+        """
+        return pulumi.get(self, "charge_start_time")
+
+    @property
+    @pulumi.getter(name="chargeStatus")
+    def charge_status(self) -> str:
+        """
+        The charge status of the rabbitmq instance.
+        """
+        return pulumi.get(self, "charge_status")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of rabbitmq instance.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="overdueReclaimTime")
+    def overdue_reclaim_time(self) -> str:
+        """
+        The overdue reclaim time of the rabbitmq instance.
+        """
+        return pulumi.get(self, "overdue_reclaim_time")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> str:
+        """
+        The overdue time of the rabbitmq instance.
+        """
+        return pulumi.get(self, "overdue_time")
+
+
+@pulumi.output_type
+class GetInstancesRabbitmqInstanceEndpointResult(dict):
+    def __init__(__self__, *,
+                 endpoint_type: str,
+                 internal_endpoint: str,
+                 network_type: str,
+                 public_endpoint: str):
+        """
+        :param str endpoint_type: The endpoint type of the rabbitmq instance.
+        :param str internal_endpoint: The internal endpoint of the rabbitmq instance.
+        :param str network_type: The network type of the rabbitmq instance.
+        :param str public_endpoint: The public endpoint of the rabbitmq instance.
+        """
+        pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "internal_endpoint", internal_endpoint)
+        pulumi.set(__self__, "network_type", network_type)
+        pulumi.set(__self__, "public_endpoint", public_endpoint)
+
+    @property
+    @pulumi.getter(name="endpointType")
+    def endpoint_type(self) -> str:
+        """
+        The endpoint type of the rabbitmq instance.
+        """
+        return pulumi.get(self, "endpoint_type")
+
+    @property
+    @pulumi.getter(name="internalEndpoint")
+    def internal_endpoint(self) -> str:
+        """
+        The internal endpoint of the rabbitmq instance.
+        """
+        return pulumi.get(self, "internal_endpoint")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        The network type of the rabbitmq instance.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter(name="publicEndpoint")
+    def public_endpoint(self) -> str:
+        """
+        The public endpoint of the rabbitmq instance.
+        """
+        return pulumi.get(self, "public_endpoint")
+
+
+@pulumi.output_type
+class GetInstancesRabbitmqInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesTagResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):

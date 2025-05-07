@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.mongodb.Accounts({
+ * const default = volcengine.mongodb.getAccounts({
  *     instanceId: "mongo-replica-xxx",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts */
 export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promise<AccountsResult> {
+    pulumi.log.warn("accounts is deprecated: volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/accounts:Accounts", {
@@ -87,11 +89,12 @@ export interface AccountsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.mongodb.Accounts({
+ * const default = volcengine.mongodb.getAccounts({
  *     instanceId: "mongo-replica-xxx",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts */
 export function accountsOutput(args: AccountsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccountsResult> {
     return pulumi.output(args).apply((a: any) => accounts(a, opts))
 }

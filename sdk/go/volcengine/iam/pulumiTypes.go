@@ -1115,6 +1115,1108 @@ func (o UsersUserArrayOutput) Index(i pulumi.IntInput) UsersUserOutput {
 	}).(UsersUserOutput)
 }
 
+type GetAccessKeysAccessKeyMetadata struct {
+	// The user access key id.
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// The user access key create date.
+	CreateDate string `pulumi:"createDate"`
+	// The user access key status.
+	Status string `pulumi:"status"`
+	// The user access key update date.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user names.
+	UserName string `pulumi:"userName"`
+}
+
+// GetAccessKeysAccessKeyMetadataInput is an input type that accepts GetAccessKeysAccessKeyMetadataArgs and GetAccessKeysAccessKeyMetadataOutput values.
+// You can construct a concrete instance of `GetAccessKeysAccessKeyMetadataInput` via:
+//
+//	GetAccessKeysAccessKeyMetadataArgs{...}
+type GetAccessKeysAccessKeyMetadataInput interface {
+	pulumi.Input
+
+	ToGetAccessKeysAccessKeyMetadataOutput() GetAccessKeysAccessKeyMetadataOutput
+	ToGetAccessKeysAccessKeyMetadataOutputWithContext(context.Context) GetAccessKeysAccessKeyMetadataOutput
+}
+
+type GetAccessKeysAccessKeyMetadataArgs struct {
+	// The user access key id.
+	AccessKeyId pulumi.StringInput `pulumi:"accessKeyId"`
+	// The user access key create date.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The user access key status.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The user access key update date.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user names.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetAccessKeysAccessKeyMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (i GetAccessKeysAccessKeyMetadataArgs) ToGetAccessKeysAccessKeyMetadataOutput() GetAccessKeysAccessKeyMetadataOutput {
+	return i.ToGetAccessKeysAccessKeyMetadataOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeysAccessKeyMetadataArgs) ToGetAccessKeysAccessKeyMetadataOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeysAccessKeyMetadataOutput)
+}
+
+// GetAccessKeysAccessKeyMetadataArrayInput is an input type that accepts GetAccessKeysAccessKeyMetadataArray and GetAccessKeysAccessKeyMetadataArrayOutput values.
+// You can construct a concrete instance of `GetAccessKeysAccessKeyMetadataArrayInput` via:
+//
+//	GetAccessKeysAccessKeyMetadataArray{ GetAccessKeysAccessKeyMetadataArgs{...} }
+type GetAccessKeysAccessKeyMetadataArrayInput interface {
+	pulumi.Input
+
+	ToGetAccessKeysAccessKeyMetadataArrayOutput() GetAccessKeysAccessKeyMetadataArrayOutput
+	ToGetAccessKeysAccessKeyMetadataArrayOutputWithContext(context.Context) GetAccessKeysAccessKeyMetadataArrayOutput
+}
+
+type GetAccessKeysAccessKeyMetadataArray []GetAccessKeysAccessKeyMetadataInput
+
+func (GetAccessKeysAccessKeyMetadataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (i GetAccessKeysAccessKeyMetadataArray) ToGetAccessKeysAccessKeyMetadataArrayOutput() GetAccessKeysAccessKeyMetadataArrayOutput {
+	return i.ToGetAccessKeysAccessKeyMetadataArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeysAccessKeyMetadataArray) ToGetAccessKeysAccessKeyMetadataArrayOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyMetadataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeysAccessKeyMetadataArrayOutput)
+}
+
+type GetAccessKeysAccessKeyMetadataOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeysAccessKeyMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (o GetAccessKeysAccessKeyMetadataOutput) ToGetAccessKeysAccessKeyMetadataOutput() GetAccessKeysAccessKeyMetadataOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyMetadataOutput) ToGetAccessKeysAccessKeyMetadataOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyMetadataOutput {
+	return o
+}
+
+// The user access key id.
+func (o GetAccessKeysAccessKeyMetadataOutput) AccessKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.AccessKeyId }).(pulumi.StringOutput)
+}
+
+// The user access key create date.
+func (o GetAccessKeysAccessKeyMetadataOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The user access key status.
+func (o GetAccessKeysAccessKeyMetadataOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The user access key update date.
+func (o GetAccessKeysAccessKeyMetadataOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user names.
+func (o GetAccessKeysAccessKeyMetadataOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetAccessKeysAccessKeyMetadataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeysAccessKeyMetadataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (o GetAccessKeysAccessKeyMetadataArrayOutput) ToGetAccessKeysAccessKeyMetadataArrayOutput() GetAccessKeysAccessKeyMetadataArrayOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyMetadataArrayOutput) ToGetAccessKeysAccessKeyMetadataArrayOutputWithContext(ctx context.Context) GetAccessKeysAccessKeyMetadataArrayOutput {
+	return o
+}
+
+func (o GetAccessKeysAccessKeyMetadataArrayOutput) Index(i pulumi.IntInput) GetAccessKeysAccessKeyMetadataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessKeysAccessKeyMetadata {
+		return vs[0].([]GetAccessKeysAccessKeyMetadata)[vs[1].(int)]
+	}).(GetAccessKeysAccessKeyMetadataOutput)
+}
+
+type GetPoliciesPolicy struct {
+	// The create time of the Policy.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the Policy.
+	Description string `pulumi:"description"`
+	// The ID of the Policy.
+	Id string `pulumi:"id"`
+	// The document of the Policy.
+	PolicyDocument string `pulumi:"policyDocument"`
+	// The name of the Policy.
+	PolicyName string `pulumi:"policyName"`
+	// The resource name of the Policy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the Policy.
+	PolicyType string `pulumi:"policyType"`
+	// The role attach time of the Policy.The data show only query with role_name.
+	RoleAttachDate string `pulumi:"roleAttachDate"`
+	// The name of the IAM role.
+	RoleName string `pulumi:"roleName"`
+	// The update time of the Policy.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user attach time of the Policy.The data show only query with user_name.
+	UserAttachDate string `pulumi:"userAttachDate"`
+	// The name of the IAM user.
+	UserName string `pulumi:"userName"`
+}
+
+// GetPoliciesPolicyInput is an input type that accepts GetPoliciesPolicyArgs and GetPoliciesPolicyOutput values.
+// You can construct a concrete instance of `GetPoliciesPolicyInput` via:
+//
+//	GetPoliciesPolicyArgs{...}
+type GetPoliciesPolicyInput interface {
+	pulumi.Input
+
+	ToGetPoliciesPolicyOutput() GetPoliciesPolicyOutput
+	ToGetPoliciesPolicyOutputWithContext(context.Context) GetPoliciesPolicyOutput
+}
+
+type GetPoliciesPolicyArgs struct {
+	// The create time of the Policy.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the Policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the Policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The document of the Policy.
+	PolicyDocument pulumi.StringInput `pulumi:"policyDocument"`
+	// The name of the Policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The resource name of the Policy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the Policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+	// The role attach time of the Policy.The data show only query with role_name.
+	RoleAttachDate pulumi.StringInput `pulumi:"roleAttachDate"`
+	// The name of the IAM role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// The update time of the Policy.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user attach time of the Policy.The data show only query with user_name.
+	UserAttachDate pulumi.StringInput `pulumi:"userAttachDate"`
+	// The name of the IAM user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetPoliciesPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoliciesPolicy)(nil)).Elem()
+}
+
+func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutput() GetPoliciesPolicyOutput {
+	return i.ToGetPoliciesPolicyOutputWithContext(context.Background())
+}
+
+func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutputWithContext(ctx context.Context) GetPoliciesPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoliciesPolicyOutput)
+}
+
+// GetPoliciesPolicyArrayInput is an input type that accepts GetPoliciesPolicyArray and GetPoliciesPolicyArrayOutput values.
+// You can construct a concrete instance of `GetPoliciesPolicyArrayInput` via:
+//
+//	GetPoliciesPolicyArray{ GetPoliciesPolicyArgs{...} }
+type GetPoliciesPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetPoliciesPolicyArrayOutput() GetPoliciesPolicyArrayOutput
+	ToGetPoliciesPolicyArrayOutputWithContext(context.Context) GetPoliciesPolicyArrayOutput
+}
+
+type GetPoliciesPolicyArray []GetPoliciesPolicyInput
+
+func (GetPoliciesPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoliciesPolicy)(nil)).Elem()
+}
+
+func (i GetPoliciesPolicyArray) ToGetPoliciesPolicyArrayOutput() GetPoliciesPolicyArrayOutput {
+	return i.ToGetPoliciesPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetPoliciesPolicyArray) ToGetPoliciesPolicyArrayOutputWithContext(ctx context.Context) GetPoliciesPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoliciesPolicyArrayOutput)
+}
+
+type GetPoliciesPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetPoliciesPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoliciesPolicy)(nil)).Elem()
+}
+
+func (o GetPoliciesPolicyOutput) ToGetPoliciesPolicyOutput() GetPoliciesPolicyOutput {
+	return o
+}
+
+func (o GetPoliciesPolicyOutput) ToGetPoliciesPolicyOutputWithContext(ctx context.Context) GetPoliciesPolicyOutput {
+	return o
+}
+
+// The create time of the Policy.
+func (o GetPoliciesPolicyOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the Policy.
+func (o GetPoliciesPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the Policy.
+func (o GetPoliciesPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The document of the Policy.
+func (o GetPoliciesPolicyOutput) PolicyDocument() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.PolicyDocument }).(pulumi.StringOutput)
+}
+
+// The name of the Policy.
+func (o GetPoliciesPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The resource name of the Policy.
+func (o GetPoliciesPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the Policy.
+func (o GetPoliciesPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+// The role attach time of the Policy.The data show only query with role_name.
+func (o GetPoliciesPolicyOutput) RoleAttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.RoleAttachDate }).(pulumi.StringOutput)
+}
+
+// The name of the IAM role.
+func (o GetPoliciesPolicyOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// The update time of the Policy.
+func (o GetPoliciesPolicyOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user attach time of the Policy.The data show only query with user_name.
+func (o GetPoliciesPolicyOutput) UserAttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.UserAttachDate }).(pulumi.StringOutput)
+}
+
+// The name of the IAM user.
+func (o GetPoliciesPolicyOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetPoliciesPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPoliciesPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoliciesPolicy)(nil)).Elem()
+}
+
+func (o GetPoliciesPolicyArrayOutput) ToGetPoliciesPolicyArrayOutput() GetPoliciesPolicyArrayOutput {
+	return o
+}
+
+func (o GetPoliciesPolicyArrayOutput) ToGetPoliciesPolicyArrayOutputWithContext(ctx context.Context) GetPoliciesPolicyArrayOutput {
+	return o
+}
+
+func (o GetPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetPoliciesPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoliciesPolicy {
+		return vs[0].([]GetPoliciesPolicy)[vs[1].(int)]
+	}).(GetPoliciesPolicyOutput)
+}
+
+type GetRolesRole struct {
+	// The create time of the Role.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the Role.
+	Description string `pulumi:"description"`
+	// The ID of the Role.
+	Id string `pulumi:"id"`
+	// The name of the Role, comma separated.
+	RoleName string `pulumi:"roleName"`
+	// The resource name of the Role.
+	Trn string `pulumi:"trn"`
+	// The trust policy document of the Role.
+	TrustPolicyDocument string `pulumi:"trustPolicyDocument"`
+}
+
+// GetRolesRoleInput is an input type that accepts GetRolesRoleArgs and GetRolesRoleOutput values.
+// You can construct a concrete instance of `GetRolesRoleInput` via:
+//
+//	GetRolesRoleArgs{...}
+type GetRolesRoleInput interface {
+	pulumi.Input
+
+	ToGetRolesRoleOutput() GetRolesRoleOutput
+	ToGetRolesRoleOutputWithContext(context.Context) GetRolesRoleOutput
+}
+
+type GetRolesRoleArgs struct {
+	// The create time of the Role.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the Role.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the Role.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the Role, comma separated.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// The resource name of the Role.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The trust policy document of the Role.
+	TrustPolicyDocument pulumi.StringInput `pulumi:"trustPolicyDocument"`
+}
+
+func (GetRolesRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolesRole)(nil)).Elem()
+}
+
+func (i GetRolesRoleArgs) ToGetRolesRoleOutput() GetRolesRoleOutput {
+	return i.ToGetRolesRoleOutputWithContext(context.Background())
+}
+
+func (i GetRolesRoleArgs) ToGetRolesRoleOutputWithContext(ctx context.Context) GetRolesRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolesRoleOutput)
+}
+
+// GetRolesRoleArrayInput is an input type that accepts GetRolesRoleArray and GetRolesRoleArrayOutput values.
+// You can construct a concrete instance of `GetRolesRoleArrayInput` via:
+//
+//	GetRolesRoleArray{ GetRolesRoleArgs{...} }
+type GetRolesRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetRolesRoleArrayOutput() GetRolesRoleArrayOutput
+	ToGetRolesRoleArrayOutputWithContext(context.Context) GetRolesRoleArrayOutput
+}
+
+type GetRolesRoleArray []GetRolesRoleInput
+
+func (GetRolesRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolesRole)(nil)).Elem()
+}
+
+func (i GetRolesRoleArray) ToGetRolesRoleArrayOutput() GetRolesRoleArrayOutput {
+	return i.ToGetRolesRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRolesRoleArray) ToGetRolesRoleArrayOutputWithContext(ctx context.Context) GetRolesRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolesRoleArrayOutput)
+}
+
+type GetRolesRoleOutput struct{ *pulumi.OutputState }
+
+func (GetRolesRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolesRole)(nil)).Elem()
+}
+
+func (o GetRolesRoleOutput) ToGetRolesRoleOutput() GetRolesRoleOutput {
+	return o
+}
+
+func (o GetRolesRoleOutput) ToGetRolesRoleOutputWithContext(ctx context.Context) GetRolesRoleOutput {
+	return o
+}
+
+// The create time of the Role.
+func (o GetRolesRoleOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the Role.
+func (o GetRolesRoleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the Role.
+func (o GetRolesRoleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the Role, comma separated.
+func (o GetRolesRoleOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// The resource name of the Role.
+func (o GetRolesRoleOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The trust policy document of the Role.
+func (o GetRolesRoleOutput) TrustPolicyDocument() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.TrustPolicyDocument }).(pulumi.StringOutput)
+}
+
+type GetRolesRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRolesRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolesRole)(nil)).Elem()
+}
+
+func (o GetRolesRoleArrayOutput) ToGetRolesRoleArrayOutput() GetRolesRoleArrayOutput {
+	return o
+}
+
+func (o GetRolesRoleArrayOutput) ToGetRolesRoleArrayOutputWithContext(ctx context.Context) GetRolesRoleArrayOutput {
+	return o
+}
+
+func (o GetRolesRoleArrayOutput) Index(i pulumi.IntInput) GetRolesRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRolesRole {
+		return vs[0].([]GetRolesRole)[vs[1].(int)]
+	}).(GetRolesRoleOutput)
+}
+
+type GetSamlProvidersProvider struct {
+	// Identity provider creation time, such as 20150123T123318Z.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the SAML provider.
+	Description string `pulumi:"description"`
+	// Metadata document, encoded in Base64.
+	EncodedSamlMetadataDocument string `pulumi:"encodedSamlMetadataDocument"`
+	// The name of the SAML provider.
+	SamlProviderName string `pulumi:"samlProviderName"`
+	// SSO types, 1. Role-based SSO, 2. User-based SSO.
+	SsoType int `pulumi:"ssoType"`
+	// User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+	Status int `pulumi:"status"`
+	// The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+	Trn string `pulumi:"trn"`
+	// Identity provider update time, such as: 20150123T123318Z.
+	UpdateDate string `pulumi:"updateDate"`
+}
+
+// GetSamlProvidersProviderInput is an input type that accepts GetSamlProvidersProviderArgs and GetSamlProvidersProviderOutput values.
+// You can construct a concrete instance of `GetSamlProvidersProviderInput` via:
+//
+//	GetSamlProvidersProviderArgs{...}
+type GetSamlProvidersProviderInput interface {
+	pulumi.Input
+
+	ToGetSamlProvidersProviderOutput() GetSamlProvidersProviderOutput
+	ToGetSamlProvidersProviderOutputWithContext(context.Context) GetSamlProvidersProviderOutput
+}
+
+type GetSamlProvidersProviderArgs struct {
+	// Identity provider creation time, such as 20150123T123318Z.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the SAML provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Metadata document, encoded in Base64.
+	EncodedSamlMetadataDocument pulumi.StringInput `pulumi:"encodedSamlMetadataDocument"`
+	// The name of the SAML provider.
+	SamlProviderName pulumi.StringInput `pulumi:"samlProviderName"`
+	// SSO types, 1. Role-based SSO, 2. User-based SSO.
+	SsoType pulumi.IntInput `pulumi:"ssoType"`
+	// User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// Identity provider update time, such as: 20150123T123318Z.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+}
+
+func (GetSamlProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSamlProvidersProvider)(nil)).Elem()
+}
+
+func (i GetSamlProvidersProviderArgs) ToGetSamlProvidersProviderOutput() GetSamlProvidersProviderOutput {
+	return i.ToGetSamlProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i GetSamlProvidersProviderArgs) ToGetSamlProvidersProviderOutputWithContext(ctx context.Context) GetSamlProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSamlProvidersProviderOutput)
+}
+
+// GetSamlProvidersProviderArrayInput is an input type that accepts GetSamlProvidersProviderArray and GetSamlProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `GetSamlProvidersProviderArrayInput` via:
+//
+//	GetSamlProvidersProviderArray{ GetSamlProvidersProviderArgs{...} }
+type GetSamlProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToGetSamlProvidersProviderArrayOutput() GetSamlProvidersProviderArrayOutput
+	ToGetSamlProvidersProviderArrayOutputWithContext(context.Context) GetSamlProvidersProviderArrayOutput
+}
+
+type GetSamlProvidersProviderArray []GetSamlProvidersProviderInput
+
+func (GetSamlProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSamlProvidersProvider)(nil)).Elem()
+}
+
+func (i GetSamlProvidersProviderArray) ToGetSamlProvidersProviderArrayOutput() GetSamlProvidersProviderArrayOutput {
+	return i.ToGetSamlProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GetSamlProvidersProviderArray) ToGetSamlProvidersProviderArrayOutputWithContext(ctx context.Context) GetSamlProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSamlProvidersProviderArrayOutput)
+}
+
+type GetSamlProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (GetSamlProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSamlProvidersProvider)(nil)).Elem()
+}
+
+func (o GetSamlProvidersProviderOutput) ToGetSamlProvidersProviderOutput() GetSamlProvidersProviderOutput {
+	return o
+}
+
+func (o GetSamlProvidersProviderOutput) ToGetSamlProvidersProviderOutputWithContext(ctx context.Context) GetSamlProvidersProviderOutput {
+	return o
+}
+
+// Identity provider creation time, such as 20150123T123318Z.
+func (o GetSamlProvidersProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the SAML provider.
+func (o GetSamlProvidersProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Metadata document, encoded in Base64.
+func (o GetSamlProvidersProviderOutput) EncodedSamlMetadataDocument() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) string { return v.EncodedSamlMetadataDocument }).(pulumi.StringOutput)
+}
+
+// The name of the SAML provider.
+func (o GetSamlProvidersProviderOutput) SamlProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) string { return v.SamlProviderName }).(pulumi.StringOutput)
+}
+
+// SSO types, 1. Role-based SSO, 2. User-based SSO.
+func (o GetSamlProvidersProviderOutput) SsoType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) int { return v.SsoType }).(pulumi.IntOutput)
+}
+
+// User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+func (o GetSamlProvidersProviderOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+func (o GetSamlProvidersProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// Identity provider update time, such as: 20150123T123318Z.
+func (o GetSamlProvidersProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlProvidersProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+type GetSamlProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSamlProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSamlProvidersProvider)(nil)).Elem()
+}
+
+func (o GetSamlProvidersProviderArrayOutput) ToGetSamlProvidersProviderArrayOutput() GetSamlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetSamlProvidersProviderArrayOutput) ToGetSamlProvidersProviderArrayOutputWithContext(ctx context.Context) GetSamlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetSamlProvidersProviderArrayOutput) Index(i pulumi.IntInput) GetSamlProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSamlProvidersProvider {
+		return vs[0].([]GetSamlProvidersProvider)[vs[1].(int)]
+	}).(GetSamlProvidersProviderOutput)
+}
+
+type GetUserGroupPolicyAttachmentsPolicy struct {
+	// Attached time.
+	AttachDate string `pulumi:"attachDate"`
+	// The description.
+	Description string `pulumi:"description"`
+	// Name of the policy.
+	PolicyName string `pulumi:"policyName"`
+	// Resource name of the strategy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType string `pulumi:"policyType"`
+}
+
+// GetUserGroupPolicyAttachmentsPolicyInput is an input type that accepts GetUserGroupPolicyAttachmentsPolicyArgs and GetUserGroupPolicyAttachmentsPolicyOutput values.
+// You can construct a concrete instance of `GetUserGroupPolicyAttachmentsPolicyInput` via:
+//
+//	GetUserGroupPolicyAttachmentsPolicyArgs{...}
+type GetUserGroupPolicyAttachmentsPolicyInput interface {
+	pulumi.Input
+
+	ToGetUserGroupPolicyAttachmentsPolicyOutput() GetUserGroupPolicyAttachmentsPolicyOutput
+	ToGetUserGroupPolicyAttachmentsPolicyOutputWithContext(context.Context) GetUserGroupPolicyAttachmentsPolicyOutput
+}
+
+type GetUserGroupPolicyAttachmentsPolicyArgs struct {
+	// Attached time.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Name of the policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// Resource name of the strategy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+}
+
+func (GetUserGroupPolicyAttachmentsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyArgs) ToGetUserGroupPolicyAttachmentsPolicyOutput() GetUserGroupPolicyAttachmentsPolicyOutput {
+	return i.ToGetUserGroupPolicyAttachmentsPolicyOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyArgs) ToGetUserGroupPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupPolicyAttachmentsPolicyOutput)
+}
+
+// GetUserGroupPolicyAttachmentsPolicyArrayInput is an input type that accepts GetUserGroupPolicyAttachmentsPolicyArray and GetUserGroupPolicyAttachmentsPolicyArrayOutput values.
+// You can construct a concrete instance of `GetUserGroupPolicyAttachmentsPolicyArrayInput` via:
+//
+//	GetUserGroupPolicyAttachmentsPolicyArray{ GetUserGroupPolicyAttachmentsPolicyArgs{...} }
+type GetUserGroupPolicyAttachmentsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetUserGroupPolicyAttachmentsPolicyArrayOutput() GetUserGroupPolicyAttachmentsPolicyArrayOutput
+	ToGetUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(context.Context) GetUserGroupPolicyAttachmentsPolicyArrayOutput
+}
+
+type GetUserGroupPolicyAttachmentsPolicyArray []GetUserGroupPolicyAttachmentsPolicyInput
+
+func (GetUserGroupPolicyAttachmentsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyArray) ToGetUserGroupPolicyAttachmentsPolicyArrayOutput() GetUserGroupPolicyAttachmentsPolicyArrayOutput {
+	return i.ToGetUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyArray) ToGetUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupPolicyAttachmentsPolicyArrayOutput)
+}
+
+type GetUserGroupPolicyAttachmentsPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupPolicyAttachmentsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) ToGetUserGroupPolicyAttachmentsPolicyOutput() GetUserGroupPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) ToGetUserGroupPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+// Attached time.
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description.
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Name of the policy.
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// Resource name of the strategy.
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the policy.
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+type GetUserGroupPolicyAttachmentsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupPolicyAttachmentsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyArrayOutput) ToGetUserGroupPolicyAttachmentsPolicyArrayOutput() GetUserGroupPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyArrayOutput) ToGetUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) GetUserGroupPolicyAttachmentsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserGroupPolicyAttachmentsPolicy {
+		return vs[0].([]GetUserGroupPolicyAttachmentsPolicy)[vs[1].(int)]
+	}).(GetUserGroupPolicyAttachmentsPolicyOutput)
+}
+
+type GetUserGroupsUserGroup struct {
+	// The id of the account.
+	AccountId int `pulumi:"accountId"`
+	// The creation date of the user group.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the user group.
+	Description string `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName string `pulumi:"displayName"`
+	// The update date of the user group.
+	UpdateDate string `pulumi:"updateDate"`
+	// The name of the user group.
+	UserGroupName string `pulumi:"userGroupName"`
+}
+
+// GetUserGroupsUserGroupInput is an input type that accepts GetUserGroupsUserGroupArgs and GetUserGroupsUserGroupOutput values.
+// You can construct a concrete instance of `GetUserGroupsUserGroupInput` via:
+//
+//	GetUserGroupsUserGroupArgs{...}
+type GetUserGroupsUserGroupInput interface {
+	pulumi.Input
+
+	ToGetUserGroupsUserGroupOutput() GetUserGroupsUserGroupOutput
+	ToGetUserGroupsUserGroupOutputWithContext(context.Context) GetUserGroupsUserGroupOutput
+}
+
+type GetUserGroupsUserGroupArgs struct {
+	// The id of the account.
+	AccountId pulumi.IntInput `pulumi:"accountId"`
+	// The creation date of the user group.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the user group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The update date of the user group.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The name of the user group.
+	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
+}
+
+func (GetUserGroupsUserGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupsUserGroup)(nil)).Elem()
+}
+
+func (i GetUserGroupsUserGroupArgs) ToGetUserGroupsUserGroupOutput() GetUserGroupsUserGroupOutput {
+	return i.ToGetUserGroupsUserGroupOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupsUserGroupArgs) ToGetUserGroupsUserGroupOutputWithContext(ctx context.Context) GetUserGroupsUserGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupsUserGroupOutput)
+}
+
+// GetUserGroupsUserGroupArrayInput is an input type that accepts GetUserGroupsUserGroupArray and GetUserGroupsUserGroupArrayOutput values.
+// You can construct a concrete instance of `GetUserGroupsUserGroupArrayInput` via:
+//
+//	GetUserGroupsUserGroupArray{ GetUserGroupsUserGroupArgs{...} }
+type GetUserGroupsUserGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetUserGroupsUserGroupArrayOutput() GetUserGroupsUserGroupArrayOutput
+	ToGetUserGroupsUserGroupArrayOutputWithContext(context.Context) GetUserGroupsUserGroupArrayOutput
+}
+
+type GetUserGroupsUserGroupArray []GetUserGroupsUserGroupInput
+
+func (GetUserGroupsUserGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupsUserGroup)(nil)).Elem()
+}
+
+func (i GetUserGroupsUserGroupArray) ToGetUserGroupsUserGroupArrayOutput() GetUserGroupsUserGroupArrayOutput {
+	return i.ToGetUserGroupsUserGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupsUserGroupArray) ToGetUserGroupsUserGroupArrayOutputWithContext(ctx context.Context) GetUserGroupsUserGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupsUserGroupArrayOutput)
+}
+
+type GetUserGroupsUserGroupOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupsUserGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupsUserGroup)(nil)).Elem()
+}
+
+func (o GetUserGroupsUserGroupOutput) ToGetUserGroupsUserGroupOutput() GetUserGroupsUserGroupOutput {
+	return o
+}
+
+func (o GetUserGroupsUserGroupOutput) ToGetUserGroupsUserGroupOutputWithContext(ctx context.Context) GetUserGroupsUserGroupOutput {
+	return o
+}
+
+// The id of the account.
+func (o GetUserGroupsUserGroupOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) int { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The creation date of the user group.
+func (o GetUserGroupsUserGroupOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the user group.
+func (o GetUserGroupsUserGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user group.
+func (o GetUserGroupsUserGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The update date of the user group.
+func (o GetUserGroupsUserGroupOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The name of the user group.
+func (o GetUserGroupsUserGroupOutput) UserGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
+}
+
+type GetUserGroupsUserGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupsUserGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupsUserGroup)(nil)).Elem()
+}
+
+func (o GetUserGroupsUserGroupArrayOutput) ToGetUserGroupsUserGroupArrayOutput() GetUserGroupsUserGroupArrayOutput {
+	return o
+}
+
+func (o GetUserGroupsUserGroupArrayOutput) ToGetUserGroupsUserGroupArrayOutputWithContext(ctx context.Context) GetUserGroupsUserGroupArrayOutput {
+	return o
+}
+
+func (o GetUserGroupsUserGroupArrayOutput) Index(i pulumi.IntInput) GetUserGroupsUserGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserGroupsUserGroup {
+		return vs[0].([]GetUserGroupsUserGroup)[vs[1].(int)]
+	}).(GetUserGroupsUserGroupOutput)
+}
+
+type GetUsersUser struct {
+	// Main account ID to which the sub-user belongs.
+	AccountId string `pulumi:"accountId"`
+	// The create date of the user.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The email of the user.
+	Email string `pulumi:"email"`
+	// Whether the email has been verified.
+	EmailIsVerify bool `pulumi:"emailIsVerify"`
+	// The mobile phone of the user.
+	MobilePhone string `pulumi:"mobilePhone"`
+	// Whether the phone number has been verified.
+	MobilePhoneIsVerify bool `pulumi:"mobilePhoneIsVerify"`
+	// The trn of the user.
+	Trn string `pulumi:"trn"`
+	// The update date of the user.
+	UpdateDate string `pulumi:"updateDate"`
+	// The id of the user.
+	UserId string `pulumi:"userId"`
+	// The name of the user.
+	UserName string `pulumi:"userName"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	// Main account ID to which the sub-user belongs.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The create date of the user.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The email of the user.
+	Email pulumi.StringInput `pulumi:"email"`
+	// Whether the email has been verified.
+	EmailIsVerify pulumi.BoolInput `pulumi:"emailIsVerify"`
+	// The mobile phone of the user.
+	MobilePhone pulumi.StringInput `pulumi:"mobilePhone"`
+	// Whether the phone number has been verified.
+	MobilePhoneIsVerify pulumi.BoolInput `pulumi:"mobilePhoneIsVerify"`
+	// The trn of the user.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the user.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The id of the user.
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// The name of the user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+// Main account ID to which the sub-user belongs.
+func (o GetUsersUserOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The create date of the user.
+func (o GetUsersUserOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o GetUsersUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o GetUsersUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The email of the user.
+func (o GetUsersUserOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// Whether the email has been verified.
+func (o GetUsersUserOutput) EmailIsVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUsersUser) bool { return v.EmailIsVerify }).(pulumi.BoolOutput)
+}
+
+// The mobile phone of the user.
+func (o GetUsersUserOutput) MobilePhone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.MobilePhone }).(pulumi.StringOutput)
+}
+
+// Whether the phone number has been verified.
+func (o GetUsersUserOutput) MobilePhoneIsVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUsersUser) bool { return v.MobilePhoneIsVerify }).(pulumi.BoolOutput)
+}
+
+// The trn of the user.
+func (o GetUsersUserOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the user.
+func (o GetUsersUserOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o GetUsersUserOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+// The name of the user.
+func (o GetUsersUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArray{})
@@ -1130,6 +2232,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupArrayInput)(nil)).Elem(), UserGroupsUserGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserInput)(nil)).Elem(), UsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserArrayInput)(nil)).Elem(), UsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyMetadataInput)(nil)).Elem(), GetAccessKeysAccessKeyMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), GetAccessKeysAccessKeyMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyInput)(nil)).Elem(), GetPoliciesPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyArrayInput)(nil)).Elem(), GetPoliciesPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleInput)(nil)).Elem(), GetRolesRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleArrayInput)(nil)).Elem(), GetRolesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSamlProvidersProviderInput)(nil)).Elem(), GetSamlProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSamlProvidersProviderArrayInput)(nil)).Elem(), GetSamlProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyInput)(nil)).Elem(), GetUserGroupPolicyAttachmentsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), GetUserGroupPolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupsUserGroupInput)(nil)).Elem(), GetUserGroupsUserGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupsUserGroupArrayInput)(nil)).Elem(), GetUserGroupsUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataOutput{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataArrayOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyOutput{})
@@ -1144,4 +2260,18 @@ func init() {
 	pulumi.RegisterOutputType(UserGroupsUserGroupArrayOutput{})
 	pulumi.RegisterOutputType(UsersUserOutput{})
 	pulumi.RegisterOutputType(UsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetAccessKeysAccessKeyMetadataOutput{})
+	pulumi.RegisterOutputType(GetAccessKeysAccessKeyMetadataArrayOutput{})
+	pulumi.RegisterOutputType(GetPoliciesPolicyOutput{})
+	pulumi.RegisterOutputType(GetPoliciesPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetRolesRoleOutput{})
+	pulumi.RegisterOutputType(GetRolesRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetSamlProvidersProviderOutput{})
+	pulumi.RegisterOutputType(GetSamlProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(GetUserGroupPolicyAttachmentsPolicyOutput{})
+	pulumi.RegisterOutputType(GetUserGroupPolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetUserGroupsUserGroupOutput{})
+	pulumi.RegisterOutputType(GetUserGroupsUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

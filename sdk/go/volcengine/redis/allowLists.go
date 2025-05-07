@@ -37,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -85,7 +85,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = redis.AllowListsOutput(ctx, redis.AllowListsOutputArgs{
+//			_ = redis.GetAllowListsOutput(ctx, redis.GetAllowListsOutputArgs{
 //				InstanceId: fooAllowListAssociate.InstanceId,
 //				RegionId:   pulumi.String("cn-beijing"),
 //				NameRegex:  fooAllowList.AllowListName,
@@ -95,6 +95,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists
 func AllowLists(ctx *pulumi.Context, args *AllowListsArgs, opts ...pulumi.InvokeOption) (*AllowListsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowListsResult

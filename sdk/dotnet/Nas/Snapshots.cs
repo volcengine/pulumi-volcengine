@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nas
 {
+    [Obsolete(@"volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots")]
     public static class Snapshots
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nas.Snapshots.Invoke(new()
+        ///     var @default = Volcengine.Nas.GetSnapshots.Invoke(new()
         ///     {
         ///         FileSystemId = "enas-cnbj5c18f02afe0e",
         ///         Ids = new[]
@@ -51,7 +52,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nas.Snapshots.Invoke(new()
+        ///     var @default = Volcengine.Nas.GetSnapshots.Invoke(new()
         ///     {
         ///         FileSystemId = "enas-cnbj5c18f02afe0e",
         ///         Ids = new[]

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.DirectConnectGatewayAttachments(ctx, &transit_router.DirectConnectGatewayAttachmentsArgs{
+//			_, err := transit_router.GetDirectConnectGatewayAttachments(ctx, &transit_router.GetDirectConnectGatewayAttachmentsArgs{
 //				TransitRouterId: "tr-2bzy39x27qtxc2dx0eg5qaj05",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.DirectConnectGatewayAttachments has been deprecated in favor of volcengine.transit_router.getDirectConnectGatewayAttachments
 func DirectConnectGatewayAttachments(ctx *pulumi.Context, args *DirectConnectGatewayAttachmentsArgs, opts ...pulumi.InvokeOption) (*DirectConnectGatewayAttachmentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DirectConnectGatewayAttachmentsResult

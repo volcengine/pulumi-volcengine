@@ -33,12 +33,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooBandwidthPackages = volcengine.cen.BandwidthPackagesOutput({
+ * const fooBandwidthPackages = volcengine.cen.getBandwidthPackagesOutput({
  *     ids: fooBandwidthPackage.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages */
 export function bandwidthPackages(args?: BandwidthPackagesArgs, opts?: pulumi.InvokeOptions): Promise<BandwidthPackagesResult> {
+    pulumi.log.warn("bandwidthPackages is deprecated: volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -153,11 +155,12 @@ export interface BandwidthPackagesResult {
  *         }],
  *     }));
  * }
- * const fooBandwidthPackages = volcengine.cen.BandwidthPackagesOutput({
+ * const fooBandwidthPackages = volcengine.cen.getBandwidthPackagesOutput({
  *     ids: fooBandwidthPackage.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages */
 export function bandwidthPackagesOutput(args?: BandwidthPackagesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BandwidthPackagesResult> {
     return pulumi.output(args).apply((a: any) => bandwidthPackages(a, opts))
 }

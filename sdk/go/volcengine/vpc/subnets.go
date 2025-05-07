@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.Subnets(ctx, &vpc.SubnetsArgs{
+//			_, err := vpc.GetSubnets(ctx, &vpc.GetSubnetsArgs{
 //				Ids: []string{
 //					"subnet-274zsa5kfmj287fap8soo5e19",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets
 func Subnets(ctx *pulumi.Context, args *SubnetsArgs, opts ...pulumi.InvokeOption) (*SubnetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SubnetsResult

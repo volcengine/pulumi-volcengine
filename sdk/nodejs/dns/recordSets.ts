@@ -14,16 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const fooZones = volcengine.dns.Zones({
+ * const fooZones = volcengine.dns.getZones({
  *     key: "xxx",
  *     searchMode: "xx",
  * });
- * const fooRecordSets = fooZones.then(fooZones => volcengine.dns.RecordSets({
+ * const fooRecordSets = fooZones.then(fooZones => volcengine.dns.getRecordSets({
  *     zid: fooZones.zones?.[0]?.zid,
  * }));
  * ```
  */
+/** @deprecated volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets */
 export function recordSets(args: RecordSetsArgs, opts?: pulumi.InvokeOptions): Promise<RecordSetsResult> {
+    pulumi.log.warn("recordSets is deprecated: volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:dns/recordSets:RecordSets", {
@@ -100,15 +102,16 @@ export interface RecordSetsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const fooZones = volcengine.dns.Zones({
+ * const fooZones = volcengine.dns.getZones({
  *     key: "xxx",
  *     searchMode: "xx",
  * });
- * const fooRecordSets = fooZones.then(fooZones => volcengine.dns.RecordSets({
+ * const fooRecordSets = fooZones.then(fooZones => volcengine.dns.getRecordSets({
  *     zid: fooZones.zones?.[0]?.zid,
  * }));
  * ```
  */
+/** @deprecated volcengine.dns.RecordSets has been deprecated in favor of volcengine.dns.getRecordSets */
 export function recordSetsOutput(args: RecordSetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RecordSetsResult> {
     return pulumi.output(args).apply((a: any) => recordSets(a, opts))
 }

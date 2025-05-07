@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dns.Records(ctx, &dns.RecordsArgs{
+//			_, err := dns.GetRecords(ctx, &dns.GetRecordsArgs{
 //				Zid: 58857,
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords
 func Records(ctx *pulumi.Context, args *RecordsArgs, opts ...pulumi.InvokeOption) (*RecordsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RecordsResult

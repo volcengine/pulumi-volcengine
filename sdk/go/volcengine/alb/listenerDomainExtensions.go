@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.ListenerDomainExtensions(ctx, &alb.ListenerDomainExtensionsArgs{
+//			_, err := alb.GetListenerDomainExtensions(ctx, &alb.GetListenerDomainExtensionsArgs{
 //				ListenerId: "lsn-1g72yeyhrrj7k2zbhq5gp6xch",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions
 func ListenerDomainExtensions(ctx *pulumi.Context, args *ListenerDomainExtensionsArgs, opts ...pulumi.InvokeOption) (*ListenerDomainExtensionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListenerDomainExtensionsResult

@@ -13,6 +13,39 @@ import (
 )
 
 // Provides a resource to manage financial relation
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/financial_relation"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := financial_relation.NewFinancialRelation(ctx, "foo", &financial_relation.FinancialRelationArgs{
+//				AccountAlias: pulumi.String("acc-test-financial"),
+//				AuthLists: pulumi.IntArray{
+//					pulumi.Int(1),
+//					pulumi.Int(2),
+//					pulumi.Int(3),
+//				},
+//				Relation:     pulumi.Int(4),
+//				SubAccountId: pulumi.Int(2100260000),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // FinancialRelation can be imported using the sub_account_id:relation:relation_id, e.g.

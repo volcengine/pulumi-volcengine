@@ -17,6 +17,8 @@ __all__ = [
     'groups_output',
 ]
 
+warnings.warn("""volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class GroupsResult:
     """
@@ -144,7 +146,7 @@ def groups(display_name: Optional[str] = None,
             display_name=f"tf-test-group-{range['value']}",
             group_name=f"acc-test-group-{range['value']}",
             join_type="Manual"))
-    foo_groups = volcengine.cloud_identity.groups(group_name="acc-test-group",
+    foo_groups = volcengine.cloud_identity.get_groups(group_name="acc-test-group",
         join_type="Manual")
     ```
 
@@ -155,6 +157,7 @@ def groups(display_name: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""groups is deprecated: volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups""")
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['groupName'] = group_name
@@ -197,7 +200,7 @@ def groups_output(display_name: Optional[pulumi.Input[Optional[str]]] = None,
             display_name=f"tf-test-group-{range['value']}",
             group_name=f"acc-test-group-{range['value']}",
             join_type="Manual"))
-    foo_groups = volcengine.cloud_identity.groups(group_name="acc-test-group",
+    foo_groups = volcengine.cloud_identity.get_groups(group_name="acc-test-group",
         join_type="Manual")
     ```
 
@@ -208,4 +211,5 @@ def groups_output(display_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""groups is deprecated: volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups""")
     ...

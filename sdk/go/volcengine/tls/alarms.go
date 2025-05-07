@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Alarms(ctx, &tls.AlarmsArgs{
+//			_, err := tls.GetAlarms(ctx, &tls.GetAlarmsArgs{
 //				ProjectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms
 func Alarms(ctx *pulumi.Context, args *AlarmsArgs, opts ...pulumi.InvokeOption) (*AlarmsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AlarmsResult

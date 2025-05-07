@@ -18,6 +18,8 @@ __all__ = [
     'transit_routers_output',
 ]
 
+warnings.warn("""volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters""", DeprecationWarning)
+
 @pulumi.output_type
 class TransitRoutersResult:
     """
@@ -141,7 +143,7 @@ def transit_routers(ids: Optional[Sequence[str]] = None,
     foo = volcengine.transit_router.TransitRouter("foo",
         transit_router_name="test-tf-acc",
         description="test-tf-acc")
-    default = volcengine.transit_router.transit_routers_output(ids=[foo.id],
+    default = volcengine.transit_router.get_transit_routers_output(ids=[foo.id],
         transit_router_name="test")
     ```
 
@@ -152,6 +154,7 @@ def transit_routers(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['TransitRoutersTagArgs']] tags: Tags.
     :param str transit_router_name: The name info.
     """
+    pulumi.log.warn("""transit_routers is deprecated: volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -190,7 +193,7 @@ def transit_routers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     foo = volcengine.transit_router.TransitRouter("foo",
         transit_router_name="test-tf-acc",
         description="test-tf-acc")
-    default = volcengine.transit_router.transit_routers_output(ids=[foo.id],
+    default = volcengine.transit_router.get_transit_routers_output(ids=[foo.id],
         transit_router_name="test")
     ```
 
@@ -201,4 +204,5 @@ def transit_routers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param Sequence[pulumi.InputType['TransitRoutersTagArgs']] tags: Tags.
     :param str transit_router_name: The name info.
     """
+    pulumi.log.warn("""transit_routers is deprecated: volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters""")
     ...

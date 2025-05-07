@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.mongodb.Instances({
+ * const foo = volcengine.mongodb.getInstances({
  *     instanceId: "mongo-replica-xxx",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -184,11 +186,12 @@ export interface InstancesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.mongodb.Instances({
+ * const foo = volcengine.mongodb.getInstances({
  *     instanceId: "mongo-replica-xxx",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

@@ -44,7 +44,7 @@ import (
 //				}
 //				fooUser = append(fooUser, __res)
 //			}
-//			_, err = cloud_identity.Users(ctx, &cloud_identity.UsersArgs{
+//			_, err = cloud_identity.GetUsers(ctx, &cloud_identity.GetUsersArgs{
 //				Source:   pulumi.StringRef("Manual"),
 //				UserName: pulumi.StringRef("acc-test-user"),
 //			}, nil)
@@ -56,6 +56,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_identity.Users has been deprecated in favor of volcengine.cloud_identity.getUsers
 func Users(ctx *pulumi.Context, args *UsersArgs, opts ...pulumi.InvokeOption) (*UsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv UsersResult

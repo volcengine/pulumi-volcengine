@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dns.Backups(ctx, &dns.BackupsArgs{
+//			_, err := dns.GetBackups(ctx, &dns.GetBackupsArgs{
 //				Zid: 58846,
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups
 func Backups(ctx *pulumi.Context, args *BackupsArgs, opts ...pulumi.InvokeOption) (*BackupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BackupsResult

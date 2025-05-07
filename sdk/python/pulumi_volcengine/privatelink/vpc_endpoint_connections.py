@@ -17,6 +17,8 @@ __all__ = [
     'vpc_endpoint_connections_output',
 ]
 
+warnings.warn("""volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcEndpointConnectionsResult:
     """
@@ -127,7 +129,7 @@ def vpc_endpoint_connections(endpoint_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -174,7 +176,7 @@ def vpc_endpoint_connections(endpoint_id: Optional[str] = None,
         endpoint_id=foo_vpc_endpoint.id,
         service_id=foo_vpc_endpoint_service.id,
         opts=pulumi.ResourceOptions(depends_on=[foo_vpc_endpoint_zone]))
-    foo_vpc_endpoint_connections = volcengine.privatelink.vpc_endpoint_connections_output(endpoint_id=foo_vpc_endpoint_connection.endpoint_id,
+    foo_vpc_endpoint_connections = volcengine.privatelink.get_vpc_endpoint_connections_output(endpoint_id=foo_vpc_endpoint_connection.endpoint_id,
         service_id=foo_vpc_endpoint_connection.service_id)
     ```
 
@@ -184,6 +186,7 @@ def vpc_endpoint_connections(endpoint_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str service_id: The id of the vpc endpoint service.
     """
+    pulumi.log.warn("""vpc_endpoint_connections is deprecated: volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections""")
     __args__ = dict()
     __args__['endpointId'] = endpoint_id
     __args__['endpointOwnerAccountId'] = endpoint_owner_account_id
@@ -216,7 +219,7 @@ def vpc_endpoint_connections_output(endpoint_id: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -263,7 +266,7 @@ def vpc_endpoint_connections_output(endpoint_id: Optional[pulumi.Input[Optional[
         endpoint_id=foo_vpc_endpoint.id,
         service_id=foo_vpc_endpoint_service.id,
         opts=pulumi.ResourceOptions(depends_on=[foo_vpc_endpoint_zone]))
-    foo_vpc_endpoint_connections = volcengine.privatelink.vpc_endpoint_connections_output(endpoint_id=foo_vpc_endpoint_connection.endpoint_id,
+    foo_vpc_endpoint_connections = volcengine.privatelink.get_vpc_endpoint_connections_output(endpoint_id=foo_vpc_endpoint_connection.endpoint_id,
         service_id=foo_vpc_endpoint_connection.service_id)
     ```
 
@@ -273,4 +276,5 @@ def vpc_endpoint_connections_output(endpoint_id: Optional[pulumi.Input[Optional[
     :param str output_file: File name where to save data source results.
     :param str service_id: The id of the vpc endpoint service.
     """
+    pulumi.log.warn("""vpc_endpoint_connections is deprecated: volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections""")
     ...

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -68,7 +68,7 @@ import * as utilities from "../utilities";
  *     type: "Public",
  *     validDuration: 2,
  * });
- * const fooKubeconfigs = volcengine.vke.KubeconfigsOutput({
+ * const fooKubeconfigs = volcengine.vke.getKubeconfigsOutput({
  *     ids: [
  *         foo1.id,
  *         foo2.id,
@@ -76,7 +76,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs */
 export function kubeconfigs(args?: KubeconfigsArgs, opts?: pulumi.InvokeOptions): Promise<KubeconfigsResult> {
+    pulumi.log.warn("kubeconfigs is deprecated: volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -170,7 +172,7 @@ export interface KubeconfigsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -223,7 +225,7 @@ export interface KubeconfigsResult {
  *     type: "Public",
  *     validDuration: 2,
  * });
- * const fooKubeconfigs = volcengine.vke.KubeconfigsOutput({
+ * const fooKubeconfigs = volcengine.vke.getKubeconfigsOutput({
  *     ids: [
  *         foo1.id,
  *         foo2.id,
@@ -231,6 +233,7 @@ export interface KubeconfigsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs */
 export function kubeconfigsOutput(args?: KubeconfigsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<KubeconfigsResult> {
     return pulumi.output(args).apply((a: any) => kubeconfigs(a, opts))
 }

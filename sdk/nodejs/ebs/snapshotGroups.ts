@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g3il.large",
@@ -82,12 +82,14 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [fooVolumeAttach],
  * });
- * const fooSnapshotGroups = volcengine.ebs.SnapshotGroupsOutput({
+ * const fooSnapshotGroups = volcengine.ebs.getSnapshotGroupsOutput({
  *     ids: [fooSnapshotGroup.id],
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.SnapshotGroups has been deprecated in favor of volcengine.ebs.getSnapshotGroups */
 export function snapshotGroups(args?: SnapshotGroupsArgs, opts?: pulumi.InvokeOptions): Promise<SnapshotGroupsResult> {
+    pulumi.log.warn("snapshotGroups is deprecated: volcengine.ebs.SnapshotGroups has been deprecated in favor of volcengine.ebs.getSnapshotGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -181,7 +183,7 @@ export interface SnapshotGroupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -196,7 +198,7 @@ export interface SnapshotGroupsResult {
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g3il.large",
@@ -248,11 +250,12 @@ export interface SnapshotGroupsResult {
  * }, {
  *     dependsOn: [fooVolumeAttach],
  * });
- * const fooSnapshotGroups = volcengine.ebs.SnapshotGroupsOutput({
+ * const fooSnapshotGroups = volcengine.ebs.getSnapshotGroupsOutput({
  *     ids: [fooSnapshotGroup.id],
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.SnapshotGroups has been deprecated in favor of volcengine.ebs.getSnapshotGroups */
 export function snapshotGroupsOutput(args?: SnapshotGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SnapshotGroupsResult> {
     return pulumi.output(args).apply((a: any) => snapshotGroups(a, opts))
 }

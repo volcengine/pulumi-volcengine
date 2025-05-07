@@ -18,6 +18,8 @@ __all__ = [
     'route_tables_output',
 ]
 
+warnings.warn("""volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables""", DeprecationWarning)
+
 @pulumi.output_type
 class RouteTablesResult:
     """
@@ -142,7 +144,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
         description="tf-test-acc-description",
         transit_router_route_table_name="tf-table-test-acc",
         transit_router_id=foo_transit_router.id)
-    default = volcengine.transit_router.route_tables_output(transit_router_id=foo_transit_router.id,
+    default = volcengine.transit_router.get_route_tables_output(transit_router_id=foo_transit_router.id,
         ids=[foo_route_table.transit_router_route_table_id])
     ```
 
@@ -153,6 +155,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
     :param str transit_router_id: The id of the transit router.
     :param str transit_router_route_table_type: The type of the route table. The value can be System or Custom.
     """
+    pulumi.log.warn("""route_tables is deprecated: volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -195,7 +198,7 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
         description="tf-test-acc-description",
         transit_router_route_table_name="tf-table-test-acc",
         transit_router_id=foo_transit_router.id)
-    default = volcengine.transit_router.route_tables_output(transit_router_id=foo_transit_router.id,
+    default = volcengine.transit_router.get_route_tables_output(transit_router_id=foo_transit_router.id,
         ids=[foo_route_table.transit_router_route_table_id])
     ```
 
@@ -206,4 +209,5 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param str transit_router_id: The id of the transit router.
     :param str transit_router_route_table_type: The type of the route table. The value can be System or Custom.
     """
+    pulumi.log.warn("""route_tables is deprecated: volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables""")
     ...

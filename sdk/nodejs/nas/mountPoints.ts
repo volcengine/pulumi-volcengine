@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to query detailed information of nas mount points
  */
+/** @deprecated volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints */
 export function mountPoints(args: MountPointsArgs, opts?: pulumi.InvokeOptions): Promise<MountPointsResult> {
+    pulumi.log.warn("mountPoints is deprecated: volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:nas/mountPoints:MountPoints", {
@@ -84,6 +86,7 @@ export interface MountPointsResult {
 /**
  * Use this data source to query detailed information of nas mount points
  */
+/** @deprecated volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints */
 export function mountPointsOutput(args: MountPointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<MountPointsResult> {
     return pulumi.output(args).apply((a: any) => mountPoints(a, opts))
 }

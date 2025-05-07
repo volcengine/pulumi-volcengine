@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.private_zone.ResolverRules({});
+ * const foo = volcengine.private_zone.getResolverRules({});
  * ```
  */
+/** @deprecated volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules */
 export function resolverRules(args?: ResolverRulesArgs, opts?: pulumi.InvokeOptions): Promise<ResolverRulesResult> {
+    pulumi.log.warn("resolverRules is deprecated: volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -95,9 +97,10 @@ export interface ResolverRulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.private_zone.ResolverRules({});
+ * const foo = volcengine.private_zone.getResolverRules({});
  * ```
  */
+/** @deprecated volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules */
 export function resolverRulesOutput(args?: ResolverRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ResolverRulesResult> {
     return pulumi.output(args).apply((a: any) => resolverRules(a, opts))
 }

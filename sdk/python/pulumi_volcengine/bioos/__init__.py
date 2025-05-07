@@ -8,6 +8,8 @@ import typing
 from .cluster import *
 from .cluster_bind import *
 from .clusters import *
+from .get_clusters import *
+from .get_workspaces import *
 from .workspace import *
 from .workspaces import *
 from ._inputs import *

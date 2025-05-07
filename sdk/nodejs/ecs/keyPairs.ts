@@ -19,12 +19,14 @@ import * as utilities from "../utilities";
  *     keyPairName: "acc-test-key-name",
  *     description: "acc-test",
  * });
- * const fooKeyPairs = volcengine.ecs.KeyPairsOutput({
+ * const fooKeyPairs = volcengine.ecs.getKeyPairsOutput({
  *     keyPairName: fooKeyPair.keyPairName,
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs */
 export function keyPairs(args?: KeyPairsArgs, opts?: pulumi.InvokeOptions): Promise<KeyPairsResult> {
+    pulumi.log.warn("keyPairs is deprecated: volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -110,11 +112,12 @@ export interface KeyPairsResult {
  *     keyPairName: "acc-test-key-name",
  *     description: "acc-test",
  * });
- * const fooKeyPairs = volcengine.ecs.KeyPairsOutput({
+ * const fooKeyPairs = volcengine.ecs.getKeyPairsOutput({
  *     keyPairName: fooKeyPair.keyPairName,
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs */
 export function keyPairsOutput(args?: KeyPairsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<KeyPairsResult> {
     return pulumi.output(args).apply((a: any) => keyPairs(a, opts))
 }

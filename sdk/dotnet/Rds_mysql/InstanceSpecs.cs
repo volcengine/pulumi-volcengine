@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mysql
 {
+    [Obsolete(@"volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs")]
     public static class InstanceSpecs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.InstanceSpecs.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetInstanceSpecs.Invoke(new()
         ///     {
         ///         DbEngineVersion = "MySQL_8_0",
         ///         InstanceType = "DoubleNode",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.InstanceSpecs.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetInstanceSpecs.Invoke(new()
         ///     {
         ///         DbEngineVersion = "MySQL_8_0",
         ///         InstanceType = "DoubleNode",

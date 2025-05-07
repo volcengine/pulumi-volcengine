@@ -137,7 +137,7 @@ class EndpointPublicAddress(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -166,7 +166,7 @@ class EndpointPublicAddress(pulumi.CustomResource):
                     value="tftest2",
                 ),
             ])
-        foo_instances = volcengine.vedb_mysql.instances_output(instance_id=foo_instance.id)
+        foo_instances = volcengine.vedb_mysql.get_instances_output(instance_id=foo_instance.id)
         foo_endpoint = volcengine.vedb_mysql.Endpoint("fooEndpoint",
             endpoint_type="Custom",
             instance_id=foo_instance.id,
@@ -222,7 +222,7 @@ class EndpointPublicAddress(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -251,7 +251,7 @@ class EndpointPublicAddress(pulumi.CustomResource):
                     value="tftest2",
                 ),
             ])
-        foo_instances = volcengine.vedb_mysql.instances_output(instance_id=foo_instance.id)
+        foo_instances = volcengine.vedb_mysql.get_instances_output(instance_id=foo_instance.id)
         foo_endpoint = volcengine.vedb_mysql.Endpoint("fooEndpoint",
             endpoint_type="Custom",
             instance_id=foo_instance.id,

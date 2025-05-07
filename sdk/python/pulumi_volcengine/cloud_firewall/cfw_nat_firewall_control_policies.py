@@ -17,6 +17,8 @@ __all__ = [
     'cfw_nat_firewall_control_policies_output',
 ]
 
+warnings.warn("""volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies""", DeprecationWarning)
+
 @pulumi.output_type
 class CfwNatFirewallControlPoliciesResult:
     """
@@ -231,7 +233,7 @@ def cfw_nat_firewall_control_policies(actions: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_firewall.cfw_nat_firewall_control_policies(direction="in",
+    foo = volcengine.cloud_firewall.get_cfw_nat_firewall_control_policies(direction="in",
         nat_firewall_id="nfw-ydmkayvjsw2vsavx****")
     ```
 
@@ -249,6 +251,7 @@ def cfw_nat_firewall_control_policies(actions: Optional[Sequence[str]] = None,
     :param Sequence[str] sources: The source of the nat firewall control policy. This field support fuzzy query.
     :param Sequence[bool] statuses: The enable status list of the nat firewall control policy.
     """
+    pulumi.log.warn("""cfw_nat_firewall_control_policies is deprecated: volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies""")
     __args__ = dict()
     __args__['actions'] = actions
     __args__['description'] = description
@@ -305,7 +308,7 @@ def cfw_nat_firewall_control_policies_output(actions: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_firewall.cfw_nat_firewall_control_policies(direction="in",
+    foo = volcengine.cloud_firewall.get_cfw_nat_firewall_control_policies(direction="in",
         nat_firewall_id="nfw-ydmkayvjsw2vsavx****")
     ```
 
@@ -323,4 +326,5 @@ def cfw_nat_firewall_control_policies_output(actions: Optional[pulumi.Input[Opti
     :param Sequence[str] sources: The source of the nat firewall control policy. This field support fuzzy query.
     :param Sequence[bool] statuses: The enable status list of the nat firewall control policy.
     """
+    pulumi.log.warn("""cfw_nat_firewall_control_policies is deprecated: volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies""")
     ...

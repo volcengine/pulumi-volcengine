@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.AvailableResources({
+ * const foo = volcengine.ecs.getAvailableResources({
  *     destinationResource: "InstanceType",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources */
 export function availableResources(args: AvailableResourcesArgs, opts?: pulumi.InvokeOptions): Promise<AvailableResourcesResult> {
+    pulumi.log.warn("availableResources is deprecated: volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/availableResources:AvailableResources", {
@@ -96,11 +98,12 @@ export interface AvailableResourcesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.AvailableResources({
+ * const foo = volcengine.ecs.getAvailableResources({
  *     destinationResource: "InstanceType",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.AvailableResources has been deprecated in favor of volcengine.ecs.getAvailableResources */
 export function availableResourcesOutput(args: AvailableResourcesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AvailableResourcesResult> {
     return pulumi.output(args).apply((a: any) => availableResources(a, opts))
 }

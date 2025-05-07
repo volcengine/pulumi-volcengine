@@ -14,26 +14,30 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * // create security group
  * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
  * });
+ * // create ecs instance
  * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
  *     instanceName: "acc-test-ecs",
  *     description: "acc-test",
@@ -51,6 +55,30 @@ import * as utilities from "../utilities";
  *         key: "k1",
  *         value: "v1",
  *     }],
+ * });
+ * // create ebs data volume
+ * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
+ *     volumeName: "acc-test-volume",
+ *     volumeType: "ESSD_PL0",
+ *     description: "acc-test",
+ *     kind: "data",
+ *     size: 40,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     volumeChargeType: "PostPaid",
+ *     projectName: "default",
+ * });
+ * // attach ebs data volume to ecs instance
+ * const fooVolumeAttach = new volcengine.ebs.VolumeAttach("fooVolumeAttach", {
+ *     instanceId: fooInstance.id,
+ *     volumeId: fooVolume.id,
+ * });
+ * // create eip
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
+ * // associate eip to ecs instance
+ * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
+ *     allocationId: fooAddress.id,
+ *     instanceId: fooInstance.id,
+ *     instanceType: "EcsInstance",
  * });
  * ```
  *

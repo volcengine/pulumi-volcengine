@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_identity
 {
+    [Obsolete(@"volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups")]
     public static class Groups
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///             JoinType = "Manual",
         ///         }));
         ///     }
-        ///     var fooGroups = Volcengine.Cloud_identity.Groups.Invoke(new()
+        ///     var fooGroups = Volcengine.Cloud_identity.GetGroups.Invoke(new()
         ///     {
         ///         GroupName = "acc-test-group",
         ///         JoinType = "Manual",
@@ -71,7 +72,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///             JoinType = "Manual",
         ///         }));
         ///     }
-        ///     var fooGroups = Volcengine.Cloud_identity.Groups.Invoke(new()
+        ///     var fooGroups = Volcengine.Cloud_identity.GetGroups.Invoke(new()
         ///     {
         ///         GroupName = "acc-test-group",
         ///         JoinType = "Manual",

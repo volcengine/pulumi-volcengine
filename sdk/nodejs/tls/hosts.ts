@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Hosts({
+ * const default = volcengine.tls.getHosts({
  *     hostGroupId: "527102e2-1e4f-45f4-a990-751152125da7",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts */
 export function hosts(args: HostsArgs, opts?: pulumi.InvokeOptions): Promise<HostsResult> {
+    pulumi.log.warn("hosts is deprecated: volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/hosts:Hosts", {
@@ -90,11 +92,12 @@ export interface HostsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Hosts({
+ * const default = volcengine.tls.getHosts({
  *     hostGroupId: "527102e2-1e4f-45f4-a990-751152125da7",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts */
 export function hostsOutput(args: HostsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<HostsResult> {
     return pulumi.output(args).apply((a: any) => hosts(a, opts))
 }

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.ListenerDomainExtensions({
+ * const foo = volcengine.alb.getListenerDomainExtensions({
  *     listenerId: "lsn-1g72yeyhrrj7k2zbhq5gp6xch",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions */
 export function listenerDomainExtensions(args: ListenerDomainExtensionsArgs, opts?: pulumi.InvokeOptions): Promise<ListenerDomainExtensionsResult> {
+    pulumi.log.warn("listenerDomainExtensions is deprecated: volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:alb/listenerDomainExtensions:ListenerDomainExtensions", {
@@ -72,11 +74,12 @@ export interface ListenerDomainExtensionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.ListenerDomainExtensions({
+ * const foo = volcengine.alb.getListenerDomainExtensions({
  *     listenerId: "lsn-1g72yeyhrrj7k2zbhq5gp6xch",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions */
 export function listenerDomainExtensionsOutput(args: ListenerDomainExtensionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListenerDomainExtensionsResult> {
     return pulumi.output(args).apply((a: any) => listenerDomainExtensions(a, opts))
 }

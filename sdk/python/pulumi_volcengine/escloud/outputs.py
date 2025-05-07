@@ -29,6 +29,22 @@ __all__ = [
     'InstancesInstancePluginResult',
     'RegionsRegionResult',
     'ZonesZoneResult',
+    'GetInstancesInstanceResult',
+    'GetInstancesInstanceInstanceConfigurationResult',
+    'GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecResult',
+    'GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecResult',
+    'GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecResult',
+    'GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecResult',
+    'GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecResult',
+    'GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecResult',
+    'GetInstancesInstanceInstanceConfigurationSubnetResult',
+    'GetInstancesInstanceInstanceConfigurationVpcResult',
+    'GetInstancesInstanceNodeResult',
+    'GetInstancesInstanceNodeResourceSpecResult',
+    'GetInstancesInstanceNodeStorageSpecResult',
+    'GetInstancesInstancePluginResult',
+    'GetRegionsRegionResult',
+    'GetZonesZoneResult',
 ]
 
 @pulumi.output_type
@@ -1747,6 +1763,1427 @@ class RegionsRegionResult(dict):
 
 @pulumi.output_type
 class ZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 zone_id: str,
+                 zone_name: str):
+        """
+        :param str id: The id of the zone.
+        :param str zone_id: The id of the zone.
+        :param str zone_name: The name of the zone.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of the zone.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceResult(dict):
+    def __init__(__self__, *,
+                 charge_enabled: bool,
+                 create_time: str,
+                 enable_es_private_network: bool,
+                 enable_es_public_network: bool,
+                 enable_kibana_private_network: bool,
+                 enable_kibana_public_network: bool,
+                 es_inner_endpoint: str,
+                 es_private_domain: str,
+                 es_private_endpoint: str,
+                 es_public_domain: str,
+                 es_public_endpoint: str,
+                 expire_date: str,
+                 id: str,
+                 instance_configuration: 'outputs.GetInstancesInstanceInstanceConfigurationResult',
+                 instance_id: str,
+                 kibana_private_domain: str,
+                 kibana_public_domain: str,
+                 maintenance_days: Sequence[str],
+                 maintenance_time: str,
+                 namespace: str,
+                 nodes: Sequence['outputs.GetInstancesInstanceNodeResult'],
+                 plugins: Sequence['outputs.GetInstancesInstancePluginResult'],
+                 status: str,
+                 total_nodes: int,
+                 user_id: str):
+        """
+        :param bool charge_enabled: The charge status of instance.
+        :param str create_time: The create time of instance.
+        :param bool enable_es_private_network: whether enable es private network.
+        :param bool enable_es_public_network: whether enable es public network.
+        :param bool enable_kibana_private_network: whether enable kibana private network.
+        :param bool enable_kibana_public_network: whether enable kibana public network.
+        :param str es_inner_endpoint: The es inner endpoint of instance.
+        :param str es_private_domain: The es private domain of instance.
+        :param str es_private_endpoint: The es private endpoint of instance.
+        :param str es_public_domain: The es public domain of instance.
+        :param str es_public_endpoint: The es public endpoint of instance.
+        :param str expire_date: The expire time of instance.
+        :param str id: The Id of instance.
+        :param 'GetInstancesInstanceInstanceConfigurationArgs' instance_configuration: The configuration of instance.
+        :param str instance_id: The Id of instance.
+        :param str kibana_private_domain: The kibana private domain of instance.
+        :param str kibana_public_domain: The kibana public domain of instance.
+        :param Sequence[str] maintenance_days: The maintenance day of instance.
+        :param str maintenance_time: The maintenance time of instance.
+        :param str namespace: The namespace of instance.
+        :param Sequence['GetInstancesInstanceNodeArgs'] nodes: The nodes info of instance.
+        :param Sequence['GetInstancesInstancePluginArgs'] plugins: The plugin info of instance.
+        :param str status: The status of instance.
+        :param int total_nodes: The total nodes of instance.
+        :param str user_id: The user id of instance.
+        """
+        pulumi.set(__self__, "charge_enabled", charge_enabled)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "enable_es_private_network", enable_es_private_network)
+        pulumi.set(__self__, "enable_es_public_network", enable_es_public_network)
+        pulumi.set(__self__, "enable_kibana_private_network", enable_kibana_private_network)
+        pulumi.set(__self__, "enable_kibana_public_network", enable_kibana_public_network)
+        pulumi.set(__self__, "es_inner_endpoint", es_inner_endpoint)
+        pulumi.set(__self__, "es_private_domain", es_private_domain)
+        pulumi.set(__self__, "es_private_endpoint", es_private_endpoint)
+        pulumi.set(__self__, "es_public_domain", es_public_domain)
+        pulumi.set(__self__, "es_public_endpoint", es_public_endpoint)
+        pulumi.set(__self__, "expire_date", expire_date)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_configuration", instance_configuration)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "kibana_private_domain", kibana_private_domain)
+        pulumi.set(__self__, "kibana_public_domain", kibana_public_domain)
+        pulumi.set(__self__, "maintenance_days", maintenance_days)
+        pulumi.set(__self__, "maintenance_time", maintenance_time)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "nodes", nodes)
+        pulumi.set(__self__, "plugins", plugins)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "total_nodes", total_nodes)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="chargeEnabled")
+    def charge_enabled(self) -> bool:
+        """
+        The charge status of instance.
+        """
+        return pulumi.get(self, "charge_enabled")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of instance.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="enableEsPrivateNetwork")
+    def enable_es_private_network(self) -> bool:
+        """
+        whether enable es private network.
+        """
+        return pulumi.get(self, "enable_es_private_network")
+
+    @property
+    @pulumi.getter(name="enableEsPublicNetwork")
+    def enable_es_public_network(self) -> bool:
+        """
+        whether enable es public network.
+        """
+        return pulumi.get(self, "enable_es_public_network")
+
+    @property
+    @pulumi.getter(name="enableKibanaPrivateNetwork")
+    def enable_kibana_private_network(self) -> bool:
+        """
+        whether enable kibana private network.
+        """
+        return pulumi.get(self, "enable_kibana_private_network")
+
+    @property
+    @pulumi.getter(name="enableKibanaPublicNetwork")
+    def enable_kibana_public_network(self) -> bool:
+        """
+        whether enable kibana public network.
+        """
+        return pulumi.get(self, "enable_kibana_public_network")
+
+    @property
+    @pulumi.getter(name="esInnerEndpoint")
+    def es_inner_endpoint(self) -> str:
+        """
+        The es inner endpoint of instance.
+        """
+        return pulumi.get(self, "es_inner_endpoint")
+
+    @property
+    @pulumi.getter(name="esPrivateDomain")
+    def es_private_domain(self) -> str:
+        """
+        The es private domain of instance.
+        """
+        return pulumi.get(self, "es_private_domain")
+
+    @property
+    @pulumi.getter(name="esPrivateEndpoint")
+    def es_private_endpoint(self) -> str:
+        """
+        The es private endpoint of instance.
+        """
+        return pulumi.get(self, "es_private_endpoint")
+
+    @property
+    @pulumi.getter(name="esPublicDomain")
+    def es_public_domain(self) -> str:
+        """
+        The es public domain of instance.
+        """
+        return pulumi.get(self, "es_public_domain")
+
+    @property
+    @pulumi.getter(name="esPublicEndpoint")
+    def es_public_endpoint(self) -> str:
+        """
+        The es public endpoint of instance.
+        """
+        return pulumi.get(self, "es_public_endpoint")
+
+    @property
+    @pulumi.getter(name="expireDate")
+    def expire_date(self) -> str:
+        """
+        The expire time of instance.
+        """
+        return pulumi.get(self, "expire_date")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The Id of instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceConfiguration")
+    def instance_configuration(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationResult':
+        """
+        The configuration of instance.
+        """
+        return pulumi.get(self, "instance_configuration")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The Id of instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="kibanaPrivateDomain")
+    def kibana_private_domain(self) -> str:
+        """
+        The kibana private domain of instance.
+        """
+        return pulumi.get(self, "kibana_private_domain")
+
+    @property
+    @pulumi.getter(name="kibanaPublicDomain")
+    def kibana_public_domain(self) -> str:
+        """
+        The kibana public domain of instance.
+        """
+        return pulumi.get(self, "kibana_public_domain")
+
+    @property
+    @pulumi.getter(name="maintenanceDays")
+    def maintenance_days(self) -> Sequence[str]:
+        """
+        The maintenance day of instance.
+        """
+        return pulumi.get(self, "maintenance_days")
+
+    @property
+    @pulumi.getter(name="maintenanceTime")
+    def maintenance_time(self) -> str:
+        """
+        The maintenance time of instance.
+        """
+        return pulumi.get(self, "maintenance_time")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        """
+        The namespace of instance.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def nodes(self) -> Sequence['outputs.GetInstancesInstanceNodeResult']:
+        """
+        The nodes info of instance.
+        """
+        return pulumi.get(self, "nodes")
+
+    @property
+    @pulumi.getter
+    def plugins(self) -> Sequence['outputs.GetInstancesInstancePluginResult']:
+        """
+        The plugin info of instance.
+        """
+        return pulumi.get(self, "plugins")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of instance.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="totalNodes")
+    def total_nodes(self) -> int:
+        """
+        The total nodes of instance.
+        """
+        return pulumi.get(self, "total_nodes")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        The user id of instance.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationResult(dict):
+    def __init__(__self__, *,
+                 admin_user_name: str,
+                 charge_type: str,
+                 enable_https: bool,
+                 enable_pure_master: bool,
+                 hot_node_number: int,
+                 hot_node_resource_spec: 'outputs.GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecResult',
+                 hot_node_storage_spec: 'outputs.GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecResult',
+                 instance_name: str,
+                 kibana_node_number: int,
+                 kibana_node_resource_spec: 'outputs.GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecResult',
+                 kibana_node_storage_spec: 'outputs.GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecResult',
+                 master_node_number: int,
+                 master_node_resource_spec: 'outputs.GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecResult',
+                 master_node_storage_spec: 'outputs.GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecResult',
+                 period: int,
+                 project_name: str,
+                 region_id: str,
+                 subnet: 'outputs.GetInstancesInstanceInstanceConfigurationSubnetResult',
+                 version: str,
+                 vpc: 'outputs.GetInstancesInstanceInstanceConfigurationVpcResult',
+                 zone_id: str,
+                 zone_number: int):
+        """
+        :param str admin_user_name: The user name of instance.
+        :param str charge_type: The charge type of instance.
+        :param bool enable_https: whether enable https.
+        :param bool enable_pure_master: Whether enable pure master.
+        :param int hot_node_number: The node number of host.
+        :param 'GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecArgs' hot_node_resource_spec: The node resource spec of host.
+        :param 'GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecArgs' hot_node_storage_spec: The node storage spec of host.
+        :param str instance_name: The name of instance.
+        :param int kibana_node_number: The node number of kibana.
+        :param 'GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecArgs' kibana_node_resource_spec: The node resource spec of kibana.
+        :param 'GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecArgs' kibana_node_storage_spec: The node storage spec of kibana.
+        :param int master_node_number: The node number of master.
+        :param 'GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecArgs' master_node_resource_spec: The node resource spec of master.
+        :param 'GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecArgs' master_node_storage_spec: The node storage spec of master.
+        :param int period: The period of project.
+        :param str project_name: The name of project.
+        :param str region_id: The region info of instance.
+        :param 'GetInstancesInstanceInstanceConfigurationSubnetArgs' subnet: The subnet info.
+        :param str version: The version of plugin.
+        :param 'GetInstancesInstanceInstanceConfigurationVpcArgs' vpc: The vpc info.
+        :param str zone_id: The zoneId of instance.
+        :param int zone_number: The zone number of instance.
+        """
+        pulumi.set(__self__, "admin_user_name", admin_user_name)
+        pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "enable_https", enable_https)
+        pulumi.set(__self__, "enable_pure_master", enable_pure_master)
+        pulumi.set(__self__, "hot_node_number", hot_node_number)
+        pulumi.set(__self__, "hot_node_resource_spec", hot_node_resource_spec)
+        pulumi.set(__self__, "hot_node_storage_spec", hot_node_storage_spec)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "kibana_node_number", kibana_node_number)
+        pulumi.set(__self__, "kibana_node_resource_spec", kibana_node_resource_spec)
+        pulumi.set(__self__, "kibana_node_storage_spec", kibana_node_storage_spec)
+        pulumi.set(__self__, "master_node_number", master_node_number)
+        pulumi.set(__self__, "master_node_resource_spec", master_node_resource_spec)
+        pulumi.set(__self__, "master_node_storage_spec", master_node_storage_spec)
+        pulumi.set(__self__, "period", period)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "vpc", vpc)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_number", zone_number)
+
+    @property
+    @pulumi.getter(name="adminUserName")
+    def admin_user_name(self) -> str:
+        """
+        The user name of instance.
+        """
+        return pulumi.get(self, "admin_user_name")
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of instance.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="enableHttps")
+    def enable_https(self) -> bool:
+        """
+        whether enable https.
+        """
+        return pulumi.get(self, "enable_https")
+
+    @property
+    @pulumi.getter(name="enablePureMaster")
+    def enable_pure_master(self) -> bool:
+        """
+        Whether enable pure master.
+        """
+        return pulumi.get(self, "enable_pure_master")
+
+    @property
+    @pulumi.getter(name="hotNodeNumber")
+    def hot_node_number(self) -> int:
+        """
+        The node number of host.
+        """
+        return pulumi.get(self, "hot_node_number")
+
+    @property
+    @pulumi.getter(name="hotNodeResourceSpec")
+    def hot_node_resource_spec(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecResult':
+        """
+        The node resource spec of host.
+        """
+        return pulumi.get(self, "hot_node_resource_spec")
+
+    @property
+    @pulumi.getter(name="hotNodeStorageSpec")
+    def hot_node_storage_spec(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecResult':
+        """
+        The node storage spec of host.
+        """
+        return pulumi.get(self, "hot_node_storage_spec")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="kibanaNodeNumber")
+    def kibana_node_number(self) -> int:
+        """
+        The node number of kibana.
+        """
+        return pulumi.get(self, "kibana_node_number")
+
+    @property
+    @pulumi.getter(name="kibanaNodeResourceSpec")
+    def kibana_node_resource_spec(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecResult':
+        """
+        The node resource spec of kibana.
+        """
+        return pulumi.get(self, "kibana_node_resource_spec")
+
+    @property
+    @pulumi.getter(name="kibanaNodeStorageSpec")
+    def kibana_node_storage_spec(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecResult':
+        """
+        The node storage spec of kibana.
+        """
+        return pulumi.get(self, "kibana_node_storage_spec")
+
+    @property
+    @pulumi.getter(name="masterNodeNumber")
+    def master_node_number(self) -> int:
+        """
+        The node number of master.
+        """
+        return pulumi.get(self, "master_node_number")
+
+    @property
+    @pulumi.getter(name="masterNodeResourceSpec")
+    def master_node_resource_spec(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecResult':
+        """
+        The node resource spec of master.
+        """
+        return pulumi.get(self, "master_node_resource_spec")
+
+    @property
+    @pulumi.getter(name="masterNodeStorageSpec")
+    def master_node_storage_spec(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecResult':
+        """
+        The node storage spec of master.
+        """
+        return pulumi.get(self, "master_node_storage_spec")
+
+    @property
+    @pulumi.getter
+    def period(self) -> int:
+        """
+        The period of project.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of project.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region info of instance.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationSubnetResult':
+        """
+        The subnet info.
+        """
+        return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of plugin.
+        """
+        return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> 'outputs.GetInstancesInstanceInstanceConfigurationVpcResult':
+        """
+        The vpc info.
+        """
+        return pulumi.get(self, "vpc")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zoneId of instance.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneNumber")
+    def zone_number(self) -> int:
+        """
+        The zone number of instance.
+        """
+        return pulumi.get(self, "zone_number")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationHotNodeResourceSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 display_name: str,
+                 memory: int,
+                 name: str):
+        """
+        :param int cpu: The cpu info of resource spec.
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int memory: The memory info of resource spec.
+        :param str name: The name of storage spec.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        """
+        The cpu info of resource spec.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory info of resource spec.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationHotNodeStorageSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 max_size: int,
+                 min_size: int,
+                 name: str,
+                 size: int,
+                 type: str):
+        """
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int max_size: The max size of storage spec.
+        :param int min_size: The min size of storage spec.
+        :param str name: The name of storage spec.
+        :param int size: The size of storage spec.
+        :param str type: The type of storage spec.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The max size of storage spec.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="minSize")
+    def min_size(self) -> int:
+        """
+        The min size of storage spec.
+        """
+        return pulumi.get(self, "min_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of storage spec.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of storage spec.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationKibanaNodeResourceSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 display_name: str,
+                 memory: int,
+                 name: str):
+        """
+        :param int cpu: The cpu info of resource spec.
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int memory: The memory info of resource spec.
+        :param str name: The name of storage spec.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        """
+        The cpu info of resource spec.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory info of resource spec.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationKibanaNodeStorageSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 max_size: int,
+                 min_size: int,
+                 name: str,
+                 size: int,
+                 type: str):
+        """
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int max_size: The max size of storage spec.
+        :param int min_size: The min size of storage spec.
+        :param str name: The name of storage spec.
+        :param int size: The size of storage spec.
+        :param str type: The type of storage spec.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The max size of storage spec.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="minSize")
+    def min_size(self) -> int:
+        """
+        The min size of storage spec.
+        """
+        return pulumi.get(self, "min_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of storage spec.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of storage spec.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationMasterNodeResourceSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 display_name: str,
+                 memory: int,
+                 name: str):
+        """
+        :param int cpu: The cpu info of resource spec.
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int memory: The memory info of resource spec.
+        :param str name: The name of storage spec.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        """
+        The cpu info of resource spec.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory info of resource spec.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationMasterNodeStorageSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 max_size: int,
+                 min_size: int,
+                 name: str,
+                 size: int,
+                 type: str):
+        """
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int max_size: The max size of storage spec.
+        :param int min_size: The min size of storage spec.
+        :param str name: The name of storage spec.
+        :param int size: The size of storage spec.
+        :param str type: The type of storage spec.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The max size of storage spec.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="minSize")
+    def min_size(self) -> int:
+        """
+        The min size of storage spec.
+        """
+        return pulumi.get(self, "min_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of storage spec.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of storage spec.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationSubnetResult(dict):
+    def __init__(__self__, *,
+                 subnet_id: str,
+                 subnet_name: str):
+        """
+        :param str subnet_id: The id of subnet.
+        :param str subnet_name: The name of subnet.
+        """
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "subnet_name", subnet_name)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The id of subnet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter(name="subnetName")
+    def subnet_name(self) -> str:
+        """
+        The name of subnet.
+        """
+        return pulumi.get(self, "subnet_name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceInstanceConfigurationVpcResult(dict):
+    def __init__(__self__, *,
+                 vpc_id: str,
+                 vpc_name: str):
+        """
+        :param str vpc_id: The id of vpc.
+        :param str vpc_name: The name of vpc.
+        """
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_name", vpc_name)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of vpc.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> str:
+        """
+        The name of vpc.
+        """
+        return pulumi.get(self, "vpc_name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceNodeResult(dict):
+    def __init__(__self__, *,
+                 is_cold: bool,
+                 is_hot: bool,
+                 is_kibana: bool,
+                 is_master: bool,
+                 is_warm: bool,
+                 node_display_name: str,
+                 node_name: str,
+                 resource_spec: 'outputs.GetInstancesInstanceNodeResourceSpecResult',
+                 restart_number: int,
+                 start_time: str,
+                 status: str,
+                 storage_spec: 'outputs.GetInstancesInstanceNodeStorageSpecResult'):
+        """
+        :param bool is_cold: Is cold node.
+        :param bool is_hot: Is hot node.
+        :param bool is_kibana: Is kibana node.
+        :param bool is_master: Is master node.
+        :param bool is_warm: Is warm node.
+        :param str node_display_name: The show name of node.
+        :param str node_name: The name of node.
+        :param 'GetInstancesInstanceNodeResourceSpecArgs' resource_spec: The node resource spec of master.
+        :param int restart_number: The restart times of node.
+        :param str start_time: The start time of node.
+        :param str status: The status of instance.
+        :param 'GetInstancesInstanceNodeStorageSpecArgs' storage_spec: The node storage spec of master.
+        """
+        pulumi.set(__self__, "is_cold", is_cold)
+        pulumi.set(__self__, "is_hot", is_hot)
+        pulumi.set(__self__, "is_kibana", is_kibana)
+        pulumi.set(__self__, "is_master", is_master)
+        pulumi.set(__self__, "is_warm", is_warm)
+        pulumi.set(__self__, "node_display_name", node_display_name)
+        pulumi.set(__self__, "node_name", node_name)
+        pulumi.set(__self__, "resource_spec", resource_spec)
+        pulumi.set(__self__, "restart_number", restart_number)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "storage_spec", storage_spec)
+
+    @property
+    @pulumi.getter(name="isCold")
+    def is_cold(self) -> bool:
+        """
+        Is cold node.
+        """
+        return pulumi.get(self, "is_cold")
+
+    @property
+    @pulumi.getter(name="isHot")
+    def is_hot(self) -> bool:
+        """
+        Is hot node.
+        """
+        return pulumi.get(self, "is_hot")
+
+    @property
+    @pulumi.getter(name="isKibana")
+    def is_kibana(self) -> bool:
+        """
+        Is kibana node.
+        """
+        return pulumi.get(self, "is_kibana")
+
+    @property
+    @pulumi.getter(name="isMaster")
+    def is_master(self) -> bool:
+        """
+        Is master node.
+        """
+        return pulumi.get(self, "is_master")
+
+    @property
+    @pulumi.getter(name="isWarm")
+    def is_warm(self) -> bool:
+        """
+        Is warm node.
+        """
+        return pulumi.get(self, "is_warm")
+
+    @property
+    @pulumi.getter(name="nodeDisplayName")
+    def node_display_name(self) -> str:
+        """
+        The show name of node.
+        """
+        return pulumi.get(self, "node_display_name")
+
+    @property
+    @pulumi.getter(name="nodeName")
+    def node_name(self) -> str:
+        """
+        The name of node.
+        """
+        return pulumi.get(self, "node_name")
+
+    @property
+    @pulumi.getter(name="resourceSpec")
+    def resource_spec(self) -> 'outputs.GetInstancesInstanceNodeResourceSpecResult':
+        """
+        The node resource spec of master.
+        """
+        return pulumi.get(self, "resource_spec")
+
+    @property
+    @pulumi.getter(name="restartNumber")
+    def restart_number(self) -> int:
+        """
+        The restart times of node.
+        """
+        return pulumi.get(self, "restart_number")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time of node.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of instance.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="storageSpec")
+    def storage_spec(self) -> 'outputs.GetInstancesInstanceNodeStorageSpecResult':
+        """
+        The node storage spec of master.
+        """
+        return pulumi.get(self, "storage_spec")
+
+
+@pulumi.output_type
+class GetInstancesInstanceNodeResourceSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 display_name: str,
+                 memory: int,
+                 name: str):
+        """
+        :param int cpu: The cpu info of resource spec.
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int memory: The memory info of resource spec.
+        :param str name: The name of storage spec.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        """
+        The cpu info of resource spec.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory info of resource spec.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetInstancesInstanceNodeStorageSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 max_size: int,
+                 min_size: int,
+                 name: str,
+                 size: int,
+                 type: str):
+        """
+        :param str description: The description of plugin.
+        :param str display_name: The show name of storage spec.
+        :param int max_size: The max size of storage spec.
+        :param int min_size: The min size of storage spec.
+        :param str name: The name of storage spec.
+        :param int size: The size of storage spec.
+        :param str type: The type of storage spec.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The show name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The max size of storage spec.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="minSize")
+    def min_size(self) -> int:
+        """
+        The min size of storage spec.
+        """
+        return pulumi.get(self, "min_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of storage spec.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of storage spec.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetInstancesInstancePluginResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 plugin_name: str,
+                 version: str):
+        """
+        :param str description: The description of plugin.
+        :param str plugin_name: The name of plugin.
+        :param str version: The version of plugin.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "plugin_name", plugin_name)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> str:
+        """
+        The name of plugin.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of plugin.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 region_name: str):
+        """
+        :param str region_id: The id of the region.
+        :param str region_name: The name of region.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The id of the region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        The name of region.
+        """
+        return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetZonesZoneResult(dict):
     def __init__(__self__, *,
                  id: str,
                  zone_id: str,

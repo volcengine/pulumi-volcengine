@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nas
 {
+    [Obsolete(@"volcengine.nas.Regions has been deprecated in favor of volcengine.nas.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nas.Regions.Invoke();
+        ///     var @default = Volcengine.Nas.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nas.Regions.Invoke();
+        ///     var @default = Volcengine.Nas.GetRegions.Invoke();
         /// 
         /// });
         /// ```

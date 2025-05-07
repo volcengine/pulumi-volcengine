@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.nas.Zones({});
+ * const fooZones = volcengine.nas.getZones({});
  * const fooFileSystem: volcengine.nas.FileSystem[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooFileSystem.push(new volcengine.nas.FileSystem(`fooFileSystem-${range.value}`, {
@@ -30,12 +30,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooFileSystems = volcengine.nas.FileSystemsOutput({
+ * const fooFileSystems = volcengine.nas.getFileSystemsOutput({
  *     ids: fooFileSystem.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems */
 export function fileSystems(args?: FileSystemsArgs, opts?: pulumi.InvokeOptions): Promise<FileSystemsResult> {
+    pulumi.log.warn("fileSystems is deprecated: volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -177,7 +179,7 @@ export interface FileSystemsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.nas.Zones({});
+ * const fooZones = volcengine.nas.getZones({});
  * const fooFileSystem: volcengine.nas.FileSystem[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooFileSystem.push(new volcengine.nas.FileSystem(`fooFileSystem-${range.value}`, {
@@ -192,11 +194,12 @@ export interface FileSystemsResult {
  *         }],
  *     }));
  * }
- * const fooFileSystems = volcengine.nas.FileSystemsOutput({
+ * const fooFileSystems = volcengine.nas.getFileSystemsOutput({
  *     ids: fooFileSystem.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems */
 export function fileSystemsOutput(args?: FileSystemsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<FileSystemsResult> {
     return pulumi.output(args).apply((a: any) => fileSystems(a, opts))
 }

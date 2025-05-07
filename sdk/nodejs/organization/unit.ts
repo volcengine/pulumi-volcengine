@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooOrganization = new volcengine.organization.Organization("fooOrganization", {});
- * const fooUnits = volcengine.organization.Units({});
+ * const fooUnits = volcengine.organization.getUnits({});
  * const fooUnit = new volcengine.organization.Unit("fooUnit", {
  *     parentId: fooUnits.then(fooUnits => .filter(unit => unit.parentId == "0").map(unit => (unit.id))[0]),
  *     description: "tf-test",

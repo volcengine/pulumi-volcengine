@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rocketmq
 {
+    [Obsolete(@"volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances")]
     public static class Instances
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rocketmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rocketmq.Instances.Invoke(new()
+        ///     var foo = Volcengine.Rocketmq.GetInstances.Invoke(new()
         ///     {
         ///         InstanceId = "rocketmq-cnoeea6b32118fc2",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Rocketmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rocketmq.Instances.Invoke(new()
+        ///     var foo = Volcengine.Rocketmq.GetInstances.Invoke(new()
         ///     {
         ///         InstanceId = "rocketmq-cnoeea6b32118fc2",
         ///     });

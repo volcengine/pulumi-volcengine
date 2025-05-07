@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -78,12 +78,14 @@ import * as utilities from "../utilities";
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = volcengine.kafka.TopicsOutput({
+ * const default = volcengine.kafka.getTopicsOutput({
  *     instanceId: fooTopic.instanceId,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics */
 export function topics(args: TopicsArgs, opts?: pulumi.InvokeOptions): Promise<TopicsResult> {
+    pulumi.log.warn("topics is deprecated: volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:kafka/topics:Topics", {
@@ -176,7 +178,7 @@ export interface TopicsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -239,11 +241,12 @@ export interface TopicsResult {
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = volcengine.kafka.TopicsOutput({
+ * const default = volcengine.kafka.getTopicsOutput({
  *     instanceId: fooTopic.instanceId,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics */
 export function topicsOutput(args: TopicsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TopicsResult> {
     return pulumi.output(args).apply((a: any) => topics(a, opts))
 }

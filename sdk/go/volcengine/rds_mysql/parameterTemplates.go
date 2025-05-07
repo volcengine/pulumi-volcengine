@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mysql.ParameterTemplates(ctx, &rds_mysql.ParameterTemplatesArgs{
+//			_, err := rds_mysql.GetParameterTemplates(ctx, &rds_mysql.GetParameterTemplatesArgs{
 //				TemplateCategory: pulumi.StringRef("DBEngine"),
 //				TemplateSource:   pulumi.StringRef("User"),
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates
 func ParameterTemplates(ctx *pulumi.Context, args *ParameterTemplatesArgs, opts ...pulumi.InvokeOption) (*ParameterTemplatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ParameterTemplatesResult

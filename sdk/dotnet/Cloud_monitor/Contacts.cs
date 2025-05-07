@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_monitor
 {
+    [Obsolete(@"volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts")]
     public static class Contacts
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_monitor.Contacts.Invoke(new()
+        ///     var foo = Volcengine.Cloud_monitor.GetContacts.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_monitor.Contacts.Invoke(new()
+        ///     var foo = Volcengine.Cloud_monitor.GetContacts.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

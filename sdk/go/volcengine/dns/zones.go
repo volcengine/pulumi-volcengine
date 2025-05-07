@@ -26,8 +26,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dns.Zones(ctx, &dns.ZonesArgs{
-//				Tags: []dns.ZonesTag{
+//			_, err := dns.GetZones(ctx, &dns.GetZonesArgs{
+//				Tags: []dns.GetZonesTag{
 //					{
 //						Key: "xx",
 //						Values: []string{
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones
 func Zones(ctx *pulumi.Context, args *ZonesArgs, opts ...pulumi.InvokeOption) (*ZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ZonesResult

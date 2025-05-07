@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.Accesses({
+ * const default = volcengine.cloudfs.getAccesses({
  *     fsName: "tftest2",
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses */
 export function accesses(args: AccessesArgs, opts?: pulumi.InvokeOptions): Promise<AccessesResult> {
+    pulumi.log.warn("accesses is deprecated: volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloudfs/accesses:Accesses", {
@@ -72,11 +74,12 @@ export interface AccessesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.Accesses({
+ * const default = volcengine.cloudfs.getAccesses({
  *     fsName: "tftest2",
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses */
 export function accessesOutput(args: AccessesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccessesResult> {
     return pulumi.output(args).apply((a: any) => accesses(a, opts))
 }

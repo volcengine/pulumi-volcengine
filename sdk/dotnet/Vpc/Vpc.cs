@@ -21,8 +21,12 @@ namespace Pulumi.Volcengine.Vpc
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Vpc.Vpc("foo", new()
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+    /// 
+    ///     // create vpc
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
+    ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
     ///         DnsServers = new[]
     ///         {
@@ -30,7 +34,22 @@ namespace Pulumi.Volcengine.Vpc
     ///             "114.114.114.114",
     ///         },
     ///         ProjectName = "default",
-    ///         VpcName = "acc-test-vpc",
+    ///     });
+    /// 
+    ///     // create subnet
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     // create security group
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
     ///     });
     /// 
     /// });

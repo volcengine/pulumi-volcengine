@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.RouteEntries(ctx, &vpc.RouteEntriesArgs{
+//			_, err := vpc.GetRouteEntries(ctx, &vpc.GetRouteEntriesArgs{
 //				Ids:          []interface{}{},
 //				RouteTableId: "vtb-274e19skkuhog7fap8u4i8ird",
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries
 func RouteEntries(ctx *pulumi.Context, args *RouteEntriesArgs, opts ...pulumi.InvokeOption) (*RouteEntriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteEntriesResult

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.Groups({
+ * const foo = volcengine.rocketmq.getGroups({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups */
 export function groups(args: GroupsArgs, opts?: pulumi.InvokeOptions): Promise<GroupsResult> {
+    pulumi.log.warn("groups is deprecated: volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rocketmq/groups:Groups", {
@@ -87,11 +89,12 @@ export interface GroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.Groups({
+ * const foo = volcengine.rocketmq.getGroups({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.Groups has been deprecated in favor of volcengine.rocketmq.getGroups */
 export function groupsOutput(args: GroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GroupsResult> {
     return pulumi.output(args).apply((a: any) => groups(a, opts))
 }

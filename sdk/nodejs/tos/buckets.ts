@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tos.Buckets({
+ * const default = volcengine.tos.getBuckets({
  *     nameRegex: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets */
 export function buckets(args?: BucketsArgs, opts?: pulumi.InvokeOptions): Promise<BucketsResult> {
+    pulumi.log.warn("buckets is deprecated: volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -76,11 +78,12 @@ export interface BucketsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tos.Buckets({
+ * const default = volcengine.tos.getBuckets({
  *     nameRegex: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets */
 export function bucketsOutput(args?: BucketsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BucketsResult> {
     return pulumi.output(args).apply((a: any) => buckets(a, opts))
 }

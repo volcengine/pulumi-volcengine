@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds.ParameterTemplates(ctx, nil, nil)
+//			_, err := rds.GetParameterTemplates(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates
 func ParameterTemplates(ctx *pulumi.Context, args *ParameterTemplatesArgs, opts ...pulumi.InvokeOption) (*ParameterTemplatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ParameterTemplatesResult

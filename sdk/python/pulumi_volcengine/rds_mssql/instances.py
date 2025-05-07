@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -223,7 +225,7 @@ def instances(charge_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mssql.instances(instance_id="mssql-d2fc5abe****")
+    foo = volcengine.rds_mssql.get_instances(instance_id="mssql-d2fc5abe****")
     ```
 
 
@@ -240,6 +242,7 @@ def instances(charge_type: Optional[str] = None,
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The id of the zone.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances""")
     __args__ = dict()
     __args__['chargeType'] = charge_type
     __args__['createTimeEnd'] = create_time_end
@@ -296,7 +299,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mssql.instances(instance_id="mssql-d2fc5abe****")
+    foo = volcengine.rds_mssql.get_instances(instance_id="mssql-d2fc5abe****")
     ```
 
 
@@ -313,4 +316,5 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The id of the zone.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rds_mssql.Instances has been deprecated in favor of volcengine.rds_mssql.getInstances""")
     ...

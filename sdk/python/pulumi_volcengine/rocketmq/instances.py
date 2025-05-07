@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -226,7 +228,7 @@ def instances(charge_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.instances(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_instances(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -243,6 +245,7 @@ def instances(charge_type: Optional[str] = None,
     :param str vpc_id: The vpc id of rocketmq instance.
     :param str zone_id: The zone id of rocketmq instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances""")
     __args__ = dict()
     __args__['chargeType'] = charge_type
     __args__['instanceId'] = instance_id
@@ -299,7 +302,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rocketmq.instances(instance_id="rocketmq-cnoeea6b32118fc2")
+    foo = volcengine.rocketmq.get_instances(instance_id="rocketmq-cnoeea6b32118fc2")
     ```
 
 
@@ -316,4 +319,5 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param str vpc_id: The vpc id of rocketmq instance.
     :param str zone_id: The zone id of rocketmq instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances""")
     ...

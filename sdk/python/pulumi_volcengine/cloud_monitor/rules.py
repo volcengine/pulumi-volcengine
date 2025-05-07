@@ -17,6 +17,8 @@ __all__ = [
     'rules_output',
 ]
 
+warnings.warn("""volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules""", DeprecationWarning)
+
 @pulumi.output_type
 class RulesResult:
     """
@@ -173,7 +175,7 @@ def rules(alert_states: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.rules(ids=["174402785374661****"])
+    foo = volcengine.cloud_monitor.get_rules(ids=["174402785374661****"])
     ```
 
 
@@ -186,6 +188,7 @@ def rules(alert_states: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str rule_name: The name of the cloud monitor rule. This field support fuzzy query.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules""")
     __args__ = dict()
     __args__['alertStates'] = alert_states
     __args__['enableStates'] = enable_states
@@ -230,7 +233,7 @@ def rules_output(alert_states: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.rules(ids=["174402785374661****"])
+    foo = volcengine.cloud_monitor.get_rules(ids=["174402785374661****"])
     ```
 
 
@@ -243,4 +246,5 @@ def rules_output(alert_states: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param str output_file: File name where to save data source results.
     :param str rule_name: The name of the cloud monitor rule. This field support fuzzy query.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules""")
     ...

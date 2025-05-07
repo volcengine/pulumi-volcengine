@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Escloud_v2
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         SubnetName = "acc-test-subnet",
     ///         Description = "tfdesc",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
@@ -44,9 +44,9 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         Version = "V7_10",
     ///         ZoneIds = new[]
     ///         {
-    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
-    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[2]?.Id),
+    ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
+    ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
     ///         },
     ///         SubnetId = fooSubnet.Id,
     ///         EnableHttps = false,

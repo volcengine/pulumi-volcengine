@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -32,12 +32,14 @@ import * as utilities from "../utilities";
  *     subnetId: fooSubnet.id,
  * });
  * //  ip_address = "172.16.0.5"
- * const fooHaVips = volcengine.vpc.HaVipsOutput({
+ * const fooHaVips = volcengine.vpc.getHaVipsOutput({
  *     ids: [fooHaVip.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips */
 export function haVips(args?: HaVipsArgs, opts?: pulumi.InvokeOptions): Promise<HaVipsResult> {
+    pulumi.log.warn("haVips is deprecated: volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -158,7 +160,7 @@ export interface HaVipsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -175,11 +177,12 @@ export interface HaVipsResult {
  *     subnetId: fooSubnet.id,
  * });
  * //  ip_address = "172.16.0.5"
- * const fooHaVips = volcengine.vpc.HaVipsOutput({
+ * const fooHaVips = volcengine.vpc.getHaVipsOutput({
  *     ids: [fooHaVip.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips */
 export function haVipsOutput(args?: HaVipsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<HaVipsResult> {
     return pulumi.output(args).apply((a: any) => haVips(a, opts))
 }

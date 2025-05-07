@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Iam
 {
+    [Obsolete(@"volcengine.iam.Policies has been deprecated in favor of volcengine.iam.getPolicies")]
     public static class Policies
     {
         /// <summary>
@@ -30,7 +31,7 @@ namespace Pulumi.Volcengine.Iam
         ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
         ///     });
         /// 
-        ///     var fooPolicies = Volcengine.Iam.Policies.Invoke(new()
+        ///     var fooPolicies = Volcengine.Iam.GetPolicies.Invoke(new()
         ///     {
         ///         Query = fooPolicy.Description,
         ///     });
@@ -60,7 +61,7 @@ namespace Pulumi.Volcengine.Iam
         ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
         ///     });
         /// 
-        ///     var fooPolicies = Volcengine.Iam.Policies.Invoke(new()
+        ///     var fooPolicies = Volcengine.Iam.GetPolicies.Invoke(new()
         ///     {
         ///         Query = fooPolicy.Description,
         ///     });

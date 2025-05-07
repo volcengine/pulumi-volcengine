@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -62,13 +62,15 @@ import * as utilities from "../utilities";
  *         accountPrivilegeDetail: "SELECT,INSERT,DELETE",
  *     }],
  * });
- * const fooAccounts = volcengine.vedb_mysql.AccountsOutput({
+ * const fooAccounts = volcengine.vedb_mysql.getAccountsOutput({
  *     accountName: fooAccount.accountName,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts */
 export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promise<AccountsResult> {
+    pulumi.log.warn("accounts is deprecated: volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vedb_mysql/accounts:Accounts", {
@@ -134,7 +136,7 @@ export interface AccountsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -181,12 +183,13 @@ export interface AccountsResult {
  *         accountPrivilegeDetail: "SELECT,INSERT,DELETE",
  *     }],
  * });
- * const fooAccounts = volcengine.vedb_mysql.AccountsOutput({
+ * const fooAccounts = volcengine.vedb_mysql.getAccountsOutput({
  *     accountName: fooAccount.accountName,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts */
 export function accountsOutput(args: AccountsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccountsResult> {
     return pulumi.output(args).apply((a: any) => accounts(a, opts))
 }

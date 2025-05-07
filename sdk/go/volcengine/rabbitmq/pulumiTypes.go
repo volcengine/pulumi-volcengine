@@ -1406,6 +1406,977 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 	}).(InstancesTagOutput)
 }
 
+type GetInstancePluginsPlugin struct {
+	// The description of plugin.
+	Description string `pulumi:"description"`
+	// The disable prompt of plugin.
+	DisablePrompt string `pulumi:"disablePrompt"`
+	// The enable prompt of plugin.
+	EnablePrompt string `pulumi:"enablePrompt"`
+	// Whether plugin is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+	NeedRebootOnChange bool `pulumi:"needRebootOnChange"`
+	// The name of plugin.
+	PluginName string `pulumi:"pluginName"`
+	// The port of plugin.
+	Port int `pulumi:"port"`
+	// The version of plugin.
+	Version string `pulumi:"version"`
+}
+
+// GetInstancePluginsPluginInput is an input type that accepts GetInstancePluginsPluginArgs and GetInstancePluginsPluginOutput values.
+// You can construct a concrete instance of `GetInstancePluginsPluginInput` via:
+//
+//	GetInstancePluginsPluginArgs{...}
+type GetInstancePluginsPluginInput interface {
+	pulumi.Input
+
+	ToGetInstancePluginsPluginOutput() GetInstancePluginsPluginOutput
+	ToGetInstancePluginsPluginOutputWithContext(context.Context) GetInstancePluginsPluginOutput
+}
+
+type GetInstancePluginsPluginArgs struct {
+	// The description of plugin.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The disable prompt of plugin.
+	DisablePrompt pulumi.StringInput `pulumi:"disablePrompt"`
+	// The enable prompt of plugin.
+	EnablePrompt pulumi.StringInput `pulumi:"enablePrompt"`
+	// Whether plugin is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+	NeedRebootOnChange pulumi.BoolInput `pulumi:"needRebootOnChange"`
+	// The name of plugin.
+	PluginName pulumi.StringInput `pulumi:"pluginName"`
+	// The port of plugin.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The version of plugin.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetInstancePluginsPluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancePluginsPlugin)(nil)).Elem()
+}
+
+func (i GetInstancePluginsPluginArgs) ToGetInstancePluginsPluginOutput() GetInstancePluginsPluginOutput {
+	return i.ToGetInstancePluginsPluginOutputWithContext(context.Background())
+}
+
+func (i GetInstancePluginsPluginArgs) ToGetInstancePluginsPluginOutputWithContext(ctx context.Context) GetInstancePluginsPluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancePluginsPluginOutput)
+}
+
+// GetInstancePluginsPluginArrayInput is an input type that accepts GetInstancePluginsPluginArray and GetInstancePluginsPluginArrayOutput values.
+// You can construct a concrete instance of `GetInstancePluginsPluginArrayInput` via:
+//
+//	GetInstancePluginsPluginArray{ GetInstancePluginsPluginArgs{...} }
+type GetInstancePluginsPluginArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancePluginsPluginArrayOutput() GetInstancePluginsPluginArrayOutput
+	ToGetInstancePluginsPluginArrayOutputWithContext(context.Context) GetInstancePluginsPluginArrayOutput
+}
+
+type GetInstancePluginsPluginArray []GetInstancePluginsPluginInput
+
+func (GetInstancePluginsPluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancePluginsPlugin)(nil)).Elem()
+}
+
+func (i GetInstancePluginsPluginArray) ToGetInstancePluginsPluginArrayOutput() GetInstancePluginsPluginArrayOutput {
+	return i.ToGetInstancePluginsPluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancePluginsPluginArray) ToGetInstancePluginsPluginArrayOutputWithContext(ctx context.Context) GetInstancePluginsPluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancePluginsPluginArrayOutput)
+}
+
+type GetInstancePluginsPluginOutput struct{ *pulumi.OutputState }
+
+func (GetInstancePluginsPluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancePluginsPlugin)(nil)).Elem()
+}
+
+func (o GetInstancePluginsPluginOutput) ToGetInstancePluginsPluginOutput() GetInstancePluginsPluginOutput {
+	return o
+}
+
+func (o GetInstancePluginsPluginOutput) ToGetInstancePluginsPluginOutputWithContext(ctx context.Context) GetInstancePluginsPluginOutput {
+	return o
+}
+
+// The description of plugin.
+func (o GetInstancePluginsPluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The disable prompt of plugin.
+func (o GetInstancePluginsPluginOutput) DisablePrompt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) string { return v.DisablePrompt }).(pulumi.StringOutput)
+}
+
+// The enable prompt of plugin.
+func (o GetInstancePluginsPluginOutput) EnablePrompt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) string { return v.EnablePrompt }).(pulumi.StringOutput)
+}
+
+// Whether plugin is enabled.
+func (o GetInstancePluginsPluginOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Will changing the enabled state of the plugin cause a reboot of the rabbitmq instance.
+func (o GetInstancePluginsPluginOutput) NeedRebootOnChange() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) bool { return v.NeedRebootOnChange }).(pulumi.BoolOutput)
+}
+
+// The name of plugin.
+func (o GetInstancePluginsPluginOutput) PluginName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) string { return v.PluginName }).(pulumi.StringOutput)
+}
+
+// The port of plugin.
+func (o GetInstancePluginsPluginOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The version of plugin.
+func (o GetInstancePluginsPluginOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePluginsPlugin) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetInstancePluginsPluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancePluginsPluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancePluginsPlugin)(nil)).Elem()
+}
+
+func (o GetInstancePluginsPluginArrayOutput) ToGetInstancePluginsPluginArrayOutput() GetInstancePluginsPluginArrayOutput {
+	return o
+}
+
+func (o GetInstancePluginsPluginArrayOutput) ToGetInstancePluginsPluginArrayOutputWithContext(ctx context.Context) GetInstancePluginsPluginArrayOutput {
+	return o
+}
+
+func (o GetInstancePluginsPluginArrayOutput) Index(i pulumi.IntInput) GetInstancePluginsPluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancePluginsPlugin {
+		return vs[0].([]GetInstancePluginsPlugin)[vs[1].(int)]
+	}).(GetInstancePluginsPluginOutput)
+}
+
+type GetInstancesRabbitmqInstance struct {
+	// The account id of the rabbitmq instance.
+	AccountId string `pulumi:"accountId"`
+	// Whether enable the public network parsing function of the rabbitmq instance.
+	ApplyPrivateDnsToPublic bool `pulumi:"applyPrivateDnsToPublic"`
+	// The type of the rabbitmq instance.
+	ArchType string `pulumi:"archType"`
+	// The charge detail information of the rabbitmq instance.
+	ChargeDetails []GetInstancesRabbitmqInstanceChargeDetail `pulumi:"chargeDetails"`
+	// The compute specification of the rabbitmq instance.
+	ComputeSpec string `pulumi:"computeSpec"`
+	// The create time of the rabbitmq instance.
+	CreateTime string `pulumi:"createTime"`
+	// The eip id of the rabbitmq instance.
+	EipId string `pulumi:"eipId"`
+	// The endpoint info of the rabbitmq instance.
+	Endpoints []GetInstancesRabbitmqInstanceEndpoint `pulumi:"endpoints"`
+	// The id of the rabbitmq instance.
+	Id string `pulumi:"id"`
+	// The WebUI admin user name of the rabbitmq instance.
+	InitUserName string `pulumi:"initUserName"`
+	// The description of the rabbitmq instance.
+	InstanceDescription string `pulumi:"instanceDescription"`
+	// The id of rabbitmq instance. This field supports fuzzy query.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of rabbitmq instance. This field supports fuzzy query.
+	InstanceName string `pulumi:"instanceName"`
+	// The status of rabbitmq instance.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// The project name of rabbitmq instance.
+	ProjectName string `pulumi:"projectName"`
+	// The region description of the rabbitmq instance.
+	RegionDescription string `pulumi:"regionDescription"`
+	// The region id of the rabbitmq instance.
+	RegionId string `pulumi:"regionId"`
+	// The total storage space of the rabbitmq instance. Unit: GiB.
+	StorageSpace int `pulumi:"storageSpace"`
+	// The subnet id of the rabbitmq instance.
+	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GetInstancesRabbitmqInstanceTag `pulumi:"tags"`
+	// The used storage space of the rabbitmq instance. Unit: GiB.
+	UsedStorageSpace int `pulumi:"usedStorageSpace"`
+	// The version of the rabbitmq instance.
+	Version string `pulumi:"version"`
+	// The vpc id of rabbitmq instance. This field supports fuzzy query.
+	VpcId string `pulumi:"vpcId"`
+	// The zone description of the rabbitmq instance.
+	ZoneDescription string `pulumi:"zoneDescription"`
+	// The zone id of rabbitmq instance. This field supports fuzzy query.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesRabbitmqInstanceInput is an input type that accepts GetInstancesRabbitmqInstanceArgs and GetInstancesRabbitmqInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceInput` via:
+//
+//	GetInstancesRabbitmqInstanceArgs{...}
+type GetInstancesRabbitmqInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceOutput() GetInstancesRabbitmqInstanceOutput
+	ToGetInstancesRabbitmqInstanceOutputWithContext(context.Context) GetInstancesRabbitmqInstanceOutput
+}
+
+type GetInstancesRabbitmqInstanceArgs struct {
+	// The account id of the rabbitmq instance.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// Whether enable the public network parsing function of the rabbitmq instance.
+	ApplyPrivateDnsToPublic pulumi.BoolInput `pulumi:"applyPrivateDnsToPublic"`
+	// The type of the rabbitmq instance.
+	ArchType pulumi.StringInput `pulumi:"archType"`
+	// The charge detail information of the rabbitmq instance.
+	ChargeDetails GetInstancesRabbitmqInstanceChargeDetailArrayInput `pulumi:"chargeDetails"`
+	// The compute specification of the rabbitmq instance.
+	ComputeSpec pulumi.StringInput `pulumi:"computeSpec"`
+	// The create time of the rabbitmq instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The eip id of the rabbitmq instance.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The endpoint info of the rabbitmq instance.
+	Endpoints GetInstancesRabbitmqInstanceEndpointArrayInput `pulumi:"endpoints"`
+	// The id of the rabbitmq instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The WebUI admin user name of the rabbitmq instance.
+	InitUserName pulumi.StringInput `pulumi:"initUserName"`
+	// The description of the rabbitmq instance.
+	InstanceDescription pulumi.StringInput `pulumi:"instanceDescription"`
+	// The id of rabbitmq instance. This field supports fuzzy query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of rabbitmq instance. This field supports fuzzy query.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The status of rabbitmq instance.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The project name of rabbitmq instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region description of the rabbitmq instance.
+	RegionDescription pulumi.StringInput `pulumi:"regionDescription"`
+	// The region id of the rabbitmq instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The total storage space of the rabbitmq instance. Unit: GiB.
+	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
+	// The subnet id of the rabbitmq instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags GetInstancesRabbitmqInstanceTagArrayInput `pulumi:"tags"`
+	// The used storage space of the rabbitmq instance. Unit: GiB.
+	UsedStorageSpace pulumi.IntInput `pulumi:"usedStorageSpace"`
+	// The version of the rabbitmq instance.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The vpc id of rabbitmq instance. This field supports fuzzy query.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The zone description of the rabbitmq instance.
+	ZoneDescription pulumi.StringInput `pulumi:"zoneDescription"`
+	// The zone id of rabbitmq instance. This field supports fuzzy query.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesRabbitmqInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceArgs) ToGetInstancesRabbitmqInstanceOutput() GetInstancesRabbitmqInstanceOutput {
+	return i.ToGetInstancesRabbitmqInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceArgs) ToGetInstancesRabbitmqInstanceOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceOutput)
+}
+
+// GetInstancesRabbitmqInstanceArrayInput is an input type that accepts GetInstancesRabbitmqInstanceArray and GetInstancesRabbitmqInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceArrayInput` via:
+//
+//	GetInstancesRabbitmqInstanceArray{ GetInstancesRabbitmqInstanceArgs{...} }
+type GetInstancesRabbitmqInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceArrayOutput() GetInstancesRabbitmqInstanceArrayOutput
+	ToGetInstancesRabbitmqInstanceArrayOutputWithContext(context.Context) GetInstancesRabbitmqInstanceArrayOutput
+}
+
+type GetInstancesRabbitmqInstanceArray []GetInstancesRabbitmqInstanceInput
+
+func (GetInstancesRabbitmqInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceArray) ToGetInstancesRabbitmqInstanceArrayOutput() GetInstancesRabbitmqInstanceArrayOutput {
+	return i.ToGetInstancesRabbitmqInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceArray) ToGetInstancesRabbitmqInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceArrayOutput)
+}
+
+type GetInstancesRabbitmqInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceOutput) ToGetInstancesRabbitmqInstanceOutput() GetInstancesRabbitmqInstanceOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceOutput) ToGetInstancesRabbitmqInstanceOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceOutput {
+	return o
+}
+
+// The account id of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Whether enable the public network parsing function of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) ApplyPrivateDnsToPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) bool { return v.ApplyPrivateDnsToPublic }).(pulumi.BoolOutput)
+}
+
+// The type of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) ArchType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.ArchType }).(pulumi.StringOutput)
+}
+
+// The charge detail information of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) ChargeDetails() GetInstancesRabbitmqInstanceChargeDetailArrayOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) []GetInstancesRabbitmqInstanceChargeDetail {
+		return v.ChargeDetails
+	}).(GetInstancesRabbitmqInstanceChargeDetailArrayOutput)
+}
+
+// The compute specification of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) ComputeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.ComputeSpec }).(pulumi.StringOutput)
+}
+
+// The create time of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The eip id of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The endpoint info of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) Endpoints() GetInstancesRabbitmqInstanceEndpointArrayOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) []GetInstancesRabbitmqInstanceEndpoint { return v.Endpoints }).(GetInstancesRabbitmqInstanceEndpointArrayOutput)
+}
+
+// The id of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The WebUI admin user name of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) InitUserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.InitUserName }).(pulumi.StringOutput)
+}
+
+// The description of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) InstanceDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.InstanceDescription }).(pulumi.StringOutput)
+}
+
+// The id of rabbitmq instance. This field supports fuzzy query.
+func (o GetInstancesRabbitmqInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of rabbitmq instance. This field supports fuzzy query.
+func (o GetInstancesRabbitmqInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The status of rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// The project name of rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region description of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) RegionDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.RegionDescription }).(pulumi.StringOutput)
+}
+
+// The region id of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The total storage space of the rabbitmq instance. Unit: GiB.
+func (o GetInstancesRabbitmqInstanceOutput) StorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
+}
+
+// The subnet id of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetInstancesRabbitmqInstanceOutput) Tags() GetInstancesRabbitmqInstanceTagArrayOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) []GetInstancesRabbitmqInstanceTag { return v.Tags }).(GetInstancesRabbitmqInstanceTagArrayOutput)
+}
+
+// The used storage space of the rabbitmq instance. Unit: GiB.
+func (o GetInstancesRabbitmqInstanceOutput) UsedStorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) int { return v.UsedStorageSpace }).(pulumi.IntOutput)
+}
+
+// The version of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The vpc id of rabbitmq instance. This field supports fuzzy query.
+func (o GetInstancesRabbitmqInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone description of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceOutput) ZoneDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.ZoneDescription }).(pulumi.StringOutput)
+}
+
+// The zone id of rabbitmq instance. This field supports fuzzy query.
+func (o GetInstancesRabbitmqInstanceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstance) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesRabbitmqInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceArrayOutput) ToGetInstancesRabbitmqInstanceArrayOutput() GetInstancesRabbitmqInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceArrayOutput) ToGetInstancesRabbitmqInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesRabbitmqInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRabbitmqInstance {
+		return vs[0].([]GetInstancesRabbitmqInstance)[vs[1].(int)]
+	}).(GetInstancesRabbitmqInstanceOutput)
+}
+
+type GetInstancesRabbitmqInstanceChargeDetail struct {
+	// Whether to automatically renew in prepaid scenarios.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The charge end time of the rabbitmq instance.
+	ChargeEndTime string `pulumi:"chargeEndTime"`
+	// The charge expire time of the rabbitmq instance.
+	ChargeExpireTime string `pulumi:"chargeExpireTime"`
+	// The charge start time of the rabbitmq instance.
+	ChargeStartTime string `pulumi:"chargeStartTime"`
+	// The charge status of the rabbitmq instance.
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of rabbitmq instance.
+	ChargeType string `pulumi:"chargeType"`
+	// The overdue reclaim time of the rabbitmq instance.
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
+	// The overdue time of the rabbitmq instance.
+	OverdueTime string `pulumi:"overdueTime"`
+}
+
+// GetInstancesRabbitmqInstanceChargeDetailInput is an input type that accepts GetInstancesRabbitmqInstanceChargeDetailArgs and GetInstancesRabbitmqInstanceChargeDetailOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceChargeDetailInput` via:
+//
+//	GetInstancesRabbitmqInstanceChargeDetailArgs{...}
+type GetInstancesRabbitmqInstanceChargeDetailInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceChargeDetailOutput() GetInstancesRabbitmqInstanceChargeDetailOutput
+	ToGetInstancesRabbitmqInstanceChargeDetailOutputWithContext(context.Context) GetInstancesRabbitmqInstanceChargeDetailOutput
+}
+
+type GetInstancesRabbitmqInstanceChargeDetailArgs struct {
+	// Whether to automatically renew in prepaid scenarios.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The charge end time of the rabbitmq instance.
+	ChargeEndTime pulumi.StringInput `pulumi:"chargeEndTime"`
+	// The charge expire time of the rabbitmq instance.
+	ChargeExpireTime pulumi.StringInput `pulumi:"chargeExpireTime"`
+	// The charge start time of the rabbitmq instance.
+	ChargeStartTime pulumi.StringInput `pulumi:"chargeStartTime"`
+	// The charge status of the rabbitmq instance.
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of rabbitmq instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The overdue reclaim time of the rabbitmq instance.
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
+	// The overdue time of the rabbitmq instance.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+}
+
+func (GetInstancesRabbitmqInstanceChargeDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceChargeDetailArgs) ToGetInstancesRabbitmqInstanceChargeDetailOutput() GetInstancesRabbitmqInstanceChargeDetailOutput {
+	return i.ToGetInstancesRabbitmqInstanceChargeDetailOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceChargeDetailArgs) ToGetInstancesRabbitmqInstanceChargeDetailOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceChargeDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceChargeDetailOutput)
+}
+
+// GetInstancesRabbitmqInstanceChargeDetailArrayInput is an input type that accepts GetInstancesRabbitmqInstanceChargeDetailArray and GetInstancesRabbitmqInstanceChargeDetailArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceChargeDetailArrayInput` via:
+//
+//	GetInstancesRabbitmqInstanceChargeDetailArray{ GetInstancesRabbitmqInstanceChargeDetailArgs{...} }
+type GetInstancesRabbitmqInstanceChargeDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceChargeDetailArrayOutput() GetInstancesRabbitmqInstanceChargeDetailArrayOutput
+	ToGetInstancesRabbitmqInstanceChargeDetailArrayOutputWithContext(context.Context) GetInstancesRabbitmqInstanceChargeDetailArrayOutput
+}
+
+type GetInstancesRabbitmqInstanceChargeDetailArray []GetInstancesRabbitmqInstanceChargeDetailInput
+
+func (GetInstancesRabbitmqInstanceChargeDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceChargeDetailArray) ToGetInstancesRabbitmqInstanceChargeDetailArrayOutput() GetInstancesRabbitmqInstanceChargeDetailArrayOutput {
+	return i.ToGetInstancesRabbitmqInstanceChargeDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceChargeDetailArray) ToGetInstancesRabbitmqInstanceChargeDetailArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceChargeDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceChargeDetailArrayOutput)
+}
+
+type GetInstancesRabbitmqInstanceChargeDetailOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceChargeDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ToGetInstancesRabbitmqInstanceChargeDetailOutput() GetInstancesRabbitmqInstanceChargeDetailOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ToGetInstancesRabbitmqInstanceChargeDetailOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceChargeDetailOutput {
+	return o
+}
+
+// Whether to automatically renew in prepaid scenarios.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The charge end time of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ChargeEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.ChargeEndTime }).(pulumi.StringOutput)
+}
+
+// The charge expire time of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ChargeExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.ChargeExpireTime }).(pulumi.StringOutput)
+}
+
+// The charge start time of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ChargeStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.ChargeStartTime }).(pulumi.StringOutput)
+}
+
+// The charge status of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The overdue reclaim time of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
+// The overdue time of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceChargeDetailOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceChargeDetail) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+type GetInstancesRabbitmqInstanceChargeDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceChargeDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstanceChargeDetail)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceChargeDetailArrayOutput) ToGetInstancesRabbitmqInstanceChargeDetailArrayOutput() GetInstancesRabbitmqInstanceChargeDetailArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceChargeDetailArrayOutput) ToGetInstancesRabbitmqInstanceChargeDetailArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceChargeDetailArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceChargeDetailArrayOutput) Index(i pulumi.IntInput) GetInstancesRabbitmqInstanceChargeDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRabbitmqInstanceChargeDetail {
+		return vs[0].([]GetInstancesRabbitmqInstanceChargeDetail)[vs[1].(int)]
+	}).(GetInstancesRabbitmqInstanceChargeDetailOutput)
+}
+
+type GetInstancesRabbitmqInstanceEndpoint struct {
+	// The endpoint type of the rabbitmq instance.
+	EndpointType string `pulumi:"endpointType"`
+	// The internal endpoint of the rabbitmq instance.
+	InternalEndpoint string `pulumi:"internalEndpoint"`
+	// The network type of the rabbitmq instance.
+	NetworkType string `pulumi:"networkType"`
+	// The public endpoint of the rabbitmq instance.
+	PublicEndpoint string `pulumi:"publicEndpoint"`
+}
+
+// GetInstancesRabbitmqInstanceEndpointInput is an input type that accepts GetInstancesRabbitmqInstanceEndpointArgs and GetInstancesRabbitmqInstanceEndpointOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceEndpointInput` via:
+//
+//	GetInstancesRabbitmqInstanceEndpointArgs{...}
+type GetInstancesRabbitmqInstanceEndpointInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceEndpointOutput() GetInstancesRabbitmqInstanceEndpointOutput
+	ToGetInstancesRabbitmqInstanceEndpointOutputWithContext(context.Context) GetInstancesRabbitmqInstanceEndpointOutput
+}
+
+type GetInstancesRabbitmqInstanceEndpointArgs struct {
+	// The endpoint type of the rabbitmq instance.
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The internal endpoint of the rabbitmq instance.
+	InternalEndpoint pulumi.StringInput `pulumi:"internalEndpoint"`
+	// The network type of the rabbitmq instance.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// The public endpoint of the rabbitmq instance.
+	PublicEndpoint pulumi.StringInput `pulumi:"publicEndpoint"`
+}
+
+func (GetInstancesRabbitmqInstanceEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstanceEndpoint)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceEndpointArgs) ToGetInstancesRabbitmqInstanceEndpointOutput() GetInstancesRabbitmqInstanceEndpointOutput {
+	return i.ToGetInstancesRabbitmqInstanceEndpointOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceEndpointArgs) ToGetInstancesRabbitmqInstanceEndpointOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceEndpointOutput)
+}
+
+// GetInstancesRabbitmqInstanceEndpointArrayInput is an input type that accepts GetInstancesRabbitmqInstanceEndpointArray and GetInstancesRabbitmqInstanceEndpointArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceEndpointArrayInput` via:
+//
+//	GetInstancesRabbitmqInstanceEndpointArray{ GetInstancesRabbitmqInstanceEndpointArgs{...} }
+type GetInstancesRabbitmqInstanceEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceEndpointArrayOutput() GetInstancesRabbitmqInstanceEndpointArrayOutput
+	ToGetInstancesRabbitmqInstanceEndpointArrayOutputWithContext(context.Context) GetInstancesRabbitmqInstanceEndpointArrayOutput
+}
+
+type GetInstancesRabbitmqInstanceEndpointArray []GetInstancesRabbitmqInstanceEndpointInput
+
+func (GetInstancesRabbitmqInstanceEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstanceEndpoint)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceEndpointArray) ToGetInstancesRabbitmqInstanceEndpointArrayOutput() GetInstancesRabbitmqInstanceEndpointArrayOutput {
+	return i.ToGetInstancesRabbitmqInstanceEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceEndpointArray) ToGetInstancesRabbitmqInstanceEndpointArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceEndpointArrayOutput)
+}
+
+type GetInstancesRabbitmqInstanceEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstanceEndpoint)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceEndpointOutput) ToGetInstancesRabbitmqInstanceEndpointOutput() GetInstancesRabbitmqInstanceEndpointOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceEndpointOutput) ToGetInstancesRabbitmqInstanceEndpointOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceEndpointOutput {
+	return o
+}
+
+// The endpoint type of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceEndpointOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceEndpoint) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The internal endpoint of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceEndpointOutput) InternalEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceEndpoint) string { return v.InternalEndpoint }).(pulumi.StringOutput)
+}
+
+// The network type of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceEndpointOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceEndpoint) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// The public endpoint of the rabbitmq instance.
+func (o GetInstancesRabbitmqInstanceEndpointOutput) PublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceEndpoint) string { return v.PublicEndpoint }).(pulumi.StringOutput)
+}
+
+type GetInstancesRabbitmqInstanceEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstanceEndpoint)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceEndpointArrayOutput) ToGetInstancesRabbitmqInstanceEndpointArrayOutput() GetInstancesRabbitmqInstanceEndpointArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceEndpointArrayOutput) ToGetInstancesRabbitmqInstanceEndpointArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceEndpointArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceEndpointArrayOutput) Index(i pulumi.IntInput) GetInstancesRabbitmqInstanceEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRabbitmqInstanceEndpoint {
+		return vs[0].([]GetInstancesRabbitmqInstanceEndpoint)[vs[1].(int)]
+	}).(GetInstancesRabbitmqInstanceEndpointOutput)
+}
+
+type GetInstancesRabbitmqInstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesRabbitmqInstanceTagInput is an input type that accepts GetInstancesRabbitmqInstanceTagArgs and GetInstancesRabbitmqInstanceTagOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceTagInput` via:
+//
+//	GetInstancesRabbitmqInstanceTagArgs{...}
+type GetInstancesRabbitmqInstanceTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceTagOutput() GetInstancesRabbitmqInstanceTagOutput
+	ToGetInstancesRabbitmqInstanceTagOutputWithContext(context.Context) GetInstancesRabbitmqInstanceTagOutput
+}
+
+type GetInstancesRabbitmqInstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesRabbitmqInstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceTagArgs) ToGetInstancesRabbitmqInstanceTagOutput() GetInstancesRabbitmqInstanceTagOutput {
+	return i.ToGetInstancesRabbitmqInstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceTagArgs) ToGetInstancesRabbitmqInstanceTagOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceTagOutput)
+}
+
+// GetInstancesRabbitmqInstanceTagArrayInput is an input type that accepts GetInstancesRabbitmqInstanceTagArray and GetInstancesRabbitmqInstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRabbitmqInstanceTagArrayInput` via:
+//
+//	GetInstancesRabbitmqInstanceTagArray{ GetInstancesRabbitmqInstanceTagArgs{...} }
+type GetInstancesRabbitmqInstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRabbitmqInstanceTagArrayOutput() GetInstancesRabbitmqInstanceTagArrayOutput
+	ToGetInstancesRabbitmqInstanceTagArrayOutputWithContext(context.Context) GetInstancesRabbitmqInstanceTagArrayOutput
+}
+
+type GetInstancesRabbitmqInstanceTagArray []GetInstancesRabbitmqInstanceTagInput
+
+func (GetInstancesRabbitmqInstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesRabbitmqInstanceTagArray) ToGetInstancesRabbitmqInstanceTagArrayOutput() GetInstancesRabbitmqInstanceTagArrayOutput {
+	return i.ToGetInstancesRabbitmqInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRabbitmqInstanceTagArray) ToGetInstancesRabbitmqInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRabbitmqInstanceTagArrayOutput)
+}
+
+type GetInstancesRabbitmqInstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRabbitmqInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceTagOutput) ToGetInstancesRabbitmqInstanceTagOutput() GetInstancesRabbitmqInstanceTagOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceTagOutput) ToGetInstancesRabbitmqInstanceTagOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesRabbitmqInstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesRabbitmqInstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRabbitmqInstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesRabbitmqInstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRabbitmqInstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRabbitmqInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesRabbitmqInstanceTagArrayOutput) ToGetInstancesRabbitmqInstanceTagArrayOutput() GetInstancesRabbitmqInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceTagArrayOutput) ToGetInstancesRabbitmqInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesRabbitmqInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesRabbitmqInstanceTagArrayOutput) Index(i pulumi.IntInput) GetInstancesRabbitmqInstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRabbitmqInstanceTag {
+		return vs[0].([]GetInstancesRabbitmqInstanceTag)[vs[1].(int)]
+	}).(GetInstancesRabbitmqInstanceTagOutput)
+}
+
+type GetInstancesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesTagInput is an input type that accepts GetInstancesTagArgs and GetInstancesTagOutput values.
+// You can construct a concrete instance of `GetInstancesTagInput` via:
+//
+//	GetInstancesTagArgs{...}
+type GetInstancesTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagOutput() GetInstancesTagOutput
+	ToGetInstancesTagOutputWithContext(context.Context) GetInstancesTagOutput
+}
+
+type GetInstancesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return i.ToGetInstancesTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagOutput)
+}
+
+// GetInstancesTagArrayInput is an input type that accepts GetInstancesTagArray and GetInstancesTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesTagArrayInput` via:
+//
+//	GetInstancesTagArray{ GetInstancesTagArgs{...} }
+type GetInstancesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput
+	ToGetInstancesTagArrayOutputWithContext(context.Context) GetInstancesTagArrayOutput
+}
+
+type GetInstancesTagArray []GetInstancesTagInput
+
+func (GetInstancesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return i.ToGetInstancesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagArrayOutput)
+}
+
+type GetInstancesTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return o
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInstancesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInstancesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) Index(i pulumi.IntInput) GetInstancesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesTag {
+		return vs[0].([]GetInstancesTag)[vs[1].(int)]
+	}).(GetInstancesTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeInfoInput)(nil)).Elem(), InstanceChargeInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeInfoPtrInput)(nil)).Elem(), InstanceChargeInfoArgs{})
@@ -1425,6 +2396,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRabbitmqInstanceTagArrayInput)(nil)).Elem(), InstancesRabbitmqInstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePluginsPluginInput)(nil)).Elem(), GetInstancePluginsPluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePluginsPluginArrayInput)(nil)).Elem(), GetInstancePluginsPluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceInput)(nil)).Elem(), GetInstancesRabbitmqInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceArrayInput)(nil)).Elem(), GetInstancesRabbitmqInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceChargeDetailInput)(nil)).Elem(), GetInstancesRabbitmqInstanceChargeDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceChargeDetailArrayInput)(nil)).Elem(), GetInstancesRabbitmqInstanceChargeDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceEndpointInput)(nil)).Elem(), GetInstancesRabbitmqInstanceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceEndpointArrayInput)(nil)).Elem(), GetInstancesRabbitmqInstanceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceTagInput)(nil)).Elem(), GetInstancesRabbitmqInstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceTagArrayInput)(nil)).Elem(), GetInstancesRabbitmqInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagInput)(nil)).Elem(), GetInstancesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagArrayInput)(nil)).Elem(), GetInstancesTagArray{})
 	pulumi.RegisterOutputType(InstanceChargeInfoOutput{})
 	pulumi.RegisterOutputType(InstanceChargeInfoPtrOutput{})
 	pulumi.RegisterOutputType(InstanceEndpointOutput{})
@@ -1443,4 +2426,16 @@ func init() {
 	pulumi.RegisterOutputType(InstancesRabbitmqInstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(InstancesTagOutput{})
 	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancePluginsPluginOutput{})
+	pulumi.RegisterOutputType(GetInstancePluginsPluginArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceChargeDetailOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceChargeDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceEndpointOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagArrayOutput{})
 }

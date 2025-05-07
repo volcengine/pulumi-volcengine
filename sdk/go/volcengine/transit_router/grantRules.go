@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.GrantRules(ctx, &transit_router.GrantRulesArgs{
+//			_, err := transit_router.GetGrantRules(ctx, &transit_router.GetGrantRulesArgs{
 //				TransitRouterId: "tr-2bzy39uy6u3282dx0efxiqyq0",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules
 func GrantRules(ctx *pulumi.Context, args *GrantRulesArgs, opts ...pulumi.InvokeOption) (*GrantRulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GrantRulesResult

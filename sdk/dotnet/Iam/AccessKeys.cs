@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Iam
 {
+    [Obsolete(@"volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys")]
     public static class AccessKeys
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Iam.AccessKeys.Invoke();
+        ///     var foo = Volcengine.Iam.GetAccessKeys.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Iam.AccessKeys.Invoke();
+        ///     var foo = Volcengine.Iam.GetAccessKeys.Invoke();
         /// 
         /// });
         /// ```

@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.ParameterTemplates({
+ * const foo = volcengine.rds_mysql.getParameterTemplates({
  *     templateCategory: "DBEngine",
  *     templateSource: "User",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates */
 export function parameterTemplates(args?: ParameterTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<ParameterTemplatesResult> {
+    pulumi.log.warn("parameterTemplates is deprecated: volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -107,12 +109,13 @@ export interface ParameterTemplatesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.ParameterTemplates({
+ * const foo = volcengine.rds_mysql.getParameterTemplates({
  *     templateCategory: "DBEngine",
  *     templateSource: "User",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates */
 export function parameterTemplatesOutput(args?: ParameterTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ParameterTemplatesResult> {
     return pulumi.output(args).apply((a: any) => parameterTemplates(a, opts))
 }

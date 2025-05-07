@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -72,17 +72,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooInstances := vedb_mysql.InstancesOutput(ctx, vedb_mysql.InstancesOutputArgs{
+//			fooInstances := vedb_mysql.GetInstancesOutput(ctx, vedb_mysql.GetInstancesOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			fooEndpoint, err := vedb_mysql.NewEndpoint(ctx, "fooEndpoint", &vedb_mysql.EndpointArgs{
 //				EndpointType: pulumi.String("Custom"),
 //				InstanceId:   fooInstance.ID(),
 //				NodeIds: pulumi.StringArray{
-//					fooInstances.ApplyT(func(fooInstances vedb_mysql.InstancesResult) (*string, error) {
+//					fooInstances.ApplyT(func(fooInstances vedb_mysql.GetInstancesResult) (*string, error) {
 //						return &fooInstances.Instances[0].Nodes[0].NodeId, nil
 //					}).(pulumi.StringPtrOutput),
-//					fooInstances.ApplyT(func(fooInstances vedb_mysql.InstancesResult) (*string, error) {
+//					fooInstances.ApplyT(func(fooInstances vedb_mysql.GetInstancesResult) (*string, error) {
 //						return &fooInstances.Instances[0].Nodes[1].NodeId, nil
 //					}).(pulumi.StringPtrOutput),
 //				},
@@ -98,7 +98,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vedb_mysql.EndpointsOutput(ctx, vedb_mysql.EndpointsOutputArgs{
+//			_ = vedb_mysql.GetEndpointsOutput(ctx, vedb_mysql.GetEndpointsOutputArgs{
 //				EndpointId: fooEndpoint.EndpointId,
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
@@ -107,6 +107,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints
 func Endpoints(ctx *pulumi.Context, args *EndpointsArgs, opts ...pulumi.InvokeOption) (*EndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EndpointsResult

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.AuthorizationTokens(ctx, &cr.AuthorizationTokensArgs{
+//			_, err := cr.GetAuthorizationTokens(ctx, &cr.GetAuthorizationTokensArgs{
 //				Registry: "tf-1",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens
 func AuthorizationTokens(ctx *pulumi.Context, args *AuthorizationTokensArgs, opts ...pulumi.InvokeOption) (*AuthorizationTokensResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AuthorizationTokensResult

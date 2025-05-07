@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups")]
     public static class SecurityGroups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.SecurityGroups.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetSecurityGroups.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.SecurityGroups.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetSecurityGroups.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

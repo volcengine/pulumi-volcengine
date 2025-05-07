@@ -47,13 +47,15 @@ import (
 // }
 // fooCen = append(fooCen, __res)
 // }
-// _ = cen.CensOutput(ctx, cen.CensOutputArgs{
+// _ = cen.GetCensOutput(ctx, cen.GetCensOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:cen-cens:Cens.pp:14,9-21),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens
 func Cens(ctx *pulumi.Context, args *CensArgs, opts ...pulumi.InvokeOption) (*CensResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CensResult

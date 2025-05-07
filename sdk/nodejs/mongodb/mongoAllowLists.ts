@@ -21,13 +21,15 @@ import * as utilities from "../utilities";
  *     allowListType: "IPv4",
  *     allowList: "10.1.1.3,10.2.3.0/24,10.1.1.1",
  * });
- * const fooMongoAllowLists = volcengine.mongodb.MongoAllowListsOutput({
+ * const fooMongoAllowLists = volcengine.mongodb.getMongoAllowListsOutput({
  *     allowListIds: [fooMongoAllowList.id],
  *     regionId: "cn-beijing",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists */
 export function mongoAllowLists(args: MongoAllowListsArgs, opts?: pulumi.InvokeOptions): Promise<MongoAllowListsResult> {
+    pulumi.log.warn("mongoAllowLists is deprecated: volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/mongoAllowLists:MongoAllowLists", {
@@ -108,12 +110,13 @@ export interface MongoAllowListsResult {
  *     allowListType: "IPv4",
  *     allowList: "10.1.1.3,10.2.3.0/24,10.1.1.1",
  * });
- * const fooMongoAllowLists = volcengine.mongodb.MongoAllowListsOutput({
+ * const fooMongoAllowLists = volcengine.mongodb.getMongoAllowListsOutput({
  *     allowListIds: [fooMongoAllowList.id],
  *     regionId: "cn-beijing",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists */
 export function mongoAllowListsOutput(args: MongoAllowListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<MongoAllowListsResult> {
     return pulumi.output(args).apply((a: any) => mongoAllowLists(a, opts))
 }

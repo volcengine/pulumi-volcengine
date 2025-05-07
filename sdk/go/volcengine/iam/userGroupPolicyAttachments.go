@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = iam.UserGroupPolicyAttachmentsOutput(ctx, iam.UserGroupPolicyAttachmentsOutputArgs{
+//			_ = iam.GetUserGroupPolicyAttachmentsOutput(ctx, iam.GetUserGroupPolicyAttachmentsOutputArgs{
 //				UserGroupName: fooUserGroupPolicyAttachment.UserGroupName,
 //			}, nil)
 //			return nil
@@ -58,6 +58,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments
 func UserGroupPolicyAttachments(ctx *pulumi.Context, args *UserGroupPolicyAttachmentsArgs, opts ...pulumi.InvokeOption) (*UserGroupPolicyAttachmentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv UserGroupPolicyAttachmentsResult

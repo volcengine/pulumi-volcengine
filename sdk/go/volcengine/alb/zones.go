@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.Zones(ctx, nil, nil)
+//			_, err := alb.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.Zones has been deprecated in favor of volcengine.alb.getZones
 func Zones(ctx *pulumi.Context, args *ZonesArgs, opts ...pulumi.InvokeOption) (*ZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ZonesResult

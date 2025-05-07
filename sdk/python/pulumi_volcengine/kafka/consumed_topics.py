@@ -17,6 +17,8 @@ __all__ = [
     'consumed_topics_output',
 ]
 
+warnings.warn("""volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics""", DeprecationWarning)
+
 @pulumi.output_type
 class ConsumedTopicsResult:
     """
@@ -121,7 +123,7 @@ def consumed_topics(group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -183,7 +185,7 @@ def consumed_topics(group_id: Optional[str] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = volcengine.kafka.consumed_topics_output(instance_id=foo_instance.id,
+    default = volcengine.kafka.get_consumed_topics_output(instance_id=foo_instance.id,
         group_id=foo_group.group_id,
         topic_name=foo_topic.topic_name)
     ```
@@ -194,6 +196,7 @@ def consumed_topics(group_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str topic_name: The name of kafka topic. This field supports fuzzy query.
     """
+    pulumi.log.warn("""consumed_topics is deprecated: volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics""")
     __args__ = dict()
     __args__['groupId'] = group_id
     __args__['instanceId'] = instance_id
@@ -226,7 +229,7 @@ def consumed_topics_output(group_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -288,7 +291,7 @@ def consumed_topics_output(group_id: Optional[pulumi.Input[str]] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = volcengine.kafka.consumed_topics_output(instance_id=foo_instance.id,
+    default = volcengine.kafka.get_consumed_topics_output(instance_id=foo_instance.id,
         group_id=foo_group.group_id,
         topic_name=foo_topic.topic_name)
     ```
@@ -299,4 +302,5 @@ def consumed_topics_output(group_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str topic_name: The name of kafka topic. This field supports fuzzy query.
     """
+    pulumi.log.warn("""consumed_topics is deprecated: volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics""")
     ...

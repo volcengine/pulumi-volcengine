@@ -17,6 +17,8 @@ __all__ = [
     'bucket_inventories_output',
 ]
 
+warnings.warn("""volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories""", DeprecationWarning)
+
 @pulumi.output_type
 class BucketInventoriesResult:
     """
@@ -148,7 +150,7 @@ def bucket_inventories(bucket_name: Optional[str] = None,
                 role="TosArchiveTOSInventory",
             ),
         ))
-    foo_bucket_inventories = volcengine.tos.bucket_inventories_output(bucket_name="terraform-demo",
+    foo_bucket_inventories = volcengine.tos.get_bucket_inventories_output(bucket_name="terraform-demo",
         inventory_id=foo_bucket_inventory.inventory_id)
     ```
 
@@ -158,6 +160,7 @@ def bucket_inventories(bucket_name: Optional[str] = None,
     :param str name_regex: A Name Regex of TOS bucket inventory.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""bucket_inventories is deprecated: volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories""")
     __args__ = dict()
     __args__['bucketName'] = bucket_name
     __args__['inventoryId'] = inventory_id
@@ -217,7 +220,7 @@ def bucket_inventories_output(bucket_name: Optional[pulumi.Input[str]] = None,
                 role="TosArchiveTOSInventory",
             ),
         ))
-    foo_bucket_inventories = volcengine.tos.bucket_inventories_output(bucket_name="terraform-demo",
+    foo_bucket_inventories = volcengine.tos.get_bucket_inventories_output(bucket_name="terraform-demo",
         inventory_id=foo_bucket_inventory.inventory_id)
     ```
 
@@ -227,4 +230,5 @@ def bucket_inventories_output(bucket_name: Optional[pulumi.Input[str]] = None,
     :param str name_regex: A Name Regex of TOS bucket inventory.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""bucket_inventories is deprecated: volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories""")
     ...

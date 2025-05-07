@@ -482,14 +482,26 @@ class Vpc(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.Vpc("foo",
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16",
             dns_servers=[
                 "8.8.8.8",
                 "114.114.114.114",
             ],
-            project_name="default",
-            vpc_name="acc-test-vpc")
+            project_name="default")
+        # create subnet
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        # create security group
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
         ```
 
         ## Import
@@ -525,14 +537,26 @@ class Vpc(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.Vpc("foo",
+        foo_zones = volcengine.ecs.get_zones()
+        # create vpc
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16",
             dns_servers=[
                 "8.8.8.8",
                 "114.114.114.114",
             ],
-            project_name="default",
-            vpc_name="acc-test-vpc")
+            project_name="default")
+        # create subnet
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        # create security group
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
         ```
 
         ## Import

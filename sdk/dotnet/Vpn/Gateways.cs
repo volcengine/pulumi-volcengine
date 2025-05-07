@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpn
 {
+    [Obsolete(@"volcengine.vpn.Gateways has been deprecated in favor of volcengine.vpn.getGateways")]
     public static class Gateways
     {
         /// <summary>
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         ProjectName = "default",
         ///     });
         /// 
-        ///     var fooGateways = Volcengine.Vpn.Gateways.Invoke(new()
+        ///     var fooGateways = Volcengine.Vpn.GetGateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -99,7 +100,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         ProjectName = "default",
         ///     });
         /// 
-        ///     var fooGateways = Volcengine.Vpn.Gateways.Invoke(new()
+        ///     var fooGateways = Volcengine.Vpn.GetGateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

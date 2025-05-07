@@ -17,6 +17,8 @@ __all__ = [
     'route_entries_output',
 ]
 
+warnings.warn("""volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries""", DeprecationWarning)
+
 @pulumi.output_type
 class RouteEntriesResult:
     """
@@ -147,7 +149,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.route_entries(ids=["tr-rte-12b7qd5eo3h1c17q7y1sq5ixv"],
+    default = volcengine.transit_router.get_route_entries(ids=["tr-rte-12b7qd5eo3h1c17q7y1sq5ixv"],
         transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
     ```
 
@@ -159,6 +161,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
     :param str transit_router_route_entry_name: The name of the route entry.
     :param str transit_router_route_table_id: The id of the route table.
     """
+    pulumi.log.warn("""route_entries is deprecated: volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries""")
     __args__ = dict()
     __args__['destinationCidrBlock'] = destination_cidr_block
     __args__['ids'] = ids
@@ -197,7 +200,7 @@ def route_entries_output(destination_cidr_block: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.route_entries(ids=["tr-rte-12b7qd5eo3h1c17q7y1sq5ixv"],
+    default = volcengine.transit_router.get_route_entries(ids=["tr-rte-12b7qd5eo3h1c17q7y1sq5ixv"],
         transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
     ```
 
@@ -209,4 +212,5 @@ def route_entries_output(destination_cidr_block: Optional[pulumi.Input[Optional[
     :param str transit_router_route_entry_name: The name of the route entry.
     :param str transit_router_route_table_id: The id of the route table.
     """
+    pulumi.log.warn("""route_entries is deprecated: volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries""")
     ...

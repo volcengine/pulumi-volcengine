@@ -17,6 +17,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -128,7 +130,7 @@ def instances(cloud_server_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.instances(ids=[
+    default = volcengine.veenedge.get_instances(ids=[
         "veen28*****21",
         "veen177110*****172",
     ])
@@ -141,6 +143,7 @@ def instances(cloud_server_ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] statuses: The list of instance status. The value can be `opening` or `starting` or `running` or `stopping` or `stop` or `rebooting` or `terminating`.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances""")
     __args__ = dict()
     __args__['cloudServerIds'] = cloud_server_ids
     __args__['ids'] = ids
@@ -176,7 +179,7 @@ def instances_output(cloud_server_ids: Optional[pulumi.Input[Optional[Sequence[s
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.instances(ids=[
+    default = volcengine.veenedge.get_instances(ids=[
         "veen28*****21",
         "veen177110*****172",
     ])
@@ -189,4 +192,5 @@ def instances_output(cloud_server_ids: Optional[pulumi.Input[Optional[Sequence[s
     :param str output_file: File name where to save data source results.
     :param Sequence[str] statuses: The list of instance status. The value can be `opening` or `starting` or `running` or `stopping` or `stop` or `rebooting` or `terminating`.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances""")
     ...

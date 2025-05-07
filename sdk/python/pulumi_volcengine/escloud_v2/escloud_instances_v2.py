@@ -18,6 +18,8 @@ __all__ = [
     'escloud_instances_v2_output',
 ]
 
+warnings.warn("""volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2""", DeprecationWarning)
+
 @pulumi.output_type
 class EscloudInstancesV2Result:
     """
@@ -87,6 +89,9 @@ class EscloudInstancesV2Result:
     @property
     @pulumi.getter
     def instances(self) -> Sequence['outputs.EscloudInstancesV2InstanceResult']:
+        """
+        The collection of query.
+        """
         return pulumi.get(self, "instances")
 
     @property
@@ -97,6 +102,9 @@ class EscloudInstancesV2Result:
     @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[str]:
+        """
+        The name of project.
+        """
         return pulumi.get(self, "project_name")
 
     @property
@@ -107,11 +115,17 @@ class EscloudInstancesV2Result:
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.EscloudInstancesV2TagResult']]:
+        """
+        Tags.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
+        """
+        The total count of query.
+        """
         return pulumi.get(self, "total_count")
 
     @property
@@ -156,8 +170,100 @@ def escloud_instances_v2(charge_types: Optional[Sequence[str]] = None,
                          zone_ids: Optional[Sequence[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableEscloudInstancesV2Result:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of escloud instances v2
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo_zones = volcengine.ecs.get_zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        description="tfdesc",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_escloud_instance_v2 = volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2",
+        instance_name="acc-test-escloud-instance",
+        version="V7_10",
+        zone_ids=[
+            foo_zones.zones[0].id,
+            foo_zones.zones[1].id,
+            foo_zones.zones[2].id,
+        ],
+        subnet_id=foo_subnet.id,
+        enable_https=False,
+        admin_password="Password@@123",
+        charge_type="PostPaid",
+        auto_renew=False,
+        period=1,
+        configuration_code="es.standard",
+        enable_pure_master=True,
+        deletion_protection=False,
+        project_name="default",
+        node_specs_assigns=[
+            volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                type="Master",
+                number=3,
+                resource_spec_name="es.x2.medium",
+                storage_spec_name="es.volume.essd.pl0",
+                storage_size=20,
+            ),
+            volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                type="Hot",
+                number=6,
+                resource_spec_name="es.x2.medium",
+                storage_spec_name="es.volume.essd.flexpl-standard",
+                storage_size=500,
+                extra_performance=volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs(
+                    throughput=65,
+                ),
+            ),
+            volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                type="Kibana",
+                number=1,
+                resource_spec_name="kibana.x2.small",
+                storage_spec_name="",
+                storage_size=0,
+            ),
+        ],
+        network_specs=[
+            volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                type="Elasticsearch",
+                bandwidth=1,
+                is_open=True,
+                spec_name="es.eip.bgp_fixed_bandwidth",
+            ),
+            volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                type="Kibana",
+                bandwidth=1,
+                is_open=True,
+                spec_name="es.eip.bgp_fixed_bandwidth",
+            ),
+        ],
+        tags=[volcengine.escloud_v2.EscloudInstanceV2TagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_escloud_instances_v2 = volcengine.escloud_v2.get_escloud_instances_v2_output(ids=[foo_escloud_instance_v2.id])
+    ```
+
+
+    :param Sequence[str] charge_types: The charge types of instance.
+    :param Sequence[str] ids: A list of instance IDs.
+    :param Sequence[str] instance_names: The names of instance.
+    :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of instance.
+    :param Sequence[str] statuses: The status of instance.
+    :param Sequence[pulumi.InputType['EscloudInstancesV2TagArgs']] tags: The tags of instance.
+    :param Sequence[str] versions: The versions of instance.
+    :param Sequence[str] zone_ids: The available zone IDs of instance.
     """
+    pulumi.log.warn("""escloud_instances_v2 is deprecated: volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2""")
     __args__ = dict()
     __args__['chargeTypes'] = charge_types
     __args__['ids'] = ids
@@ -198,6 +304,98 @@ def escloud_instances_v2_output(charge_types: Optional[pulumi.Input[Optional[Seq
                                 zone_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EscloudInstancesV2Result]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of escloud instances v2
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo_zones = volcengine.ecs.get_zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        description="tfdesc",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_escloud_instance_v2 = volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2",
+        instance_name="acc-test-escloud-instance",
+        version="V7_10",
+        zone_ids=[
+            foo_zones.zones[0].id,
+            foo_zones.zones[1].id,
+            foo_zones.zones[2].id,
+        ],
+        subnet_id=foo_subnet.id,
+        enable_https=False,
+        admin_password="Password@@123",
+        charge_type="PostPaid",
+        auto_renew=False,
+        period=1,
+        configuration_code="es.standard",
+        enable_pure_master=True,
+        deletion_protection=False,
+        project_name="default",
+        node_specs_assigns=[
+            volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                type="Master",
+                number=3,
+                resource_spec_name="es.x2.medium",
+                storage_spec_name="es.volume.essd.pl0",
+                storage_size=20,
+            ),
+            volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                type="Hot",
+                number=6,
+                resource_spec_name="es.x2.medium",
+                storage_spec_name="es.volume.essd.flexpl-standard",
+                storage_size=500,
+                extra_performance=volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs(
+                    throughput=65,
+                ),
+            ),
+            volcengine.escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs(
+                type="Kibana",
+                number=1,
+                resource_spec_name="kibana.x2.small",
+                storage_spec_name="",
+                storage_size=0,
+            ),
+        ],
+        network_specs=[
+            volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                type="Elasticsearch",
+                bandwidth=1,
+                is_open=True,
+                spec_name="es.eip.bgp_fixed_bandwidth",
+            ),
+            volcengine.escloud_v2.EscloudInstanceV2NetworkSpecArgs(
+                type="Kibana",
+                bandwidth=1,
+                is_open=True,
+                spec_name="es.eip.bgp_fixed_bandwidth",
+            ),
+        ],
+        tags=[volcengine.escloud_v2.EscloudInstanceV2TagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_escloud_instances_v2 = volcengine.escloud_v2.get_escloud_instances_v2_output(ids=[foo_escloud_instance_v2.id])
+    ```
+
+
+    :param Sequence[str] charge_types: The charge types of instance.
+    :param Sequence[str] ids: A list of instance IDs.
+    :param Sequence[str] instance_names: The names of instance.
+    :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of instance.
+    :param Sequence[str] statuses: The status of instance.
+    :param Sequence[pulumi.InputType['EscloudInstancesV2TagArgs']] tags: The tags of instance.
+    :param Sequence[str] versions: The versions of instance.
+    :param Sequence[str] zone_ids: The available zone IDs of instance.
     """
+    pulumi.log.warn("""escloud_instances_v2 is deprecated: volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2""")
     ...

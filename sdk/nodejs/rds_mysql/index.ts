@@ -70,6 +70,56 @@ export const endpoints: typeof import("./endpoints").endpoints = null as any;
 export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
 utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
 
+export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
+export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
+export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccounts","getAccountsOutput"], () => require("./getAccounts"));
+
+export { GetAllowlistsArgs, GetAllowlistsResult, GetAllowlistsOutputArgs } from "./getAllowlists";
+export const getAllowlists: typeof import("./getAllowlists").getAllowlists = null as any;
+export const getAllowlistsOutput: typeof import("./getAllowlists").getAllowlistsOutput = null as any;
+utilities.lazyLoad(exports, ["getAllowlists","getAllowlistsOutput"], () => require("./getAllowlists"));
+
+export { GetBackupsArgs, GetBackupsResult, GetBackupsOutputArgs } from "./getBackups";
+export const getBackups: typeof import("./getBackups").getBackups = null as any;
+export const getBackupsOutput: typeof import("./getBackups").getBackupsOutput = null as any;
+utilities.lazyLoad(exports, ["getBackups","getBackupsOutput"], () => require("./getBackups"));
+
+export { GetDatabasesArgs, GetDatabasesResult, GetDatabasesOutputArgs } from "./getDatabases";
+export const getDatabases: typeof import("./getDatabases").getDatabases = null as any;
+export const getDatabasesOutput: typeof import("./getDatabases").getDatabasesOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabases","getDatabasesOutput"], () => require("./getDatabases"));
+
+export { GetEndpointsArgs, GetEndpointsResult, GetEndpointsOutputArgs } from "./getEndpoints";
+export const getEndpoints: typeof import("./getEndpoints").getEndpoints = null as any;
+export const getEndpointsOutput: typeof import("./getEndpoints").getEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getEndpoints","getEndpointsOutput"], () => require("./getEndpoints"));
+
+export { GetInstanceSpecsArgs, GetInstanceSpecsResult, GetInstanceSpecsOutputArgs } from "./getInstanceSpecs";
+export const getInstanceSpecs: typeof import("./getInstanceSpecs").getInstanceSpecs = null as any;
+export const getInstanceSpecsOutput: typeof import("./getInstanceSpecs").getInstanceSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceSpecs","getInstanceSpecsOutput"], () => require("./getInstanceSpecs"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetParameterTemplatesArgs, GetParameterTemplatesResult, GetParameterTemplatesOutputArgs } from "./getParameterTemplates";
+export const getParameterTemplates: typeof import("./getParameterTemplates").getParameterTemplates = null as any;
+export const getParameterTemplatesOutput: typeof import("./getParameterTemplates").getParameterTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getParameterTemplates","getParameterTemplatesOutput"], () => require("./getParameterTemplates"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;

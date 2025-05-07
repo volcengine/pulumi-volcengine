@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Clb
 {
+    [Obsolete(@"volcengine.clb.Acls has been deprecated in favor of volcengine.clb.getAcls")]
     public static class Acls
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Clb.Acls.Invoke(new()
+        ///     var @default = Volcengine.Clb.GetAcls.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Clb.Acls.Invoke(new()
+        ///     var @default = Volcengine.Clb.GetAcls.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

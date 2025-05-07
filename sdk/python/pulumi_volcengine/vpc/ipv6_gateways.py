@@ -17,6 +17,8 @@ __all__ = [
     'ipv6_gateways_output',
 ]
 
+warnings.warn("""volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways""", DeprecationWarning)
+
 @pulumi.output_type
 class Ipv6GatewaysResult:
     """
@@ -131,7 +133,7 @@ def ipv6_gateways(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.ipv6_gateways(ids=["ipv6gw-12bcapllb5ukg17q7y2sd3thx"])
+    default = volcengine.vpc.get_ipv6_gateways(ids=["ipv6gw-12bcapllb5ukg17q7y2sd3thx"])
     ```
 
 
@@ -141,6 +143,7 @@ def ipv6_gateways(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] vpc_ids: The ID list of the VPC which the Ipv6Gateway belongs to.
     """
+    pulumi.log.warn("""ipv6_gateways is deprecated: volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['name'] = name
@@ -176,7 +179,7 @@ def ipv6_gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.ipv6_gateways(ids=["ipv6gw-12bcapllb5ukg17q7y2sd3thx"])
+    default = volcengine.vpc.get_ipv6_gateways(ids=["ipv6gw-12bcapllb5ukg17q7y2sd3thx"])
     ```
 
 
@@ -186,4 +189,5 @@ def ipv6_gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param str output_file: File name where to save data source results.
     :param Sequence[str] vpc_ids: The ID list of the VPC which the Ipv6Gateway belongs to.
     """
+    pulumi.log.warn("""ipv6_gateways is deprecated: volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways""")
     ...

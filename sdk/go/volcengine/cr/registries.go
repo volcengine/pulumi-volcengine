@@ -26,8 +26,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.Registries(ctx, &cr.RegistriesArgs{
-//				Statuses: []cr.RegistriesStatus{
+//			_, err := cr.GetRegistries(ctx, &cr.GetRegistriesArgs{
+//				Statuses: []cr.GetRegistriesStatus{
 //					{
 //						Condition: pulumi.StringRef("Ok"),
 //						Phase:     pulumi.StringRef("Running"),
@@ -42,6 +42,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries
 func Registries(ctx *pulumi.Context, args *RegistriesArgs, opts ...pulumi.InvokeOption) (*RegistriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegistriesResult

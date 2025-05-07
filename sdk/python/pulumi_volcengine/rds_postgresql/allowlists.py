@@ -17,6 +17,8 @@ __all__ = [
     'allowlists_output',
 ]
 
+warnings.warn("""volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists""", DeprecationWarning)
+
 @pulumi.output_type
 class AllowlistsResult:
     """
@@ -111,7 +113,7 @@ def allowlists(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.allowlists()
+    foo = volcengine.rds_postgresql.get_allowlists()
     ```
 
 
@@ -119,6 +121,7 @@ def allowlists(instance_id: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""allowlists is deprecated: volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
@@ -148,7 +151,7 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.allowlists()
+    foo = volcengine.rds_postgresql.get_allowlists()
     ```
 
 
@@ -156,4 +159,5 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""allowlists is deprecated: volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists""")
     ...

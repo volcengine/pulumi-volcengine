@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cdn
 {
+    [Obsolete(@"volcengine.cdn.Certificates has been deprecated in favor of volcengine.cdn.getCertificates")]
     public static class Certificates
     {
         /// <summary>
@@ -31,7 +32,7 @@ namespace Pulumi.Volcengine.Cdn
         ///         Source = "cdn_cert_hosting",
         ///     });
         /// 
-        ///     var fooCertificates = Volcengine.Cdn.Certificates.Invoke(new()
+        ///     var fooCertificates = Volcengine.Cdn.GetCertificates.Invoke(new()
         ///     {
         ///         Source = fooCdnCertificate.Source,
         ///     });
@@ -62,7 +63,7 @@ namespace Pulumi.Volcengine.Cdn
         ///         Source = "cdn_cert_hosting",
         ///     });
         /// 
-        ///     var fooCertificates = Volcengine.Cdn.Certificates.Invoke(new()
+        ///     var fooCertificates = Volcengine.Cdn.GetCertificates.Invoke(new()
         ///     {
         ///         Source = fooCdnCertificate.Source,
         ///     });

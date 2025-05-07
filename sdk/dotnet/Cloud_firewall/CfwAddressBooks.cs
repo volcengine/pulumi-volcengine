@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_firewall
 {
+    [Obsolete(@"volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks")]
     public static class CfwAddressBooks
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_firewall.CfwAddressBooks.Invoke(new()
+        ///     var foo = Volcengine.Cloud_firewall.GetCfwAddressBooks.Invoke(new()
         ///     {
         ///         GroupName = "acc-test",
         ///         GroupType = "ip",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_firewall.CfwAddressBooks.Invoke(new()
+        ///     var foo = Volcengine.Cloud_firewall.GetCfwAddressBooks.Invoke(new()
         ///     {
         ///         GroupName = "acc-test",
         ///         GroupType = "ip",

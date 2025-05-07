@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.Instances({
+ * const default = volcengine.veenedge.getInstances({
  *     ids: [
  *         "veen28*****21",
  *         "veen177110*****172",
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -91,7 +93,7 @@ export interface InstancesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.Instances({
+ * const default = volcengine.veenedge.getInstances({
  *     ids: [
  *         "veen28*****21",
  *         "veen177110*****172",
@@ -99,6 +101,7 @@ export interface InstancesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

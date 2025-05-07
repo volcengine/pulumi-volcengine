@@ -17,6 +17,8 @@ __all__ = [
     'alarms_output',
 ]
 
+warnings.warn("""volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms""", DeprecationWarning)
+
 @pulumi.output_type
 class AlarmsResult:
     """
@@ -166,7 +168,7 @@ def alarms(alarm_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.alarms(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_alarms(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
     ```
 
 
@@ -178,6 +180,7 @@ def alarms(alarm_id: Optional[str] = None,
     :param str topic_id: The topic id.
     :param str topic_name: The topic name.
     """
+    pulumi.log.warn("""alarms is deprecated: volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms""")
     __args__ = dict()
     __args__['alarmId'] = alarm_id
     __args__['alarmName'] = alarm_name
@@ -219,7 +222,7 @@ def alarms_output(alarm_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.alarms(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_alarms(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
     ```
 
 
@@ -231,4 +234,5 @@ def alarms_output(alarm_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str topic_id: The topic id.
     :param str topic_name: The topic name.
     """
+    pulumi.log.warn("""alarms is deprecated: volcengine.tls.Alarms has been deprecated in favor of volcengine.tls.getAlarms""")
     ...

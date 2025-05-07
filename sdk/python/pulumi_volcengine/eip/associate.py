@@ -170,8 +170,8 @@ class Associate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
@@ -231,8 +231,8 @@ class Associate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_vpc = volcengine.vpc.Vpc("fooVpc",

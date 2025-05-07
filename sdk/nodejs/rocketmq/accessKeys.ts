@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.AccessKeys({
+ * const foo = volcengine.rocketmq.getAccessKeys({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys */
 export function accessKeys(args: AccessKeysArgs, opts?: pulumi.InvokeOptions): Promise<AccessKeysResult> {
+    pulumi.log.warn("accessKeys is deprecated: volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rocketmq/accessKeys:AccessKeys", {
@@ -81,11 +83,12 @@ export interface AccessKeysResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.AccessKeys({
+ * const foo = volcengine.rocketmq.getAccessKeys({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys */
 export function accessKeysOutput(args: AccessKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccessKeysResult> {
     return pulumi.output(args).apply((a: any) => accessKeys(a, opts))
 }

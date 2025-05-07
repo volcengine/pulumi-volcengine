@@ -17,6 +17,8 @@ __all__ = [
     'available_resources_output',
 ]
 
+warnings.warn("""volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources""", DeprecationWarning)
+
 @pulumi.output_type
 class AvailableResourcesResult:
     """
@@ -118,7 +120,7 @@ def available_resources(bandwith_limit: Optional[int] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.available_resources(bandwith_limit=20,
+    default = volcengine.veenedge.get_available_resources(bandwith_limit=20,
         cloud_disk_type="CloudSSD",
         instance_type="ve******rge")
     ```
@@ -129,6 +131,7 @@ def available_resources(bandwith_limit: Optional[int] = None,
     :param str instance_type: The type of instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""available_resources is deprecated: volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources""")
     __args__ = dict()
     __args__['bandwithLimit'] = bandwith_limit
     __args__['cloudDiskType'] = cloud_disk_type
@@ -161,7 +164,7 @@ def available_resources_output(bandwith_limit: Optional[pulumi.Input[int]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.available_resources(bandwith_limit=20,
+    default = volcengine.veenedge.get_available_resources(bandwith_limit=20,
         cloud_disk_type="CloudSSD",
         instance_type="ve******rge")
     ```
@@ -172,4 +175,5 @@ def available_resources_output(bandwith_limit: Optional[pulumi.Input[int]] = Non
     :param str instance_type: The type of instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""available_resources is deprecated: volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources""")
     ...

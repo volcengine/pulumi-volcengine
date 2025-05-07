@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.VirtualInterfaces({
+ * const foo = volcengine.direct_connect.getVirtualInterfaces({
  *     virtualInterfaceName: "tf-test",
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces */
 export function virtualInterfaces(args?: VirtualInterfacesArgs, opts?: pulumi.InvokeOptions): Promise<VirtualInterfacesResult> {
+    pulumi.log.warn("virtualInterfaces is deprecated: volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -145,11 +147,12 @@ export interface VirtualInterfacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.VirtualInterfaces({
+ * const foo = volcengine.direct_connect.getVirtualInterfaces({
  *     virtualInterfaceName: "tf-test",
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces */
 export function virtualInterfacesOutput(args?: VirtualInterfacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VirtualInterfacesResult> {
     return pulumi.output(args).apply((a: any) => virtualInterfaces(a, opts))
 }

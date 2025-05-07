@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.vedb_mysql.Instances has been deprecated in favor of volcengine.vedb_mysql.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -225,7 +227,7 @@ def instances(charge_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -254,7 +256,7 @@ def instances(charge_type: Optional[str] = None,
                 value="tftest2",
             ),
         ])
-    foo_instances = volcengine.vedb_mysql.instances_output(instance_id=foo_instance.id)
+    foo_instances = volcengine.vedb_mysql.get_instances_output(instance_id=foo_instance.id)
     ```
 
 
@@ -271,6 +273,7 @@ def instances(charge_type: Optional[str] = None,
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the veDB Mysql instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.vedb_mysql.Instances has been deprecated in favor of volcengine.vedb_mysql.getInstances""")
     __args__ = dict()
     __args__['chargeType'] = charge_type
     __args__['createTimeEnd'] = create_time_end
@@ -327,7 +330,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -356,7 +359,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
                 value="tftest2",
             ),
         ])
-    foo_instances = volcengine.vedb_mysql.instances_output(instance_id=foo_instance.id)
+    foo_instances = volcengine.vedb_mysql.get_instances_output(instance_id=foo_instance.id)
     ```
 
 
@@ -373,4 +376,5 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the veDB Mysql instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.vedb_mysql.Instances has been deprecated in favor of volcengine.vedb_mysql.getInstances""")
     ...

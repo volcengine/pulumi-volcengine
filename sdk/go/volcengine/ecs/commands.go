@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.Commands(ctx, &ecs.CommandsArgs{
+//			_, err := ecs.GetCommands(ctx, &ecs.GetCommandsArgs{
 //				CommandId: pulumi.StringRef("cmd-ychkepkhtim0tr3b****"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands
 func Commands(ctx *pulumi.Context, args *CommandsArgs, opts ...pulumi.InvokeOption) (*CommandsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CommandsResult

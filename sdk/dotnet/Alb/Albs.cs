@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs")]
     public static class Albs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Alb.Zones.Invoke();
+        ///     var fooZones = Volcengine.Alb.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Alb
         ///     {
         ///         SubnetName = "acc-test-subnet-1",
         ///         CidrBlock = "172.16.1.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Alb
         ///     {
         ///         SubnetName = "acc-test-subnet-2",
         ///         CidrBlock = "172.16.2.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -74,7 +75,7 @@ namespace Pulumi.Volcengine.Alb
         ///             },
         ///         }));
         ///     }
-        ///     var fooAlbs = Volcengine.Alb.Albs.Invoke(new()
+        ///     var fooAlbs = Volcengine.Alb.GetAlbs.Invoke(new()
         ///     {
         ///         Ids = fooAlb.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -97,7 +98,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Alb.Zones.Invoke();
+        ///     var fooZones = Volcengine.Alb.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -109,7 +110,7 @@ namespace Pulumi.Volcengine.Alb
         ///     {
         ///         SubnetName = "acc-test-subnet-1",
         ///         CidrBlock = "172.16.1.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -117,7 +118,7 @@ namespace Pulumi.Volcengine.Alb
         ///     {
         ///         SubnetName = "acc-test-subnet-2",
         ///         CidrBlock = "172.16.2.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -148,7 +149,7 @@ namespace Pulumi.Volcengine.Alb
         ///             },
         ///         }));
         ///     }
-        ///     var fooAlbs = Volcengine.Alb.Albs.Invoke(new()
+        ///     var fooAlbs = Volcengine.Alb.GetAlbs.Invoke(new()
         ///     {
         ///         Ids = fooAlb.Select(__item =&gt; __item.Id).ToList(),
         ///     });

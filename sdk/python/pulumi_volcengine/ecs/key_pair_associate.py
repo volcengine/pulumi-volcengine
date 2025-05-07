@@ -108,8 +108,8 @@ class KeyPairAssociate(pulumi.CustomResource):
         foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
             key_pair_name="acc-test-key-name",
             description="acc-test")
-        foo_zones = volcengine.ecs.zones()
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
@@ -172,8 +172,8 @@ class KeyPairAssociate(pulumi.CustomResource):
         foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
             key_pair_name="acc-test-key-name",
             description="acc-test")
-        foo_zones = volcengine.ecs.zones()
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_vpc = volcengine.vpc.Vpc("fooVpc",

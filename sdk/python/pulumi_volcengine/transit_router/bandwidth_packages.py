@@ -18,6 +18,8 @@ __all__ = [
     'bandwidth_packages_output',
 ]
 
+warnings.warn("""volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages""", DeprecationWarning)
+
 @pulumi.output_type
 class BandwidthPackagesResult:
     """
@@ -183,7 +185,7 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
         bandwidth=2,
         period=1,
         renew_type="Manual")
-    foo_bandwidth_packages = volcengine.transit_router.bandwidth_packages_output(ids=[foo_bandwidth_package.id])
+    foo_bandwidth_packages = volcengine.transit_router.get_bandwidth_packages_output(ids=[foo_bandwidth_package.id])
     ```
 
 
@@ -196,6 +198,7 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
     :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.
     :param str transit_router_peer_attachment_id: The ID of the peer attachment.
     """
+    pulumi.log.warn("""bandwidth_packages is deprecated: volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['localGeographicRegionSetId'] = local_geographic_region_set_id
@@ -246,7 +249,7 @@ def bandwidth_packages_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
         bandwidth=2,
         period=1,
         renew_type="Manual")
-    foo_bandwidth_packages = volcengine.transit_router.bandwidth_packages_output(ids=[foo_bandwidth_package.id])
+    foo_bandwidth_packages = volcengine.transit_router.get_bandwidth_packages_output(ids=[foo_bandwidth_package.id])
     ```
 
 
@@ -259,4 +262,5 @@ def bandwidth_packages_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
     :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.
     :param str transit_router_peer_attachment_id: The ID of the peer attachment.
     """
+    pulumi.log.warn("""bandwidth_packages is deprecated: volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages""")
     ...

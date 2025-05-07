@@ -98,7 +98,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly int Period;
         /// <summary>
-        /// The name of project.
+        /// The project name of instance.
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
@@ -110,7 +110,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.EscloudInstancesV2InstanceInstanceConfigurationSubnetResult> Subnets;
         /// <summary>
-        /// The version of instance.
+        /// The version of plugin.
         /// </summary>
         public readonly string Version;
         /// <summary>

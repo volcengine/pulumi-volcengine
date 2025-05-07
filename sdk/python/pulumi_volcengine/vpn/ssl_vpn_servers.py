@@ -17,6 +17,8 @@ __all__ = [
     'ssl_vpn_servers_output',
 ]
 
+warnings.warn("""volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers""", DeprecationWarning)
+
 @pulumi.output_type
 class SslVpnServersResult:
     """
@@ -124,7 +126,7 @@ def ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -153,7 +155,7 @@ def ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
         cipher="AES-128-CBC",
         auth="SHA1",
         compress=True)
-    foo_ssl_vpn_servers = volcengine.vpn.ssl_vpn_servers_output(ids=[foo_ssl_vpn_server.id])
+    foo_ssl_vpn_servers = volcengine.vpn.get_ssl_vpn_servers_output(ids=[foo_ssl_vpn_server.id])
     ```
 
 
@@ -162,6 +164,7 @@ def ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
     :param str ssl_vpn_server_name: The name of the ssl vpn server.
     :param str vpn_gateway_id: The id of the vpn gateway.
     """
+    pulumi.log.warn("""ssl_vpn_servers is deprecated: volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -194,7 +197,7 @@ def ssl_vpn_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -223,7 +226,7 @@ def ssl_vpn_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
         cipher="AES-128-CBC",
         auth="SHA1",
         compress=True)
-    foo_ssl_vpn_servers = volcengine.vpn.ssl_vpn_servers_output(ids=[foo_ssl_vpn_server.id])
+    foo_ssl_vpn_servers = volcengine.vpn.get_ssl_vpn_servers_output(ids=[foo_ssl_vpn_server.id])
     ```
 
 
@@ -232,4 +235,5 @@ def ssl_vpn_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param str ssl_vpn_server_name: The name of the ssl vpn server.
     :param str vpn_gateway_id: The id of the vpn gateway.
     """
+    pulumi.log.warn("""ssl_vpn_servers is deprecated: volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers""")
     ...

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_monitor
 {
+    [Obsolete(@"volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules")]
     public static class EventRules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_monitor.EventRules.Invoke(new()
+        ///     var foo = Volcengine.Cloud_monitor.GetEventRules.Invoke(new()
         ///     {
         ///         RuleName = "tftest",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_monitor.EventRules.Invoke(new()
+        ///     var foo = Volcengine.Cloud_monitor.GetEventRules.Invoke(new()
         ///     {
         ///         RuleName = "tftest",
         ///     });

@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to query detailed information of cen route entries
+//
+// Deprecated: volcengine.cen.RouteEntries has been deprecated in favor of volcengine.cen.getRouteEntries
 func RouteEntries(ctx *pulumi.Context, args *RouteEntriesArgs, opts ...pulumi.InvokeOption) (*RouteEntriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteEntriesResult

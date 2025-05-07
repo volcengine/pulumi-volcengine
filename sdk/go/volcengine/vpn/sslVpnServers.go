@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -78,7 +78,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vpn.SslVpnServersOutput(ctx, vpn.SslVpnServersOutputArgs{
+//			_ = vpn.GetSslVpnServersOutput(ctx, vpn.GetSslVpnServersOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooSslVpnServer.ID(),
 //				},
@@ -88,6 +88,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpn.SslVpnServers has been deprecated in favor of volcengine.vpn.getSslVpnServers
 func SslVpnServers(ctx *pulumi.Context, args *SslVpnServersArgs, opts ...pulumi.InvokeOption) (*SslVpnServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SslVpnServersResult

@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.rabbitmq.Instances has been deprecated in favor of volcengine.rabbitmq.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -213,7 +215,7 @@ def instances(charge_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -244,7 +246,7 @@ def instances(charge_type: Optional[str] = None,
             key="k1",
             value="v1",
         )])
-    foo_instances = volcengine.rabbitmq.instances_output(instance_id=foo_instance.id)
+    foo_instances = volcengine.rabbitmq.get_instances_output(instance_id=foo_instance.id)
     ```
 
 
@@ -260,6 +262,7 @@ def instances(charge_type: Optional[str] = None,
     :param str vpc_id: The vpc id of rabbitmq instance. This field supports fuzzy query.
     :param str zone_id: The zone id of rabbitmq instance. This field supports fuzzy query.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rabbitmq.Instances has been deprecated in favor of volcengine.rabbitmq.getInstances""")
     __args__ = dict()
     __args__['chargeType'] = charge_type
     __args__['instanceId'] = instance_id
@@ -313,7 +316,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -344,7 +347,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
             key="k1",
             value="v1",
         )])
-    foo_instances = volcengine.rabbitmq.instances_output(instance_id=foo_instance.id)
+    foo_instances = volcengine.rabbitmq.get_instances_output(instance_id=foo_instance.id)
     ```
 
 
@@ -360,4 +363,5 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param str vpc_id: The vpc id of rabbitmq instance. This field supports fuzzy query.
     :param str zone_id: The zone id of rabbitmq instance. This field supports fuzzy query.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.rabbitmq.Instances has been deprecated in favor of volcengine.rabbitmq.getInstances""")
     ...

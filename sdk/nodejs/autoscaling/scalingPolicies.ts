@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to query detailed information of scaling policies
  */
+/** @deprecated volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies */
 export function scalingPolicies(args: ScalingPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingPoliciesResult> {
+    pulumi.log.warn("scalingPolicies is deprecated: volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingPolicies:ScalingPolicies", {
@@ -84,6 +86,7 @@ export interface ScalingPoliciesResult {
 /**
  * Use this data source to query detailed information of scaling policies
  */
+/** @deprecated volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies */
 export function scalingPoliciesOutput(args: ScalingPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingPoliciesResult> {
     return pulumi.output(args).apply((a: any) => scalingPolicies(a, opts))
 }

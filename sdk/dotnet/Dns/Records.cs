@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Dns
 {
+    [Obsolete(@"volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords")]
     public static class Records
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Dns.Records.Invoke(new()
+        ///     var foo = Volcengine.Dns.GetRecords.Invoke(new()
         ///     {
         ///         Zid = 58857,
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Dns.Records.Invoke(new()
+        ///     var foo = Volcengine.Dns.GetRecords.Invoke(new()
         ///     {
         ///         Zid = 58857,
         ///     });

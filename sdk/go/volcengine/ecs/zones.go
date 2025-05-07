@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.Zones(ctx, &ecs.ZonesArgs{
+//			_, err := ecs.GetZones(ctx, &ecs.GetZonesArgs{
 //				Ids: []string{
 //					"cn-beijing-a",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.Zones has been deprecated in favor of volcengine.ecs.getZones
 func Zones(ctx *pulumi.Context, args *ZonesArgs, opts ...pulumi.InvokeOption) (*ZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ZonesResult

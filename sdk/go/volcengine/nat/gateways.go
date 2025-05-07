@@ -29,7 +29,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -75,13 +75,15 @@ import (
 // }
 // fooGateway = append(fooGateway, __res)
 // }
-// _ = nat.GatewaysOutput(ctx, nat.GatewaysOutputArgs{
+// _ = nat.GetGatewaysOutput(ctx, nat.GetGatewaysOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:nat-gateways:Gateways.pp:30,9-25),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways
 func Gateways(ctx *pulumi.Context, args *GatewaysArgs, opts ...pulumi.InvokeOption) (*GatewaysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewaysResult

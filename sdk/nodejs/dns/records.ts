@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.dns.Records({
+ * const foo = volcengine.dns.getRecords({
  *     zid: 58857,
  * });
  * ```
  */
+/** @deprecated volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords */
 export function records(args: RecordsArgs, opts?: pulumi.InvokeOptions): Promise<RecordsResult> {
+    pulumi.log.warn("records is deprecated: volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:dns/records:Records", {
@@ -123,11 +125,12 @@ export interface RecordsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.dns.Records({
+ * const foo = volcengine.dns.getRecords({
  *     zid: 58857,
  * });
  * ```
  */
+/** @deprecated volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords */
 export function recordsOutput(args: RecordsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RecordsResult> {
     return pulumi.output(args).apply((a: any) => records(a, opts))
 }

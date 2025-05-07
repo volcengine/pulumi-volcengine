@@ -11,38 +11,6 @@ namespace Pulumi.Volcengine.Nas
 {
     /// <summary>
     /// Provides a resource to manage nas file system
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Volcengine = Pulumi.Volcengine;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var fooZones = Volcengine.Nas.Zones.Invoke();
-    /// 
-    ///     var fooFileSystem = new Volcengine.Nas.FileSystem("fooFileSystem", new()
-    ///     {
-    ///         FileSystemName = "acc-test-fs",
-    ///         Description = "acc-test",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///         Capacity = 103,
-    ///         ProjectName = "default",
-    ///         Tags = new[]
-    ///         {
-    ///             new Volcengine.Nas.Inputs.FileSystemTagArgs
-    ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// NasFileSystem can be imported using the id, e.g.

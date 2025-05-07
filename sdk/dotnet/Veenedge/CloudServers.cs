@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Veenedge
 {
+    [Obsolete(@"volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers")]
     public static class CloudServers
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.CloudServers.Invoke();
+        ///     var @default = Volcengine.Veenedge.GetCloudServers.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.CloudServers.Invoke();
+        ///     var @default = Volcengine.Veenedge.GetCloudServers.Invoke();
         /// 
         /// });
         /// ```

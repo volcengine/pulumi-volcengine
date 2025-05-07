@@ -17,6 +17,8 @@ __all__ = [
     'repositories_output',
 ]
 
+warnings.warn("""volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories""", DeprecationWarning)
+
 @pulumi.output_type
 class RepositoriesResult:
     """
@@ -128,7 +130,7 @@ def repositories(access_levels: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.repositories(names=["repo*"],
+    foo = volcengine.cr.get_repositories(names=["repo*"],
         registry="tf-1")
     ```
 
@@ -139,6 +141,7 @@ def repositories(access_levels: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str registry: The CR instance name.
     """
+    pulumi.log.warn("""repositories is deprecated: volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories""")
     __args__ = dict()
     __args__['accessLevels'] = access_levels
     __args__['names'] = names
@@ -174,7 +177,7 @@ def repositories_output(access_levels: Optional[pulumi.Input[Optional[Sequence[s
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.repositories(names=["repo*"],
+    foo = volcengine.cr.get_repositories(names=["repo*"],
         registry="tf-1")
     ```
 
@@ -185,4 +188,5 @@ def repositories_output(access_levels: Optional[pulumi.Input[Optional[Sequence[s
     :param str output_file: File name where to save data source results.
     :param str registry: The CR instance name.
     """
+    pulumi.log.warn("""repositories is deprecated: volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories""")
     ...

@@ -11,6 +11,7 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Deprecated: volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows
 func PitrTimeWindows(ctx *pulumi.Context, args *PitrTimeWindowsArgs, opts ...pulumi.InvokeOption) (*PitrTimeWindowsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PitrTimeWindowsResult

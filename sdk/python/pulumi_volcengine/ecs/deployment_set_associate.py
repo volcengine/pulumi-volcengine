@@ -105,7 +105,7 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -117,7 +117,7 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_instance = volcengine.ecs.Instance("fooInstance",
@@ -172,7 +172,7 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -184,7 +184,7 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(os_type="Linux",
+        foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
             instance_type_id="ecs.g1.large")
         foo_instance = volcengine.ecs.Instance("fooInstance",

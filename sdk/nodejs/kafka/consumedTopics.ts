@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -83,14 +83,16 @@ import * as utilities from "../utilities";
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = volcengine.kafka.ConsumedTopicsOutput({
+ * const default = volcengine.kafka.getConsumedTopicsOutput({
  *     instanceId: fooInstance.id,
  *     groupId: fooGroup.groupId,
  *     topicName: fooTopic.topicName,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics */
 export function consumedTopics(args: ConsumedTopicsArgs, opts?: pulumi.InvokeOptions): Promise<ConsumedTopicsResult> {
+    pulumi.log.warn("consumedTopics is deprecated: volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:kafka/consumedTopics:ConsumedTopics", {
@@ -156,7 +158,7 @@ export interface ConsumedTopicsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -224,13 +226,14 @@ export interface ConsumedTopicsResult {
  *         accessPolicy: "Pub",
  *     }],
  * });
- * const default = volcengine.kafka.ConsumedTopicsOutput({
+ * const default = volcengine.kafka.getConsumedTopicsOutput({
  *     instanceId: fooInstance.id,
  *     groupId: fooGroup.groupId,
  *     topicName: fooTopic.topicName,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.ConsumedTopics has been deprecated in favor of volcengine.kafka.getConsumedTopics */
 export function consumedTopicsOutput(args: ConsumedTopicsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ConsumedTopicsResult> {
     return pulumi.output(args).apply((a: any) => consumedTopics(a, opts))
 }

@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -91,7 +91,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = privatelink.VpcEndpointServicePermissionsOutput(ctx, privatelink.VpcEndpointServicePermissionsOutputArgs{
+//			_ = privatelink.GetVpcEndpointServicePermissionsOutput(ctx, privatelink.GetVpcEndpointServicePermissionsOutputArgs{
 //				PermitAccountId: fooVpcEndpointServicePermission.PermitAccountId,
 //				ServiceId:       fooVpcEndpointService.ID(),
 //			}, nil)
@@ -100,6 +100,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions
 func VpcEndpointServicePermissions(ctx *pulumi.Context, args *VpcEndpointServicePermissionsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointServicePermissionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointServicePermissionsResult

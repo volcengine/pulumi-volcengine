@@ -17,6 +17,8 @@ __all__ = [
     'organizations_output',
 ]
 
+warnings.warn("""volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations""", DeprecationWarning)
+
 @pulumi.output_type
 class OrganizationsResult:
     """
@@ -98,13 +100,14 @@ def organizations(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.organization.organizations()
+    foo = volcengine.organization.get_organizations()
     ```
 
 
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""organizations is deprecated: volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def organizations_output(name_regex: Optional[pulumi.Input[Optional[str]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.organization.organizations()
+    foo = volcengine.organization.get_organizations()
     ```
 
 
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""organizations is deprecated: volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations""")
     ...

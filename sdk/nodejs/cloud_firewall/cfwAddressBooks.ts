@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwAddressBooks({
+ * const foo = volcengine.cloud_firewall.getCfwAddressBooks({
  *     groupName: "acc-test",
  *     groupType: "ip",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks */
 export function cfwAddressBooks(args?: CfwAddressBooksArgs, opts?: pulumi.InvokeOptions): Promise<CfwAddressBooksResult> {
+    pulumi.log.warn("cfwAddressBooks is deprecated: volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -104,12 +106,13 @@ export interface CfwAddressBooksResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwAddressBooks({
+ * const foo = volcengine.cloud_firewall.getCfwAddressBooks({
  *     groupName: "acc-test",
  *     groupType: "ip",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks */
 export function cfwAddressBooksOutput(args?: CfwAddressBooksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CfwAddressBooksResult> {
     return pulumi.output(args).apply((a: any) => cfwAddressBooks(a, opts))
 }

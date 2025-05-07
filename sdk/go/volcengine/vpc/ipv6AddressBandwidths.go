@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.Ipv6AddressBandwidths(ctx, &vpc.Ipv6AddressBandwidthsArgs{
+//			_, err := vpc.GetIpv6AddressBandwidths(ctx, &vpc.GetIpv6AddressBandwidthsArgs{
 //				Ids: []string{
 //					"eip-in2y2duvtlhc8gbssyfnhfre",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths
 func Ipv6AddressBandwidths(ctx *pulumi.Context, args *Ipv6AddressBandwidthsArgs, opts ...pulumi.InvokeOption) (*Ipv6AddressBandwidthsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Ipv6AddressBandwidthsResult

@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = iam.RolesOutput(ctx, iam.RolesOutputArgs{
+//			_ = iam.GetRolesOutput(ctx, iam.GetRolesOutputArgs{
 //				RoleName: pulumi.All(foo1.RoleName, foo2.RoleName).ApplyT(func(_args []interface{}) (string, error) {
 //					foo1RoleName := _args[0].(string)
 //					foo2RoleName := _args[1].(string)
@@ -60,6 +60,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles
 func Roles(ctx *pulumi.Context, args *RolesArgs, opts ...pulumi.InvokeOption) (*RolesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RolesResult

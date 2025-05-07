@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls")]
     public static class NetworkAcls
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.NetworkAcls.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetNetworkAcls.Invoke(new()
         ///     {
         ///         NetworkAclName = "ms-tf-acl",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.NetworkAcls.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetNetworkAcls.Invoke(new()
         ///     {
         ///         NetworkAclName = "ms-tf-acl",
         ///     });

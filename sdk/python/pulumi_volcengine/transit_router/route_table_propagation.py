@@ -112,7 +112,7 @@ class RouteTablePropagation(pulumi.CustomResource):
             description="tf-test-acc-description",
             transit_router_route_table_name="tf-table-test-acc",
             transit_router_id=foo_transit_router.id)
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc-acc",
             cidr_block="172.16.0.0/16")
@@ -180,7 +180,7 @@ class RouteTablePropagation(pulumi.CustomResource):
             description="tf-test-acc-description",
             transit_router_route_table_name="tf-table-test-acc",
             transit_router_id=foo_transit_router.id)
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc-acc",
             cidr_block="172.16.0.0/16")

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cdn
 {
+    [Obsolete(@"volcengine.cdn.Domains has been deprecated in favor of volcengine.cdn.getDomains")]
     public static class Domains
     {
         /// <summary>
@@ -93,7 +94,7 @@ namespace Pulumi.Volcengine.Cdn
         ///         })),
         ///     });
         /// 
-        ///     var fooDomains = Volcengine.Cdn.Domains.Invoke(new()
+        ///     var fooDomains = Volcengine.Cdn.GetDomains.Invoke(new()
         ///     {
         ///         Domain = fooCdnDomain.Id,
         ///     });
@@ -186,7 +187,7 @@ namespace Pulumi.Volcengine.Cdn
         ///         })),
         ///     });
         /// 
-        ///     var fooDomains = Volcengine.Cdn.Domains.Invoke(new()
+        ///     var fooDomains = Volcengine.Cdn.GetDomains.Invoke(new()
         ///     {
         ///         Domain = fooCdnDomain.Id,
         ///     });

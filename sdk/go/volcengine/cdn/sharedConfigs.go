@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cdn.SharedConfigs(ctx, &cdn.SharedConfigsArgs{
+//			_, err := cdn.GetSharedConfigs(ctx, &cdn.GetSharedConfigsArgs{
 //				ConfigName:  pulumi.StringRef("tf-test"),
 //				ConfigType:  pulumi.StringRef("allow_ip_access_rule"),
 //				ProjectName: pulumi.StringRef("default"),
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs
 func SharedConfigs(ctx *pulumi.Context, args *SharedConfigsArgs, opts ...pulumi.InvokeOption) (*SharedConfigsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SharedConfigsResult

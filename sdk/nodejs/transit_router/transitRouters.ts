@@ -19,13 +19,15 @@ import * as utilities from "../utilities";
  *     transitRouterName: "test-tf-acc",
  *     description: "test-tf-acc",
  * });
- * const default = volcengine.transit_router.TransitRoutersOutput({
+ * const default = volcengine.transit_router.getTransitRoutersOutput({
  *     ids: [foo.id],
  *     transitRouterName: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters */
 export function transitRouters(args?: TransitRoutersArgs, opts?: pulumi.InvokeOptions): Promise<TransitRoutersResult> {
+    pulumi.log.warn("transitRouters is deprecated: volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -108,12 +110,13 @@ export interface TransitRoutersResult {
  *     transitRouterName: "test-tf-acc",
  *     description: "test-tf-acc",
  * });
- * const default = volcengine.transit_router.TransitRoutersOutput({
+ * const default = volcengine.transit_router.getTransitRoutersOutput({
  *     ids: [foo.id],
  *     transitRouterName: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters */
 export function transitRoutersOutput(args?: TransitRoutersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TransitRoutersResult> {
     return pulumi.output(args).apply((a: any) => transitRouters(a, opts))
 }

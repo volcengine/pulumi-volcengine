@@ -17,6 +17,8 @@ __all__ = [
     'allowlists_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.Allowlists has been deprecated in favor of volcengine.rds_mysql.getAllowlists""", DeprecationWarning)
+
 @pulumi.output_type
 class AllowlistsResult:
     """
@@ -111,7 +113,7 @@ def allowlists(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -153,7 +155,7 @@ def allowlists(instance_id: Optional[str] = None,
             ),
         ],
         allow_list_ids=[__item.id for __item in foo_allowlist])
-    foo_allowlists = volcengine.rds_mysql.allowlists_output(instance_id=foo_instance.id,
+    foo_allowlists = volcengine.rds_mysql.get_allowlists_output(instance_id=foo_instance.id,
         region_id="cn-beijing")
     ```
 
@@ -162,6 +164,7 @@ def allowlists(instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str region_id: The region of the allow lists.
     """
+    pulumi.log.warn("""allowlists is deprecated: volcengine.rds_mysql.Allowlists has been deprecated in favor of volcengine.rds_mysql.getAllowlists""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
@@ -191,7 +194,7 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -233,7 +236,7 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
             ),
         ],
         allow_list_ids=[__item.id for __item in foo_allowlist])
-    foo_allowlists = volcengine.rds_mysql.allowlists_output(instance_id=foo_instance.id,
+    foo_allowlists = volcengine.rds_mysql.get_allowlists_output(instance_id=foo_instance.id,
         region_id="cn-beijing")
     ```
 
@@ -242,4 +245,5 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str region_id: The region of the allow lists.
     """
+    pulumi.log.warn("""allowlists is deprecated: volcengine.rds_mysql.Allowlists has been deprecated in favor of volcengine.rds_mysql.getAllowlists""")
     ...

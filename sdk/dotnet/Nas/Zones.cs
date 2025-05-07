@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nas
 {
+    [Obsolete(@"volcengine.nas.Zones has been deprecated in favor of volcengine.nas.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nas.Zones.Invoke();
+        ///     var @default = Volcengine.Nas.GetZones.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nas.Zones.Invoke();
+        ///     var @default = Volcengine.Nas.GetZones.Invoke();
         /// 
         /// });
         /// ```

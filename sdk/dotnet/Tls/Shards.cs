@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.Shards has been deprecated in favor of volcengine.tls.getShards")]
     public static class Shards
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Shards.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetShards.Invoke(new()
         ///     {
         ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Shards.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetShards.Invoke(new()
         ///     {
         ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
         ///     });

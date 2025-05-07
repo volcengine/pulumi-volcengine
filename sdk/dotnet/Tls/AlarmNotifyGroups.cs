@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups")]
     public static class AlarmNotifyGroups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.AlarmNotifyGroups.Invoke();
+        ///     var @default = Volcengine.Tls.GetAlarmNotifyGroups.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.AlarmNotifyGroups.Invoke();
+        ///     var @default = Volcengine.Tls.GetAlarmNotifyGroups.Invoke();
         /// 
         /// });
         /// ```

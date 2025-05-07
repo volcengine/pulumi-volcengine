@@ -17,6 +17,8 @@ __all__ = [
     'image_share_permissions_output',
 ]
 
+warnings.warn("""volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions""", DeprecationWarning)
+
 @pulumi.output_type
 class ImageSharePermissionsResult:
     """
@@ -98,13 +100,14 @@ def image_share_permissions(image_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.image_share_permissions(image_id="image-ydi2wozhozfu03z2****")
+    foo = volcengine.ecs.get_image_share_permissions(image_id="image-ydi2wozhozfu03z2****")
     ```
 
 
     :param str image_id: The id of the image.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""image_share_permissions is deprecated: volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions""")
     __args__ = dict()
     __args__['imageId'] = image_id
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def image_share_permissions_output(image_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.image_share_permissions(image_id="image-ydi2wozhozfu03z2****")
+    foo = volcengine.ecs.get_image_share_permissions(image_id="image-ydi2wozhozfu03z2****")
     ```
 
 
     :param str image_id: The id of the image.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""image_share_permissions is deprecated: volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions""")
     ...

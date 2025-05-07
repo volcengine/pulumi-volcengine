@@ -36,12 +36,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooAutoSnapshotPolicies = volcengine.ebs.AutoSnapshotPoliciesOutput({
+ * const fooAutoSnapshotPolicies = volcengine.ebs.getAutoSnapshotPoliciesOutput({
  *     ids: fooAutoSnapshotPolicy.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies */
 export function autoSnapshotPolicies(args?: AutoSnapshotPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<AutoSnapshotPoliciesResult> {
+    pulumi.log.warn("autoSnapshotPolicies is deprecated: volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -138,11 +140,12 @@ export interface AutoSnapshotPoliciesResult {
  *         }],
  *     }));
  * }
- * const fooAutoSnapshotPolicies = volcengine.ebs.AutoSnapshotPoliciesOutput({
+ * const fooAutoSnapshotPolicies = volcengine.ebs.getAutoSnapshotPoliciesOutput({
  *     ids: fooAutoSnapshotPolicy.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies */
 export function autoSnapshotPoliciesOutput(args?: AutoSnapshotPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AutoSnapshotPoliciesResult> {
     return pulumi.output(args).apply((a: any) => autoSnapshotPolicies(a, opts))
 }

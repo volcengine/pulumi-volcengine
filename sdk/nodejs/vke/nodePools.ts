@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
@@ -127,12 +127,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooNodePools = volcengine.vke.NodePoolsOutput({
+ * const fooNodePools = volcengine.vke.getNodePoolsOutput({
  *     ids: fooNodePool.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools */
 export function nodePools(args?: NodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<NodePoolsResult> {
+    pulumi.log.warn("nodePools is deprecated: volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -253,7 +255,7 @@ export interface NodePoolsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -268,7 +270,7 @@ export interface NodePoolsResult {
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
@@ -365,11 +367,12 @@ export interface NodePoolsResult {
  *         }],
  *     }));
  * }
- * const fooNodePools = volcengine.vke.NodePoolsOutput({
+ * const fooNodePools = volcengine.vke.getNodePoolsOutput({
  *     ids: fooNodePool.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools */
 export function nodePoolsOutput(args?: NodePoolsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NodePoolsResult> {
     return pulumi.output(args).apply((a: any) => nodePools(a, opts))
 }

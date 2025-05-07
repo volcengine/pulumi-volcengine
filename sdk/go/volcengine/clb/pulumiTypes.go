@@ -3314,6 +3314,2487 @@ func (o ZonesMasterZoneSlaveZoneArrayOutput) Index(i pulumi.IntInput) ZonesMaste
 	}).(ZonesMasterZoneSlaveZoneOutput)
 }
 
+type GetAclsAcl struct {
+	// The count of acl entry.
+	AclEntryCount int `pulumi:"aclEntryCount"`
+	// The ID of Acl.
+	AclId string `pulumi:"aclId"`
+	// The name of acl.
+	AclName string `pulumi:"aclName"`
+	// Creation time of Acl.
+	CreateTime string `pulumi:"createTime"`
+	// The description of Acl.
+	Description string `pulumi:"description"`
+	// The ID of Acl.
+	Id string `pulumi:"id"`
+	// The listeners of Acl.
+	Listeners []string `pulumi:"listeners"`
+	// The ProjectName of Acl.
+	ProjectName string `pulumi:"projectName"`
+	// Update time of Acl.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetAclsAclInput is an input type that accepts GetAclsAclArgs and GetAclsAclOutput values.
+// You can construct a concrete instance of `GetAclsAclInput` via:
+//
+//	GetAclsAclArgs{...}
+type GetAclsAclInput interface {
+	pulumi.Input
+
+	ToGetAclsAclOutput() GetAclsAclOutput
+	ToGetAclsAclOutputWithContext(context.Context) GetAclsAclOutput
+}
+
+type GetAclsAclArgs struct {
+	// The count of acl entry.
+	AclEntryCount pulumi.IntInput `pulumi:"aclEntryCount"`
+	// The ID of Acl.
+	AclId pulumi.StringInput `pulumi:"aclId"`
+	// The name of acl.
+	AclName pulumi.StringInput `pulumi:"aclName"`
+	// Creation time of Acl.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of Acl.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of Acl.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The listeners of Acl.
+	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
+	// The ProjectName of Acl.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Update time of Acl.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetAclsAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclsAcl)(nil)).Elem()
+}
+
+func (i GetAclsAclArgs) ToGetAclsAclOutput() GetAclsAclOutput {
+	return i.ToGetAclsAclOutputWithContext(context.Background())
+}
+
+func (i GetAclsAclArgs) ToGetAclsAclOutputWithContext(ctx context.Context) GetAclsAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclsAclOutput)
+}
+
+// GetAclsAclArrayInput is an input type that accepts GetAclsAclArray and GetAclsAclArrayOutput values.
+// You can construct a concrete instance of `GetAclsAclArrayInput` via:
+//
+//	GetAclsAclArray{ GetAclsAclArgs{...} }
+type GetAclsAclArrayInput interface {
+	pulumi.Input
+
+	ToGetAclsAclArrayOutput() GetAclsAclArrayOutput
+	ToGetAclsAclArrayOutputWithContext(context.Context) GetAclsAclArrayOutput
+}
+
+type GetAclsAclArray []GetAclsAclInput
+
+func (GetAclsAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclsAcl)(nil)).Elem()
+}
+
+func (i GetAclsAclArray) ToGetAclsAclArrayOutput() GetAclsAclArrayOutput {
+	return i.ToGetAclsAclArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclsAclArray) ToGetAclsAclArrayOutputWithContext(ctx context.Context) GetAclsAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclsAclArrayOutput)
+}
+
+type GetAclsAclOutput struct{ *pulumi.OutputState }
+
+func (GetAclsAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclsAcl)(nil)).Elem()
+}
+
+func (o GetAclsAclOutput) ToGetAclsAclOutput() GetAclsAclOutput {
+	return o
+}
+
+func (o GetAclsAclOutput) ToGetAclsAclOutputWithContext(ctx context.Context) GetAclsAclOutput {
+	return o
+}
+
+// The count of acl entry.
+func (o GetAclsAclOutput) AclEntryCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAclsAcl) int { return v.AclEntryCount }).(pulumi.IntOutput)
+}
+
+// The ID of Acl.
+func (o GetAclsAclOutput) AclId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.AclId }).(pulumi.StringOutput)
+}
+
+// The name of acl.
+func (o GetAclsAclOutput) AclName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.AclName }).(pulumi.StringOutput)
+}
+
+// Creation time of Acl.
+func (o GetAclsAclOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of Acl.
+func (o GetAclsAclOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of Acl.
+func (o GetAclsAclOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The listeners of Acl.
+func (o GetAclsAclOutput) Listeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAclsAcl) []string { return v.Listeners }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of Acl.
+func (o GetAclsAclOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Update time of Acl.
+func (o GetAclsAclOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetAclsAclArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclsAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclsAcl)(nil)).Elem()
+}
+
+func (o GetAclsAclArrayOutput) ToGetAclsAclArrayOutput() GetAclsAclArrayOutput {
+	return o
+}
+
+func (o GetAclsAclArrayOutput) ToGetAclsAclArrayOutputWithContext(ctx context.Context) GetAclsAclArrayOutput {
+	return o
+}
+
+func (o GetAclsAclArrayOutput) Index(i pulumi.IntInput) GetAclsAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclsAcl {
+		return vs[0].([]GetAclsAcl)[vs[1].(int)]
+	}).(GetAclsAclOutput)
+}
+
+type GetCertificatesCertificate struct {
+	// The ID of the Certificate.
+	CertificateId string `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName string `pulumi:"certificateName"`
+	// The create time of the Certificate.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description string `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName string `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt string `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id string `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners []string `pulumi:"listeners"`
+	// The ProjectName of Certificate.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetCertificatesCertificateTag `pulumi:"tags"`
+}
+
+// GetCertificatesCertificateInput is an input type that accepts GetCertificatesCertificateArgs and GetCertificatesCertificateOutput values.
+// You can construct a concrete instance of `GetCertificatesCertificateInput` via:
+//
+//	GetCertificatesCertificateArgs{...}
+type GetCertificatesCertificateInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertificateOutput() GetCertificatesCertificateOutput
+	ToGetCertificatesCertificateOutputWithContext(context.Context) GetCertificatesCertificateOutput
+}
+
+type GetCertificatesCertificateArgs struct {
+	// The ID of the Certificate.
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName pulumi.StringInput `pulumi:"certificateName"`
+	// The create time of the Certificate.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName pulumi.StringInput `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt pulumi.StringInput `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
+	// The ProjectName of Certificate.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetCertificatesCertificateTagArrayInput `pulumi:"tags"`
+}
+
+func (GetCertificatesCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertificate)(nil)).Elem()
+}
+
+func (i GetCertificatesCertificateArgs) ToGetCertificatesCertificateOutput() GetCertificatesCertificateOutput {
+	return i.ToGetCertificatesCertificateOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertificateArgs) ToGetCertificatesCertificateOutputWithContext(ctx context.Context) GetCertificatesCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertificateOutput)
+}
+
+// GetCertificatesCertificateArrayInput is an input type that accepts GetCertificatesCertificateArray and GetCertificatesCertificateArrayOutput values.
+// You can construct a concrete instance of `GetCertificatesCertificateArrayInput` via:
+//
+//	GetCertificatesCertificateArray{ GetCertificatesCertificateArgs{...} }
+type GetCertificatesCertificateArrayInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertificateArrayOutput() GetCertificatesCertificateArrayOutput
+	ToGetCertificatesCertificateArrayOutputWithContext(context.Context) GetCertificatesCertificateArrayOutput
+}
+
+type GetCertificatesCertificateArray []GetCertificatesCertificateInput
+
+func (GetCertificatesCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertificate)(nil)).Elem()
+}
+
+func (i GetCertificatesCertificateArray) ToGetCertificatesCertificateArrayOutput() GetCertificatesCertificateArrayOutput {
+	return i.ToGetCertificatesCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertificateArray) ToGetCertificatesCertificateArrayOutputWithContext(ctx context.Context) GetCertificatesCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertificateArrayOutput)
+}
+
+type GetCertificatesCertificateOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertificate)(nil)).Elem()
+}
+
+func (o GetCertificatesCertificateOutput) ToGetCertificatesCertificateOutput() GetCertificatesCertificateOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateOutput) ToGetCertificatesCertificateOutputWithContext(ctx context.Context) GetCertificatesCertificateOutput {
+	return o
+}
+
+// The ID of the Certificate.
+func (o GetCertificatesCertificateOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The name of the Certificate.
+func (o GetCertificatesCertificateOutput) CertificateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.CertificateName }).(pulumi.StringOutput)
+}
+
+// The create time of the Certificate.
+func (o GetCertificatesCertificateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the Certificate.
+func (o GetCertificatesCertificateOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The domain name of the Certificate.
+func (o GetCertificatesCertificateOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// The expire time of the Certificate.
+func (o GetCertificatesCertificateOutput) ExpiredAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.ExpiredAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Certificate.
+func (o GetCertificatesCertificateOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID list of the Listener.
+func (o GetCertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of Certificate.
+func (o GetCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetCertificatesCertificateOutput) Tags() GetCertificatesCertificateTagArrayOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) []GetCertificatesCertificateTag { return v.Tags }).(GetCertificatesCertificateTagArrayOutput)
+}
+
+type GetCertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertificate)(nil)).Elem()
+}
+
+func (o GetCertificatesCertificateArrayOutput) ToGetCertificatesCertificateArrayOutput() GetCertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateArrayOutput) ToGetCertificatesCertificateArrayOutputWithContext(ctx context.Context) GetCertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateArrayOutput) Index(i pulumi.IntInput) GetCertificatesCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCertificatesCertificate {
+		return vs[0].([]GetCertificatesCertificate)[vs[1].(int)]
+	}).(GetCertificatesCertificateOutput)
+}
+
+type GetCertificatesCertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCertificatesCertificateTagInput is an input type that accepts GetCertificatesCertificateTagArgs and GetCertificatesCertificateTagOutput values.
+// You can construct a concrete instance of `GetCertificatesCertificateTagInput` via:
+//
+//	GetCertificatesCertificateTagArgs{...}
+type GetCertificatesCertificateTagInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertificateTagOutput() GetCertificatesCertificateTagOutput
+	ToGetCertificatesCertificateTagOutputWithContext(context.Context) GetCertificatesCertificateTagOutput
+}
+
+type GetCertificatesCertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCertificatesCertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i GetCertificatesCertificateTagArgs) ToGetCertificatesCertificateTagOutput() GetCertificatesCertificateTagOutput {
+	return i.ToGetCertificatesCertificateTagOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertificateTagArgs) ToGetCertificatesCertificateTagOutputWithContext(ctx context.Context) GetCertificatesCertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertificateTagOutput)
+}
+
+// GetCertificatesCertificateTagArrayInput is an input type that accepts GetCertificatesCertificateTagArray and GetCertificatesCertificateTagArrayOutput values.
+// You can construct a concrete instance of `GetCertificatesCertificateTagArrayInput` via:
+//
+//	GetCertificatesCertificateTagArray{ GetCertificatesCertificateTagArgs{...} }
+type GetCertificatesCertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertificateTagArrayOutput() GetCertificatesCertificateTagArrayOutput
+	ToGetCertificatesCertificateTagArrayOutputWithContext(context.Context) GetCertificatesCertificateTagArrayOutput
+}
+
+type GetCertificatesCertificateTagArray []GetCertificatesCertificateTagInput
+
+func (GetCertificatesCertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i GetCertificatesCertificateTagArray) ToGetCertificatesCertificateTagArrayOutput() GetCertificatesCertificateTagArrayOutput {
+	return i.ToGetCertificatesCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertificateTagArray) ToGetCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) GetCertificatesCertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertificateTagArrayOutput)
+}
+
+type GetCertificatesCertificateTagOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o GetCertificatesCertificateTagOutput) ToGetCertificatesCertificateTagOutput() GetCertificatesCertificateTagOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateTagOutput) ToGetCertificatesCertificateTagOutputWithContext(ctx context.Context) GetCertificatesCertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCertificatesCertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCertificatesCertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCertificatesCertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o GetCertificatesCertificateTagArrayOutput) ToGetCertificatesCertificateTagArrayOutput() GetCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateTagArrayOutput) ToGetCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) GetCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateTagArrayOutput) Index(i pulumi.IntInput) GetCertificatesCertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCertificatesCertificateTag {
+		return vs[0].([]GetCertificatesCertificateTag)[vs[1].(int)]
+	}).(GetCertificatesCertificateTagOutput)
+}
+
+type GetCertificatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCertificatesTagInput is an input type that accepts GetCertificatesTagArgs and GetCertificatesTagOutput values.
+// You can construct a concrete instance of `GetCertificatesTagInput` via:
+//
+//	GetCertificatesTagArgs{...}
+type GetCertificatesTagInput interface {
+	pulumi.Input
+
+	ToGetCertificatesTagOutput() GetCertificatesTagOutput
+	ToGetCertificatesTagOutputWithContext(context.Context) GetCertificatesTagOutput
+}
+
+type GetCertificatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCertificatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesTag)(nil)).Elem()
+}
+
+func (i GetCertificatesTagArgs) ToGetCertificatesTagOutput() GetCertificatesTagOutput {
+	return i.ToGetCertificatesTagOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesTagArgs) ToGetCertificatesTagOutputWithContext(ctx context.Context) GetCertificatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesTagOutput)
+}
+
+// GetCertificatesTagArrayInput is an input type that accepts GetCertificatesTagArray and GetCertificatesTagArrayOutput values.
+// You can construct a concrete instance of `GetCertificatesTagArrayInput` via:
+//
+//	GetCertificatesTagArray{ GetCertificatesTagArgs{...} }
+type GetCertificatesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCertificatesTagArrayOutput() GetCertificatesTagArrayOutput
+	ToGetCertificatesTagArrayOutputWithContext(context.Context) GetCertificatesTagArrayOutput
+}
+
+type GetCertificatesTagArray []GetCertificatesTagInput
+
+func (GetCertificatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesTag)(nil)).Elem()
+}
+
+func (i GetCertificatesTagArray) ToGetCertificatesTagArrayOutput() GetCertificatesTagArrayOutput {
+	return i.ToGetCertificatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesTagArray) ToGetCertificatesTagArrayOutputWithContext(ctx context.Context) GetCertificatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesTagArrayOutput)
+}
+
+type GetCertificatesTagOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesTag)(nil)).Elem()
+}
+
+func (o GetCertificatesTagOutput) ToGetCertificatesTagOutput() GetCertificatesTagOutput {
+	return o
+}
+
+func (o GetCertificatesTagOutput) ToGetCertificatesTagOutputWithContext(ctx context.Context) GetCertificatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCertificatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCertificatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCertificatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesTag)(nil)).Elem()
+}
+
+func (o GetCertificatesTagArrayOutput) ToGetCertificatesTagArrayOutput() GetCertificatesTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesTagArrayOutput) ToGetCertificatesTagArrayOutputWithContext(ctx context.Context) GetCertificatesTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesTagArrayOutput) Index(i pulumi.IntInput) GetCertificatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCertificatesTag {
+		return vs[0].([]GetCertificatesTag)[vs[1].(int)]
+	}).(GetCertificatesTagOutput)
+}
+
+type GetClbsClb struct {
+	// The address ip version of the Clb.
+	AddressIpVersion string `pulumi:"addressIpVersion"`
+	// The business status of the Clb.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The create time of the Clb.
+	CreateTime string `pulumi:"createTime"`
+	// The expected recycle time of the Clb.
+	DeletedTime string `pulumi:"deletedTime"`
+	// The description of the Clb.
+	Description string `pulumi:"description"`
+	// The Eip address of the Clb.
+	EipAddress string `pulumi:"eipAddress"`
+	// The eip billing config of the Clb.
+	EipBillingConfigs []GetClbsClbEipBillingConfig `pulumi:"eipBillingConfigs"`
+	// The Eip ID of the Clb.
+	EipId string `pulumi:"eipId"`
+	// The private ip address of the Clb.
+	EniAddress string `pulumi:"eniAddress"`
+	// The Eni ID of the Clb.
+	EniId string `pulumi:"eniId"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address string `pulumi:"eniIpv6Address"`
+	// The expired time of the CLB.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The ID of the Clb.
+	Id string `pulumi:"id"`
+	// The billing status of the CLB.
+	InstanceStatus int `pulumi:"instanceStatus"`
+	// The ipv6 address bandwidth information of the Clb.
+	Ipv6AddressBandwidths []GetClbsClbIpv6AddressBandwidth `pulumi:"ipv6AddressBandwidths"`
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId string `pulumi:"ipv6EipId"`
+	// The billing type of the Clb.
+	LoadBalancerBillingType string `pulumi:"loadBalancerBillingType"`
+	// The ID of the Clb.
+	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The name of the Clb.
+	LoadBalancerName string `pulumi:"loadBalancerName"`
+	// The specifications of the Clb.
+	LoadBalancerSpec string `pulumi:"loadBalancerSpec"`
+	// The reason why Clb is locked.
+	LockReason string `pulumi:"lockReason"`
+	// The master zone ID of the CLB.
+	MasterZoneId string `pulumi:"masterZoneId"`
+	// The modification protection reason of the Clb.
+	ModificationProtectionReason string `pulumi:"modificationProtectionReason"`
+	// The modification protection status of the Clb.
+	ModificationProtectionStatus string `pulumi:"modificationProtectionStatus"`
+	// The over reclaim time of the CLB.
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
+	// The overdue time of the Clb.
+	OverdueTime string `pulumi:"overdueTime"`
+	// The ProjectName of Clb.
+	ProjectName string `pulumi:"projectName"`
+	// The reclaim time of the CLB.
+	ReclaimTime string `pulumi:"reclaimTime"`
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RemainRenewTimes int `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RenewPeriodTimes int `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType string `pulumi:"renewType"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId string `pulumi:"slaveZoneId"`
+	// The status of the Clb.
+	Status string `pulumi:"status"`
+	// The subnet ID of the Clb.
+	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GetClbsClbTag `pulumi:"tags"`
+	// The type of the Clb.
+	Type string `pulumi:"type"`
+	// The update time of the Clb.
+	UpdateTime string `pulumi:"updateTime"`
+	// The id of the VPC.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetClbsClbInput is an input type that accepts GetClbsClbArgs and GetClbsClbOutput values.
+// You can construct a concrete instance of `GetClbsClbInput` via:
+//
+//	GetClbsClbArgs{...}
+type GetClbsClbInput interface {
+	pulumi.Input
+
+	ToGetClbsClbOutput() GetClbsClbOutput
+	ToGetClbsClbOutputWithContext(context.Context) GetClbsClbOutput
+}
+
+type GetClbsClbArgs struct {
+	// The address ip version of the Clb.
+	AddressIpVersion pulumi.StringInput `pulumi:"addressIpVersion"`
+	// The business status of the Clb.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The create time of the Clb.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The expected recycle time of the Clb.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// The description of the Clb.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The Eip address of the Clb.
+	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
+	// The eip billing config of the Clb.
+	EipBillingConfigs GetClbsClbEipBillingConfigArrayInput `pulumi:"eipBillingConfigs"`
+	// The Eip ID of the Clb.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The private ip address of the Clb.
+	EniAddress pulumi.StringInput `pulumi:"eniAddress"`
+	// The Eni ID of the Clb.
+	EniId pulumi.StringInput `pulumi:"eniId"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address pulumi.StringInput `pulumi:"eniIpv6Address"`
+	// The expired time of the CLB.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The ID of the Clb.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The billing status of the CLB.
+	InstanceStatus pulumi.IntInput `pulumi:"instanceStatus"`
+	// The ipv6 address bandwidth information of the Clb.
+	Ipv6AddressBandwidths GetClbsClbIpv6AddressBandwidthArrayInput `pulumi:"ipv6AddressBandwidths"`
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId pulumi.StringInput `pulumi:"ipv6EipId"`
+	// The billing type of the Clb.
+	LoadBalancerBillingType pulumi.StringInput `pulumi:"loadBalancerBillingType"`
+	// The ID of the Clb.
+	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
+	// The name of the Clb.
+	LoadBalancerName pulumi.StringInput `pulumi:"loadBalancerName"`
+	// The specifications of the Clb.
+	LoadBalancerSpec pulumi.StringInput `pulumi:"loadBalancerSpec"`
+	// The reason why Clb is locked.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The master zone ID of the CLB.
+	MasterZoneId pulumi.StringInput `pulumi:"masterZoneId"`
+	// The modification protection reason of the Clb.
+	ModificationProtectionReason pulumi.StringInput `pulumi:"modificationProtectionReason"`
+	// The modification protection status of the Clb.
+	ModificationProtectionStatus pulumi.StringInput `pulumi:"modificationProtectionStatus"`
+	// The over reclaim time of the CLB.
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
+	// The overdue time of the Clb.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The ProjectName of Clb.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The reclaim time of the CLB.
+	ReclaimTime pulumi.StringInput `pulumi:"reclaimTime"`
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RemainRenewTimes pulumi.IntInput `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RenewPeriodTimes pulumi.IntInput `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType pulumi.StringInput `pulumi:"renewType"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId pulumi.StringInput `pulumi:"slaveZoneId"`
+	// The status of the Clb.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The subnet ID of the Clb.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags GetClbsClbTagArrayInput `pulumi:"tags"`
+	// The type of the Clb.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The update time of the Clb.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The id of the VPC.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetClbsClbArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClb)(nil)).Elem()
+}
+
+func (i GetClbsClbArgs) ToGetClbsClbOutput() GetClbsClbOutput {
+	return i.ToGetClbsClbOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbArgs) ToGetClbsClbOutputWithContext(ctx context.Context) GetClbsClbOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbOutput)
+}
+
+// GetClbsClbArrayInput is an input type that accepts GetClbsClbArray and GetClbsClbArrayOutput values.
+// You can construct a concrete instance of `GetClbsClbArrayInput` via:
+//
+//	GetClbsClbArray{ GetClbsClbArgs{...} }
+type GetClbsClbArrayInput interface {
+	pulumi.Input
+
+	ToGetClbsClbArrayOutput() GetClbsClbArrayOutput
+	ToGetClbsClbArrayOutputWithContext(context.Context) GetClbsClbArrayOutput
+}
+
+type GetClbsClbArray []GetClbsClbInput
+
+func (GetClbsClbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClb)(nil)).Elem()
+}
+
+func (i GetClbsClbArray) ToGetClbsClbArrayOutput() GetClbsClbArrayOutput {
+	return i.ToGetClbsClbArrayOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbArray) ToGetClbsClbArrayOutputWithContext(ctx context.Context) GetClbsClbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbArrayOutput)
+}
+
+type GetClbsClbOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClb)(nil)).Elem()
+}
+
+func (o GetClbsClbOutput) ToGetClbsClbOutput() GetClbsClbOutput {
+	return o
+}
+
+func (o GetClbsClbOutput) ToGetClbsClbOutputWithContext(ctx context.Context) GetClbsClbOutput {
+	return o
+}
+
+// The address ip version of the Clb.
+func (o GetClbsClbOutput) AddressIpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.AddressIpVersion }).(pulumi.StringOutput)
+}
+
+// The business status of the Clb.
+func (o GetClbsClbOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The create time of the Clb.
+func (o GetClbsClbOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The expected recycle time of the Clb.
+func (o GetClbsClbOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// The description of the Clb.
+func (o GetClbsClbOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The Eip address of the Clb.
+func (o GetClbsClbOutput) EipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.EipAddress }).(pulumi.StringOutput)
+}
+
+// The eip billing config of the Clb.
+func (o GetClbsClbOutput) EipBillingConfigs() GetClbsClbEipBillingConfigArrayOutput {
+	return o.ApplyT(func(v GetClbsClb) []GetClbsClbEipBillingConfig { return v.EipBillingConfigs }).(GetClbsClbEipBillingConfigArrayOutput)
+}
+
+// The Eip ID of the Clb.
+func (o GetClbsClbOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The private ip address of the Clb.
+func (o GetClbsClbOutput) EniAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.EniAddress }).(pulumi.StringOutput)
+}
+
+// The Eni ID of the Clb.
+func (o GetClbsClbOutput) EniId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.EniId }).(pulumi.StringOutput)
+}
+
+// The eni ipv6 address of the Clb.
+func (o GetClbsClbOutput) EniIpv6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.EniIpv6Address }).(pulumi.StringOutput)
+}
+
+// The expired time of the CLB.
+func (o GetClbsClbOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The ID of the Clb.
+func (o GetClbsClbOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The billing status of the CLB.
+func (o GetClbsClbOutput) InstanceStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClbsClb) int { return v.InstanceStatus }).(pulumi.IntOutput)
+}
+
+// The ipv6 address bandwidth information of the Clb.
+func (o GetClbsClbOutput) Ipv6AddressBandwidths() GetClbsClbIpv6AddressBandwidthArrayOutput {
+	return o.ApplyT(func(v GetClbsClb) []GetClbsClbIpv6AddressBandwidth { return v.Ipv6AddressBandwidths }).(GetClbsClbIpv6AddressBandwidthArrayOutput)
+}
+
+// The Ipv6 Eip ID of the Clb.
+func (o GetClbsClbOutput) Ipv6EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.Ipv6EipId }).(pulumi.StringOutput)
+}
+
+// The billing type of the Clb.
+func (o GetClbsClbOutput) LoadBalancerBillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.LoadBalancerBillingType }).(pulumi.StringOutput)
+}
+
+// The ID of the Clb.
+func (o GetClbsClbOutput) LoadBalancerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.LoadBalancerId }).(pulumi.StringOutput)
+}
+
+// The name of the Clb.
+func (o GetClbsClbOutput) LoadBalancerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.LoadBalancerName }).(pulumi.StringOutput)
+}
+
+// The specifications of the Clb.
+func (o GetClbsClbOutput) LoadBalancerSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.LoadBalancerSpec }).(pulumi.StringOutput)
+}
+
+// The reason why Clb is locked.
+func (o GetClbsClbOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// The master zone ID of the CLB.
+func (o GetClbsClbOutput) MasterZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.MasterZoneId }).(pulumi.StringOutput)
+}
+
+// The modification protection reason of the Clb.
+func (o GetClbsClbOutput) ModificationProtectionReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.ModificationProtectionReason }).(pulumi.StringOutput)
+}
+
+// The modification protection status of the Clb.
+func (o GetClbsClbOutput) ModificationProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.ModificationProtectionStatus }).(pulumi.StringOutput)
+}
+
+// The over reclaim time of the CLB.
+func (o GetClbsClbOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
+// The overdue time of the Clb.
+func (o GetClbsClbOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// The ProjectName of Clb.
+func (o GetClbsClbOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The reclaim time of the CLB.
+func (o GetClbsClbOutput) ReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.ReclaimTime }).(pulumi.StringOutput)
+}
+
+// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+func (o GetClbsClbOutput) RemainRenewTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClbsClb) int { return v.RemainRenewTimes }).(pulumi.IntOutput)
+}
+
+// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+func (o GetClbsClbOutput) RenewPeriodTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClbsClb) int { return v.RenewPeriodTimes }).(pulumi.IntOutput)
+}
+
+// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+func (o GetClbsClbOutput) RenewType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.RenewType }).(pulumi.StringOutput)
+}
+
+// The slave zone ID of the CLB.
+func (o GetClbsClbOutput) SlaveZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.SlaveZoneId }).(pulumi.StringOutput)
+}
+
+// The status of the Clb.
+func (o GetClbsClbOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The subnet ID of the Clb.
+func (o GetClbsClbOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetClbsClbOutput) Tags() GetClbsClbTagArrayOutput {
+	return o.ApplyT(func(v GetClbsClb) []GetClbsClbTag { return v.Tags }).(GetClbsClbTagArrayOutput)
+}
+
+// The type of the Clb.
+func (o GetClbsClbOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The update time of the Clb.
+func (o GetClbsClbOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The id of the VPC.
+func (o GetClbsClbOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClb) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetClbsClbArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClb)(nil)).Elem()
+}
+
+func (o GetClbsClbArrayOutput) ToGetClbsClbArrayOutput() GetClbsClbArrayOutput {
+	return o
+}
+
+func (o GetClbsClbArrayOutput) ToGetClbsClbArrayOutputWithContext(ctx context.Context) GetClbsClbArrayOutput {
+	return o
+}
+
+func (o GetClbsClbArrayOutput) Index(i pulumi.IntInput) GetClbsClbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClbsClb {
+		return vs[0].([]GetClbsClb)[vs[1].(int)]
+	}).(GetClbsClbOutput)
+}
+
+type GetClbsClbEipBillingConfig struct {
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+	EipBillingType string `pulumi:"eipBillingType"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp string `pulumi:"isp"`
+}
+
+// GetClbsClbEipBillingConfigInput is an input type that accepts GetClbsClbEipBillingConfigArgs and GetClbsClbEipBillingConfigOutput values.
+// You can construct a concrete instance of `GetClbsClbEipBillingConfigInput` via:
+//
+//	GetClbsClbEipBillingConfigArgs{...}
+type GetClbsClbEipBillingConfigInput interface {
+	pulumi.Input
+
+	ToGetClbsClbEipBillingConfigOutput() GetClbsClbEipBillingConfigOutput
+	ToGetClbsClbEipBillingConfigOutputWithContext(context.Context) GetClbsClbEipBillingConfigOutput
+}
+
+type GetClbsClbEipBillingConfigArgs struct {
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp pulumi.StringInput `pulumi:"isp"`
+}
+
+func (GetClbsClbEipBillingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (i GetClbsClbEipBillingConfigArgs) ToGetClbsClbEipBillingConfigOutput() GetClbsClbEipBillingConfigOutput {
+	return i.ToGetClbsClbEipBillingConfigOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbEipBillingConfigArgs) ToGetClbsClbEipBillingConfigOutputWithContext(ctx context.Context) GetClbsClbEipBillingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbEipBillingConfigOutput)
+}
+
+// GetClbsClbEipBillingConfigArrayInput is an input type that accepts GetClbsClbEipBillingConfigArray and GetClbsClbEipBillingConfigArrayOutput values.
+// You can construct a concrete instance of `GetClbsClbEipBillingConfigArrayInput` via:
+//
+//	GetClbsClbEipBillingConfigArray{ GetClbsClbEipBillingConfigArgs{...} }
+type GetClbsClbEipBillingConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClbsClbEipBillingConfigArrayOutput() GetClbsClbEipBillingConfigArrayOutput
+	ToGetClbsClbEipBillingConfigArrayOutputWithContext(context.Context) GetClbsClbEipBillingConfigArrayOutput
+}
+
+type GetClbsClbEipBillingConfigArray []GetClbsClbEipBillingConfigInput
+
+func (GetClbsClbEipBillingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (i GetClbsClbEipBillingConfigArray) ToGetClbsClbEipBillingConfigArrayOutput() GetClbsClbEipBillingConfigArrayOutput {
+	return i.ToGetClbsClbEipBillingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbEipBillingConfigArray) ToGetClbsClbEipBillingConfigArrayOutputWithContext(ctx context.Context) GetClbsClbEipBillingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbEipBillingConfigArrayOutput)
+}
+
+type GetClbsClbEipBillingConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbEipBillingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (o GetClbsClbEipBillingConfigOutput) ToGetClbsClbEipBillingConfigOutput() GetClbsClbEipBillingConfigOutput {
+	return o
+}
+
+func (o GetClbsClbEipBillingConfigOutput) ToGetClbsClbEipBillingConfigOutputWithContext(ctx context.Context) GetClbsClbEipBillingConfigOutput {
+	return o
+}
+
+// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+func (o GetClbsClbEipBillingConfigOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClbsClbEipBillingConfig) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+func (o GetClbsClbEipBillingConfigOutput) EipBillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbEipBillingConfig) string { return v.EipBillingType }).(pulumi.StringOutput)
+}
+
+// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+func (o GetClbsClbEipBillingConfigOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbEipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+type GetClbsClbEipBillingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbEipBillingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (o GetClbsClbEipBillingConfigArrayOutput) ToGetClbsClbEipBillingConfigArrayOutput() GetClbsClbEipBillingConfigArrayOutput {
+	return o
+}
+
+func (o GetClbsClbEipBillingConfigArrayOutput) ToGetClbsClbEipBillingConfigArrayOutputWithContext(ctx context.Context) GetClbsClbEipBillingConfigArrayOutput {
+	return o
+}
+
+func (o GetClbsClbEipBillingConfigArrayOutput) Index(i pulumi.IntInput) GetClbsClbEipBillingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClbsClbEipBillingConfig {
+		return vs[0].([]GetClbsClbEipBillingConfig)[vs[1].(int)]
+	}).(GetClbsClbEipBillingConfigOutput)
+}
+
+type GetClbsClbIpv6AddressBandwidth struct {
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+	BandwidthPackageId string `pulumi:"bandwidthPackageId"`
+	// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	BillingType string `pulumi:"billingType"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp string `pulumi:"isp"`
+	// The network type of the CLB Ipv6 address.
+	NetworkType string `pulumi:"networkType"`
+}
+
+// GetClbsClbIpv6AddressBandwidthInput is an input type that accepts GetClbsClbIpv6AddressBandwidthArgs and GetClbsClbIpv6AddressBandwidthOutput values.
+// You can construct a concrete instance of `GetClbsClbIpv6AddressBandwidthInput` via:
+//
+//	GetClbsClbIpv6AddressBandwidthArgs{...}
+type GetClbsClbIpv6AddressBandwidthInput interface {
+	pulumi.Input
+
+	ToGetClbsClbIpv6AddressBandwidthOutput() GetClbsClbIpv6AddressBandwidthOutput
+	ToGetClbsClbIpv6AddressBandwidthOutputWithContext(context.Context) GetClbsClbIpv6AddressBandwidthOutput
+}
+
+type GetClbsClbIpv6AddressBandwidthArgs struct {
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+	BandwidthPackageId pulumi.StringInput `pulumi:"bandwidthPackageId"`
+	// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	BillingType pulumi.StringInput `pulumi:"billingType"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp pulumi.StringInput `pulumi:"isp"`
+	// The network type of the CLB Ipv6 address.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+}
+
+func (GetClbsClbIpv6AddressBandwidthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (i GetClbsClbIpv6AddressBandwidthArgs) ToGetClbsClbIpv6AddressBandwidthOutput() GetClbsClbIpv6AddressBandwidthOutput {
+	return i.ToGetClbsClbIpv6AddressBandwidthOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbIpv6AddressBandwidthArgs) ToGetClbsClbIpv6AddressBandwidthOutputWithContext(ctx context.Context) GetClbsClbIpv6AddressBandwidthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbIpv6AddressBandwidthOutput)
+}
+
+// GetClbsClbIpv6AddressBandwidthArrayInput is an input type that accepts GetClbsClbIpv6AddressBandwidthArray and GetClbsClbIpv6AddressBandwidthArrayOutput values.
+// You can construct a concrete instance of `GetClbsClbIpv6AddressBandwidthArrayInput` via:
+//
+//	GetClbsClbIpv6AddressBandwidthArray{ GetClbsClbIpv6AddressBandwidthArgs{...} }
+type GetClbsClbIpv6AddressBandwidthArrayInput interface {
+	pulumi.Input
+
+	ToGetClbsClbIpv6AddressBandwidthArrayOutput() GetClbsClbIpv6AddressBandwidthArrayOutput
+	ToGetClbsClbIpv6AddressBandwidthArrayOutputWithContext(context.Context) GetClbsClbIpv6AddressBandwidthArrayOutput
+}
+
+type GetClbsClbIpv6AddressBandwidthArray []GetClbsClbIpv6AddressBandwidthInput
+
+func (GetClbsClbIpv6AddressBandwidthArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (i GetClbsClbIpv6AddressBandwidthArray) ToGetClbsClbIpv6AddressBandwidthArrayOutput() GetClbsClbIpv6AddressBandwidthArrayOutput {
+	return i.ToGetClbsClbIpv6AddressBandwidthArrayOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbIpv6AddressBandwidthArray) ToGetClbsClbIpv6AddressBandwidthArrayOutputWithContext(ctx context.Context) GetClbsClbIpv6AddressBandwidthArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbIpv6AddressBandwidthArrayOutput)
+}
+
+type GetClbsClbIpv6AddressBandwidthOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbIpv6AddressBandwidthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (o GetClbsClbIpv6AddressBandwidthOutput) ToGetClbsClbIpv6AddressBandwidthOutput() GetClbsClbIpv6AddressBandwidthOutput {
+	return o
+}
+
+func (o GetClbsClbIpv6AddressBandwidthOutput) ToGetClbsClbIpv6AddressBandwidthOutputWithContext(ctx context.Context) GetClbsClbIpv6AddressBandwidthOutput {
+	return o
+}
+
+// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+func (o GetClbsClbIpv6AddressBandwidthOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClbsClbIpv6AddressBandwidth) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+func (o GetClbsClbIpv6AddressBandwidthOutput) BandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbIpv6AddressBandwidth) string { return v.BandwidthPackageId }).(pulumi.StringOutput)
+}
+
+// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+func (o GetClbsClbIpv6AddressBandwidthOutput) BillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbIpv6AddressBandwidth) string { return v.BillingType }).(pulumi.StringOutput)
+}
+
+// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+func (o GetClbsClbIpv6AddressBandwidthOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbIpv6AddressBandwidth) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+// The network type of the CLB Ipv6 address.
+func (o GetClbsClbIpv6AddressBandwidthOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbIpv6AddressBandwidth) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+type GetClbsClbIpv6AddressBandwidthArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbIpv6AddressBandwidthArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (o GetClbsClbIpv6AddressBandwidthArrayOutput) ToGetClbsClbIpv6AddressBandwidthArrayOutput() GetClbsClbIpv6AddressBandwidthArrayOutput {
+	return o
+}
+
+func (o GetClbsClbIpv6AddressBandwidthArrayOutput) ToGetClbsClbIpv6AddressBandwidthArrayOutputWithContext(ctx context.Context) GetClbsClbIpv6AddressBandwidthArrayOutput {
+	return o
+}
+
+func (o GetClbsClbIpv6AddressBandwidthArrayOutput) Index(i pulumi.IntInput) GetClbsClbIpv6AddressBandwidthOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClbsClbIpv6AddressBandwidth {
+		return vs[0].([]GetClbsClbIpv6AddressBandwidth)[vs[1].(int)]
+	}).(GetClbsClbIpv6AddressBandwidthOutput)
+}
+
+type GetClbsClbTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetClbsClbTagInput is an input type that accepts GetClbsClbTagArgs and GetClbsClbTagOutput values.
+// You can construct a concrete instance of `GetClbsClbTagInput` via:
+//
+//	GetClbsClbTagArgs{...}
+type GetClbsClbTagInput interface {
+	pulumi.Input
+
+	ToGetClbsClbTagOutput() GetClbsClbTagOutput
+	ToGetClbsClbTagOutputWithContext(context.Context) GetClbsClbTagOutput
+}
+
+type GetClbsClbTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClbsClbTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClbTag)(nil)).Elem()
+}
+
+func (i GetClbsClbTagArgs) ToGetClbsClbTagOutput() GetClbsClbTagOutput {
+	return i.ToGetClbsClbTagOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbTagArgs) ToGetClbsClbTagOutputWithContext(ctx context.Context) GetClbsClbTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbTagOutput)
+}
+
+// GetClbsClbTagArrayInput is an input type that accepts GetClbsClbTagArray and GetClbsClbTagArrayOutput values.
+// You can construct a concrete instance of `GetClbsClbTagArrayInput` via:
+//
+//	GetClbsClbTagArray{ GetClbsClbTagArgs{...} }
+type GetClbsClbTagArrayInput interface {
+	pulumi.Input
+
+	ToGetClbsClbTagArrayOutput() GetClbsClbTagArrayOutput
+	ToGetClbsClbTagArrayOutputWithContext(context.Context) GetClbsClbTagArrayOutput
+}
+
+type GetClbsClbTagArray []GetClbsClbTagInput
+
+func (GetClbsClbTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClbTag)(nil)).Elem()
+}
+
+func (i GetClbsClbTagArray) ToGetClbsClbTagArrayOutput() GetClbsClbTagArrayOutput {
+	return i.ToGetClbsClbTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetClbsClbTagArray) ToGetClbsClbTagArrayOutputWithContext(ctx context.Context) GetClbsClbTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsClbTagArrayOutput)
+}
+
+type GetClbsClbTagOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsClbTag)(nil)).Elem()
+}
+
+func (o GetClbsClbTagOutput) ToGetClbsClbTagOutput() GetClbsClbTagOutput {
+	return o
+}
+
+func (o GetClbsClbTagOutput) ToGetClbsClbTagOutputWithContext(ctx context.Context) GetClbsClbTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetClbsClbTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetClbsClbTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsClbTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClbsClbTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClbsClbTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsClbTag)(nil)).Elem()
+}
+
+func (o GetClbsClbTagArrayOutput) ToGetClbsClbTagArrayOutput() GetClbsClbTagArrayOutput {
+	return o
+}
+
+func (o GetClbsClbTagArrayOutput) ToGetClbsClbTagArrayOutputWithContext(ctx context.Context) GetClbsClbTagArrayOutput {
+	return o
+}
+
+func (o GetClbsClbTagArrayOutput) Index(i pulumi.IntInput) GetClbsClbTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClbsClbTag {
+		return vs[0].([]GetClbsClbTag)[vs[1].(int)]
+	}).(GetClbsClbTagOutput)
+}
+
+type GetClbsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetClbsTagInput is an input type that accepts GetClbsTagArgs and GetClbsTagOutput values.
+// You can construct a concrete instance of `GetClbsTagInput` via:
+//
+//	GetClbsTagArgs{...}
+type GetClbsTagInput interface {
+	pulumi.Input
+
+	ToGetClbsTagOutput() GetClbsTagOutput
+	ToGetClbsTagOutputWithContext(context.Context) GetClbsTagOutput
+}
+
+type GetClbsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClbsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsTag)(nil)).Elem()
+}
+
+func (i GetClbsTagArgs) ToGetClbsTagOutput() GetClbsTagOutput {
+	return i.ToGetClbsTagOutputWithContext(context.Background())
+}
+
+func (i GetClbsTagArgs) ToGetClbsTagOutputWithContext(ctx context.Context) GetClbsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsTagOutput)
+}
+
+// GetClbsTagArrayInput is an input type that accepts GetClbsTagArray and GetClbsTagArrayOutput values.
+// You can construct a concrete instance of `GetClbsTagArrayInput` via:
+//
+//	GetClbsTagArray{ GetClbsTagArgs{...} }
+type GetClbsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetClbsTagArrayOutput() GetClbsTagArrayOutput
+	ToGetClbsTagArrayOutputWithContext(context.Context) GetClbsTagArrayOutput
+}
+
+type GetClbsTagArray []GetClbsTagInput
+
+func (GetClbsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsTag)(nil)).Elem()
+}
+
+func (i GetClbsTagArray) ToGetClbsTagArrayOutput() GetClbsTagArrayOutput {
+	return i.ToGetClbsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetClbsTagArray) ToGetClbsTagArrayOutputWithContext(ctx context.Context) GetClbsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClbsTagArrayOutput)
+}
+
+type GetClbsTagOutput struct{ *pulumi.OutputState }
+
+func (GetClbsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClbsTag)(nil)).Elem()
+}
+
+func (o GetClbsTagOutput) ToGetClbsTagOutput() GetClbsTagOutput {
+	return o
+}
+
+func (o GetClbsTagOutput) ToGetClbsTagOutputWithContext(ctx context.Context) GetClbsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetClbsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetClbsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClbsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClbsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClbsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClbsTag)(nil)).Elem()
+}
+
+func (o GetClbsTagArrayOutput) ToGetClbsTagArrayOutput() GetClbsTagArrayOutput {
+	return o
+}
+
+func (o GetClbsTagArrayOutput) ToGetClbsTagArrayOutputWithContext(ctx context.Context) GetClbsTagArrayOutput {
+	return o
+}
+
+func (o GetClbsTagArrayOutput) Index(i pulumi.IntInput) GetClbsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClbsTag {
+		return vs[0].([]GetClbsTag)[vs[1].(int)]
+	}).(GetClbsTagOutput)
+}
+
+type GetListenersListener struct {
+	// The acl ID list to which the Listener is bound.
+	AclIds []string `pulumi:"aclIds"`
+	// The acl status of the Listener.
+	AclStatus string `pulumi:"aclStatus"`
+	// The acl type of the Listener.
+	AclType string `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The ID of the certificate which is associated with the Listener.
+	CertificateId string `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener.
+	ConnectionDrainEnabled string `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener.
+	ConnectionDrainTimeout int `pulumi:"connectionDrainTimeout"`
+	// The name of the cookie for session persistence configured on the backend server.
+	Cookie string `pulumi:"cookie"`
+	// The create time of the Listener.
+	CreateTime string `pulumi:"createTime"`
+	// The enable status of the Listener.
+	Enabled string `pulumi:"enabled"`
+	// The domain of health check.
+	HealthCheckDomain string `pulumi:"healthCheckDomain"`
+	// The enable status of health check function.
+	HealthCheckEnabled string `pulumi:"healthCheckEnabled"`
+	// The healthy threshold of health check.
+	HealthCheckHealthyThreshold int `pulumi:"healthCheckHealthyThreshold"`
+	// The normal http status code of health check.
+	HealthCheckHttpCode string `pulumi:"healthCheckHttpCode"`
+	// The interval executing health check.
+	HealthCheckInterval int `pulumi:"healthCheckInterval"`
+	// The method of health check.
+	HealthCheckMethod string `pulumi:"healthCheckMethod"`
+	// The response timeout of health check.
+	HealthCheckTimeout int `pulumi:"healthCheckTimeout"`
+	// The expected response string for the health check.
+	HealthCheckUdpExpect string `pulumi:"healthCheckUdpExpect"`
+	// A request string to perform a health check.
+	HealthCheckUdpRequest string `pulumi:"healthCheckUdpRequest"`
+	// The unhealthy threshold of health check.
+	HealthCheckUnHealthyThreshold int `pulumi:"healthCheckUnHealthyThreshold"`
+	// The uri of health check.
+	HealthCheckUri string `pulumi:"healthCheckUri"`
+	// The ID of the Listener.
+	Id string `pulumi:"id"`
+	// The ID of the Listener.
+	ListenerId string `pulumi:"listenerId"`
+	// The name of the Listener.
+	ListenerName string `pulumi:"listenerName"`
+	// The persistence timeout of the Listener.
+	PersistenceTimeout int `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener.
+	PersistenceType string `pulumi:"persistenceType"`
+	// The port receiving request of the Listener.
+	Port int `pulumi:"port"`
+	// The protocol of the Listener.
+	Protocol string `pulumi:"protocol"`
+	// Whether to enable proxy protocol.
+	ProxyProtocolType string `pulumi:"proxyProtocolType"`
+	// The ID of the backend server group which is associated with the Listener.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The status of the Listener.
+	Status string `pulumi:"status"`
+	// The update time of the Listener.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetListenersListenerInput is an input type that accepts GetListenersListenerArgs and GetListenersListenerOutput values.
+// You can construct a concrete instance of `GetListenersListenerInput` via:
+//
+//	GetListenersListenerArgs{...}
+type GetListenersListenerInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerOutput() GetListenersListenerOutput
+	ToGetListenersListenerOutputWithContext(context.Context) GetListenersListenerOutput
+}
+
+type GetListenersListenerArgs struct {
+	// The acl ID list to which the Listener is bound.
+	AclIds pulumi.StringArrayInput `pulumi:"aclIds"`
+	// The acl status of the Listener.
+	AclStatus pulumi.StringInput `pulumi:"aclStatus"`
+	// The acl type of the Listener.
+	AclType pulumi.StringInput `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The ID of the certificate which is associated with the Listener.
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener.
+	ConnectionDrainEnabled pulumi.StringInput `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener.
+	ConnectionDrainTimeout pulumi.IntInput `pulumi:"connectionDrainTimeout"`
+	// The name of the cookie for session persistence configured on the backend server.
+	Cookie pulumi.StringInput `pulumi:"cookie"`
+	// The create time of the Listener.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The enable status of the Listener.
+	Enabled pulumi.StringInput `pulumi:"enabled"`
+	// The domain of health check.
+	HealthCheckDomain pulumi.StringInput `pulumi:"healthCheckDomain"`
+	// The enable status of health check function.
+	HealthCheckEnabled pulumi.StringInput `pulumi:"healthCheckEnabled"`
+	// The healthy threshold of health check.
+	HealthCheckHealthyThreshold pulumi.IntInput `pulumi:"healthCheckHealthyThreshold"`
+	// The normal http status code of health check.
+	HealthCheckHttpCode pulumi.StringInput `pulumi:"healthCheckHttpCode"`
+	// The interval executing health check.
+	HealthCheckInterval pulumi.IntInput `pulumi:"healthCheckInterval"`
+	// The method of health check.
+	HealthCheckMethod pulumi.StringInput `pulumi:"healthCheckMethod"`
+	// The response timeout of health check.
+	HealthCheckTimeout pulumi.IntInput `pulumi:"healthCheckTimeout"`
+	// The expected response string for the health check.
+	HealthCheckUdpExpect pulumi.StringInput `pulumi:"healthCheckUdpExpect"`
+	// A request string to perform a health check.
+	HealthCheckUdpRequest pulumi.StringInput `pulumi:"healthCheckUdpRequest"`
+	// The unhealthy threshold of health check.
+	HealthCheckUnHealthyThreshold pulumi.IntInput `pulumi:"healthCheckUnHealthyThreshold"`
+	// The uri of health check.
+	HealthCheckUri pulumi.StringInput `pulumi:"healthCheckUri"`
+	// The ID of the Listener.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the Listener.
+	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The name of the Listener.
+	ListenerName pulumi.StringInput `pulumi:"listenerName"`
+	// The persistence timeout of the Listener.
+	PersistenceTimeout pulumi.IntInput `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener.
+	PersistenceType pulumi.StringInput `pulumi:"persistenceType"`
+	// The port receiving request of the Listener.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The protocol of the Listener.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Whether to enable proxy protocol.
+	ProxyProtocolType pulumi.StringInput `pulumi:"proxyProtocolType"`
+	// The ID of the backend server group which is associated with the Listener.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The status of the Listener.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of the Listener.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetListenersListenerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListener)(nil)).Elem()
+}
+
+func (i GetListenersListenerArgs) ToGetListenersListenerOutput() GetListenersListenerOutput {
+	return i.ToGetListenersListenerOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerArgs) ToGetListenersListenerOutputWithContext(ctx context.Context) GetListenersListenerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerOutput)
+}
+
+// GetListenersListenerArrayInput is an input type that accepts GetListenersListenerArray and GetListenersListenerArrayOutput values.
+// You can construct a concrete instance of `GetListenersListenerArrayInput` via:
+//
+//	GetListenersListenerArray{ GetListenersListenerArgs{...} }
+type GetListenersListenerArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerArrayOutput() GetListenersListenerArrayOutput
+	ToGetListenersListenerArrayOutputWithContext(context.Context) GetListenersListenerArrayOutput
+}
+
+type GetListenersListenerArray []GetListenersListenerInput
+
+func (GetListenersListenerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListener)(nil)).Elem()
+}
+
+func (i GetListenersListenerArray) ToGetListenersListenerArrayOutput() GetListenersListenerArrayOutput {
+	return i.ToGetListenersListenerArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerArray) ToGetListenersListenerArrayOutputWithContext(ctx context.Context) GetListenersListenerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerArrayOutput)
+}
+
+type GetListenersListenerOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListener)(nil)).Elem()
+}
+
+func (o GetListenersListenerOutput) ToGetListenersListenerOutput() GetListenersListenerOutput {
+	return o
+}
+
+func (o GetListenersListenerOutput) ToGetListenersListenerOutputWithContext(ctx context.Context) GetListenersListenerOutput {
+	return o
+}
+
+// The acl ID list to which the Listener is bound.
+func (o GetListenersListenerOutput) AclIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetListenersListener) []string { return v.AclIds }).(pulumi.StringArrayOutput)
+}
+
+// The acl status of the Listener.
+func (o GetListenersListenerOutput) AclStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.AclStatus }).(pulumi.StringOutput)
+}
+
+// The acl type of the Listener.
+func (o GetListenersListenerOutput) AclType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.AclType }).(pulumi.StringOutput)
+}
+
+// The bandwidth of the Listener. Unit: Mbps.
+func (o GetListenersListenerOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The ID of the certificate which is associated with the Listener.
+func (o GetListenersListenerOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// Whether to enable connection drain of the Listener.
+func (o GetListenersListenerOutput) ConnectionDrainEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ConnectionDrainEnabled }).(pulumi.StringOutput)
+}
+
+// The connection drain timeout of the Listener.
+func (o GetListenersListenerOutput) ConnectionDrainTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
+}
+
+// The name of the cookie for session persistence configured on the backend server.
+func (o GetListenersListenerOutput) Cookie() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.Cookie }).(pulumi.StringOutput)
+}
+
+// The create time of the Listener.
+func (o GetListenersListenerOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The enable status of the Listener.
+func (o GetListenersListenerOutput) Enabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.Enabled }).(pulumi.StringOutput)
+}
+
+// The domain of health check.
+func (o GetListenersListenerOutput) HealthCheckDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckDomain }).(pulumi.StringOutput)
+}
+
+// The enable status of health check function.
+func (o GetListenersListenerOutput) HealthCheckEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckEnabled }).(pulumi.StringOutput)
+}
+
+// The healthy threshold of health check.
+func (o GetListenersListenerOutput) HealthCheckHealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.HealthCheckHealthyThreshold }).(pulumi.IntOutput)
+}
+
+// The normal http status code of health check.
+func (o GetListenersListenerOutput) HealthCheckHttpCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckHttpCode }).(pulumi.StringOutput)
+}
+
+// The interval executing health check.
+func (o GetListenersListenerOutput) HealthCheckInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.HealthCheckInterval }).(pulumi.IntOutput)
+}
+
+// The method of health check.
+func (o GetListenersListenerOutput) HealthCheckMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckMethod }).(pulumi.StringOutput)
+}
+
+// The response timeout of health check.
+func (o GetListenersListenerOutput) HealthCheckTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.HealthCheckTimeout }).(pulumi.IntOutput)
+}
+
+// The expected response string for the health check.
+func (o GetListenersListenerOutput) HealthCheckUdpExpect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckUdpExpect }).(pulumi.StringOutput)
+}
+
+// A request string to perform a health check.
+func (o GetListenersListenerOutput) HealthCheckUdpRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckUdpRequest }).(pulumi.StringOutput)
+}
+
+// The unhealthy threshold of health check.
+func (o GetListenersListenerOutput) HealthCheckUnHealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.HealthCheckUnHealthyThreshold }).(pulumi.IntOutput)
+}
+
+// The uri of health check.
+func (o GetListenersListenerOutput) HealthCheckUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.HealthCheckUri }).(pulumi.StringOutput)
+}
+
+// The ID of the Listener.
+func (o GetListenersListenerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the Listener.
+func (o GetListenersListenerOutput) ListenerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The name of the Listener.
+func (o GetListenersListenerOutput) ListenerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ListenerName }).(pulumi.StringOutput)
+}
+
+// The persistence timeout of the Listener.
+func (o GetListenersListenerOutput) PersistenceTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.PersistenceTimeout }).(pulumi.IntOutput)
+}
+
+// The persistence type of the Listener.
+func (o GetListenersListenerOutput) PersistenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.PersistenceType }).(pulumi.StringOutput)
+}
+
+// The port receiving request of the Listener.
+func (o GetListenersListenerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The protocol of the Listener.
+func (o GetListenersListenerOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Whether to enable proxy protocol.
+func (o GetListenersListenerOutput) ProxyProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ProxyProtocolType }).(pulumi.StringOutput)
+}
+
+// The ID of the backend server group which is associated with the Listener.
+func (o GetListenersListenerOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The status of the Listener.
+func (o GetListenersListenerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of the Listener.
+func (o GetListenersListenerOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetListenersListenerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListener)(nil)).Elem()
+}
+
+func (o GetListenersListenerArrayOutput) ToGetListenersListenerArrayOutput() GetListenersListenerArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerArrayOutput) ToGetListenersListenerArrayOutputWithContext(ctx context.Context) GetListenersListenerArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerArrayOutput) Index(i pulumi.IntInput) GetListenersListenerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListener {
+		return vs[0].([]GetListenersListener)[vs[1].(int)]
+	}).(GetListenersListenerOutput)
+}
+
+type GetRulesRule struct {
+	// The Description of Rule.
+	Description string `pulumi:"description"`
+	// The Domain of Rule.
+	Domain string `pulumi:"domain"`
+	// The Id of Rule.
+	Id string `pulumi:"id"`
+	// The Id of Rule.
+	RuleId string `pulumi:"ruleId"`
+	// The Id of Server Group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The Url of Rule.
+	Url string `pulumi:"url"`
+}
+
+// GetRulesRuleInput is an input type that accepts GetRulesRuleArgs and GetRulesRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleInput` via:
+//
+//	GetRulesRuleArgs{...}
+type GetRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleOutput() GetRulesRuleOutput
+	ToGetRulesRuleOutputWithContext(context.Context) GetRulesRuleOutput
+}
+
+type GetRulesRuleArgs struct {
+	// The Description of Rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The Domain of Rule.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The Id of Rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The Id of Rule.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The Id of Server Group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The Url of Rule.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleArgs) ToGetRulesRuleOutput() GetRulesRuleOutput {
+	return i.ToGetRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleArgs) ToGetRulesRuleOutputWithContext(ctx context.Context) GetRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleOutput)
+}
+
+// GetRulesRuleArrayInput is an input type that accepts GetRulesRuleArray and GetRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleArrayInput` via:
+//
+//	GetRulesRuleArray{ GetRulesRuleArgs{...} }
+type GetRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput
+	ToGetRulesRuleArrayOutputWithContext(context.Context) GetRulesRuleArrayOutput
+}
+
+type GetRulesRuleArray []GetRulesRuleInput
+
+func (GetRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleArray) ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput {
+	return i.ToGetRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleArray) ToGetRulesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleArrayOutput)
+}
+
+type GetRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleOutput) ToGetRulesRuleOutput() GetRulesRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleOutput) ToGetRulesRuleOutputWithContext(ctx context.Context) GetRulesRuleOutput {
+	return o
+}
+
+// The Description of Rule.
+func (o GetRulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The Domain of Rule.
+func (o GetRulesRuleOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The Id of Rule.
+func (o GetRulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Id of Rule.
+func (o GetRulesRuleOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The Id of Server Group.
+func (o GetRulesRuleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The Url of Rule.
+func (o GetRulesRuleOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleArrayOutput) ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleArrayOutput) ToGetRulesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRule {
+		return vs[0].([]GetRulesRule)[vs[1].(int)]
+	}).(GetRulesRuleOutput)
+}
+
+type GetServerGroupServersServer struct {
+	// The description of the instance.
+	Description string `pulumi:"description"`
+	// The server id of instance in ServerGroup.
+	Id string `pulumi:"id"`
+	// The ID of ecs instance or the network card bound to ecs instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The private ip of the instance.
+	Ip string `pulumi:"ip"`
+	// The port receiving request.
+	Port int `pulumi:"port"`
+	// The server id of instance in ServerGroup.
+	ServerId string `pulumi:"serverId"`
+	// The type of instance. Optional choice contains `ecs`, `eni`.
+	Type string `pulumi:"type"`
+	// The weight of the instance.
+	Weight int `pulumi:"weight"`
+}
+
+// GetServerGroupServersServerInput is an input type that accepts GetServerGroupServersServerArgs and GetServerGroupServersServerOutput values.
+// You can construct a concrete instance of `GetServerGroupServersServerInput` via:
+//
+//	GetServerGroupServersServerArgs{...}
+type GetServerGroupServersServerInput interface {
+	pulumi.Input
+
+	ToGetServerGroupServersServerOutput() GetServerGroupServersServerOutput
+	ToGetServerGroupServersServerOutputWithContext(context.Context) GetServerGroupServersServerOutput
+}
+
+type GetServerGroupServersServerArgs struct {
+	// The description of the instance.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The server id of instance in ServerGroup.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of ecs instance or the network card bound to ecs instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The private ip of the instance.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The port receiving request.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The server id of instance in ServerGroup.
+	ServerId pulumi.StringInput `pulumi:"serverId"`
+	// The type of instance. Optional choice contains `ecs`, `eni`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The weight of the instance.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetServerGroupServersServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupServersServer)(nil)).Elem()
+}
+
+func (i GetServerGroupServersServerArgs) ToGetServerGroupServersServerOutput() GetServerGroupServersServerOutput {
+	return i.ToGetServerGroupServersServerOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupServersServerArgs) ToGetServerGroupServersServerOutputWithContext(ctx context.Context) GetServerGroupServersServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupServersServerOutput)
+}
+
+// GetServerGroupServersServerArrayInput is an input type that accepts GetServerGroupServersServerArray and GetServerGroupServersServerArrayOutput values.
+// You can construct a concrete instance of `GetServerGroupServersServerArrayInput` via:
+//
+//	GetServerGroupServersServerArray{ GetServerGroupServersServerArgs{...} }
+type GetServerGroupServersServerArrayInput interface {
+	pulumi.Input
+
+	ToGetServerGroupServersServerArrayOutput() GetServerGroupServersServerArrayOutput
+	ToGetServerGroupServersServerArrayOutputWithContext(context.Context) GetServerGroupServersServerArrayOutput
+}
+
+type GetServerGroupServersServerArray []GetServerGroupServersServerInput
+
+func (GetServerGroupServersServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupServersServer)(nil)).Elem()
+}
+
+func (i GetServerGroupServersServerArray) ToGetServerGroupServersServerArrayOutput() GetServerGroupServersServerArrayOutput {
+	return i.ToGetServerGroupServersServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupServersServerArray) ToGetServerGroupServersServerArrayOutputWithContext(ctx context.Context) GetServerGroupServersServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupServersServerArrayOutput)
+}
+
+type GetServerGroupServersServerOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupServersServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupServersServer)(nil)).Elem()
+}
+
+func (o GetServerGroupServersServerOutput) ToGetServerGroupServersServerOutput() GetServerGroupServersServerOutput {
+	return o
+}
+
+func (o GetServerGroupServersServerOutput) ToGetServerGroupServersServerOutputWithContext(ctx context.Context) GetServerGroupServersServerOutput {
+	return o
+}
+
+// The description of the instance.
+func (o GetServerGroupServersServerOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The server id of instance in ServerGroup.
+func (o GetServerGroupServersServerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of ecs instance or the network card bound to ecs instance.
+func (o GetServerGroupServersServerOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The private ip of the instance.
+func (o GetServerGroupServersServerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The port receiving request.
+func (o GetServerGroupServersServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The server id of instance in ServerGroup.
+func (o GetServerGroupServersServerOutput) ServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+// The type of instance. Optional choice contains `ecs`, `eni`.
+func (o GetServerGroupServersServerOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The weight of the instance.
+func (o GetServerGroupServersServerOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetServerGroupServersServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupServersServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupServersServer)(nil)).Elem()
+}
+
+func (o GetServerGroupServersServerArrayOutput) ToGetServerGroupServersServerArrayOutput() GetServerGroupServersServerArrayOutput {
+	return o
+}
+
+func (o GetServerGroupServersServerArrayOutput) ToGetServerGroupServersServerArrayOutputWithContext(ctx context.Context) GetServerGroupServersServerArrayOutput {
+	return o
+}
+
+func (o GetServerGroupServersServerArrayOutput) Index(i pulumi.IntInput) GetServerGroupServersServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerGroupServersServer {
+		return vs[0].([]GetServerGroupServersServer)[vs[1].(int)]
+	}).(GetServerGroupServersServerOutput)
+}
+
+type GetServerGroupsGroup struct {
+	// The address ip version of the ServerGroup.
+	AddressIpVersion string `pulumi:"addressIpVersion"`
+	// The create time of the ServerGroup.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the ServerGroup.
+	Description string `pulumi:"description"`
+	// The ID of the ServerGroup.
+	Id string `pulumi:"id"`
+	// The ID of the ServerGroup.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The name of the ServerGroup.
+	ServerGroupName string `pulumi:"serverGroupName"`
+	// The update time of the ServerGroup.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetServerGroupsGroupInput is an input type that accepts GetServerGroupsGroupArgs and GetServerGroupsGroupOutput values.
+// You can construct a concrete instance of `GetServerGroupsGroupInput` via:
+//
+//	GetServerGroupsGroupArgs{...}
+type GetServerGroupsGroupInput interface {
+	pulumi.Input
+
+	ToGetServerGroupsGroupOutput() GetServerGroupsGroupOutput
+	ToGetServerGroupsGroupOutputWithContext(context.Context) GetServerGroupsGroupOutput
+}
+
+type GetServerGroupsGroupArgs struct {
+	// The address ip version of the ServerGroup.
+	AddressIpVersion pulumi.StringInput `pulumi:"addressIpVersion"`
+	// The create time of the ServerGroup.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the ServerGroup.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the ServerGroup.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the ServerGroup.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The name of the ServerGroup.
+	ServerGroupName pulumi.StringInput `pulumi:"serverGroupName"`
+	// The update time of the ServerGroup.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetServerGroupsGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupsGroup)(nil)).Elem()
+}
+
+func (i GetServerGroupsGroupArgs) ToGetServerGroupsGroupOutput() GetServerGroupsGroupOutput {
+	return i.ToGetServerGroupsGroupOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupsGroupArgs) ToGetServerGroupsGroupOutputWithContext(ctx context.Context) GetServerGroupsGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupsGroupOutput)
+}
+
+// GetServerGroupsGroupArrayInput is an input type that accepts GetServerGroupsGroupArray and GetServerGroupsGroupArrayOutput values.
+// You can construct a concrete instance of `GetServerGroupsGroupArrayInput` via:
+//
+//	GetServerGroupsGroupArray{ GetServerGroupsGroupArgs{...} }
+type GetServerGroupsGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetServerGroupsGroupArrayOutput() GetServerGroupsGroupArrayOutput
+	ToGetServerGroupsGroupArrayOutputWithContext(context.Context) GetServerGroupsGroupArrayOutput
+}
+
+type GetServerGroupsGroupArray []GetServerGroupsGroupInput
+
+func (GetServerGroupsGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupsGroup)(nil)).Elem()
+}
+
+func (i GetServerGroupsGroupArray) ToGetServerGroupsGroupArrayOutput() GetServerGroupsGroupArrayOutput {
+	return i.ToGetServerGroupsGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupsGroupArray) ToGetServerGroupsGroupArrayOutputWithContext(ctx context.Context) GetServerGroupsGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupsGroupArrayOutput)
+}
+
+type GetServerGroupsGroupOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupsGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupsGroup)(nil)).Elem()
+}
+
+func (o GetServerGroupsGroupOutput) ToGetServerGroupsGroupOutput() GetServerGroupsGroupOutput {
+	return o
+}
+
+func (o GetServerGroupsGroupOutput) ToGetServerGroupsGroupOutputWithContext(ctx context.Context) GetServerGroupsGroupOutput {
+	return o
+}
+
+// The address ip version of the ServerGroup.
+func (o GetServerGroupsGroupOutput) AddressIpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.AddressIpVersion }).(pulumi.StringOutput)
+}
+
+// The create time of the ServerGroup.
+func (o GetServerGroupsGroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the ServerGroup.
+func (o GetServerGroupsGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the ServerGroup.
+func (o GetServerGroupsGroupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the ServerGroup.
+func (o GetServerGroupsGroupOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the ServerGroup.
+func (o GetServerGroupsGroupOutput) ServerGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.ServerGroupName }).(pulumi.StringOutput)
+}
+
+// The update time of the ServerGroup.
+func (o GetServerGroupsGroupOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsGroup) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetServerGroupsGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupsGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupsGroup)(nil)).Elem()
+}
+
+func (o GetServerGroupsGroupArrayOutput) ToGetServerGroupsGroupArrayOutput() GetServerGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetServerGroupsGroupArrayOutput) ToGetServerGroupsGroupArrayOutputWithContext(ctx context.Context) GetServerGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetServerGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetServerGroupsGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerGroupsGroup {
+		return vs[0].([]GetServerGroupsGroup)[vs[1].(int)]
+	}).(GetServerGroupsGroupOutput)
+}
+
+type GetZonesMasterZone struct {
+	// The slave zones list.
+	SlaveZones []GetZonesMasterZoneSlaveZone `pulumi:"slaveZones"`
+	// The master zone id.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetZonesMasterZoneInput is an input type that accepts GetZonesMasterZoneArgs and GetZonesMasterZoneOutput values.
+// You can construct a concrete instance of `GetZonesMasterZoneInput` via:
+//
+//	GetZonesMasterZoneArgs{...}
+type GetZonesMasterZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesMasterZoneOutput() GetZonesMasterZoneOutput
+	ToGetZonesMasterZoneOutputWithContext(context.Context) GetZonesMasterZoneOutput
+}
+
+type GetZonesMasterZoneArgs struct {
+	// The slave zones list.
+	SlaveZones GetZonesMasterZoneSlaveZoneArrayInput `pulumi:"slaveZones"`
+	// The master zone id.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetZonesMasterZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesMasterZone)(nil)).Elem()
+}
+
+func (i GetZonesMasterZoneArgs) ToGetZonesMasterZoneOutput() GetZonesMasterZoneOutput {
+	return i.ToGetZonesMasterZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesMasterZoneArgs) ToGetZonesMasterZoneOutputWithContext(ctx context.Context) GetZonesMasterZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesMasterZoneOutput)
+}
+
+// GetZonesMasterZoneArrayInput is an input type that accepts GetZonesMasterZoneArray and GetZonesMasterZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesMasterZoneArrayInput` via:
+//
+//	GetZonesMasterZoneArray{ GetZonesMasterZoneArgs{...} }
+type GetZonesMasterZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesMasterZoneArrayOutput() GetZonesMasterZoneArrayOutput
+	ToGetZonesMasterZoneArrayOutputWithContext(context.Context) GetZonesMasterZoneArrayOutput
+}
+
+type GetZonesMasterZoneArray []GetZonesMasterZoneInput
+
+func (GetZonesMasterZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesMasterZone)(nil)).Elem()
+}
+
+func (i GetZonesMasterZoneArray) ToGetZonesMasterZoneArrayOutput() GetZonesMasterZoneArrayOutput {
+	return i.ToGetZonesMasterZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesMasterZoneArray) ToGetZonesMasterZoneArrayOutputWithContext(ctx context.Context) GetZonesMasterZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesMasterZoneArrayOutput)
+}
+
+type GetZonesMasterZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesMasterZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesMasterZone)(nil)).Elem()
+}
+
+func (o GetZonesMasterZoneOutput) ToGetZonesMasterZoneOutput() GetZonesMasterZoneOutput {
+	return o
+}
+
+func (o GetZonesMasterZoneOutput) ToGetZonesMasterZoneOutputWithContext(ctx context.Context) GetZonesMasterZoneOutput {
+	return o
+}
+
+// The slave zones list.
+func (o GetZonesMasterZoneOutput) SlaveZones() GetZonesMasterZoneSlaveZoneArrayOutput {
+	return o.ApplyT(func(v GetZonesMasterZone) []GetZonesMasterZoneSlaveZone { return v.SlaveZones }).(GetZonesMasterZoneSlaveZoneArrayOutput)
+}
+
+// The master zone id.
+func (o GetZonesMasterZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesMasterZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetZonesMasterZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesMasterZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesMasterZone)(nil)).Elem()
+}
+
+func (o GetZonesMasterZoneArrayOutput) ToGetZonesMasterZoneArrayOutput() GetZonesMasterZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesMasterZoneArrayOutput) ToGetZonesMasterZoneArrayOutputWithContext(ctx context.Context) GetZonesMasterZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesMasterZoneArrayOutput) Index(i pulumi.IntInput) GetZonesMasterZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesMasterZone {
+		return vs[0].([]GetZonesMasterZone)[vs[1].(int)]
+	}).(GetZonesMasterZoneOutput)
+}
+
+type GetZonesMasterZoneSlaveZone struct {
+	// The master zone id.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetZonesMasterZoneSlaveZoneInput is an input type that accepts GetZonesMasterZoneSlaveZoneArgs and GetZonesMasterZoneSlaveZoneOutput values.
+// You can construct a concrete instance of `GetZonesMasterZoneSlaveZoneInput` via:
+//
+//	GetZonesMasterZoneSlaveZoneArgs{...}
+type GetZonesMasterZoneSlaveZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesMasterZoneSlaveZoneOutput() GetZonesMasterZoneSlaveZoneOutput
+	ToGetZonesMasterZoneSlaveZoneOutputWithContext(context.Context) GetZonesMasterZoneSlaveZoneOutput
+}
+
+type GetZonesMasterZoneSlaveZoneArgs struct {
+	// The master zone id.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetZonesMasterZoneSlaveZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (i GetZonesMasterZoneSlaveZoneArgs) ToGetZonesMasterZoneSlaveZoneOutput() GetZonesMasterZoneSlaveZoneOutput {
+	return i.ToGetZonesMasterZoneSlaveZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesMasterZoneSlaveZoneArgs) ToGetZonesMasterZoneSlaveZoneOutputWithContext(ctx context.Context) GetZonesMasterZoneSlaveZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesMasterZoneSlaveZoneOutput)
+}
+
+// GetZonesMasterZoneSlaveZoneArrayInput is an input type that accepts GetZonesMasterZoneSlaveZoneArray and GetZonesMasterZoneSlaveZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesMasterZoneSlaveZoneArrayInput` via:
+//
+//	GetZonesMasterZoneSlaveZoneArray{ GetZonesMasterZoneSlaveZoneArgs{...} }
+type GetZonesMasterZoneSlaveZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesMasterZoneSlaveZoneArrayOutput() GetZonesMasterZoneSlaveZoneArrayOutput
+	ToGetZonesMasterZoneSlaveZoneArrayOutputWithContext(context.Context) GetZonesMasterZoneSlaveZoneArrayOutput
+}
+
+type GetZonesMasterZoneSlaveZoneArray []GetZonesMasterZoneSlaveZoneInput
+
+func (GetZonesMasterZoneSlaveZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (i GetZonesMasterZoneSlaveZoneArray) ToGetZonesMasterZoneSlaveZoneArrayOutput() GetZonesMasterZoneSlaveZoneArrayOutput {
+	return i.ToGetZonesMasterZoneSlaveZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesMasterZoneSlaveZoneArray) ToGetZonesMasterZoneSlaveZoneArrayOutputWithContext(ctx context.Context) GetZonesMasterZoneSlaveZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesMasterZoneSlaveZoneArrayOutput)
+}
+
+type GetZonesMasterZoneSlaveZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesMasterZoneSlaveZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (o GetZonesMasterZoneSlaveZoneOutput) ToGetZonesMasterZoneSlaveZoneOutput() GetZonesMasterZoneSlaveZoneOutput {
+	return o
+}
+
+func (o GetZonesMasterZoneSlaveZoneOutput) ToGetZonesMasterZoneSlaveZoneOutputWithContext(ctx context.Context) GetZonesMasterZoneSlaveZoneOutput {
+	return o
+}
+
+// The master zone id.
+func (o GetZonesMasterZoneSlaveZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesMasterZoneSlaveZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetZonesMasterZoneSlaveZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesMasterZoneSlaveZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (o GetZonesMasterZoneSlaveZoneArrayOutput) ToGetZonesMasterZoneSlaveZoneArrayOutput() GetZonesMasterZoneSlaveZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesMasterZoneSlaveZoneArrayOutput) ToGetZonesMasterZoneSlaveZoneArrayOutputWithContext(ctx context.Context) GetZonesMasterZoneSlaveZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesMasterZoneSlaveZoneArrayOutput) Index(i pulumi.IntInput) GetZonesMasterZoneSlaveZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesMasterZoneSlaveZone {
+		return vs[0].([]GetZonesMasterZoneSlaveZone)[vs[1].(int)]
+	}).(GetZonesMasterZoneSlaveZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryInput)(nil)).Elem(), AclAclEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryArrayInput)(nil)).Elem(), AclAclEntryArray{})
@@ -3355,6 +5836,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneArrayInput)(nil)).Elem(), ZonesMasterZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneSlaveZoneInput)(nil)).Elem(), ZonesMasterZoneSlaveZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneSlaveZoneArrayInput)(nil)).Elem(), ZonesMasterZoneSlaveZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclInput)(nil)).Elem(), GetAclsAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclArrayInput)(nil)).Elem(), GetAclsAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateInput)(nil)).Elem(), GetCertificatesCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateArrayInput)(nil)).Elem(), GetCertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateTagInput)(nil)).Elem(), GetCertificatesCertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateTagArrayInput)(nil)).Elem(), GetCertificatesCertificateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesTagInput)(nil)).Elem(), GetCertificatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesTagArrayInput)(nil)).Elem(), GetCertificatesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbInput)(nil)).Elem(), GetClbsClbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbArrayInput)(nil)).Elem(), GetClbsClbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbEipBillingConfigInput)(nil)).Elem(), GetClbsClbEipBillingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbEipBillingConfigArrayInput)(nil)).Elem(), GetClbsClbEipBillingConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbIpv6AddressBandwidthInput)(nil)).Elem(), GetClbsClbIpv6AddressBandwidthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbIpv6AddressBandwidthArrayInput)(nil)).Elem(), GetClbsClbIpv6AddressBandwidthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbTagInput)(nil)).Elem(), GetClbsClbTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsClbTagArrayInput)(nil)).Elem(), GetClbsClbTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsTagInput)(nil)).Elem(), GetClbsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClbsTagArrayInput)(nil)).Elem(), GetClbsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerInput)(nil)).Elem(), GetListenersListenerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerArrayInput)(nil)).Elem(), GetListenersListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleInput)(nil)).Elem(), GetRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleArrayInput)(nil)).Elem(), GetRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupServersServerInput)(nil)).Elem(), GetServerGroupServersServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupServersServerArrayInput)(nil)).Elem(), GetServerGroupServersServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsGroupInput)(nil)).Elem(), GetServerGroupsGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsGroupArrayInput)(nil)).Elem(), GetServerGroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesMasterZoneInput)(nil)).Elem(), GetZonesMasterZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesMasterZoneArrayInput)(nil)).Elem(), GetZonesMasterZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesMasterZoneSlaveZoneInput)(nil)).Elem(), GetZonesMasterZoneSlaveZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesMasterZoneSlaveZoneArrayInput)(nil)).Elem(), GetZonesMasterZoneSlaveZoneArray{})
 	pulumi.RegisterOutputType(AclAclEntryOutput{})
 	pulumi.RegisterOutputType(AclAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(AclsAclOutput{})
@@ -3395,4 +5906,34 @@ func init() {
 	pulumi.RegisterOutputType(ZonesMasterZoneArrayOutput{})
 	pulumi.RegisterOutputType(ZonesMasterZoneSlaveZoneOutput{})
 	pulumi.RegisterOutputType(ZonesMasterZoneSlaveZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetAclsAclOutput{})
+	pulumi.RegisterOutputType(GetAclsAclArrayOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertificateOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertificateTagOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertificateTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCertificatesTagOutput{})
+	pulumi.RegisterOutputType(GetCertificatesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetClbsClbOutput{})
+	pulumi.RegisterOutputType(GetClbsClbArrayOutput{})
+	pulumi.RegisterOutputType(GetClbsClbEipBillingConfigOutput{})
+	pulumi.RegisterOutputType(GetClbsClbEipBillingConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetClbsClbIpv6AddressBandwidthOutput{})
+	pulumi.RegisterOutputType(GetClbsClbIpv6AddressBandwidthArrayOutput{})
+	pulumi.RegisterOutputType(GetClbsClbTagOutput{})
+	pulumi.RegisterOutputType(GetClbsClbTagArrayOutput{})
+	pulumi.RegisterOutputType(GetClbsTagOutput{})
+	pulumi.RegisterOutputType(GetClbsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetServerGroupServersServerOutput{})
+	pulumi.RegisterOutputType(GetServerGroupServersServerArrayOutput{})
+	pulumi.RegisterOutputType(GetServerGroupsGroupOutput{})
+	pulumi.RegisterOutputType(GetServerGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesMasterZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesMasterZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesMasterZoneSlaveZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesMasterZoneSlaveZoneArrayOutput{})
 }

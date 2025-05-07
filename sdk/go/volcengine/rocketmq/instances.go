@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rocketmq.Instances(ctx, &rocketmq.InstancesArgs{
+//			_, err := rocketmq.GetInstances(ctx, &rocketmq.GetInstancesArgs{
 //				InstanceId: pulumi.StringRef("rocketmq-cnoeea6b32118fc2"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rocketmq.Instances has been deprecated in favor of volcengine.rocketmq.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

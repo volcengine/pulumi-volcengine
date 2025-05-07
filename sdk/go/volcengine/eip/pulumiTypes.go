@@ -617,6 +617,504 @@ func (o AddressesTagArrayOutput) Index(i pulumi.IntInput) AddressesTagOutput {
 	}).(AddressesTagOutput)
 }
 
+type GetAddressesAddress struct {
+	// The id of the EIP address.
+	AllocationId string `pulumi:"allocationId"`
+	// The allocation time of the EIP.
+	AllocationTime string `pulumi:"allocationTime"`
+	// The peek bandwidth of the EIP.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The id of the bandwidth package.
+	BandwidthPackageId string `pulumi:"bandwidthPackageId"`
+	// The billing type of the EIP.
+	BillingType string `pulumi:"billingType"`
+	// The business status of the EIP.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The deleted time of the EIP.
+	DeletedTime string `pulumi:"deletedTime"`
+	// The description of the EIP.
+	Description string `pulumi:"description"`
+	// The EIP ip address of the EIP.
+	EipAddress string `pulumi:"eipAddress"`
+	// The expired time of the EIP.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The id of the EIP address.
+	Id string `pulumi:"id"`
+	// The instance id which be associated to the EIP.
+	InstanceId string `pulumi:"instanceId"`
+	// The type of the associated instance.
+	InstanceType string `pulumi:"instanceType"`
+	// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	Isp string `pulumi:"isp"`
+	// The lock reason of the EIP.
+	LockReason string `pulumi:"lockReason"`
+	// A name of EIP.
+	Name string `pulumi:"name"`
+	// The overdue time of the EIP.
+	OverdueTime string `pulumi:"overdueTime"`
+	// The ProjectName of EIP.
+	ProjectName string `pulumi:"projectName"`
+	// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+	SecurityProtectionTypes []string `pulumi:"securityProtectionTypes"`
+	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetAddressesAddressTag `pulumi:"tags"`
+	// The last update time of the EIP.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetAddressesAddressInput is an input type that accepts GetAddressesAddressArgs and GetAddressesAddressOutput values.
+// You can construct a concrete instance of `GetAddressesAddressInput` via:
+//
+//	GetAddressesAddressArgs{...}
+type GetAddressesAddressInput interface {
+	pulumi.Input
+
+	ToGetAddressesAddressOutput() GetAddressesAddressOutput
+	ToGetAddressesAddressOutputWithContext(context.Context) GetAddressesAddressOutput
+}
+
+type GetAddressesAddressArgs struct {
+	// The id of the EIP address.
+	AllocationId pulumi.StringInput `pulumi:"allocationId"`
+	// The allocation time of the EIP.
+	AllocationTime pulumi.StringInput `pulumi:"allocationTime"`
+	// The peek bandwidth of the EIP.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The id of the bandwidth package.
+	BandwidthPackageId pulumi.StringInput `pulumi:"bandwidthPackageId"`
+	// The billing type of the EIP.
+	BillingType pulumi.StringInput `pulumi:"billingType"`
+	// The business status of the EIP.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The deleted time of the EIP.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// The description of the EIP.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The EIP ip address of the EIP.
+	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
+	// The expired time of the EIP.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The id of the EIP address.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The instance id which be associated to the EIP.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The type of the associated instance.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	Isp pulumi.StringInput `pulumi:"isp"`
+	// The lock reason of the EIP.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// A name of EIP.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The overdue time of the EIP.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The ProjectName of EIP.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+	SecurityProtectionTypes pulumi.StringArrayInput `pulumi:"securityProtectionTypes"`
+	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetAddressesAddressTagArrayInput `pulumi:"tags"`
+	// The last update time of the EIP.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetAddressesAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddressesAddress)(nil)).Elem()
+}
+
+func (i GetAddressesAddressArgs) ToGetAddressesAddressOutput() GetAddressesAddressOutput {
+	return i.ToGetAddressesAddressOutputWithContext(context.Background())
+}
+
+func (i GetAddressesAddressArgs) ToGetAddressesAddressOutputWithContext(ctx context.Context) GetAddressesAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddressesAddressOutput)
+}
+
+// GetAddressesAddressArrayInput is an input type that accepts GetAddressesAddressArray and GetAddressesAddressArrayOutput values.
+// You can construct a concrete instance of `GetAddressesAddressArrayInput` via:
+//
+//	GetAddressesAddressArray{ GetAddressesAddressArgs{...} }
+type GetAddressesAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetAddressesAddressArrayOutput() GetAddressesAddressArrayOutput
+	ToGetAddressesAddressArrayOutputWithContext(context.Context) GetAddressesAddressArrayOutput
+}
+
+type GetAddressesAddressArray []GetAddressesAddressInput
+
+func (GetAddressesAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddressesAddress)(nil)).Elem()
+}
+
+func (i GetAddressesAddressArray) ToGetAddressesAddressArrayOutput() GetAddressesAddressArrayOutput {
+	return i.ToGetAddressesAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddressesAddressArray) ToGetAddressesAddressArrayOutputWithContext(ctx context.Context) GetAddressesAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddressesAddressArrayOutput)
+}
+
+type GetAddressesAddressOutput struct{ *pulumi.OutputState }
+
+func (GetAddressesAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddressesAddress)(nil)).Elem()
+}
+
+func (o GetAddressesAddressOutput) ToGetAddressesAddressOutput() GetAddressesAddressOutput {
+	return o
+}
+
+func (o GetAddressesAddressOutput) ToGetAddressesAddressOutputWithContext(ctx context.Context) GetAddressesAddressOutput {
+	return o
+}
+
+// The id of the EIP address.
+func (o GetAddressesAddressOutput) AllocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.AllocationId }).(pulumi.StringOutput)
+}
+
+// The allocation time of the EIP.
+func (o GetAddressesAddressOutput) AllocationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.AllocationTime }).(pulumi.StringOutput)
+}
+
+// The peek bandwidth of the EIP.
+func (o GetAddressesAddressOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAddressesAddress) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The id of the bandwidth package.
+func (o GetAddressesAddressOutput) BandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.BandwidthPackageId }).(pulumi.StringOutput)
+}
+
+// The billing type of the EIP.
+func (o GetAddressesAddressOutput) BillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.BillingType }).(pulumi.StringOutput)
+}
+
+// The business status of the EIP.
+func (o GetAddressesAddressOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The deleted time of the EIP.
+func (o GetAddressesAddressOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// The description of the EIP.
+func (o GetAddressesAddressOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The EIP ip address of the EIP.
+func (o GetAddressesAddressOutput) EipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.EipAddress }).(pulumi.StringOutput)
+}
+
+// The expired time of the EIP.
+func (o GetAddressesAddressOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The id of the EIP address.
+func (o GetAddressesAddressOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The instance id which be associated to the EIP.
+func (o GetAddressesAddressOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The type of the associated instance.
+func (o GetAddressesAddressOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+func (o GetAddressesAddressOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+// The lock reason of the EIP.
+func (o GetAddressesAddressOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// A name of EIP.
+func (o GetAddressesAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The overdue time of the EIP.
+func (o GetAddressesAddressOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// The ProjectName of EIP.
+func (o GetAddressesAddressOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+func (o GetAddressesAddressOutput) SecurityProtectionTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAddressesAddress) []string { return v.SecurityProtectionTypes }).(pulumi.StringArrayOutput)
+}
+
+// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+func (o GetAddressesAddressOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetAddressesAddressOutput) Tags() GetAddressesAddressTagArrayOutput {
+	return o.ApplyT(func(v GetAddressesAddress) []GetAddressesAddressTag { return v.Tags }).(GetAddressesAddressTagArrayOutput)
+}
+
+// The last update time of the EIP.
+func (o GetAddressesAddressOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddress) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetAddressesAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddressesAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddressesAddress)(nil)).Elem()
+}
+
+func (o GetAddressesAddressArrayOutput) ToGetAddressesAddressArrayOutput() GetAddressesAddressArrayOutput {
+	return o
+}
+
+func (o GetAddressesAddressArrayOutput) ToGetAddressesAddressArrayOutputWithContext(ctx context.Context) GetAddressesAddressArrayOutput {
+	return o
+}
+
+func (o GetAddressesAddressArrayOutput) Index(i pulumi.IntInput) GetAddressesAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddressesAddress {
+		return vs[0].([]GetAddressesAddress)[vs[1].(int)]
+	}).(GetAddressesAddressOutput)
+}
+
+type GetAddressesAddressTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAddressesAddressTagInput is an input type that accepts GetAddressesAddressTagArgs and GetAddressesAddressTagOutput values.
+// You can construct a concrete instance of `GetAddressesAddressTagInput` via:
+//
+//	GetAddressesAddressTagArgs{...}
+type GetAddressesAddressTagInput interface {
+	pulumi.Input
+
+	ToGetAddressesAddressTagOutput() GetAddressesAddressTagOutput
+	ToGetAddressesAddressTagOutputWithContext(context.Context) GetAddressesAddressTagOutput
+}
+
+type GetAddressesAddressTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAddressesAddressTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddressesAddressTag)(nil)).Elem()
+}
+
+func (i GetAddressesAddressTagArgs) ToGetAddressesAddressTagOutput() GetAddressesAddressTagOutput {
+	return i.ToGetAddressesAddressTagOutputWithContext(context.Background())
+}
+
+func (i GetAddressesAddressTagArgs) ToGetAddressesAddressTagOutputWithContext(ctx context.Context) GetAddressesAddressTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddressesAddressTagOutput)
+}
+
+// GetAddressesAddressTagArrayInput is an input type that accepts GetAddressesAddressTagArray and GetAddressesAddressTagArrayOutput values.
+// You can construct a concrete instance of `GetAddressesAddressTagArrayInput` via:
+//
+//	GetAddressesAddressTagArray{ GetAddressesAddressTagArgs{...} }
+type GetAddressesAddressTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAddressesAddressTagArrayOutput() GetAddressesAddressTagArrayOutput
+	ToGetAddressesAddressTagArrayOutputWithContext(context.Context) GetAddressesAddressTagArrayOutput
+}
+
+type GetAddressesAddressTagArray []GetAddressesAddressTagInput
+
+func (GetAddressesAddressTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddressesAddressTag)(nil)).Elem()
+}
+
+func (i GetAddressesAddressTagArray) ToGetAddressesAddressTagArrayOutput() GetAddressesAddressTagArrayOutput {
+	return i.ToGetAddressesAddressTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddressesAddressTagArray) ToGetAddressesAddressTagArrayOutputWithContext(ctx context.Context) GetAddressesAddressTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddressesAddressTagArrayOutput)
+}
+
+type GetAddressesAddressTagOutput struct{ *pulumi.OutputState }
+
+func (GetAddressesAddressTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddressesAddressTag)(nil)).Elem()
+}
+
+func (o GetAddressesAddressTagOutput) ToGetAddressesAddressTagOutput() GetAddressesAddressTagOutput {
+	return o
+}
+
+func (o GetAddressesAddressTagOutput) ToGetAddressesAddressTagOutputWithContext(ctx context.Context) GetAddressesAddressTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAddressesAddressTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddressTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAddressesAddressTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesAddressTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAddressesAddressTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddressesAddressTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddressesAddressTag)(nil)).Elem()
+}
+
+func (o GetAddressesAddressTagArrayOutput) ToGetAddressesAddressTagArrayOutput() GetAddressesAddressTagArrayOutput {
+	return o
+}
+
+func (o GetAddressesAddressTagArrayOutput) ToGetAddressesAddressTagArrayOutputWithContext(ctx context.Context) GetAddressesAddressTagArrayOutput {
+	return o
+}
+
+func (o GetAddressesAddressTagArrayOutput) Index(i pulumi.IntInput) GetAddressesAddressTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddressesAddressTag {
+		return vs[0].([]GetAddressesAddressTag)[vs[1].(int)]
+	}).(GetAddressesAddressTagOutput)
+}
+
+type GetAddressesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAddressesTagInput is an input type that accepts GetAddressesTagArgs and GetAddressesTagOutput values.
+// You can construct a concrete instance of `GetAddressesTagInput` via:
+//
+//	GetAddressesTagArgs{...}
+type GetAddressesTagInput interface {
+	pulumi.Input
+
+	ToGetAddressesTagOutput() GetAddressesTagOutput
+	ToGetAddressesTagOutputWithContext(context.Context) GetAddressesTagOutput
+}
+
+type GetAddressesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAddressesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddressesTag)(nil)).Elem()
+}
+
+func (i GetAddressesTagArgs) ToGetAddressesTagOutput() GetAddressesTagOutput {
+	return i.ToGetAddressesTagOutputWithContext(context.Background())
+}
+
+func (i GetAddressesTagArgs) ToGetAddressesTagOutputWithContext(ctx context.Context) GetAddressesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddressesTagOutput)
+}
+
+// GetAddressesTagArrayInput is an input type that accepts GetAddressesTagArray and GetAddressesTagArrayOutput values.
+// You can construct a concrete instance of `GetAddressesTagArrayInput` via:
+//
+//	GetAddressesTagArray{ GetAddressesTagArgs{...} }
+type GetAddressesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAddressesTagArrayOutput() GetAddressesTagArrayOutput
+	ToGetAddressesTagArrayOutputWithContext(context.Context) GetAddressesTagArrayOutput
+}
+
+type GetAddressesTagArray []GetAddressesTagInput
+
+func (GetAddressesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddressesTag)(nil)).Elem()
+}
+
+func (i GetAddressesTagArray) ToGetAddressesTagArrayOutput() GetAddressesTagArrayOutput {
+	return i.ToGetAddressesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddressesTagArray) ToGetAddressesTagArrayOutputWithContext(ctx context.Context) GetAddressesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddressesTagArrayOutput)
+}
+
+type GetAddressesTagOutput struct{ *pulumi.OutputState }
+
+func (GetAddressesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddressesTag)(nil)).Elem()
+}
+
+func (o GetAddressesTagOutput) ToGetAddressesTagOutput() GetAddressesTagOutput {
+	return o
+}
+
+func (o GetAddressesTagOutput) ToGetAddressesTagOutputWithContext(ctx context.Context) GetAddressesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAddressesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAddressesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddressesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAddressesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddressesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddressesTag)(nil)).Elem()
+}
+
+func (o GetAddressesTagArrayOutput) ToGetAddressesTagArrayOutput() GetAddressesTagArrayOutput {
+	return o
+}
+
+func (o GetAddressesTagArrayOutput) ToGetAddressesTagArrayOutputWithContext(ctx context.Context) GetAddressesTagArrayOutput {
+	return o
+}
+
+func (o GetAddressesTagArrayOutput) Index(i pulumi.IntInput) GetAddressesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddressesTag {
+		return vs[0].([]GetAddressesTag)[vs[1].(int)]
+	}).(GetAddressesTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressTagInput)(nil)).Elem(), AddressTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressTagArrayInput)(nil)).Elem(), AddressTagArray{})
@@ -626,6 +1124,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressesAddressTagArrayInput)(nil)).Elem(), AddressesAddressTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressesTagInput)(nil)).Elem(), AddressesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressesTagArrayInput)(nil)).Elem(), AddressesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressesAddressInput)(nil)).Elem(), GetAddressesAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressesAddressArrayInput)(nil)).Elem(), GetAddressesAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressesAddressTagInput)(nil)).Elem(), GetAddressesAddressTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressesAddressTagArrayInput)(nil)).Elem(), GetAddressesAddressTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressesTagInput)(nil)).Elem(), GetAddressesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressesTagArrayInput)(nil)).Elem(), GetAddressesTagArray{})
 	pulumi.RegisterOutputType(AddressTagOutput{})
 	pulumi.RegisterOutputType(AddressTagArrayOutput{})
 	pulumi.RegisterOutputType(AddressesAddressOutput{})
@@ -634,4 +1138,10 @@ func init() {
 	pulumi.RegisterOutputType(AddressesAddressTagArrayOutput{})
 	pulumi.RegisterOutputType(AddressesTagOutput{})
 	pulumi.RegisterOutputType(AddressesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAddressesAddressOutput{})
+	pulumi.RegisterOutputType(GetAddressesAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetAddressesAddressTagOutput{})
+	pulumi.RegisterOutputType(GetAddressesAddressTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAddressesTagOutput{})
+	pulumi.RegisterOutputType(GetAddressesTagArrayOutput{})
 }

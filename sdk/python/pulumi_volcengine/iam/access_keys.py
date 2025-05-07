@@ -17,6 +17,8 @@ __all__ = [
     'access_keys_output',
 ]
 
+warnings.warn("""volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys""", DeprecationWarning)
+
 @pulumi.output_type
 class AccessKeysResult:
     """
@@ -111,7 +113,7 @@ def access_keys(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.access_keys()
+    foo = volcengine.iam.get_access_keys()
     ```
 
 
@@ -119,6 +121,7 @@ def access_keys(name_regex: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str user_name: The user names.
     """
+    pulumi.log.warn("""access_keys is deprecated: volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -148,7 +151,7 @@ def access_keys_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.access_keys()
+    foo = volcengine.iam.get_access_keys()
     ```
 
 
@@ -156,4 +159,5 @@ def access_keys_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str user_name: The user names.
     """
+    pulumi.log.warn("""access_keys is deprecated: volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys""")
     ...

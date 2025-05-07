@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_firewall
 {
+    [Obsolete(@"volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies")]
     public static class CfwDnsControlPolicies
     {
         /// <summary>
@@ -44,7 +45,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         ///         },
         ///     });
         /// 
-        ///     var fooCfwDnsControlPolicies = Volcengine.Cloud_firewall.CfwDnsControlPolicies.Invoke(new()
+        ///     var fooCfwDnsControlPolicies = Volcengine.Cloud_firewall.GetCfwDnsControlPolicies.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -91,7 +92,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         ///         },
         ///     });
         /// 
-        ///     var fooCfwDnsControlPolicies = Volcengine.Cloud_firewall.CfwDnsControlPolicies.Invoke(new()
+        ///     var fooCfwDnsControlPolicies = Volcengine.Cloud_firewall.GetCfwDnsControlPolicies.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

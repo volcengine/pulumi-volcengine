@@ -17,6 +17,8 @@ __all__ = [
     'records_output',
 ]
 
+warnings.warn("""volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords""", DeprecationWarning)
+
 @pulumi.output_type
 class RecordsResult:
     """
@@ -180,7 +182,7 @@ def records(host: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.dns.records(zid=58857)
+    foo = volcengine.dns.get_records(zid=58857)
     ```
 
 
@@ -194,6 +196,7 @@ def records(host: Optional[str] = None,
     :param str value: Value of the DNS record.
     :param int zid: The ID of the domain.
     """
+    pulumi.log.warn("""records is deprecated: volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords""")
     __args__ = dict()
     __args__['host'] = host
     __args__['line'] = line
@@ -241,7 +244,7 @@ def records_output(host: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.dns.records(zid=58857)
+    foo = volcengine.dns.get_records(zid=58857)
     ```
 
 
@@ -255,4 +258,5 @@ def records_output(host: Optional[pulumi.Input[Optional[str]]] = None,
     :param str value: Value of the DNS record.
     :param int zid: The ID of the domain.
     """
+    pulumi.log.warn("""records is deprecated: volcengine.dns.Records has been deprecated in favor of volcengine.dns.getRecords""")
     ...

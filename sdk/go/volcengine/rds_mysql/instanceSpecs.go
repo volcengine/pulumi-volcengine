@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mysql.InstanceSpecs(ctx, &rds_mysql.InstanceSpecsArgs{
+//			_, err := rds_mysql.GetInstanceSpecs(ctx, &rds_mysql.GetInstanceSpecsArgs{
 //				DbEngineVersion: pulumi.StringRef("MySQL_8_0"),
 //				InstanceType:    pulumi.StringRef("DoubleNode"),
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.InstanceSpecs has been deprecated in favor of volcengine.rds_mysql.getInstanceSpecs
 func InstanceSpecs(ctx *pulumi.Context, args *InstanceSpecsArgs, opts ...pulumi.InvokeOption) (*InstanceSpecsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstanceSpecsResult

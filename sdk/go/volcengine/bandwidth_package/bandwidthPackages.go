@@ -53,13 +53,15 @@ import (
 // }
 // fooBandwidthPackage = append(fooBandwidthPackage, __res)
 // }
-// _ = bandwidth_package.BandwidthPackagesOutput(ctx, bandwidth_package.BandwidthPackagesOutputArgs{
+// _ = bandwidth_package.GetBandwidthPackagesOutput(ctx, bandwidth_package.GetBandwidthPackagesOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:bandwidth_package-bandwidthPackages:BandwidthPackages.pp:18,9-34),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.bandwidth_package.BandwidthPackages has been deprecated in favor of volcengine.bandwidth_package.getBandwidthPackages
 func BandwidthPackages(ctx *pulumi.Context, args *BandwidthPackagesArgs, opts ...pulumi.InvokeOption) (*BandwidthPackagesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BandwidthPackagesResult

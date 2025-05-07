@@ -17,6 +17,8 @@ __all__ = [
     'backups_output',
 ]
 
+warnings.warn("""volcengine.vedb_mysql.Backups has been deprecated in favor of volcengine.vedb_mysql.getBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class BackupsResult:
     """
@@ -166,7 +168,7 @@ def backups(backup_end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -202,7 +204,7 @@ def backups(backup_end_time: Optional[str] = None,
             full_backup_period="Monday,Tuesday,Wednesday",
             backup_retention_period=8,
         ))
-    foo_backups = volcengine.vedb_mysql.backups_output(instance_id=foo_instance.id)
+    foo_backups = volcengine.vedb_mysql.get_backups_output(instance_id=foo_instance.id)
     ```
 
 
@@ -214,6 +216,7 @@ def backups(backup_end_time: Optional[str] = None,
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.vedb_mysql.Backups has been deprecated in favor of volcengine.vedb_mysql.getBackups""")
     __args__ = dict()
     __args__['backupEndTime'] = backup_end_time
     __args__['backupMethod'] = backup_method
@@ -255,7 +258,7 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -291,7 +294,7 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
             full_backup_period="Monday,Tuesday,Wednesday",
             backup_retention_period=8,
         ))
-    foo_backups = volcengine.vedb_mysql.backups_output(instance_id=foo_instance.id)
+    foo_backups = volcengine.vedb_mysql.get_backups_output(instance_id=foo_instance.id)
     ```
 
 
@@ -303,4 +306,5 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.vedb_mysql.Backups has been deprecated in favor of volcengine.vedb_mysql.getBackups""")
     ...

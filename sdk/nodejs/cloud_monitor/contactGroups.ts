@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.ContactGroups({
+ * const foo = volcengine.cloud_monitor.getContactGroups({
  *     name: "tftest",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups */
 export function contactGroups(args?: ContactGroupsArgs, opts?: pulumi.InvokeOptions): Promise<ContactGroupsResult> {
+    pulumi.log.warn("contactGroups is deprecated: volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -73,11 +75,12 @@ export interface ContactGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.ContactGroups({
+ * const foo = volcengine.cloud_monitor.getContactGroups({
  *     name: "tftest",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups */
 export function contactGroupsOutput(args?: ContactGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ContactGroupsResult> {
     return pulumi.output(args).apply((a: any) => contactGroups(a, opts))
 }

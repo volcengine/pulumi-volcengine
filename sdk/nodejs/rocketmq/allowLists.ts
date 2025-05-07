@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.AllowLists({});
+ * const foo = volcengine.rocketmq.getAllowLists({});
  * ```
  */
+/** @deprecated volcengine.rocketmq.AllowLists has been deprecated in favor of volcengine.rocketmq.getAllowLists */
 export function allowLists(args?: AllowListsArgs, opts?: pulumi.InvokeOptions): Promise<AllowListsResult> {
+    pulumi.log.warn("allowLists is deprecated: volcengine.rocketmq.AllowLists has been deprecated in favor of volcengine.rocketmq.getAllowLists")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface AllowListsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.AllowLists({});
+ * const foo = volcengine.rocketmq.getAllowLists({});
  * ```
  */
+/** @deprecated volcengine.rocketmq.AllowLists has been deprecated in favor of volcengine.rocketmq.getAllowLists */
 export function allowListsOutput(args?: AllowListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AllowListsResult> {
     return pulumi.output(args).apply((a: any) => allowLists(a, opts))
 }

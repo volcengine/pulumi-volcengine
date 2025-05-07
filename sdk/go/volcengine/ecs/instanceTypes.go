@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.InstanceTypes(ctx, nil, nil)
+//			_, err := ecs.GetInstanceTypes(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.InstanceTypes has been deprecated in favor of volcengine.ecs.getInstanceTypes
 func InstanceTypes(ctx *pulumi.Context, args *InstanceTypesArgs, opts ...pulumi.InvokeOption) (*InstanceTypesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstanceTypesResult

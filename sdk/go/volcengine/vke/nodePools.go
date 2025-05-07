@@ -27,7 +27,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -54,7 +54,7 @@ import (
 // if err != nil {
 // return err
 // }
-// fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+// fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 // NameRegex: pulumi.StringRef("veLinux 1.0 CentOS兼容版 64位"),
 // }, nil);
 // if err != nil {
@@ -189,13 +189,15 @@ import (
 // }
 // fooNodePool = append(fooNodePool, __res)
 // }
-// _ = vke.NodePoolsOutput(ctx, vke.NodePoolsOutputArgs{
+// _ = vke.GetNodePoolsOutput(ctx, vke.GetNodePoolsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:vke-nodePools:NodePools.pp:113,9-26),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools
 func NodePools(ctx *pulumi.Context, args *NodePoolsArgs, opts ...pulumi.InvokeOption) (*NodePoolsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NodePoolsResult

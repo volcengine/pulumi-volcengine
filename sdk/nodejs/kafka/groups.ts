@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -58,12 +58,14 @@ import * as utilities from "../utilities";
  *     groupId: "acc-test-group",
  *     description: "tf-test",
  * });
- * const default = volcengine.kafka.GroupsOutput({
+ * const default = volcengine.kafka.getGroupsOutput({
  *     instanceId: fooGroup.instanceId,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups */
 export function groups(args: GroupsArgs, opts?: pulumi.InvokeOptions): Promise<GroupsResult> {
+    pulumi.log.warn("groups is deprecated: volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:kafka/groups:Groups", {
@@ -129,7 +131,7 @@ export interface GroupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -172,11 +174,12 @@ export interface GroupsResult {
  *     groupId: "acc-test-group",
  *     description: "tf-test",
  * });
- * const default = volcengine.kafka.GroupsOutput({
+ * const default = volcengine.kafka.getGroupsOutput({
  *     instanceId: fooGroup.instanceId,
  * });
  * ```
  */
+/** @deprecated volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups */
 export function groupsOutput(args: GroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GroupsResult> {
     return pulumi.output(args).apply((a: any) => groups(a, opts))
 }

@@ -51,12 +51,14 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [fooBandwidthPackageAssociate],
  * });
- * const fooInterRegionBandwidths = volcengine.cen.InterRegionBandwidthsOutput({
+ * const fooInterRegionBandwidths = volcengine.cen.getInterRegionBandwidthsOutput({
  *     ids: [fooInterRegionBandwidth.id],
  * });
  * ```
  */
+/** @deprecated volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths */
 export function interRegionBandwidths(args?: InterRegionBandwidthsArgs, opts?: pulumi.InvokeOptions): Promise<InterRegionBandwidthsResult> {
+    pulumi.log.warn("interRegionBandwidths is deprecated: volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -144,11 +146,12 @@ export interface InterRegionBandwidthsResult {
  * }, {
  *     dependsOn: [fooBandwidthPackageAssociate],
  * });
- * const fooInterRegionBandwidths = volcengine.cen.InterRegionBandwidthsOutput({
+ * const fooInterRegionBandwidths = volcengine.cen.getInterRegionBandwidthsOutput({
  *     ids: [fooInterRegionBandwidth.id],
  * });
  * ```
  */
+/** @deprecated volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths */
 export function interRegionBandwidthsOutput(args?: InterRegionBandwidthsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InterRegionBandwidthsResult> {
     return pulumi.output(args).apply((a: any) => interRegionBandwidths(a, opts))
 }

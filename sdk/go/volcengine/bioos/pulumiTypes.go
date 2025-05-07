@@ -759,6 +759,459 @@ func (o WorkspacesItemArrayOutput) Index(i pulumi.IntInput) WorkspacesItemOutput
 	}).(WorkspacesItemOutput)
 }
 
+type GetClustersItem struct {
+	// Whether there is a bound workspace.
+	Bound bool `pulumi:"bound"`
+	// The description of the cluster.
+	Description string `pulumi:"description"`
+	// The id of the bioos cluster.
+	Id string `pulumi:"id"`
+	// The name of the cluster.
+	Name string `pulumi:"name"`
+	// whether it is a public cluster.
+	Public bool `pulumi:"public"`
+	// The configuration of the shared cluster.
+	SharedConfigs []GetClustersItemSharedConfig `pulumi:"sharedConfigs"`
+	// The start time of the cluster.
+	StartTime int `pulumi:"startTime"`
+	// The status of the clusters.
+	Status string `pulumi:"status"`
+	// The end time of the cluster.
+	StoppedTime int `pulumi:"stoppedTime"`
+	// The id of the vke cluster.
+	VkeConfigId string `pulumi:"vkeConfigId"`
+	// The name of the StorageClass that the vke cluster has installed.
+	VkeConfigStorageClass string `pulumi:"vkeConfigStorageClass"`
+}
+
+// GetClustersItemInput is an input type that accepts GetClustersItemArgs and GetClustersItemOutput values.
+// You can construct a concrete instance of `GetClustersItemInput` via:
+//
+//	GetClustersItemArgs{...}
+type GetClustersItemInput interface {
+	pulumi.Input
+
+	ToGetClustersItemOutput() GetClustersItemOutput
+	ToGetClustersItemOutputWithContext(context.Context) GetClustersItemOutput
+}
+
+type GetClustersItemArgs struct {
+	// Whether there is a bound workspace.
+	Bound pulumi.BoolInput `pulumi:"bound"`
+	// The description of the cluster.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the bioos cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the cluster.
+	Name pulumi.StringInput `pulumi:"name"`
+	// whether it is a public cluster.
+	Public pulumi.BoolInput `pulumi:"public"`
+	// The configuration of the shared cluster.
+	SharedConfigs GetClustersItemSharedConfigArrayInput `pulumi:"sharedConfigs"`
+	// The start time of the cluster.
+	StartTime pulumi.IntInput `pulumi:"startTime"`
+	// The status of the clusters.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The end time of the cluster.
+	StoppedTime pulumi.IntInput `pulumi:"stoppedTime"`
+	// The id of the vke cluster.
+	VkeConfigId pulumi.StringInput `pulumi:"vkeConfigId"`
+	// The name of the StorageClass that the vke cluster has installed.
+	VkeConfigStorageClass pulumi.StringInput `pulumi:"vkeConfigStorageClass"`
+}
+
+func (GetClustersItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersItem)(nil)).Elem()
+}
+
+func (i GetClustersItemArgs) ToGetClustersItemOutput() GetClustersItemOutput {
+	return i.ToGetClustersItemOutputWithContext(context.Background())
+}
+
+func (i GetClustersItemArgs) ToGetClustersItemOutputWithContext(ctx context.Context) GetClustersItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersItemOutput)
+}
+
+// GetClustersItemArrayInput is an input type that accepts GetClustersItemArray and GetClustersItemArrayOutput values.
+// You can construct a concrete instance of `GetClustersItemArrayInput` via:
+//
+//	GetClustersItemArray{ GetClustersItemArgs{...} }
+type GetClustersItemArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersItemArrayOutput() GetClustersItemArrayOutput
+	ToGetClustersItemArrayOutputWithContext(context.Context) GetClustersItemArrayOutput
+}
+
+type GetClustersItemArray []GetClustersItemInput
+
+func (GetClustersItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersItem)(nil)).Elem()
+}
+
+func (i GetClustersItemArray) ToGetClustersItemArrayOutput() GetClustersItemArrayOutput {
+	return i.ToGetClustersItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersItemArray) ToGetClustersItemArrayOutputWithContext(ctx context.Context) GetClustersItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersItemArrayOutput)
+}
+
+type GetClustersItemOutput struct{ *pulumi.OutputState }
+
+func (GetClustersItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersItem)(nil)).Elem()
+}
+
+func (o GetClustersItemOutput) ToGetClustersItemOutput() GetClustersItemOutput {
+	return o
+}
+
+func (o GetClustersItemOutput) ToGetClustersItemOutputWithContext(ctx context.Context) GetClustersItemOutput {
+	return o
+}
+
+// Whether there is a bound workspace.
+func (o GetClustersItemOutput) Bound() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersItem) bool { return v.Bound }).(pulumi.BoolOutput)
+}
+
+// The description of the cluster.
+func (o GetClustersItemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersItem) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the bioos cluster.
+func (o GetClustersItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersItem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the cluster.
+func (o GetClustersItemOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersItem) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// whether it is a public cluster.
+func (o GetClustersItemOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersItem) bool { return v.Public }).(pulumi.BoolOutput)
+}
+
+// The configuration of the shared cluster.
+func (o GetClustersItemOutput) SharedConfigs() GetClustersItemSharedConfigArrayOutput {
+	return o.ApplyT(func(v GetClustersItem) []GetClustersItemSharedConfig { return v.SharedConfigs }).(GetClustersItemSharedConfigArrayOutput)
+}
+
+// The start time of the cluster.
+func (o GetClustersItemOutput) StartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersItem) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+// The status of the clusters.
+func (o GetClustersItemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersItem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The end time of the cluster.
+func (o GetClustersItemOutput) StoppedTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersItem) int { return v.StoppedTime }).(pulumi.IntOutput)
+}
+
+// The id of the vke cluster.
+func (o GetClustersItemOutput) VkeConfigId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersItem) string { return v.VkeConfigId }).(pulumi.StringOutput)
+}
+
+// The name of the StorageClass that the vke cluster has installed.
+func (o GetClustersItemOutput) VkeConfigStorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersItem) string { return v.VkeConfigStorageClass }).(pulumi.StringOutput)
+}
+
+type GetClustersItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersItem)(nil)).Elem()
+}
+
+func (o GetClustersItemArrayOutput) ToGetClustersItemArrayOutput() GetClustersItemArrayOutput {
+	return o
+}
+
+func (o GetClustersItemArrayOutput) ToGetClustersItemArrayOutputWithContext(ctx context.Context) GetClustersItemArrayOutput {
+	return o
+}
+
+func (o GetClustersItemArrayOutput) Index(i pulumi.IntInput) GetClustersItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersItem {
+		return vs[0].([]GetClustersItem)[vs[1].(int)]
+	}).(GetClustersItemOutput)
+}
+
+type GetClustersItemSharedConfig struct {
+	// Whether to enable a shared cluster. This value must be `true`.
+	Enable bool `pulumi:"enable"`
+}
+
+// GetClustersItemSharedConfigInput is an input type that accepts GetClustersItemSharedConfigArgs and GetClustersItemSharedConfigOutput values.
+// You can construct a concrete instance of `GetClustersItemSharedConfigInput` via:
+//
+//	GetClustersItemSharedConfigArgs{...}
+type GetClustersItemSharedConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersItemSharedConfigOutput() GetClustersItemSharedConfigOutput
+	ToGetClustersItemSharedConfigOutputWithContext(context.Context) GetClustersItemSharedConfigOutput
+}
+
+type GetClustersItemSharedConfigArgs struct {
+	// Whether to enable a shared cluster. This value must be `true`.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+}
+
+func (GetClustersItemSharedConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (i GetClustersItemSharedConfigArgs) ToGetClustersItemSharedConfigOutput() GetClustersItemSharedConfigOutput {
+	return i.ToGetClustersItemSharedConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersItemSharedConfigArgs) ToGetClustersItemSharedConfigOutputWithContext(ctx context.Context) GetClustersItemSharedConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersItemSharedConfigOutput)
+}
+
+// GetClustersItemSharedConfigArrayInput is an input type that accepts GetClustersItemSharedConfigArray and GetClustersItemSharedConfigArrayOutput values.
+// You can construct a concrete instance of `GetClustersItemSharedConfigArrayInput` via:
+//
+//	GetClustersItemSharedConfigArray{ GetClustersItemSharedConfigArgs{...} }
+type GetClustersItemSharedConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersItemSharedConfigArrayOutput() GetClustersItemSharedConfigArrayOutput
+	ToGetClustersItemSharedConfigArrayOutputWithContext(context.Context) GetClustersItemSharedConfigArrayOutput
+}
+
+type GetClustersItemSharedConfigArray []GetClustersItemSharedConfigInput
+
+func (GetClustersItemSharedConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (i GetClustersItemSharedConfigArray) ToGetClustersItemSharedConfigArrayOutput() GetClustersItemSharedConfigArrayOutput {
+	return i.ToGetClustersItemSharedConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersItemSharedConfigArray) ToGetClustersItemSharedConfigArrayOutputWithContext(ctx context.Context) GetClustersItemSharedConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersItemSharedConfigArrayOutput)
+}
+
+type GetClustersItemSharedConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersItemSharedConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (o GetClustersItemSharedConfigOutput) ToGetClustersItemSharedConfigOutput() GetClustersItemSharedConfigOutput {
+	return o
+}
+
+func (o GetClustersItemSharedConfigOutput) ToGetClustersItemSharedConfigOutputWithContext(ctx context.Context) GetClustersItemSharedConfigOutput {
+	return o
+}
+
+// Whether to enable a shared cluster. This value must be `true`.
+func (o GetClustersItemSharedConfigOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersItemSharedConfig) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+type GetClustersItemSharedConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersItemSharedConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (o GetClustersItemSharedConfigArrayOutput) ToGetClustersItemSharedConfigArrayOutput() GetClustersItemSharedConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersItemSharedConfigArrayOutput) ToGetClustersItemSharedConfigArrayOutputWithContext(ctx context.Context) GetClustersItemSharedConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersItemSharedConfigArrayOutput) Index(i pulumi.IntInput) GetClustersItemSharedConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersItemSharedConfig {
+		return vs[0].([]GetClustersItemSharedConfig)[vs[1].(int)]
+	}).(GetClustersItemSharedConfigOutput)
+}
+
+type GetWorkspacesItem struct {
+	// The URL of the cover.
+	CoverDownloadUrl string `pulumi:"coverDownloadUrl"`
+	// The creation time of the workspace.
+	CreateTime int `pulumi:"createTime"`
+	// The description of the workspace.
+	Description string `pulumi:"description"`
+	// The id of the workspace.
+	Id string `pulumi:"id"`
+	// The name of the workspace.
+	Name string `pulumi:"name"`
+	// The name of the owner of the workspace.
+	OwnerName string `pulumi:"ownerName"`
+	// The role of the user.
+	Role string `pulumi:"role"`
+	// S3 bucket address.
+	S3Bucket string `pulumi:"s3Bucket"`
+	// The update time of the workspace.
+	UpdateTime int `pulumi:"updateTime"`
+}
+
+// GetWorkspacesItemInput is an input type that accepts GetWorkspacesItemArgs and GetWorkspacesItemOutput values.
+// You can construct a concrete instance of `GetWorkspacesItemInput` via:
+//
+//	GetWorkspacesItemArgs{...}
+type GetWorkspacesItemInput interface {
+	pulumi.Input
+
+	ToGetWorkspacesItemOutput() GetWorkspacesItemOutput
+	ToGetWorkspacesItemOutputWithContext(context.Context) GetWorkspacesItemOutput
+}
+
+type GetWorkspacesItemArgs struct {
+	// The URL of the cover.
+	CoverDownloadUrl pulumi.StringInput `pulumi:"coverDownloadUrl"`
+	// The creation time of the workspace.
+	CreateTime pulumi.IntInput `pulumi:"createTime"`
+	// The description of the workspace.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the workspace.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the workspace.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The name of the owner of the workspace.
+	OwnerName pulumi.StringInput `pulumi:"ownerName"`
+	// The role of the user.
+	Role pulumi.StringInput `pulumi:"role"`
+	// S3 bucket address.
+	S3Bucket pulumi.StringInput `pulumi:"s3Bucket"`
+	// The update time of the workspace.
+	UpdateTime pulumi.IntInput `pulumi:"updateTime"`
+}
+
+func (GetWorkspacesItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesItem)(nil)).Elem()
+}
+
+func (i GetWorkspacesItemArgs) ToGetWorkspacesItemOutput() GetWorkspacesItemOutput {
+	return i.ToGetWorkspacesItemOutputWithContext(context.Background())
+}
+
+func (i GetWorkspacesItemArgs) ToGetWorkspacesItemOutputWithContext(ctx context.Context) GetWorkspacesItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspacesItemOutput)
+}
+
+// GetWorkspacesItemArrayInput is an input type that accepts GetWorkspacesItemArray and GetWorkspacesItemArrayOutput values.
+// You can construct a concrete instance of `GetWorkspacesItemArrayInput` via:
+//
+//	GetWorkspacesItemArray{ GetWorkspacesItemArgs{...} }
+type GetWorkspacesItemArrayInput interface {
+	pulumi.Input
+
+	ToGetWorkspacesItemArrayOutput() GetWorkspacesItemArrayOutput
+	ToGetWorkspacesItemArrayOutputWithContext(context.Context) GetWorkspacesItemArrayOutput
+}
+
+type GetWorkspacesItemArray []GetWorkspacesItemInput
+
+func (GetWorkspacesItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkspacesItem)(nil)).Elem()
+}
+
+func (i GetWorkspacesItemArray) ToGetWorkspacesItemArrayOutput() GetWorkspacesItemArrayOutput {
+	return i.ToGetWorkspacesItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetWorkspacesItemArray) ToGetWorkspacesItemArrayOutputWithContext(ctx context.Context) GetWorkspacesItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspacesItemArrayOutput)
+}
+
+type GetWorkspacesItemOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspacesItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesItem)(nil)).Elem()
+}
+
+func (o GetWorkspacesItemOutput) ToGetWorkspacesItemOutput() GetWorkspacesItemOutput {
+	return o
+}
+
+func (o GetWorkspacesItemOutput) ToGetWorkspacesItemOutputWithContext(ctx context.Context) GetWorkspacesItemOutput {
+	return o
+}
+
+// The URL of the cover.
+func (o GetWorkspacesItemOutput) CoverDownloadUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.CoverDownloadUrl }).(pulumi.StringOutput)
+}
+
+// The creation time of the workspace.
+func (o GetWorkspacesItemOutput) CreateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) int { return v.CreateTime }).(pulumi.IntOutput)
+}
+
+// The description of the workspace.
+func (o GetWorkspacesItemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the workspace.
+func (o GetWorkspacesItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the workspace.
+func (o GetWorkspacesItemOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name of the owner of the workspace.
+func (o GetWorkspacesItemOutput) OwnerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.OwnerName }).(pulumi.StringOutput)
+}
+
+// The role of the user.
+func (o GetWorkspacesItemOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// S3 bucket address.
+func (o GetWorkspacesItemOutput) S3Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) string { return v.S3Bucket }).(pulumi.StringOutput)
+}
+
+// The update time of the workspace.
+func (o GetWorkspacesItemOutput) UpdateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWorkspacesItem) int { return v.UpdateTime }).(pulumi.IntOutput)
+}
+
+type GetWorkspacesItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspacesItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkspacesItem)(nil)).Elem()
+}
+
+func (o GetWorkspacesItemArrayOutput) ToGetWorkspacesItemArrayOutput() GetWorkspacesItemArrayOutput {
+	return o
+}
+
+func (o GetWorkspacesItemArrayOutput) ToGetWorkspacesItemArrayOutputWithContext(ctx context.Context) GetWorkspacesItemArrayOutput {
+	return o
+}
+
+func (o GetWorkspacesItemArrayOutput) Index(i pulumi.IntInput) GetWorkspacesItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWorkspacesItem {
+		return vs[0].([]GetWorkspacesItem)[vs[1].(int)]
+	}).(GetWorkspacesItemOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterSharedConfigInput)(nil)).Elem(), ClusterSharedConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterSharedConfigPtrInput)(nil)).Elem(), ClusterSharedConfigArgs{})
@@ -770,6 +1223,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersItemSharedConfigArrayInput)(nil)).Elem(), ClustersItemSharedConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesItemInput)(nil)).Elem(), WorkspacesItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesItemArrayInput)(nil)).Elem(), WorkspacesItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersItemInput)(nil)).Elem(), GetClustersItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersItemArrayInput)(nil)).Elem(), GetClustersItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersItemSharedConfigInput)(nil)).Elem(), GetClustersItemSharedConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersItemSharedConfigArrayInput)(nil)).Elem(), GetClustersItemSharedConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesItemInput)(nil)).Elem(), GetWorkspacesItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesItemArrayInput)(nil)).Elem(), GetWorkspacesItemArray{})
 	pulumi.RegisterOutputType(ClusterSharedConfigOutput{})
 	pulumi.RegisterOutputType(ClusterSharedConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterVkeConfigOutput{})
@@ -780,4 +1239,10 @@ func init() {
 	pulumi.RegisterOutputType(ClustersItemSharedConfigArrayOutput{})
 	pulumi.RegisterOutputType(WorkspacesItemOutput{})
 	pulumi.RegisterOutputType(WorkspacesItemArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersItemOutput{})
+	pulumi.RegisterOutputType(GetClustersItemArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersItemSharedConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersItemSharedConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetWorkspacesItemOutput{})
+	pulumi.RegisterOutputType(GetWorkspacesItemArrayOutput{})
 }

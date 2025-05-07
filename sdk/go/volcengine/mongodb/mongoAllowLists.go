@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodb.MongoAllowListsOutput(ctx, mongodb.MongoAllowListsOutputArgs{
+//			_ = mongodb.GetMongoAllowListsOutput(ctx, mongodb.GetMongoAllowListsOutputArgs{
 //				AllowListIds: pulumi.StringArray{
 //					fooMongoAllowList.ID(),
 //				},
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists
 func MongoAllowLists(ctx *pulumi.Context, args *MongoAllowListsArgs, opts ...pulumi.InvokeOption) (*MongoAllowListsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv MongoAllowListsResult

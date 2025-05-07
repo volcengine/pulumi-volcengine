@@ -18,6 +18,8 @@ __all__ = [
     'certificates_output',
 ]
 
+warnings.warn("""volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates""", DeprecationWarning)
+
 @pulumi.output_type
 class CertificatesResult:
     """
@@ -188,7 +190,7 @@ def certificates(certificate_name: Optional[str] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_certificates = volcengine.clb.certificates_output(ids=[__item.id for __item in foo_certificate])
+    foo_certificates = volcengine.clb.get_certificates_output(ids=[__item.id for __item in foo_certificate])
     ```
 
 
@@ -199,6 +201,7 @@ def certificates(certificate_name: Optional[str] = None,
     :param str project_name: The ProjectName of Certificate.
     :param Sequence[pulumi.InputType['CertificatesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""certificates is deprecated: volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates""")
     __args__ = dict()
     __args__['certificateName'] = certificate_name
     __args__['ids'] = ids
@@ -277,7 +280,7 @@ def certificates_output(certificate_name: Optional[pulumi.Input[Optional[str]]] 
                 key="k1",
                 value="v1",
             )]))
-    foo_certificates = volcengine.clb.certificates_output(ids=[__item.id for __item in foo_certificate])
+    foo_certificates = volcengine.clb.get_certificates_output(ids=[__item.id for __item in foo_certificate])
     ```
 
 
@@ -288,4 +291,5 @@ def certificates_output(certificate_name: Optional[pulumi.Input[Optional[str]]] 
     :param str project_name: The ProjectName of Certificate.
     :param Sequence[pulumi.InputType['CertificatesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""certificates is deprecated: volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates""")
     ...

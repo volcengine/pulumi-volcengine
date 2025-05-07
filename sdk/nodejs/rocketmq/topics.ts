@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.Topics({
+ * const foo = volcengine.rocketmq.getTopics({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics */
 export function topics(args: TopicsArgs, opts?: pulumi.InvokeOptions): Promise<TopicsResult> {
+    pulumi.log.warn("topics is deprecated: volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rocketmq/topics:Topics", {
@@ -101,11 +103,12 @@ export interface TopicsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rocketmq.Topics({
+ * const foo = volcengine.rocketmq.getTopics({
  *     instanceId: "rocketmq-cnoeea6b32118fc2",
  * });
  * ```
  */
+/** @deprecated volcengine.rocketmq.Topics has been deprecated in favor of volcengine.rocketmq.getTopics */
 export function topicsOutput(args: TopicsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TopicsResult> {
     return pulumi.output(args).apply((a: any) => topics(a, opts))
 }

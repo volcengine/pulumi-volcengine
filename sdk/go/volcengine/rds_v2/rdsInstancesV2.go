@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_v2.RdsInstancesV2(ctx, nil, nil)
+//			_, err := rds_v2.GetRdsInstancesV2(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2
 func RdsInstancesV2(ctx *pulumi.Context, args *RdsInstancesV2Args, opts ...pulumi.InvokeOption) (*RdsInstancesV2Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RdsInstancesV2Result

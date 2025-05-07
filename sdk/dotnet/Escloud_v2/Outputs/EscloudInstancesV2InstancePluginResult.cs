@@ -22,7 +22,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly string PluginName;
         /// <summary>
-        /// The status of plugin.
+        /// The status of instance.
         /// </summary>
         public readonly string Status;
         /// <summary>

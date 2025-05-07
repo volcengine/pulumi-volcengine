@@ -15,6 +15,11 @@ export const financialRelations: typeof import("./financialRelations").financial
 export const financialRelationsOutput: typeof import("./financialRelations").financialRelationsOutput = null as any;
 utilities.lazyLoad(exports, ["financialRelations","financialRelationsOutput"], () => require("./financialRelations"));
 
+export { GetFinancialRelationsArgs, GetFinancialRelationsResult, GetFinancialRelationsOutputArgs } from "./getFinancialRelations";
+export const getFinancialRelations: typeof import("./getFinancialRelations").getFinancialRelations = null as any;
+export const getFinancialRelationsOutput: typeof import("./getFinancialRelations").getFinancialRelationsOutput = null as any;
+utilities.lazyLoad(exports, ["getFinancialRelations","getFinancialRelationsOutput"], () => require("./getFinancialRelations"));
+
 
 const _module = {
     version: utilities.getVersion(),

@@ -26,7 +26,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -67,13 +67,15 @@ import (
 // }
 // fooSnapshot = append(fooSnapshot, __res)
 // }
-// _ = ebs.SnapshotsOutput(ctx, ebs.SnapshotsOutputArgs{
+// _ = ebs.GetSnapshotsOutput(ctx, ebs.GetSnapshotsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:ebs-snapshots:Snapshots.pp:28,9-26),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots
 func Snapshots(ctx *pulumi.Context, args *SnapshotsArgs, opts ...pulumi.InvokeOption) (*SnapshotsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SnapshotsResult

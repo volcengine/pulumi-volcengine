@@ -17,6 +17,8 @@ __all__ = [
     'kubeconfigs_output',
 ]
 
+warnings.warn("""volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs""", DeprecationWarning)
+
 @pulumi.output_type
 class KubeconfigsResult:
     """
@@ -168,7 +170,7 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -215,7 +217,7 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
         cluster_id=foo_cluster.id,
         type="Public",
         valid_duration=2)
-    foo_kubeconfigs = volcengine.vke.kubeconfigs_output(ids=[
+    foo_kubeconfigs = volcengine.vke.get_kubeconfigs_output(ids=[
         foo1.id,
         foo2.id,
     ])
@@ -232,6 +234,7 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
     :param Sequence[str] types: The type of Kubeconfigs query.
     :param Sequence[int] user_ids: A list of User IDs.
     """
+    pulumi.log.warn("""kubeconfigs is deprecated: volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs""")
     __args__ = dict()
     __args__['clusterIds'] = cluster_ids
     __args__['ids'] = ids
@@ -279,7 +282,7 @@ def kubeconfigs_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -326,7 +329,7 @@ def kubeconfigs_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]
         cluster_id=foo_cluster.id,
         type="Public",
         valid_duration=2)
-    foo_kubeconfigs = volcengine.vke.kubeconfigs_output(ids=[
+    foo_kubeconfigs = volcengine.vke.get_kubeconfigs_output(ids=[
         foo1.id,
         foo2.id,
     ])
@@ -343,4 +346,5 @@ def kubeconfigs_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]
     :param Sequence[str] types: The type of Kubeconfigs query.
     :param Sequence[int] user_ids: A list of User IDs.
     """
+    pulumi.log.warn("""kubeconfigs is deprecated: volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs""")
     ...

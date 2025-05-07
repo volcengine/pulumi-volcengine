@@ -17,6 +17,8 @@ __all__ = [
     'health_check_templates_output',
 ]
 
+warnings.warn("""volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates""", DeprecationWarning)
+
 @pulumi.output_type
 class HealthCheckTemplatesResult:
     """
@@ -121,7 +123,7 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"])
+    foo = volcengine.alb.get_health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"])
     ```
 
 
@@ -130,6 +132,7 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
     :param str name_regex: A Name Regex of health check template.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""health_check_templates is deprecated: volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates""")
     __args__ = dict()
     __args__['healthCheckTemplateName'] = health_check_template_name
     __args__['ids'] = ids
@@ -162,7 +165,7 @@ def health_check_templates_output(health_check_template_name: Optional[pulumi.In
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"])
+    foo = volcengine.alb.get_health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"])
     ```
 
 
@@ -171,4 +174,5 @@ def health_check_templates_output(health_check_template_name: Optional[pulumi.In
     :param str name_regex: A Name Regex of health check template.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""health_check_templates is deprecated: volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates""")
     ...

@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetInstancePluginsArgs, GetInstancePluginsResult, GetInstancePluginsOutputArgs } from "./getInstancePlugins";
+export const getInstancePlugins: typeof import("./getInstancePlugins").getInstancePlugins = null as any;
+export const getInstancePluginsOutput: typeof import("./getInstancePlugins").getInstancePluginsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePlugins","getInstancePluginsOutput"], () => require("./getInstancePlugins"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;

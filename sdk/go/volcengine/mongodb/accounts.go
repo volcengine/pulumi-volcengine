@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.Accounts(ctx, &mongodb.AccountsArgs{
+//			_, err := mongodb.GetAccounts(ctx, &mongodb.GetAccountsArgs{
 //				InstanceId: "mongo-replica-xxx",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccountsResult

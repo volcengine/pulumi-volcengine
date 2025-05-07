@@ -1719,6 +1719,1259 @@ func (o ParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput) Index(i 
 	}).(ParameterTemplatesRdsParameterTemplateTemplateParamOutput)
 }
 
+type GetAccountsRdsAccount struct {
+	// The name of the database account.
+	AccountName string `pulumi:"accountName"`
+	// The status of the database account.
+	AccountStatus string `pulumi:"accountStatus"`
+	// The type of the database account.
+	AccountType string `pulumi:"accountType"`
+	// The privilege detail list of RDS instance account.
+	DbPrivileges []GetAccountsRdsAccountDbPrivilege `pulumi:"dbPrivileges"`
+	// The ID of the RDS instance account.
+	Id string `pulumi:"id"`
+}
+
+// GetAccountsRdsAccountInput is an input type that accepts GetAccountsRdsAccountArgs and GetAccountsRdsAccountOutput values.
+// You can construct a concrete instance of `GetAccountsRdsAccountInput` via:
+//
+//	GetAccountsRdsAccountArgs{...}
+type GetAccountsRdsAccountInput interface {
+	pulumi.Input
+
+	ToGetAccountsRdsAccountOutput() GetAccountsRdsAccountOutput
+	ToGetAccountsRdsAccountOutputWithContext(context.Context) GetAccountsRdsAccountOutput
+}
+
+type GetAccountsRdsAccountArgs struct {
+	// The name of the database account.
+	AccountName pulumi.StringInput `pulumi:"accountName"`
+	// The status of the database account.
+	AccountStatus pulumi.StringInput `pulumi:"accountStatus"`
+	// The type of the database account.
+	AccountType pulumi.StringInput `pulumi:"accountType"`
+	// The privilege detail list of RDS instance account.
+	DbPrivileges GetAccountsRdsAccountDbPrivilegeArrayInput `pulumi:"dbPrivileges"`
+	// The ID of the RDS instance account.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetAccountsRdsAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsRdsAccount)(nil)).Elem()
+}
+
+func (i GetAccountsRdsAccountArgs) ToGetAccountsRdsAccountOutput() GetAccountsRdsAccountOutput {
+	return i.ToGetAccountsRdsAccountOutputWithContext(context.Background())
+}
+
+func (i GetAccountsRdsAccountArgs) ToGetAccountsRdsAccountOutputWithContext(ctx context.Context) GetAccountsRdsAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsRdsAccountOutput)
+}
+
+// GetAccountsRdsAccountArrayInput is an input type that accepts GetAccountsRdsAccountArray and GetAccountsRdsAccountArrayOutput values.
+// You can construct a concrete instance of `GetAccountsRdsAccountArrayInput` via:
+//
+//	GetAccountsRdsAccountArray{ GetAccountsRdsAccountArgs{...} }
+type GetAccountsRdsAccountArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountsRdsAccountArrayOutput() GetAccountsRdsAccountArrayOutput
+	ToGetAccountsRdsAccountArrayOutputWithContext(context.Context) GetAccountsRdsAccountArrayOutput
+}
+
+type GetAccountsRdsAccountArray []GetAccountsRdsAccountInput
+
+func (GetAccountsRdsAccountArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsRdsAccount)(nil)).Elem()
+}
+
+func (i GetAccountsRdsAccountArray) ToGetAccountsRdsAccountArrayOutput() GetAccountsRdsAccountArrayOutput {
+	return i.ToGetAccountsRdsAccountArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountsRdsAccountArray) ToGetAccountsRdsAccountArrayOutputWithContext(ctx context.Context) GetAccountsRdsAccountArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsRdsAccountArrayOutput)
+}
+
+type GetAccountsRdsAccountOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsRdsAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsRdsAccount)(nil)).Elem()
+}
+
+func (o GetAccountsRdsAccountOutput) ToGetAccountsRdsAccountOutput() GetAccountsRdsAccountOutput {
+	return o
+}
+
+func (o GetAccountsRdsAccountOutput) ToGetAccountsRdsAccountOutputWithContext(ctx context.Context) GetAccountsRdsAccountOutput {
+	return o
+}
+
+// The name of the database account.
+func (o GetAccountsRdsAccountOutput) AccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccount) string { return v.AccountName }).(pulumi.StringOutput)
+}
+
+// The status of the database account.
+func (o GetAccountsRdsAccountOutput) AccountStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccount) string { return v.AccountStatus }).(pulumi.StringOutput)
+}
+
+// The type of the database account.
+func (o GetAccountsRdsAccountOutput) AccountType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccount) string { return v.AccountType }).(pulumi.StringOutput)
+}
+
+// The privilege detail list of RDS instance account.
+func (o GetAccountsRdsAccountOutput) DbPrivileges() GetAccountsRdsAccountDbPrivilegeArrayOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccount) []GetAccountsRdsAccountDbPrivilege { return v.DbPrivileges }).(GetAccountsRdsAccountDbPrivilegeArrayOutput)
+}
+
+// The ID of the RDS instance account.
+func (o GetAccountsRdsAccountOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccount) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetAccountsRdsAccountArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsRdsAccountArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsRdsAccount)(nil)).Elem()
+}
+
+func (o GetAccountsRdsAccountArrayOutput) ToGetAccountsRdsAccountArrayOutput() GetAccountsRdsAccountArrayOutput {
+	return o
+}
+
+func (o GetAccountsRdsAccountArrayOutput) ToGetAccountsRdsAccountArrayOutputWithContext(ctx context.Context) GetAccountsRdsAccountArrayOutput {
+	return o
+}
+
+func (o GetAccountsRdsAccountArrayOutput) Index(i pulumi.IntInput) GetAccountsRdsAccountOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountsRdsAccount {
+		return vs[0].([]GetAccountsRdsAccount)[vs[1].(int)]
+	}).(GetAccountsRdsAccountOutput)
+}
+
+type GetAccountsRdsAccountDbPrivilege struct {
+	// The privilege type of the account.
+	AccountPrivilege string `pulumi:"accountPrivilege"`
+	// The privilege string of the account.
+	AccountPrivilegeStr string `pulumi:"accountPrivilegeStr"`
+	// The name of database.
+	DbName string `pulumi:"dbName"`
+}
+
+// GetAccountsRdsAccountDbPrivilegeInput is an input type that accepts GetAccountsRdsAccountDbPrivilegeArgs and GetAccountsRdsAccountDbPrivilegeOutput values.
+// You can construct a concrete instance of `GetAccountsRdsAccountDbPrivilegeInput` via:
+//
+//	GetAccountsRdsAccountDbPrivilegeArgs{...}
+type GetAccountsRdsAccountDbPrivilegeInput interface {
+	pulumi.Input
+
+	ToGetAccountsRdsAccountDbPrivilegeOutput() GetAccountsRdsAccountDbPrivilegeOutput
+	ToGetAccountsRdsAccountDbPrivilegeOutputWithContext(context.Context) GetAccountsRdsAccountDbPrivilegeOutput
+}
+
+type GetAccountsRdsAccountDbPrivilegeArgs struct {
+	// The privilege type of the account.
+	AccountPrivilege pulumi.StringInput `pulumi:"accountPrivilege"`
+	// The privilege string of the account.
+	AccountPrivilegeStr pulumi.StringInput `pulumi:"accountPrivilegeStr"`
+	// The name of database.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+}
+
+func (GetAccountsRdsAccountDbPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsRdsAccountDbPrivilege)(nil)).Elem()
+}
+
+func (i GetAccountsRdsAccountDbPrivilegeArgs) ToGetAccountsRdsAccountDbPrivilegeOutput() GetAccountsRdsAccountDbPrivilegeOutput {
+	return i.ToGetAccountsRdsAccountDbPrivilegeOutputWithContext(context.Background())
+}
+
+func (i GetAccountsRdsAccountDbPrivilegeArgs) ToGetAccountsRdsAccountDbPrivilegeOutputWithContext(ctx context.Context) GetAccountsRdsAccountDbPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsRdsAccountDbPrivilegeOutput)
+}
+
+// GetAccountsRdsAccountDbPrivilegeArrayInput is an input type that accepts GetAccountsRdsAccountDbPrivilegeArray and GetAccountsRdsAccountDbPrivilegeArrayOutput values.
+// You can construct a concrete instance of `GetAccountsRdsAccountDbPrivilegeArrayInput` via:
+//
+//	GetAccountsRdsAccountDbPrivilegeArray{ GetAccountsRdsAccountDbPrivilegeArgs{...} }
+type GetAccountsRdsAccountDbPrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountsRdsAccountDbPrivilegeArrayOutput() GetAccountsRdsAccountDbPrivilegeArrayOutput
+	ToGetAccountsRdsAccountDbPrivilegeArrayOutputWithContext(context.Context) GetAccountsRdsAccountDbPrivilegeArrayOutput
+}
+
+type GetAccountsRdsAccountDbPrivilegeArray []GetAccountsRdsAccountDbPrivilegeInput
+
+func (GetAccountsRdsAccountDbPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsRdsAccountDbPrivilege)(nil)).Elem()
+}
+
+func (i GetAccountsRdsAccountDbPrivilegeArray) ToGetAccountsRdsAccountDbPrivilegeArrayOutput() GetAccountsRdsAccountDbPrivilegeArrayOutput {
+	return i.ToGetAccountsRdsAccountDbPrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountsRdsAccountDbPrivilegeArray) ToGetAccountsRdsAccountDbPrivilegeArrayOutputWithContext(ctx context.Context) GetAccountsRdsAccountDbPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountsRdsAccountDbPrivilegeArrayOutput)
+}
+
+type GetAccountsRdsAccountDbPrivilegeOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsRdsAccountDbPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountsRdsAccountDbPrivilege)(nil)).Elem()
+}
+
+func (o GetAccountsRdsAccountDbPrivilegeOutput) ToGetAccountsRdsAccountDbPrivilegeOutput() GetAccountsRdsAccountDbPrivilegeOutput {
+	return o
+}
+
+func (o GetAccountsRdsAccountDbPrivilegeOutput) ToGetAccountsRdsAccountDbPrivilegeOutputWithContext(ctx context.Context) GetAccountsRdsAccountDbPrivilegeOutput {
+	return o
+}
+
+// The privilege type of the account.
+func (o GetAccountsRdsAccountDbPrivilegeOutput) AccountPrivilege() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccountDbPrivilege) string { return v.AccountPrivilege }).(pulumi.StringOutput)
+}
+
+// The privilege string of the account.
+func (o GetAccountsRdsAccountDbPrivilegeOutput) AccountPrivilegeStr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccountDbPrivilege) string { return v.AccountPrivilegeStr }).(pulumi.StringOutput)
+}
+
+// The name of database.
+func (o GetAccountsRdsAccountDbPrivilegeOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsRdsAccountDbPrivilege) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+type GetAccountsRdsAccountDbPrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountsRdsAccountDbPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountsRdsAccountDbPrivilege)(nil)).Elem()
+}
+
+func (o GetAccountsRdsAccountDbPrivilegeArrayOutput) ToGetAccountsRdsAccountDbPrivilegeArrayOutput() GetAccountsRdsAccountDbPrivilegeArrayOutput {
+	return o
+}
+
+func (o GetAccountsRdsAccountDbPrivilegeArrayOutput) ToGetAccountsRdsAccountDbPrivilegeArrayOutputWithContext(ctx context.Context) GetAccountsRdsAccountDbPrivilegeArrayOutput {
+	return o
+}
+
+func (o GetAccountsRdsAccountDbPrivilegeArrayOutput) Index(i pulumi.IntInput) GetAccountsRdsAccountDbPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountsRdsAccountDbPrivilege {
+		return vs[0].([]GetAccountsRdsAccountDbPrivilege)[vs[1].(int)]
+	}).(GetAccountsRdsAccountDbPrivilegeOutput)
+}
+
+type GetDatabasesRdsDatabase struct {
+	// The account names of the RDS database.
+	AccountNames string `pulumi:"accountNames"`
+	// The character set of the RDS database.
+	CharacterSetName string `pulumi:"characterSetName"`
+	// The name of the RDS database.
+	DbName string `pulumi:"dbName"`
+	// The status of the RDS database.
+	DbStatus string `pulumi:"dbStatus"`
+	// The ID of the RDS database.
+	Id string `pulumi:"id"`
+}
+
+// GetDatabasesRdsDatabaseInput is an input type that accepts GetDatabasesRdsDatabaseArgs and GetDatabasesRdsDatabaseOutput values.
+// You can construct a concrete instance of `GetDatabasesRdsDatabaseInput` via:
+//
+//	GetDatabasesRdsDatabaseArgs{...}
+type GetDatabasesRdsDatabaseInput interface {
+	pulumi.Input
+
+	ToGetDatabasesRdsDatabaseOutput() GetDatabasesRdsDatabaseOutput
+	ToGetDatabasesRdsDatabaseOutputWithContext(context.Context) GetDatabasesRdsDatabaseOutput
+}
+
+type GetDatabasesRdsDatabaseArgs struct {
+	// The account names of the RDS database.
+	AccountNames pulumi.StringInput `pulumi:"accountNames"`
+	// The character set of the RDS database.
+	CharacterSetName pulumi.StringInput `pulumi:"characterSetName"`
+	// The name of the RDS database.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+	// The status of the RDS database.
+	DbStatus pulumi.StringInput `pulumi:"dbStatus"`
+	// The ID of the RDS database.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetDatabasesRdsDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesRdsDatabase)(nil)).Elem()
+}
+
+func (i GetDatabasesRdsDatabaseArgs) ToGetDatabasesRdsDatabaseOutput() GetDatabasesRdsDatabaseOutput {
+	return i.ToGetDatabasesRdsDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesRdsDatabaseArgs) ToGetDatabasesRdsDatabaseOutputWithContext(ctx context.Context) GetDatabasesRdsDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesRdsDatabaseOutput)
+}
+
+// GetDatabasesRdsDatabaseArrayInput is an input type that accepts GetDatabasesRdsDatabaseArray and GetDatabasesRdsDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetDatabasesRdsDatabaseArrayInput` via:
+//
+//	GetDatabasesRdsDatabaseArray{ GetDatabasesRdsDatabaseArgs{...} }
+type GetDatabasesRdsDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabasesRdsDatabaseArrayOutput() GetDatabasesRdsDatabaseArrayOutput
+	ToGetDatabasesRdsDatabaseArrayOutputWithContext(context.Context) GetDatabasesRdsDatabaseArrayOutput
+}
+
+type GetDatabasesRdsDatabaseArray []GetDatabasesRdsDatabaseInput
+
+func (GetDatabasesRdsDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesRdsDatabase)(nil)).Elem()
+}
+
+func (i GetDatabasesRdsDatabaseArray) ToGetDatabasesRdsDatabaseArrayOutput() GetDatabasesRdsDatabaseArrayOutput {
+	return i.ToGetDatabasesRdsDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesRdsDatabaseArray) ToGetDatabasesRdsDatabaseArrayOutputWithContext(ctx context.Context) GetDatabasesRdsDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesRdsDatabaseArrayOutput)
+}
+
+type GetDatabasesRdsDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesRdsDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesRdsDatabase)(nil)).Elem()
+}
+
+func (o GetDatabasesRdsDatabaseOutput) ToGetDatabasesRdsDatabaseOutput() GetDatabasesRdsDatabaseOutput {
+	return o
+}
+
+func (o GetDatabasesRdsDatabaseOutput) ToGetDatabasesRdsDatabaseOutputWithContext(ctx context.Context) GetDatabasesRdsDatabaseOutput {
+	return o
+}
+
+// The account names of the RDS database.
+func (o GetDatabasesRdsDatabaseOutput) AccountNames() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesRdsDatabase) string { return v.AccountNames }).(pulumi.StringOutput)
+}
+
+// The character set of the RDS database.
+func (o GetDatabasesRdsDatabaseOutput) CharacterSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesRdsDatabase) string { return v.CharacterSetName }).(pulumi.StringOutput)
+}
+
+// The name of the RDS database.
+func (o GetDatabasesRdsDatabaseOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesRdsDatabase) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The status of the RDS database.
+func (o GetDatabasesRdsDatabaseOutput) DbStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesRdsDatabase) string { return v.DbStatus }).(pulumi.StringOutput)
+}
+
+// The ID of the RDS database.
+func (o GetDatabasesRdsDatabaseOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesRdsDatabase) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetDatabasesRdsDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesRdsDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesRdsDatabase)(nil)).Elem()
+}
+
+func (o GetDatabasesRdsDatabaseArrayOutput) ToGetDatabasesRdsDatabaseArrayOutput() GetDatabasesRdsDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDatabasesRdsDatabaseArrayOutput) ToGetDatabasesRdsDatabaseArrayOutputWithContext(ctx context.Context) GetDatabasesRdsDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDatabasesRdsDatabaseArrayOutput) Index(i pulumi.IntInput) GetDatabasesRdsDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabasesRdsDatabase {
+		return vs[0].([]GetDatabasesRdsDatabase)[vs[1].(int)]
+	}).(GetDatabasesRdsDatabaseOutput)
+}
+
+type GetInstancesRdsInstance struct {
+	// The charge status of the RDS instance.
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of the RDS instance.
+	ChargeType string `pulumi:"chargeType"`
+	// The connection info ot the RDS instance.
+	ConnectionInfo GetInstancesRdsInstanceConnectionInfo `pulumi:"connectionInfo"`
+	// The create time of the RDS instance.
+	CreateTime string `pulumi:"createTime"`
+	// The engine of the RDS instance.
+	DbEngine string `pulumi:"dbEngine"`
+	// The engine version of the RDS instance.
+	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// The ID of the RDS instance.
+	Id string `pulumi:"id"`
+	// The id of the RDS instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the RDS instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The spec type detail of RDS instance.
+	InstanceSpec GetInstancesRdsInstanceInstanceSpec `pulumi:"instanceSpec"`
+	// The status of the RDS instance.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// The type of the RDS instance.
+	InstanceType string `pulumi:"instanceType"`
+	// The ID list of read only instance.
+	ReadOnlyInstanceIds []string `pulumi:"readOnlyInstanceIds"`
+	// The region of the RDS instance.
+	Region string `pulumi:"region"`
+	// The total storage GB of the RDS instance.
+	StorageSpaceGb int `pulumi:"storageSpaceGb"`
+	// The update time of the RDS instance.
+	UpdateTime string `pulumi:"updateTime"`
+	// The vpc ID of the RDS instance.
+	VpcId string `pulumi:"vpcId"`
+	// The available zone of the RDS instance.
+	Zone string `pulumi:"zone"`
+}
+
+// GetInstancesRdsInstanceInput is an input type that accepts GetInstancesRdsInstanceArgs and GetInstancesRdsInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesRdsInstanceInput` via:
+//
+//	GetInstancesRdsInstanceArgs{...}
+type GetInstancesRdsInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsInstanceOutput() GetInstancesRdsInstanceOutput
+	ToGetInstancesRdsInstanceOutputWithContext(context.Context) GetInstancesRdsInstanceOutput
+}
+
+type GetInstancesRdsInstanceArgs struct {
+	// The charge status of the RDS instance.
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of the RDS instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The connection info ot the RDS instance.
+	ConnectionInfo GetInstancesRdsInstanceConnectionInfoInput `pulumi:"connectionInfo"`
+	// The create time of the RDS instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The engine of the RDS instance.
+	DbEngine pulumi.StringInput `pulumi:"dbEngine"`
+	// The engine version of the RDS instance.
+	DbEngineVersion pulumi.StringInput `pulumi:"dbEngineVersion"`
+	// The ID of the RDS instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the RDS instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the RDS instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The spec type detail of RDS instance.
+	InstanceSpec GetInstancesRdsInstanceInstanceSpecInput `pulumi:"instanceSpec"`
+	// The status of the RDS instance.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The type of the RDS instance.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The ID list of read only instance.
+	ReadOnlyInstanceIds pulumi.StringArrayInput `pulumi:"readOnlyInstanceIds"`
+	// The region of the RDS instance.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The total storage GB of the RDS instance.
+	StorageSpaceGb pulumi.IntInput `pulumi:"storageSpaceGb"`
+	// The update time of the RDS instance.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The vpc ID of the RDS instance.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The available zone of the RDS instance.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetInstancesRdsInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRdsInstanceArgs) ToGetInstancesRdsInstanceOutput() GetInstancesRdsInstanceOutput {
+	return i.ToGetInstancesRdsInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsInstanceArgs) ToGetInstancesRdsInstanceOutputWithContext(ctx context.Context) GetInstancesRdsInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsInstanceOutput)
+}
+
+// GetInstancesRdsInstanceArrayInput is an input type that accepts GetInstancesRdsInstanceArray and GetInstancesRdsInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsInstanceArrayInput` via:
+//
+//	GetInstancesRdsInstanceArray{ GetInstancesRdsInstanceArgs{...} }
+type GetInstancesRdsInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsInstanceArrayOutput() GetInstancesRdsInstanceArrayOutput
+	ToGetInstancesRdsInstanceArrayOutputWithContext(context.Context) GetInstancesRdsInstanceArrayOutput
+}
+
+type GetInstancesRdsInstanceArray []GetInstancesRdsInstanceInput
+
+func (GetInstancesRdsInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsInstance)(nil)).Elem()
+}
+
+func (i GetInstancesRdsInstanceArray) ToGetInstancesRdsInstanceArrayOutput() GetInstancesRdsInstanceArrayOutput {
+	return i.ToGetInstancesRdsInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsInstanceArray) ToGetInstancesRdsInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRdsInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsInstanceArrayOutput)
+}
+
+type GetInstancesRdsInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRdsInstanceOutput) ToGetInstancesRdsInstanceOutput() GetInstancesRdsInstanceOutput {
+	return o
+}
+
+func (o GetInstancesRdsInstanceOutput) ToGetInstancesRdsInstanceOutputWithContext(ctx context.Context) GetInstancesRdsInstanceOutput {
+	return o
+}
+
+// The charge status of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The connection info ot the RDS instance.
+func (o GetInstancesRdsInstanceOutput) ConnectionInfo() GetInstancesRdsInstanceConnectionInfoOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) GetInstancesRdsInstanceConnectionInfo { return v.ConnectionInfo }).(GetInstancesRdsInstanceConnectionInfoOutput)
+}
+
+// The create time of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The engine of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) DbEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.DbEngine }).(pulumi.StringOutput)
+}
+
+// The engine version of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) DbEngineVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.DbEngineVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The spec type detail of RDS instance.
+func (o GetInstancesRdsInstanceOutput) InstanceSpec() GetInstancesRdsInstanceInstanceSpecOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) GetInstancesRdsInstanceInstanceSpec { return v.InstanceSpec }).(GetInstancesRdsInstanceInstanceSpecOutput)
+}
+
+// The status of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// The type of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The ID list of read only instance.
+func (o GetInstancesRdsInstanceOutput) ReadOnlyInstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) []string { return v.ReadOnlyInstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// The region of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The total storage GB of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) StorageSpaceGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) int { return v.StorageSpaceGb }).(pulumi.IntOutput)
+}
+
+// The update time of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The vpc ID of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The available zone of the RDS instance.
+func (o GetInstancesRdsInstanceOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstance) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsInstance)(nil)).Elem()
+}
+
+func (o GetInstancesRdsInstanceArrayOutput) ToGetInstancesRdsInstanceArrayOutput() GetInstancesRdsInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsInstanceArrayOutput) ToGetInstancesRdsInstanceArrayOutputWithContext(ctx context.Context) GetInstancesRdsInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsInstance {
+		return vs[0].([]GetInstancesRdsInstance)[vs[1].(int)]
+	}).(GetInstancesRdsInstanceOutput)
+}
+
+type GetInstancesRdsInstanceConnectionInfo struct {
+	// Whether global read-only is enabled.
+	EnableReadOnly string `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled.
+	EnableReadWriteSplitting string `pulumi:"enableReadWriteSplitting"`
+	// The internal domain of the RDS instance.
+	InternalDomain string `pulumi:"internalDomain"`
+	// The interval port of the RDS instance.
+	InternalPort string `pulumi:"internalPort"`
+	// The public domain of the RDS instance.
+	PublicDomain string `pulumi:"publicDomain"`
+	// The public port of the RDS instance.
+	PublicPort string `pulumi:"publicPort"`
+}
+
+// GetInstancesRdsInstanceConnectionInfoInput is an input type that accepts GetInstancesRdsInstanceConnectionInfoArgs and GetInstancesRdsInstanceConnectionInfoOutput values.
+// You can construct a concrete instance of `GetInstancesRdsInstanceConnectionInfoInput` via:
+//
+//	GetInstancesRdsInstanceConnectionInfoArgs{...}
+type GetInstancesRdsInstanceConnectionInfoInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsInstanceConnectionInfoOutput() GetInstancesRdsInstanceConnectionInfoOutput
+	ToGetInstancesRdsInstanceConnectionInfoOutputWithContext(context.Context) GetInstancesRdsInstanceConnectionInfoOutput
+}
+
+type GetInstancesRdsInstanceConnectionInfoArgs struct {
+	// Whether global read-only is enabled.
+	EnableReadOnly pulumi.StringInput `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled.
+	EnableReadWriteSplitting pulumi.StringInput `pulumi:"enableReadWriteSplitting"`
+	// The internal domain of the RDS instance.
+	InternalDomain pulumi.StringInput `pulumi:"internalDomain"`
+	// The interval port of the RDS instance.
+	InternalPort pulumi.StringInput `pulumi:"internalPort"`
+	// The public domain of the RDS instance.
+	PublicDomain pulumi.StringInput `pulumi:"publicDomain"`
+	// The public port of the RDS instance.
+	PublicPort pulumi.StringInput `pulumi:"publicPort"`
+}
+
+func (GetInstancesRdsInstanceConnectionInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetInstancesRdsInstanceConnectionInfoArgs) ToGetInstancesRdsInstanceConnectionInfoOutput() GetInstancesRdsInstanceConnectionInfoOutput {
+	return i.ToGetInstancesRdsInstanceConnectionInfoOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsInstanceConnectionInfoArgs) ToGetInstancesRdsInstanceConnectionInfoOutputWithContext(ctx context.Context) GetInstancesRdsInstanceConnectionInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsInstanceConnectionInfoOutput)
+}
+
+type GetInstancesRdsInstanceConnectionInfoOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsInstanceConnectionInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetInstancesRdsInstanceConnectionInfoOutput) ToGetInstancesRdsInstanceConnectionInfoOutput() GetInstancesRdsInstanceConnectionInfoOutput {
+	return o
+}
+
+func (o GetInstancesRdsInstanceConnectionInfoOutput) ToGetInstancesRdsInstanceConnectionInfoOutputWithContext(ctx context.Context) GetInstancesRdsInstanceConnectionInfoOutput {
+	return o
+}
+
+// Whether global read-only is enabled.
+func (o GetInstancesRdsInstanceConnectionInfoOutput) EnableReadOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceConnectionInfo) string { return v.EnableReadOnly }).(pulumi.StringOutput)
+}
+
+// Whether read-write separation is enabled.
+func (o GetInstancesRdsInstanceConnectionInfoOutput) EnableReadWriteSplitting() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceConnectionInfo) string { return v.EnableReadWriteSplitting }).(pulumi.StringOutput)
+}
+
+// The internal domain of the RDS instance.
+func (o GetInstancesRdsInstanceConnectionInfoOutput) InternalDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceConnectionInfo) string { return v.InternalDomain }).(pulumi.StringOutput)
+}
+
+// The interval port of the RDS instance.
+func (o GetInstancesRdsInstanceConnectionInfoOutput) InternalPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceConnectionInfo) string { return v.InternalPort }).(pulumi.StringOutput)
+}
+
+// The public domain of the RDS instance.
+func (o GetInstancesRdsInstanceConnectionInfoOutput) PublicDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceConnectionInfo) string { return v.PublicDomain }).(pulumi.StringOutput)
+}
+
+// The public port of the RDS instance.
+func (o GetInstancesRdsInstanceConnectionInfoOutput) PublicPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceConnectionInfo) string { return v.PublicPort }).(pulumi.StringOutput)
+}
+
+type GetInstancesRdsInstanceInstanceSpec struct {
+	// The cpu core count of spec type.
+	CpuNum int `pulumi:"cpuNum"`
+	// The memory size(GB) of spec type.
+	MemInGb int `pulumi:"memInGb"`
+	// The name of spec type.
+	SpecName string `pulumi:"specName"`
+}
+
+// GetInstancesRdsInstanceInstanceSpecInput is an input type that accepts GetInstancesRdsInstanceInstanceSpecArgs and GetInstancesRdsInstanceInstanceSpecOutput values.
+// You can construct a concrete instance of `GetInstancesRdsInstanceInstanceSpecInput` via:
+//
+//	GetInstancesRdsInstanceInstanceSpecArgs{...}
+type GetInstancesRdsInstanceInstanceSpecInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsInstanceInstanceSpecOutput() GetInstancesRdsInstanceInstanceSpecOutput
+	ToGetInstancesRdsInstanceInstanceSpecOutputWithContext(context.Context) GetInstancesRdsInstanceInstanceSpecOutput
+}
+
+type GetInstancesRdsInstanceInstanceSpecArgs struct {
+	// The cpu core count of spec type.
+	CpuNum pulumi.IntInput `pulumi:"cpuNum"`
+	// The memory size(GB) of spec type.
+	MemInGb pulumi.IntInput `pulumi:"memInGb"`
+	// The name of spec type.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (GetInstancesRdsInstanceInstanceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsInstanceInstanceSpec)(nil)).Elem()
+}
+
+func (i GetInstancesRdsInstanceInstanceSpecArgs) ToGetInstancesRdsInstanceInstanceSpecOutput() GetInstancesRdsInstanceInstanceSpecOutput {
+	return i.ToGetInstancesRdsInstanceInstanceSpecOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsInstanceInstanceSpecArgs) ToGetInstancesRdsInstanceInstanceSpecOutputWithContext(ctx context.Context) GetInstancesRdsInstanceInstanceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsInstanceInstanceSpecOutput)
+}
+
+type GetInstancesRdsInstanceInstanceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsInstanceInstanceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsInstanceInstanceSpec)(nil)).Elem()
+}
+
+func (o GetInstancesRdsInstanceInstanceSpecOutput) ToGetInstancesRdsInstanceInstanceSpecOutput() GetInstancesRdsInstanceInstanceSpecOutput {
+	return o
+}
+
+func (o GetInstancesRdsInstanceInstanceSpecOutput) ToGetInstancesRdsInstanceInstanceSpecOutputWithContext(ctx context.Context) GetInstancesRdsInstanceInstanceSpecOutput {
+	return o
+}
+
+// The cpu core count of spec type.
+func (o GetInstancesRdsInstanceInstanceSpecOutput) CpuNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceInstanceSpec) int { return v.CpuNum }).(pulumi.IntOutput)
+}
+
+// The memory size(GB) of spec type.
+func (o GetInstancesRdsInstanceInstanceSpecOutput) MemInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceInstanceSpec) int { return v.MemInGb }).(pulumi.IntOutput)
+}
+
+// The name of spec type.
+func (o GetInstancesRdsInstanceInstanceSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsInstanceInstanceSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type GetIpListsRdsIpList struct {
+	// The name of the RDS ip list.
+	GroupName string `pulumi:"groupName"`
+	// The ID of the RDS ip list.
+	Id string `pulumi:"id"`
+	// The list of IP address.
+	IpLists []string `pulumi:"ipLists"`
+}
+
+// GetIpListsRdsIpListInput is an input type that accepts GetIpListsRdsIpListArgs and GetIpListsRdsIpListOutput values.
+// You can construct a concrete instance of `GetIpListsRdsIpListInput` via:
+//
+//	GetIpListsRdsIpListArgs{...}
+type GetIpListsRdsIpListInput interface {
+	pulumi.Input
+
+	ToGetIpListsRdsIpListOutput() GetIpListsRdsIpListOutput
+	ToGetIpListsRdsIpListOutputWithContext(context.Context) GetIpListsRdsIpListOutput
+}
+
+type GetIpListsRdsIpListArgs struct {
+	// The name of the RDS ip list.
+	GroupName pulumi.StringInput `pulumi:"groupName"`
+	// The ID of the RDS ip list.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The list of IP address.
+	IpLists pulumi.StringArrayInput `pulumi:"ipLists"`
+}
+
+func (GetIpListsRdsIpListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpListsRdsIpList)(nil)).Elem()
+}
+
+func (i GetIpListsRdsIpListArgs) ToGetIpListsRdsIpListOutput() GetIpListsRdsIpListOutput {
+	return i.ToGetIpListsRdsIpListOutputWithContext(context.Background())
+}
+
+func (i GetIpListsRdsIpListArgs) ToGetIpListsRdsIpListOutputWithContext(ctx context.Context) GetIpListsRdsIpListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpListsRdsIpListOutput)
+}
+
+// GetIpListsRdsIpListArrayInput is an input type that accepts GetIpListsRdsIpListArray and GetIpListsRdsIpListArrayOutput values.
+// You can construct a concrete instance of `GetIpListsRdsIpListArrayInput` via:
+//
+//	GetIpListsRdsIpListArray{ GetIpListsRdsIpListArgs{...} }
+type GetIpListsRdsIpListArrayInput interface {
+	pulumi.Input
+
+	ToGetIpListsRdsIpListArrayOutput() GetIpListsRdsIpListArrayOutput
+	ToGetIpListsRdsIpListArrayOutputWithContext(context.Context) GetIpListsRdsIpListArrayOutput
+}
+
+type GetIpListsRdsIpListArray []GetIpListsRdsIpListInput
+
+func (GetIpListsRdsIpListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpListsRdsIpList)(nil)).Elem()
+}
+
+func (i GetIpListsRdsIpListArray) ToGetIpListsRdsIpListArrayOutput() GetIpListsRdsIpListArrayOutput {
+	return i.ToGetIpListsRdsIpListArrayOutputWithContext(context.Background())
+}
+
+func (i GetIpListsRdsIpListArray) ToGetIpListsRdsIpListArrayOutputWithContext(ctx context.Context) GetIpListsRdsIpListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpListsRdsIpListArrayOutput)
+}
+
+type GetIpListsRdsIpListOutput struct{ *pulumi.OutputState }
+
+func (GetIpListsRdsIpListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpListsRdsIpList)(nil)).Elem()
+}
+
+func (o GetIpListsRdsIpListOutput) ToGetIpListsRdsIpListOutput() GetIpListsRdsIpListOutput {
+	return o
+}
+
+func (o GetIpListsRdsIpListOutput) ToGetIpListsRdsIpListOutputWithContext(ctx context.Context) GetIpListsRdsIpListOutput {
+	return o
+}
+
+// The name of the RDS ip list.
+func (o GetIpListsRdsIpListOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpListsRdsIpList) string { return v.GroupName }).(pulumi.StringOutput)
+}
+
+// The ID of the RDS ip list.
+func (o GetIpListsRdsIpListOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpListsRdsIpList) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The list of IP address.
+func (o GetIpListsRdsIpListOutput) IpLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIpListsRdsIpList) []string { return v.IpLists }).(pulumi.StringArrayOutput)
+}
+
+type GetIpListsRdsIpListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIpListsRdsIpListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpListsRdsIpList)(nil)).Elem()
+}
+
+func (o GetIpListsRdsIpListArrayOutput) ToGetIpListsRdsIpListArrayOutput() GetIpListsRdsIpListArrayOutput {
+	return o
+}
+
+func (o GetIpListsRdsIpListArrayOutput) ToGetIpListsRdsIpListArrayOutputWithContext(ctx context.Context) GetIpListsRdsIpListArrayOutput {
+	return o
+}
+
+func (o GetIpListsRdsIpListArrayOutput) Index(i pulumi.IntInput) GetIpListsRdsIpListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpListsRdsIpList {
+		return vs[0].([]GetIpListsRdsIpList)[vs[1].(int)]
+	}).(GetIpListsRdsIpListOutput)
+}
+
+type GetParameterTemplatesRdsParameterTemplate struct {
+	// Creation time.
+	CreateTime string `pulumi:"createTime"`
+	// The ID of the RDS parameter template.
+	Id string `pulumi:"id"`
+	// Whether the template contains parameters that need to be restarted.
+	NeedRestart bool `pulumi:"needRestart"`
+	// The number of parameters the template contains.
+	ParameterNum int `pulumi:"parameterNum"`
+	// The description of the RDS parameter template.
+	TemplateDesc string `pulumi:"templateDesc"`
+	// The ID of the RDS parameter template.
+	TemplateId string `pulumi:"templateId"`
+	// The name of the RDS parameter template.
+	TemplateName string `pulumi:"templateName"`
+	// Parameters contained in the template.
+	TemplateParams []GetParameterTemplatesRdsParameterTemplateTemplateParam `pulumi:"templateParams"`
+	// Parameter template database type, range of values:
+	// MySQL - MySQL database.
+	TemplateType string `pulumi:"templateType"`
+	// Parameter template database version, value range:
+	// MySQL_Community_5_7 - MySQL 5.7
+	// MySQL_8_0 - MySQL 8.0.
+	TemplateTypeVersion string `pulumi:"templateTypeVersion"`
+	// Update time.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetParameterTemplatesRdsParameterTemplateInput is an input type that accepts GetParameterTemplatesRdsParameterTemplateArgs and GetParameterTemplatesRdsParameterTemplateOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesRdsParameterTemplateInput` via:
+//
+//	GetParameterTemplatesRdsParameterTemplateArgs{...}
+type GetParameterTemplatesRdsParameterTemplateInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesRdsParameterTemplateOutput() GetParameterTemplatesRdsParameterTemplateOutput
+	ToGetParameterTemplatesRdsParameterTemplateOutputWithContext(context.Context) GetParameterTemplatesRdsParameterTemplateOutput
+}
+
+type GetParameterTemplatesRdsParameterTemplateArgs struct {
+	// Creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The ID of the RDS parameter template.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the template contains parameters that need to be restarted.
+	NeedRestart pulumi.BoolInput `pulumi:"needRestart"`
+	// The number of parameters the template contains.
+	ParameterNum pulumi.IntInput `pulumi:"parameterNum"`
+	// The description of the RDS parameter template.
+	TemplateDesc pulumi.StringInput `pulumi:"templateDesc"`
+	// The ID of the RDS parameter template.
+	TemplateId pulumi.StringInput `pulumi:"templateId"`
+	// The name of the RDS parameter template.
+	TemplateName pulumi.StringInput `pulumi:"templateName"`
+	// Parameters contained in the template.
+	TemplateParams GetParameterTemplatesRdsParameterTemplateTemplateParamArrayInput `pulumi:"templateParams"`
+	// Parameter template database type, range of values:
+	// MySQL - MySQL database.
+	TemplateType pulumi.StringInput `pulumi:"templateType"`
+	// Parameter template database version, value range:
+	// MySQL_Community_5_7 - MySQL 5.7
+	// MySQL_8_0 - MySQL 8.0.
+	TemplateTypeVersion pulumi.StringInput `pulumi:"templateTypeVersion"`
+	// Update time.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetParameterTemplatesRdsParameterTemplateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplate)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateArgs) ToGetParameterTemplatesRdsParameterTemplateOutput() GetParameterTemplatesRdsParameterTemplateOutput {
+	return i.ToGetParameterTemplatesRdsParameterTemplateOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateArgs) ToGetParameterTemplatesRdsParameterTemplateOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesRdsParameterTemplateOutput)
+}
+
+// GetParameterTemplatesRdsParameterTemplateArrayInput is an input type that accepts GetParameterTemplatesRdsParameterTemplateArray and GetParameterTemplatesRdsParameterTemplateArrayOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesRdsParameterTemplateArrayInput` via:
+//
+//	GetParameterTemplatesRdsParameterTemplateArray{ GetParameterTemplatesRdsParameterTemplateArgs{...} }
+type GetParameterTemplatesRdsParameterTemplateArrayInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesRdsParameterTemplateArrayOutput() GetParameterTemplatesRdsParameterTemplateArrayOutput
+	ToGetParameterTemplatesRdsParameterTemplateArrayOutputWithContext(context.Context) GetParameterTemplatesRdsParameterTemplateArrayOutput
+}
+
+type GetParameterTemplatesRdsParameterTemplateArray []GetParameterTemplatesRdsParameterTemplateInput
+
+func (GetParameterTemplatesRdsParameterTemplateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesRdsParameterTemplate)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateArray) ToGetParameterTemplatesRdsParameterTemplateArrayOutput() GetParameterTemplatesRdsParameterTemplateArrayOutput {
+	return i.ToGetParameterTemplatesRdsParameterTemplateArrayOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateArray) ToGetParameterTemplatesRdsParameterTemplateArrayOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesRdsParameterTemplateArrayOutput)
+}
+
+type GetParameterTemplatesRdsParameterTemplateOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesRdsParameterTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplate)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateOutput) ToGetParameterTemplatesRdsParameterTemplateOutput() GetParameterTemplatesRdsParameterTemplateOutput {
+	return o
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateOutput) ToGetParameterTemplatesRdsParameterTemplateOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateOutput {
+	return o
+}
+
+// Creation time.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The ID of the RDS parameter template.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the template contains parameters that need to be restarted.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) NeedRestart() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) bool { return v.NeedRestart }).(pulumi.BoolOutput)
+}
+
+// The number of parameters the template contains.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) ParameterNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) int { return v.ParameterNum }).(pulumi.IntOutput)
+}
+
+// The description of the RDS parameter template.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) TemplateDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.TemplateDesc }).(pulumi.StringOutput)
+}
+
+// The ID of the RDS parameter template.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) TemplateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.TemplateId }).(pulumi.StringOutput)
+}
+
+// The name of the RDS parameter template.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) TemplateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.TemplateName }).(pulumi.StringOutput)
+}
+
+// Parameters contained in the template.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) TemplateParams() GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) []GetParameterTemplatesRdsParameterTemplateTemplateParam {
+		return v.TemplateParams
+	}).(GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput)
+}
+
+// Parameter template database type, range of values:
+// MySQL - MySQL database.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) TemplateType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.TemplateType }).(pulumi.StringOutput)
+}
+
+// Parameter template database version, value range:
+// MySQL_Community_5_7 - MySQL 5.7
+// MySQL_8_0 - MySQL 8.0.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) TemplateTypeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.TemplateTypeVersion }).(pulumi.StringOutput)
+}
+
+// Update time.
+func (o GetParameterTemplatesRdsParameterTemplateOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplate) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetParameterTemplatesRdsParameterTemplateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesRdsParameterTemplateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesRdsParameterTemplate)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateArrayOutput) ToGetParameterTemplatesRdsParameterTemplateArrayOutput() GetParameterTemplatesRdsParameterTemplateArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateArrayOutput) ToGetParameterTemplatesRdsParameterTemplateArrayOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateArrayOutput) Index(i pulumi.IntInput) GetParameterTemplatesRdsParameterTemplateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetParameterTemplatesRdsParameterTemplate {
+		return vs[0].([]GetParameterTemplatesRdsParameterTemplate)[vs[1].(int)]
+	}).(GetParameterTemplatesRdsParameterTemplateOutput)
+}
+
+type GetParameterTemplatesRdsParameterTemplateTemplateParam struct {
+	// Parameter default value.
+	DefaultValue string `pulumi:"defaultValue"`
+	// Parameter description.
+	Description string `pulumi:"description"`
+	// Parameter name.
+	Name string `pulumi:"name"`
+	// Whether the modified parameters need to be restarted to take effect.
+	Restart bool `pulumi:"restart"`
+	// Parameter running value.
+	RunningValue string `pulumi:"runningValue"`
+	// Parameter value range.
+	ValueRange string `pulumi:"valueRange"`
+}
+
+// GetParameterTemplatesRdsParameterTemplateTemplateParamInput is an input type that accepts GetParameterTemplatesRdsParameterTemplateTemplateParamArgs and GetParameterTemplatesRdsParameterTemplateTemplateParamOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesRdsParameterTemplateTemplateParamInput` via:
+//
+//	GetParameterTemplatesRdsParameterTemplateTemplateParamArgs{...}
+type GetParameterTemplatesRdsParameterTemplateTemplateParamInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutput() GetParameterTemplatesRdsParameterTemplateTemplateParamOutput
+	ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutputWithContext(context.Context) GetParameterTemplatesRdsParameterTemplateTemplateParamOutput
+}
+
+type GetParameterTemplatesRdsParameterTemplateTemplateParamArgs struct {
+	// Parameter default value.
+	DefaultValue pulumi.StringInput `pulumi:"defaultValue"`
+	// Parameter description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Parameter name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the modified parameters need to be restarted to take effect.
+	Restart pulumi.BoolInput `pulumi:"restart"`
+	// Parameter running value.
+	RunningValue pulumi.StringInput `pulumi:"runningValue"`
+	// Parameter value range.
+	ValueRange pulumi.StringInput `pulumi:"valueRange"`
+}
+
+func (GetParameterTemplatesRdsParameterTemplateTemplateParamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplateTemplateParam)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateTemplateParamArgs) ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutput() GetParameterTemplatesRdsParameterTemplateTemplateParamOutput {
+	return i.ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateTemplateParamArgs) ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateTemplateParamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesRdsParameterTemplateTemplateParamOutput)
+}
+
+// GetParameterTemplatesRdsParameterTemplateTemplateParamArrayInput is an input type that accepts GetParameterTemplatesRdsParameterTemplateTemplateParamArray and GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput values.
+// You can construct a concrete instance of `GetParameterTemplatesRdsParameterTemplateTemplateParamArrayInput` via:
+//
+//	GetParameterTemplatesRdsParameterTemplateTemplateParamArray{ GetParameterTemplatesRdsParameterTemplateTemplateParamArgs{...} }
+type GetParameterTemplatesRdsParameterTemplateTemplateParamArrayInput interface {
+	pulumi.Input
+
+	ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput() GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput
+	ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutputWithContext(context.Context) GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput
+}
+
+type GetParameterTemplatesRdsParameterTemplateTemplateParamArray []GetParameterTemplatesRdsParameterTemplateTemplateParamInput
+
+func (GetParameterTemplatesRdsParameterTemplateTemplateParamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesRdsParameterTemplateTemplateParam)(nil)).Elem()
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateTemplateParamArray) ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput() GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput {
+	return i.ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutputWithContext(context.Background())
+}
+
+func (i GetParameterTemplatesRdsParameterTemplateTemplateParamArray) ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput)
+}
+
+type GetParameterTemplatesRdsParameterTemplateTemplateParamOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplateTemplateParam)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutput() GetParameterTemplatesRdsParameterTemplateTemplateParamOutput {
+	return o
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) ToGetParameterTemplatesRdsParameterTemplateTemplateParamOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateTemplateParamOutput {
+	return o
+}
+
+// Parameter default value.
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) DefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplateTemplateParam) string { return v.DefaultValue }).(pulumi.StringOutput)
+}
+
+// Parameter description.
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplateTemplateParam) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Parameter name.
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplateTemplateParam) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether the modified parameters need to be restarted to take effect.
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) Restart() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplateTemplateParam) bool { return v.Restart }).(pulumi.BoolOutput)
+}
+
+// Parameter running value.
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) RunningValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplateTemplateParam) string { return v.RunningValue }).(pulumi.StringOutput)
+}
+
+// Parameter value range.
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamOutput) ValueRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetParameterTemplatesRdsParameterTemplateTemplateParam) string { return v.ValueRange }).(pulumi.StringOutput)
+}
+
+type GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetParameterTemplatesRdsParameterTemplateTemplateParam)(nil)).Elem()
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput) ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput() GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput) ToGetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutputWithContext(ctx context.Context) GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput {
+	return o
+}
+
+func (o GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput) Index(i pulumi.IntInput) GetParameterTemplatesRdsParameterTemplateTemplateParamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetParameterTemplatesRdsParameterTemplateTemplateParam {
+		return vs[0].([]GetParameterTemplatesRdsParameterTemplateTemplateParam)[vs[1].(int)]
+	}).(GetParameterTemplatesRdsParameterTemplateTemplateParamOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountPrivilegeDbPrivilegeInput)(nil)).Elem(), AccountPrivilegeDbPrivilegeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountPrivilegeDbPrivilegeArrayInput)(nil)).Elem(), AccountPrivilegeDbPrivilegeArray{})
@@ -1742,6 +2995,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ParameterTemplatesRdsParameterTemplateArrayInput)(nil)).Elem(), ParameterTemplatesRdsParameterTemplateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ParameterTemplatesRdsParameterTemplateTemplateParamInput)(nil)).Elem(), ParameterTemplatesRdsParameterTemplateTemplateParamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ParameterTemplatesRdsParameterTemplateTemplateParamArrayInput)(nil)).Elem(), ParameterTemplatesRdsParameterTemplateTemplateParamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsRdsAccountInput)(nil)).Elem(), GetAccountsRdsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsRdsAccountArrayInput)(nil)).Elem(), GetAccountsRdsAccountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsRdsAccountDbPrivilegeInput)(nil)).Elem(), GetAccountsRdsAccountDbPrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsRdsAccountDbPrivilegeArrayInput)(nil)).Elem(), GetAccountsRdsAccountDbPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesRdsDatabaseInput)(nil)).Elem(), GetDatabasesRdsDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesRdsDatabaseArrayInput)(nil)).Elem(), GetDatabasesRdsDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsInstanceInput)(nil)).Elem(), GetInstancesRdsInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsInstanceArrayInput)(nil)).Elem(), GetInstancesRdsInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsInstanceConnectionInfoInput)(nil)).Elem(), GetInstancesRdsInstanceConnectionInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsInstanceInstanceSpecInput)(nil)).Elem(), GetInstancesRdsInstanceInstanceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpListsRdsIpListInput)(nil)).Elem(), GetIpListsRdsIpListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpListsRdsIpListArrayInput)(nil)).Elem(), GetIpListsRdsIpListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplateInput)(nil)).Elem(), GetParameterTemplatesRdsParameterTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplateArrayInput)(nil)).Elem(), GetParameterTemplatesRdsParameterTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplateTemplateParamInput)(nil)).Elem(), GetParameterTemplatesRdsParameterTemplateTemplateParamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesRdsParameterTemplateTemplateParamArrayInput)(nil)).Elem(), GetParameterTemplatesRdsParameterTemplateTemplateParamArray{})
 	pulumi.RegisterOutputType(AccountPrivilegeDbPrivilegeOutput{})
 	pulumi.RegisterOutputType(AccountPrivilegeDbPrivilegeArrayOutput{})
 	pulumi.RegisterOutputType(AccountsRdsAccountOutput{})
@@ -1764,4 +3033,20 @@ func init() {
 	pulumi.RegisterOutputType(ParameterTemplatesRdsParameterTemplateArrayOutput{})
 	pulumi.RegisterOutputType(ParameterTemplatesRdsParameterTemplateTemplateParamOutput{})
 	pulumi.RegisterOutputType(ParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountsRdsAccountOutput{})
+	pulumi.RegisterOutputType(GetAccountsRdsAccountArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountsRdsAccountDbPrivilegeOutput{})
+	pulumi.RegisterOutputType(GetAccountsRdsAccountDbPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabasesRdsDatabaseOutput{})
+	pulumi.RegisterOutputType(GetDatabasesRdsDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsInstanceConnectionInfoOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsInstanceInstanceSpecOutput{})
+	pulumi.RegisterOutputType(GetIpListsRdsIpListOutput{})
+	pulumi.RegisterOutputType(GetIpListsRdsIpListArrayOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesRdsParameterTemplateOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesRdsParameterTemplateArrayOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesRdsParameterTemplateTemplateParamOutput{})
+	pulumi.RegisterOutputType(GetParameterTemplatesRdsParameterTemplateTemplateParamArrayOutput{})
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_v2
 {
+    [Obsolete(@"volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2")]
     public static class RdsInstancesV2
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_v2
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds_v2.RdsInstancesV2.Invoke();
+        ///     var @default = Volcengine.Rds_v2.GetRdsInstancesV2.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rds_v2
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds_v2.RdsInstancesV2.Invoke();
+        ///     var @default = Volcengine.Rds_v2.GetRdsInstancesV2.Invoke();
         /// 
         /// });
         /// ```

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Direct_connect
 {
+    [Obsolete(@"volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces")]
     public static class VirtualInterfaces
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.VirtualInterfaces.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetVirtualInterfaces.Invoke(new()
         ///     {
         ///         VirtualInterfaceName = "tf-test",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.VirtualInterfaces.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetVirtualInterfaces.Invoke(new()
         ///     {
         ///         VirtualInterfaceName = "tf-test",
         ///     });

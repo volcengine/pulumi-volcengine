@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Direct_connect
 {
+    [Obsolete(@"volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections")]
     public static class Connections
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.Connections.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetConnections.Invoke(new()
         ///     {
         ///         DirectConnectConnectionName = "tf_test",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.Connections.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetConnections.Invoke(new()
         ///     {
         ///         DirectConnectConnectionName = "tf_test",
         ///     });

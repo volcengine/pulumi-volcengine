@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rocketmq
 {
+    [Obsolete(@"volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys")]
     public static class AccessKeys
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rocketmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rocketmq.AccessKeys.Invoke(new()
+        ///     var foo = Volcengine.Rocketmq.GetAccessKeys.Invoke(new()
         ///     {
         ///         InstanceId = "rocketmq-cnoeea6b32118fc2",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Rocketmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rocketmq.AccessKeys.Invoke(new()
+        ///     var foo = Volcengine.Rocketmq.GetAccessKeys.Invoke(new()
         ///     {
         ///         InstanceId = "rocketmq-cnoeea6b32118fc2",
         ///     });

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -48,13 +48,15 @@ import * as utilities from "../utilities";
  *     password: "Password@@",
  *     roleName: "ReadOnly",
  * });
- * const fooAccounts = volcengine.redis.AccountsOutput({
+ * const fooAccounts = volcengine.redis.getAccountsOutput({
  *     accountName: fooAccount.accountName,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.Accounts has been deprecated in favor of volcengine.redis.getAccounts */
 export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promise<AccountsResult> {
+    pulumi.log.warn("accounts is deprecated: volcengine.redis.Accounts has been deprecated in favor of volcengine.redis.getAccounts")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/accounts:Accounts", {
@@ -117,7 +119,7 @@ export interface AccountsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -150,12 +152,13 @@ export interface AccountsResult {
  *     password: "Password@@",
  *     roleName: "ReadOnly",
  * });
- * const fooAccounts = volcengine.redis.AccountsOutput({
+ * const fooAccounts = volcengine.redis.getAccountsOutput({
  *     accountName: fooAccount.accountName,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.Accounts has been deprecated in favor of volcengine.redis.getAccounts */
 export function accountsOutput(args: AccountsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccountsResult> {
     return pulumi.output(args).apply((a: any) => accounts(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds
 {
+    [Obsolete(@"volcengine.rds.Accounts has been deprecated in favor of volcengine.rds.getAccounts")]
     public static class Accounts
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds.Accounts.Invoke(new()
+        ///     var @default = Volcengine.Rds.GetAccounts.Invoke(new()
         ///     {
         ///         InstanceId = "mysql-0fdd3bab2e7c",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds.Accounts.Invoke(new()
+        ///     var @default = Volcengine.Rds.GetAccounts.Invoke(new()
         ///     {
         ///         InstanceId = "mysql-0fdd3bab2e7c",
         ///     });

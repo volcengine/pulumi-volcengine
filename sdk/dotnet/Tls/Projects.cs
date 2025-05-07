@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.Projects has been deprecated in favor of volcengine.tls.getProjects")]
     public static class Projects
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Projects.Invoke();
+        ///     var @default = Volcengine.Tls.GetProjects.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.Projects.Invoke();
+        ///     var @default = Volcengine.Tls.GetProjects.Invoke();
         /// 
         /// });
         /// ```

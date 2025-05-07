@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to query detailed information of scaling lifecycle hooks
  */
+/** @deprecated volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks */
 export function scalingLifecycleHooks(args: ScalingLifecycleHooksArgs, opts?: pulumi.InvokeOptions): Promise<ScalingLifecycleHooksResult> {
+    pulumi.log.warn("scalingLifecycleHooks is deprecated: volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", {
@@ -75,6 +77,7 @@ export interface ScalingLifecycleHooksResult {
 /**
  * Use this data source to query detailed information of scaling lifecycle hooks
  */
+/** @deprecated volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks */
 export function scalingLifecycleHooksOutput(args: ScalingLifecycleHooksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingLifecycleHooksResult> {
     return pulumi.output(args).apply((a: any) => scalingLifecycleHooks(a, opts))
 }

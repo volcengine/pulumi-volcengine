@@ -17,6 +17,8 @@ __all__ = [
     'shared_configs_output',
 ]
 
+warnings.warn("""volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs""", DeprecationWarning)
+
 @pulumi.output_type
 class SharedConfigsResult:
     """
@@ -137,7 +139,7 @@ def shared_configs(config_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cdn.shared_configs(config_name="tf-test",
+    foo = volcengine.cdn.get_shared_configs(config_name="tf-test",
         config_type="allow_ip_access_rule",
         project_name="default")
     ```
@@ -149,6 +151,7 @@ def shared_configs(config_name: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The name of the project.
     """
+    pulumi.log.warn("""shared_configs is deprecated: volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs""")
     __args__ = dict()
     __args__['configName'] = config_name
     __args__['configType'] = config_type
@@ -184,7 +187,7 @@ def shared_configs_output(config_name: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cdn.shared_configs(config_name="tf-test",
+    foo = volcengine.cdn.get_shared_configs(config_name="tf-test",
         config_type="allow_ip_access_rule",
         project_name="default")
     ```
@@ -196,4 +199,5 @@ def shared_configs_output(config_name: Optional[pulumi.Input[Optional[str]]] = N
     :param str output_file: File name where to save data source results.
     :param str project_name: The name of the project.
     """
+    pulumi.log.warn("""shared_configs is deprecated: volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs""")
     ...

@@ -35,6 +35,26 @@ export const eventRules: typeof import("./eventRules").eventRules = null as any;
 export const eventRulesOutput: typeof import("./eventRules").eventRulesOutput = null as any;
 utilities.lazyLoad(exports, ["eventRules","eventRulesOutput"], () => require("./eventRules"));
 
+export { GetContactGroupsArgs, GetContactGroupsResult, GetContactGroupsOutputArgs } from "./getContactGroups";
+export const getContactGroups: typeof import("./getContactGroups").getContactGroups = null as any;
+export const getContactGroupsOutput: typeof import("./getContactGroups").getContactGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getContactGroups","getContactGroupsOutput"], () => require("./getContactGroups"));
+
+export { GetContactsArgs, GetContactsResult, GetContactsOutputArgs } from "./getContacts";
+export const getContacts: typeof import("./getContacts").getContacts = null as any;
+export const getContactsOutput: typeof import("./getContacts").getContactsOutput = null as any;
+utilities.lazyLoad(exports, ["getContacts","getContactsOutput"], () => require("./getContacts"));
+
+export { GetEventRulesArgs, GetEventRulesResult, GetEventRulesOutputArgs } from "./getEventRules";
+export const getEventRules: typeof import("./getEventRules").getEventRules = null as any;
+export const getEventRulesOutput: typeof import("./getEventRules").getEventRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getEventRules","getEventRulesOutput"], () => require("./getEventRules"));
+
+export { GetRulesArgs, GetRulesResult, GetRulesOutputArgs } from "./getRules";
+export const getRules: typeof import("./getRules").getRules = null as any;
+export const getRulesOutput: typeof import("./getRules").getRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getRules","getRulesOutput"], () => require("./getRules"));
+
 export { RuleArgs, RuleState } from "./rule";
 export type Rule = import("./rule").Rule;
 export const Rule: typeof import("./rule").Rule = null as any;

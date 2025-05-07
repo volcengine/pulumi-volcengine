@@ -17,6 +17,8 @@ __all__ = [
     'vpc_endpoint_service_permissions_output',
 ]
 
+warnings.warn("""volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcEndpointServicePermissionsResult:
     """
@@ -111,7 +113,7 @@ def vpc_endpoint_service_permissions(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -146,7 +148,7 @@ def vpc_endpoint_service_permissions(output_file: Optional[str] = None,
     foo_vpc_endpoint_service_permission = volcengine.privatelink.VpcEndpointServicePermission("fooVpcEndpointServicePermission",
         service_id=foo_vpc_endpoint_service.id,
         permit_account_id="210000000")
-    foo_vpc_endpoint_service_permissions = volcengine.privatelink.vpc_endpoint_service_permissions_output(permit_account_id=foo_vpc_endpoint_service_permission.permit_account_id,
+    foo_vpc_endpoint_service_permissions = volcengine.privatelink.get_vpc_endpoint_service_permissions_output(permit_account_id=foo_vpc_endpoint_service_permission.permit_account_id,
         service_id=foo_vpc_endpoint_service.id)
     ```
 
@@ -155,6 +157,7 @@ def vpc_endpoint_service_permissions(output_file: Optional[str] = None,
     :param str permit_account_id: The Id of permit account.
     :param str service_id: The Id of service.
     """
+    pulumi.log.warn("""vpc_endpoint_service_permissions is deprecated: volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['permitAccountId'] = permit_account_id
@@ -184,7 +187,7 @@ def vpc_endpoint_service_permissions_output(output_file: Optional[pulumi.Input[O
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -219,7 +222,7 @@ def vpc_endpoint_service_permissions_output(output_file: Optional[pulumi.Input[O
     foo_vpc_endpoint_service_permission = volcengine.privatelink.VpcEndpointServicePermission("fooVpcEndpointServicePermission",
         service_id=foo_vpc_endpoint_service.id,
         permit_account_id="210000000")
-    foo_vpc_endpoint_service_permissions = volcengine.privatelink.vpc_endpoint_service_permissions_output(permit_account_id=foo_vpc_endpoint_service_permission.permit_account_id,
+    foo_vpc_endpoint_service_permissions = volcengine.privatelink.get_vpc_endpoint_service_permissions_output(permit_account_id=foo_vpc_endpoint_service_permission.permit_account_id,
         service_id=foo_vpc_endpoint_service.id)
     ```
 
@@ -228,4 +231,5 @@ def vpc_endpoint_service_permissions_output(output_file: Optional[pulumi.Input[O
     :param str permit_account_id: The Id of permit account.
     :param str service_id: The Id of service.
     """
+    pulumi.log.warn("""vpc_endpoint_service_permissions is deprecated: volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions""")
     ...

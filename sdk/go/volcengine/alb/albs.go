@@ -28,7 +28,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := alb.Zones(ctx, nil, nil);
+// fooZones, err := alb.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -86,13 +86,15 @@ import (
 // }
 // fooAlb = append(fooAlb, __res)
 // }
-// _ = alb.AlbsOutput(ctx, alb.AlbsOutputArgs{
+// _ = alb.GetAlbsOutput(ctx, alb.GetAlbsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:alb-albs:Albs.pp:36,9-21),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs
 func Albs(ctx *pulumi.Context, args *AlbsArgs, opts ...pulumi.InvokeOption) (*AlbsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AlbsResult

@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.RouteEntries({
+ * const default = volcengine.vpc.getRouteEntries({
  *     ids: [],
  *     routeTableId: "vtb-274e19skkuhog7fap8u4i8ird",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries */
 export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<RouteEntriesResult> {
+    pulumi.log.warn("routeEntries is deprecated: volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/routeEntries:RouteEntries", {
@@ -121,12 +123,13 @@ export interface RouteEntriesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.RouteEntries({
+ * const default = volcengine.vpc.getRouteEntries({
  *     ids: [],
  *     routeTableId: "vtb-274e19skkuhog7fap8u4i8ird",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries */
 export function routeEntriesOutput(args: RouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteEntriesResult> {
     return pulumi.output(args).apply((a: any) => routeEntries(a, opts))
 }

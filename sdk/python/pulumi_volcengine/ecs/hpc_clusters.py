@@ -17,6 +17,8 @@ __all__ = [
     'hpc_clusters_output',
 ]
 
+warnings.warn("""volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters""", DeprecationWarning)
+
 @pulumi.output_type
 class HpcClustersResult:
     """
@@ -111,7 +113,7 @@ def hpc_clusters(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.hpc_clusters(zone_id="cn-beijing-a")
+    foo = volcengine.ecs.get_hpc_clusters(zone_id="cn-beijing-a")
     ```
 
 
@@ -119,6 +121,7 @@ def hpc_clusters(name_regex: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str zone_id: The zone id of the hpc cluster.
     """
+    pulumi.log.warn("""hpc_clusters is deprecated: volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -148,7 +151,7 @@ def hpc_clusters_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.hpc_clusters(zone_id="cn-beijing-a")
+    foo = volcengine.ecs.get_hpc_clusters(zone_id="cn-beijing-a")
     ```
 
 
@@ -156,4 +159,5 @@ def hpc_clusters_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None
     :param str output_file: File name where to save data source results.
     :param str zone_id: The zone id of the hpc cluster.
     """
+    pulumi.log.warn("""hpc_clusters is deprecated: volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters""")
     ...

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mssql
 {
+    [Obsolete(@"volcengine.rds_mssql.Zones has been deprecated in favor of volcengine.rds_mssql.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mssql.Zones.Invoke();
+        ///     var foo = Volcengine.Rds_mssql.GetZones.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mssql.Zones.Invoke();
+        ///     var foo = Volcengine.Rds_mssql.GetZones.Invoke();
         /// 
         /// });
         /// ```

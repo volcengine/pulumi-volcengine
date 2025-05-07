@@ -401,9 +401,16 @@ class Bucket(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_volcengine as volcengine
 
-        default = volcengine.tos.Bucket("default",
+        # create tos bucket
+        foo_bucket = volcengine.tos.Bucket("fooBucket",
+            bucket_name="tf-acc-test-bucket",
+            public_acl="private",
+            az_redundancy="multi-az",
+            enable_version=True,
+            bucket_acl_delivered=True,
             account_acls=[
                 volcengine.tos.BucketAccountAclArgs(
                     account_id="1",
@@ -414,16 +421,23 @@ class Bucket(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            az_redundancy="multi-az",
-            bucket_acl_delivered=True,
-            bucket_name="tf-acc-test-bucket-0123-3",
-            enable_version=True,
             project_name="default",
-            public_acl="private",
             tags=[volcengine.tos.BucketTagArgs(
                 key="k1",
                 value="v1",
             )])
+        # create tos bucket policy
+        foo_bucket_policy = volcengine.tos.BucketPolicy("fooBucketPolicy",
+            bucket_name=foo_bucket.id,
+            policy=pulumi.Output.json_dumps({
+                "Statement": [{
+                    "Sid": "test",
+                    "Effect": "Allow",
+                    "Principal": ["AccountId/subUserName"],
+                    "Action": ["tos:List*"],
+                    "Resource": [foo_bucket.id.apply(lambda id: f"trn:tos:::{id}")],
+                }],
+            }))
         ```
 
         ## Import
@@ -458,9 +472,16 @@ class Bucket(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_volcengine as volcengine
 
-        default = volcengine.tos.Bucket("default",
+        # create tos bucket
+        foo_bucket = volcengine.tos.Bucket("fooBucket",
+            bucket_name="tf-acc-test-bucket",
+            public_acl="private",
+            az_redundancy="multi-az",
+            enable_version=True,
+            bucket_acl_delivered=True,
             account_acls=[
                 volcengine.tos.BucketAccountAclArgs(
                     account_id="1",
@@ -471,16 +492,23 @@ class Bucket(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            az_redundancy="multi-az",
-            bucket_acl_delivered=True,
-            bucket_name="tf-acc-test-bucket-0123-3",
-            enable_version=True,
             project_name="default",
-            public_acl="private",
             tags=[volcengine.tos.BucketTagArgs(
                 key="k1",
                 value="v1",
             )])
+        # create tos bucket policy
+        foo_bucket_policy = volcengine.tos.BucketPolicy("fooBucketPolicy",
+            bucket_name=foo_bucket.id,
+            policy=pulumi.Output.json_dumps({
+                "Statement": [{
+                    "Sid": "test",
+                    "Effect": "Allow",
+                    "Principal": ["AccountId/subUserName"],
+                    "Action": ["tos:List*"],
+                    "Resource": [foo_bucket.id.apply(lambda id: f"trn:tos:::{id}")],
+                }],
+            }))
         ```
 
         ## Import

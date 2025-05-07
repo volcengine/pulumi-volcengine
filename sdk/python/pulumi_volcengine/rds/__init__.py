@@ -10,6 +10,11 @@ from .account_privilege import *
 from .accounts import *
 from .database import *
 from .databases import *
+from .get_accounts import *
+from .get_databases import *
+from .get_instances import *
+from .get_ip_lists import *
+from .get_parameter_templates import *
 from .instance import *
 from .instances import *
 from .ip_list import *

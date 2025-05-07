@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -70,12 +70,14 @@ import * as utilities from "../utilities";
  *     networkType: "Private",
  *     objectId: fooInstance.configServersId,
  * });
- * const fooEndpoints = volcengine.mongodb.EndpointsOutput({
+ * const fooEndpoints = volcengine.mongodb.getEndpointsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints */
 export function endpoints(args?: EndpointsArgs, opts?: pulumi.InvokeOptions): Promise<EndpointsResult> {
+    pulumi.log.warn("endpoints is deprecated: volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -127,7 +129,7 @@ export interface EndpointsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -182,11 +184,12 @@ export interface EndpointsResult {
  *     networkType: "Private",
  *     objectId: fooInstance.configServersId,
  * });
- * const fooEndpoints = volcengine.mongodb.EndpointsOutput({
+ * const fooEndpoints = volcengine.mongodb.getEndpointsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints */
 export function endpointsOutput(args?: EndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EndpointsResult> {
     return pulumi.output(args).apply((a: any) => endpoints(a, opts))
 }

@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Namespaces({
+ * const foo = volcengine.cr.getNamespaces({
  *     names: ["namespace-*"],
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces */
 export function namespaces(args: NamespacesArgs, opts?: pulumi.InvokeOptions): Promise<NamespacesResult> {
+    pulumi.log.warn("namespaces is deprecated: volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/namespaces:Namespaces", {
@@ -76,12 +78,13 @@ export interface NamespacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Namespaces({
+ * const foo = volcengine.cr.getNamespaces({
  *     names: ["namespace-*"],
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces */
 export function namespacesOutput(args: NamespacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NamespacesResult> {
     return pulumi.output(args).apply((a: any) => namespaces(a, opts))
 }

@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetRdsInstancesV2Args, GetRdsInstancesV2Result, GetRdsInstancesV2OutputArgs } from "./getRdsInstancesV2";
+export const getRdsInstancesV2: typeof import("./getRdsInstancesV2").getRdsInstancesV2 = null as any;
+export const getRdsInstancesV2Output: typeof import("./getRdsInstancesV2").getRdsInstancesV2Output = null as any;
+utilities.lazyLoad(exports, ["getRdsInstancesV2","getRdsInstancesV2Output"], () => require("./getRdsInstancesV2"));
+
 export { RdsInstanceV2Args, RdsInstanceV2State } from "./rdsInstanceV2";
 export type RdsInstanceV2 = import("./rdsInstanceV2").RdsInstanceV2;
 export const RdsInstanceV2: typeof import("./rdsInstanceV2").RdsInstanceV2 = null as any;

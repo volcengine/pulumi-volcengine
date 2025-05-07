@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Vpcs({
+ * const default = volcengine.vpc.getVpcs({
  *     ids: ["vpc-mizl7m1kqccg5smt1bdpijuj"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs */
 export function vpcs(args?: VpcsArgs, opts?: pulumi.InvokeOptions): Promise<VpcsResult> {
+    pulumi.log.warn("vpcs is deprecated: volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -103,11 +105,12 @@ export interface VpcsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Vpcs({
+ * const default = volcengine.vpc.getVpcs({
  *     ids: ["vpc-mizl7m1kqccg5smt1bdpijuj"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Vpcs has been deprecated in favor of volcengine.vpc.getVpcs */
 export function vpcsOutput(args?: VpcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcsResult> {
     return pulumi.output(args).apply((a: any) => vpcs(a, opts))
 }

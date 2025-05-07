@@ -92,6 +92,8 @@ if typing.TYPE_CHECKING:
     transit_router = __transit_router
     import pulumi_volcengine.vedb_mysql as __vedb_mysql
     vedb_mysql = __vedb_mysql
+    import pulumi_volcengine.veecp as __veecp
+    veecp = __veecp
     import pulumi_volcengine.veenedge as __veenedge
     veenedge = __veenedge
     import pulumi_volcengine.vepfs as __vepfs
@@ -144,6 +146,7 @@ else:
     tos = _utilities.lazy_import('pulumi_volcengine.tos')
     transit_router = _utilities.lazy_import('pulumi_volcengine.transit_router')
     vedb_mysql = _utilities.lazy_import('pulumi_volcengine.vedb_mysql')
+    veecp = _utilities.lazy_import('pulumi_volcengine.veecp')
     veenedge = _utilities.lazy_import('pulumi_volcengine.veenedge')
     vepfs = _utilities.lazy_import('pulumi_volcengine.vepfs')
     vke = _utilities.lazy_import('pulumi_volcengine.vke')
@@ -2047,6 +2050,54 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vedb_mysql",
   "classes": {
    "volcengine:vedb_mysql/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veecp/addon",
+  "fqn": "pulumi_volcengine.veecp",
+  "classes": {
+   "volcengine:veecp/addon:Addon": "Addon"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veecp/batchEdgeMachine",
+  "fqn": "pulumi_volcengine.veecp",
+  "classes": {
+   "volcengine:veecp/batchEdgeMachine:BatchEdgeMachine": "BatchEdgeMachine"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veecp/cluster",
+  "fqn": "pulumi_volcengine.veecp",
+  "classes": {
+   "volcengine:veecp/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veecp/edgeNode",
+  "fqn": "pulumi_volcengine.veecp",
+  "classes": {
+   "volcengine:veecp/edgeNode:EdgeNode": "EdgeNode"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veecp/edgeNodePool",
+  "fqn": "pulumi_volcengine.veecp",
+  "classes": {
+   "volcengine:veecp/edgeNodePool:EdgeNodePool": "EdgeNodePool"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veecp/nodePool",
+  "fqn": "pulumi_volcengine.veecp",
+  "classes": {
+   "volcengine:veecp/nodePool:NodePool": "NodePool"
   }
  },
  {

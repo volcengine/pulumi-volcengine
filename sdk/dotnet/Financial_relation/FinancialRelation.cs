@@ -11,6 +11,32 @@ namespace Pulumi.Volcengine.Financial_relation
 {
     /// <summary>
     /// Provides a resource to manage financial relation
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Volcengine.Financial_relation.FinancialRelation("foo", new()
+    ///     {
+    ///         AccountAlias = "acc-test-financial",
+    ///         AuthLists = new[]
+    ///         {
+    ///             1,
+    ///             2,
+    ///             3,
+    ///         },
+    ///         Relation = 4,
+    ///         SubAccountId = 2100260000,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// FinancialRelation can be imported using the sub_account_id:relation:relation_id, e.g.

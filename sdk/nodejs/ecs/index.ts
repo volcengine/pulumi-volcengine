@@ -35,6 +35,76 @@ export const deploymentSets: typeof import("./deploymentSets").deploymentSets = 
 export const deploymentSetsOutput: typeof import("./deploymentSets").deploymentSetsOutput = null as any;
 utilities.lazyLoad(exports, ["deploymentSets","deploymentSetsOutput"], () => require("./deploymentSets"));
 
+export { GetAvailableResourcesArgs, GetAvailableResourcesResult, GetAvailableResourcesOutputArgs } from "./getAvailableResources";
+export const getAvailableResources: typeof import("./getAvailableResources").getAvailableResources = null as any;
+export const getAvailableResourcesOutput: typeof import("./getAvailableResources").getAvailableResourcesOutput = null as any;
+utilities.lazyLoad(exports, ["getAvailableResources","getAvailableResourcesOutput"], () => require("./getAvailableResources"));
+
+export { GetCommandsArgs, GetCommandsResult, GetCommandsOutputArgs } from "./getCommands";
+export const getCommands: typeof import("./getCommands").getCommands = null as any;
+export const getCommandsOutput: typeof import("./getCommands").getCommandsOutput = null as any;
+utilities.lazyLoad(exports, ["getCommands","getCommandsOutput"], () => require("./getCommands"));
+
+export { GetDeploymentSetsArgs, GetDeploymentSetsResult, GetDeploymentSetsOutputArgs } from "./getDeploymentSets";
+export const getDeploymentSets: typeof import("./getDeploymentSets").getDeploymentSets = null as any;
+export const getDeploymentSetsOutput: typeof import("./getDeploymentSets").getDeploymentSetsOutput = null as any;
+utilities.lazyLoad(exports, ["getDeploymentSets","getDeploymentSetsOutput"], () => require("./getDeploymentSets"));
+
+export { GetHpcClustersArgs, GetHpcClustersResult, GetHpcClustersOutputArgs } from "./getHpcClusters";
+export const getHpcClusters: typeof import("./getHpcClusters").getHpcClusters = null as any;
+export const getHpcClustersOutput: typeof import("./getHpcClusters").getHpcClustersOutput = null as any;
+utilities.lazyLoad(exports, ["getHpcClusters","getHpcClustersOutput"], () => require("./getHpcClusters"));
+
+export { GetImageSharePermissionsArgs, GetImageSharePermissionsResult, GetImageSharePermissionsOutputArgs } from "./getImageSharePermissions";
+export const getImageSharePermissions: typeof import("./getImageSharePermissions").getImageSharePermissions = null as any;
+export const getImageSharePermissionsOutput: typeof import("./getImageSharePermissions").getImageSharePermissionsOutput = null as any;
+utilities.lazyLoad(exports, ["getImageSharePermissions","getImageSharePermissionsOutput"], () => require("./getImageSharePermissions"));
+
+export { GetImagesArgs, GetImagesResult, GetImagesOutputArgs } from "./getImages";
+export const getImages: typeof import("./getImages").getImages = null as any;
+export const getImagesOutput: typeof import("./getImages").getImagesOutput = null as any;
+utilities.lazyLoad(exports, ["getImages","getImagesOutput"], () => require("./getImages"));
+
+export { GetInstanceTypesArgs, GetInstanceTypesResult, GetInstanceTypesOutputArgs } from "./getInstanceTypes";
+export const getInstanceTypes: typeof import("./getInstanceTypes").getInstanceTypes = null as any;
+export const getInstanceTypesOutput: typeof import("./getInstanceTypes").getInstanceTypesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceTypes","getInstanceTypesOutput"], () => require("./getInstanceTypes"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetInvocationResultsArgs, GetInvocationResultsResult, GetInvocationResultsOutputArgs } from "./getInvocationResults";
+export const getInvocationResults: typeof import("./getInvocationResults").getInvocationResults = null as any;
+export const getInvocationResultsOutput: typeof import("./getInvocationResults").getInvocationResultsOutput = null as any;
+utilities.lazyLoad(exports, ["getInvocationResults","getInvocationResultsOutput"], () => require("./getInvocationResults"));
+
+export { GetInvocationsArgs, GetInvocationsResult, GetInvocationsOutputArgs } from "./getInvocations";
+export const getInvocations: typeof import("./getInvocations").getInvocations = null as any;
+export const getInvocationsOutput: typeof import("./getInvocations").getInvocationsOutput = null as any;
+utilities.lazyLoad(exports, ["getInvocations","getInvocationsOutput"], () => require("./getInvocations"));
+
+export { GetKeyPairsArgs, GetKeyPairsResult, GetKeyPairsOutputArgs } from "./getKeyPairs";
+export const getKeyPairs: typeof import("./getKeyPairs").getKeyPairs = null as any;
+export const getKeyPairsOutput: typeof import("./getKeyPairs").getKeyPairsOutput = null as any;
+utilities.lazyLoad(exports, ["getKeyPairs","getKeyPairsOutput"], () => require("./getKeyPairs"));
+
+export { GetLaunchTemplatesArgs, GetLaunchTemplatesResult, GetLaunchTemplatesOutputArgs } from "./getLaunchTemplates";
+export const getLaunchTemplates: typeof import("./getLaunchTemplates").getLaunchTemplates = null as any;
+export const getLaunchTemplatesOutput: typeof import("./getLaunchTemplates").getLaunchTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getLaunchTemplates","getLaunchTemplatesOutput"], () => require("./getLaunchTemplates"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { HpcClusterArgs, HpcClusterState } from "./hpcCluster";
 export type HpcCluster = import("./hpcCluster").HpcCluster;
 export const HpcCluster: typeof import("./hpcCluster").HpcCluster = null as any;

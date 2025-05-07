@@ -18,6 +18,8 @@ __all__ = [
     'permission_groups_output',
 ]
 
+warnings.warn("""volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class PermissionGroupsResult:
     """
@@ -114,7 +116,7 @@ def permission_groups(filters: Optional[Sequence[pulumi.InputType['PermissionGro
                 use_mode="All_squash",
             ),
         ])
-    default = volcengine.nas.permission_groups_output(filters=[volcengine.nas.PermissionGroupsFilterArgs(
+    default = volcengine.nas.get_permission_groups_output(filters=[volcengine.nas.GetPermissionGroupsFilterArgs(
         key="PermissionGroupId",
         value=foo.id,
     )])
@@ -124,6 +126,7 @@ def permission_groups(filters: Optional[Sequence[pulumi.InputType['PermissionGro
     :param Sequence[pulumi.InputType['PermissionGroupsFilterArgs']] filters: Filter permission groups for specified characteristics.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""permission_groups is deprecated: volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups""")
     __args__ = dict()
     __args__['filters'] = filters
     __args__['outputFile'] = output_file
@@ -165,7 +168,7 @@ def permission_groups_output(filters: Optional[pulumi.Input[Optional[Sequence[pu
                 use_mode="All_squash",
             ),
         ])
-    default = volcengine.nas.permission_groups_output(filters=[volcengine.nas.PermissionGroupsFilterArgs(
+    default = volcengine.nas.get_permission_groups_output(filters=[volcengine.nas.GetPermissionGroupsFilterArgs(
         key="PermissionGroupId",
         value=foo.id,
     )])
@@ -175,4 +178,5 @@ def permission_groups_output(filters: Optional[pulumi.Input[Optional[Sequence[pu
     :param Sequence[pulumi.InputType['PermissionGroupsFilterArgs']] filters: Filter permission groups for specified characteristics.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""permission_groups is deprecated: volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups""")
     ...

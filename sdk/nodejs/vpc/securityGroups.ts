@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.SecurityGroups({
+ * const default = volcengine.vpc.getSecurityGroups({
  *     ids: ["sg-273ycgql3ig3k7fap8t3dyvqx"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups */
 export function securityGroups(args?: SecurityGroupsArgs, opts?: pulumi.InvokeOptions): Promise<SecurityGroupsResult> {
+    pulumi.log.warn("securityGroups is deprecated: volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -109,11 +111,12 @@ export interface SecurityGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.SecurityGroups({
+ * const default = volcengine.vpc.getSecurityGroups({
  *     ids: ["sg-273ycgql3ig3k7fap8t3dyvqx"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.SecurityGroups has been deprecated in favor of volcengine.vpc.getSecurityGroups */
 export function securityGroupsOutput(args?: SecurityGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SecurityGroupsResult> {
     return pulumi.output(args).apply((a: any) => securityGroups(a, opts))
 }

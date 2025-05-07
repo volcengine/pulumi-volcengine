@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := alb.Zones(ctx, nil, nil)
+//			foo, err := alb.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}

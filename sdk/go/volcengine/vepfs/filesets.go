@@ -73,7 +73,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vepfs.FilesetsOutput(ctx, vepfs.FilesetsOutputArgs{
+//			_ = vepfs.GetFilesetsOutput(ctx, vepfs.GetFilesetsOutputArgs{
 //				FileSystemId: fooFileSystem.ID(),
 //				FilesetId:    fooFileset.ID(),
 //			}, nil)
@@ -82,6 +82,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets
 func Filesets(ctx *pulumi.Context, args *FilesetsArgs, opts ...pulumi.InvokeOption) (*FilesetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FilesetsResult

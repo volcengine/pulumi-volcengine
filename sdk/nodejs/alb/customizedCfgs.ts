@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.CustomizedCfgs({});
+ * const foo = volcengine.alb.getCustomizedCfgs({});
  * ```
  */
+/** @deprecated volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs */
 export function customizedCfgs(args?: CustomizedCfgsArgs, opts?: pulumi.InvokeOptions): Promise<CustomizedCfgsResult> {
+    pulumi.log.warn("customizedCfgs is deprecated: volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -101,9 +103,10 @@ export interface CustomizedCfgsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.CustomizedCfgs({});
+ * const foo = volcengine.alb.getCustomizedCfgs({});
  * ```
  */
+/** @deprecated volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs */
 export function customizedCfgsOutput(args?: CustomizedCfgsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CustomizedCfgsResult> {
     return pulumi.output(args).apply((a: any) => customizedCfgs(a, opts))
 }

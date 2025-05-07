@@ -18,6 +18,8 @@ __all__ = [
     'bandwidth_packages_output',
 ]
 
+warnings.warn("""volcengine.bandwidth_package.BandwidthPackages has been deprecated in favor of volcengine.bandwidth_package.getBandwidthPackages""", DeprecationWarning)
+
 @pulumi.output_type
 class BandwidthPackagesResult:
     """
@@ -195,7 +197,7 @@ def bandwidth_packages(bandwidth_package_name: Optional[str] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_bandwidth_packages = volcengine.bandwidth_package.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
+    foo_bandwidth_packages = volcengine.bandwidth_package.get_bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 
@@ -209,6 +211,7 @@ def bandwidth_packages(bandwidth_package_name: Optional[str] = None,
     :param bool security_protection_enabled: Security protection types for shared bandwidth packages.
     :param Sequence[pulumi.InputType['BandwidthPackagesTagFilterArgs']] tag_filters: A list of tags.
     """
+    pulumi.log.warn("""bandwidth_packages is deprecated: volcengine.bandwidth_package.BandwidthPackages has been deprecated in favor of volcengine.bandwidth_package.getBandwidthPackages""")
     __args__ = dict()
     __args__['bandwidthPackageName'] = bandwidth_package_name
     __args__['ids'] = ids
@@ -270,7 +273,7 @@ def bandwidth_packages_output(bandwidth_package_name: Optional[pulumi.Input[Opti
                 key="k1",
                 value="v1",
             )]))
-    foo_bandwidth_packages = volcengine.bandwidth_package.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
+    foo_bandwidth_packages = volcengine.bandwidth_package.get_bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 
@@ -284,4 +287,5 @@ def bandwidth_packages_output(bandwidth_package_name: Optional[pulumi.Input[Opti
     :param bool security_protection_enabled: Security protection types for shared bandwidth packages.
     :param Sequence[pulumi.InputType['BandwidthPackagesTagFilterArgs']] tag_filters: A list of tags.
     """
+    pulumi.log.warn("""bandwidth_packages is deprecated: volcengine.bandwidth_package.BandwidthPackages has been deprecated in favor of volcengine.bandwidth_package.getBandwidthPackages""")
     ...

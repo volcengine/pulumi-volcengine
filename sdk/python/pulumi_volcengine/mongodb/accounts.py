@@ -17,6 +17,8 @@ __all__ = [
     'accounts_output',
 ]
 
+warnings.warn("""volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts""", DeprecationWarning)
+
 @pulumi.output_type
 class AccountsResult:
     """
@@ -124,7 +126,7 @@ def accounts(account_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.mongodb.accounts(instance_id="mongo-replica-xxx")
+    default = volcengine.mongodb.get_accounts(instance_id="mongo-replica-xxx")
     ```
 
 
@@ -133,6 +135,7 @@ def accounts(account_name: Optional[str] = None,
     :param str instance_id: Target query mongodb instance id.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts""")
     __args__ = dict()
     __args__['accountName'] = account_name
     __args__['authDb'] = auth_db
@@ -165,7 +168,7 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.mongodb.accounts(instance_id="mongo-replica-xxx")
+    default = volcengine.mongodb.get_accounts(instance_id="mongo-replica-xxx")
     ```
 
 
@@ -174,4 +177,5 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: Target query mongodb instance id.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts""")
     ...

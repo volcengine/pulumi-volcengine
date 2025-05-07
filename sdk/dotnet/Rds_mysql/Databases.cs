@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mysql
 {
+    [Obsolete(@"volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases")]
     public static class Databases
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         ///     {
         ///         SubnetName = "acc-subnet-test-2",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -43,8 +44,8 @@ namespace Pulumi.Volcengine.Rds_mysql
         ///     {
         ///         DbEngineVersion = "MySQL_5_7",
         ///         NodeSpec = "rds.mysql.1c2g",
-        ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-        ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         StorageSpace = 80,
         ///         SubnetId = fooSubnet.Id,
         ///         InstanceName = "acc-test",
@@ -74,7 +75,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooDatabases = Volcengine.Rds_mysql.Databases.Invoke(new()
+        ///     var fooDatabases = Volcengine.Rds_mysql.GetDatabases.Invoke(new()
         ///     {
         ///         DbName = "acc-test",
         ///         InstanceId = fooInstance.Id,
@@ -98,7 +99,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -110,7 +111,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         ///     {
         ///         SubnetName = "acc-subnet-test-2",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -118,8 +119,8 @@ namespace Pulumi.Volcengine.Rds_mysql
         ///     {
         ///         DbEngineVersion = "MySQL_5_7",
         ///         NodeSpec = "rds.mysql.1c2g",
-        ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-        ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         StorageSpace = 80,
         ///         SubnetId = fooSubnet.Id,
         ///         InstanceName = "acc-test",
@@ -149,7 +150,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooDatabases = Volcengine.Rds_mysql.Databases.Invoke(new()
+        ///     var fooDatabases = Volcengine.Rds_mysql.GetDatabases.Invoke(new()
         ///     {
         ///         DbName = "acc-test",
         ///         InstanceId = fooInstance.Id,

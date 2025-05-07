@@ -30,6 +30,19 @@ __all__ = [
     'ScalingLifecycleHooksLifecycleHookResult',
     'ScalingLifecycleHooksLifecycleHookLifecycleCommandResult',
     'ScalingPoliciesScalingPolicyResult',
+    'GetScalingActivitiesActivityResult',
+    'GetScalingActivitiesActivityRelatedInstanceResult',
+    'GetScalingConfigurationsScalingConfigurationResult',
+    'GetScalingConfigurationsScalingConfigurationTagResult',
+    'GetScalingConfigurationsScalingConfigurationVolumeResult',
+    'GetScalingGroupsScalingGroupResult',
+    'GetScalingGroupsScalingGroupLaunchTemplateOverrideResult',
+    'GetScalingGroupsScalingGroupServerGroupAttributeResult',
+    'GetScalingGroupsScalingGroupTagResult',
+    'GetScalingInstancesScalingInstanceResult',
+    'GetScalingLifecycleHooksLifecycleHookResult',
+    'GetScalingLifecycleHooksLifecycleHookLifecycleCommandResult',
+    'GetScalingPoliciesScalingPolicyResult',
 ]
 
 @pulumi.output_type
@@ -1541,6 +1554,1467 @@ class ScalingLifecycleHooksLifecycleHookLifecycleCommandResult(dict):
 
 @pulumi.output_type
 class ScalingPoliciesScalingPolicyResult(dict):
+    def __init__(__self__, *,
+                 adjustment_type: str,
+                 adjustment_value: int,
+                 alarm_policy_condition_comparison_operator: str,
+                 alarm_policy_condition_metric_name: str,
+                 alarm_policy_condition_metric_unit: str,
+                 alarm_policy_condition_threshold: str,
+                 alarm_policy_evaluation_count: int,
+                 alarm_policy_rule_type: str,
+                 cooldown: int,
+                 id: str,
+                 scaling_group_id: str,
+                 scaling_policy_id: str,
+                 scaling_policy_name: str,
+                 scaling_policy_type: str,
+                 scheduled_policy_launch_time: str,
+                 scheduled_policy_recurrence_end_time: str,
+                 scheduled_policy_recurrence_start_time: str,
+                 scheduled_policy_recurrence_type: str,
+                 scheduled_policy_recurrence_value: str,
+                 status: str):
+        """
+        :param str adjustment_type: The adjustment type of the scaling policy.
+        :param int adjustment_value: The adjustment value of the scaling policy.
+        :param str alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy.
+        :param str alarm_policy_condition_metric_name: The metric name of the alarm policy condition of the scaling policy.
+        :param str alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy.
+        :param str alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy.
+        :param int alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy.
+        :param str alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy.
+        :param int cooldown: The cooldown of the scaling policy.
+        :param str id: The id of the scaling policy.
+        :param str scaling_group_id: An id of the scaling group to which the scaling policy belongs.
+        :param str scaling_policy_id: The id of the scaling policy.
+        :param str scaling_policy_name: The name of the scaling policy.
+        :param str scaling_policy_type: A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
+        :param str scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
+        :param str scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy.
+        :param str scheduled_policy_recurrence_start_time: The recurrence start time of the scheduled policy of the scaling policy.
+        :param str scheduled_policy_recurrence_type: The recurrence type of the scheduled policy of the scaling policy.
+        :param str scheduled_policy_recurrence_value: The recurrence value of the scheduled policy of the scaling policy.
+        :param str status: The status of the scaling policy.
+        """
+        pulumi.set(__self__, "adjustment_type", adjustment_type)
+        pulumi.set(__self__, "adjustment_value", adjustment_value)
+        pulumi.set(__self__, "alarm_policy_condition_comparison_operator", alarm_policy_condition_comparison_operator)
+        pulumi.set(__self__, "alarm_policy_condition_metric_name", alarm_policy_condition_metric_name)
+        pulumi.set(__self__, "alarm_policy_condition_metric_unit", alarm_policy_condition_metric_unit)
+        pulumi.set(__self__, "alarm_policy_condition_threshold", alarm_policy_condition_threshold)
+        pulumi.set(__self__, "alarm_policy_evaluation_count", alarm_policy_evaluation_count)
+        pulumi.set(__self__, "alarm_policy_rule_type", alarm_policy_rule_type)
+        pulumi.set(__self__, "cooldown", cooldown)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        pulumi.set(__self__, "scaling_policy_id", scaling_policy_id)
+        pulumi.set(__self__, "scaling_policy_name", scaling_policy_name)
+        pulumi.set(__self__, "scaling_policy_type", scaling_policy_type)
+        pulumi.set(__self__, "scheduled_policy_launch_time", scheduled_policy_launch_time)
+        pulumi.set(__self__, "scheduled_policy_recurrence_end_time", scheduled_policy_recurrence_end_time)
+        pulumi.set(__self__, "scheduled_policy_recurrence_start_time", scheduled_policy_recurrence_start_time)
+        pulumi.set(__self__, "scheduled_policy_recurrence_type", scheduled_policy_recurrence_type)
+        pulumi.set(__self__, "scheduled_policy_recurrence_value", scheduled_policy_recurrence_value)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="adjustmentType")
+    def adjustment_type(self) -> str:
+        """
+        The adjustment type of the scaling policy.
+        """
+        return pulumi.get(self, "adjustment_type")
+
+    @property
+    @pulumi.getter(name="adjustmentValue")
+    def adjustment_value(self) -> int:
+        """
+        The adjustment value of the scaling policy.
+        """
+        return pulumi.get(self, "adjustment_value")
+
+    @property
+    @pulumi.getter(name="alarmPolicyConditionComparisonOperator")
+    def alarm_policy_condition_comparison_operator(self) -> str:
+        """
+        The comparison operator of the alarm policy condition of the scaling policy.
+        """
+        return pulumi.get(self, "alarm_policy_condition_comparison_operator")
+
+    @property
+    @pulumi.getter(name="alarmPolicyConditionMetricName")
+    def alarm_policy_condition_metric_name(self) -> str:
+        """
+        The metric name of the alarm policy condition of the scaling policy.
+        """
+        return pulumi.get(self, "alarm_policy_condition_metric_name")
+
+    @property
+    @pulumi.getter(name="alarmPolicyConditionMetricUnit")
+    def alarm_policy_condition_metric_unit(self) -> str:
+        """
+        The comparison operator of the alarm policy condition of the scaling policy.
+        """
+        return pulumi.get(self, "alarm_policy_condition_metric_unit")
+
+    @property
+    @pulumi.getter(name="alarmPolicyConditionThreshold")
+    def alarm_policy_condition_threshold(self) -> str:
+        """
+        The threshold of the alarm policy condition of the scaling policy.
+        """
+        return pulumi.get(self, "alarm_policy_condition_threshold")
+
+    @property
+    @pulumi.getter(name="alarmPolicyEvaluationCount")
+    def alarm_policy_evaluation_count(self) -> int:
+        """
+        The evaluation count of the alarm policy of the scaling policy.
+        """
+        return pulumi.get(self, "alarm_policy_evaluation_count")
+
+    @property
+    @pulumi.getter(name="alarmPolicyRuleType")
+    def alarm_policy_rule_type(self) -> str:
+        """
+        The rule type of the alarm policy of the scaling policy.
+        """
+        return pulumi.get(self, "alarm_policy_rule_type")
+
+    @property
+    @pulumi.getter
+    def cooldown(self) -> int:
+        """
+        The cooldown of the scaling policy.
+        """
+        return pulumi.get(self, "cooldown")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the scaling policy.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="scalingGroupId")
+    def scaling_group_id(self) -> str:
+        """
+        An id of the scaling group to which the scaling policy belongs.
+        """
+        return pulumi.get(self, "scaling_group_id")
+
+    @property
+    @pulumi.getter(name="scalingPolicyId")
+    def scaling_policy_id(self) -> str:
+        """
+        The id of the scaling policy.
+        """
+        return pulumi.get(self, "scaling_policy_id")
+
+    @property
+    @pulumi.getter(name="scalingPolicyName")
+    def scaling_policy_name(self) -> str:
+        """
+        The name of the scaling policy.
+        """
+        return pulumi.get(self, "scaling_policy_name")
+
+    @property
+    @pulumi.getter(name="scalingPolicyType")
+    def scaling_policy_type(self) -> str:
+        """
+        A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
+        """
+        return pulumi.get(self, "scaling_policy_type")
+
+    @property
+    @pulumi.getter(name="scheduledPolicyLaunchTime")
+    def scheduled_policy_launch_time(self) -> str:
+        """
+        The launch time of the scheduled policy of the scaling policy.
+        """
+        return pulumi.get(self, "scheduled_policy_launch_time")
+
+    @property
+    @pulumi.getter(name="scheduledPolicyRecurrenceEndTime")
+    def scheduled_policy_recurrence_end_time(self) -> str:
+        """
+        The recurrence end time of the scheduled policy of the scaling policy.
+        """
+        return pulumi.get(self, "scheduled_policy_recurrence_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledPolicyRecurrenceStartTime")
+    def scheduled_policy_recurrence_start_time(self) -> str:
+        """
+        The recurrence start time of the scheduled policy of the scaling policy.
+        """
+        return pulumi.get(self, "scheduled_policy_recurrence_start_time")
+
+    @property
+    @pulumi.getter(name="scheduledPolicyRecurrenceType")
+    def scheduled_policy_recurrence_type(self) -> str:
+        """
+        The recurrence type of the scheduled policy of the scaling policy.
+        """
+        return pulumi.get(self, "scheduled_policy_recurrence_type")
+
+    @property
+    @pulumi.getter(name="scheduledPolicyRecurrenceValue")
+    def scheduled_policy_recurrence_value(self) -> str:
+        """
+        The recurrence value of the scheduled policy of the scaling policy.
+        """
+        return pulumi.get(self, "scheduled_policy_recurrence_value")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the scaling policy.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetScalingActivitiesActivityResult(dict):
+    def __init__(__self__, *,
+                 activity_type: str,
+                 actual_adjust_instance_number: int,
+                 cooldown: int,
+                 created_at: str,
+                 current_instance_number: int,
+                 expected_run_time: str,
+                 id: str,
+                 max_instance_number: int,
+                 min_instance_number: int,
+                 related_instances: Sequence['outputs.GetScalingActivitiesActivityRelatedInstanceResult'],
+                 result_msg: str,
+                 scaling_activity_id: str,
+                 scaling_group_id: str,
+                 status_code: str,
+                 stopped_at: str,
+                 task_category: str):
+        """
+        :param str activity_type: The Actual Type.
+        :param int actual_adjust_instance_number: The Actual Adjustment Instance Number.
+        :param int cooldown: The Cooldown time.
+        :param str created_at: The create time of Scaling Activity.
+        :param int current_instance_number: The Current Instance Number.
+        :param str expected_run_time: The expected run time of Scaling Activity.
+        :param str id: The ID of Scaling Activity.
+        :param int max_instance_number: The Max Instance Number.
+        :param int min_instance_number: The Min Instance Number.
+        :param Sequence['GetScalingActivitiesActivityRelatedInstanceArgs'] related_instances: The related instances.
+        :param str result_msg: The Result of Scaling Activity.
+        :param str scaling_activity_id: The ID of Scaling Activity.
+        :param str scaling_group_id: A Id of Scaling Group.
+        :param str status_code: A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
+        :param str stopped_at: The stopped time of Scaling Activity.
+        :param str task_category: The task category of Scaling Activity.
+        """
+        pulumi.set(__self__, "activity_type", activity_type)
+        pulumi.set(__self__, "actual_adjust_instance_number", actual_adjust_instance_number)
+        pulumi.set(__self__, "cooldown", cooldown)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "current_instance_number", current_instance_number)
+        pulumi.set(__self__, "expected_run_time", expected_run_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_instance_number", max_instance_number)
+        pulumi.set(__self__, "min_instance_number", min_instance_number)
+        pulumi.set(__self__, "related_instances", related_instances)
+        pulumi.set(__self__, "result_msg", result_msg)
+        pulumi.set(__self__, "scaling_activity_id", scaling_activity_id)
+        pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        pulumi.set(__self__, "status_code", status_code)
+        pulumi.set(__self__, "stopped_at", stopped_at)
+        pulumi.set(__self__, "task_category", task_category)
+
+    @property
+    @pulumi.getter(name="activityType")
+    def activity_type(self) -> str:
+        """
+        The Actual Type.
+        """
+        return pulumi.get(self, "activity_type")
+
+    @property
+    @pulumi.getter(name="actualAdjustInstanceNumber")
+    def actual_adjust_instance_number(self) -> int:
+        """
+        The Actual Adjustment Instance Number.
+        """
+        return pulumi.get(self, "actual_adjust_instance_number")
+
+    @property
+    @pulumi.getter
+    def cooldown(self) -> int:
+        """
+        The Cooldown time.
+        """
+        return pulumi.get(self, "cooldown")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of Scaling Activity.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="currentInstanceNumber")
+    def current_instance_number(self) -> int:
+        """
+        The Current Instance Number.
+        """
+        return pulumi.get(self, "current_instance_number")
+
+    @property
+    @pulumi.getter(name="expectedRunTime")
+    def expected_run_time(self) -> str:
+        """
+        The expected run time of Scaling Activity.
+        """
+        return pulumi.get(self, "expected_run_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of Scaling Activity.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="maxInstanceNumber")
+    def max_instance_number(self) -> int:
+        """
+        The Max Instance Number.
+        """
+        return pulumi.get(self, "max_instance_number")
+
+    @property
+    @pulumi.getter(name="minInstanceNumber")
+    def min_instance_number(self) -> int:
+        """
+        The Min Instance Number.
+        """
+        return pulumi.get(self, "min_instance_number")
+
+    @property
+    @pulumi.getter(name="relatedInstances")
+    def related_instances(self) -> Sequence['outputs.GetScalingActivitiesActivityRelatedInstanceResult']:
+        """
+        The related instances.
+        """
+        return pulumi.get(self, "related_instances")
+
+    @property
+    @pulumi.getter(name="resultMsg")
+    def result_msg(self) -> str:
+        """
+        The Result of Scaling Activity.
+        """
+        return pulumi.get(self, "result_msg")
+
+    @property
+    @pulumi.getter(name="scalingActivityId")
+    def scaling_activity_id(self) -> str:
+        """
+        The ID of Scaling Activity.
+        """
+        return pulumi.get(self, "scaling_activity_id")
+
+    @property
+    @pulumi.getter(name="scalingGroupId")
+    def scaling_group_id(self) -> str:
+        """
+        A Id of Scaling Group.
+        """
+        return pulumi.get(self, "scaling_group_id")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> str:
+        """
+        A status code of Scaling Activity. Valid values: Init, Running, Success, PartialSuccess, Error, Rejected, Exception.
+        """
+        return pulumi.get(self, "status_code")
+
+    @property
+    @pulumi.getter(name="stoppedAt")
+    def stopped_at(self) -> str:
+        """
+        The stopped time of Scaling Activity.
+        """
+        return pulumi.get(self, "stopped_at")
+
+    @property
+    @pulumi.getter(name="taskCategory")
+    def task_category(self) -> str:
+        """
+        The task category of Scaling Activity.
+        """
+        return pulumi.get(self, "task_category")
+
+
+@pulumi.output_type
+class GetScalingActivitiesActivityRelatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 message: str,
+                 operate_type: str,
+                 status: str):
+        """
+        :param str instance_id: The Instance ID.
+        :param str message: The message of Instance.
+        :param str operate_type: The Operation Type.
+        :param str status: The Status.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "operate_type", operate_type)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The Instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def message(self) -> str:
+        """
+        The message of Instance.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter(name="operateType")
+    def operate_type(self) -> str:
+        """
+        The Operation Type.
+        """
+        return pulumi.get(self, "operate_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetScalingConfigurationsScalingConfigurationResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 eip_bandwidth: int,
+                 eip_billing_type: str,
+                 eip_isp: str,
+                 host_name: str,
+                 hpc_cluster_id: str,
+                 id: str,
+                 image_id: str,
+                 instance_description: str,
+                 instance_name: str,
+                 instance_types: Sequence[str],
+                 ipv6_address_count: int,
+                 key_pair_name: str,
+                 lifecycle_state: str,
+                 project_name: str,
+                 scaling_configuration_id: str,
+                 scaling_configuration_name: str,
+                 scaling_group_id: str,
+                 security_enhancement_strategy: str,
+                 security_group_ids: Sequence[str],
+                 spot_strategy: str,
+                 tags: Sequence['outputs.GetScalingConfigurationsScalingConfigurationTagResult'],
+                 updated_at: str,
+                 user_data: str,
+                 volumes: Sequence['outputs.GetScalingConfigurationsScalingConfigurationVolumeResult']):
+        """
+        :param str created_at: The create time of the scaling configuration.
+        :param int eip_bandwidth: The EIP bandwidth which the scaling configuration set.
+        :param str eip_billing_type: The EIP ISP which the scaling configuration set.
+        :param str eip_isp: The EIP ISP which the scaling configuration set.
+        :param str host_name: The ECS hostname which the scaling configuration set.
+        :param str hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+        :param str id: The id of the scaling configuration.
+        :param str image_id: The ECS image id which the scaling configuration set.
+        :param str instance_description: The ECS instance description which the scaling configuration set.
+        :param str instance_name: The ECS instance name which the scaling configuration set.
+        :param Sequence[str] instance_types: The list of the ECS instance type which the scaling configuration set.
+        :param int ipv6_address_count: Assign IPv6 address to instance network card. Possible values:
+               0: Do not assign IPv6 address.
+               1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        :param str key_pair_name: The ECS key pair name which the scaling configuration set.
+        :param str lifecycle_state: The lifecycle state of the scaling configuration.
+        :param str project_name: The project to which the instance created by the scaling configuration belongs.
+        :param str scaling_configuration_id: The id of the scaling configuration.
+        :param str scaling_configuration_name: The name of the scaling configuration.
+        :param str scaling_group_id: An id of scaling group.
+        :param str security_enhancement_strategy: The Ecs security enhancement strategy which the scaling configuration set.
+        :param Sequence[str] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set.
+        :param str spot_strategy: The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        :param Sequence['GetScalingConfigurationsScalingConfigurationTagArgs'] tags: The label of the instance created by the scaling configuration.
+        :param str updated_at: The create time of the scaling configuration.
+        :param str user_data: The ECS user data which the scaling configuration set.
+        :param Sequence['GetScalingConfigurationsScalingConfigurationVolumeArgs'] volumes: The list of volume of the scaling configuration.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "eip_bandwidth", eip_bandwidth)
+        pulumi.set(__self__, "eip_billing_type", eip_billing_type)
+        pulumi.set(__self__, "eip_isp", eip_isp)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "instance_description", instance_description)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_types", instance_types)
+        pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        pulumi.set(__self__, "key_pair_name", key_pair_name)
+        pulumi.set(__self__, "lifecycle_state", lifecycle_state)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "scaling_configuration_id", scaling_configuration_id)
+        pulumi.set(__self__, "scaling_configuration_name", scaling_configuration_name)
+        pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "spot_strategy", spot_strategy)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "user_data", user_data)
+        pulumi.set(__self__, "volumes", volumes)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of the scaling configuration.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="eipBandwidth")
+    def eip_bandwidth(self) -> int:
+        """
+        The EIP bandwidth which the scaling configuration set.
+        """
+        return pulumi.get(self, "eip_bandwidth")
+
+    @property
+    @pulumi.getter(name="eipBillingType")
+    def eip_billing_type(self) -> str:
+        """
+        The EIP ISP which the scaling configuration set.
+        """
+        return pulumi.get(self, "eip_billing_type")
+
+    @property
+    @pulumi.getter(name="eipIsp")
+    def eip_isp(self) -> str:
+        """
+        The EIP ISP which the scaling configuration set.
+        """
+        return pulumi.get(self, "eip_isp")
+
+    @property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> str:
+        """
+        The ECS hostname which the scaling configuration set.
+        """
+        return pulumi.get(self, "host_name")
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> str:
+        """
+        The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the scaling configuration.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        The ECS image id which the scaling configuration set.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="instanceDescription")
+    def instance_description(self) -> str:
+        """
+        The ECS instance description which the scaling configuration set.
+        """
+        return pulumi.get(self, "instance_description")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The ECS instance name which the scaling configuration set.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="instanceTypes")
+    def instance_types(self) -> Sequence[str]:
+        """
+        The list of the ECS instance type which the scaling configuration set.
+        """
+        return pulumi.get(self, "instance_types")
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> int:
+        """
+        Assign IPv6 address to instance network card. Possible values:
+        0: Do not assign IPv6 address.
+        1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @property
+    @pulumi.getter(name="keyPairName")
+    def key_pair_name(self) -> str:
+        """
+        The ECS key pair name which the scaling configuration set.
+        """
+        return pulumi.get(self, "key_pair_name")
+
+    @property
+    @pulumi.getter(name="lifecycleState")
+    def lifecycle_state(self) -> str:
+        """
+        The lifecycle state of the scaling configuration.
+        """
+        return pulumi.get(self, "lifecycle_state")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project to which the instance created by the scaling configuration belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="scalingConfigurationId")
+    def scaling_configuration_id(self) -> str:
+        """
+        The id of the scaling configuration.
+        """
+        return pulumi.get(self, "scaling_configuration_id")
+
+    @property
+    @pulumi.getter(name="scalingConfigurationName")
+    def scaling_configuration_name(self) -> str:
+        """
+        The name of the scaling configuration.
+        """
+        return pulumi.get(self, "scaling_configuration_name")
+
+    @property
+    @pulumi.getter(name="scalingGroupId")
+    def scaling_group_id(self) -> str:
+        """
+        An id of scaling group.
+        """
+        return pulumi.get(self, "scaling_group_id")
+
+    @property
+    @pulumi.getter(name="securityEnhancementStrategy")
+    def security_enhancement_strategy(self) -> str:
+        """
+        The Ecs security enhancement strategy which the scaling configuration set.
+        """
+        return pulumi.get(self, "security_enhancement_strategy")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[str]:
+        """
+        The list of the security group id of the networkInterface which the scaling configuration set.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> str:
+        """
+        The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetScalingConfigurationsScalingConfigurationTagResult']:
+        """
+        The label of the instance created by the scaling configuration.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The create time of the scaling configuration.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> str:
+        """
+        The ECS user data which the scaling configuration set.
+        """
+        return pulumi.get(self, "user_data")
+
+    @property
+    @pulumi.getter
+    def volumes(self) -> Sequence['outputs.GetScalingConfigurationsScalingConfigurationVolumeResult']:
+        """
+        The list of volume of the scaling configuration.
+        """
+        return pulumi.get(self, "volumes")
+
+
+@pulumi.output_type
+class GetScalingConfigurationsScalingConfigurationTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetScalingConfigurationsScalingConfigurationVolumeResult(dict):
+    def __init__(__self__, *,
+                 delete_with_instance: bool,
+                 size: int,
+                 volume_type: str):
+        """
+        :param bool delete_with_instance: The delete with instance flag of volume.
+        :param int size: The size of volume.
+        :param str volume_type: The type of volume.
+        """
+        pulumi.set(__self__, "delete_with_instance", delete_with_instance)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "volume_type", volume_type)
+
+    @property
+    @pulumi.getter(name="deleteWithInstance")
+    def delete_with_instance(self) -> bool:
+        """
+        The delete with instance flag of volume.
+        """
+        return pulumi.get(self, "delete_with_instance")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of volume.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
+        """
+        The type of volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class GetScalingGroupsScalingGroupResult(dict):
+    def __init__(__self__, *,
+                 active_scaling_configuration_id: str,
+                 created_at: str,
+                 db_instance_ids: Sequence[str],
+                 default_cooldown: int,
+                 desire_instance_number: int,
+                 health_check_type: str,
+                 id: str,
+                 instance_terminate_policy: str,
+                 launch_template_id: str,
+                 launch_template_overrides: Sequence['outputs.GetScalingGroupsScalingGroupLaunchTemplateOverrideResult'],
+                 launch_template_version: str,
+                 lifecycle_state: str,
+                 load_balancer_health_check_grace_period: int,
+                 max_instance_number: int,
+                 min_instance_number: int,
+                 multi_az_policy: str,
+                 project_name: str,
+                 scaling_group_id: str,
+                 scaling_group_name: str,
+                 scaling_mode: str,
+                 server_group_attributes: Sequence['outputs.GetScalingGroupsScalingGroupServerGroupAttributeResult'],
+                 stopped_instance_count: int,
+                 subnet_ids: Sequence[str],
+                 tags: Sequence['outputs.GetScalingGroupsScalingGroupTagResult'],
+                 total_instance_count: int,
+                 updated_at: str,
+                 vpc_id: str):
+        """
+        :param str active_scaling_configuration_id: The scaling configuration id which used by the scaling group.
+        :param str created_at: The create time of the scaling group.
+        :param Sequence[str] db_instance_ids: The list of db instance ids.
+        :param int default_cooldown: The default cooldown interval of the scaling group.
+        :param int desire_instance_number: The desire instance number of the scaling group.
+        :param str health_check_type: The health check type of the scaling group.
+        :param str id: The id of the scaling group.
+        :param str instance_terminate_policy: The instance terminate policy of the scaling group.
+        :param str launch_template_id: The ID of the launch template bound to the scaling group.
+        :param Sequence['GetScalingGroupsScalingGroupLaunchTemplateOverrideArgs'] launch_template_overrides: Instance start template information.
+        :param str launch_template_version: The version of the launch template bound to the scaling group.
+        :param str lifecycle_state: The lifecycle state of the scaling group.
+        :param int load_balancer_health_check_grace_period: Grace period for health check of CLB instance in elastic group.
+        :param int max_instance_number: The max instance number of the scaling group.
+        :param int min_instance_number: The min instance number of the scaling group.
+        :param str multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+        :param str project_name: The project name of the scaling group.
+        :param str scaling_group_id: The id of the scaling group.
+        :param str scaling_group_name: The name of the scaling group.
+        :param str scaling_mode: The scaling mode of the scaling group.
+        :param Sequence['GetScalingGroupsScalingGroupServerGroupAttributeArgs'] server_group_attributes: The list of server group attributes.
+        :param int stopped_instance_count: The number of stopped instances.
+        :param Sequence[str] subnet_ids: The list of the subnet id to which the ENI is connected.
+        :param Sequence['GetScalingGroupsScalingGroupTagArgs'] tags: Tags.
+        :param int total_instance_count: The total instance count of the scaling group.
+        :param str updated_at: The create time of the scaling group.
+        :param str vpc_id: The VPC id of the scaling group.
+        """
+        pulumi.set(__self__, "active_scaling_configuration_id", active_scaling_configuration_id)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "db_instance_ids", db_instance_ids)
+        pulumi.set(__self__, "default_cooldown", default_cooldown)
+        pulumi.set(__self__, "desire_instance_number", desire_instance_number)
+        pulumi.set(__self__, "health_check_type", health_check_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_terminate_policy", instance_terminate_policy)
+        pulumi.set(__self__, "launch_template_id", launch_template_id)
+        pulumi.set(__self__, "launch_template_overrides", launch_template_overrides)
+        pulumi.set(__self__, "launch_template_version", launch_template_version)
+        pulumi.set(__self__, "lifecycle_state", lifecycle_state)
+        pulumi.set(__self__, "load_balancer_health_check_grace_period", load_balancer_health_check_grace_period)
+        pulumi.set(__self__, "max_instance_number", max_instance_number)
+        pulumi.set(__self__, "min_instance_number", min_instance_number)
+        pulumi.set(__self__, "multi_az_policy", multi_az_policy)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        pulumi.set(__self__, "scaling_group_name", scaling_group_name)
+        pulumi.set(__self__, "scaling_mode", scaling_mode)
+        pulumi.set(__self__, "server_group_attributes", server_group_attributes)
+        pulumi.set(__self__, "stopped_instance_count", stopped_instance_count)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "total_instance_count", total_instance_count)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="activeScalingConfigurationId")
+    def active_scaling_configuration_id(self) -> str:
+        """
+        The scaling configuration id which used by the scaling group.
+        """
+        return pulumi.get(self, "active_scaling_configuration_id")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of the scaling group.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dbInstanceIds")
+    def db_instance_ids(self) -> Sequence[str]:
+        """
+        The list of db instance ids.
+        """
+        return pulumi.get(self, "db_instance_ids")
+
+    @property
+    @pulumi.getter(name="defaultCooldown")
+    def default_cooldown(self) -> int:
+        """
+        The default cooldown interval of the scaling group.
+        """
+        return pulumi.get(self, "default_cooldown")
+
+    @property
+    @pulumi.getter(name="desireInstanceNumber")
+    def desire_instance_number(self) -> int:
+        """
+        The desire instance number of the scaling group.
+        """
+        return pulumi.get(self, "desire_instance_number")
+
+    @property
+    @pulumi.getter(name="healthCheckType")
+    def health_check_type(self) -> str:
+        """
+        The health check type of the scaling group.
+        """
+        return pulumi.get(self, "health_check_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the scaling group.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceTerminatePolicy")
+    def instance_terminate_policy(self) -> str:
+        """
+        The instance terminate policy of the scaling group.
+        """
+        return pulumi.get(self, "instance_terminate_policy")
+
+    @property
+    @pulumi.getter(name="launchTemplateId")
+    def launch_template_id(self) -> str:
+        """
+        The ID of the launch template bound to the scaling group.
+        """
+        return pulumi.get(self, "launch_template_id")
+
+    @property
+    @pulumi.getter(name="launchTemplateOverrides")
+    def launch_template_overrides(self) -> Sequence['outputs.GetScalingGroupsScalingGroupLaunchTemplateOverrideResult']:
+        """
+        Instance start template information.
+        """
+        return pulumi.get(self, "launch_template_overrides")
+
+    @property
+    @pulumi.getter(name="launchTemplateVersion")
+    def launch_template_version(self) -> str:
+        """
+        The version of the launch template bound to the scaling group.
+        """
+        return pulumi.get(self, "launch_template_version")
+
+    @property
+    @pulumi.getter(name="lifecycleState")
+    def lifecycle_state(self) -> str:
+        """
+        The lifecycle state of the scaling group.
+        """
+        return pulumi.get(self, "lifecycle_state")
+
+    @property
+    @pulumi.getter(name="loadBalancerHealthCheckGracePeriod")
+    def load_balancer_health_check_grace_period(self) -> int:
+        """
+        Grace period for health check of CLB instance in elastic group.
+        """
+        return pulumi.get(self, "load_balancer_health_check_grace_period")
+
+    @property
+    @pulumi.getter(name="maxInstanceNumber")
+    def max_instance_number(self) -> int:
+        """
+        The max instance number of the scaling group.
+        """
+        return pulumi.get(self, "max_instance_number")
+
+    @property
+    @pulumi.getter(name="minInstanceNumber")
+    def min_instance_number(self) -> int:
+        """
+        The min instance number of the scaling group.
+        """
+        return pulumi.get(self, "min_instance_number")
+
+    @property
+    @pulumi.getter(name="multiAzPolicy")
+    def multi_az_policy(self) -> str:
+        """
+        The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+        """
+        return pulumi.get(self, "multi_az_policy")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the scaling group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="scalingGroupId")
+    def scaling_group_id(self) -> str:
+        """
+        The id of the scaling group.
+        """
+        return pulumi.get(self, "scaling_group_id")
+
+    @property
+    @pulumi.getter(name="scalingGroupName")
+    def scaling_group_name(self) -> str:
+        """
+        The name of the scaling group.
+        """
+        return pulumi.get(self, "scaling_group_name")
+
+    @property
+    @pulumi.getter(name="scalingMode")
+    def scaling_mode(self) -> str:
+        """
+        The scaling mode of the scaling group.
+        """
+        return pulumi.get(self, "scaling_mode")
+
+    @property
+    @pulumi.getter(name="serverGroupAttributes")
+    def server_group_attributes(self) -> Sequence['outputs.GetScalingGroupsScalingGroupServerGroupAttributeResult']:
+        """
+        The list of server group attributes.
+        """
+        return pulumi.get(self, "server_group_attributes")
+
+    @property
+    @pulumi.getter(name="stoppedInstanceCount")
+    def stopped_instance_count(self) -> int:
+        """
+        The number of stopped instances.
+        """
+        return pulumi.get(self, "stopped_instance_count")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> Sequence[str]:
+        """
+        The list of the subnet id to which the ENI is connected.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetScalingGroupsScalingGroupTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="totalInstanceCount")
+    def total_instance_count(self) -> int:
+        """
+        The total instance count of the scaling group.
+        """
+        return pulumi.get(self, "total_instance_count")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The create time of the scaling group.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC id of the scaling group.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetScalingGroupsScalingGroupLaunchTemplateOverrideResult(dict):
+    def __init__(__self__, *,
+                 instance_type: str,
+                 weighted_capacity: int):
+        """
+        :param str instance_type: The instance type.
+        :param int weighted_capacity: Weight of instance specifications.
+        """
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "weighted_capacity", weighted_capacity)
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="weightedCapacity")
+    def weighted_capacity(self) -> int:
+        """
+        Weight of instance specifications.
+        """
+        return pulumi.get(self, "weighted_capacity")
+
+
+@pulumi.output_type
+class GetScalingGroupsScalingGroupServerGroupAttributeResult(dict):
+    def __init__(__self__, *,
+                 load_balancer_id: str,
+                 port: int,
+                 server_group_id: str,
+                 weight: int):
+        """
+        :param str load_balancer_id: The load balancer id.
+        :param int port: The port receiving request of the server group.
+        :param str server_group_id: The server group id.
+        :param int weight: The weight of the instance.
+        """
+        pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="loadBalancerId")
+    def load_balancer_id(self) -> str:
+        """
+        The load balancer id.
+        """
+        return pulumi.get(self, "load_balancer_id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port receiving request of the server group.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> str:
+        """
+        The server group id.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the instance.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetScalingGroupsScalingGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetScalingInstancesScalingInstanceResult(dict):
+    def __init__(__self__, *,
+                 created_time: str,
+                 creation_type: str,
+                 entrusted: bool,
+                 id: str,
+                 instance_id: str,
+                 scaling_configuration_id: str,
+                 scaling_group_id: str,
+                 scaling_policy_id: str,
+                 status: str):
+        """
+        :param str created_time: The time when the instance was added to the scaling group.
+        :param str creation_type: The creation type of the instances. Valid values: AutoCreated, Attached.
+        :param bool entrusted: Whether to host the instance to a scaling group.
+        :param str id: The id of the scaling instance.
+        :param str instance_id: The id of the scaling instance.
+        :param str scaling_configuration_id: The id of the scaling configuration id.
+        :param str scaling_group_id: The id of the scaling group.
+        :param str scaling_policy_id: The id of the scaling policy.
+        :param str status: The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
+        """
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "creation_type", creation_type)
+        pulumi.set(__self__, "entrusted", entrusted)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "scaling_configuration_id", scaling_configuration_id)
+        pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        pulumi.set(__self__, "scaling_policy_id", scaling_policy_id)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> str:
+        """
+        The time when the instance was added to the scaling group.
+        """
+        return pulumi.get(self, "created_time")
+
+    @property
+    @pulumi.getter(name="creationType")
+    def creation_type(self) -> str:
+        """
+        The creation type of the instances. Valid values: AutoCreated, Attached.
+        """
+        return pulumi.get(self, "creation_type")
+
+    @property
+    @pulumi.getter
+    def entrusted(self) -> bool:
+        """
+        Whether to host the instance to a scaling group.
+        """
+        return pulumi.get(self, "entrusted")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the scaling instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the scaling instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="scalingConfigurationId")
+    def scaling_configuration_id(self) -> str:
+        """
+        The id of the scaling configuration id.
+        """
+        return pulumi.get(self, "scaling_configuration_id")
+
+    @property
+    @pulumi.getter(name="scalingGroupId")
+    def scaling_group_id(self) -> str:
+        """
+        The id of the scaling group.
+        """
+        return pulumi.get(self, "scaling_group_id")
+
+    @property
+    @pulumi.getter(name="scalingPolicyId")
+    def scaling_policy_id(self) -> str:
+        """
+        The id of the scaling policy.
+        """
+        return pulumi.get(self, "scaling_policy_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetScalingLifecycleHooksLifecycleHookResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 lifecycle_commands: Sequence['outputs.GetScalingLifecycleHooksLifecycleHookLifecycleCommandResult'],
+                 lifecycle_hook_id: str,
+                 lifecycle_hook_name: str,
+                 lifecycle_hook_policy: str,
+                 lifecycle_hook_timeout: int,
+                 lifecycle_hook_type: str,
+                 scaling_group_id: str):
+        """
+        :param str id: The id of the lifecycle hook.
+        :param Sequence['GetScalingLifecycleHooksLifecycleHookLifecycleCommandArgs'] lifecycle_commands: Batch job command.
+        :param str lifecycle_hook_id: The id of the lifecycle hook.
+        :param str lifecycle_hook_name: The name of the lifecycle hook.
+        :param str lifecycle_hook_policy: The policy of the lifecycle hook.
+        :param int lifecycle_hook_timeout: The timeout of the lifecycle hook.
+        :param str lifecycle_hook_type: The type of the lifecycle hook.
+        :param str scaling_group_id: An id of scaling group id.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lifecycle_commands", lifecycle_commands)
+        pulumi.set(__self__, "lifecycle_hook_id", lifecycle_hook_id)
+        pulumi.set(__self__, "lifecycle_hook_name", lifecycle_hook_name)
+        pulumi.set(__self__, "lifecycle_hook_policy", lifecycle_hook_policy)
+        pulumi.set(__self__, "lifecycle_hook_timeout", lifecycle_hook_timeout)
+        pulumi.set(__self__, "lifecycle_hook_type", lifecycle_hook_type)
+        pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the lifecycle hook.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lifecycleCommands")
+    def lifecycle_commands(self) -> Sequence['outputs.GetScalingLifecycleHooksLifecycleHookLifecycleCommandResult']:
+        """
+        Batch job command.
+        """
+        return pulumi.get(self, "lifecycle_commands")
+
+    @property
+    @pulumi.getter(name="lifecycleHookId")
+    def lifecycle_hook_id(self) -> str:
+        """
+        The id of the lifecycle hook.
+        """
+        return pulumi.get(self, "lifecycle_hook_id")
+
+    @property
+    @pulumi.getter(name="lifecycleHookName")
+    def lifecycle_hook_name(self) -> str:
+        """
+        The name of the lifecycle hook.
+        """
+        return pulumi.get(self, "lifecycle_hook_name")
+
+    @property
+    @pulumi.getter(name="lifecycleHookPolicy")
+    def lifecycle_hook_policy(self) -> str:
+        """
+        The policy of the lifecycle hook.
+        """
+        return pulumi.get(self, "lifecycle_hook_policy")
+
+    @property
+    @pulumi.getter(name="lifecycleHookTimeout")
+    def lifecycle_hook_timeout(self) -> int:
+        """
+        The timeout of the lifecycle hook.
+        """
+        return pulumi.get(self, "lifecycle_hook_timeout")
+
+    @property
+    @pulumi.getter(name="lifecycleHookType")
+    def lifecycle_hook_type(self) -> str:
+        """
+        The type of the lifecycle hook.
+        """
+        return pulumi.get(self, "lifecycle_hook_type")
+
+    @property
+    @pulumi.getter(name="scalingGroupId")
+    def scaling_group_id(self) -> str:
+        """
+        An id of scaling group id.
+        """
+        return pulumi.get(self, "scaling_group_id")
+
+
+@pulumi.output_type
+class GetScalingLifecycleHooksLifecycleHookLifecycleCommandResult(dict):
+    def __init__(__self__, *,
+                 command_id: str,
+                 parameters: str):
+        """
+        :param str command_id: Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        :param str parameters: Parameters and parameter values in batch job commands.
+               The number of parameters ranges from 0 to 60.
+        """
+        pulumi.set(__self__, "command_id", command_id)
+        pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> str:
+        """
+        Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        """
+        return pulumi.get(self, "command_id")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> str:
+        """
+        Parameters and parameter values in batch job commands.
+        The number of parameters ranges from 0 to 60.
+        """
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class GetScalingPoliciesScalingPolicyResult(dict):
     def __init__(__self__, *,
                  adjustment_type: str,
                  adjustment_value: int,

@@ -64,12 +64,14 @@ import * as utilities from "../utilities";
  *     ipsecConfigLifetime: 9000,
  *     projectName: "default",
  * });
- * const fooConnections = volcengine.vpn.ConnectionsOutput({
+ * const fooConnections = volcengine.vpn.getConnectionsOutput({
  *     ids: [fooConnection.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections */
 export function connections(args?: ConnectionsArgs, opts?: pulumi.InvokeOptions): Promise<ConnectionsResult> {
+    pulumi.log.warn("connections is deprecated: volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -248,11 +250,12 @@ export interface ConnectionsResult {
  *     ipsecConfigLifetime: 9000,
  *     projectName: "default",
  * });
- * const fooConnections = volcengine.vpn.ConnectionsOutput({
+ * const fooConnections = volcengine.vpn.getConnectionsOutput({
  *     ids: [fooConnection.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections */
 export function connectionsOutput(args?: ConnectionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ConnectionsResult> {
     return pulumi.output(args).apply((a: any) => connections(a, opts))
 }

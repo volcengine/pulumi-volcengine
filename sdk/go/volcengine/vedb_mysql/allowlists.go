@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -92,7 +92,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vedb_mysql.AllowlistsOutput(ctx, vedb_mysql.AllowlistsOutputArgs{
+//			_ = vedb_mysql.GetAllowlistsOutput(ctx, vedb_mysql.GetAllowlistsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -100,6 +100,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists
 func Allowlists(ctx *pulumi.Context, args *AllowlistsArgs, opts ...pulumi.InvokeOption) (*AllowlistsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowlistsResult

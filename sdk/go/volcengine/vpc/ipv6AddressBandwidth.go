@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			dataEcs, err := ecs.Instances(ctx, &ecs.InstancesArgs{
+//			dataEcs, err := ecs.GetInstances(ctx, &ecs.GetInstancesArgs{
 //				Ids: []string{
 //					"i-ycal1mtpucl8j0hjiihy",
 //				},
@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			dataIpv6, err := vpc.Ipv6Addresses(ctx, &vpc.Ipv6AddressesArgs{
+//			dataIpv6, err := vpc.GetIpv6Addresses(ctx, &vpc.GetIpv6AddressesArgs{
 //				AssociatedInstanceId: pulumi.StringRef(dataEcs.Instances[0].InstanceId),
 //			}, nil)
 //			if err != nil {

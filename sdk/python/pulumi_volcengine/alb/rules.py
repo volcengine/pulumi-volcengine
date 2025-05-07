@@ -17,6 +17,8 @@ __all__ = [
     'rules_output',
 ]
 
+warnings.warn("""volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules""", DeprecationWarning)
+
 @pulumi.output_type
 class RulesResult:
     """
@@ -98,13 +100,14 @@ def rules(listener_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.rules(listener_id="lsn-1iidd19u4oni874adhezjkyj3")
+    foo = volcengine.alb.get_rules(listener_id="lsn-1iidd19u4oni874adhezjkyj3")
     ```
 
 
     :param str listener_id: The Id of listener.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules""")
     __args__ = dict()
     __args__['listenerId'] = listener_id
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def rules_output(listener_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.rules(listener_id="lsn-1iidd19u4oni874adhezjkyj3")
+    foo = volcengine.alb.get_rules(listener_id="lsn-1iidd19u4oni874adhezjkyj3")
     ```
 
 
     :param str listener_id: The Id of listener.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules""")
     ...

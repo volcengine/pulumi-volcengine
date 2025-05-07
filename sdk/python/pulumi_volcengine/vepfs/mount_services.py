@@ -17,6 +17,8 @@ __all__ = [
     'mount_services_output',
 ]
 
+warnings.warn("""volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices""", DeprecationWarning)
+
 @pulumi.output_type
 class MountServicesResult:
     """
@@ -163,7 +165,7 @@ def mount_services(file_system_id: Optional[str] = None,
         subnet_id=foo_subnet.id,
         node_type="ecs.g1ie.large",
         project="default")
-    foo_mount_services = volcengine.vepfs.mount_services_output(mount_service_id=foo_mount_service.id)
+    foo_mount_services = volcengine.vepfs.get_mount_services_output(mount_service_id=foo_mount_service.id)
     ```
 
 
@@ -174,6 +176,7 @@ def mount_services(file_system_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] statuses: The query status list of mount service.
     """
+    pulumi.log.warn("""mount_services is deprecated: volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices""")
     __args__ = dict()
     __args__['fileSystemId'] = file_system_id
     __args__['mountServiceId'] = mount_service_id
@@ -225,7 +228,7 @@ def mount_services_output(file_system_id: Optional[pulumi.Input[Optional[str]]] 
         subnet_id=foo_subnet.id,
         node_type="ecs.g1ie.large",
         project="default")
-    foo_mount_services = volcengine.vepfs.mount_services_output(mount_service_id=foo_mount_service.id)
+    foo_mount_services = volcengine.vepfs.get_mount_services_output(mount_service_id=foo_mount_service.id)
     ```
 
 
@@ -236,4 +239,5 @@ def mount_services_output(file_system_id: Optional[pulumi.Input[Optional[str]]] 
     :param str output_file: File name where to save data source results.
     :param Sequence[str] statuses: The query status list of mount service.
     """
+    pulumi.log.warn("""mount_services is deprecated: volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices""")
     ...

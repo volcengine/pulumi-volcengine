@@ -45,6 +45,36 @@ export const gateways: typeof import("./gateways").gateways = null as any;
 export const gatewaysOutput: typeof import("./gateways").gatewaysOutput = null as any;
 utilities.lazyLoad(exports, ["gateways","gatewaysOutput"], () => require("./gateways"));
 
+export { GetConnectionsArgs, GetConnectionsResult, GetConnectionsOutputArgs } from "./getConnections";
+export const getConnections: typeof import("./getConnections").getConnections = null as any;
+export const getConnectionsOutput: typeof import("./getConnections").getConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getConnections","getConnectionsOutput"], () => require("./getConnections"));
+
+export { GetCustomerGatewaysArgs, GetCustomerGatewaysResult, GetCustomerGatewaysOutputArgs } from "./getCustomerGateways";
+export const getCustomerGateways: typeof import("./getCustomerGateways").getCustomerGateways = null as any;
+export const getCustomerGatewaysOutput: typeof import("./getCustomerGateways").getCustomerGatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["getCustomerGateways","getCustomerGatewaysOutput"], () => require("./getCustomerGateways"));
+
+export { GetGatewayRoutesArgs, GetGatewayRoutesResult, GetGatewayRoutesOutputArgs } from "./getGatewayRoutes";
+export const getGatewayRoutes: typeof import("./getGatewayRoutes").getGatewayRoutes = null as any;
+export const getGatewayRoutesOutput: typeof import("./getGatewayRoutes").getGatewayRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["getGatewayRoutes","getGatewayRoutesOutput"], () => require("./getGatewayRoutes"));
+
+export { GetGatewaysArgs, GetGatewaysResult, GetGatewaysOutputArgs } from "./getGateways";
+export const getGateways: typeof import("./getGateways").getGateways = null as any;
+export const getGatewaysOutput: typeof import("./getGateways").getGatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["getGateways","getGatewaysOutput"], () => require("./getGateways"));
+
+export { GetSslVpnClientCertsArgs, GetSslVpnClientCertsResult, GetSslVpnClientCertsOutputArgs } from "./getSslVpnClientCerts";
+export const getSslVpnClientCerts: typeof import("./getSslVpnClientCerts").getSslVpnClientCerts = null as any;
+export const getSslVpnClientCertsOutput: typeof import("./getSslVpnClientCerts").getSslVpnClientCertsOutput = null as any;
+utilities.lazyLoad(exports, ["getSslVpnClientCerts","getSslVpnClientCertsOutput"], () => require("./getSslVpnClientCerts"));
+
+export { GetSslVpnServersArgs, GetSslVpnServersResult, GetSslVpnServersOutputArgs } from "./getSslVpnServers";
+export const getSslVpnServers: typeof import("./getSslVpnServers").getSslVpnServers = null as any;
+export const getSslVpnServersOutput: typeof import("./getSslVpnServers").getSslVpnServersOutput = null as any;
+utilities.lazyLoad(exports, ["getSslVpnServers","getSslVpnServersOutput"], () => require("./getSslVpnServers"));
+
 export { SslVpnClientCertArgs, SslVpnClientCertState } from "./sslVpnClientCert";
 export type SslVpnClientCert = import("./sslVpnClientCert").SslVpnClientCert;
 export const SslVpnClientCert: typeof import("./sslVpnClientCert").SslVpnClientCert = null as any;

@@ -14,14 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cdn.SharedConfigs({
+ * const foo = volcengine.cdn.getSharedConfigs({
  *     configName: "tf-test",
  *     configType: "allow_ip_access_rule",
  *     projectName: "default",
  * });
  * ```
  */
+/** @deprecated volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs */
 export function sharedConfigs(args?: SharedConfigsArgs, opts?: pulumi.InvokeOptions): Promise<SharedConfigsResult> {
+    pulumi.log.warn("sharedConfigs is deprecated: volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -99,13 +101,14 @@ export interface SharedConfigsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cdn.SharedConfigs({
+ * const foo = volcengine.cdn.getSharedConfigs({
  *     configName: "tf-test",
  *     configType: "allow_ip_access_rule",
  *     projectName: "default",
  * });
  * ```
  */
+/** @deprecated volcengine.cdn.SharedConfigs has been deprecated in favor of volcengine.cdn.getSharedConfigs */
 export function sharedConfigsOutput(args?: SharedConfigsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SharedConfigsResult> {
     return pulumi.output(args).apply((a: any) => sharedConfigs(a, opts))
 }

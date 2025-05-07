@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -121,7 +121,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = kafka.ConsumedPartitionsOutput(ctx, kafka.ConsumedPartitionsOutputArgs{
+//			_ = kafka.GetConsumedPartitionsOutput(ctx, kafka.GetConsumedPartitionsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //				GroupId:    fooGroup.GroupId,
 //				TopicName:  fooTopic.TopicName,
@@ -131,6 +131,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions
 func ConsumedPartitions(ctx *pulumi.Context, args *ConsumedPartitionsArgs, opts ...pulumi.InvokeOption) (*ConsumedPartitionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ConsumedPartitionsResult

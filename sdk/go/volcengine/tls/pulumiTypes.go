@@ -10371,6 +10371,6687 @@ func (o TopicsTlsTopicTagArrayOutput) Index(i pulumi.IntInput) TopicsTlsTopicTag
 	}).(TopicsTlsTopicTagOutput)
 }
 
+type GetAlarmNotifyGroupsGroup struct {
+	// The id of the alarm notify group.
+	AlarmNotifyGroupId string `pulumi:"alarmNotifyGroupId"`
+	// The name of the alarm notify group.
+	AlarmNotifyGroupName string `pulumi:"alarmNotifyGroupName"`
+	// The create time the notification.
+	CreateTime string `pulumi:"createTime"`
+	// The name of the iam project.
+	IamProjectName string `pulumi:"iamProjectName"`
+	// The modification time the notification.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The notify group type.
+	NotifyTypes []string `pulumi:"notifyTypes"`
+	// List of IAM users to receive alerts.
+	Receivers []GetAlarmNotifyGroupsGroupReceiver `pulumi:"receivers"`
+}
+
+// GetAlarmNotifyGroupsGroupInput is an input type that accepts GetAlarmNotifyGroupsGroupArgs and GetAlarmNotifyGroupsGroupOutput values.
+// You can construct a concrete instance of `GetAlarmNotifyGroupsGroupInput` via:
+//
+//	GetAlarmNotifyGroupsGroupArgs{...}
+type GetAlarmNotifyGroupsGroupInput interface {
+	pulumi.Input
+
+	ToGetAlarmNotifyGroupsGroupOutput() GetAlarmNotifyGroupsGroupOutput
+	ToGetAlarmNotifyGroupsGroupOutputWithContext(context.Context) GetAlarmNotifyGroupsGroupOutput
+}
+
+type GetAlarmNotifyGroupsGroupArgs struct {
+	// The id of the alarm notify group.
+	AlarmNotifyGroupId pulumi.StringInput `pulumi:"alarmNotifyGroupId"`
+	// The name of the alarm notify group.
+	AlarmNotifyGroupName pulumi.StringInput `pulumi:"alarmNotifyGroupName"`
+	// The create time the notification.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The name of the iam project.
+	IamProjectName pulumi.StringInput `pulumi:"iamProjectName"`
+	// The modification time the notification.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The notify group type.
+	NotifyTypes pulumi.StringArrayInput `pulumi:"notifyTypes"`
+	// List of IAM users to receive alerts.
+	Receivers GetAlarmNotifyGroupsGroupReceiverArrayInput `pulumi:"receivers"`
+}
+
+func (GetAlarmNotifyGroupsGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmNotifyGroupsGroup)(nil)).Elem()
+}
+
+func (i GetAlarmNotifyGroupsGroupArgs) ToGetAlarmNotifyGroupsGroupOutput() GetAlarmNotifyGroupsGroupOutput {
+	return i.ToGetAlarmNotifyGroupsGroupOutputWithContext(context.Background())
+}
+
+func (i GetAlarmNotifyGroupsGroupArgs) ToGetAlarmNotifyGroupsGroupOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmNotifyGroupsGroupOutput)
+}
+
+// GetAlarmNotifyGroupsGroupArrayInput is an input type that accepts GetAlarmNotifyGroupsGroupArray and GetAlarmNotifyGroupsGroupArrayOutput values.
+// You can construct a concrete instance of `GetAlarmNotifyGroupsGroupArrayInput` via:
+//
+//	GetAlarmNotifyGroupsGroupArray{ GetAlarmNotifyGroupsGroupArgs{...} }
+type GetAlarmNotifyGroupsGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmNotifyGroupsGroupArrayOutput() GetAlarmNotifyGroupsGroupArrayOutput
+	ToGetAlarmNotifyGroupsGroupArrayOutputWithContext(context.Context) GetAlarmNotifyGroupsGroupArrayOutput
+}
+
+type GetAlarmNotifyGroupsGroupArray []GetAlarmNotifyGroupsGroupInput
+
+func (GetAlarmNotifyGroupsGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmNotifyGroupsGroup)(nil)).Elem()
+}
+
+func (i GetAlarmNotifyGroupsGroupArray) ToGetAlarmNotifyGroupsGroupArrayOutput() GetAlarmNotifyGroupsGroupArrayOutput {
+	return i.ToGetAlarmNotifyGroupsGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmNotifyGroupsGroupArray) ToGetAlarmNotifyGroupsGroupArrayOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmNotifyGroupsGroupArrayOutput)
+}
+
+type GetAlarmNotifyGroupsGroupOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmNotifyGroupsGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmNotifyGroupsGroup)(nil)).Elem()
+}
+
+func (o GetAlarmNotifyGroupsGroupOutput) ToGetAlarmNotifyGroupsGroupOutput() GetAlarmNotifyGroupsGroupOutput {
+	return o
+}
+
+func (o GetAlarmNotifyGroupsGroupOutput) ToGetAlarmNotifyGroupsGroupOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupOutput {
+	return o
+}
+
+// The id of the alarm notify group.
+func (o GetAlarmNotifyGroupsGroupOutput) AlarmNotifyGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) string { return v.AlarmNotifyGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the alarm notify group.
+func (o GetAlarmNotifyGroupsGroupOutput) AlarmNotifyGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) string { return v.AlarmNotifyGroupName }).(pulumi.StringOutput)
+}
+
+// The create time the notification.
+func (o GetAlarmNotifyGroupsGroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The name of the iam project.
+func (o GetAlarmNotifyGroupsGroupOutput) IamProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) string { return v.IamProjectName }).(pulumi.StringOutput)
+}
+
+// The modification time the notification.
+func (o GetAlarmNotifyGroupsGroupOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The notify group type.
+func (o GetAlarmNotifyGroupsGroupOutput) NotifyTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) []string { return v.NotifyTypes }).(pulumi.StringArrayOutput)
+}
+
+// List of IAM users to receive alerts.
+func (o GetAlarmNotifyGroupsGroupOutput) Receivers() GetAlarmNotifyGroupsGroupReceiverArrayOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroup) []GetAlarmNotifyGroupsGroupReceiver { return v.Receivers }).(GetAlarmNotifyGroupsGroupReceiverArrayOutput)
+}
+
+type GetAlarmNotifyGroupsGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmNotifyGroupsGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmNotifyGroupsGroup)(nil)).Elem()
+}
+
+func (o GetAlarmNotifyGroupsGroupArrayOutput) ToGetAlarmNotifyGroupsGroupArrayOutput() GetAlarmNotifyGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetAlarmNotifyGroupsGroupArrayOutput) ToGetAlarmNotifyGroupsGroupArrayOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetAlarmNotifyGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetAlarmNotifyGroupsGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmNotifyGroupsGroup {
+		return vs[0].([]GetAlarmNotifyGroupsGroup)[vs[1].(int)]
+	}).(GetAlarmNotifyGroupsGroupOutput)
+}
+
+type GetAlarmNotifyGroupsGroupReceiver struct {
+	// The end time.
+	EndTime string `pulumi:"endTime"`
+	// The list of the receiver channels.
+	ReceiverChannels []string `pulumi:"receiverChannels"`
+	// List of the receiver names.
+	ReceiverNames []string `pulumi:"receiverNames"`
+	// The receiver type.
+	ReceiverType string `pulumi:"receiverType"`
+	// The start time.
+	StartTime string `pulumi:"startTime"`
+}
+
+// GetAlarmNotifyGroupsGroupReceiverInput is an input type that accepts GetAlarmNotifyGroupsGroupReceiverArgs and GetAlarmNotifyGroupsGroupReceiverOutput values.
+// You can construct a concrete instance of `GetAlarmNotifyGroupsGroupReceiverInput` via:
+//
+//	GetAlarmNotifyGroupsGroupReceiverArgs{...}
+type GetAlarmNotifyGroupsGroupReceiverInput interface {
+	pulumi.Input
+
+	ToGetAlarmNotifyGroupsGroupReceiverOutput() GetAlarmNotifyGroupsGroupReceiverOutput
+	ToGetAlarmNotifyGroupsGroupReceiverOutputWithContext(context.Context) GetAlarmNotifyGroupsGroupReceiverOutput
+}
+
+type GetAlarmNotifyGroupsGroupReceiverArgs struct {
+	// The end time.
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// The list of the receiver channels.
+	ReceiverChannels pulumi.StringArrayInput `pulumi:"receiverChannels"`
+	// List of the receiver names.
+	ReceiverNames pulumi.StringArrayInput `pulumi:"receiverNames"`
+	// The receiver type.
+	ReceiverType pulumi.StringInput `pulumi:"receiverType"`
+	// The start time.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+}
+
+func (GetAlarmNotifyGroupsGroupReceiverArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmNotifyGroupsGroupReceiver)(nil)).Elem()
+}
+
+func (i GetAlarmNotifyGroupsGroupReceiverArgs) ToGetAlarmNotifyGroupsGroupReceiverOutput() GetAlarmNotifyGroupsGroupReceiverOutput {
+	return i.ToGetAlarmNotifyGroupsGroupReceiverOutputWithContext(context.Background())
+}
+
+func (i GetAlarmNotifyGroupsGroupReceiverArgs) ToGetAlarmNotifyGroupsGroupReceiverOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupReceiverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmNotifyGroupsGroupReceiverOutput)
+}
+
+// GetAlarmNotifyGroupsGroupReceiverArrayInput is an input type that accepts GetAlarmNotifyGroupsGroupReceiverArray and GetAlarmNotifyGroupsGroupReceiverArrayOutput values.
+// You can construct a concrete instance of `GetAlarmNotifyGroupsGroupReceiverArrayInput` via:
+//
+//	GetAlarmNotifyGroupsGroupReceiverArray{ GetAlarmNotifyGroupsGroupReceiverArgs{...} }
+type GetAlarmNotifyGroupsGroupReceiverArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmNotifyGroupsGroupReceiverArrayOutput() GetAlarmNotifyGroupsGroupReceiverArrayOutput
+	ToGetAlarmNotifyGroupsGroupReceiverArrayOutputWithContext(context.Context) GetAlarmNotifyGroupsGroupReceiverArrayOutput
+}
+
+type GetAlarmNotifyGroupsGroupReceiverArray []GetAlarmNotifyGroupsGroupReceiverInput
+
+func (GetAlarmNotifyGroupsGroupReceiverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmNotifyGroupsGroupReceiver)(nil)).Elem()
+}
+
+func (i GetAlarmNotifyGroupsGroupReceiverArray) ToGetAlarmNotifyGroupsGroupReceiverArrayOutput() GetAlarmNotifyGroupsGroupReceiverArrayOutput {
+	return i.ToGetAlarmNotifyGroupsGroupReceiverArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmNotifyGroupsGroupReceiverArray) ToGetAlarmNotifyGroupsGroupReceiverArrayOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupReceiverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmNotifyGroupsGroupReceiverArrayOutput)
+}
+
+type GetAlarmNotifyGroupsGroupReceiverOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmNotifyGroupsGroupReceiverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmNotifyGroupsGroupReceiver)(nil)).Elem()
+}
+
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) ToGetAlarmNotifyGroupsGroupReceiverOutput() GetAlarmNotifyGroupsGroupReceiverOutput {
+	return o
+}
+
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) ToGetAlarmNotifyGroupsGroupReceiverOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupReceiverOutput {
+	return o
+}
+
+// The end time.
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroupReceiver) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+// The list of the receiver channels.
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) ReceiverChannels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroupReceiver) []string { return v.ReceiverChannels }).(pulumi.StringArrayOutput)
+}
+
+// List of the receiver names.
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) ReceiverNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroupReceiver) []string { return v.ReceiverNames }).(pulumi.StringArrayOutput)
+}
+
+// The receiver type.
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) ReceiverType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroupReceiver) string { return v.ReceiverType }).(pulumi.StringOutput)
+}
+
+// The start time.
+func (o GetAlarmNotifyGroupsGroupReceiverOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmNotifyGroupsGroupReceiver) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+type GetAlarmNotifyGroupsGroupReceiverArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmNotifyGroupsGroupReceiverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmNotifyGroupsGroupReceiver)(nil)).Elem()
+}
+
+func (o GetAlarmNotifyGroupsGroupReceiverArrayOutput) ToGetAlarmNotifyGroupsGroupReceiverArrayOutput() GetAlarmNotifyGroupsGroupReceiverArrayOutput {
+	return o
+}
+
+func (o GetAlarmNotifyGroupsGroupReceiverArrayOutput) ToGetAlarmNotifyGroupsGroupReceiverArrayOutputWithContext(ctx context.Context) GetAlarmNotifyGroupsGroupReceiverArrayOutput {
+	return o
+}
+
+func (o GetAlarmNotifyGroupsGroupReceiverArrayOutput) Index(i pulumi.IntInput) GetAlarmNotifyGroupsGroupReceiverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmNotifyGroupsGroupReceiver {
+		return vs[0].([]GetAlarmNotifyGroupsGroupReceiver)[vs[1].(int)]
+	}).(GetAlarmNotifyGroupsGroupReceiverOutput)
+}
+
+type GetAlarmsAlarm struct {
+	// The alarm id.
+	AlarmId string `pulumi:"alarmId"`
+	// The alarm name.
+	AlarmName string `pulumi:"alarmName"`
+	// List of notification groups corresponding to the alarm.
+	AlarmNotifyGroups []GetAlarmsAlarmAlarmNotifyGroup `pulumi:"alarmNotifyGroups"`
+	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+	AlarmPeriod int `pulumi:"alarmPeriod"`
+	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+	AlarmPeriodDetails []GetAlarmsAlarmAlarmPeriodDetail `pulumi:"alarmPeriodDetails"`
+	// Alarm trigger condition.
+	Condition string `pulumi:"condition"`
+	// The create time.
+	CreateTime string `pulumi:"createTime"`
+	// The modify time.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The project id.
+	ProjectId string `pulumi:"projectId"`
+	// Search and analyze sentences, 1~3 can be configured.
+	QueryRequests []GetAlarmsAlarmQueryRequest `pulumi:"queryRequests"`
+	// The execution period of the alarm task.
+	RequestCycles []GetAlarmsAlarmRequestCycle `pulumi:"requestCycles"`
+	// The status.
+	Status bool `pulumi:"status"`
+	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+	TriggerPeriod int `pulumi:"triggerPeriod"`
+	// Customize the alarm notification content.
+	UserDefineMsg string `pulumi:"userDefineMsg"`
+}
+
+// GetAlarmsAlarmInput is an input type that accepts GetAlarmsAlarmArgs and GetAlarmsAlarmOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmInput` via:
+//
+//	GetAlarmsAlarmArgs{...}
+type GetAlarmsAlarmInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmOutput() GetAlarmsAlarmOutput
+	ToGetAlarmsAlarmOutputWithContext(context.Context) GetAlarmsAlarmOutput
+}
+
+type GetAlarmsAlarmArgs struct {
+	// The alarm id.
+	AlarmId pulumi.StringInput `pulumi:"alarmId"`
+	// The alarm name.
+	AlarmName pulumi.StringInput `pulumi:"alarmName"`
+	// List of notification groups corresponding to the alarm.
+	AlarmNotifyGroups GetAlarmsAlarmAlarmNotifyGroupArrayInput `pulumi:"alarmNotifyGroups"`
+	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+	AlarmPeriod pulumi.IntInput `pulumi:"alarmPeriod"`
+	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+	AlarmPeriodDetails GetAlarmsAlarmAlarmPeriodDetailArrayInput `pulumi:"alarmPeriodDetails"`
+	// Alarm trigger condition.
+	Condition pulumi.StringInput `pulumi:"condition"`
+	// The create time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The modify time.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The project id.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Search and analyze sentences, 1~3 can be configured.
+	QueryRequests GetAlarmsAlarmQueryRequestArrayInput `pulumi:"queryRequests"`
+	// The execution period of the alarm task.
+	RequestCycles GetAlarmsAlarmRequestCycleArrayInput `pulumi:"requestCycles"`
+	// The status.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+	TriggerPeriod pulumi.IntInput `pulumi:"triggerPeriod"`
+	// Customize the alarm notification content.
+	UserDefineMsg pulumi.StringInput `pulumi:"userDefineMsg"`
+}
+
+func (GetAlarmsAlarmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmArgs) ToGetAlarmsAlarmOutput() GetAlarmsAlarmOutput {
+	return i.ToGetAlarmsAlarmOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmArgs) ToGetAlarmsAlarmOutputWithContext(ctx context.Context) GetAlarmsAlarmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmOutput)
+}
+
+// GetAlarmsAlarmArrayInput is an input type that accepts GetAlarmsAlarmArray and GetAlarmsAlarmArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmArrayInput` via:
+//
+//	GetAlarmsAlarmArray{ GetAlarmsAlarmArgs{...} }
+type GetAlarmsAlarmArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmArrayOutput() GetAlarmsAlarmArrayOutput
+	ToGetAlarmsAlarmArrayOutputWithContext(context.Context) GetAlarmsAlarmArrayOutput
+}
+
+type GetAlarmsAlarmArray []GetAlarmsAlarmInput
+
+func (GetAlarmsAlarmArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmArray) ToGetAlarmsAlarmArrayOutput() GetAlarmsAlarmArrayOutput {
+	return i.ToGetAlarmsAlarmArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmArray) ToGetAlarmsAlarmArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmArrayOutput)
+}
+
+type GetAlarmsAlarmOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmOutput) ToGetAlarmsAlarmOutput() GetAlarmsAlarmOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmOutput) ToGetAlarmsAlarmOutputWithContext(ctx context.Context) GetAlarmsAlarmOutput {
+	return o
+}
+
+// The alarm id.
+func (o GetAlarmsAlarmOutput) AlarmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.AlarmId }).(pulumi.StringOutput)
+}
+
+// The alarm name.
+func (o GetAlarmsAlarmOutput) AlarmName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.AlarmName }).(pulumi.StringOutput)
+}
+
+// List of notification groups corresponding to the alarm.
+func (o GetAlarmsAlarmOutput) AlarmNotifyGroups() GetAlarmsAlarmAlarmNotifyGroupArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) []GetAlarmsAlarmAlarmNotifyGroup { return v.AlarmNotifyGroups }).(GetAlarmsAlarmAlarmNotifyGroupArrayOutput)
+}
+
+// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+func (o GetAlarmsAlarmOutput) AlarmPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) int { return v.AlarmPeriod }).(pulumi.IntOutput)
+}
+
+// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+func (o GetAlarmsAlarmOutput) AlarmPeriodDetails() GetAlarmsAlarmAlarmPeriodDetailArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) []GetAlarmsAlarmAlarmPeriodDetail { return v.AlarmPeriodDetails }).(GetAlarmsAlarmAlarmPeriodDetailArrayOutput)
+}
+
+// Alarm trigger condition.
+func (o GetAlarmsAlarmOutput) Condition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.Condition }).(pulumi.StringOutput)
+}
+
+// The create time.
+func (o GetAlarmsAlarmOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The modify time.
+func (o GetAlarmsAlarmOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The project id.
+func (o GetAlarmsAlarmOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Search and analyze sentences, 1~3 can be configured.
+func (o GetAlarmsAlarmOutput) QueryRequests() GetAlarmsAlarmQueryRequestArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) []GetAlarmsAlarmQueryRequest { return v.QueryRequests }).(GetAlarmsAlarmQueryRequestArrayOutput)
+}
+
+// The execution period of the alarm task.
+func (o GetAlarmsAlarmOutput) RequestCycles() GetAlarmsAlarmRequestCycleArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) []GetAlarmsAlarmRequestCycle { return v.RequestCycles }).(GetAlarmsAlarmRequestCycleArrayOutput)
+}
+
+// The status.
+func (o GetAlarmsAlarmOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+func (o GetAlarmsAlarmOutput) TriggerPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) int { return v.TriggerPeriod }).(pulumi.IntOutput)
+}
+
+// Customize the alarm notification content.
+func (o GetAlarmsAlarmOutput) UserDefineMsg() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.UserDefineMsg }).(pulumi.StringOutput)
+}
+
+type GetAlarmsAlarmArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmArrayOutput) ToGetAlarmsAlarmArrayOutput() GetAlarmsAlarmArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmArrayOutput) ToGetAlarmsAlarmArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarm {
+		return vs[0].([]GetAlarmsAlarm)[vs[1].(int)]
+	}).(GetAlarmsAlarmOutput)
+}
+
+type GetAlarmsAlarmAlarmNotifyGroup struct {
+	// The id of the notify group.
+	AlarmNotifyGroupId string `pulumi:"alarmNotifyGroupId"`
+	// Name of the notification group.
+	AlarmNotifyGroupName string `pulumi:"alarmNotifyGroupName"`
+	// The create time.
+	CreateTime string `pulumi:"createTime"`
+	// The iam project name.
+	IamProjectName string `pulumi:"iamProjectName"`
+	// The modify time.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The notify group type.
+	NotifyTypes []string `pulumi:"notifyTypes"`
+	// List of IAM users to receive alerts.
+	Receivers []GetAlarmsAlarmAlarmNotifyGroupReceiver `pulumi:"receivers"`
+}
+
+// GetAlarmsAlarmAlarmNotifyGroupInput is an input type that accepts GetAlarmsAlarmAlarmNotifyGroupArgs and GetAlarmsAlarmAlarmNotifyGroupOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmAlarmNotifyGroupInput` via:
+//
+//	GetAlarmsAlarmAlarmNotifyGroupArgs{...}
+type GetAlarmsAlarmAlarmNotifyGroupInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmAlarmNotifyGroupOutput() GetAlarmsAlarmAlarmNotifyGroupOutput
+	ToGetAlarmsAlarmAlarmNotifyGroupOutputWithContext(context.Context) GetAlarmsAlarmAlarmNotifyGroupOutput
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupArgs struct {
+	// The id of the notify group.
+	AlarmNotifyGroupId pulumi.StringInput `pulumi:"alarmNotifyGroupId"`
+	// Name of the notification group.
+	AlarmNotifyGroupName pulumi.StringInput `pulumi:"alarmNotifyGroupName"`
+	// The create time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The iam project name.
+	IamProjectName pulumi.StringInput `pulumi:"iamProjectName"`
+	// The modify time.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The notify group type.
+	NotifyTypes pulumi.StringArrayInput `pulumi:"notifyTypes"`
+	// List of IAM users to receive alerts.
+	Receivers GetAlarmsAlarmAlarmNotifyGroupReceiverArrayInput `pulumi:"receivers"`
+}
+
+func (GetAlarmsAlarmAlarmNotifyGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroup)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupArgs) ToGetAlarmsAlarmAlarmNotifyGroupOutput() GetAlarmsAlarmAlarmNotifyGroupOutput {
+	return i.ToGetAlarmsAlarmAlarmNotifyGroupOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupArgs) ToGetAlarmsAlarmAlarmNotifyGroupOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmAlarmNotifyGroupOutput)
+}
+
+// GetAlarmsAlarmAlarmNotifyGroupArrayInput is an input type that accepts GetAlarmsAlarmAlarmNotifyGroupArray and GetAlarmsAlarmAlarmNotifyGroupArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmAlarmNotifyGroupArrayInput` via:
+//
+//	GetAlarmsAlarmAlarmNotifyGroupArray{ GetAlarmsAlarmAlarmNotifyGroupArgs{...} }
+type GetAlarmsAlarmAlarmNotifyGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmAlarmNotifyGroupArrayOutput() GetAlarmsAlarmAlarmNotifyGroupArrayOutput
+	ToGetAlarmsAlarmAlarmNotifyGroupArrayOutputWithContext(context.Context) GetAlarmsAlarmAlarmNotifyGroupArrayOutput
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupArray []GetAlarmsAlarmAlarmNotifyGroupInput
+
+func (GetAlarmsAlarmAlarmNotifyGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmAlarmNotifyGroup)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupArray) ToGetAlarmsAlarmAlarmNotifyGroupArrayOutput() GetAlarmsAlarmAlarmNotifyGroupArrayOutput {
+	return i.ToGetAlarmsAlarmAlarmNotifyGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupArray) ToGetAlarmsAlarmAlarmNotifyGroupArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmAlarmNotifyGroupArrayOutput)
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmAlarmNotifyGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroup)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) ToGetAlarmsAlarmAlarmNotifyGroupOutput() GetAlarmsAlarmAlarmNotifyGroupOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) ToGetAlarmsAlarmAlarmNotifyGroupOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupOutput {
+	return o
+}
+
+// The id of the notify group.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) AlarmNotifyGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) string { return v.AlarmNotifyGroupId }).(pulumi.StringOutput)
+}
+
+// Name of the notification group.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) AlarmNotifyGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) string { return v.AlarmNotifyGroupName }).(pulumi.StringOutput)
+}
+
+// The create time.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The iam project name.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) IamProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) string { return v.IamProjectName }).(pulumi.StringOutput)
+}
+
+// The modify time.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The notify group type.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) NotifyTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) []string { return v.NotifyTypes }).(pulumi.StringArrayOutput)
+}
+
+// List of IAM users to receive alerts.
+func (o GetAlarmsAlarmAlarmNotifyGroupOutput) Receivers() GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroup) []GetAlarmsAlarmAlarmNotifyGroupReceiver { return v.Receivers }).(GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput)
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmAlarmNotifyGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmAlarmNotifyGroup)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupArrayOutput) ToGetAlarmsAlarmAlarmNotifyGroupArrayOutput() GetAlarmsAlarmAlarmNotifyGroupArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupArrayOutput) ToGetAlarmsAlarmAlarmNotifyGroupArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmAlarmNotifyGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarmAlarmNotifyGroup {
+		return vs[0].([]GetAlarmsAlarmAlarmNotifyGroup)[vs[1].(int)]
+	}).(GetAlarmsAlarmAlarmNotifyGroupOutput)
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupReceiver struct {
+	// The end time.
+	EndTime string `pulumi:"endTime"`
+	// The list of the receiver channels.
+	ReceiverChannels []string `pulumi:"receiverChannels"`
+	// List of the receiver names.
+	ReceiverNames []string `pulumi:"receiverNames"`
+	// The receiver type.
+	ReceiverType string `pulumi:"receiverType"`
+	// The start time.
+	StartTime string `pulumi:"startTime"`
+}
+
+// GetAlarmsAlarmAlarmNotifyGroupReceiverInput is an input type that accepts GetAlarmsAlarmAlarmNotifyGroupReceiverArgs and GetAlarmsAlarmAlarmNotifyGroupReceiverOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmAlarmNotifyGroupReceiverInput` via:
+//
+//	GetAlarmsAlarmAlarmNotifyGroupReceiverArgs{...}
+type GetAlarmsAlarmAlarmNotifyGroupReceiverInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutput() GetAlarmsAlarmAlarmNotifyGroupReceiverOutput
+	ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutputWithContext(context.Context) GetAlarmsAlarmAlarmNotifyGroupReceiverOutput
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupReceiverArgs struct {
+	// The end time.
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// The list of the receiver channels.
+	ReceiverChannels pulumi.StringArrayInput `pulumi:"receiverChannels"`
+	// List of the receiver names.
+	ReceiverNames pulumi.StringArrayInput `pulumi:"receiverNames"`
+	// The receiver type.
+	ReceiverType pulumi.StringInput `pulumi:"receiverType"`
+	// The start time.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+}
+
+func (GetAlarmsAlarmAlarmNotifyGroupReceiverArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroupReceiver)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupReceiverArgs) ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutput() GetAlarmsAlarmAlarmNotifyGroupReceiverOutput {
+	return i.ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupReceiverArgs) ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupReceiverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmAlarmNotifyGroupReceiverOutput)
+}
+
+// GetAlarmsAlarmAlarmNotifyGroupReceiverArrayInput is an input type that accepts GetAlarmsAlarmAlarmNotifyGroupReceiverArray and GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmAlarmNotifyGroupReceiverArrayInput` via:
+//
+//	GetAlarmsAlarmAlarmNotifyGroupReceiverArray{ GetAlarmsAlarmAlarmNotifyGroupReceiverArgs{...} }
+type GetAlarmsAlarmAlarmNotifyGroupReceiverArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput() GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput
+	ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutputWithContext(context.Context) GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupReceiverArray []GetAlarmsAlarmAlarmNotifyGroupReceiverInput
+
+func (GetAlarmsAlarmAlarmNotifyGroupReceiverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmAlarmNotifyGroupReceiver)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupReceiverArray) ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput() GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput {
+	return i.ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmAlarmNotifyGroupReceiverArray) ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput)
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupReceiverOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroupReceiver)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutput() GetAlarmsAlarmAlarmNotifyGroupReceiverOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) ToGetAlarmsAlarmAlarmNotifyGroupReceiverOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupReceiverOutput {
+	return o
+}
+
+// The end time.
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroupReceiver) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+// The list of the receiver channels.
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) ReceiverChannels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroupReceiver) []string { return v.ReceiverChannels }).(pulumi.StringArrayOutput)
+}
+
+// List of the receiver names.
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) ReceiverNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroupReceiver) []string { return v.ReceiverNames }).(pulumi.StringArrayOutput)
+}
+
+// The receiver type.
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) ReceiverType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroupReceiver) string { return v.ReceiverType }).(pulumi.StringOutput)
+}
+
+// The start time.
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmNotifyGroupReceiver) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+type GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmAlarmNotifyGroupReceiver)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput) ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput() GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput) ToGetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmAlarmNotifyGroupReceiverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarmAlarmNotifyGroupReceiver {
+		return vs[0].([]GetAlarmsAlarmAlarmNotifyGroupReceiver)[vs[1].(int)]
+	}).(GetAlarmsAlarmAlarmNotifyGroupReceiverOutput)
+}
+
+type GetAlarmsAlarmAlarmPeriodDetail struct {
+	// Email alarm period, the unit is minutes, and the value range is 1~1440.
+	Email int `pulumi:"email"`
+	// Customize the webhook alarm period, the unit is minutes, and the value range is 1~1440.
+	GeneralWebhook int `pulumi:"generalWebhook"`
+	// Telephone alarm cycle, the unit is minutes, and the value range is 10~1440.
+	Phone int `pulumi:"phone"`
+	// SMS alarm cycle, the unit is minutes, and the value range is 10~1440.
+	Sms int `pulumi:"sms"`
+}
+
+// GetAlarmsAlarmAlarmPeriodDetailInput is an input type that accepts GetAlarmsAlarmAlarmPeriodDetailArgs and GetAlarmsAlarmAlarmPeriodDetailOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmAlarmPeriodDetailInput` via:
+//
+//	GetAlarmsAlarmAlarmPeriodDetailArgs{...}
+type GetAlarmsAlarmAlarmPeriodDetailInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmAlarmPeriodDetailOutput() GetAlarmsAlarmAlarmPeriodDetailOutput
+	ToGetAlarmsAlarmAlarmPeriodDetailOutputWithContext(context.Context) GetAlarmsAlarmAlarmPeriodDetailOutput
+}
+
+type GetAlarmsAlarmAlarmPeriodDetailArgs struct {
+	// Email alarm period, the unit is minutes, and the value range is 1~1440.
+	Email pulumi.IntInput `pulumi:"email"`
+	// Customize the webhook alarm period, the unit is minutes, and the value range is 1~1440.
+	GeneralWebhook pulumi.IntInput `pulumi:"generalWebhook"`
+	// Telephone alarm cycle, the unit is minutes, and the value range is 10~1440.
+	Phone pulumi.IntInput `pulumi:"phone"`
+	// SMS alarm cycle, the unit is minutes, and the value range is 10~1440.
+	Sms pulumi.IntInput `pulumi:"sms"`
+}
+
+func (GetAlarmsAlarmAlarmPeriodDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmAlarmPeriodDetail)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmAlarmPeriodDetailArgs) ToGetAlarmsAlarmAlarmPeriodDetailOutput() GetAlarmsAlarmAlarmPeriodDetailOutput {
+	return i.ToGetAlarmsAlarmAlarmPeriodDetailOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmAlarmPeriodDetailArgs) ToGetAlarmsAlarmAlarmPeriodDetailOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmPeriodDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmAlarmPeriodDetailOutput)
+}
+
+// GetAlarmsAlarmAlarmPeriodDetailArrayInput is an input type that accepts GetAlarmsAlarmAlarmPeriodDetailArray and GetAlarmsAlarmAlarmPeriodDetailArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmAlarmPeriodDetailArrayInput` via:
+//
+//	GetAlarmsAlarmAlarmPeriodDetailArray{ GetAlarmsAlarmAlarmPeriodDetailArgs{...} }
+type GetAlarmsAlarmAlarmPeriodDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmAlarmPeriodDetailArrayOutput() GetAlarmsAlarmAlarmPeriodDetailArrayOutput
+	ToGetAlarmsAlarmAlarmPeriodDetailArrayOutputWithContext(context.Context) GetAlarmsAlarmAlarmPeriodDetailArrayOutput
+}
+
+type GetAlarmsAlarmAlarmPeriodDetailArray []GetAlarmsAlarmAlarmPeriodDetailInput
+
+func (GetAlarmsAlarmAlarmPeriodDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmAlarmPeriodDetail)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmAlarmPeriodDetailArray) ToGetAlarmsAlarmAlarmPeriodDetailArrayOutput() GetAlarmsAlarmAlarmPeriodDetailArrayOutput {
+	return i.ToGetAlarmsAlarmAlarmPeriodDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmAlarmPeriodDetailArray) ToGetAlarmsAlarmAlarmPeriodDetailArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmPeriodDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmAlarmPeriodDetailArrayOutput)
+}
+
+type GetAlarmsAlarmAlarmPeriodDetailOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmAlarmPeriodDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmAlarmPeriodDetail)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmAlarmPeriodDetailOutput) ToGetAlarmsAlarmAlarmPeriodDetailOutput() GetAlarmsAlarmAlarmPeriodDetailOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmPeriodDetailOutput) ToGetAlarmsAlarmAlarmPeriodDetailOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmPeriodDetailOutput {
+	return o
+}
+
+// Email alarm period, the unit is minutes, and the value range is 1~1440.
+func (o GetAlarmsAlarmAlarmPeriodDetailOutput) Email() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmPeriodDetail) int { return v.Email }).(pulumi.IntOutput)
+}
+
+// Customize the webhook alarm period, the unit is minutes, and the value range is 1~1440.
+func (o GetAlarmsAlarmAlarmPeriodDetailOutput) GeneralWebhook() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmPeriodDetail) int { return v.GeneralWebhook }).(pulumi.IntOutput)
+}
+
+// Telephone alarm cycle, the unit is minutes, and the value range is 10~1440.
+func (o GetAlarmsAlarmAlarmPeriodDetailOutput) Phone() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmPeriodDetail) int { return v.Phone }).(pulumi.IntOutput)
+}
+
+// SMS alarm cycle, the unit is minutes, and the value range is 10~1440.
+func (o GetAlarmsAlarmAlarmPeriodDetailOutput) Sms() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmAlarmPeriodDetail) int { return v.Sms }).(pulumi.IntOutput)
+}
+
+type GetAlarmsAlarmAlarmPeriodDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmAlarmPeriodDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmAlarmPeriodDetail)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmAlarmPeriodDetailArrayOutput) ToGetAlarmsAlarmAlarmPeriodDetailArrayOutput() GetAlarmsAlarmAlarmPeriodDetailArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmPeriodDetailArrayOutput) ToGetAlarmsAlarmAlarmPeriodDetailArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmAlarmPeriodDetailArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmAlarmPeriodDetailArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmAlarmPeriodDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarmAlarmPeriodDetail {
+		return vs[0].([]GetAlarmsAlarmAlarmPeriodDetail)[vs[1].(int)]
+	}).(GetAlarmsAlarmAlarmPeriodDetailOutput)
+}
+
+type GetAlarmsAlarmQueryRequest struct {
+	// The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
+	EndTimeOffset int `pulumi:"endTimeOffset"`
+	// Alarm object sequence number; increments from 1.
+	Number int `pulumi:"number"`
+	// Query statement, the maximum supported length is 1024.
+	Query string `pulumi:"query"`
+	// The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
+	StartTimeOffset int `pulumi:"startTimeOffset"`
+	// The topic id.
+	TopicId string `pulumi:"topicId"`
+	// The topic name.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetAlarmsAlarmQueryRequestInput is an input type that accepts GetAlarmsAlarmQueryRequestArgs and GetAlarmsAlarmQueryRequestOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmQueryRequestInput` via:
+//
+//	GetAlarmsAlarmQueryRequestArgs{...}
+type GetAlarmsAlarmQueryRequestInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmQueryRequestOutput() GetAlarmsAlarmQueryRequestOutput
+	ToGetAlarmsAlarmQueryRequestOutputWithContext(context.Context) GetAlarmsAlarmQueryRequestOutput
+}
+
+type GetAlarmsAlarmQueryRequestArgs struct {
+	// The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
+	EndTimeOffset pulumi.IntInput `pulumi:"endTimeOffset"`
+	// Alarm object sequence number; increments from 1.
+	Number pulumi.IntInput `pulumi:"number"`
+	// Query statement, the maximum supported length is 1024.
+	Query pulumi.StringInput `pulumi:"query"`
+	// The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
+	StartTimeOffset pulumi.IntInput `pulumi:"startTimeOffset"`
+	// The topic id.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The topic name.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetAlarmsAlarmQueryRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmQueryRequest)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmQueryRequestArgs) ToGetAlarmsAlarmQueryRequestOutput() GetAlarmsAlarmQueryRequestOutput {
+	return i.ToGetAlarmsAlarmQueryRequestOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmQueryRequestArgs) ToGetAlarmsAlarmQueryRequestOutputWithContext(ctx context.Context) GetAlarmsAlarmQueryRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmQueryRequestOutput)
+}
+
+// GetAlarmsAlarmQueryRequestArrayInput is an input type that accepts GetAlarmsAlarmQueryRequestArray and GetAlarmsAlarmQueryRequestArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmQueryRequestArrayInput` via:
+//
+//	GetAlarmsAlarmQueryRequestArray{ GetAlarmsAlarmQueryRequestArgs{...} }
+type GetAlarmsAlarmQueryRequestArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmQueryRequestArrayOutput() GetAlarmsAlarmQueryRequestArrayOutput
+	ToGetAlarmsAlarmQueryRequestArrayOutputWithContext(context.Context) GetAlarmsAlarmQueryRequestArrayOutput
+}
+
+type GetAlarmsAlarmQueryRequestArray []GetAlarmsAlarmQueryRequestInput
+
+func (GetAlarmsAlarmQueryRequestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmQueryRequest)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmQueryRequestArray) ToGetAlarmsAlarmQueryRequestArrayOutput() GetAlarmsAlarmQueryRequestArrayOutput {
+	return i.ToGetAlarmsAlarmQueryRequestArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmQueryRequestArray) ToGetAlarmsAlarmQueryRequestArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmQueryRequestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmQueryRequestArrayOutput)
+}
+
+type GetAlarmsAlarmQueryRequestOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmQueryRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmQueryRequest)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmQueryRequestOutput) ToGetAlarmsAlarmQueryRequestOutput() GetAlarmsAlarmQueryRequestOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmQueryRequestOutput) ToGetAlarmsAlarmQueryRequestOutputWithContext(ctx context.Context) GetAlarmsAlarmQueryRequestOutput {
+	return o
+}
+
+// The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
+func (o GetAlarmsAlarmQueryRequestOutput) EndTimeOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmQueryRequest) int { return v.EndTimeOffset }).(pulumi.IntOutput)
+}
+
+// Alarm object sequence number; increments from 1.
+func (o GetAlarmsAlarmQueryRequestOutput) Number() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmQueryRequest) int { return v.Number }).(pulumi.IntOutput)
+}
+
+// Query statement, the maximum supported length is 1024.
+func (o GetAlarmsAlarmQueryRequestOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmQueryRequest) string { return v.Query }).(pulumi.StringOutput)
+}
+
+// The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
+func (o GetAlarmsAlarmQueryRequestOutput) StartTimeOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmQueryRequest) int { return v.StartTimeOffset }).(pulumi.IntOutput)
+}
+
+// The topic id.
+func (o GetAlarmsAlarmQueryRequestOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmQueryRequest) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The topic name.
+func (o GetAlarmsAlarmQueryRequestOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmQueryRequest) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetAlarmsAlarmQueryRequestArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmQueryRequestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmQueryRequest)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmQueryRequestArrayOutput) ToGetAlarmsAlarmQueryRequestArrayOutput() GetAlarmsAlarmQueryRequestArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmQueryRequestArrayOutput) ToGetAlarmsAlarmQueryRequestArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmQueryRequestArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmQueryRequestArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmQueryRequestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarmQueryRequest {
+		return vs[0].([]GetAlarmsAlarmQueryRequest)[vs[1].(int)]
+	}).(GetAlarmsAlarmQueryRequestOutput)
+}
+
+type GetAlarmsAlarmRequestCycle struct {
+	// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
+	Time int `pulumi:"time"`
+	// Execution cycle type.
+	Type string `pulumi:"type"`
+}
+
+// GetAlarmsAlarmRequestCycleInput is an input type that accepts GetAlarmsAlarmRequestCycleArgs and GetAlarmsAlarmRequestCycleOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmRequestCycleInput` via:
+//
+//	GetAlarmsAlarmRequestCycleArgs{...}
+type GetAlarmsAlarmRequestCycleInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmRequestCycleOutput() GetAlarmsAlarmRequestCycleOutput
+	ToGetAlarmsAlarmRequestCycleOutputWithContext(context.Context) GetAlarmsAlarmRequestCycleOutput
+}
+
+type GetAlarmsAlarmRequestCycleArgs struct {
+	// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
+	Time pulumi.IntInput `pulumi:"time"`
+	// Execution cycle type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetAlarmsAlarmRequestCycleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmRequestCycle)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmRequestCycleArgs) ToGetAlarmsAlarmRequestCycleOutput() GetAlarmsAlarmRequestCycleOutput {
+	return i.ToGetAlarmsAlarmRequestCycleOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmRequestCycleArgs) ToGetAlarmsAlarmRequestCycleOutputWithContext(ctx context.Context) GetAlarmsAlarmRequestCycleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmRequestCycleOutput)
+}
+
+// GetAlarmsAlarmRequestCycleArrayInput is an input type that accepts GetAlarmsAlarmRequestCycleArray and GetAlarmsAlarmRequestCycleArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmRequestCycleArrayInput` via:
+//
+//	GetAlarmsAlarmRequestCycleArray{ GetAlarmsAlarmRequestCycleArgs{...} }
+type GetAlarmsAlarmRequestCycleArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmRequestCycleArrayOutput() GetAlarmsAlarmRequestCycleArrayOutput
+	ToGetAlarmsAlarmRequestCycleArrayOutputWithContext(context.Context) GetAlarmsAlarmRequestCycleArrayOutput
+}
+
+type GetAlarmsAlarmRequestCycleArray []GetAlarmsAlarmRequestCycleInput
+
+func (GetAlarmsAlarmRequestCycleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmRequestCycle)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmRequestCycleArray) ToGetAlarmsAlarmRequestCycleArrayOutput() GetAlarmsAlarmRequestCycleArrayOutput {
+	return i.ToGetAlarmsAlarmRequestCycleArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmRequestCycleArray) ToGetAlarmsAlarmRequestCycleArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmRequestCycleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmRequestCycleArrayOutput)
+}
+
+type GetAlarmsAlarmRequestCycleOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmRequestCycleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarmRequestCycle)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmRequestCycleOutput) ToGetAlarmsAlarmRequestCycleOutput() GetAlarmsAlarmRequestCycleOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmRequestCycleOutput) ToGetAlarmsAlarmRequestCycleOutputWithContext(ctx context.Context) GetAlarmsAlarmRequestCycleOutput {
+	return o
+}
+
+// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
+func (o GetAlarmsAlarmRequestCycleOutput) Time() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmRequestCycle) int { return v.Time }).(pulumi.IntOutput)
+}
+
+// Execution cycle type.
+func (o GetAlarmsAlarmRequestCycleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarmRequestCycle) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetAlarmsAlarmRequestCycleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmRequestCycleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarmRequestCycle)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmRequestCycleArrayOutput) ToGetAlarmsAlarmRequestCycleArrayOutput() GetAlarmsAlarmRequestCycleArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmRequestCycleArrayOutput) ToGetAlarmsAlarmRequestCycleArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmRequestCycleArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmRequestCycleArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmRequestCycleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarmRequestCycle {
+		return vs[0].([]GetAlarmsAlarmRequestCycle)[vs[1].(int)]
+	}).(GetAlarmsAlarmRequestCycleOutput)
+}
+
+type GetHostGroupsInfo struct {
+	// The abnormal heartbeat status count of host.
+	AbnormalHeartbeatStatusCount int `pulumi:"abnormalHeartbeatStatusCount"`
+	// The latest version of log collector.
+	AgentLatestVersion string `pulumi:"agentLatestVersion"`
+	// Whether enable auto update.
+	AutoUpdate bool `pulumi:"autoUpdate"`
+	// The create time of host group.
+	CreateTime string `pulumi:"createTime"`
+	// The count of host.
+	HostCount int `pulumi:"hostCount"`
+	// The id of host group.
+	HostGroupId string `pulumi:"hostGroupId"`
+	// The name of host group.
+	HostGroupName string `pulumi:"hostGroupName"`
+	// The type of host group.
+	HostGroupType string `pulumi:"hostGroupType"`
+	// The identifier of host.
+	HostIdentifier string `pulumi:"hostIdentifier"`
+	// The ip list of host group.
+	HostIpLists []string `pulumi:"hostIpLists"`
+	// The project name of iam.
+	IamProjectName string `pulumi:"iamProjectName"`
+	// The modify time of host group.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The normal heartbeat status count of host.
+	NormalHeartbeatStatusCount int `pulumi:"normalHeartbeatStatusCount"`
+	// The rule count of host.
+	RuleCount int `pulumi:"ruleCount"`
+	// Whether enable service logging.
+	ServiceLogging bool `pulumi:"serviceLogging"`
+	// The update end time of log collector.
+	UpdateEndTime string `pulumi:"updateEndTime"`
+	// The update start time of log collector.
+	UpdateStartTime string `pulumi:"updateStartTime"`
+}
+
+// GetHostGroupsInfoInput is an input type that accepts GetHostGroupsInfoArgs and GetHostGroupsInfoOutput values.
+// You can construct a concrete instance of `GetHostGroupsInfoInput` via:
+//
+//	GetHostGroupsInfoArgs{...}
+type GetHostGroupsInfoInput interface {
+	pulumi.Input
+
+	ToGetHostGroupsInfoOutput() GetHostGroupsInfoOutput
+	ToGetHostGroupsInfoOutputWithContext(context.Context) GetHostGroupsInfoOutput
+}
+
+type GetHostGroupsInfoArgs struct {
+	// The abnormal heartbeat status count of host.
+	AbnormalHeartbeatStatusCount pulumi.IntInput `pulumi:"abnormalHeartbeatStatusCount"`
+	// The latest version of log collector.
+	AgentLatestVersion pulumi.StringInput `pulumi:"agentLatestVersion"`
+	// Whether enable auto update.
+	AutoUpdate pulumi.BoolInput `pulumi:"autoUpdate"`
+	// The create time of host group.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The count of host.
+	HostCount pulumi.IntInput `pulumi:"hostCount"`
+	// The id of host group.
+	HostGroupId pulumi.StringInput `pulumi:"hostGroupId"`
+	// The name of host group.
+	HostGroupName pulumi.StringInput `pulumi:"hostGroupName"`
+	// The type of host group.
+	HostGroupType pulumi.StringInput `pulumi:"hostGroupType"`
+	// The identifier of host.
+	HostIdentifier pulumi.StringInput `pulumi:"hostIdentifier"`
+	// The ip list of host group.
+	HostIpLists pulumi.StringArrayInput `pulumi:"hostIpLists"`
+	// The project name of iam.
+	IamProjectName pulumi.StringInput `pulumi:"iamProjectName"`
+	// The modify time of host group.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The normal heartbeat status count of host.
+	NormalHeartbeatStatusCount pulumi.IntInput `pulumi:"normalHeartbeatStatusCount"`
+	// The rule count of host.
+	RuleCount pulumi.IntInput `pulumi:"ruleCount"`
+	// Whether enable service logging.
+	ServiceLogging pulumi.BoolInput `pulumi:"serviceLogging"`
+	// The update end time of log collector.
+	UpdateEndTime pulumi.StringInput `pulumi:"updateEndTime"`
+	// The update start time of log collector.
+	UpdateStartTime pulumi.StringInput `pulumi:"updateStartTime"`
+}
+
+func (GetHostGroupsInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHostGroupsInfo)(nil)).Elem()
+}
+
+func (i GetHostGroupsInfoArgs) ToGetHostGroupsInfoOutput() GetHostGroupsInfoOutput {
+	return i.ToGetHostGroupsInfoOutputWithContext(context.Background())
+}
+
+func (i GetHostGroupsInfoArgs) ToGetHostGroupsInfoOutputWithContext(ctx context.Context) GetHostGroupsInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHostGroupsInfoOutput)
+}
+
+// GetHostGroupsInfoArrayInput is an input type that accepts GetHostGroupsInfoArray and GetHostGroupsInfoArrayOutput values.
+// You can construct a concrete instance of `GetHostGroupsInfoArrayInput` via:
+//
+//	GetHostGroupsInfoArray{ GetHostGroupsInfoArgs{...} }
+type GetHostGroupsInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetHostGroupsInfoArrayOutput() GetHostGroupsInfoArrayOutput
+	ToGetHostGroupsInfoArrayOutputWithContext(context.Context) GetHostGroupsInfoArrayOutput
+}
+
+type GetHostGroupsInfoArray []GetHostGroupsInfoInput
+
+func (GetHostGroupsInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHostGroupsInfo)(nil)).Elem()
+}
+
+func (i GetHostGroupsInfoArray) ToGetHostGroupsInfoArrayOutput() GetHostGroupsInfoArrayOutput {
+	return i.ToGetHostGroupsInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetHostGroupsInfoArray) ToGetHostGroupsInfoArrayOutputWithContext(ctx context.Context) GetHostGroupsInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHostGroupsInfoArrayOutput)
+}
+
+type GetHostGroupsInfoOutput struct{ *pulumi.OutputState }
+
+func (GetHostGroupsInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHostGroupsInfo)(nil)).Elem()
+}
+
+func (o GetHostGroupsInfoOutput) ToGetHostGroupsInfoOutput() GetHostGroupsInfoOutput {
+	return o
+}
+
+func (o GetHostGroupsInfoOutput) ToGetHostGroupsInfoOutputWithContext(ctx context.Context) GetHostGroupsInfoOutput {
+	return o
+}
+
+// The abnormal heartbeat status count of host.
+func (o GetHostGroupsInfoOutput) AbnormalHeartbeatStatusCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) int { return v.AbnormalHeartbeatStatusCount }).(pulumi.IntOutput)
+}
+
+// The latest version of log collector.
+func (o GetHostGroupsInfoOutput) AgentLatestVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.AgentLatestVersion }).(pulumi.StringOutput)
+}
+
+// Whether enable auto update.
+func (o GetHostGroupsInfoOutput) AutoUpdate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) bool { return v.AutoUpdate }).(pulumi.BoolOutput)
+}
+
+// The create time of host group.
+func (o GetHostGroupsInfoOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The count of host.
+func (o GetHostGroupsInfoOutput) HostCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) int { return v.HostCount }).(pulumi.IntOutput)
+}
+
+// The id of host group.
+func (o GetHostGroupsInfoOutput) HostGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.HostGroupId }).(pulumi.StringOutput)
+}
+
+// The name of host group.
+func (o GetHostGroupsInfoOutput) HostGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.HostGroupName }).(pulumi.StringOutput)
+}
+
+// The type of host group.
+func (o GetHostGroupsInfoOutput) HostGroupType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.HostGroupType }).(pulumi.StringOutput)
+}
+
+// The identifier of host.
+func (o GetHostGroupsInfoOutput) HostIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.HostIdentifier }).(pulumi.StringOutput)
+}
+
+// The ip list of host group.
+func (o GetHostGroupsInfoOutput) HostIpLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) []string { return v.HostIpLists }).(pulumi.StringArrayOutput)
+}
+
+// The project name of iam.
+func (o GetHostGroupsInfoOutput) IamProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.IamProjectName }).(pulumi.StringOutput)
+}
+
+// The modify time of host group.
+func (o GetHostGroupsInfoOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The normal heartbeat status count of host.
+func (o GetHostGroupsInfoOutput) NormalHeartbeatStatusCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) int { return v.NormalHeartbeatStatusCount }).(pulumi.IntOutput)
+}
+
+// The rule count of host.
+func (o GetHostGroupsInfoOutput) RuleCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) int { return v.RuleCount }).(pulumi.IntOutput)
+}
+
+// Whether enable service logging.
+func (o GetHostGroupsInfoOutput) ServiceLogging() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) bool { return v.ServiceLogging }).(pulumi.BoolOutput)
+}
+
+// The update end time of log collector.
+func (o GetHostGroupsInfoOutput) UpdateEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.UpdateEndTime }).(pulumi.StringOutput)
+}
+
+// The update start time of log collector.
+func (o GetHostGroupsInfoOutput) UpdateStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostGroupsInfo) string { return v.UpdateStartTime }).(pulumi.StringOutput)
+}
+
+type GetHostGroupsInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHostGroupsInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHostGroupsInfo)(nil)).Elem()
+}
+
+func (o GetHostGroupsInfoArrayOutput) ToGetHostGroupsInfoArrayOutput() GetHostGroupsInfoArrayOutput {
+	return o
+}
+
+func (o GetHostGroupsInfoArrayOutput) ToGetHostGroupsInfoArrayOutputWithContext(ctx context.Context) GetHostGroupsInfoArrayOutput {
+	return o
+}
+
+func (o GetHostGroupsInfoArrayOutput) Index(i pulumi.IntInput) GetHostGroupsInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHostGroupsInfo {
+		return vs[0].([]GetHostGroupsInfo)[vs[1].(int)]
+	}).(GetHostGroupsInfoOutput)
+}
+
+type GetHostsHostInfo struct {
+	// The the heartbeat status.
+	HeartbeatStatus int `pulumi:"heartbeatStatus"`
+	// The id of host group.
+	HostGroupId string `pulumi:"hostGroupId"`
+	// The ip address.
+	Ip string `pulumi:"ip"`
+	// The version of log collector.
+	LogCollectorVersion string `pulumi:"logCollectorVersion"`
+}
+
+// GetHostsHostInfoInput is an input type that accepts GetHostsHostInfoArgs and GetHostsHostInfoOutput values.
+// You can construct a concrete instance of `GetHostsHostInfoInput` via:
+//
+//	GetHostsHostInfoArgs{...}
+type GetHostsHostInfoInput interface {
+	pulumi.Input
+
+	ToGetHostsHostInfoOutput() GetHostsHostInfoOutput
+	ToGetHostsHostInfoOutputWithContext(context.Context) GetHostsHostInfoOutput
+}
+
+type GetHostsHostInfoArgs struct {
+	// The the heartbeat status.
+	HeartbeatStatus pulumi.IntInput `pulumi:"heartbeatStatus"`
+	// The id of host group.
+	HostGroupId pulumi.StringInput `pulumi:"hostGroupId"`
+	// The ip address.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The version of log collector.
+	LogCollectorVersion pulumi.StringInput `pulumi:"logCollectorVersion"`
+}
+
+func (GetHostsHostInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHostsHostInfo)(nil)).Elem()
+}
+
+func (i GetHostsHostInfoArgs) ToGetHostsHostInfoOutput() GetHostsHostInfoOutput {
+	return i.ToGetHostsHostInfoOutputWithContext(context.Background())
+}
+
+func (i GetHostsHostInfoArgs) ToGetHostsHostInfoOutputWithContext(ctx context.Context) GetHostsHostInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHostsHostInfoOutput)
+}
+
+// GetHostsHostInfoArrayInput is an input type that accepts GetHostsHostInfoArray and GetHostsHostInfoArrayOutput values.
+// You can construct a concrete instance of `GetHostsHostInfoArrayInput` via:
+//
+//	GetHostsHostInfoArray{ GetHostsHostInfoArgs{...} }
+type GetHostsHostInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetHostsHostInfoArrayOutput() GetHostsHostInfoArrayOutput
+	ToGetHostsHostInfoArrayOutputWithContext(context.Context) GetHostsHostInfoArrayOutput
+}
+
+type GetHostsHostInfoArray []GetHostsHostInfoInput
+
+func (GetHostsHostInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHostsHostInfo)(nil)).Elem()
+}
+
+func (i GetHostsHostInfoArray) ToGetHostsHostInfoArrayOutput() GetHostsHostInfoArrayOutput {
+	return i.ToGetHostsHostInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetHostsHostInfoArray) ToGetHostsHostInfoArrayOutputWithContext(ctx context.Context) GetHostsHostInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHostsHostInfoArrayOutput)
+}
+
+type GetHostsHostInfoOutput struct{ *pulumi.OutputState }
+
+func (GetHostsHostInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHostsHostInfo)(nil)).Elem()
+}
+
+func (o GetHostsHostInfoOutput) ToGetHostsHostInfoOutput() GetHostsHostInfoOutput {
+	return o
+}
+
+func (o GetHostsHostInfoOutput) ToGetHostsHostInfoOutputWithContext(ctx context.Context) GetHostsHostInfoOutput {
+	return o
+}
+
+// The the heartbeat status.
+func (o GetHostsHostInfoOutput) HeartbeatStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHostsHostInfo) int { return v.HeartbeatStatus }).(pulumi.IntOutput)
+}
+
+// The id of host group.
+func (o GetHostsHostInfoOutput) HostGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostsHostInfo) string { return v.HostGroupId }).(pulumi.StringOutput)
+}
+
+// The ip address.
+func (o GetHostsHostInfoOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostsHostInfo) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The version of log collector.
+func (o GetHostsHostInfoOutput) LogCollectorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostsHostInfo) string { return v.LogCollectorVersion }).(pulumi.StringOutput)
+}
+
+type GetHostsHostInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHostsHostInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHostsHostInfo)(nil)).Elem()
+}
+
+func (o GetHostsHostInfoArrayOutput) ToGetHostsHostInfoArrayOutput() GetHostsHostInfoArrayOutput {
+	return o
+}
+
+func (o GetHostsHostInfoArrayOutput) ToGetHostsHostInfoArrayOutputWithContext(ctx context.Context) GetHostsHostInfoArrayOutput {
+	return o
+}
+
+func (o GetHostsHostInfoArrayOutput) Index(i pulumi.IntInput) GetHostsHostInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHostsHostInfo {
+		return vs[0].([]GetHostsHostInfo)[vs[1].(int)]
+	}).(GetHostsHostInfoOutput)
+}
+
+type GetIndexesTlsIndex struct {
+	// The create time of the tls index.
+	CreateTime string `pulumi:"createTime"`
+	// The FullText index of the tls topic.
+	FullText GetIndexesTlsIndexFullText `pulumi:"fullText"`
+	// The topic id of the tls index.
+	Id string `pulumi:"id"`
+	// The KeyValue index of the tls topic.
+	KeyValues []GetIndexesTlsIndexKeyValue `pulumi:"keyValues"`
+	// The modify time of the tls index.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The topic id of the tls index.
+	TopicId string `pulumi:"topicId"`
+	// The reserved field index configuration of the tls topic.
+	UserInnerKeyValues []GetIndexesTlsIndexUserInnerKeyValue `pulumi:"userInnerKeyValues"`
+}
+
+// GetIndexesTlsIndexInput is an input type that accepts GetIndexesTlsIndexArgs and GetIndexesTlsIndexOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexInput` via:
+//
+//	GetIndexesTlsIndexArgs{...}
+type GetIndexesTlsIndexInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexOutput() GetIndexesTlsIndexOutput
+	ToGetIndexesTlsIndexOutputWithContext(context.Context) GetIndexesTlsIndexOutput
+}
+
+type GetIndexesTlsIndexArgs struct {
+	// The create time of the tls index.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The FullText index of the tls topic.
+	FullText GetIndexesTlsIndexFullTextInput `pulumi:"fullText"`
+	// The topic id of the tls index.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The KeyValue index of the tls topic.
+	KeyValues GetIndexesTlsIndexKeyValueArrayInput `pulumi:"keyValues"`
+	// The modify time of the tls index.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The topic id of the tls index.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The reserved field index configuration of the tls topic.
+	UserInnerKeyValues GetIndexesTlsIndexUserInnerKeyValueArrayInput `pulumi:"userInnerKeyValues"`
+}
+
+func (GetIndexesTlsIndexArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndex)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexArgs) ToGetIndexesTlsIndexOutput() GetIndexesTlsIndexOutput {
+	return i.ToGetIndexesTlsIndexOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexArgs) ToGetIndexesTlsIndexOutputWithContext(ctx context.Context) GetIndexesTlsIndexOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexOutput)
+}
+
+// GetIndexesTlsIndexArrayInput is an input type that accepts GetIndexesTlsIndexArray and GetIndexesTlsIndexArrayOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexArrayInput` via:
+//
+//	GetIndexesTlsIndexArray{ GetIndexesTlsIndexArgs{...} }
+type GetIndexesTlsIndexArrayInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexArrayOutput() GetIndexesTlsIndexArrayOutput
+	ToGetIndexesTlsIndexArrayOutputWithContext(context.Context) GetIndexesTlsIndexArrayOutput
+}
+
+type GetIndexesTlsIndexArray []GetIndexesTlsIndexInput
+
+func (GetIndexesTlsIndexArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndex)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexArray) ToGetIndexesTlsIndexArrayOutput() GetIndexesTlsIndexArrayOutput {
+	return i.ToGetIndexesTlsIndexArrayOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexArray) ToGetIndexesTlsIndexArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexArrayOutput)
+}
+
+type GetIndexesTlsIndexOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndex)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexOutput) ToGetIndexesTlsIndexOutput() GetIndexesTlsIndexOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexOutput) ToGetIndexesTlsIndexOutputWithContext(ctx context.Context) GetIndexesTlsIndexOutput {
+	return o
+}
+
+// The create time of the tls index.
+func (o GetIndexesTlsIndexOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The FullText index of the tls topic.
+func (o GetIndexesTlsIndexOutput) FullText() GetIndexesTlsIndexFullTextOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) GetIndexesTlsIndexFullText { return v.FullText }).(GetIndexesTlsIndexFullTextOutput)
+}
+
+// The topic id of the tls index.
+func (o GetIndexesTlsIndexOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The KeyValue index of the tls topic.
+func (o GetIndexesTlsIndexOutput) KeyValues() GetIndexesTlsIndexKeyValueArrayOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) []GetIndexesTlsIndexKeyValue { return v.KeyValues }).(GetIndexesTlsIndexKeyValueArrayOutput)
+}
+
+// The modify time of the tls index.
+func (o GetIndexesTlsIndexOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The topic id of the tls index.
+func (o GetIndexesTlsIndexOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The reserved field index configuration of the tls topic.
+func (o GetIndexesTlsIndexOutput) UserInnerKeyValues() GetIndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndex) []GetIndexesTlsIndexUserInnerKeyValue { return v.UserInnerKeyValues }).(GetIndexesTlsIndexUserInnerKeyValueArrayOutput)
+}
+
+type GetIndexesTlsIndexArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndex)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexArrayOutput) ToGetIndexesTlsIndexArrayOutput() GetIndexesTlsIndexArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexArrayOutput) ToGetIndexesTlsIndexArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexArrayOutput) Index(i pulumi.IntInput) GetIndexesTlsIndexOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIndexesTlsIndex {
+		return vs[0].([]GetIndexesTlsIndex)[vs[1].(int)]
+	}).(GetIndexesTlsIndexOutput)
+}
+
+type GetIndexesTlsIndexFullText struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+}
+
+// GetIndexesTlsIndexFullTextInput is an input type that accepts GetIndexesTlsIndexFullTextArgs and GetIndexesTlsIndexFullTextOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexFullTextInput` via:
+//
+//	GetIndexesTlsIndexFullTextArgs{...}
+type GetIndexesTlsIndexFullTextInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexFullTextOutput() GetIndexesTlsIndexFullTextOutput
+	ToGetIndexesTlsIndexFullTextOutputWithContext(context.Context) GetIndexesTlsIndexFullTextOutput
+}
+
+type GetIndexesTlsIndexFullTextArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+}
+
+func (GetIndexesTlsIndexFullTextArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexFullText)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexFullTextArgs) ToGetIndexesTlsIndexFullTextOutput() GetIndexesTlsIndexFullTextOutput {
+	return i.ToGetIndexesTlsIndexFullTextOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexFullTextArgs) ToGetIndexesTlsIndexFullTextOutputWithContext(ctx context.Context) GetIndexesTlsIndexFullTextOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexFullTextOutput)
+}
+
+type GetIndexesTlsIndexFullTextOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexFullTextOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexFullText)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexFullTextOutput) ToGetIndexesTlsIndexFullTextOutput() GetIndexesTlsIndexFullTextOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexFullTextOutput) ToGetIndexesTlsIndexFullTextOutputWithContext(ctx context.Context) GetIndexesTlsIndexFullTextOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o GetIndexesTlsIndexFullTextOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexFullText) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o GetIndexesTlsIndexFullTextOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexFullText) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o GetIndexesTlsIndexFullTextOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexFullText) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+type GetIndexesTlsIndexKeyValue struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values.
+	IndexAll bool `pulumi:"indexAll"`
+	// The JSON subfield key value index.
+	JsonKeys []GetIndexesTlsIndexKeyValueJsonKey `pulumi:"jsonKeys"`
+	// The key of the KeyValue index.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag bool `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetIndexesTlsIndexKeyValueInput is an input type that accepts GetIndexesTlsIndexKeyValueArgs and GetIndexesTlsIndexKeyValueOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexKeyValueInput` via:
+//
+//	GetIndexesTlsIndexKeyValueArgs{...}
+type GetIndexesTlsIndexKeyValueInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexKeyValueOutput() GetIndexesTlsIndexKeyValueOutput
+	ToGetIndexesTlsIndexKeyValueOutputWithContext(context.Context) GetIndexesTlsIndexKeyValueOutput
+}
+
+type GetIndexesTlsIndexKeyValueArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values.
+	IndexAll pulumi.BoolInput `pulumi:"indexAll"`
+	// The JSON subfield key value index.
+	JsonKeys GetIndexesTlsIndexKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
+	// The key of the KeyValue index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetIndexesTlsIndexKeyValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexKeyValue)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexKeyValueArgs) ToGetIndexesTlsIndexKeyValueOutput() GetIndexesTlsIndexKeyValueOutput {
+	return i.ToGetIndexesTlsIndexKeyValueOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexKeyValueArgs) ToGetIndexesTlsIndexKeyValueOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexKeyValueOutput)
+}
+
+// GetIndexesTlsIndexKeyValueArrayInput is an input type that accepts GetIndexesTlsIndexKeyValueArray and GetIndexesTlsIndexKeyValueArrayOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexKeyValueArrayInput` via:
+//
+//	GetIndexesTlsIndexKeyValueArray{ GetIndexesTlsIndexKeyValueArgs{...} }
+type GetIndexesTlsIndexKeyValueArrayInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexKeyValueArrayOutput() GetIndexesTlsIndexKeyValueArrayOutput
+	ToGetIndexesTlsIndexKeyValueArrayOutputWithContext(context.Context) GetIndexesTlsIndexKeyValueArrayOutput
+}
+
+type GetIndexesTlsIndexKeyValueArray []GetIndexesTlsIndexKeyValueInput
+
+func (GetIndexesTlsIndexKeyValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexKeyValue)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexKeyValueArray) ToGetIndexesTlsIndexKeyValueArrayOutput() GetIndexesTlsIndexKeyValueArrayOutput {
+	return i.ToGetIndexesTlsIndexKeyValueArrayOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexKeyValueArray) ToGetIndexesTlsIndexKeyValueArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexKeyValueArrayOutput)
+}
+
+type GetIndexesTlsIndexKeyValueOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexKeyValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexKeyValue)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexKeyValueOutput) ToGetIndexesTlsIndexKeyValueOutput() GetIndexesTlsIndexKeyValueOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexKeyValueOutput) ToGetIndexesTlsIndexKeyValueOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o GetIndexesTlsIndexKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o GetIndexesTlsIndexKeyValueOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o GetIndexesTlsIndexKeyValueOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values.
+func (o GetIndexesTlsIndexKeyValueOutput) IndexAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.IndexAll }).(pulumi.BoolOutput)
+}
+
+// The JSON subfield key value index.
+func (o GetIndexesTlsIndexKeyValueOutput) JsonKeys() GetIndexesTlsIndexKeyValueJsonKeyArrayOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) []GetIndexesTlsIndexKeyValueJsonKey { return v.JsonKeys }).(GetIndexesTlsIndexKeyValueJsonKeyArrayOutput)
+}
+
+// The key of the KeyValue index.
+func (o GetIndexesTlsIndexKeyValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o GetIndexesTlsIndexKeyValueOutput) SqlFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
+}
+
+// The type of value.
+func (o GetIndexesTlsIndexKeyValueOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type GetIndexesTlsIndexKeyValueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexKeyValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexKeyValue)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexKeyValueArrayOutput) ToGetIndexesTlsIndexKeyValueArrayOutput() GetIndexesTlsIndexKeyValueArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexKeyValueArrayOutput) ToGetIndexesTlsIndexKeyValueArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexKeyValueArrayOutput) Index(i pulumi.IntInput) GetIndexesTlsIndexKeyValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIndexesTlsIndexKeyValue {
+		return vs[0].([]GetIndexesTlsIndexKeyValue)[vs[1].(int)]
+	}).(GetIndexesTlsIndexKeyValueOutput)
+}
+
+type GetIndexesTlsIndexKeyValueJsonKey struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+	// The key of the KeyValue index.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag bool `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetIndexesTlsIndexKeyValueJsonKeyInput is an input type that accepts GetIndexesTlsIndexKeyValueJsonKeyArgs and GetIndexesTlsIndexKeyValueJsonKeyOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexKeyValueJsonKeyInput` via:
+//
+//	GetIndexesTlsIndexKeyValueJsonKeyArgs{...}
+type GetIndexesTlsIndexKeyValueJsonKeyInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexKeyValueJsonKeyOutput() GetIndexesTlsIndexKeyValueJsonKeyOutput
+	ToGetIndexesTlsIndexKeyValueJsonKeyOutputWithContext(context.Context) GetIndexesTlsIndexKeyValueJsonKeyOutput
+}
+
+type GetIndexesTlsIndexKeyValueJsonKeyArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// The key of the KeyValue index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetIndexesTlsIndexKeyValueJsonKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexKeyValueJsonKeyArgs) ToGetIndexesTlsIndexKeyValueJsonKeyOutput() GetIndexesTlsIndexKeyValueJsonKeyOutput {
+	return i.ToGetIndexesTlsIndexKeyValueJsonKeyOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexKeyValueJsonKeyArgs) ToGetIndexesTlsIndexKeyValueJsonKeyOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueJsonKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexKeyValueJsonKeyOutput)
+}
+
+// GetIndexesTlsIndexKeyValueJsonKeyArrayInput is an input type that accepts GetIndexesTlsIndexKeyValueJsonKeyArray and GetIndexesTlsIndexKeyValueJsonKeyArrayOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexKeyValueJsonKeyArrayInput` via:
+//
+//	GetIndexesTlsIndexKeyValueJsonKeyArray{ GetIndexesTlsIndexKeyValueJsonKeyArgs{...} }
+type GetIndexesTlsIndexKeyValueJsonKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutput() GetIndexesTlsIndexKeyValueJsonKeyArrayOutput
+	ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutputWithContext(context.Context) GetIndexesTlsIndexKeyValueJsonKeyArrayOutput
+}
+
+type GetIndexesTlsIndexKeyValueJsonKeyArray []GetIndexesTlsIndexKeyValueJsonKeyInput
+
+func (GetIndexesTlsIndexKeyValueJsonKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexKeyValueJsonKeyArray) ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutput() GetIndexesTlsIndexKeyValueJsonKeyArrayOutput {
+	return i.ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexKeyValueJsonKeyArray) ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueJsonKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexKeyValueJsonKeyArrayOutput)
+}
+
+type GetIndexesTlsIndexKeyValueJsonKeyOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexKeyValueJsonKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) ToGetIndexesTlsIndexKeyValueJsonKeyOutput() GetIndexesTlsIndexKeyValueJsonKeyOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) ToGetIndexesTlsIndexKeyValueJsonKeyOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueJsonKeyOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// The key of the KeyValue index.
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
+}
+
+// The type of value.
+func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type GetIndexesTlsIndexKeyValueJsonKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexKeyValueJsonKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexKeyValueJsonKeyArrayOutput) ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutput() GetIndexesTlsIndexKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexKeyValueJsonKeyArrayOutput) ToGetIndexesTlsIndexKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) GetIndexesTlsIndexKeyValueJsonKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIndexesTlsIndexKeyValueJsonKey {
+		return vs[0].([]GetIndexesTlsIndexKeyValueJsonKey)[vs[1].(int)]
+	}).(GetIndexesTlsIndexKeyValueJsonKeyOutput)
+}
+
+type GetIndexesTlsIndexUserInnerKeyValue struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+	// The JSON subfield key value index.
+	JsonKeys []GetIndexesTlsIndexUserInnerKeyValueJsonKey `pulumi:"jsonKeys"`
+	// The key of the KeyValue index.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag bool `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetIndexesTlsIndexUserInnerKeyValueInput is an input type that accepts GetIndexesTlsIndexUserInnerKeyValueArgs and GetIndexesTlsIndexUserInnerKeyValueOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexUserInnerKeyValueInput` via:
+//
+//	GetIndexesTlsIndexUserInnerKeyValueArgs{...}
+type GetIndexesTlsIndexUserInnerKeyValueInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexUserInnerKeyValueOutput() GetIndexesTlsIndexUserInnerKeyValueOutput
+	ToGetIndexesTlsIndexUserInnerKeyValueOutputWithContext(context.Context) GetIndexesTlsIndexUserInnerKeyValueOutput
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// The JSON subfield key value index.
+	JsonKeys GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
+	// The key of the KeyValue index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetIndexesTlsIndexUserInnerKeyValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueArgs) ToGetIndexesTlsIndexUserInnerKeyValueOutput() GetIndexesTlsIndexUserInnerKeyValueOutput {
+	return i.ToGetIndexesTlsIndexUserInnerKeyValueOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueArgs) ToGetIndexesTlsIndexUserInnerKeyValueOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexUserInnerKeyValueOutput)
+}
+
+// GetIndexesTlsIndexUserInnerKeyValueArrayInput is an input type that accepts GetIndexesTlsIndexUserInnerKeyValueArray and GetIndexesTlsIndexUserInnerKeyValueArrayOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexUserInnerKeyValueArrayInput` via:
+//
+//	GetIndexesTlsIndexUserInnerKeyValueArray{ GetIndexesTlsIndexUserInnerKeyValueArgs{...} }
+type GetIndexesTlsIndexUserInnerKeyValueArrayInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexUserInnerKeyValueArrayOutput() GetIndexesTlsIndexUserInnerKeyValueArrayOutput
+	ToGetIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(context.Context) GetIndexesTlsIndexUserInnerKeyValueArrayOutput
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueArray []GetIndexesTlsIndexUserInnerKeyValueInput
+
+func (GetIndexesTlsIndexUserInnerKeyValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueArray) ToGetIndexesTlsIndexUserInnerKeyValueArrayOutput() GetIndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return i.ToGetIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueArray) ToGetIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexUserInnerKeyValueArrayOutput)
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexUserInnerKeyValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) ToGetIndexesTlsIndexUserInnerKeyValueOutput() GetIndexesTlsIndexUserInnerKeyValueOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) ToGetIndexesTlsIndexUserInnerKeyValueOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// The JSON subfield key value index.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) JsonKeys() GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) []GetIndexesTlsIndexUserInnerKeyValueJsonKey {
+		return v.JsonKeys
+	}).(GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput)
+}
+
+// The key of the KeyValue index.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) SqlFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
+}
+
+// The type of value.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexUserInnerKeyValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueArrayOutput) ToGetIndexesTlsIndexUserInnerKeyValueArrayOutput() GetIndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueArrayOutput) ToGetIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueArrayOutput) Index(i pulumi.IntInput) GetIndexesTlsIndexUserInnerKeyValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIndexesTlsIndexUserInnerKeyValue {
+		return vs[0].([]GetIndexesTlsIndexUserInnerKeyValue)[vs[1].(int)]
+	}).(GetIndexesTlsIndexUserInnerKeyValueOutput)
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueJsonKey struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+	// The key of the KeyValue index.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag bool `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetIndexesTlsIndexUserInnerKeyValueJsonKeyInput is an input type that accepts GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs and GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexUserInnerKeyValueJsonKeyInput` via:
+//
+//	GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs{...}
+type GetIndexesTlsIndexUserInnerKeyValueJsonKeyInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput() GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput
+	ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(context.Context) GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// The key of the KeyValue index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput() GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return i.ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput)
+}
+
+// GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput is an input type that accepts GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray and GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput values.
+// You can construct a concrete instance of `GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput` via:
+//
+//	GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray{ GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs{...} }
+type GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput() GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput
+	ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(context.Context) GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray []GetIndexesTlsIndexUserInnerKeyValueJsonKeyInput
+
+func (GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput() GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return i.ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput)
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput() GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// The key of the KeyValue index.
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
+}
+
+// The type of value.
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput() GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) ToGetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIndexesTlsIndexUserInnerKeyValueJsonKey {
+		return vs[0].([]GetIndexesTlsIndexUserInnerKeyValueJsonKey)[vs[1].(int)]
+	}).(GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput)
+}
+
+type GetKafkaConsumersData struct {
+	// Whether allow consume.
+	AllowConsume bool `pulumi:"allowConsume"`
+	// The topic of consume.
+	ConsumeTopic string `pulumi:"consumeTopic"`
+	// The ID of Topic.
+	TopicId string `pulumi:"topicId"`
+}
+
+// GetKafkaConsumersDataInput is an input type that accepts GetKafkaConsumersDataArgs and GetKafkaConsumersDataOutput values.
+// You can construct a concrete instance of `GetKafkaConsumersDataInput` via:
+//
+//	GetKafkaConsumersDataArgs{...}
+type GetKafkaConsumersDataInput interface {
+	pulumi.Input
+
+	ToGetKafkaConsumersDataOutput() GetKafkaConsumersDataOutput
+	ToGetKafkaConsumersDataOutputWithContext(context.Context) GetKafkaConsumersDataOutput
+}
+
+type GetKafkaConsumersDataArgs struct {
+	// Whether allow consume.
+	AllowConsume pulumi.BoolInput `pulumi:"allowConsume"`
+	// The topic of consume.
+	ConsumeTopic pulumi.StringInput `pulumi:"consumeTopic"`
+	// The ID of Topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+}
+
+func (GetKafkaConsumersDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaConsumersData)(nil)).Elem()
+}
+
+func (i GetKafkaConsumersDataArgs) ToGetKafkaConsumersDataOutput() GetKafkaConsumersDataOutput {
+	return i.ToGetKafkaConsumersDataOutputWithContext(context.Background())
+}
+
+func (i GetKafkaConsumersDataArgs) ToGetKafkaConsumersDataOutputWithContext(ctx context.Context) GetKafkaConsumersDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKafkaConsumersDataOutput)
+}
+
+// GetKafkaConsumersDataArrayInput is an input type that accepts GetKafkaConsumersDataArray and GetKafkaConsumersDataArrayOutput values.
+// You can construct a concrete instance of `GetKafkaConsumersDataArrayInput` via:
+//
+//	GetKafkaConsumersDataArray{ GetKafkaConsumersDataArgs{...} }
+type GetKafkaConsumersDataArrayInput interface {
+	pulumi.Input
+
+	ToGetKafkaConsumersDataArrayOutput() GetKafkaConsumersDataArrayOutput
+	ToGetKafkaConsumersDataArrayOutputWithContext(context.Context) GetKafkaConsumersDataArrayOutput
+}
+
+type GetKafkaConsumersDataArray []GetKafkaConsumersDataInput
+
+func (GetKafkaConsumersDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKafkaConsumersData)(nil)).Elem()
+}
+
+func (i GetKafkaConsumersDataArray) ToGetKafkaConsumersDataArrayOutput() GetKafkaConsumersDataArrayOutput {
+	return i.ToGetKafkaConsumersDataArrayOutputWithContext(context.Background())
+}
+
+func (i GetKafkaConsumersDataArray) ToGetKafkaConsumersDataArrayOutputWithContext(ctx context.Context) GetKafkaConsumersDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKafkaConsumersDataArrayOutput)
+}
+
+type GetKafkaConsumersDataOutput struct{ *pulumi.OutputState }
+
+func (GetKafkaConsumersDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaConsumersData)(nil)).Elem()
+}
+
+func (o GetKafkaConsumersDataOutput) ToGetKafkaConsumersDataOutput() GetKafkaConsumersDataOutput {
+	return o
+}
+
+func (o GetKafkaConsumersDataOutput) ToGetKafkaConsumersDataOutputWithContext(ctx context.Context) GetKafkaConsumersDataOutput {
+	return o
+}
+
+// Whether allow consume.
+func (o GetKafkaConsumersDataOutput) AllowConsume() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKafkaConsumersData) bool { return v.AllowConsume }).(pulumi.BoolOutput)
+}
+
+// The topic of consume.
+func (o GetKafkaConsumersDataOutput) ConsumeTopic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaConsumersData) string { return v.ConsumeTopic }).(pulumi.StringOutput)
+}
+
+// The ID of Topic.
+func (o GetKafkaConsumersDataOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaConsumersData) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+type GetKafkaConsumersDataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKafkaConsumersDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKafkaConsumersData)(nil)).Elem()
+}
+
+func (o GetKafkaConsumersDataArrayOutput) ToGetKafkaConsumersDataArrayOutput() GetKafkaConsumersDataArrayOutput {
+	return o
+}
+
+func (o GetKafkaConsumersDataArrayOutput) ToGetKafkaConsumersDataArrayOutputWithContext(ctx context.Context) GetKafkaConsumersDataArrayOutput {
+	return o
+}
+
+func (o GetKafkaConsumersDataArrayOutput) Index(i pulumi.IntInput) GetKafkaConsumersDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKafkaConsumersData {
+		return vs[0].([]GetKafkaConsumersData)[vs[1].(int)]
+	}).(GetKafkaConsumersDataOutput)
+}
+
+type GetProjectsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetProjectsTagInput is an input type that accepts GetProjectsTagArgs and GetProjectsTagOutput values.
+// You can construct a concrete instance of `GetProjectsTagInput` via:
+//
+//	GetProjectsTagArgs{...}
+type GetProjectsTagInput interface {
+	pulumi.Input
+
+	ToGetProjectsTagOutput() GetProjectsTagOutput
+	ToGetProjectsTagOutputWithContext(context.Context) GetProjectsTagOutput
+}
+
+type GetProjectsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetProjectsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsTag)(nil)).Elem()
+}
+
+func (i GetProjectsTagArgs) ToGetProjectsTagOutput() GetProjectsTagOutput {
+	return i.ToGetProjectsTagOutputWithContext(context.Background())
+}
+
+func (i GetProjectsTagArgs) ToGetProjectsTagOutputWithContext(ctx context.Context) GetProjectsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsTagOutput)
+}
+
+// GetProjectsTagArrayInput is an input type that accepts GetProjectsTagArray and GetProjectsTagArrayOutput values.
+// You can construct a concrete instance of `GetProjectsTagArrayInput` via:
+//
+//	GetProjectsTagArray{ GetProjectsTagArgs{...} }
+type GetProjectsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectsTagArrayOutput() GetProjectsTagArrayOutput
+	ToGetProjectsTagArrayOutputWithContext(context.Context) GetProjectsTagArrayOutput
+}
+
+type GetProjectsTagArray []GetProjectsTagInput
+
+func (GetProjectsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsTag)(nil)).Elem()
+}
+
+func (i GetProjectsTagArray) ToGetProjectsTagArrayOutput() GetProjectsTagArrayOutput {
+	return i.ToGetProjectsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectsTagArray) ToGetProjectsTagArrayOutputWithContext(ctx context.Context) GetProjectsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsTagArrayOutput)
+}
+
+type GetProjectsTagOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsTag)(nil)).Elem()
+}
+
+func (o GetProjectsTagOutput) ToGetProjectsTagOutput() GetProjectsTagOutput {
+	return o
+}
+
+func (o GetProjectsTagOutput) ToGetProjectsTagOutputWithContext(ctx context.Context) GetProjectsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetProjectsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetProjectsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetProjectsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsTag)(nil)).Elem()
+}
+
+func (o GetProjectsTagArrayOutput) ToGetProjectsTagArrayOutput() GetProjectsTagArrayOutput {
+	return o
+}
+
+func (o GetProjectsTagArrayOutput) ToGetProjectsTagArrayOutputWithContext(ctx context.Context) GetProjectsTagArrayOutput {
+	return o
+}
+
+func (o GetProjectsTagArrayOutput) Index(i pulumi.IntInput) GetProjectsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsTag {
+		return vs[0].([]GetProjectsTag)[vs[1].(int)]
+	}).(GetProjectsTagOutput)
+}
+
+type GetProjectsTlsProject struct {
+	// The create time of the tls project.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the tls project.
+	Description string `pulumi:"description"`
+	// The IAM project name of the tls project.
+	IamProjectName string `pulumi:"iamProjectName"`
+	// The ID of the tls project.
+	Id string `pulumi:"id"`
+	// The inner net domain of the tls project.
+	InnerNetDomain string `pulumi:"innerNetDomain"`
+	// The id of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+	ProjectId string `pulumi:"projectId"`
+	// The name of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetProjectsTlsProjectTag `pulumi:"tags"`
+	// The count of topics in the tls project.
+	TopicCount int `pulumi:"topicCount"`
+}
+
+// GetProjectsTlsProjectInput is an input type that accepts GetProjectsTlsProjectArgs and GetProjectsTlsProjectOutput values.
+// You can construct a concrete instance of `GetProjectsTlsProjectInput` via:
+//
+//	GetProjectsTlsProjectArgs{...}
+type GetProjectsTlsProjectInput interface {
+	pulumi.Input
+
+	ToGetProjectsTlsProjectOutput() GetProjectsTlsProjectOutput
+	ToGetProjectsTlsProjectOutputWithContext(context.Context) GetProjectsTlsProjectOutput
+}
+
+type GetProjectsTlsProjectArgs struct {
+	// The create time of the tls project.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the tls project.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The IAM project name of the tls project.
+	IamProjectName pulumi.StringInput `pulumi:"iamProjectName"`
+	// The ID of the tls project.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The inner net domain of the tls project.
+	InnerNetDomain pulumi.StringInput `pulumi:"innerNetDomain"`
+	// The id of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The name of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetProjectsTlsProjectTagArrayInput `pulumi:"tags"`
+	// The count of topics in the tls project.
+	TopicCount pulumi.IntInput `pulumi:"topicCount"`
+}
+
+func (GetProjectsTlsProjectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsTlsProject)(nil)).Elem()
+}
+
+func (i GetProjectsTlsProjectArgs) ToGetProjectsTlsProjectOutput() GetProjectsTlsProjectOutput {
+	return i.ToGetProjectsTlsProjectOutputWithContext(context.Background())
+}
+
+func (i GetProjectsTlsProjectArgs) ToGetProjectsTlsProjectOutputWithContext(ctx context.Context) GetProjectsTlsProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsTlsProjectOutput)
+}
+
+// GetProjectsTlsProjectArrayInput is an input type that accepts GetProjectsTlsProjectArray and GetProjectsTlsProjectArrayOutput values.
+// You can construct a concrete instance of `GetProjectsTlsProjectArrayInput` via:
+//
+//	GetProjectsTlsProjectArray{ GetProjectsTlsProjectArgs{...} }
+type GetProjectsTlsProjectArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectsTlsProjectArrayOutput() GetProjectsTlsProjectArrayOutput
+	ToGetProjectsTlsProjectArrayOutputWithContext(context.Context) GetProjectsTlsProjectArrayOutput
+}
+
+type GetProjectsTlsProjectArray []GetProjectsTlsProjectInput
+
+func (GetProjectsTlsProjectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsTlsProject)(nil)).Elem()
+}
+
+func (i GetProjectsTlsProjectArray) ToGetProjectsTlsProjectArrayOutput() GetProjectsTlsProjectArrayOutput {
+	return i.ToGetProjectsTlsProjectArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectsTlsProjectArray) ToGetProjectsTlsProjectArrayOutputWithContext(ctx context.Context) GetProjectsTlsProjectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsTlsProjectArrayOutput)
+}
+
+type GetProjectsTlsProjectOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsTlsProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsTlsProject)(nil)).Elem()
+}
+
+func (o GetProjectsTlsProjectOutput) ToGetProjectsTlsProjectOutput() GetProjectsTlsProjectOutput {
+	return o
+}
+
+func (o GetProjectsTlsProjectOutput) ToGetProjectsTlsProjectOutputWithContext(ctx context.Context) GetProjectsTlsProjectOutput {
+	return o
+}
+
+// The create time of the tls project.
+func (o GetProjectsTlsProjectOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the tls project.
+func (o GetProjectsTlsProjectOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The IAM project name of the tls project.
+func (o GetProjectsTlsProjectOutput) IamProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.IamProjectName }).(pulumi.StringOutput)
+}
+
+// The ID of the tls project.
+func (o GetProjectsTlsProjectOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The inner net domain of the tls project.
+func (o GetProjectsTlsProjectOutput) InnerNetDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.InnerNetDomain }).(pulumi.StringOutput)
+}
+
+// The id of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+func (o GetProjectsTlsProjectOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The name of tls project. This field supports fuzzy queries. It is not supported to specify both ProjectName and ProjectId at the same time.
+func (o GetProjectsTlsProjectOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetProjectsTlsProjectOutput) Tags() GetProjectsTlsProjectTagArrayOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) []GetProjectsTlsProjectTag { return v.Tags }).(GetProjectsTlsProjectTagArrayOutput)
+}
+
+// The count of topics in the tls project.
+func (o GetProjectsTlsProjectOutput) TopicCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsTlsProject) int { return v.TopicCount }).(pulumi.IntOutput)
+}
+
+type GetProjectsTlsProjectArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsTlsProjectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsTlsProject)(nil)).Elem()
+}
+
+func (o GetProjectsTlsProjectArrayOutput) ToGetProjectsTlsProjectArrayOutput() GetProjectsTlsProjectArrayOutput {
+	return o
+}
+
+func (o GetProjectsTlsProjectArrayOutput) ToGetProjectsTlsProjectArrayOutputWithContext(ctx context.Context) GetProjectsTlsProjectArrayOutput {
+	return o
+}
+
+func (o GetProjectsTlsProjectArrayOutput) Index(i pulumi.IntInput) GetProjectsTlsProjectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsTlsProject {
+		return vs[0].([]GetProjectsTlsProject)[vs[1].(int)]
+	}).(GetProjectsTlsProjectOutput)
+}
+
+type GetProjectsTlsProjectTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetProjectsTlsProjectTagInput is an input type that accepts GetProjectsTlsProjectTagArgs and GetProjectsTlsProjectTagOutput values.
+// You can construct a concrete instance of `GetProjectsTlsProjectTagInput` via:
+//
+//	GetProjectsTlsProjectTagArgs{...}
+type GetProjectsTlsProjectTagInput interface {
+	pulumi.Input
+
+	ToGetProjectsTlsProjectTagOutput() GetProjectsTlsProjectTagOutput
+	ToGetProjectsTlsProjectTagOutputWithContext(context.Context) GetProjectsTlsProjectTagOutput
+}
+
+type GetProjectsTlsProjectTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetProjectsTlsProjectTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsTlsProjectTag)(nil)).Elem()
+}
+
+func (i GetProjectsTlsProjectTagArgs) ToGetProjectsTlsProjectTagOutput() GetProjectsTlsProjectTagOutput {
+	return i.ToGetProjectsTlsProjectTagOutputWithContext(context.Background())
+}
+
+func (i GetProjectsTlsProjectTagArgs) ToGetProjectsTlsProjectTagOutputWithContext(ctx context.Context) GetProjectsTlsProjectTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsTlsProjectTagOutput)
+}
+
+// GetProjectsTlsProjectTagArrayInput is an input type that accepts GetProjectsTlsProjectTagArray and GetProjectsTlsProjectTagArrayOutput values.
+// You can construct a concrete instance of `GetProjectsTlsProjectTagArrayInput` via:
+//
+//	GetProjectsTlsProjectTagArray{ GetProjectsTlsProjectTagArgs{...} }
+type GetProjectsTlsProjectTagArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectsTlsProjectTagArrayOutput() GetProjectsTlsProjectTagArrayOutput
+	ToGetProjectsTlsProjectTagArrayOutputWithContext(context.Context) GetProjectsTlsProjectTagArrayOutput
+}
+
+type GetProjectsTlsProjectTagArray []GetProjectsTlsProjectTagInput
+
+func (GetProjectsTlsProjectTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsTlsProjectTag)(nil)).Elem()
+}
+
+func (i GetProjectsTlsProjectTagArray) ToGetProjectsTlsProjectTagArrayOutput() GetProjectsTlsProjectTagArrayOutput {
+	return i.ToGetProjectsTlsProjectTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectsTlsProjectTagArray) ToGetProjectsTlsProjectTagArrayOutputWithContext(ctx context.Context) GetProjectsTlsProjectTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsTlsProjectTagArrayOutput)
+}
+
+type GetProjectsTlsProjectTagOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsTlsProjectTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsTlsProjectTag)(nil)).Elem()
+}
+
+func (o GetProjectsTlsProjectTagOutput) ToGetProjectsTlsProjectTagOutput() GetProjectsTlsProjectTagOutput {
+	return o
+}
+
+func (o GetProjectsTlsProjectTagOutput) ToGetProjectsTlsProjectTagOutputWithContext(ctx context.Context) GetProjectsTlsProjectTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetProjectsTlsProjectTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProjectTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetProjectsTlsProjectTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsTlsProjectTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetProjectsTlsProjectTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsTlsProjectTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsTlsProjectTag)(nil)).Elem()
+}
+
+func (o GetProjectsTlsProjectTagArrayOutput) ToGetProjectsTlsProjectTagArrayOutput() GetProjectsTlsProjectTagArrayOutput {
+	return o
+}
+
+func (o GetProjectsTlsProjectTagArrayOutput) ToGetProjectsTlsProjectTagArrayOutputWithContext(ctx context.Context) GetProjectsTlsProjectTagArrayOutput {
+	return o
+}
+
+func (o GetProjectsTlsProjectTagArrayOutput) Index(i pulumi.IntInput) GetProjectsTlsProjectTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsTlsProjectTag {
+		return vs[0].([]GetProjectsTlsProjectTag)[vs[1].(int)]
+	}).(GetProjectsTlsProjectTagOutput)
+}
+
+type GetRuleAppliersRule struct {
+	// Container collection rules.
+	ContainerRules []GetRuleAppliersRuleContainerRule `pulumi:"containerRules"`
+	// The creation time.
+	CreateTime string `pulumi:"createTime"`
+	// Collect the blacklist list.
+	ExcludePaths []GetRuleAppliersRuleExcludePath `pulumi:"excludePaths"`
+	// The extract rule.
+	ExtractRules []GetRuleAppliersRuleExtractRule `pulumi:"extractRules"`
+	// The collection type.
+	InputType int `pulumi:"inputType"`
+	// Log sample.
+	LogSample string `pulumi:"logSample"`
+	// The log type.
+	LogType string `pulumi:"logType"`
+	// The modification time.
+	ModifyTime string `pulumi:"modifyTime"`
+	// Collection path list.
+	Paths []string `pulumi:"paths"`
+	// The rule id.
+	RuleId string `pulumi:"ruleId"`
+	// The rule name.
+	RuleName string `pulumi:"ruleName"`
+	// The topic id.
+	TopicId string `pulumi:"topicId"`
+	// The topic name.
+	TopicName string `pulumi:"topicName"`
+	// User-defined collection rules.
+	UserDefineRules []GetRuleAppliersRuleUserDefineRule `pulumi:"userDefineRules"`
+}
+
+// GetRuleAppliersRuleInput is an input type that accepts GetRuleAppliersRuleArgs and GetRuleAppliersRuleOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleInput` via:
+//
+//	GetRuleAppliersRuleArgs{...}
+type GetRuleAppliersRuleInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleOutput() GetRuleAppliersRuleOutput
+	ToGetRuleAppliersRuleOutputWithContext(context.Context) GetRuleAppliersRuleOutput
+}
+
+type GetRuleAppliersRuleArgs struct {
+	// Container collection rules.
+	ContainerRules GetRuleAppliersRuleContainerRuleArrayInput `pulumi:"containerRules"`
+	// The creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Collect the blacklist list.
+	ExcludePaths GetRuleAppliersRuleExcludePathArrayInput `pulumi:"excludePaths"`
+	// The extract rule.
+	ExtractRules GetRuleAppliersRuleExtractRuleArrayInput `pulumi:"extractRules"`
+	// The collection type.
+	InputType pulumi.IntInput `pulumi:"inputType"`
+	// Log sample.
+	LogSample pulumi.StringInput `pulumi:"logSample"`
+	// The log type.
+	LogType pulumi.StringInput `pulumi:"logType"`
+	// The modification time.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// Collection path list.
+	Paths pulumi.StringArrayInput `pulumi:"paths"`
+	// The rule id.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The rule name.
+	RuleName pulumi.StringInput `pulumi:"ruleName"`
+	// The topic id.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The topic name.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// User-defined collection rules.
+	UserDefineRules GetRuleAppliersRuleUserDefineRuleArrayInput `pulumi:"userDefineRules"`
+}
+
+func (GetRuleAppliersRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleArgs) ToGetRuleAppliersRuleOutput() GetRuleAppliersRuleOutput {
+	return i.ToGetRuleAppliersRuleOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleArgs) ToGetRuleAppliersRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleOutput)
+}
+
+// GetRuleAppliersRuleArrayInput is an input type that accepts GetRuleAppliersRuleArray and GetRuleAppliersRuleArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleArrayInput` via:
+//
+//	GetRuleAppliersRuleArray{ GetRuleAppliersRuleArgs{...} }
+type GetRuleAppliersRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleArrayOutput() GetRuleAppliersRuleArrayOutput
+	ToGetRuleAppliersRuleArrayOutputWithContext(context.Context) GetRuleAppliersRuleArrayOutput
+}
+
+type GetRuleAppliersRuleArray []GetRuleAppliersRuleInput
+
+func (GetRuleAppliersRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleArray) ToGetRuleAppliersRuleArrayOutput() GetRuleAppliersRuleArrayOutput {
+	return i.ToGetRuleAppliersRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleArray) ToGetRuleAppliersRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleOutput) ToGetRuleAppliersRuleOutput() GetRuleAppliersRuleOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleOutput) ToGetRuleAppliersRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleOutput {
+	return o
+}
+
+// Container collection rules.
+func (o GetRuleAppliersRuleOutput) ContainerRules() GetRuleAppliersRuleContainerRuleArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) []GetRuleAppliersRuleContainerRule { return v.ContainerRules }).(GetRuleAppliersRuleContainerRuleArrayOutput)
+}
+
+// The creation time.
+func (o GetRuleAppliersRuleOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Collect the blacklist list.
+func (o GetRuleAppliersRuleOutput) ExcludePaths() GetRuleAppliersRuleExcludePathArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) []GetRuleAppliersRuleExcludePath { return v.ExcludePaths }).(GetRuleAppliersRuleExcludePathArrayOutput)
+}
+
+// The extract rule.
+func (o GetRuleAppliersRuleOutput) ExtractRules() GetRuleAppliersRuleExtractRuleArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) []GetRuleAppliersRuleExtractRule { return v.ExtractRules }).(GetRuleAppliersRuleExtractRuleArrayOutput)
+}
+
+// The collection type.
+func (o GetRuleAppliersRuleOutput) InputType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) int { return v.InputType }).(pulumi.IntOutput)
+}
+
+// Log sample.
+func (o GetRuleAppliersRuleOutput) LogSample() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.LogSample }).(pulumi.StringOutput)
+}
+
+// The log type.
+func (o GetRuleAppliersRuleOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+// The modification time.
+func (o GetRuleAppliersRuleOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// Collection path list.
+func (o GetRuleAppliersRuleOutput) Paths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) []string { return v.Paths }).(pulumi.StringArrayOutput)
+}
+
+// The rule id.
+func (o GetRuleAppliersRuleOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The rule name.
+func (o GetRuleAppliersRuleOutput) RuleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.RuleName }).(pulumi.StringOutput)
+}
+
+// The topic id.
+func (o GetRuleAppliersRuleOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The topic name.
+func (o GetRuleAppliersRuleOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// User-defined collection rules.
+func (o GetRuleAppliersRuleOutput) UserDefineRules() GetRuleAppliersRuleUserDefineRuleArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRule) []GetRuleAppliersRuleUserDefineRule { return v.UserDefineRules }).(GetRuleAppliersRuleUserDefineRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleArrayOutput) ToGetRuleAppliersRuleArrayOutput() GetRuleAppliersRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleArrayOutput) ToGetRuleAppliersRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRule {
+		return vs[0].([]GetRuleAppliersRule)[vs[1].(int)]
+	}).(GetRuleAppliersRuleOutput)
+}
+
+type GetRuleAppliersRuleContainerRule struct {
+	// The name of the container to be collected.
+	ContainerNameRegex string `pulumi:"containerNameRegex"`
+	// Whether to add environment variables as log tags to raw log data.
+	EnvTag map[string]interface{} `pulumi:"envTag"`
+	// The container environment variable blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerEnvRegex map[string]interface{} `pulumi:"excludeContainerEnvRegex"`
+	// The container Label blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerLabelRegex map[string]interface{} `pulumi:"excludeContainerLabelRegex"`
+	// The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+	IncludeContainerEnvRegex map[string]interface{} `pulumi:"includeContainerEnvRegex"`
+	// The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+	IncludeContainerLabelRegex map[string]interface{} `pulumi:"includeContainerLabelRegex"`
+	// Collection rules for Kubernetes containers.
+	KubernetesRules []GetRuleAppliersRuleContainerRuleKubernetesRule `pulumi:"kubernetesRules"`
+	// The collection mode.
+	Stream string `pulumi:"stream"`
+}
+
+// GetRuleAppliersRuleContainerRuleInput is an input type that accepts GetRuleAppliersRuleContainerRuleArgs and GetRuleAppliersRuleContainerRuleOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleContainerRuleInput` via:
+//
+//	GetRuleAppliersRuleContainerRuleArgs{...}
+type GetRuleAppliersRuleContainerRuleInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleContainerRuleOutput() GetRuleAppliersRuleContainerRuleOutput
+	ToGetRuleAppliersRuleContainerRuleOutputWithContext(context.Context) GetRuleAppliersRuleContainerRuleOutput
+}
+
+type GetRuleAppliersRuleContainerRuleArgs struct {
+	// The name of the container to be collected.
+	ContainerNameRegex pulumi.StringInput `pulumi:"containerNameRegex"`
+	// Whether to add environment variables as log tags to raw log data.
+	EnvTag pulumi.MapInput `pulumi:"envTag"`
+	// The container environment variable blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerEnvRegex pulumi.MapInput `pulumi:"excludeContainerEnvRegex"`
+	// The container Label blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerLabelRegex pulumi.MapInput `pulumi:"excludeContainerLabelRegex"`
+	// The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+	IncludeContainerEnvRegex pulumi.MapInput `pulumi:"includeContainerEnvRegex"`
+	// The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+	IncludeContainerLabelRegex pulumi.MapInput `pulumi:"includeContainerLabelRegex"`
+	// Collection rules for Kubernetes containers.
+	KubernetesRules GetRuleAppliersRuleContainerRuleKubernetesRuleArrayInput `pulumi:"kubernetesRules"`
+	// The collection mode.
+	Stream pulumi.StringInput `pulumi:"stream"`
+}
+
+func (GetRuleAppliersRuleContainerRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleContainerRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleContainerRuleArgs) ToGetRuleAppliersRuleContainerRuleOutput() GetRuleAppliersRuleContainerRuleOutput {
+	return i.ToGetRuleAppliersRuleContainerRuleOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleContainerRuleArgs) ToGetRuleAppliersRuleContainerRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleContainerRuleOutput)
+}
+
+// GetRuleAppliersRuleContainerRuleArrayInput is an input type that accepts GetRuleAppliersRuleContainerRuleArray and GetRuleAppliersRuleContainerRuleArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleContainerRuleArrayInput` via:
+//
+//	GetRuleAppliersRuleContainerRuleArray{ GetRuleAppliersRuleContainerRuleArgs{...} }
+type GetRuleAppliersRuleContainerRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleContainerRuleArrayOutput() GetRuleAppliersRuleContainerRuleArrayOutput
+	ToGetRuleAppliersRuleContainerRuleArrayOutputWithContext(context.Context) GetRuleAppliersRuleContainerRuleArrayOutput
+}
+
+type GetRuleAppliersRuleContainerRuleArray []GetRuleAppliersRuleContainerRuleInput
+
+func (GetRuleAppliersRuleContainerRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleContainerRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleContainerRuleArray) ToGetRuleAppliersRuleContainerRuleArrayOutput() GetRuleAppliersRuleContainerRuleArrayOutput {
+	return i.ToGetRuleAppliersRuleContainerRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleContainerRuleArray) ToGetRuleAppliersRuleContainerRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleContainerRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleContainerRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleContainerRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleContainerRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleContainerRuleOutput) ToGetRuleAppliersRuleContainerRuleOutput() GetRuleAppliersRuleContainerRuleOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleContainerRuleOutput) ToGetRuleAppliersRuleContainerRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleOutput {
+	return o
+}
+
+// The name of the container to be collected.
+func (o GetRuleAppliersRuleContainerRuleOutput) ContainerNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) string { return v.ContainerNameRegex }).(pulumi.StringOutput)
+}
+
+// Whether to add environment variables as log tags to raw log data.
+func (o GetRuleAppliersRuleContainerRuleOutput) EnvTag() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) map[string]interface{} { return v.EnvTag }).(pulumi.MapOutput)
+}
+
+// The container environment variable blacklist is used to specify the range of containers not to be collected.
+func (o GetRuleAppliersRuleContainerRuleOutput) ExcludeContainerEnvRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) map[string]interface{} { return v.ExcludeContainerEnvRegex }).(pulumi.MapOutput)
+}
+
+// The container Label blacklist is used to specify the range of containers not to be collected.
+func (o GetRuleAppliersRuleContainerRuleOutput) ExcludeContainerLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) map[string]interface{} { return v.ExcludeContainerLabelRegex }).(pulumi.MapOutput)
+}
+
+// The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+func (o GetRuleAppliersRuleContainerRuleOutput) IncludeContainerEnvRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) map[string]interface{} { return v.IncludeContainerEnvRegex }).(pulumi.MapOutput)
+}
+
+// The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+func (o GetRuleAppliersRuleContainerRuleOutput) IncludeContainerLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) map[string]interface{} { return v.IncludeContainerLabelRegex }).(pulumi.MapOutput)
+}
+
+// Collection rules for Kubernetes containers.
+func (o GetRuleAppliersRuleContainerRuleOutput) KubernetesRules() GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) []GetRuleAppliersRuleContainerRuleKubernetesRule {
+		return v.KubernetesRules
+	}).(GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput)
+}
+
+// The collection mode.
+func (o GetRuleAppliersRuleContainerRuleOutput) Stream() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRule) string { return v.Stream }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleContainerRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleContainerRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleContainerRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleContainerRuleArrayOutput) ToGetRuleAppliersRuleContainerRuleArrayOutput() GetRuleAppliersRuleContainerRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleContainerRuleArrayOutput) ToGetRuleAppliersRuleContainerRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleContainerRuleArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleContainerRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleContainerRule {
+		return vs[0].([]GetRuleAppliersRuleContainerRule)[vs[1].(int)]
+	}).(GetRuleAppliersRuleContainerRuleOutput)
+}
+
+type GetRuleAppliersRuleContainerRuleKubernetesRule struct {
+	// Whether to add Kubernetes Annotation as a log tag to the raw log data.
+	AnnotationTag map[string]interface{} `pulumi:"annotationTag"`
+	// Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+	ExcludePodLabelRegex map[string]interface{} `pulumi:"excludePodLabelRegex"`
+	// The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+	IncludePodLabelRegex map[string]interface{} `pulumi:"includePodLabelRegex"`
+	// Whether to add Kubernetes Label as a log label to the original log data.
+	LabelTag map[string]interface{} `pulumi:"labelTag"`
+	// The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+	NamespaceNameRegex string `pulumi:"namespaceNameRegex"`
+	// The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+	PodNameRegex string `pulumi:"podNameRegex"`
+	// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+	WorkloadNameRegex string `pulumi:"workloadNameRegex"`
+	// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+	WorkloadType string `pulumi:"workloadType"`
+}
+
+// GetRuleAppliersRuleContainerRuleKubernetesRuleInput is an input type that accepts GetRuleAppliersRuleContainerRuleKubernetesRuleArgs and GetRuleAppliersRuleContainerRuleKubernetesRuleOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleContainerRuleKubernetesRuleInput` via:
+//
+//	GetRuleAppliersRuleContainerRuleKubernetesRuleArgs{...}
+type GetRuleAppliersRuleContainerRuleKubernetesRuleInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutput() GetRuleAppliersRuleContainerRuleKubernetesRuleOutput
+	ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutputWithContext(context.Context) GetRuleAppliersRuleContainerRuleKubernetesRuleOutput
+}
+
+type GetRuleAppliersRuleContainerRuleKubernetesRuleArgs struct {
+	// Whether to add Kubernetes Annotation as a log tag to the raw log data.
+	AnnotationTag pulumi.MapInput `pulumi:"annotationTag"`
+	// Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+	ExcludePodLabelRegex pulumi.MapInput `pulumi:"excludePodLabelRegex"`
+	// The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+	IncludePodLabelRegex pulumi.MapInput `pulumi:"includePodLabelRegex"`
+	// Whether to add Kubernetes Label as a log label to the original log data.
+	LabelTag pulumi.MapInput `pulumi:"labelTag"`
+	// The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+	NamespaceNameRegex pulumi.StringInput `pulumi:"namespaceNameRegex"`
+	// The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+	PodNameRegex pulumi.StringInput `pulumi:"podNameRegex"`
+	// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+	WorkloadNameRegex pulumi.StringInput `pulumi:"workloadNameRegex"`
+	// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+	WorkloadType pulumi.StringInput `pulumi:"workloadType"`
+}
+
+func (GetRuleAppliersRuleContainerRuleKubernetesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleContainerRuleKubernetesRuleArgs) ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutput() GetRuleAppliersRuleContainerRuleKubernetesRuleOutput {
+	return i.ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleContainerRuleKubernetesRuleArgs) ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleKubernetesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleContainerRuleKubernetesRuleOutput)
+}
+
+// GetRuleAppliersRuleContainerRuleKubernetesRuleArrayInput is an input type that accepts GetRuleAppliersRuleContainerRuleKubernetesRuleArray and GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleContainerRuleKubernetesRuleArrayInput` via:
+//
+//	GetRuleAppliersRuleContainerRuleKubernetesRuleArray{ GetRuleAppliersRuleContainerRuleKubernetesRuleArgs{...} }
+type GetRuleAppliersRuleContainerRuleKubernetesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput() GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput
+	ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutputWithContext(context.Context) GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput
+}
+
+type GetRuleAppliersRuleContainerRuleKubernetesRuleArray []GetRuleAppliersRuleContainerRuleKubernetesRuleInput
+
+func (GetRuleAppliersRuleContainerRuleKubernetesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleContainerRuleKubernetesRuleArray) ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput() GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput {
+	return i.ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleContainerRuleKubernetesRuleArray) ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleContainerRuleKubernetesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutput() GetRuleAppliersRuleContainerRuleKubernetesRuleOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) ToGetRuleAppliersRuleContainerRuleKubernetesRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleKubernetesRuleOutput {
+	return o
+}
+
+// Whether to add Kubernetes Annotation as a log tag to the raw log data.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) AnnotationTag() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) map[string]interface{} { return v.AnnotationTag }).(pulumi.MapOutput)
+}
+
+// Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) ExcludePodLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) map[string]interface{} {
+		return v.ExcludePodLabelRegex
+	}).(pulumi.MapOutput)
+}
+
+// The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) IncludePodLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) map[string]interface{} {
+		return v.IncludePodLabelRegex
+	}).(pulumi.MapOutput)
+}
+
+// Whether to add Kubernetes Label as a log label to the original log data.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) LabelTag() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) map[string]interface{} { return v.LabelTag }).(pulumi.MapOutput)
+}
+
+// The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) NamespaceNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) string { return v.NamespaceNameRegex }).(pulumi.StringOutput)
+}
+
+// The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) PodNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) string { return v.PodNameRegex }).(pulumi.StringOutput)
+}
+
+// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) WorkloadNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) string { return v.WorkloadNameRegex }).(pulumi.StringOutput)
+}
+
+// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleOutput) WorkloadType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleContainerRuleKubernetesRule) string { return v.WorkloadType }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput) ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput() GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput) ToGetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleContainerRuleKubernetesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleContainerRuleKubernetesRule {
+		return vs[0].([]GetRuleAppliersRuleContainerRuleKubernetesRule)[vs[1].(int)]
+	}).(GetRuleAppliersRuleContainerRuleKubernetesRuleOutput)
+}
+
+type GetRuleAppliersRuleExcludePath struct {
+	// The type of the log template.
+	Type string `pulumi:"type"`
+	// Collection path.
+	Value string `pulumi:"value"`
+}
+
+// GetRuleAppliersRuleExcludePathInput is an input type that accepts GetRuleAppliersRuleExcludePathArgs and GetRuleAppliersRuleExcludePathOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExcludePathInput` via:
+//
+//	GetRuleAppliersRuleExcludePathArgs{...}
+type GetRuleAppliersRuleExcludePathInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExcludePathOutput() GetRuleAppliersRuleExcludePathOutput
+	ToGetRuleAppliersRuleExcludePathOutputWithContext(context.Context) GetRuleAppliersRuleExcludePathOutput
+}
+
+type GetRuleAppliersRuleExcludePathArgs struct {
+	// The type of the log template.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Collection path.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRuleAppliersRuleExcludePathArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExcludePath)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExcludePathArgs) ToGetRuleAppliersRuleExcludePathOutput() GetRuleAppliersRuleExcludePathOutput {
+	return i.ToGetRuleAppliersRuleExcludePathOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExcludePathArgs) ToGetRuleAppliersRuleExcludePathOutputWithContext(ctx context.Context) GetRuleAppliersRuleExcludePathOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExcludePathOutput)
+}
+
+// GetRuleAppliersRuleExcludePathArrayInput is an input type that accepts GetRuleAppliersRuleExcludePathArray and GetRuleAppliersRuleExcludePathArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExcludePathArrayInput` via:
+//
+//	GetRuleAppliersRuleExcludePathArray{ GetRuleAppliersRuleExcludePathArgs{...} }
+type GetRuleAppliersRuleExcludePathArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExcludePathArrayOutput() GetRuleAppliersRuleExcludePathArrayOutput
+	ToGetRuleAppliersRuleExcludePathArrayOutputWithContext(context.Context) GetRuleAppliersRuleExcludePathArrayOutput
+}
+
+type GetRuleAppliersRuleExcludePathArray []GetRuleAppliersRuleExcludePathInput
+
+func (GetRuleAppliersRuleExcludePathArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExcludePath)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExcludePathArray) ToGetRuleAppliersRuleExcludePathArrayOutput() GetRuleAppliersRuleExcludePathArrayOutput {
+	return i.ToGetRuleAppliersRuleExcludePathArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExcludePathArray) ToGetRuleAppliersRuleExcludePathArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExcludePathArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExcludePathArrayOutput)
+}
+
+type GetRuleAppliersRuleExcludePathOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExcludePathOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExcludePath)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExcludePathOutput) ToGetRuleAppliersRuleExcludePathOutput() GetRuleAppliersRuleExcludePathOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExcludePathOutput) ToGetRuleAppliersRuleExcludePathOutputWithContext(ctx context.Context) GetRuleAppliersRuleExcludePathOutput {
+	return o
+}
+
+// The type of the log template.
+func (o GetRuleAppliersRuleExcludePathOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExcludePath) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Collection path.
+func (o GetRuleAppliersRuleExcludePathOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExcludePath) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleExcludePathArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExcludePathArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExcludePath)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExcludePathArrayOutput) ToGetRuleAppliersRuleExcludePathArrayOutput() GetRuleAppliersRuleExcludePathArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExcludePathArrayOutput) ToGetRuleAppliersRuleExcludePathArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExcludePathArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExcludePathArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleExcludePathOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleExcludePath {
+		return vs[0].([]GetRuleAppliersRuleExcludePath)[vs[1].(int)]
+	}).(GetRuleAppliersRuleExcludePathOutput)
+}
+
+type GetRuleAppliersRuleExtractRule struct {
+	// The first log line needs to match the regular expression.
+	BeginRegex string `pulumi:"beginRegex"`
+	// The delimiter of the log.
+	Delimiter string `pulumi:"delimiter"`
+	// The filter key list.
+	FilterKeyRegexes []GetRuleAppliersRuleExtractRuleFilterKeyRegex `pulumi:"filterKeyRegexes"`
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys []string `pulumi:"keys"`
+	// The entire log needs to match the regular expression.
+	LogRegex string `pulumi:"logRegex"`
+	// Automatically extract log fields according to the specified log template.
+	LogTemplates []GetRuleAppliersRuleExtractRuleLogTemplate `pulumi:"logTemplates"`
+	// Parsing format of the time field.
+	TimeFormat string `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey string `pulumi:"timeKey"`
+	// When uploading the failed log, the key name of the failed log.
+	UnMatchLogKey string `pulumi:"unMatchLogKey"`
+	// Whether to upload the log of parsing failure.
+	UnMatchUpLoadSwitch bool `pulumi:"unMatchUpLoadSwitch"`
+}
+
+// GetRuleAppliersRuleExtractRuleInput is an input type that accepts GetRuleAppliersRuleExtractRuleArgs and GetRuleAppliersRuleExtractRuleOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExtractRuleInput` via:
+//
+//	GetRuleAppliersRuleExtractRuleArgs{...}
+type GetRuleAppliersRuleExtractRuleInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExtractRuleOutput() GetRuleAppliersRuleExtractRuleOutput
+	ToGetRuleAppliersRuleExtractRuleOutputWithContext(context.Context) GetRuleAppliersRuleExtractRuleOutput
+}
+
+type GetRuleAppliersRuleExtractRuleArgs struct {
+	// The first log line needs to match the regular expression.
+	BeginRegex pulumi.StringInput `pulumi:"beginRegex"`
+	// The delimiter of the log.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// The filter key list.
+	FilterKeyRegexes GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayInput `pulumi:"filterKeyRegexes"`
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// The entire log needs to match the regular expression.
+	LogRegex pulumi.StringInput `pulumi:"logRegex"`
+	// Automatically extract log fields according to the specified log template.
+	LogTemplates GetRuleAppliersRuleExtractRuleLogTemplateArrayInput `pulumi:"logTemplates"`
+	// Parsing format of the time field.
+	TimeFormat pulumi.StringInput `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey pulumi.StringInput `pulumi:"timeKey"`
+	// When uploading the failed log, the key name of the failed log.
+	UnMatchLogKey pulumi.StringInput `pulumi:"unMatchLogKey"`
+	// Whether to upload the log of parsing failure.
+	UnMatchUpLoadSwitch pulumi.BoolInput `pulumi:"unMatchUpLoadSwitch"`
+}
+
+func (GetRuleAppliersRuleExtractRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExtractRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExtractRuleArgs) ToGetRuleAppliersRuleExtractRuleOutput() GetRuleAppliersRuleExtractRuleOutput {
+	return i.ToGetRuleAppliersRuleExtractRuleOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExtractRuleArgs) ToGetRuleAppliersRuleExtractRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExtractRuleOutput)
+}
+
+// GetRuleAppliersRuleExtractRuleArrayInput is an input type that accepts GetRuleAppliersRuleExtractRuleArray and GetRuleAppliersRuleExtractRuleArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExtractRuleArrayInput` via:
+//
+//	GetRuleAppliersRuleExtractRuleArray{ GetRuleAppliersRuleExtractRuleArgs{...} }
+type GetRuleAppliersRuleExtractRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExtractRuleArrayOutput() GetRuleAppliersRuleExtractRuleArrayOutput
+	ToGetRuleAppliersRuleExtractRuleArrayOutputWithContext(context.Context) GetRuleAppliersRuleExtractRuleArrayOutput
+}
+
+type GetRuleAppliersRuleExtractRuleArray []GetRuleAppliersRuleExtractRuleInput
+
+func (GetRuleAppliersRuleExtractRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExtractRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExtractRuleArray) ToGetRuleAppliersRuleExtractRuleArrayOutput() GetRuleAppliersRuleExtractRuleArrayOutput {
+	return i.ToGetRuleAppliersRuleExtractRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExtractRuleArray) ToGetRuleAppliersRuleExtractRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExtractRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExtractRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExtractRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExtractRuleOutput) ToGetRuleAppliersRuleExtractRuleOutput() GetRuleAppliersRuleExtractRuleOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleOutput) ToGetRuleAppliersRuleExtractRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleOutput {
+	return o
+}
+
+// The first log line needs to match the regular expression.
+func (o GetRuleAppliersRuleExtractRuleOutput) BeginRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) string { return v.BeginRegex }).(pulumi.StringOutput)
+}
+
+// The delimiter of the log.
+func (o GetRuleAppliersRuleExtractRuleOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// The filter key list.
+func (o GetRuleAppliersRuleExtractRuleOutput) FilterKeyRegexes() GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) []GetRuleAppliersRuleExtractRuleFilterKeyRegex {
+		return v.FilterKeyRegexes
+	}).(GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput)
+}
+
+// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+func (o GetRuleAppliersRuleExtractRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// The entire log needs to match the regular expression.
+func (o GetRuleAppliersRuleExtractRuleOutput) LogRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) string { return v.LogRegex }).(pulumi.StringOutput)
+}
+
+// Automatically extract log fields according to the specified log template.
+func (o GetRuleAppliersRuleExtractRuleOutput) LogTemplates() GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) []GetRuleAppliersRuleExtractRuleLogTemplate {
+		return v.LogTemplates
+	}).(GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput)
+}
+
+// Parsing format of the time field.
+func (o GetRuleAppliersRuleExtractRuleOutput) TimeFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) string { return v.TimeFormat }).(pulumi.StringOutput)
+}
+
+// The field name of the log time field.
+func (o GetRuleAppliersRuleExtractRuleOutput) TimeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) string { return v.TimeKey }).(pulumi.StringOutput)
+}
+
+// When uploading the failed log, the key name of the failed log.
+func (o GetRuleAppliersRuleExtractRuleOutput) UnMatchLogKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) string { return v.UnMatchLogKey }).(pulumi.StringOutput)
+}
+
+// Whether to upload the log of parsing failure.
+func (o GetRuleAppliersRuleExtractRuleOutput) UnMatchUpLoadSwitch() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRule) bool { return v.UnMatchUpLoadSwitch }).(pulumi.BoolOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExtractRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExtractRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExtractRuleArrayOutput) ToGetRuleAppliersRuleExtractRuleArrayOutput() GetRuleAppliersRuleExtractRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleArrayOutput) ToGetRuleAppliersRuleExtractRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleExtractRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleExtractRule {
+		return vs[0].([]GetRuleAppliersRuleExtractRule)[vs[1].(int)]
+	}).(GetRuleAppliersRuleExtractRuleOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleFilterKeyRegex struct {
+	// The name of the filter key.
+	Key string `pulumi:"key"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex string `pulumi:"regex"`
+}
+
+// GetRuleAppliersRuleExtractRuleFilterKeyRegexInput is an input type that accepts GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs and GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExtractRuleFilterKeyRegexInput` via:
+//
+//	GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs{...}
+type GetRuleAppliersRuleExtractRuleFilterKeyRegexInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutput() GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput
+	ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutputWithContext(context.Context) GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput
+}
+
+type GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs struct {
+	// The name of the filter key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex pulumi.StringInput `pulumi:"regex"`
+}
+
+func (GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutput() GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput {
+	return i.ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput)
+}
+
+// GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayInput is an input type that accepts GetRuleAppliersRuleExtractRuleFilterKeyRegexArray and GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayInput` via:
+//
+//	GetRuleAppliersRuleExtractRuleFilterKeyRegexArray{ GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs{...} }
+type GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput() GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput
+	ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutputWithContext(context.Context) GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput
+}
+
+type GetRuleAppliersRuleExtractRuleFilterKeyRegexArray []GetRuleAppliersRuleExtractRuleFilterKeyRegexInput
+
+func (GetRuleAppliersRuleExtractRuleFilterKeyRegexArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExtractRuleFilterKeyRegexArray) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput() GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput {
+	return i.ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExtractRuleFilterKeyRegexArray) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutput() GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput {
+	return o
+}
+
+// The name of the filter key.
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRuleFilterKeyRegex) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput) Regex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRuleFilterKeyRegex) string { return v.Regex }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput() GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput) ToGetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleExtractRuleFilterKeyRegex {
+		return vs[0].([]GetRuleAppliersRuleExtractRuleFilterKeyRegex)[vs[1].(int)]
+	}).(GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleLogTemplate struct {
+	// Log template content.
+	Format string `pulumi:"format"`
+	// The type of the log template.
+	Type string `pulumi:"type"`
+}
+
+// GetRuleAppliersRuleExtractRuleLogTemplateInput is an input type that accepts GetRuleAppliersRuleExtractRuleLogTemplateArgs and GetRuleAppliersRuleExtractRuleLogTemplateOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExtractRuleLogTemplateInput` via:
+//
+//	GetRuleAppliersRuleExtractRuleLogTemplateArgs{...}
+type GetRuleAppliersRuleExtractRuleLogTemplateInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExtractRuleLogTemplateOutput() GetRuleAppliersRuleExtractRuleLogTemplateOutput
+	ToGetRuleAppliersRuleExtractRuleLogTemplateOutputWithContext(context.Context) GetRuleAppliersRuleExtractRuleLogTemplateOutput
+}
+
+type GetRuleAppliersRuleExtractRuleLogTemplateArgs struct {
+	// Log template content.
+	Format pulumi.StringInput `pulumi:"format"`
+	// The type of the log template.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRuleAppliersRuleExtractRuleLogTemplateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExtractRuleLogTemplateArgs) ToGetRuleAppliersRuleExtractRuleLogTemplateOutput() GetRuleAppliersRuleExtractRuleLogTemplateOutput {
+	return i.ToGetRuleAppliersRuleExtractRuleLogTemplateOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExtractRuleLogTemplateArgs) ToGetRuleAppliersRuleExtractRuleLogTemplateOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleLogTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExtractRuleLogTemplateOutput)
+}
+
+// GetRuleAppliersRuleExtractRuleLogTemplateArrayInput is an input type that accepts GetRuleAppliersRuleExtractRuleLogTemplateArray and GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleExtractRuleLogTemplateArrayInput` via:
+//
+//	GetRuleAppliersRuleExtractRuleLogTemplateArray{ GetRuleAppliersRuleExtractRuleLogTemplateArgs{...} }
+type GetRuleAppliersRuleExtractRuleLogTemplateArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutput() GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput
+	ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutputWithContext(context.Context) GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput
+}
+
+type GetRuleAppliersRuleExtractRuleLogTemplateArray []GetRuleAppliersRuleExtractRuleLogTemplateInput
+
+func (GetRuleAppliersRuleExtractRuleLogTemplateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleExtractRuleLogTemplateArray) ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutput() GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput {
+	return i.ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleExtractRuleLogTemplateArray) ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleLogTemplateOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExtractRuleLogTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExtractRuleLogTemplateOutput) ToGetRuleAppliersRuleExtractRuleLogTemplateOutput() GetRuleAppliersRuleExtractRuleLogTemplateOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleLogTemplateOutput) ToGetRuleAppliersRuleExtractRuleLogTemplateOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleLogTemplateOutput {
+	return o
+}
+
+// Log template content.
+func (o GetRuleAppliersRuleExtractRuleLogTemplateOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRuleLogTemplate) string { return v.Format }).(pulumi.StringOutput)
+}
+
+// The type of the log template.
+func (o GetRuleAppliersRuleExtractRuleLogTemplateOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleExtractRuleLogTemplate) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput) ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutput() GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput) ToGetRuleAppliersRuleExtractRuleLogTemplateArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleExtractRuleLogTemplateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleExtractRuleLogTemplate {
+		return vs[0].([]GetRuleAppliersRuleExtractRuleLogTemplate)[vs[1].(int)]
+	}).(GetRuleAppliersRuleExtractRuleLogTemplateOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRule struct {
+	// LogCollector extension configuration.
+	Advanceds []GetRuleAppliersRuleUserDefineRuleAdvanced `pulumi:"advanceds"`
+	// Whether to upload raw logs.
+	EnableRawLog bool `pulumi:"enableRawLog"`
+	// Add constant fields to logs.
+	Fields map[string]interface{} `pulumi:"fields"`
+	// Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+	ParsePathRules []GetRuleAppliersRuleUserDefineRuleParsePathRule `pulumi:"parsePathRules"`
+	// Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+	Plugins []GetRuleAppliersRuleUserDefineRulePlugin `pulumi:"plugins"`
+	// Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+	ShardHashKeys []GetRuleAppliersRuleUserDefineRuleShardHashKey `pulumi:"shardHashKeys"`
+	// LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+	TailFiles bool `pulumi:"tailFiles"`
+}
+
+// GetRuleAppliersRuleUserDefineRuleInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleArgs and GetRuleAppliersRuleUserDefineRuleOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleArgs{...}
+type GetRuleAppliersRuleUserDefineRuleInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleOutput() GetRuleAppliersRuleUserDefineRuleOutput
+	ToGetRuleAppliersRuleUserDefineRuleOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleArgs struct {
+	// LogCollector extension configuration.
+	Advanceds GetRuleAppliersRuleUserDefineRuleAdvancedArrayInput `pulumi:"advanceds"`
+	// Whether to upload raw logs.
+	EnableRawLog pulumi.BoolInput `pulumi:"enableRawLog"`
+	// Add constant fields to logs.
+	Fields pulumi.MapInput `pulumi:"fields"`
+	// Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+	ParsePathRules GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayInput `pulumi:"parsePathRules"`
+	// Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+	Plugins GetRuleAppliersRuleUserDefineRulePluginArrayInput `pulumi:"plugins"`
+	// Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+	ShardHashKeys GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayInput `pulumi:"shardHashKeys"`
+	// LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+	TailFiles pulumi.BoolInput `pulumi:"tailFiles"`
+}
+
+func (GetRuleAppliersRuleUserDefineRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleArgs) ToGetRuleAppliersRuleUserDefineRuleOutput() GetRuleAppliersRuleUserDefineRuleOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleArgs) ToGetRuleAppliersRuleUserDefineRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleOutput)
+}
+
+// GetRuleAppliersRuleUserDefineRuleArrayInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleArray and GetRuleAppliersRuleUserDefineRuleArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleArrayInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleArray{ GetRuleAppliersRuleUserDefineRuleArgs{...} }
+type GetRuleAppliersRuleUserDefineRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleArrayOutput() GetRuleAppliersRuleUserDefineRuleArrayOutput
+	ToGetRuleAppliersRuleUserDefineRuleArrayOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleArrayOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleArray []GetRuleAppliersRuleUserDefineRuleInput
+
+func (GetRuleAppliersRuleUserDefineRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleArray) ToGetRuleAppliersRuleUserDefineRuleArrayOutput() GetRuleAppliersRuleUserDefineRuleArrayOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleArray) ToGetRuleAppliersRuleUserDefineRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleOutput) ToGetRuleAppliersRuleUserDefineRuleOutput() GetRuleAppliersRuleUserDefineRuleOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleOutput) ToGetRuleAppliersRuleUserDefineRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleOutput {
+	return o
+}
+
+// LogCollector extension configuration.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) Advanceds() GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) []GetRuleAppliersRuleUserDefineRuleAdvanced {
+		return v.Advanceds
+	}).(GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput)
+}
+
+// Whether to upload raw logs.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) EnableRawLog() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) bool { return v.EnableRawLog }).(pulumi.BoolOutput)
+}
+
+// Add constant fields to logs.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) Fields() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
+}
+
+// Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) ParsePathRules() GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) []GetRuleAppliersRuleUserDefineRuleParsePathRule {
+		return v.ParsePathRules
+	}).(GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput)
+}
+
+// Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) Plugins() GetRuleAppliersRuleUserDefineRulePluginArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) []GetRuleAppliersRuleUserDefineRulePlugin { return v.Plugins }).(GetRuleAppliersRuleUserDefineRulePluginArrayOutput)
+}
+
+// Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) ShardHashKeys() GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) []GetRuleAppliersRuleUserDefineRuleShardHashKey {
+		return v.ShardHashKeys
+	}).(GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput)
+}
+
+// LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+func (o GetRuleAppliersRuleUserDefineRuleOutput) TailFiles() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRule) bool { return v.TailFiles }).(pulumi.BoolOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleArrayOutput) ToGetRuleAppliersRuleUserDefineRuleArrayOutput() GetRuleAppliersRuleUserDefineRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleArrayOutput) ToGetRuleAppliersRuleUserDefineRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleUserDefineRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleUserDefineRule {
+		return vs[0].([]GetRuleAppliersRuleUserDefineRule)[vs[1].(int)]
+	}).(GetRuleAppliersRuleUserDefineRuleOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleAdvanced struct {
+	// Whether to release the log file handle after reading to the end of the log file. The default is false.
+	CloseEof bool `pulumi:"closeEof"`
+	// The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+	CloseInactive int `pulumi:"closeInactive"`
+	// After the log file is removed, whether to release the handle of the log file. The default is false.
+	CloseRemoved bool `pulumi:"closeRemoved"`
+	// After the log file is renamed, whether to release the handle of the log file. The default is false.
+	CloseRenamed bool `pulumi:"closeRenamed"`
+	// The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+	CloseTimeout int `pulumi:"closeTimeout"`
+}
+
+// GetRuleAppliersRuleUserDefineRuleAdvancedInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleAdvancedArgs and GetRuleAppliersRuleUserDefineRuleAdvancedOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleAdvancedInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleAdvancedArgs{...}
+type GetRuleAppliersRuleUserDefineRuleAdvancedInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleAdvancedOutput() GetRuleAppliersRuleUserDefineRuleAdvancedOutput
+	ToGetRuleAppliersRuleUserDefineRuleAdvancedOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleAdvancedOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleAdvancedArgs struct {
+	// Whether to release the log file handle after reading to the end of the log file. The default is false.
+	CloseEof pulumi.BoolInput `pulumi:"closeEof"`
+	// The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+	CloseInactive pulumi.IntInput `pulumi:"closeInactive"`
+	// After the log file is removed, whether to release the handle of the log file. The default is false.
+	CloseRemoved pulumi.BoolInput `pulumi:"closeRemoved"`
+	// After the log file is renamed, whether to release the handle of the log file. The default is false.
+	CloseRenamed pulumi.BoolInput `pulumi:"closeRenamed"`
+	// The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+	CloseTimeout pulumi.IntInput `pulumi:"closeTimeout"`
+}
+
+func (GetRuleAppliersRuleUserDefineRuleAdvancedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleAdvancedArgs) ToGetRuleAppliersRuleUserDefineRuleAdvancedOutput() GetRuleAppliersRuleUserDefineRuleAdvancedOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleAdvancedOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleAdvancedArgs) ToGetRuleAppliersRuleUserDefineRuleAdvancedOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleAdvancedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleAdvancedOutput)
+}
+
+// GetRuleAppliersRuleUserDefineRuleAdvancedArrayInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleAdvancedArray and GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleAdvancedArrayInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleAdvancedArray{ GetRuleAppliersRuleUserDefineRuleAdvancedArgs{...} }
+type GetRuleAppliersRuleUserDefineRuleAdvancedArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput() GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput
+	ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleAdvancedArray []GetRuleAppliersRuleUserDefineRuleAdvancedInput
+
+func (GetRuleAppliersRuleUserDefineRuleAdvancedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleAdvancedArray) ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput() GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleAdvancedArray) ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleAdvancedOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleAdvancedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) ToGetRuleAppliersRuleUserDefineRuleAdvancedOutput() GetRuleAppliersRuleUserDefineRuleAdvancedOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) ToGetRuleAppliersRuleUserDefineRuleAdvancedOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleAdvancedOutput {
+	return o
+}
+
+// Whether to release the log file handle after reading to the end of the log file. The default is false.
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) CloseEof() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleAdvanced) bool { return v.CloseEof }).(pulumi.BoolOutput)
+}
+
+// The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) CloseInactive() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleAdvanced) int { return v.CloseInactive }).(pulumi.IntOutput)
+}
+
+// After the log file is removed, whether to release the handle of the log file. The default is false.
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) CloseRemoved() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleAdvanced) bool { return v.CloseRemoved }).(pulumi.BoolOutput)
+}
+
+// After the log file is renamed, whether to release the handle of the log file. The default is false.
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) CloseRenamed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleAdvanced) bool { return v.CloseRenamed }).(pulumi.BoolOutput)
+}
+
+// The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedOutput) CloseTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleAdvanced) int { return v.CloseTimeout }).(pulumi.IntOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput) ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput() GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput) ToGetRuleAppliersRuleUserDefineRuleAdvancedArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleUserDefineRuleAdvancedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleUserDefineRuleAdvanced {
+		return vs[0].([]GetRuleAppliersRuleUserDefineRuleAdvanced)[vs[1].(int)]
+	}).(GetRuleAppliersRuleUserDefineRuleAdvancedOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleParsePathRule struct {
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys []string `pulumi:"keys"`
+	// Sample capture path for a real scene.
+	PathSample string `pulumi:"pathSample"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex string `pulumi:"regex"`
+}
+
+// GetRuleAppliersRuleUserDefineRuleParsePathRuleInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs and GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleParsePathRuleInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs{...}
+type GetRuleAppliersRuleUserDefineRuleParsePathRuleInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutput() GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput
+	ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs struct {
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Sample capture path for a real scene.
+	PathSample pulumi.StringInput `pulumi:"pathSample"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex pulumi.StringInput `pulumi:"regex"`
+}
+
+func (GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutput() GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput)
+}
+
+// GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleParsePathRuleArray and GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleParsePathRuleArray{ GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs{...} }
+type GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput() GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput
+	ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleParsePathRuleArray []GetRuleAppliersRuleUserDefineRuleParsePathRuleInput
+
+func (GetRuleAppliersRuleUserDefineRuleParsePathRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleParsePathRuleArray) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput() GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleParsePathRuleArray) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutput() GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput {
+	return o
+}
+
+// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleParsePathRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Sample capture path for a real scene.
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput) PathSample() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleParsePathRule) string { return v.PathSample }).(pulumi.StringOutput)
+}
+
+// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput) Regex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleParsePathRule) string { return v.Regex }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput() GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput) ToGetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleUserDefineRuleParsePathRule {
+		return vs[0].([]GetRuleAppliersRuleUserDefineRuleParsePathRule)[vs[1].(int)]
+	}).(GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRulePlugin struct {
+	// LogCollector plugin.
+	Processors string `pulumi:"processors"`
+}
+
+// GetRuleAppliersRuleUserDefineRulePluginInput is an input type that accepts GetRuleAppliersRuleUserDefineRulePluginArgs and GetRuleAppliersRuleUserDefineRulePluginOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRulePluginInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRulePluginArgs{...}
+type GetRuleAppliersRuleUserDefineRulePluginInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRulePluginOutput() GetRuleAppliersRuleUserDefineRulePluginOutput
+	ToGetRuleAppliersRuleUserDefineRulePluginOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRulePluginOutput
+}
+
+type GetRuleAppliersRuleUserDefineRulePluginArgs struct {
+	// LogCollector plugin.
+	Processors pulumi.StringInput `pulumi:"processors"`
+}
+
+func (GetRuleAppliersRuleUserDefineRulePluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRulePluginArgs) ToGetRuleAppliersRuleUserDefineRulePluginOutput() GetRuleAppliersRuleUserDefineRulePluginOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRulePluginOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRulePluginArgs) ToGetRuleAppliersRuleUserDefineRulePluginOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRulePluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRulePluginOutput)
+}
+
+// GetRuleAppliersRuleUserDefineRulePluginArrayInput is an input type that accepts GetRuleAppliersRuleUserDefineRulePluginArray and GetRuleAppliersRuleUserDefineRulePluginArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRulePluginArrayInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRulePluginArray{ GetRuleAppliersRuleUserDefineRulePluginArgs{...} }
+type GetRuleAppliersRuleUserDefineRulePluginArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRulePluginArrayOutput() GetRuleAppliersRuleUserDefineRulePluginArrayOutput
+	ToGetRuleAppliersRuleUserDefineRulePluginArrayOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRulePluginArrayOutput
+}
+
+type GetRuleAppliersRuleUserDefineRulePluginArray []GetRuleAppliersRuleUserDefineRulePluginInput
+
+func (GetRuleAppliersRuleUserDefineRulePluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRulePluginArray) ToGetRuleAppliersRuleUserDefineRulePluginArrayOutput() GetRuleAppliersRuleUserDefineRulePluginArrayOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRulePluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRulePluginArray) ToGetRuleAppliersRuleUserDefineRulePluginArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRulePluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRulePluginArrayOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRulePluginOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRulePluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRulePluginOutput) ToGetRuleAppliersRuleUserDefineRulePluginOutput() GetRuleAppliersRuleUserDefineRulePluginOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRulePluginOutput) ToGetRuleAppliersRuleUserDefineRulePluginOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRulePluginOutput {
+	return o
+}
+
+// LogCollector plugin.
+func (o GetRuleAppliersRuleUserDefineRulePluginOutput) Processors() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRulePlugin) string { return v.Processors }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRulePluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRulePluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRulePluginArrayOutput) ToGetRuleAppliersRuleUserDefineRulePluginArrayOutput() GetRuleAppliersRuleUserDefineRulePluginArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRulePluginArrayOutput) ToGetRuleAppliersRuleUserDefineRulePluginArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRulePluginArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRulePluginArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleUserDefineRulePluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleUserDefineRulePlugin {
+		return vs[0].([]GetRuleAppliersRuleUserDefineRulePlugin)[vs[1].(int)]
+	}).(GetRuleAppliersRuleUserDefineRulePluginOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleShardHashKey struct {
+	// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+	HashKey string `pulumi:"hashKey"`
+}
+
+// GetRuleAppliersRuleUserDefineRuleShardHashKeyInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs and GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleShardHashKeyInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs{...}
+type GetRuleAppliersRuleUserDefineRuleShardHashKeyInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutput() GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput
+	ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs struct {
+	// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+	HashKey pulumi.StringInput `pulumi:"hashKey"`
+}
+
+func (GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutput() GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput)
+}
+
+// GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayInput is an input type that accepts GetRuleAppliersRuleUserDefineRuleShardHashKeyArray and GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput values.
+// You can construct a concrete instance of `GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayInput` via:
+//
+//	GetRuleAppliersRuleUserDefineRuleShardHashKeyArray{ GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs{...} }
+type GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput() GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput
+	ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutputWithContext(context.Context) GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput
+}
+
+type GetRuleAppliersRuleUserDefineRuleShardHashKeyArray []GetRuleAppliersRuleUserDefineRuleShardHashKeyInput
+
+func (GetRuleAppliersRuleUserDefineRuleShardHashKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleShardHashKeyArray) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput() GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput {
+	return i.ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetRuleAppliersRuleUserDefineRuleShardHashKeyArray) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutput() GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput {
+	return o
+}
+
+// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+func (o GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput) HashKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleAppliersRuleUserDefineRuleShardHashKey) string { return v.HashKey }).(pulumi.StringOutput)
+}
+
+type GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRuleAppliersRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput() GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput) ToGetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutputWithContext(ctx context.Context) GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput {
+	return o
+}
+
+func (o GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput) Index(i pulumi.IntInput) GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRuleAppliersRuleUserDefineRuleShardHashKey {
+		return vs[0].([]GetRuleAppliersRuleUserDefineRuleShardHashKey)[vs[1].(int)]
+	}).(GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput)
+}
+
+type GetRulesRule struct {
+	// Container collection rules.
+	ContainerRules []GetRulesRuleContainerRule `pulumi:"containerRules"`
+	// The creation time.
+	CreateTime string `pulumi:"createTime"`
+	// Collect the blacklist list.
+	ExcludePaths []GetRulesRuleExcludePath `pulumi:"excludePaths"`
+	// The extract rule.
+	ExtractRules []GetRulesRuleExtractRule `pulumi:"extractRules"`
+	// The collection type.
+	InputType int `pulumi:"inputType"`
+	// Log sample.
+	LogSample string `pulumi:"logSample"`
+	// The log type.
+	LogType string `pulumi:"logType"`
+	// The modification time.
+	ModifyTime string `pulumi:"modifyTime"`
+	// Collection path list.
+	Paths []string `pulumi:"paths"`
+	// The rule id.
+	RuleId string `pulumi:"ruleId"`
+	// The rule name.
+	RuleName string `pulumi:"ruleName"`
+	// The topic id.
+	TopicId string `pulumi:"topicId"`
+	// The topic name.
+	TopicName string `pulumi:"topicName"`
+	// User-defined collection rules.
+	UserDefineRules []GetRulesRuleUserDefineRule `pulumi:"userDefineRules"`
+}
+
+// GetRulesRuleInput is an input type that accepts GetRulesRuleArgs and GetRulesRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleInput` via:
+//
+//	GetRulesRuleArgs{...}
+type GetRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleOutput() GetRulesRuleOutput
+	ToGetRulesRuleOutputWithContext(context.Context) GetRulesRuleOutput
+}
+
+type GetRulesRuleArgs struct {
+	// Container collection rules.
+	ContainerRules GetRulesRuleContainerRuleArrayInput `pulumi:"containerRules"`
+	// The creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Collect the blacklist list.
+	ExcludePaths GetRulesRuleExcludePathArrayInput `pulumi:"excludePaths"`
+	// The extract rule.
+	ExtractRules GetRulesRuleExtractRuleArrayInput `pulumi:"extractRules"`
+	// The collection type.
+	InputType pulumi.IntInput `pulumi:"inputType"`
+	// Log sample.
+	LogSample pulumi.StringInput `pulumi:"logSample"`
+	// The log type.
+	LogType pulumi.StringInput `pulumi:"logType"`
+	// The modification time.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// Collection path list.
+	Paths pulumi.StringArrayInput `pulumi:"paths"`
+	// The rule id.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The rule name.
+	RuleName pulumi.StringInput `pulumi:"ruleName"`
+	// The topic id.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The topic name.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// User-defined collection rules.
+	UserDefineRules GetRulesRuleUserDefineRuleArrayInput `pulumi:"userDefineRules"`
+}
+
+func (GetRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleArgs) ToGetRulesRuleOutput() GetRulesRuleOutput {
+	return i.ToGetRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleArgs) ToGetRulesRuleOutputWithContext(ctx context.Context) GetRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleOutput)
+}
+
+// GetRulesRuleArrayInput is an input type that accepts GetRulesRuleArray and GetRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleArrayInput` via:
+//
+//	GetRulesRuleArray{ GetRulesRuleArgs{...} }
+type GetRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput
+	ToGetRulesRuleArrayOutputWithContext(context.Context) GetRulesRuleArrayOutput
+}
+
+type GetRulesRuleArray []GetRulesRuleInput
+
+func (GetRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleArray) ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput {
+	return i.ToGetRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleArray) ToGetRulesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleArrayOutput)
+}
+
+type GetRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleOutput) ToGetRulesRuleOutput() GetRulesRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleOutput) ToGetRulesRuleOutputWithContext(ctx context.Context) GetRulesRuleOutput {
+	return o
+}
+
+// Container collection rules.
+func (o GetRulesRuleOutput) ContainerRules() GetRulesRuleContainerRuleArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleContainerRule { return v.ContainerRules }).(GetRulesRuleContainerRuleArrayOutput)
+}
+
+// The creation time.
+func (o GetRulesRuleOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Collect the blacklist list.
+func (o GetRulesRuleOutput) ExcludePaths() GetRulesRuleExcludePathArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleExcludePath { return v.ExcludePaths }).(GetRulesRuleExcludePathArrayOutput)
+}
+
+// The extract rule.
+func (o GetRulesRuleOutput) ExtractRules() GetRulesRuleExtractRuleArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleExtractRule { return v.ExtractRules }).(GetRulesRuleExtractRuleArrayOutput)
+}
+
+// The collection type.
+func (o GetRulesRuleOutput) InputType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRule) int { return v.InputType }).(pulumi.IntOutput)
+}
+
+// Log sample.
+func (o GetRulesRuleOutput) LogSample() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.LogSample }).(pulumi.StringOutput)
+}
+
+// The log type.
+func (o GetRulesRuleOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+// The modification time.
+func (o GetRulesRuleOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// Collection path list.
+func (o GetRulesRuleOutput) Paths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []string { return v.Paths }).(pulumi.StringArrayOutput)
+}
+
+// The rule id.
+func (o GetRulesRuleOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The rule name.
+func (o GetRulesRuleOutput) RuleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.RuleName }).(pulumi.StringOutput)
+}
+
+// The topic id.
+func (o GetRulesRuleOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The topic name.
+func (o GetRulesRuleOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRule) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// User-defined collection rules.
+func (o GetRulesRuleOutput) UserDefineRules() GetRulesRuleUserDefineRuleArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleUserDefineRule { return v.UserDefineRules }).(GetRulesRuleUserDefineRuleArrayOutput)
+}
+
+type GetRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleArrayOutput) ToGetRulesRuleArrayOutput() GetRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleArrayOutput) ToGetRulesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRule {
+		return vs[0].([]GetRulesRule)[vs[1].(int)]
+	}).(GetRulesRuleOutput)
+}
+
+type GetRulesRuleContainerRule struct {
+	// The name of the container to be collected.
+	ContainerNameRegex string `pulumi:"containerNameRegex"`
+	// Whether to add environment variables as log tags to raw log data.
+	EnvTag map[string]interface{} `pulumi:"envTag"`
+	// The container environment variable blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerEnvRegex map[string]interface{} `pulumi:"excludeContainerEnvRegex"`
+	// The container Label blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerLabelRegex map[string]interface{} `pulumi:"excludeContainerLabelRegex"`
+	// The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+	IncludeContainerEnvRegex map[string]interface{} `pulumi:"includeContainerEnvRegex"`
+	// The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+	IncludeContainerLabelRegex map[string]interface{} `pulumi:"includeContainerLabelRegex"`
+	// Collection rules for Kubernetes containers.
+	KubernetesRules []GetRulesRuleContainerRuleKubernetesRule `pulumi:"kubernetesRules"`
+	// The collection mode.
+	Stream string `pulumi:"stream"`
+}
+
+// GetRulesRuleContainerRuleInput is an input type that accepts GetRulesRuleContainerRuleArgs and GetRulesRuleContainerRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleContainerRuleInput` via:
+//
+//	GetRulesRuleContainerRuleArgs{...}
+type GetRulesRuleContainerRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleContainerRuleOutput() GetRulesRuleContainerRuleOutput
+	ToGetRulesRuleContainerRuleOutputWithContext(context.Context) GetRulesRuleContainerRuleOutput
+}
+
+type GetRulesRuleContainerRuleArgs struct {
+	// The name of the container to be collected.
+	ContainerNameRegex pulumi.StringInput `pulumi:"containerNameRegex"`
+	// Whether to add environment variables as log tags to raw log data.
+	EnvTag pulumi.MapInput `pulumi:"envTag"`
+	// The container environment variable blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerEnvRegex pulumi.MapInput `pulumi:"excludeContainerEnvRegex"`
+	// The container Label blacklist is used to specify the range of containers not to be collected.
+	ExcludeContainerLabelRegex pulumi.MapInput `pulumi:"excludeContainerLabelRegex"`
+	// The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+	IncludeContainerEnvRegex pulumi.MapInput `pulumi:"includeContainerEnvRegex"`
+	// The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+	IncludeContainerLabelRegex pulumi.MapInput `pulumi:"includeContainerLabelRegex"`
+	// Collection rules for Kubernetes containers.
+	KubernetesRules GetRulesRuleContainerRuleKubernetesRuleArrayInput `pulumi:"kubernetesRules"`
+	// The collection mode.
+	Stream pulumi.StringInput `pulumi:"stream"`
+}
+
+func (GetRulesRuleContainerRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleContainerRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleContainerRuleArgs) ToGetRulesRuleContainerRuleOutput() GetRulesRuleContainerRuleOutput {
+	return i.ToGetRulesRuleContainerRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleContainerRuleArgs) ToGetRulesRuleContainerRuleOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleContainerRuleOutput)
+}
+
+// GetRulesRuleContainerRuleArrayInput is an input type that accepts GetRulesRuleContainerRuleArray and GetRulesRuleContainerRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleContainerRuleArrayInput` via:
+//
+//	GetRulesRuleContainerRuleArray{ GetRulesRuleContainerRuleArgs{...} }
+type GetRulesRuleContainerRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleContainerRuleArrayOutput() GetRulesRuleContainerRuleArrayOutput
+	ToGetRulesRuleContainerRuleArrayOutputWithContext(context.Context) GetRulesRuleContainerRuleArrayOutput
+}
+
+type GetRulesRuleContainerRuleArray []GetRulesRuleContainerRuleInput
+
+func (GetRulesRuleContainerRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleContainerRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleContainerRuleArray) ToGetRulesRuleContainerRuleArrayOutput() GetRulesRuleContainerRuleArrayOutput {
+	return i.ToGetRulesRuleContainerRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleContainerRuleArray) ToGetRulesRuleContainerRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleContainerRuleArrayOutput)
+}
+
+type GetRulesRuleContainerRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleContainerRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleContainerRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleContainerRuleOutput) ToGetRulesRuleContainerRuleOutput() GetRulesRuleContainerRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleContainerRuleOutput) ToGetRulesRuleContainerRuleOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleOutput {
+	return o
+}
+
+// The name of the container to be collected.
+func (o GetRulesRuleContainerRuleOutput) ContainerNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) string { return v.ContainerNameRegex }).(pulumi.StringOutput)
+}
+
+// Whether to add environment variables as log tags to raw log data.
+func (o GetRulesRuleContainerRuleOutput) EnvTag() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) map[string]interface{} { return v.EnvTag }).(pulumi.MapOutput)
+}
+
+// The container environment variable blacklist is used to specify the range of containers not to be collected.
+func (o GetRulesRuleContainerRuleOutput) ExcludeContainerEnvRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) map[string]interface{} { return v.ExcludeContainerEnvRegex }).(pulumi.MapOutput)
+}
+
+// The container Label blacklist is used to specify the range of containers not to be collected.
+func (o GetRulesRuleContainerRuleOutput) ExcludeContainerLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) map[string]interface{} { return v.ExcludeContainerLabelRegex }).(pulumi.MapOutput)
+}
+
+// The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+func (o GetRulesRuleContainerRuleOutput) IncludeContainerEnvRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) map[string]interface{} { return v.IncludeContainerEnvRegex }).(pulumi.MapOutput)
+}
+
+// The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+func (o GetRulesRuleContainerRuleOutput) IncludeContainerLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) map[string]interface{} { return v.IncludeContainerLabelRegex }).(pulumi.MapOutput)
+}
+
+// Collection rules for Kubernetes containers.
+func (o GetRulesRuleContainerRuleOutput) KubernetesRules() GetRulesRuleContainerRuleKubernetesRuleArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) []GetRulesRuleContainerRuleKubernetesRule { return v.KubernetesRules }).(GetRulesRuleContainerRuleKubernetesRuleArrayOutput)
+}
+
+// The collection mode.
+func (o GetRulesRuleContainerRuleOutput) Stream() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRule) string { return v.Stream }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleContainerRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleContainerRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleContainerRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleContainerRuleArrayOutput) ToGetRulesRuleContainerRuleArrayOutput() GetRulesRuleContainerRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleContainerRuleArrayOutput) ToGetRulesRuleContainerRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleContainerRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleContainerRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleContainerRule {
+		return vs[0].([]GetRulesRuleContainerRule)[vs[1].(int)]
+	}).(GetRulesRuleContainerRuleOutput)
+}
+
+type GetRulesRuleContainerRuleKubernetesRule struct {
+	// Whether to add Kubernetes Annotation as a log tag to the raw log data.
+	AnnotationTag map[string]interface{} `pulumi:"annotationTag"`
+	// Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+	ExcludePodLabelRegex map[string]interface{} `pulumi:"excludePodLabelRegex"`
+	// The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+	IncludePodLabelRegex map[string]interface{} `pulumi:"includePodLabelRegex"`
+	// Whether to add Kubernetes Label as a log label to the original log data.
+	LabelTag map[string]interface{} `pulumi:"labelTag"`
+	// The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+	NamespaceNameRegex string `pulumi:"namespaceNameRegex"`
+	// The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+	PodNameRegex string `pulumi:"podNameRegex"`
+	// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+	WorkloadNameRegex string `pulumi:"workloadNameRegex"`
+	// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+	WorkloadType string `pulumi:"workloadType"`
+}
+
+// GetRulesRuleContainerRuleKubernetesRuleInput is an input type that accepts GetRulesRuleContainerRuleKubernetesRuleArgs and GetRulesRuleContainerRuleKubernetesRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleContainerRuleKubernetesRuleInput` via:
+//
+//	GetRulesRuleContainerRuleKubernetesRuleArgs{...}
+type GetRulesRuleContainerRuleKubernetesRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleContainerRuleKubernetesRuleOutput() GetRulesRuleContainerRuleKubernetesRuleOutput
+	ToGetRulesRuleContainerRuleKubernetesRuleOutputWithContext(context.Context) GetRulesRuleContainerRuleKubernetesRuleOutput
+}
+
+type GetRulesRuleContainerRuleKubernetesRuleArgs struct {
+	// Whether to add Kubernetes Annotation as a log tag to the raw log data.
+	AnnotationTag pulumi.MapInput `pulumi:"annotationTag"`
+	// Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+	ExcludePodLabelRegex pulumi.MapInput `pulumi:"excludePodLabelRegex"`
+	// The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+	IncludePodLabelRegex pulumi.MapInput `pulumi:"includePodLabelRegex"`
+	// Whether to add Kubernetes Label as a log label to the original log data.
+	LabelTag pulumi.MapInput `pulumi:"labelTag"`
+	// The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+	NamespaceNameRegex pulumi.StringInput `pulumi:"namespaceNameRegex"`
+	// The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+	PodNameRegex pulumi.StringInput `pulumi:"podNameRegex"`
+	// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+	WorkloadNameRegex pulumi.StringInput `pulumi:"workloadNameRegex"`
+	// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+	WorkloadType pulumi.StringInput `pulumi:"workloadType"`
+}
+
+func (GetRulesRuleContainerRuleKubernetesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleContainerRuleKubernetesRuleArgs) ToGetRulesRuleContainerRuleKubernetesRuleOutput() GetRulesRuleContainerRuleKubernetesRuleOutput {
+	return i.ToGetRulesRuleContainerRuleKubernetesRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleContainerRuleKubernetesRuleArgs) ToGetRulesRuleContainerRuleKubernetesRuleOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleKubernetesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleContainerRuleKubernetesRuleOutput)
+}
+
+// GetRulesRuleContainerRuleKubernetesRuleArrayInput is an input type that accepts GetRulesRuleContainerRuleKubernetesRuleArray and GetRulesRuleContainerRuleKubernetesRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleContainerRuleKubernetesRuleArrayInput` via:
+//
+//	GetRulesRuleContainerRuleKubernetesRuleArray{ GetRulesRuleContainerRuleKubernetesRuleArgs{...} }
+type GetRulesRuleContainerRuleKubernetesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleContainerRuleKubernetesRuleArrayOutput() GetRulesRuleContainerRuleKubernetesRuleArrayOutput
+	ToGetRulesRuleContainerRuleKubernetesRuleArrayOutputWithContext(context.Context) GetRulesRuleContainerRuleKubernetesRuleArrayOutput
+}
+
+type GetRulesRuleContainerRuleKubernetesRuleArray []GetRulesRuleContainerRuleKubernetesRuleInput
+
+func (GetRulesRuleContainerRuleKubernetesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleContainerRuleKubernetesRuleArray) ToGetRulesRuleContainerRuleKubernetesRuleArrayOutput() GetRulesRuleContainerRuleKubernetesRuleArrayOutput {
+	return i.ToGetRulesRuleContainerRuleKubernetesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleContainerRuleKubernetesRuleArray) ToGetRulesRuleContainerRuleKubernetesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleKubernetesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleContainerRuleKubernetesRuleArrayOutput)
+}
+
+type GetRulesRuleContainerRuleKubernetesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleContainerRuleKubernetesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) ToGetRulesRuleContainerRuleKubernetesRuleOutput() GetRulesRuleContainerRuleKubernetesRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) ToGetRulesRuleContainerRuleKubernetesRuleOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleKubernetesRuleOutput {
+	return o
+}
+
+// Whether to add Kubernetes Annotation as a log tag to the raw log data.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) AnnotationTag() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) map[string]interface{} { return v.AnnotationTag }).(pulumi.MapOutput)
+}
+
+// Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) ExcludePodLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) map[string]interface{} { return v.ExcludePodLabelRegex }).(pulumi.MapOutput)
+}
+
+// The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) IncludePodLabelRegex() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) map[string]interface{} { return v.IncludePodLabelRegex }).(pulumi.MapOutput)
+}
+
+// Whether to add Kubernetes Label as a log label to the original log data.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) LabelTag() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) map[string]interface{} { return v.LabelTag }).(pulumi.MapOutput)
+}
+
+// The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) NamespaceNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) string { return v.NamespaceNameRegex }).(pulumi.StringOutput)
+}
+
+// The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) PodNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) string { return v.PodNameRegex }).(pulumi.StringOutput)
+}
+
+// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) WorkloadNameRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) string { return v.WorkloadNameRegex }).(pulumi.StringOutput)
+}
+
+// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+func (o GetRulesRuleContainerRuleKubernetesRuleOutput) WorkloadType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleContainerRuleKubernetesRule) string { return v.WorkloadType }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleContainerRuleKubernetesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleContainerRuleKubernetesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleContainerRuleKubernetesRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleContainerRuleKubernetesRuleArrayOutput) ToGetRulesRuleContainerRuleKubernetesRuleArrayOutput() GetRulesRuleContainerRuleKubernetesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleContainerRuleKubernetesRuleArrayOutput) ToGetRulesRuleContainerRuleKubernetesRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleContainerRuleKubernetesRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleContainerRuleKubernetesRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleContainerRuleKubernetesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleContainerRuleKubernetesRule {
+		return vs[0].([]GetRulesRuleContainerRuleKubernetesRule)[vs[1].(int)]
+	}).(GetRulesRuleContainerRuleKubernetesRuleOutput)
+}
+
+type GetRulesRuleExcludePath struct {
+	// The type of the log template.
+	Type string `pulumi:"type"`
+	// Collection path.
+	Value string `pulumi:"value"`
+}
+
+// GetRulesRuleExcludePathInput is an input type that accepts GetRulesRuleExcludePathArgs and GetRulesRuleExcludePathOutput values.
+// You can construct a concrete instance of `GetRulesRuleExcludePathInput` via:
+//
+//	GetRulesRuleExcludePathArgs{...}
+type GetRulesRuleExcludePathInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExcludePathOutput() GetRulesRuleExcludePathOutput
+	ToGetRulesRuleExcludePathOutputWithContext(context.Context) GetRulesRuleExcludePathOutput
+}
+
+type GetRulesRuleExcludePathArgs struct {
+	// The type of the log template.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Collection path.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRulesRuleExcludePathArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExcludePath)(nil)).Elem()
+}
+
+func (i GetRulesRuleExcludePathArgs) ToGetRulesRuleExcludePathOutput() GetRulesRuleExcludePathOutput {
+	return i.ToGetRulesRuleExcludePathOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExcludePathArgs) ToGetRulesRuleExcludePathOutputWithContext(ctx context.Context) GetRulesRuleExcludePathOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExcludePathOutput)
+}
+
+// GetRulesRuleExcludePathArrayInput is an input type that accepts GetRulesRuleExcludePathArray and GetRulesRuleExcludePathArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleExcludePathArrayInput` via:
+//
+//	GetRulesRuleExcludePathArray{ GetRulesRuleExcludePathArgs{...} }
+type GetRulesRuleExcludePathArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExcludePathArrayOutput() GetRulesRuleExcludePathArrayOutput
+	ToGetRulesRuleExcludePathArrayOutputWithContext(context.Context) GetRulesRuleExcludePathArrayOutput
+}
+
+type GetRulesRuleExcludePathArray []GetRulesRuleExcludePathInput
+
+func (GetRulesRuleExcludePathArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExcludePath)(nil)).Elem()
+}
+
+func (i GetRulesRuleExcludePathArray) ToGetRulesRuleExcludePathArrayOutput() GetRulesRuleExcludePathArrayOutput {
+	return i.ToGetRulesRuleExcludePathArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExcludePathArray) ToGetRulesRuleExcludePathArrayOutputWithContext(ctx context.Context) GetRulesRuleExcludePathArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExcludePathArrayOutput)
+}
+
+type GetRulesRuleExcludePathOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExcludePathOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExcludePath)(nil)).Elem()
+}
+
+func (o GetRulesRuleExcludePathOutput) ToGetRulesRuleExcludePathOutput() GetRulesRuleExcludePathOutput {
+	return o
+}
+
+func (o GetRulesRuleExcludePathOutput) ToGetRulesRuleExcludePathOutputWithContext(ctx context.Context) GetRulesRuleExcludePathOutput {
+	return o
+}
+
+// The type of the log template.
+func (o GetRulesRuleExcludePathOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExcludePath) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Collection path.
+func (o GetRulesRuleExcludePathOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExcludePath) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleExcludePathArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExcludePathArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExcludePath)(nil)).Elem()
+}
+
+func (o GetRulesRuleExcludePathArrayOutput) ToGetRulesRuleExcludePathArrayOutput() GetRulesRuleExcludePathArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExcludePathArrayOutput) ToGetRulesRuleExcludePathArrayOutputWithContext(ctx context.Context) GetRulesRuleExcludePathArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExcludePathArrayOutput) Index(i pulumi.IntInput) GetRulesRuleExcludePathOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleExcludePath {
+		return vs[0].([]GetRulesRuleExcludePath)[vs[1].(int)]
+	}).(GetRulesRuleExcludePathOutput)
+}
+
+type GetRulesRuleExtractRule struct {
+	// The first log line needs to match the regular expression.
+	BeginRegex string `pulumi:"beginRegex"`
+	// The delimiter of the log.
+	Delimiter string `pulumi:"delimiter"`
+	// The filter key list.
+	FilterKeyRegexes []GetRulesRuleExtractRuleFilterKeyRegex `pulumi:"filterKeyRegexes"`
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys []string `pulumi:"keys"`
+	// The entire log needs to match the regular expression.
+	LogRegex string `pulumi:"logRegex"`
+	// Automatically extract log fields according to the specified log template.
+	LogTemplates []GetRulesRuleExtractRuleLogTemplate `pulumi:"logTemplates"`
+	// Parsing format of the time field.
+	TimeFormat string `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey string `pulumi:"timeKey"`
+	// When uploading the failed log, the key name of the failed log.
+	UnMatchLogKey string `pulumi:"unMatchLogKey"`
+	// Whether to upload the log of parsing failure.
+	UnMatchUpLoadSwitch bool `pulumi:"unMatchUpLoadSwitch"`
+}
+
+// GetRulesRuleExtractRuleInput is an input type that accepts GetRulesRuleExtractRuleArgs and GetRulesRuleExtractRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleExtractRuleInput` via:
+//
+//	GetRulesRuleExtractRuleArgs{...}
+type GetRulesRuleExtractRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExtractRuleOutput() GetRulesRuleExtractRuleOutput
+	ToGetRulesRuleExtractRuleOutputWithContext(context.Context) GetRulesRuleExtractRuleOutput
+}
+
+type GetRulesRuleExtractRuleArgs struct {
+	// The first log line needs to match the regular expression.
+	BeginRegex pulumi.StringInput `pulumi:"beginRegex"`
+	// The delimiter of the log.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// The filter key list.
+	FilterKeyRegexes GetRulesRuleExtractRuleFilterKeyRegexArrayInput `pulumi:"filterKeyRegexes"`
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// The entire log needs to match the regular expression.
+	LogRegex pulumi.StringInput `pulumi:"logRegex"`
+	// Automatically extract log fields according to the specified log template.
+	LogTemplates GetRulesRuleExtractRuleLogTemplateArrayInput `pulumi:"logTemplates"`
+	// Parsing format of the time field.
+	TimeFormat pulumi.StringInput `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey pulumi.StringInput `pulumi:"timeKey"`
+	// When uploading the failed log, the key name of the failed log.
+	UnMatchLogKey pulumi.StringInput `pulumi:"unMatchLogKey"`
+	// Whether to upload the log of parsing failure.
+	UnMatchUpLoadSwitch pulumi.BoolInput `pulumi:"unMatchUpLoadSwitch"`
+}
+
+func (GetRulesRuleExtractRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExtractRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleExtractRuleArgs) ToGetRulesRuleExtractRuleOutput() GetRulesRuleExtractRuleOutput {
+	return i.ToGetRulesRuleExtractRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExtractRuleArgs) ToGetRulesRuleExtractRuleOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExtractRuleOutput)
+}
+
+// GetRulesRuleExtractRuleArrayInput is an input type that accepts GetRulesRuleExtractRuleArray and GetRulesRuleExtractRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleExtractRuleArrayInput` via:
+//
+//	GetRulesRuleExtractRuleArray{ GetRulesRuleExtractRuleArgs{...} }
+type GetRulesRuleExtractRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExtractRuleArrayOutput() GetRulesRuleExtractRuleArrayOutput
+	ToGetRulesRuleExtractRuleArrayOutputWithContext(context.Context) GetRulesRuleExtractRuleArrayOutput
+}
+
+type GetRulesRuleExtractRuleArray []GetRulesRuleExtractRuleInput
+
+func (GetRulesRuleExtractRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExtractRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleExtractRuleArray) ToGetRulesRuleExtractRuleArrayOutput() GetRulesRuleExtractRuleArrayOutput {
+	return i.ToGetRulesRuleExtractRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExtractRuleArray) ToGetRulesRuleExtractRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExtractRuleArrayOutput)
+}
+
+type GetRulesRuleExtractRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExtractRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExtractRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleExtractRuleOutput) ToGetRulesRuleExtractRuleOutput() GetRulesRuleExtractRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleOutput) ToGetRulesRuleExtractRuleOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleOutput {
+	return o
+}
+
+// The first log line needs to match the regular expression.
+func (o GetRulesRuleExtractRuleOutput) BeginRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) string { return v.BeginRegex }).(pulumi.StringOutput)
+}
+
+// The delimiter of the log.
+func (o GetRulesRuleExtractRuleOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// The filter key list.
+func (o GetRulesRuleExtractRuleOutput) FilterKeyRegexes() GetRulesRuleExtractRuleFilterKeyRegexArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) []GetRulesRuleExtractRuleFilterKeyRegex { return v.FilterKeyRegexes }).(GetRulesRuleExtractRuleFilterKeyRegexArrayOutput)
+}
+
+// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+func (o GetRulesRuleExtractRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// The entire log needs to match the regular expression.
+func (o GetRulesRuleExtractRuleOutput) LogRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) string { return v.LogRegex }).(pulumi.StringOutput)
+}
+
+// Automatically extract log fields according to the specified log template.
+func (o GetRulesRuleExtractRuleOutput) LogTemplates() GetRulesRuleExtractRuleLogTemplateArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) []GetRulesRuleExtractRuleLogTemplate { return v.LogTemplates }).(GetRulesRuleExtractRuleLogTemplateArrayOutput)
+}
+
+// Parsing format of the time field.
+func (o GetRulesRuleExtractRuleOutput) TimeFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) string { return v.TimeFormat }).(pulumi.StringOutput)
+}
+
+// The field name of the log time field.
+func (o GetRulesRuleExtractRuleOutput) TimeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) string { return v.TimeKey }).(pulumi.StringOutput)
+}
+
+// When uploading the failed log, the key name of the failed log.
+func (o GetRulesRuleExtractRuleOutput) UnMatchLogKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) string { return v.UnMatchLogKey }).(pulumi.StringOutput)
+}
+
+// Whether to upload the log of parsing failure.
+func (o GetRulesRuleExtractRuleOutput) UnMatchUpLoadSwitch() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRule) bool { return v.UnMatchUpLoadSwitch }).(pulumi.BoolOutput)
+}
+
+type GetRulesRuleExtractRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExtractRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExtractRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleExtractRuleArrayOutput) ToGetRulesRuleExtractRuleArrayOutput() GetRulesRuleExtractRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleArrayOutput) ToGetRulesRuleExtractRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleExtractRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleExtractRule {
+		return vs[0].([]GetRulesRuleExtractRule)[vs[1].(int)]
+	}).(GetRulesRuleExtractRuleOutput)
+}
+
+type GetRulesRuleExtractRuleFilterKeyRegex struct {
+	// The name of the filter key.
+	Key string `pulumi:"key"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex string `pulumi:"regex"`
+}
+
+// GetRulesRuleExtractRuleFilterKeyRegexInput is an input type that accepts GetRulesRuleExtractRuleFilterKeyRegexArgs and GetRulesRuleExtractRuleFilterKeyRegexOutput values.
+// You can construct a concrete instance of `GetRulesRuleExtractRuleFilterKeyRegexInput` via:
+//
+//	GetRulesRuleExtractRuleFilterKeyRegexArgs{...}
+type GetRulesRuleExtractRuleFilterKeyRegexInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExtractRuleFilterKeyRegexOutput() GetRulesRuleExtractRuleFilterKeyRegexOutput
+	ToGetRulesRuleExtractRuleFilterKeyRegexOutputWithContext(context.Context) GetRulesRuleExtractRuleFilterKeyRegexOutput
+}
+
+type GetRulesRuleExtractRuleFilterKeyRegexArgs struct {
+	// The name of the filter key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex pulumi.StringInput `pulumi:"regex"`
+}
+
+func (GetRulesRuleExtractRuleFilterKeyRegexArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (i GetRulesRuleExtractRuleFilterKeyRegexArgs) ToGetRulesRuleExtractRuleFilterKeyRegexOutput() GetRulesRuleExtractRuleFilterKeyRegexOutput {
+	return i.ToGetRulesRuleExtractRuleFilterKeyRegexOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExtractRuleFilterKeyRegexArgs) ToGetRulesRuleExtractRuleFilterKeyRegexOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleFilterKeyRegexOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExtractRuleFilterKeyRegexOutput)
+}
+
+// GetRulesRuleExtractRuleFilterKeyRegexArrayInput is an input type that accepts GetRulesRuleExtractRuleFilterKeyRegexArray and GetRulesRuleExtractRuleFilterKeyRegexArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleExtractRuleFilterKeyRegexArrayInput` via:
+//
+//	GetRulesRuleExtractRuleFilterKeyRegexArray{ GetRulesRuleExtractRuleFilterKeyRegexArgs{...} }
+type GetRulesRuleExtractRuleFilterKeyRegexArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutput() GetRulesRuleExtractRuleFilterKeyRegexArrayOutput
+	ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutputWithContext(context.Context) GetRulesRuleExtractRuleFilterKeyRegexArrayOutput
+}
+
+type GetRulesRuleExtractRuleFilterKeyRegexArray []GetRulesRuleExtractRuleFilterKeyRegexInput
+
+func (GetRulesRuleExtractRuleFilterKeyRegexArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (i GetRulesRuleExtractRuleFilterKeyRegexArray) ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutput() GetRulesRuleExtractRuleFilterKeyRegexArrayOutput {
+	return i.ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExtractRuleFilterKeyRegexArray) ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleFilterKeyRegexArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExtractRuleFilterKeyRegexArrayOutput)
+}
+
+type GetRulesRuleExtractRuleFilterKeyRegexOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExtractRuleFilterKeyRegexOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (o GetRulesRuleExtractRuleFilterKeyRegexOutput) ToGetRulesRuleExtractRuleFilterKeyRegexOutput() GetRulesRuleExtractRuleFilterKeyRegexOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleFilterKeyRegexOutput) ToGetRulesRuleExtractRuleFilterKeyRegexOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleFilterKeyRegexOutput {
+	return o
+}
+
+// The name of the filter key.
+func (o GetRulesRuleExtractRuleFilterKeyRegexOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRuleFilterKeyRegex) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+func (o GetRulesRuleExtractRuleFilterKeyRegexOutput) Regex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRuleFilterKeyRegex) string { return v.Regex }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleExtractRuleFilterKeyRegexArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExtractRuleFilterKeyRegexArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExtractRuleFilterKeyRegex)(nil)).Elem()
+}
+
+func (o GetRulesRuleExtractRuleFilterKeyRegexArrayOutput) ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutput() GetRulesRuleExtractRuleFilterKeyRegexArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleFilterKeyRegexArrayOutput) ToGetRulesRuleExtractRuleFilterKeyRegexArrayOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleFilterKeyRegexArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleFilterKeyRegexArrayOutput) Index(i pulumi.IntInput) GetRulesRuleExtractRuleFilterKeyRegexOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleExtractRuleFilterKeyRegex {
+		return vs[0].([]GetRulesRuleExtractRuleFilterKeyRegex)[vs[1].(int)]
+	}).(GetRulesRuleExtractRuleFilterKeyRegexOutput)
+}
+
+type GetRulesRuleExtractRuleLogTemplate struct {
+	// Log template content.
+	Format string `pulumi:"format"`
+	// The type of the log template.
+	Type string `pulumi:"type"`
+}
+
+// GetRulesRuleExtractRuleLogTemplateInput is an input type that accepts GetRulesRuleExtractRuleLogTemplateArgs and GetRulesRuleExtractRuleLogTemplateOutput values.
+// You can construct a concrete instance of `GetRulesRuleExtractRuleLogTemplateInput` via:
+//
+//	GetRulesRuleExtractRuleLogTemplateArgs{...}
+type GetRulesRuleExtractRuleLogTemplateInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExtractRuleLogTemplateOutput() GetRulesRuleExtractRuleLogTemplateOutput
+	ToGetRulesRuleExtractRuleLogTemplateOutputWithContext(context.Context) GetRulesRuleExtractRuleLogTemplateOutput
+}
+
+type GetRulesRuleExtractRuleLogTemplateArgs struct {
+	// Log template content.
+	Format pulumi.StringInput `pulumi:"format"`
+	// The type of the log template.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRulesRuleExtractRuleLogTemplateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (i GetRulesRuleExtractRuleLogTemplateArgs) ToGetRulesRuleExtractRuleLogTemplateOutput() GetRulesRuleExtractRuleLogTemplateOutput {
+	return i.ToGetRulesRuleExtractRuleLogTemplateOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExtractRuleLogTemplateArgs) ToGetRulesRuleExtractRuleLogTemplateOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleLogTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExtractRuleLogTemplateOutput)
+}
+
+// GetRulesRuleExtractRuleLogTemplateArrayInput is an input type that accepts GetRulesRuleExtractRuleLogTemplateArray and GetRulesRuleExtractRuleLogTemplateArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleExtractRuleLogTemplateArrayInput` via:
+//
+//	GetRulesRuleExtractRuleLogTemplateArray{ GetRulesRuleExtractRuleLogTemplateArgs{...} }
+type GetRulesRuleExtractRuleLogTemplateArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleExtractRuleLogTemplateArrayOutput() GetRulesRuleExtractRuleLogTemplateArrayOutput
+	ToGetRulesRuleExtractRuleLogTemplateArrayOutputWithContext(context.Context) GetRulesRuleExtractRuleLogTemplateArrayOutput
+}
+
+type GetRulesRuleExtractRuleLogTemplateArray []GetRulesRuleExtractRuleLogTemplateInput
+
+func (GetRulesRuleExtractRuleLogTemplateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (i GetRulesRuleExtractRuleLogTemplateArray) ToGetRulesRuleExtractRuleLogTemplateArrayOutput() GetRulesRuleExtractRuleLogTemplateArrayOutput {
+	return i.ToGetRulesRuleExtractRuleLogTemplateArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleExtractRuleLogTemplateArray) ToGetRulesRuleExtractRuleLogTemplateArrayOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleLogTemplateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleExtractRuleLogTemplateArrayOutput)
+}
+
+type GetRulesRuleExtractRuleLogTemplateOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExtractRuleLogTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (o GetRulesRuleExtractRuleLogTemplateOutput) ToGetRulesRuleExtractRuleLogTemplateOutput() GetRulesRuleExtractRuleLogTemplateOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleLogTemplateOutput) ToGetRulesRuleExtractRuleLogTemplateOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleLogTemplateOutput {
+	return o
+}
+
+// Log template content.
+func (o GetRulesRuleExtractRuleLogTemplateOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRuleLogTemplate) string { return v.Format }).(pulumi.StringOutput)
+}
+
+// The type of the log template.
+func (o GetRulesRuleExtractRuleLogTemplateOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleExtractRuleLogTemplate) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleExtractRuleLogTemplateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleExtractRuleLogTemplateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleExtractRuleLogTemplate)(nil)).Elem()
+}
+
+func (o GetRulesRuleExtractRuleLogTemplateArrayOutput) ToGetRulesRuleExtractRuleLogTemplateArrayOutput() GetRulesRuleExtractRuleLogTemplateArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleLogTemplateArrayOutput) ToGetRulesRuleExtractRuleLogTemplateArrayOutputWithContext(ctx context.Context) GetRulesRuleExtractRuleLogTemplateArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleExtractRuleLogTemplateArrayOutput) Index(i pulumi.IntInput) GetRulesRuleExtractRuleLogTemplateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleExtractRuleLogTemplate {
+		return vs[0].([]GetRulesRuleExtractRuleLogTemplate)[vs[1].(int)]
+	}).(GetRulesRuleExtractRuleLogTemplateOutput)
+}
+
+type GetRulesRuleUserDefineRule struct {
+	// LogCollector extension configuration.
+	Advanceds []GetRulesRuleUserDefineRuleAdvanced `pulumi:"advanceds"`
+	// Whether to upload raw logs.
+	EnableRawLog bool `pulumi:"enableRawLog"`
+	// Add constant fields to logs.
+	Fields map[string]interface{} `pulumi:"fields"`
+	// Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+	ParsePathRules []GetRulesRuleUserDefineRuleParsePathRule `pulumi:"parsePathRules"`
+	// Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+	Plugins []GetRulesRuleUserDefineRulePlugin `pulumi:"plugins"`
+	// Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+	ShardHashKeys []GetRulesRuleUserDefineRuleShardHashKey `pulumi:"shardHashKeys"`
+	// LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+	TailFiles bool `pulumi:"tailFiles"`
+}
+
+// GetRulesRuleUserDefineRuleInput is an input type that accepts GetRulesRuleUserDefineRuleArgs and GetRulesRuleUserDefineRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleInput` via:
+//
+//	GetRulesRuleUserDefineRuleArgs{...}
+type GetRulesRuleUserDefineRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleOutput() GetRulesRuleUserDefineRuleOutput
+	ToGetRulesRuleUserDefineRuleOutputWithContext(context.Context) GetRulesRuleUserDefineRuleOutput
+}
+
+type GetRulesRuleUserDefineRuleArgs struct {
+	// LogCollector extension configuration.
+	Advanceds GetRulesRuleUserDefineRuleAdvancedArrayInput `pulumi:"advanceds"`
+	// Whether to upload raw logs.
+	EnableRawLog pulumi.BoolInput `pulumi:"enableRawLog"`
+	// Add constant fields to logs.
+	Fields pulumi.MapInput `pulumi:"fields"`
+	// Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+	ParsePathRules GetRulesRuleUserDefineRuleParsePathRuleArrayInput `pulumi:"parsePathRules"`
+	// Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+	Plugins GetRulesRuleUserDefineRulePluginArrayInput `pulumi:"plugins"`
+	// Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+	ShardHashKeys GetRulesRuleUserDefineRuleShardHashKeyArrayInput `pulumi:"shardHashKeys"`
+	// LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+	TailFiles pulumi.BoolInput `pulumi:"tailFiles"`
+}
+
+func (GetRulesRuleUserDefineRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleArgs) ToGetRulesRuleUserDefineRuleOutput() GetRulesRuleUserDefineRuleOutput {
+	return i.ToGetRulesRuleUserDefineRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleArgs) ToGetRulesRuleUserDefineRuleOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleOutput)
+}
+
+// GetRulesRuleUserDefineRuleArrayInput is an input type that accepts GetRulesRuleUserDefineRuleArray and GetRulesRuleUserDefineRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleArrayInput` via:
+//
+//	GetRulesRuleUserDefineRuleArray{ GetRulesRuleUserDefineRuleArgs{...} }
+type GetRulesRuleUserDefineRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleArrayOutput() GetRulesRuleUserDefineRuleArrayOutput
+	ToGetRulesRuleUserDefineRuleArrayOutputWithContext(context.Context) GetRulesRuleUserDefineRuleArrayOutput
+}
+
+type GetRulesRuleUserDefineRuleArray []GetRulesRuleUserDefineRuleInput
+
+func (GetRulesRuleUserDefineRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleArray) ToGetRulesRuleUserDefineRuleArrayOutput() GetRulesRuleUserDefineRuleArrayOutput {
+	return i.ToGetRulesRuleUserDefineRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleArray) ToGetRulesRuleUserDefineRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleArrayOutput)
+}
+
+type GetRulesRuleUserDefineRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleOutput) ToGetRulesRuleUserDefineRuleOutput() GetRulesRuleUserDefineRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleOutput) ToGetRulesRuleUserDefineRuleOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleOutput {
+	return o
+}
+
+// LogCollector extension configuration.
+func (o GetRulesRuleUserDefineRuleOutput) Advanceds() GetRulesRuleUserDefineRuleAdvancedArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) []GetRulesRuleUserDefineRuleAdvanced { return v.Advanceds }).(GetRulesRuleUserDefineRuleAdvancedArrayOutput)
+}
+
+// Whether to upload raw logs.
+func (o GetRulesRuleUserDefineRuleOutput) EnableRawLog() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) bool { return v.EnableRawLog }).(pulumi.BoolOutput)
+}
+
+// Add constant fields to logs.
+func (o GetRulesRuleUserDefineRuleOutput) Fields() pulumi.MapOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
+}
+
+// Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
+func (o GetRulesRuleUserDefineRuleOutput) ParsePathRules() GetRulesRuleUserDefineRuleParsePathRuleArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) []GetRulesRuleUserDefineRuleParsePathRule { return v.ParsePathRules }).(GetRulesRuleUserDefineRuleParsePathRuleArrayOutput)
+}
+
+// Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
+func (o GetRulesRuleUserDefineRuleOutput) Plugins() GetRulesRuleUserDefineRulePluginArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) []GetRulesRuleUserDefineRulePlugin { return v.Plugins }).(GetRulesRuleUserDefineRulePluginArrayOutput)
+}
+
+// Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
+func (o GetRulesRuleUserDefineRuleOutput) ShardHashKeys() GetRulesRuleUserDefineRuleShardHashKeyArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) []GetRulesRuleUserDefineRuleShardHashKey { return v.ShardHashKeys }).(GetRulesRuleUserDefineRuleShardHashKeyArrayOutput)
+}
+
+// LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
+func (o GetRulesRuleUserDefineRuleOutput) TailFiles() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRule) bool { return v.TailFiles }).(pulumi.BoolOutput)
+}
+
+type GetRulesRuleUserDefineRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleArrayOutput) ToGetRulesRuleUserDefineRuleArrayOutput() GetRulesRuleUserDefineRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleArrayOutput) ToGetRulesRuleUserDefineRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleUserDefineRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleUserDefineRule {
+		return vs[0].([]GetRulesRuleUserDefineRule)[vs[1].(int)]
+	}).(GetRulesRuleUserDefineRuleOutput)
+}
+
+type GetRulesRuleUserDefineRuleAdvanced struct {
+	// Whether to release the log file handle after reading to the end of the log file. The default is false.
+	CloseEof bool `pulumi:"closeEof"`
+	// The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+	CloseInactive int `pulumi:"closeInactive"`
+	// After the log file is removed, whether to release the handle of the log file. The default is false.
+	CloseRemoved bool `pulumi:"closeRemoved"`
+	// After the log file is renamed, whether to release the handle of the log file. The default is false.
+	CloseRenamed bool `pulumi:"closeRenamed"`
+	// The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+	CloseTimeout int `pulumi:"closeTimeout"`
+}
+
+// GetRulesRuleUserDefineRuleAdvancedInput is an input type that accepts GetRulesRuleUserDefineRuleAdvancedArgs and GetRulesRuleUserDefineRuleAdvancedOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleAdvancedInput` via:
+//
+//	GetRulesRuleUserDefineRuleAdvancedArgs{...}
+type GetRulesRuleUserDefineRuleAdvancedInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleAdvancedOutput() GetRulesRuleUserDefineRuleAdvancedOutput
+	ToGetRulesRuleUserDefineRuleAdvancedOutputWithContext(context.Context) GetRulesRuleUserDefineRuleAdvancedOutput
+}
+
+type GetRulesRuleUserDefineRuleAdvancedArgs struct {
+	// Whether to release the log file handle after reading to the end of the log file. The default is false.
+	CloseEof pulumi.BoolInput `pulumi:"closeEof"`
+	// The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+	CloseInactive pulumi.IntInput `pulumi:"closeInactive"`
+	// After the log file is removed, whether to release the handle of the log file. The default is false.
+	CloseRemoved pulumi.BoolInput `pulumi:"closeRemoved"`
+	// After the log file is renamed, whether to release the handle of the log file. The default is false.
+	CloseRenamed pulumi.BoolInput `pulumi:"closeRenamed"`
+	// The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+	CloseTimeout pulumi.IntInput `pulumi:"closeTimeout"`
+}
+
+func (GetRulesRuleUserDefineRuleAdvancedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleAdvancedArgs) ToGetRulesRuleUserDefineRuleAdvancedOutput() GetRulesRuleUserDefineRuleAdvancedOutput {
+	return i.ToGetRulesRuleUserDefineRuleAdvancedOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleAdvancedArgs) ToGetRulesRuleUserDefineRuleAdvancedOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleAdvancedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleAdvancedOutput)
+}
+
+// GetRulesRuleUserDefineRuleAdvancedArrayInput is an input type that accepts GetRulesRuleUserDefineRuleAdvancedArray and GetRulesRuleUserDefineRuleAdvancedArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleAdvancedArrayInput` via:
+//
+//	GetRulesRuleUserDefineRuleAdvancedArray{ GetRulesRuleUserDefineRuleAdvancedArgs{...} }
+type GetRulesRuleUserDefineRuleAdvancedArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleAdvancedArrayOutput() GetRulesRuleUserDefineRuleAdvancedArrayOutput
+	ToGetRulesRuleUserDefineRuleAdvancedArrayOutputWithContext(context.Context) GetRulesRuleUserDefineRuleAdvancedArrayOutput
+}
+
+type GetRulesRuleUserDefineRuleAdvancedArray []GetRulesRuleUserDefineRuleAdvancedInput
+
+func (GetRulesRuleUserDefineRuleAdvancedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleAdvancedArray) ToGetRulesRuleUserDefineRuleAdvancedArrayOutput() GetRulesRuleUserDefineRuleAdvancedArrayOutput {
+	return i.ToGetRulesRuleUserDefineRuleAdvancedArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleAdvancedArray) ToGetRulesRuleUserDefineRuleAdvancedArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleAdvancedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleAdvancedArrayOutput)
+}
+
+type GetRulesRuleUserDefineRuleAdvancedOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleAdvancedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) ToGetRulesRuleUserDefineRuleAdvancedOutput() GetRulesRuleUserDefineRuleAdvancedOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) ToGetRulesRuleUserDefineRuleAdvancedOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleAdvancedOutput {
+	return o
+}
+
+// Whether to release the log file handle after reading to the end of the log file. The default is false.
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) CloseEof() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleAdvanced) bool { return v.CloseEof }).(pulumi.BoolOutput)
+}
+
+// The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) CloseInactive() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleAdvanced) int { return v.CloseInactive }).(pulumi.IntOutput)
+}
+
+// After the log file is removed, whether to release the handle of the log file. The default is false.
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) CloseRemoved() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleAdvanced) bool { return v.CloseRemoved }).(pulumi.BoolOutput)
+}
+
+// After the log file is renamed, whether to release the handle of the log file. The default is false.
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) CloseRenamed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleAdvanced) bool { return v.CloseRenamed }).(pulumi.BoolOutput)
+}
+
+// The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
+func (o GetRulesRuleUserDefineRuleAdvancedOutput) CloseTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleAdvanced) int { return v.CloseTimeout }).(pulumi.IntOutput)
+}
+
+type GetRulesRuleUserDefineRuleAdvancedArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleAdvancedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRuleAdvanced)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleAdvancedArrayOutput) ToGetRulesRuleUserDefineRuleAdvancedArrayOutput() GetRulesRuleUserDefineRuleAdvancedArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleAdvancedArrayOutput) ToGetRulesRuleUserDefineRuleAdvancedArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleAdvancedArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleAdvancedArrayOutput) Index(i pulumi.IntInput) GetRulesRuleUserDefineRuleAdvancedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleUserDefineRuleAdvanced {
+		return vs[0].([]GetRulesRuleUserDefineRuleAdvanced)[vs[1].(int)]
+	}).(GetRulesRuleUserDefineRuleAdvancedOutput)
+}
+
+type GetRulesRuleUserDefineRuleParsePathRule struct {
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys []string `pulumi:"keys"`
+	// Sample capture path for a real scene.
+	PathSample string `pulumi:"pathSample"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex string `pulumi:"regex"`
+}
+
+// GetRulesRuleUserDefineRuleParsePathRuleInput is an input type that accepts GetRulesRuleUserDefineRuleParsePathRuleArgs and GetRulesRuleUserDefineRuleParsePathRuleOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleParsePathRuleInput` via:
+//
+//	GetRulesRuleUserDefineRuleParsePathRuleArgs{...}
+type GetRulesRuleUserDefineRuleParsePathRuleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleParsePathRuleOutput() GetRulesRuleUserDefineRuleParsePathRuleOutput
+	ToGetRulesRuleUserDefineRuleParsePathRuleOutputWithContext(context.Context) GetRulesRuleUserDefineRuleParsePathRuleOutput
+}
+
+type GetRulesRuleUserDefineRuleParsePathRuleArgs struct {
+	// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Sample capture path for a real scene.
+	PathSample pulumi.StringInput `pulumi:"pathSample"`
+	// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+	Regex pulumi.StringInput `pulumi:"regex"`
+}
+
+func (GetRulesRuleUserDefineRuleParsePathRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleParsePathRuleArgs) ToGetRulesRuleUserDefineRuleParsePathRuleOutput() GetRulesRuleUserDefineRuleParsePathRuleOutput {
+	return i.ToGetRulesRuleUserDefineRuleParsePathRuleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleParsePathRuleArgs) ToGetRulesRuleUserDefineRuleParsePathRuleOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleParsePathRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleParsePathRuleOutput)
+}
+
+// GetRulesRuleUserDefineRuleParsePathRuleArrayInput is an input type that accepts GetRulesRuleUserDefineRuleParsePathRuleArray and GetRulesRuleUserDefineRuleParsePathRuleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleParsePathRuleArrayInput` via:
+//
+//	GetRulesRuleUserDefineRuleParsePathRuleArray{ GetRulesRuleUserDefineRuleParsePathRuleArgs{...} }
+type GetRulesRuleUserDefineRuleParsePathRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutput() GetRulesRuleUserDefineRuleParsePathRuleArrayOutput
+	ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutputWithContext(context.Context) GetRulesRuleUserDefineRuleParsePathRuleArrayOutput
+}
+
+type GetRulesRuleUserDefineRuleParsePathRuleArray []GetRulesRuleUserDefineRuleParsePathRuleInput
+
+func (GetRulesRuleUserDefineRuleParsePathRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleParsePathRuleArray) ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutput() GetRulesRuleUserDefineRuleParsePathRuleArrayOutput {
+	return i.ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleParsePathRuleArray) ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleParsePathRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleParsePathRuleArrayOutput)
+}
+
+type GetRulesRuleUserDefineRuleParsePathRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleParsePathRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleParsePathRuleOutput) ToGetRulesRuleUserDefineRuleParsePathRuleOutput() GetRulesRuleUserDefineRuleParsePathRuleOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleParsePathRuleOutput) ToGetRulesRuleUserDefineRuleParsePathRuleOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleParsePathRuleOutput {
+	return o
+}
+
+// A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
+func (o GetRulesRuleUserDefineRuleParsePathRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleParsePathRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Sample capture path for a real scene.
+func (o GetRulesRuleUserDefineRuleParsePathRuleOutput) PathSample() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleParsePathRule) string { return v.PathSample }).(pulumi.StringOutput)
+}
+
+// Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
+func (o GetRulesRuleUserDefineRuleParsePathRuleOutput) Regex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleParsePathRule) string { return v.Regex }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleUserDefineRuleParsePathRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleParsePathRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRuleParsePathRule)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleParsePathRuleArrayOutput) ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutput() GetRulesRuleUserDefineRuleParsePathRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleParsePathRuleArrayOutput) ToGetRulesRuleUserDefineRuleParsePathRuleArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleParsePathRuleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleParsePathRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleUserDefineRuleParsePathRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleUserDefineRuleParsePathRule {
+		return vs[0].([]GetRulesRuleUserDefineRuleParsePathRule)[vs[1].(int)]
+	}).(GetRulesRuleUserDefineRuleParsePathRuleOutput)
+}
+
+type GetRulesRuleUserDefineRulePlugin struct {
+	// LogCollector plugin.
+	Processors []string `pulumi:"processors"`
+}
+
+// GetRulesRuleUserDefineRulePluginInput is an input type that accepts GetRulesRuleUserDefineRulePluginArgs and GetRulesRuleUserDefineRulePluginOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRulePluginInput` via:
+//
+//	GetRulesRuleUserDefineRulePluginArgs{...}
+type GetRulesRuleUserDefineRulePluginInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRulePluginOutput() GetRulesRuleUserDefineRulePluginOutput
+	ToGetRulesRuleUserDefineRulePluginOutputWithContext(context.Context) GetRulesRuleUserDefineRulePluginOutput
+}
+
+type GetRulesRuleUserDefineRulePluginArgs struct {
+	// LogCollector plugin.
+	Processors pulumi.StringArrayInput `pulumi:"processors"`
+}
+
+func (GetRulesRuleUserDefineRulePluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRulePluginArgs) ToGetRulesRuleUserDefineRulePluginOutput() GetRulesRuleUserDefineRulePluginOutput {
+	return i.ToGetRulesRuleUserDefineRulePluginOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRulePluginArgs) ToGetRulesRuleUserDefineRulePluginOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRulePluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRulePluginOutput)
+}
+
+// GetRulesRuleUserDefineRulePluginArrayInput is an input type that accepts GetRulesRuleUserDefineRulePluginArray and GetRulesRuleUserDefineRulePluginArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRulePluginArrayInput` via:
+//
+//	GetRulesRuleUserDefineRulePluginArray{ GetRulesRuleUserDefineRulePluginArgs{...} }
+type GetRulesRuleUserDefineRulePluginArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRulePluginArrayOutput() GetRulesRuleUserDefineRulePluginArrayOutput
+	ToGetRulesRuleUserDefineRulePluginArrayOutputWithContext(context.Context) GetRulesRuleUserDefineRulePluginArrayOutput
+}
+
+type GetRulesRuleUserDefineRulePluginArray []GetRulesRuleUserDefineRulePluginInput
+
+func (GetRulesRuleUserDefineRulePluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRulePluginArray) ToGetRulesRuleUserDefineRulePluginArrayOutput() GetRulesRuleUserDefineRulePluginArrayOutput {
+	return i.ToGetRulesRuleUserDefineRulePluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRulePluginArray) ToGetRulesRuleUserDefineRulePluginArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRulePluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRulePluginArrayOutput)
+}
+
+type GetRulesRuleUserDefineRulePluginOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRulePluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRulePluginOutput) ToGetRulesRuleUserDefineRulePluginOutput() GetRulesRuleUserDefineRulePluginOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRulePluginOutput) ToGetRulesRuleUserDefineRulePluginOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRulePluginOutput {
+	return o
+}
+
+// LogCollector plugin.
+func (o GetRulesRuleUserDefineRulePluginOutput) Processors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRulePlugin) []string { return v.Processors }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleUserDefineRulePluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRulePluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRulePlugin)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRulePluginArrayOutput) ToGetRulesRuleUserDefineRulePluginArrayOutput() GetRulesRuleUserDefineRulePluginArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRulePluginArrayOutput) ToGetRulesRuleUserDefineRulePluginArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRulePluginArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRulePluginArrayOutput) Index(i pulumi.IntInput) GetRulesRuleUserDefineRulePluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleUserDefineRulePlugin {
+		return vs[0].([]GetRulesRuleUserDefineRulePlugin)[vs[1].(int)]
+	}).(GetRulesRuleUserDefineRulePluginOutput)
+}
+
+type GetRulesRuleUserDefineRuleShardHashKey struct {
+	// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+	HashKey string `pulumi:"hashKey"`
+}
+
+// GetRulesRuleUserDefineRuleShardHashKeyInput is an input type that accepts GetRulesRuleUserDefineRuleShardHashKeyArgs and GetRulesRuleUserDefineRuleShardHashKeyOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleShardHashKeyInput` via:
+//
+//	GetRulesRuleUserDefineRuleShardHashKeyArgs{...}
+type GetRulesRuleUserDefineRuleShardHashKeyInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleShardHashKeyOutput() GetRulesRuleUserDefineRuleShardHashKeyOutput
+	ToGetRulesRuleUserDefineRuleShardHashKeyOutputWithContext(context.Context) GetRulesRuleUserDefineRuleShardHashKeyOutput
+}
+
+type GetRulesRuleUserDefineRuleShardHashKeyArgs struct {
+	// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+	HashKey pulumi.StringInput `pulumi:"hashKey"`
+}
+
+func (GetRulesRuleUserDefineRuleShardHashKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleShardHashKeyArgs) ToGetRulesRuleUserDefineRuleShardHashKeyOutput() GetRulesRuleUserDefineRuleShardHashKeyOutput {
+	return i.ToGetRulesRuleUserDefineRuleShardHashKeyOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleShardHashKeyArgs) ToGetRulesRuleUserDefineRuleShardHashKeyOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleShardHashKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleShardHashKeyOutput)
+}
+
+// GetRulesRuleUserDefineRuleShardHashKeyArrayInput is an input type that accepts GetRulesRuleUserDefineRuleShardHashKeyArray and GetRulesRuleUserDefineRuleShardHashKeyArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleUserDefineRuleShardHashKeyArrayInput` via:
+//
+//	GetRulesRuleUserDefineRuleShardHashKeyArray{ GetRulesRuleUserDefineRuleShardHashKeyArgs{...} }
+type GetRulesRuleUserDefineRuleShardHashKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutput() GetRulesRuleUserDefineRuleShardHashKeyArrayOutput
+	ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutputWithContext(context.Context) GetRulesRuleUserDefineRuleShardHashKeyArrayOutput
+}
+
+type GetRulesRuleUserDefineRuleShardHashKeyArray []GetRulesRuleUserDefineRuleShardHashKeyInput
+
+func (GetRulesRuleUserDefineRuleShardHashKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (i GetRulesRuleUserDefineRuleShardHashKeyArray) ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutput() GetRulesRuleUserDefineRuleShardHashKeyArrayOutput {
+	return i.ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleUserDefineRuleShardHashKeyArray) ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleShardHashKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleUserDefineRuleShardHashKeyArrayOutput)
+}
+
+type GetRulesRuleUserDefineRuleShardHashKeyOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleShardHashKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleShardHashKeyOutput) ToGetRulesRuleUserDefineRuleShardHashKeyOutput() GetRulesRuleUserDefineRuleShardHashKeyOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleShardHashKeyOutput) ToGetRulesRuleUserDefineRuleShardHashKeyOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleShardHashKeyOutput {
+	return o
+}
+
+// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
+func (o GetRulesRuleUserDefineRuleShardHashKeyOutput) HashKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleUserDefineRuleShardHashKey) string { return v.HashKey }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleUserDefineRuleShardHashKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleUserDefineRuleShardHashKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleUserDefineRuleShardHashKey)(nil)).Elem()
+}
+
+func (o GetRulesRuleUserDefineRuleShardHashKeyArrayOutput) ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutput() GetRulesRuleUserDefineRuleShardHashKeyArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleShardHashKeyArrayOutput) ToGetRulesRuleUserDefineRuleShardHashKeyArrayOutputWithContext(ctx context.Context) GetRulesRuleUserDefineRuleShardHashKeyArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleUserDefineRuleShardHashKeyArrayOutput) Index(i pulumi.IntInput) GetRulesRuleUserDefineRuleShardHashKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleUserDefineRuleShardHashKey {
+		return vs[0].([]GetRulesRuleUserDefineRuleShardHashKey)[vs[1].(int)]
+	}).(GetRulesRuleUserDefineRuleShardHashKeyOutput)
+}
+
+type GetShardsShard struct {
+	// The end key info.
+	ExclusiveEndKey string `pulumi:"exclusiveEndKey"`
+	// The begin key info.
+	InclusiveBeginKey string `pulumi:"inclusiveBeginKey"`
+	// The modify time.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The id of shard.
+	ShardId int `pulumi:"shardId"`
+	// The status of shard.
+	Status string `pulumi:"status"`
+	// The stop write time.
+	StopWriteTime string `pulumi:"stopWriteTime"`
+	// The id of topic.
+	TopicId string `pulumi:"topicId"`
+}
+
+// GetShardsShardInput is an input type that accepts GetShardsShardArgs and GetShardsShardOutput values.
+// You can construct a concrete instance of `GetShardsShardInput` via:
+//
+//	GetShardsShardArgs{...}
+type GetShardsShardInput interface {
+	pulumi.Input
+
+	ToGetShardsShardOutput() GetShardsShardOutput
+	ToGetShardsShardOutputWithContext(context.Context) GetShardsShardOutput
+}
+
+type GetShardsShardArgs struct {
+	// The end key info.
+	ExclusiveEndKey pulumi.StringInput `pulumi:"exclusiveEndKey"`
+	// The begin key info.
+	InclusiveBeginKey pulumi.StringInput `pulumi:"inclusiveBeginKey"`
+	// The modify time.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The id of shard.
+	ShardId pulumi.IntInput `pulumi:"shardId"`
+	// The status of shard.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The stop write time.
+	StopWriteTime pulumi.StringInput `pulumi:"stopWriteTime"`
+	// The id of topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+}
+
+func (GetShardsShardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShardsShard)(nil)).Elem()
+}
+
+func (i GetShardsShardArgs) ToGetShardsShardOutput() GetShardsShardOutput {
+	return i.ToGetShardsShardOutputWithContext(context.Background())
+}
+
+func (i GetShardsShardArgs) ToGetShardsShardOutputWithContext(ctx context.Context) GetShardsShardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShardsShardOutput)
+}
+
+// GetShardsShardArrayInput is an input type that accepts GetShardsShardArray and GetShardsShardArrayOutput values.
+// You can construct a concrete instance of `GetShardsShardArrayInput` via:
+//
+//	GetShardsShardArray{ GetShardsShardArgs{...} }
+type GetShardsShardArrayInput interface {
+	pulumi.Input
+
+	ToGetShardsShardArrayOutput() GetShardsShardArrayOutput
+	ToGetShardsShardArrayOutputWithContext(context.Context) GetShardsShardArrayOutput
+}
+
+type GetShardsShardArray []GetShardsShardInput
+
+func (GetShardsShardArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShardsShard)(nil)).Elem()
+}
+
+func (i GetShardsShardArray) ToGetShardsShardArrayOutput() GetShardsShardArrayOutput {
+	return i.ToGetShardsShardArrayOutputWithContext(context.Background())
+}
+
+func (i GetShardsShardArray) ToGetShardsShardArrayOutputWithContext(ctx context.Context) GetShardsShardArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShardsShardArrayOutput)
+}
+
+type GetShardsShardOutput struct{ *pulumi.OutputState }
+
+func (GetShardsShardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShardsShard)(nil)).Elem()
+}
+
+func (o GetShardsShardOutput) ToGetShardsShardOutput() GetShardsShardOutput {
+	return o
+}
+
+func (o GetShardsShardOutput) ToGetShardsShardOutputWithContext(ctx context.Context) GetShardsShardOutput {
+	return o
+}
+
+// The end key info.
+func (o GetShardsShardOutput) ExclusiveEndKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShardsShard) string { return v.ExclusiveEndKey }).(pulumi.StringOutput)
+}
+
+// The begin key info.
+func (o GetShardsShardOutput) InclusiveBeginKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShardsShard) string { return v.InclusiveBeginKey }).(pulumi.StringOutput)
+}
+
+// The modify time.
+func (o GetShardsShardOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShardsShard) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The id of shard.
+func (o GetShardsShardOutput) ShardId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShardsShard) int { return v.ShardId }).(pulumi.IntOutput)
+}
+
+// The status of shard.
+func (o GetShardsShardOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShardsShard) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The stop write time.
+func (o GetShardsShardOutput) StopWriteTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShardsShard) string { return v.StopWriteTime }).(pulumi.StringOutput)
+}
+
+// The id of topic.
+func (o GetShardsShardOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShardsShard) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+type GetShardsShardArrayOutput struct{ *pulumi.OutputState }
+
+func (GetShardsShardArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShardsShard)(nil)).Elem()
+}
+
+func (o GetShardsShardArrayOutput) ToGetShardsShardArrayOutput() GetShardsShardArrayOutput {
+	return o
+}
+
+func (o GetShardsShardArrayOutput) ToGetShardsShardArrayOutputWithContext(ctx context.Context) GetShardsShardArrayOutput {
+	return o
+}
+
+func (o GetShardsShardArrayOutput) Index(i pulumi.IntInput) GetShardsShardOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetShardsShard {
+		return vs[0].([]GetShardsShard)[vs[1].(int)]
+	}).(GetShardsShardOutput)
+}
+
+type GetTopicsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTopicsTagInput is an input type that accepts GetTopicsTagArgs and GetTopicsTagOutput values.
+// You can construct a concrete instance of `GetTopicsTagInput` via:
+//
+//	GetTopicsTagArgs{...}
+type GetTopicsTagInput interface {
+	pulumi.Input
+
+	ToGetTopicsTagOutput() GetTopicsTagOutput
+	ToGetTopicsTagOutputWithContext(context.Context) GetTopicsTagOutput
+}
+
+type GetTopicsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTopicsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTag)(nil)).Elem()
+}
+
+func (i GetTopicsTagArgs) ToGetTopicsTagOutput() GetTopicsTagOutput {
+	return i.ToGetTopicsTagOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTagArgs) ToGetTopicsTagOutputWithContext(ctx context.Context) GetTopicsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTagOutput)
+}
+
+// GetTopicsTagArrayInput is an input type that accepts GetTopicsTagArray and GetTopicsTagArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTagArrayInput` via:
+//
+//	GetTopicsTagArray{ GetTopicsTagArgs{...} }
+type GetTopicsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTagArrayOutput() GetTopicsTagArrayOutput
+	ToGetTopicsTagArrayOutputWithContext(context.Context) GetTopicsTagArrayOutput
+}
+
+type GetTopicsTagArray []GetTopicsTagInput
+
+func (GetTopicsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTag)(nil)).Elem()
+}
+
+func (i GetTopicsTagArray) ToGetTopicsTagArrayOutput() GetTopicsTagArrayOutput {
+	return i.ToGetTopicsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTagArray) ToGetTopicsTagArrayOutputWithContext(ctx context.Context) GetTopicsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTagArrayOutput)
+}
+
+type GetTopicsTagOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTag)(nil)).Elem()
+}
+
+func (o GetTopicsTagOutput) ToGetTopicsTagOutput() GetTopicsTagOutput {
+	return o
+}
+
+func (o GetTopicsTagOutput) ToGetTopicsTagOutputWithContext(ctx context.Context) GetTopicsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTopicsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTopicsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTopicsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTag)(nil)).Elem()
+}
+
+func (o GetTopicsTagArrayOutput) ToGetTopicsTagArrayOutput() GetTopicsTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTagArrayOutput) ToGetTopicsTagArrayOutputWithContext(ctx context.Context) GetTopicsTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTagArrayOutput) Index(i pulumi.IntInput) GetTopicsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTag {
+		return vs[0].([]GetTopicsTag)[vs[1].(int)]
+	}).(GetTopicsTagOutput)
+}
+
+type GetTopicsTlsTopic struct {
+	// Whether to enable automatic partition splitting function of the tls topic.
+	AutoSplit bool `pulumi:"autoSplit"`
+	// The create time of the tls topic.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the tls topic.
+	Description string `pulumi:"description"`
+	// Whether to enable WebTracking function of the tls topic.
+	EnableTracking bool `pulumi:"enableTracking"`
+	// The ID of the tls topic.
+	Id string `pulumi:"id"`
+	// The max count of shards in the tls topic.
+	MaxSplitShard int `pulumi:"maxSplitShard"`
+	// The modify time of the tls topic.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The project id of tls topic.
+	ProjectId string `pulumi:"projectId"`
+	// The count of shards in the tls topic.
+	ShardCount int `pulumi:"shardCount"`
+	// Tags.
+	Tags []GetTopicsTlsTopicTag `pulumi:"tags"`
+	// The format of the time field.
+	TimeFormat string `pulumi:"timeFormat"`
+	// The name of the time field.
+	TimeKey string `pulumi:"timeKey"`
+	// The id of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+	TopicId string `pulumi:"topicId"`
+	// The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+	TopicName string `pulumi:"topicName"`
+	// The data storage time of the tls topic. Unit: Day.
+	Ttl int `pulumi:"ttl"`
+}
+
+// GetTopicsTlsTopicInput is an input type that accepts GetTopicsTlsTopicArgs and GetTopicsTlsTopicOutput values.
+// You can construct a concrete instance of `GetTopicsTlsTopicInput` via:
+//
+//	GetTopicsTlsTopicArgs{...}
+type GetTopicsTlsTopicInput interface {
+	pulumi.Input
+
+	ToGetTopicsTlsTopicOutput() GetTopicsTlsTopicOutput
+	ToGetTopicsTlsTopicOutputWithContext(context.Context) GetTopicsTlsTopicOutput
+}
+
+type GetTopicsTlsTopicArgs struct {
+	// Whether to enable automatic partition splitting function of the tls topic.
+	AutoSplit pulumi.BoolInput `pulumi:"autoSplit"`
+	// The create time of the tls topic.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the tls topic.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether to enable WebTracking function of the tls topic.
+	EnableTracking pulumi.BoolInput `pulumi:"enableTracking"`
+	// The ID of the tls topic.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The max count of shards in the tls topic.
+	MaxSplitShard pulumi.IntInput `pulumi:"maxSplitShard"`
+	// The modify time of the tls topic.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The project id of tls topic.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The count of shards in the tls topic.
+	ShardCount pulumi.IntInput `pulumi:"shardCount"`
+	// Tags.
+	Tags GetTopicsTlsTopicTagArrayInput `pulumi:"tags"`
+	// The format of the time field.
+	TimeFormat pulumi.StringInput `pulumi:"timeFormat"`
+	// The name of the time field.
+	TimeKey pulumi.StringInput `pulumi:"timeKey"`
+	// The id of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// The data storage time of the tls topic. Unit: Day.
+	Ttl pulumi.IntInput `pulumi:"ttl"`
+}
+
+func (GetTopicsTlsTopicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTlsTopic)(nil)).Elem()
+}
+
+func (i GetTopicsTlsTopicArgs) ToGetTopicsTlsTopicOutput() GetTopicsTlsTopicOutput {
+	return i.ToGetTopicsTlsTopicOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTlsTopicArgs) ToGetTopicsTlsTopicOutputWithContext(ctx context.Context) GetTopicsTlsTopicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTlsTopicOutput)
+}
+
+// GetTopicsTlsTopicArrayInput is an input type that accepts GetTopicsTlsTopicArray and GetTopicsTlsTopicArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTlsTopicArrayInput` via:
+//
+//	GetTopicsTlsTopicArray{ GetTopicsTlsTopicArgs{...} }
+type GetTopicsTlsTopicArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTlsTopicArrayOutput() GetTopicsTlsTopicArrayOutput
+	ToGetTopicsTlsTopicArrayOutputWithContext(context.Context) GetTopicsTlsTopicArrayOutput
+}
+
+type GetTopicsTlsTopicArray []GetTopicsTlsTopicInput
+
+func (GetTopicsTlsTopicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTlsTopic)(nil)).Elem()
+}
+
+func (i GetTopicsTlsTopicArray) ToGetTopicsTlsTopicArrayOutput() GetTopicsTlsTopicArrayOutput {
+	return i.ToGetTopicsTlsTopicArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTlsTopicArray) ToGetTopicsTlsTopicArrayOutputWithContext(ctx context.Context) GetTopicsTlsTopicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTlsTopicArrayOutput)
+}
+
+type GetTopicsTlsTopicOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTlsTopicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTlsTopic)(nil)).Elem()
+}
+
+func (o GetTopicsTlsTopicOutput) ToGetTopicsTlsTopicOutput() GetTopicsTlsTopicOutput {
+	return o
+}
+
+func (o GetTopicsTlsTopicOutput) ToGetTopicsTlsTopicOutputWithContext(ctx context.Context) GetTopicsTlsTopicOutput {
+	return o
+}
+
+// Whether to enable automatic partition splitting function of the tls topic.
+func (o GetTopicsTlsTopicOutput) AutoSplit() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) bool { return v.AutoSplit }).(pulumi.BoolOutput)
+}
+
+// The create time of the tls topic.
+func (o GetTopicsTlsTopicOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the tls topic.
+func (o GetTopicsTlsTopicOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether to enable WebTracking function of the tls topic.
+func (o GetTopicsTlsTopicOutput) EnableTracking() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) bool { return v.EnableTracking }).(pulumi.BoolOutput)
+}
+
+// The ID of the tls topic.
+func (o GetTopicsTlsTopicOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The max count of shards in the tls topic.
+func (o GetTopicsTlsTopicOutput) MaxSplitShard() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) int { return v.MaxSplitShard }).(pulumi.IntOutput)
+}
+
+// The modify time of the tls topic.
+func (o GetTopicsTlsTopicOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The project id of tls topic.
+func (o GetTopicsTlsTopicOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The count of shards in the tls topic.
+func (o GetTopicsTlsTopicOutput) ShardCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) int { return v.ShardCount }).(pulumi.IntOutput)
+}
+
+// Tags.
+func (o GetTopicsTlsTopicOutput) Tags() GetTopicsTlsTopicTagArrayOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) []GetTopicsTlsTopicTag { return v.Tags }).(GetTopicsTlsTopicTagArrayOutput)
+}
+
+// The format of the time field.
+func (o GetTopicsTlsTopicOutput) TimeFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.TimeFormat }).(pulumi.StringOutput)
+}
+
+// The name of the time field.
+func (o GetTopicsTlsTopicOutput) TimeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.TimeKey }).(pulumi.StringOutput)
+}
+
+// The id of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+func (o GetTopicsTlsTopicOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
+func (o GetTopicsTlsTopicOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// The data storage time of the tls topic. Unit: Day.
+func (o GetTopicsTlsTopicOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopic) int { return v.Ttl }).(pulumi.IntOutput)
+}
+
+type GetTopicsTlsTopicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTlsTopicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTlsTopic)(nil)).Elem()
+}
+
+func (o GetTopicsTlsTopicArrayOutput) ToGetTopicsTlsTopicArrayOutput() GetTopicsTlsTopicArrayOutput {
+	return o
+}
+
+func (o GetTopicsTlsTopicArrayOutput) ToGetTopicsTlsTopicArrayOutputWithContext(ctx context.Context) GetTopicsTlsTopicArrayOutput {
+	return o
+}
+
+func (o GetTopicsTlsTopicArrayOutput) Index(i pulumi.IntInput) GetTopicsTlsTopicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTlsTopic {
+		return vs[0].([]GetTopicsTlsTopic)[vs[1].(int)]
+	}).(GetTopicsTlsTopicOutput)
+}
+
+type GetTopicsTlsTopicTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTopicsTlsTopicTagInput is an input type that accepts GetTopicsTlsTopicTagArgs and GetTopicsTlsTopicTagOutput values.
+// You can construct a concrete instance of `GetTopicsTlsTopicTagInput` via:
+//
+//	GetTopicsTlsTopicTagArgs{...}
+type GetTopicsTlsTopicTagInput interface {
+	pulumi.Input
+
+	ToGetTopicsTlsTopicTagOutput() GetTopicsTlsTopicTagOutput
+	ToGetTopicsTlsTopicTagOutputWithContext(context.Context) GetTopicsTlsTopicTagOutput
+}
+
+type GetTopicsTlsTopicTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTopicsTlsTopicTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTlsTopicTag)(nil)).Elem()
+}
+
+func (i GetTopicsTlsTopicTagArgs) ToGetTopicsTlsTopicTagOutput() GetTopicsTlsTopicTagOutput {
+	return i.ToGetTopicsTlsTopicTagOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTlsTopicTagArgs) ToGetTopicsTlsTopicTagOutputWithContext(ctx context.Context) GetTopicsTlsTopicTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTlsTopicTagOutput)
+}
+
+// GetTopicsTlsTopicTagArrayInput is an input type that accepts GetTopicsTlsTopicTagArray and GetTopicsTlsTopicTagArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTlsTopicTagArrayInput` via:
+//
+//	GetTopicsTlsTopicTagArray{ GetTopicsTlsTopicTagArgs{...} }
+type GetTopicsTlsTopicTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTlsTopicTagArrayOutput() GetTopicsTlsTopicTagArrayOutput
+	ToGetTopicsTlsTopicTagArrayOutputWithContext(context.Context) GetTopicsTlsTopicTagArrayOutput
+}
+
+type GetTopicsTlsTopicTagArray []GetTopicsTlsTopicTagInput
+
+func (GetTopicsTlsTopicTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTlsTopicTag)(nil)).Elem()
+}
+
+func (i GetTopicsTlsTopicTagArray) ToGetTopicsTlsTopicTagArrayOutput() GetTopicsTlsTopicTagArrayOutput {
+	return i.ToGetTopicsTlsTopicTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTlsTopicTagArray) ToGetTopicsTlsTopicTagArrayOutputWithContext(ctx context.Context) GetTopicsTlsTopicTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTlsTopicTagArrayOutput)
+}
+
+type GetTopicsTlsTopicTagOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTlsTopicTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTlsTopicTag)(nil)).Elem()
+}
+
+func (o GetTopicsTlsTopicTagOutput) ToGetTopicsTlsTopicTagOutput() GetTopicsTlsTopicTagOutput {
+	return o
+}
+
+func (o GetTopicsTlsTopicTagOutput) ToGetTopicsTlsTopicTagOutputWithContext(ctx context.Context) GetTopicsTlsTopicTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTopicsTlsTopicTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopicTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTopicsTlsTopicTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTlsTopicTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTopicsTlsTopicTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTlsTopicTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTlsTopicTag)(nil)).Elem()
+}
+
+func (o GetTopicsTlsTopicTagArrayOutput) ToGetTopicsTlsTopicTagArrayOutput() GetTopicsTlsTopicTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTlsTopicTagArrayOutput) ToGetTopicsTlsTopicTagArrayOutputWithContext(ctx context.Context) GetTopicsTlsTopicTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTlsTopicTagArrayOutput) Index(i pulumi.IntInput) GetTopicsTlsTopicTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTlsTopicTag {
+		return vs[0].([]GetTopicsTlsTopicTag)[vs[1].(int)]
+	}).(GetTopicsTlsTopicTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmAlarmPeriodDetailInput)(nil)).Elem(), AlarmAlarmPeriodDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmAlarmPeriodDetailPtrInput)(nil)).Elem(), AlarmAlarmPeriodDetailArgs{})
@@ -10511,6 +17192,101 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTlsTopicArrayInput)(nil)).Elem(), TopicsTlsTopicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTlsTopicTagInput)(nil)).Elem(), TopicsTlsTopicTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTlsTopicTagArrayInput)(nil)).Elem(), TopicsTlsTopicTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmNotifyGroupsGroupInput)(nil)).Elem(), GetAlarmNotifyGroupsGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmNotifyGroupsGroupArrayInput)(nil)).Elem(), GetAlarmNotifyGroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmNotifyGroupsGroupReceiverInput)(nil)).Elem(), GetAlarmNotifyGroupsGroupReceiverArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmNotifyGroupsGroupReceiverArrayInput)(nil)).Elem(), GetAlarmNotifyGroupsGroupReceiverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmInput)(nil)).Elem(), GetAlarmsAlarmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmArrayInput)(nil)).Elem(), GetAlarmsAlarmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroupInput)(nil)).Elem(), GetAlarmsAlarmAlarmNotifyGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroupArrayInput)(nil)).Elem(), GetAlarmsAlarmAlarmNotifyGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroupReceiverInput)(nil)).Elem(), GetAlarmsAlarmAlarmNotifyGroupReceiverArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmAlarmNotifyGroupReceiverArrayInput)(nil)).Elem(), GetAlarmsAlarmAlarmNotifyGroupReceiverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmAlarmPeriodDetailInput)(nil)).Elem(), GetAlarmsAlarmAlarmPeriodDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmAlarmPeriodDetailArrayInput)(nil)).Elem(), GetAlarmsAlarmAlarmPeriodDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmQueryRequestInput)(nil)).Elem(), GetAlarmsAlarmQueryRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmQueryRequestArrayInput)(nil)).Elem(), GetAlarmsAlarmQueryRequestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmRequestCycleInput)(nil)).Elem(), GetAlarmsAlarmRequestCycleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmRequestCycleArrayInput)(nil)).Elem(), GetAlarmsAlarmRequestCycleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHostGroupsInfoInput)(nil)).Elem(), GetHostGroupsInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHostGroupsInfoArrayInput)(nil)).Elem(), GetHostGroupsInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostInfoInput)(nil)).Elem(), GetHostsHostInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostInfoArrayInput)(nil)).Elem(), GetHostsHostInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexInput)(nil)).Elem(), GetIndexesTlsIndexArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexArrayInput)(nil)).Elem(), GetIndexesTlsIndexArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexFullTextInput)(nil)).Elem(), GetIndexesTlsIndexFullTextArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexKeyValueInput)(nil)).Elem(), GetIndexesTlsIndexKeyValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexKeyValueArrayInput)(nil)).Elem(), GetIndexesTlsIndexKeyValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexKeyValueJsonKeyInput)(nil)).Elem(), GetIndexesTlsIndexKeyValueJsonKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexKeyValueJsonKeyArrayInput)(nil)).Elem(), GetIndexesTlsIndexKeyValueJsonKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValueInput)(nil)).Elem(), GetIndexesTlsIndexUserInnerKeyValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValueArrayInput)(nil)).Elem(), GetIndexesTlsIndexUserInnerKeyValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValueJsonKeyInput)(nil)).Elem(), GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput)(nil)).Elem(), GetIndexesTlsIndexUserInnerKeyValueJsonKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaConsumersDataInput)(nil)).Elem(), GetKafkaConsumersDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaConsumersDataArrayInput)(nil)).Elem(), GetKafkaConsumersDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsTagInput)(nil)).Elem(), GetProjectsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsTagArrayInput)(nil)).Elem(), GetProjectsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsTlsProjectInput)(nil)).Elem(), GetProjectsTlsProjectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsTlsProjectArrayInput)(nil)).Elem(), GetProjectsTlsProjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsTlsProjectTagInput)(nil)).Elem(), GetProjectsTlsProjectTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsTlsProjectTagArrayInput)(nil)).Elem(), GetProjectsTlsProjectTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleInput)(nil)).Elem(), GetRuleAppliersRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleArrayInput)(nil)).Elem(), GetRuleAppliersRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleContainerRuleInput)(nil)).Elem(), GetRuleAppliersRuleContainerRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleContainerRuleArrayInput)(nil)).Elem(), GetRuleAppliersRuleContainerRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleContainerRuleKubernetesRuleInput)(nil)).Elem(), GetRuleAppliersRuleContainerRuleKubernetesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleContainerRuleKubernetesRuleArrayInput)(nil)).Elem(), GetRuleAppliersRuleContainerRuleKubernetesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExcludePathInput)(nil)).Elem(), GetRuleAppliersRuleExcludePathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExcludePathArrayInput)(nil)).Elem(), GetRuleAppliersRuleExcludePathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExtractRuleInput)(nil)).Elem(), GetRuleAppliersRuleExtractRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExtractRuleArrayInput)(nil)).Elem(), GetRuleAppliersRuleExtractRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExtractRuleFilterKeyRegexInput)(nil)).Elem(), GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayInput)(nil)).Elem(), GetRuleAppliersRuleExtractRuleFilterKeyRegexArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExtractRuleLogTemplateInput)(nil)).Elem(), GetRuleAppliersRuleExtractRuleLogTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleExtractRuleLogTemplateArrayInput)(nil)).Elem(), GetRuleAppliersRuleExtractRuleLogTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleArrayInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleAdvancedInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleAdvancedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleAdvancedArrayInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleAdvancedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleParsePathRuleInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleParsePathRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRulePluginInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRulePluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRulePluginArrayInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRulePluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleShardHashKeyInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayInput)(nil)).Elem(), GetRuleAppliersRuleUserDefineRuleShardHashKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleInput)(nil)).Elem(), GetRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleArrayInput)(nil)).Elem(), GetRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleContainerRuleInput)(nil)).Elem(), GetRulesRuleContainerRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleContainerRuleArrayInput)(nil)).Elem(), GetRulesRuleContainerRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleContainerRuleKubernetesRuleInput)(nil)).Elem(), GetRulesRuleContainerRuleKubernetesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleContainerRuleKubernetesRuleArrayInput)(nil)).Elem(), GetRulesRuleContainerRuleKubernetesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExcludePathInput)(nil)).Elem(), GetRulesRuleExcludePathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExcludePathArrayInput)(nil)).Elem(), GetRulesRuleExcludePathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExtractRuleInput)(nil)).Elem(), GetRulesRuleExtractRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExtractRuleArrayInput)(nil)).Elem(), GetRulesRuleExtractRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExtractRuleFilterKeyRegexInput)(nil)).Elem(), GetRulesRuleExtractRuleFilterKeyRegexArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExtractRuleFilterKeyRegexArrayInput)(nil)).Elem(), GetRulesRuleExtractRuleFilterKeyRegexArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExtractRuleLogTemplateInput)(nil)).Elem(), GetRulesRuleExtractRuleLogTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleExtractRuleLogTemplateArrayInput)(nil)).Elem(), GetRulesRuleExtractRuleLogTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleInput)(nil)).Elem(), GetRulesRuleUserDefineRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleAdvancedInput)(nil)).Elem(), GetRulesRuleUserDefineRuleAdvancedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleAdvancedArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRuleAdvancedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleParsePathRuleInput)(nil)).Elem(), GetRulesRuleUserDefineRuleParsePathRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleParsePathRuleArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRuleParsePathRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRulePluginInput)(nil)).Elem(), GetRulesRuleUserDefineRulePluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRulePluginArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRulePluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleShardHashKeyInput)(nil)).Elem(), GetRulesRuleUserDefineRuleShardHashKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleShardHashKeyArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRuleShardHashKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShardsShardInput)(nil)).Elem(), GetShardsShardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShardsShardArrayInput)(nil)).Elem(), GetShardsShardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTagInput)(nil)).Elem(), GetTopicsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTagArrayInput)(nil)).Elem(), GetTopicsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTlsTopicInput)(nil)).Elem(), GetTopicsTlsTopicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTlsTopicArrayInput)(nil)).Elem(), GetTopicsTlsTopicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTlsTopicTagInput)(nil)).Elem(), GetTopicsTlsTopicTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTlsTopicTagArrayInput)(nil)).Elem(), GetTopicsTlsTopicTagArray{})
 	pulumi.RegisterOutputType(AlarmAlarmPeriodDetailOutput{})
 	pulumi.RegisterOutputType(AlarmAlarmPeriodDetailPtrOutput{})
 	pulumi.RegisterOutputType(AlarmNotifyGroupReceiverOutput{})
@@ -10650,4 +17426,99 @@ func init() {
 	pulumi.RegisterOutputType(TopicsTlsTopicArrayOutput{})
 	pulumi.RegisterOutputType(TopicsTlsTopicTagOutput{})
 	pulumi.RegisterOutputType(TopicsTlsTopicTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmNotifyGroupsGroupOutput{})
+	pulumi.RegisterOutputType(GetAlarmNotifyGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmNotifyGroupsGroupReceiverOutput{})
+	pulumi.RegisterOutputType(GetAlarmNotifyGroupsGroupReceiverArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmAlarmNotifyGroupOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmAlarmNotifyGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmAlarmNotifyGroupReceiverOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmAlarmNotifyGroupReceiverArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmAlarmPeriodDetailOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmAlarmPeriodDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmQueryRequestOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmQueryRequestArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmRequestCycleOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmRequestCycleArrayOutput{})
+	pulumi.RegisterOutputType(GetHostGroupsInfoOutput{})
+	pulumi.RegisterOutputType(GetHostGroupsInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetHostsHostInfoOutput{})
+	pulumi.RegisterOutputType(GetHostsHostInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexArrayOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexFullTextOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexKeyValueOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexKeyValueArrayOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexKeyValueJsonKeyOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexKeyValueJsonKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexUserInnerKeyValueOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexUserInnerKeyValueArrayOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput{})
+	pulumi.RegisterOutputType(GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetKafkaConsumersDataOutput{})
+	pulumi.RegisterOutputType(GetKafkaConsumersDataArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectsTagOutput{})
+	pulumi.RegisterOutputType(GetProjectsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectsTlsProjectOutput{})
+	pulumi.RegisterOutputType(GetProjectsTlsProjectArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectsTlsProjectTagOutput{})
+	pulumi.RegisterOutputType(GetProjectsTlsProjectTagArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleContainerRuleOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleContainerRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleContainerRuleKubernetesRuleOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleContainerRuleKubernetesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExcludePathOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExcludePathArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExtractRuleOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExtractRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExtractRuleFilterKeyRegexOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExtractRuleFilterKeyRegexArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExtractRuleLogTemplateOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleExtractRuleLogTemplateArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleAdvancedOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleAdvancedArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleParsePathRuleOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleParsePathRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRulePluginOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRulePluginArrayOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleShardHashKeyOutput{})
+	pulumi.RegisterOutputType(GetRuleAppliersRuleUserDefineRuleShardHashKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleContainerRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleContainerRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleContainerRuleKubernetesRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleContainerRuleKubernetesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExcludePathOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExcludePathArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExtractRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExtractRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExtractRuleFilterKeyRegexOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExtractRuleFilterKeyRegexArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExtractRuleLogTemplateOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleExtractRuleLogTemplateArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleAdvancedOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleAdvancedArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleParsePathRuleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleParsePathRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRulePluginOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRulePluginArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleShardHashKeyOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleShardHashKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetShardsShardOutput{})
+	pulumi.RegisterOutputType(GetShardsShardArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTagOutput{})
+	pulumi.RegisterOutputType(GetTopicsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTlsTopicOutput{})
+	pulumi.RegisterOutputType(GetTopicsTlsTopicArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTlsTopicTagOutput{})
+	pulumi.RegisterOutputType(GetTopicsTlsTopicTagArrayOutput{})
 }

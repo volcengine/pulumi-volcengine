@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cr.VpcEndpoints({
+ * const default = volcengine.cr.getVpcEndpoints({
  *     registry: "enterprise-1",
  *     statuses: [
  *         "Enabled",
@@ -25,7 +25,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints */
 export function vpcEndpoints(args: VpcEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointsResult> {
+    pulumi.log.warn("vpcEndpoints is deprecated: volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/vpcEndpoints:VpcEndpoints", {
@@ -84,7 +86,7 @@ export interface VpcEndpointsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cr.VpcEndpoints({
+ * const default = volcengine.cr.getVpcEndpoints({
  *     registry: "enterprise-1",
  *     statuses: [
  *         "Enabled",
@@ -95,6 +97,7 @@ export interface VpcEndpointsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints */
 export function vpcEndpointsOutput(args: VpcEndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointsResult> {
     return pulumi.output(args).apply((a: any) => vpcEndpoints(a, opts))
 }

@@ -57,7 +57,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = tos.BucketInventoriesOutput(ctx, tos.BucketInventoriesOutputArgs{
+//			_ = tos.GetBucketInventoriesOutput(ctx, tos.GetBucketInventoriesOutputArgs{
 //				BucketName:  pulumi.String("terraform-demo"),
 //				InventoryId: fooBucketInventory.InventoryId,
 //			}, nil)
@@ -66,6 +66,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories
 func BucketInventories(ctx *pulumi.Context, args *BucketInventoriesArgs, opts ...pulumi.InvokeOption) (*BucketInventoriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BucketInventoriesResult

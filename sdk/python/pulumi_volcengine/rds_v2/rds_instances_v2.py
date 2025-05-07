@@ -17,6 +17,8 @@ __all__ = [
     'rds_instances_v2_output',
 ]
 
+warnings.warn("""volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2""", DeprecationWarning)
+
 @pulumi.output_type
 class RdsInstancesV2Result:
     """
@@ -211,7 +213,7 @@ def rds_instances_v2(charge_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds_v2.rds_instances_v2()
+    default = volcengine.rds_v2.get_rds_instances_v2()
     ```
 
 
@@ -262,6 +264,7 @@ def rds_instances_v2(charge_type: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str zone_id: The available zone of the RDS instance.
     """
+    pulumi.log.warn("""rds_instances_v2 is deprecated: volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2""")
     __args__ = dict()
     __args__['chargeType'] = charge_type
     __args__['createTimeEnd'] = create_time_end
@@ -315,7 +318,7 @@ def rds_instances_v2_output(charge_type: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds_v2.rds_instances_v2()
+    default = volcengine.rds_v2.get_rds_instances_v2()
     ```
 
 
@@ -366,4 +369,5 @@ def rds_instances_v2_output(charge_type: Optional[pulumi.Input[Optional[str]]] =
     :param str output_file: File name where to save data source results.
     :param str zone_id: The available zone of the RDS instance.
     """
+    pulumi.log.warn("""rds_instances_v2 is deprecated: volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2""")
     ...

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rocketmq
 {
+    [Obsolete(@"volcengine.rocketmq.AllowLists has been deprecated in favor of volcengine.rocketmq.getAllowLists")]
     public static class AllowLists
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rocketmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rocketmq.AllowLists.Invoke();
+        ///     var foo = Volcengine.Rocketmq.GetAllowLists.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rocketmq
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rocketmq.AllowLists.Invoke();
+        ///     var foo = Volcengine.Rocketmq.GetAllowLists.Invoke();
         /// 
         /// });
         /// ```

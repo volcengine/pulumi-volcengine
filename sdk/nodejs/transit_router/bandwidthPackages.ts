@@ -22,12 +22,14 @@ import * as utilities from "../utilities";
  *     period: 1,
  *     renewType: "Manual",
  * });
- * const fooBandwidthPackages = volcengine.transit_router.BandwidthPackagesOutput({
+ * const fooBandwidthPackages = volcengine.transit_router.getBandwidthPackagesOutput({
  *     ids: [fooBandwidthPackage.id],
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages */
 export function bandwidthPackages(args?: BandwidthPackagesArgs, opts?: pulumi.InvokeOptions): Promise<BandwidthPackagesResult> {
+    pulumi.log.warn("bandwidthPackages is deprecated: volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -140,11 +142,12 @@ export interface BandwidthPackagesResult {
  *     period: 1,
  *     renewType: "Manual",
  * });
- * const fooBandwidthPackages = volcengine.transit_router.BandwidthPackagesOutput({
+ * const fooBandwidthPackages = volcengine.transit_router.getBandwidthPackagesOutput({
  *     ids: [fooBandwidthPackage.id],
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.BandwidthPackages has been deprecated in favor of volcengine.transit_router.getBandwidthPackages */
 export function bandwidthPackagesOutput(args?: BandwidthPackagesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BandwidthPackagesResult> {
     return pulumi.output(args).apply((a: any) => bandwidthPackages(a, opts))
 }

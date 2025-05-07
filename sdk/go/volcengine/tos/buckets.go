@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tos.Buckets(ctx, &tos.BucketsArgs{
+//			_, err := tos.GetBuckets(ctx, &tos.GetBucketsArgs{
 //				NameRegex: pulumi.StringRef("test"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets
 func Buckets(ctx *pulumi.Context, args *BucketsArgs, opts ...pulumi.InvokeOption) (*BucketsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BucketsResult

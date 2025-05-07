@@ -17,6 +17,8 @@ __all__ = [
     'hosts_output',
 ]
 
+warnings.warn("""volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts""", DeprecationWarning)
+
 @pulumi.output_type
 class HostsResult:
     """
@@ -127,7 +129,7 @@ def hosts(heartbeat_status: Optional[int] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.hosts(host_group_id="527102e2-1e4f-45f4-a990-751152125da7")
+    default = volcengine.tls.get_hosts(host_group_id="527102e2-1e4f-45f4-a990-751152125da7")
     ```
 
 
@@ -136,6 +138,7 @@ def hosts(heartbeat_status: Optional[int] = None,
     :param str ip: The ip address.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""hosts is deprecated: volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts""")
     __args__ = dict()
     __args__['heartbeatStatus'] = heartbeat_status
     __args__['hostGroupId'] = host_group_id
@@ -168,7 +171,7 @@ def hosts_output(heartbeat_status: Optional[pulumi.Input[Optional[int]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.hosts(host_group_id="527102e2-1e4f-45f4-a990-751152125da7")
+    default = volcengine.tls.get_hosts(host_group_id="527102e2-1e4f-45f4-a990-751152125da7")
     ```
 
 
@@ -177,4 +180,5 @@ def hosts_output(heartbeat_status: Optional[pulumi.Input[Optional[int]]] = None,
     :param str ip: The ip address.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""hosts is deprecated: volcengine.tls.Hosts has been deprecated in favor of volcengine.tls.getHosts""")
     ...

@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.ecs.InvocationResults({
+ * const default = volcengine.ecs.getInvocationResults({
  *     invocationId: "ivk-ych9y4vujvl8j01c****",
  *     invocationResultStatuses: ["Success"],
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults */
 export function invocationResults(args: InvocationResultsArgs, opts?: pulumi.InvokeOptions): Promise<InvocationResultsResult> {
+    pulumi.log.warn("invocationResults is deprecated: volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/invocationResults:InvocationResults", {
@@ -100,12 +102,13 @@ export interface InvocationResultsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.ecs.InvocationResults({
+ * const default = volcengine.ecs.getInvocationResults({
  *     invocationId: "ivk-ych9y4vujvl8j01c****",
  *     invocationResultStatuses: ["Success"],
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults */
 export function invocationResultsOutput(args: InvocationResultsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InvocationResultsResult> {
     return pulumi.output(args).apply((a: any) => invocationResults(a, opts))
 }

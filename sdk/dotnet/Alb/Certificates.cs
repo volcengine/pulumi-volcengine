@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates")]
     public static class Certificates
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Alb.Certificates.Invoke(new()
+        ///     var @default = Volcengine.Alb.GetCertificates.Invoke(new()
         ///     {
         ///         CertificateName = "tf-test",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Alb.Certificates.Invoke(new()
+        ///     var @default = Volcengine.Alb.GetCertificates.Invoke(new()
         ///     {
         ///         CertificateName = "tf-test",
         ///     });

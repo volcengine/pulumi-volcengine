@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.Specs(ctx, nil, nil)
+//			_, err := mongodb.GetSpecs(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.Specs has been deprecated in favor of volcengine.mongodb.getSpecs
 func Specs(ctx *pulumi.Context, args *SpecsArgs, opts ...pulumi.InvokeOption) (*SpecsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SpecsResult

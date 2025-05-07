@@ -11,6 +11,53 @@ namespace Pulumi.Volcengine.Private_zone
 {
     /// <summary>
     /// Provides a resource to manage private zone record
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooRecord = new Volcengine.Private_zone.Record("fooRecord", new()
+    ///     {
+    ///         Zid = 2450000,
+    ///         Host = "www",
+    ///         Type = "A",
+    ///         Value = "10.1.1.158",
+    ///         Weight = 8,
+    ///         Ttl = 700,
+    ///         Remark = "tf-test",
+    ///         Enable = true,
+    ///     });
+    /// 
+    ///     var fooRecordSets = Volcengine.Private_zone.GetRecordSets.Invoke(new()
+    ///     {
+    ///         Zid = fooRecord.Zid,
+    ///         Host = fooRecord.Host,
+    ///         SearchMode = "EXACT",
+    ///     });
+    /// 
+    ///     var fooRecordWeightEnabler = new Volcengine.Private_zone.RecordWeightEnabler("fooRecordWeightEnabler", new()
+    ///     {
+    ///         Zid = fooRecord.Zid,
+    ///         RecordSetId = Output.Tuple(fooRecordSets, fooRecord.Type).Apply(values =&gt;
+    ///         {
+    ///             var fooRecordSets = values.Item1;
+    ///             var type = values.Item2;
+    ///             return .Where(set =&gt; @set.Type == type).Select(set =&gt; 
+    ///             {
+    ///                 return @set.RecordSetId;
+    ///             }).ToList()[0];
+    ///         }),
+    ///         WeightEnabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// PrivateZoneRecord can be imported using the id, e.g.

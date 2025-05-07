@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tls
 {
+    [Obsolete(@"volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers")]
     public static class KafkaConsumers
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.KafkaConsumers.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetKafkaConsumers.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -51,7 +52,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.KafkaConsumers.Invoke(new()
+        ///     var @default = Volcengine.Tls.GetKafkaConsumers.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

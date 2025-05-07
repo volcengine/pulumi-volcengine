@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -269,7 +271,7 @@ def instances(create_end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.instances(instance_id="mongo-replica-xxx")
+    foo = volcengine.mongodb.get_instances(instance_id="mongo-replica-xxx")
     ```
 
 
@@ -290,6 +292,7 @@ def instances(create_end_time: Optional[str] = None,
     :param str vpc_id: The vpc id of instance to query.
     :param str zone_id: The zone ID to query.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances""")
     __args__ = dict()
     __args__['createEndTime'] = create_end_time
     __args__['createStartTime'] = create_start_time
@@ -358,7 +361,7 @@ def instances_output(create_end_time: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.instances(instance_id="mongo-replica-xxx")
+    foo = volcengine.mongodb.get_instances(instance_id="mongo-replica-xxx")
     ```
 
 
@@ -379,4 +382,5 @@ def instances_output(create_end_time: Optional[pulumi.Input[Optional[str]]] = No
     :param str vpc_id: The vpc id of instance to query.
     :param str zone_id: The zone ID to query.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.mongodb.Instances has been deprecated in favor of volcengine.mongodb.getInstances""")
     ...

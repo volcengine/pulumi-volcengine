@@ -40,6 +40,31 @@ export const databases: typeof import("./databases").databases = null as any;
 export const databasesOutput: typeof import("./databases").databasesOutput = null as any;
 utilities.lazyLoad(exports, ["databases","databasesOutput"], () => require("./databases"));
 
+export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
+export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
+export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccounts","getAccountsOutput"], () => require("./getAccounts"));
+
+export { GetAllowlistsArgs, GetAllowlistsResult, GetAllowlistsOutputArgs } from "./getAllowlists";
+export const getAllowlists: typeof import("./getAllowlists").getAllowlists = null as any;
+export const getAllowlistsOutput: typeof import("./getAllowlists").getAllowlistsOutput = null as any;
+utilities.lazyLoad(exports, ["getAllowlists","getAllowlistsOutput"], () => require("./getAllowlists"));
+
+export { GetDatabasesArgs, GetDatabasesResult, GetDatabasesOutputArgs } from "./getDatabases";
+export const getDatabases: typeof import("./getDatabases").getDatabases = null as any;
+export const getDatabasesOutput: typeof import("./getDatabases").getDatabasesOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabases","getDatabasesOutput"], () => require("./getDatabases"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetSchemasArgs, GetSchemasResult, GetSchemasOutputArgs } from "./getSchemas";
+export const getSchemas: typeof import("./getSchemas").getSchemas = null as any;
+export const getSchemasOutput: typeof import("./getSchemas").getSchemasOutput = null as any;
+utilities.lazyLoad(exports, ["getSchemas","getSchemasOutput"], () => require("./getSchemas"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;

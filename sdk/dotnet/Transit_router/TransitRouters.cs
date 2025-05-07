@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters")]
     public static class TransitRouters
     {
         /// <summary>
@@ -29,7 +30,7 @@ namespace Pulumi.Volcengine.Transit_router
         ///         Description = "test-tf-acc",
         ///     });
         /// 
-        ///     var @default = Volcengine.Transit_router.TransitRouters.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetTransitRouters.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -62,7 +63,7 @@ namespace Pulumi.Volcengine.Transit_router
         ///         Description = "test-tf-acc",
         ///     });
         /// 
-        ///     var @default = Volcengine.Transit_router.TransitRouters.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetTransitRouters.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

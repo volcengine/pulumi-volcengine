@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Clb
 {
+    [Obsolete(@"volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules")]
     public static class Rules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Clb
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -91,7 +92,7 @@ namespace Pulumi.Volcengine.Clb
         ///         Url = "/yyyy",
         ///     });
         /// 
-        ///     var fooRules = Volcengine.Clb.Rules.Invoke(new()
+        ///     var fooRules = Volcengine.Clb.GetRules.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -118,7 +119,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -130,7 +131,7 @@ namespace Pulumi.Volcengine.Clb
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -186,7 +187,7 @@ namespace Pulumi.Volcengine.Clb
         ///         Url = "/yyyy",
         ///     });
         /// 
-        ///     var fooRules = Volcengine.Clb.Rules.Invoke(new()
+        ///     var fooRules = Volcengine.Clb.GetRules.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Veenedge
 {
+    [Obsolete(@"volcengine.veenedge.Instances has been deprecated in favor of volcengine.veenedge.getInstances")]
     public static class Instances
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.Instances.Invoke(new()
+        ///     var @default = Volcengine.Veenedge.GetInstances.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.Instances.Invoke(new()
+        ///     var @default = Volcengine.Veenedge.GetInstances.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

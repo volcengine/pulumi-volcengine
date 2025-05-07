@@ -17,6 +17,8 @@ __all__ = [
     'filesets_output',
 ]
 
+warnings.warn("""volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets""", DeprecationWarning)
+
 @pulumi.output_type
 class FilesetsResult:
     """
@@ -188,7 +190,7 @@ def filesets(file_system_id: Optional[str] = None,
         max_bandwidth=10,
         file_limit=20,
         capacity_limit=30)
-    foo_filesets = volcengine.vepfs.filesets_output(file_system_id=foo_file_system.id,
+    foo_filesets = volcengine.vepfs.get_filesets_output(file_system_id=foo_file_system.id,
         fileset_id=foo_fileset.id)
     ```
 
@@ -201,6 +203,7 @@ def filesets(file_system_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] statuses: The query status list of Vepfs Fileset.
     """
+    pulumi.log.warn("""filesets is deprecated: volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets""")
     __args__ = dict()
     __args__['fileSystemId'] = file_system_id
     __args__['filesetId'] = fileset_id
@@ -270,7 +273,7 @@ def filesets_output(file_system_id: Optional[pulumi.Input[str]] = None,
         max_bandwidth=10,
         file_limit=20,
         capacity_limit=30)
-    foo_filesets = volcengine.vepfs.filesets_output(file_system_id=foo_file_system.id,
+    foo_filesets = volcengine.vepfs.get_filesets_output(file_system_id=foo_file_system.id,
         fileset_id=foo_fileset.id)
     ```
 
@@ -283,4 +286,5 @@ def filesets_output(file_system_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] statuses: The query status list of Vepfs Fileset.
     """
+    pulumi.log.warn("""filesets is deprecated: volcengine.vepfs.Filesets has been deprecated in favor of volcengine.vepfs.getFilesets""")
     ...

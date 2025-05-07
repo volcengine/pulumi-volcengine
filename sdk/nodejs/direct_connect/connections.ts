@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.Connections({
+ * const foo = volcengine.direct_connect.getConnections({
  *     directConnectConnectionName: "tf_test",
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections */
 export function connections(args?: ConnectionsArgs, opts?: pulumi.InvokeOptions): Promise<ConnectionsResult> {
+    pulumi.log.warn("connections is deprecated: volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -127,11 +129,12 @@ export interface ConnectionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.Connections({
+ * const foo = volcengine.direct_connect.getConnections({
  *     directConnectConnectionName: "tf_test",
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections */
 export function connectionsOutput(args?: ConnectionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ConnectionsResult> {
     return pulumi.output(args).apply((a: any) => connections(a, opts))
 }

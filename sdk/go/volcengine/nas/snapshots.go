@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nas.Snapshots(ctx, &nas.SnapshotsArgs{
+//			_, err := nas.GetSnapshots(ctx, &nas.GetSnapshotsArgs{
 //				FileSystemId: pulumi.StringRef("enas-cnbj5c18f02afe0e"),
 //				Ids: []string{
 //					"snap-022c648fed8b",
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots
 func Snapshots(ctx *pulumi.Context, args *SnapshotsArgs, opts ...pulumi.InvokeOption) (*SnapshotsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SnapshotsResult

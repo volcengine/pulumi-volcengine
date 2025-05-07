@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.CustomizedCfgs(ctx, nil, nil)
+//			_, err := alb.GetCustomizedCfgs(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs
 func CustomizedCfgs(ctx *pulumi.Context, args *CustomizedCfgsArgs, opts ...pulumi.InvokeOption) (*CustomizedCfgsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CustomizedCfgsResult

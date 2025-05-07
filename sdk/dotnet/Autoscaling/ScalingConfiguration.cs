@@ -20,7 +20,7 @@ namespace Pulumi.Volcengine.Autoscaling
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
@@ -32,7 +32,7 @@ namespace Pulumi.Volcengine.Autoscaling
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
@@ -42,7 +42,7 @@ namespace Pulumi.Volcengine.Autoscaling
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     var fooImages = Volcengine.Ecs.GetImages.Invoke(new()
     ///     {
     ///         OsType = "Linux",
     ///         Visibility = "public",
@@ -68,7 +68,7 @@ namespace Pulumi.Volcengine.Autoscaling
     ///     {
     ///         ScalingConfigurationName = "tf-test",
     ///         ScalingGroupId = fooScalingGroup.Id,
-    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         ImageId = fooImages.Apply(getImagesResult =&gt; getImagesResult.Images[0]?.ImageId),
     ///         InstanceTypes = new[]
     ///         {
     ///             "ecs.g2i.large",

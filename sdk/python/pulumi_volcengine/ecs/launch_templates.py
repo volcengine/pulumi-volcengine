@@ -17,6 +17,8 @@ __all__ = [
     'launch_templates_output',
 ]
 
+warnings.warn("""volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates""", DeprecationWarning)
+
 @pulumi.output_type
 class LaunchTemplatesResult:
     """
@@ -131,7 +133,7 @@ def launch_templates(ids: Optional[Sequence[str]] = None,
         instance_type_id="ecs.g1.large",
         key_pair_name="tf-key-pair",
         launch_template_name="tf-acc-template")
-    foo_launch_templates = volcengine.ecs.launch_templates_output(ids=[foo_launch_template.id])
+    foo_launch_templates = volcengine.ecs.get_launch_templates_output(ids=[foo_launch_template.id])
     ```
 
 
@@ -140,6 +142,7 @@ def launch_templates(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of scaling policy.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""launch_templates is deprecated: volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['launchTemplateNames'] = launch_template_names
@@ -185,7 +188,7 @@ def launch_templates_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
         instance_type_id="ecs.g1.large",
         key_pair_name="tf-key-pair",
         launch_template_name="tf-acc-template")
-    foo_launch_templates = volcengine.ecs.launch_templates_output(ids=[foo_launch_template.id])
+    foo_launch_templates = volcengine.ecs.get_launch_templates_output(ids=[foo_launch_template.id])
     ```
 
 
@@ -194,4 +197,5 @@ def launch_templates_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
     :param str name_regex: A Name Regex of scaling policy.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""launch_templates is deprecated: volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'resolver_endpoints_output',
 ]
 
+warnings.warn("""volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class ResolverEndpointsResult:
     """
@@ -150,7 +152,7 @@ def resolver_endpoints(direction: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.private_zone.resolver_endpoints()
+    foo = volcengine.private_zone.get_resolver_endpoints()
     ```
 
 
@@ -161,6 +163,7 @@ def resolver_endpoints(direction: Optional[str] = None,
     :param str status: The status of the private zone resolver endpoint.
     :param str vpc_id: The vpc ID of the private zone resolver endpoint.
     """
+    pulumi.log.warn("""resolver_endpoints is deprecated: volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints""")
     __args__ = dict()
     __args__['direction'] = direction
     __args__['name'] = name
@@ -199,7 +202,7 @@ def resolver_endpoints_output(direction: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.private_zone.resolver_endpoints()
+    foo = volcengine.private_zone.get_resolver_endpoints()
     ```
 
 
@@ -210,4 +213,5 @@ def resolver_endpoints_output(direction: Optional[pulumi.Input[Optional[str]]] =
     :param str status: The status of the private zone resolver endpoint.
     :param str vpc_id: The vpc ID of the private zone resolver endpoint.
     """
+    pulumi.log.warn("""resolver_endpoints is deprecated: volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints""")
     ...

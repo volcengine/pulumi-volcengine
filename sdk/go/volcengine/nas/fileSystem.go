@@ -13,46 +13,6 @@ import (
 )
 
 // Provides a resource to manage nas file system
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nas"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := nas.Zones(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = nas.NewFileSystem(ctx, "fooFileSystem", &nas.FileSystemArgs{
-//				FileSystemName: pulumi.String("acc-test-fs"),
-//				Description:    pulumi.String("acc-test"),
-//				ZoneId:         pulumi.String(fooZones.Zones[0].Id),
-//				Capacity:       pulumi.Int(103),
-//				ProjectName:    pulumi.String("default"),
-//				Tags: nas.FileSystemTagArray{
-//					&nas.FileSystemTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // NasFileSystem can be imported using the id, e.g.

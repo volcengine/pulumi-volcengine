@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tos
 {
+    [Obsolete(@"volcengine.tos.BucketObjects has been deprecated in favor of volcengine.tos.getBucketObjects")]
     public static class BucketObjects
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tos.BucketObjects.Invoke(new()
+        ///     var @default = Volcengine.Tos.GetBucketObjects.Invoke(new()
         ///     {
         ///         BucketName = "test",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Tos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tos.BucketObjects.Invoke(new()
+        ///     var @default = Volcengine.Tos.GetBucketObjects.Invoke(new()
         ///     {
         ///         BucketName = "test",
         ///     });

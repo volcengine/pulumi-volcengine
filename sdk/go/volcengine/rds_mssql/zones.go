@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mssql.Zones(ctx, nil, nil)
+//			_, err := rds_mssql.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mssql.Zones has been deprecated in favor of volcengine.rds_mssql.getZones
 func Zones(ctx *pulumi.Context, args *ZonesArgs, opts ...pulumi.InvokeOption) (*ZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ZonesResult

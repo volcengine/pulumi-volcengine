@@ -17,6 +17,8 @@ __all__ = [
     'users_output',
 ]
 
+warnings.warn("""volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers""", DeprecationWarning)
+
 @pulumi.output_type
 class UsersResult:
     """
@@ -112,7 +114,7 @@ def users(name_regex: Optional[str] = None,
         user_name="acc-test-user",
         description="acc test",
         display_name="name")
-    foo_users = volcengine.iam.users_output(user_names=[foo_user.user_name])
+    foo_users = volcengine.iam.get_users_output(user_names=[foo_user.user_name])
     ```
 
 
@@ -120,6 +122,7 @@ def users(name_regex: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] user_names: A list of user names.
     """
+    pulumi.log.warn("""users is deprecated: volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -153,7 +156,7 @@ def users_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
         user_name="acc-test-user",
         description="acc test",
         display_name="name")
-    foo_users = volcengine.iam.users_output(user_names=[foo_user.user_name])
+    foo_users = volcengine.iam.get_users_output(user_names=[foo_user.user_name])
     ```
 
 
@@ -161,4 +164,5 @@ def users_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[str] user_names: A list of user names.
     """
+    pulumi.log.warn("""users is deprecated: volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers""")
     ...

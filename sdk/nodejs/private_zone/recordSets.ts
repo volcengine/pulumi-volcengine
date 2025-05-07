@@ -8,8 +8,20 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of private zone record sets
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.private_zone.getRecordSets({
+ *     zid: 2450000,
+ * });
+ * ```
  */
+/** @deprecated volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets */
 export function recordSets(args: RecordSetsArgs, opts?: pulumi.InvokeOptions): Promise<RecordSetsResult> {
+    pulumi.log.warn("recordSets is deprecated: volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:private_zone/recordSets:RecordSets", {
@@ -77,7 +89,18 @@ export interface RecordSetsResult {
 }
 /**
  * Use this data source to query detailed information of private zone record sets
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.private_zone.getRecordSets({
+ *     zid: 2450000,
+ * });
+ * ```
  */
+/** @deprecated volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets */
 export function recordSetsOutput(args: RecordSetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RecordSetsResult> {
     return pulumi.output(args).apply((a: any) => recordSets(a, opts))
 }

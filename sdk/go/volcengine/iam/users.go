@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = iam.UsersOutput(ctx, iam.UsersOutputArgs{
+//			_ = iam.GetUsersOutput(ctx, iam.GetUsersOutputArgs{
 //				UserNames: pulumi.StringArray{
 //					fooUser.UserName,
 //				},
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers
 func Users(ctx *pulumi.Context, args *UsersArgs, opts ...pulumi.InvokeOption) (*UsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv UsersResult

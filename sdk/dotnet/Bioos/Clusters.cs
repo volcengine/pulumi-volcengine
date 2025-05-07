@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Bioos
 {
+    [Obsolete(@"volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters")]
     public static class Clusters
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Bioos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Bioos.Clusters.Invoke();
+        ///     var @default = Volcengine.Bioos.GetClusters.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Bioos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Bioos.Clusters.Invoke();
+        ///     var @default = Volcengine.Bioos.GetClusters.Invoke();
         /// 
         /// });
         /// ```

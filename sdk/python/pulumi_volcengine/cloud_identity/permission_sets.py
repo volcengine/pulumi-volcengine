@@ -17,6 +17,8 @@ __all__ = [
     'permission_sets_output',
 ]
 
+warnings.warn("""volcengine.cloud_identity.PermissionSets has been deprecated in favor of volcengine.cloud_identity.getPermissionSets""", DeprecationWarning)
+
 @pulumi.output_type
 class PermissionSetsResult:
     """
@@ -129,7 +131,7 @@ def permission_sets(ids: Optional[Sequence[str]] = None,
                     inline_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}",
                 ),
             ]))
-    foo_permission_sets = volcengine.cloud_identity.permission_sets_output(ids=[__item.id for __item in foo_permission_set])
+    foo_permission_sets = volcengine.cloud_identity.get_permission_sets_output(ids=[__item.id for __item in foo_permission_set])
     ```
 
 
@@ -137,6 +139,7 @@ def permission_sets(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of cloud identity permission set.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""permission_sets is deprecated: volcengine.cloud_identity.PermissionSets has been deprecated in favor of volcengine.cloud_identity.getPermissionSets""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -187,7 +190,7 @@ def permission_sets_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
                     inline_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}",
                 ),
             ]))
-    foo_permission_sets = volcengine.cloud_identity.permission_sets_output(ids=[__item.id for __item in foo_permission_set])
+    foo_permission_sets = volcengine.cloud_identity.get_permission_sets_output(ids=[__item.id for __item in foo_permission_set])
     ```
 
 
@@ -195,4 +198,5 @@ def permission_sets_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     :param str name_regex: A Name Regex of cloud identity permission set.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""permission_sets is deprecated: volcengine.cloud_identity.PermissionSets has been deprecated in favor of volcengine.cloud_identity.getPermissionSets""")
     ...

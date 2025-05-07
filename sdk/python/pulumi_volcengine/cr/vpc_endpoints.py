@@ -17,6 +17,8 @@ __all__ = [
     'vpc_endpoints_output',
 ]
 
+warnings.warn("""volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcEndpointsResult:
     """
@@ -111,7 +113,7 @@ def vpc_endpoints(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cr.vpc_endpoints(registry="enterprise-1",
+    default = volcengine.cr.get_vpc_endpoints(registry="enterprise-1",
         statuses=[
             "Enabled",
             "Enabling",
@@ -125,6 +127,7 @@ def vpc_endpoints(output_file: Optional[str] = None,
     :param str registry: The CR registry name.
     :param Sequence[str] statuses: VPC access entry state array, used to filter out VPC access entries in the specified state. Available values are Enabling, Enabled, Disabling, Failed.
     """
+    pulumi.log.warn("""vpc_endpoints is deprecated: volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['registry'] = registry
@@ -154,7 +157,7 @@ def vpc_endpoints_output(output_file: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cr.vpc_endpoints(registry="enterprise-1",
+    default = volcengine.cr.get_vpc_endpoints(registry="enterprise-1",
         statuses=[
             "Enabled",
             "Enabling",
@@ -168,4 +171,5 @@ def vpc_endpoints_output(output_file: Optional[pulumi.Input[Optional[str]]] = No
     :param str registry: The CR registry name.
     :param Sequence[str] statuses: VPC access entry state array, used to filter out VPC access entries in the specified state. Available values are Enabling, Enabled, Disabling, Failed.
     """
+    pulumi.log.warn("""vpc_endpoints is deprecated: volcengine.cr.VpcEndpoints has been deprecated in favor of volcengine.cr.getVpcEndpoints""")
     ...

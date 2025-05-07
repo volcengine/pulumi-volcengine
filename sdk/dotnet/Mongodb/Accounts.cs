@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.Accounts has been deprecated in favor of volcengine.mongodb.getAccounts")]
     public static class Accounts
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.Accounts.Invoke(new()
+        ///     var @default = Volcengine.Mongodb.GetAccounts.Invoke(new()
         ///     {
         ///         InstanceId = "mongo-replica-xxx",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.Accounts.Invoke(new()
+        ///     var @default = Volcengine.Mongodb.GetAccounts.Invoke(new()
         ///     {
         ///         InstanceId = "mongo-replica-xxx",
         ///     });

@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.transit_router.RouteEntries({
+ * const default = volcengine.transit_router.getRouteEntries({
  *     ids: ["tr-rte-12b7qd5eo3h1c17q7y1sq5ixv"],
  *     transitRouterRouteTableId: "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries */
 export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<RouteEntriesResult> {
+    pulumi.log.warn("routeEntries is deprecated: volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/routeEntries:RouteEntries", {
@@ -103,12 +105,13 @@ export interface RouteEntriesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.transit_router.RouteEntries({
+ * const default = volcengine.transit_router.getRouteEntries({
  *     ids: ["tr-rte-12b7qd5eo3h1c17q7y1sq5ixv"],
  *     transitRouterRouteTableId: "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries */
 export function routeEntriesOutput(args: RouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteEntriesResult> {
     return pulumi.output(args).apply((a: any) => routeEntries(a, opts))
 }

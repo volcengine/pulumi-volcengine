@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments")]
     public static class VpnAttachments
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Transit_router.VpnAttachments.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetVpnAttachments.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Transit_router.VpnAttachments.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetVpnAttachments.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

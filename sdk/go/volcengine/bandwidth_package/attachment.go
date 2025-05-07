@@ -64,11 +64,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
-//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//			fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				OsType:         pulumi.StringRef("Linux"),
 //				Visibility:     pulumi.StringRef("public"),
 //				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
@@ -125,11 +125,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooIpv6Addresses := vpc.Ipv6AddressesOutput(ctx, vpc.Ipv6AddressesOutputArgs{
+//			fooIpv6Addresses := vpc.GetIpv6AddressesOutput(ctx, vpc.GetIpv6AddressesOutputArgs{
 //				AssociatedInstanceId: fooInstance.ID(),
 //			}, nil)
 //			fooIpv6AddressBandwidth, err := vpc.NewIpv6AddressBandwidth(ctx, "fooIpv6AddressBandwidth", &vpc.Ipv6AddressBandwidthArgs{
-//				Ipv6Address: fooIpv6Addresses.ApplyT(func(fooIpv6Addresses vpc.Ipv6AddressesResult) (*string, error) {
+//				Ipv6Address: fooIpv6Addresses.ApplyT(func(fooIpv6Addresses vpc.GetIpv6AddressesResult) (*string, error) {
 //					return &fooIpv6Addresses.Ipv6Addresses[0].Ipv6Address, nil
 //				}).(pulumi.StringPtrOutput),
 //				BillingType: pulumi.String("PostPaidByBandwidth"),

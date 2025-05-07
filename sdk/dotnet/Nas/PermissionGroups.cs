@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nas
 {
+    [Obsolete(@"volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups")]
     public static class PermissionGroups
     {
         /// <summary>
@@ -44,11 +45,11 @@ namespace Pulumi.Volcengine.Nas
         ///         },
         ///     });
         /// 
-        ///     var @default = Volcengine.Nas.PermissionGroups.Invoke(new()
+        ///     var @default = Volcengine.Nas.GetPermissionGroups.Invoke(new()
         ///     {
         ///         Filters = new[]
         ///         {
-        ///             new Volcengine.Nas.Inputs.PermissionGroupsFilterInputArgs
+        ///             new Volcengine.Nas.Inputs.GetPermissionGroupsFilterInputArgs
         ///             {
         ///                 Key = "PermissionGroupId",
         ///                 Value = foo.Id,
@@ -95,11 +96,11 @@ namespace Pulumi.Volcengine.Nas
         ///         },
         ///     });
         /// 
-        ///     var @default = Volcengine.Nas.PermissionGroups.Invoke(new()
+        ///     var @default = Volcengine.Nas.GetPermissionGroups.Invoke(new()
         ///     {
         ///         Filters = new[]
         ///         {
-        ///             new Volcengine.Nas.Inputs.PermissionGroupsFilterInputArgs
+        ///             new Volcengine.Nas.Inputs.GetPermissionGroupsFilterInputArgs
         ///             {
         ///                 Key = "PermissionGroupId",
         ///                 Value = foo.Id,

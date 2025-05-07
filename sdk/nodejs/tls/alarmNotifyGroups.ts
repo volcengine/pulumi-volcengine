@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.AlarmNotifyGroups({});
+ * const default = volcengine.tls.getAlarmNotifyGroups({});
  * ```
  */
+/** @deprecated volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups */
 export function alarmNotifyGroups(args?: AlarmNotifyGroupsArgs, opts?: pulumi.InvokeOptions): Promise<AlarmNotifyGroupsResult> {
+    pulumi.log.warn("alarmNotifyGroups is deprecated: volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -95,9 +97,10 @@ export interface AlarmNotifyGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.AlarmNotifyGroups({});
+ * const default = volcengine.tls.getAlarmNotifyGroups({});
  * ```
  */
+/** @deprecated volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups */
 export function alarmNotifyGroupsOutput(args?: AlarmNotifyGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AlarmNotifyGroupsResult> {
     return pulumi.output(args).apply((a: any) => alarmNotifyGroups(a, opts))
 }

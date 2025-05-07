@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  *     transitRouterRouteTableName: "tf-table-test-acc",
  *     transitRouterId: fooTransitRouter.id,
  * });
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc-acc",
  *     cidrBlock: "172.16.0.0/16",

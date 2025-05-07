@@ -65,13 +65,15 @@ import (
 // }
 // fooServerGroup = append(fooServerGroup, __res)
 // }
-// _ = alb.ServerGroupsOutput(ctx, alb.ServerGroupsOutputArgs{
+// _ = alb.GetServerGroupsOutput(ctx, alb.GetServerGroupsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:alb-serverGroups:ServerGroups.pp:28,9-29),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups
 func ServerGroups(ctx *pulumi.Context, args *ServerGroupsArgs, opts ...pulumi.InvokeOption) (*ServerGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServerGroupsResult

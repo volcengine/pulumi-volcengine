@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.Accounts({
+ * const foo = volcengine.rds_postgresql.getAccounts({
  *     instanceId: "postgres-954****f7233",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts */
 export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promise<AccountsResult> {
+    pulumi.log.warn("accounts is deprecated: volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_postgresql/accounts:Accounts", {
@@ -78,11 +80,12 @@ export interface AccountsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.Accounts({
+ * const foo = volcengine.rds_postgresql.getAccounts({
  *     instanceId: "postgres-954****f7233",
  * });
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Accounts has been deprecated in favor of volcengine.rds_postgresql.getAccounts */
 export function accountsOutput(args: AccountsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccountsResult> {
     return pulumi.output(args).apply((a: any) => accounts(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Autoscaling
 {
+    [Obsolete(@"volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies")]
     public static class ScalingPolicies
     {
         /// <summary>

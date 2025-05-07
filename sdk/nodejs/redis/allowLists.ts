@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *     allowLists: ["192.168.0.0/24"],
  *     allowListName: "acc-test-allowlist",
  * });
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -50,14 +50,16 @@ import * as utilities from "../utilities";
  *     allowListId: fooAllowList.id,
  *     instanceId: fooInstance.id,
  * });
- * const fooAllowLists = volcengine.redis.AllowListsOutput({
+ * const fooAllowLists = volcengine.redis.getAllowListsOutput({
  *     instanceId: fooAllowListAssociate.instanceId,
  *     regionId: "cn-beijing",
  *     nameRegex: fooAllowList.allowListName,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists */
 export function allowLists(args: AllowListsArgs, opts?: pulumi.InvokeOptions): Promise<AllowListsResult> {
+    pulumi.log.warn("allowLists is deprecated: volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/allowLists:AllowLists", {
@@ -127,7 +129,7 @@ export interface AllowListsResult {
  *     allowLists: ["192.168.0.0/24"],
  *     allowListName: "acc-test-allowlist",
  * });
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -158,13 +160,14 @@ export interface AllowListsResult {
  *     allowListId: fooAllowList.id,
  *     instanceId: fooInstance.id,
  * });
- * const fooAllowLists = volcengine.redis.AllowListsOutput({
+ * const fooAllowLists = volcengine.redis.getAllowListsOutput({
  *     instanceId: fooAllowListAssociate.instanceId,
  *     regionId: "cn-beijing",
  *     nameRegex: fooAllowList.allowListName,
  * });
  * ```
  */
+/** @deprecated volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists */
 export function allowListsOutput(args: AllowListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AllowListsResult> {
     return pulumi.output(args).apply((a: any) => allowLists(a, opts))
 }

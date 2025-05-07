@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -68,13 +68,15 @@ import * as utilities from "../utilities";
  *     domain: "test-volc123.com",
  *     url: "/yyyy",
  * });
- * const fooRules = volcengine.clb.RulesOutput({
+ * const fooRules = volcengine.clb.getRulesOutput({
  *     ids: [fooRule.id],
  *     listenerId: fooListener.id,
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules */
 export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {
+    pulumi.log.warn("rules is deprecated: volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/rules:Rules", {
@@ -127,7 +129,7 @@ export interface RulesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -180,12 +182,13 @@ export interface RulesResult {
  *     domain: "test-volc123.com",
  *     url: "/yyyy",
  * });
- * const fooRules = volcengine.clb.RulesOutput({
+ * const fooRules = volcengine.clb.getRulesOutput({
  *     ids: [fooRule.id],
  *     listenerId: fooListener.id,
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules */
 export function rulesOutput(args: RulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RulesResult> {
     return pulumi.output(args).apply((a: any) => rules(a, opts))
 }

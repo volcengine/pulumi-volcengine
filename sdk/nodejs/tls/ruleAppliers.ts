@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.RuleAppliers({
+ * const default = volcengine.tls.getRuleAppliers({
  *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers */
 export function ruleAppliers(args: RuleAppliersArgs, opts?: pulumi.InvokeOptions): Promise<RuleAppliersResult> {
+    pulumi.log.warn("ruleAppliers is deprecated: volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/ruleAppliers:RuleAppliers", {
@@ -69,11 +71,12 @@ export interface RuleAppliersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.RuleAppliers({
+ * const default = volcengine.tls.getRuleAppliers({
  *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers */
 export function ruleAppliersOutput(args: RuleAppliersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RuleAppliersResult> {
     return pulumi.output(args).apply((a: any) => ruleAppliers(a, opts))
 }

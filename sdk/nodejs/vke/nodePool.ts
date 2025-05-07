@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
  * });
- * const fooImages = volcengine.ecs.Images({
+ * const fooImages = volcengine.ecs.getImages({
  *     nameRegex: "veLinux 1.0 CentOS Compatible 64 bit",
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {

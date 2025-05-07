@@ -1106,6 +1106,993 @@ func (o ZonesZoneTagArrayOutput) Index(i pulumi.IntInput) ZonesZoneTagOutput {
 	}).(ZonesZoneTagOutput)
 }
 
+type GetBackupsBackupInfo struct {
+	// The ID of the backup.
+	BackupId string `pulumi:"backupId"`
+	// The time when the backup was created. The time zone is UTC + 8.
+	BackupTime string `pulumi:"backupTime"`
+	// The number of DNS records in the backup.
+	RecordCount int `pulumi:"recordCount"`
+}
+
+// GetBackupsBackupInfoInput is an input type that accepts GetBackupsBackupInfoArgs and GetBackupsBackupInfoOutput values.
+// You can construct a concrete instance of `GetBackupsBackupInfoInput` via:
+//
+//	GetBackupsBackupInfoArgs{...}
+type GetBackupsBackupInfoInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupInfoOutput() GetBackupsBackupInfoOutput
+	ToGetBackupsBackupInfoOutputWithContext(context.Context) GetBackupsBackupInfoOutput
+}
+
+type GetBackupsBackupInfoArgs struct {
+	// The ID of the backup.
+	BackupId pulumi.StringInput `pulumi:"backupId"`
+	// The time when the backup was created. The time zone is UTC + 8.
+	BackupTime pulumi.StringInput `pulumi:"backupTime"`
+	// The number of DNS records in the backup.
+	RecordCount pulumi.IntInput `pulumi:"recordCount"`
+}
+
+func (GetBackupsBackupInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackupInfo)(nil)).Elem()
+}
+
+func (i GetBackupsBackupInfoArgs) ToGetBackupsBackupInfoOutput() GetBackupsBackupInfoOutput {
+	return i.ToGetBackupsBackupInfoOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupInfoArgs) ToGetBackupsBackupInfoOutputWithContext(ctx context.Context) GetBackupsBackupInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupInfoOutput)
+}
+
+// GetBackupsBackupInfoArrayInput is an input type that accepts GetBackupsBackupInfoArray and GetBackupsBackupInfoArrayOutput values.
+// You can construct a concrete instance of `GetBackupsBackupInfoArrayInput` via:
+//
+//	GetBackupsBackupInfoArray{ GetBackupsBackupInfoArgs{...} }
+type GetBackupsBackupInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupInfoArrayOutput() GetBackupsBackupInfoArrayOutput
+	ToGetBackupsBackupInfoArrayOutputWithContext(context.Context) GetBackupsBackupInfoArrayOutput
+}
+
+type GetBackupsBackupInfoArray []GetBackupsBackupInfoInput
+
+func (GetBackupsBackupInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackupInfo)(nil)).Elem()
+}
+
+func (i GetBackupsBackupInfoArray) ToGetBackupsBackupInfoArrayOutput() GetBackupsBackupInfoArrayOutput {
+	return i.ToGetBackupsBackupInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupInfoArray) ToGetBackupsBackupInfoArrayOutputWithContext(ctx context.Context) GetBackupsBackupInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupInfoArrayOutput)
+}
+
+type GetBackupsBackupInfoOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackupInfo)(nil)).Elem()
+}
+
+func (o GetBackupsBackupInfoOutput) ToGetBackupsBackupInfoOutput() GetBackupsBackupInfoOutput {
+	return o
+}
+
+func (o GetBackupsBackupInfoOutput) ToGetBackupsBackupInfoOutputWithContext(ctx context.Context) GetBackupsBackupInfoOutput {
+	return o
+}
+
+// The ID of the backup.
+func (o GetBackupsBackupInfoOutput) BackupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackupInfo) string { return v.BackupId }).(pulumi.StringOutput)
+}
+
+// The time when the backup was created. The time zone is UTC + 8.
+func (o GetBackupsBackupInfoOutput) BackupTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackupInfo) string { return v.BackupTime }).(pulumi.StringOutput)
+}
+
+// The number of DNS records in the backup.
+func (o GetBackupsBackupInfoOutput) RecordCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupsBackupInfo) int { return v.RecordCount }).(pulumi.IntOutput)
+}
+
+type GetBackupsBackupInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackupInfo)(nil)).Elem()
+}
+
+func (o GetBackupsBackupInfoArrayOutput) ToGetBackupsBackupInfoArrayOutput() GetBackupsBackupInfoArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupInfoArrayOutput) ToGetBackupsBackupInfoArrayOutputWithContext(ctx context.Context) GetBackupsBackupInfoArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupInfoArrayOutput) Index(i pulumi.IntInput) GetBackupsBackupInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupsBackupInfo {
+		return vs[0].([]GetBackupsBackupInfo)[vs[1].(int)]
+	}).(GetBackupsBackupInfoOutput)
+}
+
+type GetRecordSetsRecordSet struct {
+	// The domain prefix of the record set.
+	Host string `pulumi:"host"`
+	// The ID of the DNS record set.
+	Id string `pulumi:"id"`
+	// The line code corresponding to the DNS record set.
+	Line string `pulumi:"line"`
+	// The domain prefix contained in the DNS record set, in PQDN (Partially Qualified Domain Name) format.
+	Pqdn string `pulumi:"pqdn"`
+	// The type of DNS records in the DNS record set.
+	Type string `pulumi:"type"`
+	// Indicates whether load balancing is enabled for the DNS record set.
+	WeightEnabled bool `pulumi:"weightEnabled"`
+}
+
+// GetRecordSetsRecordSetInput is an input type that accepts GetRecordSetsRecordSetArgs and GetRecordSetsRecordSetOutput values.
+// You can construct a concrete instance of `GetRecordSetsRecordSetInput` via:
+//
+//	GetRecordSetsRecordSetArgs{...}
+type GetRecordSetsRecordSetInput interface {
+	pulumi.Input
+
+	ToGetRecordSetsRecordSetOutput() GetRecordSetsRecordSetOutput
+	ToGetRecordSetsRecordSetOutputWithContext(context.Context) GetRecordSetsRecordSetOutput
+}
+
+type GetRecordSetsRecordSetArgs struct {
+	// The domain prefix of the record set.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The ID of the DNS record set.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The line code corresponding to the DNS record set.
+	Line pulumi.StringInput `pulumi:"line"`
+	// The domain prefix contained in the DNS record set, in PQDN (Partially Qualified Domain Name) format.
+	Pqdn pulumi.StringInput `pulumi:"pqdn"`
+	// The type of DNS records in the DNS record set.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Indicates whether load balancing is enabled for the DNS record set.
+	WeightEnabled pulumi.BoolInput `pulumi:"weightEnabled"`
+}
+
+func (GetRecordSetsRecordSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (i GetRecordSetsRecordSetArgs) ToGetRecordSetsRecordSetOutput() GetRecordSetsRecordSetOutput {
+	return i.ToGetRecordSetsRecordSetOutputWithContext(context.Background())
+}
+
+func (i GetRecordSetsRecordSetArgs) ToGetRecordSetsRecordSetOutputWithContext(ctx context.Context) GetRecordSetsRecordSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordSetsRecordSetOutput)
+}
+
+// GetRecordSetsRecordSetArrayInput is an input type that accepts GetRecordSetsRecordSetArray and GetRecordSetsRecordSetArrayOutput values.
+// You can construct a concrete instance of `GetRecordSetsRecordSetArrayInput` via:
+//
+//	GetRecordSetsRecordSetArray{ GetRecordSetsRecordSetArgs{...} }
+type GetRecordSetsRecordSetArrayInput interface {
+	pulumi.Input
+
+	ToGetRecordSetsRecordSetArrayOutput() GetRecordSetsRecordSetArrayOutput
+	ToGetRecordSetsRecordSetArrayOutputWithContext(context.Context) GetRecordSetsRecordSetArrayOutput
+}
+
+type GetRecordSetsRecordSetArray []GetRecordSetsRecordSetInput
+
+func (GetRecordSetsRecordSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (i GetRecordSetsRecordSetArray) ToGetRecordSetsRecordSetArrayOutput() GetRecordSetsRecordSetArrayOutput {
+	return i.ToGetRecordSetsRecordSetArrayOutputWithContext(context.Background())
+}
+
+func (i GetRecordSetsRecordSetArray) ToGetRecordSetsRecordSetArrayOutputWithContext(ctx context.Context) GetRecordSetsRecordSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordSetsRecordSetArrayOutput)
+}
+
+type GetRecordSetsRecordSetOutput struct{ *pulumi.OutputState }
+
+func (GetRecordSetsRecordSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (o GetRecordSetsRecordSetOutput) ToGetRecordSetsRecordSetOutput() GetRecordSetsRecordSetOutput {
+	return o
+}
+
+func (o GetRecordSetsRecordSetOutput) ToGetRecordSetsRecordSetOutputWithContext(ctx context.Context) GetRecordSetsRecordSetOutput {
+	return o
+}
+
+// The domain prefix of the record set.
+func (o GetRecordSetsRecordSetOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The ID of the DNS record set.
+func (o GetRecordSetsRecordSetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The line code corresponding to the DNS record set.
+func (o GetRecordSetsRecordSetOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Line }).(pulumi.StringOutput)
+}
+
+// The domain prefix contained in the DNS record set, in PQDN (Partially Qualified Domain Name) format.
+func (o GetRecordSetsRecordSetOutput) Pqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Pqdn }).(pulumi.StringOutput)
+}
+
+// The type of DNS records in the DNS record set.
+func (o GetRecordSetsRecordSetOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Indicates whether load balancing is enabled for the DNS record set.
+func (o GetRecordSetsRecordSetOutput) WeightEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRecordSetsRecordSet) bool { return v.WeightEnabled }).(pulumi.BoolOutput)
+}
+
+type GetRecordSetsRecordSetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRecordSetsRecordSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordSetsRecordSet)(nil)).Elem()
+}
+
+func (o GetRecordSetsRecordSetArrayOutput) ToGetRecordSetsRecordSetArrayOutput() GetRecordSetsRecordSetArrayOutput {
+	return o
+}
+
+func (o GetRecordSetsRecordSetArrayOutput) ToGetRecordSetsRecordSetArrayOutputWithContext(ctx context.Context) GetRecordSetsRecordSetArrayOutput {
+	return o
+}
+
+func (o GetRecordSetsRecordSetArrayOutput) Index(i pulumi.IntInput) GetRecordSetsRecordSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRecordSetsRecordSet {
+		return vs[0].([]GetRecordSetsRecordSet)[vs[1].(int)]
+	}).(GetRecordSetsRecordSetOutput)
+}
+
+type GetRecordsRecord struct {
+	// The creation time of the domain.
+	CreatedAt string `pulumi:"createdAt"`
+	// Indicates whether the DNS record is enabled.
+	Enable bool `pulumi:"enable"`
+	// Domain prefix of the DNS record.
+	Host string `pulumi:"host"`
+	// Line of the DNS record.
+	Line string `pulumi:"line"`
+	// The account ID that called this API.
+	Operators []string `pulumi:"operators"`
+	// The hostname included in the DNS record, in PQDN (Partially Qualified Domain Name) format.
+	Pqdn string `pulumi:"pqdn"`
+	// The ID of the DNS record.
+	RecordId string `pulumi:"recordId"`
+	// The ID of the record set to which the DNS record belongs.
+	RecordSetId string `pulumi:"recordSetId"`
+	// The remark of the DNS record.
+	Remark string `pulumi:"remark"`
+	// The tag information of the DNS record.
+	Tags []string `pulumi:"tags"`
+	// The Time to Live (TTL) of the DNS record. The unit is seconds.
+	Ttl int `pulumi:"ttl"`
+	// Type of the DNS record.
+	Type string `pulumi:"type"`
+	// The most recent update time of the domain.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Value of the DNS record.
+	Value string `pulumi:"value"`
+	// The weight of the DNS record.
+	Weight int `pulumi:"weight"`
+}
+
+// GetRecordsRecordInput is an input type that accepts GetRecordsRecordArgs and GetRecordsRecordOutput values.
+// You can construct a concrete instance of `GetRecordsRecordInput` via:
+//
+//	GetRecordsRecordArgs{...}
+type GetRecordsRecordInput interface {
+	pulumi.Input
+
+	ToGetRecordsRecordOutput() GetRecordsRecordOutput
+	ToGetRecordsRecordOutputWithContext(context.Context) GetRecordsRecordOutput
+}
+
+type GetRecordsRecordArgs struct {
+	// The creation time of the domain.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Indicates whether the DNS record is enabled.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Domain prefix of the DNS record.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Line of the DNS record.
+	Line pulumi.StringInput `pulumi:"line"`
+	// The account ID that called this API.
+	Operators pulumi.StringArrayInput `pulumi:"operators"`
+	// The hostname included in the DNS record, in PQDN (Partially Qualified Domain Name) format.
+	Pqdn pulumi.StringInput `pulumi:"pqdn"`
+	// The ID of the DNS record.
+	RecordId pulumi.StringInput `pulumi:"recordId"`
+	// The ID of the record set to which the DNS record belongs.
+	RecordSetId pulumi.StringInput `pulumi:"recordSetId"`
+	// The remark of the DNS record.
+	Remark pulumi.StringInput `pulumi:"remark"`
+	// The tag information of the DNS record.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The Time to Live (TTL) of the DNS record. The unit is seconds.
+	Ttl pulumi.IntInput `pulumi:"ttl"`
+	// Type of the DNS record.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The most recent update time of the domain.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Value of the DNS record.
+	Value pulumi.StringInput `pulumi:"value"`
+	// The weight of the DNS record.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetRecordsRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordsRecord)(nil)).Elem()
+}
+
+func (i GetRecordsRecordArgs) ToGetRecordsRecordOutput() GetRecordsRecordOutput {
+	return i.ToGetRecordsRecordOutputWithContext(context.Background())
+}
+
+func (i GetRecordsRecordArgs) ToGetRecordsRecordOutputWithContext(ctx context.Context) GetRecordsRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordsRecordOutput)
+}
+
+// GetRecordsRecordArrayInput is an input type that accepts GetRecordsRecordArray and GetRecordsRecordArrayOutput values.
+// You can construct a concrete instance of `GetRecordsRecordArrayInput` via:
+//
+//	GetRecordsRecordArray{ GetRecordsRecordArgs{...} }
+type GetRecordsRecordArrayInput interface {
+	pulumi.Input
+
+	ToGetRecordsRecordArrayOutput() GetRecordsRecordArrayOutput
+	ToGetRecordsRecordArrayOutputWithContext(context.Context) GetRecordsRecordArrayOutput
+}
+
+type GetRecordsRecordArray []GetRecordsRecordInput
+
+func (GetRecordsRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordsRecord)(nil)).Elem()
+}
+
+func (i GetRecordsRecordArray) ToGetRecordsRecordArrayOutput() GetRecordsRecordArrayOutput {
+	return i.ToGetRecordsRecordArrayOutputWithContext(context.Background())
+}
+
+func (i GetRecordsRecordArray) ToGetRecordsRecordArrayOutputWithContext(ctx context.Context) GetRecordsRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRecordsRecordArrayOutput)
+}
+
+type GetRecordsRecordOutput struct{ *pulumi.OutputState }
+
+func (GetRecordsRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRecordsRecord)(nil)).Elem()
+}
+
+func (o GetRecordsRecordOutput) ToGetRecordsRecordOutput() GetRecordsRecordOutput {
+	return o
+}
+
+func (o GetRecordsRecordOutput) ToGetRecordsRecordOutputWithContext(ctx context.Context) GetRecordsRecordOutput {
+	return o
+}
+
+// The creation time of the domain.
+func (o GetRecordsRecordOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Indicates whether the DNS record is enabled.
+func (o GetRecordsRecordOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRecordsRecord) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Domain prefix of the DNS record.
+func (o GetRecordsRecordOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Line of the DNS record.
+func (o GetRecordsRecordOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Line }).(pulumi.StringOutput)
+}
+
+// The account ID that called this API.
+func (o GetRecordsRecordOutput) Operators() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRecordsRecord) []string { return v.Operators }).(pulumi.StringArrayOutput)
+}
+
+// The hostname included in the DNS record, in PQDN (Partially Qualified Domain Name) format.
+func (o GetRecordsRecordOutput) Pqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Pqdn }).(pulumi.StringOutput)
+}
+
+// The ID of the DNS record.
+func (o GetRecordsRecordOutput) RecordId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.RecordId }).(pulumi.StringOutput)
+}
+
+// The ID of the record set to which the DNS record belongs.
+func (o GetRecordsRecordOutput) RecordSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.RecordSetId }).(pulumi.StringOutput)
+}
+
+// The remark of the DNS record.
+func (o GetRecordsRecordOutput) Remark() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// The tag information of the DNS record.
+func (o GetRecordsRecordOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRecordsRecord) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The Time to Live (TTL) of the DNS record. The unit is seconds.
+func (o GetRecordsRecordOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRecordsRecord) int { return v.Ttl }).(pulumi.IntOutput)
+}
+
+// Type of the DNS record.
+func (o GetRecordsRecordOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The most recent update time of the domain.
+func (o GetRecordsRecordOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Value of the DNS record.
+func (o GetRecordsRecordOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRecordsRecord) string { return v.Value }).(pulumi.StringOutput)
+}
+
+// The weight of the DNS record.
+func (o GetRecordsRecordOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRecordsRecord) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetRecordsRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRecordsRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRecordsRecord)(nil)).Elem()
+}
+
+func (o GetRecordsRecordArrayOutput) ToGetRecordsRecordArrayOutput() GetRecordsRecordArrayOutput {
+	return o
+}
+
+func (o GetRecordsRecordArrayOutput) ToGetRecordsRecordArrayOutputWithContext(ctx context.Context) GetRecordsRecordArrayOutput {
+	return o
+}
+
+func (o GetRecordsRecordArrayOutput) Index(i pulumi.IntInput) GetRecordsRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRecordsRecord {
+		return vs[0].([]GetRecordsRecord)[vs[1].(int)]
+	}).(GetRecordsRecordOutput)
+}
+
+type GetZonesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// GetZonesTagInput is an input type that accepts GetZonesTagArgs and GetZonesTagOutput values.
+// You can construct a concrete instance of `GetZonesTagInput` via:
+//
+//	GetZonesTagArgs{...}
+type GetZonesTagInput interface {
+	pulumi.Input
+
+	ToGetZonesTagOutput() GetZonesTagOutput
+	ToGetZonesTagOutputWithContext(context.Context) GetZonesTagOutput
+}
+
+type GetZonesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetZonesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesTag)(nil)).Elem()
+}
+
+func (i GetZonesTagArgs) ToGetZonesTagOutput() GetZonesTagOutput {
+	return i.ToGetZonesTagOutputWithContext(context.Background())
+}
+
+func (i GetZonesTagArgs) ToGetZonesTagOutputWithContext(ctx context.Context) GetZonesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesTagOutput)
+}
+
+// GetZonesTagArrayInput is an input type that accepts GetZonesTagArray and GetZonesTagArrayOutput values.
+// You can construct a concrete instance of `GetZonesTagArrayInput` via:
+//
+//	GetZonesTagArray{ GetZonesTagArgs{...} }
+type GetZonesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesTagArrayOutput() GetZonesTagArrayOutput
+	ToGetZonesTagArrayOutputWithContext(context.Context) GetZonesTagArrayOutput
+}
+
+type GetZonesTagArray []GetZonesTagInput
+
+func (GetZonesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesTag)(nil)).Elem()
+}
+
+func (i GetZonesTagArray) ToGetZonesTagArrayOutput() GetZonesTagArrayOutput {
+	return i.ToGetZonesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesTagArray) ToGetZonesTagArrayOutputWithContext(ctx context.Context) GetZonesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesTagArrayOutput)
+}
+
+type GetZonesTagOutput struct{ *pulumi.OutputState }
+
+func (GetZonesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesTag)(nil)).Elem()
+}
+
+func (o GetZonesTagOutput) ToGetZonesTagOutput() GetZonesTagOutput {
+	return o
+}
+
+func (o GetZonesTagOutput) ToGetZonesTagOutputWithContext(ctx context.Context) GetZonesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetZonesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetZonesTagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetZonesTag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetZonesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesTag)(nil)).Elem()
+}
+
+func (o GetZonesTagArrayOutput) ToGetZonesTagArrayOutput() GetZonesTagArrayOutput {
+	return o
+}
+
+func (o GetZonesTagArrayOutput) ToGetZonesTagArrayOutputWithContext(ctx context.Context) GetZonesTagArrayOutput {
+	return o
+}
+
+func (o GetZonesTagArrayOutput) Index(i pulumi.IntInput) GetZonesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesTag {
+		return vs[0].([]GetZonesTag)[vs[1].(int)]
+	}).(GetZonesTagOutput)
+}
+
+type GetZonesZone struct {
+	// The list of DNS servers allocated to the domain by BytePlus DNS.
+	AllocateDnsServerLists []string `pulumi:"allocateDnsServerLists"`
+	// Whether automatic domain renewal is enabled.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The most recent update time of the domain.
+	CacheStage int `pulumi:"cacheStage"`
+	// The creation time of the domain.
+	CreatedAt string `pulumi:"createdAt"`
+	// The version of DNS DDoS protection service.
+	DnsSecurity string `pulumi:"dnsSecurity"`
+	// The expiration time of the domain.
+	ExpiredTime int `pulumi:"expiredTime"`
+	// The id of the zone.
+	Id string `pulumi:"id"`
+	// The ID of the instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The ID of the instance. For free edition, the value of this field is null.
+	InstanceNo string `pulumi:"instanceNo"`
+	// Indicates whether the configuration of NS servers is correct. If the configuration is correct, the status of the domain in BytePlus DNS is Active.
+	IsNsCorrect bool `pulumi:"isNsCorrect"`
+	// Whether the domain is a subdomain.
+	IsSubDomain bool `pulumi:"isSubDomain"`
+	// The ID of the account that last updated this domain.
+	LastOperator string `pulumi:"lastOperator"`
+	// The ProjectName of the domain.
+	ProjectName string `pulumi:"projectName"`
+	// The list of DNS servers actually used by the domain.
+	RealDnsServerLists []string `pulumi:"realDnsServerLists"`
+	// The total number of DNS records contained in the domain.
+	RecordCount int `pulumi:"recordCount"`
+	// The remarks for the domain.
+	Remark string `pulumi:"remark"`
+	// The status of the domain.
+	Stage int `pulumi:"stage"`
+	// The domain prefix of the subdomain. If the domain is not a subdomain, this parameter is null.
+	SubDomainHost string `pulumi:"subDomainHost"`
+	// Tags.
+	Tags []GetZonesZoneTag `pulumi:"tags"`
+	// The edition of the domain.
+	TradeCode string `pulumi:"tradeCode"`
+	// The most recent update time of the domain.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of the domain.
+	Zid int `pulumi:"zid"`
+	// The domain name.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The list of DNS servers allocated to the domain by BytePlus DNS.
+	AllocateDnsServerLists pulumi.StringArrayInput `pulumi:"allocateDnsServerLists"`
+	// Whether automatic domain renewal is enabled.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The most recent update time of the domain.
+	CacheStage pulumi.IntInput `pulumi:"cacheStage"`
+	// The creation time of the domain.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The version of DNS DDoS protection service.
+	DnsSecurity pulumi.StringInput `pulumi:"dnsSecurity"`
+	// The expiration time of the domain.
+	ExpiredTime pulumi.IntInput `pulumi:"expiredTime"`
+	// The id of the zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The ID of the instance. For free edition, the value of this field is null.
+	InstanceNo pulumi.StringInput `pulumi:"instanceNo"`
+	// Indicates whether the configuration of NS servers is correct. If the configuration is correct, the status of the domain in BytePlus DNS is Active.
+	IsNsCorrect pulumi.BoolInput `pulumi:"isNsCorrect"`
+	// Whether the domain is a subdomain.
+	IsSubDomain pulumi.BoolInput `pulumi:"isSubDomain"`
+	// The ID of the account that last updated this domain.
+	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
+	// The ProjectName of the domain.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The list of DNS servers actually used by the domain.
+	RealDnsServerLists pulumi.StringArrayInput `pulumi:"realDnsServerLists"`
+	// The total number of DNS records contained in the domain.
+	RecordCount pulumi.IntInput `pulumi:"recordCount"`
+	// The remarks for the domain.
+	Remark pulumi.StringInput `pulumi:"remark"`
+	// The status of the domain.
+	Stage pulumi.IntInput `pulumi:"stage"`
+	// The domain prefix of the subdomain. If the domain is not a subdomain, this parameter is null.
+	SubDomainHost pulumi.StringInput `pulumi:"subDomainHost"`
+	// Tags.
+	Tags GetZonesZoneTagArrayInput `pulumi:"tags"`
+	// The edition of the domain.
+	TradeCode pulumi.StringInput `pulumi:"tradeCode"`
+	// The most recent update time of the domain.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of the domain.
+	Zid pulumi.IntInput `pulumi:"zid"`
+	// The domain name.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The list of DNS servers allocated to the domain by BytePlus DNS.
+func (o GetZonesZoneOutput) AllocateDnsServerLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetZonesZone) []string { return v.AllocateDnsServerLists }).(pulumi.StringArrayOutput)
+}
+
+// Whether automatic domain renewal is enabled.
+func (o GetZonesZoneOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetZonesZone) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The most recent update time of the domain.
+func (o GetZonesZoneOutput) CacheStage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetZonesZone) int { return v.CacheStage }).(pulumi.IntOutput)
+}
+
+// The creation time of the domain.
+func (o GetZonesZoneOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The version of DNS DDoS protection service.
+func (o GetZonesZoneOutput) DnsSecurity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.DnsSecurity }).(pulumi.StringOutput)
+}
+
+// The expiration time of the domain.
+func (o GetZonesZoneOutput) ExpiredTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetZonesZone) int { return v.ExpiredTime }).(pulumi.IntOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the instance.
+func (o GetZonesZoneOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The ID of the instance. For free edition, the value of this field is null.
+func (o GetZonesZoneOutput) InstanceNo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.InstanceNo }).(pulumi.StringOutput)
+}
+
+// Indicates whether the configuration of NS servers is correct. If the configuration is correct, the status of the domain in BytePlus DNS is Active.
+func (o GetZonesZoneOutput) IsNsCorrect() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetZonesZone) bool { return v.IsNsCorrect }).(pulumi.BoolOutput)
+}
+
+// Whether the domain is a subdomain.
+func (o GetZonesZoneOutput) IsSubDomain() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetZonesZone) bool { return v.IsSubDomain }).(pulumi.BoolOutput)
+}
+
+// The ID of the account that last updated this domain.
+func (o GetZonesZoneOutput) LastOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.LastOperator }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the domain.
+func (o GetZonesZoneOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The list of DNS servers actually used by the domain.
+func (o GetZonesZoneOutput) RealDnsServerLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetZonesZone) []string { return v.RealDnsServerLists }).(pulumi.StringArrayOutput)
+}
+
+// The total number of DNS records contained in the domain.
+func (o GetZonesZoneOutput) RecordCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetZonesZone) int { return v.RecordCount }).(pulumi.IntOutput)
+}
+
+// The remarks for the domain.
+func (o GetZonesZoneOutput) Remark() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// The status of the domain.
+func (o GetZonesZoneOutput) Stage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetZonesZone) int { return v.Stage }).(pulumi.IntOutput)
+}
+
+// The domain prefix of the subdomain. If the domain is not a subdomain, this parameter is null.
+func (o GetZonesZoneOutput) SubDomainHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.SubDomainHost }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetZonesZoneOutput) Tags() GetZonesZoneTagArrayOutput {
+	return o.ApplyT(func(v GetZonesZone) []GetZonesZoneTag { return v.Tags }).(GetZonesZoneTagArrayOutput)
+}
+
+// The edition of the domain.
+func (o GetZonesZoneOutput) TradeCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.TradeCode }).(pulumi.StringOutput)
+}
+
+// The most recent update time of the domain.
+func (o GetZonesZoneOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the domain.
+func (o GetZonesZoneOutput) Zid() pulumi.IntOutput {
+	return o.ApplyT(func(v GetZonesZone) int { return v.Zid }).(pulumi.IntOutput)
+}
+
+// The domain name.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
+type GetZonesZoneTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetZonesZoneTagInput is an input type that accepts GetZonesZoneTagArgs and GetZonesZoneTagOutput values.
+// You can construct a concrete instance of `GetZonesZoneTagInput` via:
+//
+//	GetZonesZoneTagArgs{...}
+type GetZonesZoneTagInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneTagOutput() GetZonesZoneTagOutput
+	ToGetZonesZoneTagOutputWithContext(context.Context) GetZonesZoneTagOutput
+}
+
+type GetZonesZoneTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetZonesZoneTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZoneTag)(nil)).Elem()
+}
+
+func (i GetZonesZoneTagArgs) ToGetZonesZoneTagOutput() GetZonesZoneTagOutput {
+	return i.ToGetZonesZoneTagOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneTagArgs) ToGetZonesZoneTagOutputWithContext(ctx context.Context) GetZonesZoneTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneTagOutput)
+}
+
+// GetZonesZoneTagArrayInput is an input type that accepts GetZonesZoneTagArray and GetZonesZoneTagArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneTagArrayInput` via:
+//
+//	GetZonesZoneTagArray{ GetZonesZoneTagArgs{...} }
+type GetZonesZoneTagArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneTagArrayOutput() GetZonesZoneTagArrayOutput
+	ToGetZonesZoneTagArrayOutputWithContext(context.Context) GetZonesZoneTagArrayOutput
+}
+
+type GetZonesZoneTagArray []GetZonesZoneTagInput
+
+func (GetZonesZoneTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZoneTag)(nil)).Elem()
+}
+
+func (i GetZonesZoneTagArray) ToGetZonesZoneTagArrayOutput() GetZonesZoneTagArrayOutput {
+	return i.ToGetZonesZoneTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneTagArray) ToGetZonesZoneTagArrayOutputWithContext(ctx context.Context) GetZonesZoneTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneTagArrayOutput)
+}
+
+type GetZonesZoneTagOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZoneTag)(nil)).Elem()
+}
+
+func (o GetZonesZoneTagOutput) ToGetZonesZoneTagOutput() GetZonesZoneTagOutput {
+	return o
+}
+
+func (o GetZonesZoneTagOutput) ToGetZonesZoneTagOutputWithContext(ctx context.Context) GetZonesZoneTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetZonesZoneTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZoneTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetZonesZoneTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZoneTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZoneTag)(nil)).Elem()
+}
+
+func (o GetZonesZoneTagArrayOutput) ToGetZonesZoneTagArrayOutput() GetZonesZoneTagArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneTagArrayOutput) ToGetZonesZoneTagArrayOutputWithContext(ctx context.Context) GetZonesZoneTagArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneTagArrayOutput) Index(i pulumi.IntInput) GetZonesZoneTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZoneTag {
+		return vs[0].([]GetZonesZoneTag)[vs[1].(int)]
+	}).(GetZonesZoneTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupInfoInput)(nil)).Elem(), BackupsBackupInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupInfoArrayInput)(nil)).Elem(), BackupsBackupInfoArray{})
@@ -1121,6 +2108,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneTagInput)(nil)).Elem(), ZonesZoneTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneTagArrayInput)(nil)).Elem(), ZonesZoneTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupInfoInput)(nil)).Elem(), GetBackupsBackupInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupInfoArrayInput)(nil)).Elem(), GetBackupsBackupInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordSetsRecordSetInput)(nil)).Elem(), GetRecordSetsRecordSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordSetsRecordSetArrayInput)(nil)).Elem(), GetRecordSetsRecordSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordsRecordInput)(nil)).Elem(), GetRecordsRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordsRecordArrayInput)(nil)).Elem(), GetRecordsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesTagInput)(nil)).Elem(), GetZonesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesTagArrayInput)(nil)).Elem(), GetZonesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneTagInput)(nil)).Elem(), GetZonesZoneTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneTagArrayInput)(nil)).Elem(), GetZonesZoneTagArray{})
 	pulumi.RegisterOutputType(BackupsBackupInfoOutput{})
 	pulumi.RegisterOutputType(BackupsBackupInfoArrayOutput{})
 	pulumi.RegisterOutputType(RecordSetsRecordSetOutput{})
@@ -1135,4 +2134,16 @@ func init() {
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneTagOutput{})
 	pulumi.RegisterOutputType(ZonesZoneTagArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupInfoOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRecordSetsRecordSetOutput{})
+	pulumi.RegisterOutputType(GetRecordSetsRecordSetArrayOutput{})
+	pulumi.RegisterOutputType(GetRecordsRecordOutput{})
+	pulumi.RegisterOutputType(GetRecordsRecordArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesTagOutput{})
+	pulumi.RegisterOutputType(GetZonesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneTagOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneTagArrayOutput{})
 }

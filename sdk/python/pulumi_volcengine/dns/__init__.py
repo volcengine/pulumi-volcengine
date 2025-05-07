@@ -8,6 +8,10 @@ import typing
 from .backup import *
 from .backup_schedule import *
 from .backups import *
+from .get_backups import *
+from .get_record_sets import *
+from .get_records import *
+from .get_zones import *
 from .record import *
 from .record_sets import *
 from .records import *

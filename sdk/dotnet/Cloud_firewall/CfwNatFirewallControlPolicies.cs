@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_firewall
 {
+    [Obsolete(@"volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies")]
     public static class CfwNatFirewallControlPolicies
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_firewall.CfwNatFirewallControlPolicies.Invoke(new()
+        ///     var foo = Volcengine.Cloud_firewall.GetCfwNatFirewallControlPolicies.Invoke(new()
         ///     {
         ///         Direction = "in",
         ///         NatFirewallId = "nfw-ydmkayvjsw2vsavx****",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Cloud_firewall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cloud_firewall.CfwNatFirewallControlPolicies.Invoke(new()
+        ///     var foo = Volcengine.Cloud_firewall.GetCfwNatFirewallControlPolicies.Invoke(new()
         ///     {
         ///         Direction = "in",
         ///         NatFirewallId = "nfw-ydmkayvjsw2vsavx****",

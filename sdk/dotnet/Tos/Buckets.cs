@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Tos
 {
+    [Obsolete(@"volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets")]
     public static class Buckets
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Tos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tos.Buckets.Invoke(new()
+        ///     var @default = Volcengine.Tos.GetBuckets.Invoke(new()
         ///     {
         ///         NameRegex = "test",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Tos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tos.Buckets.Invoke(new()
+        ///     var @default = Volcengine.Tos.GetBuckets.Invoke(new()
         ///     {
         ///         NameRegex = "test",
         ///     });

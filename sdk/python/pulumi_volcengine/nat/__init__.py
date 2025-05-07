@@ -9,6 +9,9 @@ from .dnat_entries import *
 from .dnat_entry import *
 from .gateway import *
 from .gateways import *
+from .get_dnat_entries import *
+from .get_gateways import *
+from .get_snat_entries import *
 from .snat_entries import *
 from .snat_entry import *
 from ._inputs import *

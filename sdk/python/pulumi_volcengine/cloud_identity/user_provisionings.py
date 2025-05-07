@@ -17,6 +17,8 @@ __all__ = [
     'user_provisionings_output',
 ]
 
+warnings.warn("""volcengine.cloud_identity.UserProvisionings has been deprecated in favor of volcengine.cloud_identity.getUserProvisionings""", DeprecationWarning)
+
 @pulumi.output_type
 class UserProvisioningsResult:
     """
@@ -98,13 +100,14 @@ def user_provisionings(account_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_identity.user_provisionings(account_id="210026****")
+    foo = volcengine.cloud_identity.get_user_provisionings(account_id="210026****")
     ```
 
 
     :param str account_id: The account id.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""user_provisionings is deprecated: volcengine.cloud_identity.UserProvisionings has been deprecated in favor of volcengine.cloud_identity.getUserProvisionings""")
     __args__ = dict()
     __args__['accountId'] = account_id
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def user_provisionings_output(account_id: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_identity.user_provisionings(account_id="210026****")
+    foo = volcengine.cloud_identity.get_user_provisionings(account_id="210026****")
     ```
 
 
     :param str account_id: The account id.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""user_provisionings is deprecated: volcengine.cloud_identity.UserProvisionings has been deprecated in favor of volcengine.cloud_identity.getUserProvisionings""")
     ...

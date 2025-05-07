@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -89,7 +89,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = escloud.InstancesOutput(ctx, escloud.InstancesOutputArgs{
+//			_ = escloud.GetInstancesOutput(ctx, escloud.GetInstancesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooInstance.ID(),
 //				},
@@ -99,6 +99,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.escloud.Instances has been deprecated in favor of volcengine.escloud.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

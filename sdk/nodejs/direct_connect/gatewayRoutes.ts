@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.GatewayRoutes({
+ * const foo = volcengine.direct_connect.getGatewayRoutes({
  *     ids: [
  *         "dcr-638ry33wmzggn3gd6gv****",
  *         "dcr-20d6tkadi2k8w65sqhgbj****",
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes */
 export function gatewayRoutes(args?: GatewayRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GatewayRoutesResult> {
+    pulumi.log.warn("gatewayRoutes is deprecated: volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -118,7 +120,7 @@ export interface GatewayRoutesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.GatewayRoutes({
+ * const foo = volcengine.direct_connect.getGatewayRoutes({
  *     ids: [
  *         "dcr-638ry33wmzggn3gd6gv****",
  *         "dcr-20d6tkadi2k8w65sqhgbj****",
@@ -126,6 +128,7 @@ export interface GatewayRoutesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes */
 export function gatewayRoutesOutput(args?: GatewayRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewayRoutesResult> {
     return pulumi.output(args).apply((a: any) => gatewayRoutes(a, opts))
 }

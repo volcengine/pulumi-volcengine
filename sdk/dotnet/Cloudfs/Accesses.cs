@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloudfs
 {
+    [Obsolete(@"volcengine.cloudfs.Accesses has been deprecated in favor of volcengine.cloudfs.getAccesses")]
     public static class Accesses
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.Accesses.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetAccesses.Invoke(new()
         ///     {
         ///         FsName = "tftest2",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.Accesses.Invoke(new()
+        ///     var @default = Volcengine.Cloudfs.GetAccesses.Invoke(new()
         ///     {
         ///         FsName = "tftest2",
         ///     });

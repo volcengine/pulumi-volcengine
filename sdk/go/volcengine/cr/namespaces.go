@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.Namespaces(ctx, &cr.NamespacesArgs{
+//			_, err := cr.GetNamespaces(ctx, &cr.GetNamespacesArgs{
 //				Names: []string{
 //					"namespace-*",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces
 func Namespaces(ctx *pulumi.Context, args *NamespacesArgs, opts ...pulumi.InvokeOption) (*NamespacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NamespacesResult

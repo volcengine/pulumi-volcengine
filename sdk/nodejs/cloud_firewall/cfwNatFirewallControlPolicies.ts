@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwNatFirewallControlPolicies({
+ * const foo = volcengine.cloud_firewall.getCfwNatFirewallControlPolicies({
  *     direction: "in",
  *     natFirewallId: "nfw-ydmkayvjsw2vsavx****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies */
 export function cfwNatFirewallControlPolicies(args: CfwNatFirewallControlPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<CfwNatFirewallControlPoliciesResult> {
+    pulumi.log.warn("cfwNatFirewallControlPolicies is deprecated: volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloud_firewall/cfwNatFirewallControlPolicies:CfwNatFirewallControlPolicies", {
@@ -163,12 +165,13 @@ export interface CfwNatFirewallControlPoliciesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwNatFirewallControlPolicies({
+ * const foo = volcengine.cloud_firewall.getCfwNatFirewallControlPolicies({
  *     direction: "in",
  *     natFirewallId: "nfw-ydmkayvjsw2vsavx****",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwNatFirewallControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwNatFirewallControlPolicies */
 export function cfwNatFirewallControlPoliciesOutput(args: CfwNatFirewallControlPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CfwNatFirewallControlPoliciesResult> {
     return pulumi.output(args).apply((a: any) => cfwNatFirewallControlPolicies(a, opts))
 }

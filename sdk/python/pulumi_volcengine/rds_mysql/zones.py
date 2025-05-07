@@ -17,6 +17,8 @@ __all__ = [
     'zones_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.Zones has been deprecated in favor of volcengine.rds_mysql.getZones""", DeprecationWarning)
+
 @pulumi.output_type
 class ZonesResult:
     """
@@ -88,12 +90,13 @@ def zones(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.zones()
+    foo = volcengine.rds_mysql.get_zones()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.rds_mysql.Zones has been deprecated in favor of volcengine.rds_mysql.getZones""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -117,10 +120,11 @@ def zones_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.zones()
+    foo = volcengine.rds_mysql.get_zones()
     ```
 
 
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.rds_mysql.Zones has been deprecated in favor of volcengine.rds_mysql.getZones""")
     ...

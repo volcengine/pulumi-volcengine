@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.Regions has been deprecated in favor of volcengine.mongodb.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.Regions.Invoke();
+        ///     var @default = Volcengine.Mongodb.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.Regions.Invoke();
+        ///     var @default = Volcengine.Mongodb.GetRegions.Invoke();
         /// 
         /// });
         /// ```

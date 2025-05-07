@@ -18,6 +18,8 @@ __all__ = [
     'route_tables_output',
 ]
 
+warnings.warn("""volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables""", DeprecationWarning)
+
 @pulumi.output_type
 class RouteTablesResult:
     """
@@ -151,7 +153,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.route_tables(ids=[
+    default = volcengine.vpc.get_route_tables(ids=[
             "vtb-274e19skkuhog7fap8u4i8ird",
             "vtb-2744hslq5b7r47fap8tjomgnj",
         ],
@@ -166,6 +168,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['RouteTablesTagArgs']] tags: Tags.
     :param str vpc_id: An id of VPC.
     """
+    pulumi.log.warn("""route_tables is deprecated: volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -204,7 +207,7 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.route_tables(ids=[
+    default = volcengine.vpc.get_route_tables(ids=[
             "vtb-274e19skkuhog7fap8u4i8ird",
             "vtb-2744hslq5b7r47fap8tjomgnj",
         ],
@@ -219,4 +222,5 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param Sequence[pulumi.InputType['RouteTablesTagArgs']] tags: Tags.
     :param str vpc_id: An id of VPC.
     """
+    pulumi.log.warn("""route_tables is deprecated: volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables""")
     ...

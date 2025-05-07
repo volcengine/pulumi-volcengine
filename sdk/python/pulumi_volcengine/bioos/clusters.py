@@ -17,6 +17,8 @@ __all__ = [
     'clusters_output',
 ]
 
+warnings.warn("""volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters""", DeprecationWarning)
+
 @pulumi.output_type
 class ClustersResult:
     """
@@ -134,7 +136,7 @@ def clusters(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.bioos.clusters()
+    default = volcengine.bioos.get_clusters()
     ```
 
 
@@ -144,6 +146,7 @@ def clusters(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] statuses: The status of the clusters.
     :param Sequence[str] types: The type of the clusters.
     """
+    pulumi.log.warn("""clusters is deprecated: volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -179,7 +182,7 @@ def clusters_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.bioos.clusters()
+    default = volcengine.bioos.get_clusters()
     ```
 
 
@@ -189,4 +192,5 @@ def clusters_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param Sequence[str] statuses: The status of the clusters.
     :param Sequence[str] types: The type of the clusters.
     """
+    pulumi.log.warn("""clusters is deprecated: volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters""")
     ...

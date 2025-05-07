@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Autoscaling
 {
+    [Obsolete(@"volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups")]
     public static class ScalingGroups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Autoscaling
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -71,7 +72,7 @@ namespace Pulumi.Volcengine.Autoscaling
         ///             },
         ///         }));
         ///     }
-        ///     var @default = Volcengine.Autoscaling.ScalingGroups.Invoke(new()
+        ///     var @default = Volcengine.Autoscaling.GetScalingGroups.Invoke(new()
         ///     {
         ///         Ids = fooScalingGroup.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -94,7 +95,7 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -106,7 +107,7 @@ namespace Pulumi.Volcengine.Autoscaling
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -142,7 +143,7 @@ namespace Pulumi.Volcengine.Autoscaling
         ///             },
         ///         }));
         ///     }
-        ///     var @default = Volcengine.Autoscaling.ScalingGroups.Invoke(new()
+        ///     var @default = Volcengine.Autoscaling.GetScalingGroups.Invoke(new()
         ///     {
         ///         Ids = fooScalingGroup.Select(__item =&gt; __item.Id).ToList(),
         ///     });

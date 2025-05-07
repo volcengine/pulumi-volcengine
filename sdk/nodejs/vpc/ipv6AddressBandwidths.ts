@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Ipv6AddressBandwidths({
+ * const default = volcengine.vpc.getIpv6AddressBandwidths({
  *     ids: ["eip-in2y2duvtlhc8gbssyfnhfre"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths */
 export function ipv6AddressBandwidths(args?: Ipv6AddressBandwidthsArgs, opts?: pulumi.InvokeOptions): Promise<Ipv6AddressBandwidthsResult> {
+    pulumi.log.warn("ipv6AddressBandwidths is deprecated: volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -112,11 +114,12 @@ export interface Ipv6AddressBandwidthsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Ipv6AddressBandwidths({
+ * const default = volcengine.vpc.getIpv6AddressBandwidths({
  *     ids: ["eip-in2y2duvtlhc8gbssyfnhfre"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths */
 export function ipv6AddressBandwidthsOutput(args?: Ipv6AddressBandwidthsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Ipv6AddressBandwidthsResult> {
     return pulumi.output(args).apply((a: any) => ipv6AddressBandwidths(a, opts))
 }

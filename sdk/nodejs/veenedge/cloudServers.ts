@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.CloudServers({});
+ * const default = volcengine.veenedge.getCloudServers({});
  * ```
  */
+/** @deprecated volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers */
 export function cloudServers(args?: CloudServersArgs, opts?: pulumi.InvokeOptions): Promise<CloudServersResult> {
+    pulumi.log.warn("cloudServers is deprecated: volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -74,9 +76,10 @@ export interface CloudServersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.CloudServers({});
+ * const default = volcengine.veenedge.getCloudServers({});
  * ```
  */
+/** @deprecated volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers */
 export function cloudServersOutput(args?: CloudServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CloudServersResult> {
     return pulumi.output(args).apply((a: any) => cloudServers(a, opts))
 }

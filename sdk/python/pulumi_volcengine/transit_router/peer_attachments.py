@@ -18,6 +18,8 @@ __all__ = [
     'peer_attachments_output',
 ]
 
+warnings.warn("""volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments""", DeprecationWarning)
+
 @pulumi.output_type
 class PeerAttachmentsResult:
     """
@@ -174,7 +176,7 @@ def peer_attachments(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.transit_router.peer_attachments(ids=["tr-attach-12be67d0yh2io17q7y1au****"])
+    foo = volcengine.transit_router.get_peer_attachments(ids=["tr-attach-12be67d0yh2io17q7y1au****"])
     ```
 
 
@@ -187,6 +189,7 @@ def peer_attachments(ids: Optional[Sequence[str]] = None,
     :param str transit_router_attachment_name: The name of transit router peer attachment.
     :param str transit_router_id: The id of local transit router.
     """
+    pulumi.log.warn("""peer_attachments is deprecated: volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -231,7 +234,7 @@ def peer_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.transit_router.peer_attachments(ids=["tr-attach-12be67d0yh2io17q7y1au****"])
+    foo = volcengine.transit_router.get_peer_attachments(ids=["tr-attach-12be67d0yh2io17q7y1au****"])
     ```
 
 
@@ -244,4 +247,5 @@ def peer_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
     :param str transit_router_attachment_name: The name of transit router peer attachment.
     :param str transit_router_id: The id of local transit router.
     """
+    pulumi.log.warn("""peer_attachments is deprecated: volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments""")
     ...

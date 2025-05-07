@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.kafka.Regions({});
+ * const default = volcengine.kafka.getRegions({});
  * ```
  */
+/** @deprecated volcengine.kafka.Regions has been deprecated in favor of volcengine.kafka.getRegions */
 export function regions(args?: RegionsArgs, opts?: pulumi.InvokeOptions): Promise<RegionsResult> {
+    pulumi.log.warn("regions is deprecated: volcengine.kafka.Regions has been deprecated in favor of volcengine.kafka.getRegions")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface RegionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.kafka.Regions({});
+ * const default = volcengine.kafka.getRegions({});
  * ```
  */
+/** @deprecated volcengine.kafka.Regions has been deprecated in favor of volcengine.kafka.getRegions */
 export function regionsOutput(args?: RegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RegionsResult> {
     return pulumi.output(args).apply((a: any) => regions(a, opts))
 }

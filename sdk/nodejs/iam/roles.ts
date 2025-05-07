@@ -29,12 +29,14 @@ import * as utilities from "../utilities";
  *     roleName: "acc-test-role2",
  *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
  * });
- * const foo = volcengine.iam.RolesOutput({
+ * const foo = volcengine.iam.getRolesOutput({
  *     roleName: pulumi.interpolate`${foo1.roleName},${foo2.roleName}`,
  * });
  * ```
  */
+/** @deprecated volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles */
 export function roles(args?: RolesArgs, opts?: pulumi.InvokeOptions): Promise<RolesResult> {
+    pulumi.log.warn("roles is deprecated: volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -115,11 +117,12 @@ export interface RolesResult {
  *     roleName: "acc-test-role2",
  *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
  * });
- * const foo = volcengine.iam.RolesOutput({
+ * const foo = volcengine.iam.getRolesOutput({
  *     roleName: pulumi.interpolate`${foo1.roleName},${foo2.roleName}`,
  * });
  * ```
  */
+/** @deprecated volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles */
 export function rolesOutput(args?: RolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RolesResult> {
     return pulumi.output(args).apply((a: any) => roles(a, opts))
 }

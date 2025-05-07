@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Veenedge
 {
+    [Obsolete(@"volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes")]
     public static class InstanceTypes
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.InstanceTypes.Invoke();
+        ///     var @default = Volcengine.Veenedge.GetInstanceTypes.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.InstanceTypes.Invoke();
+        ///     var @default = Volcengine.Veenedge.GetInstanceTypes.Invoke();
         /// 
         /// });
         /// ```

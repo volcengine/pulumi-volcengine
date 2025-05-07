@@ -56,13 +56,15 @@ import (
 // }
 // fooAutoSnapshotPolicy = append(fooAutoSnapshotPolicy, __res)
 // }
-// _ = ebs.AutoSnapshotPoliciesOutput(ctx, ebs.AutoSnapshotPoliciesOutputArgs{
+// _ = ebs.GetAutoSnapshotPoliciesOutput(ctx, ebs.GetAutoSnapshotPoliciesOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:ebs-autoSnapshotPolicies:AutoSnapshotPolicies.pp:16,9-36),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies
 func AutoSnapshotPolicies(ctx *pulumi.Context, args *AutoSnapshotPoliciesArgs, opts ...pulumi.InvokeOption) (*AutoSnapshotPoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AutoSnapshotPoliciesResult

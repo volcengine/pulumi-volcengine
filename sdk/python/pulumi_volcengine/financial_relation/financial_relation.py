@@ -198,6 +198,23 @@ class FinancialRelation(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage financial relation
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo = volcengine.financial_relation.FinancialRelation("foo",
+            account_alias="acc-test-financial",
+            auth_lists=[
+                1,
+                2,
+                3,
+            ],
+            relation=4,
+            sub_account_id=2100260000)
+        ```
+
         ## Import
 
         FinancialRelation can be imported using the sub_account_id:relation:relation_id, e.g.
@@ -221,6 +238,23 @@ class FinancialRelation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage financial relation
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo = volcengine.financial_relation.FinancialRelation("foo",
+            account_alias="acc-test-financial",
+            auth_lists=[
+                1,
+                2,
+                3,
+            ],
+            relation=4,
+            sub_account_id=2100260000)
+        ```
+
         ## Import
 
         FinancialRelation can be imported using the sub_account_id:relation:relation_id, e.g.

@@ -70,6 +70,31 @@ export const cfwVpcFirewallAclRules: typeof import("./cfwVpcFirewallAclRules").c
 export const cfwVpcFirewallAclRulesOutput: typeof import("./cfwVpcFirewallAclRules").cfwVpcFirewallAclRulesOutput = null as any;
 utilities.lazyLoad(exports, ["cfwVpcFirewallAclRules","cfwVpcFirewallAclRulesOutput"], () => require("./cfwVpcFirewallAclRules"));
 
+export { GetCfwAddressBooksArgs, GetCfwAddressBooksResult, GetCfwAddressBooksOutputArgs } from "./getCfwAddressBooks";
+export const getCfwAddressBooks: typeof import("./getCfwAddressBooks").getCfwAddressBooks = null as any;
+export const getCfwAddressBooksOutput: typeof import("./getCfwAddressBooks").getCfwAddressBooksOutput = null as any;
+utilities.lazyLoad(exports, ["getCfwAddressBooks","getCfwAddressBooksOutput"], () => require("./getCfwAddressBooks"));
+
+export { GetCfwControlPoliciesArgs, GetCfwControlPoliciesResult, GetCfwControlPoliciesOutputArgs } from "./getCfwControlPolicies";
+export const getCfwControlPolicies: typeof import("./getCfwControlPolicies").getCfwControlPolicies = null as any;
+export const getCfwControlPoliciesOutput: typeof import("./getCfwControlPolicies").getCfwControlPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getCfwControlPolicies","getCfwControlPoliciesOutput"], () => require("./getCfwControlPolicies"));
+
+export { GetCfwDnsControlPoliciesArgs, GetCfwDnsControlPoliciesResult, GetCfwDnsControlPoliciesOutputArgs } from "./getCfwDnsControlPolicies";
+export const getCfwDnsControlPolicies: typeof import("./getCfwDnsControlPolicies").getCfwDnsControlPolicies = null as any;
+export const getCfwDnsControlPoliciesOutput: typeof import("./getCfwDnsControlPolicies").getCfwDnsControlPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getCfwDnsControlPolicies","getCfwDnsControlPoliciesOutput"], () => require("./getCfwDnsControlPolicies"));
+
+export { GetCfwNatFirewallControlPoliciesArgs, GetCfwNatFirewallControlPoliciesResult, GetCfwNatFirewallControlPoliciesOutputArgs } from "./getCfwNatFirewallControlPolicies";
+export const getCfwNatFirewallControlPolicies: typeof import("./getCfwNatFirewallControlPolicies").getCfwNatFirewallControlPolicies = null as any;
+export const getCfwNatFirewallControlPoliciesOutput: typeof import("./getCfwNatFirewallControlPolicies").getCfwNatFirewallControlPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getCfwNatFirewallControlPolicies","getCfwNatFirewallControlPoliciesOutput"], () => require("./getCfwNatFirewallControlPolicies"));
+
+export { GetCfwVpcFirewallAclRulesArgs, GetCfwVpcFirewallAclRulesResult, GetCfwVpcFirewallAclRulesOutputArgs } from "./getCfwVpcFirewallAclRules";
+export const getCfwVpcFirewallAclRules: typeof import("./getCfwVpcFirewallAclRules").getCfwVpcFirewallAclRules = null as any;
+export const getCfwVpcFirewallAclRulesOutput: typeof import("./getCfwVpcFirewallAclRules").getCfwVpcFirewallAclRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getCfwVpcFirewallAclRules","getCfwVpcFirewallAclRulesOutput"], () => require("./getCfwVpcFirewallAclRules"));
+
 
 const _module = {
     version: utilities.getVersion(),

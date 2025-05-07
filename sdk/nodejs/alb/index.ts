@@ -55,6 +55,66 @@ export const customizedCfgs: typeof import("./customizedCfgs").customizedCfgs = 
 export const customizedCfgsOutput: typeof import("./customizedCfgs").customizedCfgsOutput = null as any;
 utilities.lazyLoad(exports, ["customizedCfgs","customizedCfgsOutput"], () => require("./customizedCfgs"));
 
+export { GetAclsArgs, GetAclsResult, GetAclsOutputArgs } from "./getAcls";
+export const getAcls: typeof import("./getAcls").getAcls = null as any;
+export const getAclsOutput: typeof import("./getAcls").getAclsOutput = null as any;
+utilities.lazyLoad(exports, ["getAcls","getAclsOutput"], () => require("./getAcls"));
+
+export { GetAlbsArgs, GetAlbsResult, GetAlbsOutputArgs } from "./getAlbs";
+export const getAlbs: typeof import("./getAlbs").getAlbs = null as any;
+export const getAlbsOutput: typeof import("./getAlbs").getAlbsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlbs","getAlbsOutput"], () => require("./getAlbs"));
+
+export { GetCaCertificatesArgs, GetCaCertificatesResult, GetCaCertificatesOutputArgs } from "./getCaCertificates";
+export const getCaCertificates: typeof import("./getCaCertificates").getCaCertificates = null as any;
+export const getCaCertificatesOutput: typeof import("./getCaCertificates").getCaCertificatesOutput = null as any;
+utilities.lazyLoad(exports, ["getCaCertificates","getCaCertificatesOutput"], () => require("./getCaCertificates"));
+
+export { GetCertificatesArgs, GetCertificatesResult, GetCertificatesOutputArgs } from "./getCertificates";
+export const getCertificates: typeof import("./getCertificates").getCertificates = null as any;
+export const getCertificatesOutput: typeof import("./getCertificates").getCertificatesOutput = null as any;
+utilities.lazyLoad(exports, ["getCertificates","getCertificatesOutput"], () => require("./getCertificates"));
+
+export { GetCustomizedCfgsArgs, GetCustomizedCfgsResult, GetCustomizedCfgsOutputArgs } from "./getCustomizedCfgs";
+export const getCustomizedCfgs: typeof import("./getCustomizedCfgs").getCustomizedCfgs = null as any;
+export const getCustomizedCfgsOutput: typeof import("./getCustomizedCfgs").getCustomizedCfgsOutput = null as any;
+utilities.lazyLoad(exports, ["getCustomizedCfgs","getCustomizedCfgsOutput"], () => require("./getCustomizedCfgs"));
+
+export { GetHealthCheckTemplatesArgs, GetHealthCheckTemplatesResult, GetHealthCheckTemplatesOutputArgs } from "./getHealthCheckTemplates";
+export const getHealthCheckTemplates: typeof import("./getHealthCheckTemplates").getHealthCheckTemplates = null as any;
+export const getHealthCheckTemplatesOutput: typeof import("./getHealthCheckTemplates").getHealthCheckTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getHealthCheckTemplates","getHealthCheckTemplatesOutput"], () => require("./getHealthCheckTemplates"));
+
+export { GetListenerDomainExtensionsArgs, GetListenerDomainExtensionsResult, GetListenerDomainExtensionsOutputArgs } from "./getListenerDomainExtensions";
+export const getListenerDomainExtensions: typeof import("./getListenerDomainExtensions").getListenerDomainExtensions = null as any;
+export const getListenerDomainExtensionsOutput: typeof import("./getListenerDomainExtensions").getListenerDomainExtensionsOutput = null as any;
+utilities.lazyLoad(exports, ["getListenerDomainExtensions","getListenerDomainExtensionsOutput"], () => require("./getListenerDomainExtensions"));
+
+export { GetListenersArgs, GetListenersResult, GetListenersOutputArgs } from "./getListeners";
+export const getListeners: typeof import("./getListeners").getListeners = null as any;
+export const getListenersOutput: typeof import("./getListeners").getListenersOutput = null as any;
+utilities.lazyLoad(exports, ["getListeners","getListenersOutput"], () => require("./getListeners"));
+
+export { GetRulesArgs, GetRulesResult, GetRulesOutputArgs } from "./getRules";
+export const getRules: typeof import("./getRules").getRules = null as any;
+export const getRulesOutput: typeof import("./getRules").getRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getRules","getRulesOutput"], () => require("./getRules"));
+
+export { GetServerGroupServersArgs, GetServerGroupServersResult, GetServerGroupServersOutputArgs } from "./getServerGroupServers";
+export const getServerGroupServers: typeof import("./getServerGroupServers").getServerGroupServers = null as any;
+export const getServerGroupServersOutput: typeof import("./getServerGroupServers").getServerGroupServersOutput = null as any;
+utilities.lazyLoad(exports, ["getServerGroupServers","getServerGroupServersOutput"], () => require("./getServerGroupServers"));
+
+export { GetServerGroupsArgs, GetServerGroupsResult, GetServerGroupsOutputArgs } from "./getServerGroups";
+export const getServerGroups: typeof import("./getServerGroups").getServerGroups = null as any;
+export const getServerGroupsOutput: typeof import("./getServerGroups").getServerGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getServerGroups","getServerGroupsOutput"], () => require("./getServerGroups"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { HealthCheckTemplateArgs, HealthCheckTemplateState } from "./healthCheckTemplate";
 export type HealthCheckTemplate = import("./healthCheckTemplate").HealthCheckTemplate;
 export const HealthCheckTemplate: typeof import("./healthCheckTemplate").HealthCheckTemplate = null as any;

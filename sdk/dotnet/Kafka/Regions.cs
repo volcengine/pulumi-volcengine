@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Kafka
 {
+    [Obsolete(@"volcengine.kafka.Regions has been deprecated in favor of volcengine.kafka.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Kafka.Regions.Invoke();
+        ///     var @default = Volcengine.Kafka.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Kafka.Regions.Invoke();
+        ///     var @default = Volcengine.Kafka.GetRegions.Invoke();
         /// 
         /// });
         /// ```

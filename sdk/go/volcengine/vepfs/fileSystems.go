@@ -61,7 +61,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vepfs.FileSystemsOutput(ctx, vepfs.FileSystemsOutputArgs{
+//			_ = vepfs.GetFileSystemsOutput(ctx, vepfs.GetFileSystemsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooFileSystem.ID(),
 //				},
@@ -71,6 +71,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vepfs.FileSystems has been deprecated in favor of volcengine.vepfs.getFileSystems
 func FileSystems(ctx *pulumi.Context, args *FileSystemsArgs, opts ...pulumi.InvokeOption) (*FileSystemsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FileSystemsResult

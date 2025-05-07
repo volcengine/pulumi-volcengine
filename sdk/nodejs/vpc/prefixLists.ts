@@ -35,12 +35,14 @@ import * as utilities from "../utilities";
  *         value: "tf-value1",
  *     }],
  * });
- * const fooPrefixLists = volcengine.vpc.PrefixListsOutput({
+ * const fooPrefixLists = volcengine.vpc.getPrefixListsOutput({
  *     ids: [fooPrefixList.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists */
 export function prefixLists(args?: PrefixListsArgs, opts?: pulumi.InvokeOptions): Promise<PrefixListsResult> {
+    pulumi.log.warn("prefixLists is deprecated: volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -136,11 +138,12 @@ export interface PrefixListsResult {
  *         value: "tf-value1",
  *     }],
  * });
- * const fooPrefixLists = volcengine.vpc.PrefixListsOutput({
+ * const fooPrefixLists = volcengine.vpc.getPrefixListsOutput({
  *     ids: [fooPrefixList.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.PrefixLists has been deprecated in favor of volcengine.vpc.getPrefixLists */
 export function prefixListsOutput(args?: PrefixListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PrefixListsResult> {
     return pulumi.output(args).apply((a: any) => prefixLists(a, opts))
 }

@@ -29,7 +29,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -82,13 +82,15 @@ import (
 // }
 // fooScalingGroup = append(fooScalingGroup, __res)
 // }
-// _ = autoscaling.ScalingGroupsOutput(ctx, autoscaling.ScalingGroupsOutputArgs{
+// _ = autoscaling.GetScalingGroupsOutput(ctx, autoscaling.GetScalingGroupsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:autoscaling-scalingGroups:ScalingGroups.pp:35,9-30),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups
 func ScalingGroups(ctx *pulumi.Context, args *ScalingGroupsArgs, opts ...pulumi.InvokeOption) (*ScalingGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingGroupsResult

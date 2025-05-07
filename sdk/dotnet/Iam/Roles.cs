@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Iam
 {
+    [Obsolete(@"volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles")]
     public static class Roles
     {
         /// <summary>
@@ -41,7 +42,7 @@ namespace Pulumi.Volcengine.Iam
         ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
         ///     });
         /// 
-        ///     var foo = Volcengine.Iam.Roles.Invoke(new()
+        ///     var foo = Volcengine.Iam.GetRoles.Invoke(new()
         ///     {
         ///         RoleName = $"{foo1.RoleName},{foo2.RoleName}",
         ///     });
@@ -82,7 +83,7 @@ namespace Pulumi.Volcengine.Iam
         ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
         ///     });
         /// 
-        ///     var foo = Volcengine.Iam.Roles.Invoke(new()
+        ///     var foo = Volcengine.Iam.GetRoles.Invoke(new()
         ///     {
         ///         RoleName = $"{foo1.RoleName},{foo2.RoleName}",
         ///     });

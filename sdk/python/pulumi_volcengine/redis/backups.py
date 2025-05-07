@@ -17,6 +17,8 @@ __all__ = [
     'backups_output',
 ]
 
+warnings.warn("""volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class BackupsResult:
     """
@@ -137,7 +139,7 @@ def backups(backup_strategy_lists: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -164,7 +166,7 @@ def backups(backup_strategy_lists: Optional[Sequence[str]] = None,
     foo_backup = []
     for range in [{"value": i} for i in range(0, 3)]:
         foo_backup.append(volcengine.redis.Backup(f"fooBackup-{range['value']}", instance_id=foo_instance.id))
-    foo_backups = volcengine.redis.backups_output(instance_id=foo_instance.id)
+    foo_backups = volcengine.redis.get_backups_output(instance_id=foo_instance.id)
     ```
 
 
@@ -174,6 +176,7 @@ def backups(backup_strategy_lists: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str start_time: Query start time.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups""")
     __args__ = dict()
     __args__['backupStrategyLists'] = backup_strategy_lists
     __args__['endTime'] = end_time
@@ -209,7 +212,7 @@ def backups_output(backup_strategy_lists: Optional[pulumi.Input[Optional[Sequenc
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -236,7 +239,7 @@ def backups_output(backup_strategy_lists: Optional[pulumi.Input[Optional[Sequenc
     foo_backup = []
     for range in [{"value": i} for i in range(0, 3)]:
         foo_backup.append(volcengine.redis.Backup(f"fooBackup-{range['value']}", instance_id=foo_instance.id))
-    foo_backups = volcengine.redis.backups_output(instance_id=foo_instance.id)
+    foo_backups = volcengine.redis.get_backups_output(instance_id=foo_instance.id)
     ```
 
 
@@ -246,4 +249,5 @@ def backups_output(backup_strategy_lists: Optional[pulumi.Input[Optional[Sequenc
     :param str output_file: File name where to save data source results.
     :param str start_time: Query start time.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups""")
     ...

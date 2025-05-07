@@ -13,6 +13,12 @@ from .gateway import *
 from .gateway_route import *
 from .gateway_routes import *
 from .gateways import *
+from .get_connections import *
+from .get_customer_gateways import *
+from .get_gateway_routes import *
+from .get_gateways import *
+from .get_ssl_vpn_client_certs import *
+from .get_ssl_vpn_servers import *
 from .ssl_vpn_client_cert import *
 from .ssl_vpn_client_certs import *
 from .ssl_vpn_server import *

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.VpnAttachments(ctx, &transit_router.VpnAttachmentsArgs{
+//			_, err := transit_router.GetVpnAttachments(ctx, &transit_router.GetVpnAttachmentsArgs{
 //				Ids: []string{
 //					"tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments
 func VpnAttachments(ctx *pulumi.Context, args *VpnAttachmentsArgs, opts ...pulumi.InvokeOption) (*VpnAttachmentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpnAttachmentsResult

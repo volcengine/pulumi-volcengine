@@ -17,6 +17,8 @@ __all__ = [
     'server_groups_output',
 ]
 
+warnings.warn("""volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class ServerGroupsResult:
     """
@@ -167,7 +169,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
                 sticky_session_type="insert",
                 cookie_timeout=1100,
             )))
-    foo_server_groups = volcengine.alb.server_groups_output(ids=[__item.id for __item in foo_server_group])
+    foo_server_groups = volcengine.alb.get_server_groups_output(ids=[__item.id for __item in foo_server_group])
     ```
 
 
@@ -178,6 +180,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] server_group_names: A list of Alb server group name.
     :param str server_group_type: The type of Alb server group. Valid values: `instance`, `ip`.
     """
+    pulumi.log.warn("""server_groups is deprecated: volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -239,7 +242,7 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
                 sticky_session_type="insert",
                 cookie_timeout=1100,
             )))
-    foo_server_groups = volcengine.alb.server_groups_output(ids=[__item.id for __item in foo_server_group])
+    foo_server_groups = volcengine.alb.get_server_groups_output(ids=[__item.id for __item in foo_server_group])
     ```
 
 
@@ -250,4 +253,5 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param Sequence[str] server_group_names: A list of Alb server group name.
     :param str server_group_type: The type of Alb server group. Valid values: `instance`, `ip`.
     """
+    pulumi.log.warn("""server_groups is deprecated: volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups""")
     ...

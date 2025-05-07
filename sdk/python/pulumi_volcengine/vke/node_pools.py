@@ -18,6 +18,8 @@ __all__ = [
     'node_pools_output',
 ]
 
+warnings.warn("""volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools""", DeprecationWarning)
+
 @pulumi.output_type
 class NodePoolsResult:
     """
@@ -204,7 +206,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -216,7 +218,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+    foo_images = volcengine.ecs.get_images(name_regex="veLinux 1.0 CentOS兼容版 64位")
     foo_cluster = volcengine.vke.Cluster("fooCluster",
         description="created by terraform",
         delete_protection_enabled=False,
@@ -308,7 +310,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
                 key="node-pool-k1",
                 value="node-pool-v1",
             )]))
-    foo_node_pools = volcengine.vke.node_pools_output(ids=[__item.id for __item in foo_node_pool])
+    foo_node_pools = volcengine.vke.get_node_pools_output(ids=[__item.id for __item in foo_node_pool])
     ```
 
 
@@ -324,6 +326,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     :param Sequence[pulumi.InputType['NodePoolsTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when last update was successful.
     """
+    pulumi.log.warn("""node_pools is deprecated: volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools""")
     __args__ = dict()
     __args__['autoScalingEnabled'] = auto_scaling_enabled
     __args__['clusterId'] = cluster_id
@@ -377,7 +380,7 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -389,7 +392,7 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+    foo_images = volcengine.ecs.get_images(name_regex="veLinux 1.0 CentOS兼容版 64位")
     foo_cluster = volcengine.vke.Cluster("fooCluster",
         description="created by terraform",
         delete_protection_enabled=False,
@@ -481,7 +484,7 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
                 key="node-pool-k1",
                 value="node-pool-v1",
             )]))
-    foo_node_pools = volcengine.vke.node_pools_output(ids=[__item.id for __item in foo_node_pool])
+    foo_node_pools = volcengine.vke.get_node_pools_output(ids=[__item.id for __item in foo_node_pool])
     ```
 
 
@@ -497,4 +500,5 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
     :param Sequence[pulumi.InputType['NodePoolsTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when last update was successful.
     """
+    pulumi.log.warn("""node_pools is deprecated: volcengine.vke.NodePools has been deprecated in favor of volcengine.vke.getNodePools""")
     ...

@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.ParameterTemplates({});
+ * const default = volcengine.rds.getParameterTemplates({});
  * ```
  */
+/** @deprecated volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates */
 export function parameterTemplates(args?: ParameterTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<ParameterTemplatesResult> {
+    pulumi.log.warn("parameterTemplates is deprecated: volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -107,9 +109,10 @@ export interface ParameterTemplatesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.ParameterTemplates({});
+ * const default = volcengine.rds.getParameterTemplates({});
  * ```
  */
+/** @deprecated volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates */
 export function parameterTemplatesOutput(args?: ParameterTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ParameterTemplatesResult> {
     return pulumi.output(args).apply((a: any) => parameterTemplates(a, opts))
 }

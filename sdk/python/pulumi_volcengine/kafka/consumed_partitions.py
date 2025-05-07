@@ -17,6 +17,8 @@ __all__ = [
     'consumed_partitions_output',
 ]
 
+warnings.warn("""volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions""", DeprecationWarning)
+
 @pulumi.output_type
 class ConsumedPartitionsResult:
     """
@@ -118,7 +120,7 @@ def consumed_partitions(group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -180,7 +182,7 @@ def consumed_partitions(group_id: Optional[str] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = volcengine.kafka.consumed_partitions_output(instance_id=foo_instance.id,
+    default = volcengine.kafka.get_consumed_partitions_output(instance_id=foo_instance.id,
         group_id=foo_group.group_id,
         topic_name=foo_topic.topic_name)
     ```
@@ -191,6 +193,7 @@ def consumed_partitions(group_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str topic_name: The name of kafka topic.
     """
+    pulumi.log.warn("""consumed_partitions is deprecated: volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions""")
     __args__ = dict()
     __args__['groupId'] = group_id
     __args__['instanceId'] = instance_id
@@ -223,7 +226,7 @@ def consumed_partitions_output(group_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -285,7 +288,7 @@ def consumed_partitions_output(group_id: Optional[pulumi.Input[str]] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = volcengine.kafka.consumed_partitions_output(instance_id=foo_instance.id,
+    default = volcengine.kafka.get_consumed_partitions_output(instance_id=foo_instance.id,
         group_id=foo_group.group_id,
         topic_name=foo_topic.topic_name)
     ```
@@ -296,4 +299,5 @@ def consumed_partitions_output(group_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str topic_name: The name of kafka topic.
     """
+    pulumi.log.warn("""consumed_partitions is deprecated: volcengine.kafka.ConsumedPartitions has been deprecated in favor of volcengine.kafka.getConsumedPartitions""")
     ...

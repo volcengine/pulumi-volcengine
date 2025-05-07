@@ -17,6 +17,8 @@ __all__ = [
     'groups_output',
 ]
 
+warnings.warn("""volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class GroupsResult:
     """
@@ -121,7 +123,7 @@ def groups(group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -160,7 +162,7 @@ def groups(group_id: Optional[str] = None,
         instance_id=foo_instance.id,
         group_id="acc-test-group",
         description="tf-test")
-    default = volcengine.kafka.groups_output(instance_id=foo_group.instance_id)
+    default = volcengine.kafka.get_groups_output(instance_id=foo_group.instance_id)
     ```
 
 
@@ -169,6 +171,7 @@ def groups(group_id: Optional[str] = None,
     :param str name_regex: A Name Regex of kafka group.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""groups is deprecated: volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups""")
     __args__ = dict()
     __args__['groupId'] = group_id
     __args__['instanceId'] = instance_id
@@ -201,7 +204,7 @@ def groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -240,7 +243,7 @@ def groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
         instance_id=foo_instance.id,
         group_id="acc-test-group",
         description="tf-test")
-    default = volcengine.kafka.groups_output(instance_id=foo_group.instance_id)
+    default = volcengine.kafka.get_groups_output(instance_id=foo_group.instance_id)
     ```
 
 
@@ -249,4 +252,5 @@ def groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of kafka group.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""groups is deprecated: volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups""")
     ...

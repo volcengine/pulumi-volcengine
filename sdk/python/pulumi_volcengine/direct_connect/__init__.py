@@ -13,6 +13,11 @@ from .gateway import *
 from .gateway_route import *
 from .gateway_routes import *
 from .gateways import *
+from .get_bgp_peers import *
+from .get_connections import *
+from .get_gateway_routes import *
+from .get_gateways import *
+from .get_virtual_interfaces import *
 from .virtual_interface import *
 from .virtual_interfaces import *
 from ._inputs import *

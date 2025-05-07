@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -113,7 +113,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = kafka.TopicsOutput(ctx, kafka.TopicsOutputArgs{
+//			_ = kafka.GetTopicsOutput(ctx, kafka.GetTopicsOutputArgs{
 //				InstanceId: fooTopic.InstanceId,
 //			}, nil)
 //			return nil
@@ -121,6 +121,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.Topics has been deprecated in favor of volcengine.kafka.getTopics
 func Topics(ctx *pulumi.Context, args *TopicsArgs, opts ...pulumi.InvokeOption) (*TopicsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TopicsResult

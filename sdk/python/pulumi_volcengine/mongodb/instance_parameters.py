@@ -17,6 +17,8 @@ __all__ = [
     'instance_parameters_output',
 ]
 
+warnings.warn("""volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters""", DeprecationWarning)
+
 @pulumi.output_type
 class InstanceParametersResult:
     """
@@ -139,7 +141,7 @@ def instance_parameters(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -171,7 +173,7 @@ def instance_parameters(instance_id: Optional[str] = None,
         parameter_name="cursorTimeoutMillis",
         parameter_role="Node",
         parameter_value="600111")
-    foo_instance_parameters = volcengine.mongodb.instance_parameters_output(instance_id=foo_instance.id,
+    foo_instance_parameters = volcengine.mongodb.get_instance_parameters_output(instance_id=foo_instance.id,
         parameter_names="cursorTimeoutMillis",
         parameter_role="Node")
     ```
@@ -182,6 +184,7 @@ def instance_parameters(instance_id: Optional[str] = None,
     :param str parameter_names: The parameter names, support fuzzy query, case insensitive.
     :param str parameter_role: The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
     """
+    pulumi.log.warn("""instance_parameters is deprecated: volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
@@ -215,7 +218,7 @@ def instance_parameters_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -247,7 +250,7 @@ def instance_parameters_output(instance_id: Optional[pulumi.Input[str]] = None,
         parameter_name="cursorTimeoutMillis",
         parameter_role="Node",
         parameter_value="600111")
-    foo_instance_parameters = volcengine.mongodb.instance_parameters_output(instance_id=foo_instance.id,
+    foo_instance_parameters = volcengine.mongodb.get_instance_parameters_output(instance_id=foo_instance.id,
         parameter_names="cursorTimeoutMillis",
         parameter_role="Node")
     ```
@@ -258,4 +261,5 @@ def instance_parameters_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str parameter_names: The parameter names, support fuzzy query, case insensitive.
     :param str parameter_role: The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
     """
+    pulumi.log.warn("""instance_parameters is deprecated: volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters""")
     ...

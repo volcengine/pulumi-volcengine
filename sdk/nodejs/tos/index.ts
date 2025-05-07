@@ -45,6 +45,21 @@ export const buckets: typeof import("./buckets").buckets = null as any;
 export const bucketsOutput: typeof import("./buckets").bucketsOutput = null as any;
 utilities.lazyLoad(exports, ["buckets","bucketsOutput"], () => require("./buckets"));
 
+export { GetBucketInventoriesArgs, GetBucketInventoriesResult, GetBucketInventoriesOutputArgs } from "./getBucketInventories";
+export const getBucketInventories: typeof import("./getBucketInventories").getBucketInventories = null as any;
+export const getBucketInventoriesOutput: typeof import("./getBucketInventories").getBucketInventoriesOutput = null as any;
+utilities.lazyLoad(exports, ["getBucketInventories","getBucketInventoriesOutput"], () => require("./getBucketInventories"));
+
+export { GetBucketObjectsArgs, GetBucketObjectsResult, GetBucketObjectsOutputArgs } from "./getBucketObjects";
+export const getBucketObjects: typeof import("./getBucketObjects").getBucketObjects = null as any;
+export const getBucketObjectsOutput: typeof import("./getBucketObjects").getBucketObjectsOutput = null as any;
+utilities.lazyLoad(exports, ["getBucketObjects","getBucketObjectsOutput"], () => require("./getBucketObjects"));
+
+export { GetBucketsArgs, GetBucketsResult, GetBucketsOutputArgs } from "./getBuckets";
+export const getBuckets: typeof import("./getBuckets").getBuckets = null as any;
+export const getBucketsOutput: typeof import("./getBuckets").getBucketsOutput = null as any;
+utilities.lazyLoad(exports, ["getBuckets","getBucketsOutput"], () => require("./getBuckets"));
+
 
 const _module = {
     version: utilities.getVersion(),

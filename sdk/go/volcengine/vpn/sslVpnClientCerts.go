@@ -29,7 +29,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -95,13 +95,15 @@ import (
 // }
 // fooSslVpnClientCert = append(fooSslVpnClientCert, __res)
 // }
-// _ = vpn.SslVpnClientCertsOutput(ctx, vpn.SslVpnClientCertsOutputArgs{
+// _ = vpn.GetSslVpnClientCertsOutput(ctx, vpn.GetSslVpnClientCertsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:vpn-sslVpnClientCerts:SslVpnClientCerts.pp:44,9-34),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts
 func SslVpnClientCerts(ctx *pulumi.Context, args *SslVpnClientCertsArgs, opts ...pulumi.InvokeOption) (*SslVpnClientCertsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SslVpnClientCertsResult

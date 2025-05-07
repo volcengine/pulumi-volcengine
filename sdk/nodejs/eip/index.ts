@@ -20,6 +20,11 @@ export type Associate = import("./associate").Associate;
 export const Associate: typeof import("./associate").Associate = null as any;
 utilities.lazyLoad(exports, ["Associate"], () => require("./associate"));
 
+export { GetAddressesArgs, GetAddressesResult, GetAddressesOutputArgs } from "./getAddresses";
+export const getAddresses: typeof import("./getAddresses").getAddresses = null as any;
+export const getAddressesOutput: typeof import("./getAddresses").getAddressesOutput = null as any;
+utilities.lazyLoad(exports, ["getAddresses","getAddressesOutput"], () => require("./getAddresses"));
+
 
 const _module = {
     version: utilities.getVersion(),

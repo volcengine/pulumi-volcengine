@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := direct_connect.VirtualInterfaces(ctx, &direct_connect.VirtualInterfacesArgs{
+//			_, err := direct_connect.GetVirtualInterfaces(ctx, &direct_connect.GetVirtualInterfacesArgs{
 //				VirtualInterfaceName: pulumi.StringRef("tf-test"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.direct_connect.VirtualInterfaces has been deprecated in favor of volcengine.direct_connect.getVirtualInterfaces
 func VirtualInterfaces(ctx *pulumi.Context, args *VirtualInterfacesArgs, opts ...pulumi.InvokeOption) (*VirtualInterfacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VirtualInterfacesResult

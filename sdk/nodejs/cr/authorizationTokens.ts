@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.AuthorizationTokens({
+ * const foo = volcengine.cr.getAuthorizationTokens({
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens */
 export function authorizationTokens(args: AuthorizationTokensArgs, opts?: pulumi.InvokeOptions): Promise<AuthorizationTokensResult> {
+    pulumi.log.warn("authorizationTokens is deprecated: volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/authorizationTokens:AuthorizationTokens", {
@@ -69,11 +71,12 @@ export interface AuthorizationTokensResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.AuthorizationTokens({
+ * const foo = volcengine.cr.getAuthorizationTokens({
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens */
 export function authorizationTokensOutput(args: AuthorizationTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AuthorizationTokensResult> {
     return pulumi.output(args).apply((a: any) => authorizationTokens(a, opts))
 }

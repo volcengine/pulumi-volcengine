@@ -17,6 +17,8 @@ __all__ = [
     'backups_output',
 ]
 
+warnings.warn("""volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class BackupsResult:
     """
@@ -194,7 +196,7 @@ def backups(backup_end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.backups(backup_end_time="",
+    foo = volcengine.rds_mysql.get_backups(backup_end_time="",
         backup_id="",
         backup_method="",
         backup_start_time="",
@@ -215,6 +217,7 @@ def backups(backup_end_time: Optional[str] = None,
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups""")
     __args__ = dict()
     __args__['backupEndTime'] = backup_end_time
     __args__['backupId'] = backup_id
@@ -262,7 +265,7 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.backups(backup_end_time="",
+    foo = volcengine.rds_mysql.get_backups(backup_end_time="",
         backup_id="",
         backup_method="",
         backup_start_time="",
@@ -283,4 +286,5 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     :param str instance_id: The id of the instance.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""backups is deprecated: volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups""")
     ...

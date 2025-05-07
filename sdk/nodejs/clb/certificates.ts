@@ -57,12 +57,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooCertificates = volcengine.clb.CertificatesOutput({
+ * const fooCertificates = volcengine.clb.getCertificatesOutput({
  *     ids: fooCertificate.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates */
 export function certificates(args?: CertificatesArgs, opts?: pulumi.InvokeOptions): Promise<CertificatesResult> {
+    pulumi.log.warn("certificates is deprecated: volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -189,11 +191,12 @@ export interface CertificatesResult {
  *         }],
  *     }));
  * }
- * const fooCertificates = volcengine.clb.CertificatesOutput({
+ * const fooCertificates = volcengine.clb.getCertificatesOutput({
  *     ids: fooCertificate.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates */
 export function certificatesOutput(args?: CertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CertificatesResult> {
     return pulumi.output(args).apply((a: any) => certificates(a, opts))
 }

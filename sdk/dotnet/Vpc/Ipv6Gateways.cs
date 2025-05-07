@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways")]
     public static class Ipv6Gateways
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Ipv6Gateways.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetIpv6Gateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Ipv6Gateways.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetIpv6Gateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

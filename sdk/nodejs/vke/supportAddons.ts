@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vke.SupportAddons({
+ * const default = volcengine.vke.getSupportAddons({
  *     categories: ["Monitor"],
  *     name: "metrics-server",
  * });
  * ```
  */
+/** @deprecated volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons */
 export function supportAddons(args?: SupportAddonsArgs, opts?: pulumi.InvokeOptions): Promise<SupportAddonsResult> {
+    pulumi.log.warn("supportAddons is deprecated: volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -116,12 +118,13 @@ export interface SupportAddonsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vke.SupportAddons({
+ * const default = volcengine.vke.getSupportAddons({
  *     categories: ["Monitor"],
  *     name: "metrics-server",
  * });
  * ```
  */
+/** @deprecated volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons */
 export function supportAddonsOutput(args?: SupportAddonsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SupportAddonsResult> {
     return pulumi.output(args).apply((a: any) => supportAddons(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Private_zone
 {
+    [Obsolete(@"volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules")]
     public static class ResolverRules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Private_zone.ResolverRules.Invoke();
+        ///     var foo = Volcengine.Private_zone.GetResolverRules.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Private_zone.ResolverRules.Invoke();
+        ///     var foo = Volcengine.Private_zone.GetResolverRules.Invoke();
         /// 
         /// });
         /// ```

@@ -18,6 +18,8 @@ __all__ = [
     'images_output',
 ]
 
+warnings.warn("""volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages""", DeprecationWarning)
+
 @pulumi.output_type
 class ImagesResult:
     """
@@ -220,7 +222,7 @@ def images(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.images(instance_type_id="ecs.g1.large",
+    foo = volcengine.ecs.get_images(instance_type_id="ecs.g1.large",
         os_type="Linux",
         visibility="public")
     ```
@@ -239,6 +241,7 @@ def images(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['ImagesTagArgs']] tags: Tags.
     :param str visibility: The visibility of Image.
     """
+    pulumi.log.warn("""images is deprecated: volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['imageName'] = image_name
@@ -295,7 +298,7 @@ def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.images(instance_type_id="ecs.g1.large",
+    foo = volcengine.ecs.get_images(instance_type_id="ecs.g1.large",
         os_type="Linux",
         visibility="public")
     ```
@@ -314,4 +317,5 @@ def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param Sequence[pulumi.InputType['ImagesTagArgs']] tags: Tags.
     :param str visibility: The visibility of Image.
     """
+    pulumi.log.warn("""images is deprecated: volcengine.ecs.Images has been deprecated in favor of volcengine.ecs.getImages""")
     ...

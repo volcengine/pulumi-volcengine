@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cen
 {
+    [Obsolete(@"volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens")]
     public static class Cens
     {
         /// <summary>
@@ -42,7 +43,7 @@ namespace Pulumi.Volcengine.Cen
         ///             },
         ///         }));
         ///     }
-        ///     var fooCens = Volcengine.Cen.Cens.Invoke(new()
+        ///     var fooCens = Volcengine.Cen.GetCens.Invoke(new()
         ///     {
         ///         Ids = fooCen.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -84,7 +85,7 @@ namespace Pulumi.Volcengine.Cen
         ///             },
         ///         }));
         ///     }
-        ///     var fooCens = Volcengine.Cen.Cens.Invoke(new()
+        ///     var fooCens = Volcengine.Cen.GetCens.Invoke(new()
         ///     {
         ///         Ids = fooCen.Select(__item =&gt; __item.Id).ToList(),
         ///     });

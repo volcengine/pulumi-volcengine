@@ -17,6 +17,8 @@ __all__ = [
     'vpc_endpoint_zones_output',
 ]
 
+warnings.warn("""volcengine.privatelink.VpcEndpointZones has been deprecated in favor of volcengine.privatelink.getVpcEndpointZones""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcEndpointZonesResult:
     """
@@ -98,7 +100,7 @@ def vpc_endpoint_zones(endpoint_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -142,13 +144,14 @@ def vpc_endpoint_zones(endpoint_id: Optional[str] = None,
         endpoint_id=foo_vpc_endpoint.id,
         subnet_id=foo_subnet.id,
         private_ip_address="172.16.0.251")
-    foo_vpc_endpoint_zones = volcengine.privatelink.vpc_endpoint_zones_output(endpoint_id=foo_vpc_endpoint_zone.endpoint_id)
+    foo_vpc_endpoint_zones = volcengine.privatelink.get_vpc_endpoint_zones_output(endpoint_id=foo_vpc_endpoint_zone.endpoint_id)
     ```
 
 
     :param str endpoint_id: The endpoint id of query.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""vpc_endpoint_zones is deprecated: volcengine.privatelink.VpcEndpointZones has been deprecated in favor of volcengine.privatelink.getVpcEndpointZones""")
     __args__ = dict()
     __args__['endpointId'] = endpoint_id
     __args__['outputFile'] = output_file
@@ -175,7 +178,7 @@ def vpc_endpoint_zones_output(endpoint_id: Optional[pulumi.Input[Optional[str]]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -219,11 +222,12 @@ def vpc_endpoint_zones_output(endpoint_id: Optional[pulumi.Input[Optional[str]]]
         endpoint_id=foo_vpc_endpoint.id,
         subnet_id=foo_subnet.id,
         private_ip_address="172.16.0.251")
-    foo_vpc_endpoint_zones = volcengine.privatelink.vpc_endpoint_zones_output(endpoint_id=foo_vpc_endpoint_zone.endpoint_id)
+    foo_vpc_endpoint_zones = volcengine.privatelink.get_vpc_endpoint_zones_output(endpoint_id=foo_vpc_endpoint_zone.endpoint_id)
     ```
 
 
     :param str endpoint_id: The endpoint id of query.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""vpc_endpoint_zones is deprecated: volcengine.privatelink.VpcEndpointZones has been deprecated in favor of volcengine.privatelink.getVpcEndpointZones""")
     ...

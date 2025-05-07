@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments")]
     public static class VpcAttachments
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Transit_router.VpcAttachments.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetVpcAttachments.Invoke(new()
         ///     {
         ///         TransitRouterAttachmentIds = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Transit_router.VpcAttachments.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetVpcAttachments.Invoke(new()
         ///     {
         ///         TransitRouterAttachmentIds = new[]
         ///         {

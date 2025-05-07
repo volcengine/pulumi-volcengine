@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds
 {
+    [Obsolete(@"volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates")]
     public static class ParameterTemplates
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds.ParameterTemplates.Invoke();
+        ///     var @default = Volcengine.Rds.GetParameterTemplates.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds.ParameterTemplates.Invoke();
+        ///     var @default = Volcengine.Rds.GetParameterTemplates.Invoke();
         /// 
         /// });
         /// ```

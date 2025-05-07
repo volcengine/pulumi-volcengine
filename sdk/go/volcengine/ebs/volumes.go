@@ -28,7 +28,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -53,13 +53,15 @@ import (
 // }
 // fooVolume = append(fooVolume, __res)
 // }
-// _ = ebs.VolumesOutput(ctx, ebs.VolumesOutputArgs{
+// _ = ebs.GetVolumesOutput(ctx, ebs.GetVolumesOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:ebs-volumes:Volumes.pp:17,9-24),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.ebs.Volumes has been deprecated in favor of volcengine.ebs.getVolumes
 func Volumes(ctx *pulumi.Context, args *VolumesArgs, opts ...pulumi.InvokeOption) (*VolumesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VolumesResult

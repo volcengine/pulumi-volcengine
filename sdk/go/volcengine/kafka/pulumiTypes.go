@@ -2591,6 +2591,2091 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 	}).(ZonesZoneOutput)
 }
 
+type GetConsumedPartitionsConsumedPartition struct {
+	// The total amount of message accumulation in this topic partition for the consumer group.
+	Accumulation int `pulumi:"accumulation"`
+	// The consumed client info of partition.
+	ConsumedClient string `pulumi:"consumedClient"`
+	// The consumed offset of partition.
+	ConsumedOffset int `pulumi:"consumedOffset"`
+	// The end offset of partition.
+	EndOffset int `pulumi:"endOffset"`
+	// The index number of partition.
+	PartitionId int `pulumi:"partitionId"`
+	// The start offset of partition.
+	StartOffset int `pulumi:"startOffset"`
+}
+
+// GetConsumedPartitionsConsumedPartitionInput is an input type that accepts GetConsumedPartitionsConsumedPartitionArgs and GetConsumedPartitionsConsumedPartitionOutput values.
+// You can construct a concrete instance of `GetConsumedPartitionsConsumedPartitionInput` via:
+//
+//	GetConsumedPartitionsConsumedPartitionArgs{...}
+type GetConsumedPartitionsConsumedPartitionInput interface {
+	pulumi.Input
+
+	ToGetConsumedPartitionsConsumedPartitionOutput() GetConsumedPartitionsConsumedPartitionOutput
+	ToGetConsumedPartitionsConsumedPartitionOutputWithContext(context.Context) GetConsumedPartitionsConsumedPartitionOutput
+}
+
+type GetConsumedPartitionsConsumedPartitionArgs struct {
+	// The total amount of message accumulation in this topic partition for the consumer group.
+	Accumulation pulumi.IntInput `pulumi:"accumulation"`
+	// The consumed client info of partition.
+	ConsumedClient pulumi.StringInput `pulumi:"consumedClient"`
+	// The consumed offset of partition.
+	ConsumedOffset pulumi.IntInput `pulumi:"consumedOffset"`
+	// The end offset of partition.
+	EndOffset pulumi.IntInput `pulumi:"endOffset"`
+	// The index number of partition.
+	PartitionId pulumi.IntInput `pulumi:"partitionId"`
+	// The start offset of partition.
+	StartOffset pulumi.IntInput `pulumi:"startOffset"`
+}
+
+func (GetConsumedPartitionsConsumedPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConsumedPartitionsConsumedPartition)(nil)).Elem()
+}
+
+func (i GetConsumedPartitionsConsumedPartitionArgs) ToGetConsumedPartitionsConsumedPartitionOutput() GetConsumedPartitionsConsumedPartitionOutput {
+	return i.ToGetConsumedPartitionsConsumedPartitionOutputWithContext(context.Background())
+}
+
+func (i GetConsumedPartitionsConsumedPartitionArgs) ToGetConsumedPartitionsConsumedPartitionOutputWithContext(ctx context.Context) GetConsumedPartitionsConsumedPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConsumedPartitionsConsumedPartitionOutput)
+}
+
+// GetConsumedPartitionsConsumedPartitionArrayInput is an input type that accepts GetConsumedPartitionsConsumedPartitionArray and GetConsumedPartitionsConsumedPartitionArrayOutput values.
+// You can construct a concrete instance of `GetConsumedPartitionsConsumedPartitionArrayInput` via:
+//
+//	GetConsumedPartitionsConsumedPartitionArray{ GetConsumedPartitionsConsumedPartitionArgs{...} }
+type GetConsumedPartitionsConsumedPartitionArrayInput interface {
+	pulumi.Input
+
+	ToGetConsumedPartitionsConsumedPartitionArrayOutput() GetConsumedPartitionsConsumedPartitionArrayOutput
+	ToGetConsumedPartitionsConsumedPartitionArrayOutputWithContext(context.Context) GetConsumedPartitionsConsumedPartitionArrayOutput
+}
+
+type GetConsumedPartitionsConsumedPartitionArray []GetConsumedPartitionsConsumedPartitionInput
+
+func (GetConsumedPartitionsConsumedPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConsumedPartitionsConsumedPartition)(nil)).Elem()
+}
+
+func (i GetConsumedPartitionsConsumedPartitionArray) ToGetConsumedPartitionsConsumedPartitionArrayOutput() GetConsumedPartitionsConsumedPartitionArrayOutput {
+	return i.ToGetConsumedPartitionsConsumedPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConsumedPartitionsConsumedPartitionArray) ToGetConsumedPartitionsConsumedPartitionArrayOutputWithContext(ctx context.Context) GetConsumedPartitionsConsumedPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConsumedPartitionsConsumedPartitionArrayOutput)
+}
+
+type GetConsumedPartitionsConsumedPartitionOutput struct{ *pulumi.OutputState }
+
+func (GetConsumedPartitionsConsumedPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConsumedPartitionsConsumedPartition)(nil)).Elem()
+}
+
+func (o GetConsumedPartitionsConsumedPartitionOutput) ToGetConsumedPartitionsConsumedPartitionOutput() GetConsumedPartitionsConsumedPartitionOutput {
+	return o
+}
+
+func (o GetConsumedPartitionsConsumedPartitionOutput) ToGetConsumedPartitionsConsumedPartitionOutputWithContext(ctx context.Context) GetConsumedPartitionsConsumedPartitionOutput {
+	return o
+}
+
+// The total amount of message accumulation in this topic partition for the consumer group.
+func (o GetConsumedPartitionsConsumedPartitionOutput) Accumulation() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumedPartitionsConsumedPartition) int { return v.Accumulation }).(pulumi.IntOutput)
+}
+
+// The consumed client info of partition.
+func (o GetConsumedPartitionsConsumedPartitionOutput) ConsumedClient() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConsumedPartitionsConsumedPartition) string { return v.ConsumedClient }).(pulumi.StringOutput)
+}
+
+// The consumed offset of partition.
+func (o GetConsumedPartitionsConsumedPartitionOutput) ConsumedOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumedPartitionsConsumedPartition) int { return v.ConsumedOffset }).(pulumi.IntOutput)
+}
+
+// The end offset of partition.
+func (o GetConsumedPartitionsConsumedPartitionOutput) EndOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumedPartitionsConsumedPartition) int { return v.EndOffset }).(pulumi.IntOutput)
+}
+
+// The index number of partition.
+func (o GetConsumedPartitionsConsumedPartitionOutput) PartitionId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumedPartitionsConsumedPartition) int { return v.PartitionId }).(pulumi.IntOutput)
+}
+
+// The start offset of partition.
+func (o GetConsumedPartitionsConsumedPartitionOutput) StartOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumedPartitionsConsumedPartition) int { return v.StartOffset }).(pulumi.IntOutput)
+}
+
+type GetConsumedPartitionsConsumedPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConsumedPartitionsConsumedPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConsumedPartitionsConsumedPartition)(nil)).Elem()
+}
+
+func (o GetConsumedPartitionsConsumedPartitionArrayOutput) ToGetConsumedPartitionsConsumedPartitionArrayOutput() GetConsumedPartitionsConsumedPartitionArrayOutput {
+	return o
+}
+
+func (o GetConsumedPartitionsConsumedPartitionArrayOutput) ToGetConsumedPartitionsConsumedPartitionArrayOutputWithContext(ctx context.Context) GetConsumedPartitionsConsumedPartitionArrayOutput {
+	return o
+}
+
+func (o GetConsumedPartitionsConsumedPartitionArrayOutput) Index(i pulumi.IntInput) GetConsumedPartitionsConsumedPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConsumedPartitionsConsumedPartition {
+		return vs[0].([]GetConsumedPartitionsConsumedPartition)[vs[1].(int)]
+	}).(GetConsumedPartitionsConsumedPartitionOutput)
+}
+
+type GetConsumedTopicsConsumedTopic struct {
+	// The total amount of message accumulation in this topic for the consumer group.
+	Accumulation int `pulumi:"accumulation"`
+	// The name of kafka topic. This field supports fuzzy query.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetConsumedTopicsConsumedTopicInput is an input type that accepts GetConsumedTopicsConsumedTopicArgs and GetConsumedTopicsConsumedTopicOutput values.
+// You can construct a concrete instance of `GetConsumedTopicsConsumedTopicInput` via:
+//
+//	GetConsumedTopicsConsumedTopicArgs{...}
+type GetConsumedTopicsConsumedTopicInput interface {
+	pulumi.Input
+
+	ToGetConsumedTopicsConsumedTopicOutput() GetConsumedTopicsConsumedTopicOutput
+	ToGetConsumedTopicsConsumedTopicOutputWithContext(context.Context) GetConsumedTopicsConsumedTopicOutput
+}
+
+type GetConsumedTopicsConsumedTopicArgs struct {
+	// The total amount of message accumulation in this topic for the consumer group.
+	Accumulation pulumi.IntInput `pulumi:"accumulation"`
+	// The name of kafka topic. This field supports fuzzy query.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetConsumedTopicsConsumedTopicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConsumedTopicsConsumedTopic)(nil)).Elem()
+}
+
+func (i GetConsumedTopicsConsumedTopicArgs) ToGetConsumedTopicsConsumedTopicOutput() GetConsumedTopicsConsumedTopicOutput {
+	return i.ToGetConsumedTopicsConsumedTopicOutputWithContext(context.Background())
+}
+
+func (i GetConsumedTopicsConsumedTopicArgs) ToGetConsumedTopicsConsumedTopicOutputWithContext(ctx context.Context) GetConsumedTopicsConsumedTopicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConsumedTopicsConsumedTopicOutput)
+}
+
+// GetConsumedTopicsConsumedTopicArrayInput is an input type that accepts GetConsumedTopicsConsumedTopicArray and GetConsumedTopicsConsumedTopicArrayOutput values.
+// You can construct a concrete instance of `GetConsumedTopicsConsumedTopicArrayInput` via:
+//
+//	GetConsumedTopicsConsumedTopicArray{ GetConsumedTopicsConsumedTopicArgs{...} }
+type GetConsumedTopicsConsumedTopicArrayInput interface {
+	pulumi.Input
+
+	ToGetConsumedTopicsConsumedTopicArrayOutput() GetConsumedTopicsConsumedTopicArrayOutput
+	ToGetConsumedTopicsConsumedTopicArrayOutputWithContext(context.Context) GetConsumedTopicsConsumedTopicArrayOutput
+}
+
+type GetConsumedTopicsConsumedTopicArray []GetConsumedTopicsConsumedTopicInput
+
+func (GetConsumedTopicsConsumedTopicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConsumedTopicsConsumedTopic)(nil)).Elem()
+}
+
+func (i GetConsumedTopicsConsumedTopicArray) ToGetConsumedTopicsConsumedTopicArrayOutput() GetConsumedTopicsConsumedTopicArrayOutput {
+	return i.ToGetConsumedTopicsConsumedTopicArrayOutputWithContext(context.Background())
+}
+
+func (i GetConsumedTopicsConsumedTopicArray) ToGetConsumedTopicsConsumedTopicArrayOutputWithContext(ctx context.Context) GetConsumedTopicsConsumedTopicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConsumedTopicsConsumedTopicArrayOutput)
+}
+
+type GetConsumedTopicsConsumedTopicOutput struct{ *pulumi.OutputState }
+
+func (GetConsumedTopicsConsumedTopicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConsumedTopicsConsumedTopic)(nil)).Elem()
+}
+
+func (o GetConsumedTopicsConsumedTopicOutput) ToGetConsumedTopicsConsumedTopicOutput() GetConsumedTopicsConsumedTopicOutput {
+	return o
+}
+
+func (o GetConsumedTopicsConsumedTopicOutput) ToGetConsumedTopicsConsumedTopicOutputWithContext(ctx context.Context) GetConsumedTopicsConsumedTopicOutput {
+	return o
+}
+
+// The total amount of message accumulation in this topic for the consumer group.
+func (o GetConsumedTopicsConsumedTopicOutput) Accumulation() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumedTopicsConsumedTopic) int { return v.Accumulation }).(pulumi.IntOutput)
+}
+
+// The name of kafka topic. This field supports fuzzy query.
+func (o GetConsumedTopicsConsumedTopicOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConsumedTopicsConsumedTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetConsumedTopicsConsumedTopicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConsumedTopicsConsumedTopicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConsumedTopicsConsumedTopic)(nil)).Elem()
+}
+
+func (o GetConsumedTopicsConsumedTopicArrayOutput) ToGetConsumedTopicsConsumedTopicArrayOutput() GetConsumedTopicsConsumedTopicArrayOutput {
+	return o
+}
+
+func (o GetConsumedTopicsConsumedTopicArrayOutput) ToGetConsumedTopicsConsumedTopicArrayOutputWithContext(ctx context.Context) GetConsumedTopicsConsumedTopicArrayOutput {
+	return o
+}
+
+func (o GetConsumedTopicsConsumedTopicArrayOutput) Index(i pulumi.IntInput) GetConsumedTopicsConsumedTopicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConsumedTopicsConsumedTopic {
+		return vs[0].([]GetConsumedTopicsConsumedTopic)[vs[1].(int)]
+	}).(GetConsumedTopicsConsumedTopicOutput)
+}
+
+type GetGroupsGroup struct {
+	// The id of kafka group, support fuzzy matching.
+	GroupId string `pulumi:"groupId"`
+	// The state of kafka group.
+	State string `pulumi:"state"`
+}
+
+// GetGroupsGroupInput is an input type that accepts GetGroupsGroupArgs and GetGroupsGroupOutput values.
+// You can construct a concrete instance of `GetGroupsGroupInput` via:
+//
+//	GetGroupsGroupArgs{...}
+type GetGroupsGroupInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupOutput() GetGroupsGroupOutput
+	ToGetGroupsGroupOutputWithContext(context.Context) GetGroupsGroupOutput
+}
+
+type GetGroupsGroupArgs struct {
+	// The id of kafka group, support fuzzy matching.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// The state of kafka group.
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetGroupsGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroup)(nil)).Elem()
+}
+
+func (i GetGroupsGroupArgs) ToGetGroupsGroupOutput() GetGroupsGroupOutput {
+	return i.ToGetGroupsGroupOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupArgs) ToGetGroupsGroupOutputWithContext(ctx context.Context) GetGroupsGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupOutput)
+}
+
+// GetGroupsGroupArrayInput is an input type that accepts GetGroupsGroupArray and GetGroupsGroupArrayOutput values.
+// You can construct a concrete instance of `GetGroupsGroupArrayInput` via:
+//
+//	GetGroupsGroupArray{ GetGroupsGroupArgs{...} }
+type GetGroupsGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput
+	ToGetGroupsGroupArrayOutputWithContext(context.Context) GetGroupsGroupArrayOutput
+}
+
+type GetGroupsGroupArray []GetGroupsGroupInput
+
+func (GetGroupsGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroup)(nil)).Elem()
+}
+
+func (i GetGroupsGroupArray) ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput {
+	return i.ToGetGroupsGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupArray) ToGetGroupsGroupArrayOutputWithContext(ctx context.Context) GetGroupsGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupArrayOutput)
+}
+
+type GetGroupsGroupOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroup)(nil)).Elem()
+}
+
+func (o GetGroupsGroupOutput) ToGetGroupsGroupOutput() GetGroupsGroupOutput {
+	return o
+}
+
+func (o GetGroupsGroupOutput) ToGetGroupsGroupOutputWithContext(ctx context.Context) GetGroupsGroupOutput {
+	return o
+}
+
+// The id of kafka group, support fuzzy matching.
+func (o GetGroupsGroupOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// The state of kafka group.
+func (o GetGroupsGroupOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetGroupsGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroup)(nil)).Elem()
+}
+
+func (o GetGroupsGroupArrayOutput) ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupArrayOutput) ToGetGroupsGroupArrayOutputWithContext(ctx context.Context) GetGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetGroupsGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsGroup {
+		return vs[0].([]GetGroupsGroup)[vs[1].(int)]
+	}).(GetGroupsGroupOutput)
+}
+
+type GetInstancesInstance struct {
+	// The id of account.
+	AccountId string `pulumi:"accountId"`
+	// The auto renew status of instance.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The charge expire time of instance.
+	ChargeExpireTime string `pulumi:"chargeExpireTime"`
+	// The charge start time of instance.
+	ChargeStartTime string `pulumi:"chargeStartTime"`
+	// The charge status of instance.
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of instance.
+	ChargeType string `pulumi:"chargeType"`
+	// The compute spec of instance.
+	ComputeSpec string `pulumi:"computeSpec"`
+	// Connection info of the instance.
+	ConnectionInfos []GetInstancesInstanceConnectionInfo `pulumi:"connectionInfos"`
+	// The create time of instance.
+	CreateTime string `pulumi:"createTime"`
+	// The id of eip.
+	EipId string `pulumi:"eipId"`
+	// The id of instance.
+	Id string `pulumi:"id"`
+	// The description of instance.
+	InstanceDescription string `pulumi:"instanceDescription"`
+	// The id of instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The status of instance.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// The overdue reclaim time of instance.
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
+	// The overdue time of instance.
+	OverdueTime string `pulumi:"overdueTime"`
+	// Parameters of the instance.
+	Parameters []GetInstancesInstanceParameter `pulumi:"parameters"`
+	// The period unit of instance.
+	PeriodUnit string `pulumi:"periodUnit"`
+	// Whether enable private domain on public.
+	PrivateDomainOnPublic bool `pulumi:"privateDomainOnPublic"`
+	// The name of project.
+	ProjectName string `pulumi:"projectName"`
+	// The id of region.
+	RegionId string `pulumi:"regionId"`
+	// The storage space of instance.
+	StorageSpace int `pulumi:"storageSpace"`
+	// The storage type of instance.
+	StorageType string `pulumi:"storageType"`
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The tags of instance.
+	Tags []GetInstancesInstanceTag `pulumi:"tags"`
+	// The usable partition number of instance.
+	UsablePartitionNumber int `pulumi:"usablePartitionNumber"`
+	// The used group number of instance.
+	UsedGroupNumber int `pulumi:"usedGroupNumber"`
+	// The used partition number of instance.
+	UsedPartitionNumber int `pulumi:"usedPartitionNumber"`
+	// The used storage space of instance.
+	UsedStorageSpace int `pulumi:"usedStorageSpace"`
+	// The used topic number of instance.
+	UsedTopicNumber int `pulumi:"usedTopicNumber"`
+	// The version of instance.
+	Version string `pulumi:"version"`
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+	// The zone id of instance.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceInput` via:
+//
+//	GetInstancesInstanceArgs{...}
+type GetInstancesInstanceInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceOutput() GetInstancesInstanceOutput
+	ToGetInstancesInstanceOutputWithContext(context.Context) GetInstancesInstanceOutput
+}
+
+type GetInstancesInstanceArgs struct {
+	// The id of account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The auto renew status of instance.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The charge expire time of instance.
+	ChargeExpireTime pulumi.StringInput `pulumi:"chargeExpireTime"`
+	// The charge start time of instance.
+	ChargeStartTime pulumi.StringInput `pulumi:"chargeStartTime"`
+	// The charge status of instance.
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The compute spec of instance.
+	ComputeSpec pulumi.StringInput `pulumi:"computeSpec"`
+	// Connection info of the instance.
+	ConnectionInfos GetInstancesInstanceConnectionInfoArrayInput `pulumi:"connectionInfos"`
+	// The create time of instance.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The id of eip.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The id of instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The description of instance.
+	InstanceDescription pulumi.StringInput `pulumi:"instanceDescription"`
+	// The id of instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The status of instance.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The overdue reclaim time of instance.
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
+	// The overdue time of instance.
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// Parameters of the instance.
+	Parameters GetInstancesInstanceParameterArrayInput `pulumi:"parameters"`
+	// The period unit of instance.
+	PeriodUnit pulumi.StringInput `pulumi:"periodUnit"`
+	// Whether enable private domain on public.
+	PrivateDomainOnPublic pulumi.BoolInput `pulumi:"privateDomainOnPublic"`
+	// The name of project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The id of region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The storage space of instance.
+	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
+	// The storage type of instance.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The tags of instance.
+	Tags GetInstancesInstanceTagArrayInput `pulumi:"tags"`
+	// The usable partition number of instance.
+	UsablePartitionNumber pulumi.IntInput `pulumi:"usablePartitionNumber"`
+	// The used group number of instance.
+	UsedGroupNumber pulumi.IntInput `pulumi:"usedGroupNumber"`
+	// The used partition number of instance.
+	UsedPartitionNumber pulumi.IntInput `pulumi:"usedPartitionNumber"`
+	// The used storage space of instance.
+	UsedStorageSpace pulumi.IntInput `pulumi:"usedStorageSpace"`
+	// The used topic number of instance.
+	UsedTopicNumber pulumi.IntInput `pulumi:"usedTopicNumber"`
+	// The version of instance.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The zone id of instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetInstancesInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstance)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutput() GetInstancesInstanceOutput {
+	return i.ToGetInstancesInstanceOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceOutput)
+}
+
+// GetInstancesInstanceArrayInput is an input type that accepts GetInstancesInstanceArray and GetInstancesInstanceArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceArrayInput` via:
+//
+//	GetInstancesInstanceArray{ GetInstancesInstanceArgs{...} }
+type GetInstancesInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput
+	ToGetInstancesInstanceArrayOutputWithContext(context.Context) GetInstancesInstanceArrayOutput
+}
+
+type GetInstancesInstanceArray []GetInstancesInstanceInput
+
+func (GetInstancesInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstance)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput {
+	return i.ToGetInstancesInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutputWithContext(ctx context.Context) GetInstancesInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceArrayOutput)
+}
+
+type GetInstancesInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstance)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutput() GetInstancesInstanceOutput {
+	return o
+}
+
+func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
+	return o
+}
+
+// The id of account.
+func (o GetInstancesInstanceOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The auto renew status of instance.
+func (o GetInstancesInstanceOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The charge expire time of instance.
+func (o GetInstancesInstanceOutput) ChargeExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ChargeExpireTime }).(pulumi.StringOutput)
+}
+
+// The charge start time of instance.
+func (o GetInstancesInstanceOutput) ChargeStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ChargeStartTime }).(pulumi.StringOutput)
+}
+
+// The charge status of instance.
+func (o GetInstancesInstanceOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of instance.
+func (o GetInstancesInstanceOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The compute spec of instance.
+func (o GetInstancesInstanceOutput) ComputeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ComputeSpec }).(pulumi.StringOutput)
+}
+
+// Connection info of the instance.
+func (o GetInstancesInstanceOutput) ConnectionInfos() GetInstancesInstanceConnectionInfoArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceConnectionInfo { return v.ConnectionInfos }).(GetInstancesInstanceConnectionInfoArrayOutput)
+}
+
+// The create time of instance.
+func (o GetInstancesInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The id of eip.
+func (o GetInstancesInstanceOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The id of instance.
+func (o GetInstancesInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The description of instance.
+func (o GetInstancesInstanceOutput) InstanceDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceDescription }).(pulumi.StringOutput)
+}
+
+// The id of instance.
+func (o GetInstancesInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of instance.
+func (o GetInstancesInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The status of instance.
+func (o GetInstancesInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// The overdue reclaim time of instance.
+func (o GetInstancesInstanceOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
+// The overdue time of instance.
+func (o GetInstancesInstanceOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// Parameters of the instance.
+func (o GetInstancesInstanceOutput) Parameters() GetInstancesInstanceParameterArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceParameter { return v.Parameters }).(GetInstancesInstanceParameterArrayOutput)
+}
+
+// The period unit of instance.
+func (o GetInstancesInstanceOutput) PeriodUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.PeriodUnit }).(pulumi.StringOutput)
+}
+
+// Whether enable private domain on public.
+func (o GetInstancesInstanceOutput) PrivateDomainOnPublic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesInstance) bool { return v.PrivateDomainOnPublic }).(pulumi.BoolOutput)
+}
+
+// The name of project.
+func (o GetInstancesInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The id of region.
+func (o GetInstancesInstanceOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The storage space of instance.
+func (o GetInstancesInstanceOutput) StorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
+}
+
+// The storage type of instance.
+func (o GetInstancesInstanceOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// The id of subnet.
+func (o GetInstancesInstanceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The tags of instance.
+func (o GetInstancesInstanceOutput) Tags() GetInstancesInstanceTagArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceTag { return v.Tags }).(GetInstancesInstanceTagArrayOutput)
+}
+
+// The usable partition number of instance.
+func (o GetInstancesInstanceOutput) UsablePartitionNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.UsablePartitionNumber }).(pulumi.IntOutput)
+}
+
+// The used group number of instance.
+func (o GetInstancesInstanceOutput) UsedGroupNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.UsedGroupNumber }).(pulumi.IntOutput)
+}
+
+// The used partition number of instance.
+func (o GetInstancesInstanceOutput) UsedPartitionNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.UsedPartitionNumber }).(pulumi.IntOutput)
+}
+
+// The used storage space of instance.
+func (o GetInstancesInstanceOutput) UsedStorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.UsedStorageSpace }).(pulumi.IntOutput)
+}
+
+// The used topic number of instance.
+func (o GetInstancesInstanceOutput) UsedTopicNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesInstance) int { return v.UsedTopicNumber }).(pulumi.IntOutput)
+}
+
+// The version of instance.
+func (o GetInstancesInstanceOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The id of vpc.
+func (o GetInstancesInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone id of instance.
+func (o GetInstancesInstanceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstance)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutput() GetInstancesInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutputWithContext(ctx context.Context) GetInstancesInstanceArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstance {
+		return vs[0].([]GetInstancesInstance)[vs[1].(int)]
+	}).(GetInstancesInstanceOutput)
+}
+
+type GetInstancesInstanceConnectionInfo struct {
+	// The endpoint type of instance.
+	EndpointType string `pulumi:"endpointType"`
+	// The internal endpoint of instance.
+	InternalEndpoint string `pulumi:"internalEndpoint"`
+	// The network type of instance.
+	NetworkType string `pulumi:"networkType"`
+	// The public endpoint of instance.
+	PublicEndpoint string `pulumi:"publicEndpoint"`
+}
+
+// GetInstancesInstanceConnectionInfoInput is an input type that accepts GetInstancesInstanceConnectionInfoArgs and GetInstancesInstanceConnectionInfoOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceConnectionInfoInput` via:
+//
+//	GetInstancesInstanceConnectionInfoArgs{...}
+type GetInstancesInstanceConnectionInfoInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceConnectionInfoOutput() GetInstancesInstanceConnectionInfoOutput
+	ToGetInstancesInstanceConnectionInfoOutputWithContext(context.Context) GetInstancesInstanceConnectionInfoOutput
+}
+
+type GetInstancesInstanceConnectionInfoArgs struct {
+	// The endpoint type of instance.
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The internal endpoint of instance.
+	InternalEndpoint pulumi.StringInput `pulumi:"internalEndpoint"`
+	// The network type of instance.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// The public endpoint of instance.
+	PublicEndpoint pulumi.StringInput `pulumi:"publicEndpoint"`
+}
+
+func (GetInstancesInstanceConnectionInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceConnectionInfoArgs) ToGetInstancesInstanceConnectionInfoOutput() GetInstancesInstanceConnectionInfoOutput {
+	return i.ToGetInstancesInstanceConnectionInfoOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceConnectionInfoArgs) ToGetInstancesInstanceConnectionInfoOutputWithContext(ctx context.Context) GetInstancesInstanceConnectionInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceConnectionInfoOutput)
+}
+
+// GetInstancesInstanceConnectionInfoArrayInput is an input type that accepts GetInstancesInstanceConnectionInfoArray and GetInstancesInstanceConnectionInfoArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceConnectionInfoArrayInput` via:
+//
+//	GetInstancesInstanceConnectionInfoArray{ GetInstancesInstanceConnectionInfoArgs{...} }
+type GetInstancesInstanceConnectionInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceConnectionInfoArrayOutput() GetInstancesInstanceConnectionInfoArrayOutput
+	ToGetInstancesInstanceConnectionInfoArrayOutputWithContext(context.Context) GetInstancesInstanceConnectionInfoArrayOutput
+}
+
+type GetInstancesInstanceConnectionInfoArray []GetInstancesInstanceConnectionInfoInput
+
+func (GetInstancesInstanceConnectionInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceConnectionInfoArray) ToGetInstancesInstanceConnectionInfoArrayOutput() GetInstancesInstanceConnectionInfoArrayOutput {
+	return i.ToGetInstancesInstanceConnectionInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceConnectionInfoArray) ToGetInstancesInstanceConnectionInfoArrayOutputWithContext(ctx context.Context) GetInstancesInstanceConnectionInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceConnectionInfoArrayOutput)
+}
+
+type GetInstancesInstanceConnectionInfoOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceConnectionInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceConnectionInfoOutput) ToGetInstancesInstanceConnectionInfoOutput() GetInstancesInstanceConnectionInfoOutput {
+	return o
+}
+
+func (o GetInstancesInstanceConnectionInfoOutput) ToGetInstancesInstanceConnectionInfoOutputWithContext(ctx context.Context) GetInstancesInstanceConnectionInfoOutput {
+	return o
+}
+
+// The endpoint type of instance.
+func (o GetInstancesInstanceConnectionInfoOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConnectionInfo) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The internal endpoint of instance.
+func (o GetInstancesInstanceConnectionInfoOutput) InternalEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConnectionInfo) string { return v.InternalEndpoint }).(pulumi.StringOutput)
+}
+
+// The network type of instance.
+func (o GetInstancesInstanceConnectionInfoOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConnectionInfo) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// The public endpoint of instance.
+func (o GetInstancesInstanceConnectionInfoOutput) PublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceConnectionInfo) string { return v.PublicEndpoint }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceConnectionInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceConnectionInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceConnectionInfoArrayOutput) ToGetInstancesInstanceConnectionInfoArrayOutput() GetInstancesInstanceConnectionInfoArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceConnectionInfoArrayOutput) ToGetInstancesInstanceConnectionInfoArrayOutputWithContext(ctx context.Context) GetInstancesInstanceConnectionInfoArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceConnectionInfoArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceConnectionInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceConnectionInfo {
+		return vs[0].([]GetInstancesInstanceConnectionInfo)[vs[1].(int)]
+	}).(GetInstancesInstanceConnectionInfoOutput)
+}
+
+type GetInstancesInstanceParameter struct {
+	// Parameter name.
+	ParameterName string `pulumi:"parameterName"`
+	// Parameter value.
+	ParameterValue string `pulumi:"parameterValue"`
+}
+
+// GetInstancesInstanceParameterInput is an input type that accepts GetInstancesInstanceParameterArgs and GetInstancesInstanceParameterOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceParameterInput` via:
+//
+//	GetInstancesInstanceParameterArgs{...}
+type GetInstancesInstanceParameterInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceParameterOutput() GetInstancesInstanceParameterOutput
+	ToGetInstancesInstanceParameterOutputWithContext(context.Context) GetInstancesInstanceParameterOutput
+}
+
+type GetInstancesInstanceParameterArgs struct {
+	// Parameter name.
+	ParameterName pulumi.StringInput `pulumi:"parameterName"`
+	// Parameter value.
+	ParameterValue pulumi.StringInput `pulumi:"parameterValue"`
+}
+
+func (GetInstancesInstanceParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceParameter)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceParameterArgs) ToGetInstancesInstanceParameterOutput() GetInstancesInstanceParameterOutput {
+	return i.ToGetInstancesInstanceParameterOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceParameterArgs) ToGetInstancesInstanceParameterOutputWithContext(ctx context.Context) GetInstancesInstanceParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceParameterOutput)
+}
+
+// GetInstancesInstanceParameterArrayInput is an input type that accepts GetInstancesInstanceParameterArray and GetInstancesInstanceParameterArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceParameterArrayInput` via:
+//
+//	GetInstancesInstanceParameterArray{ GetInstancesInstanceParameterArgs{...} }
+type GetInstancesInstanceParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceParameterArrayOutput() GetInstancesInstanceParameterArrayOutput
+	ToGetInstancesInstanceParameterArrayOutputWithContext(context.Context) GetInstancesInstanceParameterArrayOutput
+}
+
+type GetInstancesInstanceParameterArray []GetInstancesInstanceParameterInput
+
+func (GetInstancesInstanceParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceParameter)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceParameterArray) ToGetInstancesInstanceParameterArrayOutput() GetInstancesInstanceParameterArrayOutput {
+	return i.ToGetInstancesInstanceParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceParameterArray) ToGetInstancesInstanceParameterArrayOutputWithContext(ctx context.Context) GetInstancesInstanceParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceParameterArrayOutput)
+}
+
+type GetInstancesInstanceParameterOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceParameter)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceParameterOutput) ToGetInstancesInstanceParameterOutput() GetInstancesInstanceParameterOutput {
+	return o
+}
+
+func (o GetInstancesInstanceParameterOutput) ToGetInstancesInstanceParameterOutputWithContext(ctx context.Context) GetInstancesInstanceParameterOutput {
+	return o
+}
+
+// Parameter name.
+func (o GetInstancesInstanceParameterOutput) ParameterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceParameter) string { return v.ParameterName }).(pulumi.StringOutput)
+}
+
+// Parameter value.
+func (o GetInstancesInstanceParameterOutput) ParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceParameter) string { return v.ParameterValue }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceParameter)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceParameterArrayOutput) ToGetInstancesInstanceParameterArrayOutput() GetInstancesInstanceParameterArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceParameterArrayOutput) ToGetInstancesInstanceParameterArrayOutputWithContext(ctx context.Context) GetInstancesInstanceParameterArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceParameterArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceParameter {
+		return vs[0].([]GetInstancesInstanceParameter)[vs[1].(int)]
+	}).(GetInstancesInstanceParameterOutput)
+}
+
+type GetInstancesInstanceTag struct {
+	// The key of tag.
+	Key string `pulumi:"key"`
+	// The value of tag.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesInstanceTagInput is an input type that accepts GetInstancesInstanceTagArgs and GetInstancesInstanceTagOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceTagInput` via:
+//
+//	GetInstancesInstanceTagArgs{...}
+type GetInstancesInstanceTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceTagOutput() GetInstancesInstanceTagOutput
+	ToGetInstancesInstanceTagOutputWithContext(context.Context) GetInstancesInstanceTagOutput
+}
+
+type GetInstancesInstanceTagArgs struct {
+	// The key of tag.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of tag.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesInstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceTagArgs) ToGetInstancesInstanceTagOutput() GetInstancesInstanceTagOutput {
+	return i.ToGetInstancesInstanceTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceTagArgs) ToGetInstancesInstanceTagOutputWithContext(ctx context.Context) GetInstancesInstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceTagOutput)
+}
+
+// GetInstancesInstanceTagArrayInput is an input type that accepts GetInstancesInstanceTagArray and GetInstancesInstanceTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceTagArrayInput` via:
+//
+//	GetInstancesInstanceTagArray{ GetInstancesInstanceTagArgs{...} }
+type GetInstancesInstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceTagArrayOutput() GetInstancesInstanceTagArrayOutput
+	ToGetInstancesInstanceTagArrayOutputWithContext(context.Context) GetInstancesInstanceTagArrayOutput
+}
+
+type GetInstancesInstanceTagArray []GetInstancesInstanceTagInput
+
+func (GetInstancesInstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceTagArray) ToGetInstancesInstanceTagArrayOutput() GetInstancesInstanceTagArrayOutput {
+	return i.ToGetInstancesInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceTagArray) ToGetInstancesInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesInstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceTagArrayOutput)
+}
+
+type GetInstancesInstanceTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceTagOutput) ToGetInstancesInstanceTagOutput() GetInstancesInstanceTagOutput {
+	return o
+}
+
+func (o GetInstancesInstanceTagOutput) ToGetInstancesInstanceTagOutputWithContext(ctx context.Context) GetInstancesInstanceTagOutput {
+	return o
+}
+
+// The key of tag.
+func (o GetInstancesInstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of tag.
+func (o GetInstancesInstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceTag)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceTagArrayOutput) ToGetInstancesInstanceTagArrayOutput() GetInstancesInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceTagArrayOutput) ToGetInstancesInstanceTagArrayOutputWithContext(ctx context.Context) GetInstancesInstanceTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceTagArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceTag {
+		return vs[0].([]GetInstancesInstanceTag)[vs[1].(int)]
+	}).(GetInstancesInstanceTagOutput)
+}
+
+type GetInstancesTag struct {
+	// The key of tag.
+	Key string `pulumi:"key"`
+	// The value of tag.
+	Value string `pulumi:"value"`
+}
+
+// GetInstancesTagInput is an input type that accepts GetInstancesTagArgs and GetInstancesTagOutput values.
+// You can construct a concrete instance of `GetInstancesTagInput` via:
+//
+//	GetInstancesTagArgs{...}
+type GetInstancesTagInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagOutput() GetInstancesTagOutput
+	ToGetInstancesTagOutputWithContext(context.Context) GetInstancesTagOutput
+}
+
+type GetInstancesTagArgs struct {
+	// The key of tag.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of tag.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInstancesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return i.ToGetInstancesTagOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArgs) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagOutput)
+}
+
+// GetInstancesTagArrayInput is an input type that accepts GetInstancesTagArray and GetInstancesTagArrayOutput values.
+// You can construct a concrete instance of `GetInstancesTagArrayInput` via:
+//
+//	GetInstancesTagArray{ GetInstancesTagArgs{...} }
+type GetInstancesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput
+	ToGetInstancesTagArrayOutputWithContext(context.Context) GetInstancesTagArrayOutput
+}
+
+type GetInstancesTagArray []GetInstancesTagInput
+
+func (GetInstancesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return i.ToGetInstancesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesTagArray) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesTagArrayOutput)
+}
+
+type GetInstancesTagOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutput() GetInstancesTagOutput {
+	return o
+}
+
+func (o GetInstancesTagOutput) ToGetInstancesTagOutputWithContext(ctx context.Context) GetInstancesTagOutput {
+	return o
+}
+
+// The key of tag.
+func (o GetInstancesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of tag.
+func (o GetInstancesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInstancesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesTag)(nil)).Elem()
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutput() GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) ToGetInstancesTagArrayOutputWithContext(ctx context.Context) GetInstancesTagArrayOutput {
+	return o
+}
+
+func (o GetInstancesTagArrayOutput) Index(i pulumi.IntInput) GetInstancesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesTag {
+		return vs[0].([]GetInstancesTag)[vs[1].(int)]
+	}).(GetInstancesTagOutput)
+}
+
+type GetRegionsRegion struct {
+	// The description of region.
+	Description string `pulumi:"description"`
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+	// The status of region.
+	Status string `pulumi:"status"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The description of region.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// The status of region.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The description of region.
+func (o GetRegionsRegionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the region.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o GetRegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// The status of region.
+func (o GetRegionsRegionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetSaslUsersUser struct {
+	// Whether this user has read and write permissions for all topics.
+	AllAuthority bool `pulumi:"allAuthority"`
+	// The create time.
+	CreateTime string `pulumi:"createTime"`
+	// The description of user.
+	Description string `pulumi:"description"`
+	// The type of password.
+	PasswordType string `pulumi:"passwordType"`
+	// The user name, support fuzzy matching.
+	UserName string `pulumi:"userName"`
+}
+
+// GetSaslUsersUserInput is an input type that accepts GetSaslUsersUserArgs and GetSaslUsersUserOutput values.
+// You can construct a concrete instance of `GetSaslUsersUserInput` via:
+//
+//	GetSaslUsersUserArgs{...}
+type GetSaslUsersUserInput interface {
+	pulumi.Input
+
+	ToGetSaslUsersUserOutput() GetSaslUsersUserOutput
+	ToGetSaslUsersUserOutputWithContext(context.Context) GetSaslUsersUserOutput
+}
+
+type GetSaslUsersUserArgs struct {
+	// Whether this user has read and write permissions for all topics.
+	AllAuthority pulumi.BoolInput `pulumi:"allAuthority"`
+	// The create time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The type of password.
+	PasswordType pulumi.StringInput `pulumi:"passwordType"`
+	// The user name, support fuzzy matching.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetSaslUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSaslUsersUser)(nil)).Elem()
+}
+
+func (i GetSaslUsersUserArgs) ToGetSaslUsersUserOutput() GetSaslUsersUserOutput {
+	return i.ToGetSaslUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetSaslUsersUserArgs) ToGetSaslUsersUserOutputWithContext(ctx context.Context) GetSaslUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSaslUsersUserOutput)
+}
+
+// GetSaslUsersUserArrayInput is an input type that accepts GetSaslUsersUserArray and GetSaslUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetSaslUsersUserArrayInput` via:
+//
+//	GetSaslUsersUserArray{ GetSaslUsersUserArgs{...} }
+type GetSaslUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetSaslUsersUserArrayOutput() GetSaslUsersUserArrayOutput
+	ToGetSaslUsersUserArrayOutputWithContext(context.Context) GetSaslUsersUserArrayOutput
+}
+
+type GetSaslUsersUserArray []GetSaslUsersUserInput
+
+func (GetSaslUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSaslUsersUser)(nil)).Elem()
+}
+
+func (i GetSaslUsersUserArray) ToGetSaslUsersUserArrayOutput() GetSaslUsersUserArrayOutput {
+	return i.ToGetSaslUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetSaslUsersUserArray) ToGetSaslUsersUserArrayOutputWithContext(ctx context.Context) GetSaslUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSaslUsersUserArrayOutput)
+}
+
+type GetSaslUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetSaslUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSaslUsersUser)(nil)).Elem()
+}
+
+func (o GetSaslUsersUserOutput) ToGetSaslUsersUserOutput() GetSaslUsersUserOutput {
+	return o
+}
+
+func (o GetSaslUsersUserOutput) ToGetSaslUsersUserOutputWithContext(ctx context.Context) GetSaslUsersUserOutput {
+	return o
+}
+
+// Whether this user has read and write permissions for all topics.
+func (o GetSaslUsersUserOutput) AllAuthority() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSaslUsersUser) bool { return v.AllAuthority }).(pulumi.BoolOutput)
+}
+
+// The create time.
+func (o GetSaslUsersUserOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSaslUsersUser) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of user.
+func (o GetSaslUsersUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSaslUsersUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The type of password.
+func (o GetSaslUsersUserOutput) PasswordType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSaslUsersUser) string { return v.PasswordType }).(pulumi.StringOutput)
+}
+
+// The user name, support fuzzy matching.
+func (o GetSaslUsersUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSaslUsersUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetSaslUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSaslUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSaslUsersUser)(nil)).Elem()
+}
+
+func (o GetSaslUsersUserArrayOutput) ToGetSaslUsersUserArrayOutput() GetSaslUsersUserArrayOutput {
+	return o
+}
+
+func (o GetSaslUsersUserArrayOutput) ToGetSaslUsersUserArrayOutputWithContext(ctx context.Context) GetSaslUsersUserArrayOutput {
+	return o
+}
+
+func (o GetSaslUsersUserArrayOutput) Index(i pulumi.IntInput) GetSaslUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSaslUsersUser {
+		return vs[0].([]GetSaslUsersUser)[vs[1].(int)]
+	}).(GetSaslUsersUserOutput)
+}
+
+type GetTopicPartitionsPartition struct {
+	// The end offset of partition leader.
+	EndOffset int `pulumi:"endOffset"`
+	// The insync replica info.
+	InsyncReplicas []int `pulumi:"insyncReplicas"`
+	// The leader info of partition.
+	Leader int `pulumi:"leader"`
+	// The count of message.
+	MessageCount int `pulumi:"messageCount"`
+	// The index number of partition.
+	PartitionId int `pulumi:"partitionId"`
+	// The replica info.
+	Replicas []int `pulumi:"replicas"`
+	// The start offset of partition leader.
+	StartOffset int `pulumi:"startOffset"`
+	// The under insync replica info.
+	UnderInsyncReplicas []int `pulumi:"underInsyncReplicas"`
+}
+
+// GetTopicPartitionsPartitionInput is an input type that accepts GetTopicPartitionsPartitionArgs and GetTopicPartitionsPartitionOutput values.
+// You can construct a concrete instance of `GetTopicPartitionsPartitionInput` via:
+//
+//	GetTopicPartitionsPartitionArgs{...}
+type GetTopicPartitionsPartitionInput interface {
+	pulumi.Input
+
+	ToGetTopicPartitionsPartitionOutput() GetTopicPartitionsPartitionOutput
+	ToGetTopicPartitionsPartitionOutputWithContext(context.Context) GetTopicPartitionsPartitionOutput
+}
+
+type GetTopicPartitionsPartitionArgs struct {
+	// The end offset of partition leader.
+	EndOffset pulumi.IntInput `pulumi:"endOffset"`
+	// The insync replica info.
+	InsyncReplicas pulumi.IntArrayInput `pulumi:"insyncReplicas"`
+	// The leader info of partition.
+	Leader pulumi.IntInput `pulumi:"leader"`
+	// The count of message.
+	MessageCount pulumi.IntInput `pulumi:"messageCount"`
+	// The index number of partition.
+	PartitionId pulumi.IntInput `pulumi:"partitionId"`
+	// The replica info.
+	Replicas pulumi.IntArrayInput `pulumi:"replicas"`
+	// The start offset of partition leader.
+	StartOffset pulumi.IntInput `pulumi:"startOffset"`
+	// The under insync replica info.
+	UnderInsyncReplicas pulumi.IntArrayInput `pulumi:"underInsyncReplicas"`
+}
+
+func (GetTopicPartitionsPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicPartitionsPartition)(nil)).Elem()
+}
+
+func (i GetTopicPartitionsPartitionArgs) ToGetTopicPartitionsPartitionOutput() GetTopicPartitionsPartitionOutput {
+	return i.ToGetTopicPartitionsPartitionOutputWithContext(context.Background())
+}
+
+func (i GetTopicPartitionsPartitionArgs) ToGetTopicPartitionsPartitionOutputWithContext(ctx context.Context) GetTopicPartitionsPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicPartitionsPartitionOutput)
+}
+
+// GetTopicPartitionsPartitionArrayInput is an input type that accepts GetTopicPartitionsPartitionArray and GetTopicPartitionsPartitionArrayOutput values.
+// You can construct a concrete instance of `GetTopicPartitionsPartitionArrayInput` via:
+//
+//	GetTopicPartitionsPartitionArray{ GetTopicPartitionsPartitionArgs{...} }
+type GetTopicPartitionsPartitionArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicPartitionsPartitionArrayOutput() GetTopicPartitionsPartitionArrayOutput
+	ToGetTopicPartitionsPartitionArrayOutputWithContext(context.Context) GetTopicPartitionsPartitionArrayOutput
+}
+
+type GetTopicPartitionsPartitionArray []GetTopicPartitionsPartitionInput
+
+func (GetTopicPartitionsPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicPartitionsPartition)(nil)).Elem()
+}
+
+func (i GetTopicPartitionsPartitionArray) ToGetTopicPartitionsPartitionArrayOutput() GetTopicPartitionsPartitionArrayOutput {
+	return i.ToGetTopicPartitionsPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicPartitionsPartitionArray) ToGetTopicPartitionsPartitionArrayOutputWithContext(ctx context.Context) GetTopicPartitionsPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicPartitionsPartitionArrayOutput)
+}
+
+type GetTopicPartitionsPartitionOutput struct{ *pulumi.OutputState }
+
+func (GetTopicPartitionsPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicPartitionsPartition)(nil)).Elem()
+}
+
+func (o GetTopicPartitionsPartitionOutput) ToGetTopicPartitionsPartitionOutput() GetTopicPartitionsPartitionOutput {
+	return o
+}
+
+func (o GetTopicPartitionsPartitionOutput) ToGetTopicPartitionsPartitionOutputWithContext(ctx context.Context) GetTopicPartitionsPartitionOutput {
+	return o
+}
+
+// The end offset of partition leader.
+func (o GetTopicPartitionsPartitionOutput) EndOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) int { return v.EndOffset }).(pulumi.IntOutput)
+}
+
+// The insync replica info.
+func (o GetTopicPartitionsPartitionOutput) InsyncReplicas() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) []int { return v.InsyncReplicas }).(pulumi.IntArrayOutput)
+}
+
+// The leader info of partition.
+func (o GetTopicPartitionsPartitionOutput) Leader() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) int { return v.Leader }).(pulumi.IntOutput)
+}
+
+// The count of message.
+func (o GetTopicPartitionsPartitionOutput) MessageCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) int { return v.MessageCount }).(pulumi.IntOutput)
+}
+
+// The index number of partition.
+func (o GetTopicPartitionsPartitionOutput) PartitionId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) int { return v.PartitionId }).(pulumi.IntOutput)
+}
+
+// The replica info.
+func (o GetTopicPartitionsPartitionOutput) Replicas() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) []int { return v.Replicas }).(pulumi.IntArrayOutput)
+}
+
+// The start offset of partition leader.
+func (o GetTopicPartitionsPartitionOutput) StartOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) int { return v.StartOffset }).(pulumi.IntOutput)
+}
+
+// The under insync replica info.
+func (o GetTopicPartitionsPartitionOutput) UnderInsyncReplicas() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetTopicPartitionsPartition) []int { return v.UnderInsyncReplicas }).(pulumi.IntArrayOutput)
+}
+
+type GetTopicPartitionsPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicPartitionsPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicPartitionsPartition)(nil)).Elem()
+}
+
+func (o GetTopicPartitionsPartitionArrayOutput) ToGetTopicPartitionsPartitionArrayOutput() GetTopicPartitionsPartitionArrayOutput {
+	return o
+}
+
+func (o GetTopicPartitionsPartitionArrayOutput) ToGetTopicPartitionsPartitionArrayOutputWithContext(ctx context.Context) GetTopicPartitionsPartitionArrayOutput {
+	return o
+}
+
+func (o GetTopicPartitionsPartitionArrayOutput) Index(i pulumi.IntInput) GetTopicPartitionsPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicPartitionsPartition {
+		return vs[0].([]GetTopicPartitionsPartition)[vs[1].(int)]
+	}).(GetTopicPartitionsPartitionOutput)
+}
+
+type GetTopicsTopic struct {
+	// The access policies info of the kafka topic.
+	AccessPolicies []GetTopicsTopicAccessPolicy `pulumi:"accessPolicies"`
+	// Whether the kafka topic is configured to be accessible by all users.
+	AllAuthority bool `pulumi:"allAuthority"`
+	// The create time of the kafka topic.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the kafka topic.
+	Description string `pulumi:"description"`
+	// The parameters of the kafka topic.
+	Parameters GetTopicsTopicParameters `pulumi:"parameters"`
+	// The number of partition in kafka topic.
+	PartitionNumber int `pulumi:"partitionNumber"`
+	// The number of replica in kafka topic.
+	ReplicaNumber int `pulumi:"replicaNumber"`
+	// The status of the kafka topic.
+	Status string `pulumi:"status"`
+	// The name of kafka topic. This field supports fuzzy query.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetTopicsTopicInput is an input type that accepts GetTopicsTopicArgs and GetTopicsTopicOutput values.
+// You can construct a concrete instance of `GetTopicsTopicInput` via:
+//
+//	GetTopicsTopicArgs{...}
+type GetTopicsTopicInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicOutput() GetTopicsTopicOutput
+	ToGetTopicsTopicOutputWithContext(context.Context) GetTopicsTopicOutput
+}
+
+type GetTopicsTopicArgs struct {
+	// The access policies info of the kafka topic.
+	AccessPolicies GetTopicsTopicAccessPolicyArrayInput `pulumi:"accessPolicies"`
+	// Whether the kafka topic is configured to be accessible by all users.
+	AllAuthority pulumi.BoolInput `pulumi:"allAuthority"`
+	// The create time of the kafka topic.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the kafka topic.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The parameters of the kafka topic.
+	Parameters GetTopicsTopicParametersInput `pulumi:"parameters"`
+	// The number of partition in kafka topic.
+	PartitionNumber pulumi.IntInput `pulumi:"partitionNumber"`
+	// The number of replica in kafka topic.
+	ReplicaNumber pulumi.IntInput `pulumi:"replicaNumber"`
+	// The status of the kafka topic.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The name of kafka topic. This field supports fuzzy query.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetTopicsTopicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopic)(nil)).Elem()
+}
+
+func (i GetTopicsTopicArgs) ToGetTopicsTopicOutput() GetTopicsTopicOutput {
+	return i.ToGetTopicsTopicOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicArgs) ToGetTopicsTopicOutputWithContext(ctx context.Context) GetTopicsTopicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicOutput)
+}
+
+// GetTopicsTopicArrayInput is an input type that accepts GetTopicsTopicArray and GetTopicsTopicArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTopicArrayInput` via:
+//
+//	GetTopicsTopicArray{ GetTopicsTopicArgs{...} }
+type GetTopicsTopicArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicArrayOutput() GetTopicsTopicArrayOutput
+	ToGetTopicsTopicArrayOutputWithContext(context.Context) GetTopicsTopicArrayOutput
+}
+
+type GetTopicsTopicArray []GetTopicsTopicInput
+
+func (GetTopicsTopicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTopic)(nil)).Elem()
+}
+
+func (i GetTopicsTopicArray) ToGetTopicsTopicArrayOutput() GetTopicsTopicArrayOutput {
+	return i.ToGetTopicsTopicArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicArray) ToGetTopicsTopicArrayOutputWithContext(ctx context.Context) GetTopicsTopicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicArrayOutput)
+}
+
+type GetTopicsTopicOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopic)(nil)).Elem()
+}
+
+func (o GetTopicsTopicOutput) ToGetTopicsTopicOutput() GetTopicsTopicOutput {
+	return o
+}
+
+func (o GetTopicsTopicOutput) ToGetTopicsTopicOutputWithContext(ctx context.Context) GetTopicsTopicOutput {
+	return o
+}
+
+// The access policies info of the kafka topic.
+func (o GetTopicsTopicOutput) AccessPolicies() GetTopicsTopicAccessPolicyArrayOutput {
+	return o.ApplyT(func(v GetTopicsTopic) []GetTopicsTopicAccessPolicy { return v.AccessPolicies }).(GetTopicsTopicAccessPolicyArrayOutput)
+}
+
+// Whether the kafka topic is configured to be accessible by all users.
+func (o GetTopicsTopicOutput) AllAuthority() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTopicsTopic) bool { return v.AllAuthority }).(pulumi.BoolOutput)
+}
+
+// The create time of the kafka topic.
+func (o GetTopicsTopicOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopic) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the kafka topic.
+func (o GetTopicsTopicOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopic) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The parameters of the kafka topic.
+func (o GetTopicsTopicOutput) Parameters() GetTopicsTopicParametersOutput {
+	return o.ApplyT(func(v GetTopicsTopic) GetTopicsTopicParameters { return v.Parameters }).(GetTopicsTopicParametersOutput)
+}
+
+// The number of partition in kafka topic.
+func (o GetTopicsTopicOutput) PartitionNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopic) int { return v.PartitionNumber }).(pulumi.IntOutput)
+}
+
+// The number of replica in kafka topic.
+func (o GetTopicsTopicOutput) ReplicaNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopic) int { return v.ReplicaNumber }).(pulumi.IntOutput)
+}
+
+// The status of the kafka topic.
+func (o GetTopicsTopicOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopic) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The name of kafka topic. This field supports fuzzy query.
+func (o GetTopicsTopicOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetTopicsTopicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTopic)(nil)).Elem()
+}
+
+func (o GetTopicsTopicArrayOutput) ToGetTopicsTopicArrayOutput() GetTopicsTopicArrayOutput {
+	return o
+}
+
+func (o GetTopicsTopicArrayOutput) ToGetTopicsTopicArrayOutputWithContext(ctx context.Context) GetTopicsTopicArrayOutput {
+	return o
+}
+
+func (o GetTopicsTopicArrayOutput) Index(i pulumi.IntInput) GetTopicsTopicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTopic {
+		return vs[0].([]GetTopicsTopic)[vs[1].(int)]
+	}).(GetTopicsTopicOutput)
+}
+
+type GetTopicsTopicAccessPolicy struct {
+	// The access policy of SASL user.
+	AccessPolicy string `pulumi:"accessPolicy"`
+	// When a user name is specified, only the access policy of the specified user for this Topic will be returned.
+	UserName string `pulumi:"userName"`
+}
+
+// GetTopicsTopicAccessPolicyInput is an input type that accepts GetTopicsTopicAccessPolicyArgs and GetTopicsTopicAccessPolicyOutput values.
+// You can construct a concrete instance of `GetTopicsTopicAccessPolicyInput` via:
+//
+//	GetTopicsTopicAccessPolicyArgs{...}
+type GetTopicsTopicAccessPolicyInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicAccessPolicyOutput() GetTopicsTopicAccessPolicyOutput
+	ToGetTopicsTopicAccessPolicyOutputWithContext(context.Context) GetTopicsTopicAccessPolicyOutput
+}
+
+type GetTopicsTopicAccessPolicyArgs struct {
+	// The access policy of SASL user.
+	AccessPolicy pulumi.StringInput `pulumi:"accessPolicy"`
+	// When a user name is specified, only the access policy of the specified user for this Topic will be returned.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetTopicsTopicAccessPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopicAccessPolicy)(nil)).Elem()
+}
+
+func (i GetTopicsTopicAccessPolicyArgs) ToGetTopicsTopicAccessPolicyOutput() GetTopicsTopicAccessPolicyOutput {
+	return i.ToGetTopicsTopicAccessPolicyOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicAccessPolicyArgs) ToGetTopicsTopicAccessPolicyOutputWithContext(ctx context.Context) GetTopicsTopicAccessPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicAccessPolicyOutput)
+}
+
+// GetTopicsTopicAccessPolicyArrayInput is an input type that accepts GetTopicsTopicAccessPolicyArray and GetTopicsTopicAccessPolicyArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTopicAccessPolicyArrayInput` via:
+//
+//	GetTopicsTopicAccessPolicyArray{ GetTopicsTopicAccessPolicyArgs{...} }
+type GetTopicsTopicAccessPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicAccessPolicyArrayOutput() GetTopicsTopicAccessPolicyArrayOutput
+	ToGetTopicsTopicAccessPolicyArrayOutputWithContext(context.Context) GetTopicsTopicAccessPolicyArrayOutput
+}
+
+type GetTopicsTopicAccessPolicyArray []GetTopicsTopicAccessPolicyInput
+
+func (GetTopicsTopicAccessPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTopicAccessPolicy)(nil)).Elem()
+}
+
+func (i GetTopicsTopicAccessPolicyArray) ToGetTopicsTopicAccessPolicyArrayOutput() GetTopicsTopicAccessPolicyArrayOutput {
+	return i.ToGetTopicsTopicAccessPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicAccessPolicyArray) ToGetTopicsTopicAccessPolicyArrayOutputWithContext(ctx context.Context) GetTopicsTopicAccessPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicAccessPolicyArrayOutput)
+}
+
+type GetTopicsTopicAccessPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicAccessPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopicAccessPolicy)(nil)).Elem()
+}
+
+func (o GetTopicsTopicAccessPolicyOutput) ToGetTopicsTopicAccessPolicyOutput() GetTopicsTopicAccessPolicyOutput {
+	return o
+}
+
+func (o GetTopicsTopicAccessPolicyOutput) ToGetTopicsTopicAccessPolicyOutputWithContext(ctx context.Context) GetTopicsTopicAccessPolicyOutput {
+	return o
+}
+
+// The access policy of SASL user.
+func (o GetTopicsTopicAccessPolicyOutput) AccessPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopicAccessPolicy) string { return v.AccessPolicy }).(pulumi.StringOutput)
+}
+
+// When a user name is specified, only the access policy of the specified user for this Topic will be returned.
+func (o GetTopicsTopicAccessPolicyOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopicAccessPolicy) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetTopicsTopicAccessPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicAccessPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTopicAccessPolicy)(nil)).Elem()
+}
+
+func (o GetTopicsTopicAccessPolicyArrayOutput) ToGetTopicsTopicAccessPolicyArrayOutput() GetTopicsTopicAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetTopicsTopicAccessPolicyArrayOutput) ToGetTopicsTopicAccessPolicyArrayOutputWithContext(ctx context.Context) GetTopicsTopicAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetTopicsTopicAccessPolicyArrayOutput) Index(i pulumi.IntInput) GetTopicsTopicAccessPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTopicAccessPolicy {
+		return vs[0].([]GetTopicsTopicAccessPolicy)[vs[1].(int)]
+	}).(GetTopicsTopicAccessPolicyOutput)
+}
+
+type GetTopicsTopicParameters struct {
+	// The retention hours of log.
+	LogRetentionHours int `pulumi:"logRetentionHours"`
+	// The max byte of message.
+	MessageMaxByte int `pulumi:"messageMaxByte"`
+	// The min number of sync replica.
+	MinInsyncReplicaNumber int `pulumi:"minInsyncReplicaNumber"`
+}
+
+// GetTopicsTopicParametersInput is an input type that accepts GetTopicsTopicParametersArgs and GetTopicsTopicParametersOutput values.
+// You can construct a concrete instance of `GetTopicsTopicParametersInput` via:
+//
+//	GetTopicsTopicParametersArgs{...}
+type GetTopicsTopicParametersInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicParametersOutput() GetTopicsTopicParametersOutput
+	ToGetTopicsTopicParametersOutputWithContext(context.Context) GetTopicsTopicParametersOutput
+}
+
+type GetTopicsTopicParametersArgs struct {
+	// The retention hours of log.
+	LogRetentionHours pulumi.IntInput `pulumi:"logRetentionHours"`
+	// The max byte of message.
+	MessageMaxByte pulumi.IntInput `pulumi:"messageMaxByte"`
+	// The min number of sync replica.
+	MinInsyncReplicaNumber pulumi.IntInput `pulumi:"minInsyncReplicaNumber"`
+}
+
+func (GetTopicsTopicParametersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopicParameters)(nil)).Elem()
+}
+
+func (i GetTopicsTopicParametersArgs) ToGetTopicsTopicParametersOutput() GetTopicsTopicParametersOutput {
+	return i.ToGetTopicsTopicParametersOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicParametersArgs) ToGetTopicsTopicParametersOutputWithContext(ctx context.Context) GetTopicsTopicParametersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicParametersOutput)
+}
+
+type GetTopicsTopicParametersOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicParametersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopicParameters)(nil)).Elem()
+}
+
+func (o GetTopicsTopicParametersOutput) ToGetTopicsTopicParametersOutput() GetTopicsTopicParametersOutput {
+	return o
+}
+
+func (o GetTopicsTopicParametersOutput) ToGetTopicsTopicParametersOutputWithContext(ctx context.Context) GetTopicsTopicParametersOutput {
+	return o
+}
+
+// The retention hours of log.
+func (o GetTopicsTopicParametersOutput) LogRetentionHours() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopicParameters) int { return v.LogRetentionHours }).(pulumi.IntOutput)
+}
+
+// The max byte of message.
+func (o GetTopicsTopicParametersOutput) MessageMaxByte() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopicParameters) int { return v.MessageMaxByte }).(pulumi.IntOutput)
+}
+
+// The min number of sync replica.
+func (o GetTopicsTopicParametersOutput) MinInsyncReplicaNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopicParameters) int { return v.MinInsyncReplicaNumber }).(pulumi.IntOutput)
+}
+
+type GetZonesZone struct {
+	// The description of the zone.
+	Description string `pulumi:"description"`
+	// The id of the zone.
+	Id string `pulumi:"id"`
+	// The status of the zone.
+	Status string `pulumi:"status"`
+	// The id of the zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The description of the zone.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The status of the zone.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of the zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The description of the zone.
+func (o GetZonesZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The status of the zone.
+func (o GetZonesZoneOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of the zone.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedPartitionsConsumedPartitionInput)(nil)).Elem(), ConsumedPartitionsConsumedPartitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedPartitionsConsumedPartitionArrayInput)(nil)).Elem(), ConsumedPartitionsConsumedPartitionArray{})
@@ -2629,6 +4714,35 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicParametersInput)(nil)).Elem(), TopicsTopicParametersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedPartitionsConsumedPartitionInput)(nil)).Elem(), GetConsumedPartitionsConsumedPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedPartitionsConsumedPartitionArrayInput)(nil)).Elem(), GetConsumedPartitionsConsumedPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedTopicsConsumedTopicInput)(nil)).Elem(), GetConsumedTopicsConsumedTopicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedTopicsConsumedTopicArrayInput)(nil)).Elem(), GetConsumedTopicsConsumedTopicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupInput)(nil)).Elem(), GetGroupsGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupArrayInput)(nil)).Elem(), GetGroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceConnectionInfoInput)(nil)).Elem(), GetInstancesInstanceConnectionInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceConnectionInfoArrayInput)(nil)).Elem(), GetInstancesInstanceConnectionInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceParameterInput)(nil)).Elem(), GetInstancesInstanceParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceParameterArrayInput)(nil)).Elem(), GetInstancesInstanceParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceTagInput)(nil)).Elem(), GetInstancesInstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceTagArrayInput)(nil)).Elem(), GetInstancesInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagInput)(nil)).Elem(), GetInstancesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagArrayInput)(nil)).Elem(), GetInstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSaslUsersUserInput)(nil)).Elem(), GetSaslUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSaslUsersUserArrayInput)(nil)).Elem(), GetSaslUsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicPartitionsPartitionInput)(nil)).Elem(), GetTopicPartitionsPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicPartitionsPartitionArrayInput)(nil)).Elem(), GetTopicPartitionsPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicInput)(nil)).Elem(), GetTopicsTopicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicArrayInput)(nil)).Elem(), GetTopicsTopicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicAccessPolicyInput)(nil)).Elem(), GetTopicsTopicAccessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicAccessPolicyArrayInput)(nil)).Elem(), GetTopicsTopicAccessPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicParametersInput)(nil)).Elem(), GetTopicsTopicParametersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(ConsumedPartitionsConsumedPartitionOutput{})
 	pulumi.RegisterOutputType(ConsumedPartitionsConsumedPartitionArrayOutput{})
 	pulumi.RegisterOutputType(ConsumedTopicsConsumedTopicOutput{})
@@ -2666,4 +4780,33 @@ func init() {
 	pulumi.RegisterOutputType(TopicsTopicParametersOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetConsumedPartitionsConsumedPartitionOutput{})
+	pulumi.RegisterOutputType(GetConsumedPartitionsConsumedPartitionArrayOutput{})
+	pulumi.RegisterOutputType(GetConsumedTopicsConsumedTopicOutput{})
+	pulumi.RegisterOutputType(GetConsumedTopicsConsumedTopicArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceConnectionInfoOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceConnectionInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceParameterOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagOutput{})
+	pulumi.RegisterOutputType(GetInstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetSaslUsersUserOutput{})
+	pulumi.RegisterOutputType(GetSaslUsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicPartitionsPartitionOutput{})
+	pulumi.RegisterOutputType(GetTopicPartitionsPartitionArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicAccessPolicyOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicAccessPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicParametersOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }
