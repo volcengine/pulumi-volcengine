@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := direct_connect.Gateways(ctx, &direct_connect.GatewaysArgs{
+//			_, err := direct_connect.GetGateways(ctx, &direct_connect.GetGatewaysArgs{
 //				DirectConnectGatewayName: pulumi.StringRef("tf-test"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways
 func Gateways(ctx *pulumi.Context, args *GatewaysArgs, opts ...pulumi.InvokeOption) (*GatewaysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewaysResult

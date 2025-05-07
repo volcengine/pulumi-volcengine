@@ -12,6 +12,31 @@ import (
 )
 
 // Use this data source to query detailed information of alb listeners
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.GetListeners(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Deprecated: volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners
 func Listeners(ctx *pulumi.Context, args *ListenersArgs, opts ...pulumi.InvokeOption) (*ListenersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListenersResult

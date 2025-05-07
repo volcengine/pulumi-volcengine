@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -69,7 +69,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = redis.InstancesOutput(ctx, redis.InstancesOutputArgs{
+//			_ = redis.GetInstancesOutput(ctx, redis.GetInstancesOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -77,6 +77,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.redis.Instances has been deprecated in favor of volcengine.redis.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

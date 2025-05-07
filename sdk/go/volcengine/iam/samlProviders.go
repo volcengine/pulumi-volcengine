@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.SamlProviders(ctx, nil, nil)
+//			_, err := iam.GetSamlProviders(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders
 func SamlProviders(ctx *pulumi.Context, args *SamlProvidersArgs, opts ...pulumi.InvokeOption) (*SamlProvidersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SamlProvidersResult

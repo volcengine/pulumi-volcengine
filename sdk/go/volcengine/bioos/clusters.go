@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := bioos.Clusters(ctx, nil, nil)
+//			_, err := bioos.GetClusters(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.bioos.Clusters has been deprecated in favor of volcengine.bioos.getClusters
 func Clusters(ctx *pulumi.Context, args *ClustersArgs, opts ...pulumi.InvokeOption) (*ClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ClustersResult

@@ -89,7 +89,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vke.ClustersOutput(ctx, vke.ClustersOutputArgs{
+//			_ = vke.GetClustersOutput(ctx, vke.GetClustersOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooCluster.ID(),
 //				},
@@ -99,6 +99,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters
 func Clusters(ctx *pulumi.Context, args *ClustersArgs, opts ...pulumi.InvokeOption) (*ClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ClustersResult

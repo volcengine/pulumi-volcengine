@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -57,7 +57,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//			fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				OsType:         pulumi.StringRef("Linux"),
 //				Visibility:     pulumi.StringRef("public"),
 //				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
@@ -166,7 +166,7 @@ import (
 //				}
 //				fooScalingInstanceAttachment = append(fooScalingInstanceAttachment, __res)
 //			}
-//			_ = autoscaling.ScalingActivitiesOutput(ctx, autoscaling.ScalingActivitiesOutputArgs{
+//			_ = autoscaling.GetScalingActivitiesOutput(ctx, autoscaling.GetScalingActivitiesOutputArgs{
 //				ScalingGroupId: fooScalingGroup.ID(),
 //			}, nil)
 //			return nil
@@ -174,6 +174,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.autoscaling.ScalingActivities has been deprecated in favor of volcengine.autoscaling.getScalingActivities
 func ScalingActivities(ctx *pulumi.Context, args *ScalingActivitiesArgs, opts ...pulumi.InvokeOption) (*ScalingActivitiesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingActivitiesResult

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.InstanceTypes has been deprecated in favor of volcengine.ecs.getInstanceTypes")]
     public static class InstanceTypes
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.InstanceTypes.Invoke();
+        ///     var foo = Volcengine.Ecs.GetInstanceTypes.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.InstanceTypes.Invoke();
+        ///     var foo = Volcengine.Ecs.GetInstanceTypes.Invoke();
         /// 
         /// });
         /// ```

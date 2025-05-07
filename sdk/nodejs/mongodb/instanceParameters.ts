@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -51,14 +51,16 @@ import * as utilities from "../utilities";
  *     parameterRole: "Node",
  *     parameterValue: "600111",
  * });
- * const fooInstanceParameters = volcengine.mongodb.InstanceParametersOutput({
+ * const fooInstanceParameters = volcengine.mongodb.getInstanceParametersOutput({
  *     instanceId: fooInstance.id,
  *     parameterNames: "cursorTimeoutMillis",
  *     parameterRole: "Node",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters */
 export function instanceParameters(args: InstanceParametersArgs, opts?: pulumi.InvokeOptions): Promise<InstanceParametersResult> {
+    pulumi.log.warn("instanceParameters is deprecated: volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/instanceParameters:InstanceParameters", {
@@ -133,7 +135,7 @@ export interface InstanceParametersResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -169,13 +171,14 @@ export interface InstanceParametersResult {
  *     parameterRole: "Node",
  *     parameterValue: "600111",
  * });
- * const fooInstanceParameters = volcengine.mongodb.InstanceParametersOutput({
+ * const fooInstanceParameters = volcengine.mongodb.getInstanceParametersOutput({
  *     instanceId: fooInstance.id,
  *     parameterNames: "cursorTimeoutMillis",
  *     parameterRole: "Node",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters */
 export function instanceParametersOutput(args: InstanceParametersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceParametersResult> {
     return pulumi.output(args).apply((a: any) => instanceParameters(a, opts))
 }

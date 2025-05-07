@@ -17,6 +17,8 @@ __all__ = [
     'topic_partitions_output',
 ]
 
+warnings.warn("""volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions""", DeprecationWarning)
+
 @pulumi.output_type
 class TopicPartitionsResult:
     """
@@ -128,7 +130,7 @@ def topic_partitions(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -186,7 +188,7 @@ def topic_partitions(instance_id: Optional[str] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = pulumi.Output.all(foo_instance.id, foo_topic.topic_name).apply(lambda id, topic_name: volcengine.kafka.topic_partitions_output(instance_id=id,
+    default = pulumi.Output.all(foo_instance.id, foo_topic.topic_name).apply(lambda id, topic_name: volcengine.kafka.get_topic_partitions_output(instance_id=id,
         topic_name=topic_name,
         partition_ids=[
             1,
@@ -201,6 +203,7 @@ def topic_partitions(instance_id: Optional[str] = None,
     :param str topic_name: The name of kafka topic.
     :param bool under_insync_only: Whether to only query the list of partitions that have out-of-sync replicas, the default value is false.
     """
+    pulumi.log.warn("""topic_partitions is deprecated: volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
@@ -236,7 +239,7 @@ def topic_partitions_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -294,7 +297,7 @@ def topic_partitions_output(instance_id: Optional[pulumi.Input[str]] = None,
             user_name=foo_sasl_user.user_name,
             access_policy="Pub",
         )])
-    default = pulumi.Output.all(foo_instance.id, foo_topic.topic_name).apply(lambda id, topic_name: volcengine.kafka.topic_partitions_output(instance_id=id,
+    default = pulumi.Output.all(foo_instance.id, foo_topic.topic_name).apply(lambda id, topic_name: volcengine.kafka.get_topic_partitions_output(instance_id=id,
         topic_name=topic_name,
         partition_ids=[
             1,
@@ -309,4 +312,5 @@ def topic_partitions_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str topic_name: The name of kafka topic.
     :param bool under_insync_only: Whether to only query the list of partitions that have out-of-sync replicas, the default value is false.
     """
+    pulumi.log.warn("""topic_partitions is deprecated: volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'configs_output',
 ]
 
+warnings.warn("""volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs""", DeprecationWarning)
+
 @pulumi.output_type
 class ConfigsResult:
     """
@@ -149,13 +151,14 @@ def configs(domain: Optional[str] = None,
                 ],
             },
         }))
-    foo_configs = volcengine.cdn.configs_output(domain=foo_cdn_domain.id)
+    foo_configs = volcengine.cdn.get_configs_output(domain=foo_cdn_domain.id)
     ```
 
 
     :param str domain: The domain name.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""configs is deprecated: volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs""")
     __args__ = dict()
     __args__['domain'] = domain
     __args__['outputFile'] = output_file
@@ -230,11 +233,12 @@ def configs_output(domain: Optional[pulumi.Input[str]] = None,
                 ],
             },
         }))
-    foo_configs = volcengine.cdn.configs_output(domain=foo_cdn_domain.id)
+    foo_configs = volcengine.cdn.get_configs_output(domain=foo_cdn_domain.id)
     ```
 
 
     :param str domain: The domain name.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""configs is deprecated: volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs""")
     ...

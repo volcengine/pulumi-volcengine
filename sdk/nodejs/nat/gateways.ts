@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -42,12 +42,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooGateways = volcengine.nat.GatewaysOutput({
+ * const fooGateways = volcengine.nat.getGatewaysOutput({
  *     ids: fooGateway.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways */
 export function gateways(args?: GatewaysArgs, opts?: pulumi.InvokeOptions): Promise<GatewaysResult> {
+    pulumi.log.warn("gateways is deprecated: volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -159,7 +161,7 @@ export interface GatewaysResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -186,11 +188,12 @@ export interface GatewaysResult {
  *         }],
  *     }));
  * }
- * const fooGateways = volcengine.nat.GatewaysOutput({
+ * const fooGateways = volcengine.nat.getGatewaysOutput({
  *     ids: fooGateway.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.nat.Gateways has been deprecated in favor of volcengine.nat.getGateways */
 export function gatewaysOutput(args?: GatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewaysResult> {
     return pulumi.output(args).apply((a: any) => gateways(a, opts))
 }

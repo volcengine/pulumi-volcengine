@@ -30,6 +30,31 @@ export const databases: typeof import("./databases").databases = null as any;
 export const databasesOutput: typeof import("./databases").databasesOutput = null as any;
 utilities.lazyLoad(exports, ["databases","databasesOutput"], () => require("./databases"));
 
+export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
+export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
+export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccounts","getAccountsOutput"], () => require("./getAccounts"));
+
+export { GetDatabasesArgs, GetDatabasesResult, GetDatabasesOutputArgs } from "./getDatabases";
+export const getDatabases: typeof import("./getDatabases").getDatabases = null as any;
+export const getDatabasesOutput: typeof import("./getDatabases").getDatabasesOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabases","getDatabasesOutput"], () => require("./getDatabases"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetIpListsArgs, GetIpListsResult, GetIpListsOutputArgs } from "./getIpLists";
+export const getIpLists: typeof import("./getIpLists").getIpLists = null as any;
+export const getIpListsOutput: typeof import("./getIpLists").getIpListsOutput = null as any;
+utilities.lazyLoad(exports, ["getIpLists","getIpListsOutput"], () => require("./getIpLists"));
+
+export { GetParameterTemplatesArgs, GetParameterTemplatesResult, GetParameterTemplatesOutputArgs } from "./getParameterTemplates";
+export const getParameterTemplates: typeof import("./getParameterTemplates").getParameterTemplates = null as any;
+export const getParameterTemplatesOutput: typeof import("./getParameterTemplates").getParameterTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getParameterTemplates","getParameterTemplatesOutput"], () => require("./getParameterTemplates"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;

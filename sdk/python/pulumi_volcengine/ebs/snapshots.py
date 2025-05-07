@@ -18,6 +18,8 @@ __all__ = [
     'snapshots_output',
 ]
 
+warnings.warn("""volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots""", DeprecationWarning)
+
 @pulumi.output_type
 class SnapshotsResult:
     """
@@ -158,7 +160,7 @@ def snapshots(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_volume = volcengine.ebs.Volume("fooVolume",
         volume_name="acc-test-volume",
         volume_type="ESSD_PL0",
@@ -180,7 +182,7 @@ def snapshots(ids: Optional[Sequence[str]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_snapshots = volcengine.ebs.snapshots_output(ids=[__item.id for __item in foo_snapshot])
+    foo_snapshots = volcengine.ebs.get_snapshots_output(ids=[__item.id for __item in foo_snapshot])
     ```
 
 
@@ -192,6 +194,7 @@ def snapshots(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['SnapshotsTagArgs']] tags: Tags.
     :param str zone_id: The zone id of snapshot.
     """
+    pulumi.log.warn("""snapshots is deprecated: volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -233,7 +236,7 @@ def snapshots_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_volume = volcengine.ebs.Volume("fooVolume",
         volume_name="acc-test-volume",
         volume_type="ESSD_PL0",
@@ -255,7 +258,7 @@ def snapshots_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
                 key="k1",
                 value="v1",
             )]))
-    foo_snapshots = volcengine.ebs.snapshots_output(ids=[__item.id for __item in foo_snapshot])
+    foo_snapshots = volcengine.ebs.get_snapshots_output(ids=[__item.id for __item in foo_snapshot])
     ```
 
 
@@ -267,4 +270,5 @@ def snapshots_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     :param Sequence[pulumi.InputType['SnapshotsTagArgs']] tags: Tags.
     :param str zone_id: The zone id of snapshot.
     """
+    pulumi.log.warn("""snapshots is deprecated: volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots""")
     ...

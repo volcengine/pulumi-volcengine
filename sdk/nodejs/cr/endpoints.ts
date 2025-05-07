@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Endpoints({
+ * const foo = volcengine.cr.getEndpoints({
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints */
 export function endpoints(args: EndpointsArgs, opts?: pulumi.InvokeOptions): Promise<EndpointsResult> {
+    pulumi.log.warn("endpoints is deprecated: volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/endpoints:Endpoints", {
@@ -72,11 +74,12 @@ export interface EndpointsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Endpoints({
+ * const foo = volcengine.cr.getEndpoints({
  *     registry: "tf-1",
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints */
 export function endpointsOutput(args: EndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EndpointsResult> {
     return pulumi.output(args).apply((a: any) => endpoints(a, opts))
 }

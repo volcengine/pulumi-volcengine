@@ -17,6 +17,8 @@ __all__ = [
     'listener_domain_extensions_output',
 ]
 
+warnings.warn("""volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions""", DeprecationWarning)
+
 @pulumi.output_type
 class ListenerDomainExtensionsResult:
     """
@@ -101,13 +103,14 @@ def listener_domain_extensions(listener_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.listener_domain_extensions(listener_id="lsn-1g72yeyhrrj7k2zbhq5gp6xch")
+    foo = volcengine.alb.get_listener_domain_extensions(listener_id="lsn-1g72yeyhrrj7k2zbhq5gp6xch")
     ```
 
 
     :param str listener_id: A Listener ID.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""listener_domain_extensions is deprecated: volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions""")
     __args__ = dict()
     __args__['listenerId'] = listener_id
     __args__['outputFile'] = output_file
@@ -134,11 +137,12 @@ def listener_domain_extensions_output(listener_id: Optional[pulumi.Input[str]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.listener_domain_extensions(listener_id="lsn-1g72yeyhrrj7k2zbhq5gp6xch")
+    foo = volcengine.alb.get_listener_domain_extensions(listener_id="lsn-1g72yeyhrrj7k2zbhq5gp6xch")
     ```
 
 
     :param str listener_id: A Listener ID.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""listener_domain_extensions is deprecated: volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions""")
     ...

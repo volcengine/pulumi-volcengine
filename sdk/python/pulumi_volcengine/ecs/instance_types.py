@@ -17,6 +17,8 @@ __all__ = [
     'instance_types_output',
 ]
 
+warnings.warn("""volcengine.ecs.InstanceTypes has been deprecated in favor of volcengine.ecs.getInstanceTypes""", DeprecationWarning)
+
 @pulumi.output_type
 class InstanceTypesResult:
     """
@@ -108,7 +110,7 @@ def instance_types(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.instance_types()
+    foo = volcengine.ecs.get_instance_types()
     ```
 
 
@@ -116,6 +118,7 @@ def instance_types(ids: Optional[Sequence[str]] = None,
     :param str image_id: The id of image.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""instance_types is deprecated: volcengine.ecs.InstanceTypes has been deprecated in favor of volcengine.ecs.getInstanceTypes""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['imageId'] = image_id
@@ -145,7 +148,7 @@ def instance_types_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.ecs.instance_types()
+    foo = volcengine.ecs.get_instance_types()
     ```
 
 
@@ -153,4 +156,5 @@ def instance_types_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param str image_id: The id of image.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""instance_types is deprecated: volcengine.ecs.InstanceTypes has been deprecated in favor of volcengine.ecs.getInstanceTypes""")
     ...

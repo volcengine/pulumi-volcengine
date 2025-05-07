@@ -17,6 +17,8 @@ __all__ = [
     'ssl_vpn_client_certs_output',
 ]
 
+warnings.warn("""volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts""", DeprecationWarning)
+
 @pulumi.output_type
 class SslVpnClientCertsResult:
     """
@@ -134,7 +136,7 @@ def ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -169,7 +171,7 @@ def ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
             ssl_vpn_server_id=foo_ssl_vpn_server.id,
             ssl_vpn_client_cert_name=f"acc-test-client-cert-{range['value']}",
             description="acc-test"))
-    foo_ssl_vpn_client_certs = volcengine.vpn.ssl_vpn_client_certs_output(ids=[__item.id for __item in foo_ssl_vpn_client_cert])
+    foo_ssl_vpn_client_certs = volcengine.vpn.get_ssl_vpn_client_certs_output(ids=[__item.id for __item in foo_ssl_vpn_client_cert])
     ```
 
 
@@ -179,6 +181,7 @@ def ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
     :param str ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
     :param str ssl_vpn_server_id: The id of the ssl vpn server.
     """
+    pulumi.log.warn("""ssl_vpn_client_certs is deprecated: volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -214,7 +217,7 @@ def ssl_vpn_client_certs_output(ids: Optional[pulumi.Input[Optional[Sequence[str
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -249,7 +252,7 @@ def ssl_vpn_client_certs_output(ids: Optional[pulumi.Input[Optional[Sequence[str
             ssl_vpn_server_id=foo_ssl_vpn_server.id,
             ssl_vpn_client_cert_name=f"acc-test-client-cert-{range['value']}",
             description="acc-test"))
-    foo_ssl_vpn_client_certs = volcengine.vpn.ssl_vpn_client_certs_output(ids=[__item.id for __item in foo_ssl_vpn_client_cert])
+    foo_ssl_vpn_client_certs = volcengine.vpn.get_ssl_vpn_client_certs_output(ids=[__item.id for __item in foo_ssl_vpn_client_cert])
     ```
 
 
@@ -259,4 +262,5 @@ def ssl_vpn_client_certs_output(ids: Optional[pulumi.Input[Optional[Sequence[str
     :param str ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
     :param str ssl_vpn_server_id: The id of the ssl vpn server.
     """
+    pulumi.log.warn("""ssl_vpn_client_certs is deprecated: volcengine.vpn.SslVpnClientCerts has been deprecated in favor of volcengine.vpn.getSslVpnClientCerts""")
     ...

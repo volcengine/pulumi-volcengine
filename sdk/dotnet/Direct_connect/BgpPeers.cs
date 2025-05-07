@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Direct_connect
 {
+    [Obsolete(@"volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers")]
     public static class BgpPeers
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.BgpPeers.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetBgpPeers.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.BgpPeers.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetBgpPeers.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

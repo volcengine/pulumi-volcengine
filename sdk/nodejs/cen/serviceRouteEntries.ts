@@ -60,13 +60,15 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
- * const fooServiceRouteEntries = volcengine.cen.ServiceRouteEntriesOutput({
+ * const fooServiceRouteEntries = volcengine.cen.getServiceRouteEntriesOutput({
  *     cenId: fooCen.id,
  *     destinationCidrBlock: fooServiceRouteEntry.destinationCidrBlock,
  * });
  * ```
  */
+/** @deprecated volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries */
 export function serviceRouteEntries(args?: ServiceRouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<ServiceRouteEntriesResult> {
+    pulumi.log.warn("serviceRouteEntries is deprecated: volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -193,12 +195,13 @@ export interface ServiceRouteEntriesResult {
  *         },
  *     ],
  * });
- * const fooServiceRouteEntries = volcengine.cen.ServiceRouteEntriesOutput({
+ * const fooServiceRouteEntries = volcengine.cen.getServiceRouteEntriesOutput({
  *     cenId: fooCen.id,
  *     destinationCidrBlock: fooServiceRouteEntry.destinationCidrBlock,
  * });
  * ```
  */
+/** @deprecated volcengine.cen.ServiceRouteEntries has been deprecated in favor of volcengine.cen.getServiceRouteEntries */
 export function serviceRouteEntriesOutput(args?: ServiceRouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServiceRouteEntriesResult> {
     return pulumi.output(args).apply((a: any) => serviceRouteEntries(a, opts))
 }

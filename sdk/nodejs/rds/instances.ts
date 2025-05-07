@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.Instances({
+ * const default = volcengine.rds.getInstances({
  *     instanceId: "mysql-0fdd3bab2e7c",
  * });
  * ```
  */
+/** @deprecated volcengine.rds.Instances has been deprecated in favor of volcengine.rds.getInstances */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
+    pulumi.log.warn("instances is deprecated: volcengine.rds.Instances has been deprecated in favor of volcengine.rds.getInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -127,11 +129,12 @@ export interface InstancesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.Instances({
+ * const default = volcengine.rds.getInstances({
  *     instanceId: "mysql-0fdd3bab2e7c",
  * });
  * ```
  */
+/** @deprecated volcengine.rds.Instances has been deprecated in favor of volcengine.rds.getInstances */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
     return pulumi.output(args).apply((a: any) => instances(a, opts))
 }

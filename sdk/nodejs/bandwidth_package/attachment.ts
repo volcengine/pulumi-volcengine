@@ -36,8 +36,8 @@ import * as utilities from "../utilities";
  *     allocationId: fooAddress.id,
  *     bandwidthPackageId: ipv4BandwidthPackage.id,
  * });
- * const fooZones = volcengine.ecs.Zones({});
- * const fooImages = volcengine.ecs.Images({
+ * const fooZones = volcengine.ecs.getZones({});
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",
@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  *     securityGroupIds: [fooSecurityGroup.id],
  *     ipv6AddressCount: 1,
  * });
- * const fooIpv6Addresses = volcengine.vpc.Ipv6AddressesOutput({
+ * const fooIpv6Addresses = volcengine.vpc.getIpv6AddressesOutput({
  *     associatedInstanceId: fooInstance.id,
  * });
  * const fooIpv6AddressBandwidth = new volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth", {

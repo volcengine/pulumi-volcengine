@@ -42,7 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -55,13 +55,15 @@ import * as utilities from "../utilities";
  *     serviceId: fooVpcEndpointService.id,
  *     permitAccountId: "210000000",
  * });
- * const fooVpcEndpointServicePermissions = volcengine.privatelink.VpcEndpointServicePermissionsOutput({
+ * const fooVpcEndpointServicePermissions = volcengine.privatelink.getVpcEndpointServicePermissionsOutput({
  *     permitAccountId: fooVpcEndpointServicePermission.permitAccountId,
  *     serviceId: fooVpcEndpointService.id,
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions */
 export function vpcEndpointServicePermissions(args: VpcEndpointServicePermissionsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointServicePermissionsResult> {
+    pulumi.log.warn("vpcEndpointServicePermissions is deprecated: volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", {
@@ -121,7 +123,7 @@ export interface VpcEndpointServicePermissionsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -161,12 +163,13 @@ export interface VpcEndpointServicePermissionsResult {
  *     serviceId: fooVpcEndpointService.id,
  *     permitAccountId: "210000000",
  * });
- * const fooVpcEndpointServicePermissions = volcengine.privatelink.VpcEndpointServicePermissionsOutput({
+ * const fooVpcEndpointServicePermissions = volcengine.privatelink.getVpcEndpointServicePermissionsOutput({
  *     permitAccountId: fooVpcEndpointServicePermission.permitAccountId,
  *     serviceId: fooVpcEndpointService.id,
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointServicePermissions has been deprecated in favor of volcengine.privatelink.getVpcEndpointServicePermissions */
 export function vpcEndpointServicePermissionsOutput(args: VpcEndpointServicePermissionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointServicePermissionsResult> {
     return pulumi.output(args).apply((a: any) => vpcEndpointServicePermissions(a, opts))
 }

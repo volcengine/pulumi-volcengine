@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.Quotas({});
+ * const default = volcengine.cloudfs.getQuotas({});
  * ```
  */
+/** @deprecated volcengine.cloudfs.Quotas has been deprecated in favor of volcengine.cloudfs.getQuotas */
 export function quotas(args?: QuotasArgs, opts?: pulumi.InvokeOptions): Promise<QuotasResult> {
+    pulumi.log.warn("quotas is deprecated: volcengine.cloudfs.Quotas has been deprecated in favor of volcengine.cloudfs.getQuotas")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface QuotasResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.Quotas({});
+ * const default = volcengine.cloudfs.getQuotas({});
  * ```
  */
+/** @deprecated volcengine.cloudfs.Quotas has been deprecated in favor of volcengine.cloudfs.getQuotas */
 export function quotasOutput(args?: QuotasOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<QuotasResult> {
     return pulumi.output(args).apply((a: any) => quotas(a, opts))
 }

@@ -18,6 +18,8 @@ __all__ = [
     'connections_output',
 ]
 
+warnings.warn("""volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections""", DeprecationWarning)
+
 @pulumi.output_type
 class ConnectionsResult:
     """
@@ -184,7 +186,7 @@ def connections(connection_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.connections(direct_connect_connection_name="tf_test")
+    foo = volcengine.direct_connect.get_connections(direct_connect_connection_name="tf_test")
     ```
 
 
@@ -198,6 +200,7 @@ def connections(connection_type: Optional[str] = None,
     :param str peer_location: The peer access point of the physical leased line.
     :param Sequence[pulumi.InputType['ConnectionsTagFilterArgs']] tag_filters: The filter tag of direct connect.
     """
+    pulumi.log.warn("""connections is deprecated: volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections""")
     __args__ = dict()
     __args__['connectionType'] = connection_type
     __args__['directConnectAccessPointId'] = direct_connect_access_point_id
@@ -245,7 +248,7 @@ def connections_output(connection_type: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.connections(direct_connect_connection_name="tf_test")
+    foo = volcengine.direct_connect.get_connections(direct_connect_connection_name="tf_test")
     ```
 
 
@@ -259,4 +262,5 @@ def connections_output(connection_type: Optional[pulumi.Input[Optional[str]]] = 
     :param str peer_location: The peer access point of the physical leased line.
     :param Sequence[pulumi.InputType['ConnectionsTagFilterArgs']] tag_filters: The filter tag of direct connect.
     """
+    pulumi.log.warn("""connections is deprecated: volcengine.direct_connect.Connections has been deprecated in favor of volcengine.direct_connect.getConnections""")
     ...

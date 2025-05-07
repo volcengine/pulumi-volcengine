@@ -9,16 +9,59 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Private_zone
 {
+    [Obsolete(@"volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones")]
     public static class PrivateZones
     {
         /// <summary>
         /// Use this data source to query detailed information of private zones
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Private_zone.GetPrivateZones.Invoke(new()
+        ///     {
+        ///         LineMode = 3,
+        ///         RecursionMode = true,
+        ///         SearchMode = "EXACT",
+        ///         Zid = 770000,
+        ///         ZoneName = "volces.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<PrivateZonesResult> InvokeAsync(PrivateZonesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<PrivateZonesResult>("volcengine:private_zone/privateZones:PrivateZones", args ?? new PrivateZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of private zones
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Private_zone.GetPrivateZones.Invoke(new()
+        ///     {
+        ///         LineMode = 3,
+        ///         RecursionMode = true,
+        ///         SearchMode = "EXACT",
+        ///         Zid = 770000,
+        ///         ZoneName = "volces.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<PrivateZonesResult> Invoke(PrivateZonesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<PrivateZonesResult>("volcengine:private_zone/privateZones:PrivateZones", args ?? new PrivateZonesInvokeArgs(), options.WithDefaults());

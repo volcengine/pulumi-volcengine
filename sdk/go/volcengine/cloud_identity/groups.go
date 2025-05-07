@@ -43,7 +43,7 @@ import (
 //				}
 //				fooGroup = append(fooGroup, __res)
 //			}
-//			_, err = cloud_identity.Groups(ctx, &cloud_identity.GroupsArgs{
+//			_, err = cloud_identity.GetGroups(ctx, &cloud_identity.GetGroupsArgs{
 //				GroupName: pulumi.StringRef("acc-test-group"),
 //				JoinType:  pulumi.StringRef("Manual"),
 //			}, nil)
@@ -55,6 +55,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups
 func Groups(ctx *pulumi.Context, args *GroupsArgs, opts ...pulumi.InvokeOption) (*GroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GroupsResult

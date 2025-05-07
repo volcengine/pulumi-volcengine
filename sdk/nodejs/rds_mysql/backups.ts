@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.Backups({
+ * const foo = volcengine.rds_mysql.getBackups({
  *     backupEndTime: "",
  *     backupId: "",
  *     backupMethod: "",
@@ -26,7 +26,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups */
 export function backups(args?: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
+    pulumi.log.warn("backups is deprecated: volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -145,7 +147,7 @@ export interface BackupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_mysql.Backups({
+ * const foo = volcengine.rds_mysql.getBackups({
  *     backupEndTime: "",
  *     backupId: "",
  *     backupMethod: "",
@@ -157,6 +159,7 @@ export interface BackupsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups */
 export function backupsOutput(args?: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
     return pulumi.output(args).apply((a: any) => backups(a, opts))
 }

@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -81,7 +81,7 @@ import (
 //				}
 //				fooBackup = append(fooBackup, __res)
 //			}
-//			_ = redis.BackupsOutput(ctx, redis.BackupsOutputArgs{
+//			_ = redis.GetBackupsOutput(ctx, redis.GetBackupsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -89,6 +89,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups
 func Backups(ctx *pulumi.Context, args *BackupsArgs, opts ...pulumi.InvokeOption) (*BackupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BackupsResult

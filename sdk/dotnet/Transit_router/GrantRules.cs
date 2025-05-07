@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules")]
     public static class GrantRules
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Transit_router.GrantRules.Invoke(new()
+        ///     var foo = Volcengine.Transit_router.GetGrantRules.Invoke(new()
         ///     {
         ///         TransitRouterId = "tr-2bzy39uy6u3282dx0efxiqyq0",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Transit_router.GrantRules.Invoke(new()
+        ///     var foo = Volcengine.Transit_router.GetGrantRules.Invoke(new()
         ///     {
         ///         TransitRouterId = "tr-2bzy39uy6u3282dx0efxiqyq0",
         ///     });

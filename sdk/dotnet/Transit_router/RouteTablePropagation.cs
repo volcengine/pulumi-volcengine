@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Transit_router
     ///         TransitRouterId = fooTransitRouter.Id,
     ///     });
     /// 
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
@@ -46,7 +46,7 @@ namespace Pulumi.Volcengine.Transit_router
     ///     {
     ///         VpcId = fooVpc.Id,
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         SubnetName = "acc-test-subnet",
     ///     });
     /// 
@@ -54,7 +54,7 @@ namespace Pulumi.Volcengine.Transit_router
     ///     {
     ///         VpcId = fooVpc.Id,
     ///         CidrBlock = "172.16.255.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
     ///         SubnetName = "acc-test-subnet2",
     ///     });
     /// 

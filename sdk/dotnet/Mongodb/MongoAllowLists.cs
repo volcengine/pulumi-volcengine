@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists")]
     public static class MongoAllowLists
     {
         /// <summary>
@@ -31,7 +32,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
         ///     });
         /// 
-        ///     var fooMongoAllowLists = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
+        ///     var fooMongoAllowLists = Volcengine.Mongodb.GetMongoAllowLists.Invoke(new()
         ///     {
         ///         AllowListIds = new[]
         ///         {
@@ -66,7 +67,7 @@ namespace Pulumi.Volcengine.Mongodb
         ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
         ///     });
         /// 
-        ///     var fooMongoAllowLists = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
+        ///     var fooMongoAllowLists = Volcengine.Mongodb.GetMongoAllowLists.Invoke(new()
         ///     {
         ///         AllowListIds = new[]
         ///         {

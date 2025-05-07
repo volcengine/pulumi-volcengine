@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -76,7 +76,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = rabbitmq.InstancePluginsOutput(ctx, rabbitmq.InstancePluginsOutputArgs{
+//			_ = rabbitmq.GetInstancePluginsOutput(ctx, rabbitmq.GetInstancePluginsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -84,6 +84,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins
 func InstancePlugins(ctx *pulumi.Context, args *InstancePluginsArgs, opts ...pulumi.InvokeOption) (*InstancePluginsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancePluginsResult

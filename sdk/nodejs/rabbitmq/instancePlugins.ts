@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -49,12 +49,14 @@ import * as utilities from "../utilities";
  *         value: "v1",
  *     }],
  * });
- * const fooInstancePlugins = volcengine.rabbitmq.InstancePluginsOutput({
+ * const fooInstancePlugins = volcengine.rabbitmq.getInstancePluginsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins */
 export function instancePlugins(args: InstancePluginsArgs, opts?: pulumi.InvokeOptions): Promise<InstancePluginsResult> {
+    pulumi.log.warn("instancePlugins is deprecated: volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rabbitmq/instancePlugins:InstancePlugins", {
@@ -111,7 +113,7 @@ export interface InstancePluginsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -145,11 +147,12 @@ export interface InstancePluginsResult {
  *         value: "v1",
  *     }],
  * });
- * const fooInstancePlugins = volcengine.rabbitmq.InstancePluginsOutput({
+ * const fooInstancePlugins = volcengine.rabbitmq.getInstancePluginsOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.rabbitmq.InstancePlugins has been deprecated in favor of volcengine.rabbitmq.getInstancePlugins */
 export function instancePluginsOutput(args: InstancePluginsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancePluginsResult> {
     return pulumi.output(args).apply((a: any) => instancePlugins(a, opts))
 }

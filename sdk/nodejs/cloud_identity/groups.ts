@@ -24,13 +24,15 @@ import * as utilities from "../utilities";
  *         joinType: "Manual",
  *     }));
  * }
- * const fooGroups = volcengine.cloud_identity.Groups({
+ * const fooGroups = volcengine.cloud_identity.getGroups({
  *     groupName: "acc-test-group",
  *     joinType: "Manual",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups */
 export function groups(args?: GroupsArgs, opts?: pulumi.InvokeOptions): Promise<GroupsResult> {
+    pulumi.log.warn("groups is deprecated: volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -118,12 +120,13 @@ export interface GroupsResult {
  *         joinType: "Manual",
  *     }));
  * }
- * const fooGroups = volcengine.cloud_identity.Groups({
+ * const fooGroups = volcengine.cloud_identity.getGroups({
  *     groupName: "acc-test-group",
  *     joinType: "Manual",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_identity.Groups has been deprecated in favor of volcengine.cloud_identity.getGroups */
 export function groupsOutput(args?: GroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GroupsResult> {
     return pulumi.output(args).apply((a: any) => groups(a, opts))
 }

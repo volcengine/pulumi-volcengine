@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables")]
     public static class RouteTables
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace Pulumi.Volcengine.Transit_router
         ///         TransitRouterId = fooTransitRouter.Id,
         ///     });
         /// 
-        ///     var @default = Volcengine.Transit_router.RouteTables.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetRouteTables.Invoke(new()
         ///     {
         ///         TransitRouterId = fooTransitRouter.Id,
         ///         Ids = new[]
@@ -76,7 +77,7 @@ namespace Pulumi.Volcengine.Transit_router
         ///         TransitRouterId = fooTransitRouter.Id,
         ///     });
         /// 
-        ///     var @default = Volcengine.Transit_router.RouteTables.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetRouteTables.Invoke(new()
         ///     {
         ///         TransitRouterId = fooTransitRouter.Id,
         ///         Ids = new[]

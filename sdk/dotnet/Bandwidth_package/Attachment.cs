@@ -54,9 +54,9 @@ namespace Pulumi.Volcengine.Bandwidth_package
     ///         BandwidthPackageId = ipv4BandwidthPackage.Id,
     ///     });
     /// 
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
-    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     var fooImages = Volcengine.Ecs.GetImages.Invoke(new()
     ///     {
     ///         OsType = "Linux",
     ///         Visibility = "public",
@@ -74,7 +74,7 @@ namespace Pulumi.Volcengine.Bandwidth_package
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///         Ipv6CidrBlock = 1,
     ///     });
@@ -93,7 +93,7 @@ namespace Pulumi.Volcengine.Bandwidth_package
     /// 
     ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
     ///     {
-    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         ImageId = fooImages.Apply(getImagesResult =&gt; getImagesResult.Images[0]?.ImageId),
     ///         InstanceType = "ecs.g1.large",
     ///         InstanceName = "acc-test-ecs-name",
     ///         Password = "93f0cb0614Aab12",
@@ -108,14 +108,14 @@ namespace Pulumi.Volcengine.Bandwidth_package
     ///         Ipv6AddressCount = 1,
     ///     });
     /// 
-    ///     var fooIpv6Addresses = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
+    ///     var fooIpv6Addresses = Volcengine.Vpc.GetIpv6Addresses.Invoke(new()
     ///     {
     ///         AssociatedInstanceId = fooInstance.Id,
     ///     });
     /// 
     ///     var fooIpv6AddressBandwidth = new Volcengine.Vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth", new()
     ///     {
-    ///         Ipv6Address = fooIpv6Addresses.Apply(ipv6AddressesResult =&gt; ipv6AddressesResult.Ipv6Addresses[0]?.Ipv6Address),
+    ///         Ipv6Address = fooIpv6Addresses.Apply(getIpv6AddressesResult =&gt; getIpv6AddressesResult.Ipv6Addresses[0]?.Ipv6Address),
     ///         BillingType = "PostPaidByBandwidth",
     ///         Bandwidth = 5,
     ///     });

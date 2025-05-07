@@ -25,6 +25,61 @@ export const alarms: typeof import("./alarms").alarms = null as any;
 export const alarmsOutput: typeof import("./alarms").alarmsOutput = null as any;
 utilities.lazyLoad(exports, ["alarms","alarmsOutput"], () => require("./alarms"));
 
+export { GetAlarmNotifyGroupsArgs, GetAlarmNotifyGroupsResult, GetAlarmNotifyGroupsOutputArgs } from "./getAlarmNotifyGroups";
+export const getAlarmNotifyGroups: typeof import("./getAlarmNotifyGroups").getAlarmNotifyGroups = null as any;
+export const getAlarmNotifyGroupsOutput: typeof import("./getAlarmNotifyGroups").getAlarmNotifyGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlarmNotifyGroups","getAlarmNotifyGroupsOutput"], () => require("./getAlarmNotifyGroups"));
+
+export { GetAlarmsArgs, GetAlarmsResult, GetAlarmsOutputArgs } from "./getAlarms";
+export const getAlarms: typeof import("./getAlarms").getAlarms = null as any;
+export const getAlarmsOutput: typeof import("./getAlarms").getAlarmsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlarms","getAlarmsOutput"], () => require("./getAlarms"));
+
+export { GetHostGroupsArgs, GetHostGroupsResult, GetHostGroupsOutputArgs } from "./getHostGroups";
+export const getHostGroups: typeof import("./getHostGroups").getHostGroups = null as any;
+export const getHostGroupsOutput: typeof import("./getHostGroups").getHostGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getHostGroups","getHostGroupsOutput"], () => require("./getHostGroups"));
+
+export { GetHostsArgs, GetHostsResult, GetHostsOutputArgs } from "./getHosts";
+export const getHosts: typeof import("./getHosts").getHosts = null as any;
+export const getHostsOutput: typeof import("./getHosts").getHostsOutput = null as any;
+utilities.lazyLoad(exports, ["getHosts","getHostsOutput"], () => require("./getHosts"));
+
+export { GetIndexesArgs, GetIndexesResult, GetIndexesOutputArgs } from "./getIndexes";
+export const getIndexes: typeof import("./getIndexes").getIndexes = null as any;
+export const getIndexesOutput: typeof import("./getIndexes").getIndexesOutput = null as any;
+utilities.lazyLoad(exports, ["getIndexes","getIndexesOutput"], () => require("./getIndexes"));
+
+export { GetKafkaConsumersArgs, GetKafkaConsumersResult, GetKafkaConsumersOutputArgs } from "./getKafkaConsumers";
+export const getKafkaConsumers: typeof import("./getKafkaConsumers").getKafkaConsumers = null as any;
+export const getKafkaConsumersOutput: typeof import("./getKafkaConsumers").getKafkaConsumersOutput = null as any;
+utilities.lazyLoad(exports, ["getKafkaConsumers","getKafkaConsumersOutput"], () => require("./getKafkaConsumers"));
+
+export { GetProjectsArgs, GetProjectsResult, GetProjectsOutputArgs } from "./getProjects";
+export const getProjects: typeof import("./getProjects").getProjects = null as any;
+export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
+utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("./getProjects"));
+
+export { GetRuleAppliersArgs, GetRuleAppliersResult, GetRuleAppliersOutputArgs } from "./getRuleAppliers";
+export const getRuleAppliers: typeof import("./getRuleAppliers").getRuleAppliers = null as any;
+export const getRuleAppliersOutput: typeof import("./getRuleAppliers").getRuleAppliersOutput = null as any;
+utilities.lazyLoad(exports, ["getRuleAppliers","getRuleAppliersOutput"], () => require("./getRuleAppliers"));
+
+export { GetRulesArgs, GetRulesResult, GetRulesOutputArgs } from "./getRules";
+export const getRules: typeof import("./getRules").getRules = null as any;
+export const getRulesOutput: typeof import("./getRules").getRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getRules","getRulesOutput"], () => require("./getRules"));
+
+export { GetShardsArgs, GetShardsResult, GetShardsOutputArgs } from "./getShards";
+export const getShards: typeof import("./getShards").getShards = null as any;
+export const getShardsOutput: typeof import("./getShards").getShardsOutput = null as any;
+utilities.lazyLoad(exports, ["getShards","getShardsOutput"], () => require("./getShards"));
+
+export { GetTopicsArgs, GetTopicsResult, GetTopicsOutputArgs } from "./getTopics";
+export const getTopics: typeof import("./getTopics").getTopics = null as any;
+export const getTopicsOutput: typeof import("./getTopics").getTopicsOutput = null as any;
+utilities.lazyLoad(exports, ["getTopics","getTopicsOutput"], () => require("./getTopics"));
+
 export { HostArgs, HostState } from "./host";
 export type Host = import("./host").Host;
 export const Host: typeof import("./host").Host = null as any;

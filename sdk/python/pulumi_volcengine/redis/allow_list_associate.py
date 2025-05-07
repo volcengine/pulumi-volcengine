@@ -108,7 +108,7 @@ class AllowListAssociate(pulumi.CustomResource):
         foo_allow_list = volcengine.redis.AllowList("fooAllowList",
             allow_lists=["192.168.0.0/24"],
             allow_list_name="acc-test-allowlist")
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -167,7 +167,7 @@ class AllowListAssociate(pulumi.CustomResource):
         foo_allow_list = volcengine.redis.AllowList("fooAllowList",
             allow_lists=["192.168.0.0/24"],
             allow_list_name="acc-test-allowlist")
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")

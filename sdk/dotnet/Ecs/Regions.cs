@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.Regions.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetRegions.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.Regions.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetRegions.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

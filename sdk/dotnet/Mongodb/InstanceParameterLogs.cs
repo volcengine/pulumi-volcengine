@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs")]
     public static class InstanceParameterLogs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.InstanceParameterLogs.Invoke(new()
+        ///     var foo = Volcengine.Mongodb.GetInstanceParameterLogs.Invoke(new()
         ///     {
         ///         EndTime = "2023-11-14 18:15Z",
         ///         InstanceId = "mongo-replica-f16e9298b121",
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.InstanceParameterLogs.Invoke(new()
+        ///     var foo = Volcengine.Mongodb.GetInstanceParameterLogs.Invoke(new()
         ///     {
         ///         EndTime = "2023-11-14 18:15Z",
         ///         InstanceId = "mongo-replica-f16e9298b121",

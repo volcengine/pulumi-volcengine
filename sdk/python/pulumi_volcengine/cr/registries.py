@@ -18,6 +18,8 @@ __all__ = [
     'registries_output',
 ]
 
+warnings.warn("""volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries""", DeprecationWarning)
+
 @pulumi.output_type
 class RegistriesResult:
     """
@@ -132,7 +134,7 @@ def registries(names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.registries(statuses=[volcengine.cr.RegistriesStatusArgs(
+    foo = volcengine.cr.get_registries(statuses=[volcengine.cr.GetRegistriesStatusArgs(
         condition="Ok",
         phase="Running",
     )])
@@ -145,6 +147,7 @@ def registries(names: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['RegistriesStatusArgs']] statuses: The list of registry statuses.
     :param Sequence[str] types: The list of registry types to query.
     """
+    pulumi.log.warn("""registries is deprecated: volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries""")
     __args__ = dict()
     __args__['names'] = names
     __args__['outputFile'] = output_file
@@ -180,7 +183,7 @@ def registries_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.registries(statuses=[volcengine.cr.RegistriesStatusArgs(
+    foo = volcengine.cr.get_registries(statuses=[volcengine.cr.GetRegistriesStatusArgs(
         condition="Ok",
         phase="Running",
     )])
@@ -193,4 +196,5 @@ def registries_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param Sequence[pulumi.InputType['RegistriesStatusArgs']] statuses: The list of registry statuses.
     :param Sequence[str] types: The list of registry types to query.
     """
+    pulumi.log.warn("""registries is deprecated: volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries""")
     ...

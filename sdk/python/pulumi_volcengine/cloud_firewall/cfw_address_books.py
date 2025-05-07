@@ -17,6 +17,8 @@ __all__ = [
     'cfw_address_books_output',
 ]
 
+warnings.warn("""volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks""", DeprecationWarning)
+
 @pulumi.output_type
 class CfwAddressBooksResult:
     """
@@ -147,7 +149,7 @@ def cfw_address_books(address: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_firewall.cfw_address_books(group_name="acc-test",
+    foo = volcengine.cloud_firewall.get_cfw_address_books(group_name="acc-test",
         group_type="ip")
     ```
 
@@ -159,6 +161,7 @@ def cfw_address_books(address: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""cfw_address_books is deprecated: volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks""")
     __args__ = dict()
     __args__['address'] = address
     __args__['description'] = description
@@ -197,7 +200,7 @@ def cfw_address_books_output(address: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_firewall.cfw_address_books(group_name="acc-test",
+    foo = volcengine.cloud_firewall.get_cfw_address_books(group_name="acc-test",
         group_type="ip")
     ```
 
@@ -209,4 +212,5 @@ def cfw_address_books_output(address: Optional[pulumi.Input[Optional[str]]] = No
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""cfw_address_books is deprecated: volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks""")
     ...

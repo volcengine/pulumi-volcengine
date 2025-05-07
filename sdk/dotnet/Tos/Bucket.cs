@@ -16,13 +16,20 @@ namespace Pulumi.Volcengine.Tos
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @default = new Volcengine.Tos.Bucket("default", new()
+    ///     // create tos bucket
+    ///     var fooBucket = new Volcengine.Tos.Bucket("fooBucket", new()
     ///     {
+    ///         BucketName = "tf-acc-test-bucket",
+    ///         PublicAcl = "private",
+    ///         AzRedundancy = "multi-az",
+    ///         EnableVersion = true,
+    ///         BucketAclDelivered = true,
     ///         AccountAcls = new[]
     ///         {
     ///             new Volcengine.Tos.Inputs.BucketAccountAclArgs
@@ -36,12 +43,7 @@ namespace Pulumi.Volcengine.Tos
     ///                 Permission = "WRITE_ACP",
     ///             },
     ///         },
-    ///         AzRedundancy = "multi-az",
-    ///         BucketAclDelivered = true,
-    ///         BucketName = "tf-acc-test-bucket-0123-3",
-    ///         EnableVersion = true,
     ///         ProjectName = "default",
-    ///         PublicAcl = "private",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Tos.Inputs.BucketTagArgs
@@ -50,6 +52,35 @@ namespace Pulumi.Volcengine.Tos
     ///                 Value = "v1",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     // create tos bucket policy
+    ///     var fooBucketPolicy = new Volcengine.Tos.BucketPolicy("fooBucketPolicy", new()
+    ///     {
+    ///         BucketName = fooBucket.Id,
+    ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["Statement"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["Sid"] = "test",
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Principal"] = new[]
+    ///                     {
+    ///                         "AccountId/subUserName",
+    ///                     },
+    ///                     ["Action"] = new[]
+    ///                     {
+    ///                         "tos:List*",
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         fooBucket.Id.Apply(id =&gt; $"trn:tos:::{id}"),
+    ///                     },
+    ///                 },
+    ///             },
+    ///         })),
     ///     });
     /// 
     /// });

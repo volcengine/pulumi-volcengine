@@ -14,14 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.mongodb.InstanceParameterLogs({
+ * const foo = volcengine.mongodb.getInstanceParameterLogs({
  *     endTime: "2023-11-14 18:15Z",
  *     instanceId: "mongo-replica-f16e9298b121",
  *     startTime: "2022-11-14 00:00Z",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs */
 export function instanceParameterLogs(args: InstanceParameterLogsArgs, opts?: pulumi.InvokeOptions): Promise<InstanceParameterLogsResult> {
+    pulumi.log.warn("instanceParameterLogs is deprecated: volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", {
@@ -83,13 +85,14 @@ export interface InstanceParameterLogsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.mongodb.InstanceParameterLogs({
+ * const foo = volcengine.mongodb.getInstanceParameterLogs({
  *     endTime: "2023-11-14 18:15Z",
  *     instanceId: "mongo-replica-f16e9298b121",
  *     startTime: "2022-11-14 00:00Z",
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs */
 export function instanceParameterLogsOutput(args: InstanceParameterLogsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceParameterLogsResult> {
     return pulumi.output(args).apply((a: any) => instanceParameterLogs(a, opts))
 }

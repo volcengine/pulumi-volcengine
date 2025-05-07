@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nas.Regions(ctx, nil, nil)
+//			_, err := nas.GetRegions(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.nas.Regions has been deprecated in favor of volcengine.nas.getRegions
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegionsResult

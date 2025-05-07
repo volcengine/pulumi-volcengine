@@ -1507,6 +1507,1155 @@ func (o MountServicesMountServiceNodeArrayOutput) Index(i pulumi.IntInput) Mount
 	}).(MountServicesMountServiceNodeOutput)
 }
 
+type GetFileSystemsFileSystem struct {
+	// The id of the account.
+	AccountId string `pulumi:"accountId"`
+	// The bandwidth info of the vepfs file system.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The capacity info of the vepfs file system.
+	CapacityInfo GetFileSystemsFileSystemCapacityInfo `pulumi:"capacityInfo"`
+	// The charge status of the vepfs file system.
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of the vepfs file system.
+	ChargeType string `pulumi:"chargeType"`
+	// The create time of the vepfs file system.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the vepfs file system.
+	Description string `pulumi:"description"`
+	// The expire time of the vepfs file system.
+	ExpireTime string `pulumi:"expireTime"`
+	// The id of the vepfs file system.
+	FileSystemId string `pulumi:"fileSystemId"`
+	// The Name of Vepfs File System. This field support fuzzy query.
+	FileSystemName string `pulumi:"fileSystemName"`
+	// The type of the vepfs file system.
+	FileSystemType string `pulumi:"fileSystemType"`
+	// The free time of the vepfs file system.
+	FreeTime string `pulumi:"freeTime"`
+	// The id of the vepfs file system.
+	Id string `pulumi:"id"`
+	// The last modify time of the vepfs file system.
+	LastModifyTime string `pulumi:"lastModifyTime"`
+	// The project of Vepfs File System.
+	Project string `pulumi:"project"`
+	// The protocol type of the vepfs file system.
+	ProtocolType string `pulumi:"protocolType"`
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The query status list of Vepfs File System.
+	Status string `pulumi:"status"`
+	// The stop service time of the vepfs file system.
+	StopServiceTime string `pulumi:"stopServiceTime"`
+	// The Store Type of Vepfs File System.
+	StoreType string `pulumi:"storeType"`
+	// The store type cn name of the vepfs file system.
+	StoreTypeCn string `pulumi:"storeTypeCn"`
+	// The tags of the vepfs file system.
+	Tags []GetFileSystemsFileSystemTag `pulumi:"tags"`
+	// The version info of the vepfs file system.
+	Version string `pulumi:"version"`
+	// The zone id of File System.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetFileSystemsFileSystemInput is an input type that accepts GetFileSystemsFileSystemArgs and GetFileSystemsFileSystemOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemInput` via:
+//
+//	GetFileSystemsFileSystemArgs{...}
+type GetFileSystemsFileSystemInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput
+	ToGetFileSystemsFileSystemOutputWithContext(context.Context) GetFileSystemsFileSystemOutput
+}
+
+type GetFileSystemsFileSystemArgs struct {
+	// The id of the account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The bandwidth info of the vepfs file system.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The capacity info of the vepfs file system.
+	CapacityInfo GetFileSystemsFileSystemCapacityInfoInput `pulumi:"capacityInfo"`
+	// The charge status of the vepfs file system.
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of the vepfs file system.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// The create time of the vepfs file system.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the vepfs file system.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The expire time of the vepfs file system.
+	ExpireTime pulumi.StringInput `pulumi:"expireTime"`
+	// The id of the vepfs file system.
+	FileSystemId pulumi.StringInput `pulumi:"fileSystemId"`
+	// The Name of Vepfs File System. This field support fuzzy query.
+	FileSystemName pulumi.StringInput `pulumi:"fileSystemName"`
+	// The type of the vepfs file system.
+	FileSystemType pulumi.StringInput `pulumi:"fileSystemType"`
+	// The free time of the vepfs file system.
+	FreeTime pulumi.StringInput `pulumi:"freeTime"`
+	// The id of the vepfs file system.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The last modify time of the vepfs file system.
+	LastModifyTime pulumi.StringInput `pulumi:"lastModifyTime"`
+	// The project of Vepfs File System.
+	Project pulumi.StringInput `pulumi:"project"`
+	// The protocol type of the vepfs file system.
+	ProtocolType pulumi.StringInput `pulumi:"protocolType"`
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The query status list of Vepfs File System.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The stop service time of the vepfs file system.
+	StopServiceTime pulumi.StringInput `pulumi:"stopServiceTime"`
+	// The Store Type of Vepfs File System.
+	StoreType pulumi.StringInput `pulumi:"storeType"`
+	// The store type cn name of the vepfs file system.
+	StoreTypeCn pulumi.StringInput `pulumi:"storeTypeCn"`
+	// The tags of the vepfs file system.
+	Tags GetFileSystemsFileSystemTagArrayInput `pulumi:"tags"`
+	// The version info of the vepfs file system.
+	Version pulumi.StringInput `pulumi:"version"`
+	// The zone id of File System.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of the zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetFileSystemsFileSystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemArgs) ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput {
+	return i.ToGetFileSystemsFileSystemOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemArgs) ToGetFileSystemsFileSystemOutputWithContext(ctx context.Context) GetFileSystemsFileSystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemOutput)
+}
+
+// GetFileSystemsFileSystemArrayInput is an input type that accepts GetFileSystemsFileSystemArray and GetFileSystemsFileSystemArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemArrayInput` via:
+//
+//	GetFileSystemsFileSystemArray{ GetFileSystemsFileSystemArgs{...} }
+type GetFileSystemsFileSystemArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput
+	ToGetFileSystemsFileSystemArrayOutputWithContext(context.Context) GetFileSystemsFileSystemArrayOutput
+}
+
+type GetFileSystemsFileSystemArray []GetFileSystemsFileSystemInput
+
+func (GetFileSystemsFileSystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemArray) ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput {
+	return i.ToGetFileSystemsFileSystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemArray) ToGetFileSystemsFileSystemArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemArrayOutput)
+}
+
+type GetFileSystemsFileSystemOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemOutput) ToGetFileSystemsFileSystemOutput() GetFileSystemsFileSystemOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemOutput) ToGetFileSystemsFileSystemOutputWithContext(ctx context.Context) GetFileSystemsFileSystemOutput {
+	return o
+}
+
+// The id of the account.
+func (o GetFileSystemsFileSystemOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The bandwidth info of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The capacity info of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) CapacityInfo() GetFileSystemsFileSystemCapacityInfoOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) GetFileSystemsFileSystemCapacityInfo { return v.CapacityInfo }).(GetFileSystemsFileSystemCapacityInfoOutput)
+}
+
+// The charge status of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The create time of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The expire time of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) ExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ExpireTime }).(pulumi.StringOutput)
+}
+
+// The id of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) FileSystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FileSystemId }).(pulumi.StringOutput)
+}
+
+// The Name of Vepfs File System. This field support fuzzy query.
+func (o GetFileSystemsFileSystemOutput) FileSystemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FileSystemName }).(pulumi.StringOutput)
+}
+
+// The type of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) FileSystemType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FileSystemType }).(pulumi.StringOutput)
+}
+
+// The free time of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) FreeTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.FreeTime }).(pulumi.StringOutput)
+}
+
+// The id of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The last modify time of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) LastModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.LastModifyTime }).(pulumi.StringOutput)
+}
+
+// The project of Vepfs File System.
+func (o GetFileSystemsFileSystemOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The protocol type of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) ProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ProtocolType }).(pulumi.StringOutput)
+}
+
+// The id of the region.
+func (o GetFileSystemsFileSystemOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The query status list of Vepfs File System.
+func (o GetFileSystemsFileSystemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The stop service time of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) StopServiceTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.StopServiceTime }).(pulumi.StringOutput)
+}
+
+// The Store Type of Vepfs File System.
+func (o GetFileSystemsFileSystemOutput) StoreType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.StoreType }).(pulumi.StringOutput)
+}
+
+// The store type cn name of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) StoreTypeCn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.StoreTypeCn }).(pulumi.StringOutput)
+}
+
+// The tags of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) Tags() GetFileSystemsFileSystemTagArrayOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) []GetFileSystemsFileSystemTag { return v.Tags }).(GetFileSystemsFileSystemTagArrayOutput)
+}
+
+// The version info of the vepfs file system.
+func (o GetFileSystemsFileSystemOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The zone id of File System.
+func (o GetFileSystemsFileSystemOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of the zone.
+func (o GetFileSystemsFileSystemOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystem) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetFileSystemsFileSystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystem)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) ToGetFileSystemsFileSystemArrayOutput() GetFileSystemsFileSystemArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) ToGetFileSystemsFileSystemArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemArrayOutput) Index(i pulumi.IntInput) GetFileSystemsFileSystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsFileSystem {
+		return vs[0].([]GetFileSystemsFileSystem)[vs[1].(int)]
+	}).(GetFileSystemsFileSystemOutput)
+}
+
+type GetFileSystemsFileSystemCapacityInfo struct {
+	// The total size. Unit: TiB.
+	TotalTib int `pulumi:"totalTib"`
+	// The used size. Unit: GiB.
+	UsedGib int `pulumi:"usedGib"`
+}
+
+// GetFileSystemsFileSystemCapacityInfoInput is an input type that accepts GetFileSystemsFileSystemCapacityInfoArgs and GetFileSystemsFileSystemCapacityInfoOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemCapacityInfoInput` via:
+//
+//	GetFileSystemsFileSystemCapacityInfoArgs{...}
+type GetFileSystemsFileSystemCapacityInfoInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemCapacityInfoOutput() GetFileSystemsFileSystemCapacityInfoOutput
+	ToGetFileSystemsFileSystemCapacityInfoOutputWithContext(context.Context) GetFileSystemsFileSystemCapacityInfoOutput
+}
+
+type GetFileSystemsFileSystemCapacityInfoArgs struct {
+	// The total size. Unit: TiB.
+	TotalTib pulumi.IntInput `pulumi:"totalTib"`
+	// The used size. Unit: GiB.
+	UsedGib pulumi.IntInput `pulumi:"usedGib"`
+}
+
+func (GetFileSystemsFileSystemCapacityInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemCapacityInfo)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemCapacityInfoArgs) ToGetFileSystemsFileSystemCapacityInfoOutput() GetFileSystemsFileSystemCapacityInfoOutput {
+	return i.ToGetFileSystemsFileSystemCapacityInfoOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemCapacityInfoArgs) ToGetFileSystemsFileSystemCapacityInfoOutputWithContext(ctx context.Context) GetFileSystemsFileSystemCapacityInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemCapacityInfoOutput)
+}
+
+type GetFileSystemsFileSystemCapacityInfoOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemCapacityInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemCapacityInfo)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemCapacityInfoOutput) ToGetFileSystemsFileSystemCapacityInfoOutput() GetFileSystemsFileSystemCapacityInfoOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemCapacityInfoOutput) ToGetFileSystemsFileSystemCapacityInfoOutputWithContext(ctx context.Context) GetFileSystemsFileSystemCapacityInfoOutput {
+	return o
+}
+
+// The total size. Unit: TiB.
+func (o GetFileSystemsFileSystemCapacityInfoOutput) TotalTib() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemCapacityInfo) int { return v.TotalTib }).(pulumi.IntOutput)
+}
+
+// The used size. Unit: GiB.
+func (o GetFileSystemsFileSystemCapacityInfoOutput) UsedGib() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemCapacityInfo) int { return v.UsedGib }).(pulumi.IntOutput)
+}
+
+type GetFileSystemsFileSystemTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetFileSystemsFileSystemTagInput is an input type that accepts GetFileSystemsFileSystemTagArgs and GetFileSystemsFileSystemTagOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemTagInput` via:
+//
+//	GetFileSystemsFileSystemTagArgs{...}
+type GetFileSystemsFileSystemTagInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemTagOutput() GetFileSystemsFileSystemTagOutput
+	ToGetFileSystemsFileSystemTagOutputWithContext(context.Context) GetFileSystemsFileSystemTagOutput
+}
+
+type GetFileSystemsFileSystemTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetFileSystemsFileSystemTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemTagArgs) ToGetFileSystemsFileSystemTagOutput() GetFileSystemsFileSystemTagOutput {
+	return i.ToGetFileSystemsFileSystemTagOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemTagArgs) ToGetFileSystemsFileSystemTagOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemTagOutput)
+}
+
+// GetFileSystemsFileSystemTagArrayInput is an input type that accepts GetFileSystemsFileSystemTagArray and GetFileSystemsFileSystemTagArrayOutput values.
+// You can construct a concrete instance of `GetFileSystemsFileSystemTagArrayInput` via:
+//
+//	GetFileSystemsFileSystemTagArray{ GetFileSystemsFileSystemTagArgs{...} }
+type GetFileSystemsFileSystemTagArrayInput interface {
+	pulumi.Input
+
+	ToGetFileSystemsFileSystemTagArrayOutput() GetFileSystemsFileSystemTagArrayOutput
+	ToGetFileSystemsFileSystemTagArrayOutputWithContext(context.Context) GetFileSystemsFileSystemTagArrayOutput
+}
+
+type GetFileSystemsFileSystemTagArray []GetFileSystemsFileSystemTagInput
+
+func (GetFileSystemsFileSystemTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (i GetFileSystemsFileSystemTagArray) ToGetFileSystemsFileSystemTagArrayOutput() GetFileSystemsFileSystemTagArrayOutput {
+	return i.ToGetFileSystemsFileSystemTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetFileSystemsFileSystemTagArray) ToGetFileSystemsFileSystemTagArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFileSystemsFileSystemTagArrayOutput)
+}
+
+type GetFileSystemsFileSystemTagOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemTagOutput) ToGetFileSystemsFileSystemTagOutput() GetFileSystemsFileSystemTagOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemTagOutput) ToGetFileSystemsFileSystemTagOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetFileSystemsFileSystemTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o GetFileSystemsFileSystemTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetFileSystemsFileSystemTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFileSystemsFileSystemTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetFileSystemsFileSystemTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFileSystemsFileSystemTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFileSystemsFileSystemTag)(nil)).Elem()
+}
+
+func (o GetFileSystemsFileSystemTagArrayOutput) ToGetFileSystemsFileSystemTagArrayOutput() GetFileSystemsFileSystemTagArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemTagArrayOutput) ToGetFileSystemsFileSystemTagArrayOutputWithContext(ctx context.Context) GetFileSystemsFileSystemTagArrayOutput {
+	return o
+}
+
+func (o GetFileSystemsFileSystemTagArrayOutput) Index(i pulumi.IntInput) GetFileSystemsFileSystemTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFileSystemsFileSystemTag {
+		return vs[0].([]GetFileSystemsFileSystemTag)[vs[1].(int)]
+	}).(GetFileSystemsFileSystemTagOutput)
+}
+
+type GetFilesetsFileset struct {
+	// The bandwidth Qos of the vepfs fileset.
+	BandwidthQos int `pulumi:"bandwidthQos"`
+	// The capacity limit of the vepfs fileset. Unit: GiB.
+	CapacityLimit int `pulumi:"capacityLimit"`
+	// The used capacity of the vepfs fileset. Unit: GiB.
+	CapacityUsed int `pulumi:"capacityUsed"`
+	// The create time of the vepfs fileset.
+	CreateTime string `pulumi:"createTime"`
+	// Quota for the number of files or directories. A return of 0 indicates that there is no quota limit set for the number of directories after the file.
+	FileLimit int `pulumi:"fileLimit"`
+	// The used file number of the vepfs fileset.
+	FileUsed int `pulumi:"fileUsed"`
+	// The id of Vepfs Fileset.
+	FilesetId string `pulumi:"filesetId"`
+	// The name of Vepfs Fileset. This field support fuzzy query.
+	FilesetName string `pulumi:"filesetName"`
+	// The path of Vepfs Fileset. This field support fuzzy query.
+	FilesetPath string `pulumi:"filesetPath"`
+	// The id of the vepfs fileset.
+	Id string `pulumi:"id"`
+	// The IOPS Qos of the vepfs fileset.
+	IopsQos int `pulumi:"iopsQos"`
+	// The max number of inode in the vepfs fileset.
+	MaxInodeNum int `pulumi:"maxInodeNum"`
+	// The query status list of Vepfs Fileset.
+	Status string `pulumi:"status"`
+}
+
+// GetFilesetsFilesetInput is an input type that accepts GetFilesetsFilesetArgs and GetFilesetsFilesetOutput values.
+// You can construct a concrete instance of `GetFilesetsFilesetInput` via:
+//
+//	GetFilesetsFilesetArgs{...}
+type GetFilesetsFilesetInput interface {
+	pulumi.Input
+
+	ToGetFilesetsFilesetOutput() GetFilesetsFilesetOutput
+	ToGetFilesetsFilesetOutputWithContext(context.Context) GetFilesetsFilesetOutput
+}
+
+type GetFilesetsFilesetArgs struct {
+	// The bandwidth Qos of the vepfs fileset.
+	BandwidthQos pulumi.IntInput `pulumi:"bandwidthQos"`
+	// The capacity limit of the vepfs fileset. Unit: GiB.
+	CapacityLimit pulumi.IntInput `pulumi:"capacityLimit"`
+	// The used capacity of the vepfs fileset. Unit: GiB.
+	CapacityUsed pulumi.IntInput `pulumi:"capacityUsed"`
+	// The create time of the vepfs fileset.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Quota for the number of files or directories. A return of 0 indicates that there is no quota limit set for the number of directories after the file.
+	FileLimit pulumi.IntInput `pulumi:"fileLimit"`
+	// The used file number of the vepfs fileset.
+	FileUsed pulumi.IntInput `pulumi:"fileUsed"`
+	// The id of Vepfs Fileset.
+	FilesetId pulumi.StringInput `pulumi:"filesetId"`
+	// The name of Vepfs Fileset. This field support fuzzy query.
+	FilesetName pulumi.StringInput `pulumi:"filesetName"`
+	// The path of Vepfs Fileset. This field support fuzzy query.
+	FilesetPath pulumi.StringInput `pulumi:"filesetPath"`
+	// The id of the vepfs fileset.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The IOPS Qos of the vepfs fileset.
+	IopsQos pulumi.IntInput `pulumi:"iopsQos"`
+	// The max number of inode in the vepfs fileset.
+	MaxInodeNum pulumi.IntInput `pulumi:"maxInodeNum"`
+	// The query status list of Vepfs Fileset.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetFilesetsFilesetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFilesetsFileset)(nil)).Elem()
+}
+
+func (i GetFilesetsFilesetArgs) ToGetFilesetsFilesetOutput() GetFilesetsFilesetOutput {
+	return i.ToGetFilesetsFilesetOutputWithContext(context.Background())
+}
+
+func (i GetFilesetsFilesetArgs) ToGetFilesetsFilesetOutputWithContext(ctx context.Context) GetFilesetsFilesetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFilesetsFilesetOutput)
+}
+
+// GetFilesetsFilesetArrayInput is an input type that accepts GetFilesetsFilesetArray and GetFilesetsFilesetArrayOutput values.
+// You can construct a concrete instance of `GetFilesetsFilesetArrayInput` via:
+//
+//	GetFilesetsFilesetArray{ GetFilesetsFilesetArgs{...} }
+type GetFilesetsFilesetArrayInput interface {
+	pulumi.Input
+
+	ToGetFilesetsFilesetArrayOutput() GetFilesetsFilesetArrayOutput
+	ToGetFilesetsFilesetArrayOutputWithContext(context.Context) GetFilesetsFilesetArrayOutput
+}
+
+type GetFilesetsFilesetArray []GetFilesetsFilesetInput
+
+func (GetFilesetsFilesetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFilesetsFileset)(nil)).Elem()
+}
+
+func (i GetFilesetsFilesetArray) ToGetFilesetsFilesetArrayOutput() GetFilesetsFilesetArrayOutput {
+	return i.ToGetFilesetsFilesetArrayOutputWithContext(context.Background())
+}
+
+func (i GetFilesetsFilesetArray) ToGetFilesetsFilesetArrayOutputWithContext(ctx context.Context) GetFilesetsFilesetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFilesetsFilesetArrayOutput)
+}
+
+type GetFilesetsFilesetOutput struct{ *pulumi.OutputState }
+
+func (GetFilesetsFilesetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFilesetsFileset)(nil)).Elem()
+}
+
+func (o GetFilesetsFilesetOutput) ToGetFilesetsFilesetOutput() GetFilesetsFilesetOutput {
+	return o
+}
+
+func (o GetFilesetsFilesetOutput) ToGetFilesetsFilesetOutputWithContext(ctx context.Context) GetFilesetsFilesetOutput {
+	return o
+}
+
+// The bandwidth Qos of the vepfs fileset.
+func (o GetFilesetsFilesetOutput) BandwidthQos() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.BandwidthQos }).(pulumi.IntOutput)
+}
+
+// The capacity limit of the vepfs fileset. Unit: GiB.
+func (o GetFilesetsFilesetOutput) CapacityLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.CapacityLimit }).(pulumi.IntOutput)
+}
+
+// The used capacity of the vepfs fileset. Unit: GiB.
+func (o GetFilesetsFilesetOutput) CapacityUsed() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.CapacityUsed }).(pulumi.IntOutput)
+}
+
+// The create time of the vepfs fileset.
+func (o GetFilesetsFilesetOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Quota for the number of files or directories. A return of 0 indicates that there is no quota limit set for the number of directories after the file.
+func (o GetFilesetsFilesetOutput) FileLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.FileLimit }).(pulumi.IntOutput)
+}
+
+// The used file number of the vepfs fileset.
+func (o GetFilesetsFilesetOutput) FileUsed() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.FileUsed }).(pulumi.IntOutput)
+}
+
+// The id of Vepfs Fileset.
+func (o GetFilesetsFilesetOutput) FilesetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) string { return v.FilesetId }).(pulumi.StringOutput)
+}
+
+// The name of Vepfs Fileset. This field support fuzzy query.
+func (o GetFilesetsFilesetOutput) FilesetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) string { return v.FilesetName }).(pulumi.StringOutput)
+}
+
+// The path of Vepfs Fileset. This field support fuzzy query.
+func (o GetFilesetsFilesetOutput) FilesetPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) string { return v.FilesetPath }).(pulumi.StringOutput)
+}
+
+// The id of the vepfs fileset.
+func (o GetFilesetsFilesetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IOPS Qos of the vepfs fileset.
+func (o GetFilesetsFilesetOutput) IopsQos() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.IopsQos }).(pulumi.IntOutput)
+}
+
+// The max number of inode in the vepfs fileset.
+func (o GetFilesetsFilesetOutput) MaxInodeNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) int { return v.MaxInodeNum }).(pulumi.IntOutput)
+}
+
+// The query status list of Vepfs Fileset.
+func (o GetFilesetsFilesetOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFilesetsFileset) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetFilesetsFilesetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFilesetsFilesetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFilesetsFileset)(nil)).Elem()
+}
+
+func (o GetFilesetsFilesetArrayOutput) ToGetFilesetsFilesetArrayOutput() GetFilesetsFilesetArrayOutput {
+	return o
+}
+
+func (o GetFilesetsFilesetArrayOutput) ToGetFilesetsFilesetArrayOutputWithContext(ctx context.Context) GetFilesetsFilesetArrayOutput {
+	return o
+}
+
+func (o GetFilesetsFilesetArrayOutput) Index(i pulumi.IntInput) GetFilesetsFilesetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFilesetsFileset {
+		return vs[0].([]GetFilesetsFileset)[vs[1].(int)]
+	}).(GetFilesetsFilesetOutput)
+}
+
+type GetMountServicesMountService struct {
+	// The account id of the vepfs file system.
+	AccountId string `pulumi:"accountId"`
+	// The attached file system info of the mount service.
+	AttachFileSystems []GetMountServicesMountServiceAttachFileSystem `pulumi:"attachFileSystems"`
+	// The created time of the mount service.
+	CreateTime string `pulumi:"createTime"`
+	// The id of the mount service.
+	Id string `pulumi:"id"`
+	// The id of mount service.
+	MountServiceId string `pulumi:"mountServiceId"`
+	// The name of mount service. This field support fuzzy query.
+	MountServiceName string `pulumi:"mountServiceName"`
+	// The nodes info of the mount service.
+	Nodes []GetMountServicesMountServiceNode `pulumi:"nodes"`
+	// The project of the mount service.
+	Project string `pulumi:"project"`
+	// The region id of the mount service.
+	RegionId string `pulumi:"regionId"`
+	// The query status list of mount service.
+	Status string `pulumi:"status"`
+	// The subnet id of the mount service.
+	SubnetId string `pulumi:"subnetId"`
+	// The vpc id of the mount service.
+	VpcId string `pulumi:"vpcId"`
+	// The zone id of the mount service.
+	ZoneId string `pulumi:"zoneId"`
+	// The zone name of the mount service.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetMountServicesMountServiceInput is an input type that accepts GetMountServicesMountServiceArgs and GetMountServicesMountServiceOutput values.
+// You can construct a concrete instance of `GetMountServicesMountServiceInput` via:
+//
+//	GetMountServicesMountServiceArgs{...}
+type GetMountServicesMountServiceInput interface {
+	pulumi.Input
+
+	ToGetMountServicesMountServiceOutput() GetMountServicesMountServiceOutput
+	ToGetMountServicesMountServiceOutputWithContext(context.Context) GetMountServicesMountServiceOutput
+}
+
+type GetMountServicesMountServiceArgs struct {
+	// The account id of the vepfs file system.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The attached file system info of the mount service.
+	AttachFileSystems GetMountServicesMountServiceAttachFileSystemArrayInput `pulumi:"attachFileSystems"`
+	// The created time of the mount service.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The id of the mount service.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of mount service.
+	MountServiceId pulumi.StringInput `pulumi:"mountServiceId"`
+	// The name of mount service. This field support fuzzy query.
+	MountServiceName pulumi.StringInput `pulumi:"mountServiceName"`
+	// The nodes info of the mount service.
+	Nodes GetMountServicesMountServiceNodeArrayInput `pulumi:"nodes"`
+	// The project of the mount service.
+	Project pulumi.StringInput `pulumi:"project"`
+	// The region id of the mount service.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The query status list of mount service.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The subnet id of the mount service.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The vpc id of the mount service.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The zone id of the mount service.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The zone name of the mount service.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetMountServicesMountServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountServicesMountService)(nil)).Elem()
+}
+
+func (i GetMountServicesMountServiceArgs) ToGetMountServicesMountServiceOutput() GetMountServicesMountServiceOutput {
+	return i.ToGetMountServicesMountServiceOutputWithContext(context.Background())
+}
+
+func (i GetMountServicesMountServiceArgs) ToGetMountServicesMountServiceOutputWithContext(ctx context.Context) GetMountServicesMountServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountServicesMountServiceOutput)
+}
+
+// GetMountServicesMountServiceArrayInput is an input type that accepts GetMountServicesMountServiceArray and GetMountServicesMountServiceArrayOutput values.
+// You can construct a concrete instance of `GetMountServicesMountServiceArrayInput` via:
+//
+//	GetMountServicesMountServiceArray{ GetMountServicesMountServiceArgs{...} }
+type GetMountServicesMountServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetMountServicesMountServiceArrayOutput() GetMountServicesMountServiceArrayOutput
+	ToGetMountServicesMountServiceArrayOutputWithContext(context.Context) GetMountServicesMountServiceArrayOutput
+}
+
+type GetMountServicesMountServiceArray []GetMountServicesMountServiceInput
+
+func (GetMountServicesMountServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountServicesMountService)(nil)).Elem()
+}
+
+func (i GetMountServicesMountServiceArray) ToGetMountServicesMountServiceArrayOutput() GetMountServicesMountServiceArrayOutput {
+	return i.ToGetMountServicesMountServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetMountServicesMountServiceArray) ToGetMountServicesMountServiceArrayOutputWithContext(ctx context.Context) GetMountServicesMountServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountServicesMountServiceArrayOutput)
+}
+
+type GetMountServicesMountServiceOutput struct{ *pulumi.OutputState }
+
+func (GetMountServicesMountServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountServicesMountService)(nil)).Elem()
+}
+
+func (o GetMountServicesMountServiceOutput) ToGetMountServicesMountServiceOutput() GetMountServicesMountServiceOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceOutput) ToGetMountServicesMountServiceOutputWithContext(ctx context.Context) GetMountServicesMountServiceOutput {
+	return o
+}
+
+// The account id of the vepfs file system.
+func (o GetMountServicesMountServiceOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The attached file system info of the mount service.
+func (o GetMountServicesMountServiceOutput) AttachFileSystems() GetMountServicesMountServiceAttachFileSystemArrayOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) []GetMountServicesMountServiceAttachFileSystem {
+		return v.AttachFileSystems
+	}).(GetMountServicesMountServiceAttachFileSystemArrayOutput)
+}
+
+// The created time of the mount service.
+func (o GetMountServicesMountServiceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The id of the mount service.
+func (o GetMountServicesMountServiceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of mount service.
+func (o GetMountServicesMountServiceOutput) MountServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.MountServiceId }).(pulumi.StringOutput)
+}
+
+// The name of mount service. This field support fuzzy query.
+func (o GetMountServicesMountServiceOutput) MountServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.MountServiceName }).(pulumi.StringOutput)
+}
+
+// The nodes info of the mount service.
+func (o GetMountServicesMountServiceOutput) Nodes() GetMountServicesMountServiceNodeArrayOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) []GetMountServicesMountServiceNode { return v.Nodes }).(GetMountServicesMountServiceNodeArrayOutput)
+}
+
+// The project of the mount service.
+func (o GetMountServicesMountServiceOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The region id of the mount service.
+func (o GetMountServicesMountServiceOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The query status list of mount service.
+func (o GetMountServicesMountServiceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The subnet id of the mount service.
+func (o GetMountServicesMountServiceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The vpc id of the mount service.
+func (o GetMountServicesMountServiceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone id of the mount service.
+func (o GetMountServicesMountServiceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The zone name of the mount service.
+func (o GetMountServicesMountServiceOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountService) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetMountServicesMountServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMountServicesMountServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountServicesMountService)(nil)).Elem()
+}
+
+func (o GetMountServicesMountServiceArrayOutput) ToGetMountServicesMountServiceArrayOutput() GetMountServicesMountServiceArrayOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceArrayOutput) ToGetMountServicesMountServiceArrayOutputWithContext(ctx context.Context) GetMountServicesMountServiceArrayOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceArrayOutput) Index(i pulumi.IntInput) GetMountServicesMountServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMountServicesMountService {
+		return vs[0].([]GetMountServicesMountService)[vs[1].(int)]
+	}).(GetMountServicesMountServiceOutput)
+}
+
+type GetMountServicesMountServiceAttachFileSystem struct {
+	// The account id of the vepfs file system.
+	AccountId string `pulumi:"accountId"`
+	// The id of the vepfs file system.
+	CustomerPath string `pulumi:"customerPath"`
+	// The id of Vepfs File System.
+	FileSystemId string `pulumi:"fileSystemId"`
+	// The name of the vepfs file system.
+	FileSystemName string `pulumi:"fileSystemName"`
+	// The query status list of mount service.
+	Status string `pulumi:"status"`
+}
+
+// GetMountServicesMountServiceAttachFileSystemInput is an input type that accepts GetMountServicesMountServiceAttachFileSystemArgs and GetMountServicesMountServiceAttachFileSystemOutput values.
+// You can construct a concrete instance of `GetMountServicesMountServiceAttachFileSystemInput` via:
+//
+//	GetMountServicesMountServiceAttachFileSystemArgs{...}
+type GetMountServicesMountServiceAttachFileSystemInput interface {
+	pulumi.Input
+
+	ToGetMountServicesMountServiceAttachFileSystemOutput() GetMountServicesMountServiceAttachFileSystemOutput
+	ToGetMountServicesMountServiceAttachFileSystemOutputWithContext(context.Context) GetMountServicesMountServiceAttachFileSystemOutput
+}
+
+type GetMountServicesMountServiceAttachFileSystemArgs struct {
+	// The account id of the vepfs file system.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The id of the vepfs file system.
+	CustomerPath pulumi.StringInput `pulumi:"customerPath"`
+	// The id of Vepfs File System.
+	FileSystemId pulumi.StringInput `pulumi:"fileSystemId"`
+	// The name of the vepfs file system.
+	FileSystemName pulumi.StringInput `pulumi:"fileSystemName"`
+	// The query status list of mount service.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetMountServicesMountServiceAttachFileSystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountServicesMountServiceAttachFileSystem)(nil)).Elem()
+}
+
+func (i GetMountServicesMountServiceAttachFileSystemArgs) ToGetMountServicesMountServiceAttachFileSystemOutput() GetMountServicesMountServiceAttachFileSystemOutput {
+	return i.ToGetMountServicesMountServiceAttachFileSystemOutputWithContext(context.Background())
+}
+
+func (i GetMountServicesMountServiceAttachFileSystemArgs) ToGetMountServicesMountServiceAttachFileSystemOutputWithContext(ctx context.Context) GetMountServicesMountServiceAttachFileSystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountServicesMountServiceAttachFileSystemOutput)
+}
+
+// GetMountServicesMountServiceAttachFileSystemArrayInput is an input type that accepts GetMountServicesMountServiceAttachFileSystemArray and GetMountServicesMountServiceAttachFileSystemArrayOutput values.
+// You can construct a concrete instance of `GetMountServicesMountServiceAttachFileSystemArrayInput` via:
+//
+//	GetMountServicesMountServiceAttachFileSystemArray{ GetMountServicesMountServiceAttachFileSystemArgs{...} }
+type GetMountServicesMountServiceAttachFileSystemArrayInput interface {
+	pulumi.Input
+
+	ToGetMountServicesMountServiceAttachFileSystemArrayOutput() GetMountServicesMountServiceAttachFileSystemArrayOutput
+	ToGetMountServicesMountServiceAttachFileSystemArrayOutputWithContext(context.Context) GetMountServicesMountServiceAttachFileSystemArrayOutput
+}
+
+type GetMountServicesMountServiceAttachFileSystemArray []GetMountServicesMountServiceAttachFileSystemInput
+
+func (GetMountServicesMountServiceAttachFileSystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountServicesMountServiceAttachFileSystem)(nil)).Elem()
+}
+
+func (i GetMountServicesMountServiceAttachFileSystemArray) ToGetMountServicesMountServiceAttachFileSystemArrayOutput() GetMountServicesMountServiceAttachFileSystemArrayOutput {
+	return i.ToGetMountServicesMountServiceAttachFileSystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetMountServicesMountServiceAttachFileSystemArray) ToGetMountServicesMountServiceAttachFileSystemArrayOutputWithContext(ctx context.Context) GetMountServicesMountServiceAttachFileSystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountServicesMountServiceAttachFileSystemArrayOutput)
+}
+
+type GetMountServicesMountServiceAttachFileSystemOutput struct{ *pulumi.OutputState }
+
+func (GetMountServicesMountServiceAttachFileSystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountServicesMountServiceAttachFileSystem)(nil)).Elem()
+}
+
+func (o GetMountServicesMountServiceAttachFileSystemOutput) ToGetMountServicesMountServiceAttachFileSystemOutput() GetMountServicesMountServiceAttachFileSystemOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceAttachFileSystemOutput) ToGetMountServicesMountServiceAttachFileSystemOutputWithContext(ctx context.Context) GetMountServicesMountServiceAttachFileSystemOutput {
+	return o
+}
+
+// The account id of the vepfs file system.
+func (o GetMountServicesMountServiceAttachFileSystemOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceAttachFileSystem) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The id of the vepfs file system.
+func (o GetMountServicesMountServiceAttachFileSystemOutput) CustomerPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceAttachFileSystem) string { return v.CustomerPath }).(pulumi.StringOutput)
+}
+
+// The id of Vepfs File System.
+func (o GetMountServicesMountServiceAttachFileSystemOutput) FileSystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceAttachFileSystem) string { return v.FileSystemId }).(pulumi.StringOutput)
+}
+
+// The name of the vepfs file system.
+func (o GetMountServicesMountServiceAttachFileSystemOutput) FileSystemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceAttachFileSystem) string { return v.FileSystemName }).(pulumi.StringOutput)
+}
+
+// The query status list of mount service.
+func (o GetMountServicesMountServiceAttachFileSystemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceAttachFileSystem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetMountServicesMountServiceAttachFileSystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMountServicesMountServiceAttachFileSystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountServicesMountServiceAttachFileSystem)(nil)).Elem()
+}
+
+func (o GetMountServicesMountServiceAttachFileSystemArrayOutput) ToGetMountServicesMountServiceAttachFileSystemArrayOutput() GetMountServicesMountServiceAttachFileSystemArrayOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceAttachFileSystemArrayOutput) ToGetMountServicesMountServiceAttachFileSystemArrayOutputWithContext(ctx context.Context) GetMountServicesMountServiceAttachFileSystemArrayOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceAttachFileSystemArrayOutput) Index(i pulumi.IntInput) GetMountServicesMountServiceAttachFileSystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMountServicesMountServiceAttachFileSystem {
+		return vs[0].([]GetMountServicesMountServiceAttachFileSystem)[vs[1].(int)]
+	}).(GetMountServicesMountServiceAttachFileSystemOutput)
+}
+
+type GetMountServicesMountServiceNode struct {
+	// The default password of ecs instance.
+	DefaultPassword string `pulumi:"defaultPassword"`
+	// The id of ecs instance.
+	NodeId string `pulumi:"nodeId"`
+}
+
+// GetMountServicesMountServiceNodeInput is an input type that accepts GetMountServicesMountServiceNodeArgs and GetMountServicesMountServiceNodeOutput values.
+// You can construct a concrete instance of `GetMountServicesMountServiceNodeInput` via:
+//
+//	GetMountServicesMountServiceNodeArgs{...}
+type GetMountServicesMountServiceNodeInput interface {
+	pulumi.Input
+
+	ToGetMountServicesMountServiceNodeOutput() GetMountServicesMountServiceNodeOutput
+	ToGetMountServicesMountServiceNodeOutputWithContext(context.Context) GetMountServicesMountServiceNodeOutput
+}
+
+type GetMountServicesMountServiceNodeArgs struct {
+	// The default password of ecs instance.
+	DefaultPassword pulumi.StringInput `pulumi:"defaultPassword"`
+	// The id of ecs instance.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+}
+
+func (GetMountServicesMountServiceNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountServicesMountServiceNode)(nil)).Elem()
+}
+
+func (i GetMountServicesMountServiceNodeArgs) ToGetMountServicesMountServiceNodeOutput() GetMountServicesMountServiceNodeOutput {
+	return i.ToGetMountServicesMountServiceNodeOutputWithContext(context.Background())
+}
+
+func (i GetMountServicesMountServiceNodeArgs) ToGetMountServicesMountServiceNodeOutputWithContext(ctx context.Context) GetMountServicesMountServiceNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountServicesMountServiceNodeOutput)
+}
+
+// GetMountServicesMountServiceNodeArrayInput is an input type that accepts GetMountServicesMountServiceNodeArray and GetMountServicesMountServiceNodeArrayOutput values.
+// You can construct a concrete instance of `GetMountServicesMountServiceNodeArrayInput` via:
+//
+//	GetMountServicesMountServiceNodeArray{ GetMountServicesMountServiceNodeArgs{...} }
+type GetMountServicesMountServiceNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetMountServicesMountServiceNodeArrayOutput() GetMountServicesMountServiceNodeArrayOutput
+	ToGetMountServicesMountServiceNodeArrayOutputWithContext(context.Context) GetMountServicesMountServiceNodeArrayOutput
+}
+
+type GetMountServicesMountServiceNodeArray []GetMountServicesMountServiceNodeInput
+
+func (GetMountServicesMountServiceNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountServicesMountServiceNode)(nil)).Elem()
+}
+
+func (i GetMountServicesMountServiceNodeArray) ToGetMountServicesMountServiceNodeArrayOutput() GetMountServicesMountServiceNodeArrayOutput {
+	return i.ToGetMountServicesMountServiceNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetMountServicesMountServiceNodeArray) ToGetMountServicesMountServiceNodeArrayOutputWithContext(ctx context.Context) GetMountServicesMountServiceNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMountServicesMountServiceNodeArrayOutput)
+}
+
+type GetMountServicesMountServiceNodeOutput struct{ *pulumi.OutputState }
+
+func (GetMountServicesMountServiceNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMountServicesMountServiceNode)(nil)).Elem()
+}
+
+func (o GetMountServicesMountServiceNodeOutput) ToGetMountServicesMountServiceNodeOutput() GetMountServicesMountServiceNodeOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceNodeOutput) ToGetMountServicesMountServiceNodeOutputWithContext(ctx context.Context) GetMountServicesMountServiceNodeOutput {
+	return o
+}
+
+// The default password of ecs instance.
+func (o GetMountServicesMountServiceNodeOutput) DefaultPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceNode) string { return v.DefaultPassword }).(pulumi.StringOutput)
+}
+
+// The id of ecs instance.
+func (o GetMountServicesMountServiceNodeOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMountServicesMountServiceNode) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+type GetMountServicesMountServiceNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMountServicesMountServiceNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMountServicesMountServiceNode)(nil)).Elem()
+}
+
+func (o GetMountServicesMountServiceNodeArrayOutput) ToGetMountServicesMountServiceNodeArrayOutput() GetMountServicesMountServiceNodeArrayOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceNodeArrayOutput) ToGetMountServicesMountServiceNodeArrayOutputWithContext(ctx context.Context) GetMountServicesMountServiceNodeArrayOutput {
+	return o
+}
+
+func (o GetMountServicesMountServiceNodeArrayOutput) Index(i pulumi.IntInput) GetMountServicesMountServiceNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMountServicesMountServiceNode {
+		return vs[0].([]GetMountServicesMountServiceNode)[vs[1].(int)]
+	}).(GetMountServicesMountServiceNodeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FileSystemTagInput)(nil)).Elem(), FileSystemTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FileSystemTagArrayInput)(nil)).Elem(), FileSystemTagArray{})
@@ -1527,6 +2676,19 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MountServicesMountServiceAttachFileSystemArrayInput)(nil)).Elem(), MountServicesMountServiceAttachFileSystemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MountServicesMountServiceNodeInput)(nil)).Elem(), MountServicesMountServiceNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MountServicesMountServiceNodeArrayInput)(nil)).Elem(), MountServicesMountServiceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemInput)(nil)).Elem(), GetFileSystemsFileSystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemArrayInput)(nil)).Elem(), GetFileSystemsFileSystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemCapacityInfoInput)(nil)).Elem(), GetFileSystemsFileSystemCapacityInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemTagInput)(nil)).Elem(), GetFileSystemsFileSystemTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFileSystemsFileSystemTagArrayInput)(nil)).Elem(), GetFileSystemsFileSystemTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFilesetsFilesetInput)(nil)).Elem(), GetFilesetsFilesetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFilesetsFilesetArrayInput)(nil)).Elem(), GetFilesetsFilesetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountServicesMountServiceInput)(nil)).Elem(), GetMountServicesMountServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountServicesMountServiceArrayInput)(nil)).Elem(), GetMountServicesMountServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountServicesMountServiceAttachFileSystemInput)(nil)).Elem(), GetMountServicesMountServiceAttachFileSystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountServicesMountServiceAttachFileSystemArrayInput)(nil)).Elem(), GetMountServicesMountServiceAttachFileSystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountServicesMountServiceNodeInput)(nil)).Elem(), GetMountServicesMountServiceNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMountServicesMountServiceNodeArrayInput)(nil)).Elem(), GetMountServicesMountServiceNodeArray{})
 	pulumi.RegisterOutputType(FileSystemTagOutput{})
 	pulumi.RegisterOutputType(FileSystemTagArrayOutput{})
 	pulumi.RegisterOutputType(FileSystemsFileSystemOutput{})
@@ -1546,4 +2708,17 @@ func init() {
 	pulumi.RegisterOutputType(MountServicesMountServiceAttachFileSystemArrayOutput{})
 	pulumi.RegisterOutputType(MountServicesMountServiceNodeOutput{})
 	pulumi.RegisterOutputType(MountServicesMountServiceNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemArrayOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemCapacityInfoOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemTagOutput{})
+	pulumi.RegisterOutputType(GetFileSystemsFileSystemTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFilesetsFilesetOutput{})
+	pulumi.RegisterOutputType(GetFilesetsFilesetArrayOutput{})
+	pulumi.RegisterOutputType(GetMountServicesMountServiceOutput{})
+	pulumi.RegisterOutputType(GetMountServicesMountServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetMountServicesMountServiceAttachFileSystemOutput{})
+	pulumi.RegisterOutputType(GetMountServicesMountServiceAttachFileSystemArrayOutput{})
+	pulumi.RegisterOutputType(GetMountServicesMountServiceNodeOutput{})
+	pulumi.RegisterOutputType(GetMountServicesMountServiceNodeArrayOutput{})
 }

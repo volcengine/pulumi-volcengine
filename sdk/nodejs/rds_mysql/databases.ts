@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-project1",
  *     cidrBlock: "172.16.0.0/16",
@@ -53,13 +53,15 @@ import * as utilities from "../utilities";
  *     dbName: "acc-test",
  *     instanceId: fooInstance.id,
  * });
- * const fooDatabases = volcengine.rds_mysql.DatabasesOutput({
+ * const fooDatabases = volcengine.rds_mysql.getDatabasesOutput({
  *     dbName: "acc-test",
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases */
 export function databases(args: DatabasesArgs, opts?: pulumi.InvokeOptions): Promise<DatabasesResult> {
+    pulumi.log.warn("databases is deprecated: volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_mysql/databases:Databases", {
@@ -125,7 +127,7 @@ export interface DatabasesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-project1",
  *     cidrBlock: "172.16.0.0/16",
@@ -163,12 +165,13 @@ export interface DatabasesResult {
  *     dbName: "acc-test",
  *     instanceId: fooInstance.id,
  * });
- * const fooDatabases = volcengine.rds_mysql.DatabasesOutput({
+ * const fooDatabases = volcengine.rds_mysql.getDatabasesOutput({
  *     dbName: "acc-test",
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.rds_mysql.Databases has been deprecated in favor of volcengine.rds_mysql.getDatabases */
 export function databasesOutput(args: DatabasesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DatabasesResult> {
     return pulumi.output(args).apply((a: any) => databases(a, opts))
 }

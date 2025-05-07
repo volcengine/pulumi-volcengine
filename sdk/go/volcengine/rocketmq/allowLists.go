@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rocketmq.AllowLists(ctx, nil, nil)
+//			_, err := rocketmq.GetAllowLists(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rocketmq.AllowLists has been deprecated in favor of volcengine.rocketmq.getAllowLists
 func AllowLists(ctx *pulumi.Context, args *AllowListsArgs, opts ...pulumi.InvokeOption) (*AllowListsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowListsResult

@@ -17,6 +17,8 @@ __all__ = [
     'shards_output',
 ]
 
+warnings.warn("""volcengine.tls.Shards has been deprecated in favor of volcengine.tls.getShards""", DeprecationWarning)
+
 @pulumi.output_type
 class ShardsResult:
     """
@@ -101,13 +103,14 @@ def shards(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.shards(topic_id="edf051ed-3c46-49ba-9339-bea628fedc15")
+    default = volcengine.tls.get_shards(topic_id="edf051ed-3c46-49ba-9339-bea628fedc15")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str topic_id: The id of topic.
     """
+    pulumi.log.warn("""shards is deprecated: volcengine.tls.Shards has been deprecated in favor of volcengine.tls.getShards""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['topicId'] = topic_id
@@ -134,11 +137,12 @@ def shards_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.shards(topic_id="edf051ed-3c46-49ba-9339-bea628fedc15")
+    default = volcengine.tls.get_shards(topic_id="edf051ed-3c46-49ba-9339-bea628fedc15")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str topic_id: The id of topic.
     """
+    pulumi.log.warn("""shards is deprecated: volcengine.tls.Shards has been deprecated in favor of volcengine.tls.getShards""")
     ...

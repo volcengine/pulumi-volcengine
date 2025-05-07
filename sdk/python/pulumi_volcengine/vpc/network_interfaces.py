@@ -18,6 +18,8 @@ __all__ = [
     'network_interfaces_output',
 ]
 
+warnings.warn("""volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces""", DeprecationWarning)
+
 @pulumi.output_type
 class NetworkInterfacesResult:
     """
@@ -253,7 +255,7 @@ def network_interfaces(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.network_interfaces(ids=["eni-2744htx2w0j5s7fap8t3ivwze"])
+    default = volcengine.vpc.get_network_interfaces(ids=["eni-2744htx2w0j5s7fap8t3ivwze"])
     ```
 
 
@@ -273,6 +275,7 @@ def network_interfaces(ids: Optional[Sequence[str]] = None,
     :param str vpc_id: An id of the virtual private cloud (VPC) to which the ENI belongs.
     :param str zone_id: The zone ID.
     """
+    pulumi.log.warn("""network_interfaces is deprecated: volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['instanceId'] = instance_id
@@ -338,7 +341,7 @@ def network_interfaces_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.network_interfaces(ids=["eni-2744htx2w0j5s7fap8t3ivwze"])
+    default = volcengine.vpc.get_network_interfaces(ids=["eni-2744htx2w0j5s7fap8t3ivwze"])
     ```
 
 
@@ -358,4 +361,5 @@ def network_interfaces_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
     :param str vpc_id: An id of the virtual private cloud (VPC) to which the ENI belongs.
     :param str zone_id: The zone ID.
     """
+    pulumi.log.warn("""network_interfaces is deprecated: volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces""")
     ...

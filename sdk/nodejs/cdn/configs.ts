@@ -64,12 +64,14 @@ import * as utilities from "../utilities";
  *         },
  *     }),
  * });
- * const fooConfigs = volcengine.cdn.ConfigsOutput({
+ * const fooConfigs = volcengine.cdn.getConfigsOutput({
  *     domain: fooCdnDomain.id,
  * });
  * ```
  */
+/** @deprecated volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs */
 export function configs(args: ConfigsArgs, opts?: pulumi.InvokeOptions): Promise<ConfigsResult> {
+    pulumi.log.warn("configs is deprecated: volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cdn/configs:Configs", {
@@ -172,11 +174,12 @@ export interface ConfigsResult {
  *         },
  *     }),
  * });
- * const fooConfigs = volcengine.cdn.ConfigsOutput({
+ * const fooConfigs = volcengine.cdn.getConfigsOutput({
  *     domain: fooCdnDomain.id,
  * });
  * ```
  */
+/** @deprecated volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs */
 export function configsOutput(args: ConfigsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ConfigsResult> {
     return pulumi.output(args).apply((a: any) => configs(a, opts))
 }

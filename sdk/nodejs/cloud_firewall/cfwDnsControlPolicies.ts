@@ -28,12 +28,14 @@ import * as utilities from "../utilities";
  *         region: "cn-beijing",
  *     }],
  * });
- * const fooCfwDnsControlPolicies = volcengine.cloud_firewall.CfwDnsControlPoliciesOutput({
+ * const fooCfwDnsControlPolicies = volcengine.cloud_firewall.getCfwDnsControlPoliciesOutput({
  *     ids: [fooCfwDnsControlPolicy.id],
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies */
 export function cfwDnsControlPolicies(args?: CfwDnsControlPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<CfwDnsControlPoliciesResult> {
+    pulumi.log.warn("cfwDnsControlPolicies is deprecated: volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -140,11 +142,12 @@ export interface CfwDnsControlPoliciesResult {
  *         region: "cn-beijing",
  *     }],
  * });
- * const fooCfwDnsControlPolicies = volcengine.cloud_firewall.CfwDnsControlPoliciesOutput({
+ * const fooCfwDnsControlPolicies = volcengine.cloud_firewall.getCfwDnsControlPoliciesOutput({
  *     ids: [fooCfwDnsControlPolicy.id],
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwDnsControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwDnsControlPolicies */
 export function cfwDnsControlPoliciesOutput(args?: CfwDnsControlPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CfwDnsControlPoliciesResult> {
     return pulumi.output(args).apply((a: any) => cfwDnsControlPolicies(a, opts))
 }

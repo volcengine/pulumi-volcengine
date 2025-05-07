@@ -24,13 +24,15 @@ import * as utilities from "../utilities";
  *     transitRouterRouteTableName: "tf-table-test-acc",
  *     transitRouterId: fooTransitRouter.id,
  * });
- * const default = volcengine.transit_router.RouteTablesOutput({
+ * const default = volcengine.transit_router.getRouteTablesOutput({
  *     transitRouterId: fooTransitRouter.id,
  *     ids: [fooRouteTable.transitRouterRouteTableId],
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables */
 export function routeTables(args: RouteTablesArgs, opts?: pulumi.InvokeOptions): Promise<RouteTablesResult> {
+    pulumi.log.warn("routeTables is deprecated: volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/routeTables:RouteTables", {
@@ -114,12 +116,13 @@ export interface RouteTablesResult {
  *     transitRouterRouteTableName: "tf-table-test-acc",
  *     transitRouterId: fooTransitRouter.id,
  * });
- * const default = volcengine.transit_router.RouteTablesOutput({
+ * const default = volcengine.transit_router.getRouteTablesOutput({
  *     transitRouterId: fooTransitRouter.id,
  *     ids: [fooRouteTable.transitRouterRouteTableId],
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables */
 export function routeTablesOutput(args: RouteTablesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteTablesResult> {
     return pulumi.output(args).apply((a: any) => routeTables(a, opts))
 }

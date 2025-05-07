@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds_v2.RdsInstancesV2({});
+ * const default = volcengine.rds_v2.getRdsInstancesV2({});
  * ```
  */
+/** @deprecated volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2 */
 export function rdsInstancesV2(args?: RdsInstancesV2Args, opts?: pulumi.InvokeOptions): Promise<RdsInstancesV2Result> {
+    pulumi.log.warn("rdsInstancesV2 is deprecated: volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -180,9 +182,10 @@ export interface RdsInstancesV2Result {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds_v2.RdsInstancesV2({});
+ * const default = volcengine.rds_v2.getRdsInstancesV2({});
  * ```
  */
+/** @deprecated volcengine.rds_v2.RdsInstancesV2 has been deprecated in favor of volcengine.rds_v2.getRdsInstancesV2 */
 export function rdsInstancesV2Output(args?: RdsInstancesV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RdsInstancesV2Result> {
     return pulumi.output(args).apply((a: any) => rdsInstancesV2(a, opts))
 }

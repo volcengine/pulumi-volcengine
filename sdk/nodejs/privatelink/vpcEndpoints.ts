@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -64,12 +64,14 @@ import * as utilities from "../utilities";
  *         description: "acc-test",
  *     }));
  * }
- * const fooVpcEndpoints = volcengine.privatelink.VpcEndpointsOutput({
+ * const fooVpcEndpoints = volcengine.privatelink.getVpcEndpointsOutput({
  *     ids: fooVpcEndpoint.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints */
 export function vpcEndpoints(args?: VpcEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointsResult> {
+    pulumi.log.warn("vpcEndpoints is deprecated: volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -163,7 +165,7 @@ export interface VpcEndpointsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -212,11 +214,12 @@ export interface VpcEndpointsResult {
  *         description: "acc-test",
  *     }));
  * }
- * const fooVpcEndpoints = volcengine.privatelink.VpcEndpointsOutput({
+ * const fooVpcEndpoints = volcengine.privatelink.getVpcEndpointsOutput({
  *     ids: fooVpcEndpoint.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints */
 export function vpcEndpointsOutput(args?: VpcEndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointsResult> {
     return pulumi.output(args).apply((a: any) => vpcEndpoints(a, opts))
 }

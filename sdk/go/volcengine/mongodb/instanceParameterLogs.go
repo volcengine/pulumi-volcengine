@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.InstanceParameterLogs(ctx, &mongodb.InstanceParameterLogsArgs{
+//			_, err := mongodb.GetInstanceParameterLogs(ctx, &mongodb.GetInstanceParameterLogsArgs{
 //				EndTime:    "2023-11-14 18:15Z",
 //				InstanceId: "mongo-replica-f16e9298b121",
 //				StartTime:  "2022-11-14 00:00Z",
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs
 func InstanceParameterLogs(ctx *pulumi.Context, args *InstanceParameterLogsArgs, opts ...pulumi.InvokeOption) (*InstanceParameterLogsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstanceParameterLogsResult

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.ListenerDomainExtensions has been deprecated in favor of volcengine.alb.getListenerDomainExtensions")]
     public static class ListenerDomainExtensions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.ListenerDomainExtensions.Invoke(new()
+        ///     var foo = Volcengine.Alb.GetListenerDomainExtensions.Invoke(new()
         ///     {
         ///         ListenerId = "lsn-1g72yeyhrrj7k2zbhq5gp6xch",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.ListenerDomainExtensions.Invoke(new()
+        ///     var foo = Volcengine.Alb.GetListenerDomainExtensions.Invoke(new()
         ///     {
         ///         ListenerId = "lsn-1g72yeyhrrj7k2zbhq5gp6xch",
         ///     });

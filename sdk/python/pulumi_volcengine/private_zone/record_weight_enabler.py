@@ -131,6 +131,30 @@ class RecordWeightEnabler(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage private zone record weight enabler
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo_record = volcengine.private_zone.Record("fooRecord",
+            zid=2450000,
+            host="www",
+            type="A",
+            value="10.1.1.158",
+            weight=8,
+            ttl=700,
+            remark="tf-test",
+            enable=True)
+        foo_record_sets = volcengine.private_zone.get_record_sets_output(zid=foo_record.zid,
+            host=foo_record.host,
+            search_mode="EXACT")
+        foo_record_weight_enabler = volcengine.private_zone.RecordWeightEnabler("fooRecordWeightEnabler",
+            zid=foo_record.zid,
+            record_set_id=pulumi.Output.all(foo_record_sets, foo_record.type).apply(lambda foo_record_sets, type: [set.record_set_id for set in foo_record_sets.record_sets if set.type == type][0]),
+            weight_enabled=True)
+        ```
+
         ## Import
 
         PrivateZoneRecordWeightEnabler can be imported using the zid:record_set_id, e.g.
@@ -153,6 +177,30 @@ class RecordWeightEnabler(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage private zone record weight enabler
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo_record = volcengine.private_zone.Record("fooRecord",
+            zid=2450000,
+            host="www",
+            type="A",
+            value="10.1.1.158",
+            weight=8,
+            ttl=700,
+            remark="tf-test",
+            enable=True)
+        foo_record_sets = volcengine.private_zone.get_record_sets_output(zid=foo_record.zid,
+            host=foo_record.host,
+            search_mode="EXACT")
+        foo_record_weight_enabler = volcengine.private_zone.RecordWeightEnabler("fooRecordWeightEnabler",
+            zid=foo_record.zid,
+            record_set_id=pulumi.Output.all(foo_record_sets, foo_record.type).apply(lambda foo_record_sets, type: [set.record_set_id for set in foo_record_sets.record_sets if set.type == type][0]),
+            weight_enabled=True)
+        ```
+
         ## Import
 
         PrivateZoneRecordWeightEnabler can be imported using the zid:record_set_id, e.g.

@@ -17,6 +17,8 @@ __all__ = [
     'server_group_servers_output',
 ]
 
+warnings.warn("""volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers""", DeprecationWarning)
+
 @pulumi.output_type
 class ServerGroupServersResult:
     """
@@ -98,13 +100,14 @@ def server_group_servers(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.server_group_servers(server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
+    foo = volcengine.alb.get_server_group_servers(server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str server_group_id: The ID of the ServerGroup.
     """
+    pulumi.log.warn("""server_group_servers is deprecated: volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['serverGroupId'] = server_group_id
@@ -131,11 +134,12 @@ def server_group_servers_output(output_file: Optional[pulumi.Input[Optional[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.server_group_servers(server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
+    foo = volcengine.alb.get_server_group_servers(server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str server_group_id: The ID of the ServerGroup.
     """
+    pulumi.log.warn("""server_group_servers is deprecated: volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers""")
     ...

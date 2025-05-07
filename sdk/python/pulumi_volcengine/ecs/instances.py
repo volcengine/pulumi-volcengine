@@ -18,6 +18,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.ecs.Instances has been deprecated in favor of volcengine.ecs.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -289,7 +291,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -301,7 +303,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_instance = []
@@ -328,7 +330,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_instances = volcengine.ecs.instances_output(ids=[__item.id for __item in foo_instance])
+    foo_instances = volcengine.ecs.get_instances_output(ids=[__item.id for __item in foo_instance])
     ```
 
 
@@ -351,6 +353,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
     :param str vpc_id: The VPC ID of ECS instance.
     :param str zone_id: The available zone ID of ECS instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.ecs.Instances has been deprecated in favor of volcengine.ecs.getInstances""")
     __args__ = dict()
     __args__['deploymentSetIds'] = deployment_set_ids
     __args__['eipAddresses'] = eip_addresses
@@ -425,7 +428,7 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -437,7 +440,7 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_instance = []
@@ -464,7 +467,7 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
                 key="k1",
                 value="v1",
             )]))
-    foo_instances = volcengine.ecs.instances_output(ids=[__item.id for __item in foo_instance])
+    foo_instances = volcengine.ecs.get_instances_output(ids=[__item.id for __item in foo_instance])
     ```
 
 
@@ -487,4 +490,5 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
     :param str vpc_id: The VPC ID of ECS instance.
     :param str zone_id: The available zone ID of ECS instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.ecs.Instances has been deprecated in favor of volcengine.ecs.getInstances""")
     ...

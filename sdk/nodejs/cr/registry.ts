@@ -14,10 +14,23 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.cr.Registry("foo", {
+ * // create cr registry
+ * const fooRegistry = new volcengine.cr.Registry("fooRegistry", {
  *     deleteImmediately: false,
  *     password: "1qaz!QAZ",
  *     project: "default",
+ * });
+ * // create cr namespace
+ * const fooNamespace = new volcengine.cr.Namespace("fooNamespace", {
+ *     registry: fooRegistry.id,
+ *     project: "default",
+ * });
+ * // create cr repository
+ * const fooRepository = new volcengine.cr.Repository("fooRepository", {
+ *     registry: fooRegistry.id,
+ *     namespace: fooNamespace.name,
+ *     description: "A test repository created by terraform.",
+ *     accessLevel: "Public",
  * });
  * ```
  *

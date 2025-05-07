@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.KafkaConsumers(ctx, &tls.KafkaConsumersArgs{
+//			_, err := tls.GetKafkaConsumers(ctx, &tls.GetKafkaConsumersArgs{
 //				Ids: []string{
 //					"65d67d34-c5b4-4ec8-b3a9-175d33668b45",
 //					"cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.KafkaConsumers has been deprecated in favor of volcengine.tls.getKafkaConsumers
 func KafkaConsumers(ctx *pulumi.Context, args *KafkaConsumersArgs, opts ...pulumi.InvokeOption) (*KafkaConsumersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv KafkaConsumersResult

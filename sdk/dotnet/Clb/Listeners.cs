@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Clb
 {
+    [Obsolete(@"volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners")]
     public static class Listeners
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Clb
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -83,7 +84,7 @@ namespace Pulumi.Volcengine.Clb
         ///         Enabled = "on",
         ///     });
         /// 
-        ///     var fooListeners = Volcengine.Clb.Listeners.Invoke(new()
+        ///     var fooListeners = Volcengine.Clb.GetListeners.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -109,7 +110,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -121,7 +122,7 @@ namespace Pulumi.Volcengine.Clb
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -169,7 +170,7 @@ namespace Pulumi.Volcengine.Clb
         ///         Enabled = "on",
         ///     });
         /// 
-        ///     var fooListeners = Volcengine.Clb.Listeners.Invoke(new()
+        ///     var fooListeners = Volcengine.Clb.GetListeners.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

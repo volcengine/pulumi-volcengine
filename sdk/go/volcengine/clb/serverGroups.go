@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -71,7 +71,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = clb.ServerGroupsOutput(ctx, clb.ServerGroupsOutputArgs{
+//			_ = clb.GetServerGroupsOutput(ctx, clb.GetServerGroupsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooServerGroup.ID(),
 //				},
@@ -81,6 +81,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups
 func ServerGroups(ctx *pulumi.Context, args *ServerGroupsArgs, opts ...pulumi.InvokeOption) (*ServerGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServerGroupsResult

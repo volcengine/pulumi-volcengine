@@ -17,6 +17,8 @@ __all__ = [
     'pitr_time_windows_output',
 ]
 
+warnings.warn("""volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows""", DeprecationWarning)
+
 @pulumi.output_type
 class PitrTimeWindowsResult:
     """
@@ -87,6 +89,7 @@ def pitr_time_windows(ids: Optional[Sequence[str]] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""pitr_time_windows is deprecated: volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -108,4 +111,5 @@ def pitr_time_windows_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""pitr_time_windows is deprecated: volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'contact_groups_output',
 ]
 
+warnings.warn("""volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups""", DeprecationWarning)
+
 @pulumi.output_type
 class ContactGroupsResult:
     """
@@ -101,13 +103,14 @@ def contact_groups(name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.contact_groups(name="tftest")
+    foo = volcengine.cloud_monitor.get_contact_groups(name="tftest")
     ```
 
 
     :param str name: Search for keywords in contact group names, supports fuzzy search.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""contact_groups is deprecated: volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups""")
     __args__ = dict()
     __args__['name'] = name
     __args__['outputFile'] = output_file
@@ -134,11 +137,12 @@ def contact_groups_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_monitor.contact_groups(name="tftest")
+    foo = volcengine.cloud_monitor.get_contact_groups(name="tftest")
     ```
 
 
     :param str name: Search for keywords in contact group names, supports fuzzy search.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""contact_groups is deprecated: volcengine.cloud_monitor.ContactGroups has been deprecated in favor of volcengine.cloud_monitor.getContactGroups""")
     ...

@@ -45,9 +45,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = nas.PermissionGroupsOutput(ctx, nas.PermissionGroupsOutputArgs{
-//				Filters: nas.PermissionGroupsFilterArray{
-//					&nas.PermissionGroupsFilterArgs{
+//			_ = nas.GetPermissionGroupsOutput(ctx, nas.GetPermissionGroupsOutputArgs{
+//				Filters: nas.GetPermissionGroupsFilterArray{
+//					&nas.GetPermissionGroupsFilterArgs{
 //						Key:   pulumi.String("PermissionGroupId"),
 //						Value: foo.ID(),
 //					},
@@ -58,6 +58,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.nas.PermissionGroups has been deprecated in favor of volcengine.nas.getPermissionGroups
 func PermissionGroups(ctx *pulumi.Context, args *PermissionGroupsArgs, opts ...pulumi.InvokeOption) (*PermissionGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PermissionGroupsResult

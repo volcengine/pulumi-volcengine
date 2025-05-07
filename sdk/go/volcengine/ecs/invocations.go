@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.Invocations(ctx, &ecs.InvocationsArgs{
+//			_, err := ecs.GetInvocations(ctx, &ecs.GetInvocationsArgs{
 //				InvocationId: pulumi.StringRef("ivk-ych9y4vujvl8j01c****"),
 //				InvocationStatuses: []string{
 //					"Success",
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.Invocations has been deprecated in favor of volcengine.ecs.getInvocations
 func Invocations(ctx *pulumi.Context, args *InvocationsArgs, opts ...pulumi.InvokeOption) (*InvocationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InvocationsResult

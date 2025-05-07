@@ -18,6 +18,8 @@ __all__ = [
     'cens_output',
 ]
 
+warnings.warn("""volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens""", DeprecationWarning)
+
 @pulumi.output_type
 class CensResult:
     """
@@ -142,7 +144,7 @@ def cens(cen_names: Optional[Sequence[str]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_cens = volcengine.cen.cens_output(ids=[__item.id for __item in foo_cen])
+    foo_cens = volcengine.cen.get_cens_output(ids=[__item.id for __item in foo_cen])
     ```
 
 
@@ -152,6 +154,7 @@ def cens(cen_names: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['CensTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""cens is deprecated: volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens""")
     __args__ = dict()
     __args__['cenNames'] = cen_names
     __args__['ids'] = ids
@@ -197,7 +200,7 @@ def cens_output(cen_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = Non
                 key="k1",
                 value="v1",
             )]))
-    foo_cens = volcengine.cen.cens_output(ids=[__item.id for __item in foo_cen])
+    foo_cens = volcengine.cen.get_cens_output(ids=[__item.id for __item in foo_cen])
     ```
 
 
@@ -207,4 +210,5 @@ def cens_output(cen_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = Non
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['CensTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""cens is deprecated: volcengine.cen.Cens has been deprecated in favor of volcengine.cen.getCens""")
     ...

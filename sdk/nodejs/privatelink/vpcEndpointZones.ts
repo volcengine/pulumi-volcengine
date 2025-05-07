@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -66,12 +66,14 @@ import * as utilities from "../utilities";
  *     subnetId: fooSubnet.id,
  *     privateIpAddress: "172.16.0.251",
  * });
- * const fooVpcEndpointZones = volcengine.privatelink.VpcEndpointZonesOutput({
+ * const fooVpcEndpointZones = volcengine.privatelink.getVpcEndpointZonesOutput({
  *     endpointId: fooVpcEndpointZone.endpointId,
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointZones has been deprecated in favor of volcengine.privatelink.getVpcEndpointZones */
 export function vpcEndpointZones(args?: VpcEndpointZonesArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointZonesResult> {
+    pulumi.log.warn("vpcEndpointZones is deprecated: volcengine.privatelink.VpcEndpointZones has been deprecated in favor of volcengine.privatelink.getVpcEndpointZones")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -123,7 +125,7 @@ export interface VpcEndpointZonesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -174,11 +176,12 @@ export interface VpcEndpointZonesResult {
  *     subnetId: fooSubnet.id,
  *     privateIpAddress: "172.16.0.251",
  * });
- * const fooVpcEndpointZones = volcengine.privatelink.VpcEndpointZonesOutput({
+ * const fooVpcEndpointZones = volcengine.privatelink.getVpcEndpointZonesOutput({
  *     endpointId: fooVpcEndpointZone.endpointId,
  * });
  * ```
  */
+/** @deprecated volcengine.privatelink.VpcEndpointZones has been deprecated in favor of volcengine.privatelink.getVpcEndpointZones */
 export function vpcEndpointZonesOutput(args?: VpcEndpointZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointZonesResult> {
     return pulumi.output(args).apply((a: any) => vpcEndpointZones(a, opts))
 }

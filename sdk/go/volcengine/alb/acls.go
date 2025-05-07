@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.Acls(ctx, &alb.AclsArgs{
+//			_, err := alb.GetAcls(ctx, &alb.GetAclsArgs{
 //				Ids: []string{
 //					"acl-1g72w6z11ighs2zbhq4v3rvh4",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.Acls has been deprecated in favor of volcengine.alb.getAcls
 func Acls(ctx *pulumi.Context, args *AclsArgs, opts ...pulumi.InvokeOption) (*AclsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AclsResult

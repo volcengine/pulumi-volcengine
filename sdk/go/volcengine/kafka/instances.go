@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -80,7 +80,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = kafka.InstancesOutput(ctx, kafka.InstancesOutputArgs{
+//			_ = kafka.GetInstancesOutput(ctx, kafka.GetInstancesOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -88,6 +88,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.Instances has been deprecated in favor of volcengine.kafka.getInstances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstancesResult

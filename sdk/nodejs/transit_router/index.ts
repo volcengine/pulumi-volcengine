@@ -25,6 +25,61 @@ export const directConnectGatewayAttachments: typeof import("./directConnectGate
 export const directConnectGatewayAttachmentsOutput: typeof import("./directConnectGatewayAttachments").directConnectGatewayAttachmentsOutput = null as any;
 utilities.lazyLoad(exports, ["directConnectGatewayAttachments","directConnectGatewayAttachmentsOutput"], () => require("./directConnectGatewayAttachments"));
 
+export { GetBandwidthPackagesArgs, GetBandwidthPackagesResult, GetBandwidthPackagesOutputArgs } from "./getBandwidthPackages";
+export const getBandwidthPackages: typeof import("./getBandwidthPackages").getBandwidthPackages = null as any;
+export const getBandwidthPackagesOutput: typeof import("./getBandwidthPackages").getBandwidthPackagesOutput = null as any;
+utilities.lazyLoad(exports, ["getBandwidthPackages","getBandwidthPackagesOutput"], () => require("./getBandwidthPackages"));
+
+export { GetDirectConnectGatewayAttachmentsArgs, GetDirectConnectGatewayAttachmentsResult, GetDirectConnectGatewayAttachmentsOutputArgs } from "./getDirectConnectGatewayAttachments";
+export const getDirectConnectGatewayAttachments: typeof import("./getDirectConnectGatewayAttachments").getDirectConnectGatewayAttachments = null as any;
+export const getDirectConnectGatewayAttachmentsOutput: typeof import("./getDirectConnectGatewayAttachments").getDirectConnectGatewayAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getDirectConnectGatewayAttachments","getDirectConnectGatewayAttachmentsOutput"], () => require("./getDirectConnectGatewayAttachments"));
+
+export { GetGrantRulesArgs, GetGrantRulesResult, GetGrantRulesOutputArgs } from "./getGrantRules";
+export const getGrantRules: typeof import("./getGrantRules").getGrantRules = null as any;
+export const getGrantRulesOutput: typeof import("./getGrantRules").getGrantRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getGrantRules","getGrantRulesOutput"], () => require("./getGrantRules"));
+
+export { GetPeerAttachmentsArgs, GetPeerAttachmentsResult, GetPeerAttachmentsOutputArgs } from "./getPeerAttachments";
+export const getPeerAttachments: typeof import("./getPeerAttachments").getPeerAttachments = null as any;
+export const getPeerAttachmentsOutput: typeof import("./getPeerAttachments").getPeerAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getPeerAttachments","getPeerAttachmentsOutput"], () => require("./getPeerAttachments"));
+
+export { GetRouteEntriesArgs, GetRouteEntriesResult, GetRouteEntriesOutputArgs } from "./getRouteEntries";
+export const getRouteEntries: typeof import("./getRouteEntries").getRouteEntries = null as any;
+export const getRouteEntriesOutput: typeof import("./getRouteEntries").getRouteEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteEntries","getRouteEntriesOutput"], () => require("./getRouteEntries"));
+
+export { GetRouteTableAssociationsArgs, GetRouteTableAssociationsResult, GetRouteTableAssociationsOutputArgs } from "./getRouteTableAssociations";
+export const getRouteTableAssociations: typeof import("./getRouteTableAssociations").getRouteTableAssociations = null as any;
+export const getRouteTableAssociationsOutput: typeof import("./getRouteTableAssociations").getRouteTableAssociationsOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteTableAssociations","getRouteTableAssociationsOutput"], () => require("./getRouteTableAssociations"));
+
+export { GetRouteTablePropagationsArgs, GetRouteTablePropagationsResult, GetRouteTablePropagationsOutputArgs } from "./getRouteTablePropagations";
+export const getRouteTablePropagations: typeof import("./getRouteTablePropagations").getRouteTablePropagations = null as any;
+export const getRouteTablePropagationsOutput: typeof import("./getRouteTablePropagations").getRouteTablePropagationsOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteTablePropagations","getRouteTablePropagationsOutput"], () => require("./getRouteTablePropagations"));
+
+export { GetRouteTablesArgs, GetRouteTablesResult, GetRouteTablesOutputArgs } from "./getRouteTables";
+export const getRouteTables: typeof import("./getRouteTables").getRouteTables = null as any;
+export const getRouteTablesOutput: typeof import("./getRouteTables").getRouteTablesOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteTables","getRouteTablesOutput"], () => require("./getRouteTables"));
+
+export { GetTransitRoutersArgs, GetTransitRoutersResult, GetTransitRoutersOutputArgs } from "./getTransitRouters";
+export const getTransitRouters: typeof import("./getTransitRouters").getTransitRouters = null as any;
+export const getTransitRoutersOutput: typeof import("./getTransitRouters").getTransitRoutersOutput = null as any;
+utilities.lazyLoad(exports, ["getTransitRouters","getTransitRoutersOutput"], () => require("./getTransitRouters"));
+
+export { GetVpcAttachmentsArgs, GetVpcAttachmentsResult, GetVpcAttachmentsOutputArgs } from "./getVpcAttachments";
+export const getVpcAttachments: typeof import("./getVpcAttachments").getVpcAttachments = null as any;
+export const getVpcAttachmentsOutput: typeof import("./getVpcAttachments").getVpcAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcAttachments","getVpcAttachmentsOutput"], () => require("./getVpcAttachments"));
+
+export { GetVpnAttachmentsArgs, GetVpnAttachmentsResult, GetVpnAttachmentsOutputArgs } from "./getVpnAttachments";
+export const getVpnAttachments: typeof import("./getVpnAttachments").getVpnAttachments = null as any;
+export const getVpnAttachmentsOutput: typeof import("./getVpnAttachments").getVpnAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpnAttachments","getVpnAttachmentsOutput"], () => require("./getVpnAttachments"));
+
 export { GrantRuleArgs, GrantRuleState } from "./grantRule";
 export type GrantRule = import("./grantRule").GrantRule;
 export const GrantRule: typeof import("./grantRule").GrantRule = null as any;

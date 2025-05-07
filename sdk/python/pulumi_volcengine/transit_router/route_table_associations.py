@@ -17,6 +17,8 @@ __all__ = [
     'route_table_associations_output',
 ]
 
+warnings.warn("""volcengine.transit_router.RouteTableAssociations has been deprecated in favor of volcengine.transit_router.getRouteTableAssociations""", DeprecationWarning)
+
 @pulumi.output_type
 class RouteTableAssociationsResult:
     """
@@ -114,7 +116,7 @@ def route_table_associations(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.route_table_associations(transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
+    default = volcengine.transit_router.get_route_table_associations(transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
         transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
     ```
 
@@ -123,6 +125,7 @@ def route_table_associations(output_file: Optional[str] = None,
     :param str transit_router_attachment_id: The ID of the network instance connection.
     :param str transit_router_route_table_id: The ID of the routing table associated with the transit router instance.
     """
+    pulumi.log.warn("""route_table_associations is deprecated: volcengine.transit_router.RouteTableAssociations has been deprecated in favor of volcengine.transit_router.getRouteTableAssociations""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['transitRouterAttachmentId'] = transit_router_attachment_id
@@ -152,7 +155,7 @@ def route_table_associations_output(output_file: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.route_table_associations(transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
+    default = volcengine.transit_router.get_route_table_associations(transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
         transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
     ```
 
@@ -161,4 +164,5 @@ def route_table_associations_output(output_file: Optional[pulumi.Input[Optional[
     :param str transit_router_attachment_id: The ID of the network instance connection.
     :param str transit_router_route_table_id: The ID of the routing table associated with the transit router instance.
     """
+    pulumi.log.warn("""route_table_associations is deprecated: volcengine.transit_router.RouteTableAssociations has been deprecated in favor of volcengine.transit_router.getRouteTableAssociations""")
     ...

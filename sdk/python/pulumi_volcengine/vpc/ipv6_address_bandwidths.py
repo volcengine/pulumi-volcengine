@@ -17,6 +17,8 @@ __all__ = [
     'ipv6_address_bandwidths_output',
 ]
 
+warnings.warn("""volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths""", DeprecationWarning)
+
 @pulumi.output_type
 class Ipv6AddressBandwidthsResult:
     """
@@ -164,7 +166,7 @@ def ipv6_address_bandwidths(associated_instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.ipv6_address_bandwidths(ids=["eip-in2y2duvtlhc8gbssyfnhfre"])
+    default = volcengine.vpc.get_ipv6_address_bandwidths(ids=["eip-in2y2duvtlhc8gbssyfnhfre"])
     ```
 
 
@@ -177,6 +179,7 @@ def ipv6_address_bandwidths(associated_instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str vpc_id: The ID of Vpc the ipv6 address in.
     """
+    pulumi.log.warn("""ipv6_address_bandwidths is deprecated: volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths""")
     __args__ = dict()
     __args__['associatedInstanceId'] = associated_instance_id
     __args__['associatedInstanceType'] = associated_instance_type
@@ -221,7 +224,7 @@ def ipv6_address_bandwidths_output(associated_instance_id: Optional[pulumi.Input
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.ipv6_address_bandwidths(ids=["eip-in2y2duvtlhc8gbssyfnhfre"])
+    default = volcengine.vpc.get_ipv6_address_bandwidths(ids=["eip-in2y2duvtlhc8gbssyfnhfre"])
     ```
 
 
@@ -234,4 +237,5 @@ def ipv6_address_bandwidths_output(associated_instance_id: Optional[pulumi.Input
     :param str output_file: File name where to save data source results.
     :param str vpc_id: The ID of Vpc the ipv6 address in.
     """
+    pulumi.log.warn("""ipv6_address_bandwidths is deprecated: volcengine.vpc.Ipv6AddressBandwidths has been deprecated in favor of volcengine.vpc.getIpv6AddressBandwidths""")
     ...

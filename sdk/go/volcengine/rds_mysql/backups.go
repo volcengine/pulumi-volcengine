@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mysql.Backups(ctx, &rds_mysql.BackupsArgs{
+//			_, err := rds_mysql.GetBackups(ctx, &rds_mysql.GetBackupsArgs{
 //				BackupEndTime:   pulumi.StringRef(""),
 //				BackupId:        pulumi.StringRef(""),
 //				BackupMethod:    pulumi.StringRef(""),
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups
 func Backups(ctx *pulumi.Context, args *BackupsArgs, opts ...pulumi.InvokeOption) (*BackupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BackupsResult

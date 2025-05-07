@@ -40,6 +40,46 @@ export const clbs: typeof import("./clbs").clbs = null as any;
 export const clbsOutput: typeof import("./clbs").clbsOutput = null as any;
 utilities.lazyLoad(exports, ["clbs","clbsOutput"], () => require("./clbs"));
 
+export { GetAclsArgs, GetAclsResult, GetAclsOutputArgs } from "./getAcls";
+export const getAcls: typeof import("./getAcls").getAcls = null as any;
+export const getAclsOutput: typeof import("./getAcls").getAclsOutput = null as any;
+utilities.lazyLoad(exports, ["getAcls","getAclsOutput"], () => require("./getAcls"));
+
+export { GetCertificatesArgs, GetCertificatesResult, GetCertificatesOutputArgs } from "./getCertificates";
+export const getCertificates: typeof import("./getCertificates").getCertificates = null as any;
+export const getCertificatesOutput: typeof import("./getCertificates").getCertificatesOutput = null as any;
+utilities.lazyLoad(exports, ["getCertificates","getCertificatesOutput"], () => require("./getCertificates"));
+
+export { GetClbsArgs, GetClbsResult, GetClbsOutputArgs } from "./getClbs";
+export const getClbs: typeof import("./getClbs").getClbs = null as any;
+export const getClbsOutput: typeof import("./getClbs").getClbsOutput = null as any;
+utilities.lazyLoad(exports, ["getClbs","getClbsOutput"], () => require("./getClbs"));
+
+export { GetListenersArgs, GetListenersResult, GetListenersOutputArgs } from "./getListeners";
+export const getListeners: typeof import("./getListeners").getListeners = null as any;
+export const getListenersOutput: typeof import("./getListeners").getListenersOutput = null as any;
+utilities.lazyLoad(exports, ["getListeners","getListenersOutput"], () => require("./getListeners"));
+
+export { GetRulesArgs, GetRulesResult, GetRulesOutputArgs } from "./getRules";
+export const getRules: typeof import("./getRules").getRules = null as any;
+export const getRulesOutput: typeof import("./getRules").getRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getRules","getRulesOutput"], () => require("./getRules"));
+
+export { GetServerGroupServersArgs, GetServerGroupServersResult, GetServerGroupServersOutputArgs } from "./getServerGroupServers";
+export const getServerGroupServers: typeof import("./getServerGroupServers").getServerGroupServers = null as any;
+export const getServerGroupServersOutput: typeof import("./getServerGroupServers").getServerGroupServersOutput = null as any;
+utilities.lazyLoad(exports, ["getServerGroupServers","getServerGroupServersOutput"], () => require("./getServerGroupServers"));
+
+export { GetServerGroupsArgs, GetServerGroupsResult, GetServerGroupsOutputArgs } from "./getServerGroups";
+export const getServerGroups: typeof import("./getServerGroups").getServerGroups = null as any;
+export const getServerGroupsOutput: typeof import("./getServerGroups").getServerGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getServerGroups","getServerGroupsOutput"], () => require("./getServerGroups"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { ListenerArgs, ListenerState } from "./listener";
 export type Listener = import("./listener").Listener;
 export const Listener: typeof import("./listener").Listener = null as any;

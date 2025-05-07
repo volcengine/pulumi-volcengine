@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpn
 {
+    [Obsolete(@"volcengine.vpn.GatewayRoutes has been deprecated in favor of volcengine.vpn.getGatewayRoutes")]
     public static class GatewayRoutes
     {
         /// <summary>
@@ -96,7 +97,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         NextHopId = fooConnection.Id,
         ///     });
         /// 
-        ///     var fooGatewayRoutes = Volcengine.Vpn.GatewayRoutes.Invoke(new()
+        ///     var fooGatewayRoutes = Volcengine.Vpn.GetGatewayRoutes.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -195,7 +196,7 @@ namespace Pulumi.Volcengine.Vpn
         ///         NextHopId = fooConnection.Id,
         ///     });
         /// 
-        ///     var fooGatewayRoutes = Volcengine.Vpn.GatewayRoutes.Invoke(new()
+        ///     var fooGatewayRoutes = Volcengine.Vpn.GetGatewayRoutes.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

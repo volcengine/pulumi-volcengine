@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = transit_router.TransitRoutersOutput(ctx, transit_router.TransitRoutersOutputArgs{
+//			_ = transit_router.GetTransitRoutersOutput(ctx, transit_router.GetTransitRoutersOutputArgs{
 //				Ids: pulumi.StringArray{
 //					foo.ID(),
 //				},
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.TransitRouters has been deprecated in favor of volcengine.transit_router.getTransitRouters
 func TransitRouters(ctx *pulumi.Context, args *TransitRoutersArgs, opts ...pulumi.InvokeOption) (*TransitRoutersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TransitRoutersResult

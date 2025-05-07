@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cr
 {
+    [Obsolete(@"volcengine.cr.AuthorizationTokens has been deprecated in favor of volcengine.cr.getAuthorizationTokens")]
     public static class AuthorizationTokens
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.AuthorizationTokens.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetAuthorizationTokens.Invoke(new()
         ///     {
         ///         Registry = "tf-1",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.AuthorizationTokens.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetAuthorizationTokens.Invoke(new()
         ///     {
         ///         Registry = "tf-1",
         ///     });

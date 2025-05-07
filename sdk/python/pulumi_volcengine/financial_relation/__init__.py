@@ -7,4 +7,5 @@ import typing
 # Export this package's modules as members:
 from .financial_relation import *
 from .financial_relations import *
+from .get_financial_relations import *
 from . import outputs

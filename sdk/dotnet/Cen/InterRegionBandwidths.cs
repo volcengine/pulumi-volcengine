@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cen
 {
+    [Obsolete(@"volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths")]
     public static class InterRegionBandwidths
     {
         /// <summary>
@@ -79,7 +80,7 @@ namespace Pulumi.Volcengine.Cen
         ///         },
         ///     });
         /// 
-        ///     var fooInterRegionBandwidths = Volcengine.Cen.InterRegionBandwidths.Invoke(new()
+        ///     var fooInterRegionBandwidths = Volcengine.Cen.GetInterRegionBandwidths.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -161,7 +162,7 @@ namespace Pulumi.Volcengine.Cen
         ///         },
         ///     });
         /// 
-        ///     var fooInterRegionBandwidths = Volcengine.Cen.InterRegionBandwidths.Invoke(new()
+        ///     var fooInterRegionBandwidths = Volcengine.Cen.GetInterRegionBandwidths.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

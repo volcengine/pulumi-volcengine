@@ -5,6 +5,71 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetHaVipsArgs, GetHaVipsResult, GetHaVipsOutputArgs } from "./getHaVips";
+export const getHaVips: typeof import("./getHaVips").getHaVips = null as any;
+export const getHaVipsOutput: typeof import("./getHaVips").getHaVipsOutput = null as any;
+utilities.lazyLoad(exports, ["getHaVips","getHaVipsOutput"], () => require("./getHaVips"));
+
+export { GetIpv6AddressBandwidthsArgs, GetIpv6AddressBandwidthsResult, GetIpv6AddressBandwidthsOutputArgs } from "./getIpv6AddressBandwidths";
+export const getIpv6AddressBandwidths: typeof import("./getIpv6AddressBandwidths").getIpv6AddressBandwidths = null as any;
+export const getIpv6AddressBandwidthsOutput: typeof import("./getIpv6AddressBandwidths").getIpv6AddressBandwidthsOutput = null as any;
+utilities.lazyLoad(exports, ["getIpv6AddressBandwidths","getIpv6AddressBandwidthsOutput"], () => require("./getIpv6AddressBandwidths"));
+
+export { GetIpv6AddressesArgs, GetIpv6AddressesResult, GetIpv6AddressesOutputArgs } from "./getIpv6Addresses";
+export const getIpv6Addresses: typeof import("./getIpv6Addresses").getIpv6Addresses = null as any;
+export const getIpv6AddressesOutput: typeof import("./getIpv6Addresses").getIpv6AddressesOutput = null as any;
+utilities.lazyLoad(exports, ["getIpv6Addresses","getIpv6AddressesOutput"], () => require("./getIpv6Addresses"));
+
+export { GetIpv6GatewaysArgs, GetIpv6GatewaysResult, GetIpv6GatewaysOutputArgs } from "./getIpv6Gateways";
+export const getIpv6Gateways: typeof import("./getIpv6Gateways").getIpv6Gateways = null as any;
+export const getIpv6GatewaysOutput: typeof import("./getIpv6Gateways").getIpv6GatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["getIpv6Gateways","getIpv6GatewaysOutput"], () => require("./getIpv6Gateways"));
+
+export { GetNetworkAclsArgs, GetNetworkAclsResult, GetNetworkAclsOutputArgs } from "./getNetworkAcls";
+export const getNetworkAcls: typeof import("./getNetworkAcls").getNetworkAcls = null as any;
+export const getNetworkAclsOutput: typeof import("./getNetworkAcls").getNetworkAclsOutput = null as any;
+utilities.lazyLoad(exports, ["getNetworkAcls","getNetworkAclsOutput"], () => require("./getNetworkAcls"));
+
+export { GetNetworkInterfacesArgs, GetNetworkInterfacesResult, GetNetworkInterfacesOutputArgs } from "./getNetworkInterfaces";
+export const getNetworkInterfaces: typeof import("./getNetworkInterfaces").getNetworkInterfaces = null as any;
+export const getNetworkInterfacesOutput: typeof import("./getNetworkInterfaces").getNetworkInterfacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNetworkInterfaces","getNetworkInterfacesOutput"], () => require("./getNetworkInterfaces"));
+
+export { GetPrefixListsArgs, GetPrefixListsResult, GetPrefixListsOutputArgs } from "./getPrefixLists";
+export const getPrefixLists: typeof import("./getPrefixLists").getPrefixLists = null as any;
+export const getPrefixListsOutput: typeof import("./getPrefixLists").getPrefixListsOutput = null as any;
+utilities.lazyLoad(exports, ["getPrefixLists","getPrefixListsOutput"], () => require("./getPrefixLists"));
+
+export { GetRouteEntriesArgs, GetRouteEntriesResult, GetRouteEntriesOutputArgs } from "./getRouteEntries";
+export const getRouteEntries: typeof import("./getRouteEntries").getRouteEntries = null as any;
+export const getRouteEntriesOutput: typeof import("./getRouteEntries").getRouteEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteEntries","getRouteEntriesOutput"], () => require("./getRouteEntries"));
+
+export { GetRouteTablesArgs, GetRouteTablesResult, GetRouteTablesOutputArgs } from "./getRouteTables";
+export const getRouteTables: typeof import("./getRouteTables").getRouteTables = null as any;
+export const getRouteTablesOutput: typeof import("./getRouteTables").getRouteTablesOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteTables","getRouteTablesOutput"], () => require("./getRouteTables"));
+
+export { GetSecurityGroupRulesArgs, GetSecurityGroupRulesResult, GetSecurityGroupRulesOutputArgs } from "./getSecurityGroupRules";
+export const getSecurityGroupRules: typeof import("./getSecurityGroupRules").getSecurityGroupRules = null as any;
+export const getSecurityGroupRulesOutput: typeof import("./getSecurityGroupRules").getSecurityGroupRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getSecurityGroupRules","getSecurityGroupRulesOutput"], () => require("./getSecurityGroupRules"));
+
+export { GetSecurityGroupsArgs, GetSecurityGroupsResult, GetSecurityGroupsOutputArgs } from "./getSecurityGroups";
+export const getSecurityGroups: typeof import("./getSecurityGroups").getSecurityGroups = null as any;
+export const getSecurityGroupsOutput: typeof import("./getSecurityGroups").getSecurityGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getSecurityGroups","getSecurityGroupsOutput"], () => require("./getSecurityGroups"));
+
+export { GetSubnetsArgs, GetSubnetsResult, GetSubnetsOutputArgs } from "./getSubnets";
+export const getSubnets: typeof import("./getSubnets").getSubnets = null as any;
+export const getSubnetsOutput: typeof import("./getSubnets").getSubnetsOutput = null as any;
+utilities.lazyLoad(exports, ["getSubnets","getSubnetsOutput"], () => require("./getSubnets"));
+
+export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
+export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
+export const getVpcsOutput: typeof import("./getVpcs").getVpcsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcs","getVpcsOutput"], () => require("./getVpcs"));
+
 export { HaVipArgs, HaVipState } from "./haVip";
 export type HaVip = import("./haVip").HaVip;
 export const HaVip: typeof import("./haVip").HaVip = null as any;

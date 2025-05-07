@@ -18,6 +18,8 @@ __all__ = [
     'albs_output',
 ]
 
+warnings.warn("""volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs""", DeprecationWarning)
+
 @pulumi.output_type
 class AlbsResult:
     """
@@ -171,7 +173,7 @@ def albs(eni_address: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.alb.zones()
+    foo_zones = volcengine.alb.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -202,7 +204,7 @@ def albs(eni_address: Optional[str] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_albs = volcengine.alb.albs_output(ids=[__item.id for __item in foo_alb])
+    foo_albs = volcengine.alb.get_albs_output(ids=[__item.id for __item in foo_alb])
     ```
 
 
@@ -215,6 +217,7 @@ def albs(eni_address: Optional[str] = None,
     :param Sequence[pulumi.InputType['AlbsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id which Alb belongs to.
     """
+    pulumi.log.warn("""albs is deprecated: volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs""")
     __args__ = dict()
     __args__['eniAddress'] = eni_address
     __args__['ids'] = ids
@@ -259,7 +262,7 @@ def albs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.alb.zones()
+    foo_zones = volcengine.alb.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -290,7 +293,7 @@ def albs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_albs = volcengine.alb.albs_output(ids=[__item.id for __item in foo_alb])
+    foo_albs = volcengine.alb.get_albs_output(ids=[__item.id for __item in foo_alb])
     ```
 
 
@@ -303,4 +306,5 @@ def albs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[pulumi.InputType['AlbsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id which Alb belongs to.
     """
+    pulumi.log.warn("""albs is deprecated: volcengine.alb.Albs has been deprecated in favor of volcengine.alb.getAlbs""")
     ...

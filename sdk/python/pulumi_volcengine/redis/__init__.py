@@ -15,6 +15,13 @@ from .backup_restore import *
 from .backups import *
 from .continuous_backup import *
 from .endpoint import *
+from .get_accounts import *
+from .get_allow_lists import *
+from .get_backups import *
+from .get_instances import *
+from .get_pitr_time_windows import *
+from .get_regions import *
+from .get_zones import *
 from .instance import *
 from .instances import *
 from .pitr_time_windows import *

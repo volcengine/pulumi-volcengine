@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudfs.Quotas(ctx, nil, nil)
+//			_, err := cloudfs.GetQuotas(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloudfs.Quotas has been deprecated in favor of volcengine.cloudfs.getQuotas
 func Quotas(ctx *pulumi.Context, args *QuotasArgs, opts ...pulumi.InvokeOption) (*QuotasResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv QuotasResult

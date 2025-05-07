@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions")]
     public static class ImageSharePermissions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.ImageSharePermissions.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetImageSharePermissions.Invoke(new()
         ///     {
         ///         ImageId = "image-ydi2wozhozfu03z2****",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.ImageSharePermissions.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetImageSharePermissions.Invoke(new()
         ///     {
         ///         ImageId = "image-ydi2wozhozfu03z2****",
         ///     });

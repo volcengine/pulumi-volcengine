@@ -17,6 +17,8 @@ __all__ = [
     'user_group_policy_attachments_output',
 ]
 
+warnings.warn("""volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments""", DeprecationWarning)
+
 @pulumi.output_type
 class UserGroupPolicyAttachmentsResult:
     """
@@ -110,13 +112,14 @@ def user_group_policy_attachments(output_file: Optional[str] = None,
         policy_name=foo_policy.policy_name,
         policy_type="Custom",
         user_group_name=foo_user_group.user_group_name)
-    foo_user_group_policy_attachments = volcengine.iam.user_group_policy_attachments_output(user_group_name=foo_user_group_policy_attachment.user_group_name)
+    foo_user_group_policy_attachments = volcengine.iam.get_user_group_policy_attachments_output(user_group_name=foo_user_group_policy_attachment.user_group_name)
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str user_group_name: A name of user group.
     """
+    pulumi.log.warn("""user_group_policy_attachments is deprecated: volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['userGroupName'] = user_group_name
@@ -155,11 +158,12 @@ def user_group_policy_attachments_output(output_file: Optional[pulumi.Input[Opti
         policy_name=foo_policy.policy_name,
         policy_type="Custom",
         user_group_name=foo_user_group.user_group_name)
-    foo_user_group_policy_attachments = volcengine.iam.user_group_policy_attachments_output(user_group_name=foo_user_group_policy_attachment.user_group_name)
+    foo_user_group_policy_attachments = volcengine.iam.get_user_group_policy_attachments_output(user_group_name=foo_user_group_policy_attachment.user_group_name)
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str user_group_name: A name of user group.
     """
+    pulumi.log.warn("""user_group_policy_attachments is deprecated: volcengine.iam.UserGroupPolicyAttachments has been deprecated in favor of volcengine.iam.getUserGroupPolicyAttachments""")
     ...

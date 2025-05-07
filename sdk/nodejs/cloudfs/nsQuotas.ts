@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.NsQuotas({
+ * const default = volcengine.cloudfs.getNsQuotas({
  *     fsNames: [
  *         "tffile",
  *         "tftest2",
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas */
 export function nsQuotas(args: NsQuotasArgs, opts?: pulumi.InvokeOptions): Promise<NsQuotasResult> {
+    pulumi.log.warn("nsQuotas is deprecated: volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloudfs/nsQuotas:NsQuotas", {
@@ -72,7 +74,7 @@ export interface NsQuotasResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.cloudfs.NsQuotas({
+ * const default = volcengine.cloudfs.getNsQuotas({
  *     fsNames: [
  *         "tffile",
  *         "tftest2",
@@ -80,6 +82,7 @@ export interface NsQuotasResult {
  * });
  * ```
  */
+/** @deprecated volcengine.cloudfs.NsQuotas has been deprecated in favor of volcengine.cloudfs.getNsQuotas */
 export function nsQuotasOutput(args: NsQuotasOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NsQuotasResult> {
     return pulumi.output(args).apply((a: any) => nsQuotas(a, opts))
 }

@@ -20,6 +20,26 @@ export const backups: typeof import("./backups").backups = null as any;
 export const backupsOutput: typeof import("./backups").backupsOutput = null as any;
 utilities.lazyLoad(exports, ["backups","backupsOutput"], () => require("./backups"));
 
+export { GetBackupsArgs, GetBackupsResult, GetBackupsOutputArgs } from "./getBackups";
+export const getBackups: typeof import("./getBackups").getBackups = null as any;
+export const getBackupsOutput: typeof import("./getBackups").getBackupsOutput = null as any;
+utilities.lazyLoad(exports, ["getBackups","getBackupsOutput"], () => require("./getBackups"));
+
+export { GetRecordSetsArgs, GetRecordSetsResult, GetRecordSetsOutputArgs } from "./getRecordSets";
+export const getRecordSets: typeof import("./getRecordSets").getRecordSets = null as any;
+export const getRecordSetsOutput: typeof import("./getRecordSets").getRecordSetsOutput = null as any;
+utilities.lazyLoad(exports, ["getRecordSets","getRecordSetsOutput"], () => require("./getRecordSets"));
+
+export { GetRecordsArgs, GetRecordsResult, GetRecordsOutputArgs } from "./getRecords";
+export const getRecords: typeof import("./getRecords").getRecords = null as any;
+export const getRecordsOutput: typeof import("./getRecords").getRecordsOutput = null as any;
+utilities.lazyLoad(exports, ["getRecords","getRecordsOutput"], () => require("./getRecords"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { RecordArgs, RecordState } from "./record";
 export type Record = import("./record").Record;
 export const Record: typeof import("./record").Record = null as any;

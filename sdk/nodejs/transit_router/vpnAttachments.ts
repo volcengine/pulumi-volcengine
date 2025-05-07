@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.transit_router.VpnAttachments({
+ * const default = volcengine.transit_router.getVpnAttachments({
  *     ids: ["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
  *     transitRouterId: "tr-2d6fr7f39unsw58ozfe1ow21x",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments */
 export function vpnAttachments(args: VpnAttachmentsArgs, opts?: pulumi.InvokeOptions): Promise<VpnAttachmentsResult> {
+    pulumi.log.warn("vpnAttachments is deprecated: volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/vpnAttachments:VpnAttachments", {
@@ -97,12 +99,13 @@ export interface VpnAttachmentsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.transit_router.VpnAttachments({
+ * const default = volcengine.transit_router.getVpnAttachments({
  *     ids: ["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
  *     transitRouterId: "tr-2d6fr7f39unsw58ozfe1ow21x",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.VpnAttachments has been deprecated in favor of volcengine.transit_router.getVpnAttachments */
 export function vpnAttachmentsOutput(args: VpnAttachmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpnAttachmentsResult> {
     return pulumi.output(args).apply((a: any) => vpnAttachments(a, opts))
 }

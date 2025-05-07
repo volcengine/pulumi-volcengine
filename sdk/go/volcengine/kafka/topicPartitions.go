@@ -27,7 +27,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -112,10 +112,10 @@ import (
 // if err != nil {
 // return err
 // }
-// _ = pulumi.All(fooInstance.ID(),fooTopic.TopicName).ApplyT(func(_args []interface{}) (kafka.TopicPartitionsResult, error) {
+// _ = pulumi.All(fooInstance.ID(),fooTopic.TopicName).ApplyT(func(_args []interface{}) (kafka.GetTopicPartitionsResult, error) {
 // id := _args[0].(string)
 // topicName := _args[1].(string)
-// return kafka.TopicPartitionsOutput(ctx, kafka.TopicPartitionsOutputArgs{
+// return kafka.GetTopicPartitionsOutput(ctx, kafka.GetTopicPartitionsOutputArgs{
 // InstanceId: id,
 // TopicName: topicName,
 // PartitionIds: interface{}{
@@ -123,11 +123,13 @@ import (
 // 2,
 // },
 // }, nil), nil
-// }).(kafka.TopicPartitionsResultOutput)
+// }).(kafka.GetTopicPartitionsResultOutput)
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.kafka.TopicPartitions has been deprecated in favor of volcengine.kafka.getTopicPartitions
 func TopicPartitions(ctx *pulumi.Context, args *TopicPartitionsArgs, opts ...pulumi.InvokeOption) (*TopicPartitionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TopicPartitionsResult

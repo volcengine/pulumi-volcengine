@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -46,12 +46,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooClbs = volcengine.clb.ClbsOutput({
+ * const fooClbs = volcengine.clb.getClbsOutput({
  *     ids: fooClb.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs */
 export function clbs(args?: ClbsArgs, opts?: pulumi.InvokeOptions): Promise<ClbsResult> {
+    pulumi.log.warn("clbs is deprecated: volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -154,7 +156,7 @@ export interface ClbsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -185,11 +187,12 @@ export interface ClbsResult {
  *         }],
  *     }));
  * }
- * const fooClbs = volcengine.clb.ClbsOutput({
+ * const fooClbs = volcengine.clb.getClbsOutput({
  *     ids: fooClb.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs */
 export function clbsOutput(args?: ClbsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ClbsResult> {
     return pulumi.output(args).apply((a: any) => clbs(a, opts))
 }

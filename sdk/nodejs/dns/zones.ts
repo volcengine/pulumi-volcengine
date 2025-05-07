@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.dns.Zones({
+ * const foo = volcengine.dns.getZones({
  *     tags: [{
  *         key: "xx",
  *         values: ["xx"],
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones */
 export function zones(args?: ZonesArgs, opts?: pulumi.InvokeOptions): Promise<ZonesResult> {
+    pulumi.log.warn("zones is deprecated: volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -136,7 +138,7 @@ export interface ZonesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.dns.Zones({
+ * const foo = volcengine.dns.getZones({
  *     tags: [{
  *         key: "xx",
  *         values: ["xx"],
@@ -144,6 +146,7 @@ export interface ZonesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones */
 export function zonesOutput(args?: ZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ZonesResult> {
     return pulumi.output(args).apply((a: any) => zones(a, opts))
 }

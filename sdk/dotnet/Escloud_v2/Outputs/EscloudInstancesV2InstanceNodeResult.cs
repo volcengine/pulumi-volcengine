@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Escloud_v2.Outputs
         /// </summary>
         public readonly string StartTime;
         /// <summary>
-        /// The status of node.
+        /// The status of instance.
         /// </summary>
         public readonly string Status;
         /// <summary>

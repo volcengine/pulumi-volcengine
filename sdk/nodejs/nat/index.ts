@@ -25,6 +25,21 @@ export const gateways: typeof import("./gateways").gateways = null as any;
 export const gatewaysOutput: typeof import("./gateways").gatewaysOutput = null as any;
 utilities.lazyLoad(exports, ["gateways","gatewaysOutput"], () => require("./gateways"));
 
+export { GetDnatEntriesArgs, GetDnatEntriesResult, GetDnatEntriesOutputArgs } from "./getDnatEntries";
+export const getDnatEntries: typeof import("./getDnatEntries").getDnatEntries = null as any;
+export const getDnatEntriesOutput: typeof import("./getDnatEntries").getDnatEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getDnatEntries","getDnatEntriesOutput"], () => require("./getDnatEntries"));
+
+export { GetGatewaysArgs, GetGatewaysResult, GetGatewaysOutputArgs } from "./getGateways";
+export const getGateways: typeof import("./getGateways").getGateways = null as any;
+export const getGatewaysOutput: typeof import("./getGateways").getGatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["getGateways","getGatewaysOutput"], () => require("./getGateways"));
+
+export { GetSnatEntriesArgs, GetSnatEntriesResult, GetSnatEntriesOutputArgs } from "./getSnatEntries";
+export const getSnatEntries: typeof import("./getSnatEntries").getSnatEntries = null as any;
+export const getSnatEntriesOutput: typeof import("./getSnatEntries").getSnatEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getSnatEntries","getSnatEntriesOutput"], () => require("./getSnatEntries"));
+
 export { SnatEntriesArgs, SnatEntriesResult, SnatEntriesOutputArgs } from "./snatEntries";
 export const snatEntries: typeof import("./snatEntries").snatEntries = null as any;
 export const snatEntriesOutput: typeof import("./snatEntries").snatEntriesOutput = null as any;

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments")]
     public static class PeerAttachments
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Transit_router.PeerAttachments.Invoke(new()
+        ///     var foo = Volcengine.Transit_router.GetPeerAttachments.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -49,7 +50,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Transit_router.PeerAttachments.Invoke(new()
+        ///     var foo = Volcengine.Transit_router.GetPeerAttachments.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

@@ -18,6 +18,8 @@ __all__ = [
     'network_acls_output',
 ]
 
+warnings.warn("""volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls""", DeprecationWarning)
+
 @pulumi.output_type
 class NetworkAclsResult:
     """
@@ -171,7 +173,7 @@ def network_acls(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.network_acls(network_acl_name="ms-tf-acl")
+    default = volcengine.vpc.get_network_acls(network_acl_name="ms-tf-acl")
     ```
 
 
@@ -184,6 +186,7 @@ def network_acls(ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['NetworkAclsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id of Network Acl.
     """
+    pulumi.log.warn("""network_acls is deprecated: volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -228,7 +231,7 @@ def network_acls_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.network_acls(network_acl_name="ms-tf-acl")
+    default = volcengine.vpc.get_network_acls(network_acl_name="ms-tf-acl")
     ```
 
 
@@ -241,4 +244,5 @@ def network_acls_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param Sequence[pulumi.InputType['NetworkAclsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id of Network Acl.
     """
+    pulumi.log.warn("""network_acls is deprecated: volcengine.vpc.NetworkAcls has been deprecated in favor of volcengine.vpc.getNetworkAcls""")
     ...

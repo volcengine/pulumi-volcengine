@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
@@ -33,7 +33,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
@@ -42,8 +42,8 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///         InstanceName = "acc-test-rds-mysql",
     ///         DbEngineVersion = "MySQL_5_7",
     ///         NodeSpec = "rds.mysql.1c2g",
-    ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         StorageSpace = 80,
     ///         SubnetId = fooSubnet.Id,
     ///         LowerCaseTableNames = "1",

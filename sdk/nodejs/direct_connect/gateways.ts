@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.Gateways({
+ * const foo = volcengine.direct_connect.getGateways({
  *     directConnectGatewayName: "tf-test",
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways */
 export function gateways(args?: GatewaysArgs, opts?: pulumi.InvokeOptions): Promise<GatewaysResult> {
+    pulumi.log.warn("gateways is deprecated: volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -100,11 +102,12 @@ export interface GatewaysResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.Gateways({
+ * const foo = volcengine.direct_connect.getGateways({
  *     directConnectGatewayName: "tf-test",
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways */
 export function gatewaysOutput(args?: GatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewaysResult> {
     return pulumi.output(args).apply((a: any) => gateways(a, opts))
 }

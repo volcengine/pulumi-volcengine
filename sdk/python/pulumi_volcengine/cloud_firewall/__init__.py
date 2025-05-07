@@ -18,5 +18,10 @@ from .cfw_nat_firewall_control_policy_priority import *
 from .cfw_vpc_firewall_acl_rule import *
 from .cfw_vpc_firewall_acl_rule_priority import *
 from .cfw_vpc_firewall_acl_rules import *
+from .get_cfw_address_books import *
+from .get_cfw_control_policies import *
+from .get_cfw_dns_control_policies import *
+from .get_cfw_nat_firewall_control_policies import *
+from .get_cfw_vpc_firewall_acl_rules import *
 from ._inputs import *
 from . import outputs

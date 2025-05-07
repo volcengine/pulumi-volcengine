@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Bioos
 {
+    [Obsolete(@"volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces")]
     public static class Workspaces
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Bioos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Bioos.Workspaces.Invoke();
+        ///     var @default = Volcengine.Bioos.GetWorkspaces.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Bioos
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Bioos.Workspaces.Invoke();
+        ///     var @default = Volcengine.Bioos.GetWorkspaces.Invoke();
         /// 
         /// });
         /// ```

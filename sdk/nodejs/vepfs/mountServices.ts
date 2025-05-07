@@ -31,12 +31,14 @@ import * as utilities from "../utilities";
  *     nodeType: "ecs.g1ie.large",
  *     project: "default",
  * });
- * const fooMountServices = volcengine.vepfs.MountServicesOutput({
+ * const fooMountServices = volcengine.vepfs.getMountServicesOutput({
  *     mountServiceId: fooMountService.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices */
 export function mountServices(args?: MountServicesArgs, opts?: pulumi.InvokeOptions): Promise<MountServicesResult> {
+    pulumi.log.warn("mountServices is deprecated: volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -140,11 +142,12 @@ export interface MountServicesResult {
  *     nodeType: "ecs.g1ie.large",
  *     project: "default",
  * });
- * const fooMountServices = volcengine.vepfs.MountServicesOutput({
+ * const fooMountServices = volcengine.vepfs.getMountServicesOutput({
  *     mountServiceId: fooMountService.id,
  * });
  * ```
  */
+/** @deprecated volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices */
 export function mountServicesOutput(args?: MountServicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<MountServicesResult> {
     return pulumi.output(args).apply((a: any) => mountServices(a, opts))
 }

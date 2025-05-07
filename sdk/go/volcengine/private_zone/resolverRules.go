@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := private_zone.ResolverRules(ctx, nil, nil)
+//			_, err := private_zone.GetResolverRules(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules
 func ResolverRules(ctx *pulumi.Context, args *ResolverRulesArgs, opts ...pulumi.InvokeOption) (*ResolverRulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ResolverRulesResult

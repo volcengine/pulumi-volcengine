@@ -52,7 +52,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vepfs.MountServicesOutput(ctx, vepfs.MountServicesOutputArgs{
+//			_ = vepfs.GetMountServicesOutput(ctx, vepfs.GetMountServicesOutputArgs{
 //				MountServiceId: fooMountService.ID(),
 //			}, nil)
 //			return nil
@@ -60,6 +60,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices
 func MountServices(ctx *pulumi.Context, args *MountServicesArgs, opts ...pulumi.InvokeOption) (*MountServicesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv MountServicesResult

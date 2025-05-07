@@ -15,6 +15,26 @@ export const accounts: typeof import("./accounts").accounts = null as any;
 export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
 utilities.lazyLoad(exports, ["accounts","accountsOutput"], () => require("./accounts"));
 
+export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
+export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
+export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccounts","getAccountsOutput"], () => require("./getAccounts"));
+
+export { GetOrganizationsArgs, GetOrganizationsResult, GetOrganizationsOutputArgs } from "./getOrganizations";
+export const getOrganizations: typeof import("./getOrganizations").getOrganizations = null as any;
+export const getOrganizationsOutput: typeof import("./getOrganizations").getOrganizationsOutput = null as any;
+utilities.lazyLoad(exports, ["getOrganizations","getOrganizationsOutput"], () => require("./getOrganizations"));
+
+export { GetServiceControlPoliciesArgs, GetServiceControlPoliciesResult, GetServiceControlPoliciesOutputArgs } from "./getServiceControlPolicies";
+export const getServiceControlPolicies: typeof import("./getServiceControlPolicies").getServiceControlPolicies = null as any;
+export const getServiceControlPoliciesOutput: typeof import("./getServiceControlPolicies").getServiceControlPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceControlPolicies","getServiceControlPoliciesOutput"], () => require("./getServiceControlPolicies"));
+
+export { GetUnitsArgs, GetUnitsResult, GetUnitsOutputArgs } from "./getUnits";
+export const getUnits: typeof import("./getUnits").getUnits = null as any;
+export const getUnitsOutput: typeof import("./getUnits").getUnitsOutput = null as any;
+utilities.lazyLoad(exports, ["getUnits","getUnitsOutput"], () => require("./getUnits"));
+
 export { OrganizationArgs, OrganizationState } from "./organization";
 export type Organization = import("./organization").Organization;
 export const Organization: typeof import("./organization").Organization = null as any;

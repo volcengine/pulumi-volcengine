@@ -25,6 +25,31 @@ export const fileSystems: typeof import("./fileSystems").fileSystems = null as a
 export const fileSystemsOutput: typeof import("./fileSystems").fileSystemsOutput = null as any;
 utilities.lazyLoad(exports, ["fileSystems","fileSystemsOutput"], () => require("./fileSystems"));
 
+export { GetAccessesArgs, GetAccessesResult, GetAccessesOutputArgs } from "./getAccesses";
+export const getAccesses: typeof import("./getAccesses").getAccesses = null as any;
+export const getAccessesOutput: typeof import("./getAccesses").getAccessesOutput = null as any;
+utilities.lazyLoad(exports, ["getAccesses","getAccessesOutput"], () => require("./getAccesses"));
+
+export { GetFileSystemsArgs, GetFileSystemsResult, GetFileSystemsOutputArgs } from "./getFileSystems";
+export const getFileSystems: typeof import("./getFileSystems").getFileSystems = null as any;
+export const getFileSystemsOutput: typeof import("./getFileSystems").getFileSystemsOutput = null as any;
+utilities.lazyLoad(exports, ["getFileSystems","getFileSystemsOutput"], () => require("./getFileSystems"));
+
+export { GetNamespacesArgs, GetNamespacesResult, GetNamespacesOutputArgs } from "./getNamespaces";
+export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
+export const getNamespacesOutput: typeof import("./getNamespaces").getNamespacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespaces","getNamespacesOutput"], () => require("./getNamespaces"));
+
+export { GetNsQuotasArgs, GetNsQuotasResult, GetNsQuotasOutputArgs } from "./getNsQuotas";
+export const getNsQuotas: typeof import("./getNsQuotas").getNsQuotas = null as any;
+export const getNsQuotasOutput: typeof import("./getNsQuotas").getNsQuotasOutput = null as any;
+utilities.lazyLoad(exports, ["getNsQuotas","getNsQuotasOutput"], () => require("./getNsQuotas"));
+
+export { GetQuotasArgs, GetQuotasResult, GetQuotasOutputArgs } from "./getQuotas";
+export const getQuotas: typeof import("./getQuotas").getQuotas = null as any;
+export const getQuotasOutput: typeof import("./getQuotas").getQuotasOutput = null as any;
+utilities.lazyLoad(exports, ["getQuotas","getQuotasOutput"], () => require("./getQuotas"));
+
 export { NamespaceArgs, NamespaceState } from "./namespace";
 export type Namespace = import("./namespace").Namespace;
 export const Namespace: typeof import("./namespace").Namespace = null as any;

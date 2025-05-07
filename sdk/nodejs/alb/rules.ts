@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.Rules({
+ * const foo = volcengine.alb.getRules({
  *     listenerId: "lsn-1iidd19u4oni874adhezjkyj3",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules */
 export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {
+    pulumi.log.warn("rules is deprecated: volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:alb/rules:Rules", {
@@ -69,11 +71,12 @@ export interface RulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.Rules({
+ * const foo = volcengine.alb.getRules({
  *     listenerId: "lsn-1iidd19u4oni874adhezjkyj3",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.Rules has been deprecated in favor of volcengine.alb.getRules */
 export function rulesOutput(args: RulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RulesResult> {
     return pulumi.output(args).apply((a: any) => rules(a, opts))
 }

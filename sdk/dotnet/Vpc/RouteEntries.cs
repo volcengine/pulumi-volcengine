@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries")]
     public static class RouteEntries
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.RouteEntries.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetRouteEntries.Invoke(new()
         ///     {
         ///         Ids = new() { },
         ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.RouteEntries.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetRouteEntries.Invoke(new()
         ///     {
         ///         Ids = new() { },
         ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",

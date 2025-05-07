@@ -17,8 +17,8 @@ import * as utilities from "../utilities";
  *     keyPairName: "acc-test-key-name",
  *     description: "acc-test",
  * });
- * const fooZones = volcengine.ecs.Zones({});
- * const fooImages = volcengine.ecs.Images({
+ * const fooZones = volcengine.ecs.getZones({});
+ * const fooImages = volcengine.ecs.getImages({
  *     osType: "Linux",
  *     visibility: "public",
  *     instanceTypeId: "ecs.g1.large",

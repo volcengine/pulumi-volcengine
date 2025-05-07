@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.clb.Acls({
+ * const default = volcengine.clb.getAcls({
  *     ids: ["acl-3ti8n0rurx4bwbh9jzdy"],
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Acls has been deprecated in favor of volcengine.clb.getAcls */
 export function acls(args?: AclsArgs, opts?: pulumi.InvokeOptions): Promise<AclsResult> {
+    pulumi.log.warn("acls is deprecated: volcengine.clb.Acls has been deprecated in favor of volcengine.clb.getAcls")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -94,11 +96,12 @@ export interface AclsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.clb.Acls({
+ * const default = volcengine.clb.getAcls({
  *     ids: ["acl-3ti8n0rurx4bwbh9jzdy"],
  * });
  * ```
  */
+/** @deprecated volcengine.clb.Acls has been deprecated in favor of volcengine.clb.getAcls */
 export function aclsOutput(args?: AclsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AclsResult> {
     return pulumi.output(args).apply((a: any) => acls(a, opts))
 }

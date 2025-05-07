@@ -17,6 +17,8 @@ __all__ = [
     'mongo_allow_lists_output',
 ]
 
+warnings.warn("""volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists""", DeprecationWarning)
+
 @pulumi.output_type
 class MongoAllowListsResult:
     """
@@ -139,7 +141,7 @@ def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
         allow_list_desc="acc-test",
         allow_list_type="IPv4",
         allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1")
-    foo_mongo_allow_lists = volcengine.mongodb.mongo_allow_lists_output(allow_list_ids=[foo_mongo_allow_list.id],
+    foo_mongo_allow_lists = volcengine.mongodb.get_mongo_allow_lists_output(allow_list_ids=[foo_mongo_allow_list.id],
         region_id="cn-beijing")
     ```
 
@@ -150,6 +152,7 @@ def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
     :param str project_name: The project name of the allow list.
     :param str region_id: The region ID.
     """
+    pulumi.log.warn("""mongo_allow_lists is deprecated: volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists""")
     __args__ = dict()
     __args__['allowListIds'] = allow_list_ids
     __args__['instanceId'] = instance_id
@@ -190,7 +193,7 @@ def mongo_allow_lists_output(allow_list_ids: Optional[pulumi.Input[Optional[Sequ
         allow_list_desc="acc-test",
         allow_list_type="IPv4",
         allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1")
-    foo_mongo_allow_lists = volcengine.mongodb.mongo_allow_lists_output(allow_list_ids=[foo_mongo_allow_list.id],
+    foo_mongo_allow_lists = volcengine.mongodb.get_mongo_allow_lists_output(allow_list_ids=[foo_mongo_allow_list.id],
         region_id="cn-beijing")
     ```
 
@@ -201,4 +204,5 @@ def mongo_allow_lists_output(allow_list_ids: Optional[pulumi.Input[Optional[Sequ
     :param str project_name: The project name of the allow list.
     :param str region_id: The region ID.
     """
+    pulumi.log.warn("""mongo_allow_lists is deprecated: volcengine.mongodb.MongoAllowLists has been deprecated in favor of volcengine.mongodb.getMongoAllowLists""")
     ...

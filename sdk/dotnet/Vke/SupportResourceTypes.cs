@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vke
 {
+    [Obsolete(@"volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes")]
     public static class SupportResourceTypes
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vke.SupportResourceTypes.Invoke();
+        ///     var @default = Volcengine.Vke.GetSupportResourceTypes.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vke.SupportResourceTypes.Invoke();
+        ///     var @default = Volcengine.Vke.GetSupportResourceTypes.Invoke();
         /// 
         /// });
         /// ```

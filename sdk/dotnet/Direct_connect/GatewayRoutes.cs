@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Direct_connect
 {
+    [Obsolete(@"volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes")]
     public static class GatewayRoutes
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.GatewayRoutes.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetGatewayRoutes.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.GatewayRoutes.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetGatewayRoutes.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

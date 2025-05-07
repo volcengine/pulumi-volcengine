@@ -17,6 +17,8 @@ __all__ = [
     'ca_certificates_output',
 ]
 
+warnings.warn("""volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates""", DeprecationWarning)
+
 @pulumi.output_type
 class CaCertificatesResult:
     """
@@ -134,7 +136,7 @@ def ca_certificates(ca_certificate_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.ca_certificates(ids=["cert-1iidd2r9ii0hs74adhfeodxo1"])
+    foo = volcengine.alb.get_ca_certificates(ids=["cert-1iidd2r9ii0hs74adhfeodxo1"])
     ```
 
 
@@ -144,6 +146,7 @@ def ca_certificates(ca_certificate_name: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the CA certificate.
     """
+    pulumi.log.warn("""ca_certificates is deprecated: volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates""")
     __args__ = dict()
     __args__['caCertificateName'] = ca_certificate_name
     __args__['ids'] = ids
@@ -179,7 +182,7 @@ def ca_certificates_output(ca_certificate_name: Optional[pulumi.Input[Optional[s
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.ca_certificates(ids=["cert-1iidd2r9ii0hs74adhfeodxo1"])
+    foo = volcengine.alb.get_ca_certificates(ids=["cert-1iidd2r9ii0hs74adhfeodxo1"])
     ```
 
 
@@ -189,4 +192,5 @@ def ca_certificates_output(ca_certificate_name: Optional[pulumi.Input[Optional[s
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the CA certificate.
     """
+    pulumi.log.warn("""ca_certificates is deprecated: volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates""")
     ...

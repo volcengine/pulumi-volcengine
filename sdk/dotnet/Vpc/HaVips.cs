@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.HaVips has been deprecated in favor of volcengine.vpc.getHaVips")]
     public static class HaVips
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Vpc
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Vpc
         ///     });
         /// 
         ///     //  ip_address = "172.16.0.5"
-        ///     var fooHaVips = Volcengine.Vpc.HaVips.Invoke(new()
+        ///     var fooHaVips = Volcengine.Vpc.GetHaVips.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -73,7 +74,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -85,7 +86,7 @@ namespace Pulumi.Volcengine.Vpc
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -97,7 +98,7 @@ namespace Pulumi.Volcengine.Vpc
         ///     });
         /// 
         ///     //  ip_address = "172.16.0.5"
-        ///     var fooHaVips = Volcengine.Vpc.HaVips.Invoke(new()
+        ///     var fooHaVips = Volcengine.Vpc.GetHaVips.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

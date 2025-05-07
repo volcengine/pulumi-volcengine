@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_firewall.CfwAddressBooks(ctx, &cloud_firewall.CfwAddressBooksArgs{
+//			_, err := cloud_firewall.GetCfwAddressBooks(ctx, &cloud_firewall.GetCfwAddressBooksArgs{
 //				GroupName: pulumi.StringRef("acc-test"),
 //				GroupType: pulumi.StringRef("ip"),
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_firewall.CfwAddressBooks has been deprecated in favor of volcengine.cloud_firewall.getCfwAddressBooks
 func CfwAddressBooks(ctx *pulumi.Context, args *CfwAddressBooksArgs, opts ...pulumi.InvokeOption) (*CfwAddressBooksResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CfwAddressBooksResult

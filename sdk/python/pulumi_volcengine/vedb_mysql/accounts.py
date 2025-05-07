@@ -17,6 +17,8 @@ __all__ = [
     'accounts_output',
 ]
 
+warnings.warn("""volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts""", DeprecationWarning)
+
 @pulumi.output_type
 class AccountsResult:
     """
@@ -121,7 +123,7 @@ def accounts(account_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -163,7 +165,7 @@ def accounts(account_name: Optional[str] = None,
             account_privilege="Custom",
             account_privilege_detail="SELECT,INSERT,DELETE",
         )])
-    foo_accounts = volcengine.vedb_mysql.accounts_output(account_name=foo_account.account_name,
+    foo_accounts = volcengine.vedb_mysql.get_accounts_output(account_name=foo_account.account_name,
         instance_id=foo_instance.id)
     ```
 
@@ -173,6 +175,7 @@ def accounts(account_name: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts""")
     __args__ = dict()
     __args__['accountName'] = account_name
     __args__['instanceId'] = instance_id
@@ -205,7 +208,7 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -247,7 +250,7 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
             account_privilege="Custom",
             account_privilege_detail="SELECT,INSERT,DELETE",
         )])
-    foo_accounts = volcengine.vedb_mysql.accounts_output(account_name=foo_account.account_name,
+    foo_accounts = volcengine.vedb_mysql.get_accounts_output(account_name=foo_account.account_name,
         instance_id=foo_instance.id)
     ```
 
@@ -257,4 +260,5 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts""")
     ...

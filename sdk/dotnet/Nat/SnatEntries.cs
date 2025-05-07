@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nat
 {
+    [Obsolete(@"volcengine.nat.SnatEntries has been deprecated in favor of volcengine.nat.getSnatEntries")]
     public static class SnatEntries
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Nat
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Nat
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -101,7 +102,7 @@ namespace Pulumi.Volcengine.Nat
         ///         },
         ///     });
         /// 
-        ///     var fooSnatEntries = Volcengine.Nat.SnatEntries.Invoke(new()
+        ///     var fooSnatEntries = Volcengine.Nat.GetSnatEntries.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -128,7 +129,7 @@ namespace Pulumi.Volcengine.Nat
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -140,7 +141,7 @@ namespace Pulumi.Volcengine.Nat
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -206,7 +207,7 @@ namespace Pulumi.Volcengine.Nat
         ///         },
         ///     });
         /// 
-        ///     var fooSnatEntries = Volcengine.Nat.SnatEntries.Invoke(new()
+        ///     var fooSnatEntries = Volcengine.Nat.GetSnatEntries.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

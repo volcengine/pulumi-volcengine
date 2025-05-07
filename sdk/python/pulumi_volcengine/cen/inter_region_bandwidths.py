@@ -17,6 +17,8 @@ __all__ = [
     'inter_region_bandwidths_output',
 ]
 
+warnings.warn("""volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths""", DeprecationWarning)
+
 @pulumi.output_type
 class InterRegionBandwidthsResult:
     """
@@ -129,13 +131,14 @@ def inter_region_bandwidths(ids: Optional[Sequence[str]] = None,
         peer_region_id="cn-shanghai",
         bandwidth=2,
         opts=pulumi.ResourceOptions(depends_on=[foo_bandwidth_package_associate]))
-    foo_inter_region_bandwidths = volcengine.cen.inter_region_bandwidths_output(ids=[foo_inter_region_bandwidth.id])
+    foo_inter_region_bandwidths = volcengine.cen.get_inter_region_bandwidths_output(ids=[foo_inter_region_bandwidth.id])
     ```
 
 
     :param Sequence[str] ids: A list of cen inter region bandwidth IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""inter_region_bandwidths is deprecated: volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -193,11 +196,12 @@ def inter_region_bandwidths_output(ids: Optional[pulumi.Input[Optional[Sequence[
         peer_region_id="cn-shanghai",
         bandwidth=2,
         opts=pulumi.ResourceOptions(depends_on=[foo_bandwidth_package_associate]))
-    foo_inter_region_bandwidths = volcengine.cen.inter_region_bandwidths_output(ids=[foo_inter_region_bandwidth.id])
+    foo_inter_region_bandwidths = volcengine.cen.get_inter_region_bandwidths_output(ids=[foo_inter_region_bandwidth.id])
     ```
 
 
     :param Sequence[str] ids: A list of cen inter region bandwidth IDs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""inter_region_bandwidths is deprecated: volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths""")
     ...

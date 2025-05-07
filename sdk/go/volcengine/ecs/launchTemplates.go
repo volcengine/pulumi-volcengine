@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = ecs.LaunchTemplatesOutput(ctx, ecs.LaunchTemplatesOutputArgs{
+//			_ = ecs.GetLaunchTemplatesOutput(ctx, ecs.GetLaunchTemplatesOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooLaunchTemplate.ID(),
 //				},
@@ -53,6 +53,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates
 func LaunchTemplates(ctx *pulumi.Context, args *LaunchTemplatesArgs, opts ...pulumi.InvokeOption) (*LaunchTemplatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LaunchTemplatesResult

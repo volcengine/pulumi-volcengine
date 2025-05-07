@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.dns.Backups({
+ * const foo = volcengine.dns.getBackups({
  *     zid: 58846,
  * });
  * ```
  */
+/** @deprecated volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups */
 export function backups(args: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
+    pulumi.log.warn("backups is deprecated: volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:dns/backups:Backups", {
@@ -75,11 +77,12 @@ export interface BackupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.dns.Backups({
+ * const foo = volcengine.dns.getBackups({
  *     zid: 58846,
  * });
  * ```
  */
+/** @deprecated volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups */
 export function backupsOutput(args: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
     return pulumi.output(args).apply((a: any) => backups(a, opts))
 }

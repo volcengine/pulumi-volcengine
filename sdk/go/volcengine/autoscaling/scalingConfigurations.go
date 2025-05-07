@@ -29,7 +29,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -56,7 +56,7 @@ import (
 // if err != nil {
 // return err
 // }
-// fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+// fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 // OsType: pulumi.StringRef("Linux"),
 // Visibility: pulumi.StringRef("public"),
 // InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
@@ -110,13 +110,15 @@ import (
 // }
 // fooScalingConfiguration = append(fooScalingConfiguration, __res)
 // }
-// _ = autoscaling.ScalingConfigurationsOutput(ctx, autoscaling.ScalingConfigurationsOutputArgs{
+// _ = autoscaling.GetScalingConfigurationsOutput(ctx, autoscaling.GetScalingConfigurationsOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:autoscaling-scalingConfigurations:ScalingConfigurations.pp:50,9-38),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.autoscaling.ScalingConfigurations has been deprecated in favor of volcengine.autoscaling.getScalingConfigurations
 func ScalingConfigurations(ctx *pulumi.Context, args *ScalingConfigurationsArgs, opts ...pulumi.InvokeOption) (*ScalingConfigurationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingConfigurationsResult

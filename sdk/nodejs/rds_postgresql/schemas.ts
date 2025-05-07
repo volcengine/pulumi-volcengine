@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-project1",
  *     cidrBlock: "172.16.0.0/16",
@@ -79,13 +79,15 @@ import * as utilities from "../utilities";
  *     owner: fooAccount.accountName,
  *     schemaName: "acc-test-schema",
  * });
- * const fooSchemas = volcengine.rds_postgresql.SchemasOutput({
+ * const fooSchemas = volcengine.rds_postgresql.getSchemasOutput({
  *     dbName: fooSchema.dbName,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas */
 export function schemas(args: SchemasArgs, opts?: pulumi.InvokeOptions): Promise<SchemasResult> {
+    pulumi.log.warn("schemas is deprecated: volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_postgresql/schemas:Schemas", {
@@ -145,7 +147,7 @@ export interface SchemasResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-project1",
  *     cidrBlock: "172.16.0.0/16",
@@ -209,12 +211,13 @@ export interface SchemasResult {
  *     owner: fooAccount.accountName,
  *     schemaName: "acc-test-schema",
  * });
- * const fooSchemas = volcengine.rds_postgresql.SchemasOutput({
+ * const fooSchemas = volcengine.rds_postgresql.getSchemasOutput({
  *     dbName: fooSchema.dbName,
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas */
 export function schemasOutput(args: SchemasOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SchemasResult> {
     return pulumi.output(args).apply((a: any) => schemas(a, opts))
 }

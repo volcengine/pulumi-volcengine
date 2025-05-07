@@ -40,6 +40,36 @@ export const cens: typeof import("./cens").cens = null as any;
 export const censOutput: typeof import("./cens").censOutput = null as any;
 utilities.lazyLoad(exports, ["cens","censOutput"], () => require("./cens"));
 
+export { GetAttachInstancesArgs, GetAttachInstancesResult, GetAttachInstancesOutputArgs } from "./getAttachInstances";
+export const getAttachInstances: typeof import("./getAttachInstances").getAttachInstances = null as any;
+export const getAttachInstancesOutput: typeof import("./getAttachInstances").getAttachInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getAttachInstances","getAttachInstancesOutput"], () => require("./getAttachInstances"));
+
+export { GetBandwidthPackagesArgs, GetBandwidthPackagesResult, GetBandwidthPackagesOutputArgs } from "./getBandwidthPackages";
+export const getBandwidthPackages: typeof import("./getBandwidthPackages").getBandwidthPackages = null as any;
+export const getBandwidthPackagesOutput: typeof import("./getBandwidthPackages").getBandwidthPackagesOutput = null as any;
+utilities.lazyLoad(exports, ["getBandwidthPackages","getBandwidthPackagesOutput"], () => require("./getBandwidthPackages"));
+
+export { GetCensArgs, GetCensResult, GetCensOutputArgs } from "./getCens";
+export const getCens: typeof import("./getCens").getCens = null as any;
+export const getCensOutput: typeof import("./getCens").getCensOutput = null as any;
+utilities.lazyLoad(exports, ["getCens","getCensOutput"], () => require("./getCens"));
+
+export { GetInterRegionBandwidthsArgs, GetInterRegionBandwidthsResult, GetInterRegionBandwidthsOutputArgs } from "./getInterRegionBandwidths";
+export const getInterRegionBandwidths: typeof import("./getInterRegionBandwidths").getInterRegionBandwidths = null as any;
+export const getInterRegionBandwidthsOutput: typeof import("./getInterRegionBandwidths").getInterRegionBandwidthsOutput = null as any;
+utilities.lazyLoad(exports, ["getInterRegionBandwidths","getInterRegionBandwidthsOutput"], () => require("./getInterRegionBandwidths"));
+
+export { GetRouteEntriesArgs, GetRouteEntriesResult, GetRouteEntriesOutputArgs } from "./getRouteEntries";
+export const getRouteEntries: typeof import("./getRouteEntries").getRouteEntries = null as any;
+export const getRouteEntriesOutput: typeof import("./getRouteEntries").getRouteEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteEntries","getRouteEntriesOutput"], () => require("./getRouteEntries"));
+
+export { GetServiceRouteEntriesArgs, GetServiceRouteEntriesResult, GetServiceRouteEntriesOutputArgs } from "./getServiceRouteEntries";
+export const getServiceRouteEntries: typeof import("./getServiceRouteEntries").getServiceRouteEntries = null as any;
+export const getServiceRouteEntriesOutput: typeof import("./getServiceRouteEntries").getServiceRouteEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceRouteEntries","getServiceRouteEntriesOutput"], () => require("./getServiceRouteEntries"));
+
 export { GrantInstanceArgs, GrantInstanceState } from "./grantInstance";
 export type GrantInstance = import("./grantInstance").GrantInstance;
 export const GrantInstance: typeof import("./grantInstance").GrantInstance = null as any;

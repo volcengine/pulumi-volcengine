@@ -43,13 +43,15 @@ import * as utilities from "../utilities";
  *         },
  *     },
  * });
- * const fooBucketInventories = volcengine.tos.BucketInventoriesOutput({
+ * const fooBucketInventories = volcengine.tos.getBucketInventoriesOutput({
  *     bucketName: "terraform-demo",
  *     inventoryId: fooBucketInventory.inventoryId,
  * });
  * ```
  */
+/** @deprecated volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories */
 export function bucketInventories(args: BucketInventoriesArgs, opts?: pulumi.InvokeOptions): Promise<BucketInventoriesResult> {
+    pulumi.log.warn("bucketInventories is deprecated: volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tos/bucketInventories:BucketInventories", {
@@ -143,12 +145,13 @@ export interface BucketInventoriesResult {
  *         },
  *     },
  * });
- * const fooBucketInventories = volcengine.tos.BucketInventoriesOutput({
+ * const fooBucketInventories = volcengine.tos.getBucketInventoriesOutput({
  *     bucketName: "terraform-demo",
  *     inventoryId: fooBucketInventory.inventoryId,
  * });
  * ```
  */
+/** @deprecated volcengine.tos.BucketInventories has been deprecated in favor of volcengine.tos.getBucketInventories */
 export function bucketInventoriesOutput(args: BucketInventoriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BucketInventoriesResult> {
     return pulumi.output(args).apply((a: any) => bucketInventories(a, opts))
 }

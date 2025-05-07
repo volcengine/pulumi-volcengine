@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.ServiceControlPolicies({
+ * const foo = volcengine.organization.getServiceControlPolicies({
  *     policyType: "Custom",
  *     query: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies */
 export function serviceControlPolicies(args?: ServiceControlPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<ServiceControlPoliciesResult> {
+    pulumi.log.warn("serviceControlPolicies is deprecated: volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -80,12 +82,13 @@ export interface ServiceControlPoliciesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.ServiceControlPolicies({
+ * const foo = volcengine.organization.getServiceControlPolicies({
  *     policyType: "Custom",
  *     query: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.organization.ServiceControlPolicies has been deprecated in favor of volcengine.organization.getServiceControlPolicies */
 export function serviceControlPoliciesOutput(args?: ServiceControlPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServiceControlPoliciesResult> {
     return pulumi.output(args).apply((a: any) => serviceControlPolicies(a, opts))
 }

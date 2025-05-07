@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -105,7 +105,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = clb.ServerGroupServersOutput(ctx, clb.ServerGroupServersOutputArgs{
+//			_ = clb.GetServerGroupServersOutput(ctx, clb.GetServerGroupServersOutputArgs{
 //				Ids: pulumi.StringArray{
 //					pulumi.All(fooServerGroupServer.ID().ApplyT(func(id string) (pulumi.StringArray, error) {
 //						return pulumi.StringArray("TODO: call split"), nil
@@ -124,6 +124,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers
 func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts ...pulumi.InvokeOption) (*ServerGroupServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServerGroupServersResult

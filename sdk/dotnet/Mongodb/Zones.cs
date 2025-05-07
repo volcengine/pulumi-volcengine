@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Mongodb
 {
+    [Obsolete(@"volcengine.mongodb.Zones has been deprecated in favor of volcengine.mongodb.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.Zones.Invoke(new()
+        ///     var @default = Volcengine.Mongodb.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "XXX",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.Zones.Invoke(new()
+        ///     var @default = Volcengine.Mongodb.GetZones.Invoke(new()
         ///     {
         ///         RegionId = "XXX",
         ///     });

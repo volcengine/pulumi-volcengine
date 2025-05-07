@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds.IpLists(ctx, &rds.IpListsArgs{
+//			_, err := rds.GetIpLists(ctx, &rds.GetIpListsArgs{
 //				InstanceId: "mysql-0fdd3bab2e7c",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists
 func IpLists(ctx *pulumi.Context, args *IpListsArgs, opts ...pulumi.InvokeOption) (*IpListsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv IpListsResult

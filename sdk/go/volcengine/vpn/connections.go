@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vpn.ConnectionsOutput(ctx, vpn.ConnectionsOutputArgs{
+//			_ = vpn.GetConnectionsOutput(ctx, vpn.GetConnectionsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					fooConnection.ID(),
 //				},
@@ -105,6 +105,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpn.Connections has been deprecated in favor of volcengine.vpn.getConnections
 func Connections(ctx *pulumi.Context, args *ConnectionsArgs, opts ...pulumi.InvokeOption) (*ConnectionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ConnectionsResult

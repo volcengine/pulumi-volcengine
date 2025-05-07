@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.RuleAppliers(ctx, &tls.RuleAppliersArgs{
+//			_, err := tls.GetRuleAppliers(ctx, &tls.GetRuleAppliersArgs{
 //				HostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers
 func RuleAppliers(ctx *pulumi.Context, args *RuleAppliersArgs, opts ...pulumi.InvokeOption) (*RuleAppliersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RuleAppliersResult

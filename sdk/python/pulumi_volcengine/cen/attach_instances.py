@@ -17,6 +17,8 @@ __all__ = [
     'attach_instances_output',
 ]
 
+warnings.warn("""volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class AttachInstancesResult:
     """
@@ -156,7 +158,7 @@ def attach_instances(cen_id: Optional[str] = None,
         instance_id=foo_vpc.id,
         instance_region_id="cn-beijing",
         instance_type="VPC")
-    foo_attach_instances = volcengine.cen.attach_instances_output(cen_id=foo_attach_instance.cen_id)
+    foo_attach_instances = volcengine.cen.get_attach_instances_output(cen_id=foo_attach_instance.cen_id)
     ```
 
 
@@ -166,6 +168,7 @@ def attach_instances(cen_id: Optional[str] = None,
     :param str instance_type: An instance type.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""attach_instances is deprecated: volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances""")
     __args__ = dict()
     __args__['cenId'] = cen_id
     __args__['instanceId'] = instance_id
@@ -217,7 +220,7 @@ def attach_instances_output(cen_id: Optional[pulumi.Input[Optional[str]]] = None
         instance_id=foo_vpc.id,
         instance_region_id="cn-beijing",
         instance_type="VPC")
-    foo_attach_instances = volcengine.cen.attach_instances_output(cen_id=foo_attach_instance.cen_id)
+    foo_attach_instances = volcengine.cen.get_attach_instances_output(cen_id=foo_attach_instance.cen_id)
     ```
 
 
@@ -227,4 +230,5 @@ def attach_instances_output(cen_id: Optional[pulumi.Input[Optional[str]]] = None
     :param str instance_type: An instance type.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""attach_instances is deprecated: volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances""")
     ...

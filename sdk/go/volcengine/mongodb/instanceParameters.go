@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -81,7 +81,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodb.InstanceParametersOutput(ctx, mongodb.InstanceParametersOutputArgs{
+//			_ = mongodb.GetInstanceParametersOutput(ctx, mongodb.GetInstanceParametersOutputArgs{
 //				InstanceId:     fooInstance.ID(),
 //				ParameterNames: pulumi.String("cursorTimeoutMillis"),
 //				ParameterRole:  pulumi.String("Node"),
@@ -91,6 +91,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.InstanceParameters has been deprecated in favor of volcengine.mongodb.getInstanceParameters
 func InstanceParameters(ctx *pulumi.Context, args *InstanceParametersArgs, opts ...pulumi.InvokeOption) (*InstanceParametersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstanceParametersResult

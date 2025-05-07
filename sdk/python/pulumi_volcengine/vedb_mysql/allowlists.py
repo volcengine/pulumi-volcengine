@@ -17,6 +17,8 @@ __all__ = [
     'allowlists_output',
 ]
 
+warnings.warn("""volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists""", DeprecationWarning)
+
 @pulumi.output_type
 class AllowlistsResult:
     """
@@ -130,7 +132,7 @@ def allowlists(instance_id: Optional[str] = None,
             "192.168.1.0/24",
             "192.168.2.0/24",
         ])
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -162,7 +164,7 @@ def allowlists(instance_id: Optional[str] = None,
     foo_allowlist_associate = volcengine.vedb_mysql.AllowlistAssociate("fooAllowlistAssociate",
         allow_list_id=foo_allowlist.id,
         instance_id=foo_instance.id)
-    foo_allowlists = volcengine.vedb_mysql.allowlists_output(instance_id=foo_instance.id)
+    foo_allowlists = volcengine.vedb_mysql.get_allowlists_output(instance_id=foo_instance.id)
     ```
 
 
@@ -171,6 +173,7 @@ def allowlists(instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str region_id: The region of the allow lists.
     """
+    pulumi.log.warn("""allowlists is deprecated: volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
@@ -212,7 +215,7 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
             "192.168.1.0/24",
             "192.168.2.0/24",
         ])
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -244,7 +247,7 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     foo_allowlist_associate = volcengine.vedb_mysql.AllowlistAssociate("fooAllowlistAssociate",
         allow_list_id=foo_allowlist.id,
         instance_id=foo_instance.id)
-    foo_allowlists = volcengine.vedb_mysql.allowlists_output(instance_id=foo_instance.id)
+    foo_allowlists = volcengine.vedb_mysql.get_allowlists_output(instance_id=foo_instance.id)
     ```
 
 
@@ -253,4 +256,5 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str region_id: The region of the allow lists.
     """
+    pulumi.log.warn("""allowlists is deprecated: volcengine.vedb_mysql.Allowlists has been deprecated in favor of volcengine.vedb_mysql.getAllowlists""")
     ...

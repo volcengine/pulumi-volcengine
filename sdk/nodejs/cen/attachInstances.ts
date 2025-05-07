@@ -34,12 +34,14 @@ import * as utilities from "../utilities";
  *     instanceRegionId: "cn-beijing",
  *     instanceType: "VPC",
  * });
- * const fooAttachInstances = volcengine.cen.AttachInstancesOutput({
+ * const fooAttachInstances = volcengine.cen.getAttachInstancesOutput({
  *     cenId: fooAttachInstance.cenId,
  * });
  * ```
  */
+/** @deprecated volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances */
 export function attachInstances(args?: AttachInstancesArgs, opts?: pulumi.InvokeOptions): Promise<AttachInstancesResult> {
+    pulumi.log.warn("attachInstances is deprecated: volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -140,11 +142,12 @@ export interface AttachInstancesResult {
  *     instanceRegionId: "cn-beijing",
  *     instanceType: "VPC",
  * });
- * const fooAttachInstances = volcengine.cen.AttachInstancesOutput({
+ * const fooAttachInstances = volcengine.cen.getAttachInstancesOutput({
  *     cenId: fooAttachInstance.cenId,
  * });
  * ```
  */
+/** @deprecated volcengine.cen.AttachInstances has been deprecated in favor of volcengine.cen.getAttachInstances */
 export function attachInstancesOutput(args?: AttachInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AttachInstancesResult> {
     return pulumi.output(args).apply((a: any) => attachInstances(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Privatelink
 {
+    [Obsolete(@"volcengine.privatelink.VpcEndpointConnections has been deprecated in favor of volcengine.privatelink.getVpcEndpointConnections")]
     public static class VpcEndpointConnections
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -112,7 +113,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///         },
         ///     });
         /// 
-        ///     var fooVpcEndpointConnections = Volcengine.Privatelink.VpcEndpointConnections.Invoke(new()
+        ///     var fooVpcEndpointConnections = Volcengine.Privatelink.GetVpcEndpointConnections.Invoke(new()
         ///     {
         ///         EndpointId = fooVpcEndpointConnection.EndpointId,
         ///         ServiceId = fooVpcEndpointConnection.ServiceId,
@@ -136,7 +137,7 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -148,7 +149,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -225,7 +226,7 @@ namespace Pulumi.Volcengine.Privatelink
         ///         },
         ///     });
         /// 
-        ///     var fooVpcEndpointConnections = Volcengine.Privatelink.VpcEndpointConnections.Invoke(new()
+        ///     var fooVpcEndpointConnections = Volcengine.Privatelink.GetVpcEndpointConnections.Invoke(new()
         ///     {
         ///         EndpointId = fooVpcEndpointConnection.EndpointId,
         ///         ServiceId = fooVpcEndpointConnection.ServiceId,

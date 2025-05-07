@@ -20,6 +20,9 @@ import (
 //
 // import (
 //
+//	"encoding/json"
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tos"
 //
@@ -27,7 +30,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tos.NewBucket(ctx, "default", &tos.BucketArgs{
+//			// create tos bucket
+//			fooBucket, err := tos.NewBucket(ctx, "fooBucket", &tos.BucketArgs{
+//				BucketName:         pulumi.String("tf-acc-test-bucket"),
+//				PublicAcl:          pulumi.String("private"),
+//				AzRedundancy:       pulumi.String("multi-az"),
+//				EnableVersion:      pulumi.Bool(true),
+//				BucketAclDelivered: pulumi.Bool(true),
 //				AccountAcls: tos.BucketAccountAclArray{
 //					&tos.BucketAccountAclArgs{
 //						AccountId:  pulumi.String("1"),
@@ -38,18 +47,45 @@ import (
 //						Permission: pulumi.String("WRITE_ACP"),
 //					},
 //				},
-//				AzRedundancy:       pulumi.String("multi-az"),
-//				BucketAclDelivered: pulumi.Bool(true),
-//				BucketName:         pulumi.String("tf-acc-test-bucket-0123-3"),
-//				EnableVersion:      pulumi.Bool(true),
-//				ProjectName:        pulumi.String("default"),
-//				PublicAcl:          pulumi.String("private"),
+//				ProjectName: pulumi.String("default"),
 //				Tags: tos.BucketTagArray{
 //					&tos.BucketTagArgs{
 //						Key:   pulumi.String("k1"),
 //						Value: pulumi.String("v1"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create tos bucket policy
+//			_, err = tos.NewBucketPolicy(ctx, "fooBucketPolicy", &tos.BucketPolicyArgs{
+//				BucketName: fooBucket.ID(),
+//				Policy: fooBucket.ID().ApplyT(func(id string) (pulumi.String, error) {
+//					var _zero pulumi.String
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"Statement": []map[string]interface{}{
+//							map[string]interface{}{
+//								"Sid":    "test",
+//								"Effect": "Allow",
+//								"Principal": []string{
+//									"AccountId/subUserName",
+//								},
+//								"Action": []string{
+//									"tos:List*",
+//								},
+//								"Resource": []string{
+//									fmt.Sprintf("trn:tos:::%v", id),
+//								},
+//							},
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return pulumi.String(json0), nil
+//				}).(pulumi.StringOutput),
 //			})
 //			if err != nil {
 //				return err

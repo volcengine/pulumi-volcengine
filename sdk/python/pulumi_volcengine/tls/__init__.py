@@ -9,6 +9,17 @@ from .alarm import *
 from .alarm_notify_group import *
 from .alarm_notify_groups import *
 from .alarms import *
+from .get_alarm_notify_groups import *
+from .get_alarms import *
+from .get_host_groups import *
+from .get_hosts import *
+from .get_indexes import *
+from .get_kafka_consumers import *
+from .get_projects import *
+from .get_rule_appliers import *
+from .get_rules import *
+from .get_shards import *
+from .get_topics import *
 from .host import *
 from .host_group import *
 from .host_groups import *

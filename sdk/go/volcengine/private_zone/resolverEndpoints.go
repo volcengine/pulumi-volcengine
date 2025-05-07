@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := private_zone.ResolverEndpoints(ctx, nil, nil)
+//			_, err := private_zone.GetResolverEndpoints(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.private_zone.ResolverEndpoints has been deprecated in favor of volcengine.private_zone.getResolverEndpoints
 func ResolverEndpoints(ctx *pulumi.Context, args *ResolverEndpointsArgs, opts ...pulumi.InvokeOption) (*ResolverEndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ResolverEndpointsResult

@@ -451,7 +451,7 @@ class Alb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.alb.zones()
+        foo = volcengine.alb.get_zones()
         vpc_ipv6 = volcengine.vpc.Vpc("vpcIpv6",
             vpc_name="acc-test-vpc-ipv6",
             cidr_block="172.16.0.0/16",
@@ -547,7 +547,7 @@ class Alb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.alb.zones()
+        foo = volcengine.alb.get_zones()
         vpc_ipv6 = volcengine.vpc.Vpc("vpcIpv6",
             vpc_name="acc-test-vpc-ipv6",
             cidr_block="172.16.0.0/16",

@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.nas.Snapshots({
+ * const default = volcengine.nas.getSnapshots({
  *     fileSystemId: "enas-cnbj5c18f02afe0e",
  *     ids: [
  *         "snap-022c648fed8b",
@@ -23,7 +23,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots */
 export function snapshots(args?: SnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<SnapshotsResult> {
+    pulumi.log.warn("snapshots is deprecated: volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -110,7 +112,7 @@ export interface SnapshotsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.nas.Snapshots({
+ * const default = volcengine.nas.getSnapshots({
  *     fileSystemId: "enas-cnbj5c18f02afe0e",
  *     ids: [
  *         "snap-022c648fed8b",
@@ -119,6 +121,7 @@ export interface SnapshotsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.nas.Snapshots has been deprecated in favor of volcengine.nas.getSnapshots */
 export function snapshotsOutput(args?: SnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SnapshotsResult> {
     return pulumi.output(args).apply((a: any) => snapshots(a, opts))
 }

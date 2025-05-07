@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.InvocationResults has been deprecated in favor of volcengine.ecs.getInvocationResults")]
     public static class InvocationResults
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.InvocationResults.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetInvocationResults.Invoke(new()
         ///     {
         ///         InvocationId = "ivk-ych9y4vujvl8j01c****",
         ///         InvocationResultStatuses = new[]
@@ -50,7 +51,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ecs.InvocationResults.Invoke(new()
+        ///     var @default = Volcengine.Ecs.GetInvocationResults.Invoke(new()
         ///     {
         ///         InvocationId = "ivk-ych9y4vujvl8j01c****",
         ///         InvocationResultStatuses = new[]

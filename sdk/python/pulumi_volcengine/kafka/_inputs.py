@@ -15,6 +15,7 @@ __all__ = [
     'InstancesTagArgs',
     'TopicAccessPolicyArgs',
     'TopicParametersArgs',
+    'GetInstancesTagArgs',
 ]
 
 @pulumi.input_type
@@ -218,5 +219,42 @@ class TopicParametersArgs:
     @min_insync_replica_number.setter
     def min_insync_replica_number(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_insync_replica_number", value)
+
+
+@pulumi.input_type
+class GetInstancesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of tag.
+        :param str value: The value of tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of tag.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
 
 

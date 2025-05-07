@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cr
 {
+    [Obsolete(@"volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints")]
     public static class Endpoints
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Endpoints.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetEndpoints.Invoke(new()
         ///     {
         ///         Registry = "tf-1",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Cr.Endpoints.Invoke(new()
+        ///     var foo = Volcengine.Cr.GetEndpoints.Invoke(new()
         ///     {
         ///         Registry = "tf-1",
         ///     });

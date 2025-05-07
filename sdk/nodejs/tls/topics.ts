@@ -14,13 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Topics({
+ * const default = volcengine.tls.getTopics({
  *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
  *     topicId: "edf051ed-3c46-49ba-9339-bea628fe****",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics */
 export function topics(args: TopicsArgs, opts?: pulumi.InvokeOptions): Promise<TopicsResult> {
+    pulumi.log.warn("topics is deprecated: volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/topics:Topics", {
@@ -112,12 +114,13 @@ export interface TopicsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Topics({
+ * const default = volcengine.tls.getTopics({
  *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
  *     topicId: "edf051ed-3c46-49ba-9339-bea628fe****",
  * });
  * ```
  */
+/** @deprecated volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics */
 export function topicsOutput(args: TopicsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TopicsResult> {
     return pulumi.output(args).apply((a: any) => topics(a, opts))
 }

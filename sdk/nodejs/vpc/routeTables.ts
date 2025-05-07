@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.RouteTables({
+ * const default = volcengine.vpc.getRouteTables({
  *     ids: [
  *         "vtb-274e19skkuhog7fap8u4i8ird",
  *         "vtb-2744hslq5b7r47fap8tjomgnj",
@@ -23,7 +23,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables */
 export function routeTables(args?: RouteTablesArgs, opts?: pulumi.InvokeOptions): Promise<RouteTablesResult> {
+    pulumi.log.warn("routeTables is deprecated: volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -110,7 +112,7 @@ export interface RouteTablesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.RouteTables({
+ * const default = volcengine.vpc.getRouteTables({
  *     ids: [
  *         "vtb-274e19skkuhog7fap8u4i8ird",
  *         "vtb-2744hslq5b7r47fap8tjomgnj",
@@ -119,6 +121,7 @@ export interface RouteTablesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables */
 export function routeTablesOutput(args?: RouteTablesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteTablesResult> {
     return pulumi.output(args).apply((a: any) => routeTables(a, opts))
 }

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.RouteEntries(ctx, &transit_router.RouteEntriesArgs{
+//			_, err := transit_router.GetRouteEntries(ctx, &transit_router.GetRouteEntriesArgs{
 //				Ids: []string{
 //					"tr-rte-12b7qd5eo3h1c17q7y1sq5ixv",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.RouteEntries has been deprecated in favor of volcengine.transit_router.getRouteEntries
 func RouteEntries(ctx *pulumi.Context, args *RouteEntriesArgs, opts ...pulumi.InvokeOption) (*RouteEntriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteEntriesResult

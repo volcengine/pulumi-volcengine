@@ -17,6 +17,8 @@ __all__ = [
     'acls_output',
 ]
 
+warnings.warn("""volcengine.alb.Acls has been deprecated in favor of volcengine.alb.getAcls""", DeprecationWarning)
+
 @pulumi.output_type
 class AclsResult:
     """
@@ -124,7 +126,7 @@ def acls(acl_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.alb.acls(ids=["acl-1g72w6z11ighs2zbhq4v3rvh4"],
+    default = volcengine.alb.get_acls(ids=["acl-1g72w6z11ighs2zbhq4v3rvh4"],
         project_name="default")
     ```
 
@@ -134,6 +136,7 @@ def acls(acl_name: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The name of project.
     """
+    pulumi.log.warn("""acls is deprecated: volcengine.alb.Acls has been deprecated in favor of volcengine.alb.getAcls""")
     __args__ = dict()
     __args__['aclName'] = acl_name
     __args__['ids'] = ids
@@ -166,7 +169,7 @@ def acls_output(acl_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.alb.acls(ids=["acl-1g72w6z11ighs2zbhq4v3rvh4"],
+    default = volcengine.alb.get_acls(ids=["acl-1g72w6z11ighs2zbhq4v3rvh4"],
         project_name="default")
     ```
 
@@ -176,4 +179,5 @@ def acls_output(acl_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The name of project.
     """
+    pulumi.log.warn("""acls is deprecated: volcengine.alb.Acls has been deprecated in favor of volcengine.alb.getAcls""")
     ...

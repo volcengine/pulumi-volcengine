@@ -17,6 +17,8 @@ __all__ = [
     'instances_output',
 ]
 
+warnings.warn("""volcengine.escloud.Instances has been deprecated in favor of volcengine.escloud.getInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class InstancesResult:
     """
@@ -148,7 +150,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -193,7 +195,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
         project_name="default",
         force_restart_after_scale=False,
     ))
-    foo_instances = volcengine.escloud.instances_output(ids=[foo_instance.id])
+    foo_instances = volcengine.escloud.get_instances_output(ids=[foo_instance.id])
     ```
 
 
@@ -205,6 +207,7 @@ def instances(charge_types: Optional[Sequence[str]] = None,
     :param Sequence[str] versions: The versions of instance.
     :param Sequence[str] zone_ids: The available zone IDs of instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.escloud.Instances has been deprecated in favor of volcengine.escloud.getInstances""")
     __args__ = dict()
     __args__['chargeTypes'] = charge_types
     __args__['ids'] = ids
@@ -246,7 +249,7 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -291,7 +294,7 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
         project_name="default",
         force_restart_after_scale=False,
     ))
-    foo_instances = volcengine.escloud.instances_output(ids=[foo_instance.id])
+    foo_instances = volcengine.escloud.get_instances_output(ids=[foo_instance.id])
     ```
 
 
@@ -303,4 +306,5 @@ def instances_output(charge_types: Optional[pulumi.Input[Optional[Sequence[str]]
     :param Sequence[str] versions: The versions of instance.
     :param Sequence[str] zone_ids: The available zone IDs of instance.
     """
+    pulumi.log.warn("""instances is deprecated: volcengine.escloud.Instances has been deprecated in favor of volcengine.escloud.getInstances""")
     ...

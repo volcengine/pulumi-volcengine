@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.ServerGroupServers({
+ * const foo = volcengine.alb.getServerGroupServers({
  *     serverGroupId: "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers */
 export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupServersResult> {
+    pulumi.log.warn("serverGroupServers is deprecated: volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:alb/serverGroupServers:ServerGroupServers", {
@@ -69,11 +71,12 @@ export interface ServerGroupServersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.alb.ServerGroupServers({
+ * const foo = volcengine.alb.getServerGroupServers({
  *     serverGroupId: "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.ServerGroupServers has been deprecated in favor of volcengine.alb.getServerGroupServers */
 export function serverGroupServersOutput(args: ServerGroupServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServerGroupServersResult> {
     return pulumi.output(args).apply((a: any) => serverGroupServers(a, opts))
 }

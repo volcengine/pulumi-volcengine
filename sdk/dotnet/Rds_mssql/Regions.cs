@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mssql
 {
+    [Obsolete(@"volcengine.rds_mssql.Regions has been deprecated in favor of volcengine.rds_mssql.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mssql.Regions.Invoke();
+        ///     var foo = Volcengine.Rds_mssql.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mssql.Regions.Invoke();
+        ///     var foo = Volcengine.Rds_mssql.GetRegions.Invoke();
         /// 
         /// });
         /// ```

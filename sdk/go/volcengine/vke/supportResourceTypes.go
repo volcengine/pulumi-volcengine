@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.SupportResourceTypes(ctx, nil, nil)
+//			_, err := vke.GetSupportResourceTypes(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes
 func SupportResourceTypes(ctx *pulumi.Context, args *SupportResourceTypesArgs, opts ...pulumi.InvokeOption) (*SupportResourceTypesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SupportResourceTypesResult

@@ -20,7 +20,7 @@ namespace Pulumi.Volcengine.Vpc
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dataEcs = Volcengine.Ecs.Instances.Invoke(new()
+    ///     var dataEcs = Volcengine.Ecs.GetInstances.Invoke(new()
     ///     {
     ///         Ids = new[]
     ///         {
@@ -28,14 +28,14 @@ namespace Pulumi.Volcengine.Vpc
     ///         },
     ///     });
     /// 
-    ///     var dataIpv6 = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
+    ///     var dataIpv6 = Volcengine.Vpc.GetIpv6Addresses.Invoke(new()
     ///     {
-    ///         AssociatedInstanceId = dataEcs.Apply(instancesResult =&gt; instancesResult.Instances[0]?.InstanceId),
+    ///         AssociatedInstanceId = dataEcs.Apply(getInstancesResult =&gt; getInstancesResult.Instances[0]?.InstanceId),
     ///     });
     /// 
     ///     var foo = new Volcengine.Vpc.Ipv6AddressBandwidth("foo", new()
     ///     {
-    ///         Ipv6Address = dataIpv6.Apply(ipv6AddressesResult =&gt; ipv6AddressesResult.Ipv6Addresses[0]?.Ipv6Address),
+    ///         Ipv6Address = dataIpv6.Apply(getIpv6AddressesResult =&gt; getIpv6AddressesResult.Ipv6Addresses[0]?.Ipv6Address),
     ///         BillingType = "PostPaidByBandwidth",
     ///         Bandwidth = 5,
     ///     });

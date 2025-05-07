@@ -21,12 +21,14 @@ import * as utilities from "../utilities";
  *     description: "acc-test",
  *     projectName: "default",
  * });
- * const fooCustomerGateways = volcengine.vpn.CustomerGatewaysOutput({
+ * const fooCustomerGateways = volcengine.vpn.getCustomerGatewaysOutput({
  *     ids: [fooCustomerGateway.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways */
 export function customerGateways(args?: CustomerGatewaysArgs, opts?: pulumi.InvokeOptions): Promise<CustomerGatewaysResult> {
+    pulumi.log.warn("customerGateways is deprecated: volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -111,11 +113,12 @@ export interface CustomerGatewaysResult {
  *     description: "acc-test",
  *     projectName: "default",
  * });
- * const fooCustomerGateways = volcengine.vpn.CustomerGatewaysOutput({
+ * const fooCustomerGateways = volcengine.vpn.getCustomerGatewaysOutput({
  *     ids: [fooCustomerGateway.id],
  * });
  * ```
  */
+/** @deprecated volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways */
 export function customerGatewaysOutput(args?: CustomerGatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CustomerGatewaysResult> {
     return pulumi.output(args).apply((a: any) => customerGateways(a, opts))
 }

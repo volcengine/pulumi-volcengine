@@ -17,6 +17,8 @@ __all__ = [
     'rules_output',
 ]
 
+warnings.warn("""volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules""", DeprecationWarning)
+
 @pulumi.output_type
 class RulesResult:
     """
@@ -96,7 +98,7 @@ def rules(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -143,7 +145,7 @@ def rules(ids: Optional[Sequence[str]] = None,
         server_group_id=foo_server_group.id,
         domain="test-volc123.com",
         url="/yyyy")
-    foo_rules = volcengine.clb.rules_output(ids=[foo_rule.id],
+    foo_rules = volcengine.clb.get_rules_output(ids=[foo_rule.id],
         listener_id=foo_listener.id)
     ```
 
@@ -152,6 +154,7 @@ def rules(ids: Optional[Sequence[str]] = None,
     :param str listener_id: The Id of listener.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['listenerId'] = listener_id
@@ -180,7 +183,7 @@ def rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -227,7 +230,7 @@ def rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
         server_group_id=foo_server_group.id,
         domain="test-volc123.com",
         url="/yyyy")
-    foo_rules = volcengine.clb.rules_output(ids=[foo_rule.id],
+    foo_rules = volcengine.clb.get_rules_output(ids=[foo_rule.id],
         listener_id=foo_listener.id)
     ```
 
@@ -236,4 +239,5 @@ def rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str listener_id: The Id of listener.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.clb.Rules has been deprecated in favor of volcengine.clb.getRules""")
     ...

@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.BgpPeers({
+ * const foo = volcengine.direct_connect.getBgpPeers({
  *     ids: ["bgp-171w6pn39ruo04d1w33iq****"],
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers */
 export function bgpPeers(args?: BgpPeersArgs, opts?: pulumi.InvokeOptions): Promise<BgpPeersResult> {
+    pulumi.log.warn("bgpPeers is deprecated: volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -109,11 +111,12 @@ export interface BgpPeersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.direct_connect.BgpPeers({
+ * const foo = volcengine.direct_connect.getBgpPeers({
  *     ids: ["bgp-171w6pn39ruo04d1w33iq****"],
  * });
  * ```
  */
+/** @deprecated volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers */
 export function bgpPeersOutput(args?: BgpPeersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BgpPeersResult> {
     return pulumi.output(args).apply((a: any) => bgpPeers(a, opts))
 }

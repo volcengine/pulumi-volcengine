@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Ecs
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
@@ -33,7 +33,7 @@ namespace Pulumi.Volcengine.Ecs
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
@@ -43,7 +43,7 @@ namespace Pulumi.Volcengine.Ecs
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     var fooImages = Volcengine.Ecs.GetImages.Invoke(new()
     ///     {
     ///         OsType = "Linux",
     ///         Visibility = "public",
@@ -55,7 +55,7 @@ namespace Pulumi.Volcengine.Ecs
     ///         InstanceName = "acc-test-ecs",
     ///         Description = "acc-test",
     ///         HostName = "tf-acc-test",
-    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         ImageId = fooImages.Apply(getImagesResult =&gt; getImagesResult.Images[0]?.ImageId),
     ///         InstanceType = "ecs.g1ie.large",
     ///         Password = "93f0cb0614Aab12",
     ///         InstanceChargeType = "PostPaid",

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -66,13 +66,15 @@ import * as utilities from "../utilities";
  *     port: 80,
  *     description: "This is a acc test server",
  * });
- * const fooServerGroupServers = volcengine.clb.ServerGroupServersOutput({
+ * const fooServerGroupServers = volcengine.clb.getServerGroupServersOutput({
  *     ids: [pulumi.all([fooServerGroupServer.id.apply(id => id.split(":")), fooServerGroupServer.id.apply(id => id.split(":")).length]).apply(([split, length]) => split[length - 1])],
  *     serverGroupId: fooServerGroup.id,
  * });
  * ```
  */
+/** @deprecated volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers */
 export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupServersResult> {
+    pulumi.log.warn("serverGroupServers is deprecated: volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/serverGroupServers:ServerGroupServers", {
@@ -135,7 +137,7 @@ export interface ServerGroupServersResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -186,12 +188,13 @@ export interface ServerGroupServersResult {
  *     port: 80,
  *     description: "This is a acc test server",
  * });
- * const fooServerGroupServers = volcengine.clb.ServerGroupServersOutput({
+ * const fooServerGroupServers = volcengine.clb.getServerGroupServersOutput({
  *     ids: [pulumi.all([fooServerGroupServer.id.apply(id => id.split(":")), fooServerGroupServer.id.apply(id => id.split(":")).length]).apply(([split, length]) => split[length - 1])],
  *     serverGroupId: fooServerGroup.id,
  * });
  * ```
  */
+/** @deprecated volcengine.clb.ServerGroupServers has been deprecated in favor of volcengine.clb.getServerGroupServers */
 export function serverGroupServersOutput(args: ServerGroupServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServerGroupServersResult> {
     return pulumi.output(args).apply((a: any) => serverGroupServers(a, opts))
 }

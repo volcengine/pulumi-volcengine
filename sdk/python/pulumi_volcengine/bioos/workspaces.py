@@ -17,6 +17,8 @@ __all__ = [
     'workspaces_output',
 ]
 
+warnings.warn("""volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces""", DeprecationWarning)
+
 @pulumi.output_type
 class WorkspacesResult:
     """
@@ -128,7 +130,7 @@ def workspaces(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.bioos.workspaces()
+    default = volcengine.bioos.get_workspaces()
     ```
 
 
@@ -138,6 +140,7 @@ def workspaces(ids: Optional[Sequence[str]] = None,
     :param str sort_by: Sort Field (Name CreateTime).
     :param str sort_order: The sort order.
     """
+    pulumi.log.warn("""workspaces is deprecated: volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['keyword'] = keyword
@@ -173,7 +176,7 @@ def workspaces_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.bioos.workspaces()
+    default = volcengine.bioos.get_workspaces()
     ```
 
 
@@ -183,4 +186,5 @@ def workspaces_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = Non
     :param str sort_by: Sort Field (Name CreateTime).
     :param str sort_order: The sort order.
     """
+    pulumi.log.warn("""workspaces is deprecated: volcengine.bioos.Workspaces has been deprecated in favor of volcengine.bioos.getWorkspaces""")
     ...

@@ -18,6 +18,8 @@ __all__ = [
     'nodes_output',
 ]
 
+warnings.warn("""volcengine.vke.Nodes has been deprecated in favor of volcengine.vke.getNodes""", DeprecationWarning)
+
 @pulumi.output_type
 class NodesResult:
     """
@@ -175,7 +177,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -187,7 +189,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+    foo_images = volcengine.ecs.get_images(name_regex="veLinux 1.0 CentOS兼容版 64位")
     foo_cluster = volcengine.vke.Cluster("fooCluster",
         description="created by terraform",
         delete_protection_enabled=False,
@@ -294,7 +296,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
             cluster_id=foo_cluster.id,
             instance_id=foo_instance[range["value"]].id,
             node_pool_id=foo_node_pool.id))
-    foo_nodes = volcengine.vke.nodes_output(ids=[__item.id for __item in foo_node])
+    foo_nodes = volcengine.vke.get_nodes_output(ids=[__item.id for __item in foo_node])
     ```
 
 
@@ -308,6 +310,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['NodesStatusArgs']] statuses: The Status of filter.
     :param Sequence[str] zone_ids: The Zone IDs.
     """
+    pulumi.log.warn("""nodes is deprecated: volcengine.vke.Nodes has been deprecated in favor of volcengine.vke.getNodes""")
     __args__ = dict()
     __args__['clusterIds'] = cluster_ids
     __args__['createClientToken'] = create_client_token
@@ -355,7 +358,7 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -367,7 +370,7 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+    foo_images = volcengine.ecs.get_images(name_regex="veLinux 1.0 CentOS兼容版 64位")
     foo_cluster = volcengine.vke.Cluster("fooCluster",
         description="created by terraform",
         delete_protection_enabled=False,
@@ -474,7 +477,7 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
             cluster_id=foo_cluster.id,
             instance_id=foo_instance[range["value"]].id,
             node_pool_id=foo_node_pool.id))
-    foo_nodes = volcengine.vke.nodes_output(ids=[__item.id for __item in foo_node])
+    foo_nodes = volcengine.vke.get_nodes_output(ids=[__item.id for __item in foo_node])
     ```
 
 
@@ -488,4 +491,5 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param Sequence[pulumi.InputType['NodesStatusArgs']] statuses: The Status of filter.
     :param Sequence[str] zone_ids: The Zone IDs.
     """
+    pulumi.log.warn("""nodes is deprecated: volcengine.vke.Nodes has been deprecated in favor of volcengine.vke.getNodes""")
     ...

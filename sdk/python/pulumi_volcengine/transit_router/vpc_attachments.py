@@ -18,6 +18,8 @@ __all__ = [
     'vpc_attachments_output',
 ]
 
+warnings.warn("""volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcAttachmentsResult:
     """
@@ -138,7 +140,7 @@ def vpc_attachments(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.vpc_attachments(transit_router_attachment_ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
+    default = volcengine.transit_router.get_vpc_attachments(transit_router_attachment_ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
         transit_router_id="tr-2d6fr7f39unsw58ozfe1ow21x")
     ```
 
@@ -149,6 +151,7 @@ def vpc_attachments(output_file: Optional[str] = None,
     :param str transit_router_id: The id of transit router.
     :param str vpc_id: The id of vpc.
     """
+    pulumi.log.warn("""vpc_attachments is deprecated: volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['tags'] = tags
@@ -184,7 +187,7 @@ def vpc_attachments_output(output_file: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.transit_router.vpc_attachments(transit_router_attachment_ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
+    default = volcengine.transit_router.get_vpc_attachments(transit_router_attachment_ids=["tr-attach-3rf2xi7ae6y9s5zsk2hm6pibt"],
         transit_router_id="tr-2d6fr7f39unsw58ozfe1ow21x")
     ```
 
@@ -195,4 +198,5 @@ def vpc_attachments_output(output_file: Optional[pulumi.Input[Optional[str]]] = 
     :param str transit_router_id: The id of transit router.
     :param str vpc_id: The id of vpc.
     """
+    pulumi.log.warn("""vpc_attachments is deprecated: volcengine.transit_router.VpcAttachments has been deprecated in favor of volcengine.transit_router.getVpcAttachments""")
     ...

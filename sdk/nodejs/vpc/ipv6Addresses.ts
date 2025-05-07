@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Ipv6Addresses({
+ * const default = volcengine.vpc.getIpv6Addresses({
  *     associatedInstanceId: "i-yca53yuhj6gh9zl53kav",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses */
 export function ipv6Addresses(args?: Ipv6AddressesArgs, opts?: pulumi.InvokeOptions): Promise<Ipv6AddressesResult> {
+    pulumi.log.warn("ipv6Addresses is deprecated: volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -70,11 +72,12 @@ export interface Ipv6AddressesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.Ipv6Addresses({
+ * const default = volcengine.vpc.getIpv6Addresses({
  *     associatedInstanceId: "i-yca53yuhj6gh9zl53kav",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses */
 export function ipv6AddressesOutput(args?: Ipv6AddressesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Ipv6AddressesResult> {
     return pulumi.output(args).apply((a: any) => ipv6Addresses(a, opts))
 }

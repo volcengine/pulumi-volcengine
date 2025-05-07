@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vke
 {
+    [Obsolete(@"volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters")]
     public static class Clusters
     {
         /// <summary>
@@ -92,7 +93,7 @@ namespace Pulumi.Volcengine.Vke
         ///         },
         ///     });
         /// 
-        ///     var fooClusters = Volcengine.Vke.Clusters.Invoke(new()
+        ///     var fooClusters = Volcengine.Vke.GetClusters.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -187,7 +188,7 @@ namespace Pulumi.Volcengine.Vke
         ///         },
         ///     });
         /// 
-        ///     var fooClusters = Volcengine.Vke.Clusters.Invoke(new()
+        ///     var fooClusters = Volcengine.Vke.GetClusters.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

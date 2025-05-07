@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.ImageSharePermissions(ctx, &ecs.ImageSharePermissionsArgs{
+//			_, err := ecs.GetImageSharePermissions(ctx, &ecs.GetImageSharePermissionsArgs{
 //				ImageId: "image-ydi2wozhozfu03z2****",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions
 func ImageSharePermissions(ctx *pulumi.Context, args *ImageSharePermissionsArgs, opts ...pulumi.InvokeOption) (*ImageSharePermissionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ImageSharePermissionsResult

@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -88,7 +88,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = kafka.GroupsOutput(ctx, kafka.GroupsOutputArgs{
+//			_ = kafka.GetGroupsOutput(ctx, kafka.GetGroupsOutputArgs{
 //				InstanceId: fooGroup.InstanceId,
 //			}, nil)
 //			return nil
@@ -96,6 +96,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.kafka.Groups has been deprecated in favor of volcengine.kafka.getGroups
 func Groups(ctx *pulumi.Context, args *GroupsArgs, opts ...pulumi.InvokeOption) (*GroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GroupsResult

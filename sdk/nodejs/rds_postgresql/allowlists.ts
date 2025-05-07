@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.Allowlists({});
+ * const foo = volcengine.rds_postgresql.getAllowlists({});
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists */
 export function allowlists(args?: AllowlistsArgs, opts?: pulumi.InvokeOptions): Promise<AllowlistsResult> {
+    pulumi.log.warn("allowlists is deprecated: volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -77,9 +79,10 @@ export interface AllowlistsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.Allowlists({});
+ * const foo = volcengine.rds_postgresql.getAllowlists({});
  * ```
  */
+/** @deprecated volcengine.rds_postgresql.Allowlists has been deprecated in favor of volcengine.rds_postgresql.getAllowlists */
 export function allowlistsOutput(args?: AllowlistsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AllowlistsResult> {
     return pulumi.output(args).apply((a: any) => allowlists(a, opts))
 }

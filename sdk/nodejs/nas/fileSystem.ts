@@ -8,27 +8,6 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage nas file system
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
- *
- * const fooZones = volcengine.nas.Zones({});
- * const fooFileSystem = new volcengine.nas.FileSystem("fooFileSystem", {
- *     fileSystemName: "acc-test-fs",
- *     description: "acc-test",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
- *     capacity: 103,
- *     projectName: "default",
- *     tags: [{
- *         key: "k1",
- *         value: "v1",
- *     }],
- * });
- * ```
- *
  * ## Import
  *
  * NasFileSystem can be imported using the id, e.g.

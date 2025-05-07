@@ -17,6 +17,8 @@ __all__ = [
     'private_zones_output',
 ]
 
+warnings.warn("""volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones""", DeprecationWarning)
+
 @pulumi.output_type
 class PrivateZonesResult:
     """
@@ -177,6 +179,18 @@ def private_zones(line_mode: Optional[int] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitablePrivateZonesResult:
     """
     Use this data source to query detailed information of private zones
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.private_zone.get_private_zones(line_mode=3,
+        recursion_mode=True,
+        search_mode="EXACT",
+        zid=770000,
+        zone_name="volces.com")
+    ```
 
 
     :param int line_mode: The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
@@ -189,6 +203,7 @@ def private_zones(line_mode: Optional[int] = None,
     :param int zid: The zid of Private Zone.
     :param str zone_name: The name of Private Zone.
     """
+    pulumi.log.warn("""private_zones is deprecated: volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones""")
     __args__ = dict()
     __args__['lineMode'] = line_mode
     __args__['nameRegex'] = name_regex
@@ -230,6 +245,18 @@ def private_zones_output(line_mode: Optional[pulumi.Input[Optional[int]]] = None
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[PrivateZonesResult]:
     """
     Use this data source to query detailed information of private zones
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.private_zone.get_private_zones(line_mode=3,
+        recursion_mode=True,
+        search_mode="EXACT",
+        zid=770000,
+        zone_name="volces.com")
+    ```
 
 
     :param int line_mode: The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
@@ -242,4 +269,5 @@ def private_zones_output(line_mode: Optional[pulumi.Input[Optional[int]]] = None
     :param int zid: The zid of Private Zone.
     :param str zone_name: The name of Private Zone.
     """
+    pulumi.log.warn("""private_zones is deprecated: volcengine.private_zone.PrivateZones has been deprecated in favor of volcengine.private_zone.getPrivateZones""")
     ...

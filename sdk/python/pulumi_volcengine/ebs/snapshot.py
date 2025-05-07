@@ -383,7 +383,7 @@ class Snapshot(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_volume = volcengine.ebs.Volume("fooVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
@@ -436,7 +436,7 @@ class Snapshot(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_volume = volcengine.ebs.Volume("fooVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",

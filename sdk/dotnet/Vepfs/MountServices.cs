@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vepfs
 {
+    [Obsolete(@"volcengine.vepfs.MountServices has been deprecated in favor of volcengine.vepfs.getMountServices")]
     public static class MountServices
     {
         /// <summary>
@@ -45,7 +46,7 @@ namespace Pulumi.Volcengine.Vepfs
         ///         Project = "default",
         ///     });
         /// 
-        ///     var fooMountServices = Volcengine.Vepfs.MountServices.Invoke(new()
+        ///     var fooMountServices = Volcengine.Vepfs.GetMountServices.Invoke(new()
         ///     {
         ///         MountServiceId = fooMountService.Id,
         ///     });
@@ -90,7 +91,7 @@ namespace Pulumi.Volcengine.Vepfs
         ///         Project = "default",
         ///     });
         /// 
-        ///     var fooMountServices = Volcengine.Vepfs.MountServices.Invoke(new()
+        ///     var fooMountServices = Volcengine.Vepfs.GetMountServices.Invoke(new()
         ///     {
         ///         MountServiceId = fooMountService.Id,
         ///     });

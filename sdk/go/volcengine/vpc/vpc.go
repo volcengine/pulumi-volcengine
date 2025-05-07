@@ -21,20 +21,44 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NewVpc(ctx, "foo", &vpc.VpcArgs{
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// create vpc
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
 //				DnsServers: pulumi.StringArray{
 //					pulumi.String("8.8.8.8"),
 //					pulumi.String("114.114.114.114"),
 //				},
 //				ProjectName: pulumi.String("default"),
-//				VpcName:     pulumi.String("acc-test-vpc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create subnet
+//			_, err = vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create security group
+//			_, err = vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
 //			})
 //			if err != nil {
 //				return err

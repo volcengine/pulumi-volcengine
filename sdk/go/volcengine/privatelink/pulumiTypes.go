@@ -1399,6 +1399,1135 @@ func (o VpcEndpointsVpcEndpointArrayOutput) Index(i pulumi.IntInput) VpcEndpoint
 	}).(VpcEndpointsVpcEndpointOutput)
 }
 
+type GetVpcEndpointConnectionsConnection struct {
+	// The status of the connection.
+	ConnectionStatus string `pulumi:"connectionStatus"`
+	// The create time of the connection.
+	CreationTime string `pulumi:"creationTime"`
+	// The id of the vpc endpoint.
+	EndpointId string `pulumi:"endpointId"`
+	// The account id of the vpc endpoint.
+	EndpointOwnerAccountId string `pulumi:"endpointOwnerAccountId"`
+	// The vpc id of the vpc endpoint.
+	EndpointVpcId string `pulumi:"endpointVpcId"`
+	// The id of the vpc endpoint service.
+	ServiceId string `pulumi:"serviceId"`
+	// The update time of the connection.
+	UpdateTime string `pulumi:"updateTime"`
+	// The available zones.
+	Zones []GetVpcEndpointConnectionsConnectionZone `pulumi:"zones"`
+}
+
+// GetVpcEndpointConnectionsConnectionInput is an input type that accepts GetVpcEndpointConnectionsConnectionArgs and GetVpcEndpointConnectionsConnectionOutput values.
+// You can construct a concrete instance of `GetVpcEndpointConnectionsConnectionInput` via:
+//
+//	GetVpcEndpointConnectionsConnectionArgs{...}
+type GetVpcEndpointConnectionsConnectionInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointConnectionsConnectionOutput() GetVpcEndpointConnectionsConnectionOutput
+	ToGetVpcEndpointConnectionsConnectionOutputWithContext(context.Context) GetVpcEndpointConnectionsConnectionOutput
+}
+
+type GetVpcEndpointConnectionsConnectionArgs struct {
+	// The status of the connection.
+	ConnectionStatus pulumi.StringInput `pulumi:"connectionStatus"`
+	// The create time of the connection.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The id of the vpc endpoint.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The account id of the vpc endpoint.
+	EndpointOwnerAccountId pulumi.StringInput `pulumi:"endpointOwnerAccountId"`
+	// The vpc id of the vpc endpoint.
+	EndpointVpcId pulumi.StringInput `pulumi:"endpointVpcId"`
+	// The id of the vpc endpoint service.
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
+	// The update time of the connection.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The available zones.
+	Zones GetVpcEndpointConnectionsConnectionZoneArrayInput `pulumi:"zones"`
+}
+
+func (GetVpcEndpointConnectionsConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointConnectionsConnection)(nil)).Elem()
+}
+
+func (i GetVpcEndpointConnectionsConnectionArgs) ToGetVpcEndpointConnectionsConnectionOutput() GetVpcEndpointConnectionsConnectionOutput {
+	return i.ToGetVpcEndpointConnectionsConnectionOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointConnectionsConnectionArgs) ToGetVpcEndpointConnectionsConnectionOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointConnectionsConnectionOutput)
+}
+
+// GetVpcEndpointConnectionsConnectionArrayInput is an input type that accepts GetVpcEndpointConnectionsConnectionArray and GetVpcEndpointConnectionsConnectionArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointConnectionsConnectionArrayInput` via:
+//
+//	GetVpcEndpointConnectionsConnectionArray{ GetVpcEndpointConnectionsConnectionArgs{...} }
+type GetVpcEndpointConnectionsConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointConnectionsConnectionArrayOutput() GetVpcEndpointConnectionsConnectionArrayOutput
+	ToGetVpcEndpointConnectionsConnectionArrayOutputWithContext(context.Context) GetVpcEndpointConnectionsConnectionArrayOutput
+}
+
+type GetVpcEndpointConnectionsConnectionArray []GetVpcEndpointConnectionsConnectionInput
+
+func (GetVpcEndpointConnectionsConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointConnectionsConnection)(nil)).Elem()
+}
+
+func (i GetVpcEndpointConnectionsConnectionArray) ToGetVpcEndpointConnectionsConnectionArrayOutput() GetVpcEndpointConnectionsConnectionArrayOutput {
+	return i.ToGetVpcEndpointConnectionsConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointConnectionsConnectionArray) ToGetVpcEndpointConnectionsConnectionArrayOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointConnectionsConnectionArrayOutput)
+}
+
+type GetVpcEndpointConnectionsConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointConnectionsConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointConnectionsConnection)(nil)).Elem()
+}
+
+func (o GetVpcEndpointConnectionsConnectionOutput) ToGetVpcEndpointConnectionsConnectionOutput() GetVpcEndpointConnectionsConnectionOutput {
+	return o
+}
+
+func (o GetVpcEndpointConnectionsConnectionOutput) ToGetVpcEndpointConnectionsConnectionOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionOutput {
+	return o
+}
+
+// The status of the connection.
+func (o GetVpcEndpointConnectionsConnectionOutput) ConnectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.ConnectionStatus }).(pulumi.StringOutput)
+}
+
+// The create time of the connection.
+func (o GetVpcEndpointConnectionsConnectionOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The id of the vpc endpoint.
+func (o GetVpcEndpointConnectionsConnectionOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// The account id of the vpc endpoint.
+func (o GetVpcEndpointConnectionsConnectionOutput) EndpointOwnerAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.EndpointOwnerAccountId }).(pulumi.StringOutput)
+}
+
+// The vpc id of the vpc endpoint.
+func (o GetVpcEndpointConnectionsConnectionOutput) EndpointVpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.EndpointVpcId }).(pulumi.StringOutput)
+}
+
+// The id of the vpc endpoint service.
+func (o GetVpcEndpointConnectionsConnectionOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+// The update time of the connection.
+func (o GetVpcEndpointConnectionsConnectionOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The available zones.
+func (o GetVpcEndpointConnectionsConnectionOutput) Zones() GetVpcEndpointConnectionsConnectionZoneArrayOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnection) []GetVpcEndpointConnectionsConnectionZone { return v.Zones }).(GetVpcEndpointConnectionsConnectionZoneArrayOutput)
+}
+
+type GetVpcEndpointConnectionsConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointConnectionsConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointConnectionsConnection)(nil)).Elem()
+}
+
+func (o GetVpcEndpointConnectionsConnectionArrayOutput) ToGetVpcEndpointConnectionsConnectionArrayOutput() GetVpcEndpointConnectionsConnectionArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointConnectionsConnectionArrayOutput) ToGetVpcEndpointConnectionsConnectionArrayOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointConnectionsConnectionArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointConnectionsConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointConnectionsConnection {
+		return vs[0].([]GetVpcEndpointConnectionsConnection)[vs[1].(int)]
+	}).(GetVpcEndpointConnectionsConnectionOutput)
+}
+
+type GetVpcEndpointConnectionsConnectionZone struct {
+	// The id of the network interface.
+	NetworkInterfaceId string `pulumi:"networkInterfaceId"`
+	// The ip address of the network interface.
+	NetworkInterfaceIp string `pulumi:"networkInterfaceIp"`
+	// The id of the resource.
+	ResourceId string `pulumi:"resourceId"`
+	// The id of the subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The domain of the zone.
+	ZoneDomain string `pulumi:"zoneDomain"`
+	// The id of the zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The status of the zone.
+	ZoneStatus string `pulumi:"zoneStatus"`
+}
+
+// GetVpcEndpointConnectionsConnectionZoneInput is an input type that accepts GetVpcEndpointConnectionsConnectionZoneArgs and GetVpcEndpointConnectionsConnectionZoneOutput values.
+// You can construct a concrete instance of `GetVpcEndpointConnectionsConnectionZoneInput` via:
+//
+//	GetVpcEndpointConnectionsConnectionZoneArgs{...}
+type GetVpcEndpointConnectionsConnectionZoneInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointConnectionsConnectionZoneOutput() GetVpcEndpointConnectionsConnectionZoneOutput
+	ToGetVpcEndpointConnectionsConnectionZoneOutputWithContext(context.Context) GetVpcEndpointConnectionsConnectionZoneOutput
+}
+
+type GetVpcEndpointConnectionsConnectionZoneArgs struct {
+	// The id of the network interface.
+	NetworkInterfaceId pulumi.StringInput `pulumi:"networkInterfaceId"`
+	// The ip address of the network interface.
+	NetworkInterfaceIp pulumi.StringInput `pulumi:"networkInterfaceIp"`
+	// The id of the resource.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// The id of the subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The domain of the zone.
+	ZoneDomain pulumi.StringInput `pulumi:"zoneDomain"`
+	// The id of the zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The status of the zone.
+	ZoneStatus pulumi.StringInput `pulumi:"zoneStatus"`
+}
+
+func (GetVpcEndpointConnectionsConnectionZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointConnectionsConnectionZone)(nil)).Elem()
+}
+
+func (i GetVpcEndpointConnectionsConnectionZoneArgs) ToGetVpcEndpointConnectionsConnectionZoneOutput() GetVpcEndpointConnectionsConnectionZoneOutput {
+	return i.ToGetVpcEndpointConnectionsConnectionZoneOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointConnectionsConnectionZoneArgs) ToGetVpcEndpointConnectionsConnectionZoneOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointConnectionsConnectionZoneOutput)
+}
+
+// GetVpcEndpointConnectionsConnectionZoneArrayInput is an input type that accepts GetVpcEndpointConnectionsConnectionZoneArray and GetVpcEndpointConnectionsConnectionZoneArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointConnectionsConnectionZoneArrayInput` via:
+//
+//	GetVpcEndpointConnectionsConnectionZoneArray{ GetVpcEndpointConnectionsConnectionZoneArgs{...} }
+type GetVpcEndpointConnectionsConnectionZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointConnectionsConnectionZoneArrayOutput() GetVpcEndpointConnectionsConnectionZoneArrayOutput
+	ToGetVpcEndpointConnectionsConnectionZoneArrayOutputWithContext(context.Context) GetVpcEndpointConnectionsConnectionZoneArrayOutput
+}
+
+type GetVpcEndpointConnectionsConnectionZoneArray []GetVpcEndpointConnectionsConnectionZoneInput
+
+func (GetVpcEndpointConnectionsConnectionZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointConnectionsConnectionZone)(nil)).Elem()
+}
+
+func (i GetVpcEndpointConnectionsConnectionZoneArray) ToGetVpcEndpointConnectionsConnectionZoneArrayOutput() GetVpcEndpointConnectionsConnectionZoneArrayOutput {
+	return i.ToGetVpcEndpointConnectionsConnectionZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointConnectionsConnectionZoneArray) ToGetVpcEndpointConnectionsConnectionZoneArrayOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointConnectionsConnectionZoneArrayOutput)
+}
+
+type GetVpcEndpointConnectionsConnectionZoneOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointConnectionsConnectionZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointConnectionsConnectionZone)(nil)).Elem()
+}
+
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) ToGetVpcEndpointConnectionsConnectionZoneOutput() GetVpcEndpointConnectionsConnectionZoneOutput {
+	return o
+}
+
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) ToGetVpcEndpointConnectionsConnectionZoneOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionZoneOutput {
+	return o
+}
+
+// The id of the network interface.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) NetworkInterfaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.NetworkInterfaceId }).(pulumi.StringOutput)
+}
+
+// The ip address of the network interface.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) NetworkInterfaceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.NetworkInterfaceIp }).(pulumi.StringOutput)
+}
+
+// The id of the resource.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+// The id of the subnet.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The domain of the zone.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) ZoneDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.ZoneDomain }).(pulumi.StringOutput)
+}
+
+// The id of the zone.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The status of the zone.
+func (o GetVpcEndpointConnectionsConnectionZoneOutput) ZoneStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointConnectionsConnectionZone) string { return v.ZoneStatus }).(pulumi.StringOutput)
+}
+
+type GetVpcEndpointConnectionsConnectionZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointConnectionsConnectionZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointConnectionsConnectionZone)(nil)).Elem()
+}
+
+func (o GetVpcEndpointConnectionsConnectionZoneArrayOutput) ToGetVpcEndpointConnectionsConnectionZoneArrayOutput() GetVpcEndpointConnectionsConnectionZoneArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointConnectionsConnectionZoneArrayOutput) ToGetVpcEndpointConnectionsConnectionZoneArrayOutputWithContext(ctx context.Context) GetVpcEndpointConnectionsConnectionZoneArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointConnectionsConnectionZoneArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointConnectionsConnectionZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointConnectionsConnectionZone {
+		return vs[0].([]GetVpcEndpointConnectionsConnectionZone)[vs[1].(int)]
+	}).(GetVpcEndpointConnectionsConnectionZoneOutput)
+}
+
+type GetVpcEndpointServicePermissionsPermission struct {
+	// The Id of permit account.
+	PermitAccountId string `pulumi:"permitAccountId"`
+}
+
+// GetVpcEndpointServicePermissionsPermissionInput is an input type that accepts GetVpcEndpointServicePermissionsPermissionArgs and GetVpcEndpointServicePermissionsPermissionOutput values.
+// You can construct a concrete instance of `GetVpcEndpointServicePermissionsPermissionInput` via:
+//
+//	GetVpcEndpointServicePermissionsPermissionArgs{...}
+type GetVpcEndpointServicePermissionsPermissionInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointServicePermissionsPermissionOutput() GetVpcEndpointServicePermissionsPermissionOutput
+	ToGetVpcEndpointServicePermissionsPermissionOutputWithContext(context.Context) GetVpcEndpointServicePermissionsPermissionOutput
+}
+
+type GetVpcEndpointServicePermissionsPermissionArgs struct {
+	// The Id of permit account.
+	PermitAccountId pulumi.StringInput `pulumi:"permitAccountId"`
+}
+
+func (GetVpcEndpointServicePermissionsPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointServicePermissionsPermission)(nil)).Elem()
+}
+
+func (i GetVpcEndpointServicePermissionsPermissionArgs) ToGetVpcEndpointServicePermissionsPermissionOutput() GetVpcEndpointServicePermissionsPermissionOutput {
+	return i.ToGetVpcEndpointServicePermissionsPermissionOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointServicePermissionsPermissionArgs) ToGetVpcEndpointServicePermissionsPermissionOutputWithContext(ctx context.Context) GetVpcEndpointServicePermissionsPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointServicePermissionsPermissionOutput)
+}
+
+// GetVpcEndpointServicePermissionsPermissionArrayInput is an input type that accepts GetVpcEndpointServicePermissionsPermissionArray and GetVpcEndpointServicePermissionsPermissionArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointServicePermissionsPermissionArrayInput` via:
+//
+//	GetVpcEndpointServicePermissionsPermissionArray{ GetVpcEndpointServicePermissionsPermissionArgs{...} }
+type GetVpcEndpointServicePermissionsPermissionArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointServicePermissionsPermissionArrayOutput() GetVpcEndpointServicePermissionsPermissionArrayOutput
+	ToGetVpcEndpointServicePermissionsPermissionArrayOutputWithContext(context.Context) GetVpcEndpointServicePermissionsPermissionArrayOutput
+}
+
+type GetVpcEndpointServicePermissionsPermissionArray []GetVpcEndpointServicePermissionsPermissionInput
+
+func (GetVpcEndpointServicePermissionsPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointServicePermissionsPermission)(nil)).Elem()
+}
+
+func (i GetVpcEndpointServicePermissionsPermissionArray) ToGetVpcEndpointServicePermissionsPermissionArrayOutput() GetVpcEndpointServicePermissionsPermissionArrayOutput {
+	return i.ToGetVpcEndpointServicePermissionsPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointServicePermissionsPermissionArray) ToGetVpcEndpointServicePermissionsPermissionArrayOutputWithContext(ctx context.Context) GetVpcEndpointServicePermissionsPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointServicePermissionsPermissionArrayOutput)
+}
+
+type GetVpcEndpointServicePermissionsPermissionOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointServicePermissionsPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointServicePermissionsPermission)(nil)).Elem()
+}
+
+func (o GetVpcEndpointServicePermissionsPermissionOutput) ToGetVpcEndpointServicePermissionsPermissionOutput() GetVpcEndpointServicePermissionsPermissionOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicePermissionsPermissionOutput) ToGetVpcEndpointServicePermissionsPermissionOutputWithContext(ctx context.Context) GetVpcEndpointServicePermissionsPermissionOutput {
+	return o
+}
+
+// The Id of permit account.
+func (o GetVpcEndpointServicePermissionsPermissionOutput) PermitAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicePermissionsPermission) string { return v.PermitAccountId }).(pulumi.StringOutput)
+}
+
+type GetVpcEndpointServicePermissionsPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointServicePermissionsPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointServicePermissionsPermission)(nil)).Elem()
+}
+
+func (o GetVpcEndpointServicePermissionsPermissionArrayOutput) ToGetVpcEndpointServicePermissionsPermissionArrayOutput() GetVpcEndpointServicePermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicePermissionsPermissionArrayOutput) ToGetVpcEndpointServicePermissionsPermissionArrayOutputWithContext(ctx context.Context) GetVpcEndpointServicePermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicePermissionsPermissionArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointServicePermissionsPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointServicePermissionsPermission {
+		return vs[0].([]GetVpcEndpointServicePermissionsPermission)[vs[1].(int)]
+	}).(GetVpcEndpointServicePermissionsPermissionOutput)
+}
+
+type GetVpcEndpointServicesService struct {
+	// Whether auto accept node connect.
+	AutoAcceptEnabled bool `pulumi:"autoAcceptEnabled"`
+	// The create time of service.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of service.
+	Description string `pulumi:"description"`
+	// The Id of service.
+	Id string `pulumi:"id"`
+	// The resources info.
+	Resources []GetVpcEndpointServicesServiceResource `pulumi:"resources"`
+	// The domain of service.
+	ServiceDomain string `pulumi:"serviceDomain"`
+	// The Id of service.
+	ServiceId string `pulumi:"serviceId"`
+	// The name of vpc endpoint service.
+	ServiceName string `pulumi:"serviceName"`
+	// The resource type of service.
+	ServiceResourceType string `pulumi:"serviceResourceType"`
+	// The type of service.
+	ServiceType string `pulumi:"serviceType"`
+	// The status of service.
+	Status string `pulumi:"status"`
+	// The update time of service.
+	UpdateTime string `pulumi:"updateTime"`
+	// The IDs of zones.
+	ZoneIds []string `pulumi:"zoneIds"`
+}
+
+// GetVpcEndpointServicesServiceInput is an input type that accepts GetVpcEndpointServicesServiceArgs and GetVpcEndpointServicesServiceOutput values.
+// You can construct a concrete instance of `GetVpcEndpointServicesServiceInput` via:
+//
+//	GetVpcEndpointServicesServiceArgs{...}
+type GetVpcEndpointServicesServiceInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointServicesServiceOutput() GetVpcEndpointServicesServiceOutput
+	ToGetVpcEndpointServicesServiceOutputWithContext(context.Context) GetVpcEndpointServicesServiceOutput
+}
+
+type GetVpcEndpointServicesServiceArgs struct {
+	// Whether auto accept node connect.
+	AutoAcceptEnabled pulumi.BoolInput `pulumi:"autoAcceptEnabled"`
+	// The create time of service.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of service.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The Id of service.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The resources info.
+	Resources GetVpcEndpointServicesServiceResourceArrayInput `pulumi:"resources"`
+	// The domain of service.
+	ServiceDomain pulumi.StringInput `pulumi:"serviceDomain"`
+	// The Id of service.
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
+	// The name of vpc endpoint service.
+	ServiceName pulumi.StringInput `pulumi:"serviceName"`
+	// The resource type of service.
+	ServiceResourceType pulumi.StringInput `pulumi:"serviceResourceType"`
+	// The type of service.
+	ServiceType pulumi.StringInput `pulumi:"serviceType"`
+	// The status of service.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of service.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The IDs of zones.
+	ZoneIds pulumi.StringArrayInput `pulumi:"zoneIds"`
+}
+
+func (GetVpcEndpointServicesServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointServicesService)(nil)).Elem()
+}
+
+func (i GetVpcEndpointServicesServiceArgs) ToGetVpcEndpointServicesServiceOutput() GetVpcEndpointServicesServiceOutput {
+	return i.ToGetVpcEndpointServicesServiceOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointServicesServiceArgs) ToGetVpcEndpointServicesServiceOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointServicesServiceOutput)
+}
+
+// GetVpcEndpointServicesServiceArrayInput is an input type that accepts GetVpcEndpointServicesServiceArray and GetVpcEndpointServicesServiceArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointServicesServiceArrayInput` via:
+//
+//	GetVpcEndpointServicesServiceArray{ GetVpcEndpointServicesServiceArgs{...} }
+type GetVpcEndpointServicesServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointServicesServiceArrayOutput() GetVpcEndpointServicesServiceArrayOutput
+	ToGetVpcEndpointServicesServiceArrayOutputWithContext(context.Context) GetVpcEndpointServicesServiceArrayOutput
+}
+
+type GetVpcEndpointServicesServiceArray []GetVpcEndpointServicesServiceInput
+
+func (GetVpcEndpointServicesServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointServicesService)(nil)).Elem()
+}
+
+func (i GetVpcEndpointServicesServiceArray) ToGetVpcEndpointServicesServiceArrayOutput() GetVpcEndpointServicesServiceArrayOutput {
+	return i.ToGetVpcEndpointServicesServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointServicesServiceArray) ToGetVpcEndpointServicesServiceArrayOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointServicesServiceArrayOutput)
+}
+
+type GetVpcEndpointServicesServiceOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointServicesServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointServicesService)(nil)).Elem()
+}
+
+func (o GetVpcEndpointServicesServiceOutput) ToGetVpcEndpointServicesServiceOutput() GetVpcEndpointServicesServiceOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicesServiceOutput) ToGetVpcEndpointServicesServiceOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceOutput {
+	return o
+}
+
+// Whether auto accept node connect.
+func (o GetVpcEndpointServicesServiceOutput) AutoAcceptEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) bool { return v.AutoAcceptEnabled }).(pulumi.BoolOutput)
+}
+
+// The create time of service.
+func (o GetVpcEndpointServicesServiceOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of service.
+func (o GetVpcEndpointServicesServiceOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The Id of service.
+func (o GetVpcEndpointServicesServiceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The resources info.
+func (o GetVpcEndpointServicesServiceOutput) Resources() GetVpcEndpointServicesServiceResourceArrayOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) []GetVpcEndpointServicesServiceResource { return v.Resources }).(GetVpcEndpointServicesServiceResourceArrayOutput)
+}
+
+// The domain of service.
+func (o GetVpcEndpointServicesServiceOutput) ServiceDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.ServiceDomain }).(pulumi.StringOutput)
+}
+
+// The Id of service.
+func (o GetVpcEndpointServicesServiceOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+// The name of vpc endpoint service.
+func (o GetVpcEndpointServicesServiceOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// The resource type of service.
+func (o GetVpcEndpointServicesServiceOutput) ServiceResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.ServiceResourceType }).(pulumi.StringOutput)
+}
+
+// The type of service.
+func (o GetVpcEndpointServicesServiceOutput) ServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.ServiceType }).(pulumi.StringOutput)
+}
+
+// The status of service.
+func (o GetVpcEndpointServicesServiceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of service.
+func (o GetVpcEndpointServicesServiceOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The IDs of zones.
+func (o GetVpcEndpointServicesServiceOutput) ZoneIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesService) []string { return v.ZoneIds }).(pulumi.StringArrayOutput)
+}
+
+type GetVpcEndpointServicesServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointServicesServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointServicesService)(nil)).Elem()
+}
+
+func (o GetVpcEndpointServicesServiceArrayOutput) ToGetVpcEndpointServicesServiceArrayOutput() GetVpcEndpointServicesServiceArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicesServiceArrayOutput) ToGetVpcEndpointServicesServiceArrayOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicesServiceArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointServicesServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointServicesService {
+		return vs[0].([]GetVpcEndpointServicesService)[vs[1].(int)]
+	}).(GetVpcEndpointServicesServiceOutput)
+}
+
+type GetVpcEndpointServicesServiceResource struct {
+	// The id of resource.
+	ResourceId string `pulumi:"resourceId"`
+	// The type of resource.
+	ResourceType string `pulumi:"resourceType"`
+	// The zone id of resource.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetVpcEndpointServicesServiceResourceInput is an input type that accepts GetVpcEndpointServicesServiceResourceArgs and GetVpcEndpointServicesServiceResourceOutput values.
+// You can construct a concrete instance of `GetVpcEndpointServicesServiceResourceInput` via:
+//
+//	GetVpcEndpointServicesServiceResourceArgs{...}
+type GetVpcEndpointServicesServiceResourceInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointServicesServiceResourceOutput() GetVpcEndpointServicesServiceResourceOutput
+	ToGetVpcEndpointServicesServiceResourceOutputWithContext(context.Context) GetVpcEndpointServicesServiceResourceOutput
+}
+
+type GetVpcEndpointServicesServiceResourceArgs struct {
+	// The id of resource.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// The type of resource.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The zone id of resource.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetVpcEndpointServicesServiceResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointServicesServiceResource)(nil)).Elem()
+}
+
+func (i GetVpcEndpointServicesServiceResourceArgs) ToGetVpcEndpointServicesServiceResourceOutput() GetVpcEndpointServicesServiceResourceOutput {
+	return i.ToGetVpcEndpointServicesServiceResourceOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointServicesServiceResourceArgs) ToGetVpcEndpointServicesServiceResourceOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointServicesServiceResourceOutput)
+}
+
+// GetVpcEndpointServicesServiceResourceArrayInput is an input type that accepts GetVpcEndpointServicesServiceResourceArray and GetVpcEndpointServicesServiceResourceArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointServicesServiceResourceArrayInput` via:
+//
+//	GetVpcEndpointServicesServiceResourceArray{ GetVpcEndpointServicesServiceResourceArgs{...} }
+type GetVpcEndpointServicesServiceResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointServicesServiceResourceArrayOutput() GetVpcEndpointServicesServiceResourceArrayOutput
+	ToGetVpcEndpointServicesServiceResourceArrayOutputWithContext(context.Context) GetVpcEndpointServicesServiceResourceArrayOutput
+}
+
+type GetVpcEndpointServicesServiceResourceArray []GetVpcEndpointServicesServiceResourceInput
+
+func (GetVpcEndpointServicesServiceResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointServicesServiceResource)(nil)).Elem()
+}
+
+func (i GetVpcEndpointServicesServiceResourceArray) ToGetVpcEndpointServicesServiceResourceArrayOutput() GetVpcEndpointServicesServiceResourceArrayOutput {
+	return i.ToGetVpcEndpointServicesServiceResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointServicesServiceResourceArray) ToGetVpcEndpointServicesServiceResourceArrayOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointServicesServiceResourceArrayOutput)
+}
+
+type GetVpcEndpointServicesServiceResourceOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointServicesServiceResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointServicesServiceResource)(nil)).Elem()
+}
+
+func (o GetVpcEndpointServicesServiceResourceOutput) ToGetVpcEndpointServicesServiceResourceOutput() GetVpcEndpointServicesServiceResourceOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicesServiceResourceOutput) ToGetVpcEndpointServicesServiceResourceOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceResourceOutput {
+	return o
+}
+
+// The id of resource.
+func (o GetVpcEndpointServicesServiceResourceOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesServiceResource) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+// The type of resource.
+func (o GetVpcEndpointServicesServiceResourceOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesServiceResource) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The zone id of resource.
+func (o GetVpcEndpointServicesServiceResourceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointServicesServiceResource) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetVpcEndpointServicesServiceResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointServicesServiceResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointServicesServiceResource)(nil)).Elem()
+}
+
+func (o GetVpcEndpointServicesServiceResourceArrayOutput) ToGetVpcEndpointServicesServiceResourceArrayOutput() GetVpcEndpointServicesServiceResourceArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicesServiceResourceArrayOutput) ToGetVpcEndpointServicesServiceResourceArrayOutputWithContext(ctx context.Context) GetVpcEndpointServicesServiceResourceArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointServicesServiceResourceArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointServicesServiceResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointServicesServiceResource {
+		return vs[0].([]GetVpcEndpointServicesServiceResource)[vs[1].(int)]
+	}).(GetVpcEndpointServicesServiceResourceOutput)
+}
+
+type GetVpcEndpointZonesVpcEndpointZone struct {
+	// The Id of vpc endpoint zone.
+	Id string `pulumi:"id"`
+	// The network interface id of vpc endpoint.
+	NetworkInterfaceId string `pulumi:"networkInterfaceId"`
+	// The network interface ip of vpc endpoint.
+	NetworkInterfaceIp string `pulumi:"networkInterfaceIp"`
+	// The status of vpc endpoint service.
+	ServiceStatus string `pulumi:"serviceStatus"`
+	// The subnet id of vpc endpoint.
+	SubnetId string `pulumi:"subnetId"`
+	// The domain of vpc endpoint zone.
+	ZoneDomain string `pulumi:"zoneDomain"`
+	// The Id of vpc endpoint zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The status of vpc endpoint zone.
+	ZoneStatus string `pulumi:"zoneStatus"`
+}
+
+// GetVpcEndpointZonesVpcEndpointZoneInput is an input type that accepts GetVpcEndpointZonesVpcEndpointZoneArgs and GetVpcEndpointZonesVpcEndpointZoneOutput values.
+// You can construct a concrete instance of `GetVpcEndpointZonesVpcEndpointZoneInput` via:
+//
+//	GetVpcEndpointZonesVpcEndpointZoneArgs{...}
+type GetVpcEndpointZonesVpcEndpointZoneInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointZonesVpcEndpointZoneOutput() GetVpcEndpointZonesVpcEndpointZoneOutput
+	ToGetVpcEndpointZonesVpcEndpointZoneOutputWithContext(context.Context) GetVpcEndpointZonesVpcEndpointZoneOutput
+}
+
+type GetVpcEndpointZonesVpcEndpointZoneArgs struct {
+	// The Id of vpc endpoint zone.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The network interface id of vpc endpoint.
+	NetworkInterfaceId pulumi.StringInput `pulumi:"networkInterfaceId"`
+	// The network interface ip of vpc endpoint.
+	NetworkInterfaceIp pulumi.StringInput `pulumi:"networkInterfaceIp"`
+	// The status of vpc endpoint service.
+	ServiceStatus pulumi.StringInput `pulumi:"serviceStatus"`
+	// The subnet id of vpc endpoint.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The domain of vpc endpoint zone.
+	ZoneDomain pulumi.StringInput `pulumi:"zoneDomain"`
+	// The Id of vpc endpoint zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The status of vpc endpoint zone.
+	ZoneStatus pulumi.StringInput `pulumi:"zoneStatus"`
+}
+
+func (GetVpcEndpointZonesVpcEndpointZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointZonesVpcEndpointZone)(nil)).Elem()
+}
+
+func (i GetVpcEndpointZonesVpcEndpointZoneArgs) ToGetVpcEndpointZonesVpcEndpointZoneOutput() GetVpcEndpointZonesVpcEndpointZoneOutput {
+	return i.ToGetVpcEndpointZonesVpcEndpointZoneOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointZonesVpcEndpointZoneArgs) ToGetVpcEndpointZonesVpcEndpointZoneOutputWithContext(ctx context.Context) GetVpcEndpointZonesVpcEndpointZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointZonesVpcEndpointZoneOutput)
+}
+
+// GetVpcEndpointZonesVpcEndpointZoneArrayInput is an input type that accepts GetVpcEndpointZonesVpcEndpointZoneArray and GetVpcEndpointZonesVpcEndpointZoneArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointZonesVpcEndpointZoneArrayInput` via:
+//
+//	GetVpcEndpointZonesVpcEndpointZoneArray{ GetVpcEndpointZonesVpcEndpointZoneArgs{...} }
+type GetVpcEndpointZonesVpcEndpointZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointZonesVpcEndpointZoneArrayOutput() GetVpcEndpointZonesVpcEndpointZoneArrayOutput
+	ToGetVpcEndpointZonesVpcEndpointZoneArrayOutputWithContext(context.Context) GetVpcEndpointZonesVpcEndpointZoneArrayOutput
+}
+
+type GetVpcEndpointZonesVpcEndpointZoneArray []GetVpcEndpointZonesVpcEndpointZoneInput
+
+func (GetVpcEndpointZonesVpcEndpointZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointZonesVpcEndpointZone)(nil)).Elem()
+}
+
+func (i GetVpcEndpointZonesVpcEndpointZoneArray) ToGetVpcEndpointZonesVpcEndpointZoneArrayOutput() GetVpcEndpointZonesVpcEndpointZoneArrayOutput {
+	return i.ToGetVpcEndpointZonesVpcEndpointZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointZonesVpcEndpointZoneArray) ToGetVpcEndpointZonesVpcEndpointZoneArrayOutputWithContext(ctx context.Context) GetVpcEndpointZonesVpcEndpointZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointZonesVpcEndpointZoneArrayOutput)
+}
+
+type GetVpcEndpointZonesVpcEndpointZoneOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointZonesVpcEndpointZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointZonesVpcEndpointZone)(nil)).Elem()
+}
+
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) ToGetVpcEndpointZonesVpcEndpointZoneOutput() GetVpcEndpointZonesVpcEndpointZoneOutput {
+	return o
+}
+
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) ToGetVpcEndpointZonesVpcEndpointZoneOutputWithContext(ctx context.Context) GetVpcEndpointZonesVpcEndpointZoneOutput {
+	return o
+}
+
+// The Id of vpc endpoint zone.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The network interface id of vpc endpoint.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) NetworkInterfaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.NetworkInterfaceId }).(pulumi.StringOutput)
+}
+
+// The network interface ip of vpc endpoint.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) NetworkInterfaceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.NetworkInterfaceIp }).(pulumi.StringOutput)
+}
+
+// The status of vpc endpoint service.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) ServiceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.ServiceStatus }).(pulumi.StringOutput)
+}
+
+// The subnet id of vpc endpoint.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The domain of vpc endpoint zone.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) ZoneDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.ZoneDomain }).(pulumi.StringOutput)
+}
+
+// The Id of vpc endpoint zone.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The status of vpc endpoint zone.
+func (o GetVpcEndpointZonesVpcEndpointZoneOutput) ZoneStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointZonesVpcEndpointZone) string { return v.ZoneStatus }).(pulumi.StringOutput)
+}
+
+type GetVpcEndpointZonesVpcEndpointZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointZonesVpcEndpointZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointZonesVpcEndpointZone)(nil)).Elem()
+}
+
+func (o GetVpcEndpointZonesVpcEndpointZoneArrayOutput) ToGetVpcEndpointZonesVpcEndpointZoneArrayOutput() GetVpcEndpointZonesVpcEndpointZoneArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointZonesVpcEndpointZoneArrayOutput) ToGetVpcEndpointZonesVpcEndpointZoneArrayOutputWithContext(ctx context.Context) GetVpcEndpointZonesVpcEndpointZoneArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointZonesVpcEndpointZoneArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointZonesVpcEndpointZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointZonesVpcEndpointZone {
+		return vs[0].([]GetVpcEndpointZonesVpcEndpointZone)[vs[1].(int)]
+	}).(GetVpcEndpointZonesVpcEndpointZoneOutput)
+}
+
+type GetVpcEndpointsVpcEndpoint struct {
+	// Whether the vpc endpoint is locked.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The connection  status of vpc endpoint.
+	ConnectionStatus string `pulumi:"connectionStatus"`
+	// The create time of vpc endpoint.
+	CreationTime string `pulumi:"creationTime"`
+	// The delete time of vpc endpoint.
+	DeletedTime string `pulumi:"deletedTime"`
+	// The description of vpc endpoint.
+	Description string `pulumi:"description"`
+	// The domain of vpc endpoint.
+	EndpointDomain string `pulumi:"endpointDomain"`
+	// The Id of vpc endpoint.
+	EndpointId string `pulumi:"endpointId"`
+	// The name of vpc endpoint.
+	EndpointName string `pulumi:"endpointName"`
+	// The type of vpc endpoint.
+	EndpointType string `pulumi:"endpointType"`
+	// The Id of vpc endpoint.
+	Id string `pulumi:"id"`
+	// Whether to enable private dns name.
+	PrivateDnsEnabled bool `pulumi:"privateDnsEnabled"`
+	// The private dns name of vpc endpoint.
+	PrivateDnsName string `pulumi:"privateDnsName"`
+	// The Id of vpc endpoint service.
+	ServiceId string `pulumi:"serviceId"`
+	// The name of vpc endpoint service.
+	ServiceName string `pulumi:"serviceName"`
+	// The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+	Status string `pulumi:"status"`
+	// The update time of vpc endpoint.
+	UpdateTime string `pulumi:"updateTime"`
+	// The vpc id of vpc endpoint.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetVpcEndpointsVpcEndpointInput is an input type that accepts GetVpcEndpointsVpcEndpointArgs and GetVpcEndpointsVpcEndpointOutput values.
+// You can construct a concrete instance of `GetVpcEndpointsVpcEndpointInput` via:
+//
+//	GetVpcEndpointsVpcEndpointArgs{...}
+type GetVpcEndpointsVpcEndpointInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointsVpcEndpointOutput() GetVpcEndpointsVpcEndpointOutput
+	ToGetVpcEndpointsVpcEndpointOutputWithContext(context.Context) GetVpcEndpointsVpcEndpointOutput
+}
+
+type GetVpcEndpointsVpcEndpointArgs struct {
+	// Whether the vpc endpoint is locked.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The connection  status of vpc endpoint.
+	ConnectionStatus pulumi.StringInput `pulumi:"connectionStatus"`
+	// The create time of vpc endpoint.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The delete time of vpc endpoint.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// The description of vpc endpoint.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The domain of vpc endpoint.
+	EndpointDomain pulumi.StringInput `pulumi:"endpointDomain"`
+	// The Id of vpc endpoint.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The name of vpc endpoint.
+	EndpointName pulumi.StringInput `pulumi:"endpointName"`
+	// The type of vpc endpoint.
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The Id of vpc endpoint.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether to enable private dns name.
+	PrivateDnsEnabled pulumi.BoolInput `pulumi:"privateDnsEnabled"`
+	// The private dns name of vpc endpoint.
+	PrivateDnsName pulumi.StringInput `pulumi:"privateDnsName"`
+	// The Id of vpc endpoint service.
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
+	// The name of vpc endpoint service.
+	ServiceName pulumi.StringInput `pulumi:"serviceName"`
+	// The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of vpc endpoint.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The vpc id of vpc endpoint.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetVpcEndpointsVpcEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointsVpcEndpoint)(nil)).Elem()
+}
+
+func (i GetVpcEndpointsVpcEndpointArgs) ToGetVpcEndpointsVpcEndpointOutput() GetVpcEndpointsVpcEndpointOutput {
+	return i.ToGetVpcEndpointsVpcEndpointOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointsVpcEndpointArgs) ToGetVpcEndpointsVpcEndpointOutputWithContext(ctx context.Context) GetVpcEndpointsVpcEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointsVpcEndpointOutput)
+}
+
+// GetVpcEndpointsVpcEndpointArrayInput is an input type that accepts GetVpcEndpointsVpcEndpointArray and GetVpcEndpointsVpcEndpointArrayOutput values.
+// You can construct a concrete instance of `GetVpcEndpointsVpcEndpointArrayInput` via:
+//
+//	GetVpcEndpointsVpcEndpointArray{ GetVpcEndpointsVpcEndpointArgs{...} }
+type GetVpcEndpointsVpcEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcEndpointsVpcEndpointArrayOutput() GetVpcEndpointsVpcEndpointArrayOutput
+	ToGetVpcEndpointsVpcEndpointArrayOutputWithContext(context.Context) GetVpcEndpointsVpcEndpointArrayOutput
+}
+
+type GetVpcEndpointsVpcEndpointArray []GetVpcEndpointsVpcEndpointInput
+
+func (GetVpcEndpointsVpcEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointsVpcEndpoint)(nil)).Elem()
+}
+
+func (i GetVpcEndpointsVpcEndpointArray) ToGetVpcEndpointsVpcEndpointArrayOutput() GetVpcEndpointsVpcEndpointArrayOutput {
+	return i.ToGetVpcEndpointsVpcEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcEndpointsVpcEndpointArray) ToGetVpcEndpointsVpcEndpointArrayOutputWithContext(ctx context.Context) GetVpcEndpointsVpcEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcEndpointsVpcEndpointArrayOutput)
+}
+
+type GetVpcEndpointsVpcEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointsVpcEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcEndpointsVpcEndpoint)(nil)).Elem()
+}
+
+func (o GetVpcEndpointsVpcEndpointOutput) ToGetVpcEndpointsVpcEndpointOutput() GetVpcEndpointsVpcEndpointOutput {
+	return o
+}
+
+func (o GetVpcEndpointsVpcEndpointOutput) ToGetVpcEndpointsVpcEndpointOutputWithContext(ctx context.Context) GetVpcEndpointsVpcEndpointOutput {
+	return o
+}
+
+// Whether the vpc endpoint is locked.
+func (o GetVpcEndpointsVpcEndpointOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The connection  status of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) ConnectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.ConnectionStatus }).(pulumi.StringOutput)
+}
+
+// The create time of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The delete time of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// The description of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The domain of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) EndpointDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.EndpointDomain }).(pulumi.StringOutput)
+}
+
+// The Id of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// The name of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) EndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.EndpointName }).(pulumi.StringOutput)
+}
+
+// The type of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The Id of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether to enable private dns name.
+func (o GetVpcEndpointsVpcEndpointOutput) PrivateDnsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) bool { return v.PrivateDnsEnabled }).(pulumi.BoolOutput)
+}
+
+// The private dns name of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) PrivateDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.PrivateDnsName }).(pulumi.StringOutput)
+}
+
+// The Id of vpc endpoint service.
+func (o GetVpcEndpointsVpcEndpointOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+// The name of vpc endpoint service.
+func (o GetVpcEndpointsVpcEndpointOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+func (o GetVpcEndpointsVpcEndpointOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The vpc id of vpc endpoint.
+func (o GetVpcEndpointsVpcEndpointOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcEndpointsVpcEndpoint) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetVpcEndpointsVpcEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcEndpointsVpcEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcEndpointsVpcEndpoint)(nil)).Elem()
+}
+
+func (o GetVpcEndpointsVpcEndpointArrayOutput) ToGetVpcEndpointsVpcEndpointArrayOutput() GetVpcEndpointsVpcEndpointArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointsVpcEndpointArrayOutput) ToGetVpcEndpointsVpcEndpointArrayOutputWithContext(ctx context.Context) GetVpcEndpointsVpcEndpointArrayOutput {
+	return o
+}
+
+func (o GetVpcEndpointsVpcEndpointArrayOutput) Index(i pulumi.IntInput) GetVpcEndpointsVpcEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcEndpointsVpcEndpoint {
+		return vs[0].([]GetVpcEndpointsVpcEndpoint)[vs[1].(int)]
+	}).(GetVpcEndpointsVpcEndpointOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointConnectionZoneInput)(nil)).Elem(), VpcEndpointConnectionZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointConnectionZoneArrayInput)(nil)).Elem(), VpcEndpointConnectionZoneArray{})
@@ -1418,6 +2547,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointZonesVpcEndpointZoneArrayInput)(nil)).Elem(), VpcEndpointZonesVpcEndpointZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointsVpcEndpointInput)(nil)).Elem(), VpcEndpointsVpcEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcEndpointsVpcEndpointArrayInput)(nil)).Elem(), VpcEndpointsVpcEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointConnectionsConnectionInput)(nil)).Elem(), GetVpcEndpointConnectionsConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointConnectionsConnectionArrayInput)(nil)).Elem(), GetVpcEndpointConnectionsConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointConnectionsConnectionZoneInput)(nil)).Elem(), GetVpcEndpointConnectionsConnectionZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointConnectionsConnectionZoneArrayInput)(nil)).Elem(), GetVpcEndpointConnectionsConnectionZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointServicePermissionsPermissionInput)(nil)).Elem(), GetVpcEndpointServicePermissionsPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointServicePermissionsPermissionArrayInput)(nil)).Elem(), GetVpcEndpointServicePermissionsPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointServicesServiceInput)(nil)).Elem(), GetVpcEndpointServicesServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointServicesServiceArrayInput)(nil)).Elem(), GetVpcEndpointServicesServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointServicesServiceResourceInput)(nil)).Elem(), GetVpcEndpointServicesServiceResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointServicesServiceResourceArrayInput)(nil)).Elem(), GetVpcEndpointServicesServiceResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointZonesVpcEndpointZoneInput)(nil)).Elem(), GetVpcEndpointZonesVpcEndpointZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointZonesVpcEndpointZoneArrayInput)(nil)).Elem(), GetVpcEndpointZonesVpcEndpointZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointsVpcEndpointInput)(nil)).Elem(), GetVpcEndpointsVpcEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcEndpointsVpcEndpointArrayInput)(nil)).Elem(), GetVpcEndpointsVpcEndpointArray{})
 	pulumi.RegisterOutputType(VpcEndpointConnectionZoneOutput{})
 	pulumi.RegisterOutputType(VpcEndpointConnectionZoneArrayOutput{})
 	pulumi.RegisterOutputType(VpcEndpointConnectionsConnectionOutput{})
@@ -1436,4 +2579,18 @@ func init() {
 	pulumi.RegisterOutputType(VpcEndpointZonesVpcEndpointZoneArrayOutput{})
 	pulumi.RegisterOutputType(VpcEndpointsVpcEndpointOutput{})
 	pulumi.RegisterOutputType(VpcEndpointsVpcEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointConnectionsConnectionOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointConnectionsConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointConnectionsConnectionZoneOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointConnectionsConnectionZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointServicePermissionsPermissionOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointServicePermissionsPermissionArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointServicesServiceOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointServicesServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointServicesServiceResourceOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointServicesServiceResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointZonesVpcEndpointZoneOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointZonesVpcEndpointZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointsVpcEndpointOutput{})
+	pulumi.RegisterOutputType(GetVpcEndpointsVpcEndpointArrayOutput{})
 }

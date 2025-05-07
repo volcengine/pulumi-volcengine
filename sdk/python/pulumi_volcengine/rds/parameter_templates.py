@@ -17,6 +17,8 @@ __all__ = [
     'parameter_templates_output',
 ]
 
+warnings.warn("""volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates""", DeprecationWarning)
+
 @pulumi.output_type
 class ParameterTemplatesResult:
     """
@@ -147,7 +149,7 @@ def parameter_templates(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.parameter_templates()
+    default = volcengine.rds.get_parameter_templates()
     ```
 
 
@@ -164,6 +166,7 @@ def parameter_templates(name_regex: Optional[str] = None,
            MySQL_Community_5_7 - MySQL 5.7
            MySQL_8_0 - MySQL 8.0.
     """
+    pulumi.log.warn("""parameter_templates is deprecated: volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -202,7 +205,7 @@ def parameter_templates_output(name_regex: Optional[pulumi.Input[Optional[str]]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.parameter_templates()
+    default = volcengine.rds.get_parameter_templates()
     ```
 
 
@@ -219,4 +222,5 @@ def parameter_templates_output(name_regex: Optional[pulumi.Input[Optional[str]]]
            MySQL_Community_5_7 - MySQL 5.7
            MySQL_8_0 - MySQL 8.0.
     """
+    pulumi.log.warn("""parameter_templates is deprecated: volcengine.rds.ParameterTemplates has been deprecated in favor of volcengine.rds.getParameterTemplates""")
     ...

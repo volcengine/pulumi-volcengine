@@ -17,6 +17,8 @@ __all__ = [
     'cfw_vpc_firewall_acl_rules_output',
 ]
 
+warnings.warn("""volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules""", DeprecationWarning)
+
 @pulumi.output_type
 class CfwVpcFirewallAclRulesResult:
     """
@@ -205,7 +207,7 @@ def cfw_vpc_firewall_acl_rules(actions: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_firewall.cfw_vpc_firewall_acl_rules(actions=[
+    foo = volcengine.cloud_firewall.get_cfw_vpc_firewall_acl_rules(actions=[
             "accept",
             "deny",
         ],
@@ -224,6 +226,7 @@ def cfw_vpc_firewall_acl_rules(actions: Optional[Sequence[str]] = None,
     :param Sequence[bool] statuses: The enable status list of the vpc firewall acl rule.
     :param str vpc_firewall_id: The vpc firewall id of the vpc firewall acl rule.
     """
+    pulumi.log.warn("""cfw_vpc_firewall_acl_rules is deprecated: volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules""")
     __args__ = dict()
     __args__['actions'] = actions
     __args__['description'] = description
@@ -274,7 +277,7 @@ def cfw_vpc_firewall_acl_rules_output(actions: Optional[pulumi.Input[Optional[Se
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cloud_firewall.cfw_vpc_firewall_acl_rules(actions=[
+    foo = volcengine.cloud_firewall.get_cfw_vpc_firewall_acl_rules(actions=[
             "accept",
             "deny",
         ],
@@ -293,4 +296,5 @@ def cfw_vpc_firewall_acl_rules_output(actions: Optional[pulumi.Input[Optional[Se
     :param Sequence[bool] statuses: The enable status list of the vpc firewall acl rule.
     :param str vpc_firewall_id: The vpc firewall id of the vpc firewall acl rule.
     """
+    pulumi.log.warn("""cfw_vpc_firewall_acl_rules is deprecated: volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules""")
     ...

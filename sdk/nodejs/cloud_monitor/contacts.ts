@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.Contacts({
+ * const foo = volcengine.cloud_monitor.getContacts({
  *     ids: [
  *         "17******516",
  *         "1712**********0",
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts */
 export function contacts(args: ContactsArgs, opts?: pulumi.InvokeOptions): Promise<ContactsResult> {
+    pulumi.log.warn("contacts is deprecated: volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloud_monitor/contacts:Contacts", {
@@ -72,7 +74,7 @@ export interface ContactsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.Contacts({
+ * const foo = volcengine.cloud_monitor.getContacts({
  *     ids: [
  *         "17******516",
  *         "1712**********0",
@@ -80,6 +82,7 @@ export interface ContactsResult {
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.Contacts has been deprecated in favor of volcengine.cloud_monitor.getContacts */
 export function contactsOutput(args: ContactsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ContactsResult> {
     return pulumi.output(args).apply((a: any) => contacts(a, opts))
 }

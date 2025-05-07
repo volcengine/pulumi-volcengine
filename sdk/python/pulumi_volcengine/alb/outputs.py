@@ -54,6 +54,39 @@ __all__ = [
     'ServerGroupsServerGroupServerResult',
     'ServerGroupsServerGroupStickySessionConfigResult',
     'ZonesZoneResult',
+    'GetAclsAclResult',
+    'GetAclsAclAclEntryResult',
+    'GetAclsAclListenerResult',
+    'GetAlbsAlbResult',
+    'GetAlbsAlbAccessLogResult',
+    'GetAlbsAlbHealthLogResult',
+    'GetAlbsAlbListenerResult',
+    'GetAlbsAlbTagResult',
+    'GetAlbsAlbTlsAccessLogResult',
+    'GetAlbsAlbZoneMappingResult',
+    'GetAlbsAlbZoneMappingLoadBalancerAddressResult',
+    'GetAlbsAlbZoneMappingLoadBalancerAddressEipResult',
+    'GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocationResult',
+    'GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipResult',
+    'GetAlbsTagResult',
+    'GetCaCertificatesCertificateResult',
+    'GetCertificatesCertificateResult',
+    'GetCustomizedCfgsCfgResult',
+    'GetCustomizedCfgsCfgListenerResult',
+    'GetHealthCheckTemplatesHealthCheckTemplateResult',
+    'GetListenerDomainExtensionsDomainExtensionResult',
+    'GetListenersListenerResult',
+    'GetListenersListenerDomainExtensionResult',
+    'GetListenersListenerServerGroupResult',
+    'GetRulesRuleResult',
+    'GetRulesRuleRedirectConfigResult',
+    'GetRulesRuleRewriteConfigResult',
+    'GetServerGroupServersServerResult',
+    'GetServerGroupsServerGroupResult',
+    'GetServerGroupsServerGroupHealthCheckResult',
+    'GetServerGroupsServerGroupServerResult',
+    'GetServerGroupsServerGroupStickySessionConfigResult',
+    'GetZonesZoneResult',
 ]
 
 @pulumi.output_type
@@ -3520,6 +3553,2801 @@ class ServerGroupsServerGroupStickySessionConfigResult(dict):
 
 @pulumi.output_type
 class ZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 zone_id: str):
+        """
+        :param str id: The id of the zone.
+        :param str zone_id: The id of the zone.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetAclsAclResult(dict):
+    def __init__(__self__, *,
+                 acl_entries: Sequence['outputs.GetAclsAclAclEntryResult'],
+                 acl_entry_count: int,
+                 acl_id: str,
+                 acl_name: str,
+                 create_time: str,
+                 description: str,
+                 id: str,
+                 listeners: Sequence['outputs.GetAclsAclListenerResult'],
+                 project_name: str,
+                 update_time: str):
+        """
+        :param Sequence['GetAclsAclAclEntryArgs'] acl_entries: The entries info of acl.
+        :param int acl_entry_count: The count of acl entry.
+        :param str acl_id: The ID of Acl.
+        :param str acl_name: The name of acl.
+        :param str create_time: Creation time of Acl.
+        :param str description: The description of Acl.
+        :param str id: The ID of Acl.
+        :param Sequence['GetAclsAclListenerArgs'] listeners: The listeners of acl.
+        :param str project_name: The name of project.
+        :param str update_time: Update time of Acl.
+        """
+        pulumi.set(__self__, "acl_entries", acl_entries)
+        pulumi.set(__self__, "acl_entry_count", acl_entry_count)
+        pulumi.set(__self__, "acl_id", acl_id)
+        pulumi.set(__self__, "acl_name", acl_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="aclEntries")
+    def acl_entries(self) -> Sequence['outputs.GetAclsAclAclEntryResult']:
+        """
+        The entries info of acl.
+        """
+        return pulumi.get(self, "acl_entries")
+
+    @property
+    @pulumi.getter(name="aclEntryCount")
+    def acl_entry_count(self) -> int:
+        """
+        The count of acl entry.
+        """
+        return pulumi.get(self, "acl_entry_count")
+
+    @property
+    @pulumi.getter(name="aclId")
+    def acl_id(self) -> str:
+        """
+        The ID of Acl.
+        """
+        return pulumi.get(self, "acl_id")
+
+    @property
+    @pulumi.getter(name="aclName")
+    def acl_name(self) -> str:
+        """
+        The name of acl.
+        """
+        return pulumi.get(self, "acl_name")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Creation time of Acl.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of Acl.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of Acl.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetAclsAclListenerResult']:
+        """
+        The listeners of acl.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of project.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of Acl.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetAclsAclAclEntryResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 entry: str):
+        """
+        :param str description: The description of Acl.
+        :param str entry: The info of entry.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "entry", entry)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of Acl.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def entry(self) -> str:
+        """
+        The info of entry.
+        """
+        return pulumi.get(self, "entry")
+
+
+@pulumi.output_type
+class GetAclsAclListenerResult(dict):
+    def __init__(__self__, *,
+                 acl_type: str,
+                 listener_id: str,
+                 listener_name: str,
+                 port: int,
+                 protocol: str):
+        """
+        :param str acl_type: The type of acl.
+        :param str listener_id: The ID of Listener.
+        :param str listener_name: The Name of Listener.
+        :param int port: The port info of listener.
+        :param str protocol: The protocol info of listener.
+        """
+        pulumi.set(__self__, "acl_type", acl_type)
+        pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "listener_name", listener_name)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter(name="aclType")
+    def acl_type(self) -> str:
+        """
+        The type of acl.
+        """
+        return pulumi.get(self, "acl_type")
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        The ID of Listener.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="listenerName")
+    def listener_name(self) -> str:
+        """
+        The Name of Listener.
+        """
+        return pulumi.get(self, "listener_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port info of listener.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol info of listener.
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetAlbsAlbResult(dict):
+    def __init__(__self__, *,
+                 access_logs: Sequence['outputs.GetAlbsAlbAccessLogResult'],
+                 address_ip_version: str,
+                 business_status: str,
+                 create_time: str,
+                 delete_protection: str,
+                 deleted_time: str,
+                 description: str,
+                 dns_name: str,
+                 health_logs: Sequence['outputs.GetAlbsAlbHealthLogResult'],
+                 id: str,
+                 listeners: Sequence['outputs.GetAlbsAlbListenerResult'],
+                 load_balancer_billing_type: int,
+                 load_balancer_id: str,
+                 load_balancer_name: str,
+                 local_addresses: Sequence[str],
+                 lock_reason: str,
+                 overdue_time: str,
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetAlbsAlbTagResult'],
+                 tls_access_logs: Sequence['outputs.GetAlbsAlbTlsAccessLogResult'],
+                 type: str,
+                 update_time: str,
+                 vpc_id: str,
+                 zone_mappings: Sequence['outputs.GetAlbsAlbZoneMappingResult']):
+        """
+        :param Sequence['GetAlbsAlbAccessLogArgs'] access_logs: The access log information of the Alb.
+        :param str address_ip_version: The address ip version of the Alb, valid value: `IPv4`, `DualStack`.
+        :param str business_status: The business status of the Alb, valid value:`Normal`, `FinancialLocked`.
+        :param str create_time: The create time of the Alb.
+        :param str delete_protection: The deletion protection function of the Alb instance is turned on or off.
+        :param str deleted_time: The expected deleted time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+        :param str description: The description of the Alb.
+        :param str dns_name: The DNS name.
+        :param Sequence['GetAlbsAlbHealthLogArgs'] health_logs: The health log information of the Alb.
+        :param str id: The ID of the Alb.
+        :param Sequence['GetAlbsAlbListenerArgs'] listeners: The listener information of the Alb.
+        :param int load_balancer_billing_type: The billing type of the Alb.
+        :param str load_balancer_id: The ID of the Alb.
+        :param str load_balancer_name: The name of the Alb.
+        :param Sequence[str] local_addresses: The local addresses of the Alb.
+        :param str lock_reason: The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+        :param str overdue_time: The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+        :param str project_name: The project name of the Alb.
+        :param str status: The status of the Alb.
+        :param Sequence['GetAlbsAlbTagArgs'] tags: Tags.
+        :param Sequence['GetAlbsAlbTlsAccessLogArgs'] tls_access_logs: The tls access log information of the Alb.
+        :param str type: The type of the Alb, valid value: `public`, `private`.
+        :param str update_time: The update time of the Alb.
+        :param str vpc_id: The vpc id which Alb belongs to.
+        :param Sequence['GetAlbsAlbZoneMappingArgs'] zone_mappings: Configuration information of the Alb instance in different Availability Zones.
+        """
+        pulumi.set(__self__, "access_logs", access_logs)
+        pulumi.set(__self__, "address_ip_version", address_ip_version)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "delete_protection", delete_protection)
+        pulumi.set(__self__, "deleted_time", deleted_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dns_name", dns_name)
+        pulumi.set(__self__, "health_logs", health_logs)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "load_balancer_billing_type", load_balancer_billing_type)
+        pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        pulumi.set(__self__, "load_balancer_name", load_balancer_name)
+        pulumi.set(__self__, "local_addresses", local_addresses)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "tls_access_logs", tls_access_logs)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_mappings", zone_mappings)
+
+    @property
+    @pulumi.getter(name="accessLogs")
+    def access_logs(self) -> Sequence['outputs.GetAlbsAlbAccessLogResult']:
+        """
+        The access log information of the Alb.
+        """
+        return pulumi.get(self, "access_logs")
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> str:
+        """
+        The address ip version of the Alb, valid value: `IPv4`, `DualStack`.
+        """
+        return pulumi.get(self, "address_ip_version")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of the Alb, valid value:`Normal`, `FinancialLocked`.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the Alb.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="deleteProtection")
+    def delete_protection(self) -> str:
+        """
+        The deletion protection function of the Alb instance is turned on or off.
+        """
+        return pulumi.get(self, "delete_protection")
+
+    @property
+    @pulumi.getter(name="deletedTime")
+    def deleted_time(self) -> str:
+        """
+        The expected deleted time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+        """
+        return pulumi.get(self, "deleted_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Alb.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        The DNS name.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="healthLogs")
+    def health_logs(self) -> Sequence['outputs.GetAlbsAlbHealthLogResult']:
+        """
+        The health log information of the Alb.
+        """
+        return pulumi.get(self, "health_logs")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Alb.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetAlbsAlbListenerResult']:
+        """
+        The listener information of the Alb.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
+    @pulumi.getter(name="loadBalancerBillingType")
+    def load_balancer_billing_type(self) -> int:
+        """
+        The billing type of the Alb.
+        """
+        return pulumi.get(self, "load_balancer_billing_type")
+
+    @property
+    @pulumi.getter(name="loadBalancerId")
+    def load_balancer_id(self) -> str:
+        """
+        The ID of the Alb.
+        """
+        return pulumi.get(self, "load_balancer_id")
+
+    @property
+    @pulumi.getter(name="loadBalancerName")
+    def load_balancer_name(self) -> str:
+        """
+        The name of the Alb.
+        """
+        return pulumi.get(self, "load_balancer_name")
+
+    @property
+    @pulumi.getter(name="localAddresses")
+    def local_addresses(self) -> Sequence[str]:
+        """
+        The local addresses of the Alb.
+        """
+        return pulumi.get(self, "local_addresses")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> str:
+        """
+        The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the Alb.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Alb.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetAlbsAlbTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="tlsAccessLogs")
+    def tls_access_logs(self) -> Sequence['outputs.GetAlbsAlbTlsAccessLogResult']:
+        """
+        The tls access log information of the Alb.
+        """
+        return pulumi.get(self, "tls_access_logs")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the Alb, valid value: `public`, `private`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the Alb.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id which Alb belongs to.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneMappings")
+    def zone_mappings(self) -> Sequence['outputs.GetAlbsAlbZoneMappingResult']:
+        """
+        Configuration information of the Alb instance in different Availability Zones.
+        """
+        return pulumi.get(self, "zone_mappings")
+
+
+@pulumi.output_type
+class GetAlbsAlbAccessLogResult(dict):
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 enabled: bool):
+        """
+        :param str bucket_name: The bucket name where the logs are stored.
+        :param bool enabled: Whether the tls access log function is enabled.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The bucket name where the logs are stored.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether the tls access log function is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class GetAlbsAlbHealthLogResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 project_id: str,
+                 topic_id: str):
+        """
+        :param bool enabled: Whether the tls access log function is enabled.
+        :param str project_id: The TLS project id bound to the access log.
+        :param str topic_id: The TLS topic id bound to the access log.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "topic_id", topic_id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether the tls access log function is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The TLS project id bound to the access log.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The TLS topic id bound to the access log.
+        """
+        return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
+class GetAlbsAlbListenerResult(dict):
+    def __init__(__self__, *,
+                 listener_id: str,
+                 listener_name: str):
+        """
+        :param str listener_id: The listener id of the Alb.
+        :param str listener_name: The listener name of the Alb.
+        """
+        pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "listener_name", listener_name)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        The listener id of the Alb.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="listenerName")
+    def listener_name(self) -> str:
+        """
+        The listener name of the Alb.
+        """
+        return pulumi.get(self, "listener_name")
+
+
+@pulumi.output_type
+class GetAlbsAlbTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAlbsAlbTlsAccessLogResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 project_id: str,
+                 topic_id: str):
+        """
+        :param bool enabled: Whether the tls access log function is enabled.
+        :param str project_id: The TLS project id bound to the access log.
+        :param str topic_id: The TLS topic id bound to the access log.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "topic_id", topic_id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether the tls access log function is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The TLS project id bound to the access log.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The TLS topic id bound to the access log.
+        """
+        return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
+class GetAlbsAlbZoneMappingResult(dict):
+    def __init__(__self__, *,
+                 load_balancer_addresses: Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressResult'],
+                 subnet_id: str,
+                 zone_id: str):
+        """
+        :param Sequence['GetAlbsAlbZoneMappingLoadBalancerAddressArgs'] load_balancer_addresses: The IP address information of the Alb in this availability zone.
+        :param str subnet_id: The subnet id of the Alb in this availability zone.
+        :param str zone_id: The availability zone id of the Alb.
+        """
+        pulumi.set(__self__, "load_balancer_addresses", load_balancer_addresses)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="loadBalancerAddresses")
+    def load_balancer_addresses(self) -> Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressResult']:
+        """
+        The IP address information of the Alb in this availability zone.
+        """
+        return pulumi.get(self, "load_balancer_addresses")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The subnet id of the Alb in this availability zone.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The availability zone id of the Alb.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetAlbsAlbZoneMappingLoadBalancerAddressResult(dict):
+    def __init__(__self__, *,
+                 eip_address: str,
+                 eip_id: str,
+                 eips: Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressEipResult'],
+                 eni_address: str,
+                 eni_id: str,
+                 eni_ipv6_address: str,
+                 ipv6_eip_id: str,
+                 ipv6_eips: Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipResult']):
+        """
+        :param str eip_address: The Eip address of the Alb.
+        :param str eip_id: The Eip id of alb instance in this availability zone.
+        :param Sequence['GetAlbsAlbZoneMappingLoadBalancerAddressEipArgs'] eips: The Eip information of the Alb in this availability zone.
+        :param str eni_address: The private ip address of the Alb.
+        :param str eni_id: The Eni id of the Alb in this availability zone.
+        :param str eni_ipv6_address: The Eni Ipv6 address of the Alb in this availability zone.
+        :param str ipv6_eip_id: The Ipv6 Eip id of alb instance in this availability zone.
+        :param Sequence['GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipArgs'] ipv6_eips: The Ipv6 Eip information of the Alb in this availability zone.
+        """
+        pulumi.set(__self__, "eip_address", eip_address)
+        pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "eips", eips)
+        pulumi.set(__self__, "eni_address", eni_address)
+        pulumi.set(__self__, "eni_id", eni_id)
+        pulumi.set(__self__, "eni_ipv6_address", eni_ipv6_address)
+        pulumi.set(__self__, "ipv6_eip_id", ipv6_eip_id)
+        pulumi.set(__self__, "ipv6_eips", ipv6_eips)
+
+    @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> str:
+        """
+        The Eip address of the Alb.
+        """
+        return pulumi.get(self, "eip_address")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> str:
+        """
+        The Eip id of alb instance in this availability zone.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @property
+    @pulumi.getter
+    def eips(self) -> Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressEipResult']:
+        """
+        The Eip information of the Alb in this availability zone.
+        """
+        return pulumi.get(self, "eips")
+
+    @property
+    @pulumi.getter(name="eniAddress")
+    def eni_address(self) -> str:
+        """
+        The private ip address of the Alb.
+        """
+        return pulumi.get(self, "eni_address")
+
+    @property
+    @pulumi.getter(name="eniId")
+    def eni_id(self) -> str:
+        """
+        The Eni id of the Alb in this availability zone.
+        """
+        return pulumi.get(self, "eni_id")
+
+    @property
+    @pulumi.getter(name="eniIpv6Address")
+    def eni_ipv6_address(self) -> str:
+        """
+        The Eni Ipv6 address of the Alb in this availability zone.
+        """
+        return pulumi.get(self, "eni_ipv6_address")
+
+    @property
+    @pulumi.getter(name="ipv6EipId")
+    def ipv6_eip_id(self) -> str:
+        """
+        The Ipv6 Eip id of alb instance in this availability zone.
+        """
+        return pulumi.get(self, "ipv6_eip_id")
+
+    @property
+    @pulumi.getter(name="ipv6Eips")
+    def ipv6_eips(self) -> Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipResult']:
+        """
+        The Ipv6 Eip information of the Alb in this availability zone.
+        """
+        return pulumi.get(self, "ipv6_eips")
+
+
+@pulumi.output_type
+class GetAlbsAlbZoneMappingLoadBalancerAddressEipResult(dict):
+    def __init__(__self__, *,
+                 association_mode: str,
+                 bandwidth: int,
+                 eip_address: str,
+                 eip_billing_type: str,
+                 eip_type: str,
+                 isp: str,
+                 pop_locations: Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocationResult'],
+                 security_protection_types: Sequence[str]):
+        """
+        :param str association_mode: The association mode of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+        :param int bandwidth: The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+        :param str eip_address: The Eip address of the Alb.
+        :param str eip_billing_type: The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param str eip_type: The Eip type of the Alb.
+        :param str isp: The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+        :param Sequence['GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocationArgs'] pop_locations: The pop locations of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+        :param Sequence[str] security_protection_types: The security protection types of the Alb.
+        """
+        pulumi.set(__self__, "association_mode", association_mode)
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "eip_address", eip_address)
+        pulumi.set(__self__, "eip_billing_type", eip_billing_type)
+        pulumi.set(__self__, "eip_type", eip_type)
+        pulumi.set(__self__, "isp", isp)
+        pulumi.set(__self__, "pop_locations", pop_locations)
+        pulumi.set(__self__, "security_protection_types", security_protection_types)
+
+    @property
+    @pulumi.getter(name="associationMode")
+    def association_mode(self) -> str:
+        """
+        The association mode of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+        """
+        return pulumi.get(self, "association_mode")
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> str:
+        """
+        The Eip address of the Alb.
+        """
+        return pulumi.get(self, "eip_address")
+
+    @property
+    @pulumi.getter(name="eipBillingType")
+    def eip_billing_type(self) -> str:
+        """
+        The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        """
+        return pulumi.get(self, "eip_billing_type")
+
+    @property
+    @pulumi.getter(name="eipType")
+    def eip_type(self) -> str:
+        """
+        The Eip type of the Alb.
+        """
+        return pulumi.get(self, "eip_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        """
+        The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+        """
+        return pulumi.get(self, "isp")
+
+    @property
+    @pulumi.getter(name="popLocations")
+    def pop_locations(self) -> Sequence['outputs.GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocationResult']:
+        """
+        The pop locations of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+        """
+        return pulumi.get(self, "pop_locations")
+
+    @property
+    @pulumi.getter(name="securityProtectionTypes")
+    def security_protection_types(self) -> Sequence[str]:
+        """
+        The security protection types of the Alb.
+        """
+        return pulumi.get(self, "security_protection_types")
+
+
+@pulumi.output_type
+class GetAlbsAlbZoneMappingLoadBalancerAddressEipPopLocationResult(dict):
+    def __init__(__self__, *,
+                 pop_id: str,
+                 pop_name: str):
+        """
+        :param str pop_id: The pop id of the Anycast Eip.
+        :param str pop_name: The pop name of the Anycast Eip.
+        """
+        pulumi.set(__self__, "pop_id", pop_id)
+        pulumi.set(__self__, "pop_name", pop_name)
+
+    @property
+    @pulumi.getter(name="popId")
+    def pop_id(self) -> str:
+        """
+        The pop id of the Anycast Eip.
+        """
+        return pulumi.get(self, "pop_id")
+
+    @property
+    @pulumi.getter(name="popName")
+    def pop_name(self) -> str:
+        """
+        The pop name of the Anycast Eip.
+        """
+        return pulumi.get(self, "pop_name")
+
+
+@pulumi.output_type
+class GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipResult(dict):
+    def __init__(__self__, *,
+                 bandwidth: int,
+                 billing_type: str,
+                 isp: str):
+        """
+        :param int bandwidth: The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+        :param str billing_type: The billing type of the Ipv6 Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param str isp: The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+        """
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "isp", isp)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> str:
+        """
+        The billing type of the Ipv6 Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        """
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        """
+        The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+        """
+        return pulumi.get(self, "isp")
+
+
+@pulumi.output_type
+class GetAlbsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCaCertificatesCertificateResult(dict):
+    def __init__(__self__, *,
+                 ca_certificate_id: str,
+                 ca_certificate_name: str,
+                 certificate_type: str,
+                 create_time: str,
+                 description: str,
+                 domain_name: str,
+                 expired_at: str,
+                 listeners: Sequence[str],
+                 project_name: str,
+                 status: str):
+        """
+        :param str ca_certificate_id: The ID of the CA certificate.
+        :param str ca_certificate_name: The name of the CA certificate.
+        :param str certificate_type: The type of the CA certificate.
+        :param str create_time: The create time of the CA Certificate.
+        :param str description: The description of the CA certificate.
+        :param str domain_name: The domain name of the CA Certificate.
+        :param str expired_at: The expire time of the CA Certificate.
+        :param Sequence[str] listeners: The ID list of the CA Listener.
+        :param str project_name: The project name of the CA certificate.
+        :param str status: The status of the CA Certificate.
+        """
+        pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        pulumi.set(__self__, "ca_certificate_name", ca_certificate_name)
+        pulumi.set(__self__, "certificate_type", certificate_type)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "expired_at", expired_at)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="caCertificateId")
+    def ca_certificate_id(self) -> str:
+        """
+        The ID of the CA certificate.
+        """
+        return pulumi.get(self, "ca_certificate_id")
+
+    @property
+    @pulumi.getter(name="caCertificateName")
+    def ca_certificate_name(self) -> str:
+        """
+        The name of the CA certificate.
+        """
+        return pulumi.get(self, "ca_certificate_name")
+
+    @property
+    @pulumi.getter(name="certificateType")
+    def certificate_type(self) -> str:
+        """
+        The type of the CA certificate.
+        """
+        return pulumi.get(self, "certificate_type")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the CA Certificate.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the CA certificate.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        The domain name of the CA Certificate.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter(name="expiredAt")
+    def expired_at(self) -> str:
+        """
+        The expire time of the CA Certificate.
+        """
+        return pulumi.get(self, "expired_at")
+
+    @property
+    @pulumi.getter
+    def listeners(self) -> Sequence[str]:
+        """
+        The ID list of the CA Listener.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the CA certificate.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the CA Certificate.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetCertificatesCertificateResult(dict):
+    def __init__(__self__, *,
+                 certificate_id: str,
+                 certificate_name: str,
+                 certificate_type: str,
+                 create_time: str,
+                 description: str,
+                 domain_name: str,
+                 expired_at: str,
+                 id: str,
+                 listeners: Sequence[str],
+                 project_name: str,
+                 status: str):
+        """
+        :param str certificate_id: The ID of the Certificate.
+        :param str certificate_name: The Name of Certificate.
+        :param str certificate_type: The type of the Certificate.
+        :param str create_time: The create time of the Certificate.
+        :param str description: The description of the Certificate.
+        :param str domain_name: The domain name of the Certificate.
+        :param str expired_at: The expire time of the Certificate.
+        :param str id: The ID of the Certificate.
+        :param Sequence[str] listeners: The ID list of the Listener.
+        :param str project_name: The ProjectName of the Certificate.
+        :param str status: The status of the Certificate.
+        """
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "certificate_name", certificate_name)
+        pulumi.set(__self__, "certificate_type", certificate_type)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "expired_at", expired_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> str:
+        """
+        The ID of the Certificate.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateName")
+    def certificate_name(self) -> str:
+        """
+        The Name of Certificate.
+        """
+        return pulumi.get(self, "certificate_name")
+
+    @property
+    @pulumi.getter(name="certificateType")
+    def certificate_type(self) -> str:
+        """
+        The type of the Certificate.
+        """
+        return pulumi.get(self, "certificate_type")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the Certificate.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Certificate.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        The domain name of the Certificate.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter(name="expiredAt")
+    def expired_at(self) -> str:
+        """
+        The expire time of the Certificate.
+        """
+        return pulumi.get(self, "expired_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Certificate.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def listeners(self) -> Sequence[str]:
+        """
+        The ID list of the Listener.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the Certificate.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Certificate.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetCustomizedCfgsCfgResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 customized_cfg_content: str,
+                 customized_cfg_id: str,
+                 customized_cfg_name: str,
+                 description: str,
+                 id: str,
+                 listeners: Sequence['outputs.GetCustomizedCfgsCfgListenerResult'],
+                 project_name: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param str create_time: The create time of CustomizedCfg.
+        :param str customized_cfg_content: The content of CustomizedCfg.
+        :param str customized_cfg_id: The ID of CustomizedCfg.
+        :param str customized_cfg_name: The name of the CustomizedCfg.
+        :param str description: The description of CustomizedCfg.
+        :param str id: The ID of CustomizedCfg.
+        :param Sequence['GetCustomizedCfgsCfgListenerArgs'] listeners: The listeners of CustomizedCfg.
+        :param str project_name: The project name of the CustomizedCfg.
+        :param str status: The status of CustomizedCfg.
+        :param str update_time: The update time of CustomizedCfg.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "customized_cfg_content", customized_cfg_content)
+        pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
+        pulumi.set(__self__, "customized_cfg_name", customized_cfg_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of CustomizedCfg.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="customizedCfgContent")
+    def customized_cfg_content(self) -> str:
+        """
+        The content of CustomizedCfg.
+        """
+        return pulumi.get(self, "customized_cfg_content")
+
+    @property
+    @pulumi.getter(name="customizedCfgId")
+    def customized_cfg_id(self) -> str:
+        """
+        The ID of CustomizedCfg.
+        """
+        return pulumi.get(self, "customized_cfg_id")
+
+    @property
+    @pulumi.getter(name="customizedCfgName")
+    def customized_cfg_name(self) -> str:
+        """
+        The name of the CustomizedCfg.
+        """
+        return pulumi.get(self, "customized_cfg_name")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of CustomizedCfg.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of CustomizedCfg.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetCustomizedCfgsCfgListenerResult']:
+        """
+        The listeners of CustomizedCfg.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the CustomizedCfg.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of CustomizedCfg.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of CustomizedCfg.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetCustomizedCfgsCfgListenerResult(dict):
+    def __init__(__self__, *,
+                 listener_id: str,
+                 listener_name: str,
+                 port: int,
+                 protocol: str):
+        """
+        :param str listener_id: The id of the listener.
+        :param str listener_name: The Name of Listener.
+        :param int port: The port info of listener.
+        :param str protocol: The protocol info of listener.
+        """
+        pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "listener_name", listener_name)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        The id of the listener.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="listenerName")
+    def listener_name(self) -> str:
+        """
+        The Name of Listener.
+        """
+        return pulumi.get(self, "listener_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port info of listener.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol info of listener.
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetHealthCheckTemplatesHealthCheckTemplateResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 health_check_domain: str,
+                 health_check_http_code: str,
+                 health_check_http_version: str,
+                 health_check_interval: int,
+                 health_check_method: str,
+                 health_check_protocol: str,
+                 health_check_template_id: str,
+                 health_check_template_name: str,
+                 health_check_timeout: int,
+                 health_check_uri: str,
+                 healthy_threshold: int,
+                 id: str,
+                 unhealthy_threshold: int):
+        """
+        :param str description: The description of health check template.
+        :param str health_check_domain: The domain name to health check.
+        :param str health_check_http_code: The normal HTTP status code for health check, the default is http_2xx, http_3xx, separated by commas.
+        :param str health_check_http_version: The HTTP version of health check.
+        :param int health_check_interval: The interval for performing health checks, the default value is 2, and the value is 1-300.
+        :param str health_check_method: The health check method,default is `GET`,support `GET` and ``HEAD.
+        :param str health_check_protocol: The protocol of health check,only support HTTP.
+        :param str health_check_template_id: The ID of health check template.
+        :param str health_check_template_name: The name of health check template to query.
+        :param int health_check_timeout: The timeout of health check response,the default value is 2, and the value is 1-60.
+        :param str health_check_uri: The uri to health check,default is `/`.
+        :param int healthy_threshold: The healthy threshold of the health check, the default is 3, the value is 2-10.
+        :param str id: The id of the health check template.
+        :param int unhealthy_threshold: The unhealthy threshold of the health check, the default is 3, the value is 2-10.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "health_check_domain", health_check_domain)
+        pulumi.set(__self__, "health_check_http_code", health_check_http_code)
+        pulumi.set(__self__, "health_check_http_version", health_check_http_version)
+        pulumi.set(__self__, "health_check_interval", health_check_interval)
+        pulumi.set(__self__, "health_check_method", health_check_method)
+        pulumi.set(__self__, "health_check_protocol", health_check_protocol)
+        pulumi.set(__self__, "health_check_template_id", health_check_template_id)
+        pulumi.set(__self__, "health_check_template_name", health_check_template_name)
+        pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        pulumi.set(__self__, "health_check_uri", health_check_uri)
+        pulumi.set(__self__, "healthy_threshold", healthy_threshold)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "unhealthy_threshold", unhealthy_threshold)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of health check template.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="healthCheckDomain")
+    def health_check_domain(self) -> str:
+        """
+        The domain name to health check.
+        """
+        return pulumi.get(self, "health_check_domain")
+
+    @property
+    @pulumi.getter(name="healthCheckHttpCode")
+    def health_check_http_code(self) -> str:
+        """
+        The normal HTTP status code for health check, the default is http_2xx, http_3xx, separated by commas.
+        """
+        return pulumi.get(self, "health_check_http_code")
+
+    @property
+    @pulumi.getter(name="healthCheckHttpVersion")
+    def health_check_http_version(self) -> str:
+        """
+        The HTTP version of health check.
+        """
+        return pulumi.get(self, "health_check_http_version")
+
+    @property
+    @pulumi.getter(name="healthCheckInterval")
+    def health_check_interval(self) -> int:
+        """
+        The interval for performing health checks, the default value is 2, and the value is 1-300.
+        """
+        return pulumi.get(self, "health_check_interval")
+
+    @property
+    @pulumi.getter(name="healthCheckMethod")
+    def health_check_method(self) -> str:
+        """
+        The health check method,default is `GET`,support `GET` and ``HEAD.
+        """
+        return pulumi.get(self, "health_check_method")
+
+    @property
+    @pulumi.getter(name="healthCheckProtocol")
+    def health_check_protocol(self) -> str:
+        """
+        The protocol of health check,only support HTTP.
+        """
+        return pulumi.get(self, "health_check_protocol")
+
+    @property
+    @pulumi.getter(name="healthCheckTemplateId")
+    def health_check_template_id(self) -> str:
+        """
+        The ID of health check template.
+        """
+        return pulumi.get(self, "health_check_template_id")
+
+    @property
+    @pulumi.getter(name="healthCheckTemplateName")
+    def health_check_template_name(self) -> str:
+        """
+        The name of health check template to query.
+        """
+        return pulumi.get(self, "health_check_template_name")
+
+    @property
+    @pulumi.getter(name="healthCheckTimeout")
+    def health_check_timeout(self) -> int:
+        """
+        The timeout of health check response,the default value is 2, and the value is 1-60.
+        """
+        return pulumi.get(self, "health_check_timeout")
+
+    @property
+    @pulumi.getter(name="healthCheckUri")
+    def health_check_uri(self) -> str:
+        """
+        The uri to health check,default is `/`.
+        """
+        return pulumi.get(self, "health_check_uri")
+
+    @property
+    @pulumi.getter(name="healthyThreshold")
+    def healthy_threshold(self) -> int:
+        """
+        The healthy threshold of the health check, the default is 3, the value is 2-10.
+        """
+        return pulumi.get(self, "healthy_threshold")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the health check template.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="unhealthyThreshold")
+    def unhealthy_threshold(self) -> int:
+        """
+        The unhealthy threshold of the health check, the default is 3, the value is 2-10.
+        """
+        return pulumi.get(self, "unhealthy_threshold")
+
+
+@pulumi.output_type
+class GetListenerDomainExtensionsDomainExtensionResult(dict):
+    def __init__(__self__, *,
+                 certificate_id: str,
+                 domain: str,
+                 domain_extension_id: str,
+                 id: str,
+                 listener_id: str):
+        """
+        :param str certificate_id: The server certificate ID that domain used.
+        :param str domain: The domain.
+        :param str domain_extension_id: The extension domain ID.
+        :param str id: The ID of the Listener.
+        :param str listener_id: A Listener ID.
+        """
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_extension_id", domain_extension_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listener_id", listener_id)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> str:
+        """
+        The server certificate ID that domain used.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="domainExtensionId")
+    def domain_extension_id(self) -> str:
+        """
+        The extension domain ID.
+        """
+        return pulumi.get(self, "domain_extension_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Listener.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        A Listener ID.
+        """
+        return pulumi.get(self, "listener_id")
+
+
+@pulumi.output_type
+class GetListenersListenerResult(dict):
+    def __init__(__self__, *,
+                 acl_ids: Sequence[str],
+                 acl_status: str,
+                 acl_type: str,
+                 ca_certificate_id: str,
+                 cert_center_certificate_id: str,
+                 certificate_id: str,
+                 certificate_source: str,
+                 create_time: str,
+                 customized_cfg_id: str,
+                 description: str,
+                 domain_extensions: Sequence['outputs.GetListenersListenerDomainExtensionResult'],
+                 enable_http2: str,
+                 enable_quic: str,
+                 enabled: str,
+                 id: str,
+                 listener_id: str,
+                 listener_name: str,
+                 load_balancer_id: str,
+                 port: int,
+                 project_name: str,
+                 protocol: str,
+                 server_group_id: str,
+                 server_groups: Sequence['outputs.GetListenersListenerServerGroupResult'],
+                 status: str,
+                 update_time: str):
+        """
+        :param Sequence[str] acl_ids: The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
+        :param str acl_status: Whether to enable the access control function,valid value is on or off.
+        :param str acl_type: The access control type.
+        :param str ca_certificate_id: CA certificate ID associated with HTTPS listener.
+        :param str cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
+        :param str certificate_id: The server certificate ID that domain used.
+        :param str certificate_source: The source of the certificate.
+        :param str create_time: The create time of the Listener.
+        :param str customized_cfg_id: The customized configuration ID, the value is empty string when not bound.
+        :param str description: The description of listener.
+        :param Sequence['GetListenersListenerDomainExtensionArgs'] domain_extensions: The HTTPS listener association list of extension domains for.
+        :param str enable_http2: The HTTP2 feature switch,valid value is on or off.
+        :param str enable_quic: The QUIC feature switch,valid value is on or off.
+        :param str enabled: The enable status of the Listener.
+        :param str id: The ID of the Listener.
+        :param str listener_id: The ID of the Listener.
+        :param str listener_name: The name of the Listener.
+        :param str load_balancer_id: The id of the Alb.
+        :param int port: The port receiving request of the Listener.
+        :param str project_name: The project name of the listener.
+        :param str protocol: The protocol of the Listener.
+        :param str server_group_id: The ID of server group.
+        :param Sequence['GetListenersListenerServerGroupArgs'] server_groups: The list of server groups with associated listeners.
+        :param str status: The status of the Listener.
+        :param str update_time: The update time of the Listener.
+        """
+        pulumi.set(__self__, "acl_ids", acl_ids)
+        pulumi.set(__self__, "acl_status", acl_status)
+        pulumi.set(__self__, "acl_type", acl_type)
+        pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "certificate_source", certificate_source)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_extensions", domain_extensions)
+        pulumi.set(__self__, "enable_http2", enable_http2)
+        pulumi.set(__self__, "enable_quic", enable_quic)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "listener_name", listener_name)
+        pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "server_groups", server_groups)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="aclIds")
+    def acl_ids(self) -> Sequence[str]:
+        """
+        The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
+        """
+        return pulumi.get(self, "acl_ids")
+
+    @property
+    @pulumi.getter(name="aclStatus")
+    def acl_status(self) -> str:
+        """
+        Whether to enable the access control function,valid value is on or off.
+        """
+        return pulumi.get(self, "acl_status")
+
+    @property
+    @pulumi.getter(name="aclType")
+    def acl_type(self) -> str:
+        """
+        The access control type.
+        """
+        return pulumi.get(self, "acl_type")
+
+    @property
+    @pulumi.getter(name="caCertificateId")
+    def ca_certificate_id(self) -> str:
+        """
+        CA certificate ID associated with HTTPS listener.
+        """
+        return pulumi.get(self, "ca_certificate_id")
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> str:
+        """
+        The certificate id associated with the listener. Source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> str:
+        """
+        The server certificate ID that domain used.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> str:
+        """
+        The source of the certificate.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the Listener.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="customizedCfgId")
+    def customized_cfg_id(self) -> str:
+        """
+        The customized configuration ID, the value is empty string when not bound.
+        """
+        return pulumi.get(self, "customized_cfg_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of listener.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="domainExtensions")
+    def domain_extensions(self) -> Sequence['outputs.GetListenersListenerDomainExtensionResult']:
+        """
+        The HTTPS listener association list of extension domains for.
+        """
+        return pulumi.get(self, "domain_extensions")
+
+    @property
+    @pulumi.getter(name="enableHttp2")
+    def enable_http2(self) -> str:
+        """
+        The HTTP2 feature switch,valid value is on or off.
+        """
+        return pulumi.get(self, "enable_http2")
+
+    @property
+    @pulumi.getter(name="enableQuic")
+    def enable_quic(self) -> str:
+        """
+        The QUIC feature switch,valid value is on or off.
+        """
+        return pulumi.get(self, "enable_quic")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> str:
+        """
+        The enable status of the Listener.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Listener.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        The ID of the Listener.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="listenerName")
+    def listener_name(self) -> str:
+        """
+        The name of the Listener.
+        """
+        return pulumi.get(self, "listener_name")
+
+    @property
+    @pulumi.getter(name="loadBalancerId")
+    def load_balancer_id(self) -> str:
+        """
+        The id of the Alb.
+        """
+        return pulumi.get(self, "load_balancer_id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port receiving request of the Listener.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the listener.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of the Listener.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> str:
+        """
+        The ID of server group.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter(name="serverGroups")
+    def server_groups(self) -> Sequence['outputs.GetListenersListenerServerGroupResult']:
+        """
+        The list of server groups with associated listeners.
+        """
+        return pulumi.get(self, "server_groups")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Listener.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the Listener.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetListenersListenerDomainExtensionResult(dict):
+    def __init__(__self__, *,
+                 certificate_id: str,
+                 domain: str,
+                 domain_extension_id: str,
+                 listener_id: str):
+        """
+        :param str certificate_id: The server certificate ID that domain used.
+        :param str domain: The domain.
+        :param str domain_extension_id: The extension domain ID.
+        :param str listener_id: The ID of the Listener.
+        """
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_extension_id", domain_extension_id)
+        pulumi.set(__self__, "listener_id", listener_id)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> str:
+        """
+        The server certificate ID that domain used.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="domainExtensionId")
+    def domain_extension_id(self) -> str:
+        """
+        The extension domain ID.
+        """
+        return pulumi.get(self, "domain_extension_id")
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        The ID of the Listener.
+        """
+        return pulumi.get(self, "listener_id")
+
+
+@pulumi.output_type
+class GetListenersListenerServerGroupResult(dict):
+    def __init__(__self__, *,
+                 server_group_id: str,
+                 server_group_name: str):
+        """
+        :param str server_group_id: The ID of server group.
+        :param str server_group_name: The name of server group.
+        """
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "server_group_name", server_group_name)
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> str:
+        """
+        The ID of server group.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter(name="serverGroupName")
+    def server_group_name(self) -> str:
+        """
+        The name of server group.
+        """
+        return pulumi.get(self, "server_group_name")
+
+
+@pulumi.output_type
+class GetRulesRuleResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 domain: str,
+                 id: str,
+                 redirect_configs: Sequence['outputs.GetRulesRuleRedirectConfigResult'],
+                 rewrite_configs: Sequence['outputs.GetRulesRuleRewriteConfigResult'],
+                 rewrite_enabled: str,
+                 rule_action: str,
+                 rule_id: str,
+                 server_group_id: str,
+                 traffic_limit_enabled: str,
+                 traffic_limit_qps: int,
+                 url: str):
+        """
+        :param str description: The Description of Rule.
+        :param str domain: The Domain of Rule.
+        :param str id: The Id of Rule.
+        :param Sequence['GetRulesRuleRedirectConfigArgs'] redirect_configs: Redirect related configuration.
+        :param Sequence['GetRulesRuleRewriteConfigArgs'] rewrite_configs: The list of rewrite configurations.
+        :param str rewrite_enabled: Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
+               on: enable.
+               off: disable.
+        :param str rule_action: The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
+        :param str rule_id: The Id of Rule.
+        :param str server_group_id: The Id of Server Group.
+        :param str traffic_limit_enabled: Forwarding rule QPS rate limiting switch:
+               on: enable.
+               off: disable (default).
+        :param int traffic_limit_qps: When Rules.N.TrafficLimitEnabled is turned on, this field is required. Requests per second. Valid values are between 100 and 100000.
+        :param str url: The Url of Rule.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "redirect_configs", redirect_configs)
+        pulumi.set(__self__, "rewrite_configs", rewrite_configs)
+        pulumi.set(__self__, "rewrite_enabled", rewrite_enabled)
+        pulumi.set(__self__, "rule_action", rule_action)
+        pulumi.set(__self__, "rule_id", rule_id)
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "traffic_limit_enabled", traffic_limit_enabled)
+        pulumi.set(__self__, "traffic_limit_qps", traffic_limit_qps)
+        pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The Description of Rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The Domain of Rule.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The Id of Rule.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="redirectConfigs")
+    def redirect_configs(self) -> Sequence['outputs.GetRulesRuleRedirectConfigResult']:
+        """
+        Redirect related configuration.
+        """
+        return pulumi.get(self, "redirect_configs")
+
+    @property
+    @pulumi.getter(name="rewriteConfigs")
+    def rewrite_configs(self) -> Sequence['outputs.GetRulesRuleRewriteConfigResult']:
+        """
+        The list of rewrite configurations.
+        """
+        return pulumi.get(self, "rewrite_configs")
+
+    @property
+    @pulumi.getter(name="rewriteEnabled")
+    def rewrite_enabled(self) -> str:
+        """
+        Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
+        on: enable.
+        off: disable.
+        """
+        return pulumi.get(self, "rewrite_enabled")
+
+    @property
+    @pulumi.getter(name="ruleAction")
+    def rule_action(self) -> str:
+        """
+        The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
+        """
+        return pulumi.get(self, "rule_action")
+
+    @property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> str:
+        """
+        The Id of Rule.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> str:
+        """
+        The Id of Server Group.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter(name="trafficLimitEnabled")
+    def traffic_limit_enabled(self) -> str:
+        """
+        Forwarding rule QPS rate limiting switch:
+        on: enable.
+        off: disable (default).
+        """
+        return pulumi.get(self, "traffic_limit_enabled")
+
+    @property
+    @pulumi.getter(name="trafficLimitQps")
+    def traffic_limit_qps(self) -> int:
+        """
+        When Rules.N.TrafficLimitEnabled is turned on, this field is required. Requests per second. Valid values are between 100 and 100000.
+        """
+        return pulumi.get(self, "traffic_limit_qps")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The Url of Rule.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetRulesRuleRedirectConfigResult(dict):
+    def __init__(__self__, *,
+                 redirect_domain: str,
+                 redirect_http_code: str,
+                 redirect_port: str,
+                 redirect_protocol: str,
+                 redirect_uri: str):
+        """
+        :param str redirect_domain: The redirect domain.
+        :param str redirect_http_code: The redirect HTTP code,support 301(default), 302, 307, 308.
+        :param str redirect_port: The redirect port.
+        :param str redirect_protocol: The redirect protocol,support HTTP,HTTPS(default).
+        :param str redirect_uri: The redirect URI.
+        """
+        pulumi.set(__self__, "redirect_domain", redirect_domain)
+        pulumi.set(__self__, "redirect_http_code", redirect_http_code)
+        pulumi.set(__self__, "redirect_port", redirect_port)
+        pulumi.set(__self__, "redirect_protocol", redirect_protocol)
+        pulumi.set(__self__, "redirect_uri", redirect_uri)
+
+    @property
+    @pulumi.getter(name="redirectDomain")
+    def redirect_domain(self) -> str:
+        """
+        The redirect domain.
+        """
+        return pulumi.get(self, "redirect_domain")
+
+    @property
+    @pulumi.getter(name="redirectHttpCode")
+    def redirect_http_code(self) -> str:
+        """
+        The redirect HTTP code,support 301(default), 302, 307, 308.
+        """
+        return pulumi.get(self, "redirect_http_code")
+
+    @property
+    @pulumi.getter(name="redirectPort")
+    def redirect_port(self) -> str:
+        """
+        The redirect port.
+        """
+        return pulumi.get(self, "redirect_port")
+
+    @property
+    @pulumi.getter(name="redirectProtocol")
+    def redirect_protocol(self) -> str:
+        """
+        The redirect protocol,support HTTP,HTTPS(default).
+        """
+        return pulumi.get(self, "redirect_protocol")
+
+    @property
+    @pulumi.getter(name="redirectUri")
+    def redirect_uri(self) -> str:
+        """
+        The redirect URI.
+        """
+        return pulumi.get(self, "redirect_uri")
+
+
+@pulumi.output_type
+class GetRulesRuleRewriteConfigResult(dict):
+    def __init__(__self__, *,
+                 rewrite_path: str):
+        """
+        :param str rewrite_path: Rewrite path.
+        """
+        pulumi.set(__self__, "rewrite_path", rewrite_path)
+
+    @property
+    @pulumi.getter(name="rewritePath")
+    def rewrite_path(self) -> str:
+        """
+        Rewrite path.
+        """
+        return pulumi.get(self, "rewrite_path")
+
+
+@pulumi.output_type
+class GetServerGroupServersServerResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 id: str,
+                 instance_id: str,
+                 ip: str,
+                 port: int,
+                 server_id: str,
+                 type: str,
+                 weight: int):
+        """
+        :param str description: The description of the instance.
+        :param str id: The server id of instance in ServerGroup.
+        :param str instance_id: The ID of ecs instance or the network card bound to ecs instance.
+        :param str ip: The private ip of the instance.
+        :param int port: The port receiving request.
+        :param str server_id: The server id of instance in ServerGroup.
+        :param str type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param int weight: The weight of the instance.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the instance.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The server id of instance in ServerGroup.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of ecs instance or the network card bound to ecs instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The private ip of the instance.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port receiving request.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> str:
+        """
+        The server id of instance in ServerGroup.
+        """
+        return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of instance. Optional choice contains `ecs`, `eni`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the instance.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetServerGroupsServerGroupResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 description: str,
+                 health_checks: Sequence['outputs.GetServerGroupsServerGroupHealthCheckResult'],
+                 id: str,
+                 listeners: Sequence[str],
+                 project_name: str,
+                 scheduler: str,
+                 server_count: int,
+                 server_group_id: str,
+                 server_group_name: str,
+                 server_group_type: str,
+                 servers: Sequence['outputs.GetServerGroupsServerGroupServerResult'],
+                 status: str,
+                 sticky_session_configs: Sequence['outputs.GetServerGroupsServerGroupStickySessionConfigResult'],
+                 update_time: str,
+                 vpc_id: str):
+        """
+        :param str create_time: The create time of the Alb server group.
+        :param str description: The description of the server group server.
+        :param Sequence['GetServerGroupsServerGroupHealthCheckArgs'] health_checks: The health check config of the Alb server group.
+        :param str id: The ID of the Alb server group.
+        :param Sequence[str] listeners: The listener information of the Alb server group.
+        :param str project_name: The project name of Alb server group.
+        :param str scheduler: The scheduler algorithm of the Alb server group.
+        :param int server_count: The server count of the Alb server group.
+        :param str server_group_id: The ID of the Alb server group.
+        :param str server_group_name: The name of the Alb server group.
+        :param str server_group_type: The type of Alb server group. Valid values: `instance`, `ip`.
+        :param Sequence['GetServerGroupsServerGroupServerArgs'] servers: The server information of the Alb server group.
+        :param str status: The status of the Alb server group.
+        :param Sequence['GetServerGroupsServerGroupStickySessionConfigArgs'] sticky_session_configs: The sticky session config of the Alb server group.
+        :param str update_time: The update time of the Alb server group.
+        :param str vpc_id: The vpc id of the Alb server group.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "health_checks", health_checks)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "scheduler", scheduler)
+        pulumi.set(__self__, "server_count", server_count)
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "server_group_name", server_group_name)
+        pulumi.set(__self__, "server_group_type", server_group_type)
+        pulumi.set(__self__, "servers", servers)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sticky_session_configs", sticky_session_configs)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the Alb server group.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the server group server.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="healthChecks")
+    def health_checks(self) -> Sequence['outputs.GetServerGroupsServerGroupHealthCheckResult']:
+        """
+        The health check config of the Alb server group.
+        """
+        return pulumi.get(self, "health_checks")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Alb server group.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def listeners(self) -> Sequence[str]:
+        """
+        The listener information of the Alb server group.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of Alb server group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def scheduler(self) -> str:
+        """
+        The scheduler algorithm of the Alb server group.
+        """
+        return pulumi.get(self, "scheduler")
+
+    @property
+    @pulumi.getter(name="serverCount")
+    def server_count(self) -> int:
+        """
+        The server count of the Alb server group.
+        """
+        return pulumi.get(self, "server_count")
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> str:
+        """
+        The ID of the Alb server group.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter(name="serverGroupName")
+    def server_group_name(self) -> str:
+        """
+        The name of the Alb server group.
+        """
+        return pulumi.get(self, "server_group_name")
+
+    @property
+    @pulumi.getter(name="serverGroupType")
+    def server_group_type(self) -> str:
+        """
+        The type of Alb server group. Valid values: `instance`, `ip`.
+        """
+        return pulumi.get(self, "server_group_type")
+
+    @property
+    @pulumi.getter
+    def servers(self) -> Sequence['outputs.GetServerGroupsServerGroupServerResult']:
+        """
+        The server information of the Alb server group.
+        """
+        return pulumi.get(self, "servers")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Alb server group.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="stickySessionConfigs")
+    def sticky_session_configs(self) -> Sequence['outputs.GetServerGroupsServerGroupStickySessionConfigResult']:
+        """
+        The sticky session config of the Alb server group.
+        """
+        return pulumi.get(self, "sticky_session_configs")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the Alb server group.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id of the Alb server group.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetServerGroupsServerGroupHealthCheckResult(dict):
+    def __init__(__self__, *,
+                 domain: str,
+                 enabled: str,
+                 healthy_threshold: int,
+                 interval: int,
+                 method: str,
+                 unhealthy_threshold: int,
+                 uri: str,
+                 http_code: Optional[str] = None,
+                 http_version: Optional[str] = None,
+                 protocol: Optional[str] = None,
+                 timeout: Optional[int] = None):
+        """
+        :param str domain: The domain of health check.
+        :param str enabled: The enable status of health check function.
+        :param int healthy_threshold: The healthy threshold of health check.
+        :param int interval: The interval executing health check.
+        :param str method: The method of health check.
+        :param int unhealthy_threshold: The unhealthy threshold of health check.
+        :param str uri: The uri of health check.
+        :param str http_code: The normal http status code of health check.
+        :param str http_version: The http version of health check.
+        :param str protocol: The protocol of health check.
+        :param int timeout: The response timeout of health check.
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "healthy_threshold", healthy_threshold)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "unhealthy_threshold", unhealthy_threshold)
+        pulumi.set(__self__, "uri", uri)
+        if http_code is not None:
+            pulumi.set(__self__, "http_code", http_code)
+        if http_version is not None:
+            pulumi.set(__self__, "http_version", http_version)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain of health check.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> str:
+        """
+        The enable status of health check function.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="healthyThreshold")
+    def healthy_threshold(self) -> int:
+        """
+        The healthy threshold of health check.
+        """
+        return pulumi.get(self, "healthy_threshold")
+
+    @property
+    @pulumi.getter
+    def interval(self) -> int:
+        """
+        The interval executing health check.
+        """
+        return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        The method of health check.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter(name="unhealthyThreshold")
+    def unhealthy_threshold(self) -> int:
+        """
+        The unhealthy threshold of health check.
+        """
+        return pulumi.get(self, "unhealthy_threshold")
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        """
+        The uri of health check.
+        """
+        return pulumi.get(self, "uri")
+
+    @property
+    @pulumi.getter(name="httpCode")
+    def http_code(self) -> Optional[str]:
+        """
+        The normal http status code of health check.
+        """
+        return pulumi.get(self, "http_code")
+
+    @property
+    @pulumi.getter(name="httpVersion")
+    def http_version(self) -> Optional[str]:
+        """
+        The http version of health check.
+        """
+        return pulumi.get(self, "http_version")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        The protocol of health check.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[int]:
+        """
+        The response timeout of health check.
+        """
+        return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
+class GetServerGroupsServerGroupServerResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 instance_id: str,
+                 ip: str,
+                 port: int,
+                 remote_enabled: str,
+                 server_id: str,
+                 type: str,
+                 weight: int):
+        """
+        :param str description: The description of the server group server.
+        :param str instance_id: The id of the ecs instance or the network interface.
+        :param str ip: The private ip of the server group server.
+        :param int port: The port receiving request of the server group server.
+        :param str remote_enabled: Whether to enable the remote IP function.
+        :param str server_id: The id of the server group server.
+        :param str type: The type of the server group server.
+        :param int weight: The weight of the server group server.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "remote_enabled", remote_enabled)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the server group server.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the ecs instance or the network interface.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The private ip of the server group server.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port receiving request of the server group server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="remoteEnabled")
+    def remote_enabled(self) -> str:
+        """
+        Whether to enable the remote IP function.
+        """
+        return pulumi.get(self, "remote_enabled")
+
+    @property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> str:
+        """
+        The id of the server group server.
+        """
+        return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the server group server.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the server group server.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetServerGroupsServerGroupStickySessionConfigResult(dict):
+    def __init__(__self__, *,
+                 cookie: str,
+                 cookie_timeout: int,
+                 sticky_session_enabled: str,
+                 sticky_session_type: str):
+        """
+        :param str cookie: The cookie name of the sticky session.
+        :param int cookie_timeout: The cookie timeout of the sticky session.
+        :param str sticky_session_enabled: The enable status of sticky session.
+        :param str sticky_session_type: The cookie handle type of the sticky session.
+        """
+        pulumi.set(__self__, "cookie", cookie)
+        pulumi.set(__self__, "cookie_timeout", cookie_timeout)
+        pulumi.set(__self__, "sticky_session_enabled", sticky_session_enabled)
+        pulumi.set(__self__, "sticky_session_type", sticky_session_type)
+
+    @property
+    @pulumi.getter
+    def cookie(self) -> str:
+        """
+        The cookie name of the sticky session.
+        """
+        return pulumi.get(self, "cookie")
+
+    @property
+    @pulumi.getter(name="cookieTimeout")
+    def cookie_timeout(self) -> int:
+        """
+        The cookie timeout of the sticky session.
+        """
+        return pulumi.get(self, "cookie_timeout")
+
+    @property
+    @pulumi.getter(name="stickySessionEnabled")
+    def sticky_session_enabled(self) -> str:
+        """
+        The enable status of sticky session.
+        """
+        return pulumi.get(self, "sticky_session_enabled")
+
+    @property
+    @pulumi.getter(name="stickySessionType")
+    def sticky_session_type(self) -> str:
+        """
+        The cookie handle type of the sticky session.
+        """
+        return pulumi.get(self, "sticky_session_type")
+
+
+@pulumi.output_type
+class GetZonesZoneResult(dict):
     def __init__(__self__, *,
                  id: str,
                  zone_id: str):

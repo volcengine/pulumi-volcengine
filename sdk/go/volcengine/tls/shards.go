@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Shards(ctx, &tls.ShardsArgs{
+//			_, err := tls.GetShards(ctx, &tls.GetShardsArgs{
 //				TopicId: "edf051ed-3c46-49ba-9339-bea628fedc15",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Shards has been deprecated in favor of volcengine.tls.getShards
 func Shards(ctx *pulumi.Context, args *ShardsArgs, opts ...pulumi.InvokeOption) (*ShardsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ShardsResult

@@ -5,6 +5,11 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_private_zones import *
+from .get_record_sets import *
+from .get_records import *
+from .get_resolver_endpoints import *
+from .get_resolver_rules import *
 from .private_zone import *
 from .private_zones import *
 from .record import *

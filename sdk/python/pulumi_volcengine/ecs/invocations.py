@@ -17,6 +17,8 @@ __all__ = [
     'invocations_output',
 ]
 
+warnings.warn("""volcengine.ecs.Invocations has been deprecated in favor of volcengine.ecs.getInvocations""", DeprecationWarning)
+
 @pulumi.output_type
 class InvocationsResult:
     """
@@ -189,7 +191,7 @@ def invocations(command_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.invocations(invocation_id="ivk-ych9y4vujvl8j01c****",
+    default = volcengine.ecs.get_invocations(invocation_id="ivk-ych9y4vujvl8j01c****",
         invocation_statuses=["Success"])
     ```
 
@@ -204,6 +206,7 @@ def invocations(command_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
     """
+    pulumi.log.warn("""invocations is deprecated: volcengine.ecs.Invocations has been deprecated in favor of volcengine.ecs.getInvocations""")
     __args__ = dict()
     __args__['commandId'] = command_id
     __args__['commandName'] = command_name
@@ -251,7 +254,7 @@ def invocations_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.invocations(invocation_id="ivk-ych9y4vujvl8j01c****",
+    default = volcengine.ecs.get_invocations(invocation_id="ivk-ych9y4vujvl8j01c****",
         invocation_statuses=["Success"])
     ```
 
@@ -266,4 +269,5 @@ def invocations_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
     """
+    pulumi.log.warn("""invocations is deprecated: volcengine.ecs.Invocations has been deprecated in favor of volcengine.ecs.getInvocations""")
     ...

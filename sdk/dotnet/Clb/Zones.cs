@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Clb
 {
+    [Obsolete(@"volcengine.clb.Zones has been deprecated in favor of volcengine.clb.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Clb.Zones.Invoke();
+        ///     var @default = Volcengine.Clb.GetZones.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Clb.Zones.Invoke();
+        ///     var @default = Volcengine.Clb.GetZones.Invoke();
         /// 
         /// });
         /// ```

@@ -7,6 +7,12 @@ import typing
 # Export this package's modules as members:
 from .file_system import *
 from .file_systems import *
+from .get_file_systems import *
+from .get_mount_points import *
+from .get_permission_groups import *
+from .get_regions import *
+from .get_snapshots import *
+from .get_zones import *
 from .mount_point import *
 from .mount_points import *
 from .permission_group import *

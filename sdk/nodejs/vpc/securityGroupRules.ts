@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.SecurityGroupRules({
+ * const default = volcengine.vpc.getSecurityGroupRules({
  *     securityGroupId: "sg-13f2nau7x93wg3n6nu3z5sxib",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules */
 export function securityGroupRules(args: SecurityGroupRulesArgs, opts?: pulumi.InvokeOptions): Promise<SecurityGroupRulesResult> {
+    pulumi.log.warn("securityGroupRules is deprecated: volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/securityGroupRules:SecurityGroupRules", {
@@ -104,11 +106,12 @@ export interface SecurityGroupRulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.SecurityGroupRules({
+ * const default = volcengine.vpc.getSecurityGroupRules({
  *     securityGroupId: "sg-13f2nau7x93wg3n6nu3z5sxib",
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules */
 export function securityGroupRulesOutput(args: SecurityGroupRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SecurityGroupRulesResult> {
     return pulumi.output(args).apply((a: any) => securityGroupRules(a, opts))
 }

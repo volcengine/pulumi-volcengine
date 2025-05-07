@@ -20,6 +20,11 @@ export const bandwidthPackages: typeof import("./bandwidthPackages").bandwidthPa
 export const bandwidthPackagesOutput: typeof import("./bandwidthPackages").bandwidthPackagesOutput = null as any;
 utilities.lazyLoad(exports, ["bandwidthPackages","bandwidthPackagesOutput"], () => require("./bandwidthPackages"));
 
+export { GetBandwidthPackagesArgs, GetBandwidthPackagesResult, GetBandwidthPackagesOutputArgs } from "./getBandwidthPackages";
+export const getBandwidthPackages: typeof import("./getBandwidthPackages").getBandwidthPackages = null as any;
+export const getBandwidthPackagesOutput: typeof import("./getBandwidthPackages").getBandwidthPackagesOutput = null as any;
+utilities.lazyLoad(exports, ["getBandwidthPackages","getBandwidthPackagesOutput"], () => require("./getBandwidthPackages"));
+
 
 const _module = {
     version: utilities.getVersion(),

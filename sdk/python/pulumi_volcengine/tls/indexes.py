@@ -17,6 +17,8 @@ __all__ = [
     'indexes_output',
 ]
 
+warnings.warn("""volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes""", DeprecationWarning)
+
 @pulumi.output_type
 class IndexesResult:
     """
@@ -98,13 +100,14 @@ def indexes(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.indexes(ids=["7ce12237-6670-44a7-9d79-2e36961586e6"])
+    default = volcengine.tls.get_indexes(ids=["7ce12237-6670-44a7-9d79-2e36961586e6"])
     ```
 
 
     :param Sequence[str] ids: The list of topic id of tls index.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""indexes is deprecated: volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def indexes_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.indexes(ids=["7ce12237-6670-44a7-9d79-2e36961586e6"])
+    default = volcengine.tls.get_indexes(ids=["7ce12237-6670-44a7-9d79-2e36961586e6"])
     ```
 
 
     :param Sequence[str] ids: The list of topic id of tls index.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""indexes is deprecated: volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes""")
     ...

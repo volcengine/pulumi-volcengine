@@ -25,6 +25,41 @@ export const endpoints: typeof import("./endpoints").endpoints = null as any;
 export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
 utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
 
+export { GetAuthorizationTokensArgs, GetAuthorizationTokensResult, GetAuthorizationTokensOutputArgs } from "./getAuthorizationTokens";
+export const getAuthorizationTokens: typeof import("./getAuthorizationTokens").getAuthorizationTokens = null as any;
+export const getAuthorizationTokensOutput: typeof import("./getAuthorizationTokens").getAuthorizationTokensOutput = null as any;
+utilities.lazyLoad(exports, ["getAuthorizationTokens","getAuthorizationTokensOutput"], () => require("./getAuthorizationTokens"));
+
+export { GetEndpointsArgs, GetEndpointsResult, GetEndpointsOutputArgs } from "./getEndpoints";
+export const getEndpoints: typeof import("./getEndpoints").getEndpoints = null as any;
+export const getEndpointsOutput: typeof import("./getEndpoints").getEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getEndpoints","getEndpointsOutput"], () => require("./getEndpoints"));
+
+export { GetNamespacesArgs, GetNamespacesResult, GetNamespacesOutputArgs } from "./getNamespaces";
+export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
+export const getNamespacesOutput: typeof import("./getNamespaces").getNamespacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespaces","getNamespacesOutput"], () => require("./getNamespaces"));
+
+export { GetRegistriesArgs, GetRegistriesResult, GetRegistriesOutputArgs } from "./getRegistries";
+export const getRegistries: typeof import("./getRegistries").getRegistries = null as any;
+export const getRegistriesOutput: typeof import("./getRegistries").getRegistriesOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistries","getRegistriesOutput"], () => require("./getRegistries"));
+
+export { GetRepositoriesArgs, GetRepositoriesResult, GetRepositoriesOutputArgs } from "./getRepositories";
+export const getRepositories: typeof import("./getRepositories").getRepositories = null as any;
+export const getRepositoriesOutput: typeof import("./getRepositories").getRepositoriesOutput = null as any;
+utilities.lazyLoad(exports, ["getRepositories","getRepositoriesOutput"], () => require("./getRepositories"));
+
+export { GetTagsArgs, GetTagsResult, GetTagsOutputArgs } from "./getTags";
+export const getTags: typeof import("./getTags").getTags = null as any;
+export const getTagsOutput: typeof import("./getTags").getTagsOutput = null as any;
+utilities.lazyLoad(exports, ["getTags","getTagsOutput"], () => require("./getTags"));
+
+export { GetVpcEndpointsArgs, GetVpcEndpointsResult, GetVpcEndpointsOutputArgs } from "./getVpcEndpoints";
+export const getVpcEndpoints: typeof import("./getVpcEndpoints").getVpcEndpoints = null as any;
+export const getVpcEndpointsOutput: typeof import("./getVpcEndpoints").getVpcEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcEndpoints","getVpcEndpointsOutput"], () => require("./getVpcEndpoints"));
+
 export { NamespaceArgs, NamespaceState } from "./namespace";
 export type Namespace = import("./namespace").Namespace;
 export const Namespace: typeof import("./namespace").Namespace = null as any;

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloud_identity
 {
+    [Obsolete(@"volcengine.cloud_identity.PermissionSets has been deprecated in favor of volcengine.cloud_identity.getPermissionSets")]
     public static class PermissionSets
     {
         /// <summary>
@@ -53,7 +54,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///             },
         ///         }));
         ///     }
-        ///     var fooPermissionSets = Volcengine.Cloud_identity.PermissionSets.Invoke(new()
+        ///     var fooPermissionSets = Volcengine.Cloud_identity.GetPermissionSets.Invoke(new()
         ///     {
         ///         Ids = fooPermissionSet.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -106,7 +107,7 @@ namespace Pulumi.Volcengine.Cloud_identity
         ///             },
         ///         }));
         ///     }
-        ///     var fooPermissionSets = Volcengine.Cloud_identity.PermissionSets.Invoke(new()
+        ///     var fooPermissionSets = Volcengine.Cloud_identity.GetPermissionSets.Invoke(new()
         ///     {
         ///         Ids = fooPermissionSet.Select(__item =&gt; __item.Id).ToList(),
         ///     });

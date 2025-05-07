@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.PeerAttachments(ctx, &transit_router.PeerAttachmentsArgs{
+//			_, err := transit_router.GetPeerAttachments(ctx, &transit_router.GetPeerAttachmentsArgs{
 //				Ids: []string{
 //					"tr-attach-12be67d0yh2io17q7y1au****",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments
 func PeerAttachments(ctx *pulumi.Context, args *PeerAttachmentsArgs, opts ...pulumi.InvokeOption) (*PeerAttachmentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PeerAttachmentsResult

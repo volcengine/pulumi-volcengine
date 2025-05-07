@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.InstanceTypes({});
+ * const default = volcengine.veenedge.getInstanceTypes({});
  * ```
  */
+/** @deprecated volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes */
 export function instanceTypes(args?: InstanceTypesArgs, opts?: pulumi.InvokeOptions): Promise<InstanceTypesResult> {
+    pulumi.log.warn("instanceTypes is deprecated: volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface InstanceTypesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.veenedge.InstanceTypes({});
+ * const default = volcengine.veenedge.getInstanceTypes({});
  * ```
  */
+/** @deprecated volcengine.veenedge.InstanceTypes has been deprecated in favor of volcengine.veenedge.getInstanceTypes */
 export function instanceTypesOutput(args?: InstanceTypesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceTypesResult> {
     return pulumi.output(args).apply((a: any) => instanceTypes(a, opts))
 }

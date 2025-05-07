@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.EventRules({
+ * const foo = volcengine.cloud_monitor.getEventRules({
  *     ruleName: "tftest",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules */
 export function eventRules(args?: EventRulesArgs, opts?: pulumi.InvokeOptions): Promise<EventRulesResult> {
+    pulumi.log.warn("eventRules is deprecated: volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -82,11 +84,12 @@ export interface EventRulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_monitor.EventRules({
+ * const foo = volcengine.cloud_monitor.getEventRules({
  *     ruleName: "tftest",
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_monitor.EventRules has been deprecated in favor of volcengine.cloud_monitor.getEventRules */
 export function eventRulesOutput(args?: EventRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EventRulesResult> {
     return pulumi.output(args).apply((a: any) => eventRules(a, opts))
 }

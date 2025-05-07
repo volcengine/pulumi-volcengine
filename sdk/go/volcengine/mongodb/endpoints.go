@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -118,7 +118,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodb.EndpointsOutput(ctx, mongodb.EndpointsOutputArgs{
+//			_ = mongodb.GetEndpointsOutput(ctx, mongodb.GetEndpointsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -126,6 +126,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints
 func Endpoints(ctx *pulumi.Context, args *EndpointsArgs, opts ...pulumi.InvokeOption) (*EndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EndpointsResult

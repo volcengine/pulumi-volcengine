@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = transit_router.RouteTablesOutput(ctx, transit_router.RouteTablesOutputArgs{
+//			_ = transit_router.GetRouteTablesOutput(ctx, transit_router.GetRouteTablesOutputArgs{
 //				TransitRouterId: fooTransitRouter.ID(),
 //				Ids: pulumi.StringArray{
 //					fooRouteTable.TransitRouterRouteTableId,
@@ -52,6 +52,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.transit_router.RouteTables has been deprecated in favor of volcengine.transit_router.getRouteTables
 func RouteTables(ctx *pulumi.Context, args *RouteTablesArgs, opts ...pulumi.InvokeOption) (*RouteTablesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteTablesResult

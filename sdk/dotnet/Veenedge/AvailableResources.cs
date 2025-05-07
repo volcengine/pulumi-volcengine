@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Veenedge
 {
+    [Obsolete(@"volcengine.veenedge.AvailableResources has been deprecated in favor of volcengine.veenedge.getAvailableResources")]
     public static class AvailableResources
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.AvailableResources.Invoke(new()
+        ///     var @default = Volcengine.Veenedge.GetAvailableResources.Invoke(new()
         ///     {
         ///         BandwithLimit = 20,
         ///         CloudDiskType = "CloudSSD",
@@ -48,7 +49,7 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Veenedge.AvailableResources.Invoke(new()
+        ///     var @default = Volcengine.Veenedge.GetAvailableResources.Invoke(new()
         ///     {
         ///         BandwithLimit = 20,
         ///         CloudDiskType = "CloudSSD",

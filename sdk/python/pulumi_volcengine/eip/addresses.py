@@ -18,6 +18,8 @@ __all__ = [
     'addresses_output',
 ]
 
+warnings.warn("""volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses""", DeprecationWarning)
+
 @pulumi.output_type
 class AddressesResult:
     """
@@ -195,7 +197,7 @@ def addresses(associated_instance_id: Optional[str] = None,
     import pulumi_volcengine as volcengine
 
     foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
-    foo_addresses = volcengine.eip.addresses_output(ids=[foo_address.id])
+    foo_addresses = volcengine.eip.get_addresses_output(ids=[foo_address.id])
     ```
 
 
@@ -210,6 +212,7 @@ def addresses(associated_instance_id: Optional[str] = None,
     :param str status: A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
     :param Sequence[pulumi.InputType['AddressesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""addresses is deprecated: volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses""")
     __args__ = dict()
     __args__['associatedInstanceId'] = associated_instance_id
     __args__['associatedInstanceType'] = associated_instance_type
@@ -261,7 +264,7 @@ def addresses_output(associated_instance_id: Optional[pulumi.Input[Optional[str]
     import pulumi_volcengine as volcengine
 
     foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
-    foo_addresses = volcengine.eip.addresses_output(ids=[foo_address.id])
+    foo_addresses = volcengine.eip.get_addresses_output(ids=[foo_address.id])
     ```
 
 
@@ -276,4 +279,5 @@ def addresses_output(associated_instance_id: Optional[pulumi.Input[Optional[str]
     :param str status: A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
     :param Sequence[pulumi.InputType['AddressesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""addresses is deprecated: volcengine.eip.Addresses has been deprecated in favor of volcengine.eip.getAddresses""")
     ...

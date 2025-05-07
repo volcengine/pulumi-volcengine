@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Indexes(ctx, &tls.IndexesArgs{
+//			_, err := tls.GetIndexes(ctx, &tls.GetIndexesArgs{
 //				Ids: []string{
 //					"7ce12237-6670-44a7-9d79-2e36961586e6",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Indexes has been deprecated in favor of volcengine.tls.getIndexes
 func Indexes(ctx *pulumi.Context, args *IndexesArgs, opts ...pulumi.InvokeOption) (*IndexesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv IndexesResult

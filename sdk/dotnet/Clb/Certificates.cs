@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Clb
 {
+    [Obsolete(@"volcengine.clb.Certificates has been deprecated in favor of volcengine.clb.getCertificates")]
     public static class Certificates
     {
         /// <summary>
@@ -72,7 +73,7 @@ namespace Pulumi.Volcengine.Clb
         ///             },
         ///         }));
         ///     }
-        ///     var fooCertificates = Volcengine.Clb.Certificates.Invoke(new()
+        ///     var fooCertificates = Volcengine.Clb.GetCertificates.Invoke(new()
         ///     {
         ///         Ids = fooCertificate.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -144,7 +145,7 @@ namespace Pulumi.Volcengine.Clb
         ///             },
         ///         }));
         ///     }
-        ///     var fooCertificates = Volcengine.Clb.Certificates.Invoke(new()
+        ///     var fooCertificates = Volcengine.Clb.GetCertificates.Invoke(new()
         ///     {
         ///         Ids = fooCertificate.Select(__item =&gt; __item.Id).ToList(),
         ///     });

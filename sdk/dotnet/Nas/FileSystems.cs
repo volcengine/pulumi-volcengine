@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Nas
 {
+    [Obsolete(@"volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems")]
     public static class FileSystems
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Nas.Zones.Invoke();
+        ///     var fooZones = Volcengine.Nas.GetZones.Invoke();
         /// 
         ///     var fooFileSystem = new List&lt;Volcengine.Nas.FileSystem&gt;();
         ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
@@ -33,7 +34,7 @@ namespace Pulumi.Volcengine.Nas
         ///         {
         ///             FileSystemName = $"acc-test-fs-{range.Value}",
         ///             Description = "acc-test",
-        ///             ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///             Capacity = 103,
         ///             ProjectName = "default",
         ///             Tags = new[]
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Nas
         ///             },
         ///         }));
         ///     }
-        ///     var fooFileSystems = Volcengine.Nas.FileSystems.Invoke(new()
+        ///     var fooFileSystems = Volcengine.Nas.GetFileSystems.Invoke(new()
         ///     {
         ///         Ids = fooFileSystem.Select(__item =&gt; __item.Id).ToList(),
         ///     });
@@ -69,7 +70,7 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Nas.Zones.Invoke();
+        ///     var fooZones = Volcengine.Nas.GetZones.Invoke();
         /// 
         ///     var fooFileSystem = new List&lt;Volcengine.Nas.FileSystem&gt;();
         ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
@@ -79,7 +80,7 @@ namespace Pulumi.Volcengine.Nas
         ///         {
         ///             FileSystemName = $"acc-test-fs-{range.Value}",
         ///             Description = "acc-test",
-        ///             ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///             Capacity = 103,
         ///             ProjectName = "default",
         ///             Tags = new[]
@@ -92,7 +93,7 @@ namespace Pulumi.Volcengine.Nas
         ///             },
         ///         }));
         ///     }
-        ///     var fooFileSystems = Volcengine.Nas.FileSystems.Invoke(new()
+        ///     var fooFileSystems = Volcengine.Nas.GetFileSystems.Invoke(new()
         ///     {
         ///         Ids = fooFileSystem.Select(__item =&gt; __item.Id).ToList(),
         ///     });

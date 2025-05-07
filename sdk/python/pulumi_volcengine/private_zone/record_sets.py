@@ -17,6 +17,8 @@ __all__ = [
     'record_sets_output',
 ]
 
+warnings.warn("""volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets""", DeprecationWarning)
+
 @pulumi.output_type
 class RecordSetsResult:
     """
@@ -128,6 +130,14 @@ def record_sets(host: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRecordSetsResult:
     """
     Use this data source to query detailed information of private zone record sets
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.private_zone.get_record_sets(zid=2450000)
+    ```
 
 
     :param str host: The host of Private Zone Record Set.
@@ -136,6 +146,7 @@ def record_sets(host: Optional[str] = None,
     :param str search_mode: The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
     :param int zid: The zid of Private Zone.
     """
+    pulumi.log.warn("""record_sets is deprecated: volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets""")
     __args__ = dict()
     __args__['host'] = host
     __args__['outputFile'] = output_file
@@ -165,6 +176,14 @@ def record_sets_output(host: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RecordSetsResult]:
     """
     Use this data source to query detailed information of private zone record sets
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.private_zone.get_record_sets(zid=2450000)
+    ```
 
 
     :param str host: The host of Private Zone Record Set.
@@ -173,4 +192,5 @@ def record_sets_output(host: Optional[pulumi.Input[Optional[str]]] = None,
     :param str search_mode: The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
     :param int zid: The zid of Private Zone.
     """
+    pulumi.log.warn("""record_sets is deprecated: volcengine.private_zone.RecordSets has been deprecated in favor of volcengine.private_zone.getRecordSets""")
     ...

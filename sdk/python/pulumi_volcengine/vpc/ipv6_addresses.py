@@ -17,6 +17,8 @@ __all__ = [
     'ipv6_addresses_output',
 ]
 
+warnings.warn("""volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses""", DeprecationWarning)
+
 @pulumi.output_type
 class Ipv6AddressesResult:
     """
@@ -98,13 +100,14 @@ def ipv6_addresses(associated_instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.ipv6_addresses(associated_instance_id="i-yca53yuhj6gh9zl53kav")
+    default = volcengine.vpc.get_ipv6_addresses(associated_instance_id="i-yca53yuhj6gh9zl53kav")
     ```
 
 
     :param str associated_instance_id: The ID of the ECS instance that is assigned the IPv6 address.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""ipv6_addresses is deprecated: volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses""")
     __args__ = dict()
     __args__['associatedInstanceId'] = associated_instance_id
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def ipv6_addresses_output(associated_instance_id: Optional[pulumi.Input[Optional
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.ipv6_addresses(associated_instance_id="i-yca53yuhj6gh9zl53kav")
+    default = volcengine.vpc.get_ipv6_addresses(associated_instance_id="i-yca53yuhj6gh9zl53kav")
     ```
 
 
     :param str associated_instance_id: The ID of the ECS instance that is assigned the IPv6 address.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""ipv6_addresses is deprecated: volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses""")
     ...

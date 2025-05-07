@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
  *     volumeName: "acc-test-volume",
  *     volumeType: "ESSD_PL0",
@@ -40,12 +40,14 @@ import * as utilities from "../utilities";
  *         }],
  *     }));
  * }
- * const fooSnapshots = volcengine.ebs.SnapshotsOutput({
+ * const fooSnapshots = volcengine.ebs.getSnapshotsOutput({
  *     ids: fooSnapshot.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots */
 export function snapshots(args?: SnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<SnapshotsResult> {
+    pulumi.log.warn("snapshots is deprecated: volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -136,7 +138,7 @@ export interface SnapshotsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
  *     volumeName: "acc-test-volume",
  *     volumeType: "ESSD_PL0",
@@ -161,11 +163,12 @@ export interface SnapshotsResult {
  *         }],
  *     }));
  * }
- * const fooSnapshots = volcengine.ebs.SnapshotsOutput({
+ * const fooSnapshots = volcengine.ebs.getSnapshotsOutput({
  *     ids: fooSnapshot.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.ebs.Snapshots has been deprecated in favor of volcengine.ebs.getSnapshots */
 export function snapshotsOutput(args?: SnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SnapshotsResult> {
     return pulumi.output(args).apply((a: any) => snapshots(a, opts))
 }

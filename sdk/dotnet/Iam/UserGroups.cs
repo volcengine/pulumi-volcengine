@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Iam
 {
+    [Obsolete(@"volcengine.iam.UserGroups has been deprecated in favor of volcengine.iam.getUserGroups")]
     public static class UserGroups
     {
         /// <summary>
@@ -30,7 +31,7 @@ namespace Pulumi.Volcengine.Iam
         ///         UserGroupName = "acc-test-group",
         ///     });
         /// 
-        ///     var fooUserGroups = Volcengine.Iam.UserGroups.Invoke(new()
+        ///     var fooUserGroups = Volcengine.Iam.GetUserGroups.Invoke(new()
         ///     {
         ///         Query = "acc-test",
         ///     });
@@ -60,7 +61,7 @@ namespace Pulumi.Volcengine.Iam
         ///         UserGroupName = "acc-test-group",
         ///     });
         /// 
-        ///     var fooUserGroups = Volcengine.Iam.UserGroups.Invoke(new()
+        ///     var fooUserGroups = Volcengine.Iam.GetUserGroups.Invoke(new()
         ///     {
         ///         Query = "acc-test",
         ///     });

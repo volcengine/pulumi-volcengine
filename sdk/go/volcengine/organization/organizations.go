@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := organization.Organizations(ctx, nil, nil)
+//			_, err := organization.GetOrganizations(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -35,6 +35,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations
 func Organizations(ctx *pulumi.Context, args *OrganizationsArgs, opts ...pulumi.InvokeOption) (*OrganizationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv OrganizationsResult

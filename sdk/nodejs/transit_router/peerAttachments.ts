@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.transit_router.PeerAttachments({
+ * const foo = volcengine.transit_router.getPeerAttachments({
  *     ids: ["tr-attach-12be67d0yh2io17q7y1au****"],
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments */
 export function peerAttachments(args?: PeerAttachmentsArgs, opts?: pulumi.InvokeOptions): Promise<PeerAttachmentsResult> {
+    pulumi.log.warn("peerAttachments is deprecated: volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -121,11 +123,12 @@ export interface PeerAttachmentsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.transit_router.PeerAttachments({
+ * const foo = volcengine.transit_router.getPeerAttachments({
  *     ids: ["tr-attach-12be67d0yh2io17q7y1au****"],
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.PeerAttachments has been deprecated in favor of volcengine.transit_router.getPeerAttachments */
 export function peerAttachmentsOutput(args?: PeerAttachmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PeerAttachmentsResult> {
     return pulumi.output(args).apply((a: any) => peerAttachments(a, opts))
 }

@@ -8,5 +8,6 @@ import typing
 from .address import *
 from .addresses import *
 from .associate import *
+from .get_addresses import *
 from ._inputs import *
 from . import outputs

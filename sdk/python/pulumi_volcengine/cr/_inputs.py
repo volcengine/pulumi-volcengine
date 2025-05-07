@@ -20,6 +20,8 @@ __all__ = [
     'TagChartAttributeArgs',
     'TagImageAttributeArgs',
     'VpcEndpointVpcArgs',
+    'GetRegistriesResourceTagArgs',
+    'GetRegistriesStatusArgs',
 ]
 
 @pulumi.input_type
@@ -472,5 +474,81 @@ class VpcEndpointVpcArgs:
     @vpc_id.setter
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_id", value)
+
+
+@pulumi.input_type
+class GetRegistriesResourceTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class GetRegistriesStatusArgs:
+    def __init__(__self__, *,
+                 condition: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str condition: The condition of registry.
+        :param str phase: The phase of status.
+        """
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[str]:
+        """
+        The condition of registry.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[str]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The phase of status.
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[str]):
+        pulumi.set(self, "phase", value)
 
 

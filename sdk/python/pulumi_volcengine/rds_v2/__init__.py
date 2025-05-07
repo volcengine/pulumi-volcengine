@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_rds_instances_v2 import *
 from .rds_instance_v2 import *
 from .rds_instances_v2 import *
 from ._inputs import *

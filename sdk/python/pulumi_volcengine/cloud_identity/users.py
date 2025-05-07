@@ -17,6 +17,8 @@ __all__ = [
     'users_output',
 ]
 
+warnings.warn("""volcengine.cloud_identity.Users has been deprecated in favor of volcengine.cloud_identity.getUsers""", DeprecationWarning)
+
 @pulumi.output_type
 class UsersResult:
     """
@@ -155,7 +157,7 @@ def users(department_id: Optional[str] = None,
             email="88@qq.com",
             phone="181",
             user_name=f"acc-test-user-{range['value']}"))
-    foo_users = volcengine.cloud_identity.users(source="Manual",
+    foo_users = volcengine.cloud_identity.get_users(source="Manual",
         user_name="acc-test-user")
     ```
 
@@ -167,6 +169,7 @@ def users(department_id: Optional[str] = None,
     :param str source: The source of cloud identity user. Valid values: `Sync`, `Manual`.
     :param str user_name: The name of cloud identity user.
     """
+    pulumi.log.warn("""users is deprecated: volcengine.cloud_identity.Users has been deprecated in favor of volcengine.cloud_identity.getUsers""")
     __args__ = dict()
     __args__['departmentId'] = department_id
     __args__['displayName'] = display_name
@@ -213,7 +216,7 @@ def users_output(department_id: Optional[pulumi.Input[Optional[str]]] = None,
             email="88@qq.com",
             phone="181",
             user_name=f"acc-test-user-{range['value']}"))
-    foo_users = volcengine.cloud_identity.users(source="Manual",
+    foo_users = volcengine.cloud_identity.get_users(source="Manual",
         user_name="acc-test-user")
     ```
 
@@ -225,4 +228,5 @@ def users_output(department_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str source: The source of cloud identity user. Valid values: `Sync`, `Manual`.
     :param str user_name: The name of cloud identity user.
     """
+    pulumi.log.warn("""users is deprecated: volcengine.cloud_identity.Users has been deprecated in favor of volcengine.cloud_identity.getUsers""")
     ...

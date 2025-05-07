@@ -18,6 +18,8 @@ __all__ = [
     'file_systems_output',
 ]
 
+warnings.warn("""volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems""", DeprecationWarning)
+
 @pulumi.output_type
 class FileSystemsResult:
     """
@@ -233,7 +235,7 @@ def file_systems(charge_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.nas.zones()
+    foo_zones = volcengine.nas.get_zones()
     foo_file_system = []
     for range in [{"value": i} for i in range(0, 3)]:
         foo_file_system.append(volcengine.nas.FileSystem(f"fooFileSystem-{range['value']}",
@@ -246,7 +248,7 @@ def file_systems(charge_type: Optional[str] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_file_systems = volcengine.nas.file_systems_output(ids=[__item.id for __item in foo_file_system])
+    foo_file_systems = volcengine.nas.get_file_systems_output(ids=[__item.id for __item in foo_file_system])
     ```
 
 
@@ -264,6 +266,7 @@ def file_systems(charge_type: Optional[str] = None,
     :param Sequence[pulumi.InputType['FileSystemsTagArgs']] tags: Tags.
     :param str zone_id: The zone id of nas file system.
     """
+    pulumi.log.warn("""file_systems is deprecated: volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems""")
     __args__ = dict()
     __args__['chargeType'] = charge_type
     __args__['fileSystemName'] = file_system_name
@@ -323,7 +326,7 @@ def file_systems_output(charge_type: Optional[pulumi.Input[Optional[str]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.nas.zones()
+    foo_zones = volcengine.nas.get_zones()
     foo_file_system = []
     for range in [{"value": i} for i in range(0, 3)]:
         foo_file_system.append(volcengine.nas.FileSystem(f"fooFileSystem-{range['value']}",
@@ -336,7 +339,7 @@ def file_systems_output(charge_type: Optional[pulumi.Input[Optional[str]]] = Non
                 key="k1",
                 value="v1",
             )]))
-    foo_file_systems = volcengine.nas.file_systems_output(ids=[__item.id for __item in foo_file_system])
+    foo_file_systems = volcengine.nas.get_file_systems_output(ids=[__item.id for __item in foo_file_system])
     ```
 
 
@@ -354,4 +357,5 @@ def file_systems_output(charge_type: Optional[pulumi.Input[Optional[str]]] = Non
     :param Sequence[pulumi.InputType['FileSystemsTagArgs']] tags: Tags.
     :param str zone_id: The zone id of nas file system.
     """
+    pulumi.log.warn("""file_systems is deprecated: volcengine.nas.FileSystems has been deprecated in favor of volcengine.nas.getFileSystems""")
     ...

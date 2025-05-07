@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.Organizations({});
+ * const foo = volcengine.organization.getOrganizations({});
  * ```
  */
+/** @deprecated volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations */
 export function organizations(args?: OrganizationsArgs, opts?: pulumi.InvokeOptions): Promise<OrganizationsResult> {
+    pulumi.log.warn("organizations is deprecated: volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -68,9 +70,10 @@ export interface OrganizationsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.organization.Organizations({});
+ * const foo = volcengine.organization.getOrganizations({});
  * ```
  */
+/** @deprecated volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations */
 export function organizationsOutput(args?: OrganizationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<OrganizationsResult> {
     return pulumi.output(args).apply((a: any) => organizations(a, opts))
 }

@@ -7,6 +7,15 @@ import typing
 # Export this package's modules as members:
 from .consumed_partitions import *
 from .consumed_topics import *
+from .get_consumed_partitions import *
+from .get_consumed_topics import *
+from .get_groups import *
+from .get_instances import *
+from .get_regions import *
+from .get_sasl_users import *
+from .get_topic_partitions import *
+from .get_topics import *
+from .get_zones import *
 from .group import *
 from .groups import *
 from .instance import *

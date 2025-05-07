@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rocketmq.AccessKeys(ctx, &rocketmq.AccessKeysArgs{
+//			_, err := rocketmq.GetAccessKeys(ctx, &rocketmq.GetAccessKeysArgs{
 //				InstanceId: "rocketmq-cnoeea6b32118fc2",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rocketmq.AccessKeys has been deprecated in favor of volcengine.rocketmq.getAccessKeys
 func AccessKeys(ctx *pulumi.Context, args *AccessKeysArgs, opts ...pulumi.InvokeOption) (*AccessKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccessKeysResult

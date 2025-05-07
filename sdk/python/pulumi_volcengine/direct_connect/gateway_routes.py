@@ -17,6 +17,8 @@ __all__ = [
     'gateway_routes_output',
 ]
 
+warnings.warn("""volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes""", DeprecationWarning)
+
 @pulumi.output_type
 class GatewayRoutesResult:
     """
@@ -163,7 +165,7 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.gateway_routes(ids=[
+    foo = volcengine.direct_connect.get_gateway_routes(ids=[
         "dcr-638ry33wmzggn3gd6gv****",
         "dcr-20d6tkadi2k8w65sqhgbj****",
     ])
@@ -178,6 +180,7 @@ def gateway_routes(destination_cidr_block: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str route_type: The type of route. The value can be BGP or CEN or Static.
     """
+    pulumi.log.warn("""gateway_routes is deprecated: volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes""")
     __args__ = dict()
     __args__['destinationCidrBlock'] = destination_cidr_block
     __args__['directConnectGatewayId'] = direct_connect_gateway_id
@@ -219,7 +222,7 @@ def gateway_routes_output(destination_cidr_block: Optional[pulumi.Input[Optional
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.direct_connect.gateway_routes(ids=[
+    foo = volcengine.direct_connect.get_gateway_routes(ids=[
         "dcr-638ry33wmzggn3gd6gv****",
         "dcr-20d6tkadi2k8w65sqhgbj****",
     ])
@@ -234,4 +237,5 @@ def gateway_routes_output(destination_cidr_block: Optional[pulumi.Input[Optional
     :param str output_file: File name where to save data source results.
     :param str route_type: The type of route. The value can be BGP or CEN or Static.
     """
+    pulumi.log.warn("""gateway_routes is deprecated: volcengine.direct_connect.GatewayRoutes has been deprecated in favor of volcengine.direct_connect.getGatewayRoutes""")
     ...

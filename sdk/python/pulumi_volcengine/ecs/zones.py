@@ -17,6 +17,8 @@ __all__ = [
     'zones_output',
 ]
 
+warnings.warn("""volcengine.ecs.Zones has been deprecated in favor of volcengine.ecs.getZones""", DeprecationWarning)
+
 @pulumi.output_type
 class ZonesResult:
     """
@@ -98,13 +100,14 @@ def zones(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.zones(ids=["cn-beijing-a"])
+    default = volcengine.ecs.get_zones(ids=["cn-beijing-a"])
     ```
 
 
     :param Sequence[str] ids: A list of zone ids.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.ecs.Zones has been deprecated in favor of volcengine.ecs.getZones""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def zones_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.zones(ids=["cn-beijing-a"])
+    default = volcengine.ecs.get_zones(ids=["cn-beijing-a"])
     ```
 
 
     :param Sequence[str] ids: A list of zone ids.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""zones is deprecated: volcengine.ecs.Zones has been deprecated in favor of volcengine.ecs.getZones""")
     ...

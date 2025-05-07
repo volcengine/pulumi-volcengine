@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = cdn.ConfigsOutput(ctx, cdn.ConfigsOutputArgs{
+//			_ = cdn.GetConfigsOutput(ctx, cdn.GetConfigsOutputArgs{
 //				Domain: fooCdnDomain.ID(),
 //			}, nil)
 //			return nil
@@ -103,6 +103,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cdn.Configs has been deprecated in favor of volcengine.cdn.getConfigs
 func Configs(ctx *pulumi.Context, args *ConfigsArgs, opts ...pulumi.InvokeOption) (*ConfigsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ConfigsResult

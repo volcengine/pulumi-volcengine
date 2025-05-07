@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -43,12 +43,14 @@ import * as utilities from "../utilities";
  *     serverGroupName: "acc-test-create",
  *     description: "hello demo11",
  * });
- * const fooServerGroups = volcengine.clb.ServerGroupsOutput({
+ * const fooServerGroups = volcengine.clb.getServerGroupsOutput({
  *     ids: [fooServerGroup.id],
  * });
  * ```
  */
+/** @deprecated volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups */
 export function serverGroups(args?: ServerGroupsArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupsResult> {
+    pulumi.log.warn("serverGroups is deprecated: volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -121,7 +123,7 @@ export interface ServerGroupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -149,11 +151,12 @@ export interface ServerGroupsResult {
  *     serverGroupName: "acc-test-create",
  *     description: "hello demo11",
  * });
- * const fooServerGroups = volcengine.clb.ServerGroupsOutput({
+ * const fooServerGroups = volcengine.clb.getServerGroupsOutput({
  *     ids: [fooServerGroup.id],
  * });
  * ```
  */
+/** @deprecated volcengine.clb.ServerGroups has been deprecated in favor of volcengine.clb.getServerGroups */
 export function serverGroupsOutput(args?: ServerGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServerGroupsResult> {
     return pulumi.output(args).apply((a: any) => serverGroups(a, opts))
 }

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Financial_relation
 {
+    [Obsolete(@"volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations")]
     public static class FinancialRelations
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Financial_relation
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Financial_relation.FinancialRelations.Invoke(new()
+        ///     var foo = Volcengine.Financial_relation.GetFinancialRelations.Invoke(new()
         ///     {
         ///         AccountIds = new[]
         ///         {
@@ -57,7 +58,7 @@ namespace Pulumi.Volcengine.Financial_relation
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Financial_relation.FinancialRelations.Invoke(new()
+        ///     var foo = Volcengine.Financial_relation.GetFinancialRelations.Invoke(new()
         ///     {
         ///         AccountIds = new[]
         ///         {

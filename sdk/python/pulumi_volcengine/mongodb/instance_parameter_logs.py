@@ -17,6 +17,8 @@ __all__ = [
     'instance_parameter_logs_output',
 ]
 
+warnings.warn("""volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs""", DeprecationWarning)
+
 @pulumi.output_type
 class InstanceParameterLogsResult:
     """
@@ -118,7 +120,7 @@ def instance_parameter_logs(end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.instance_parameter_logs(end_time="2023-11-14 18:15Z",
+    foo = volcengine.mongodb.get_instance_parameter_logs(end_time="2023-11-14 18:15Z",
         instance_id="mongo-replica-f16e9298b121",
         start_time="2022-11-14 00:00Z")
     ```
@@ -129,6 +131,7 @@ def instance_parameter_logs(end_time: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str start_time: The start time to query.
     """
+    pulumi.log.warn("""instance_parameter_logs is deprecated: volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs""")
     __args__ = dict()
     __args__['endTime'] = end_time
     __args__['instanceId'] = instance_id
@@ -161,7 +164,7 @@ def instance_parameter_logs_output(end_time: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.instance_parameter_logs(end_time="2023-11-14 18:15Z",
+    foo = volcengine.mongodb.get_instance_parameter_logs(end_time="2023-11-14 18:15Z",
         instance_id="mongo-replica-f16e9298b121",
         start_time="2022-11-14 00:00Z")
     ```
@@ -172,4 +175,5 @@ def instance_parameter_logs_output(end_time: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str start_time: The start time to query.
     """
+    pulumi.log.warn("""instance_parameter_logs is deprecated: volcengine.mongodb.InstanceParameterLogs has been deprecated in favor of volcengine.mongodb.getInstanceParameterLogs""")
     ...

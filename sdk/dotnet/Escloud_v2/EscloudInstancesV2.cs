@@ -9,11 +9,248 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud_v2
 {
+    [Obsolete(@"volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2")]
     public static class EscloudInstancesV2
     {
+        /// <summary>
+        /// Use this data source to query detailed information of escloud instances v2
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         Description = "tfdesc",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooEscloudInstanceV2 = new Volcengine.Escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", new()
+        ///     {
+        ///         InstanceName = "acc-test-escloud-instance",
+        ///         Version = "V7_10",
+        ///         ZoneIds = new[]
+        ///         {
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
+        ///         },
+        ///         SubnetId = fooSubnet.Id,
+        ///         EnableHttps = false,
+        ///         AdminPassword = "Password@@123",
+        ///         ChargeType = "PostPaid",
+        ///         AutoRenew = false,
+        ///         Period = 1,
+        ///         ConfigurationCode = "es.standard",
+        ///         EnablePureMaster = true,
+        ///         DeletionProtection = false,
+        ///         ProjectName = "default",
+        ///         NodeSpecsAssigns = new[]
+        ///         {
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+        ///             {
+        ///                 Type = "Master",
+        ///                 Number = 3,
+        ///                 ResourceSpecName = "es.x2.medium",
+        ///                 StorageSpecName = "es.volume.essd.pl0",
+        ///                 StorageSize = 20,
+        ///             },
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+        ///             {
+        ///                 Type = "Hot",
+        ///                 Number = 6,
+        ///                 ResourceSpecName = "es.x2.medium",
+        ///                 StorageSpecName = "es.volume.essd.flexpl-standard",
+        ///                 StorageSize = 500,
+        ///                 ExtraPerformance = new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs
+        ///                 {
+        ///                     Throughput = 65,
+        ///                 },
+        ///             },
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+        ///             {
+        ///                 Type = "Kibana",
+        ///                 Number = 1,
+        ///                 ResourceSpecName = "kibana.x2.small",
+        ///                 StorageSpecName = "",
+        ///                 StorageSize = 0,
+        ///             },
+        ///         },
+        ///         NetworkSpecs = new[]
+        ///         {
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NetworkSpecArgs
+        ///             {
+        ///                 Type = "Elasticsearch",
+        ///                 Bandwidth = 1,
+        ///                 IsOpen = true,
+        ///                 SpecName = "es.eip.bgp_fixed_bandwidth",
+        ///             },
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NetworkSpecArgs
+        ///             {
+        ///                 Type = "Kibana",
+        ///                 Bandwidth = 1,
+        ///                 IsOpen = true,
+        ///                 SpecName = "es.eip.bgp_fixed_bandwidth",
+        ///             },
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2TagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooEscloudInstancesV2 = Volcengine.Escloud_v2.GetEscloudInstancesV2.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooEscloudInstanceV2.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<EscloudInstancesV2Result> InvokeAsync(EscloudInstancesV2Args? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<EscloudInstancesV2Result>("volcengine:escloud_v2/escloudInstancesV2:EscloudInstancesV2", args ?? new EscloudInstancesV2Args(), options.WithDefaults());
 
+        /// <summary>
+        /// Use this data source to query detailed information of escloud instances v2
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         Description = "tfdesc",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooEscloudInstanceV2 = new Volcengine.Escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", new()
+        ///     {
+        ///         InstanceName = "acc-test-escloud-instance",
+        ///         Version = "V7_10",
+        ///         ZoneIds = new[]
+        ///         {
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[1]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[2]?.Id),
+        ///         },
+        ///         SubnetId = fooSubnet.Id,
+        ///         EnableHttps = false,
+        ///         AdminPassword = "Password@@123",
+        ///         ChargeType = "PostPaid",
+        ///         AutoRenew = false,
+        ///         Period = 1,
+        ///         ConfigurationCode = "es.standard",
+        ///         EnablePureMaster = true,
+        ///         DeletionProtection = false,
+        ///         ProjectName = "default",
+        ///         NodeSpecsAssigns = new[]
+        ///         {
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+        ///             {
+        ///                 Type = "Master",
+        ///                 Number = 3,
+        ///                 ResourceSpecName = "es.x2.medium",
+        ///                 StorageSpecName = "es.volume.essd.pl0",
+        ///                 StorageSize = 20,
+        ///             },
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+        ///             {
+        ///                 Type = "Hot",
+        ///                 Number = 6,
+        ///                 ResourceSpecName = "es.x2.medium",
+        ///                 StorageSpecName = "es.volume.essd.flexpl-standard",
+        ///                 StorageSize = 500,
+        ///                 ExtraPerformance = new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs
+        ///                 {
+        ///                     Throughput = 65,
+        ///                 },
+        ///             },
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NodeSpecsAssignArgs
+        ///             {
+        ///                 Type = "Kibana",
+        ///                 Number = 1,
+        ///                 ResourceSpecName = "kibana.x2.small",
+        ///                 StorageSpecName = "",
+        ///                 StorageSize = 0,
+        ///             },
+        ///         },
+        ///         NetworkSpecs = new[]
+        ///         {
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NetworkSpecArgs
+        ///             {
+        ///                 Type = "Elasticsearch",
+        ///                 Bandwidth = 1,
+        ///                 IsOpen = true,
+        ///                 SpecName = "es.eip.bgp_fixed_bandwidth",
+        ///             },
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2NetworkSpecArgs
+        ///             {
+        ///                 Type = "Kibana",
+        ///                 Bandwidth = 1,
+        ///                 IsOpen = true,
+        ///                 SpecName = "es.eip.bgp_fixed_bandwidth",
+        ///             },
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Escloud_v2.Inputs.EscloudInstanceV2TagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooEscloudInstancesV2 = Volcengine.Escloud_v2.GetEscloudInstancesV2.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooEscloudInstanceV2.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<EscloudInstancesV2Result> Invoke(EscloudInstancesV2InvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<EscloudInstancesV2Result>("volcengine:escloud_v2/escloudInstancesV2:EscloudInstancesV2", args ?? new EscloudInstancesV2InvokeArgs(), options.WithDefaults());
     }
@@ -23,6 +260,10 @@ namespace Pulumi.Volcengine.Escloud_v2
     {
         [Input("chargeTypes")]
         private List<string>? _chargeTypes;
+
+        /// <summary>
+        /// The charge types of instance.
+        /// </summary>
         public List<string> ChargeTypes
         {
             get => _chargeTypes ?? (_chargeTypes = new List<string>());
@@ -31,6 +272,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("ids")]
         private List<string>? _ids;
+
+        /// <summary>
+        /// A list of instance IDs.
+        /// </summary>
         public List<string> Ids
         {
             get => _ids ?? (_ids = new List<string>());
@@ -39,20 +284,34 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("instanceNames")]
         private List<string>? _instanceNames;
+
+        /// <summary>
+        /// The names of instance.
+        /// </summary>
         public List<string> InstanceNames
         {
             get => _instanceNames ?? (_instanceNames = new List<string>());
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of instance.
+        /// </summary>
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
         [Input("statuses")]
         private List<string>? _statuses;
+
+        /// <summary>
+        /// The status of instance.
+        /// </summary>
         public List<string> Statuses
         {
             get => _statuses ?? (_statuses = new List<string>());
@@ -61,6 +320,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("tags")]
         private List<Inputs.EscloudInstancesV2TagArgs>? _tags;
+
+        /// <summary>
+        /// The tags of instance.
+        /// </summary>
         public List<Inputs.EscloudInstancesV2TagArgs> Tags
         {
             get => _tags ?? (_tags = new List<Inputs.EscloudInstancesV2TagArgs>());
@@ -69,6 +332,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("versions")]
         private List<string>? _versions;
+
+        /// <summary>
+        /// The versions of instance.
+        /// </summary>
         public List<string> Versions
         {
             get => _versions ?? (_versions = new List<string>());
@@ -77,6 +344,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("zoneIds")]
         private List<string>? _zoneIds;
+
+        /// <summary>
+        /// The available zone IDs of instance.
+        /// </summary>
         public List<string> ZoneIds
         {
             get => _zoneIds ?? (_zoneIds = new List<string>());
@@ -93,6 +364,10 @@ namespace Pulumi.Volcengine.Escloud_v2
     {
         [Input("chargeTypes")]
         private InputList<string>? _chargeTypes;
+
+        /// <summary>
+        /// The charge types of instance.
+        /// </summary>
         public InputList<string> ChargeTypes
         {
             get => _chargeTypes ?? (_chargeTypes = new InputList<string>());
@@ -101,6 +376,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("ids")]
         private InputList<string>? _ids;
+
+        /// <summary>
+        /// A list of instance IDs.
+        /// </summary>
         public InputList<string> Ids
         {
             get => _ids ?? (_ids = new InputList<string>());
@@ -109,20 +388,34 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("instanceNames")]
         private InputList<string>? _instanceNames;
+
+        /// <summary>
+        /// The names of instance.
+        /// </summary>
         public InputList<string> InstanceNames
         {
             get => _instanceNames ?? (_instanceNames = new InputList<string>());
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of instance.
+        /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
         [Input("statuses")]
         private InputList<string>? _statuses;
+
+        /// <summary>
+        /// The status of instance.
+        /// </summary>
         public InputList<string> Statuses
         {
             get => _statuses ?? (_statuses = new InputList<string>());
@@ -131,6 +424,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("tags")]
         private InputList<Inputs.EscloudInstancesV2TagInputArgs>? _tags;
+
+        /// <summary>
+        /// The tags of instance.
+        /// </summary>
         public InputList<Inputs.EscloudInstancesV2TagInputArgs> Tags
         {
             get => _tags ?? (_tags = new InputList<Inputs.EscloudInstancesV2TagInputArgs>());
@@ -139,6 +436,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("versions")]
         private InputList<string>? _versions;
+
+        /// <summary>
+        /// The versions of instance.
+        /// </summary>
         public InputList<string> Versions
         {
             get => _versions ?? (_versions = new InputList<string>());
@@ -147,6 +448,10 @@ namespace Pulumi.Volcengine.Escloud_v2
 
         [Input("zoneIds")]
         private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// The available zone IDs of instance.
+        /// </summary>
         public InputList<string> ZoneIds
         {
             get => _zoneIds ?? (_zoneIds = new InputList<string>());
@@ -170,11 +475,23 @@ namespace Pulumi.Volcengine.Escloud_v2
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
         public readonly ImmutableArray<string> InstanceNames;
+        /// <summary>
+        /// The collection of query.
+        /// </summary>
         public readonly ImmutableArray<Outputs.EscloudInstancesV2InstanceResult> Instances;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The name of project.
+        /// </summary>
         public readonly string? ProjectName;
         public readonly ImmutableArray<string> Statuses;
+        /// <summary>
+        /// Tags.
+        /// </summary>
         public readonly ImmutableArray<Outputs.EscloudInstancesV2TagResult> Tags;
+        /// <summary>
+        /// The total count of query.
+        /// </summary>
         public readonly int TotalCount;
         public readonly ImmutableArray<string> Versions;
         public readonly ImmutableArray<string> ZoneIds;

@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.clb.Zones({});
+ * const default = volcengine.clb.getZones({});
  * ```
  */
+/** @deprecated volcengine.clb.Zones has been deprecated in favor of volcengine.clb.getZones */
 export function zones(args?: ZonesArgs, opts?: pulumi.InvokeOptions): Promise<ZonesResult> {
+    pulumi.log.warn("zones is deprecated: volcengine.clb.Zones has been deprecated in favor of volcengine.clb.getZones")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,9 +64,10 @@ export interface ZonesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.clb.Zones({});
+ * const default = volcengine.clb.getZones({});
  * ```
  */
+/** @deprecated volcengine.clb.Zones has been deprecated in favor of volcengine.clb.getZones */
 export function zonesOutput(args?: ZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ZonesResult> {
     return pulumi.output(args).apply((a: any) => zones(a, opts))
 }

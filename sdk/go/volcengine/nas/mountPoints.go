@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to query detailed information of nas mount points
+//
+// Deprecated: volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints
 func MountPoints(ctx *pulumi.Context, args *MountPointsArgs, opts ...pulumi.InvokeOption) (*MountPointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv MountPointsResult

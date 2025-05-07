@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Redis
 {
+    [Obsolete(@"volcengine.redis.AllowLists has been deprecated in favor of volcengine.redis.getAllowLists")]
     public static class AllowLists
     {
         /// <summary>
@@ -32,7 +33,7 @@ namespace Pulumi.Volcengine.Redis
         ///         AllowListName = "acc-test-allowlist",
         ///     });
         /// 
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -44,7 +45,7 @@ namespace Pulumi.Volcengine.Redis
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -52,7 +53,7 @@ namespace Pulumi.Volcengine.Redis
         ///     {
         ///         ZoneIds = new[]
         ///         {
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         },
         ///         InstanceName = "acc-test-tf-redis",
         ///         ShardedCluster = 1,
@@ -75,7 +76,7 @@ namespace Pulumi.Volcengine.Redis
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooAllowLists = Volcengine.Redis.AllowLists.Invoke(new()
+        ///     var fooAllowLists = Volcengine.Redis.GetAllowLists.Invoke(new()
         ///     {
         ///         InstanceId = fooAllowListAssociate.InstanceId,
         ///         RegionId = "cn-beijing",
@@ -109,7 +110,7 @@ namespace Pulumi.Volcengine.Redis
         ///         AllowListName = "acc-test-allowlist",
         ///     });
         /// 
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -121,7 +122,7 @@ namespace Pulumi.Volcengine.Redis
         ///     {
         ///         SubnetName = "acc-test-subnet",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -129,7 +130,7 @@ namespace Pulumi.Volcengine.Redis
         ///     {
         ///         ZoneIds = new[]
         ///         {
-        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         },
         ///         InstanceName = "acc-test-tf-redis",
         ///         ShardedCluster = 1,
@@ -152,7 +153,7 @@ namespace Pulumi.Volcengine.Redis
         ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
-        ///     var fooAllowLists = Volcengine.Redis.AllowLists.Invoke(new()
+        ///     var fooAllowLists = Volcengine.Redis.GetAllowLists.Invoke(new()
         ///     {
         ///         InstanceId = fooAllowListAssociate.InstanceId,
         ///         RegionId = "cn-beijing",

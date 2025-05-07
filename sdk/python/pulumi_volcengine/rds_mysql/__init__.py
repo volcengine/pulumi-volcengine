@@ -18,6 +18,16 @@ from .databases import *
 from .endpoint import *
 from .endpoint_public_address import *
 from .endpoints import *
+from .get_accounts import *
+from .get_allowlists import *
+from .get_backups import *
+from .get_databases import *
+from .get_endpoints import *
+from .get_instance_specs import *
+from .get_instances import *
+from .get_parameter_templates import *
+from .get_regions import *
+from .get_zones import *
 from .instance import *
 from .instance_readonly_node import *
 from .instance_specs import *

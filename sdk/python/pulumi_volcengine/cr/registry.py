@@ -303,10 +303,21 @@ class Registry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cr.Registry("foo",
+        # create cr registry
+        foo_registry = volcengine.cr.Registry("fooRegistry",
             delete_immediately=False,
             password="1qaz!QAZ",
             project="default")
+        # create cr namespace
+        foo_namespace = volcengine.cr.Namespace("fooNamespace",
+            registry=foo_registry.id,
+            project="default")
+        # create cr repository
+        foo_repository = volcengine.cr.Repository("fooRepository",
+            registry=foo_registry.id,
+            namespace=foo_namespace.name,
+            description="A test repository created by terraform.",
+            access_level="Public")
         ```
 
         ## Import
@@ -338,10 +349,21 @@ class Registry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cr.Registry("foo",
+        # create cr registry
+        foo_registry = volcengine.cr.Registry("fooRegistry",
             delete_immediately=False,
             password="1qaz!QAZ",
             project="default")
+        # create cr namespace
+        foo_namespace = volcengine.cr.Namespace("fooNamespace",
+            registry=foo_registry.id,
+            project="default")
+        # create cr repository
+        foo_repository = volcengine.cr.Repository("fooRepository",
+            registry=foo_registry.id,
+            namespace=foo_namespace.name,
+            description="A test repository created by terraform.",
+            access_level="Public")
         ```
 
         ## Import

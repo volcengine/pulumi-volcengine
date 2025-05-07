@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := direct_connect.BgpPeers(ctx, &direct_connect.BgpPeersArgs{
+//			_, err := direct_connect.GetBgpPeers(ctx, &direct_connect.GetBgpPeersArgs{
 //				Ids: []string{
 //					"bgp-171w6pn39ruo04d1w33iq****",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.direct_connect.BgpPeers has been deprecated in favor of volcengine.direct_connect.getBgpPeers
 func BgpPeers(ctx *pulumi.Context, args *BgpPeersArgs, opts ...pulumi.InvokeOption) (*BgpPeersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BgpPeersResult

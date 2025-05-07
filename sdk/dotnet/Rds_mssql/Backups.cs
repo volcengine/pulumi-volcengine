@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mssql
 {
+    [Obsolete(@"volcengine.rds_mssql.Backups has been deprecated in favor of volcengine.rds_mssql.getBackups")]
     public static class Backups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mssql.Backups.Invoke(new()
+        ///     var foo = Volcengine.Rds_mssql.GetBackups.Invoke(new()
         ///     {
         ///         InstanceId = "mssql-40914121fd22",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mssql.Backups.Invoke(new()
+        ///     var foo = Volcengine.Rds_mssql.GetBackups.Invoke(new()
         ///     {
         ///         InstanceId = "mssql-40914121fd22",
         ///     });

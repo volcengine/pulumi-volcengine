@@ -2030,6 +2030,1232 @@ func (o RdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput) Index(i pulumi.IntIn
 	}).(RdsInstancesV2RdsInstanceNodeDetailInfoOutput)
 }
 
+type GetRdsInstancesV2RdsInstance struct {
+	// Payment methods.
+	ChargeDetail GetRdsInstancesV2RdsInstanceChargeDetail `pulumi:"chargeDetail"`
+	// The connection info ot the RDS instance.
+	ConnectionInfos []GetRdsInstancesV2RdsInstanceConnectionInfo `pulumi:"connectionInfos"`
+	// Node creation local time.
+	CreateTime string `pulumi:"createTime"`
+	// The engine of the RDS instance.
+	DbEngine string `pulumi:"dbEngine"`
+	// The version of the RDS instance, Value:
+	// MySQL Community:
+	// MySQL_5.7 - MySQL 5.7
+	// MySQL_8_0 - MySQL 8.0
+	// PostgreSQL Community:
+	// PostgreSQL_11 - PostgreSQL 11
+	// PostgreSQL_12 - PostgreSQL 12
+	// Microsoft SQL Server: Not available at this time
+	// SQLServer_2019 - SQL Server 2019
+	// veDB for MySQL:
+	// MySQL_8_0 - MySQL 8.0
+	// veDB for PostgreSQL:
+	// PostgreSQL_13 - PostgreSQL 13.
+	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// The ID of the RDS instance.
+	Id string `pulumi:"id"`
+	// The id of the RDS instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the RDS instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The status of the RDS instance, Value:
+	// Running - running
+	// Creating - Creating
+	// Deleting - Deleting
+	// Restarting - Restarting
+	// Restoring - Restoring
+	// Updating - changing
+	// Upgrading - Upgrading
+	// Error - the error.
+	InstanceStatus string `pulumi:"instanceStatus"`
+	// The type of the RDS instance, Value:
+	// Value:
+	// RDS for MySQL:
+	// HA - high availability version;
+	// RDS for PostgreSQL:
+	// HA - high availability version;
+	// Microsoft SQL Server: Not available at this time
+	// Enterprise - Enterprise Edition
+	// Standard - Standard Edition
+	// Web - Web version
+	// veDB for MySQL:
+	// Cluster - Cluster Edition
+	// veDB for PostgreSQL:
+	// Cluster - Cluster Edition
+	// MySQL Sharding:
+	// HA - high availability version;.
+	InstanceType string `pulumi:"instanceType"`
+	// Instance node information.
+	NodeDetailInfos []GetRdsInstancesV2RdsInstanceNodeDetailInfo `pulumi:"nodeDetailInfos"`
+	// The number of nodes.
+	NodeNumber int `pulumi:"nodeNumber"`
+	// General instance type, different from Custom instance type.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// Instance intranet port.
+	Port string `pulumi:"port"`
+	// Subordinate to the project.
+	ProjectName string `pulumi:"projectName"`
+	// The region of the RDS instance.
+	RegionId string `pulumi:"regionId"`
+	// The number of shards.
+	ShardNumber int `pulumi:"shardNumber"`
+	// Total instance storage space. Unit: GB.
+	StorageSpace int `pulumi:"storageSpace"`
+	// Instance storage type. When the database type is MySQL/PostgreSQL/SQL_Server/MySQL Sharding, the value is:
+	// LocalSSD - local SSD disk
+	// When the database type is veDB_MySQL/veDB_PostgreSQL, the value is:
+	// DistributedStorage - Distributed Storage.
+	StorageType string `pulumi:"storageType"`
+	// The instance has used storage space. Unit: GB.
+	StorageUse int `pulumi:"storageUse"`
+	// The subnet ID of the RDS instance.
+	SubnetId string `pulumi:"subnetId"`
+	// Time zone.
+	TimeZone string `pulumi:"timeZone"`
+	// The vpc ID of the RDS instance.
+	VpcId string `pulumi:"vpcId"`
+	// The available zone of the RDS instance.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetRdsInstancesV2RdsInstanceInput is an input type that accepts GetRdsInstancesV2RdsInstanceArgs and GetRdsInstancesV2RdsInstanceOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceArgs{...}
+type GetRdsInstancesV2RdsInstanceInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceOutput() GetRdsInstancesV2RdsInstanceOutput
+	ToGetRdsInstancesV2RdsInstanceOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceOutput
+}
+
+type GetRdsInstancesV2RdsInstanceArgs struct {
+	// Payment methods.
+	ChargeDetail GetRdsInstancesV2RdsInstanceChargeDetailInput `pulumi:"chargeDetail"`
+	// The connection info ot the RDS instance.
+	ConnectionInfos GetRdsInstancesV2RdsInstanceConnectionInfoArrayInput `pulumi:"connectionInfos"`
+	// Node creation local time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The engine of the RDS instance.
+	DbEngine pulumi.StringInput `pulumi:"dbEngine"`
+	// The version of the RDS instance, Value:
+	// MySQL Community:
+	// MySQL_5.7 - MySQL 5.7
+	// MySQL_8_0 - MySQL 8.0
+	// PostgreSQL Community:
+	// PostgreSQL_11 - PostgreSQL 11
+	// PostgreSQL_12 - PostgreSQL 12
+	// Microsoft SQL Server: Not available at this time
+	// SQLServer_2019 - SQL Server 2019
+	// veDB for MySQL:
+	// MySQL_8_0 - MySQL 8.0
+	// veDB for PostgreSQL:
+	// PostgreSQL_13 - PostgreSQL 13.
+	DbEngineVersion pulumi.StringInput `pulumi:"dbEngineVersion"`
+	// The ID of the RDS instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the RDS instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the RDS instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The status of the RDS instance, Value:
+	// Running - running
+	// Creating - Creating
+	// Deleting - Deleting
+	// Restarting - Restarting
+	// Restoring - Restoring
+	// Updating - changing
+	// Upgrading - Upgrading
+	// Error - the error.
+	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The type of the RDS instance, Value:
+	// Value:
+	// RDS for MySQL:
+	// HA - high availability version;
+	// RDS for PostgreSQL:
+	// HA - high availability version;
+	// Microsoft SQL Server: Not available at this time
+	// Enterprise - Enterprise Edition
+	// Standard - Standard Edition
+	// Web - Web version
+	// veDB for MySQL:
+	// Cluster - Cluster Edition
+	// veDB for PostgreSQL:
+	// Cluster - Cluster Edition
+	// MySQL Sharding:
+	// HA - high availability version;.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// Instance node information.
+	NodeDetailInfos GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayInput `pulumi:"nodeDetailInfos"`
+	// The number of nodes.
+	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
+	// General instance type, different from Custom instance type.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// Instance intranet port.
+	Port pulumi.StringInput `pulumi:"port"`
+	// Subordinate to the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The region of the RDS instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The number of shards.
+	ShardNumber pulumi.IntInput `pulumi:"shardNumber"`
+	// Total instance storage space. Unit: GB.
+	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
+	// Instance storage type. When the database type is MySQL/PostgreSQL/SQL_Server/MySQL Sharding, the value is:
+	// LocalSSD - local SSD disk
+	// When the database type is veDB_MySQL/veDB_PostgreSQL, the value is:
+	// DistributedStorage - Distributed Storage.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+	// The instance has used storage space. Unit: GB.
+	StorageUse pulumi.IntInput `pulumi:"storageUse"`
+	// The subnet ID of the RDS instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Time zone.
+	TimeZone pulumi.StringInput `pulumi:"timeZone"`
+	// The vpc ID of the RDS instance.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The available zone of the RDS instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetRdsInstancesV2RdsInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstance)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceArgs) ToGetRdsInstancesV2RdsInstanceOutput() GetRdsInstancesV2RdsInstanceOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceArgs) ToGetRdsInstancesV2RdsInstanceOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceOutput)
+}
+
+// GetRdsInstancesV2RdsInstanceArrayInput is an input type that accepts GetRdsInstancesV2RdsInstanceArray and GetRdsInstancesV2RdsInstanceArrayOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceArrayInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceArray{ GetRdsInstancesV2RdsInstanceArgs{...} }
+type GetRdsInstancesV2RdsInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceArrayOutput() GetRdsInstancesV2RdsInstanceArrayOutput
+	ToGetRdsInstancesV2RdsInstanceArrayOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceArrayOutput
+}
+
+type GetRdsInstancesV2RdsInstanceArray []GetRdsInstancesV2RdsInstanceInput
+
+func (GetRdsInstancesV2RdsInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstance)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceArray) ToGetRdsInstancesV2RdsInstanceArrayOutput() GetRdsInstancesV2RdsInstanceArrayOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceArray) ToGetRdsInstancesV2RdsInstanceArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceArrayOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstance)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceOutput) ToGetRdsInstancesV2RdsInstanceOutput() GetRdsInstancesV2RdsInstanceOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceOutput) ToGetRdsInstancesV2RdsInstanceOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceOutput {
+	return o
+}
+
+// Payment methods.
+func (o GetRdsInstancesV2RdsInstanceOutput) ChargeDetail() GetRdsInstancesV2RdsInstanceChargeDetailOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) GetRdsInstancesV2RdsInstanceChargeDetail { return v.ChargeDetail }).(GetRdsInstancesV2RdsInstanceChargeDetailOutput)
+}
+
+// The connection info ot the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) ConnectionInfos() GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) []GetRdsInstancesV2RdsInstanceConnectionInfo {
+		return v.ConnectionInfos
+	}).(GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput)
+}
+
+// Node creation local time.
+func (o GetRdsInstancesV2RdsInstanceOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The engine of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) DbEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.DbEngine }).(pulumi.StringOutput)
+}
+
+// The version of the RDS instance, Value:
+// MySQL Community:
+// MySQL_5.7 - MySQL 5.7
+// MySQL_8_0 - MySQL 8.0
+// PostgreSQL Community:
+// PostgreSQL_11 - PostgreSQL 11
+// PostgreSQL_12 - PostgreSQL 12
+// Microsoft SQL Server: Not available at this time
+// SQLServer_2019 - SQL Server 2019
+// veDB for MySQL:
+// MySQL_8_0 - MySQL 8.0
+// veDB for PostgreSQL:
+// PostgreSQL_13 - PostgreSQL 13.
+func (o GetRdsInstancesV2RdsInstanceOutput) DbEngineVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.DbEngineVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The status of the RDS instance, Value:
+// Running - running
+// Creating - Creating
+// Deleting - Deleting
+// Restarting - Restarting
+// Restoring - Restoring
+// Updating - changing
+// Upgrading - Upgrading
+// Error - the error.
+func (o GetRdsInstancesV2RdsInstanceOutput) InstanceStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
+}
+
+// The type of the RDS instance, Value:
+// Value:
+// RDS for MySQL:
+// HA - high availability version;
+// RDS for PostgreSQL:
+// HA - high availability version;
+// Microsoft SQL Server: Not available at this time
+// Enterprise - Enterprise Edition
+// Standard - Standard Edition
+// Web - Web version
+// veDB for MySQL:
+// Cluster - Cluster Edition
+// veDB for PostgreSQL:
+// Cluster - Cluster Edition
+// MySQL Sharding:
+// HA - high availability version;.
+func (o GetRdsInstancesV2RdsInstanceOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// Instance node information.
+func (o GetRdsInstancesV2RdsInstanceOutput) NodeDetailInfos() GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) []GetRdsInstancesV2RdsInstanceNodeDetailInfo {
+		return v.NodeDetailInfos
+	}).(GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput)
+}
+
+// The number of nodes.
+func (o GetRdsInstancesV2RdsInstanceOutput) NodeNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) int { return v.NodeNumber }).(pulumi.IntOutput)
+}
+
+// General instance type, different from Custom instance type.
+func (o GetRdsInstancesV2RdsInstanceOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// Instance intranet port.
+func (o GetRdsInstancesV2RdsInstanceOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// Subordinate to the project.
+func (o GetRdsInstancesV2RdsInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The region of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The number of shards.
+func (o GetRdsInstancesV2RdsInstanceOutput) ShardNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) int { return v.ShardNumber }).(pulumi.IntOutput)
+}
+
+// Total instance storage space. Unit: GB.
+func (o GetRdsInstancesV2RdsInstanceOutput) StorageSpace() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
+}
+
+// Instance storage type. When the database type is MySQL/PostgreSQL/SQL_Server/MySQL Sharding, the value is:
+// LocalSSD - local SSD disk
+// When the database type is veDB_MySQL/veDB_PostgreSQL, the value is:
+// DistributedStorage - Distributed Storage.
+func (o GetRdsInstancesV2RdsInstanceOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// The instance has used storage space. Unit: GB.
+func (o GetRdsInstancesV2RdsInstanceOutput) StorageUse() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) int { return v.StorageUse }).(pulumi.IntOutput)
+}
+
+// The subnet ID of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Time zone.
+func (o GetRdsInstancesV2RdsInstanceOutput) TimeZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.TimeZone }).(pulumi.StringOutput)
+}
+
+// The vpc ID of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The available zone of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstance) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstance)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceArrayOutput) ToGetRdsInstancesV2RdsInstanceArrayOutput() GetRdsInstancesV2RdsInstanceArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceArrayOutput) ToGetRdsInstancesV2RdsInstanceArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceArrayOutput) Index(i pulumi.IntInput) GetRdsInstancesV2RdsInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRdsInstancesV2RdsInstance {
+		return vs[0].([]GetRdsInstancesV2RdsInstance)[vs[1].(int)]
+	}).(GetRdsInstancesV2RdsInstanceOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceChargeDetail struct {
+	// Whether to automatically renew in prepaid scenarios.
+	// Autorenew_Enable
+	// Autorenew_Disable (default).
+	AutoRenew bool `pulumi:"autoRenew"`
+	// Billing expiry time (yearly and monthly only).
+	ChargeEndTime string `pulumi:"chargeEndTime"`
+	// Billing start time (pay-as-you-go & monthly subscription).
+	ChargeStartTime string `pulumi:"chargeStartTime"`
+	// Pay status. Value:
+	// normal - normal
+	// overdue - overdue
+	// .
+	ChargeStatus string `pulumi:"chargeStatus"`
+	// The charge type of the RDS instance.
+	ChargeType string `pulumi:"chargeType"`
+	// Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
+	// Shutdown time in arrears (pay-as-you-go & monthly subscription).
+	OverdueTime string `pulumi:"overdueTime"`
+	// Purchase duration in prepaid scenarios. Default: 1.
+	Period int `pulumi:"period"`
+	// The purchase cycle in the prepaid scenario.
+	// Month - monthly subscription (default)
+	// Year - Package year.
+	PeriodUnit string `pulumi:"periodUnit"`
+}
+
+// GetRdsInstancesV2RdsInstanceChargeDetailInput is an input type that accepts GetRdsInstancesV2RdsInstanceChargeDetailArgs and GetRdsInstancesV2RdsInstanceChargeDetailOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceChargeDetailInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceChargeDetailArgs{...}
+type GetRdsInstancesV2RdsInstanceChargeDetailInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceChargeDetailOutput() GetRdsInstancesV2RdsInstanceChargeDetailOutput
+	ToGetRdsInstancesV2RdsInstanceChargeDetailOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceChargeDetailOutput
+}
+
+type GetRdsInstancesV2RdsInstanceChargeDetailArgs struct {
+	// Whether to automatically renew in prepaid scenarios.
+	// Autorenew_Enable
+	// Autorenew_Disable (default).
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// Billing expiry time (yearly and monthly only).
+	ChargeEndTime pulumi.StringInput `pulumi:"chargeEndTime"`
+	// Billing start time (pay-as-you-go & monthly subscription).
+	ChargeStartTime pulumi.StringInput `pulumi:"chargeStartTime"`
+	// Pay status. Value:
+	// normal - normal
+	// overdue - overdue
+	// .
+	ChargeStatus pulumi.StringInput `pulumi:"chargeStatus"`
+	// The charge type of the RDS instance.
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
+	// Shutdown time in arrears (pay-as-you-go & monthly subscription).
+	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// Purchase duration in prepaid scenarios. Default: 1.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The purchase cycle in the prepaid scenario.
+	// Month - monthly subscription (default)
+	// Year - Package year.
+	PeriodUnit pulumi.StringInput `pulumi:"periodUnit"`
+}
+
+func (GetRdsInstancesV2RdsInstanceChargeDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceChargeDetail)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceChargeDetailArgs) ToGetRdsInstancesV2RdsInstanceChargeDetailOutput() GetRdsInstancesV2RdsInstanceChargeDetailOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceChargeDetailOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceChargeDetailArgs) ToGetRdsInstancesV2RdsInstanceChargeDetailOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceChargeDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceChargeDetailOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceChargeDetailOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceChargeDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceChargeDetail)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) ToGetRdsInstancesV2RdsInstanceChargeDetailOutput() GetRdsInstancesV2RdsInstanceChargeDetailOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) ToGetRdsInstancesV2RdsInstanceChargeDetailOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceChargeDetailOutput {
+	return o
+}
+
+// Whether to automatically renew in prepaid scenarios.
+// Autorenew_Enable
+// Autorenew_Disable (default).
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// Billing expiry time (yearly and monthly only).
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) ChargeEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.ChargeEndTime }).(pulumi.StringOutput)
+}
+
+// Billing start time (pay-as-you-go & monthly subscription).
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) ChargeStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.ChargeStartTime }).(pulumi.StringOutput)
+}
+
+// Pay status. Value:
+// normal - normal
+// overdue - overdue
+// .
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) ChargeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.ChargeStatus }).(pulumi.StringOutput)
+}
+
+// The charge type of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) ChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
+// Shutdown time in arrears (pay-as-you-go & monthly subscription).
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// Purchase duration in prepaid scenarios. Default: 1.
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The purchase cycle in the prepaid scenario.
+// Month - monthly subscription (default)
+// Year - Package year.
+func (o GetRdsInstancesV2RdsInstanceChargeDetailOutput) PeriodUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceChargeDetail) string { return v.PeriodUnit }).(pulumi.StringOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfo struct {
+	// Address list.
+	Addresses []GetRdsInstancesV2RdsInstanceConnectionInfoAddress `pulumi:"addresses"`
+	// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+	AutoAddNewNodes string `pulumi:"autoAddNewNodes"`
+	// Address description.
+	Description string `pulumi:"description"`
+	// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadOnly string `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadWriteSplitting string `pulumi:"enableReadWriteSplitting"`
+	// Instance connection terminal ID.
+	EndpointId string `pulumi:"endpointId"`
+	// The instance connection terminal name.
+	EndpointName string `pulumi:"endpointName"`
+	// Terminal type:
+	// Cluster: The default terminal. (created by default)
+	// Primary: Primary node terminal.
+	// Custom: Custom terminal.
+	// Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+	// AllNode: All node terminals. (Only the operation and maintenance side).
+	EndpointType string `pulumi:"endpointType"`
+	// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+	ReadOnlyNodeWeights []GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight `pulumi:"readOnlyNodeWeights"`
+	// Read and write mode:
+	// ReadWrite: read and write
+	// ReadOnly: read only (default).
+	ReadWriteMode string `pulumi:"readWriteMode"`
+}
+
+// GetRdsInstancesV2RdsInstanceConnectionInfoInput is an input type that accepts GetRdsInstancesV2RdsInstanceConnectionInfoArgs and GetRdsInstancesV2RdsInstanceConnectionInfoOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceConnectionInfoInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceConnectionInfoArgs{...}
+type GetRdsInstancesV2RdsInstanceConnectionInfoInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoOutput() GetRdsInstancesV2RdsInstanceConnectionInfoOutput
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoOutput
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoArgs struct {
+	// Address list.
+	Addresses GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayInput `pulumi:"addresses"`
+	// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+	AutoAddNewNodes pulumi.StringInput `pulumi:"autoAddNewNodes"`
+	// Address description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadOnly pulumi.StringInput `pulumi:"enableReadOnly"`
+	// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+	EnableReadWriteSplitting pulumi.StringInput `pulumi:"enableReadWriteSplitting"`
+	// Instance connection terminal ID.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The instance connection terminal name.
+	EndpointName pulumi.StringInput `pulumi:"endpointName"`
+	// Terminal type:
+	// Cluster: The default terminal. (created by default)
+	// Primary: Primary node terminal.
+	// Custom: Custom terminal.
+	// Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+	// AllNode: All node terminals. (Only the operation and maintenance side).
+	EndpointType pulumi.StringInput `pulumi:"endpointType"`
+	// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+	ReadOnlyNodeWeights GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayInput `pulumi:"readOnlyNodeWeights"`
+	// Read and write mode:
+	// ReadWrite: read and write
+	// ReadOnly: read only (default).
+	ReadWriteMode pulumi.StringInput `pulumi:"readWriteMode"`
+}
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoArgs) ToGetRdsInstancesV2RdsInstanceConnectionInfoOutput() GetRdsInstancesV2RdsInstanceConnectionInfoOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceConnectionInfoOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoArgs) ToGetRdsInstancesV2RdsInstanceConnectionInfoOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceConnectionInfoOutput)
+}
+
+// GetRdsInstancesV2RdsInstanceConnectionInfoArrayInput is an input type that accepts GetRdsInstancesV2RdsInstanceConnectionInfoArray and GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceConnectionInfoArrayInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceConnectionInfoArray{ GetRdsInstancesV2RdsInstanceConnectionInfoArgs{...} }
+type GetRdsInstancesV2RdsInstanceConnectionInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoArray []GetRdsInstancesV2RdsInstanceConnectionInfoInput
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoArray) ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoArray) ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoOutput() GetRdsInstancesV2RdsInstanceConnectionInfoOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoOutput {
+	return o
+}
+
+// Address list.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) Addresses() GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) []GetRdsInstancesV2RdsInstanceConnectionInfoAddress {
+		return v.Addresses
+	}).(GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput)
+}
+
+// When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) AutoAddNewNodes() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.AutoAddNewNodes }).(pulumi.StringOutput)
+}
+
+// Address description.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) EnableReadOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.EnableReadOnly }).(pulumi.StringOutput)
+}
+
+// Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) EnableReadWriteSplitting() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.EnableReadWriteSplitting }).(pulumi.StringOutput)
+}
+
+// Instance connection terminal ID.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// The instance connection terminal name.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) EndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.EndpointName }).(pulumi.StringOutput)
+}
+
+// Terminal type:
+// Cluster: The default terminal. (created by default)
+// Primary: Primary node terminal.
+// Custom: Custom terminal.
+// Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+// AllNode: All node terminals. (Only the operation and maintenance side).
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) EndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.EndpointType }).(pulumi.StringOutput)
+}
+
+// The list of nodes configured by the connection terminal and the corresponding read-only weights.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) ReadOnlyNodeWeights() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) []GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight {
+		return v.ReadOnlyNodeWeights
+	}).(GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput)
+}
+
+// Read and write mode:
+// ReadWrite: read and write
+// ReadOnly: read only (default).
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoOutput) ReadWriteMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfo) string { return v.ReadWriteMode }).(pulumi.StringOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceConnectionInfo)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput) Index(i pulumi.IntInput) GetRdsInstancesV2RdsInstanceConnectionInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRdsInstancesV2RdsInstanceConnectionInfo {
+		return vs[0].([]GetRdsInstancesV2RdsInstanceConnectionInfo)[vs[1].(int)]
+	}).(GetRdsInstancesV2RdsInstanceConnectionInfoOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddress struct {
+	// Connect domain name.
+	Domain string `pulumi:"domain"`
+	// The ID of the EIP, only valid for Public addresses.
+	EipId string `pulumi:"eipId"`
+	// The IP Address.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address type, temporarily Private, Public, PublicService.
+	NetworkType string `pulumi:"networkType"`
+	// Instance intranet port.
+	Port string `pulumi:"port"`
+	// The subnet ID of the RDS instance.
+	SubnetId string `pulumi:"subnetId"`
+}
+
+// GetRdsInstancesV2RdsInstanceConnectionInfoAddressInput is an input type that accepts GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs and GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceConnectionInfoAddressInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs{...}
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddressInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput() GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs struct {
+	// Connect domain name.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The ID of the EIP, only valid for Public addresses.
+	EipId pulumi.StringInput `pulumi:"eipId"`
+	// The IP Address.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address type, temporarily Private, Public, PublicService.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+	// Instance intranet port.
+	Port pulumi.StringInput `pulumi:"port"`
+	// The subnet ID of the RDS instance.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+}
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoAddress)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput() GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput)
+}
+
+// GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayInput is an input type that accepts GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray and GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray{ GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs{...} }
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray []GetRdsInstancesV2RdsInstanceConnectionInfoAddressInput
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceConnectionInfoAddress)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoAddress)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput() GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput {
+	return o
+}
+
+// Connect domain name.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoAddress) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The ID of the EIP, only valid for Public addresses.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoAddress) string { return v.EipId }).(pulumi.StringOutput)
+}
+
+// The IP Address.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoAddress) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address type, temporarily Private, Public, PublicService.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoAddress) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+// Instance intranet port.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoAddress) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// The subnet ID of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoAddress) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceConnectionInfoAddress)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput) Index(i pulumi.IntInput) GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRdsInstancesV2RdsInstanceConnectionInfoAddress {
+		return vs[0].([]GetRdsInstancesV2RdsInstanceConnectionInfoAddress)[vs[1].(int)]
+	}).(GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight struct {
+	// Node ID.
+	NodeId string `pulumi:"nodeId"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType string `pulumi:"nodeType"`
+	// The weight of the node.
+	Weight int `pulumi:"weight"`
+}
+
+// GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightInput is an input type that accepts GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs and GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs{...}
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs struct {
+	// Node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// The weight of the node.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput)
+}
+
+// GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayInput is an input type that accepts GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray and GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray{ GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs{...} }
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput
+	ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray []GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightInput
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput {
+	return o
+}
+
+// Node ID.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// Node type. Value: Primary: Primary node.
+// Secondary: Standby node.
+// ReadOnly: Read-only node.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// The weight of the node.
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput() GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput) ToGetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput) Index(i pulumi.IntInput) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight {
+		return vs[0].([]GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeight)[vs[1].(int)]
+	}).(GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceNodeDetailInfo struct {
+	// Node creation local time.
+	CreateTime string `pulumi:"createTime"`
+	// The id of the RDS instance.
+	InstanceId string `pulumi:"instanceId"`
+	// Memory size in GB.
+	Memory int `pulumi:"memory"`
+	// Node ID.
+	NodeId string `pulumi:"nodeId"`
+	// General instance type, different from Custom instance type.
+	NodeSpec string `pulumi:"nodeSpec"`
+	// Node state, value: aligned with instance state.
+	NodeStatus string `pulumi:"nodeStatus"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType string `pulumi:"nodeType"`
+	// The region of the RDS instance.
+	RegionId string `pulumi:"regionId"`
+	// Node updates local time.
+	UpdateTime string `pulumi:"updateTime"`
+	// CPU size. For example: 1 means 1U.
+	VCpu int `pulumi:"vCpu"`
+	// The available zone of the RDS instance.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// GetRdsInstancesV2RdsInstanceNodeDetailInfoInput is an input type that accepts GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs and GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceNodeDetailInfoInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs{...}
+type GetRdsInstancesV2RdsInstanceNodeDetailInfoInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutput() GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput
+	ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput
+}
+
+type GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs struct {
+	// Node creation local time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The id of the RDS instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Memory size in GB.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// Node ID.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// General instance type, different from Custom instance type.
+	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
+	// Node state, value: aligned with instance state.
+	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
+	// Node type. Value: Primary: Primary node.
+	// Secondary: Standby node.
+	// ReadOnly: Read-only node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// The region of the RDS instance.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// Node updates local time.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// CPU size. For example: 1 means 1U.
+	VCpu pulumi.IntInput `pulumi:"vCpu"`
+	// The available zone of the RDS instance.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceNodeDetailInfo)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutput() GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput)
+}
+
+// GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayInput is an input type that accepts GetRdsInstancesV2RdsInstanceNodeDetailInfoArray and GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput values.
+// You can construct a concrete instance of `GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayInput` via:
+//
+//	GetRdsInstancesV2RdsInstanceNodeDetailInfoArray{ GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs{...} }
+type GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput() GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput
+	ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutputWithContext(context.Context) GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput
+}
+
+type GetRdsInstancesV2RdsInstanceNodeDetailInfoArray []GetRdsInstancesV2RdsInstanceNodeDetailInfoInput
+
+func (GetRdsInstancesV2RdsInstanceNodeDetailInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceNodeDetailInfo)(nil)).Elem()
+}
+
+func (i GetRdsInstancesV2RdsInstanceNodeDetailInfoArray) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput() GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput {
+	return i.ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRdsInstancesV2RdsInstanceNodeDetailInfoArray) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdsInstancesV2RdsInstanceNodeDetailInfo)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutput() GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput {
+	return o
+}
+
+// Node creation local time.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The id of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Memory size in GB.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// Node ID.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// General instance type, different from Custom instance type.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) NodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.NodeSpec }).(pulumi.StringOutput)
+}
+
+// Node state, value: aligned with instance state.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) NodeStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.NodeStatus }).(pulumi.StringOutput)
+}
+
+// Node type. Value: Primary: Primary node.
+// Secondary: Standby node.
+// ReadOnly: Read-only node.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// The region of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// Node updates local time.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// CPU size. For example: 1 means 1U.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) VCpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) int { return v.VCpu }).(pulumi.IntOutput)
+}
+
+// The available zone of the RDS instance.
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRdsInstancesV2RdsInstanceNodeDetailInfo) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdsInstancesV2RdsInstanceNodeDetailInfo)(nil)).Elem()
+}
+
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput() GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput) ToGetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutputWithContext(ctx context.Context) GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput {
+	return o
+}
+
+func (o GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput) Index(i pulumi.IntInput) GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRdsInstancesV2RdsInstanceNodeDetailInfo {
+		return vs[0].([]GetRdsInstancesV2RdsInstanceNodeDetailInfo)[vs[1].(int)]
+	}).(GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RdsInstanceV2ChargeInfoInput)(nil)).Elem(), RdsInstanceV2ChargeInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdsInstanceV2ChargeInfoPtrInput)(nil)).Elem(), RdsInstanceV2ChargeInfoArgs{})
@@ -2052,6 +3278,17 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayInput)(nil)).Elem(), RdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdsInstancesV2RdsInstanceNodeDetailInfoInput)(nil)).Elem(), RdsInstancesV2RdsInstanceNodeDetailInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdsInstancesV2RdsInstanceNodeDetailInfoArrayInput)(nil)).Elem(), RdsInstancesV2RdsInstanceNodeDetailInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceArrayInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceChargeDetailInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceChargeDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceConnectionInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoArrayInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceConnectionInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoAddressInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceConnectionInfoAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceConnectionInfoAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceNodeDetailInfoInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceNodeDetailInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayInput)(nil)).Elem(), GetRdsInstancesV2RdsInstanceNodeDetailInfoArray{})
 	pulumi.RegisterOutputType(RdsInstanceV2ChargeInfoOutput{})
 	pulumi.RegisterOutputType(RdsInstanceV2ChargeInfoPtrOutput{})
 	pulumi.RegisterOutputType(RdsInstanceV2ConnectionInfoOutput{})
@@ -2073,4 +3310,15 @@ func init() {
 	pulumi.RegisterOutputType(RdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput{})
 	pulumi.RegisterOutputType(RdsInstancesV2RdsInstanceNodeDetailInfoOutput{})
 	pulumi.RegisterOutputType(RdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceChargeDetailOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceConnectionInfoOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceConnectionInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceConnectionInfoAddressOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceConnectionInfoAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceConnectionInfoReadOnlyNodeWeightArrayOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceNodeDetailInfoOutput{})
+	pulumi.RegisterOutputType(GetRdsInstancesV2RdsInstanceNodeDetailInfoArrayOutput{})
 }

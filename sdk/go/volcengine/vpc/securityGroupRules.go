@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.SecurityGroupRules(ctx, &vpc.SecurityGroupRulesArgs{
+//			_, err := vpc.GetSecurityGroupRules(ctx, &vpc.GetSecurityGroupRulesArgs{
 //				SecurityGroupId: "sg-13f2nau7x93wg3n6nu3z5sxib",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules
 func SecurityGroupRules(ctx *pulumi.Context, args *SecurityGroupRulesArgs, opts ...pulumi.InvokeOption) (*SecurityGroupRulesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SecurityGroupRulesResult

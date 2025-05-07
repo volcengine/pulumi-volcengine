@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := financial_relation.FinancialRelations(ctx, &financial_relation.FinancialRelationsArgs{
+//			_, err := financial_relation.GetFinancialRelations(ctx, &financial_relation.GetFinancialRelationsArgs{
 //				AccountIds: []string{
 //					"210026****",
 //				},
@@ -45,6 +45,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.financial_relation.FinancialRelations has been deprecated in favor of volcengine.financial_relation.getFinancialRelations
 func FinancialRelations(ctx *pulumi.Context, args *FinancialRelationsArgs, opts ...pulumi.InvokeOption) (*FinancialRelationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FinancialRelationsResult

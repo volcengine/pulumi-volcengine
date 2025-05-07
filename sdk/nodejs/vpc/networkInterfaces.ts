@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.NetworkInterfaces({
+ * const default = volcengine.vpc.getNetworkInterfaces({
  *     ids: ["eni-2744htx2w0j5s7fap8t3ivwze"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces */
 export function networkInterfaces(args?: NetworkInterfacesArgs, opts?: pulumi.InvokeOptions): Promise<NetworkInterfacesResult> {
+    pulumi.log.warn("networkInterfaces is deprecated: volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -172,11 +174,12 @@ export interface NetworkInterfacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vpc.NetworkInterfaces({
+ * const default = volcengine.vpc.getNetworkInterfaces({
  *     ids: ["eni-2744htx2w0j5s7fap8t3ivwze"],
  * });
  * ```
  */
+/** @deprecated volcengine.vpc.NetworkInterfaces has been deprecated in favor of volcengine.vpc.getNetworkInterfaces */
 export function networkInterfacesOutput(args?: NetworkInterfacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NetworkInterfacesResult> {
     return pulumi.output(args).apply((a: any) => networkInterfaces(a, opts))
 }

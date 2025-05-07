@@ -9,16 +9,45 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners")]
     public static class Listeners
     {
         /// <summary>
         /// Use this data source to query detailed information of alb listeners
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Alb.GetListeners.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<ListenersResult> InvokeAsync(ListenersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListenersResult>("volcengine:alb/listeners:Listeners", args ?? new ListenersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of alb listeners
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Alb.GetListeners.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<ListenersResult> Invoke(ListenersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListenersResult>("volcengine:alb/listeners:Listeners", args ?? new ListenersInvokeArgs(), options.WithDefaults());

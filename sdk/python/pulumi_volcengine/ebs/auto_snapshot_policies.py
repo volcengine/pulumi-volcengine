@@ -18,6 +18,8 @@ __all__ = [
     'auto_snapshot_policies_output',
 ]
 
+warnings.warn("""volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies""", DeprecationWarning)
+
 @pulumi.output_type
 class AutoSnapshotPoliciesResult:
     """
@@ -154,7 +156,7 @@ def auto_snapshot_policies(ids: Optional[Sequence[str]] = None,
                 key="k1",
                 value="v1",
             )]))
-    foo_auto_snapshot_policies = volcengine.ebs.auto_snapshot_policies_output(ids=[__item.id for __item in foo_auto_snapshot_policy])
+    foo_auto_snapshot_policies = volcengine.ebs.get_auto_snapshot_policies_output(ids=[__item.id for __item in foo_auto_snapshot_policy])
     ```
 
 
@@ -164,6 +166,7 @@ def auto_snapshot_policies(ids: Optional[Sequence[str]] = None,
     :param str project_name: The project name of auto snapshot policy.
     :param Sequence[pulumi.InputType['AutoSnapshotPoliciesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""auto_snapshot_policies is deprecated: volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -218,7 +221,7 @@ def auto_snapshot_policies_output(ids: Optional[pulumi.Input[Optional[Sequence[s
                 key="k1",
                 value="v1",
             )]))
-    foo_auto_snapshot_policies = volcengine.ebs.auto_snapshot_policies_output(ids=[__item.id for __item in foo_auto_snapshot_policy])
+    foo_auto_snapshot_policies = volcengine.ebs.get_auto_snapshot_policies_output(ids=[__item.id for __item in foo_auto_snapshot_policy])
     ```
 
 
@@ -228,4 +231,5 @@ def auto_snapshot_policies_output(ids: Optional[pulumi.Input[Optional[Sequence[s
     :param str project_name: The project name of auto snapshot policy.
     :param Sequence[pulumi.InputType['AutoSnapshotPoliciesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""auto_snapshot_policies is deprecated: volcengine.ebs.AutoSnapshotPolicies has been deprecated in favor of volcengine.ebs.getAutoSnapshotPolicies""")
     ...

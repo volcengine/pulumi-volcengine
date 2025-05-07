@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -118,7 +118,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = rds_postgresql.SchemasOutput(ctx, rds_postgresql.SchemasOutputArgs{
+//			_ = rds_postgresql.GetSchemasOutput(ctx, rds_postgresql.GetSchemasOutputArgs{
 //				DbName:     fooSchema.DbName,
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
@@ -127,6 +127,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas
 func Schemas(ctx *pulumi.Context, args *SchemasArgs, opts ...pulumi.InvokeOption) (*SchemasResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SchemasResult

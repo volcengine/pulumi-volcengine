@@ -18,6 +18,8 @@ __all__ = [
     'bandwidth_packages_output',
 ]
 
+warnings.warn("""volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages""", DeprecationWarning)
+
 @pulumi.output_type
 class BandwidthPackagesResult:
     """
@@ -184,7 +186,7 @@ def bandwidth_packages(cen_bandwidth_package_names: Optional[Sequence[str]] = No
                 key="k1",
                 value="v1",
             )]))
-    foo_bandwidth_packages = volcengine.cen.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
+    foo_bandwidth_packages = volcengine.cen.get_bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 
@@ -197,6 +199,7 @@ def bandwidth_packages(cen_bandwidth_package_names: Optional[Sequence[str]] = No
     :param str peer_geographic_region_set_id: A peer geographic region set id.
     :param Sequence[pulumi.InputType['BandwidthPackagesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""bandwidth_packages is deprecated: volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages""")
     __args__ = dict()
     __args__['cenBandwidthPackageNames'] = cen_bandwidth_package_names
     __args__['cenId'] = cen_id
@@ -257,7 +260,7 @@ def bandwidth_packages_output(cen_bandwidth_package_names: Optional[pulumi.Input
                 key="k1",
                 value="v1",
             )]))
-    foo_bandwidth_packages = volcengine.cen.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
+    foo_bandwidth_packages = volcengine.cen.get_bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 
@@ -270,4 +273,5 @@ def bandwidth_packages_output(cen_bandwidth_package_names: Optional[pulumi.Input
     :param str peer_geographic_region_set_id: A peer geographic region set id.
     :param Sequence[pulumi.InputType['BandwidthPackagesTagArgs']] tags: Tags.
     """
+    pulumi.log.warn("""bandwidth_packages is deprecated: volcengine.cen.BandwidthPackages has been deprecated in favor of volcengine.cen.getBandwidthPackages""")
     ...

@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vedb_mysql.AccountsOutput(ctx, vedb_mysql.AccountsOutputArgs{
+//			_ = vedb_mysql.GetAccountsOutput(ctx, vedb_mysql.GetAccountsOutputArgs{
 //				AccountName: fooAccount.AccountName,
 //				InstanceId:  fooInstance.ID(),
 //			}, nil)
@@ -104,6 +104,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vedb_mysql.Accounts has been deprecated in favor of volcengine.vedb_mysql.getAccounts
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AccountsResult

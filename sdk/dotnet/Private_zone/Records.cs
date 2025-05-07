@@ -9,16 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Private_zone
 {
+    [Obsolete(@"volcengine.private_zone.Records has been deprecated in favor of volcengine.private_zone.getRecords")]
     public static class Records
     {
         /// <summary>
         /// Use this data source to query detailed information of private zone records
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Private_zone.GetRecords.Invoke(new()
+        ///     {
+        ///         RecordId = "907925684878276****",
+        ///         Zid = 2450000,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<RecordsResult> InvokeAsync(RecordsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RecordsResult>("volcengine:private_zone/records:Records", args ?? new RecordsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of private zone records
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Private_zone.GetRecords.Invoke(new()
+        ///     {
+        ///         RecordId = "907925684878276****",
+        ///         Zid = 2450000,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<RecordsResult> Invoke(RecordsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RecordsResult>("volcengine:private_zone/records:Records", args ?? new RecordsInvokeArgs(), options.WithDefaults());

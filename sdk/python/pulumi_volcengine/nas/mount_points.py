@@ -17,6 +17,8 @@ __all__ = [
     'mount_points_output',
 ]
 
+warnings.warn("""volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints""", DeprecationWarning)
+
 @pulumi.output_type
 class MountPointsResult:
     """
@@ -142,6 +144,7 @@ def mount_points(file_system_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str vpc_id: The id of the vpc.
     """
+    pulumi.log.warn("""mount_points is deprecated: volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints""")
     __args__ = dict()
     __args__['fileSystemId'] = file_system_id
     __args__['mountPointId'] = mount_point_id
@@ -179,4 +182,5 @@ def mount_points_output(file_system_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str vpc_id: The id of the vpc.
     """
+    pulumi.log.warn("""mount_points is deprecated: volcengine.nas.MountPoints has been deprecated in favor of volcengine.nas.getMountPoints""")
     ...

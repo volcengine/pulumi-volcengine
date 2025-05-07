@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Registries({
+ * const foo = volcengine.cr.getRegistries({
  *     statuses: [{
  *         condition: "Ok",
  *         phase: "Running",
@@ -22,7 +22,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries */
 export function registries(args?: RegistriesArgs, opts?: pulumi.InvokeOptions): Promise<RegistriesResult> {
+    pulumi.log.warn("registries is deprecated: volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -94,7 +96,7 @@ export interface RegistriesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cr.Registries({
+ * const foo = volcengine.cr.getRegistries({
  *     statuses: [{
  *         condition: "Ok",
  *         phase: "Running",
@@ -102,6 +104,7 @@ export interface RegistriesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.cr.Registries has been deprecated in favor of volcengine.cr.getRegistries */
 export function registriesOutput(args?: RegistriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RegistriesResult> {
     return pulumi.output(args).apply((a: any) => registries(a, opts))
 }

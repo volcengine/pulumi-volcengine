@@ -17,6 +17,8 @@ __all__ = [
     'deployment_sets_output',
 ]
 
+warnings.warn("""volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets""", DeprecationWarning)
+
 @pulumi.output_type
 class DeploymentSetsResult:
     """
@@ -128,7 +130,7 @@ def deployment_sets(granularity: Optional[str] = None,
             description="acc-test",
             granularity="switch",
             strategy="Availability"))
-    foo_deployment_sets = volcengine.ecs.deployment_sets_output(granularity="switch",
+    foo_deployment_sets = volcengine.ecs.get_deployment_sets_output(granularity="switch",
         ids=[__item.id for __item in foo_deployment_set])
     ```
 
@@ -138,6 +140,7 @@ def deployment_sets(granularity: Optional[str] = None,
     :param str name_regex: A Name Regex of ECS DeploymentSet.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""deployment_sets is deprecated: volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets""")
     __args__ = dict()
     __args__['granularity'] = granularity
     __args__['ids'] = ids
@@ -177,7 +180,7 @@ def deployment_sets_output(granularity: Optional[pulumi.Input[Optional[str]]] = 
             description="acc-test",
             granularity="switch",
             strategy="Availability"))
-    foo_deployment_sets = volcengine.ecs.deployment_sets_output(granularity="switch",
+    foo_deployment_sets = volcengine.ecs.get_deployment_sets_output(granularity="switch",
         ids=[__item.id for __item in foo_deployment_set])
     ```
 
@@ -187,4 +190,5 @@ def deployment_sets_output(granularity: Optional[pulumi.Input[Optional[str]]] = 
     :param str name_regex: A Name Regex of ECS DeploymentSet.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""deployment_sets is deprecated: volcengine.ecs.DeploymentSets has been deprecated in favor of volcengine.ecs.getDeploymentSets""")
     ...

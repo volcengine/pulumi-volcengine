@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -46,12 +46,14 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * const fooSslState = new volcengine.mongodb.SslState("fooSslState", {instanceId: fooInstance.id});
- * const fooSslStates = volcengine.mongodb.SslStatesOutput({
+ * const fooSslStates = volcengine.mongodb.getSslStatesOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.SslStates has been deprecated in favor of volcengine.mongodb.getSslStates */
 export function sslStates(args: SslStatesArgs, opts?: pulumi.InvokeOptions): Promise<SslStatesResult> {
+    pulumi.log.warn("sslStates is deprecated: volcengine.mongodb.SslStates has been deprecated in favor of volcengine.mongodb.getSslStates")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/sslStates:SslStates", {
@@ -105,7 +107,7 @@ export interface SslStatesResult {
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.Zones({});
+ * const fooZones = volcengine.ecs.getZones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
@@ -136,11 +138,12 @@ export interface SslStatesResult {
  *     }],
  * });
  * const fooSslState = new volcengine.mongodb.SslState("fooSslState", {instanceId: fooInstance.id});
- * const fooSslStates = volcengine.mongodb.SslStatesOutput({
+ * const fooSslStates = volcengine.mongodb.getSslStatesOutput({
  *     instanceId: fooInstance.id,
  * });
  * ```
  */
+/** @deprecated volcengine.mongodb.SslStates has been deprecated in favor of volcengine.mongodb.getSslStates */
 export function sslStatesOutput(args: SslStatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SslStatesResult> {
     return pulumi.output(args).apply((a: any) => sslStates(a, opts))
 }

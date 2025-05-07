@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.SupportAddons(ctx, &vke.SupportAddonsArgs{
+//			_, err := vke.GetSupportAddons(ctx, &vke.GetSupportAddonsArgs{
 //				Categories: []string{
 //					"Monitor",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vke.SupportAddons has been deprecated in favor of volcengine.vke.getSupportAddons
 func SupportAddons(ctx *pulumi.Context, args *SupportAddonsArgs, opts ...pulumi.InvokeOption) (*SupportAddonsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SupportAddonsResult

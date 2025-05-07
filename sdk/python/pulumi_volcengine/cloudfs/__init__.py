@@ -9,6 +9,11 @@ from .access import *
 from .accesses import *
 from .file_system import *
 from .file_systems import *
+from .get_accesses import *
+from .get_file_systems import *
+from .get_namespaces import *
+from .get_ns_quotas import *
+from .get_quotas import *
 from .namespace import *
 from .namespaces import *
 from .ns_quotas import *

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cr.Repositories(ctx, &cr.RepositoriesArgs{
+//			_, err := cr.GetRepositories(ctx, &cr.GetRepositoriesArgs{
 //				Names: []string{
 //					"repo*",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cr.Repositories has been deprecated in favor of volcengine.cr.getRepositories
 func Repositories(ctx *pulumi.Context, args *RepositoriesArgs, opts ...pulumi.InvokeOption) (*RepositoriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RepositoriesResult

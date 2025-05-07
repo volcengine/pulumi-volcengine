@@ -371,7 +371,7 @@ class Node(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -383,7 +383,7 @@ class Node(pulumi.CustomResource):
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+        foo_images = volcengine.ecs.get_images(name_regex="veLinux 1.0 CentOS兼容版 64位")
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
             delete_protection_enabled=False,
@@ -523,7 +523,7 @@ class Node(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.zones()
+        foo_zones = volcengine.ecs.get_zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
@@ -535,7 +535,7 @@ class Node(pulumi.CustomResource):
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             security_group_name="acc-test-security-group",
             vpc_id=foo_vpc.id)
-        foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+        foo_images = volcengine.ecs.get_images(name_regex="veLinux 1.0 CentOS兼容版 64位")
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
             delete_protection_enabled=False,

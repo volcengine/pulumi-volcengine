@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.ImageSharePermissions({
+ * const foo = volcengine.ecs.getImageSharePermissions({
  *     imageId: "image-ydi2wozhozfu03z2****",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions */
 export function imageSharePermissions(args: ImageSharePermissionsArgs, opts?: pulumi.InvokeOptions): Promise<ImageSharePermissionsResult> {
+    pulumi.log.warn("imageSharePermissions is deprecated: volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/imageSharePermissions:ImageSharePermissions", {
@@ -69,11 +71,12 @@ export interface ImageSharePermissionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.ecs.ImageSharePermissions({
+ * const foo = volcengine.ecs.getImageSharePermissions({
  *     imageId: "image-ydi2wozhozfu03z2****",
  * });
  * ```
  */
+/** @deprecated volcengine.ecs.ImageSharePermissions has been deprecated in favor of volcengine.ecs.getImageSharePermissions */
 export function imageSharePermissionsOutput(args: ImageSharePermissionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ImageSharePermissionsResult> {
     return pulumi.output(args).apply((a: any) => imageSharePermissions(a, opts))
 }

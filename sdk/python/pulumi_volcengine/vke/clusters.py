@@ -18,6 +18,8 @@ __all__ = [
     'clusters_output',
 ]
 
+warnings.warn("""volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters""", DeprecationWarning)
+
 @pulumi.output_type
 class ClustersResult:
     """
@@ -259,7 +261,7 @@ def clusters(create_client_token: Optional[str] = None,
             key="tf-k1",
             value="tf-v1",
         )])
-    foo_clusters = volcengine.vke.clusters_output(ids=[foo_cluster.id])
+    foo_clusters = volcengine.vke.get_clusters_output(ids=[foo_cluster.id])
     ```
 
 
@@ -277,6 +279,7 @@ def clusters(create_client_token: Optional[str] = None,
     :param Sequence[pulumi.InputType['ClustersTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
     """
+    pulumi.log.warn("""clusters is deprecated: volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters""")
     __args__ = dict()
     __args__['createClientToken'] = create_client_token
     __args__['deleteProtectionEnabled'] = delete_protection_enabled
@@ -374,7 +377,7 @@ def clusters_output(create_client_token: Optional[pulumi.Input[Optional[str]]] =
             key="tf-k1",
             value="tf-v1",
         )])
-    foo_clusters = volcengine.vke.clusters_output(ids=[foo_cluster.id])
+    foo_clusters = volcengine.vke.get_clusters_output(ids=[foo_cluster.id])
     ```
 
 
@@ -392,4 +395,5 @@ def clusters_output(create_client_token: Optional[pulumi.Input[Optional[str]]] =
     :param Sequence[pulumi.InputType['ClustersTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
     """
+    pulumi.log.warn("""clusters is deprecated: volcengine.vke.Clusters has been deprecated in favor of volcengine.vke.getClusters""")
     ...

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Dns
 {
+    [Obsolete(@"volcengine.dns.Backups has been deprecated in favor of volcengine.dns.getBackups")]
     public static class Backups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Dns.Backups.Invoke(new()
+        ///     var foo = Volcengine.Dns.GetBackups.Invoke(new()
         ///     {
         ///         Zid = 58846,
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Dns.Backups.Invoke(new()
+        ///     var foo = Volcengine.Dns.GetBackups.Invoke(new()
         ///     {
         ///         Zid = 58846,
         ///     });

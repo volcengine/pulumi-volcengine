@@ -8,8 +8,18 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of alb listeners
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.alb.getListeners({});
+ * ```
  */
+/** @deprecated volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners */
 export function listeners(args?: ListenersArgs, opts?: pulumi.InvokeOptions): Promise<ListenersResult> {
+    pulumi.log.warn("listeners is deprecated: volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -87,7 +97,16 @@ export interface ListenersResult {
 }
 /**
  * Use this data source to query detailed information of alb listeners
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.alb.getListeners({});
+ * ```
  */
+/** @deprecated volcengine.alb.Listeners has been deprecated in favor of volcengine.alb.getListeners */
 export function listenersOutput(args?: ListenersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListenersResult> {
     return pulumi.output(args).apply((a: any) => listeners(a, opts))
 }

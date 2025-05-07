@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Direct_connect
 {
+    [Obsolete(@"volcengine.direct_connect.Gateways has been deprecated in favor of volcengine.direct_connect.getGateways")]
     public static class Gateways
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.Gateways.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetGateways.Invoke(new()
         ///     {
         ///         DirectConnectGatewayName = "tf-test",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Direct_connect.Gateways.Invoke(new()
+        ///     var foo = Volcengine.Direct_connect.GetGateways.Invoke(new()
         ///     {
         ///         DirectConnectGatewayName = "tf-test",
         ///     });

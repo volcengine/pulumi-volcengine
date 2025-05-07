@@ -17,6 +17,8 @@ __all__ = [
     'security_group_rules_output',
 ]
 
+warnings.warn("""volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules""", DeprecationWarning)
+
 @pulumi.output_type
 class SecurityGroupRulesResult:
     """
@@ -141,7 +143,7 @@ def security_group_rules(cidr_ip: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.security_group_rules(security_group_id="sg-13f2nau7x93wg3n6nu3z5sxib")
+    default = volcengine.vpc.get_security_group_rules(security_group_id="sg-13f2nau7x93wg3n6nu3z5sxib")
     ```
 
 
@@ -152,6 +154,7 @@ def security_group_rules(cidr_ip: Optional[str] = None,
     :param str security_group_id: SecurityGroup ID.
     :param str source_group_id: ID of the source security group whose access permission you want to set.
     """
+    pulumi.log.warn("""security_group_rules is deprecated: volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules""")
     __args__ = dict()
     __args__['cidrIp'] = cidr_ip
     __args__['direction'] = direction
@@ -189,7 +192,7 @@ def security_group_rules_output(cidr_ip: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.security_group_rules(security_group_id="sg-13f2nau7x93wg3n6nu3z5sxib")
+    default = volcengine.vpc.get_security_group_rules(security_group_id="sg-13f2nau7x93wg3n6nu3z5sxib")
     ```
 
 
@@ -200,4 +203,5 @@ def security_group_rules_output(cidr_ip: Optional[pulumi.Input[Optional[str]]] =
     :param str security_group_id: SecurityGroup ID.
     :param str source_group_id: ID of the source security group whose access permission you want to set.
     """
+    pulumi.log.warn("""security_group_rules is deprecated: volcengine.vpc.SecurityGroupRules has been deprecated in favor of volcengine.vpc.getSecurityGroupRules""")
     ...

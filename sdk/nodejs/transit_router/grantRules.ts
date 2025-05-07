@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.transit_router.GrantRules({
+ * const foo = volcengine.transit_router.getGrantRules({
  *     transitRouterId: "tr-2bzy39uy6u3282dx0efxiqyq0",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules */
 export function grantRules(args: GrantRulesArgs, opts?: pulumi.InvokeOptions): Promise<GrantRulesResult> {
+    pulumi.log.warn("grantRules is deprecated: volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/grantRules:GrantRules", {
@@ -81,11 +83,12 @@ export interface GrantRulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.transit_router.GrantRules({
+ * const foo = volcengine.transit_router.getGrantRules({
  *     transitRouterId: "tr-2bzy39uy6u3282dx0efxiqyq0",
  * });
  * ```
  */
+/** @deprecated volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules */
 export function grantRulesOutput(args: GrantRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GrantRulesResult> {
     return pulumi.output(args).apply((a: any) => grantRules(a, opts))
 }

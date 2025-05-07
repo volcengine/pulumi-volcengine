@@ -17,6 +17,8 @@ __all__ = [
     'cloud_servers_output',
 ]
 
+warnings.warn("""volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers""", DeprecationWarning)
+
 @pulumi.output_type
 class CloudServersResult:
     """
@@ -108,7 +110,7 @@ def cloud_servers(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.cloud_servers()
+    default = volcengine.veenedge.get_cloud_servers()
     ```
 
 
@@ -116,6 +118,7 @@ def cloud_servers(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of Cloud Server.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""cloud_servers is deprecated: volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -145,7 +148,7 @@ def cloud_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.veenedge.cloud_servers()
+    default = volcengine.veenedge.get_cloud_servers()
     ```
 
 
@@ -153,4 +156,5 @@ def cloud_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param str name_regex: A Name Regex of Cloud Server.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""cloud_servers is deprecated: volcengine.veenedge.CloudServers has been deprecated in favor of volcengine.veenedge.getCloudServers""")
     ...

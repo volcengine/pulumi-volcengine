@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudfs.FileSystems(ctx, &cloudfs.FileSystemsArgs{
+//			_, err := cloudfs.GetFileSystems(ctx, &cloudfs.GetFileSystemsArgs{
 //				FsName: pulumi.StringRef("tftest2"),
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems
 func FileSystems(ctx *pulumi.Context, args *FileSystemsArgs, opts ...pulumi.InvokeOption) (*FileSystemsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FileSystemsResult

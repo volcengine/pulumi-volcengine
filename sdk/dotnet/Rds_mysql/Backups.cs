@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mysql
 {
+    [Obsolete(@"volcengine.rds_mysql.Backups has been deprecated in favor of volcengine.rds_mysql.getBackups")]
     public static class Backups
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.Backups.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetBackups.Invoke(new()
         ///     {
         ///         BackupEndTime = "",
         ///         BackupId = "",
@@ -53,7 +54,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.Backups.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetBackups.Invoke(new()
         ///     {
         ///         BackupEndTime = "",
         ///         BackupId = "",

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Topics(ctx, &tls.TopicsArgs{
+//			_, err := tls.GetTopics(ctx, &tls.GetTopicsArgs{
 //				ProjectId: "e020c978-4f05-40e1-9167-0113d3ef****",
 //				TopicId:   pulumi.StringRef("edf051ed-3c46-49ba-9339-bea628fe****"),
 //			}, nil)
@@ -38,6 +38,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.tls.Topics has been deprecated in favor of volcengine.tls.getTopics
 func Topics(ctx *pulumi.Context, args *TopicsArgs, opts ...pulumi.InvokeOption) (*TopicsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TopicsResult

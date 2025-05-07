@@ -17,6 +17,8 @@ __all__ = [
     'grant_rules_output',
 ]
 
+warnings.warn("""volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules""", DeprecationWarning)
+
 @pulumi.output_type
 class GrantRulesResult:
     """
@@ -114,7 +116,7 @@ def grant_rules(grant_account_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.transit_router.grant_rules(transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
+    foo = volcengine.transit_router.get_grant_rules(transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
     ```
 
 
@@ -122,6 +124,7 @@ def grant_rules(grant_account_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str transit_router_id: The id of the transit router.
     """
+    pulumi.log.warn("""grant_rules is deprecated: volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules""")
     __args__ = dict()
     __args__['grantAccountId'] = grant_account_id
     __args__['outputFile'] = output_file
@@ -151,7 +154,7 @@ def grant_rules_output(grant_account_id: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.transit_router.grant_rules(transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
+    foo = volcengine.transit_router.get_grant_rules(transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
     ```
 
 
@@ -159,4 +162,5 @@ def grant_rules_output(grant_account_id: Optional[pulumi.Input[Optional[str]]] =
     :param str output_file: File name where to save data source results.
     :param str transit_router_id: The id of the transit router.
     """
+    pulumi.log.warn("""grant_rules is deprecated: volcengine.transit_router.GrantRules has been deprecated in favor of volcengine.transit_router.getGrantRules""")
     ...

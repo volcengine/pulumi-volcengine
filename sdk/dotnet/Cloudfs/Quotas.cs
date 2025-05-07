@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Cloudfs
 {
+    [Obsolete(@"volcengine.cloudfs.Quotas has been deprecated in favor of volcengine.cloudfs.getQuotas")]
     public static class Quotas
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.Quotas.Invoke();
+        ///     var @default = Volcengine.Cloudfs.GetQuotas.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Cloudfs.Quotas.Invoke();
+        ///     var @default = Volcengine.Cloudfs.GetQuotas.Invoke();
         /// 
         /// });
         /// ```

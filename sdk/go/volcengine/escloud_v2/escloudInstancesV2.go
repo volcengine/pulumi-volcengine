@@ -11,6 +11,124 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Use this data source to query detailed information of escloud instances v2
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/escloud_v2"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName:  pulumi.String("acc-test-subnet"),
+//				Description: pulumi.String("tfdesc"),
+//				CidrBlock:   pulumi.String("172.16.0.0/24"),
+//				ZoneId:      pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:       fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooEscloudInstanceV2, err := escloud_v2.NewEscloudInstanceV2(ctx, "fooEscloudInstanceV2", &escloud_v2.EscloudInstanceV2Args{
+//				InstanceName: pulumi.String("acc-test-escloud-instance"),
+//				Version:      pulumi.String("V7_10"),
+//				ZoneIds: pulumi.StringArray{
+//					pulumi.String(fooZones.Zones[0].Id),
+//					pulumi.String(fooZones.Zones[1].Id),
+//					pulumi.String(fooZones.Zones[2].Id),
+//				},
+//				SubnetId:           fooSubnet.ID(),
+//				EnableHttps:        pulumi.Bool(false),
+//				AdminPassword:      pulumi.String("Password@@123"),
+//				ChargeType:         pulumi.String("PostPaid"),
+//				AutoRenew:          pulumi.Bool(false),
+//				Period:             pulumi.Int(1),
+//				ConfigurationCode:  pulumi.String("es.standard"),
+//				EnablePureMaster:   pulumi.Bool(true),
+//				DeletionProtection: pulumi.Bool(false),
+//				ProjectName:        pulumi.String("default"),
+//				NodeSpecsAssigns: escloud_v2.EscloudInstanceV2NodeSpecsAssignArray{
+//					&escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs{
+//						Type:             pulumi.String("Master"),
+//						Number:           pulumi.Int(3),
+//						ResourceSpecName: pulumi.String("es.x2.medium"),
+//						StorageSpecName:  pulumi.String("es.volume.essd.pl0"),
+//						StorageSize:      pulumi.Int(20),
+//					},
+//					&escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs{
+//						Type:             pulumi.String("Hot"),
+//						Number:           pulumi.Int(6),
+//						ResourceSpecName: pulumi.String("es.x2.medium"),
+//						StorageSpecName:  pulumi.String("es.volume.essd.flexpl-standard"),
+//						StorageSize:      pulumi.Int(500),
+//						ExtraPerformance: &escloud_v2.EscloudInstanceV2NodeSpecsAssignExtraPerformanceArgs{
+//							Throughput: pulumi.Int(65),
+//						},
+//					},
+//					&escloud_v2.EscloudInstanceV2NodeSpecsAssignArgs{
+//						Type:             pulumi.String("Kibana"),
+//						Number:           pulumi.Int(1),
+//						ResourceSpecName: pulumi.String("kibana.x2.small"),
+//						StorageSpecName:  pulumi.String(""),
+//						StorageSize:      pulumi.Int(0),
+//					},
+//				},
+//				NetworkSpecs: escloud_v2.EscloudInstanceV2NetworkSpecArray{
+//					&escloud_v2.EscloudInstanceV2NetworkSpecArgs{
+//						Type:      pulumi.String("Elasticsearch"),
+//						Bandwidth: pulumi.Int(1),
+//						IsOpen:    pulumi.Bool(true),
+//						SpecName:  pulumi.String("es.eip.bgp_fixed_bandwidth"),
+//					},
+//					&escloud_v2.EscloudInstanceV2NetworkSpecArgs{
+//						Type:      pulumi.String("Kibana"),
+//						Bandwidth: pulumi.Int(1),
+//						IsOpen:    pulumi.Bool(true),
+//						SpecName:  pulumi.String("es.eip.bgp_fixed_bandwidth"),
+//					},
+//				},
+//				Tags: escloud_v2.EscloudInstanceV2TagArray{
+//					&escloud_v2.EscloudInstanceV2TagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = escloud_v2.GetEscloudInstancesV2Output(ctx, escloud_v2.GetEscloudInstancesV2OutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooEscloudInstanceV2.ID(),
+//				},
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Deprecated: volcengine.escloud_v2.EscloudInstancesV2 has been deprecated in favor of volcengine.escloud_v2.getEscloudInstancesV2
 func EscloudInstancesV2(ctx *pulumi.Context, args *EscloudInstancesV2Args, opts ...pulumi.InvokeOption) (*EscloudInstancesV2Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EscloudInstancesV2Result
@@ -23,32 +141,45 @@ func EscloudInstancesV2(ctx *pulumi.Context, args *EscloudInstancesV2Args, opts 
 
 // A collection of arguments for invoking EscloudInstancesV2.
 type EscloudInstancesV2Args struct {
-	ChargeTypes   []string                `pulumi:"chargeTypes"`
-	Ids           []string                `pulumi:"ids"`
-	InstanceNames []string                `pulumi:"instanceNames"`
-	OutputFile    *string                 `pulumi:"outputFile"`
-	ProjectName   *string                 `pulumi:"projectName"`
-	Statuses      []string                `pulumi:"statuses"`
-	Tags          []EscloudInstancesV2Tag `pulumi:"tags"`
-	Versions      []string                `pulumi:"versions"`
-	ZoneIds       []string                `pulumi:"zoneIds"`
+	// The charge types of instance.
+	ChargeTypes []string `pulumi:"chargeTypes"`
+	// A list of instance IDs.
+	Ids []string `pulumi:"ids"`
+	// The names of instance.
+	InstanceNames []string `pulumi:"instanceNames"`
+	// File name where to save data source results.
+	OutputFile *string `pulumi:"outputFile"`
+	// The project name of instance.
+	ProjectName *string `pulumi:"projectName"`
+	// The status of instance.
+	Statuses []string `pulumi:"statuses"`
+	// The tags of instance.
+	Tags []EscloudInstancesV2Tag `pulumi:"tags"`
+	// The versions of instance.
+	Versions []string `pulumi:"versions"`
+	// The available zone IDs of instance.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 // A collection of values returned by EscloudInstancesV2.
 type EscloudInstancesV2Result struct {
 	ChargeTypes []string `pulumi:"chargeTypes"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string                       `pulumi:"id"`
-	Ids           []string                     `pulumi:"ids"`
-	InstanceNames []string                     `pulumi:"instanceNames"`
-	Instances     []EscloudInstancesV2Instance `pulumi:"instances"`
-	OutputFile    *string                      `pulumi:"outputFile"`
-	ProjectName   *string                      `pulumi:"projectName"`
-	Statuses      []string                     `pulumi:"statuses"`
-	Tags          []EscloudInstancesV2Tag      `pulumi:"tags"`
-	TotalCount    int                          `pulumi:"totalCount"`
-	Versions      []string                     `pulumi:"versions"`
-	ZoneIds       []string                     `pulumi:"zoneIds"`
+	Id            string   `pulumi:"id"`
+	Ids           []string `pulumi:"ids"`
+	InstanceNames []string `pulumi:"instanceNames"`
+	// The collection of query.
+	Instances  []EscloudInstancesV2Instance `pulumi:"instances"`
+	OutputFile *string                      `pulumi:"outputFile"`
+	// The name of project.
+	ProjectName *string  `pulumi:"projectName"`
+	Statuses    []string `pulumi:"statuses"`
+	// Tags.
+	Tags []EscloudInstancesV2Tag `pulumi:"tags"`
+	// The total count of query.
+	TotalCount int      `pulumi:"totalCount"`
+	Versions   []string `pulumi:"versions"`
+	ZoneIds    []string `pulumi:"zoneIds"`
 }
 
 func EscloudInstancesV2Output(ctx *pulumi.Context, args EscloudInstancesV2OutputArgs, opts ...pulumi.InvokeOption) EscloudInstancesV2ResultOutput {
@@ -66,15 +197,24 @@ func EscloudInstancesV2Output(ctx *pulumi.Context, args EscloudInstancesV2Output
 
 // A collection of arguments for invoking EscloudInstancesV2.
 type EscloudInstancesV2OutputArgs struct {
-	ChargeTypes   pulumi.StringArrayInput         `pulumi:"chargeTypes"`
-	Ids           pulumi.StringArrayInput         `pulumi:"ids"`
-	InstanceNames pulumi.StringArrayInput         `pulumi:"instanceNames"`
-	OutputFile    pulumi.StringPtrInput           `pulumi:"outputFile"`
-	ProjectName   pulumi.StringPtrInput           `pulumi:"projectName"`
-	Statuses      pulumi.StringArrayInput         `pulumi:"statuses"`
-	Tags          EscloudInstancesV2TagArrayInput `pulumi:"tags"`
-	Versions      pulumi.StringArrayInput         `pulumi:"versions"`
-	ZoneIds       pulumi.StringArrayInput         `pulumi:"zoneIds"`
+	// The charge types of instance.
+	ChargeTypes pulumi.StringArrayInput `pulumi:"chargeTypes"`
+	// A list of instance IDs.
+	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// The names of instance.
+	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	// File name where to save data source results.
+	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of instance.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The status of instance.
+	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
+	// The tags of instance.
+	Tags EscloudInstancesV2TagArrayInput `pulumi:"tags"`
+	// The versions of instance.
+	Versions pulumi.StringArrayInput `pulumi:"versions"`
+	// The available zone IDs of instance.
+	ZoneIds pulumi.StringArrayInput `pulumi:"zoneIds"`
 }
 
 func (EscloudInstancesV2OutputArgs) ElementType() reflect.Type {
@@ -113,6 +253,7 @@ func (o EscloudInstancesV2ResultOutput) InstanceNames() pulumi.StringArrayOutput
 	return o.ApplyT(func(v EscloudInstancesV2Result) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// The collection of query.
 func (o EscloudInstancesV2ResultOutput) Instances() EscloudInstancesV2InstanceArrayOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Result) []EscloudInstancesV2Instance { return v.Instances }).(EscloudInstancesV2InstanceArrayOutput)
 }
@@ -121,6 +262,7 @@ func (o EscloudInstancesV2ResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Result) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The name of project.
 func (o EscloudInstancesV2ResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Result) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
@@ -129,10 +271,12 @@ func (o EscloudInstancesV2ResultOutput) Statuses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Result) []string { return v.Statuses }).(pulumi.StringArrayOutput)
 }
 
+// Tags.
 func (o EscloudInstancesV2ResultOutput) Tags() EscloudInstancesV2TagArrayOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Result) []EscloudInstancesV2Tag { return v.Tags }).(EscloudInstancesV2TagArrayOutput)
 }
 
+// The total count of query.
 func (o EscloudInstancesV2ResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v EscloudInstancesV2Result) int { return v.TotalCount }).(pulumi.IntOutput)
 }

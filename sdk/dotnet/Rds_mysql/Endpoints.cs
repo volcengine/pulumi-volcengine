@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mysql
 {
+    [Obsolete(@"volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints")]
     public static class Endpoints
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.Endpoints.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetEndpoints.Invoke(new()
         ///     {
         ///         InstanceId = "mysql-38c3d4f05f6e",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.Endpoints.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetEndpoints.Invoke(new()
         ///     {
         ///         InstanceId = "mysql-38c3d4f05f6e",
         ///     });

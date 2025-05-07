@@ -20,6 +20,11 @@ export type EscloudIpWhiteList = import("./escloudIpWhiteList").EscloudIpWhiteLi
 export const EscloudIpWhiteList: typeof import("./escloudIpWhiteList").EscloudIpWhiteList = null as any;
 utilities.lazyLoad(exports, ["EscloudIpWhiteList"], () => require("./escloudIpWhiteList"));
 
+export { GetEscloudInstancesV2Args, GetEscloudInstancesV2Result, GetEscloudInstancesV2OutputArgs } from "./getEscloudInstancesV2";
+export const getEscloudInstancesV2: typeof import("./getEscloudInstancesV2").getEscloudInstancesV2 = null as any;
+export const getEscloudInstancesV2Output: typeof import("./getEscloudInstancesV2").getEscloudInstancesV2Output = null as any;
+utilities.lazyLoad(exports, ["getEscloudInstancesV2","getEscloudInstancesV2Output"], () => require("./getEscloudInstancesV2"));
+
 
 const _module = {
     version: utilities.getVersion(),

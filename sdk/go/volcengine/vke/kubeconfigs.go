@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -110,7 +110,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vke.KubeconfigsOutput(ctx, vke.KubeconfigsOutputArgs{
+//			_ = vke.GetKubeconfigsOutput(ctx, vke.GetKubeconfigsOutputArgs{
 //				Ids: pulumi.StringArray{
 //					foo1.ID(),
 //					foo2.ID(),
@@ -121,6 +121,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vke.Kubeconfigs has been deprecated in favor of volcengine.vke.getKubeconfigs
 func Kubeconfigs(ctx *pulumi.Context, args *KubeconfigsArgs, opts ...pulumi.InvokeOption) (*KubeconfigsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv KubeconfigsResult

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_mysql
 {
+    [Obsolete(@"volcengine.rds_mysql.ParameterTemplates has been deprecated in favor of volcengine.rds_mysql.getParameterTemplates")]
     public static class ParameterTemplates
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.ParameterTemplates.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetParameterTemplates.Invoke(new()
         ///     {
         ///         TemplateCategory = "DBEngine",
         ///         TemplateSource = "User",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_mysql.ParameterTemplates.Invoke(new()
+        ///     var foo = Volcengine.Rds_mysql.GetParameterTemplates.Invoke(new()
         ///     {
         ///         TemplateCategory = "DBEngine",
         ///         TemplateSource = "User",

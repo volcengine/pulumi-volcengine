@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Transit_router
 {
+    [Obsolete(@"volcengine.transit_router.RouteTableAssociations has been deprecated in favor of volcengine.transit_router.getRouteTableAssociations")]
     public static class RouteTableAssociations
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Transit_router.RouteTableAssociations.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetRouteTableAssociations.Invoke(new()
         ///     {
         ///         TransitRouterAttachmentId = "tr-attach-im73ng3n5kao8gbssz2ddpuq",
         ///         TransitRouterRouteTableId = "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
@@ -47,7 +48,7 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Transit_router.RouteTableAssociations.Invoke(new()
+        ///     var @default = Volcengine.Transit_router.GetRouteTableAssociations.Invoke(new()
         ///     {
         ///         TransitRouterAttachmentId = "tr-attach-im73ng3n5kao8gbssz2ddpuq",
         ///         TransitRouterRouteTableId = "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",

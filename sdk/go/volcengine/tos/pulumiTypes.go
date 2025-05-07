@@ -2422,6 +2422,1024 @@ func (o BucketsBucketArrayOutput) Index(i pulumi.IntInput) BucketsBucketOutput {
 	}).(BucketsBucketOutput)
 }
 
+type GetBucketInventoriesInventoryConfiguration struct {
+	// The name the TOS bucket.
+	BucketName string `pulumi:"bucketName"`
+	// The destination information of the bucket inventory.
+	Destinations []GetBucketInventoriesInventoryConfigurationDestination `pulumi:"destinations"`
+	// The filter of the bucket inventory.
+	Filters []GetBucketInventoriesInventoryConfigurationFilter `pulumi:"filters"`
+	// The name of the bucket inventory.
+	Id string `pulumi:"id"`
+	// The export version of object. Valid values: `All`, `Current`.
+	IncludedObjectVersions string `pulumi:"includedObjectVersions"`
+	// Whether to enable the bucket inventory.
+	IsEnabled bool `pulumi:"isEnabled"`
+	// The information exported from the bucket inventory.
+	OptionalFields []GetBucketInventoriesInventoryConfigurationOptionalField `pulumi:"optionalFields"`
+	// The export schedule of the bucket inventory.
+	Schedules []GetBucketInventoriesInventoryConfigurationSchedule `pulumi:"schedules"`
+}
+
+// GetBucketInventoriesInventoryConfigurationInput is an input type that accepts GetBucketInventoriesInventoryConfigurationArgs and GetBucketInventoriesInventoryConfigurationOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationArgs{...}
+type GetBucketInventoriesInventoryConfigurationInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationOutput() GetBucketInventoriesInventoryConfigurationOutput
+	ToGetBucketInventoriesInventoryConfigurationOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationArgs struct {
+	// The name the TOS bucket.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The destination information of the bucket inventory.
+	Destinations GetBucketInventoriesInventoryConfigurationDestinationArrayInput `pulumi:"destinations"`
+	// The filter of the bucket inventory.
+	Filters GetBucketInventoriesInventoryConfigurationFilterArrayInput `pulumi:"filters"`
+	// The name of the bucket inventory.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The export version of object. Valid values: `All`, `Current`.
+	IncludedObjectVersions pulumi.StringInput `pulumi:"includedObjectVersions"`
+	// Whether to enable the bucket inventory.
+	IsEnabled pulumi.BoolInput `pulumi:"isEnabled"`
+	// The information exported from the bucket inventory.
+	OptionalFields GetBucketInventoriesInventoryConfigurationOptionalFieldArrayInput `pulumi:"optionalFields"`
+	// The export schedule of the bucket inventory.
+	Schedules GetBucketInventoriesInventoryConfigurationScheduleArrayInput `pulumi:"schedules"`
+}
+
+func (GetBucketInventoriesInventoryConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfiguration)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationArgs) ToGetBucketInventoriesInventoryConfigurationOutput() GetBucketInventoriesInventoryConfigurationOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationArgs) ToGetBucketInventoriesInventoryConfigurationOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationOutput)
+}
+
+// GetBucketInventoriesInventoryConfigurationArrayInput is an input type that accepts GetBucketInventoriesInventoryConfigurationArray and GetBucketInventoriesInventoryConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationArrayInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationArray{ GetBucketInventoriesInventoryConfigurationArgs{...} }
+type GetBucketInventoriesInventoryConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationArrayOutput() GetBucketInventoriesInventoryConfigurationArrayOutput
+	ToGetBucketInventoriesInventoryConfigurationArrayOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationArrayOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationArray []GetBucketInventoriesInventoryConfigurationInput
+
+func (GetBucketInventoriesInventoryConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfiguration)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationArray) ToGetBucketInventoriesInventoryConfigurationArrayOutput() GetBucketInventoriesInventoryConfigurationArrayOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationArray) ToGetBucketInventoriesInventoryConfigurationArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfiguration)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOutput) ToGetBucketInventoriesInventoryConfigurationOutput() GetBucketInventoriesInventoryConfigurationOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOutput) ToGetBucketInventoriesInventoryConfigurationOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationOutput {
+	return o
+}
+
+// The name the TOS bucket.
+func (o GetBucketInventoriesInventoryConfigurationOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The destination information of the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationOutput) Destinations() GetBucketInventoriesInventoryConfigurationDestinationArrayOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) []GetBucketInventoriesInventoryConfigurationDestination {
+		return v.Destinations
+	}).(GetBucketInventoriesInventoryConfigurationDestinationArrayOutput)
+}
+
+// The filter of the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationOutput) Filters() GetBucketInventoriesInventoryConfigurationFilterArrayOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) []GetBucketInventoriesInventoryConfigurationFilter {
+		return v.Filters
+	}).(GetBucketInventoriesInventoryConfigurationFilterArrayOutput)
+}
+
+// The name of the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The export version of object. Valid values: `All`, `Current`.
+func (o GetBucketInventoriesInventoryConfigurationOutput) IncludedObjectVersions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) string { return v.IncludedObjectVersions }).(pulumi.StringOutput)
+}
+
+// Whether to enable the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+// The information exported from the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationOutput) OptionalFields() GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) []GetBucketInventoriesInventoryConfigurationOptionalField {
+		return v.OptionalFields
+	}).(GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput)
+}
+
+// The export schedule of the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationOutput) Schedules() GetBucketInventoriesInventoryConfigurationScheduleArrayOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfiguration) []GetBucketInventoriesInventoryConfigurationSchedule {
+		return v.Schedules
+	}).(GetBucketInventoriesInventoryConfigurationScheduleArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfiguration)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationArrayOutput) ToGetBucketInventoriesInventoryConfigurationArrayOutput() GetBucketInventoriesInventoryConfigurationArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationArrayOutput) ToGetBucketInventoriesInventoryConfigurationArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationArrayOutput) Index(i pulumi.IntInput) GetBucketInventoriesInventoryConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketInventoriesInventoryConfiguration {
+		return vs[0].([]GetBucketInventoriesInventoryConfiguration)[vs[1].(int)]
+	}).(GetBucketInventoriesInventoryConfigurationOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationDestination struct {
+	// The destination tos bucket information of the bucket inventory.
+	TosBucketDestinations []GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination `pulumi:"tosBucketDestinations"`
+}
+
+// GetBucketInventoriesInventoryConfigurationDestinationInput is an input type that accepts GetBucketInventoriesInventoryConfigurationDestinationArgs and GetBucketInventoriesInventoryConfigurationDestinationOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationDestinationInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationDestinationArgs{...}
+type GetBucketInventoriesInventoryConfigurationDestinationInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationDestinationOutput() GetBucketInventoriesInventoryConfigurationDestinationOutput
+	ToGetBucketInventoriesInventoryConfigurationDestinationOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationDestinationOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationArgs struct {
+	// The destination tos bucket information of the bucket inventory.
+	TosBucketDestinations GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayInput `pulumi:"tosBucketDestinations"`
+}
+
+func (GetBucketInventoriesInventoryConfigurationDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestination)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationArgs) ToGetBucketInventoriesInventoryConfigurationDestinationOutput() GetBucketInventoriesInventoryConfigurationDestinationOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationDestinationOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationArgs) ToGetBucketInventoriesInventoryConfigurationDestinationOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationDestinationOutput)
+}
+
+// GetBucketInventoriesInventoryConfigurationDestinationArrayInput is an input type that accepts GetBucketInventoriesInventoryConfigurationDestinationArray and GetBucketInventoriesInventoryConfigurationDestinationArrayOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationDestinationArrayInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationDestinationArray{ GetBucketInventoriesInventoryConfigurationDestinationArgs{...} }
+type GetBucketInventoriesInventoryConfigurationDestinationArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutput() GetBucketInventoriesInventoryConfigurationDestinationArrayOutput
+	ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationDestinationArrayOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationArray []GetBucketInventoriesInventoryConfigurationDestinationInput
+
+func (GetBucketInventoriesInventoryConfigurationDestinationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationDestination)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationArray) ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutput() GetBucketInventoriesInventoryConfigurationDestinationArrayOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationArray) ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationDestinationArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestination)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationOutput) ToGetBucketInventoriesInventoryConfigurationDestinationOutput() GetBucketInventoriesInventoryConfigurationDestinationOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationOutput) ToGetBucketInventoriesInventoryConfigurationDestinationOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationOutput {
+	return o
+}
+
+// The destination tos bucket information of the bucket inventory.
+func (o GetBucketInventoriesInventoryConfigurationDestinationOutput) TosBucketDestinations() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationDestination) []GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination {
+		return v.TosBucketDestinations
+	}).(GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationDestinationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationDestination)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationArrayOutput) ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutput() GetBucketInventoriesInventoryConfigurationDestinationArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationArrayOutput) ToGetBucketInventoriesInventoryConfigurationDestinationArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationArrayOutput) Index(i pulumi.IntInput) GetBucketInventoriesInventoryConfigurationDestinationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketInventoriesInventoryConfigurationDestination {
+		return vs[0].([]GetBucketInventoriesInventoryConfigurationDestination)[vs[1].(int)]
+	}).(GetBucketInventoriesInventoryConfigurationDestinationOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination struct {
+	// The account id of the destination tos bucket.
+	AccountId string `pulumi:"accountId"`
+	// The name of the destination tos bucket.
+	Bucket string `pulumi:"bucket"`
+	// The format of the bucket inventory. Valid values: `CSV`.
+	Format string `pulumi:"format"`
+	// The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+	Prefix string `pulumi:"prefix"`
+	// The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+	Role string `pulumi:"role"`
+}
+
+// GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationInput is an input type that accepts GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs and GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs{...}
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput
+	ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs struct {
+	// The account id of the destination tos bucket.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The name of the destination tos bucket.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The format of the bucket inventory. Valid values: `CSV`.
+	Format pulumi.StringInput `pulumi:"format"`
+	// The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+	// The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput)
+}
+
+// GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayInput is an input type that accepts GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray and GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray{ GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs{...} }
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput
+	ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray []GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationInput
+
+func (GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput {
+	return o
+}
+
+// The account id of the destination tos bucket.
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination) string {
+		return v.AccountId
+	}).(pulumi.StringOutput)
+}
+
+// The name of the destination tos bucket.
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination) string {
+		return v.Bucket
+	}).(pulumi.StringOutput)
+}
+
+// The format of the bucket inventory. Valid values: `CSV`.
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination) string {
+		return v.Format
+	}).(pulumi.StringOutput)
+}
+
+// The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination) string {
+		return v.Prefix
+	}).(pulumi.StringOutput)
+}
+
+// The role name used to grant object storage access to read all files from the source bucket and write files to the destination bucket.
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination) string {
+		return v.Role
+	}).(pulumi.StringOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput() GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput) ToGetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput) Index(i pulumi.IntInput) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination {
+		return vs[0].([]GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestination)[vs[1].(int)]
+	}).(GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationFilter struct {
+	// The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+	Prefix string `pulumi:"prefix"`
+}
+
+// GetBucketInventoriesInventoryConfigurationFilterInput is an input type that accepts GetBucketInventoriesInventoryConfigurationFilterArgs and GetBucketInventoriesInventoryConfigurationFilterOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationFilterInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationFilterArgs{...}
+type GetBucketInventoriesInventoryConfigurationFilterInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationFilterOutput() GetBucketInventoriesInventoryConfigurationFilterOutput
+	ToGetBucketInventoriesInventoryConfigurationFilterOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationFilterOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationFilterArgs struct {
+	// The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+}
+
+func (GetBucketInventoriesInventoryConfigurationFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationFilter)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationFilterArgs) ToGetBucketInventoriesInventoryConfigurationFilterOutput() GetBucketInventoriesInventoryConfigurationFilterOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationFilterOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationFilterArgs) ToGetBucketInventoriesInventoryConfigurationFilterOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationFilterOutput)
+}
+
+// GetBucketInventoriesInventoryConfigurationFilterArrayInput is an input type that accepts GetBucketInventoriesInventoryConfigurationFilterArray and GetBucketInventoriesInventoryConfigurationFilterArrayOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationFilterArrayInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationFilterArray{ GetBucketInventoriesInventoryConfigurationFilterArgs{...} }
+type GetBucketInventoriesInventoryConfigurationFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationFilterArrayOutput() GetBucketInventoriesInventoryConfigurationFilterArrayOutput
+	ToGetBucketInventoriesInventoryConfigurationFilterArrayOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationFilterArrayOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationFilterArray []GetBucketInventoriesInventoryConfigurationFilterInput
+
+func (GetBucketInventoriesInventoryConfigurationFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationFilter)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationFilterArray) ToGetBucketInventoriesInventoryConfigurationFilterArrayOutput() GetBucketInventoriesInventoryConfigurationFilterArrayOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationFilterArray) ToGetBucketInventoriesInventoryConfigurationFilterArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationFilterArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationFilterOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationFilter)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationFilterOutput) ToGetBucketInventoriesInventoryConfigurationFilterOutput() GetBucketInventoriesInventoryConfigurationFilterOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationFilterOutput) ToGetBucketInventoriesInventoryConfigurationFilterOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationFilterOutput {
+	return o
+}
+
+// The prefix matching information of the exported object. If not set, a list of all objects in the bucket will be generated by default.
+func (o GetBucketInventoriesInventoryConfigurationFilterOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationFilter) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationFilter)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationFilterArrayOutput) ToGetBucketInventoriesInventoryConfigurationFilterArrayOutput() GetBucketInventoriesInventoryConfigurationFilterArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationFilterArrayOutput) ToGetBucketInventoriesInventoryConfigurationFilterArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationFilterArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationFilterArrayOutput) Index(i pulumi.IntInput) GetBucketInventoriesInventoryConfigurationFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketInventoriesInventoryConfigurationFilter {
+		return vs[0].([]GetBucketInventoriesInventoryConfigurationFilter)[vs[1].(int)]
+	}).(GetBucketInventoriesInventoryConfigurationFilterOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationOptionalField struct {
+	// The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+	Fields []string `pulumi:"fields"`
+}
+
+// GetBucketInventoriesInventoryConfigurationOptionalFieldInput is an input type that accepts GetBucketInventoriesInventoryConfigurationOptionalFieldArgs and GetBucketInventoriesInventoryConfigurationOptionalFieldOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationOptionalFieldInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationOptionalFieldArgs{...}
+type GetBucketInventoriesInventoryConfigurationOptionalFieldInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutput() GetBucketInventoriesInventoryConfigurationOptionalFieldOutput
+	ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationOptionalFieldOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationOptionalFieldArgs struct {
+	// The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+	Fields pulumi.StringArrayInput `pulumi:"fields"`
+}
+
+func (GetBucketInventoriesInventoryConfigurationOptionalFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationOptionalField)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationOptionalFieldArgs) ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutput() GetBucketInventoriesInventoryConfigurationOptionalFieldOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationOptionalFieldArgs) ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationOptionalFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationOptionalFieldOutput)
+}
+
+// GetBucketInventoriesInventoryConfigurationOptionalFieldArrayInput is an input type that accepts GetBucketInventoriesInventoryConfigurationOptionalFieldArray and GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationOptionalFieldArrayInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationOptionalFieldArray{ GetBucketInventoriesInventoryConfigurationOptionalFieldArgs{...} }
+type GetBucketInventoriesInventoryConfigurationOptionalFieldArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput() GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput
+	ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationOptionalFieldArray []GetBucketInventoriesInventoryConfigurationOptionalFieldInput
+
+func (GetBucketInventoriesInventoryConfigurationOptionalFieldArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationOptionalField)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationOptionalFieldArray) ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput() GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationOptionalFieldArray) ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationOptionalFieldOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationOptionalFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationOptionalField)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOptionalFieldOutput) ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutput() GetBucketInventoriesInventoryConfigurationOptionalFieldOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOptionalFieldOutput) ToGetBucketInventoriesInventoryConfigurationOptionalFieldOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationOptionalFieldOutput {
+	return o
+}
+
+// The information exported from the bucket inventory. Valid values: `Size`, `LastModifiedDate`, `ETag`, `StorageClass`, `IsMultipartUploaded`, `EncryptionStatus`, `CRC64`, `ReplicationStatus`.
+func (o GetBucketInventoriesInventoryConfigurationOptionalFieldOutput) Fields() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationOptionalField) []string { return v.Fields }).(pulumi.StringArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationOptionalField)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput) ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput() GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput) ToGetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput) Index(i pulumi.IntInput) GetBucketInventoriesInventoryConfigurationOptionalFieldOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketInventoriesInventoryConfigurationOptionalField {
+		return vs[0].([]GetBucketInventoriesInventoryConfigurationOptionalField)[vs[1].(int)]
+	}).(GetBucketInventoriesInventoryConfigurationOptionalFieldOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationSchedule struct {
+	// The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+	Frequency string `pulumi:"frequency"`
+}
+
+// GetBucketInventoriesInventoryConfigurationScheduleInput is an input type that accepts GetBucketInventoriesInventoryConfigurationScheduleArgs and GetBucketInventoriesInventoryConfigurationScheduleOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationScheduleInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationScheduleArgs{...}
+type GetBucketInventoriesInventoryConfigurationScheduleInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationScheduleOutput() GetBucketInventoriesInventoryConfigurationScheduleOutput
+	ToGetBucketInventoriesInventoryConfigurationScheduleOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationScheduleOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationScheduleArgs struct {
+	// The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+	Frequency pulumi.StringInput `pulumi:"frequency"`
+}
+
+func (GetBucketInventoriesInventoryConfigurationScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationSchedule)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationScheduleArgs) ToGetBucketInventoriesInventoryConfigurationScheduleOutput() GetBucketInventoriesInventoryConfigurationScheduleOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationScheduleOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationScheduleArgs) ToGetBucketInventoriesInventoryConfigurationScheduleOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationScheduleOutput)
+}
+
+// GetBucketInventoriesInventoryConfigurationScheduleArrayInput is an input type that accepts GetBucketInventoriesInventoryConfigurationScheduleArray and GetBucketInventoriesInventoryConfigurationScheduleArrayOutput values.
+// You can construct a concrete instance of `GetBucketInventoriesInventoryConfigurationScheduleArrayInput` via:
+//
+//	GetBucketInventoriesInventoryConfigurationScheduleArray{ GetBucketInventoriesInventoryConfigurationScheduleArgs{...} }
+type GetBucketInventoriesInventoryConfigurationScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutput() GetBucketInventoriesInventoryConfigurationScheduleArrayOutput
+	ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutputWithContext(context.Context) GetBucketInventoriesInventoryConfigurationScheduleArrayOutput
+}
+
+type GetBucketInventoriesInventoryConfigurationScheduleArray []GetBucketInventoriesInventoryConfigurationScheduleInput
+
+func (GetBucketInventoriesInventoryConfigurationScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationSchedule)(nil)).Elem()
+}
+
+func (i GetBucketInventoriesInventoryConfigurationScheduleArray) ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutput() GetBucketInventoriesInventoryConfigurationScheduleArrayOutput {
+	return i.ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketInventoriesInventoryConfigurationScheduleArray) ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketInventoriesInventoryConfigurationScheduleArrayOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationSchedule)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationScheduleOutput) ToGetBucketInventoriesInventoryConfigurationScheduleOutput() GetBucketInventoriesInventoryConfigurationScheduleOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationScheduleOutput) ToGetBucketInventoriesInventoryConfigurationScheduleOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationScheduleOutput {
+	return o
+}
+
+// The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
+func (o GetBucketInventoriesInventoryConfigurationScheduleOutput) Frequency() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketInventoriesInventoryConfigurationSchedule) string { return v.Frequency }).(pulumi.StringOutput)
+}
+
+type GetBucketInventoriesInventoryConfigurationScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketInventoriesInventoryConfigurationScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketInventoriesInventoryConfigurationSchedule)(nil)).Elem()
+}
+
+func (o GetBucketInventoriesInventoryConfigurationScheduleArrayOutput) ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutput() GetBucketInventoriesInventoryConfigurationScheduleArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationScheduleArrayOutput) ToGetBucketInventoriesInventoryConfigurationScheduleArrayOutputWithContext(ctx context.Context) GetBucketInventoriesInventoryConfigurationScheduleArrayOutput {
+	return o
+}
+
+func (o GetBucketInventoriesInventoryConfigurationScheduleArrayOutput) Index(i pulumi.IntInput) GetBucketInventoriesInventoryConfigurationScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketInventoriesInventoryConfigurationSchedule {
+		return vs[0].([]GetBucketInventoriesInventoryConfigurationSchedule)[vs[1].(int)]
+	}).(GetBucketInventoriesInventoryConfigurationScheduleOutput)
+}
+
+type GetBucketObjectsObject struct {
+	// The content the TOS Object when content type is json or text and xml.
+	Content string `pulumi:"content"`
+	// The name the TOS Object.
+	Name string `pulumi:"name"`
+	// The name the TOS Object size.
+	Size int `pulumi:"size"`
+	// The name the TOS Object storage class.
+	StorageClass string `pulumi:"storageClass"`
+}
+
+// GetBucketObjectsObjectInput is an input type that accepts GetBucketObjectsObjectArgs and GetBucketObjectsObjectOutput values.
+// You can construct a concrete instance of `GetBucketObjectsObjectInput` via:
+//
+//	GetBucketObjectsObjectArgs{...}
+type GetBucketObjectsObjectInput interface {
+	pulumi.Input
+
+	ToGetBucketObjectsObjectOutput() GetBucketObjectsObjectOutput
+	ToGetBucketObjectsObjectOutputWithContext(context.Context) GetBucketObjectsObjectOutput
+}
+
+type GetBucketObjectsObjectArgs struct {
+	// The content the TOS Object when content type is json or text and xml.
+	Content pulumi.StringInput `pulumi:"content"`
+	// The name the TOS Object.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The name the TOS Object size.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The name the TOS Object storage class.
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (GetBucketObjectsObjectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketObjectsObject)(nil)).Elem()
+}
+
+func (i GetBucketObjectsObjectArgs) ToGetBucketObjectsObjectOutput() GetBucketObjectsObjectOutput {
+	return i.ToGetBucketObjectsObjectOutputWithContext(context.Background())
+}
+
+func (i GetBucketObjectsObjectArgs) ToGetBucketObjectsObjectOutputWithContext(ctx context.Context) GetBucketObjectsObjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketObjectsObjectOutput)
+}
+
+// GetBucketObjectsObjectArrayInput is an input type that accepts GetBucketObjectsObjectArray and GetBucketObjectsObjectArrayOutput values.
+// You can construct a concrete instance of `GetBucketObjectsObjectArrayInput` via:
+//
+//	GetBucketObjectsObjectArray{ GetBucketObjectsObjectArgs{...} }
+type GetBucketObjectsObjectArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketObjectsObjectArrayOutput() GetBucketObjectsObjectArrayOutput
+	ToGetBucketObjectsObjectArrayOutputWithContext(context.Context) GetBucketObjectsObjectArrayOutput
+}
+
+type GetBucketObjectsObjectArray []GetBucketObjectsObjectInput
+
+func (GetBucketObjectsObjectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketObjectsObject)(nil)).Elem()
+}
+
+func (i GetBucketObjectsObjectArray) ToGetBucketObjectsObjectArrayOutput() GetBucketObjectsObjectArrayOutput {
+	return i.ToGetBucketObjectsObjectArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketObjectsObjectArray) ToGetBucketObjectsObjectArrayOutputWithContext(ctx context.Context) GetBucketObjectsObjectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketObjectsObjectArrayOutput)
+}
+
+type GetBucketObjectsObjectOutput struct{ *pulumi.OutputState }
+
+func (GetBucketObjectsObjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketObjectsObject)(nil)).Elem()
+}
+
+func (o GetBucketObjectsObjectOutput) ToGetBucketObjectsObjectOutput() GetBucketObjectsObjectOutput {
+	return o
+}
+
+func (o GetBucketObjectsObjectOutput) ToGetBucketObjectsObjectOutputWithContext(ctx context.Context) GetBucketObjectsObjectOutput {
+	return o
+}
+
+// The content the TOS Object when content type is json or text and xml.
+func (o GetBucketObjectsObjectOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectsObject) string { return v.Content }).(pulumi.StringOutput)
+}
+
+// The name the TOS Object.
+func (o GetBucketObjectsObjectOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectsObject) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name the TOS Object size.
+func (o GetBucketObjectsObjectOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketObjectsObject) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The name the TOS Object storage class.
+func (o GetBucketObjectsObjectOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectsObject) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+type GetBucketObjectsObjectArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketObjectsObjectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketObjectsObject)(nil)).Elem()
+}
+
+func (o GetBucketObjectsObjectArrayOutput) ToGetBucketObjectsObjectArrayOutput() GetBucketObjectsObjectArrayOutput {
+	return o
+}
+
+func (o GetBucketObjectsObjectArrayOutput) ToGetBucketObjectsObjectArrayOutputWithContext(ctx context.Context) GetBucketObjectsObjectArrayOutput {
+	return o
+}
+
+func (o GetBucketObjectsObjectArrayOutput) Index(i pulumi.IntInput) GetBucketObjectsObjectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketObjectsObject {
+		return vs[0].([]GetBucketObjectsObject)[vs[1].(int)]
+	}).(GetBucketObjectsObjectOutput)
+}
+
+type GetBucketsBucket struct {
+	// The create date of the TOS bucket.
+	CreationDate string `pulumi:"creationDate"`
+	// The extranet endpoint of the TOS bucket.
+	ExtranetEndpoint string `pulumi:"extranetEndpoint"`
+	// The intranet endpoint the TOS bucket.
+	IntranetEndpoint string `pulumi:"intranetEndpoint"`
+	// (**Deprecated**) The Field is Deprecated. The truncated the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	IsTruncated bool `pulumi:"isTruncated"`
+	// The location of the TOS bucket.
+	Location string `pulumi:"location"`
+	// (**Deprecated**) The Field is Deprecated. The marker the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	Marker string `pulumi:"marker"`
+	// (**Deprecated**) The Field is Deprecated. The max keys the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	MaxKeys int `pulumi:"maxKeys"`
+	// The name the TOS bucket.
+	Name string `pulumi:"name"`
+	// (**Deprecated**) The Field is Deprecated. The prefix the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	Prefix string `pulumi:"prefix"`
+}
+
+// GetBucketsBucketInput is an input type that accepts GetBucketsBucketArgs and GetBucketsBucketOutput values.
+// You can construct a concrete instance of `GetBucketsBucketInput` via:
+//
+//	GetBucketsBucketArgs{...}
+type GetBucketsBucketInput interface {
+	pulumi.Input
+
+	ToGetBucketsBucketOutput() GetBucketsBucketOutput
+	ToGetBucketsBucketOutputWithContext(context.Context) GetBucketsBucketOutput
+}
+
+type GetBucketsBucketArgs struct {
+	// The create date of the TOS bucket.
+	CreationDate pulumi.StringInput `pulumi:"creationDate"`
+	// The extranet endpoint of the TOS bucket.
+	ExtranetEndpoint pulumi.StringInput `pulumi:"extranetEndpoint"`
+	// The intranet endpoint the TOS bucket.
+	IntranetEndpoint pulumi.StringInput `pulumi:"intranetEndpoint"`
+	// (**Deprecated**) The Field is Deprecated. The truncated the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	IsTruncated pulumi.BoolInput `pulumi:"isTruncated"`
+	// The location of the TOS bucket.
+	Location pulumi.StringInput `pulumi:"location"`
+	// (**Deprecated**) The Field is Deprecated. The marker the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	Marker pulumi.StringInput `pulumi:"marker"`
+	// (**Deprecated**) The Field is Deprecated. The max keys the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	MaxKeys pulumi.IntInput `pulumi:"maxKeys"`
+	// The name the TOS bucket.
+	Name pulumi.StringInput `pulumi:"name"`
+	// (**Deprecated**) The Field is Deprecated. The prefix the TOS bucket.
+	//
+	// Deprecated: The Field is Deprecated.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+}
+
+func (GetBucketsBucketArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketsBucket)(nil)).Elem()
+}
+
+func (i GetBucketsBucketArgs) ToGetBucketsBucketOutput() GetBucketsBucketOutput {
+	return i.ToGetBucketsBucketOutputWithContext(context.Background())
+}
+
+func (i GetBucketsBucketArgs) ToGetBucketsBucketOutputWithContext(ctx context.Context) GetBucketsBucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketsBucketOutput)
+}
+
+// GetBucketsBucketArrayInput is an input type that accepts GetBucketsBucketArray and GetBucketsBucketArrayOutput values.
+// You can construct a concrete instance of `GetBucketsBucketArrayInput` via:
+//
+//	GetBucketsBucketArray{ GetBucketsBucketArgs{...} }
+type GetBucketsBucketArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketsBucketArrayOutput() GetBucketsBucketArrayOutput
+	ToGetBucketsBucketArrayOutputWithContext(context.Context) GetBucketsBucketArrayOutput
+}
+
+type GetBucketsBucketArray []GetBucketsBucketInput
+
+func (GetBucketsBucketArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketsBucket)(nil)).Elem()
+}
+
+func (i GetBucketsBucketArray) ToGetBucketsBucketArrayOutput() GetBucketsBucketArrayOutput {
+	return i.ToGetBucketsBucketArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketsBucketArray) ToGetBucketsBucketArrayOutputWithContext(ctx context.Context) GetBucketsBucketArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketsBucketArrayOutput)
+}
+
+type GetBucketsBucketOutput struct{ *pulumi.OutputState }
+
+func (GetBucketsBucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketsBucket)(nil)).Elem()
+}
+
+func (o GetBucketsBucketOutput) ToGetBucketsBucketOutput() GetBucketsBucketOutput {
+	return o
+}
+
+func (o GetBucketsBucketOutput) ToGetBucketsBucketOutputWithContext(ctx context.Context) GetBucketsBucketOutput {
+	return o
+}
+
+// The create date of the TOS bucket.
+func (o GetBucketsBucketOutput) CreationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.CreationDate }).(pulumi.StringOutput)
+}
+
+// The extranet endpoint of the TOS bucket.
+func (o GetBucketsBucketOutput) ExtranetEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.ExtranetEndpoint }).(pulumi.StringOutput)
+}
+
+// The intranet endpoint the TOS bucket.
+func (o GetBucketsBucketOutput) IntranetEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.IntranetEndpoint }).(pulumi.StringOutput)
+}
+
+// (**Deprecated**) The Field is Deprecated. The truncated the TOS bucket.
+//
+// Deprecated: The Field is Deprecated.
+func (o GetBucketsBucketOutput) IsTruncated() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBucketsBucket) bool { return v.IsTruncated }).(pulumi.BoolOutput)
+}
+
+// The location of the TOS bucket.
+func (o GetBucketsBucketOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// (**Deprecated**) The Field is Deprecated. The marker the TOS bucket.
+//
+// Deprecated: The Field is Deprecated.
+func (o GetBucketsBucketOutput) Marker() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.Marker }).(pulumi.StringOutput)
+}
+
+// (**Deprecated**) The Field is Deprecated. The max keys the TOS bucket.
+//
+// Deprecated: The Field is Deprecated.
+func (o GetBucketsBucketOutput) MaxKeys() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketsBucket) int { return v.MaxKeys }).(pulumi.IntOutput)
+}
+
+// The name the TOS bucket.
+func (o GetBucketsBucketOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// (**Deprecated**) The Field is Deprecated. The prefix the TOS bucket.
+//
+// Deprecated: The Field is Deprecated.
+func (o GetBucketsBucketOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+type GetBucketsBucketArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketsBucketArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketsBucket)(nil)).Elem()
+}
+
+func (o GetBucketsBucketArrayOutput) ToGetBucketsBucketArrayOutput() GetBucketsBucketArrayOutput {
+	return o
+}
+
+func (o GetBucketsBucketArrayOutput) ToGetBucketsBucketArrayOutputWithContext(ctx context.Context) GetBucketsBucketArrayOutput {
+	return o
+}
+
+func (o GetBucketsBucketArrayOutput) Index(i pulumi.IntInput) GetBucketsBucketOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketsBucket {
+		return vs[0].([]GetBucketsBucket)[vs[1].(int)]
+	}).(GetBucketsBucketOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketAccountAclInput)(nil)).Elem(), BucketAccountAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketAccountAclArrayInput)(nil)).Elem(), BucketAccountAclArray{})
@@ -2459,6 +3477,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketTagArrayInput)(nil)).Elem(), BucketTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketsBucketInput)(nil)).Elem(), BucketsBucketArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketsBucketArrayInput)(nil)).Elem(), BucketsBucketArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationArrayInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestinationInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestinationArrayInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationDestinationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationFilterInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationFilterArrayInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationOptionalFieldInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationOptionalFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationOptionalFieldArrayInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationOptionalFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationScheduleInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationScheduleArrayInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketObjectsObjectInput)(nil)).Elem(), GetBucketObjectsObjectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketObjectsObjectArrayInput)(nil)).Elem(), GetBucketObjectsObjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketsBucketInput)(nil)).Elem(), GetBucketsBucketArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketsBucketArrayInput)(nil)).Elem(), GetBucketsBucketArray{})
 	pulumi.RegisterOutputType(BucketAccountAclOutput{})
 	pulumi.RegisterOutputType(BucketAccountAclArrayOutput{})
 	pulumi.RegisterOutputType(BucketInventoriesInventoryConfigurationOutput{})
@@ -2495,4 +3529,20 @@ func init() {
 	pulumi.RegisterOutputType(BucketTagArrayOutput{})
 	pulumi.RegisterOutputType(BucketsBucketOutput{})
 	pulumi.RegisterOutputType(BucketsBucketArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationDestinationOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationDestinationArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationDestinationTosBucketDestinationArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationFilterOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationOptionalFieldOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationOptionalFieldArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationScheduleOutput{})
+	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketObjectsObjectOutput{})
+	pulumi.RegisterOutputType(GetBucketObjectsObjectArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketsBucketOutput{})
+	pulumi.RegisterOutputType(GetBucketsBucketArrayOutput{})
 }

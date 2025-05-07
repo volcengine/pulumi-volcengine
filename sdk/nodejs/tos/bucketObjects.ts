@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tos.BucketObjects({
+ * const default = volcengine.tos.getBucketObjects({
  *     bucketName: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.tos.BucketObjects has been deprecated in favor of volcengine.tos.getBucketObjects */
 export function bucketObjects(args: BucketObjectsArgs, opts?: pulumi.InvokeOptions): Promise<BucketObjectsResult> {
+    pulumi.log.warn("bucketObjects is deprecated: volcengine.tos.BucketObjects has been deprecated in favor of volcengine.tos.getBucketObjects")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tos/bucketObjects:BucketObjects", {
@@ -81,11 +83,12 @@ export interface BucketObjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tos.BucketObjects({
+ * const default = volcengine.tos.getBucketObjects({
  *     bucketName: "test",
  * });
  * ```
  */
+/** @deprecated volcengine.tos.BucketObjects has been deprecated in favor of volcengine.tos.getBucketObjects */
 export function bucketObjectsOutput(args: BucketObjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BucketObjectsResult> {
     return pulumi.output(args).apply((a: any) => bucketObjects(a, opts))
 }

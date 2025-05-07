@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Vpc
 {
+    [Obsolete(@"volcengine.vpc.Ipv6Addresses has been deprecated in favor of volcengine.vpc.getIpv6Addresses")]
     public static class Ipv6Addresses
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetIpv6Addresses.Invoke(new()
         ///     {
         ///         AssociatedInstanceId = "i-yca53yuhj6gh9zl53kav",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
+        ///     var @default = Volcengine.Vpc.GetIpv6Addresses.Invoke(new()
         ///     {
         ///         AssociatedInstanceId = "i-yca53yuhj6gh9zl53kav",
         ///     });

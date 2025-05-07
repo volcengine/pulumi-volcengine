@@ -18,6 +18,8 @@ __all__ = [
     'subnets_output',
 ]
 
+warnings.warn("""volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets""", DeprecationWarning)
+
 @pulumi.output_type
 class SubnetsResult:
     """
@@ -174,7 +176,7 @@ def subnets(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
+    default = volcengine.vpc.get_subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
     ```
 
 
@@ -187,6 +189,7 @@ def subnets(ids: Optional[Sequence[str]] = None,
     :param str vpc_id: The ID of VPC which subnet belongs to.
     :param str zone_id: The ID of zone which subnet belongs to.
     """
+    pulumi.log.warn("""subnets is deprecated: volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -231,7 +234,7 @@ def subnets_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
+    default = volcengine.vpc.get_subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
     ```
 
 
@@ -244,4 +247,5 @@ def subnets_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str vpc_id: The ID of VPC which subnet belongs to.
     :param str zone_id: The ID of zone which subnet belongs to.
     """
+    pulumi.log.warn("""subnets is deprecated: volcengine.vpc.Subnets has been deprecated in favor of volcengine.vpc.getSubnets""")
     ...

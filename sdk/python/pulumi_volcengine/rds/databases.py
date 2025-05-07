@@ -17,6 +17,8 @@ __all__ = [
     'databases_output',
 ]
 
+warnings.warn("""volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases""", DeprecationWarning)
+
 @pulumi.output_type
 class DatabasesResult:
     """
@@ -121,7 +123,7 @@ def databases(db_status: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.databases(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_databases(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -130,6 +132,7 @@ def databases(db_status: Optional[str] = None,
     :param str name_regex: A Name Regex of RDS database.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""databases is deprecated: volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases""")
     __args__ = dict()
     __args__['dbStatus'] = db_status
     __args__['instanceId'] = instance_id
@@ -162,7 +165,7 @@ def databases_output(db_status: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.databases(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_databases(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -171,4 +174,5 @@ def databases_output(db_status: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of RDS database.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""databases is deprecated: volcengine.rds.Databases has been deprecated in favor of volcengine.rds.getDatabases""")
     ...

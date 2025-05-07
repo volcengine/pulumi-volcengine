@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.LaunchTemplates has been deprecated in favor of volcengine.ecs.getLaunchTemplates")]
     public static class LaunchTemplates
     {
         /// <summary>
@@ -39,7 +40,7 @@ namespace Pulumi.Volcengine.Ecs
         ///         LaunchTemplateName = "tf-acc-template",
         ///     });
         /// 
-        ///     var fooLaunchTemplates = Volcengine.Ecs.LaunchTemplates.Invoke(new()
+        ///     var fooLaunchTemplates = Volcengine.Ecs.GetLaunchTemplates.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
@@ -81,7 +82,7 @@ namespace Pulumi.Volcengine.Ecs
         ///         LaunchTemplateName = "tf-acc-template",
         ///     });
         /// 
-        ///     var fooLaunchTemplates = Volcengine.Ecs.LaunchTemplates.Invoke(new()
+        ///     var fooLaunchTemplates = Volcengine.Ecs.GetLaunchTemplates.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {

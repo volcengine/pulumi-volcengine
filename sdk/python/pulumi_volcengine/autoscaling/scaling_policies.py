@@ -17,6 +17,8 @@ __all__ = [
     'scaling_policies_output',
 ]
 
+warnings.warn("""volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies""", DeprecationWarning)
+
 @pulumi.output_type
 class ScalingPoliciesResult:
     """
@@ -147,6 +149,7 @@ def scaling_policies(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] scaling_policy_names: A list of scaling policy names.
     :param str scaling_policy_type: A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
     """
+    pulumi.log.warn("""scaling_policies is deprecated: volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -188,4 +191,5 @@ def scaling_policies_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
     :param Sequence[str] scaling_policy_names: A list of scaling policy names.
     :param str scaling_policy_type: A type of scaling policy. Valid values: Scheduled, Recurrence, Manual, Alarm.
     """
+    pulumi.log.warn("""scaling_policies is deprecated: volcengine.autoscaling.ScalingPolicies has been deprecated in favor of volcengine.autoscaling.getScalingPolicies""")
     ...

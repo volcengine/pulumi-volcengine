@@ -17,6 +17,8 @@ __all__ = [
     'endpoints_output',
 ]
 
+warnings.warn("""volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class EndpointsResult:
     """
@@ -101,13 +103,14 @@ def endpoints(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.endpoints(registry="tf-1")
+    foo = volcengine.cr.get_endpoints(registry="tf-1")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str registry: The CR instance name.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['registry'] = registry
@@ -134,11 +137,12 @@ def endpoints_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cr.endpoints(registry="tf-1")
+    foo = volcengine.cr.get_endpoints(registry="tf-1")
     ```
 
 
     :param str output_file: File name where to save data source results.
     :param str registry: The CR instance name.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.cr.Endpoints has been deprecated in favor of volcengine.cr.getEndpoints""")
     ...

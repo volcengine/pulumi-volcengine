@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Dns
 {
+    [Obsolete(@"volcengine.dns.Zones has been deprecated in favor of volcengine.dns.getZones")]
     public static class Zones
     {
         /// <summary>
@@ -23,11 +24,11 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Dns.Zones.Invoke(new()
+        ///     var foo = Volcengine.Dns.GetZones.Invoke(new()
         ///     {
         ///         Tags = new[]
         ///         {
-        ///             new Volcengine.Dns.Inputs.ZonesTagInputArgs
+        ///             new Volcengine.Dns.Inputs.GetZonesTagInputArgs
         ///             {
         ///                 Key = "xx",
         ///                 Values = new[]
@@ -56,11 +57,11 @@ namespace Pulumi.Volcengine.Dns
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Dns.Zones.Invoke(new()
+        ///     var foo = Volcengine.Dns.GetZones.Invoke(new()
         ///     {
         ///         Tags = new[]
         ///         {
-        ///             new Volcengine.Dns.Inputs.ZonesTagInputArgs
+        ///             new Volcengine.Dns.Inputs.GetZonesTagInputArgs
         ///             {
         ///                 Key = "xx",
         ///                 Values = new[]

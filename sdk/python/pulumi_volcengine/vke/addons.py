@@ -18,6 +18,8 @@ __all__ = [
     'addons_output',
 ]
 
+warnings.warn("""volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons""", DeprecationWarning)
+
 @pulumi.output_type
 class AddonsResult:
     """
@@ -169,7 +171,7 @@ def addons(cluster_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.addons(cluster_ids=["cccctv1vqtofp49d96ujg"])
+    default = volcengine.vke.get_addons(cluster_ids=["cccctv1vqtofp49d96ujg"])
     ```
 
 
@@ -183,6 +185,7 @@ def addons(cluster_ids: Optional[Sequence[str]] = None,
     :param Sequence[pulumi.InputType['AddonsStatusArgs']] statuses: Array of addon states to filter.
     :param str update_client_token: The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
     """
+    pulumi.log.warn("""addons is deprecated: volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons""")
     __args__ = dict()
     __args__['clusterIds'] = cluster_ids
     __args__['createClientToken'] = create_client_token
@@ -230,7 +233,7 @@ def addons_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.addons(cluster_ids=["cccctv1vqtofp49d96ujg"])
+    default = volcengine.vke.get_addons(cluster_ids=["cccctv1vqtofp49d96ujg"])
     ```
 
 
@@ -244,4 +247,5 @@ def addons_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param Sequence[pulumi.InputType['AddonsStatusArgs']] statuses: Array of addon states to filter.
     :param str update_client_token: The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
     """
+    pulumi.log.warn("""addons is deprecated: volcengine.vke.Addons has been deprecated in favor of volcengine.vke.getAddons""")
     ...

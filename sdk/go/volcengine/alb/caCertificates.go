@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := alb.CaCertificates(ctx, &alb.CaCertificatesArgs{
+//			_, err := alb.GetCaCertificates(ctx, &alb.GetCaCertificatesArgs{
 //				Ids: []string{
 //					"cert-1iidd2r9ii0hs74adhfeodxo1",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.alb.CaCertificates has been deprecated in favor of volcengine.alb.getCaCertificates
 func CaCertificates(ctx *pulumi.Context, args *CaCertificatesArgs, opts ...pulumi.InvokeOption) (*CaCertificatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CaCertificatesResult

@@ -17,6 +17,8 @@ __all__ = [
     'scaling_lifecycle_hooks_output',
 ]
 
+warnings.warn("""volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks""", DeprecationWarning)
+
 @pulumi.output_type
 class ScalingLifecycleHooksResult:
     """
@@ -133,6 +135,7 @@ def scaling_lifecycle_hooks(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str scaling_group_id: An id of scaling group id.
     """
+    pulumi.log.warn("""scaling_lifecycle_hooks is deprecated: volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['lifecycleHookNames'] = lifecycle_hook_names
@@ -170,4 +173,5 @@ def scaling_lifecycle_hooks_output(ids: Optional[pulumi.Input[Optional[Sequence[
     :param str output_file: File name where to save data source results.
     :param str scaling_group_id: An id of scaling group id.
     """
+    pulumi.log.warn("""scaling_lifecycle_hooks is deprecated: volcengine.autoscaling.ScalingLifecycleHooks has been deprecated in favor of volcengine.autoscaling.getScalingLifecycleHooks""")
     ...

@@ -344,13 +344,352 @@ func (o FinancialRelationsFinancialRelationAuthInfoArrayOutput) Index(i pulumi.I
 	}).(FinancialRelationsFinancialRelationAuthInfoOutput)
 }
 
+type GetFinancialRelationsFinancialRelation struct {
+	// The display name of the sub account.
+	AccountAlias string `pulumi:"accountAlias"`
+	// The authorization info of the financial relation.
+	AuthInfos []GetFinancialRelationsFinancialRelationAuthInfo `pulumi:"authInfos"`
+	// The filiation of the financial relation.
+	Filiation int `pulumi:"filiation"`
+	// The filiation description of the financial relation.
+	FiliationDesc string `pulumi:"filiationDesc"`
+	// The id of the major account.
+	MajorAccountId int `pulumi:"majorAccountId"`
+	// The name of the major account.
+	MajorAccountName string `pulumi:"majorAccountName"`
+	// A list of relation. Valid values: `1`, `4`.
+	Relation int `pulumi:"relation"`
+	// The relation description of the financial.
+	RelationDesc string `pulumi:"relationDesc"`
+	// The id of the financial relation.
+	RelationId string `pulumi:"relationId"`
+	// A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
+	Status int `pulumi:"status"`
+	// The status description of the financial relation.
+	StatusDesc string `pulumi:"statusDesc"`
+	// The id of the sub account.
+	SubAccountId int `pulumi:"subAccountId"`
+	// The name of the sub account.
+	SubAccountName string `pulumi:"subAccountName"`
+	// The update time of the financial relation.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetFinancialRelationsFinancialRelationInput is an input type that accepts GetFinancialRelationsFinancialRelationArgs and GetFinancialRelationsFinancialRelationOutput values.
+// You can construct a concrete instance of `GetFinancialRelationsFinancialRelationInput` via:
+//
+//	GetFinancialRelationsFinancialRelationArgs{...}
+type GetFinancialRelationsFinancialRelationInput interface {
+	pulumi.Input
+
+	ToGetFinancialRelationsFinancialRelationOutput() GetFinancialRelationsFinancialRelationOutput
+	ToGetFinancialRelationsFinancialRelationOutputWithContext(context.Context) GetFinancialRelationsFinancialRelationOutput
+}
+
+type GetFinancialRelationsFinancialRelationArgs struct {
+	// The display name of the sub account.
+	AccountAlias pulumi.StringInput `pulumi:"accountAlias"`
+	// The authorization info of the financial relation.
+	AuthInfos GetFinancialRelationsFinancialRelationAuthInfoArrayInput `pulumi:"authInfos"`
+	// The filiation of the financial relation.
+	Filiation pulumi.IntInput `pulumi:"filiation"`
+	// The filiation description of the financial relation.
+	FiliationDesc pulumi.StringInput `pulumi:"filiationDesc"`
+	// The id of the major account.
+	MajorAccountId pulumi.IntInput `pulumi:"majorAccountId"`
+	// The name of the major account.
+	MajorAccountName pulumi.StringInput `pulumi:"majorAccountName"`
+	// A list of relation. Valid values: `1`, `4`.
+	Relation pulumi.IntInput `pulumi:"relation"`
+	// The relation description of the financial.
+	RelationDesc pulumi.StringInput `pulumi:"relationDesc"`
+	// The id of the financial relation.
+	RelationId pulumi.StringInput `pulumi:"relationId"`
+	// A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The status description of the financial relation.
+	StatusDesc pulumi.StringInput `pulumi:"statusDesc"`
+	// The id of the sub account.
+	SubAccountId pulumi.IntInput `pulumi:"subAccountId"`
+	// The name of the sub account.
+	SubAccountName pulumi.StringInput `pulumi:"subAccountName"`
+	// The update time of the financial relation.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetFinancialRelationsFinancialRelationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFinancialRelationsFinancialRelation)(nil)).Elem()
+}
+
+func (i GetFinancialRelationsFinancialRelationArgs) ToGetFinancialRelationsFinancialRelationOutput() GetFinancialRelationsFinancialRelationOutput {
+	return i.ToGetFinancialRelationsFinancialRelationOutputWithContext(context.Background())
+}
+
+func (i GetFinancialRelationsFinancialRelationArgs) ToGetFinancialRelationsFinancialRelationOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFinancialRelationsFinancialRelationOutput)
+}
+
+// GetFinancialRelationsFinancialRelationArrayInput is an input type that accepts GetFinancialRelationsFinancialRelationArray and GetFinancialRelationsFinancialRelationArrayOutput values.
+// You can construct a concrete instance of `GetFinancialRelationsFinancialRelationArrayInput` via:
+//
+//	GetFinancialRelationsFinancialRelationArray{ GetFinancialRelationsFinancialRelationArgs{...} }
+type GetFinancialRelationsFinancialRelationArrayInput interface {
+	pulumi.Input
+
+	ToGetFinancialRelationsFinancialRelationArrayOutput() GetFinancialRelationsFinancialRelationArrayOutput
+	ToGetFinancialRelationsFinancialRelationArrayOutputWithContext(context.Context) GetFinancialRelationsFinancialRelationArrayOutput
+}
+
+type GetFinancialRelationsFinancialRelationArray []GetFinancialRelationsFinancialRelationInput
+
+func (GetFinancialRelationsFinancialRelationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFinancialRelationsFinancialRelation)(nil)).Elem()
+}
+
+func (i GetFinancialRelationsFinancialRelationArray) ToGetFinancialRelationsFinancialRelationArrayOutput() GetFinancialRelationsFinancialRelationArrayOutput {
+	return i.ToGetFinancialRelationsFinancialRelationArrayOutputWithContext(context.Background())
+}
+
+func (i GetFinancialRelationsFinancialRelationArray) ToGetFinancialRelationsFinancialRelationArrayOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFinancialRelationsFinancialRelationArrayOutput)
+}
+
+type GetFinancialRelationsFinancialRelationOutput struct{ *pulumi.OutputState }
+
+func (GetFinancialRelationsFinancialRelationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFinancialRelationsFinancialRelation)(nil)).Elem()
+}
+
+func (o GetFinancialRelationsFinancialRelationOutput) ToGetFinancialRelationsFinancialRelationOutput() GetFinancialRelationsFinancialRelationOutput {
+	return o
+}
+
+func (o GetFinancialRelationsFinancialRelationOutput) ToGetFinancialRelationsFinancialRelationOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationOutput {
+	return o
+}
+
+// The display name of the sub account.
+func (o GetFinancialRelationsFinancialRelationOutput) AccountAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.AccountAlias }).(pulumi.StringOutput)
+}
+
+// The authorization info of the financial relation.
+func (o GetFinancialRelationsFinancialRelationOutput) AuthInfos() GetFinancialRelationsFinancialRelationAuthInfoArrayOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) []GetFinancialRelationsFinancialRelationAuthInfo {
+		return v.AuthInfos
+	}).(GetFinancialRelationsFinancialRelationAuthInfoArrayOutput)
+}
+
+// The filiation of the financial relation.
+func (o GetFinancialRelationsFinancialRelationOutput) Filiation() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) int { return v.Filiation }).(pulumi.IntOutput)
+}
+
+// The filiation description of the financial relation.
+func (o GetFinancialRelationsFinancialRelationOutput) FiliationDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.FiliationDesc }).(pulumi.StringOutput)
+}
+
+// The id of the major account.
+func (o GetFinancialRelationsFinancialRelationOutput) MajorAccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) int { return v.MajorAccountId }).(pulumi.IntOutput)
+}
+
+// The name of the major account.
+func (o GetFinancialRelationsFinancialRelationOutput) MajorAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.MajorAccountName }).(pulumi.StringOutput)
+}
+
+// A list of relation. Valid values: `1`, `4`.
+func (o GetFinancialRelationsFinancialRelationOutput) Relation() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) int { return v.Relation }).(pulumi.IntOutput)
+}
+
+// The relation description of the financial.
+func (o GetFinancialRelationsFinancialRelationOutput) RelationDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.RelationDesc }).(pulumi.StringOutput)
+}
+
+// The id of the financial relation.
+func (o GetFinancialRelationsFinancialRelationOutput) RelationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.RelationId }).(pulumi.StringOutput)
+}
+
+// A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
+func (o GetFinancialRelationsFinancialRelationOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The status description of the financial relation.
+func (o GetFinancialRelationsFinancialRelationOutput) StatusDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.StatusDesc }).(pulumi.StringOutput)
+}
+
+// The id of the sub account.
+func (o GetFinancialRelationsFinancialRelationOutput) SubAccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) int { return v.SubAccountId }).(pulumi.IntOutput)
+}
+
+// The name of the sub account.
+func (o GetFinancialRelationsFinancialRelationOutput) SubAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.SubAccountName }).(pulumi.StringOutput)
+}
+
+// The update time of the financial relation.
+func (o GetFinancialRelationsFinancialRelationOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelation) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetFinancialRelationsFinancialRelationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFinancialRelationsFinancialRelationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFinancialRelationsFinancialRelation)(nil)).Elem()
+}
+
+func (o GetFinancialRelationsFinancialRelationArrayOutput) ToGetFinancialRelationsFinancialRelationArrayOutput() GetFinancialRelationsFinancialRelationArrayOutput {
+	return o
+}
+
+func (o GetFinancialRelationsFinancialRelationArrayOutput) ToGetFinancialRelationsFinancialRelationArrayOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationArrayOutput {
+	return o
+}
+
+func (o GetFinancialRelationsFinancialRelationArrayOutput) Index(i pulumi.IntInput) GetFinancialRelationsFinancialRelationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFinancialRelationsFinancialRelation {
+		return vs[0].([]GetFinancialRelationsFinancialRelation)[vs[1].(int)]
+	}).(GetFinancialRelationsFinancialRelationOutput)
+}
+
+type GetFinancialRelationsFinancialRelationAuthInfo struct {
+	// The auth id of the financial relation.
+	AuthId string `pulumi:"authId"`
+	// The auth list of the financial relation.
+	AuthLists []int `pulumi:"authLists"`
+	// The auth status of the financial relation.
+	AuthStatus int `pulumi:"authStatus"`
+}
+
+// GetFinancialRelationsFinancialRelationAuthInfoInput is an input type that accepts GetFinancialRelationsFinancialRelationAuthInfoArgs and GetFinancialRelationsFinancialRelationAuthInfoOutput values.
+// You can construct a concrete instance of `GetFinancialRelationsFinancialRelationAuthInfoInput` via:
+//
+//	GetFinancialRelationsFinancialRelationAuthInfoArgs{...}
+type GetFinancialRelationsFinancialRelationAuthInfoInput interface {
+	pulumi.Input
+
+	ToGetFinancialRelationsFinancialRelationAuthInfoOutput() GetFinancialRelationsFinancialRelationAuthInfoOutput
+	ToGetFinancialRelationsFinancialRelationAuthInfoOutputWithContext(context.Context) GetFinancialRelationsFinancialRelationAuthInfoOutput
+}
+
+type GetFinancialRelationsFinancialRelationAuthInfoArgs struct {
+	// The auth id of the financial relation.
+	AuthId pulumi.StringInput `pulumi:"authId"`
+	// The auth list of the financial relation.
+	AuthLists pulumi.IntArrayInput `pulumi:"authLists"`
+	// The auth status of the financial relation.
+	AuthStatus pulumi.IntInput `pulumi:"authStatus"`
+}
+
+func (GetFinancialRelationsFinancialRelationAuthInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFinancialRelationsFinancialRelationAuthInfo)(nil)).Elem()
+}
+
+func (i GetFinancialRelationsFinancialRelationAuthInfoArgs) ToGetFinancialRelationsFinancialRelationAuthInfoOutput() GetFinancialRelationsFinancialRelationAuthInfoOutput {
+	return i.ToGetFinancialRelationsFinancialRelationAuthInfoOutputWithContext(context.Background())
+}
+
+func (i GetFinancialRelationsFinancialRelationAuthInfoArgs) ToGetFinancialRelationsFinancialRelationAuthInfoOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationAuthInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFinancialRelationsFinancialRelationAuthInfoOutput)
+}
+
+// GetFinancialRelationsFinancialRelationAuthInfoArrayInput is an input type that accepts GetFinancialRelationsFinancialRelationAuthInfoArray and GetFinancialRelationsFinancialRelationAuthInfoArrayOutput values.
+// You can construct a concrete instance of `GetFinancialRelationsFinancialRelationAuthInfoArrayInput` via:
+//
+//	GetFinancialRelationsFinancialRelationAuthInfoArray{ GetFinancialRelationsFinancialRelationAuthInfoArgs{...} }
+type GetFinancialRelationsFinancialRelationAuthInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutput() GetFinancialRelationsFinancialRelationAuthInfoArrayOutput
+	ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutputWithContext(context.Context) GetFinancialRelationsFinancialRelationAuthInfoArrayOutput
+}
+
+type GetFinancialRelationsFinancialRelationAuthInfoArray []GetFinancialRelationsFinancialRelationAuthInfoInput
+
+func (GetFinancialRelationsFinancialRelationAuthInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFinancialRelationsFinancialRelationAuthInfo)(nil)).Elem()
+}
+
+func (i GetFinancialRelationsFinancialRelationAuthInfoArray) ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutput() GetFinancialRelationsFinancialRelationAuthInfoArrayOutput {
+	return i.ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetFinancialRelationsFinancialRelationAuthInfoArray) ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationAuthInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFinancialRelationsFinancialRelationAuthInfoArrayOutput)
+}
+
+type GetFinancialRelationsFinancialRelationAuthInfoOutput struct{ *pulumi.OutputState }
+
+func (GetFinancialRelationsFinancialRelationAuthInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFinancialRelationsFinancialRelationAuthInfo)(nil)).Elem()
+}
+
+func (o GetFinancialRelationsFinancialRelationAuthInfoOutput) ToGetFinancialRelationsFinancialRelationAuthInfoOutput() GetFinancialRelationsFinancialRelationAuthInfoOutput {
+	return o
+}
+
+func (o GetFinancialRelationsFinancialRelationAuthInfoOutput) ToGetFinancialRelationsFinancialRelationAuthInfoOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationAuthInfoOutput {
+	return o
+}
+
+// The auth id of the financial relation.
+func (o GetFinancialRelationsFinancialRelationAuthInfoOutput) AuthId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelationAuthInfo) string { return v.AuthId }).(pulumi.StringOutput)
+}
+
+// The auth list of the financial relation.
+func (o GetFinancialRelationsFinancialRelationAuthInfoOutput) AuthLists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelationAuthInfo) []int { return v.AuthLists }).(pulumi.IntArrayOutput)
+}
+
+// The auth status of the financial relation.
+func (o GetFinancialRelationsFinancialRelationAuthInfoOutput) AuthStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFinancialRelationsFinancialRelationAuthInfo) int { return v.AuthStatus }).(pulumi.IntOutput)
+}
+
+type GetFinancialRelationsFinancialRelationAuthInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFinancialRelationsFinancialRelationAuthInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFinancialRelationsFinancialRelationAuthInfo)(nil)).Elem()
+}
+
+func (o GetFinancialRelationsFinancialRelationAuthInfoArrayOutput) ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutput() GetFinancialRelationsFinancialRelationAuthInfoArrayOutput {
+	return o
+}
+
+func (o GetFinancialRelationsFinancialRelationAuthInfoArrayOutput) ToGetFinancialRelationsFinancialRelationAuthInfoArrayOutputWithContext(ctx context.Context) GetFinancialRelationsFinancialRelationAuthInfoArrayOutput {
+	return o
+}
+
+func (o GetFinancialRelationsFinancialRelationAuthInfoArrayOutput) Index(i pulumi.IntInput) GetFinancialRelationsFinancialRelationAuthInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFinancialRelationsFinancialRelationAuthInfo {
+		return vs[0].([]GetFinancialRelationsFinancialRelationAuthInfo)[vs[1].(int)]
+	}).(GetFinancialRelationsFinancialRelationAuthInfoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FinancialRelationsFinancialRelationInput)(nil)).Elem(), FinancialRelationsFinancialRelationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FinancialRelationsFinancialRelationArrayInput)(nil)).Elem(), FinancialRelationsFinancialRelationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FinancialRelationsFinancialRelationAuthInfoInput)(nil)).Elem(), FinancialRelationsFinancialRelationAuthInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FinancialRelationsFinancialRelationAuthInfoArrayInput)(nil)).Elem(), FinancialRelationsFinancialRelationAuthInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFinancialRelationsFinancialRelationInput)(nil)).Elem(), GetFinancialRelationsFinancialRelationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFinancialRelationsFinancialRelationArrayInput)(nil)).Elem(), GetFinancialRelationsFinancialRelationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFinancialRelationsFinancialRelationAuthInfoInput)(nil)).Elem(), GetFinancialRelationsFinancialRelationAuthInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFinancialRelationsFinancialRelationAuthInfoArrayInput)(nil)).Elem(), GetFinancialRelationsFinancialRelationAuthInfoArray{})
 	pulumi.RegisterOutputType(FinancialRelationsFinancialRelationOutput{})
 	pulumi.RegisterOutputType(FinancialRelationsFinancialRelationArrayOutput{})
 	pulumi.RegisterOutputType(FinancialRelationsFinancialRelationAuthInfoOutput{})
 	pulumi.RegisterOutputType(FinancialRelationsFinancialRelationAuthInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetFinancialRelationsFinancialRelationOutput{})
+	pulumi.RegisterOutputType(GetFinancialRelationsFinancialRelationArrayOutput{})
+	pulumi.RegisterOutputType(GetFinancialRelationsFinancialRelationAuthInfoOutput{})
+	pulumi.RegisterOutputType(GetFinancialRelationsFinancialRelationAuthInfoArrayOutput{})
 }

@@ -329,8 +329,8 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        data_ecs = volcengine.ecs.instances(ids=["i-ycal1mtpucl8j0hjiihy"])
-        data_ipv6 = volcengine.vpc.ipv6_addresses(associated_instance_id=data_ecs.instances[0].instance_id)
+        data_ecs = volcengine.ecs.get_instances(ids=["i-ycal1mtpucl8j0hjiihy"])
+        data_ipv6 = volcengine.vpc.get_ipv6_addresses(associated_instance_id=data_ecs.instances[0].instance_id)
         foo = volcengine.vpc.Ipv6AddressBandwidth("foo",
             ipv6_address=data_ipv6.ipv6_addresses[0].ipv6_address,
             billing_type="PostPaidByBandwidth",
@@ -364,8 +364,8 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        data_ecs = volcengine.ecs.instances(ids=["i-ycal1mtpucl8j0hjiihy"])
-        data_ipv6 = volcengine.vpc.ipv6_addresses(associated_instance_id=data_ecs.instances[0].instance_id)
+        data_ecs = volcengine.ecs.get_instances(ids=["i-ycal1mtpucl8j0hjiihy"])
+        data_ipv6 = volcengine.vpc.get_ipv6_addresses(associated_instance_id=data_ecs.instances[0].instance_id)
         foo = volcengine.vpc.Ipv6AddressBandwidth("foo",
             ipv6_address=data_ipv6.ipv6_addresses[0].ipv6_address,
             billing_type="PostPaidByBandwidth",

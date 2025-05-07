@@ -17,6 +17,8 @@ __all__ = [
     'file_systems_output',
 ]
 
+warnings.warn("""volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems""", DeprecationWarning)
+
 @pulumi.output_type
 class FileSystemsResult:
     """
@@ -118,7 +120,7 @@ def file_systems(fs_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.file_systems(fs_name="tftest2")
+    default = volcengine.cloudfs.get_file_systems(fs_name="tftest2")
     ```
 
 
@@ -127,6 +129,7 @@ def file_systems(fs_name: Optional[str] = None,
     :param str name_regex: A Name Regex of cloudfs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""file_systems is deprecated: volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems""")
     __args__ = dict()
     __args__['fsName'] = fs_name
     __args__['metaStatus'] = meta_status
@@ -159,7 +162,7 @@ def file_systems_output(fs_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.cloudfs.file_systems(fs_name="tftest2")
+    default = volcengine.cloudfs.get_file_systems(fs_name="tftest2")
     ```
 
 
@@ -168,4 +171,5 @@ def file_systems_output(fs_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of cloudfs.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""file_systems is deprecated: volcengine.cloudfs.FileSystems has been deprecated in favor of volcengine.cloudfs.getFileSystems""")
     ...

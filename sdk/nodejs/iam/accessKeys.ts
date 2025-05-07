@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.AccessKeys({});
+ * const foo = volcengine.iam.getAccessKeys({});
  * ```
  */
+/** @deprecated volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys */
 export function accessKeys(args?: AccessKeysArgs, opts?: pulumi.InvokeOptions): Promise<AccessKeysResult> {
+    pulumi.log.warn("accessKeys is deprecated: volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -77,9 +79,10 @@ export interface AccessKeysResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.AccessKeys({});
+ * const foo = volcengine.iam.getAccessKeys({});
  * ```
  */
+/** @deprecated volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys */
 export function accessKeysOutput(args?: AccessKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccessKeysResult> {
     return pulumi.output(args).apply((a: any) => accessKeys(a, opts))
 }

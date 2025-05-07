@@ -17,6 +17,8 @@ __all__ = [
     'endpoints_output',
 ]
 
+warnings.warn("""volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class EndpointsResult:
     """
@@ -98,7 +100,7 @@ def endpoints(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -146,13 +148,14 @@ def endpoints(instance_id: Optional[str] = None,
         instance_id=foo_instance.id,
         network_type="Private",
         object_id=foo_instance.config_servers_id)
-    foo_endpoints = volcengine.mongodb.endpoints_output(instance_id=foo_instance.id)
+    foo_endpoints = volcengine.mongodb.get_endpoints_output(instance_id=foo_instance.id)
     ```
 
 
     :param str instance_id: The instance ID to query.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
@@ -179,7 +182,7 @@ def endpoints_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -227,11 +230,12 @@ def endpoints_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
         instance_id=foo_instance.id,
         network_type="Private",
         object_id=foo_instance.config_servers_id)
-    foo_endpoints = volcengine.mongodb.endpoints_output(instance_id=foo_instance.id)
+    foo_endpoints = volcengine.mongodb.get_endpoints_output(instance_id=foo_instance.id)
     ```
 
 
     :param str instance_id: The instance ID to query.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.mongodb.Endpoints has been deprecated in favor of volcengine.mongodb.getEndpoints""")
     ...

@@ -25,6 +25,56 @@ export const endpoints: typeof import("./endpoints").endpoints = null as any;
 export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
 utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
 
+export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
+export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
+export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccounts","getAccountsOutput"], () => require("./getAccounts"));
+
+export { GetEndpointsArgs, GetEndpointsResult, GetEndpointsOutputArgs } from "./getEndpoints";
+export const getEndpoints: typeof import("./getEndpoints").getEndpoints = null as any;
+export const getEndpointsOutput: typeof import("./getEndpoints").getEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getEndpoints","getEndpointsOutput"], () => require("./getEndpoints"));
+
+export { GetInstanceParameterLogsArgs, GetInstanceParameterLogsResult, GetInstanceParameterLogsOutputArgs } from "./getInstanceParameterLogs";
+export const getInstanceParameterLogs: typeof import("./getInstanceParameterLogs").getInstanceParameterLogs = null as any;
+export const getInstanceParameterLogsOutput: typeof import("./getInstanceParameterLogs").getInstanceParameterLogsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceParameterLogs","getInstanceParameterLogsOutput"], () => require("./getInstanceParameterLogs"));
+
+export { GetInstanceParametersArgs, GetInstanceParametersResult, GetInstanceParametersOutputArgs } from "./getInstanceParameters";
+export const getInstanceParameters: typeof import("./getInstanceParameters").getInstanceParameters = null as any;
+export const getInstanceParametersOutput: typeof import("./getInstanceParameters").getInstanceParametersOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceParameters","getInstanceParametersOutput"], () => require("./getInstanceParameters"));
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+
+export { GetMongoAllowListsArgs, GetMongoAllowListsResult, GetMongoAllowListsOutputArgs } from "./getMongoAllowLists";
+export const getMongoAllowLists: typeof import("./getMongoAllowLists").getMongoAllowLists = null as any;
+export const getMongoAllowListsOutput: typeof import("./getMongoAllowLists").getMongoAllowListsOutput = null as any;
+utilities.lazyLoad(exports, ["getMongoAllowLists","getMongoAllowListsOutput"], () => require("./getMongoAllowLists"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetSpecsArgs, GetSpecsResult, GetSpecsOutputArgs } from "./getSpecs";
+export const getSpecs: typeof import("./getSpecs").getSpecs = null as any;
+export const getSpecsOutput: typeof import("./getSpecs").getSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["getSpecs","getSpecsOutput"], () => require("./getSpecs"));
+
+export { GetSslStatesArgs, GetSslStatesResult, GetSslStatesOutputArgs } from "./getSslStates";
+export const getSslStates: typeof import("./getSslStates").getSslStates = null as any;
+export const getSslStatesOutput: typeof import("./getSslStates").getSslStatesOutput = null as any;
+utilities.lazyLoad(exports, ["getSslStates","getSslStatesOutput"], () => require("./getSslStates"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;

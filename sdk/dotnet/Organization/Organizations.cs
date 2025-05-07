@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Organization
 {
+    [Obsolete(@"volcengine.organization.Organizations has been deprecated in favor of volcengine.organization.getOrganizations")]
     public static class Organizations
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Organization.Organizations.Invoke();
+        ///     var foo = Volcengine.Organization.GetOrganizations.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Organization.Organizations.Invoke();
+        ///     var foo = Volcengine.Organization.GetOrganizations.Invoke();
         /// 
         /// });
         /// ```

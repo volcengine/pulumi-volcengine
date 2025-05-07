@@ -17,6 +17,8 @@ __all__ = [
     'commands_output',
 ]
 
+warnings.warn("""volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands""", DeprecationWarning)
+
 @pulumi.output_type
 class CommandsResult:
     """
@@ -160,7 +162,7 @@ def commands(command_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.commands(command_id="cmd-ychkepkhtim0tr3b****")
+    default = volcengine.ecs.get_commands(command_id="cmd-ychkepkhtim0tr3b****")
     ```
 
 
@@ -172,6 +174,7 @@ def commands(command_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str type: The type of ecs command. Valid values: `Shell`.
     """
+    pulumi.log.warn("""commands is deprecated: volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands""")
     __args__ = dict()
     __args__['commandId'] = command_id
     __args__['commandProvider'] = command_provider
@@ -213,7 +216,7 @@ def commands_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.commands(command_id="cmd-ychkepkhtim0tr3b****")
+    default = volcengine.ecs.get_commands(command_id="cmd-ychkepkhtim0tr3b****")
     ```
 
 
@@ -225,4 +228,5 @@ def commands_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str type: The type of ecs command. Valid values: `Shell`.
     """
+    pulumi.log.warn("""commands is deprecated: volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands""")
     ...

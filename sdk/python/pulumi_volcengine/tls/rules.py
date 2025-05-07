@@ -17,6 +17,8 @@ __all__ = [
     'rules_output',
 ]
 
+warnings.warn("""volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules""", DeprecationWarning)
+
 @pulumi.output_type
 class RulesResult:
     """
@@ -150,7 +152,7 @@ def rules(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.rules(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_rules(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
     ```
 
 
@@ -161,6 +163,7 @@ def rules(output_file: Optional[str] = None,
     :param str topic_id: The topic id.
     :param str topic_name: The topic name.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules""")
     __args__ = dict()
     __args__['outputFile'] = output_file
     __args__['projectId'] = project_id
@@ -199,7 +202,7 @@ def rules_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.rules(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_rules(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
     ```
 
 
@@ -210,4 +213,5 @@ def rules_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     :param str topic_id: The topic id.
     :param str topic_name: The topic name.
     """
+    pulumi.log.warn("""rules is deprecated: volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules""")
     ...

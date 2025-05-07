@@ -29,7 +29,7 @@ import (
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
-// fooZones, err := ecs.Zones(ctx, nil, nil);
+// fooZones, err := ecs.GetZones(ctx, nil, nil);
 // if err != nil {
 // return err
 // }
@@ -56,7 +56,7 @@ import (
 // if err != nil {
 // return err
 // }
-// fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+// fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 // NameRegex: pulumi.StringRef("veLinux 1.0 CentOS兼容版 64位"),
 // }, nil);
 // if err != nil {
@@ -228,13 +228,15 @@ import (
 // }
 // fooNode = append(fooNode, __res)
 // }
-// _ = vke.NodesOutput(ctx, vke.NodesOutputArgs{
+// _ = vke.GetNodesOutput(ctx, vke.GetNodesOutputArgs{
 // Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:vke-nodes:Nodes.pp:134,9-22),
 // }, nil);
 // return nil
 // })
 // }
 // ```
+//
+// Deprecated: volcengine.vke.Nodes has been deprecated in favor of volcengine.vke.getNodes
 func Nodes(ctx *pulumi.Context, args *NodesArgs, opts ...pulumi.InvokeOption) (*NodesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NodesResult

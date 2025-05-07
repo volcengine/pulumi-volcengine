@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.alb.Certificates({
+ * const default = volcengine.alb.getCertificates({
  *     certificateName: "tf-test",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates */
 export function certificates(args?: CertificatesArgs, opts?: pulumi.InvokeOptions): Promise<CertificatesResult> {
+    pulumi.log.warn("certificates is deprecated: volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -79,11 +81,12 @@ export interface CertificatesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.alb.Certificates({
+ * const default = volcengine.alb.getCertificates({
  *     certificateName: "tf-test",
  * });
  * ```
  */
+/** @deprecated volcengine.alb.Certificates has been deprecated in favor of volcengine.alb.getCertificates */
 export function certificatesOutput(args?: CertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CertificatesResult> {
     return pulumi.output(args).apply((a: any) => certificates(a, opts))
 }

@@ -5,6 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetPrivateZonesArgs, GetPrivateZonesResult, GetPrivateZonesOutputArgs } from "./getPrivateZones";
+export const getPrivateZones: typeof import("./getPrivateZones").getPrivateZones = null as any;
+export const getPrivateZonesOutput: typeof import("./getPrivateZones").getPrivateZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getPrivateZones","getPrivateZonesOutput"], () => require("./getPrivateZones"));
+
+export { GetRecordSetsArgs, GetRecordSetsResult, GetRecordSetsOutputArgs } from "./getRecordSets";
+export const getRecordSets: typeof import("./getRecordSets").getRecordSets = null as any;
+export const getRecordSetsOutput: typeof import("./getRecordSets").getRecordSetsOutput = null as any;
+utilities.lazyLoad(exports, ["getRecordSets","getRecordSetsOutput"], () => require("./getRecordSets"));
+
+export { GetRecordsArgs, GetRecordsResult, GetRecordsOutputArgs } from "./getRecords";
+export const getRecords: typeof import("./getRecords").getRecords = null as any;
+export const getRecordsOutput: typeof import("./getRecords").getRecordsOutput = null as any;
+utilities.lazyLoad(exports, ["getRecords","getRecordsOutput"], () => require("./getRecords"));
+
+export { GetResolverEndpointsArgs, GetResolverEndpointsResult, GetResolverEndpointsOutputArgs } from "./getResolverEndpoints";
+export const getResolverEndpoints: typeof import("./getResolverEndpoints").getResolverEndpoints = null as any;
+export const getResolverEndpointsOutput: typeof import("./getResolverEndpoints").getResolverEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getResolverEndpoints","getResolverEndpointsOutput"], () => require("./getResolverEndpoints"));
+
+export { GetResolverRulesArgs, GetResolverRulesResult, GetResolverRulesOutputArgs } from "./getResolverRules";
+export const getResolverRules: typeof import("./getResolverRules").getResolverRules = null as any;
+export const getResolverRulesOutput: typeof import("./getResolverRules").getResolverRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getResolverRules","getResolverRulesOutput"], () => require("./getResolverRules"));
+
 export { PrivateZoneArgs, PrivateZoneState } from "./privateZone";
 export type PrivateZone = import("./privateZone").PrivateZone;
 export const PrivateZone: typeof import("./privateZone").PrivateZone = null as any;

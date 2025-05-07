@@ -204,7 +204,7 @@ class Unit(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_organization = volcengine.organization.Organization("fooOrganization")
-        foo_units = volcengine.organization.units()
+        foo_units = volcengine.organization.get_units()
         foo_unit = volcengine.organization.Unit("fooUnit",
             parent_id=[unit.id for unit in foo_units.units if unit.parent_id == "0"][0],
             description="tf-test")
@@ -239,7 +239,7 @@ class Unit(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_organization = volcengine.organization.Organization("fooOrganization")
-        foo_units = volcengine.organization.units()
+        foo_units = volcengine.organization.get_units()
         foo_unit = volcengine.organization.Unit("fooUnit",
             parent_id=[unit.id for unit in foo_units.units if unit.parent_id == "0"][0],
             description="tf-test")

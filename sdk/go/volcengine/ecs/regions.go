@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.Regions(ctx, &ecs.RegionsArgs{
+//			_, err := ecs.GetRegions(ctx, &ecs.GetRegionsArgs{
 //				Ids: []string{
 //					"cn-beijing",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.ecs.Regions has been deprecated in favor of volcengine.ecs.getRegions
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RegionsResult

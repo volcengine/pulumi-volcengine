@@ -14,12 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.IpLists({
+ * const default = volcengine.rds.getIpLists({
  *     instanceId: "mysql-0fdd3bab2e7c",
  * });
  * ```
  */
+/** @deprecated volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists */
 export function ipLists(args: IpListsArgs, opts?: pulumi.InvokeOptions): Promise<IpListsResult> {
+    pulumi.log.warn("ipLists is deprecated: volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/ipLists:IpLists", {
@@ -75,11 +77,12 @@ export interface IpListsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.rds.IpLists({
+ * const default = volcengine.rds.getIpLists({
  *     instanceId: "mysql-0fdd3bab2e7c",
  * });
  * ```
  */
+/** @deprecated volcengine.rds.IpLists has been deprecated in favor of volcengine.rds.getIpLists */
 export function ipListsOutput(args: IpListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<IpListsResult> {
     return pulumi.output(args).apply((a: any) => ipLists(a, opts))
 }

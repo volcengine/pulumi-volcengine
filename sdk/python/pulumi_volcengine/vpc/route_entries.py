@@ -17,6 +17,8 @@ __all__ = [
     'route_entries_output',
 ]
 
+warnings.warn("""volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries""", DeprecationWarning)
+
 @pulumi.output_type
 class RouteEntriesResult:
     """
@@ -173,7 +175,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.route_entries(ids=[],
+    default = volcengine.vpc.get_route_entries(ids=[],
         route_table_id="vtb-274e19skkuhog7fap8u4i8ird")
     ```
 
@@ -187,6 +189,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
     :param str route_entry_type: A type of route entry.
     :param str route_table_id: An id of route table.
     """
+    pulumi.log.warn("""route_entries is deprecated: volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries""")
     __args__ = dict()
     __args__['destinationCidrBlock'] = destination_cidr_block
     __args__['ids'] = ids
@@ -231,7 +234,7 @@ def route_entries_output(destination_cidr_block: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpc.route_entries(ids=[],
+    default = volcengine.vpc.get_route_entries(ids=[],
         route_table_id="vtb-274e19skkuhog7fap8u4i8ird")
     ```
 
@@ -245,4 +248,5 @@ def route_entries_output(destination_cidr_block: Optional[pulumi.Input[Optional[
     :param str route_entry_type: A type of route entry.
     :param str route_table_id: An id of route table.
     """
+    pulumi.log.warn("""route_entries is deprecated: volcengine.vpc.RouteEntries has been deprecated in favor of volcengine.vpc.getRouteEntries""")
     ...

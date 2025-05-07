@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud_firewall.CfwControlPolicies(ctx, &cloud_firewall.CfwControlPoliciesArgs{
+//			_, err := cloud_firewall.GetCfwControlPolicies(ctx, &cloud_firewall.GetCfwControlPoliciesArgs{
 //				Actions: []string{
 //					"deny",
 //				},
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.cloud_firewall.CfwControlPolicies has been deprecated in favor of volcengine.cloud_firewall.getCfwControlPolicies
 func CfwControlPolicies(ctx *pulumi.Context, args *CfwControlPoliciesArgs, opts ...pulumi.InvokeOption) (*CfwControlPoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CfwControlPoliciesResult

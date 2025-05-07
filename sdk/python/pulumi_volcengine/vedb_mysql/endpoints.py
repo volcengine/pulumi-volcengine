@@ -17,6 +17,8 @@ __all__ = [
     'endpoints_output',
 ]
 
+warnings.warn("""volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints""", DeprecationWarning)
+
 @pulumi.output_type
 class EndpointsResult:
     """
@@ -121,7 +123,7 @@ def endpoints(endpoint_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -150,7 +152,7 @@ def endpoints(endpoint_id: Optional[str] = None,
                 value="tftest2",
             ),
         ])
-    foo_instances = volcengine.vedb_mysql.instances_output(instance_id=foo_instance.id)
+    foo_instances = volcengine.vedb_mysql.get_instances_output(instance_id=foo_instance.id)
     foo_endpoint = volcengine.vedb_mysql.Endpoint("fooEndpoint",
         endpoint_type="Custom",
         instance_id=foo_instance.id,
@@ -166,7 +168,7 @@ def endpoints(endpoint_id: Optional[str] = None,
         consist_level="Session",
         consist_timeout=100000,
         consist_timeout_action="ReadMaster")
-    foo_endpoints = volcengine.vedb_mysql.endpoints_output(endpoint_id=foo_endpoint.endpoint_id,
+    foo_endpoints = volcengine.vedb_mysql.get_endpoints_output(endpoint_id=foo_endpoint.endpoint_id,
         instance_id=foo_instance.id)
     ```
 
@@ -176,6 +178,7 @@ def endpoints(endpoint_id: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints""")
     __args__ = dict()
     __args__['endpointId'] = endpoint_id
     __args__['instanceId'] = instance_id
@@ -208,7 +211,7 @@ def endpoints_output(endpoint_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -237,7 +240,7 @@ def endpoints_output(endpoint_id: Optional[pulumi.Input[Optional[str]]] = None,
                 value="tftest2",
             ),
         ])
-    foo_instances = volcengine.vedb_mysql.instances_output(instance_id=foo_instance.id)
+    foo_instances = volcengine.vedb_mysql.get_instances_output(instance_id=foo_instance.id)
     foo_endpoint = volcengine.vedb_mysql.Endpoint("fooEndpoint",
         endpoint_type="Custom",
         instance_id=foo_instance.id,
@@ -253,7 +256,7 @@ def endpoints_output(endpoint_id: Optional[pulumi.Input[Optional[str]]] = None,
         consist_level="Session",
         consist_timeout=100000,
         consist_timeout_action="ReadMaster")
-    foo_endpoints = volcengine.vedb_mysql.endpoints_output(endpoint_id=foo_endpoint.endpoint_id,
+    foo_endpoints = volcengine.vedb_mysql.get_endpoints_output(endpoint_id=foo_endpoint.endpoint_id,
         instance_id=foo_instance.id)
     ```
 
@@ -263,4 +266,5 @@ def endpoints_output(endpoint_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""endpoints is deprecated: volcengine.vedb_mysql.Endpoints has been deprecated in favor of volcengine.vedb_mysql.getEndpoints""")
     ...

@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string? InstanceChargeType;
         /// <summary>
-        /// The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.SupportResourceTypes datasource.
+        /// The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.getSupportResourceTypes datasource.
         /// </summary>
         public readonly ImmutableArray<string> InstanceTypeIds;
         /// <summary>

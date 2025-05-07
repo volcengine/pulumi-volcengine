@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Rds_postgresql
 {
+    [Obsolete(@"volcengine.rds_postgresql.Schemas has been deprecated in favor of volcengine.rds_postgresql.getSchemas")]
     public static class Schemas
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -35,7 +36,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         ///     {
         ///         SubnetName = "acc-subnet-test-2",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -43,8 +44,8 @@ namespace Pulumi.Volcengine.Rds_postgresql
         ///     {
         ///         DbEngineVersion = "PostgreSQL_12",
         ///         NodeSpec = "rds.postgres.1c2g",
-        ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-        ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         StorageSpace = 40,
         ///         SubnetId = fooSubnet.Id,
         ///         InstanceName = "acc-test-1",
@@ -110,7 +111,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         ///         SchemaName = "acc-test-schema",
         ///     });
         /// 
-        ///     var fooSchemas = Volcengine.Rds_postgresql.Schemas.Invoke(new()
+        ///     var fooSchemas = Volcengine.Rds_postgresql.GetSchemas.Invoke(new()
         ///     {
         ///         DbName = fooSchema.DbName,
         ///         InstanceId = fooInstance.Id,
@@ -134,7 +135,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
         /// 
         ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
@@ -146,7 +147,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         ///     {
         ///         SubnetName = "acc-subnet-test-2",
         ///         CidrBlock = "172.16.0.0/24",
-        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         VpcId = fooVpc.Id,
         ///     });
         /// 
@@ -154,8 +155,8 @@ namespace Pulumi.Volcengine.Rds_postgresql
         ///     {
         ///         DbEngineVersion = "PostgreSQL_12",
         ///         NodeSpec = "rds.postgres.1c2g",
-        ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-        ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
         ///         StorageSpace = 40,
         ///         SubnetId = fooSubnet.Id,
         ///         InstanceName = "acc-test-1",
@@ -221,7 +222,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         ///         SchemaName = "acc-test-schema",
         ///     });
         /// 
-        ///     var fooSchemas = Volcengine.Rds_postgresql.Schemas.Invoke(new()
+        ///     var fooSchemas = Volcengine.Rds_postgresql.GetSchemas.Invoke(new()
         ///     {
         ///         DbName = fooSchema.DbName,
         ///         InstanceId = fooInstance.Id,

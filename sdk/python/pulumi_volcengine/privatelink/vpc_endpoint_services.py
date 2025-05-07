@@ -17,6 +17,8 @@ __all__ = [
     'vpc_endpoint_services_output',
 ]
 
+warnings.warn("""volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices""", DeprecationWarning)
+
 @pulumi.output_type
 class VpcEndpointServicesResult:
     """
@@ -121,7 +123,7 @@ def vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -155,7 +157,7 @@ def vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
             )],
             description="acc-test",
             auto_accept_enabled=True))
-    foo_vpc_endpoint_services = volcengine.privatelink.vpc_endpoint_services_output(ids=[__item.id for __item in foo_vpc_endpoint_service])
+    foo_vpc_endpoint_services = volcengine.privatelink.get_vpc_endpoint_services_output(ids=[__item.id for __item in foo_vpc_endpoint_service])
     ```
 
 
@@ -164,6 +166,7 @@ def vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str service_name: The name of vpc endpoint service.
     """
+    pulumi.log.warn("""vpc_endpoint_services is deprecated: volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices""")
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
@@ -196,7 +199,7 @@ def vpc_endpoint_services_output(ids: Optional[pulumi.Input[Optional[Sequence[st
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -230,7 +233,7 @@ def vpc_endpoint_services_output(ids: Optional[pulumi.Input[Optional[Sequence[st
             )],
             description="acc-test",
             auto_accept_enabled=True))
-    foo_vpc_endpoint_services = volcengine.privatelink.vpc_endpoint_services_output(ids=[__item.id for __item in foo_vpc_endpoint_service])
+    foo_vpc_endpoint_services = volcengine.privatelink.get_vpc_endpoint_services_output(ids=[__item.id for __item in foo_vpc_endpoint_service])
     ```
 
 
@@ -239,4 +242,5 @@ def vpc_endpoint_services_output(ids: Optional[pulumi.Input[Optional[Sequence[st
     :param str output_file: File name where to save data source results.
     :param str service_name: The name of vpc endpoint service.
     """
+    pulumi.log.warn("""vpc_endpoint_services is deprecated: volcengine.privatelink.VpcEndpointServices has been deprecated in favor of volcengine.privatelink.getVpcEndpointServices""")
     ...

@@ -17,6 +17,8 @@ __all__ = [
     'scaling_instances_output',
 ]
 
+warnings.warn("""volcengine.autoscaling.ScalingInstances has been deprecated in favor of volcengine.autoscaling.getScalingInstances""", DeprecationWarning)
+
 @pulumi.output_type
 class ScalingInstancesResult:
     """
@@ -150,7 +152,7 @@ def scaling_instances(creation_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -162,7 +164,7 @@ def scaling_instances(creation_type: Optional[str] = None,
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
@@ -225,7 +227,7 @@ def scaling_instances(creation_type: Optional[str] = None,
                 opts=pulumi.ResourceOptions(depends_on=[foo_scaling_group_enabler])))
 
     (len(foo_instance)).apply(create_foo_scaling_instance_attachment)
-    foo_scaling_instances = volcengine.autoscaling.scaling_instances_output(scaling_group_id=foo_scaling_group.id,
+    foo_scaling_instances = volcengine.autoscaling.get_scaling_instances_output(scaling_group_id=foo_scaling_group.id,
         ids=[__item.instance_id for __item in foo_scaling_instance_attachment])
     ```
 
@@ -237,6 +239,7 @@ def scaling_instances(creation_type: Optional[str] = None,
     :param str scaling_group_id: The id of the scaling group.
     :param str status: The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
     """
+    pulumi.log.warn("""scaling_instances is deprecated: volcengine.autoscaling.ScalingInstances has been deprecated in favor of volcengine.autoscaling.getScalingInstances""")
     __args__ = dict()
     __args__['creationType'] = creation_type
     __args__['ids'] = ids
@@ -275,7 +278,7 @@ def scaling_instances_output(creation_type: Optional[pulumi.Input[Optional[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_zones = volcengine.ecs.zones()
+    foo_zones = volcengine.ecs.get_zones()
     foo_vpc = volcengine.vpc.Vpc("fooVpc",
         vpc_name="acc-test-vpc",
         cidr_block="172.16.0.0/16")
@@ -287,7 +290,7 @@ def scaling_instances_output(creation_type: Optional[pulumi.Input[Optional[str]]
     foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
         security_group_name="acc-test-security-group",
         vpc_id=foo_vpc.id)
-    foo_images = volcengine.ecs.images(os_type="Linux",
+    foo_images = volcengine.ecs.get_images(os_type="Linux",
         visibility="public",
         instance_type_id="ecs.g1.large")
     foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
@@ -350,7 +353,7 @@ def scaling_instances_output(creation_type: Optional[pulumi.Input[Optional[str]]
                 opts=pulumi.ResourceOptions(depends_on=[foo_scaling_group_enabler])))
 
     (len(foo_instance)).apply(create_foo_scaling_instance_attachment)
-    foo_scaling_instances = volcengine.autoscaling.scaling_instances_output(scaling_group_id=foo_scaling_group.id,
+    foo_scaling_instances = volcengine.autoscaling.get_scaling_instances_output(scaling_group_id=foo_scaling_group.id,
         ids=[__item.instance_id for __item in foo_scaling_instance_attachment])
     ```
 
@@ -362,4 +365,5 @@ def scaling_instances_output(creation_type: Optional[pulumi.Input[Optional[str]]
     :param str scaling_group_id: The id of the scaling group.
     :param str status: The status of instances. Valid values: Init, Pending, Pending:Wait, InService, Error, Removing, Removing:Wait, Stopped, Protected.
     """
+    pulumi.log.warn("""scaling_instances is deprecated: volcengine.autoscaling.ScalingInstances has been deprecated in favor of volcengine.autoscaling.getScalingInstances""")
     ...

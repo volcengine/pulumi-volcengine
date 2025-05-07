@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.RouteTables(ctx, &vpc.RouteTablesArgs{
+//			_, err := vpc.GetRouteTables(ctx, &vpc.GetRouteTablesArgs{
 //				Ids: []string{
 //					"vtb-274e19skkuhog7fap8u4i8ird",
 //					"vtb-2744hslq5b7r47fap8tjomgnj",
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.RouteTables has been deprecated in favor of volcengine.vpc.getRouteTables
 func RouteTables(ctx *pulumi.Context, args *RouteTablesArgs, opts ...pulumi.InvokeOption) (*RouteTablesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteTablesResult

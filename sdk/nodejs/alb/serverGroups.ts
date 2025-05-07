@@ -41,12 +41,14 @@ import * as utilities from "../utilities";
  *         },
  *     }));
  * }
- * const fooServerGroups = volcengine.alb.ServerGroupsOutput({
+ * const fooServerGroups = volcengine.alb.getServerGroupsOutput({
  *     ids: fooServerGroup.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups */
 export function serverGroups(args?: ServerGroupsArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupsResult> {
+    pulumi.log.warn("serverGroups is deprecated: volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -154,11 +156,12 @@ export interface ServerGroupsResult {
  *         },
  *     }));
  * }
- * const fooServerGroups = volcengine.alb.ServerGroupsOutput({
+ * const fooServerGroups = volcengine.alb.getServerGroupsOutput({
  *     ids: fooServerGroup.map(__item => __item.id),
  * });
  * ```
  */
+/** @deprecated volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups */
 export function serverGroupsOutput(args?: ServerGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServerGroupsResult> {
     return pulumi.output(args).apply((a: any) => serverGroups(a, opts))
 }

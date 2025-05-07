@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.Ipv6Gateways(ctx, &vpc.Ipv6GatewaysArgs{
+//			_, err := vpc.GetIpv6Gateways(ctx, &vpc.GetIpv6GatewaysArgs{
 //				Ids: []string{
 //					"ipv6gw-12bcapllb5ukg17q7y2sd3thx",
 //				},
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vpc.Ipv6Gateways has been deprecated in favor of volcengine.vpc.getIpv6Gateways
 func Ipv6Gateways(ctx *pulumi.Context, args *Ipv6GatewaysArgs, opts ...pulumi.InvokeOption) (*Ipv6GatewaysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Ipv6GatewaysResult

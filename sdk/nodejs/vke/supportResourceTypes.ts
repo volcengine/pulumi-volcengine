@@ -14,10 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vke.SupportResourceTypes({});
+ * const default = volcengine.vke.getSupportResourceTypes({});
  * ```
  */
+/** @deprecated volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes */
 export function supportResourceTypes(args?: SupportResourceTypesArgs, opts?: pulumi.InvokeOptions): Promise<SupportResourceTypesResult> {
+    pulumi.log.warn("supportResourceTypes is deprecated: volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -74,9 +76,10 @@ export interface SupportResourceTypesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.vke.SupportResourceTypes({});
+ * const default = volcengine.vke.getSupportResourceTypes({});
  * ```
  */
+/** @deprecated volcengine.vke.SupportResourceTypes has been deprecated in favor of volcengine.vke.getSupportResourceTypes */
 export function supportResourceTypesOutput(args?: SupportResourceTypesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SupportResourceTypesResult> {
     return pulumi.output(args).apply((a: any) => supportResourceTypes(a, opts))
 }

@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwVpcFirewallAclRules({
+ * const foo = volcengine.cloud_firewall.getCfwVpcFirewallAclRules({
  *     actions: [
  *         "accept",
  *         "deny",
@@ -23,7 +23,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules */
 export function cfwVpcFirewallAclRules(args: CfwVpcFirewallAclRulesArgs, opts?: pulumi.InvokeOptions): Promise<CfwVpcFirewallAclRulesResult> {
+    pulumi.log.warn("cfwVpcFirewallAclRules is deprecated: volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules")
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cloud_firewall/cfwVpcFirewallAclRules:CfwVpcFirewallAclRules", {
@@ -148,7 +150,7 @@ export interface CfwVpcFirewallAclRulesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.cloud_firewall.CfwVpcFirewallAclRules({
+ * const foo = volcengine.cloud_firewall.getCfwVpcFirewallAclRules({
  *     actions: [
  *         "accept",
  *         "deny",
@@ -157,6 +159,7 @@ export interface CfwVpcFirewallAclRulesResult {
  * });
  * ```
  */
+/** @deprecated volcengine.cloud_firewall.CfwVpcFirewallAclRules has been deprecated in favor of volcengine.cloud_firewall.getCfwVpcFirewallAclRules */
 export function cfwVpcFirewallAclRulesOutput(args: CfwVpcFirewallAclRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CfwVpcFirewallAclRulesResult> {
     return pulumi.output(args).apply((a: any) => cfwVpcFirewallAclRules(a, opts))
 }

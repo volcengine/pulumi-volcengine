@@ -17,6 +17,8 @@ __all__ = [
     'accounts_output',
 ]
 
+warnings.warn("""volcengine.rds.Accounts has been deprecated in favor of volcengine.rds.getAccounts""", DeprecationWarning)
+
 @pulumi.output_type
 class AccountsResult:
     """
@@ -121,7 +123,7 @@ def accounts(account_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.accounts(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_accounts(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -130,6 +132,7 @@ def accounts(account_name: Optional[str] = None,
     :param str name_regex: A Name Regex of database account.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.rds.Accounts has been deprecated in favor of volcengine.rds.getAccounts""")
     __args__ = dict()
     __args__['accountName'] = account_name
     __args__['instanceId'] = instance_id
@@ -162,7 +165,7 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds.accounts(instance_id="mysql-0fdd3bab2e7c")
+    default = volcengine.rds.get_accounts(instance_id="mysql-0fdd3bab2e7c")
     ```
 
 
@@ -171,4 +174,5 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of database account.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""accounts is deprecated: volcengine.rds.Accounts has been deprecated in favor of volcengine.rds.getAccounts""")
     ...

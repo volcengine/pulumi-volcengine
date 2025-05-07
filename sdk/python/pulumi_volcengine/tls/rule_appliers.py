@@ -17,6 +17,8 @@ __all__ = [
     'rule_appliers_output',
 ]
 
+warnings.warn("""volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers""", DeprecationWarning)
+
 @pulumi.output_type
 class RuleAppliersResult:
     """
@@ -98,13 +100,14 @@ def rule_appliers(host_group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.rule_appliers(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e")
+    default = volcengine.tls.get_rule_appliers(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e")
     ```
 
 
     :param str host_group_id: The host group id.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""rule_appliers is deprecated: volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers""")
     __args__ = dict()
     __args__['hostGroupId'] = host_group_id
     __args__['outputFile'] = output_file
@@ -131,11 +134,12 @@ def rule_appliers_output(host_group_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.rule_appliers(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e")
+    default = volcengine.tls.get_rule_appliers(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e")
     ```
 
 
     :param str host_group_id: The host group id.
     :param str output_file: File name where to save data source results.
     """
+    pulumi.log.warn("""rule_appliers is deprecated: volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers""")
     ...

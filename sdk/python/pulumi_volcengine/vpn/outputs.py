@@ -20,6 +20,14 @@ __all__ = [
     'GatewaysVpnGatewayTagResult',
     'SslVpnClientCertsSslVpnClientCertResult',
     'SslVpnServersSslVpnServerResult',
+    'GetConnectionsVpnConnectionResult',
+    'GetCustomerGatewaysCustomerGatewayResult',
+    'GetGatewayRoutesVpnGatewayRouteResult',
+    'GetGatewaysTagResult',
+    'GetGatewaysVpnGatewayResult',
+    'GetGatewaysVpnGatewayTagResult',
+    'GetSslVpnClientCertsSslVpnClientCertResult',
+    'GetSslVpnServersSslVpnServerResult',
 ]
 
 @pulumi.output_type
@@ -1181,6 +1189,1335 @@ class SslVpnClientCertsSslVpnClientCertResult(dict):
 
 @pulumi.output_type
 class SslVpnServersSslVpnServerResult(dict):
+    def __init__(__self__, *,
+                 auth: str,
+                 cipher: str,
+                 client_ip_pool: str,
+                 compress: bool,
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 local_subnets: Sequence[str],
+                 port: int,
+                 project_name: str,
+                 protocol: str,
+                 ssl_vpn_server_id: str,
+                 ssl_vpn_server_name: str,
+                 status: str,
+                 update_time: str,
+                 vpn_gateway_id: str):
+        """
+        :param str auth: The authentication algorithm of the SSL server.
+               Values:
+               `SHA1` (default)
+               `MD5`
+               `None` (do not use encryption).
+        :param str cipher: The encryption algorithm of the SSL server.
+               Values:
+               `AES-128-CBC` (default)
+               `AES-192-CBC`
+               `AES-256-CBC`
+               `None` (do not use encryption).
+        :param str client_ip_pool: SSL client network segment.
+        :param bool compress: Whether to compress the transmitted data. The default value is false.
+        :param str creation_time: The creation time.
+        :param str description: The description of the ssl server.
+        :param str id: The SSL VPN server id.
+        :param Sequence[str] local_subnets: The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+        :param int port: The port of the ssl server.
+        :param str project_name: The project name of the ssl server.
+        :param str protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+        :param str ssl_vpn_server_id: The id of the ssl vpn server.
+        :param str ssl_vpn_server_name: The name of the ssl vpn server.
+        :param str status: The status of the ssl vpn server.
+        :param str update_time: The update time.
+        :param str vpn_gateway_id: The id of the vpn gateway.
+        """
+        pulumi.set(__self__, "auth", auth)
+        pulumi.set(__self__, "cipher", cipher)
+        pulumi.set(__self__, "client_ip_pool", client_ip_pool)
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "local_subnets", local_subnets)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
+        pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> str:
+        """
+        The authentication algorithm of the SSL server.
+        Values:
+        `SHA1` (default)
+        `MD5`
+        `None` (do not use encryption).
+        """
+        return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> str:
+        """
+        The encryption algorithm of the SSL server.
+        Values:
+        `AES-128-CBC` (default)
+        `AES-192-CBC`
+        `AES-256-CBC`
+        `None` (do not use encryption).
+        """
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter(name="clientIpPool")
+    def client_ip_pool(self) -> str:
+        """
+        SSL client network segment.
+        """
+        return pulumi.get(self, "client_ip_pool")
+
+    @property
+    @pulumi.getter
+    def compress(self) -> bool:
+        """
+        Whether to compress the transmitted data. The default value is false.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the ssl server.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The SSL VPN server id.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="localSubnets")
+    def local_subnets(self) -> Sequence[str]:
+        """
+        The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+        """
+        return pulumi.get(self, "local_subnets")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port of the ssl server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the ssl server.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sslVpnServerId")
+    def ssl_vpn_server_id(self) -> str:
+        """
+        The id of the ssl vpn server.
+        """
+        return pulumi.get(self, "ssl_vpn_server_id")
+
+    @property
+    @pulumi.getter(name="sslVpnServerName")
+    def ssl_vpn_server_name(self) -> str:
+        """
+        The name of the ssl vpn server.
+        """
+        return pulumi.get(self, "ssl_vpn_server_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the ssl vpn server.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> str:
+        """
+        The id of the vpn gateway.
+        """
+        return pulumi.get(self, "vpn_gateway_id")
+
+
+@pulumi.output_type
+class GetConnectionsVpnConnectionResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 attach_status: str,
+                 attach_type: str,
+                 business_status: str,
+                 connect_status: str,
+                 creation_time: str,
+                 customer_gateway_id: str,
+                 deleted_time: str,
+                 description: str,
+                 dpd_action: str,
+                 id: str,
+                 ike_config_auth_alg: str,
+                 ike_config_dh_group: str,
+                 ike_config_enc_alg: str,
+                 ike_config_lifetime: int,
+                 ike_config_local_id: str,
+                 ike_config_mode: str,
+                 ike_config_psk: str,
+                 ike_config_remote_id: str,
+                 ike_config_version: str,
+                 ip_address: str,
+                 ipsec_config_auth_alg: str,
+                 ipsec_config_dh_group: str,
+                 ipsec_config_enc_alg: str,
+                 ipsec_config_lifetime: int,
+                 local_subnets: Sequence[str],
+                 log_enabled: bool,
+                 nat_traversal: bool,
+                 negotiate_instantly: bool,
+                 overdue_time: str,
+                 remote_subnets: Sequence[str],
+                 status: str,
+                 transit_router_id: str,
+                 update_time: str,
+                 vpn_connection_id: str,
+                 vpn_connection_name: str,
+                 vpn_gateway_id: str,
+                 zone_id: str):
+        """
+        :param str account_id: The account ID of the VPN connection.
+        :param str attach_status: The attach status of VPN connection.
+        :param str attach_type: The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+        :param str business_status: The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
+        :param str connect_status: The connect status of the VPN connection.
+        :param str creation_time: The create time of VPN connection.
+        :param str customer_gateway_id: An ID of customer gateway.
+        :param str deleted_time: The delete time of resource, valid when the attach type is 'TransitRouter'.
+        :param str description: The description of the VPN connection.
+        :param str dpd_action: The dpd action of the VPN connection.
+        :param str id: The ID of the VPN connection.
+        :param str ike_config_auth_alg: The auth alg of the ike config of the VPN connection.
+        :param str ike_config_dh_group: The dk group of the ike config of the VPN connection.
+        :param str ike_config_enc_alg: The enc alg of the ike config of the VPN connection.
+        :param int ike_config_lifetime: The lifetime of the ike config of the VPN connection.
+        :param str ike_config_local_id: The local_id of the ike config of the VPN connection.
+        :param str ike_config_mode: The mode of the ike config of the VPN connection.
+        :param str ike_config_psk: The psk of the ike config of the VPN connection.
+        :param str ike_config_remote_id: The remote id of the ike config of the VPN connection.
+        :param str ike_config_version: The version of the ike config of the VPN connection.
+        :param str ip_address: The ip address of transit router, valid when the attach type is 'TransitRouter'.
+        :param str ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection.
+        :param str ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection.
+        :param str ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection.
+        :param int ipsec_config_lifetime: The lifetime of the ike config of the VPN connection.
+        :param Sequence[str] local_subnets: The local subnet of the VPN connection.
+        :param bool log_enabled: Whether to enable the connection log.
+        :param bool nat_traversal: The nat traversal of the VPN connection.
+        :param bool negotiate_instantly: Whether to initiate negotiation mode immediately.
+        :param str overdue_time: The overdue time of resource, valid when the attach type is 'TransitRouter'.
+        :param Sequence[str] remote_subnets: The remote subnet of the VPN connection.
+        :param str status: The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        :param str transit_router_id: An ID of transit router.
+        :param str update_time: The update time of VPN connection.
+        :param str vpn_connection_id: The ID of the VPN connection.
+        :param str vpn_connection_name: The name of the VPN connection.
+        :param str vpn_gateway_id: An ID of VPN gateway.
+        :param str zone_id: The zone id of transit router, valid when the attach type is 'TransitRouter'.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "attach_status", attach_status)
+        pulumi.set(__self__, "attach_type", attach_type)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "connect_status", connect_status)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "customer_gateway_id", customer_gateway_id)
+        pulumi.set(__self__, "deleted_time", deleted_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dpd_action", dpd_action)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ike_config_auth_alg", ike_config_auth_alg)
+        pulumi.set(__self__, "ike_config_dh_group", ike_config_dh_group)
+        pulumi.set(__self__, "ike_config_enc_alg", ike_config_enc_alg)
+        pulumi.set(__self__, "ike_config_lifetime", ike_config_lifetime)
+        pulumi.set(__self__, "ike_config_local_id", ike_config_local_id)
+        pulumi.set(__self__, "ike_config_mode", ike_config_mode)
+        pulumi.set(__self__, "ike_config_psk", ike_config_psk)
+        pulumi.set(__self__, "ike_config_remote_id", ike_config_remote_id)
+        pulumi.set(__self__, "ike_config_version", ike_config_version)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ipsec_config_auth_alg", ipsec_config_auth_alg)
+        pulumi.set(__self__, "ipsec_config_dh_group", ipsec_config_dh_group)
+        pulumi.set(__self__, "ipsec_config_enc_alg", ipsec_config_enc_alg)
+        pulumi.set(__self__, "ipsec_config_lifetime", ipsec_config_lifetime)
+        pulumi.set(__self__, "local_subnets", local_subnets)
+        pulumi.set(__self__, "log_enabled", log_enabled)
+        pulumi.set(__self__, "nat_traversal", nat_traversal)
+        pulumi.set(__self__, "negotiate_instantly", negotiate_instantly)
+        pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "remote_subnets", remote_subnets)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "transit_router_id", transit_router_id)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpn_connection_id", vpn_connection_id)
+        pulumi.set(__self__, "vpn_connection_name", vpn_connection_name)
+        pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID of the VPN connection.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="attachStatus")
+    def attach_status(self) -> str:
+        """
+        The attach status of VPN connection.
+        """
+        return pulumi.get(self, "attach_status")
+
+    @property
+    @pulumi.getter(name="attachType")
+    def attach_type(self) -> str:
+        """
+        The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+        """
+        return pulumi.get(self, "attach_type")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="connectStatus")
+    def connect_status(self) -> str:
+        """
+        The connect status of the VPN connection.
+        """
+        return pulumi.get(self, "connect_status")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of VPN connection.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="customerGatewayId")
+    def customer_gateway_id(self) -> str:
+        """
+        An ID of customer gateway.
+        """
+        return pulumi.get(self, "customer_gateway_id")
+
+    @property
+    @pulumi.getter(name="deletedTime")
+    def deleted_time(self) -> str:
+        """
+        The delete time of resource, valid when the attach type is 'TransitRouter'.
+        """
+        return pulumi.get(self, "deleted_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the VPN connection.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dpdAction")
+    def dpd_action(self) -> str:
+        """
+        The dpd action of the VPN connection.
+        """
+        return pulumi.get(self, "dpd_action")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the VPN connection.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ikeConfigAuthAlg")
+    def ike_config_auth_alg(self) -> str:
+        """
+        The auth alg of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_auth_alg")
+
+    @property
+    @pulumi.getter(name="ikeConfigDhGroup")
+    def ike_config_dh_group(self) -> str:
+        """
+        The dk group of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_dh_group")
+
+    @property
+    @pulumi.getter(name="ikeConfigEncAlg")
+    def ike_config_enc_alg(self) -> str:
+        """
+        The enc alg of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_enc_alg")
+
+    @property
+    @pulumi.getter(name="ikeConfigLifetime")
+    def ike_config_lifetime(self) -> int:
+        """
+        The lifetime of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_lifetime")
+
+    @property
+    @pulumi.getter(name="ikeConfigLocalId")
+    def ike_config_local_id(self) -> str:
+        """
+        The local_id of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_local_id")
+
+    @property
+    @pulumi.getter(name="ikeConfigMode")
+    def ike_config_mode(self) -> str:
+        """
+        The mode of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_mode")
+
+    @property
+    @pulumi.getter(name="ikeConfigPsk")
+    def ike_config_psk(self) -> str:
+        """
+        The psk of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_psk")
+
+    @property
+    @pulumi.getter(name="ikeConfigRemoteId")
+    def ike_config_remote_id(self) -> str:
+        """
+        The remote id of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_remote_id")
+
+    @property
+    @pulumi.getter(name="ikeConfigVersion")
+    def ike_config_version(self) -> str:
+        """
+        The version of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ike_config_version")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The ip address of transit router, valid when the attach type is 'TransitRouter'.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="ipsecConfigAuthAlg")
+    def ipsec_config_auth_alg(self) -> str:
+        """
+        The auth alg of the ipsec config of the VPN connection.
+        """
+        return pulumi.get(self, "ipsec_config_auth_alg")
+
+    @property
+    @pulumi.getter(name="ipsecConfigDhGroup")
+    def ipsec_config_dh_group(self) -> str:
+        """
+        The dh group of the ipsec config of the VPN connection.
+        """
+        return pulumi.get(self, "ipsec_config_dh_group")
+
+    @property
+    @pulumi.getter(name="ipsecConfigEncAlg")
+    def ipsec_config_enc_alg(self) -> str:
+        """
+        The enc alg of the ipsec config of the VPN connection.
+        """
+        return pulumi.get(self, "ipsec_config_enc_alg")
+
+    @property
+    @pulumi.getter(name="ipsecConfigLifetime")
+    def ipsec_config_lifetime(self) -> int:
+        """
+        The lifetime of the ike config of the VPN connection.
+        """
+        return pulumi.get(self, "ipsec_config_lifetime")
+
+    @property
+    @pulumi.getter(name="localSubnets")
+    def local_subnets(self) -> Sequence[str]:
+        """
+        The local subnet of the VPN connection.
+        """
+        return pulumi.get(self, "local_subnets")
+
+    @property
+    @pulumi.getter(name="logEnabled")
+    def log_enabled(self) -> bool:
+        """
+        Whether to enable the connection log.
+        """
+        return pulumi.get(self, "log_enabled")
+
+    @property
+    @pulumi.getter(name="natTraversal")
+    def nat_traversal(self) -> bool:
+        """
+        The nat traversal of the VPN connection.
+        """
+        return pulumi.get(self, "nat_traversal")
+
+    @property
+    @pulumi.getter(name="negotiateInstantly")
+    def negotiate_instantly(self) -> bool:
+        """
+        Whether to initiate negotiation mode immediately.
+        """
+        return pulumi.get(self, "negotiate_instantly")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> str:
+        """
+        The overdue time of resource, valid when the attach type is 'TransitRouter'.
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter(name="remoteSubnets")
+    def remote_subnets(self) -> Sequence[str]:
+        """
+        The remote subnet of the VPN connection.
+        """
+        return pulumi.get(self, "remote_subnets")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="transitRouterId")
+    def transit_router_id(self) -> str:
+        """
+        An ID of transit router.
+        """
+        return pulumi.get(self, "transit_router_id")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of VPN connection.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpnConnectionId")
+    def vpn_connection_id(self) -> str:
+        """
+        The ID of the VPN connection.
+        """
+        return pulumi.get(self, "vpn_connection_id")
+
+    @property
+    @pulumi.getter(name="vpnConnectionName")
+    def vpn_connection_name(self) -> str:
+        """
+        The name of the VPN connection.
+        """
+        return pulumi.get(self, "vpn_connection_name")
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> str:
+        """
+        An ID of VPN gateway.
+        """
+        return pulumi.get(self, "vpn_gateway_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone id of transit router, valid when the attach type is 'TransitRouter'.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetCustomerGatewaysCustomerGatewayResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 connection_count: int,
+                 creation_time: str,
+                 customer_gateway_id: str,
+                 customer_gateway_name: str,
+                 description: str,
+                 id: str,
+                 ip_address: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param str account_id: The account ID of the customer gateway.
+        :param int connection_count: The connection count of the customer gateway.
+        :param str creation_time: The create time of customer gateway.
+        :param str customer_gateway_id: The ID of the customer gateway.
+        :param str customer_gateway_name: The name of the customer gateway.
+        :param str description: The description of the customer gateway.
+        :param str id: The ID of the customer gateway.
+        :param str ip_address: A IP address of the customer gateway.
+        :param str status: The status of the customer gateway.
+        :param str update_time: The update time of customer gateway.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "connection_count", connection_count)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "customer_gateway_id", customer_gateway_id)
+        pulumi.set(__self__, "customer_gateway_name", customer_gateway_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID of the customer gateway.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="connectionCount")
+    def connection_count(self) -> int:
+        """
+        The connection count of the customer gateway.
+        """
+        return pulumi.get(self, "connection_count")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of customer gateway.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="customerGatewayId")
+    def customer_gateway_id(self) -> str:
+        """
+        The ID of the customer gateway.
+        """
+        return pulumi.get(self, "customer_gateway_id")
+
+    @property
+    @pulumi.getter(name="customerGatewayName")
+    def customer_gateway_name(self) -> str:
+        """
+        The name of the customer gateway.
+        """
+        return pulumi.get(self, "customer_gateway_name")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the customer gateway.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the customer gateway.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        A IP address of the customer gateway.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the customer gateway.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of customer gateway.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetGatewayRoutesVpnGatewayRouteResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 destination_cidr_block: str,
+                 id: str,
+                 next_hop_id: str,
+                 status: str,
+                 update_time: str,
+                 vpn_gateway_id: str,
+                 vpn_gateway_route_id: str):
+        """
+        :param str creation_time: The create time of VPN gateway route.
+        :param str destination_cidr_block: A destination cidr block.
+        :param str id: The ID of the VPN gateway route.
+        :param str next_hop_id: An ID of next hop.
+        :param str status: The status of the VPN gateway route.
+        :param str update_time: The update time of VPN gateway route.
+        :param str vpn_gateway_id: An ID of VPN gateway.
+        :param str vpn_gateway_route_id: The ID of the VPN gateway route.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "next_hop_id", next_hop_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
+        pulumi.set(__self__, "vpn_gateway_route_id", vpn_gateway_route_id)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of VPN gateway route.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        A destination cidr block.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the VPN gateway route.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="nextHopId")
+    def next_hop_id(self) -> str:
+        """
+        An ID of next hop.
+        """
+        return pulumi.get(self, "next_hop_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the VPN gateway route.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of VPN gateway route.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> str:
+        """
+        An ID of VPN gateway.
+        """
+        return pulumi.get(self, "vpn_gateway_id")
+
+    @property
+    @pulumi.getter(name="vpnGatewayRouteId")
+    def vpn_gateway_route_id(self) -> str:
+        """
+        The ID of the VPN gateway route.
+        """
+        return pulumi.get(self, "vpn_gateway_route_id")
+
+
+@pulumi.output_type
+class GetGatewaysTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGatewaysVpnGatewayResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 bandwidth: int,
+                 billing_type: str,
+                 business_status: str,
+                 connection_count: int,
+                 creation_time: str,
+                 deleted_time: str,
+                 description: str,
+                 expired_time: str,
+                 id: str,
+                 ip_address: str,
+                 ipsec_enabled: bool,
+                 lock_reason: str,
+                 project_name: str,
+                 route_count: int,
+                 ssl_enabled: bool,
+                 ssl_max_connections: int,
+                 status: str,
+                 tags: Sequence['outputs.GetGatewaysVpnGatewayTagResult'],
+                 update_time: str,
+                 vpc_id: str,
+                 vpn_gateway_id: str,
+                 vpn_gateway_name: str,
+                 subnet_id: Optional[str] = None):
+        """
+        :param str account_id: The account ID of the VPN gateway.
+        :param int bandwidth: The bandwidth of the VPN gateway.
+        :param str billing_type: The BillingType of the VPN gateway.
+        :param str business_status: The business status of the VPN gateway.
+        :param int connection_count: The connection count of the VPN gateway.
+        :param str creation_time: The create time of VPN gateway.
+        :param str deleted_time: The deleted time of the VPN gateway.
+        :param str description: The description of the VPN gateway.
+        :param str expired_time: The expired time of the VPN gateway.
+        :param str id: The ID of the VPN gateway.
+        :param str ip_address: A IP address of the VPN gateway.
+        :param bool ipsec_enabled: Whether IPSec is enabled.
+        :param str lock_reason: The lock reason of the VPN gateway.
+        :param str project_name: The project name of the VPN gateway.
+        :param int route_count: The route count of the VPN gateway.
+        :param bool ssl_enabled: Whether ssl is enabled.
+        :param int ssl_max_connections: The max connections of ssl.
+        :param str status: The status of the VPN gateway.
+        :param Sequence['GetGatewaysVpnGatewayTagArgs'] tags: Tags.
+        :param str update_time: The update time of VPN gateway.
+        :param str vpc_id: A VPC ID of the VPN gateway.
+        :param str vpn_gateway_id: The ID of the VPN gateway.
+        :param str vpn_gateway_name: The name of the VPN gateway.
+        :param str subnet_id: A subnet ID of the VPN gateway.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "connection_count", connection_count)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "deleted_time", deleted_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ipsec_enabled", ipsec_enabled)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "route_count", route_count)
+        pulumi.set(__self__, "ssl_enabled", ssl_enabled)
+        pulumi.set(__self__, "ssl_max_connections", ssl_max_connections)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
+        pulumi.set(__self__, "vpn_gateway_name", vpn_gateway_name)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account ID of the VPN gateway.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The bandwidth of the VPN gateway.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> str:
+        """
+        The BillingType of the VPN gateway.
+        """
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of the VPN gateway.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="connectionCount")
+    def connection_count(self) -> int:
+        """
+        The connection count of the VPN gateway.
+        """
+        return pulumi.get(self, "connection_count")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of VPN gateway.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="deletedTime")
+    def deleted_time(self) -> str:
+        """
+        The deleted time of the VPN gateway.
+        """
+        return pulumi.get(self, "deleted_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the VPN gateway.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        """
+        The expired time of the VPN gateway.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the VPN gateway.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        A IP address of the VPN gateway.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="ipsecEnabled")
+    def ipsec_enabled(self) -> bool:
+        """
+        Whether IPSec is enabled.
+        """
+        return pulumi.get(self, "ipsec_enabled")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The lock reason of the VPN gateway.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the VPN gateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="routeCount")
+    def route_count(self) -> int:
+        """
+        The route count of the VPN gateway.
+        """
+        return pulumi.get(self, "route_count")
+
+    @property
+    @pulumi.getter(name="sslEnabled")
+    def ssl_enabled(self) -> bool:
+        """
+        Whether ssl is enabled.
+        """
+        return pulumi.get(self, "ssl_enabled")
+
+    @property
+    @pulumi.getter(name="sslMaxConnections")
+    def ssl_max_connections(self) -> int:
+        """
+        The max connections of ssl.
+        """
+        return pulumi.get(self, "ssl_max_connections")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the VPN gateway.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetGatewaysVpnGatewayTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of VPN gateway.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        A VPC ID of the VPN gateway.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> str:
+        """
+        The ID of the VPN gateway.
+        """
+        return pulumi.get(self, "vpn_gateway_id")
+
+    @property
+    @pulumi.getter(name="vpnGatewayName")
+    def vpn_gateway_name(self) -> str:
+        """
+        The name of the VPN gateway.
+        """
+        return pulumi.get(self, "vpn_gateway_name")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        A subnet ID of the VPN gateway.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetGatewaysVpnGatewayTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSslVpnClientCertsSslVpnClientCertResult(dict):
+    def __init__(__self__, *,
+                 ca_certificate: str,
+                 certificate_status: str,
+                 client_certificate: str,
+                 client_key: str,
+                 creation_time: str,
+                 description: str,
+                 expired_time: str,
+                 id: str,
+                 open_vpn_client_config: str,
+                 ssl_vpn_client_cert_id: str,
+                 ssl_vpn_client_cert_name: str,
+                 ssl_vpn_server_id: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param str ca_certificate: The CA certificate.
+        :param str certificate_status: The status of the ssl vpn client cert.
+        :param str client_certificate: The client certificate.
+        :param str client_key: The key of the ssl vpn client.
+        :param str creation_time: The creation time of the ssl vpn client cert.
+        :param str description: The description of the ssl vpn client cert.
+        :param str expired_time: The expired time of the ssl vpn client cert.
+        :param str id: The id of the ssl vpn client cert.
+        :param str open_vpn_client_config: The config of the open vpn client.
+        :param str ssl_vpn_client_cert_id: The id of the ssl vpn client cert.
+        :param str ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
+        :param str ssl_vpn_server_id: The id of the ssl vpn server.
+        :param str status: The status of the ssl vpn client.
+        :param str update_time: The update time of the ssl vpn client cert.
+        """
+        pulumi.set(__self__, "ca_certificate", ca_certificate)
+        pulumi.set(__self__, "certificate_status", certificate_status)
+        pulumi.set(__self__, "client_certificate", client_certificate)
+        pulumi.set(__self__, "client_key", client_key)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "open_vpn_client_config", open_vpn_client_config)
+        pulumi.set(__self__, "ssl_vpn_client_cert_id", ssl_vpn_client_cert_id)
+        pulumi.set(__self__, "ssl_vpn_client_cert_name", ssl_vpn_client_cert_name)
+        pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="caCertificate")
+    def ca_certificate(self) -> str:
+        """
+        The CA certificate.
+        """
+        return pulumi.get(self, "ca_certificate")
+
+    @property
+    @pulumi.getter(name="certificateStatus")
+    def certificate_status(self) -> str:
+        """
+        The status of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "certificate_status")
+
+    @property
+    @pulumi.getter(name="clientCertificate")
+    def client_certificate(self) -> str:
+        """
+        The client certificate.
+        """
+        return pulumi.get(self, "client_certificate")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> str:
+        """
+        The key of the ssl vpn client.
+        """
+        return pulumi.get(self, "client_key")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        """
+        The expired time of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="openVpnClientConfig")
+    def open_vpn_client_config(self) -> str:
+        """
+        The config of the open vpn client.
+        """
+        return pulumi.get(self, "open_vpn_client_config")
+
+    @property
+    @pulumi.getter(name="sslVpnClientCertId")
+    def ssl_vpn_client_cert_id(self) -> str:
+        """
+        The id of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "ssl_vpn_client_cert_id")
+
+    @property
+    @pulumi.getter(name="sslVpnClientCertName")
+    def ssl_vpn_client_cert_name(self) -> str:
+        """
+        The name of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "ssl_vpn_client_cert_name")
+
+    @property
+    @pulumi.getter(name="sslVpnServerId")
+    def ssl_vpn_server_id(self) -> str:
+        """
+        The id of the ssl vpn server.
+        """
+        return pulumi.get(self, "ssl_vpn_server_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the ssl vpn client.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the ssl vpn client cert.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetSslVpnServersSslVpnServerResult(dict):
     def __init__(__self__, *,
                  auth: str,
                  cipher: str,

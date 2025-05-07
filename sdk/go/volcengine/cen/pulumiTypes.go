@@ -1976,6 +1976,1642 @@ func (o ServiceRouteEntryPublishToInstanceArrayOutput) Index(i pulumi.IntInput) 
 	}).(ServiceRouteEntryPublishToInstanceOutput)
 }
 
+type GetAttachInstancesAttachInstance struct {
+	// A cen ID.
+	CenId string `pulumi:"cenId"`
+	// The create time of the cen attaching instance.
+	CreationTime string `pulumi:"creationTime"`
+	// An instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// The owner ID of the instance.
+	InstanceOwnerId string `pulumi:"instanceOwnerId"`
+	// A region id of instance.
+	InstanceRegionId string `pulumi:"instanceRegionId"`
+	// An instance type.
+	InstanceType string `pulumi:"instanceType"`
+	// The status of the cen attaching instance.
+	Status string `pulumi:"status"`
+}
+
+// GetAttachInstancesAttachInstanceInput is an input type that accepts GetAttachInstancesAttachInstanceArgs and GetAttachInstancesAttachInstanceOutput values.
+// You can construct a concrete instance of `GetAttachInstancesAttachInstanceInput` via:
+//
+//	GetAttachInstancesAttachInstanceArgs{...}
+type GetAttachInstancesAttachInstanceInput interface {
+	pulumi.Input
+
+	ToGetAttachInstancesAttachInstanceOutput() GetAttachInstancesAttachInstanceOutput
+	ToGetAttachInstancesAttachInstanceOutputWithContext(context.Context) GetAttachInstancesAttachInstanceOutput
+}
+
+type GetAttachInstancesAttachInstanceArgs struct {
+	// A cen ID.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The create time of the cen attaching instance.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// An instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The owner ID of the instance.
+	InstanceOwnerId pulumi.StringInput `pulumi:"instanceOwnerId"`
+	// A region id of instance.
+	InstanceRegionId pulumi.StringInput `pulumi:"instanceRegionId"`
+	// An instance type.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The status of the cen attaching instance.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetAttachInstancesAttachInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAttachInstancesAttachInstance)(nil)).Elem()
+}
+
+func (i GetAttachInstancesAttachInstanceArgs) ToGetAttachInstancesAttachInstanceOutput() GetAttachInstancesAttachInstanceOutput {
+	return i.ToGetAttachInstancesAttachInstanceOutputWithContext(context.Background())
+}
+
+func (i GetAttachInstancesAttachInstanceArgs) ToGetAttachInstancesAttachInstanceOutputWithContext(ctx context.Context) GetAttachInstancesAttachInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAttachInstancesAttachInstanceOutput)
+}
+
+// GetAttachInstancesAttachInstanceArrayInput is an input type that accepts GetAttachInstancesAttachInstanceArray and GetAttachInstancesAttachInstanceArrayOutput values.
+// You can construct a concrete instance of `GetAttachInstancesAttachInstanceArrayInput` via:
+//
+//	GetAttachInstancesAttachInstanceArray{ GetAttachInstancesAttachInstanceArgs{...} }
+type GetAttachInstancesAttachInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetAttachInstancesAttachInstanceArrayOutput() GetAttachInstancesAttachInstanceArrayOutput
+	ToGetAttachInstancesAttachInstanceArrayOutputWithContext(context.Context) GetAttachInstancesAttachInstanceArrayOutput
+}
+
+type GetAttachInstancesAttachInstanceArray []GetAttachInstancesAttachInstanceInput
+
+func (GetAttachInstancesAttachInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAttachInstancesAttachInstance)(nil)).Elem()
+}
+
+func (i GetAttachInstancesAttachInstanceArray) ToGetAttachInstancesAttachInstanceArrayOutput() GetAttachInstancesAttachInstanceArrayOutput {
+	return i.ToGetAttachInstancesAttachInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetAttachInstancesAttachInstanceArray) ToGetAttachInstancesAttachInstanceArrayOutputWithContext(ctx context.Context) GetAttachInstancesAttachInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAttachInstancesAttachInstanceArrayOutput)
+}
+
+type GetAttachInstancesAttachInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetAttachInstancesAttachInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAttachInstancesAttachInstance)(nil)).Elem()
+}
+
+func (o GetAttachInstancesAttachInstanceOutput) ToGetAttachInstancesAttachInstanceOutput() GetAttachInstancesAttachInstanceOutput {
+	return o
+}
+
+func (o GetAttachInstancesAttachInstanceOutput) ToGetAttachInstancesAttachInstanceOutputWithContext(ctx context.Context) GetAttachInstancesAttachInstanceOutput {
+	return o
+}
+
+// A cen ID.
+func (o GetAttachInstancesAttachInstanceOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The create time of the cen attaching instance.
+func (o GetAttachInstancesAttachInstanceOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// An instance ID.
+func (o GetAttachInstancesAttachInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The owner ID of the instance.
+func (o GetAttachInstancesAttachInstanceOutput) InstanceOwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.InstanceOwnerId }).(pulumi.StringOutput)
+}
+
+// A region id of instance.
+func (o GetAttachInstancesAttachInstanceOutput) InstanceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.InstanceRegionId }).(pulumi.StringOutput)
+}
+
+// An instance type.
+func (o GetAttachInstancesAttachInstanceOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The status of the cen attaching instance.
+func (o GetAttachInstancesAttachInstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAttachInstancesAttachInstance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetAttachInstancesAttachInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAttachInstancesAttachInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAttachInstancesAttachInstance)(nil)).Elem()
+}
+
+func (o GetAttachInstancesAttachInstanceArrayOutput) ToGetAttachInstancesAttachInstanceArrayOutput() GetAttachInstancesAttachInstanceArrayOutput {
+	return o
+}
+
+func (o GetAttachInstancesAttachInstanceArrayOutput) ToGetAttachInstancesAttachInstanceArrayOutputWithContext(ctx context.Context) GetAttachInstancesAttachInstanceArrayOutput {
+	return o
+}
+
+func (o GetAttachInstancesAttachInstanceArrayOutput) Index(i pulumi.IntInput) GetAttachInstancesAttachInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAttachInstancesAttachInstance {
+		return vs[0].([]GetAttachInstancesAttachInstance)[vs[1].(int)]
+	}).(GetAttachInstancesAttachInstanceOutput)
+}
+
+type GetBandwidthPackagesBandwidthPackage struct {
+	// The account ID of the cen bandwidth package.
+	AccountId string `pulumi:"accountId"`
+	// The bandwidth of the cen bandwidth package.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The billing type of the cen bandwidth package.
+	BillingType string `pulumi:"billingType"`
+	// The business status of the cen bandwidth package.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The ID of the cen bandwidth package.
+	CenBandwidthPackageId string `pulumi:"cenBandwidthPackageId"`
+	// The name of the cen bandwidth package.
+	CenBandwidthPackageName string `pulumi:"cenBandwidthPackageName"`
+	// The cen IDs of the bandwidth package.
+	CenIds []string `pulumi:"cenIds"`
+	// The create time of the cen bandwidth package.
+	CreationTime string `pulumi:"creationTime"`
+	// The deleted time of the cen bandwidth package.
+	DeletedTime string `pulumi:"deletedTime"`
+	// The description of the cen bandwidth package.
+	Description string `pulumi:"description"`
+	// The expired time of the cen bandwidth package.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The ID of the cen bandwidth package.
+	Id string `pulumi:"id"`
+	// A local geographic region set id.
+	LocalGeographicRegionSetId string `pulumi:"localGeographicRegionSetId"`
+	// A peer geographic region set id.
+	PeerGeographicRegionSetId string `pulumi:"peerGeographicRegionSetId"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName string `pulumi:"projectName"`
+	// The remain bandwidth of the cen bandwidth package.
+	RemainingBandwidth int `pulumi:"remainingBandwidth"`
+	// The status of the cen bandwidth package.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetBandwidthPackagesBandwidthPackageTag `pulumi:"tags"`
+	// The update time of the cen bandwidth package.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetBandwidthPackagesBandwidthPackageInput is an input type that accepts GetBandwidthPackagesBandwidthPackageArgs and GetBandwidthPackagesBandwidthPackageOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesBandwidthPackageInput` via:
+//
+//	GetBandwidthPackagesBandwidthPackageArgs{...}
+type GetBandwidthPackagesBandwidthPackageInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesBandwidthPackageOutput() GetBandwidthPackagesBandwidthPackageOutput
+	ToGetBandwidthPackagesBandwidthPackageOutputWithContext(context.Context) GetBandwidthPackagesBandwidthPackageOutput
+}
+
+type GetBandwidthPackagesBandwidthPackageArgs struct {
+	// The account ID of the cen bandwidth package.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The bandwidth of the cen bandwidth package.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The billing type of the cen bandwidth package.
+	BillingType pulumi.StringInput `pulumi:"billingType"`
+	// The business status of the cen bandwidth package.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The ID of the cen bandwidth package.
+	CenBandwidthPackageId pulumi.StringInput `pulumi:"cenBandwidthPackageId"`
+	// The name of the cen bandwidth package.
+	CenBandwidthPackageName pulumi.StringInput `pulumi:"cenBandwidthPackageName"`
+	// The cen IDs of the bandwidth package.
+	CenIds pulumi.StringArrayInput `pulumi:"cenIds"`
+	// The create time of the cen bandwidth package.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The deleted time of the cen bandwidth package.
+	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
+	// The description of the cen bandwidth package.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The expired time of the cen bandwidth package.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The ID of the cen bandwidth package.
+	Id pulumi.StringInput `pulumi:"id"`
+	// A local geographic region set id.
+	LocalGeographicRegionSetId pulumi.StringInput `pulumi:"localGeographicRegionSetId"`
+	// A peer geographic region set id.
+	PeerGeographicRegionSetId pulumi.StringInput `pulumi:"peerGeographicRegionSetId"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The remain bandwidth of the cen bandwidth package.
+	RemainingBandwidth pulumi.IntInput `pulumi:"remainingBandwidth"`
+	// The status of the cen bandwidth package.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetBandwidthPackagesBandwidthPackageTagArrayInput `pulumi:"tags"`
+	// The update time of the cen bandwidth package.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetBandwidthPackagesBandwidthPackageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesBandwidthPackage)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesBandwidthPackageArgs) ToGetBandwidthPackagesBandwidthPackageOutput() GetBandwidthPackagesBandwidthPackageOutput {
+	return i.ToGetBandwidthPackagesBandwidthPackageOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesBandwidthPackageArgs) ToGetBandwidthPackagesBandwidthPackageOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesBandwidthPackageOutput)
+}
+
+// GetBandwidthPackagesBandwidthPackageArrayInput is an input type that accepts GetBandwidthPackagesBandwidthPackageArray and GetBandwidthPackagesBandwidthPackageArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesBandwidthPackageArrayInput` via:
+//
+//	GetBandwidthPackagesBandwidthPackageArray{ GetBandwidthPackagesBandwidthPackageArgs{...} }
+type GetBandwidthPackagesBandwidthPackageArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesBandwidthPackageArrayOutput() GetBandwidthPackagesBandwidthPackageArrayOutput
+	ToGetBandwidthPackagesBandwidthPackageArrayOutputWithContext(context.Context) GetBandwidthPackagesBandwidthPackageArrayOutput
+}
+
+type GetBandwidthPackagesBandwidthPackageArray []GetBandwidthPackagesBandwidthPackageInput
+
+func (GetBandwidthPackagesBandwidthPackageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesBandwidthPackage)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesBandwidthPackageArray) ToGetBandwidthPackagesBandwidthPackageArrayOutput() GetBandwidthPackagesBandwidthPackageArrayOutput {
+	return i.ToGetBandwidthPackagesBandwidthPackageArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesBandwidthPackageArray) ToGetBandwidthPackagesBandwidthPackageArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesBandwidthPackageArrayOutput)
+}
+
+type GetBandwidthPackagesBandwidthPackageOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesBandwidthPackageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesBandwidthPackage)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesBandwidthPackageOutput) ToGetBandwidthPackagesBandwidthPackageOutput() GetBandwidthPackagesBandwidthPackageOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesBandwidthPackageOutput) ToGetBandwidthPackagesBandwidthPackageOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageOutput {
+	return o
+}
+
+// The account ID of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The bandwidth of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The billing type of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) BillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.BillingType }).(pulumi.StringOutput)
+}
+
+// The business status of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The ID of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) CenBandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.CenBandwidthPackageId }).(pulumi.StringOutput)
+}
+
+// The name of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) CenBandwidthPackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.CenBandwidthPackageName }).(pulumi.StringOutput)
+}
+
+// The cen IDs of the bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) CenIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) []string { return v.CenIds }).(pulumi.StringArrayOutput)
+}
+
+// The create time of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The deleted time of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.DeletedTime }).(pulumi.StringOutput)
+}
+
+// The description of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The expired time of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The ID of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A local geographic region set id.
+func (o GetBandwidthPackagesBandwidthPackageOutput) LocalGeographicRegionSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.LocalGeographicRegionSetId }).(pulumi.StringOutput)
+}
+
+// A peer geographic region set id.
+func (o GetBandwidthPackagesBandwidthPackageOutput) PeerGeographicRegionSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.PeerGeographicRegionSetId }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The remain bandwidth of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) RemainingBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) int { return v.RemainingBandwidth }).(pulumi.IntOutput)
+}
+
+// The status of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetBandwidthPackagesBandwidthPackageOutput) Tags() GetBandwidthPackagesBandwidthPackageTagArrayOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) []GetBandwidthPackagesBandwidthPackageTag { return v.Tags }).(GetBandwidthPackagesBandwidthPackageTagArrayOutput)
+}
+
+// The update time of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetBandwidthPackagesBandwidthPackageArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesBandwidthPackageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesBandwidthPackage)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesBandwidthPackageArrayOutput) ToGetBandwidthPackagesBandwidthPackageArrayOutput() GetBandwidthPackagesBandwidthPackageArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesBandwidthPackageArrayOutput) ToGetBandwidthPackagesBandwidthPackageArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesBandwidthPackageArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesBandwidthPackageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesBandwidthPackage {
+		return vs[0].([]GetBandwidthPackagesBandwidthPackage)[vs[1].(int)]
+	}).(GetBandwidthPackagesBandwidthPackageOutput)
+}
+
+type GetBandwidthPackagesBandwidthPackageTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetBandwidthPackagesBandwidthPackageTagInput is an input type that accepts GetBandwidthPackagesBandwidthPackageTagArgs and GetBandwidthPackagesBandwidthPackageTagOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesBandwidthPackageTagInput` via:
+//
+//	GetBandwidthPackagesBandwidthPackageTagArgs{...}
+type GetBandwidthPackagesBandwidthPackageTagInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesBandwidthPackageTagOutput() GetBandwidthPackagesBandwidthPackageTagOutput
+	ToGetBandwidthPackagesBandwidthPackageTagOutputWithContext(context.Context) GetBandwidthPackagesBandwidthPackageTagOutput
+}
+
+type GetBandwidthPackagesBandwidthPackageTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetBandwidthPackagesBandwidthPackageTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesBandwidthPackageTagArgs) ToGetBandwidthPackagesBandwidthPackageTagOutput() GetBandwidthPackagesBandwidthPackageTagOutput {
+	return i.ToGetBandwidthPackagesBandwidthPackageTagOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesBandwidthPackageTagArgs) ToGetBandwidthPackagesBandwidthPackageTagOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesBandwidthPackageTagOutput)
+}
+
+// GetBandwidthPackagesBandwidthPackageTagArrayInput is an input type that accepts GetBandwidthPackagesBandwidthPackageTagArray and GetBandwidthPackagesBandwidthPackageTagArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesBandwidthPackageTagArrayInput` via:
+//
+//	GetBandwidthPackagesBandwidthPackageTagArray{ GetBandwidthPackagesBandwidthPackageTagArgs{...} }
+type GetBandwidthPackagesBandwidthPackageTagArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesBandwidthPackageTagArrayOutput() GetBandwidthPackagesBandwidthPackageTagArrayOutput
+	ToGetBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(context.Context) GetBandwidthPackagesBandwidthPackageTagArrayOutput
+}
+
+type GetBandwidthPackagesBandwidthPackageTagArray []GetBandwidthPackagesBandwidthPackageTagInput
+
+func (GetBandwidthPackagesBandwidthPackageTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesBandwidthPackageTagArray) ToGetBandwidthPackagesBandwidthPackageTagArrayOutput() GetBandwidthPackagesBandwidthPackageTagArrayOutput {
+	return i.ToGetBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesBandwidthPackageTagArray) ToGetBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesBandwidthPackageTagArrayOutput)
+}
+
+type GetBandwidthPackagesBandwidthPackageTagOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesBandwidthPackageTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesBandwidthPackageTagOutput) ToGetBandwidthPackagesBandwidthPackageTagOutput() GetBandwidthPackagesBandwidthPackageTagOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesBandwidthPackageTagOutput) ToGetBandwidthPackagesBandwidthPackageTagOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetBandwidthPackagesBandwidthPackageTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackageTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetBandwidthPackagesBandwidthPackageTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackageTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetBandwidthPackagesBandwidthPackageTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesBandwidthPackageTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesBandwidthPackageTagArrayOutput) ToGetBandwidthPackagesBandwidthPackageTagArrayOutput() GetBandwidthPackagesBandwidthPackageTagArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesBandwidthPackageTagArrayOutput) ToGetBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesBandwidthPackageTagArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesBandwidthPackageTagArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesBandwidthPackageTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesBandwidthPackageTag {
+		return vs[0].([]GetBandwidthPackagesBandwidthPackageTag)[vs[1].(int)]
+	}).(GetBandwidthPackagesBandwidthPackageTagOutput)
+}
+
+type GetBandwidthPackagesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetBandwidthPackagesTagInput is an input type that accepts GetBandwidthPackagesTagArgs and GetBandwidthPackagesTagOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesTagInput` via:
+//
+//	GetBandwidthPackagesTagArgs{...}
+type GetBandwidthPackagesTagInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesTagOutput() GetBandwidthPackagesTagOutput
+	ToGetBandwidthPackagesTagOutputWithContext(context.Context) GetBandwidthPackagesTagOutput
+}
+
+type GetBandwidthPackagesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetBandwidthPackagesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesTag)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesTagArgs) ToGetBandwidthPackagesTagOutput() GetBandwidthPackagesTagOutput {
+	return i.ToGetBandwidthPackagesTagOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesTagArgs) ToGetBandwidthPackagesTagOutputWithContext(ctx context.Context) GetBandwidthPackagesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesTagOutput)
+}
+
+// GetBandwidthPackagesTagArrayInput is an input type that accepts GetBandwidthPackagesTagArray and GetBandwidthPackagesTagArrayOutput values.
+// You can construct a concrete instance of `GetBandwidthPackagesTagArrayInput` via:
+//
+//	GetBandwidthPackagesTagArray{ GetBandwidthPackagesTagArgs{...} }
+type GetBandwidthPackagesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetBandwidthPackagesTagArrayOutput() GetBandwidthPackagesTagArrayOutput
+	ToGetBandwidthPackagesTagArrayOutputWithContext(context.Context) GetBandwidthPackagesTagArrayOutput
+}
+
+type GetBandwidthPackagesTagArray []GetBandwidthPackagesTagInput
+
+func (GetBandwidthPackagesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesTag)(nil)).Elem()
+}
+
+func (i GetBandwidthPackagesTagArray) ToGetBandwidthPackagesTagArrayOutput() GetBandwidthPackagesTagArrayOutput {
+	return i.ToGetBandwidthPackagesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthPackagesTagArray) ToGetBandwidthPackagesTagArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthPackagesTagArrayOutput)
+}
+
+type GetBandwidthPackagesTagOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthPackagesTag)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesTagOutput) ToGetBandwidthPackagesTagOutput() GetBandwidthPackagesTagOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesTagOutput) ToGetBandwidthPackagesTagOutputWithContext(ctx context.Context) GetBandwidthPackagesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetBandwidthPackagesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetBandwidthPackagesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetBandwidthPackagesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthPackagesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthPackagesTag)(nil)).Elem()
+}
+
+func (o GetBandwidthPackagesTagArrayOutput) ToGetBandwidthPackagesTagArrayOutput() GetBandwidthPackagesTagArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesTagArrayOutput) ToGetBandwidthPackagesTagArrayOutputWithContext(ctx context.Context) GetBandwidthPackagesTagArrayOutput {
+	return o
+}
+
+func (o GetBandwidthPackagesTagArrayOutput) Index(i pulumi.IntInput) GetBandwidthPackagesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthPackagesTag {
+		return vs[0].([]GetBandwidthPackagesTag)[vs[1].(int)]
+	}).(GetBandwidthPackagesTagOutput)
+}
+
+type GetCensCen struct {
+	// The account ID of the cen.
+	AccountId string `pulumi:"accountId"`
+	// A list of bandwidth package IDs of the cen.
+	CenBandwidthPackageIds []string `pulumi:"cenBandwidthPackageIds"`
+	// The ID of the cen.
+	CenId string `pulumi:"cenId"`
+	// The name of the cen.
+	CenName string `pulumi:"cenName"`
+	// The create time of the cen.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the cen.
+	Description string `pulumi:"description"`
+	// The ID of the cen.
+	Id string `pulumi:"id"`
+	// The ProjectName of the cen instance.
+	ProjectName string `pulumi:"projectName"`
+	// The status of the cen.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetCensCenTag `pulumi:"tags"`
+	// The update time of the cen.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetCensCenInput is an input type that accepts GetCensCenArgs and GetCensCenOutput values.
+// You can construct a concrete instance of `GetCensCenInput` via:
+//
+//	GetCensCenArgs{...}
+type GetCensCenInput interface {
+	pulumi.Input
+
+	ToGetCensCenOutput() GetCensCenOutput
+	ToGetCensCenOutputWithContext(context.Context) GetCensCenOutput
+}
+
+type GetCensCenArgs struct {
+	// The account ID of the cen.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// A list of bandwidth package IDs of the cen.
+	CenBandwidthPackageIds pulumi.StringArrayInput `pulumi:"cenBandwidthPackageIds"`
+	// The ID of the cen.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The name of the cen.
+	CenName pulumi.StringInput `pulumi:"cenName"`
+	// The create time of the cen.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the cen.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the cen.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ProjectName of the cen instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of the cen.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetCensCenTagArrayInput `pulumi:"tags"`
+	// The update time of the cen.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetCensCenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCensCen)(nil)).Elem()
+}
+
+func (i GetCensCenArgs) ToGetCensCenOutput() GetCensCenOutput {
+	return i.ToGetCensCenOutputWithContext(context.Background())
+}
+
+func (i GetCensCenArgs) ToGetCensCenOutputWithContext(ctx context.Context) GetCensCenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCensCenOutput)
+}
+
+// GetCensCenArrayInput is an input type that accepts GetCensCenArray and GetCensCenArrayOutput values.
+// You can construct a concrete instance of `GetCensCenArrayInput` via:
+//
+//	GetCensCenArray{ GetCensCenArgs{...} }
+type GetCensCenArrayInput interface {
+	pulumi.Input
+
+	ToGetCensCenArrayOutput() GetCensCenArrayOutput
+	ToGetCensCenArrayOutputWithContext(context.Context) GetCensCenArrayOutput
+}
+
+type GetCensCenArray []GetCensCenInput
+
+func (GetCensCenArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCensCen)(nil)).Elem()
+}
+
+func (i GetCensCenArray) ToGetCensCenArrayOutput() GetCensCenArrayOutput {
+	return i.ToGetCensCenArrayOutputWithContext(context.Background())
+}
+
+func (i GetCensCenArray) ToGetCensCenArrayOutputWithContext(ctx context.Context) GetCensCenArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCensCenArrayOutput)
+}
+
+type GetCensCenOutput struct{ *pulumi.OutputState }
+
+func (GetCensCenOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCensCen)(nil)).Elem()
+}
+
+func (o GetCensCenOutput) ToGetCensCenOutput() GetCensCenOutput {
+	return o
+}
+
+func (o GetCensCenOutput) ToGetCensCenOutputWithContext(ctx context.Context) GetCensCenOutput {
+	return o
+}
+
+// The account ID of the cen.
+func (o GetCensCenOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// A list of bandwidth package IDs of the cen.
+func (o GetCensCenOutput) CenBandwidthPackageIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCensCen) []string { return v.CenBandwidthPackageIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the cen.
+func (o GetCensCenOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The name of the cen.
+func (o GetCensCenOutput) CenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.CenName }).(pulumi.StringOutput)
+}
+
+// The create time of the cen.
+func (o GetCensCenOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the cen.
+func (o GetCensCenOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the cen.
+func (o GetCensCenOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cen instance.
+func (o GetCensCenOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of the cen.
+func (o GetCensCenOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetCensCenOutput) Tags() GetCensCenTagArrayOutput {
+	return o.ApplyT(func(v GetCensCen) []GetCensCenTag { return v.Tags }).(GetCensCenTagArrayOutput)
+}
+
+// The update time of the cen.
+func (o GetCensCenOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCen) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetCensCenArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCensCenArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCensCen)(nil)).Elem()
+}
+
+func (o GetCensCenArrayOutput) ToGetCensCenArrayOutput() GetCensCenArrayOutput {
+	return o
+}
+
+func (o GetCensCenArrayOutput) ToGetCensCenArrayOutputWithContext(ctx context.Context) GetCensCenArrayOutput {
+	return o
+}
+
+func (o GetCensCenArrayOutput) Index(i pulumi.IntInput) GetCensCenOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCensCen {
+		return vs[0].([]GetCensCen)[vs[1].(int)]
+	}).(GetCensCenOutput)
+}
+
+type GetCensCenTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCensCenTagInput is an input type that accepts GetCensCenTagArgs and GetCensCenTagOutput values.
+// You can construct a concrete instance of `GetCensCenTagInput` via:
+//
+//	GetCensCenTagArgs{...}
+type GetCensCenTagInput interface {
+	pulumi.Input
+
+	ToGetCensCenTagOutput() GetCensCenTagOutput
+	ToGetCensCenTagOutputWithContext(context.Context) GetCensCenTagOutput
+}
+
+type GetCensCenTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCensCenTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCensCenTag)(nil)).Elem()
+}
+
+func (i GetCensCenTagArgs) ToGetCensCenTagOutput() GetCensCenTagOutput {
+	return i.ToGetCensCenTagOutputWithContext(context.Background())
+}
+
+func (i GetCensCenTagArgs) ToGetCensCenTagOutputWithContext(ctx context.Context) GetCensCenTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCensCenTagOutput)
+}
+
+// GetCensCenTagArrayInput is an input type that accepts GetCensCenTagArray and GetCensCenTagArrayOutput values.
+// You can construct a concrete instance of `GetCensCenTagArrayInput` via:
+//
+//	GetCensCenTagArray{ GetCensCenTagArgs{...} }
+type GetCensCenTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCensCenTagArrayOutput() GetCensCenTagArrayOutput
+	ToGetCensCenTagArrayOutputWithContext(context.Context) GetCensCenTagArrayOutput
+}
+
+type GetCensCenTagArray []GetCensCenTagInput
+
+func (GetCensCenTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCensCenTag)(nil)).Elem()
+}
+
+func (i GetCensCenTagArray) ToGetCensCenTagArrayOutput() GetCensCenTagArrayOutput {
+	return i.ToGetCensCenTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCensCenTagArray) ToGetCensCenTagArrayOutputWithContext(ctx context.Context) GetCensCenTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCensCenTagArrayOutput)
+}
+
+type GetCensCenTagOutput struct{ *pulumi.OutputState }
+
+func (GetCensCenTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCensCenTag)(nil)).Elem()
+}
+
+func (o GetCensCenTagOutput) ToGetCensCenTagOutput() GetCensCenTagOutput {
+	return o
+}
+
+func (o GetCensCenTagOutput) ToGetCensCenTagOutputWithContext(ctx context.Context) GetCensCenTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCensCenTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCenTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCensCenTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensCenTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCensCenTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCensCenTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCensCenTag)(nil)).Elem()
+}
+
+func (o GetCensCenTagArrayOutput) ToGetCensCenTagArrayOutput() GetCensCenTagArrayOutput {
+	return o
+}
+
+func (o GetCensCenTagArrayOutput) ToGetCensCenTagArrayOutputWithContext(ctx context.Context) GetCensCenTagArrayOutput {
+	return o
+}
+
+func (o GetCensCenTagArrayOutput) Index(i pulumi.IntInput) GetCensCenTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCensCenTag {
+		return vs[0].([]GetCensCenTag)[vs[1].(int)]
+	}).(GetCensCenTagOutput)
+}
+
+type GetCensTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCensTagInput is an input type that accepts GetCensTagArgs and GetCensTagOutput values.
+// You can construct a concrete instance of `GetCensTagInput` via:
+//
+//	GetCensTagArgs{...}
+type GetCensTagInput interface {
+	pulumi.Input
+
+	ToGetCensTagOutput() GetCensTagOutput
+	ToGetCensTagOutputWithContext(context.Context) GetCensTagOutput
+}
+
+type GetCensTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCensTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCensTag)(nil)).Elem()
+}
+
+func (i GetCensTagArgs) ToGetCensTagOutput() GetCensTagOutput {
+	return i.ToGetCensTagOutputWithContext(context.Background())
+}
+
+func (i GetCensTagArgs) ToGetCensTagOutputWithContext(ctx context.Context) GetCensTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCensTagOutput)
+}
+
+// GetCensTagArrayInput is an input type that accepts GetCensTagArray and GetCensTagArrayOutput values.
+// You can construct a concrete instance of `GetCensTagArrayInput` via:
+//
+//	GetCensTagArray{ GetCensTagArgs{...} }
+type GetCensTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCensTagArrayOutput() GetCensTagArrayOutput
+	ToGetCensTagArrayOutputWithContext(context.Context) GetCensTagArrayOutput
+}
+
+type GetCensTagArray []GetCensTagInput
+
+func (GetCensTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCensTag)(nil)).Elem()
+}
+
+func (i GetCensTagArray) ToGetCensTagArrayOutput() GetCensTagArrayOutput {
+	return i.ToGetCensTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCensTagArray) ToGetCensTagArrayOutputWithContext(ctx context.Context) GetCensTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCensTagArrayOutput)
+}
+
+type GetCensTagOutput struct{ *pulumi.OutputState }
+
+func (GetCensTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCensTag)(nil)).Elem()
+}
+
+func (o GetCensTagOutput) ToGetCensTagOutput() GetCensTagOutput {
+	return o
+}
+
+func (o GetCensTagOutput) ToGetCensTagOutputWithContext(ctx context.Context) GetCensTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCensTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCensTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCensTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCensTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCensTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCensTag)(nil)).Elem()
+}
+
+func (o GetCensTagArrayOutput) ToGetCensTagArrayOutput() GetCensTagArrayOutput {
+	return o
+}
+
+func (o GetCensTagArrayOutput) ToGetCensTagArrayOutputWithContext(ctx context.Context) GetCensTagArrayOutput {
+	return o
+}
+
+func (o GetCensTagArrayOutput) Index(i pulumi.IntInput) GetCensTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCensTag {
+		return vs[0].([]GetCensTag)[vs[1].(int)]
+	}).(GetCensTagOutput)
+}
+
+type GetInterRegionBandwidthsInterRegionBandwidth struct {
+	// The bandwidth of the cen inter region bandwidth.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The cen ID of the cen inter region bandwidth.
+	CenId string `pulumi:"cenId"`
+	// The create time of the cen inter region bandwidth.
+	CreationTime string `pulumi:"creationTime"`
+	// The ID of the cen inter region bandwidth.
+	Id string `pulumi:"id"`
+	// The ID of the cen inter region bandwidth.
+	InterRegionBandwidthId string `pulumi:"interRegionBandwidthId"`
+	// The local region id of the cen inter region bandwidth.
+	LocalRegionId string `pulumi:"localRegionId"`
+	// The peer region id of the cen inter region bandwidth.
+	PeerRegionId string `pulumi:"peerRegionId"`
+	// The status of the cen inter region bandwidth.
+	Status string `pulumi:"status"`
+	// The update time of the cen inter region bandwidth.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetInterRegionBandwidthsInterRegionBandwidthInput is an input type that accepts GetInterRegionBandwidthsInterRegionBandwidthArgs and GetInterRegionBandwidthsInterRegionBandwidthOutput values.
+// You can construct a concrete instance of `GetInterRegionBandwidthsInterRegionBandwidthInput` via:
+//
+//	GetInterRegionBandwidthsInterRegionBandwidthArgs{...}
+type GetInterRegionBandwidthsInterRegionBandwidthInput interface {
+	pulumi.Input
+
+	ToGetInterRegionBandwidthsInterRegionBandwidthOutput() GetInterRegionBandwidthsInterRegionBandwidthOutput
+	ToGetInterRegionBandwidthsInterRegionBandwidthOutputWithContext(context.Context) GetInterRegionBandwidthsInterRegionBandwidthOutput
+}
+
+type GetInterRegionBandwidthsInterRegionBandwidthArgs struct {
+	// The bandwidth of the cen inter region bandwidth.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The cen ID of the cen inter region bandwidth.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The create time of the cen inter region bandwidth.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The ID of the cen inter region bandwidth.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the cen inter region bandwidth.
+	InterRegionBandwidthId pulumi.StringInput `pulumi:"interRegionBandwidthId"`
+	// The local region id of the cen inter region bandwidth.
+	LocalRegionId pulumi.StringInput `pulumi:"localRegionId"`
+	// The peer region id of the cen inter region bandwidth.
+	PeerRegionId pulumi.StringInput `pulumi:"peerRegionId"`
+	// The status of the cen inter region bandwidth.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of the cen inter region bandwidth.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetInterRegionBandwidthsInterRegionBandwidthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInterRegionBandwidthsInterRegionBandwidth)(nil)).Elem()
+}
+
+func (i GetInterRegionBandwidthsInterRegionBandwidthArgs) ToGetInterRegionBandwidthsInterRegionBandwidthOutput() GetInterRegionBandwidthsInterRegionBandwidthOutput {
+	return i.ToGetInterRegionBandwidthsInterRegionBandwidthOutputWithContext(context.Background())
+}
+
+func (i GetInterRegionBandwidthsInterRegionBandwidthArgs) ToGetInterRegionBandwidthsInterRegionBandwidthOutputWithContext(ctx context.Context) GetInterRegionBandwidthsInterRegionBandwidthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInterRegionBandwidthsInterRegionBandwidthOutput)
+}
+
+// GetInterRegionBandwidthsInterRegionBandwidthArrayInput is an input type that accepts GetInterRegionBandwidthsInterRegionBandwidthArray and GetInterRegionBandwidthsInterRegionBandwidthArrayOutput values.
+// You can construct a concrete instance of `GetInterRegionBandwidthsInterRegionBandwidthArrayInput` via:
+//
+//	GetInterRegionBandwidthsInterRegionBandwidthArray{ GetInterRegionBandwidthsInterRegionBandwidthArgs{...} }
+type GetInterRegionBandwidthsInterRegionBandwidthArrayInput interface {
+	pulumi.Input
+
+	ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutput() GetInterRegionBandwidthsInterRegionBandwidthArrayOutput
+	ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutputWithContext(context.Context) GetInterRegionBandwidthsInterRegionBandwidthArrayOutput
+}
+
+type GetInterRegionBandwidthsInterRegionBandwidthArray []GetInterRegionBandwidthsInterRegionBandwidthInput
+
+func (GetInterRegionBandwidthsInterRegionBandwidthArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInterRegionBandwidthsInterRegionBandwidth)(nil)).Elem()
+}
+
+func (i GetInterRegionBandwidthsInterRegionBandwidthArray) ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutput() GetInterRegionBandwidthsInterRegionBandwidthArrayOutput {
+	return i.ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutputWithContext(context.Background())
+}
+
+func (i GetInterRegionBandwidthsInterRegionBandwidthArray) ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutputWithContext(ctx context.Context) GetInterRegionBandwidthsInterRegionBandwidthArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInterRegionBandwidthsInterRegionBandwidthArrayOutput)
+}
+
+type GetInterRegionBandwidthsInterRegionBandwidthOutput struct{ *pulumi.OutputState }
+
+func (GetInterRegionBandwidthsInterRegionBandwidthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInterRegionBandwidthsInterRegionBandwidth)(nil)).Elem()
+}
+
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) ToGetInterRegionBandwidthsInterRegionBandwidthOutput() GetInterRegionBandwidthsInterRegionBandwidthOutput {
+	return o
+}
+
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) ToGetInterRegionBandwidthsInterRegionBandwidthOutputWithContext(ctx context.Context) GetInterRegionBandwidthsInterRegionBandwidthOutput {
+	return o
+}
+
+// The bandwidth of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The cen ID of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The create time of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The ID of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) InterRegionBandwidthId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.InterRegionBandwidthId }).(pulumi.StringOutput)
+}
+
+// The local region id of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) LocalRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.LocalRegionId }).(pulumi.StringOutput)
+}
+
+// The peer region id of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) PeerRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.PeerRegionId }).(pulumi.StringOutput)
+}
+
+// The status of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetInterRegionBandwidthsInterRegionBandwidthArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInterRegionBandwidthsInterRegionBandwidthArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInterRegionBandwidthsInterRegionBandwidth)(nil)).Elem()
+}
+
+func (o GetInterRegionBandwidthsInterRegionBandwidthArrayOutput) ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutput() GetInterRegionBandwidthsInterRegionBandwidthArrayOutput {
+	return o
+}
+
+func (o GetInterRegionBandwidthsInterRegionBandwidthArrayOutput) ToGetInterRegionBandwidthsInterRegionBandwidthArrayOutputWithContext(ctx context.Context) GetInterRegionBandwidthsInterRegionBandwidthArrayOutput {
+	return o
+}
+
+func (o GetInterRegionBandwidthsInterRegionBandwidthArrayOutput) Index(i pulumi.IntInput) GetInterRegionBandwidthsInterRegionBandwidthOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInterRegionBandwidthsInterRegionBandwidth {
+		return vs[0].([]GetInterRegionBandwidthsInterRegionBandwidth)[vs[1].(int)]
+	}).(GetInterRegionBandwidthsInterRegionBandwidthOutput)
+}
+
+type GetRouteEntriesCenRouteEntry struct {
+	// The AS path of the cen route entry.
+	AsPaths []string `pulumi:"asPaths"`
+	// A cen ID.
+	CenId string `pulumi:"cenId"`
+	// A destination cidr block.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// An instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// An instance region ID.
+	InstanceRegionId string `pulumi:"instanceRegionId"`
+	// An instance type.
+	InstanceType string `pulumi:"instanceType"`
+	// The publish status of the cen route entry.
+	PublishStatus string `pulumi:"publishStatus"`
+	// The status of the cen route entry.
+	Status string `pulumi:"status"`
+}
+
+// GetRouteEntriesCenRouteEntryInput is an input type that accepts GetRouteEntriesCenRouteEntryArgs and GetRouteEntriesCenRouteEntryOutput values.
+// You can construct a concrete instance of `GetRouteEntriesCenRouteEntryInput` via:
+//
+//	GetRouteEntriesCenRouteEntryArgs{...}
+type GetRouteEntriesCenRouteEntryInput interface {
+	pulumi.Input
+
+	ToGetRouteEntriesCenRouteEntryOutput() GetRouteEntriesCenRouteEntryOutput
+	ToGetRouteEntriesCenRouteEntryOutputWithContext(context.Context) GetRouteEntriesCenRouteEntryOutput
+}
+
+type GetRouteEntriesCenRouteEntryArgs struct {
+	// The AS path of the cen route entry.
+	AsPaths pulumi.StringArrayInput `pulumi:"asPaths"`
+	// A cen ID.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// A destination cidr block.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// An instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// An instance region ID.
+	InstanceRegionId pulumi.StringInput `pulumi:"instanceRegionId"`
+	// An instance type.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The publish status of the cen route entry.
+	PublishStatus pulumi.StringInput `pulumi:"publishStatus"`
+	// The status of the cen route entry.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetRouteEntriesCenRouteEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteEntriesCenRouteEntry)(nil)).Elem()
+}
+
+func (i GetRouteEntriesCenRouteEntryArgs) ToGetRouteEntriesCenRouteEntryOutput() GetRouteEntriesCenRouteEntryOutput {
+	return i.ToGetRouteEntriesCenRouteEntryOutputWithContext(context.Background())
+}
+
+func (i GetRouteEntriesCenRouteEntryArgs) ToGetRouteEntriesCenRouteEntryOutputWithContext(ctx context.Context) GetRouteEntriesCenRouteEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteEntriesCenRouteEntryOutput)
+}
+
+// GetRouteEntriesCenRouteEntryArrayInput is an input type that accepts GetRouteEntriesCenRouteEntryArray and GetRouteEntriesCenRouteEntryArrayOutput values.
+// You can construct a concrete instance of `GetRouteEntriesCenRouteEntryArrayInput` via:
+//
+//	GetRouteEntriesCenRouteEntryArray{ GetRouteEntriesCenRouteEntryArgs{...} }
+type GetRouteEntriesCenRouteEntryArrayInput interface {
+	pulumi.Input
+
+	ToGetRouteEntriesCenRouteEntryArrayOutput() GetRouteEntriesCenRouteEntryArrayOutput
+	ToGetRouteEntriesCenRouteEntryArrayOutputWithContext(context.Context) GetRouteEntriesCenRouteEntryArrayOutput
+}
+
+type GetRouteEntriesCenRouteEntryArray []GetRouteEntriesCenRouteEntryInput
+
+func (GetRouteEntriesCenRouteEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteEntriesCenRouteEntry)(nil)).Elem()
+}
+
+func (i GetRouteEntriesCenRouteEntryArray) ToGetRouteEntriesCenRouteEntryArrayOutput() GetRouteEntriesCenRouteEntryArrayOutput {
+	return i.ToGetRouteEntriesCenRouteEntryArrayOutputWithContext(context.Background())
+}
+
+func (i GetRouteEntriesCenRouteEntryArray) ToGetRouteEntriesCenRouteEntryArrayOutputWithContext(ctx context.Context) GetRouteEntriesCenRouteEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteEntriesCenRouteEntryArrayOutput)
+}
+
+type GetRouteEntriesCenRouteEntryOutput struct{ *pulumi.OutputState }
+
+func (GetRouteEntriesCenRouteEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteEntriesCenRouteEntry)(nil)).Elem()
+}
+
+func (o GetRouteEntriesCenRouteEntryOutput) ToGetRouteEntriesCenRouteEntryOutput() GetRouteEntriesCenRouteEntryOutput {
+	return o
+}
+
+func (o GetRouteEntriesCenRouteEntryOutput) ToGetRouteEntriesCenRouteEntryOutputWithContext(ctx context.Context) GetRouteEntriesCenRouteEntryOutput {
+	return o
+}
+
+// The AS path of the cen route entry.
+func (o GetRouteEntriesCenRouteEntryOutput) AsPaths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) []string { return v.AsPaths }).(pulumi.StringArrayOutput)
+}
+
+// A cen ID.
+func (o GetRouteEntriesCenRouteEntryOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// A destination cidr block.
+func (o GetRouteEntriesCenRouteEntryOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// An instance ID.
+func (o GetRouteEntriesCenRouteEntryOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// An instance region ID.
+func (o GetRouteEntriesCenRouteEntryOutput) InstanceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.InstanceRegionId }).(pulumi.StringOutput)
+}
+
+// An instance type.
+func (o GetRouteEntriesCenRouteEntryOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The publish status of the cen route entry.
+func (o GetRouteEntriesCenRouteEntryOutput) PublishStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.PublishStatus }).(pulumi.StringOutput)
+}
+
+// The status of the cen route entry.
+func (o GetRouteEntriesCenRouteEntryOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteEntriesCenRouteEntry) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetRouteEntriesCenRouteEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRouteEntriesCenRouteEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteEntriesCenRouteEntry)(nil)).Elem()
+}
+
+func (o GetRouteEntriesCenRouteEntryArrayOutput) ToGetRouteEntriesCenRouteEntryArrayOutput() GetRouteEntriesCenRouteEntryArrayOutput {
+	return o
+}
+
+func (o GetRouteEntriesCenRouteEntryArrayOutput) ToGetRouteEntriesCenRouteEntryArrayOutputWithContext(ctx context.Context) GetRouteEntriesCenRouteEntryArrayOutput {
+	return o
+}
+
+func (o GetRouteEntriesCenRouteEntryArrayOutput) Index(i pulumi.IntInput) GetRouteEntriesCenRouteEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteEntriesCenRouteEntry {
+		return vs[0].([]GetRouteEntriesCenRouteEntry)[vs[1].(int)]
+	}).(GetRouteEntriesCenRouteEntryOutput)
+}
+
+type GetServiceRouteEntriesServiceRouteEntry struct {
+	// A cen ID.
+	CenId string `pulumi:"cenId"`
+	// The create time of the cen service route entry.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the cen service route entry.
+	Description string `pulumi:"description"`
+	// A destination cidr block.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+	PublishMode string `pulumi:"publishMode"`
+	// The publish instances. A maximum of 100 can be uploaded in one request.
+	PublishToInstances []GetServiceRouteEntriesServiceRouteEntryPublishToInstance `pulumi:"publishToInstances"`
+	// A service region id.
+	ServiceRegionId string `pulumi:"serviceRegionId"`
+	// A service VPC id.
+	ServiceVpcId string `pulumi:"serviceVpcId"`
+	// The status of the cen service route entry.
+	Status string `pulumi:"status"`
+}
+
+// GetServiceRouteEntriesServiceRouteEntryInput is an input type that accepts GetServiceRouteEntriesServiceRouteEntryArgs and GetServiceRouteEntriesServiceRouteEntryOutput values.
+// You can construct a concrete instance of `GetServiceRouteEntriesServiceRouteEntryInput` via:
+//
+//	GetServiceRouteEntriesServiceRouteEntryArgs{...}
+type GetServiceRouteEntriesServiceRouteEntryInput interface {
+	pulumi.Input
+
+	ToGetServiceRouteEntriesServiceRouteEntryOutput() GetServiceRouteEntriesServiceRouteEntryOutput
+	ToGetServiceRouteEntriesServiceRouteEntryOutputWithContext(context.Context) GetServiceRouteEntriesServiceRouteEntryOutput
+}
+
+type GetServiceRouteEntriesServiceRouteEntryArgs struct {
+	// A cen ID.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The create time of the cen service route entry.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the cen service route entry.
+	Description pulumi.StringInput `pulumi:"description"`
+	// A destination cidr block.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+	PublishMode pulumi.StringInput `pulumi:"publishMode"`
+	// The publish instances. A maximum of 100 can be uploaded in one request.
+	PublishToInstances GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput `pulumi:"publishToInstances"`
+	// A service region id.
+	ServiceRegionId pulumi.StringInput `pulumi:"serviceRegionId"`
+	// A service VPC id.
+	ServiceVpcId pulumi.StringInput `pulumi:"serviceVpcId"`
+	// The status of the cen service route entry.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetServiceRouteEntriesServiceRouteEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryArgs) ToGetServiceRouteEntriesServiceRouteEntryOutput() GetServiceRouteEntriesServiceRouteEntryOutput {
+	return i.ToGetServiceRouteEntriesServiceRouteEntryOutputWithContext(context.Background())
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryArgs) ToGetServiceRouteEntriesServiceRouteEntryOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceRouteEntriesServiceRouteEntryOutput)
+}
+
+// GetServiceRouteEntriesServiceRouteEntryArrayInput is an input type that accepts GetServiceRouteEntriesServiceRouteEntryArray and GetServiceRouteEntriesServiceRouteEntryArrayOutput values.
+// You can construct a concrete instance of `GetServiceRouteEntriesServiceRouteEntryArrayInput` via:
+//
+//	GetServiceRouteEntriesServiceRouteEntryArray{ GetServiceRouteEntriesServiceRouteEntryArgs{...} }
+type GetServiceRouteEntriesServiceRouteEntryArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceRouteEntriesServiceRouteEntryArrayOutput() GetServiceRouteEntriesServiceRouteEntryArrayOutput
+	ToGetServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(context.Context) GetServiceRouteEntriesServiceRouteEntryArrayOutput
+}
+
+type GetServiceRouteEntriesServiceRouteEntryArray []GetServiceRouteEntriesServiceRouteEntryInput
+
+func (GetServiceRouteEntriesServiceRouteEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryArray) ToGetServiceRouteEntriesServiceRouteEntryArrayOutput() GetServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return i.ToGetServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryArray) ToGetServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceRouteEntriesServiceRouteEntryArrayOutput)
+}
+
+type GetServiceRouteEntriesServiceRouteEntryOutput struct{ *pulumi.OutputState }
+
+func (GetServiceRouteEntriesServiceRouteEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) ToGetServiceRouteEntriesServiceRouteEntryOutput() GetServiceRouteEntriesServiceRouteEntryOutput {
+	return o
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) ToGetServiceRouteEntriesServiceRouteEntryOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryOutput {
+	return o
+}
+
+// A cen ID.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The create time of the cen service route entry.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the cen service route entry.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// A destination cidr block.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) PublishMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.PublishMode }).(pulumi.StringOutput)
+}
+
+// The publish instances. A maximum of 100 can be uploaded in one request.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) PublishToInstances() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) []GetServiceRouteEntriesServiceRouteEntryPublishToInstance {
+		return v.PublishToInstances
+	}).(GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput)
+}
+
+// A service region id.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) ServiceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.ServiceRegionId }).(pulumi.StringOutput)
+}
+
+// A service VPC id.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) ServiceVpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.ServiceVpcId }).(pulumi.StringOutput)
+}
+
+// The status of the cen service route entry.
+func (o GetServiceRouteEntriesServiceRouteEntryOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntry) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetServiceRouteEntriesServiceRouteEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceRouteEntriesServiceRouteEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryArrayOutput) ToGetServiceRouteEntriesServiceRouteEntryArrayOutput() GetServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return o
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryArrayOutput) ToGetServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return o
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryArrayOutput) Index(i pulumi.IntInput) GetServiceRouteEntriesServiceRouteEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceRouteEntriesServiceRouteEntry {
+		return vs[0].([]GetServiceRouteEntriesServiceRouteEntry)[vs[1].(int)]
+	}).(GetServiceRouteEntriesServiceRouteEntryOutput)
+}
+
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstance struct {
+	// Cloud service access routes need to publish the network instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// The region where the cloud service access route needs to be published.
+	InstanceRegionId string `pulumi:"instanceRegionId"`
+	// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+	InstanceType string `pulumi:"instanceType"`
+}
+
+// GetServiceRouteEntriesServiceRouteEntryPublishToInstanceInput is an input type that accepts GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs and GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput values.
+// You can construct a concrete instance of `GetServiceRouteEntriesServiceRouteEntryPublishToInstanceInput` via:
+//
+//	GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs{...}
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstanceInput interface {
+	pulumi.Input
+
+	ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput
+	ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(context.Context) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput
+}
+
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs struct {
+	// Cloud service access routes need to publish the network instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The region where the cloud service access route needs to be published.
+	InstanceRegionId pulumi.StringInput `pulumi:"instanceRegionId"`
+	// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+}
+
+func (GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return i.ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(context.Background())
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput)
+}
+
+// GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput is an input type that accepts GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray and GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput values.
+// You can construct a concrete instance of `GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput` via:
+//
+//	GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray{ GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs{...} }
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput
+	ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(context.Context) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput
+}
+
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray []GetServiceRouteEntriesServiceRouteEntryPublishToInstanceInput
+
+func (GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return i.ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput)
+}
+
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return o
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return o
+}
+
+// Cloud service access routes need to publish the network instance ID.
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntryPublishToInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The region where the cloud service access route needs to be published.
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) InstanceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntryPublishToInstance) string { return v.InstanceRegionId }).(pulumi.StringOutput)
+}
+
+// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceRouteEntriesServiceRouteEntryPublishToInstance) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+type GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput() GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return o
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) ToGetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(ctx context.Context) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return o
+}
+
+func (o GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) Index(i pulumi.IntInput) GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceRouteEntriesServiceRouteEntryPublishToInstance {
+		return vs[0].([]GetServiceRouteEntriesServiceRouteEntryPublishToInstance)[vs[1].(int)]
+	}).(GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AttachInstancesAttachInstanceInput)(nil)).Elem(), AttachInstancesAttachInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AttachInstancesAttachInstanceArrayInput)(nil)).Elem(), AttachInstancesAttachInstanceArray{})
@@ -2005,6 +3641,28 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput)(nil)).Elem(), ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntryPublishToInstanceInput)(nil)).Elem(), ServiceRouteEntryPublishToInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntryPublishToInstanceArrayInput)(nil)).Elem(), ServiceRouteEntryPublishToInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAttachInstancesAttachInstanceInput)(nil)).Elem(), GetAttachInstancesAttachInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAttachInstancesAttachInstanceArrayInput)(nil)).Elem(), GetAttachInstancesAttachInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesBandwidthPackageInput)(nil)).Elem(), GetBandwidthPackagesBandwidthPackageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesBandwidthPackageArrayInput)(nil)).Elem(), GetBandwidthPackagesBandwidthPackageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesBandwidthPackageTagInput)(nil)).Elem(), GetBandwidthPackagesBandwidthPackageTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesBandwidthPackageTagArrayInput)(nil)).Elem(), GetBandwidthPackagesBandwidthPackageTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesTagInput)(nil)).Elem(), GetBandwidthPackagesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthPackagesTagArrayInput)(nil)).Elem(), GetBandwidthPackagesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCensCenInput)(nil)).Elem(), GetCensCenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCensCenArrayInput)(nil)).Elem(), GetCensCenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCensCenTagInput)(nil)).Elem(), GetCensCenTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCensCenTagArrayInput)(nil)).Elem(), GetCensCenTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCensTagInput)(nil)).Elem(), GetCensTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCensTagArrayInput)(nil)).Elem(), GetCensTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInterRegionBandwidthsInterRegionBandwidthInput)(nil)).Elem(), GetInterRegionBandwidthsInterRegionBandwidthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInterRegionBandwidthsInterRegionBandwidthArrayInput)(nil)).Elem(), GetInterRegionBandwidthsInterRegionBandwidthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteEntriesCenRouteEntryInput)(nil)).Elem(), GetRouteEntriesCenRouteEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteEntriesCenRouteEntryArrayInput)(nil)).Elem(), GetRouteEntriesCenRouteEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntryInput)(nil)).Elem(), GetServiceRouteEntriesServiceRouteEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntryArrayInput)(nil)).Elem(), GetServiceRouteEntriesServiceRouteEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntryPublishToInstanceInput)(nil)).Elem(), GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput)(nil)).Elem(), GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArray{})
 	pulumi.RegisterOutputType(AttachInstancesAttachInstanceOutput{})
 	pulumi.RegisterOutputType(AttachInstancesAttachInstanceArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackageTagOutput{})
@@ -2033,4 +3691,26 @@ func init() {
 	pulumi.RegisterOutputType(ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput{})
 	pulumi.RegisterOutputType(ServiceRouteEntryPublishToInstanceOutput{})
 	pulumi.RegisterOutputType(ServiceRouteEntryPublishToInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetAttachInstancesAttachInstanceOutput{})
+	pulumi.RegisterOutputType(GetAttachInstancesAttachInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesBandwidthPackageOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesBandwidthPackageArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesBandwidthPackageTagOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesBandwidthPackageTagArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesTagOutput{})
+	pulumi.RegisterOutputType(GetBandwidthPackagesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCensCenOutput{})
+	pulumi.RegisterOutputType(GetCensCenArrayOutput{})
+	pulumi.RegisterOutputType(GetCensCenTagOutput{})
+	pulumi.RegisterOutputType(GetCensCenTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCensTagOutput{})
+	pulumi.RegisterOutputType(GetCensTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInterRegionBandwidthsInterRegionBandwidthOutput{})
+	pulumi.RegisterOutputType(GetInterRegionBandwidthsInterRegionBandwidthArrayOutput{})
+	pulumi.RegisterOutputType(GetRouteEntriesCenRouteEntryOutput{})
+	pulumi.RegisterOutputType(GetRouteEntriesCenRouteEntryArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceRouteEntriesServiceRouteEntryOutput{})
+	pulumi.RegisterOutputType(GetServiceRouteEntriesServiceRouteEntryArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput{})
+	pulumi.RegisterOutputType(GetServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput{})
 }

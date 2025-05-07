@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mysql.Endpoints(ctx, &rds_mysql.EndpointsArgs{
+//			_, err := rds_mysql.GetEndpoints(ctx, &rds_mysql.GetEndpointsArgs{
 //				InstanceId: "mysql-38c3d4f05f6e",
 //			}, nil)
 //			if err != nil {
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.rds_mysql.Endpoints has been deprecated in favor of volcengine.rds_mysql.getEndpoints
 func Endpoints(ctx *pulumi.Context, args *EndpointsArgs, opts ...pulumi.InvokeOption) (*EndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EndpointsResult

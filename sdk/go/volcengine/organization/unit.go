@@ -31,7 +31,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooUnits, err := organization.Units(ctx, nil, nil)
+//			fooUnits, err := organization.GetUnits(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}

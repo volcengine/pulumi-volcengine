@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Escloud
 {
+    [Obsolete(@"volcengine.escloud.Regions has been deprecated in favor of volcengine.escloud.getRegions")]
     public static class Regions
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Regions.Invoke();
+        ///     var @default = Volcengine.Escloud.GetRegions.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Escloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Regions.Invoke();
+        ///     var @default = Volcengine.Escloud.GetRegions.Invoke();
         /// 
         /// });
         /// ```

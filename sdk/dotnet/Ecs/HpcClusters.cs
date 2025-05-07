@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Ecs
 {
+    [Obsolete(@"volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters")]
     public static class HpcClusters
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.HpcClusters.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetHpcClusters.Invoke(new()
         ///     {
         ///         ZoneId = "cn-beijing-a",
         ///     });
@@ -46,7 +47,7 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Ecs.HpcClusters.Invoke(new()
+        ///     var foo = Volcengine.Ecs.GetHpcClusters.Invoke(new()
         ///     {
         ///         ZoneId = "cn-beijing-a",
         ///     });

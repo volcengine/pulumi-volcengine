@@ -12,10 +12,10 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const dataEcs = volcengine.ecs.Instances({
+ * const dataEcs = volcengine.ecs.getInstances({
  *     ids: ["i-ycal1mtpucl8j0hjiihy"],
  * });
- * const dataIpv6 = dataEcs.then(dataEcs => volcengine.vpc.Ipv6Addresses({
+ * const dataIpv6 = dataEcs.then(dataEcs => volcengine.vpc.getIpv6Addresses({
  *     associatedInstanceId: dataEcs.instances?.[0]?.instanceId,
  * }));
  * const foo = new volcengine.vpc.Ipv6AddressBandwidth("foo", {

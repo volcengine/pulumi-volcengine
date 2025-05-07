@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    [Obsolete(@"volcengine.alb.CustomizedCfgs has been deprecated in favor of volcengine.alb.getCustomizedCfgs")]
     public static class CustomizedCfgs
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.CustomizedCfgs.Invoke();
+        ///     var foo = Volcengine.Alb.GetCustomizedCfgs.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +44,7 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Alb.CustomizedCfgs.Invoke();
+        ///     var foo = Volcengine.Alb.GetCustomizedCfgs.Invoke();
         /// 
         /// });
         /// ```

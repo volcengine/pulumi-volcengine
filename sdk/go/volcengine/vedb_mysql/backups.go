@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -83,7 +83,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = vedb_mysql.BackupsOutput(ctx, vedb_mysql.BackupsOutputArgs{
+//			_ = vedb_mysql.GetBackupsOutput(ctx, vedb_mysql.GetBackupsOutputArgs{
 //				InstanceId: fooInstance.ID(),
 //			}, nil)
 //			return nil
@@ -91,6 +91,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: volcengine.vedb_mysql.Backups has been deprecated in favor of volcengine.vedb_mysql.getBackups
 func Backups(ctx *pulumi.Context, args *BackupsArgs, opts ...pulumi.InvokeOption) (*BackupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BackupsResult
