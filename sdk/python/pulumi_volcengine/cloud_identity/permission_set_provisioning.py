@@ -168,14 +168,16 @@ class PermissionSetProvisioning(pulumi.CustomResource):
             phone="181")
         foo_permission_set_assignment = volcengine.cloud_identity.PermissionSetAssignment("fooPermissionSetAssignment",
             permission_set_id=foo_permission_set.id,
-            target_id="210026****",
+            target_id="210005****",
             principal_type="User",
-            principal_id=foo_user.id)
+            principal_id=foo_user.id,
+            deprovision_strategy="None")
+        # It is not recommended to use this resource to provision the permission_set.
         # When the `volcengine_cloud_identity_permission_set` is updated, you can use this resource to provision the permission set.
-        # When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first.
+        # When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first, and the `deprovision_strategy` of `volcengine_cloud_identity_permission_set_assignment` should be set as `None`.
         foo_permission_set_provisioning = volcengine.cloud_identity.PermissionSetProvisioning("fooPermissionSetProvisioning",
             permission_set_id=foo_permission_set.id,
-            target_id="210026****",
+            target_id="210005****",
             provisioning_status="Provisioned")
         ```
 
@@ -235,14 +237,16 @@ class PermissionSetProvisioning(pulumi.CustomResource):
             phone="181")
         foo_permission_set_assignment = volcengine.cloud_identity.PermissionSetAssignment("fooPermissionSetAssignment",
             permission_set_id=foo_permission_set.id,
-            target_id="210026****",
+            target_id="210005****",
             principal_type="User",
-            principal_id=foo_user.id)
+            principal_id=foo_user.id,
+            deprovision_strategy="None")
+        # It is not recommended to use this resource to provision the permission_set.
         # When the `volcengine_cloud_identity_permission_set` is updated, you can use this resource to provision the permission set.
-        # When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first.
+        # When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first, and the `deprovision_strategy` of `volcengine_cloud_identity_permission_set_assignment` should be set as `None`.
         foo_permission_set_provisioning = volcengine.cloud_identity.PermissionSetProvisioning("fooPermissionSetProvisioning",
             permission_set_id=foo_permission_set.id,
-            target_id="210026****",
+            target_id="210005****",
             provisioning_status="Provisioned")
         ```
 

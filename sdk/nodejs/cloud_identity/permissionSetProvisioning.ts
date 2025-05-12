@@ -41,15 +41,17 @@ import * as utilities from "../utilities";
  * });
  * const fooPermissionSetAssignment = new volcengine.cloud_identity.PermissionSetAssignment("fooPermissionSetAssignment", {
  *     permissionSetId: fooPermissionSet.id,
- *     targetId: "210026****",
+ *     targetId: "210005****",
  *     principalType: "User",
  *     principalId: fooUser.id,
+ *     deprovisionStrategy: "None",
  * });
+ * // It is not recommended to use this resource to provision the permission_set.
  * // When the `volcengine_cloud_identity_permission_set` is updated, you can use this resource to provision the permission set.
- * // When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first.
+ * // When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first, and the `deprovision_strategy` of `volcengine_cloud_identity_permission_set_assignment` should be set as `None`.
  * const fooPermissionSetProvisioning = new volcengine.cloud_identity.PermissionSetProvisioning("fooPermissionSetProvisioning", {
  *     permissionSetId: fooPermissionSet.id,
- *     targetId: "210026****",
+ *     targetId: "210005****",
  *     provisioningStatus: "Provisioned",
  * });
  * ```

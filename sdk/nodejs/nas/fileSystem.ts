@@ -8,6 +8,64 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage nas file system
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.nas.getZones({});
+ * // create nas file system
+ * const fooFileSystem = new volcengine.nas.FileSystem("fooFileSystem", {
+ *     fileSystemName: "acc-test-fs",
+ *     description: "acc-test",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     capacity: 103,
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * // create vpc
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * // create subnet
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * // create nas permission group
+ * const fooPermissionGroup = new volcengine.nas.PermissionGroup("fooPermissionGroup", {
+ *     permissionGroupName: "acc-test",
+ *     description: "acctest",
+ *     permissionRules: [
+ *         {
+ *             cidrIp: "*",
+ *             rwMode: "RW",
+ *             useMode: "All_squash",
+ *         },
+ *         {
+ *             cidrIp: "192.168.0.0",
+ *             rwMode: "RO",
+ *             useMode: "All_squash",
+ *         },
+ *     ],
+ * });
+ * // create nas mount point
+ * const fooMountPoint = new volcengine.nas.MountPoint("fooMountPoint", {
+ *     fileSystemId: fooFileSystem.id,
+ *     mountPointName: "acc-test",
+ *     permissionGroupId: fooPermissionGroup.id,
+ *     subnetId: fooSubnet.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * NasFileSystem can be imported using the id, e.g.

@@ -85,6 +85,9 @@ import (
 type PermissionSetAssignment struct {
 	pulumi.CustomResourceState
 
+	// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`.
+	// When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+	DeprovisionStrategy pulumi.StringPtrOutput `pulumi:"deprovisionStrategy"`
 	// The id of the cloud identity permission set.
 	PermissionSetId pulumi.StringOutput `pulumi:"permissionSetId"`
 	// The principal id of the cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
@@ -137,6 +140,9 @@ func GetPermissionSetAssignment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PermissionSetAssignment resources.
 type permissionSetAssignmentState struct {
+	// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`.
+	// When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+	DeprovisionStrategy *string `pulumi:"deprovisionStrategy"`
 	// The id of the cloud identity permission set.
 	PermissionSetId *string `pulumi:"permissionSetId"`
 	// The principal id of the cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
@@ -148,6 +154,9 @@ type permissionSetAssignmentState struct {
 }
 
 type PermissionSetAssignmentState struct {
+	// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`.
+	// When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+	DeprovisionStrategy pulumi.StringPtrInput
 	// The id of the cloud identity permission set.
 	PermissionSetId pulumi.StringPtrInput
 	// The principal id of the cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
@@ -163,6 +172,9 @@ func (PermissionSetAssignmentState) ElementType() reflect.Type {
 }
 
 type permissionSetAssignmentArgs struct {
+	// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`.
+	// When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+	DeprovisionStrategy *string `pulumi:"deprovisionStrategy"`
 	// The id of the cloud identity permission set.
 	PermissionSetId string `pulumi:"permissionSetId"`
 	// The principal id of the cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
@@ -175,6 +187,9 @@ type permissionSetAssignmentArgs struct {
 
 // The set of arguments for constructing a PermissionSetAssignment resource.
 type PermissionSetAssignmentArgs struct {
+	// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`.
+	// When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+	DeprovisionStrategy pulumi.StringPtrInput
 	// The id of the cloud identity permission set.
 	PermissionSetId pulumi.StringInput
 	// The principal id of the cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
@@ -270,6 +285,12 @@ func (o PermissionSetAssignmentOutput) ToPermissionSetAssignmentOutput() Permiss
 
 func (o PermissionSetAssignmentOutput) ToPermissionSetAssignmentOutputWithContext(ctx context.Context) PermissionSetAssignmentOutput {
 	return o
+}
+
+// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`.
+// When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+func (o PermissionSetAssignmentOutput) DeprovisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PermissionSetAssignment) pulumi.StringPtrOutput { return v.DeprovisionStrategy }).(pulumi.StringPtrOutput)
 }
 
 // The id of the cloud identity permission set.
