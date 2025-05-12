@@ -13,6 +13,96 @@ import (
 )
 
 // Provides a resource to manage nas file system
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nas"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooZones, err := nas.GetZones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// create nas file system
+//			fooFileSystem, err := nas.NewFileSystem(ctx, "fooFileSystem", &nas.FileSystemArgs{
+//				FileSystemName: pulumi.String("acc-test-fs"),
+//				Description:    pulumi.String("acc-test"),
+//				ZoneId:         pulumi.String(fooZones.Zones[0].Id),
+//				Capacity:       pulumi.Int(103),
+//				ProjectName:    pulumi.String("default"),
+//				Tags: nas.FileSystemTagArray{
+//					&nas.FileSystemTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create vpc
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create subnet
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create nas permission group
+//			fooPermissionGroup, err := nas.NewPermissionGroup(ctx, "fooPermissionGroup", &nas.PermissionGroupArgs{
+//				PermissionGroupName: pulumi.String("acc-test"),
+//				Description:         pulumi.String("acctest"),
+//				PermissionRules: nas.PermissionGroupPermissionRuleArray{
+//					&nas.PermissionGroupPermissionRuleArgs{
+//						CidrIp:  pulumi.String("*"),
+//						RwMode:  pulumi.String("RW"),
+//						UseMode: pulumi.String("All_squash"),
+//					},
+//					&nas.PermissionGroupPermissionRuleArgs{
+//						CidrIp:  pulumi.String("192.168.0.0"),
+//						RwMode:  pulumi.String("RO"),
+//						UseMode: pulumi.String("All_squash"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create nas mount point
+//			_, err = nas.NewMountPoint(ctx, "fooMountPoint", &nas.MountPointArgs{
+//				FileSystemId:      fooFileSystem.ID(),
+//				MountPointName:    pulumi.String("acc-test"),
+//				PermissionGroupId: fooPermissionGroup.ID(),
+//				SubnetId:          fooSubnet.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // NasFileSystem can be imported using the id, e.g.

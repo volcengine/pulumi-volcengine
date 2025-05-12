@@ -11,6 +11,86 @@ namespace Pulumi.Volcengine.Nas
 {
     /// <summary>
     /// Provides a resource to manage nas file system
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooZones = Volcengine.Nas.GetZones.Invoke();
+    /// 
+    ///     // create nas file system
+    ///     var fooFileSystem = new Volcengine.Nas.FileSystem("fooFileSystem", new()
+    ///     {
+    ///         FileSystemName = "acc-test-fs",
+    ///         Description = "acc-test",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         Capacity = 103,
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Nas.Inputs.FileSystemTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // create vpc
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     // create subnet
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     // create nas permission group
+    ///     var fooPermissionGroup = new Volcengine.Nas.PermissionGroup("fooPermissionGroup", new()
+    ///     {
+    ///         PermissionGroupName = "acc-test",
+    ///         Description = "acctest",
+    ///         PermissionRules = new[]
+    ///         {
+    ///             new Volcengine.Nas.Inputs.PermissionGroupPermissionRuleArgs
+    ///             {
+    ///                 CidrIp = "*",
+    ///                 RwMode = "RW",
+    ///                 UseMode = "All_squash",
+    ///             },
+    ///             new Volcengine.Nas.Inputs.PermissionGroupPermissionRuleArgs
+    ///             {
+    ///                 CidrIp = "192.168.0.0",
+    ///                 RwMode = "RO",
+    ///                 UseMode = "All_squash",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // create nas mount point
+    ///     var fooMountPoint = new Volcengine.Nas.MountPoint("fooMountPoint", new()
+    ///     {
+    ///         FileSystemId = fooFileSystem.Id,
+    ///         MountPointName = "acc-test",
+    ///         PermissionGroupId = fooPermissionGroup.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// NasFileSystem can be imported using the id, e.g.

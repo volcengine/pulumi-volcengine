@@ -79,6 +79,13 @@ namespace Pulumi.Volcengine.Cloud_identity
     public partial class PermissionSetAssignment : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+        /// When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+        /// </summary>
+        [Output("deprovisionStrategy")]
+        public Output<string?> DeprovisionStrategy { get; private set; } = null!;
+
+        /// <summary>
         /// The id of the cloud identity permission set.
         /// </summary>
         [Output("permissionSetId")]
@@ -150,6 +157,13 @@ namespace Pulumi.Volcengine.Cloud_identity
     public sealed class PermissionSetAssignmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+        /// When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+        /// </summary>
+        [Input("deprovisionStrategy")]
+        public Input<string>? DeprovisionStrategy { get; set; }
+
+        /// <summary>
         /// The id of the cloud identity permission set.
         /// </summary>
         [Input("permissionSetId", required: true)]
@@ -181,6 +195,13 @@ namespace Pulumi.Volcengine.Cloud_identity
 
     public sealed class PermissionSetAssignmentState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+        /// When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+        /// </summary>
+        [Input("deprovisionStrategy")]
+        public Input<string>? DeprovisionStrategy { get; set; }
+
         /// <summary>
         /// The id of the cloud identity permission set.
         /// </summary>

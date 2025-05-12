@@ -136,6 +136,54 @@ def mount_points(file_system_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableMountPointsResult:
     """
     Use this data source to query detailed information of nas mount points
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo_zones = volcengine.nas.get_zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-project1",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-subnet-test-2",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_permission_group = volcengine.nas.PermissionGroup("fooPermissionGroup",
+        permission_group_name="acc-test",
+        description="acctest",
+        permission_rules=[
+            volcengine.nas.PermissionGroupPermissionRuleArgs(
+                cidr_ip="*",
+                rw_mode="RW",
+                use_mode="All_squash",
+            ),
+            volcengine.nas.PermissionGroupPermissionRuleArgs(
+                cidr_ip="192.168.0.0",
+                rw_mode="RO",
+                use_mode="All_squash",
+            ),
+        ])
+    foo_file_system = volcengine.nas.FileSystem("fooFileSystem",
+        file_system_name="acc-test-fs",
+        description="acc-test",
+        zone_id=foo_zones.zones[0].id,
+        capacity=103,
+        project_name="default",
+        tags=[volcengine.nas.FileSystemTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_mount_point = volcengine.nas.MountPoint("fooMountPoint",
+        file_system_id=foo_file_system.id,
+        mount_point_name="acc-test",
+        permission_group_id=foo_permission_group.id,
+        subnet_id=foo_subnet.id)
+    foo_mount_points = volcengine.nas.get_mount_points_output(file_system_id=foo_file_system.id,
+        mount_point_id=foo_mount_point.mount_point_id)
+    ```
 
 
     :param str file_system_id: The id of the file system.
@@ -174,6 +222,54 @@ def mount_points_output(file_system_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[MountPointsResult]:
     """
     Use this data source to query detailed information of nas mount points
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo_zones = volcengine.nas.get_zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-project1",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-subnet-test-2",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_permission_group = volcengine.nas.PermissionGroup("fooPermissionGroup",
+        permission_group_name="acc-test",
+        description="acctest",
+        permission_rules=[
+            volcengine.nas.PermissionGroupPermissionRuleArgs(
+                cidr_ip="*",
+                rw_mode="RW",
+                use_mode="All_squash",
+            ),
+            volcengine.nas.PermissionGroupPermissionRuleArgs(
+                cidr_ip="192.168.0.0",
+                rw_mode="RO",
+                use_mode="All_squash",
+            ),
+        ])
+    foo_file_system = volcengine.nas.FileSystem("fooFileSystem",
+        file_system_name="acc-test-fs",
+        description="acc-test",
+        zone_id=foo_zones.zones[0].id,
+        capacity=103,
+        project_name="default",
+        tags=[volcengine.nas.FileSystemTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_mount_point = volcengine.nas.MountPoint("fooMountPoint",
+        file_system_id=foo_file_system.id,
+        mount_point_name="acc-test",
+        permission_group_id=foo_permission_group.id,
+        subnet_id=foo_subnet.id)
+    foo_mount_points = volcengine.nas.get_mount_points_output(file_system_id=foo_file_system.id,
+        mount_point_id=foo_mount_point.mount_point_id)
+    ```
 
 
     :param str file_system_id: The id of the file system.

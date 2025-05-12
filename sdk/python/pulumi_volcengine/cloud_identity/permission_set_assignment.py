@@ -17,18 +17,23 @@ class PermissionSetAssignmentArgs:
                  permission_set_id: pulumi.Input[str],
                  principal_id: pulumi.Input[str],
                  principal_type: pulumi.Input[str],
-                 target_id: pulumi.Input[str]):
+                 target_id: pulumi.Input[str],
+                 deprovision_strategy: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PermissionSetAssignment resource.
         :param pulumi.Input[str] permission_set_id: The id of the cloud identity permission set.
         :param pulumi.Input[str] principal_id: The principal id of the cloud identity permission set. When the `principal_type` is `User`, this field is specified to `UserId`. When the `principal_type` is `Group`, this field is specified to `GroupId`.
         :param pulumi.Input[str] principal_type: The principal type of the cloud identity permission set. Valid values: `User`, `Group`.
         :param pulumi.Input[str] target_id: The target account id of the cloud identity permission set assignment.
+        :param pulumi.Input[str] deprovision_strategy: The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+               When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
         """
         pulumi.set(__self__, "permission_set_id", permission_set_id)
         pulumi.set(__self__, "principal_id", principal_id)
         pulumi.set(__self__, "principal_type", principal_type)
         pulumi.set(__self__, "target_id", target_id)
+        if deprovision_strategy is not None:
+            pulumi.set(__self__, "deprovision_strategy", deprovision_strategy)
 
     @property
     @pulumi.getter(name="permissionSetId")
@@ -78,21 +83,39 @@ class PermissionSetAssignmentArgs:
     def target_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "target_id", value)
 
+    @property
+    @pulumi.getter(name="deprovisionStrategy")
+    def deprovision_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+        When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+        """
+        return pulumi.get(self, "deprovision_strategy")
+
+    @deprovision_strategy.setter
+    def deprovision_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deprovision_strategy", value)
+
 
 @pulumi.input_type
 class _PermissionSetAssignmentState:
     def __init__(__self__, *,
+                 deprovision_strategy: Optional[pulumi.Input[str]] = None,
                  permission_set_id: Optional[pulumi.Input[str]] = None,
                  principal_id: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
                  target_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PermissionSetAssignment resources.
+        :param pulumi.Input[str] deprovision_strategy: The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+               When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
         :param pulumi.Input[str] permission_set_id: The id of the cloud identity permission set.
         :param pulumi.Input[str] principal_id: The principal id of the cloud identity permission set. When the `principal_type` is `User`, this field is specified to `UserId`. When the `principal_type` is `Group`, this field is specified to `GroupId`.
         :param pulumi.Input[str] principal_type: The principal type of the cloud identity permission set. Valid values: `User`, `Group`.
         :param pulumi.Input[str] target_id: The target account id of the cloud identity permission set assignment.
         """
+        if deprovision_strategy is not None:
+            pulumi.set(__self__, "deprovision_strategy", deprovision_strategy)
         if permission_set_id is not None:
             pulumi.set(__self__, "permission_set_id", permission_set_id)
         if principal_id is not None:
@@ -101,6 +124,19 @@ class _PermissionSetAssignmentState:
             pulumi.set(__self__, "principal_type", principal_type)
         if target_id is not None:
             pulumi.set(__self__, "target_id", target_id)
+
+    @property
+    @pulumi.getter(name="deprovisionStrategy")
+    def deprovision_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+        When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+        """
+        return pulumi.get(self, "deprovision_strategy")
+
+    @deprovision_strategy.setter
+    def deprovision_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deprovision_strategy", value)
 
     @property
     @pulumi.getter(name="permissionSetId")
@@ -156,6 +192,7 @@ class PermissionSetAssignment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 deprovision_strategy: Optional[pulumi.Input[str]] = None,
                  permission_set_id: Optional[pulumi.Input[str]] = None,
                  principal_id: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
@@ -211,6 +248,8 @@ class PermissionSetAssignment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] deprovision_strategy: The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+               When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
         :param pulumi.Input[str] permission_set_id: The id of the cloud identity permission set.
         :param pulumi.Input[str] principal_id: The principal id of the cloud identity permission set. When the `principal_type` is `User`, this field is specified to `UserId`. When the `principal_type` is `Group`, this field is specified to `GroupId`.
         :param pulumi.Input[str] principal_type: The principal type of the cloud identity permission set. Valid values: `User`, `Group`.
@@ -285,6 +324,7 @@ class PermissionSetAssignment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 deprovision_strategy: Optional[pulumi.Input[str]] = None,
                  permission_set_id: Optional[pulumi.Input[str]] = None,
                  principal_id: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
@@ -298,6 +338,7 @@ class PermissionSetAssignment(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PermissionSetAssignmentArgs.__new__(PermissionSetAssignmentArgs)
 
+            __props__.__dict__["deprovision_strategy"] = deprovision_strategy
             if permission_set_id is None and not opts.urn:
                 raise TypeError("Missing required property 'permission_set_id'")
             __props__.__dict__["permission_set_id"] = permission_set_id
@@ -320,6 +361,7 @@ class PermissionSetAssignment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            deprovision_strategy: Optional[pulumi.Input[str]] = None,
             permission_set_id: Optional[pulumi.Input[str]] = None,
             principal_id: Optional[pulumi.Input[str]] = None,
             principal_type: Optional[pulumi.Input[str]] = None,
@@ -331,6 +373,8 @@ class PermissionSetAssignment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] deprovision_strategy: The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+               When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
         :param pulumi.Input[str] permission_set_id: The id of the cloud identity permission set.
         :param pulumi.Input[str] principal_id: The principal id of the cloud identity permission set. When the `principal_type` is `User`, this field is specified to `UserId`. When the `principal_type` is `Group`, this field is specified to `GroupId`.
         :param pulumi.Input[str] principal_type: The principal type of the cloud identity permission set. Valid values: `User`, `Group`.
@@ -340,11 +384,21 @@ class PermissionSetAssignment(pulumi.CustomResource):
 
         __props__ = _PermissionSetAssignmentState.__new__(_PermissionSetAssignmentState)
 
+        __props__.__dict__["deprovision_strategy"] = deprovision_strategy
         __props__.__dict__["permission_set_id"] = permission_set_id
         __props__.__dict__["principal_id"] = principal_id
         __props__.__dict__["principal_type"] = principal_type
         __props__.__dict__["target_id"] = target_id
         return PermissionSetAssignment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="deprovisionStrategy")
+    def deprovision_strategy(self) -> pulumi.Output[Optional[str]]:
+        """
+        The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+        When the `deprovision_strategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+        """
+        return pulumi.get(self, "deprovision_strategy")
 
     @property
     @pulumi.getter(name="permissionSetId")

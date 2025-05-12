@@ -61,19 +61,21 @@ import (
 //				return err
 //			}
 //			_, err = cloud_identity.NewPermissionSetAssignment(ctx, "fooPermissionSetAssignment", &cloud_identity.PermissionSetAssignmentArgs{
-//				PermissionSetId: fooPermissionSet.ID(),
-//				TargetId:        pulumi.String("210026****"),
-//				PrincipalType:   pulumi.String("User"),
-//				PrincipalId:     fooUser.ID(),
+//				PermissionSetId:     fooPermissionSet.ID(),
+//				TargetId:            pulumi.String("210005****"),
+//				PrincipalType:       pulumi.String("User"),
+//				PrincipalId:         fooUser.ID(),
+//				DeprovisionStrategy: pulumi.String("None"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// It is not recommended to use this resource to provision the permission_set.
 //			// When the `volcengine_cloud_identity_permission_set` is updated, you can use this resource to provision the permission set.
-//			// When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first.
+//			// When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first, and the `deprovision_strategy` of `volcengine_cloud_identity_permission_set_assignment` should be set as `None`.
 //			_, err = cloud_identity.NewPermissionSetProvisioning(ctx, "fooPermissionSetProvisioning", &cloud_identity.PermissionSetProvisioningArgs{
 //				PermissionSetId:    fooPermissionSet.ID(),
-//				TargetId:           pulumi.String("210026****"),
+//				TargetId:           pulumi.String("210005****"),
 //				ProvisioningStatus: pulumi.String("Provisioned"),
 //			})
 //			if err != nil {

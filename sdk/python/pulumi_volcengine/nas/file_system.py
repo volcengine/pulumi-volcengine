@@ -441,6 +441,58 @@ class FileSystem(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage nas file system
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo_zones = volcengine.nas.get_zones()
+        # create nas file system
+        foo_file_system = volcengine.nas.FileSystem("fooFileSystem",
+            file_system_name="acc-test-fs",
+            description="acc-test",
+            zone_id=foo_zones.zones[0].id,
+            capacity=103,
+            project_name="default",
+            tags=[volcengine.nas.FileSystemTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        # create vpc
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        # create subnet
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        # create nas permission group
+        foo_permission_group = volcengine.nas.PermissionGroup("fooPermissionGroup",
+            permission_group_name="acc-test",
+            description="acctest",
+            permission_rules=[
+                volcengine.nas.PermissionGroupPermissionRuleArgs(
+                    cidr_ip="*",
+                    rw_mode="RW",
+                    use_mode="All_squash",
+                ),
+                volcengine.nas.PermissionGroupPermissionRuleArgs(
+                    cidr_ip="192.168.0.0",
+                    rw_mode="RO",
+                    use_mode="All_squash",
+                ),
+            ])
+        # create nas mount point
+        foo_mount_point = volcengine.nas.MountPoint("fooMountPoint",
+            file_system_id=foo_file_system.id,
+            mount_point_name="acc-test",
+            permission_group_id=foo_permission_group.id,
+            subnet_id=foo_subnet.id)
+        ```
+
         ## Import
 
         NasFileSystem can be imported using the id, e.g.
@@ -467,6 +519,58 @@ class FileSystem(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage nas file system
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo_zones = volcengine.nas.get_zones()
+        # create nas file system
+        foo_file_system = volcengine.nas.FileSystem("fooFileSystem",
+            file_system_name="acc-test-fs",
+            description="acc-test",
+            zone_id=foo_zones.zones[0].id,
+            capacity=103,
+            project_name="default",
+            tags=[volcengine.nas.FileSystemTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        # create vpc
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        # create subnet
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        # create nas permission group
+        foo_permission_group = volcengine.nas.PermissionGroup("fooPermissionGroup",
+            permission_group_name="acc-test",
+            description="acctest",
+            permission_rules=[
+                volcengine.nas.PermissionGroupPermissionRuleArgs(
+                    cidr_ip="*",
+                    rw_mode="RW",
+                    use_mode="All_squash",
+                ),
+                volcengine.nas.PermissionGroupPermissionRuleArgs(
+                    cidr_ip="192.168.0.0",
+                    rw_mode="RO",
+                    use_mode="All_squash",
+                ),
+            ])
+        # create nas mount point
+        foo_mount_point = volcengine.nas.MountPoint("fooMountPoint",
+            file_system_id=foo_file_system.id,
+            mount_point_name="acc-test",
+            permission_group_id=foo_permission_group.id,
+            subnet_id=foo_subnet.id)
+        ```
+
         ## Import
 
         NasFileSystem can be imported using the id, e.g.
