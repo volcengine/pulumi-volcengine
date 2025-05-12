@@ -84,6 +84,11 @@ export class PermissionSetAssignment extends pulumi.CustomResource {
     }
 
     /**
+     * The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+     * When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+     */
+    public readonly deprovisionStrategy!: pulumi.Output<string | undefined>;
+    /**
      * The id of the cloud identity permission set.
      */
     public readonly permissionSetId!: pulumi.Output<string>;
@@ -113,6 +118,7 @@ export class PermissionSetAssignment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PermissionSetAssignmentState | undefined;
+            resourceInputs["deprovisionStrategy"] = state ? state.deprovisionStrategy : undefined;
             resourceInputs["permissionSetId"] = state ? state.permissionSetId : undefined;
             resourceInputs["principalId"] = state ? state.principalId : undefined;
             resourceInputs["principalType"] = state ? state.principalType : undefined;
@@ -131,6 +137,7 @@ export class PermissionSetAssignment extends pulumi.CustomResource {
             if ((!args || args.targetId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'targetId'");
             }
+            resourceInputs["deprovisionStrategy"] = args ? args.deprovisionStrategy : undefined;
             resourceInputs["permissionSetId"] = args ? args.permissionSetId : undefined;
             resourceInputs["principalId"] = args ? args.principalId : undefined;
             resourceInputs["principalType"] = args ? args.principalType : undefined;
@@ -145,6 +152,11 @@ export class PermissionSetAssignment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PermissionSetAssignment resources.
  */
 export interface PermissionSetAssignmentState {
+    /**
+     * The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+     * When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+     */
+    deprovisionStrategy?: pulumi.Input<string>;
     /**
      * The id of the cloud identity permission set.
      */
@@ -167,6 +179,11 @@ export interface PermissionSetAssignmentState {
  * The set of arguments for constructing a PermissionSetAssignment resource.
  */
 export interface PermissionSetAssignmentArgs {
+    /**
+     * The deprovision strategy when deleting the cloud identity permission set assignment. Valid values: `DeprovisionForLastPermissionSetOnAccount`, `None`. Default is `DeprovisionForLastPermissionSetOnAccount`. 
+     * When the `deprovisionStrategy` is `DeprovisionForLastPermissionSetOnAccount`, and the permission set assignment to be deleted is the last assignment for the same account, this option is used for the DeprovisionPermissionSet operation.
+     */
+    deprovisionStrategy?: pulumi.Input<string>;
     /**
      * The id of the cloud identity permission set.
      */

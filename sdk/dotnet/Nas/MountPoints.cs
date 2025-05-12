@@ -14,12 +14,172 @@ namespace Pulumi.Volcengine.Nas
     {
         /// <summary>
         /// Use this data source to query detailed information of nas mount points
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fooZones = Volcengine.Nas.GetZones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-project1",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-subnet-test-2",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooPermissionGroup = new Volcengine.Nas.PermissionGroup("fooPermissionGroup", new()
+        ///     {
+        ///         PermissionGroupName = "acc-test",
+        ///         Description = "acctest",
+        ///         PermissionRules = new[]
+        ///         {
+        ///             new Volcengine.Nas.Inputs.PermissionGroupPermissionRuleArgs
+        ///             {
+        ///                 CidrIp = "*",
+        ///                 RwMode = "RW",
+        ///                 UseMode = "All_squash",
+        ///             },
+        ///             new Volcengine.Nas.Inputs.PermissionGroupPermissionRuleArgs
+        ///             {
+        ///                 CidrIp = "192.168.0.0",
+        ///                 RwMode = "RO",
+        ///                 UseMode = "All_squash",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooFileSystem = new Volcengine.Nas.FileSystem("fooFileSystem", new()
+        ///     {
+        ///         FileSystemName = "acc-test-fs",
+        ///         Description = "acc-test",
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         Capacity = 103,
+        ///         ProjectName = "default",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Nas.Inputs.FileSystemTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooMountPoint = new Volcengine.Nas.MountPoint("fooMountPoint", new()
+        ///     {
+        ///         FileSystemId = fooFileSystem.Id,
+        ///         MountPointName = "acc-test",
+        ///         PermissionGroupId = fooPermissionGroup.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///     });
+        /// 
+        ///     var fooMountPoints = Volcengine.Nas.GetMountPoints.Invoke(new()
+        ///     {
+        ///         FileSystemId = fooFileSystem.Id,
+        ///         MountPointId = fooMountPoint.MountPointId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<MountPointsResult> InvokeAsync(MountPointsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<MountPointsResult>("volcengine:nas/mountPoints:MountPoints", args ?? new MountPointsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of nas mount points
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fooZones = Volcengine.Nas.GetZones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-project1",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-subnet-test-2",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooPermissionGroup = new Volcengine.Nas.PermissionGroup("fooPermissionGroup", new()
+        ///     {
+        ///         PermissionGroupName = "acc-test",
+        ///         Description = "acctest",
+        ///         PermissionRules = new[]
+        ///         {
+        ///             new Volcengine.Nas.Inputs.PermissionGroupPermissionRuleArgs
+        ///             {
+        ///                 CidrIp = "*",
+        ///                 RwMode = "RW",
+        ///                 UseMode = "All_squash",
+        ///             },
+        ///             new Volcengine.Nas.Inputs.PermissionGroupPermissionRuleArgs
+        ///             {
+        ///                 CidrIp = "192.168.0.0",
+        ///                 RwMode = "RO",
+        ///                 UseMode = "All_squash",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooFileSystem = new Volcengine.Nas.FileSystem("fooFileSystem", new()
+        ///     {
+        ///         FileSystemName = "acc-test-fs",
+        ///         Description = "acc-test",
+        ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+        ///         Capacity = 103,
+        ///         ProjectName = "default",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Nas.Inputs.FileSystemTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooMountPoint = new Volcengine.Nas.MountPoint("fooMountPoint", new()
+        ///     {
+        ///         FileSystemId = fooFileSystem.Id,
+        ///         MountPointName = "acc-test",
+        ///         PermissionGroupId = fooPermissionGroup.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///     });
+        /// 
+        ///     var fooMountPoints = Volcengine.Nas.GetMountPoints.Invoke(new()
+        ///     {
+        ///         FileSystemId = fooFileSystem.Id,
+        ///         MountPointId = fooMountPoint.MountPointId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<MountPointsResult> Invoke(MountPointsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<MountPointsResult>("volcengine:nas/mountPoints:MountPoints", args ?? new MountPointsInvokeArgs(), options.WithDefaults());

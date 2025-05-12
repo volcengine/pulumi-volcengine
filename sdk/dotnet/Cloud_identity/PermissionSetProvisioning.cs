@@ -59,17 +59,19 @@ namespace Pulumi.Volcengine.Cloud_identity
     ///     var fooPermissionSetAssignment = new Volcengine.Cloud_identity.PermissionSetAssignment("fooPermissionSetAssignment", new()
     ///     {
     ///         PermissionSetId = fooPermissionSet.Id,
-    ///         TargetId = "210026****",
+    ///         TargetId = "210005****",
     ///         PrincipalType = "User",
     ///         PrincipalId = fooUser.Id,
+    ///         DeprovisionStrategy = "None",
     ///     });
     /// 
+    ///     // It is not recommended to use this resource to provision the permission_set.
     ///     // When the `volcengine_cloud_identity_permission_set` is updated, you can use this resource to provision the permission set.
-    ///     // When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first.
+    ///     // When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first, and the `deprovision_strategy` of `volcengine_cloud_identity_permission_set_assignment` should be set as `None`.
     ///     var fooPermissionSetProvisioning = new Volcengine.Cloud_identity.PermissionSetProvisioning("fooPermissionSetProvisioning", new()
     ///     {
     ///         PermissionSetId = fooPermissionSet.Id,
-    ///         TargetId = "210026****",
+    ///         TargetId = "210005****",
     ///         ProvisioningStatus = "Provisioned",
     ///     });
     /// 
