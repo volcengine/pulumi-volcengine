@@ -33,15 +33,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
-//				VpcName:   pulumi.String("acc-test-project1"),
+//				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
-//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
 //				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
@@ -49,14 +56,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rds_postgresql.NewInstance(ctx, "fooInstance", &rds_postgresql.InstanceArgs{
+//			// create postgresql instance
+//			fooInstance, err := rds_postgresql.NewInstance(ctx, "fooInstance", &rds_postgresql.InstanceArgs{
 //				DbEngineVersion: pulumi.String("PostgreSQL_12"),
 //				NodeSpec:        pulumi.String("rds.postgres.1c2g"),
 //				PrimaryZoneId:   pulumi.String(fooZones.Zones[0].Id),
 //				SecondaryZoneId: pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:    pulumi.Int(40),
 //				SubnetId:        fooSubnet.ID(),
-//				InstanceName:    pulumi.String("acc-test-1"),
+//				InstanceName:    pulumi.String("acc-test-postgresql-instance"),
 //				ChargeInfo: &rds_postgresql.InstanceChargeInfoArgs{
 //					ChargeType: pulumi.String("PostPaid"),
 //				},
@@ -77,6 +85,67 @@ import (
 //						Value: pulumi.String("text"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create postgresql instance readonly node
+//			_, err = rds_postgresql.NewInstanceReadonlyNode(ctx, "fooInstanceReadonlyNode", &rds_postgresql.InstanceReadonlyNodeArgs{
+//				InstanceId: fooInstance.ID(),
+//				NodeSpec:   pulumi.String("rds.postgres.1c2g"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create postgresql allow list
+//			fooAllowlist, err := rds_postgresql.NewAllowlist(ctx, "fooAllowlist", &rds_postgresql.AllowlistArgs{
+//				AllowListName: pulumi.String("acc-test-allowlist"),
+//				AllowListDesc: pulumi.String("acc-test"),
+//				AllowListType: pulumi.String("IPv4"),
+//				AllowLists: pulumi.StringArray{
+//					pulumi.String("192.168.0.0/24"),
+//					pulumi.String("192.168.1.0/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// associate postgresql allow list to postgresql instance
+//			_, err = rds_postgresql.NewAllowlistAssociate(ctx, "fooAllowlistAssociate", &rds_postgresql.AllowlistAssociateArgs{
+//				InstanceId:  fooInstance.ID(),
+//				AllowListId: fooAllowlist.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create postgresql database
+//			fooDatabase, err := rds_postgresql.NewDatabase(ctx, "fooDatabase", &rds_postgresql.DatabaseArgs{
+//				DbName:     pulumi.String("acc-test-database"),
+//				InstanceId: fooInstance.ID(),
+//				CType:      pulumi.String("C"),
+//				Collate:    pulumi.String("zh_CN.utf8"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create postgresql account
+//			fooAccount, err := rds_postgresql.NewAccount(ctx, "fooAccount", &rds_postgresql.AccountArgs{
+//				AccountName:       pulumi.String("acc-test-account"),
+//				AccountPassword:   pulumi.String("9wc@********12"),
+//				AccountType:       pulumi.String("Normal"),
+//				InstanceId:        fooInstance.ID(),
+//				AccountPrivileges: pulumi.String("Inherit,Login,CreateRole,CreateDB"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create postgresql schema
+//			_, err = rds_postgresql.NewSchema(ctx, "fooSchema", &rds_postgresql.SchemaArgs{
+//				DbName:     fooDatabase.DbName,
+//				InstanceId: fooInstance.ID(),
+//				Owner:      fooAccount.AccountName,
+//				SchemaName: pulumi.String("acc-test-schema"),
 //			})
 //			if err != nil {
 //				return err

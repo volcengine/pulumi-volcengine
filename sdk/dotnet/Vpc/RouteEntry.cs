@@ -21,14 +21,43 @@ namespace Pulumi.Volcengine.Vpc
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Vpc.RouteEntry("foo", new()
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         Description = "tf-test-up",
-    ///         DestinationCidrBlock = "0.0.0.0/2",
-    ///         NextHopId = "ngw-274gwbqe340zk7fap8spkzo7x",
+    ///         VpcName = "acc-test-vpc-rn",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet-rn",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         Spec = "Small",
+    ///         NatGatewayName = "acc-test-nat-rn",
+    ///     });
+    /// 
+    ///     var fooRouteTable = new Volcengine.Vpc.RouteTable("fooRouteTable", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         RouteTableName = "acc-test-route-table",
+    ///     });
+    /// 
+    ///     var fooRouteEntry = new Volcengine.Vpc.RouteEntry("fooRouteEntry", new()
+    ///     {
+    ///         RouteTableId = fooRouteTable.Id,
+    ///         DestinationCidrBlock = "172.16.1.0/24",
     ///         NextHopType = "NatGW",
-    ///         RouteEntryName = "tf-test-up",
-    ///         RouteTableId = "vtb-2744hslq5b7r47fap8tjomgnj",
+    ///         NextHopId = fooGateway.Id,
+    ///         RouteEntryName = "acc-test-route-entry",
     ///     });
     /// 
     /// });

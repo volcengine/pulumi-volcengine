@@ -22,12 +22,20 @@ namespace Pulumi.Volcengine.Mongodb
     /// {
     ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
     ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
+    ///         {
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
     ///         SubnetName = "acc-test-subnet",
@@ -36,7 +44,8 @@ namespace Pulumi.Volcengine.Mongodb
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+    ///     // create mongodb ReplicaSet instance
+    ///     var foo_replica = new Volcengine.Mongodb.Instance("foo-replica", new()
     ///     {
     ///         ZoneIds = new[]
     ///         {
@@ -45,7 +54,7 @@ namespace Pulumi.Volcengine.Mongodb
     ///         DbEngineVersion = "MongoDB_4_0",
     ///         InstanceType = "ReplicaSet",
     ///         NodeSpec = "mongo.2c4g",
-    ///         StorageSpaceGb = 20,
+    ///         StorageSpaceGb = 100,
     ///         SubnetId = fooSubnet.Id,
     ///         InstanceName = "acc-test-mongodb-replica",
     ///         ChargeType = "PostPaid",
@@ -69,15 +78,45 @@ namespace Pulumi.Volcengine.Mongodb
     ///         },
     ///     });
     /// 
-    ///     //  period_unit = "Month"
-    ///     //  period      = 1
-    ///     //  auto_renew  = false
-    ///     //  ssl_action  = "Close"
-    ///     //  lifecycle {
-    ///     //    ignore_changes = [
-    ///     //      super_account_password,
-    ///     //    ]
-    ///     //  }
+    ///     // create mongodb ShardedCluster instance
+    ///     var foo_sharded = new Volcengine.Mongodb.Instance("foo-sharded", new()
+    ///     {
+    ///         ZoneIds = new[]
+    ///         {
+    ///             fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         },
+    ///         DbEngineVersion = "MongoDB_4_0",
+    ///         InstanceType = "ShardedCluster",
+    ///         NodeSpec = "mongo.shard.2c4g",
+    ///         MongosNodeSpec = "mongo.mongos.2c4g",
+    ///         MongosNodeNumber = 3,
+    ///         ShardNumber = 3,
+    ///         ConfigServerNodeSpec = "mongo.config.2c4g",
+    ///         ConfigServerStorageSpaceGb = 30,
+    ///         StorageSpaceGb = 100,
+    ///         SubnetId = fooSubnet.Id,
+    ///         InstanceName = "acc-test-mongodb-sharded",
+    ///         ChargeType = "PostPaid",
+    ///         SuperAccountPassword = "93f0cb0614Aab12",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///         NodeAvailabilityZones = new[]
+    ///         {
+    ///             new Volcengine.Mongodb.Inputs.InstanceNodeAvailabilityZoneArgs
+    ///             {
+    ///                 ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///                 NodeNumber = 2,
+    ///             },
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -103,6 +142,20 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         [Output("chargeType")]
         public Output<string> ChargeType { get; private set; } = null!;
+
+        /// <summary>
+        /// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("configServerNodeSpec")]
+        public Output<string> ConfigServerNodeSpec { get; private set; } = null!;
+
+        /// <summary>
+        /// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("configServerStorageSpaceGb")]
+        public Output<int> ConfigServerStorageSpaceGb { get; private set; } = null!;
 
         /// <summary>
         /// The config servers id of the ShardedCluster instance.
@@ -312,6 +365,20 @@ namespace Pulumi.Volcengine.Mongodb
         public Input<string>? ChargeType { get; set; }
 
         /// <summary>
+        /// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("configServerNodeSpec")]
+        public Input<string>? ConfigServerNodeSpec { get; set; }
+
+        /// <summary>
+        /// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("configServerStorageSpaceGb")]
+        public Input<int>? ConfigServerStorageSpaceGb { get; set; }
+
+        /// <summary>
         /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         /// </summary>
         [Input("dbEngineVersion")]
@@ -466,6 +533,20 @@ namespace Pulumi.Volcengine.Mongodb
         /// </summary>
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }
+
+        /// <summary>
+        /// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("configServerNodeSpec")]
+        public Input<string>? ConfigServerNodeSpec { get; set; }
+
+        /// <summary>
+        /// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("configServerStorageSpaceGb")]
+        public Input<int>? ConfigServerStorageSpaceGb { get; set; }
 
         /// <summary>
         /// The config servers id of the ShardedCluster instance.

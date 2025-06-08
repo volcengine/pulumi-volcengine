@@ -15,17 +15,24 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
+ *     dnsServers: [
+ *         "8.8.8.8",
+ *         "114.114.114.114",
+ *     ],
+ *     projectName: "default",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
- *     description: "tfdesc",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * // create escloud instance
  * const fooEscloudInstanceV2 = new volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", {
  *     instanceName: "acc-test-escloud-instance",
  *     version: "V7_10",
@@ -89,8 +96,17 @@ import * as utilities from "../utilities";
  *         value: "v1",
  *     }],
  * });
- * //  maintenance_time = "02:00-08:00"
- * //  maintenance_day = ["FRIDAY", "MONDAY"]
+ * // create escloud ip white list
+ * const fooEscloudIpWhiteList = new volcengine.escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList", {
+ *     instanceId: fooEscloudInstanceV2.id,
+ *     type: "public",
+ *     component: "es",
+ *     ipLists: [
+ *         "172.16.0.10",
+ *         "172.16.0.11",
+ *         "172.16.0.12",
+ *     ],
+ * });
  * ```
  *
  * ## Import

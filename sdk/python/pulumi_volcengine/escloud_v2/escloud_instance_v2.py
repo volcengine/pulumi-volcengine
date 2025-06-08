@@ -920,15 +920,22 @@ class EscloudInstanceV2(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
-            description="tfdesc",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create escloud instance
         foo_escloud_instance_v2 = volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2",
             instance_name="acc-test-escloud-instance",
             version="V7_10",
@@ -991,8 +998,16 @@ class EscloudInstanceV2(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
-        #  maintenance_time = "02:00-08:00"
-        #  maintenance_day = ["FRIDAY", "MONDAY"]
+        # create escloud ip white list
+        foo_escloud_ip_white_list = volcengine.escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList",
+            instance_id=foo_escloud_instance_v2.id,
+            type="public",
+            component="es",
+            ip_lists=[
+                "172.16.0.10",
+                "172.16.0.11",
+                "172.16.0.12",
+            ])
         ```
 
         ## Import
@@ -1039,15 +1054,22 @@ class EscloudInstanceV2(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
-            description="tfdesc",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create escloud instance
         foo_escloud_instance_v2 = volcengine.escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2",
             instance_name="acc-test-escloud-instance",
             version="V7_10",
@@ -1110,8 +1132,16 @@ class EscloudInstanceV2(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
-        #  maintenance_time = "02:00-08:00"
-        #  maintenance_day = ["FRIDAY", "MONDAY"]
+        # create escloud ip white list
+        foo_escloud_ip_white_list = volcengine.escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList",
+            instance_id=foo_escloud_instance_v2.id,
+            type="public",
+            component="es",
+            ip_lists=[
+                "172.16.0.10",
+                "172.16.0.11",
+                "172.16.0.12",
+            ])
         ```
 
         ## Import

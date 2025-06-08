@@ -15,22 +15,30 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
+ *     dnsServers: [
+ *         "8.8.8.8",
+ *         "114.114.114.114",
+ *     ],
+ *     projectName: "default",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ * // create mongodb ReplicaSet instance
+ * const foo_replica = new volcengine.mongodb.Instance("foo-replica", {
  *     zoneIds: [fooZones.then(fooZones => fooZones.zones?.[0]?.id)],
  *     dbEngineVersion: "MongoDB_4_0",
  *     instanceType: "ReplicaSet",
  *     nodeSpec: "mongo.2c4g",
- *     storageSpaceGb: 20,
+ *     storageSpaceGb: 100,
  *     subnetId: fooSubnet.id,
  *     instanceName: "acc-test-mongodb-replica",
  *     chargeType: "PostPaid",
@@ -45,15 +53,32 @@ import * as utilities from "../utilities";
  *         nodeNumber: 2,
  *     }],
  * });
- * //  period_unit = "Month"
- * //  period      = 1
- * //  auto_renew  = false
- * //  ssl_action  = "Close"
- * //  lifecycle {
- * //    ignore_changes = [
- * //      super_account_password,
- * //    ]
- * //  }
+ * // create mongodb ShardedCluster instance
+ * const foo_sharded = new volcengine.mongodb.Instance("foo-sharded", {
+ *     zoneIds: [fooZones.then(fooZones => fooZones.zones?.[0]?.id)],
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ShardedCluster",
+ *     nodeSpec: "mongo.shard.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     mongosNodeNumber: 3,
+ *     shardNumber: 3,
+ *     configServerNodeSpec: "mongo.config.2c4g",
+ *     configServerStorageSpaceGb: 30,
+ *     storageSpaceGb: 100,
+ *     subnetId: fooSubnet.id,
+ *     instanceName: "acc-test-mongodb-sharded",
+ *     chargeType: "PostPaid",
+ *     superAccountPassword: "93f0cb0614Aab12",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ *     nodeAvailabilityZones: [{
+ *         zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         nodeNumber: 2,
+ *     }],
+ * });
  * ```
  *
  * ## Import
@@ -100,6 +125,16 @@ export class Instance extends pulumi.CustomResource {
      * The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
      */
     public readonly chargeType!: pulumi.Output<string>;
+    /**
+     * The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly configServerNodeSpec!: pulumi.Output<string>;
+    /**
+     * The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly configServerStorageSpaceGb!: pulumi.Output<number>;
     /**
      * The config servers id of the ShardedCluster instance.
      */
@@ -214,6 +249,8 @@ export class Instance extends pulumi.CustomResource {
             const state = argsOrState as InstanceState | undefined;
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["chargeType"] = state ? state.chargeType : undefined;
+            resourceInputs["configServerNodeSpec"] = state ? state.configServerNodeSpec : undefined;
+            resourceInputs["configServerStorageSpaceGb"] = state ? state.configServerStorageSpaceGb : undefined;
             resourceInputs["configServersId"] = state ? state.configServersId : undefined;
             resourceInputs["dbEngineVersion"] = state ? state.dbEngineVersion : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
@@ -251,6 +288,8 @@ export class Instance extends pulumi.CustomResource {
             }
             resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
             resourceInputs["chargeType"] = args ? args.chargeType : undefined;
+            resourceInputs["configServerNodeSpec"] = args ? args.configServerNodeSpec : undefined;
+            resourceInputs["configServerStorageSpaceGb"] = args ? args.configServerStorageSpaceGb : undefined;
             resourceInputs["dbEngineVersion"] = args ? args.dbEngineVersion : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["instanceType"] = args ? args.instanceType : undefined;
@@ -295,6 +334,16 @@ export interface InstanceState {
      * The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
      */
     chargeType?: pulumi.Input<string>;
+    /**
+     * The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    configServerNodeSpec?: pulumi.Input<string>;
+    /**
+     * The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    configServerStorageSpaceGb?: pulumi.Input<number>;
     /**
      * The config servers id of the ShardedCluster instance.
      */
@@ -407,6 +456,16 @@ export interface InstanceArgs {
      * The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
      */
     chargeType?: pulumi.Input<string>;
+    /**
+     * The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    configServerNodeSpec?: pulumi.Input<string>;
+    /**
+     * The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    configServerStorageSpaceGb?: pulumi.Input<number>;
     /**
      * The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
      */

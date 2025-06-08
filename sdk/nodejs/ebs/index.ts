@@ -25,6 +25,11 @@ export const getAutoSnapshotPolicies: typeof import("./getAutoSnapshotPolicies")
 export const getAutoSnapshotPoliciesOutput: typeof import("./getAutoSnapshotPolicies").getAutoSnapshotPoliciesOutput = null as any;
 utilities.lazyLoad(exports, ["getAutoSnapshotPolicies","getAutoSnapshotPoliciesOutput"], () => require("./getAutoSnapshotPolicies"));
 
+export { GetMaxExtraPerformancesArgs, GetMaxExtraPerformancesResult, GetMaxExtraPerformancesOutputArgs } from "./getMaxExtraPerformances";
+export const getMaxExtraPerformances: typeof import("./getMaxExtraPerformances").getMaxExtraPerformances = null as any;
+export const getMaxExtraPerformancesOutput: typeof import("./getMaxExtraPerformances").getMaxExtraPerformancesOutput = null as any;
+utilities.lazyLoad(exports, ["getMaxExtraPerformances","getMaxExtraPerformancesOutput"], () => require("./getMaxExtraPerformances"));
+
 export { GetSnapshotGroupsArgs, GetSnapshotGroupsResult, GetSnapshotGroupsOutputArgs } from "./getSnapshotGroups";
 export const getSnapshotGroups: typeof import("./getSnapshotGroups").getSnapshotGroups = null as any;
 export const getSnapshotGroupsOutput: typeof import("./getSnapshotGroups").getSnapshotGroupsOutput = null as any;
@@ -39,6 +44,11 @@ export { GetVolumesArgs, GetVolumesResult, GetVolumesOutputArgs } from "./getVol
 export const getVolumes: typeof import("./getVolumes").getVolumes = null as any;
 export const getVolumesOutput: typeof import("./getVolumes").getVolumesOutput = null as any;
 utilities.lazyLoad(exports, ["getVolumes","getVolumesOutput"], () => require("./getVolumes"));
+
+export { MaxExtraPerformancesArgs, MaxExtraPerformancesResult, MaxExtraPerformancesOutputArgs } from "./maxExtraPerformances";
+export const maxExtraPerformances: typeof import("./maxExtraPerformances").maxExtraPerformances = null as any;
+export const maxExtraPerformancesOutput: typeof import("./maxExtraPerformances").maxExtraPerformancesOutput = null as any;
+utilities.lazyLoad(exports, ["maxExtraPerformances","maxExtraPerformancesOutput"], () => require("./maxExtraPerformances"));
 
 export { SnapshotArgs, SnapshotState } from "./snapshot";
 export type Snapshot = import("./snapshot").Snapshot;

@@ -36,16 +36,17 @@ class VolumeArgs:
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[str] volume_type: The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-               volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+               volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+               cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+               from terraform state file and management.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[str] snapshot_id: The id of the snapshot. When creating a volume using snapshots, this field is required.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -118,7 +119,7 @@ class VolumeArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Input[str]:
         """
-        The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         """
         return pulumi.get(self, "volume_type")
 
@@ -202,9 +203,10 @@ class VolumeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-        instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-        volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+        volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+        cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+        from terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -291,9 +293,10 @@ class _VolumeState:
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-               volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+               volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+               cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+               from terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
@@ -304,7 +307,7 @@ class _VolumeState:
         :param pulumi.Input[int] trade_status: Status of Trade.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[str] volume_type: The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         """
         if created_at is not None:
@@ -420,9 +423,10 @@ class _VolumeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-        instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-        volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+        volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+        cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+        from terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -543,7 +547,7 @@ class _VolumeState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         """
         return pulumi.get(self, "volume_type")
 
@@ -609,14 +613,14 @@ class Volume(pulumi.CustomResource):
             vpc_id=foo_vpc.id)
         foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
-            instance_type_id="ecs.g1.large")
+            instance_type_id="ecs.g3il.large")
         # create PrePaid ecs instance
         foo_instance = volcengine.ecs.Instance("fooInstance",
             instance_name="acc-test-ecs",
             description="acc-test",
             host_name="tf-acc-test",
             image_id=foo_images.images[0].image_id,
-            instance_type="ecs.g1.large",
+            instance_type="ecs.g3il.large",
             password="93f0cb0614Aab12",
             instance_charge_type="PrePaid",
             period=1,
@@ -659,6 +663,10 @@ class Volume(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # attach PostPaid data volume to ecs instance
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            instance_id=foo_instance.id,
+            volume_id=post_volume.id)
         ```
 
         ## Import
@@ -676,9 +684,10 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-               volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+               volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+               cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+               from terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
@@ -687,7 +696,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[str] volume_type: The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         """
         ...
@@ -720,14 +729,14 @@ class Volume(pulumi.CustomResource):
             vpc_id=foo_vpc.id)
         foo_images = volcengine.ecs.get_images(os_type="Linux",
             visibility="public",
-            instance_type_id="ecs.g1.large")
+            instance_type_id="ecs.g3il.large")
         # create PrePaid ecs instance
         foo_instance = volcengine.ecs.Instance("fooInstance",
             instance_name="acc-test-ecs",
             description="acc-test",
             host_name="tf-acc-test",
             image_id=foo_images.images[0].image_id,
-            instance_type="ecs.g1.large",
+            instance_type="ecs.g3il.large",
             password="93f0cb0614Aab12",
             instance_charge_type="PrePaid",
             period=1,
@@ -770,6 +779,10 @@ class Volume(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # attach PostPaid data volume to ecs instance
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            instance_id=foo_instance.id,
+            volume_id=post_volume.id)
         ```
 
         ## Import
@@ -888,9 +901,10 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
         :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
         :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-               instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-               volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+               volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+               cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+               from terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
@@ -901,7 +915,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] trade_status: Status of Trade.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[str] volume_type: The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -980,9 +994,10 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-        instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-        volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+        volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+        cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+        from terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -1063,7 +1078,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[str]:
         """
-        The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         """
         return pulumi.get(self, "volume_type")
 

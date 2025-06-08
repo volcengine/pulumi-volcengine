@@ -22,12 +22,20 @@ namespace Pulumi.Volcengine.Redis
     /// {
     ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
     ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
+    ///         {
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
     ///         SubnetName = "acc-test-subnet",
@@ -36,6 +44,7 @@ namespace Pulumi.Volcengine.Redis
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create redis instance
     ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
     ///     {
     ///         InstanceName = "tf-test2",
@@ -109,7 +118,6 @@ namespace Pulumi.Volcengine.Redis
     ///         },
     ///     });
     /// 
-    ///     //additional_bandwidth = 12
     /// });
     /// ```
     /// 

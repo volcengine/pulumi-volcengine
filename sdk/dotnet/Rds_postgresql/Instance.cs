@@ -23,20 +23,29 @@ namespace Pulumi.Volcengine.Rds_postgresql
     /// {
     ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         VpcName = "acc-test-project1",
+    ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
+    ///         {
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
-    ///         SubnetName = "acc-subnet-test-2",
+    ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
     ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create postgresql instance
     ///     var fooInstance = new Volcengine.Rds_postgresql.Instance("fooInstance", new()
     ///     {
     ///         DbEngineVersion = "PostgreSQL_12",
@@ -45,7 +54,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         StorageSpace = 40,
     ///         SubnetId = fooSubnet.Id,
-    ///         InstanceName = "acc-test-1",
+    ///         InstanceName = "acc-test-postgresql-instance",
     ///         ChargeInfo = new Volcengine.Rds_postgresql.Inputs.InstanceChargeInfoArgs
     ///         {
     ///             ChargeType = "PostPaid",
@@ -72,6 +81,62 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///                 Value = "text",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     // create postgresql instance readonly node
+    ///     var fooInstanceReadonlyNode = new Volcengine.Rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         NodeSpec = "rds.postgres.1c2g",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///     });
+    /// 
+    ///     // create postgresql allow list
+    ///     var fooAllowlist = new Volcengine.Rds_postgresql.Allowlist("fooAllowlist", new()
+    ///     {
+    ///         AllowListName = "acc-test-allowlist",
+    ///         AllowListDesc = "acc-test",
+    ///         AllowListType = "IPv4",
+    ///         AllowLists = new[]
+    ///         {
+    ///             "192.168.0.0/24",
+    ///             "192.168.1.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     // associate postgresql allow list to postgresql instance
+    ///     var fooAllowlistAssociate = new Volcengine.Rds_postgresql.AllowlistAssociate("fooAllowlistAssociate", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         AllowListId = fooAllowlist.Id,
+    ///     });
+    /// 
+    ///     // create postgresql database
+    ///     var fooDatabase = new Volcengine.Rds_postgresql.Database("fooDatabase", new()
+    ///     {
+    ///         DbName = "acc-test-database",
+    ///         InstanceId = fooInstance.Id,
+    ///         CType = "C",
+    ///         Collate = "zh_CN.utf8",
+    ///     });
+    /// 
+    ///     // create postgresql account
+    ///     var fooAccount = new Volcengine.Rds_postgresql.Account("fooAccount", new()
+    ///     {
+    ///         AccountName = "acc-test-account",
+    ///         AccountPassword = "9wc@********12",
+    ///         AccountType = "Normal",
+    ///         InstanceId = fooInstance.Id,
+    ///         AccountPrivileges = "Inherit,Login,CreateRole,CreateDB",
+    ///     });
+    /// 
+    ///     // create postgresql schema
+    ///     var fooSchema = new Volcengine.Rds_postgresql.Schema("fooSchema", new()
+    ///     {
+    ///         DbName = fooDatabase.DbName,
+    ///         InstanceId = fooInstance.Id,
+    ///         Owner = fooAccount.AccountName,
+    ///         SchemaName = "acc-test-schema",
     ///     });
     /// 
     /// });

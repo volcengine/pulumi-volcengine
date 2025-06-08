@@ -399,7 +399,7 @@ class Zone(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.dns.Zone("foo",
-            project_name="xxx",
+            project_name="default",
             remark="xxx",
             tags=[volcengine.dns.ZoneTagArgs(
                 key="xx",
@@ -438,7 +438,7 @@ class Zone(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.dns.Zone("foo",
-            project_name="xxx",
+            project_name="default",
             remark="xxx",
             tags=[volcengine.dns.ZoneTagArgs(
                 key="xx",

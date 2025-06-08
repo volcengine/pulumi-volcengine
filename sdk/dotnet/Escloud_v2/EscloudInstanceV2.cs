@@ -22,21 +22,29 @@ namespace Pulumi.Volcengine.Escloud_v2
     /// {
     ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
     ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
+    ///         {
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
     ///         SubnetName = "acc-test-subnet",
-    ///         Description = "tfdesc",
     ///         CidrBlock = "172.16.0.0/24",
     ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create escloud instance
     ///     var fooEscloudInstanceV2 = new Volcengine.Escloud_v2.EscloudInstanceV2("fooEscloudInstanceV2", new()
     ///     {
     ///         InstanceName = "acc-test-escloud-instance",
@@ -115,8 +123,20 @@ namespace Pulumi.Volcengine.Escloud_v2
     ///         },
     ///     });
     /// 
-    ///     //  maintenance_time = "02:00-08:00"
-    ///     //  maintenance_day = ["FRIDAY", "MONDAY"]
+    ///     // create escloud ip white list
+    ///     var fooEscloudIpWhiteList = new Volcengine.Escloud_v2.EscloudIpWhiteList("fooEscloudIpWhiteList", new()
+    ///     {
+    ///         InstanceId = fooEscloudInstanceV2.Id,
+    ///         Type = "public",
+    ///         Component = "es",
+    ///         IpLists = new[]
+    ///         {
+    ///             "172.16.0.10",
+    ///             "172.16.0.11",
+    ///             "172.16.0.12",
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 

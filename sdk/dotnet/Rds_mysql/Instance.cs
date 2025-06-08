@@ -23,20 +23,29 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// {
     ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         VpcName = "acc-test-project1",
+    ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
+    ///         {
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
-    ///         SubnetName = "acc-subnet-test-2",
+    ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
     ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create mysql instance
     ///     var fooInstance = new Volcengine.Rds_mysql.Instance("fooInstance", new()
     ///     {
     ///         DbEngineVersion = "MySQL_5_7",
@@ -45,8 +54,17 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         StorageSpace = 80,
     ///         SubnetId = fooSubnet.Id,
-    ///         InstanceName = "acc-test",
+    ///         InstanceName = "acc-test-mysql-instance",
     ///         LowerCaseTableNames = "1",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Rds_mysql.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///         ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
     ///         {
     ///             ChargeType = "PostPaid",
@@ -64,15 +82,41 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///                 ParameterValue = "5",
     ///             },
     ///         },
-    ///         ProjectName = "default",
-    ///         Tags = new[]
+    ///     });
+    /// 
+    ///     // create mysql instance readonly node
+    ///     var fooInstanceReadonlyNode = new Volcengine.Rds_mysql.InstanceReadonlyNode("fooInstanceReadonlyNode", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         NodeSpec = "rds.mysql.2c4g",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///     });
+    /// 
+    ///     // create mysql allow list
+    ///     var fooAllowlist = new Volcengine.Rds_mysql.Allowlist("fooAllowlist", new()
+    ///     {
+    ///         AllowListName = "acc-test-allowlist",
+    ///         AllowListDesc = "acc-test",
+    ///         AllowListType = "IPv4",
+    ///         AllowLists = new[]
     ///         {
-    ///             new Volcengine.Rds_mysql.Inputs.InstanceTagArgs
-    ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
-    ///             },
+    ///             "192.168.0.0/24",
+    ///             "192.168.1.0/24",
     ///         },
+    ///     });
+    /// 
+    ///     // associate mysql allow list to mysql instance
+    ///     var fooAllowlistAssociate = new Volcengine.Rds_mysql.AllowlistAssociate("fooAllowlistAssociate", new()
+    ///     {
+    ///         AllowListId = fooAllowlist.Id,
+    ///         InstanceId = fooInstance.Id,
+    ///     });
+    /// 
+    ///     // create mysql database
+    ///     var fooDatabase = new Volcengine.Rds_mysql.Database("fooDatabase", new()
+    ///     {
+    ///         DbName = "acc-test-database",
+    ///         InstanceId = fooInstance.Id,
     ///     });
     /// 
     /// });

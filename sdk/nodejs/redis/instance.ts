@@ -15,16 +15,24 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
+ *     dnsServers: [
+ *         "8.8.8.8",
+ *         "114.114.114.114",
+ *     ],
+ *     projectName: "default",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * // create redis instance
  * const fooInstance = new volcengine.redis.Instance("fooInstance", {
  *     instanceName: "tf-test2",
  *     shardedCluster: 1,
@@ -84,7 +92,6 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
- * //additional_bandwidth = 12
  * ```
  *
  * ## Import

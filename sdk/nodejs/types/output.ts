@@ -11505,6 +11505,54 @@ export namespace ebs {
         value: string;
     }
 
+    export interface GetMaxExtraPerformancesPerformance {
+        /**
+         * The baseline of the performance.
+         */
+        baselines: outputs.ebs.GetMaxExtraPerformancesPerformanceBaseline[];
+        /**
+         * The limit of the extra performance.
+         */
+        limits: outputs.ebs.GetMaxExtraPerformancesPerformanceLimit[];
+        /**
+         * The max extra performance can purchase.
+         */
+        maxExtraPerformanceCanPurchases: outputs.ebs.GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase[];
+    }
+
+    export interface GetMaxExtraPerformancesPerformanceBaseline {
+        /**
+         * The limit of the iops.
+         */
+        iops: number;
+        /**
+         * The limit of the throughput.
+         */
+        throughput: number;
+    }
+
+    export interface GetMaxExtraPerformancesPerformanceLimit {
+        /**
+         * The limit of the iops.
+         */
+        iops: number;
+        /**
+         * The limit of the throughput.
+         */
+        throughput: number;
+    }
+
+    export interface GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase {
+        /**
+         * The type of the extra performance.
+         */
+        extraPerformanceTypeId: string;
+        /**
+         * The limit of the extra performance.
+         */
+        limit: number;
+    }
+
     export interface GetSnapshotGroupsSnapshotGroup {
         /**
          * The creation time of the snapshot.
@@ -11853,6 +11901,54 @@ export namespace ebs {
          * The total Throughput performance size for volume. Unit: MB/s.
          */
         throughput: number;
+    }
+
+    export interface MaxExtraPerformancesPerformance {
+        /**
+         * The baseline of the performance.
+         */
+        baselines: outputs.ebs.MaxExtraPerformancesPerformanceBaseline[];
+        /**
+         * The limit of the extra performance.
+         */
+        limits: outputs.ebs.MaxExtraPerformancesPerformanceLimit[];
+        /**
+         * The max extra performance can purchase.
+         */
+        maxExtraPerformanceCanPurchases: outputs.ebs.MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase[];
+    }
+
+    export interface MaxExtraPerformancesPerformanceBaseline {
+        /**
+         * The limit of the iops.
+         */
+        iops: number;
+        /**
+         * The limit of the throughput.
+         */
+        throughput: number;
+    }
+
+    export interface MaxExtraPerformancesPerformanceLimit {
+        /**
+         * The limit of the iops.
+         */
+        iops: number;
+        /**
+         * The limit of the throughput.
+         */
+        throughput: number;
+    }
+
+    export interface MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase {
+        /**
+         * The type of the extra performance.
+         */
+        extraPerformanceTypeId: string;
+        /**
+         * The limit of the extra performance.
+         */
+        limit: number;
     }
 
     export interface SnapshotGroupTag {
@@ -44757,6 +44853,73 @@ export namespace vke {
         phase?: string;
     }
 
+    export interface GetPermissionsAccessPolicy {
+        /**
+         * The authorized time of the RBAC Permission.
+         */
+        authorizedAt: string;
+        /**
+         * The ID of the Authorizer.
+         */
+        authorizerId: number;
+        /**
+         * The name of the Authorizer.
+         */
+        authorizerName: string;
+        /**
+         * The type of the Authorizer.
+         */
+        authorizerType: string;
+        /**
+         * The ID of the Cluster.
+         */
+        clusterId: string;
+        /**
+         * The granted time of the RBAC Permission.
+         */
+        grantedAt: string;
+        /**
+         * The ID of the Grantee.
+         */
+        granteeId: number;
+        /**
+         * The type of Grantee. Valid values: `User`, `Role`.
+         */
+        granteeType: string;
+        /**
+         * The id of the RBAC Permission.
+         */
+        id: string;
+        /**
+         * Whether the RBAC Role is custom role.
+         */
+        isCustomRole: boolean;
+        /**
+         * The name of the Kube Role Binding.
+         */
+        kubeRoleBindingName: string;
+        /**
+         * The message of the RBAC Permission.
+         */
+        message: string;
+        /**
+         * The Namespace of the RBAC Permission.
+         */
+        namespace: string;
+        /**
+         * The revoked time of the RBAC Permission.
+         */
+        revokedAt: string;
+        /**
+         * The name of the RBAC Role.
+         */
+        roleName: string;
+        /**
+         * The status of RBAC Permission.
+         */
+        status: string;
+    }
+
     export interface GetSupportAddonsAddon {
         /**
          * The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
@@ -45653,6 +45816,73 @@ export namespace vke {
          * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
          */
         phase?: string;
+    }
+
+    export interface PermissionsAccessPolicy {
+        /**
+         * The authorized time of the RBAC Permission.
+         */
+        authorizedAt: string;
+        /**
+         * The ID of the Authorizer.
+         */
+        authorizerId: number;
+        /**
+         * The name of the Authorizer.
+         */
+        authorizerName: string;
+        /**
+         * The type of the Authorizer.
+         */
+        authorizerType: string;
+        /**
+         * The ID of the Cluster.
+         */
+        clusterId: string;
+        /**
+         * The granted time of the RBAC Permission.
+         */
+        grantedAt: string;
+        /**
+         * The ID of the Grantee.
+         */
+        granteeId: number;
+        /**
+         * The type of Grantee. Valid values: `User`, `Role`.
+         */
+        granteeType: string;
+        /**
+         * The id of the RBAC Permission.
+         */
+        id: string;
+        /**
+         * Whether the RBAC Role is custom role.
+         */
+        isCustomRole: boolean;
+        /**
+         * The name of the Kube Role Binding.
+         */
+        kubeRoleBindingName: string;
+        /**
+         * The message of the RBAC Permission.
+         */
+        message: string;
+        /**
+         * The Namespace of the RBAC Permission.
+         */
+        namespace: string;
+        /**
+         * The revoked time of the RBAC Permission.
+         */
+        revokedAt: string;
+        /**
+         * The name of the RBAC Role.
+         */
+        roleName: string;
+        /**
+         * The status of RBAC Permission.
+         */
+        status: string;
     }
 
     export interface SupportAddonsAddon {

@@ -61,7 +61,7 @@ import (
 //			fooImages, err := ecs.GetImages(ctx, &ecs.GetImagesArgs{
 //				OsType:         pulumi.StringRef("Linux"),
 //				Visibility:     pulumi.StringRef("public"),
-//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g3il.large"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -72,7 +72,7 @@ import (
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
 //				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
-//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				InstanceType:       pulumi.String("ecs.g3il.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PrePaid"),
 //				Period:             pulumi.Int(1),
@@ -116,7 +116,7 @@ import (
 //				return err
 //			}
 //			// create PostPaid data volume
-//			_, err = ebs.NewVolume(ctx, "postVolume", &ebs.VolumeArgs{
+//			postVolume, err := ebs.NewVolume(ctx, "postVolume", &ebs.VolumeArgs{
 //				VolumeName:       pulumi.String("acc-test-volume"),
 //				VolumeType:       pulumi.String("ESSD_PL0"),
 //				Description:      pulumi.String("acc-test"),
@@ -131,6 +131,14 @@ import (
 //						Value: pulumi.String("v1"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// attach PostPaid data volume to ecs instance
+//			_, err = ebs.NewVolumeAttach(ctx, "fooVolumeAttach", &ebs.VolumeAttachArgs{
+//				InstanceId: fooInstance.ID(),
+//				VolumeId:   postVolume.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -163,9 +171,10 @@ type Volume struct {
 	ExtraPerformanceThroughputMb pulumi.IntOutput `pulumi:"extraPerformanceThroughputMb"`
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId pulumi.StringPtrOutput `pulumi:"extraPerformanceTypeId"`
-	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+	// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+	// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+	// from terraform state file and management.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringOutput `pulumi:"kind"`
@@ -186,7 +195,7 @@ type Volume struct {
 	VolumeChargeType pulumi.StringPtrOutput `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName pulumi.StringOutput `pulumi:"volumeName"`
-	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+	// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
 	VolumeType pulumi.StringOutput `pulumi:"volumeType"`
 	// The id of the Zone.
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
@@ -249,9 +258,10 @@ type volumeState struct {
 	ExtraPerformanceThroughputMb *int `pulumi:"extraPerformanceThroughputMb"`
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId *string `pulumi:"extraPerformanceTypeId"`
-	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+	// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+	// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+	// from terraform state file and management.
 	InstanceId *string `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind *string `pulumi:"kind"`
@@ -272,7 +282,7 @@ type volumeState struct {
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName *string `pulumi:"volumeName"`
-	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+	// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
 	VolumeType *string `pulumi:"volumeType"`
 	// The id of the Zone.
 	ZoneId *string `pulumi:"zoneId"`
@@ -291,9 +301,10 @@ type VolumeState struct {
 	ExtraPerformanceThroughputMb pulumi.IntPtrInput
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId pulumi.StringPtrInput
-	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+	// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+	// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+	// from terraform state file and management.
 	InstanceId pulumi.StringPtrInput
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringPtrInput
@@ -314,7 +325,7 @@ type VolumeState struct {
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
 	VolumeName pulumi.StringPtrInput
-	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+	// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
 	VolumeType pulumi.StringPtrInput
 	// The id of the Zone.
 	ZoneId pulumi.StringPtrInput
@@ -335,9 +346,10 @@ type volumeArgs struct {
 	ExtraPerformanceThroughputMb *int `pulumi:"extraPerformanceThroughputMb"`
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId *string `pulumi:"extraPerformanceTypeId"`
-	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+	// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+	// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+	// from terraform state file and management.
 	InstanceId *string `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind string `pulumi:"kind"`
@@ -354,7 +366,7 @@ type volumeArgs struct {
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName string `pulumi:"volumeName"`
-	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+	// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
 	VolumeType string `pulumi:"volumeType"`
 	// The id of the Zone.
 	ZoneId string `pulumi:"zoneId"`
@@ -372,9 +384,10 @@ type VolumeArgs struct {
 	ExtraPerformanceThroughputMb pulumi.IntPtrInput
 	// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
 	ExtraPerformanceTypeId pulumi.StringPtrInput
-	// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-	// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-	// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+	// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+	// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+	// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+	// from terraform state file and management.
 	InstanceId pulumi.StringPtrInput
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringInput
@@ -391,7 +404,7 @@ type VolumeArgs struct {
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
 	VolumeName pulumi.StringInput
-	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+	// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
 	VolumeType pulumi.StringInput
 	// The id of the Zone.
 	ZoneId pulumi.StringInput
@@ -514,9 +527,10 @@ func (o VolumeOutput) ExtraPerformanceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ExtraPerformanceTypeId }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+// from terraform state file and management.
 func (o VolumeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
@@ -567,7 +581,7 @@ func (o VolumeOutput) VolumeName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.VolumeName }).(pulumi.StringOutput)
 }
 
-// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
 func (o VolumeOutput) VolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.VolumeType }).(pulumi.StringOutput)
 }

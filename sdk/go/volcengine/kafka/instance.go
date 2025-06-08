@@ -21,6 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/kafka"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
@@ -32,13 +33,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
@@ -48,7 +56,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = kafka.NewInstance(ctx, "fooInstance", &kafka.InstanceArgs{
+//			// create kafka instance
+//			fooInstance, err := kafka.NewInstance(ctx, "fooInstance", &kafka.InstanceArgs{
 //				InstanceName:        pulumi.String("acc-test-kafka"),
 //				InstanceDescription: pulumi.String("tf-test"),
 //				Version:             pulumi.String("2.2.2"),
@@ -88,6 +97,47 @@ import (
 //						ParameterValue: pulumi.String("false"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Bandwidth:   pulumi.Int(1),
+//				Isp:         pulumi.String("BGP"),
+//				Description: pulumi.String("tf-test"),
+//				ProjectName: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kafka.NewPublicAddress(ctx, "fooPublicAddress", &kafka.PublicAddressArgs{
+//				InstanceId: fooInstance.ID(),
+//				EipId:      fooAddress.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kafka.NewGroup(ctx, "fooGroup", &kafka.GroupArgs{
+//				InstanceId:  fooInstance.ID(),
+//				GroupId:     pulumi.String("acc-test-group"),
+//				Description: pulumi.String("tf-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kafka.NewTopic(ctx, "fooTopic", &kafka.TopicArgs{
+//				TopicName:       pulumi.String("acc-test-topic"),
+//				InstanceId:      fooInstance.ID(),
+//				Description:     pulumi.String("tf-test"),
+//				PartitionNumber: pulumi.Int(15),
+//				ReplicaNumber:   pulumi.Int(3),
+//				Parameters: &kafka.TopicParametersArgs{
+//					MinInsyncReplicaNumber: pulumi.Int(2),
+//					MessageMaxByte:         pulumi.Int(10),
+//					LogRetentionHours:      pulumi.Int(96),
+//				},
+//				AllAuthority: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err

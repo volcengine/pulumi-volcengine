@@ -16,6 +16,7 @@ from .get_clusters import *
 from .get_kubeconfigs import *
 from .get_node_pools import *
 from .get_nodes import *
+from .get_permissions import *
 from .get_support_addons import *
 from .get_support_resource_types import *
 from .kubeconfig import *
@@ -24,6 +25,8 @@ from .node import *
 from .node_pool import *
 from .node_pools import *
 from .nodes import *
+from .permission import *
+from .permissions import *
 from .support_addons import *
 from .support_resource_types import *
 from ._inputs import *
