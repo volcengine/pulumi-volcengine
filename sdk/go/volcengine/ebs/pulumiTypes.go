@@ -538,6 +538,443 @@ func (o AutoSnapshotPolicyTagArrayOutput) Index(i pulumi.IntInput) AutoSnapshotP
 	}).(AutoSnapshotPolicyTagOutput)
 }
 
+type MaxExtraPerformancesPerformance struct {
+	// The baseline of the performance.
+	Baselines []MaxExtraPerformancesPerformanceBaseline `pulumi:"baselines"`
+	// The limit of the extra performance.
+	Limits []MaxExtraPerformancesPerformanceLimit `pulumi:"limits"`
+	// The max extra performance can purchase.
+	MaxExtraPerformanceCanPurchases []MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase `pulumi:"maxExtraPerformanceCanPurchases"`
+}
+
+// MaxExtraPerformancesPerformanceInput is an input type that accepts MaxExtraPerformancesPerformanceArgs and MaxExtraPerformancesPerformanceOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceInput` via:
+//
+//	MaxExtraPerformancesPerformanceArgs{...}
+type MaxExtraPerformancesPerformanceInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceOutput() MaxExtraPerformancesPerformanceOutput
+	ToMaxExtraPerformancesPerformanceOutputWithContext(context.Context) MaxExtraPerformancesPerformanceOutput
+}
+
+type MaxExtraPerformancesPerformanceArgs struct {
+	// The baseline of the performance.
+	Baselines MaxExtraPerformancesPerformanceBaselineArrayInput `pulumi:"baselines"`
+	// The limit of the extra performance.
+	Limits MaxExtraPerformancesPerformanceLimitArrayInput `pulumi:"limits"`
+	// The max extra performance can purchase.
+	MaxExtraPerformanceCanPurchases MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput `pulumi:"maxExtraPerformanceCanPurchases"`
+}
+
+func (MaxExtraPerformancesPerformanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceArgs) ToMaxExtraPerformancesPerformanceOutput() MaxExtraPerformancesPerformanceOutput {
+	return i.ToMaxExtraPerformancesPerformanceOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceArgs) ToMaxExtraPerformancesPerformanceOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceOutput)
+}
+
+// MaxExtraPerformancesPerformanceArrayInput is an input type that accepts MaxExtraPerformancesPerformanceArray and MaxExtraPerformancesPerformanceArrayOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceArrayInput` via:
+//
+//	MaxExtraPerformancesPerformanceArray{ MaxExtraPerformancesPerformanceArgs{...} }
+type MaxExtraPerformancesPerformanceArrayInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceArrayOutput() MaxExtraPerformancesPerformanceArrayOutput
+	ToMaxExtraPerformancesPerformanceArrayOutputWithContext(context.Context) MaxExtraPerformancesPerformanceArrayOutput
+}
+
+type MaxExtraPerformancesPerformanceArray []MaxExtraPerformancesPerformanceInput
+
+func (MaxExtraPerformancesPerformanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceArray) ToMaxExtraPerformancesPerformanceArrayOutput() MaxExtraPerformancesPerformanceArrayOutput {
+	return i.ToMaxExtraPerformancesPerformanceArrayOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceArray) ToMaxExtraPerformancesPerformanceArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceArrayOutput)
+}
+
+type MaxExtraPerformancesPerformanceOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceOutput) ToMaxExtraPerformancesPerformanceOutput() MaxExtraPerformancesPerformanceOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceOutput) ToMaxExtraPerformancesPerformanceOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceOutput {
+	return o
+}
+
+// The baseline of the performance.
+func (o MaxExtraPerformancesPerformanceOutput) Baselines() MaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformance) []MaxExtraPerformancesPerformanceBaseline { return v.Baselines }).(MaxExtraPerformancesPerformanceBaselineArrayOutput)
+}
+
+// The limit of the extra performance.
+func (o MaxExtraPerformancesPerformanceOutput) Limits() MaxExtraPerformancesPerformanceLimitArrayOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformance) []MaxExtraPerformancesPerformanceLimit { return v.Limits }).(MaxExtraPerformancesPerformanceLimitArrayOutput)
+}
+
+// The max extra performance can purchase.
+func (o MaxExtraPerformancesPerformanceOutput) MaxExtraPerformanceCanPurchases() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformance) []MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase {
+		return v.MaxExtraPerformanceCanPurchases
+	}).(MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput)
+}
+
+type MaxExtraPerformancesPerformanceArrayOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceArrayOutput) ToMaxExtraPerformancesPerformanceArrayOutput() MaxExtraPerformancesPerformanceArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceArrayOutput) ToMaxExtraPerformancesPerformanceArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceArrayOutput) Index(i pulumi.IntInput) MaxExtraPerformancesPerformanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MaxExtraPerformancesPerformance {
+		return vs[0].([]MaxExtraPerformancesPerformance)[vs[1].(int)]
+	}).(MaxExtraPerformancesPerformanceOutput)
+}
+
+type MaxExtraPerformancesPerformanceBaseline struct {
+	// The limit of the iops.
+	Iops int `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput int `pulumi:"throughput"`
+}
+
+// MaxExtraPerformancesPerformanceBaselineInput is an input type that accepts MaxExtraPerformancesPerformanceBaselineArgs and MaxExtraPerformancesPerformanceBaselineOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceBaselineInput` via:
+//
+//	MaxExtraPerformancesPerformanceBaselineArgs{...}
+type MaxExtraPerformancesPerformanceBaselineInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceBaselineOutput() MaxExtraPerformancesPerformanceBaselineOutput
+	ToMaxExtraPerformancesPerformanceBaselineOutputWithContext(context.Context) MaxExtraPerformancesPerformanceBaselineOutput
+}
+
+type MaxExtraPerformancesPerformanceBaselineArgs struct {
+	// The limit of the iops.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (MaxExtraPerformancesPerformanceBaselineArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceBaselineArgs) ToMaxExtraPerformancesPerformanceBaselineOutput() MaxExtraPerformancesPerformanceBaselineOutput {
+	return i.ToMaxExtraPerformancesPerformanceBaselineOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceBaselineArgs) ToMaxExtraPerformancesPerformanceBaselineOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceBaselineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceBaselineOutput)
+}
+
+// MaxExtraPerformancesPerformanceBaselineArrayInput is an input type that accepts MaxExtraPerformancesPerformanceBaselineArray and MaxExtraPerformancesPerformanceBaselineArrayOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceBaselineArrayInput` via:
+//
+//	MaxExtraPerformancesPerformanceBaselineArray{ MaxExtraPerformancesPerformanceBaselineArgs{...} }
+type MaxExtraPerformancesPerformanceBaselineArrayInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceBaselineArrayOutput() MaxExtraPerformancesPerformanceBaselineArrayOutput
+	ToMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(context.Context) MaxExtraPerformancesPerformanceBaselineArrayOutput
+}
+
+type MaxExtraPerformancesPerformanceBaselineArray []MaxExtraPerformancesPerformanceBaselineInput
+
+func (MaxExtraPerformancesPerformanceBaselineArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceBaselineArray) ToMaxExtraPerformancesPerformanceBaselineArrayOutput() MaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return i.ToMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceBaselineArray) ToMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceBaselineArrayOutput)
+}
+
+type MaxExtraPerformancesPerformanceBaselineOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceBaselineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceBaselineOutput) ToMaxExtraPerformancesPerformanceBaselineOutput() MaxExtraPerformancesPerformanceBaselineOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceBaselineOutput) ToMaxExtraPerformancesPerformanceBaselineOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceBaselineOutput {
+	return o
+}
+
+// The limit of the iops.
+func (o MaxExtraPerformancesPerformanceBaselineOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformanceBaseline) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The limit of the throughput.
+func (o MaxExtraPerformancesPerformanceBaselineOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformanceBaseline) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type MaxExtraPerformancesPerformanceBaselineArrayOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceBaselineArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceBaselineArrayOutput) ToMaxExtraPerformancesPerformanceBaselineArrayOutput() MaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceBaselineArrayOutput) ToMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceBaselineArrayOutput) Index(i pulumi.IntInput) MaxExtraPerformancesPerformanceBaselineOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MaxExtraPerformancesPerformanceBaseline {
+		return vs[0].([]MaxExtraPerformancesPerformanceBaseline)[vs[1].(int)]
+	}).(MaxExtraPerformancesPerformanceBaselineOutput)
+}
+
+type MaxExtraPerformancesPerformanceLimit struct {
+	// The limit of the iops.
+	Iops int `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput int `pulumi:"throughput"`
+}
+
+// MaxExtraPerformancesPerformanceLimitInput is an input type that accepts MaxExtraPerformancesPerformanceLimitArgs and MaxExtraPerformancesPerformanceLimitOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceLimitInput` via:
+//
+//	MaxExtraPerformancesPerformanceLimitArgs{...}
+type MaxExtraPerformancesPerformanceLimitInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceLimitOutput() MaxExtraPerformancesPerformanceLimitOutput
+	ToMaxExtraPerformancesPerformanceLimitOutputWithContext(context.Context) MaxExtraPerformancesPerformanceLimitOutput
+}
+
+type MaxExtraPerformancesPerformanceLimitArgs struct {
+	// The limit of the iops.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (MaxExtraPerformancesPerformanceLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceLimitArgs) ToMaxExtraPerformancesPerformanceLimitOutput() MaxExtraPerformancesPerformanceLimitOutput {
+	return i.ToMaxExtraPerformancesPerformanceLimitOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceLimitArgs) ToMaxExtraPerformancesPerformanceLimitOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceLimitOutput)
+}
+
+// MaxExtraPerformancesPerformanceLimitArrayInput is an input type that accepts MaxExtraPerformancesPerformanceLimitArray and MaxExtraPerformancesPerformanceLimitArrayOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceLimitArrayInput` via:
+//
+//	MaxExtraPerformancesPerformanceLimitArray{ MaxExtraPerformancesPerformanceLimitArgs{...} }
+type MaxExtraPerformancesPerformanceLimitArrayInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceLimitArrayOutput() MaxExtraPerformancesPerformanceLimitArrayOutput
+	ToMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(context.Context) MaxExtraPerformancesPerformanceLimitArrayOutput
+}
+
+type MaxExtraPerformancesPerformanceLimitArray []MaxExtraPerformancesPerformanceLimitInput
+
+func (MaxExtraPerformancesPerformanceLimitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceLimitArray) ToMaxExtraPerformancesPerformanceLimitArrayOutput() MaxExtraPerformancesPerformanceLimitArrayOutput {
+	return i.ToMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceLimitArray) ToMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceLimitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceLimitArrayOutput)
+}
+
+type MaxExtraPerformancesPerformanceLimitOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceLimitOutput) ToMaxExtraPerformancesPerformanceLimitOutput() MaxExtraPerformancesPerformanceLimitOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceLimitOutput) ToMaxExtraPerformancesPerformanceLimitOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceLimitOutput {
+	return o
+}
+
+// The limit of the iops.
+func (o MaxExtraPerformancesPerformanceLimitOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformanceLimit) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The limit of the throughput.
+func (o MaxExtraPerformancesPerformanceLimitOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformanceLimit) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type MaxExtraPerformancesPerformanceLimitArrayOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceLimitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceLimitArrayOutput) ToMaxExtraPerformancesPerformanceLimitArrayOutput() MaxExtraPerformancesPerformanceLimitArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceLimitArrayOutput) ToMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceLimitArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceLimitArrayOutput) Index(i pulumi.IntInput) MaxExtraPerformancesPerformanceLimitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MaxExtraPerformancesPerformanceLimit {
+		return vs[0].([]MaxExtraPerformancesPerformanceLimit)[vs[1].(int)]
+	}).(MaxExtraPerformancesPerformanceLimitOutput)
+}
+
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase struct {
+	// The type of the extra performance.
+	ExtraPerformanceTypeId string `pulumi:"extraPerformanceTypeId"`
+	// The limit of the extra performance.
+	Limit int `pulumi:"limit"`
+}
+
+// MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput is an input type that accepts MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs and MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput` via:
+//
+//	MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs{...}
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput
+	ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(context.Context) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput
+}
+
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs struct {
+	// The type of the extra performance.
+	ExtraPerformanceTypeId pulumi.StringInput `pulumi:"extraPerformanceTypeId"`
+	// The limit of the extra performance.
+	Limit pulumi.IntInput `pulumi:"limit"`
+}
+
+func (MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return i.ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput)
+}
+
+// MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput is an input type that accepts MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray and MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput values.
+// You can construct a concrete instance of `MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput` via:
+//
+//	MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray{ MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs{...} }
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput interface {
+	pulumi.Input
+
+	ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput
+	ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(context.Context) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput
+}
+
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray []MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput
+
+func (MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (i MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return i.ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(context.Background())
+}
+
+func (i MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput)
+}
+
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return o
+}
+
+// The type of the extra performance.
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ExtraPerformanceTypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase) string {
+		return v.ExtraPerformanceTypeId
+	}).(pulumi.StringOutput)
+}
+
+// The limit of the extra performance.
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) Limit() pulumi.IntOutput {
+	return o.ApplyT(func(v MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase) int { return v.Limit }).(pulumi.IntOutput)
+}
+
+type MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput struct{ *pulumi.OutputState }
+
+func (MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput() MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) ToMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(ctx context.Context) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return o
+}
+
+func (o MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) Index(i pulumi.IntInput) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase {
+		return vs[0].([]MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)[vs[1].(int)]
+	}).(MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput)
+}
+
 type SnapshotGroupTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -3175,6 +3612,445 @@ func (o GetAutoSnapshotPoliciesTagArrayOutput) Index(i pulumi.IntInput) GetAutoS
 	}).(GetAutoSnapshotPoliciesTagOutput)
 }
 
+type GetMaxExtraPerformancesPerformance struct {
+	// The baseline of the performance.
+	Baselines []GetMaxExtraPerformancesPerformanceBaseline `pulumi:"baselines"`
+	// The limit of the extra performance.
+	Limits []GetMaxExtraPerformancesPerformanceLimit `pulumi:"limits"`
+	// The max extra performance can purchase.
+	MaxExtraPerformanceCanPurchases []GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase `pulumi:"maxExtraPerformanceCanPurchases"`
+}
+
+// GetMaxExtraPerformancesPerformanceInput is an input type that accepts GetMaxExtraPerformancesPerformanceArgs and GetMaxExtraPerformancesPerformanceOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceArgs{...}
+type GetMaxExtraPerformancesPerformanceInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceOutput() GetMaxExtraPerformancesPerformanceOutput
+	ToGetMaxExtraPerformancesPerformanceOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceOutput
+}
+
+type GetMaxExtraPerformancesPerformanceArgs struct {
+	// The baseline of the performance.
+	Baselines GetMaxExtraPerformancesPerformanceBaselineArrayInput `pulumi:"baselines"`
+	// The limit of the extra performance.
+	Limits GetMaxExtraPerformancesPerformanceLimitArrayInput `pulumi:"limits"`
+	// The max extra performance can purchase.
+	MaxExtraPerformanceCanPurchases GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput `pulumi:"maxExtraPerformanceCanPurchases"`
+}
+
+func (GetMaxExtraPerformancesPerformanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceArgs) ToGetMaxExtraPerformancesPerformanceOutput() GetMaxExtraPerformancesPerformanceOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceArgs) ToGetMaxExtraPerformancesPerformanceOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceOutput)
+}
+
+// GetMaxExtraPerformancesPerformanceArrayInput is an input type that accepts GetMaxExtraPerformancesPerformanceArray and GetMaxExtraPerformancesPerformanceArrayOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceArrayInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceArray{ GetMaxExtraPerformancesPerformanceArgs{...} }
+type GetMaxExtraPerformancesPerformanceArrayInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceArrayOutput() GetMaxExtraPerformancesPerformanceArrayOutput
+	ToGetMaxExtraPerformancesPerformanceArrayOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceArrayOutput
+}
+
+type GetMaxExtraPerformancesPerformanceArray []GetMaxExtraPerformancesPerformanceInput
+
+func (GetMaxExtraPerformancesPerformanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceArray) ToGetMaxExtraPerformancesPerformanceArrayOutput() GetMaxExtraPerformancesPerformanceArrayOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceArray) ToGetMaxExtraPerformancesPerformanceArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceArrayOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceOutput) ToGetMaxExtraPerformancesPerformanceOutput() GetMaxExtraPerformancesPerformanceOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceOutput) ToGetMaxExtraPerformancesPerformanceOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceOutput {
+	return o
+}
+
+// The baseline of the performance.
+func (o GetMaxExtraPerformancesPerformanceOutput) Baselines() GetMaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformance) []GetMaxExtraPerformancesPerformanceBaseline {
+		return v.Baselines
+	}).(GetMaxExtraPerformancesPerformanceBaselineArrayOutput)
+}
+
+// The limit of the extra performance.
+func (o GetMaxExtraPerformancesPerformanceOutput) Limits() GetMaxExtraPerformancesPerformanceLimitArrayOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformance) []GetMaxExtraPerformancesPerformanceLimit { return v.Limits }).(GetMaxExtraPerformancesPerformanceLimitArrayOutput)
+}
+
+// The max extra performance can purchase.
+func (o GetMaxExtraPerformancesPerformanceOutput) MaxExtraPerformanceCanPurchases() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformance) []GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase {
+		return v.MaxExtraPerformanceCanPurchases
+	}).(GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformance)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceArrayOutput) ToGetMaxExtraPerformancesPerformanceArrayOutput() GetMaxExtraPerformancesPerformanceArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceArrayOutput) ToGetMaxExtraPerformancesPerformanceArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceArrayOutput) Index(i pulumi.IntInput) GetMaxExtraPerformancesPerformanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMaxExtraPerformancesPerformance {
+		return vs[0].([]GetMaxExtraPerformancesPerformance)[vs[1].(int)]
+	}).(GetMaxExtraPerformancesPerformanceOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceBaseline struct {
+	// The limit of the iops.
+	Iops int `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput int `pulumi:"throughput"`
+}
+
+// GetMaxExtraPerformancesPerformanceBaselineInput is an input type that accepts GetMaxExtraPerformancesPerformanceBaselineArgs and GetMaxExtraPerformancesPerformanceBaselineOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceBaselineInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceBaselineArgs{...}
+type GetMaxExtraPerformancesPerformanceBaselineInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceBaselineOutput() GetMaxExtraPerformancesPerformanceBaselineOutput
+	ToGetMaxExtraPerformancesPerformanceBaselineOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceBaselineOutput
+}
+
+type GetMaxExtraPerformancesPerformanceBaselineArgs struct {
+	// The limit of the iops.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (GetMaxExtraPerformancesPerformanceBaselineArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceBaselineArgs) ToGetMaxExtraPerformancesPerformanceBaselineOutput() GetMaxExtraPerformancesPerformanceBaselineOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceBaselineOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceBaselineArgs) ToGetMaxExtraPerformancesPerformanceBaselineOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceBaselineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceBaselineOutput)
+}
+
+// GetMaxExtraPerformancesPerformanceBaselineArrayInput is an input type that accepts GetMaxExtraPerformancesPerformanceBaselineArray and GetMaxExtraPerformancesPerformanceBaselineArrayOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceBaselineArrayInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceBaselineArray{ GetMaxExtraPerformancesPerformanceBaselineArgs{...} }
+type GetMaxExtraPerformancesPerformanceBaselineArrayInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceBaselineArrayOutput() GetMaxExtraPerformancesPerformanceBaselineArrayOutput
+	ToGetMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceBaselineArrayOutput
+}
+
+type GetMaxExtraPerformancesPerformanceBaselineArray []GetMaxExtraPerformancesPerformanceBaselineInput
+
+func (GetMaxExtraPerformancesPerformanceBaselineArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceBaselineArray) ToGetMaxExtraPerformancesPerformanceBaselineArrayOutput() GetMaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceBaselineArray) ToGetMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceBaselineArrayOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceBaselineOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceBaselineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceBaselineOutput) ToGetMaxExtraPerformancesPerformanceBaselineOutput() GetMaxExtraPerformancesPerformanceBaselineOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceBaselineOutput) ToGetMaxExtraPerformancesPerformanceBaselineOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceBaselineOutput {
+	return o
+}
+
+// The limit of the iops.
+func (o GetMaxExtraPerformancesPerformanceBaselineOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformanceBaseline) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The limit of the throughput.
+func (o GetMaxExtraPerformancesPerformanceBaselineOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformanceBaseline) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceBaselineArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceBaselineArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformanceBaseline)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceBaselineArrayOutput) ToGetMaxExtraPerformancesPerformanceBaselineArrayOutput() GetMaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceBaselineArrayOutput) ToGetMaxExtraPerformancesPerformanceBaselineArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceBaselineArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceBaselineArrayOutput) Index(i pulumi.IntInput) GetMaxExtraPerformancesPerformanceBaselineOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMaxExtraPerformancesPerformanceBaseline {
+		return vs[0].([]GetMaxExtraPerformancesPerformanceBaseline)[vs[1].(int)]
+	}).(GetMaxExtraPerformancesPerformanceBaselineOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceLimit struct {
+	// The limit of the iops.
+	Iops int `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput int `pulumi:"throughput"`
+}
+
+// GetMaxExtraPerformancesPerformanceLimitInput is an input type that accepts GetMaxExtraPerformancesPerformanceLimitArgs and GetMaxExtraPerformancesPerformanceLimitOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceLimitInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceLimitArgs{...}
+type GetMaxExtraPerformancesPerformanceLimitInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceLimitOutput() GetMaxExtraPerformancesPerformanceLimitOutput
+	ToGetMaxExtraPerformancesPerformanceLimitOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceLimitOutput
+}
+
+type GetMaxExtraPerformancesPerformanceLimitArgs struct {
+	// The limit of the iops.
+	Iops pulumi.IntInput `pulumi:"iops"`
+	// The limit of the throughput.
+	Throughput pulumi.IntInput `pulumi:"throughput"`
+}
+
+func (GetMaxExtraPerformancesPerformanceLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceLimitArgs) ToGetMaxExtraPerformancesPerformanceLimitOutput() GetMaxExtraPerformancesPerformanceLimitOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceLimitOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceLimitArgs) ToGetMaxExtraPerformancesPerformanceLimitOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceLimitOutput)
+}
+
+// GetMaxExtraPerformancesPerformanceLimitArrayInput is an input type that accepts GetMaxExtraPerformancesPerformanceLimitArray and GetMaxExtraPerformancesPerformanceLimitArrayOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceLimitArrayInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceLimitArray{ GetMaxExtraPerformancesPerformanceLimitArgs{...} }
+type GetMaxExtraPerformancesPerformanceLimitArrayInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceLimitArrayOutput() GetMaxExtraPerformancesPerformanceLimitArrayOutput
+	ToGetMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceLimitArrayOutput
+}
+
+type GetMaxExtraPerformancesPerformanceLimitArray []GetMaxExtraPerformancesPerformanceLimitInput
+
+func (GetMaxExtraPerformancesPerformanceLimitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceLimitArray) ToGetMaxExtraPerformancesPerformanceLimitArrayOutput() GetMaxExtraPerformancesPerformanceLimitArrayOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceLimitArray) ToGetMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceLimitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceLimitArrayOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceLimitOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceLimitOutput) ToGetMaxExtraPerformancesPerformanceLimitOutput() GetMaxExtraPerformancesPerformanceLimitOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceLimitOutput) ToGetMaxExtraPerformancesPerformanceLimitOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceLimitOutput {
+	return o
+}
+
+// The limit of the iops.
+func (o GetMaxExtraPerformancesPerformanceLimitOutput) Iops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformanceLimit) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+// The limit of the throughput.
+func (o GetMaxExtraPerformancesPerformanceLimitOutput) Throughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformanceLimit) int { return v.Throughput }).(pulumi.IntOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceLimitArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceLimitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformanceLimit)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceLimitArrayOutput) ToGetMaxExtraPerformancesPerformanceLimitArrayOutput() GetMaxExtraPerformancesPerformanceLimitArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceLimitArrayOutput) ToGetMaxExtraPerformancesPerformanceLimitArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceLimitArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceLimitArrayOutput) Index(i pulumi.IntInput) GetMaxExtraPerformancesPerformanceLimitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMaxExtraPerformancesPerformanceLimit {
+		return vs[0].([]GetMaxExtraPerformancesPerformanceLimit)[vs[1].(int)]
+	}).(GetMaxExtraPerformancesPerformanceLimitOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase struct {
+	// The type of the extra performance.
+	ExtraPerformanceTypeId string `pulumi:"extraPerformanceTypeId"`
+	// The limit of the extra performance.
+	Limit int `pulumi:"limit"`
+}
+
+// GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput is an input type that accepts GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs and GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs{...}
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput
+	ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput
+}
+
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs struct {
+	// The type of the extra performance.
+	ExtraPerformanceTypeId pulumi.StringInput `pulumi:"extraPerformanceTypeId"`
+	// The limit of the extra performance.
+	Limit pulumi.IntInput `pulumi:"limit"`
+}
+
+func (GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput)
+}
+
+// GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput is an input type that accepts GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray and GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput values.
+// You can construct a concrete instance of `GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput` via:
+//
+//	GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray{ GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs{...} }
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput interface {
+	pulumi.Input
+
+	ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput
+	ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(context.Context) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput
+}
+
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray []GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput
+
+func (GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (i GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return i.ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return o
+}
+
+// The type of the extra performance.
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) ExtraPerformanceTypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase) string {
+		return v.ExtraPerformanceTypeId
+	}).(pulumi.StringOutput)
+}
+
+// The limit of the extra performance.
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput) Limit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase) int { return v.Limit }).(pulumi.IntOutput)
+}
+
+type GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)(nil)).Elem()
+}
+
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput() GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) ToGetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutputWithContext(ctx context.Context) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput {
+	return o
+}
+
+func (o GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput) Index(i pulumi.IntInput) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase {
+		return vs[0].([]GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchase)[vs[1].(int)]
+	}).(GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput)
+}
+
 type GetSnapshotGroupsSnapshotGroup struct {
 	// The creation time of the snapshot.
 	CreationTime string `pulumi:"creationTime"`
@@ -5086,6 +5962,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPoliciesTagArrayInput)(nil)).Elem(), AutoSnapshotPoliciesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPolicyTagInput)(nil)).Elem(), AutoSnapshotPolicyTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoSnapshotPolicyTagArrayInput)(nil)).Elem(), AutoSnapshotPolicyTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceInput)(nil)).Elem(), MaxExtraPerformancesPerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceArrayInput)(nil)).Elem(), MaxExtraPerformancesPerformanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceBaselineInput)(nil)).Elem(), MaxExtraPerformancesPerformanceBaselineArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceBaselineArrayInput)(nil)).Elem(), MaxExtraPerformancesPerformanceBaselineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceLimitInput)(nil)).Elem(), MaxExtraPerformancesPerformanceLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceLimitArrayInput)(nil)).Elem(), MaxExtraPerformancesPerformanceLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput)(nil)).Elem(), MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput)(nil)).Elem(), MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupTagInput)(nil)).Elem(), SnapshotGroupTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupTagArrayInput)(nil)).Elem(), SnapshotGroupTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotGroupsSnapshotGroupInput)(nil)).Elem(), SnapshotGroupsSnapshotGroupArgs{})
@@ -5124,6 +6008,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayInput)(nil)).Elem(), GetAutoSnapshotPoliciesAutoSnapshotPolicyTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoSnapshotPoliciesTagInput)(nil)).Elem(), GetAutoSnapshotPoliciesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoSnapshotPoliciesTagArrayInput)(nil)).Elem(), GetAutoSnapshotPoliciesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceArrayInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceBaselineInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceBaselineArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceBaselineArrayInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceBaselineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceLimitInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceLimitArrayInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayInput)(nil)).Elem(), GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotGroupsSnapshotGroupInput)(nil)).Elem(), GetSnapshotGroupsSnapshotGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotGroupsSnapshotGroupArrayInput)(nil)).Elem(), GetSnapshotGroupsSnapshotGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotGroupsSnapshotGroupSnapshotInput)(nil)).Elem(), GetSnapshotGroupsSnapshotGroupSnapshotArgs{})
@@ -5158,6 +6050,14 @@ func init() {
 	pulumi.RegisterOutputType(AutoSnapshotPoliciesTagArrayOutput{})
 	pulumi.RegisterOutputType(AutoSnapshotPolicyTagOutput{})
 	pulumi.RegisterOutputType(AutoSnapshotPolicyTagArrayOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceArrayOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceBaselineOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceBaselineArrayOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceLimitOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceLimitArrayOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput{})
+	pulumi.RegisterOutputType(MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput{})
 	pulumi.RegisterOutputType(SnapshotGroupTagOutput{})
 	pulumi.RegisterOutputType(SnapshotGroupTagArrayOutput{})
 	pulumi.RegisterOutputType(SnapshotGroupsSnapshotGroupOutput{})
@@ -5196,6 +6096,14 @@ func init() {
 	pulumi.RegisterOutputType(GetAutoSnapshotPoliciesAutoSnapshotPolicyTagArrayOutput{})
 	pulumi.RegisterOutputType(GetAutoSnapshotPoliciesTagOutput{})
 	pulumi.RegisterOutputType(GetAutoSnapshotPoliciesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceArrayOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceBaselineOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceBaselineArrayOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceLimitOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceLimitArrayOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseOutput{})
+	pulumi.RegisterOutputType(GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArrayOutput{})
 	pulumi.RegisterOutputType(GetSnapshotGroupsSnapshotGroupOutput{})
 	pulumi.RegisterOutputType(GetSnapshotGroupsSnapshotGroupArrayOutput{})
 	pulumi.RegisterOutputType(GetSnapshotGroupsSnapshotGroupSnapshotOutput{})

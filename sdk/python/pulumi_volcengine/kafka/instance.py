@@ -631,14 +631,22 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create kafka instance
         foo_instance = volcengine.kafka.Instance("fooInstance",
             instance_name="acc-test-kafka",
             instance_description="tf-test",
@@ -677,6 +685,31 @@ class Instance(pulumi.CustomResource):
                     parameter_value="false",
                 ),
             ])
+        foo_address = volcengine.eip.Address("fooAddress",
+            billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+            isp="BGP",
+            description="tf-test",
+            project_name="default")
+        foo_public_address = volcengine.kafka.PublicAddress("fooPublicAddress",
+            instance_id=foo_instance.id,
+            eip_id=foo_address.id)
+        foo_group = volcengine.kafka.Group("fooGroup",
+            instance_id=foo_instance.id,
+            group_id="acc-test-group",
+            description="tf-test")
+        foo_topic = volcengine.kafka.Topic("fooTopic",
+            topic_name="acc-test-topic",
+            instance_id=foo_instance.id,
+            description="tf-test",
+            partition_number=15,
+            replica_number=3,
+            parameters=volcengine.kafka.TopicParametersArgs(
+                min_insync_replica_number=2,
+                message_max_byte=10,
+                log_retention_hours=96,
+            ),
+            all_authority=False)
         ```
 
         ## Import
@@ -722,14 +755,22 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create kafka instance
         foo_instance = volcengine.kafka.Instance("fooInstance",
             instance_name="acc-test-kafka",
             instance_description="tf-test",
@@ -768,6 +809,31 @@ class Instance(pulumi.CustomResource):
                     parameter_value="false",
                 ),
             ])
+        foo_address = volcengine.eip.Address("fooAddress",
+            billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+            isp="BGP",
+            description="tf-test",
+            project_name="default")
+        foo_public_address = volcengine.kafka.PublicAddress("fooPublicAddress",
+            instance_id=foo_instance.id,
+            eip_id=foo_address.id)
+        foo_group = volcengine.kafka.Group("fooGroup",
+            instance_id=foo_instance.id,
+            group_id="acc-test-group",
+            description="tf-test")
+        foo_topic = volcengine.kafka.Topic("fooTopic",
+            topic_name="acc-test-topic",
+            instance_id=foo_instance.id,
+            description="tf-test",
+            partition_number=15,
+            replica_number=3,
+            parameters=volcengine.kafka.TopicParametersArgs(
+                min_insync_replica_number=2,
+                message_max_byte=10,
+                log_retention_hours=96,
+            ),
+            all_authority=False)
         ```
 
         ## Import

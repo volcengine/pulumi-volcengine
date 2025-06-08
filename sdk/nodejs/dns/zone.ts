@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.dns.Zone("foo", {
- *     projectName: "xxx",
+ *     projectName: "default",
  *     remark: "xxx",
  *     tags: [{
  *         key: "xx",

@@ -22,12 +22,20 @@ namespace Pulumi.Volcengine.Kafka
     /// {
     ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
     /// 
+    ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
     ///         VpcName = "acc-test-vpc",
     ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
+    ///         {
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "default",
     ///     });
     /// 
+    ///     // create subnet
     ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
     ///     {
     ///         SubnetName = "acc-test-subnet",
@@ -36,6 +44,7 @@ namespace Pulumi.Volcengine.Kafka
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     // create kafka instance
     ///     var fooInstance = new Volcengine.Kafka.Instance("fooInstance", new()
     ///     {
     ///         InstanceName = "acc-test-kafka",
@@ -85,6 +94,44 @@ namespace Pulumi.Volcengine.Kafka
     ///                 ParameterValue = "false",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Bandwidth = 1,
+    ///         Isp = "BGP",
+    ///         Description = "tf-test",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var fooPublicAddress = new Volcengine.Kafka.PublicAddress("fooPublicAddress", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         EipId = fooAddress.Id,
+    ///     });
+    /// 
+    ///     var fooGroup = new Volcengine.Kafka.Group("fooGroup", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         GroupId = "acc-test-group",
+    ///         Description = "tf-test",
+    ///     });
+    /// 
+    ///     var fooTopic = new Volcengine.Kafka.Topic("fooTopic", new()
+    ///     {
+    ///         TopicName = "acc-test-topic",
+    ///         InstanceId = fooInstance.Id,
+    ///         Description = "tf-test",
+    ///         PartitionNumber = 15,
+    ///         ReplicaNumber = 3,
+    ///         Parameters = new Volcengine.Kafka.Inputs.TopicParametersArgs
+    ///         {
+    ///             MinInsyncReplicaNumber = 2,
+    ///             MessageMaxByte = 10,
+    ///             LogRetentionHours = 96,
+    ///         },
+    ///         AllAuthority = false,
     ///     });
     /// 
     /// });

@@ -21,6 +21,8 @@ class InstanceArgs:
                  subnet_id: pulumi.Input[str],
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 config_server_node_spec: Optional[pulumi.Input[str]] = None,
+                 config_server_storage_space_gb: Optional[pulumi.Input[int]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
@@ -43,6 +45,10 @@ class InstanceArgs:
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
+        :param pulumi.Input[str] config_server_node_spec: The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] config_server_storage_space_gb: The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
         :param pulumi.Input[str] instance_type: The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
@@ -66,6 +72,10 @@ class InstanceArgs:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if config_server_node_spec is not None:
+            pulumi.set(__self__, "config_server_node_spec", config_server_node_spec)
+        if config_server_storage_space_gb is not None:
+            pulumi.set(__self__, "config_server_storage_space_gb", config_server_storage_space_gb)
         if db_engine_version is not None:
             pulumi.set(__self__, "db_engine_version", db_engine_version)
         if instance_name is not None:
@@ -159,6 +169,32 @@ class InstanceArgs:
     @charge_type.setter
     def charge_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="configServerNodeSpec")
+    def config_server_node_spec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "config_server_node_spec")
+
+    @config_server_node_spec.setter
+    def config_server_node_spec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_server_node_spec", value)
+
+    @property
+    @pulumi.getter(name="configServerStorageSpaceGb")
+    def config_server_storage_space_gb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "config_server_storage_space_gb")
+
+    @config_server_storage_space_gb.setter
+    def config_server_storage_space_gb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "config_server_storage_space_gb", value)
 
     @property
     @pulumi.getter(name="dbEngineVersion")
@@ -349,6 +385,8 @@ class _InstanceState:
     def __init__(__self__, *,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 config_server_node_spec: Optional[pulumi.Input[str]] = None,
+                 config_server_storage_space_gb: Optional[pulumi.Input[int]] = None,
                  config_servers_id: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
@@ -377,6 +415,10 @@ class _InstanceState:
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
+        :param pulumi.Input[str] config_server_node_spec: The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] config_server_storage_space_gb: The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] config_servers_id: The config servers id of the ShardedCluster instance.
         :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
@@ -406,6 +448,10 @@ class _InstanceState:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if config_server_node_spec is not None:
+            pulumi.set(__self__, "config_server_node_spec", config_server_node_spec)
+        if config_server_storage_space_gb is not None:
+            pulumi.set(__self__, "config_server_storage_space_gb", config_server_storage_space_gb)
         if config_servers_id is not None:
             pulumi.set(__self__, "config_servers_id", config_servers_id)
         if db_engine_version is not None:
@@ -481,6 +527,32 @@ class _InstanceState:
     @charge_type.setter
     def charge_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="configServerNodeSpec")
+    def config_server_node_spec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "config_server_node_spec")
+
+    @config_server_node_spec.setter
+    def config_server_node_spec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_server_node_spec", value)
+
+    @property
+    @pulumi.getter(name="configServerStorageSpaceGb")
+    def config_server_storage_space_gb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "config_server_storage_space_gb")
+
+    @config_server_storage_space_gb.setter
+    def config_server_storage_space_gb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "config_server_storage_space_gb", value)
 
     @property
     @pulumi.getter(name="configServersId")
@@ -781,6 +853,8 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 config_server_node_spec: Optional[pulumi.Input[str]] = None,
+                 config_server_storage_space_gb: Optional[pulumi.Input[int]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
@@ -808,20 +882,28 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_instance = volcengine.mongodb.Instance("fooInstance",
+        # create mongodb ReplicaSet instance
+        foo_replica = volcengine.mongodb.Instance("foo-replica",
             zone_ids=[foo_zones.zones[0].id],
             db_engine_version="MongoDB_4_0",
             instance_type="ReplicaSet",
             node_spec="mongo.2c4g",
-            storage_space_gb=20,
+            storage_space_gb=100,
             subnet_id=foo_subnet.id,
             instance_name="acc-test-mongodb-replica",
             charge_type="PostPaid",
@@ -835,15 +917,31 @@ class Instance(pulumi.CustomResource):
                 zone_id=foo_zones.zones[0].id,
                 node_number=2,
             )])
-        #  period_unit = "Month"
-        #  period      = 1
-        #  auto_renew  = false
-        #  ssl_action  = "Close"
-        #  lifecycle {
-        #    ignore_changes = [
-        #      super_account_password,
-        #    ]
-        #  }
+        # create mongodb ShardedCluster instance
+        foo_sharded = volcengine.mongodb.Instance("foo-sharded",
+            zone_ids=[foo_zones.zones[0].id],
+            db_engine_version="MongoDB_4_0",
+            instance_type="ShardedCluster",
+            node_spec="mongo.shard.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            mongos_node_number=3,
+            shard_number=3,
+            config_server_node_spec="mongo.config.2c4g",
+            config_server_storage_space_gb=30,
+            storage_space_gb=100,
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test-mongodb-sharded",
+            charge_type="PostPaid",
+            super_account_password="93f0cb0614Aab12",
+            project_name="default",
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )],
+            node_availability_zones=[volcengine.mongodb.InstanceNodeAvailabilityZoneArgs(
+                zone_id=foo_zones.zones[0].id,
+                node_number=2,
+            )])
         ```
 
         ## Import
@@ -858,6 +956,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
+        :param pulumi.Input[str] config_server_node_spec: The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] config_server_storage_space_gb: The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
         :param pulumi.Input[str] instance_type: The type of instance, the valid value contains `ReplicaSet` or `ShardedCluster`. Default is `ReplicaSet`.
@@ -891,20 +993,28 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_instance = volcengine.mongodb.Instance("fooInstance",
+        # create mongodb ReplicaSet instance
+        foo_replica = volcengine.mongodb.Instance("foo-replica",
             zone_ids=[foo_zones.zones[0].id],
             db_engine_version="MongoDB_4_0",
             instance_type="ReplicaSet",
             node_spec="mongo.2c4g",
-            storage_space_gb=20,
+            storage_space_gb=100,
             subnet_id=foo_subnet.id,
             instance_name="acc-test-mongodb-replica",
             charge_type="PostPaid",
@@ -918,15 +1028,31 @@ class Instance(pulumi.CustomResource):
                 zone_id=foo_zones.zones[0].id,
                 node_number=2,
             )])
-        #  period_unit = "Month"
-        #  period      = 1
-        #  auto_renew  = false
-        #  ssl_action  = "Close"
-        #  lifecycle {
-        #    ignore_changes = [
-        #      super_account_password,
-        #    ]
-        #  }
+        # create mongodb ShardedCluster instance
+        foo_sharded = volcengine.mongodb.Instance("foo-sharded",
+            zone_ids=[foo_zones.zones[0].id],
+            db_engine_version="MongoDB_4_0",
+            instance_type="ShardedCluster",
+            node_spec="mongo.shard.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            mongos_node_number=3,
+            shard_number=3,
+            config_server_node_spec="mongo.config.2c4g",
+            config_server_storage_space_gb=30,
+            storage_space_gb=100,
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test-mongodb-sharded",
+            charge_type="PostPaid",
+            super_account_password="93f0cb0614Aab12",
+            project_name="default",
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )],
+            node_availability_zones=[volcengine.mongodb.InstanceNodeAvailabilityZoneArgs(
+                zone_id=foo_zones.zones[0].id,
+                node_number=2,
+            )])
         ```
 
         ## Import
@@ -954,6 +1080,8 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 config_server_node_spec: Optional[pulumi.Input[str]] = None,
+                 config_server_storage_space_gb: Optional[pulumi.Input[int]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
@@ -983,6 +1111,8 @@ class Instance(pulumi.CustomResource):
 
             __props__.__dict__["auto_renew"] = auto_renew
             __props__.__dict__["charge_type"] = charge_type
+            __props__.__dict__["config_server_node_spec"] = config_server_node_spec
+            __props__.__dict__["config_server_storage_space_gb"] = config_server_storage_space_gb
             __props__.__dict__["db_engine_version"] = db_engine_version
             __props__.__dict__["instance_name"] = instance_name
             __props__.__dict__["instance_type"] = instance_type
@@ -1027,6 +1157,8 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_renew: Optional[pulumi.Input[bool]] = None,
             charge_type: Optional[pulumi.Input[str]] = None,
+            config_server_node_spec: Optional[pulumi.Input[str]] = None,
+            config_server_storage_space_gb: Optional[pulumi.Input[int]] = None,
             config_servers_id: Optional[pulumi.Input[str]] = None,
             db_engine_version: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
@@ -1060,6 +1192,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal. This parameter is required when the `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
+        :param pulumi.Input[str] config_server_node_spec: The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] config_server_storage_space_gb: The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] config_servers_id: The config servers id of the ShardedCluster instance.
         :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
         :param pulumi.Input[str] instance_name: The instance name.
@@ -1091,6 +1227,8 @@ class Instance(pulumi.CustomResource):
 
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["charge_type"] = charge_type
+        __props__.__dict__["config_server_node_spec"] = config_server_node_spec
+        __props__.__dict__["config_server_storage_space_gb"] = config_server_storage_space_gb
         __props__.__dict__["config_servers_id"] = config_servers_id
         __props__.__dict__["db_engine_version"] = db_engine_version
         __props__.__dict__["instance_name"] = instance_name
@@ -1132,6 +1270,24 @@ class Instance(pulumi.CustomResource):
         The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
         """
         return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="configServerNodeSpec")
+    def config_server_node_spec(self) -> pulumi.Output[str]:
+        """
+        The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "config_server_node_spec")
+
+    @property
+    @pulumi.getter(name="configServerStorageSpaceGb")
+    def config_server_storage_space_gb(self) -> pulumi.Output[int]:
+        """
+        The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "config_server_storage_space_gb")
 
     @property
     @pulumi.getter(name="configServersId")

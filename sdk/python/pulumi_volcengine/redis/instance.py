@@ -944,14 +944,22 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create redis instance
         foo_instance = volcengine.redis.Instance("fooInstance",
             instance_name="tf-test2",
             sharded_cluster=1,
@@ -1010,7 +1018,6 @@ class Instance(pulumi.CustomResource):
                     az="cn-beijing-b",
                 ),
             ])
-        #additional_bandwidth = 12
         ```
 
         ## Import
@@ -1074,14 +1081,22 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
-            cidr_block="172.16.0.0/16")
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create redis instance
         foo_instance = volcengine.redis.Instance("fooInstance",
             instance_name="tf-test2",
             sharded_cluster=1,
@@ -1140,7 +1155,6 @@ class Instance(pulumi.CustomResource):
                     az="cn-beijing-b",
                 ),
             ])
-        #additional_bandwidth = 12
         ```
 
         ## Import

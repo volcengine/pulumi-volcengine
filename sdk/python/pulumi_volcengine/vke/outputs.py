@@ -96,6 +96,7 @@ __all__ = [
     'NodesNodeLabelResult',
     'NodesNodeTaintResult',
     'NodesStatusResult',
+    'PermissionsAccessPolicyResult',
     'SupportAddonsAddonResult',
     'SupportAddonsAddonVersionResult',
     'SupportAddonsAddonVersionCompatibilityResult',
@@ -140,6 +141,7 @@ __all__ = [
     'GetNodesNodeLabelResult',
     'GetNodesNodeTaintResult',
     'GetNodesStatusResult',
+    'GetPermissionsAccessPolicyResult',
     'GetSupportAddonsAddonResult',
     'GetSupportAddonsAddonVersionResult',
     'GetSupportAddonsAddonVersionCompatibilityResult',
@@ -5226,6 +5228,189 @@ class NodesStatusResult(dict):
 
 
 @pulumi.output_type
+class PermissionsAccessPolicyResult(dict):
+    def __init__(__self__, *,
+                 authorized_at: str,
+                 authorizer_id: int,
+                 authorizer_name: str,
+                 authorizer_type: str,
+                 cluster_id: str,
+                 granted_at: str,
+                 grantee_id: int,
+                 grantee_type: str,
+                 id: str,
+                 is_custom_role: bool,
+                 kube_role_binding_name: str,
+                 message: str,
+                 namespace: str,
+                 revoked_at: str,
+                 role_name: str,
+                 status: str):
+        """
+        :param str authorized_at: The authorized time of the RBAC Permission.
+        :param int authorizer_id: The ID of the Authorizer.
+        :param str authorizer_name: The name of the Authorizer.
+        :param str authorizer_type: The type of the Authorizer.
+        :param str cluster_id: The ID of the Cluster.
+        :param str granted_at: The granted time of the RBAC Permission.
+        :param int grantee_id: The ID of the Grantee.
+        :param str grantee_type: The type of Grantee. Valid values: `User`, `Role`.
+        :param str id: The id of the RBAC Permission.
+        :param bool is_custom_role: Whether the RBAC Role is custom role.
+        :param str kube_role_binding_name: The name of the Kube Role Binding.
+        :param str message: The message of the RBAC Permission.
+        :param str namespace: The Namespace of the RBAC Permission.
+        :param str revoked_at: The revoked time of the RBAC Permission.
+        :param str role_name: The name of the RBAC Role.
+        :param str status: The status of RBAC Permission.
+        """
+        pulumi.set(__self__, "authorized_at", authorized_at)
+        pulumi.set(__self__, "authorizer_id", authorizer_id)
+        pulumi.set(__self__, "authorizer_name", authorizer_name)
+        pulumi.set(__self__, "authorizer_type", authorizer_type)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "granted_at", granted_at)
+        pulumi.set(__self__, "grantee_id", grantee_id)
+        pulumi.set(__self__, "grantee_type", grantee_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_custom_role", is_custom_role)
+        pulumi.set(__self__, "kube_role_binding_name", kube_role_binding_name)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "revoked_at", revoked_at)
+        pulumi.set(__self__, "role_name", role_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="authorizedAt")
+    def authorized_at(self) -> str:
+        """
+        The authorized time of the RBAC Permission.
+        """
+        return pulumi.get(self, "authorized_at")
+
+    @property
+    @pulumi.getter(name="authorizerId")
+    def authorizer_id(self) -> int:
+        """
+        The ID of the Authorizer.
+        """
+        return pulumi.get(self, "authorizer_id")
+
+    @property
+    @pulumi.getter(name="authorizerName")
+    def authorizer_name(self) -> str:
+        """
+        The name of the Authorizer.
+        """
+        return pulumi.get(self, "authorizer_name")
+
+    @property
+    @pulumi.getter(name="authorizerType")
+    def authorizer_type(self) -> str:
+        """
+        The type of the Authorizer.
+        """
+        return pulumi.get(self, "authorizer_type")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The ID of the Cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="grantedAt")
+    def granted_at(self) -> str:
+        """
+        The granted time of the RBAC Permission.
+        """
+        return pulumi.get(self, "granted_at")
+
+    @property
+    @pulumi.getter(name="granteeId")
+    def grantee_id(self) -> int:
+        """
+        The ID of the Grantee.
+        """
+        return pulumi.get(self, "grantee_id")
+
+    @property
+    @pulumi.getter(name="granteeType")
+    def grantee_type(self) -> str:
+        """
+        The type of Grantee. Valid values: `User`, `Role`.
+        """
+        return pulumi.get(self, "grantee_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the RBAC Permission.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isCustomRole")
+    def is_custom_role(self) -> bool:
+        """
+        Whether the RBAC Role is custom role.
+        """
+        return pulumi.get(self, "is_custom_role")
+
+    @property
+    @pulumi.getter(name="kubeRoleBindingName")
+    def kube_role_binding_name(self) -> str:
+        """
+        The name of the Kube Role Binding.
+        """
+        return pulumi.get(self, "kube_role_binding_name")
+
+    @property
+    @pulumi.getter
+    def message(self) -> str:
+        """
+        The message of the RBAC Permission.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        """
+        The Namespace of the RBAC Permission.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="revokedAt")
+    def revoked_at(self) -> str:
+        """
+        The revoked time of the RBAC Permission.
+        """
+        return pulumi.get(self, "revoked_at")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        The name of the RBAC Role.
+        """
+        return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of RBAC Permission.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class SupportAddonsAddonResult(dict):
     def __init__(__self__, *,
                  deploy_mode: str,
@@ -7845,6 +8030,189 @@ class GetNodesStatusResult(dict):
         The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
         """
         return pulumi.get(self, "phase")
+
+
+@pulumi.output_type
+class GetPermissionsAccessPolicyResult(dict):
+    def __init__(__self__, *,
+                 authorized_at: str,
+                 authorizer_id: int,
+                 authorizer_name: str,
+                 authorizer_type: str,
+                 cluster_id: str,
+                 granted_at: str,
+                 grantee_id: int,
+                 grantee_type: str,
+                 id: str,
+                 is_custom_role: bool,
+                 kube_role_binding_name: str,
+                 message: str,
+                 namespace: str,
+                 revoked_at: str,
+                 role_name: str,
+                 status: str):
+        """
+        :param str authorized_at: The authorized time of the RBAC Permission.
+        :param int authorizer_id: The ID of the Authorizer.
+        :param str authorizer_name: The name of the Authorizer.
+        :param str authorizer_type: The type of the Authorizer.
+        :param str cluster_id: The ID of the Cluster.
+        :param str granted_at: The granted time of the RBAC Permission.
+        :param int grantee_id: The ID of the Grantee.
+        :param str grantee_type: The type of Grantee. Valid values: `User`, `Role`.
+        :param str id: The id of the RBAC Permission.
+        :param bool is_custom_role: Whether the RBAC Role is custom role.
+        :param str kube_role_binding_name: The name of the Kube Role Binding.
+        :param str message: The message of the RBAC Permission.
+        :param str namespace: The Namespace of the RBAC Permission.
+        :param str revoked_at: The revoked time of the RBAC Permission.
+        :param str role_name: The name of the RBAC Role.
+        :param str status: The status of RBAC Permission.
+        """
+        pulumi.set(__self__, "authorized_at", authorized_at)
+        pulumi.set(__self__, "authorizer_id", authorizer_id)
+        pulumi.set(__self__, "authorizer_name", authorizer_name)
+        pulumi.set(__self__, "authorizer_type", authorizer_type)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "granted_at", granted_at)
+        pulumi.set(__self__, "grantee_id", grantee_id)
+        pulumi.set(__self__, "grantee_type", grantee_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_custom_role", is_custom_role)
+        pulumi.set(__self__, "kube_role_binding_name", kube_role_binding_name)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "revoked_at", revoked_at)
+        pulumi.set(__self__, "role_name", role_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="authorizedAt")
+    def authorized_at(self) -> str:
+        """
+        The authorized time of the RBAC Permission.
+        """
+        return pulumi.get(self, "authorized_at")
+
+    @property
+    @pulumi.getter(name="authorizerId")
+    def authorizer_id(self) -> int:
+        """
+        The ID of the Authorizer.
+        """
+        return pulumi.get(self, "authorizer_id")
+
+    @property
+    @pulumi.getter(name="authorizerName")
+    def authorizer_name(self) -> str:
+        """
+        The name of the Authorizer.
+        """
+        return pulumi.get(self, "authorizer_name")
+
+    @property
+    @pulumi.getter(name="authorizerType")
+    def authorizer_type(self) -> str:
+        """
+        The type of the Authorizer.
+        """
+        return pulumi.get(self, "authorizer_type")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The ID of the Cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="grantedAt")
+    def granted_at(self) -> str:
+        """
+        The granted time of the RBAC Permission.
+        """
+        return pulumi.get(self, "granted_at")
+
+    @property
+    @pulumi.getter(name="granteeId")
+    def grantee_id(self) -> int:
+        """
+        The ID of the Grantee.
+        """
+        return pulumi.get(self, "grantee_id")
+
+    @property
+    @pulumi.getter(name="granteeType")
+    def grantee_type(self) -> str:
+        """
+        The type of Grantee. Valid values: `User`, `Role`.
+        """
+        return pulumi.get(self, "grantee_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the RBAC Permission.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isCustomRole")
+    def is_custom_role(self) -> bool:
+        """
+        Whether the RBAC Role is custom role.
+        """
+        return pulumi.get(self, "is_custom_role")
+
+    @property
+    @pulumi.getter(name="kubeRoleBindingName")
+    def kube_role_binding_name(self) -> str:
+        """
+        The name of the Kube Role Binding.
+        """
+        return pulumi.get(self, "kube_role_binding_name")
+
+    @property
+    @pulumi.getter
+    def message(self) -> str:
+        """
+        The message of the RBAC Permission.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        """
+        The Namespace of the RBAC Permission.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="revokedAt")
+    def revoked_at(self) -> str:
+        """
+        The revoked time of the RBAC Permission.
+        """
+        return pulumi.get(self, "revoked_at")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        The name of the RBAC Role.
+        """
+        return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of RBAC Permission.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type

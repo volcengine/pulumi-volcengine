@@ -2214,6 +2214,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "vke/permission",
+  "fqn": "pulumi_volcengine.vke",
+  "classes": {
+   "volcengine:vke/permission:Permission": "Permission"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "vpc/haVip",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {

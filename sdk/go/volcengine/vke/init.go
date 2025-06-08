@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Node{}
 	case "volcengine:vke/nodePool:NodePool":
 		r = &NodePool{}
+	case "volcengine:vke/permission:Permission":
+		r = &Permission{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -81,6 +83,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"vke/nodePool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vke/permission",
 		&module{version},
 	)
 }

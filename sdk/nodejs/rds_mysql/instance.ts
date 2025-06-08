@@ -16,16 +16,24 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
- *     vpcName: "acc-test-project1",
+ *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
+ *     dnsServers: [
+ *         "8.8.8.8",
+ *         "114.114.114.114",
+ *     ],
+ *     projectName: "default",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
- *     subnetName: "acc-subnet-test-2",
+ *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * // create mysql instance
  * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
  *     dbEngineVersion: "MySQL_5_7",
  *     nodeSpec: "rds.mysql.1c2g",
@@ -33,8 +41,13 @@ import * as utilities from "../utilities";
  *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     storageSpace: 80,
  *     subnetId: fooSubnet.id,
- *     instanceName: "acc-test",
+ *     instanceName: "acc-test-mysql-instance",
  *     lowerCaseTableNames: "1",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     chargeInfo: {
  *         chargeType: "PostPaid",
  *     },
@@ -48,11 +61,32 @@ import * as utilities from "../utilities";
  *             parameterValue: "5",
  *         },
  *     ],
- *     projectName: "default",
- *     tags: [{
- *         key: "k1",
- *         value: "v1",
- *     }],
+ * });
+ * // create mysql instance readonly node
+ * const fooInstanceReadonlyNode = new volcengine.rds_mysql.InstanceReadonlyNode("fooInstanceReadonlyNode", {
+ *     instanceId: fooInstance.id,
+ *     nodeSpec: "rds.mysql.2c4g",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ * });
+ * // create mysql allow list
+ * const fooAllowlist = new volcengine.rds_mysql.Allowlist("fooAllowlist", {
+ *     allowListName: "acc-test-allowlist",
+ *     allowListDesc: "acc-test",
+ *     allowListType: "IPv4",
+ *     allowLists: [
+ *         "192.168.0.0/24",
+ *         "192.168.1.0/24",
+ *     ],
+ * });
+ * // associate mysql allow list to mysql instance
+ * const fooAllowlistAssociate = new volcengine.rds_mysql.AllowlistAssociate("fooAllowlistAssociate", {
+ *     allowListId: fooAllowlist.id,
+ *     instanceId: fooInstance.id,
+ * });
+ * // create mysql database
+ * const fooDatabase = new volcengine.rds_mysql.Database("fooDatabase", {
+ *     dbName: "acc-test-database",
+ *     instanceId: fooInstance.id,
  * });
  * ```
  *

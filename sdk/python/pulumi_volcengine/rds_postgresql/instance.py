@@ -689,14 +689,22 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
-            vpc_name="acc-test-project1",
-            cidr_block="172.16.0.0/16")
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
-            subnet_name="acc-subnet-test-2",
+            subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create postgresql instance
         foo_instance = volcengine.rds_postgresql.Instance("fooInstance",
             db_engine_version="PostgreSQL_12",
             node_spec="rds.postgres.1c2g",
@@ -704,7 +712,7 @@ class Instance(pulumi.CustomResource):
             secondary_zone_id=foo_zones.zones[0].id,
             storage_space=40,
             subnet_id=foo_subnet.id,
-            instance_name="acc-test-1",
+            instance_name="acc-test-postgresql-instance",
             charge_info=volcengine.rds_postgresql.InstanceChargeInfoArgs(
                 charge_type="PostPaid",
             ),
@@ -723,6 +731,43 @@ class Instance(pulumi.CustomResource):
                     value="text",
                 ),
             ])
+        # create postgresql instance readonly node
+        foo_instance_readonly_node = volcengine.rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode",
+            instance_id=foo_instance.id,
+            node_spec="rds.postgres.1c2g",
+            zone_id=foo_zones.zones[0].id)
+        # create postgresql allow list
+        foo_allowlist = volcengine.rds_postgresql.Allowlist("fooAllowlist",
+            allow_list_name="acc-test-allowlist",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ])
+        # associate postgresql allow list to postgresql instance
+        foo_allowlist_associate = volcengine.rds_postgresql.AllowlistAssociate("fooAllowlistAssociate",
+            instance_id=foo_instance.id,
+            allow_list_id=foo_allowlist.id)
+        # create postgresql database
+        foo_database = volcengine.rds_postgresql.Database("fooDatabase",
+            db_name="acc-test-database",
+            instance_id=foo_instance.id,
+            c_type="C",
+            collate="zh_CN.utf8")
+        # create postgresql account
+        foo_account = volcengine.rds_postgresql.Account("fooAccount",
+            account_name="acc-test-account",
+            account_password="9wc@********12",
+            account_type="Normal",
+            instance_id=foo_instance.id,
+            account_privileges="Inherit,Login,CreateRole,CreateDB")
+        # create postgresql schema
+        foo_schema = volcengine.rds_postgresql.Schema("fooSchema",
+            db_name=foo_database.db_name,
+            instance_id=foo_instance.id,
+            owner=foo_account.account_name,
+            schema_name="acc-test-schema")
         ```
 
         ## Import
@@ -762,14 +807,22 @@ class Instance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_zones = volcengine.ecs.get_zones()
+        # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
-            vpc_name="acc-test-project1",
-            cidr_block="172.16.0.0/16")
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16",
+            dns_servers=[
+                "8.8.8.8",
+                "114.114.114.114",
+            ],
+            project_name="default")
+        # create subnet
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
-            subnet_name="acc-subnet-test-2",
+            subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        # create postgresql instance
         foo_instance = volcengine.rds_postgresql.Instance("fooInstance",
             db_engine_version="PostgreSQL_12",
             node_spec="rds.postgres.1c2g",
@@ -777,7 +830,7 @@ class Instance(pulumi.CustomResource):
             secondary_zone_id=foo_zones.zones[0].id,
             storage_space=40,
             subnet_id=foo_subnet.id,
-            instance_name="acc-test-1",
+            instance_name="acc-test-postgresql-instance",
             charge_info=volcengine.rds_postgresql.InstanceChargeInfoArgs(
                 charge_type="PostPaid",
             ),
@@ -796,6 +849,43 @@ class Instance(pulumi.CustomResource):
                     value="text",
                 ),
             ])
+        # create postgresql instance readonly node
+        foo_instance_readonly_node = volcengine.rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode",
+            instance_id=foo_instance.id,
+            node_spec="rds.postgres.1c2g",
+            zone_id=foo_zones.zones[0].id)
+        # create postgresql allow list
+        foo_allowlist = volcengine.rds_postgresql.Allowlist("fooAllowlist",
+            allow_list_name="acc-test-allowlist",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ])
+        # associate postgresql allow list to postgresql instance
+        foo_allowlist_associate = volcengine.rds_postgresql.AllowlistAssociate("fooAllowlistAssociate",
+            instance_id=foo_instance.id,
+            allow_list_id=foo_allowlist.id)
+        # create postgresql database
+        foo_database = volcengine.rds_postgresql.Database("fooDatabase",
+            db_name="acc-test-database",
+            instance_id=foo_instance.id,
+            c_type="C",
+            collate="zh_CN.utf8")
+        # create postgresql account
+        foo_account = volcengine.rds_postgresql.Account("fooAccount",
+            account_name="acc-test-account",
+            account_password="9wc@********12",
+            account_type="Normal",
+            instance_id=foo_instance.id,
+            account_privileges="Inherit,Login,CreateRole,CreateDB")
+        # create postgresql schema
+        foo_schema = volcengine.rds_postgresql.Schema("fooSchema",
+            db_name=foo_database.db_name,
+            instance_id=foo_instance.id,
+            owner=foo_account.account_name,
+            schema_name="acc-test-schema")
         ```
 
         ## Import

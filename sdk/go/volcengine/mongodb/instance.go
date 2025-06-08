@@ -32,13 +32,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
@@ -48,19 +55,55 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodb.NewInstance(ctx, "fooInstance", &mongodb.InstanceArgs{
+//			// create mongodb ReplicaSet instance
+//			_, err = mongodb.NewInstance(ctx, "foo-replica", &mongodb.InstanceArgs{
 //				ZoneIds: pulumi.StringArray{
 //					pulumi.String(fooZones.Zones[0].Id),
 //				},
 //				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
 //				InstanceType:         pulumi.String("ReplicaSet"),
 //				NodeSpec:             pulumi.String("mongo.2c4g"),
-//				StorageSpaceGb:       pulumi.Int(20),
+//				StorageSpaceGb:       pulumi.Int(100),
 //				SubnetId:             fooSubnet.ID(),
 //				InstanceName:         pulumi.String("acc-test-mongodb-replica"),
 //				ChargeType:           pulumi.String("PostPaid"),
 //				SuperAccountPassword: pulumi.String("93f0cb0614Aab12"),
 //				ProjectName:          pulumi.String("default"),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//				NodeAvailabilityZones: mongodb.InstanceNodeAvailabilityZoneArray{
+//					&mongodb.InstanceNodeAvailabilityZoneArgs{
+//						ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//						NodeNumber: pulumi.Int(2),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create mongodb ShardedCluster instance
+//			_, err = mongodb.NewInstance(ctx, "foo-sharded", &mongodb.InstanceArgs{
+//				ZoneIds: pulumi.StringArray{
+//					pulumi.String(fooZones.Zones[0].Id),
+//				},
+//				DbEngineVersion:            pulumi.String("MongoDB_4_0"),
+//				InstanceType:               pulumi.String("ShardedCluster"),
+//				NodeSpec:                   pulumi.String("mongo.shard.2c4g"),
+//				MongosNodeSpec:             pulumi.String("mongo.mongos.2c4g"),
+//				MongosNodeNumber:           pulumi.Int(3),
+//				ShardNumber:                pulumi.Int(3),
+//				ConfigServerNodeSpec:       pulumi.String("mongo.config.2c4g"),
+//				ConfigServerStorageSpaceGb: pulumi.Int(30),
+//				StorageSpaceGb:             pulumi.Int(100),
+//				SubnetId:                   fooSubnet.ID(),
+//				InstanceName:               pulumi.String("acc-test-mongodb-sharded"),
+//				ChargeType:                 pulumi.String("PostPaid"),
+//				SuperAccountPassword:       pulumi.String("93f0cb0614Aab12"),
+//				ProjectName:                pulumi.String("default"),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -97,6 +140,12 @@ type Instance struct {
 	AutoRenew pulumi.BoolOutput `pulumi:"autoRenew"`
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType pulumi.StringOutput `pulumi:"chargeType"`
+	// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerNodeSpec pulumi.StringOutput `pulumi:"configServerNodeSpec"`
+	// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerStorageSpaceGb pulumi.IntOutput `pulumi:"configServerStorageSpaceGb"`
 	// The config servers id of the ShardedCluster instance.
 	ConfigServersId pulumi.StringOutput `pulumi:"configServersId"`
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
@@ -199,6 +248,12 @@ type instanceState struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType *string `pulumi:"chargeType"`
+	// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerNodeSpec *string `pulumi:"configServerNodeSpec"`
+	// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerStorageSpaceGb *int `pulumi:"configServerStorageSpaceGb"`
 	// The config servers id of the ShardedCluster instance.
 	ConfigServersId *string `pulumi:"configServersId"`
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
@@ -256,6 +311,12 @@ type InstanceState struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType pulumi.StringPtrInput
+	// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerNodeSpec pulumi.StringPtrInput
+	// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerStorageSpaceGb pulumi.IntPtrInput
 	// The config servers id of the ShardedCluster instance.
 	ConfigServersId pulumi.StringPtrInput
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
@@ -317,6 +378,12 @@ type instanceArgs struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType *string `pulumi:"chargeType"`
+	// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerNodeSpec *string `pulumi:"configServerNodeSpec"`
+	// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerStorageSpaceGb *int `pulumi:"configServerStorageSpaceGb"`
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
 	// The instance name.
@@ -363,6 +430,12 @@ type InstanceArgs struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 	ChargeType pulumi.StringPtrInput
+	// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerNodeSpec pulumi.StringPtrInput
+	// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ConfigServerStorageSpaceGb pulumi.IntPtrInput
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_4_2`, `MongoDB_4_4`, `MongoDB_5_0`, `MongoDB_6_0`.
 	DbEngineVersion pulumi.StringPtrInput
 	// The instance name.
@@ -498,6 +571,18 @@ func (o InstanceOutput) AutoRenew() pulumi.BoolOutput {
 // The charge type of instance, valid value contains `Prepaid` or `PostPaid`. Default is `PostPaid`.
 func (o InstanceOutput) ChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ChargeType }).(pulumi.StringOutput)
+}
+
+// The config server node spec of shard cluster. Default is `mongo.config.1c2g`. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceOutput) ConfigServerNodeSpec() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ConfigServerNodeSpec }).(pulumi.StringOutput)
+}
+
+// The config server storage space of shard cluster, Unit: GiB. Default is 20. This parameter is only effective when the `InstanceType` is `ShardedCluster`.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceOutput) ConfigServerStorageSpaceGb() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.ConfigServerStorageSpaceGb }).(pulumi.IntOutput)
 }
 
 // The config servers id of the ShardedCluster instance.

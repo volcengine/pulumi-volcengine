@@ -267,13 +267,29 @@ class RouteEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.RouteEntry("foo",
-            description="tf-test-up",
-            destination_cidr_block="0.0.0.0/2",
-            next_hop_id="ngw-274gwbqe340zk7fap8spkzo7x",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc-rn",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet-rn",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.nat.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name="acc-test-nat-rn")
+        foo_route_table = volcengine.vpc.RouteTable("fooRouteTable",
+            vpc_id=foo_vpc.id,
+            route_table_name="acc-test-route-table")
+        foo_route_entry = volcengine.vpc.RouteEntry("fooRouteEntry",
+            route_table_id=foo_route_table.id,
+            destination_cidr_block="172.16.1.0/24",
             next_hop_type="NatGW",
-            route_entry_name="tf-test-up",
-            route_table_id="vtb-2744hslq5b7r47fap8tjomgnj")
+            next_hop_id=foo_gateway.id,
+            route_entry_name="acc-test-route-entry")
         ```
 
         ## Import
@@ -307,13 +323,29 @@ class RouteEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.RouteEntry("foo",
-            description="tf-test-up",
-            destination_cidr_block="0.0.0.0/2",
-            next_hop_id="ngw-274gwbqe340zk7fap8spkzo7x",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc-rn",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet-rn",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.nat.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name="acc-test-nat-rn")
+        foo_route_table = volcengine.vpc.RouteTable("fooRouteTable",
+            vpc_id=foo_vpc.id,
+            route_table_name="acc-test-route-table")
+        foo_route_entry = volcengine.vpc.RouteEntry("fooRouteEntry",
+            route_table_id=foo_route_table.id,
+            destination_cidr_block="172.16.1.0/24",
             next_hop_type="NatGW",
-            route_entry_name="tf-test-up",
-            route_table_id="vtb-2744hslq5b7r47fap8tjomgnj")
+            next_hop_id=foo_gateway.id,
+            route_entry_name="acc-test-route-entry")
         ```
 
         ## Import

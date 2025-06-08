@@ -15,16 +15,24 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
+ *     dnsServers: [
+ *         "8.8.8.8",
+ *         "114.114.114.114",
+ *     ],
+ *     projectName: "default",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * // create kafka instance
  * const fooInstance = new volcengine.kafka.Instance("fooInstance", {
  *     instanceName: "acc-test-kafka",
  *     instanceDescription: "tf-test",
@@ -63,6 +71,35 @@ import * as utilities from "../utilities";
  *             parameterValue: "false",
  *         },
  *     ],
+ * });
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {
+ *     billingType: "PostPaidByBandwidth",
+ *     bandwidth: 1,
+ *     isp: "BGP",
+ *     description: "tf-test",
+ *     projectName: "default",
+ * });
+ * const fooPublicAddress = new volcengine.kafka.PublicAddress("fooPublicAddress", {
+ *     instanceId: fooInstance.id,
+ *     eipId: fooAddress.id,
+ * });
+ * const fooGroup = new volcengine.kafka.Group("fooGroup", {
+ *     instanceId: fooInstance.id,
+ *     groupId: "acc-test-group",
+ *     description: "tf-test",
+ * });
+ * const fooTopic = new volcengine.kafka.Topic("fooTopic", {
+ *     topicName: "acc-test-topic",
+ *     instanceId: fooInstance.id,
+ *     description: "tf-test",
+ *     partitionNumber: 15,
+ *     replicaNumber: 3,
+ *     parameters: {
+ *         minInsyncReplicaNumber: 2,
+ *         messageMaxByte: 10,
+ *         logRetentionHours: 96,
+ *     },
+ *     allAuthority: false,
  * });
  * ```
  *

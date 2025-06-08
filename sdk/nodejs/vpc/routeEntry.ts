@@ -10,15 +10,36 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpc.RouteEntry("foo", {
- *     description: "tf-test-up",
- *     destinationCidrBlock: "0.0.0.0/2",
- *     nextHopId: "ngw-274gwbqe340zk7fap8spkzo7x",
+ * const fooZones = volcengine.ecs.getZones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc-rn",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet-rn",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.nat.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     spec: "Small",
+ *     natGatewayName: "acc-test-nat-rn",
+ * });
+ * const fooRouteTable = new volcengine.vpc.RouteTable("fooRouteTable", {
+ *     vpcId: fooVpc.id,
+ *     routeTableName: "acc-test-route-table",
+ * });
+ * const fooRouteEntry = new volcengine.vpc.RouteEntry("fooRouteEntry", {
+ *     routeTableId: fooRouteTable.id,
+ *     destinationCidrBlock: "172.16.1.0/24",
  *     nextHopType: "NatGW",
- *     routeEntryName: "tf-test-up",
- *     routeTableId: "vtb-2744hslq5b7r47fap8tjomgnj",
+ *     nextHopId: fooGateway.id,
+ *     routeEntryName: "acc-test-route-entry",
  * });
  * ```
  *

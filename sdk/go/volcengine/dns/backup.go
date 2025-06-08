@@ -27,8 +27,22 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dns.NewBackup(ctx, "foo", &dns.BackupArgs{
-//				Zid: pulumi.Int(58846),
+//			fooZone, err := dns.NewZone(ctx, "fooZone", &dns.ZoneArgs{
+//				ZoneName: pulumi.String("xxxx.com"),
+//				Tags: dns.ZoneTagArray{
+//					&dns.ZoneTagArgs{
+//						Key:   pulumi.String("xx"),
+//						Value: pulumi.String("xx"),
+//					},
+//				},
+//				ProjectName: pulumi.String("default"),
+//				Remark:      pulumi.String("xxx"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dns.NewBackup(ctx, "fooBackup", &dns.BackupArgs{
+//				Zid: fooZone.ID(),
 //			})
 //			if err != nil {
 //				return err

@@ -11497,6 +11497,238 @@ func (o NodesStatusArrayOutput) Index(i pulumi.IntInput) NodesStatusOutput {
 	}).(NodesStatusOutput)
 }
 
+type PermissionsAccessPolicy struct {
+	// The authorized time of the RBAC Permission.
+	AuthorizedAt string `pulumi:"authorizedAt"`
+	// The ID of the Authorizer.
+	AuthorizerId int `pulumi:"authorizerId"`
+	// The name of the Authorizer.
+	AuthorizerName string `pulumi:"authorizerName"`
+	// The type of the Authorizer.
+	AuthorizerType string `pulumi:"authorizerType"`
+	// The ID of the Cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The granted time of the RBAC Permission.
+	GrantedAt string `pulumi:"grantedAt"`
+	// The ID of the Grantee.
+	GranteeId int `pulumi:"granteeId"`
+	// The type of Grantee. Valid values: `User`, `Role`.
+	GranteeType string `pulumi:"granteeType"`
+	// The id of the RBAC Permission.
+	Id string `pulumi:"id"`
+	// Whether the RBAC Role is custom role.
+	IsCustomRole bool `pulumi:"isCustomRole"`
+	// The name of the Kube Role Binding.
+	KubeRoleBindingName string `pulumi:"kubeRoleBindingName"`
+	// The message of the RBAC Permission.
+	Message string `pulumi:"message"`
+	// The Namespace of the RBAC Permission.
+	Namespace string `pulumi:"namespace"`
+	// The revoked time of the RBAC Permission.
+	RevokedAt string `pulumi:"revokedAt"`
+	// The name of the RBAC Role.
+	RoleName string `pulumi:"roleName"`
+	// The status of RBAC Permission.
+	Status string `pulumi:"status"`
+}
+
+// PermissionsAccessPolicyInput is an input type that accepts PermissionsAccessPolicyArgs and PermissionsAccessPolicyOutput values.
+// You can construct a concrete instance of `PermissionsAccessPolicyInput` via:
+//
+//	PermissionsAccessPolicyArgs{...}
+type PermissionsAccessPolicyInput interface {
+	pulumi.Input
+
+	ToPermissionsAccessPolicyOutput() PermissionsAccessPolicyOutput
+	ToPermissionsAccessPolicyOutputWithContext(context.Context) PermissionsAccessPolicyOutput
+}
+
+type PermissionsAccessPolicyArgs struct {
+	// The authorized time of the RBAC Permission.
+	AuthorizedAt pulumi.StringInput `pulumi:"authorizedAt"`
+	// The ID of the Authorizer.
+	AuthorizerId pulumi.IntInput `pulumi:"authorizerId"`
+	// The name of the Authorizer.
+	AuthorizerName pulumi.StringInput `pulumi:"authorizerName"`
+	// The type of the Authorizer.
+	AuthorizerType pulumi.StringInput `pulumi:"authorizerType"`
+	// The ID of the Cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The granted time of the RBAC Permission.
+	GrantedAt pulumi.StringInput `pulumi:"grantedAt"`
+	// The ID of the Grantee.
+	GranteeId pulumi.IntInput `pulumi:"granteeId"`
+	// The type of Grantee. Valid values: `User`, `Role`.
+	GranteeType pulumi.StringInput `pulumi:"granteeType"`
+	// The id of the RBAC Permission.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the RBAC Role is custom role.
+	IsCustomRole pulumi.BoolInput `pulumi:"isCustomRole"`
+	// The name of the Kube Role Binding.
+	KubeRoleBindingName pulumi.StringInput `pulumi:"kubeRoleBindingName"`
+	// The message of the RBAC Permission.
+	Message pulumi.StringInput `pulumi:"message"`
+	// The Namespace of the RBAC Permission.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// The revoked time of the RBAC Permission.
+	RevokedAt pulumi.StringInput `pulumi:"revokedAt"`
+	// The name of the RBAC Role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// The status of RBAC Permission.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (PermissionsAccessPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (i PermissionsAccessPolicyArgs) ToPermissionsAccessPolicyOutput() PermissionsAccessPolicyOutput {
+	return i.ToPermissionsAccessPolicyOutputWithContext(context.Background())
+}
+
+func (i PermissionsAccessPolicyArgs) ToPermissionsAccessPolicyOutputWithContext(ctx context.Context) PermissionsAccessPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PermissionsAccessPolicyOutput)
+}
+
+// PermissionsAccessPolicyArrayInput is an input type that accepts PermissionsAccessPolicyArray and PermissionsAccessPolicyArrayOutput values.
+// You can construct a concrete instance of `PermissionsAccessPolicyArrayInput` via:
+//
+//	PermissionsAccessPolicyArray{ PermissionsAccessPolicyArgs{...} }
+type PermissionsAccessPolicyArrayInput interface {
+	pulumi.Input
+
+	ToPermissionsAccessPolicyArrayOutput() PermissionsAccessPolicyArrayOutput
+	ToPermissionsAccessPolicyArrayOutputWithContext(context.Context) PermissionsAccessPolicyArrayOutput
+}
+
+type PermissionsAccessPolicyArray []PermissionsAccessPolicyInput
+
+func (PermissionsAccessPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (i PermissionsAccessPolicyArray) ToPermissionsAccessPolicyArrayOutput() PermissionsAccessPolicyArrayOutput {
+	return i.ToPermissionsAccessPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i PermissionsAccessPolicyArray) ToPermissionsAccessPolicyArrayOutputWithContext(ctx context.Context) PermissionsAccessPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PermissionsAccessPolicyArrayOutput)
+}
+
+type PermissionsAccessPolicyOutput struct{ *pulumi.OutputState }
+
+func (PermissionsAccessPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (o PermissionsAccessPolicyOutput) ToPermissionsAccessPolicyOutput() PermissionsAccessPolicyOutput {
+	return o
+}
+
+func (o PermissionsAccessPolicyOutput) ToPermissionsAccessPolicyOutputWithContext(ctx context.Context) PermissionsAccessPolicyOutput {
+	return o
+}
+
+// The authorized time of the RBAC Permission.
+func (o PermissionsAccessPolicyOutput) AuthorizedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.AuthorizedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Authorizer.
+func (o PermissionsAccessPolicyOutput) AuthorizerId() pulumi.IntOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) int { return v.AuthorizerId }).(pulumi.IntOutput)
+}
+
+// The name of the Authorizer.
+func (o PermissionsAccessPolicyOutput) AuthorizerName() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.AuthorizerName }).(pulumi.StringOutput)
+}
+
+// The type of the Authorizer.
+func (o PermissionsAccessPolicyOutput) AuthorizerType() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.AuthorizerType }).(pulumi.StringOutput)
+}
+
+// The ID of the Cluster.
+func (o PermissionsAccessPolicyOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The granted time of the RBAC Permission.
+func (o PermissionsAccessPolicyOutput) GrantedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.GrantedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Grantee.
+func (o PermissionsAccessPolicyOutput) GranteeId() pulumi.IntOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) int { return v.GranteeId }).(pulumi.IntOutput)
+}
+
+// The type of Grantee. Valid values: `User`, `Role`.
+func (o PermissionsAccessPolicyOutput) GranteeType() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.GranteeType }).(pulumi.StringOutput)
+}
+
+// The id of the RBAC Permission.
+func (o PermissionsAccessPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the RBAC Role is custom role.
+func (o PermissionsAccessPolicyOutput) IsCustomRole() pulumi.BoolOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) bool { return v.IsCustomRole }).(pulumi.BoolOutput)
+}
+
+// The name of the Kube Role Binding.
+func (o PermissionsAccessPolicyOutput) KubeRoleBindingName() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.KubeRoleBindingName }).(pulumi.StringOutput)
+}
+
+// The message of the RBAC Permission.
+func (o PermissionsAccessPolicyOutput) Message() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.Message }).(pulumi.StringOutput)
+}
+
+// The Namespace of the RBAC Permission.
+func (o PermissionsAccessPolicyOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// The revoked time of the RBAC Permission.
+func (o PermissionsAccessPolicyOutput) RevokedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.RevokedAt }).(pulumi.StringOutput)
+}
+
+// The name of the RBAC Role.
+func (o PermissionsAccessPolicyOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// The status of RBAC Permission.
+func (o PermissionsAccessPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v PermissionsAccessPolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type PermissionsAccessPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (PermissionsAccessPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (o PermissionsAccessPolicyArrayOutput) ToPermissionsAccessPolicyArrayOutput() PermissionsAccessPolicyArrayOutput {
+	return o
+}
+
+func (o PermissionsAccessPolicyArrayOutput) ToPermissionsAccessPolicyArrayOutputWithContext(ctx context.Context) PermissionsAccessPolicyArrayOutput {
+	return o
+}
+
+func (o PermissionsAccessPolicyArrayOutput) Index(i pulumi.IntInput) PermissionsAccessPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PermissionsAccessPolicy {
+		return vs[0].([]PermissionsAccessPolicy)[vs[1].(int)]
+	}).(PermissionsAccessPolicyOutput)
+}
+
 type SupportAddonsAddon struct {
 	// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
 	Categories []string `pulumi:"categories"`
@@ -16700,6 +16932,238 @@ func (o GetNodesStatusArrayOutput) Index(i pulumi.IntInput) GetNodesStatusOutput
 	}).(GetNodesStatusOutput)
 }
 
+type GetPermissionsAccessPolicy struct {
+	// The authorized time of the RBAC Permission.
+	AuthorizedAt string `pulumi:"authorizedAt"`
+	// The ID of the Authorizer.
+	AuthorizerId int `pulumi:"authorizerId"`
+	// The name of the Authorizer.
+	AuthorizerName string `pulumi:"authorizerName"`
+	// The type of the Authorizer.
+	AuthorizerType string `pulumi:"authorizerType"`
+	// The ID of the Cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The granted time of the RBAC Permission.
+	GrantedAt string `pulumi:"grantedAt"`
+	// The ID of the Grantee.
+	GranteeId int `pulumi:"granteeId"`
+	// The type of Grantee. Valid values: `User`, `Role`.
+	GranteeType string `pulumi:"granteeType"`
+	// The id of the RBAC Permission.
+	Id string `pulumi:"id"`
+	// Whether the RBAC Role is custom role.
+	IsCustomRole bool `pulumi:"isCustomRole"`
+	// The name of the Kube Role Binding.
+	KubeRoleBindingName string `pulumi:"kubeRoleBindingName"`
+	// The message of the RBAC Permission.
+	Message string `pulumi:"message"`
+	// The Namespace of the RBAC Permission.
+	Namespace string `pulumi:"namespace"`
+	// The revoked time of the RBAC Permission.
+	RevokedAt string `pulumi:"revokedAt"`
+	// The name of the RBAC Role.
+	RoleName string `pulumi:"roleName"`
+	// The status of RBAC Permission.
+	Status string `pulumi:"status"`
+}
+
+// GetPermissionsAccessPolicyInput is an input type that accepts GetPermissionsAccessPolicyArgs and GetPermissionsAccessPolicyOutput values.
+// You can construct a concrete instance of `GetPermissionsAccessPolicyInput` via:
+//
+//	GetPermissionsAccessPolicyArgs{...}
+type GetPermissionsAccessPolicyInput interface {
+	pulumi.Input
+
+	ToGetPermissionsAccessPolicyOutput() GetPermissionsAccessPolicyOutput
+	ToGetPermissionsAccessPolicyOutputWithContext(context.Context) GetPermissionsAccessPolicyOutput
+}
+
+type GetPermissionsAccessPolicyArgs struct {
+	// The authorized time of the RBAC Permission.
+	AuthorizedAt pulumi.StringInput `pulumi:"authorizedAt"`
+	// The ID of the Authorizer.
+	AuthorizerId pulumi.IntInput `pulumi:"authorizerId"`
+	// The name of the Authorizer.
+	AuthorizerName pulumi.StringInput `pulumi:"authorizerName"`
+	// The type of the Authorizer.
+	AuthorizerType pulumi.StringInput `pulumi:"authorizerType"`
+	// The ID of the Cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The granted time of the RBAC Permission.
+	GrantedAt pulumi.StringInput `pulumi:"grantedAt"`
+	// The ID of the Grantee.
+	GranteeId pulumi.IntInput `pulumi:"granteeId"`
+	// The type of Grantee. Valid values: `User`, `Role`.
+	GranteeType pulumi.StringInput `pulumi:"granteeType"`
+	// The id of the RBAC Permission.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the RBAC Role is custom role.
+	IsCustomRole pulumi.BoolInput `pulumi:"isCustomRole"`
+	// The name of the Kube Role Binding.
+	KubeRoleBindingName pulumi.StringInput `pulumi:"kubeRoleBindingName"`
+	// The message of the RBAC Permission.
+	Message pulumi.StringInput `pulumi:"message"`
+	// The Namespace of the RBAC Permission.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// The revoked time of the RBAC Permission.
+	RevokedAt pulumi.StringInput `pulumi:"revokedAt"`
+	// The name of the RBAC Role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// The status of RBAC Permission.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetPermissionsAccessPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (i GetPermissionsAccessPolicyArgs) ToGetPermissionsAccessPolicyOutput() GetPermissionsAccessPolicyOutput {
+	return i.ToGetPermissionsAccessPolicyOutputWithContext(context.Background())
+}
+
+func (i GetPermissionsAccessPolicyArgs) ToGetPermissionsAccessPolicyOutputWithContext(ctx context.Context) GetPermissionsAccessPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionsAccessPolicyOutput)
+}
+
+// GetPermissionsAccessPolicyArrayInput is an input type that accepts GetPermissionsAccessPolicyArray and GetPermissionsAccessPolicyArrayOutput values.
+// You can construct a concrete instance of `GetPermissionsAccessPolicyArrayInput` via:
+//
+//	GetPermissionsAccessPolicyArray{ GetPermissionsAccessPolicyArgs{...} }
+type GetPermissionsAccessPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetPermissionsAccessPolicyArrayOutput() GetPermissionsAccessPolicyArrayOutput
+	ToGetPermissionsAccessPolicyArrayOutputWithContext(context.Context) GetPermissionsAccessPolicyArrayOutput
+}
+
+type GetPermissionsAccessPolicyArray []GetPermissionsAccessPolicyInput
+
+func (GetPermissionsAccessPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (i GetPermissionsAccessPolicyArray) ToGetPermissionsAccessPolicyArrayOutput() GetPermissionsAccessPolicyArrayOutput {
+	return i.ToGetPermissionsAccessPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetPermissionsAccessPolicyArray) ToGetPermissionsAccessPolicyArrayOutputWithContext(ctx context.Context) GetPermissionsAccessPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPermissionsAccessPolicyArrayOutput)
+}
+
+type GetPermissionsAccessPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionsAccessPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (o GetPermissionsAccessPolicyOutput) ToGetPermissionsAccessPolicyOutput() GetPermissionsAccessPolicyOutput {
+	return o
+}
+
+func (o GetPermissionsAccessPolicyOutput) ToGetPermissionsAccessPolicyOutputWithContext(ctx context.Context) GetPermissionsAccessPolicyOutput {
+	return o
+}
+
+// The authorized time of the RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) AuthorizedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.AuthorizedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Authorizer.
+func (o GetPermissionsAccessPolicyOutput) AuthorizerId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) int { return v.AuthorizerId }).(pulumi.IntOutput)
+}
+
+// The name of the Authorizer.
+func (o GetPermissionsAccessPolicyOutput) AuthorizerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.AuthorizerName }).(pulumi.StringOutput)
+}
+
+// The type of the Authorizer.
+func (o GetPermissionsAccessPolicyOutput) AuthorizerType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.AuthorizerType }).(pulumi.StringOutput)
+}
+
+// The ID of the Cluster.
+func (o GetPermissionsAccessPolicyOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The granted time of the RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) GrantedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.GrantedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Grantee.
+func (o GetPermissionsAccessPolicyOutput) GranteeId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) int { return v.GranteeId }).(pulumi.IntOutput)
+}
+
+// The type of Grantee. Valid values: `User`, `Role`.
+func (o GetPermissionsAccessPolicyOutput) GranteeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.GranteeType }).(pulumi.StringOutput)
+}
+
+// The id of the RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the RBAC Role is custom role.
+func (o GetPermissionsAccessPolicyOutput) IsCustomRole() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) bool { return v.IsCustomRole }).(pulumi.BoolOutput)
+}
+
+// The name of the Kube Role Binding.
+func (o GetPermissionsAccessPolicyOutput) KubeRoleBindingName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.KubeRoleBindingName }).(pulumi.StringOutput)
+}
+
+// The message of the RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) Message() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.Message }).(pulumi.StringOutput)
+}
+
+// The Namespace of the RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// The revoked time of the RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) RevokedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.RevokedAt }).(pulumi.StringOutput)
+}
+
+// The name of the RBAC Role.
+func (o GetPermissionsAccessPolicyOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// The status of RBAC Permission.
+func (o GetPermissionsAccessPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPermissionsAccessPolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetPermissionsAccessPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPermissionsAccessPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPermissionsAccessPolicy)(nil)).Elem()
+}
+
+func (o GetPermissionsAccessPolicyArrayOutput) ToGetPermissionsAccessPolicyArrayOutput() GetPermissionsAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetPermissionsAccessPolicyArrayOutput) ToGetPermissionsAccessPolicyArrayOutputWithContext(ctx context.Context) GetPermissionsAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetPermissionsAccessPolicyArrayOutput) Index(i pulumi.IntInput) GetPermissionsAccessPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPermissionsAccessPolicy {
+		return vs[0].([]GetPermissionsAccessPolicy)[vs[1].(int)]
+	}).(GetPermissionsAccessPolicyOutput)
+}
+
 type GetSupportAddonsAddon struct {
 	// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
 	Categories []string `pulumi:"categories"`
@@ -17347,6 +17811,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeTaintArrayInput)(nil)).Elem(), NodesNodeTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesStatusInput)(nil)).Elem(), NodesStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesStatusArrayInput)(nil)).Elem(), NodesStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PermissionsAccessPolicyInput)(nil)).Elem(), PermissionsAccessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PermissionsAccessPolicyArrayInput)(nil)).Elem(), PermissionsAccessPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonInput)(nil)).Elem(), SupportAddonsAddonArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonArrayInput)(nil)).Elem(), SupportAddonsAddonArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionInput)(nil)).Elem(), SupportAddonsAddonVersionArgs{})
@@ -17422,6 +17888,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeTaintArrayInput)(nil)).Elem(), GetNodesNodeTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesStatusInput)(nil)).Elem(), GetNodesStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesStatusArrayInput)(nil)).Elem(), GetNodesStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionsAccessPolicyInput)(nil)).Elem(), GetPermissionsAccessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPermissionsAccessPolicyArrayInput)(nil)).Elem(), GetPermissionsAccessPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonInput)(nil)).Elem(), GetSupportAddonsAddonArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonArrayInput)(nil)).Elem(), GetSupportAddonsAddonArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSupportAddonsAddonVersionInput)(nil)).Elem(), GetSupportAddonsAddonVersionArgs{})
@@ -17587,6 +18055,8 @@ func init() {
 	pulumi.RegisterOutputType(NodesNodeTaintArrayOutput{})
 	pulumi.RegisterOutputType(NodesStatusOutput{})
 	pulumi.RegisterOutputType(NodesStatusArrayOutput{})
+	pulumi.RegisterOutputType(PermissionsAccessPolicyOutput{})
+	pulumi.RegisterOutputType(PermissionsAccessPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SupportAddonsAddonOutput{})
 	pulumi.RegisterOutputType(SupportAddonsAddonArrayOutput{})
 	pulumi.RegisterOutputType(SupportAddonsAddonVersionOutput{})
@@ -17662,6 +18132,8 @@ func init() {
 	pulumi.RegisterOutputType(GetNodesNodeTaintArrayOutput{})
 	pulumi.RegisterOutputType(GetNodesStatusOutput{})
 	pulumi.RegisterOutputType(GetNodesStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetPermissionsAccessPolicyOutput{})
+	pulumi.RegisterOutputType(GetPermissionsAccessPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetSupportAddonsAddonOutput{})
 	pulumi.RegisterOutputType(GetSupportAddonsAddonArrayOutput{})
 	pulumi.RegisterOutputType(GetSupportAddonsAddonVersionOutput{})

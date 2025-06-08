@@ -49,7 +49,7 @@ namespace Pulumi.Volcengine.Ebs
     ///     {
     ///         OsType = "Linux",
     ///         Visibility = "public",
-    ///         InstanceTypeId = "ecs.g1.large",
+    ///         InstanceTypeId = "ecs.g3il.large",
     ///     });
     /// 
     ///     // create PrePaid ecs instance
@@ -59,7 +59,7 @@ namespace Pulumi.Volcengine.Ebs
     ///         Description = "acc-test",
     ///         HostName = "tf-acc-test",
     ///         ImageId = fooImages.Apply(getImagesResult =&gt; getImagesResult.Images[0]?.ImageId),
-    ///         InstanceType = "ecs.g1.large",
+    ///         InstanceType = "ecs.g3il.large",
     ///         Password = "93f0cb0614Aab12",
     ///         InstanceChargeType = "PrePaid",
     ///         Period = 1,
@@ -125,6 +125,13 @@ namespace Pulumi.Volcengine.Ebs
     ///         },
     ///     });
     /// 
+    ///     // attach PostPaid data volume to ecs instance
+    ///     var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         VolumeId = postVolume.Id,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -176,9 +183,10 @@ namespace Pulumi.Volcengine.Ebs
         public Output<string?> ExtraPerformanceTypeId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-        /// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-        /// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        /// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+        /// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+        /// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+        /// from terraform state file and management.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -239,7 +247,7 @@ namespace Pulumi.Volcengine.Ebs
         public Output<string> VolumeName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        /// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         /// </summary>
         [Output("volumeType")]
         public Output<string> VolumeType { get; private set; } = null!;
@@ -328,9 +336,10 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? ExtraPerformanceTypeId { get; set; }
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-        /// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-        /// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        /// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+        /// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+        /// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+        /// from terraform state file and management.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -385,7 +394,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string> VolumeName { get; set; } = null!;
 
         /// <summary>
-        /// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        /// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         /// </summary>
         [Input("volumeType", required: true)]
         public Input<string> VolumeType { get; set; } = null!;
@@ -441,9 +450,10 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? ExtraPerformanceTypeId { get; set; }
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. When use this field to attach ecs
-        /// instance, the attached volume cannot be deleted by terraform, please use `terraform state rm
-        /// volcengine_volume.resource_name` command to remove it from terraform state file and management.
+        /// The ID of the instance to which the created volume is automatically attached. It is recommended to attach the PostPaid
+        /// volume to instance through resource `volume_attach`.When use this field to attach ecs instance, the attached volume
+        /// cannot be deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it
+        /// from terraform state file and management.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -510,7 +520,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? VolumeName { get; set; }
 
         /// <summary>
-        /// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        /// The type of Volume. Valid values: `ESSD_PL0`, `ESSD_FlexPL`, `TSSD_TL0`.
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
