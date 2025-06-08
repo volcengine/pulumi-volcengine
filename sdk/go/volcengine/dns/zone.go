@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := dns.NewZone(ctx, "foo", &dns.ZoneArgs{
-//				ProjectName: pulumi.String("xxx"),
+//				ProjectName: pulumi.String("default"),
 //				Remark:      pulumi.String("xxx"),
 //				Tags: dns.ZoneTagArray{
 //					&dns.ZoneTagArgs{

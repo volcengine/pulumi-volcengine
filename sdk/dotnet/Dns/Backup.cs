@@ -21,9 +21,24 @@ namespace Pulumi.Volcengine.Dns
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Dns.Backup("foo", new()
+    ///     var fooZone = new Volcengine.Dns.Zone("fooZone", new()
     ///     {
-    ///         Zid = 58846,
+    ///         ZoneName = "xxxx.com",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Dns.Inputs.ZoneTagArgs
+    ///             {
+    ///                 Key = "xx",
+    ///                 Value = "xx",
+    ///             },
+    ///         },
+    ///         ProjectName = "default",
+    ///         Remark = "xxx",
+    ///     });
+    /// 
+    ///     var fooBackup = new Volcengine.Dns.Backup("fooBackup", new()
+    ///     {
+    ///         Zid = fooZone.Id,
     ///     });
     /// 
     /// });

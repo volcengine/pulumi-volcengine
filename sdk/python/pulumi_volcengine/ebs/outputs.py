@@ -15,6 +15,10 @@ __all__ = [
     'AutoSnapshotPoliciesAutoSnapshotPolicyTagResult',
     'AutoSnapshotPoliciesTagResult',
     'AutoSnapshotPolicyTag',
+    'MaxExtraPerformancesPerformanceResult',
+    'MaxExtraPerformancesPerformanceBaselineResult',
+    'MaxExtraPerformancesPerformanceLimitResult',
+    'MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult',
     'SnapshotGroupTag',
     'SnapshotGroupsSnapshotGroupResult',
     'SnapshotGroupsSnapshotGroupSnapshotResult',
@@ -34,6 +38,10 @@ __all__ = [
     'GetAutoSnapshotPoliciesAutoSnapshotPolicyResult',
     'GetAutoSnapshotPoliciesAutoSnapshotPolicyTagResult',
     'GetAutoSnapshotPoliciesTagResult',
+    'GetMaxExtraPerformancesPerformanceResult',
+    'GetMaxExtraPerformancesPerformanceBaselineResult',
+    'GetMaxExtraPerformancesPerformanceLimitResult',
+    'GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult',
     'GetSnapshotGroupsSnapshotGroupResult',
     'GetSnapshotGroupsSnapshotGroupSnapshotResult',
     'GetSnapshotGroupsSnapshotGroupSnapshotTagResult',
@@ -284,6 +292,133 @@ class AutoSnapshotPolicyTag(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class MaxExtraPerformancesPerformanceResult(dict):
+    def __init__(__self__, *,
+                 baselines: Sequence['outputs.MaxExtraPerformancesPerformanceBaselineResult'],
+                 limits: Sequence['outputs.MaxExtraPerformancesPerformanceLimitResult'],
+                 max_extra_performance_can_purchases: Sequence['outputs.MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult']):
+        """
+        :param Sequence['MaxExtraPerformancesPerformanceBaselineArgs'] baselines: The baseline of the performance.
+        :param Sequence['MaxExtraPerformancesPerformanceLimitArgs'] limits: The limit of the extra performance.
+        :param Sequence['MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs'] max_extra_performance_can_purchases: The max extra performance can purchase.
+        """
+        pulumi.set(__self__, "baselines", baselines)
+        pulumi.set(__self__, "limits", limits)
+        pulumi.set(__self__, "max_extra_performance_can_purchases", max_extra_performance_can_purchases)
+
+    @property
+    @pulumi.getter
+    def baselines(self) -> Sequence['outputs.MaxExtraPerformancesPerformanceBaselineResult']:
+        """
+        The baseline of the performance.
+        """
+        return pulumi.get(self, "baselines")
+
+    @property
+    @pulumi.getter
+    def limits(self) -> Sequence['outputs.MaxExtraPerformancesPerformanceLimitResult']:
+        """
+        The limit of the extra performance.
+        """
+        return pulumi.get(self, "limits")
+
+    @property
+    @pulumi.getter(name="maxExtraPerformanceCanPurchases")
+    def max_extra_performance_can_purchases(self) -> Sequence['outputs.MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult']:
+        """
+        The max extra performance can purchase.
+        """
+        return pulumi.get(self, "max_extra_performance_can_purchases")
+
+
+@pulumi.output_type
+class MaxExtraPerformancesPerformanceBaselineResult(dict):
+    def __init__(__self__, *,
+                 iops: int,
+                 throughput: int):
+        """
+        :param int iops: The limit of the iops.
+        :param int throughput: The limit of the throughput.
+        """
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The limit of the iops.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The limit of the throughput.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class MaxExtraPerformancesPerformanceLimitResult(dict):
+    def __init__(__self__, *,
+                 iops: int,
+                 throughput: int):
+        """
+        :param int iops: The limit of the iops.
+        :param int throughput: The limit of the throughput.
+        """
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The limit of the iops.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The limit of the throughput.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class MaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult(dict):
+    def __init__(__self__, *,
+                 extra_performance_type_id: str,
+                 limit: int):
+        """
+        :param str extra_performance_type_id: The type of the extra performance.
+        :param int limit: The limit of the extra performance.
+        """
+        pulumi.set(__self__, "extra_performance_type_id", extra_performance_type_id)
+        pulumi.set(__self__, "limit", limit)
+
+    @property
+    @pulumi.getter(name="extraPerformanceTypeId")
+    def extra_performance_type_id(self) -> str:
+        """
+        The type of the extra performance.
+        """
+        return pulumi.get(self, "extra_performance_type_id")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> int:
+        """
+        The limit of the extra performance.
+        """
+        return pulumi.get(self, "limit")
 
 
 @pulumi.output_type
@@ -1589,6 +1724,133 @@ class GetAutoSnapshotPoliciesTagResult(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetMaxExtraPerformancesPerformanceResult(dict):
+    def __init__(__self__, *,
+                 baselines: Sequence['outputs.GetMaxExtraPerformancesPerformanceBaselineResult'],
+                 limits: Sequence['outputs.GetMaxExtraPerformancesPerformanceLimitResult'],
+                 max_extra_performance_can_purchases: Sequence['outputs.GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult']):
+        """
+        :param Sequence['GetMaxExtraPerformancesPerformanceBaselineArgs'] baselines: The baseline of the performance.
+        :param Sequence['GetMaxExtraPerformancesPerformanceLimitArgs'] limits: The limit of the extra performance.
+        :param Sequence['GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseArgs'] max_extra_performance_can_purchases: The max extra performance can purchase.
+        """
+        pulumi.set(__self__, "baselines", baselines)
+        pulumi.set(__self__, "limits", limits)
+        pulumi.set(__self__, "max_extra_performance_can_purchases", max_extra_performance_can_purchases)
+
+    @property
+    @pulumi.getter
+    def baselines(self) -> Sequence['outputs.GetMaxExtraPerformancesPerformanceBaselineResult']:
+        """
+        The baseline of the performance.
+        """
+        return pulumi.get(self, "baselines")
+
+    @property
+    @pulumi.getter
+    def limits(self) -> Sequence['outputs.GetMaxExtraPerformancesPerformanceLimitResult']:
+        """
+        The limit of the extra performance.
+        """
+        return pulumi.get(self, "limits")
+
+    @property
+    @pulumi.getter(name="maxExtraPerformanceCanPurchases")
+    def max_extra_performance_can_purchases(self) -> Sequence['outputs.GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult']:
+        """
+        The max extra performance can purchase.
+        """
+        return pulumi.get(self, "max_extra_performance_can_purchases")
+
+
+@pulumi.output_type
+class GetMaxExtraPerformancesPerformanceBaselineResult(dict):
+    def __init__(__self__, *,
+                 iops: int,
+                 throughput: int):
+        """
+        :param int iops: The limit of the iops.
+        :param int throughput: The limit of the throughput.
+        """
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The limit of the iops.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The limit of the throughput.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class GetMaxExtraPerformancesPerformanceLimitResult(dict):
+    def __init__(__self__, *,
+                 iops: int,
+                 throughput: int):
+        """
+        :param int iops: The limit of the iops.
+        :param int throughput: The limit of the throughput.
+        """
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "throughput", throughput)
+
+    @property
+    @pulumi.getter
+    def iops(self) -> int:
+        """
+        The limit of the iops.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter
+    def throughput(self) -> int:
+        """
+        The limit of the throughput.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class GetMaxExtraPerformancesPerformanceMaxExtraPerformanceCanPurchaseResult(dict):
+    def __init__(__self__, *,
+                 extra_performance_type_id: str,
+                 limit: int):
+        """
+        :param str extra_performance_type_id: The type of the extra performance.
+        :param int limit: The limit of the extra performance.
+        """
+        pulumi.set(__self__, "extra_performance_type_id", extra_performance_type_id)
+        pulumi.set(__self__, "limit", limit)
+
+    @property
+    @pulumi.getter(name="extraPerformanceTypeId")
+    def extra_performance_type_id(self) -> str:
+        """
+        The type of the extra performance.
+        """
+        return pulumi.get(self, "extra_performance_type_id")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> int:
+        """
+        The limit of the extra performance.
+        """
+        return pulumi.get(self, "limit")
 
 
 @pulumi.output_type

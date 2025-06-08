@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Dns
     /// {
     ///     var foo = new Volcengine.Dns.Zone("foo", new()
     ///     {
-    ///         ProjectName = "xxx",
+    ///         ProjectName = "default",
     ///         Remark = "xxx",
     ///         Tags = new[]
     ///         {

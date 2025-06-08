@@ -32,13 +32,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
@@ -48,6 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create redis instance
 //			_, err = redis.NewInstance(ctx, "fooInstance", &redis.InstanceArgs{
 //				InstanceName:       pulumi.String("tf-test2"),
 //				ShardedCluster:     pulumi.Int(1),

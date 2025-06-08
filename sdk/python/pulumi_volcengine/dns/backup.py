@@ -105,7 +105,15 @@ class Backup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.dns.Backup("foo", zid=58846)
+        foo_zone = volcengine.dns.Zone("fooZone",
+            zone_name="xxxx.com",
+            tags=[volcengine.dns.ZoneTagArgs(
+                key="xx",
+                value="xx",
+            )],
+            project_name="default",
+            remark="xxx")
+        foo_backup = volcengine.dns.Backup("fooBackup", zid=foo_zone.id)
         ```
 
         ## Import
@@ -134,7 +142,15 @@ class Backup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.dns.Backup("foo", zid=58846)
+        foo_zone = volcengine.dns.Zone("fooZone",
+            zone_name="xxxx.com",
+            tags=[volcengine.dns.ZoneTagArgs(
+                key="xx",
+                value="xx",
+            )],
+            project_name="default",
+            remark="xxx")
+        foo_backup = volcengine.dns.Backup("fooBackup", zid=foo_zone.id)
         ```
 
         ## Import

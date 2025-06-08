@@ -33,15 +33,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
-//				VpcName:   pulumi.String("acc-test-project1"),
+//				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
-//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
 //				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
@@ -49,15 +56,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
+//			// create mysql instance
+//			fooInstance, err := rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
 //				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
 //				PrimaryZoneId:       pulumi.String(fooZones.Zones[0].Id),
 //				SecondaryZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
 //				SubnetId:            fooSubnet.ID(),
-//				InstanceName:        pulumi.String("acc-test"),
+//				InstanceName:        pulumi.String("acc-test-mysql-instance"),
 //				LowerCaseTableNames: pulumi.String("1"),
+//				ProjectName:         pulumi.String("default"),
+//				Tags: rds_mysql.InstanceTagArray{
+//					&rds_mysql.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //				ChargeInfo: &rds_mysql.InstanceChargeInfoArgs{
 //					ChargeType: pulumi.String("PostPaid"),
 //				},
@@ -71,13 +86,44 @@ import (
 //						ParameterValue: pulumi.String("5"),
 //					},
 //				},
-//				ProjectName: pulumi.String("default"),
-//				Tags: rds_mysql.InstanceTagArray{
-//					&rds_mysql.InstanceTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
-//					},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create mysql instance readonly node
+//			_, err = rds_mysql.NewInstanceReadonlyNode(ctx, "fooInstanceReadonlyNode", &rds_mysql.InstanceReadonlyNodeArgs{
+//				InstanceId: fooInstance.ID(),
+//				NodeSpec:   pulumi.String("rds.mysql.2c4g"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create mysql allow list
+//			fooAllowlist, err := rds_mysql.NewAllowlist(ctx, "fooAllowlist", &rds_mysql.AllowlistArgs{
+//				AllowListName: pulumi.String("acc-test-allowlist"),
+//				AllowListDesc: pulumi.String("acc-test"),
+//				AllowListType: pulumi.String("IPv4"),
+//				AllowLists: pulumi.StringArray{
+//					pulumi.String("192.168.0.0/24"),
+//					pulumi.String("192.168.1.0/24"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// associate mysql allow list to mysql instance
+//			_, err = rds_mysql.NewAllowlistAssociate(ctx, "fooAllowlistAssociate", &rds_mysql.AllowlistAssociateArgs{
+//				AllowListId: fooAllowlist.ID(),
+//				InstanceId:  fooInstance.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create mysql database
+//			_, err = rds_mysql.NewDatabase(ctx, "fooDatabase", &rds_mysql.DatabaseArgs{
+//				DbName:     pulumi.String("acc-test-database"),
+//				InstanceId: fooInstance.ID(),
 //			})
 //			if err != nil {
 //				return err

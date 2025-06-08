@@ -21,19 +21,56 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NewRouteEntry(ctx, "foo", &vpc.RouteEntryArgs{
-//				Description:          pulumi.String("tf-test-up"),
-//				DestinationCidrBlock: pulumi.String("0.0.0.0/2"),
-//				NextHopId:            pulumi.String("ngw-274gwbqe340zk7fap8spkzo7x"),
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc-rn"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet-rn"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGateway, err := nat.NewGateway(ctx, "fooGateway", &nat.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Spec:           pulumi.String("Small"),
+//				NatGatewayName: pulumi.String("acc-test-nat-rn"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooRouteTable, err := vpc.NewRouteTable(ctx, "fooRouteTable", &vpc.RouteTableArgs{
+//				VpcId:          fooVpc.ID(),
+//				RouteTableName: pulumi.String("acc-test-route-table"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewRouteEntry(ctx, "fooRouteEntry", &vpc.RouteEntryArgs{
+//				RouteTableId:         fooRouteTable.ID(),
+//				DestinationCidrBlock: pulumi.String("172.16.1.0/24"),
 //				NextHopType:          pulumi.String("NatGW"),
-//				RouteEntryName:       pulumi.String("tf-test-up"),
-//				RouteTableId:         pulumi.String("vtb-2744hslq5b7r47fap8tjomgnj"),
+//				NextHopId:            fooGateway.ID(),
+//				RouteEntryName:       pulumi.String("acc-test-route-entry"),
 //			})
 //			if err != nil {
 //				return err

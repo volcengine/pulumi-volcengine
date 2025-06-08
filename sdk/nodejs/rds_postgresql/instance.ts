@@ -16,16 +16,24 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.getZones({});
+ * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
- *     vpcName: "acc-test-project1",
+ *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
+ *     dnsServers: [
+ *         "8.8.8.8",
+ *         "114.114.114.114",
+ *     ],
+ *     projectName: "default",
  * });
+ * // create subnet
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
- *     subnetName: "acc-subnet-test-2",
+ *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * // create postgresql instance
  * const fooInstance = new volcengine.rds_postgresql.Instance("fooInstance", {
  *     dbEngineVersion: "PostgreSQL_12",
  *     nodeSpec: "rds.postgres.1c2g",
@@ -33,7 +41,7 @@ import * as utilities from "../utilities";
  *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     storageSpace: 40,
  *     subnetId: fooSubnet.id,
- *     instanceName: "acc-test-1",
+ *     instanceName: "acc-test-postgresql-instance",
  *     chargeInfo: {
  *         chargeType: "PostPaid",
  *     },
@@ -52,6 +60,49 @@ import * as utilities from "../utilities";
  *             value: "text",
  *         },
  *     ],
+ * });
+ * // create postgresql instance readonly node
+ * const fooInstanceReadonlyNode = new volcengine.rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode", {
+ *     instanceId: fooInstance.id,
+ *     nodeSpec: "rds.postgres.1c2g",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ * });
+ * // create postgresql allow list
+ * const fooAllowlist = new volcengine.rds_postgresql.Allowlist("fooAllowlist", {
+ *     allowListName: "acc-test-allowlist",
+ *     allowListDesc: "acc-test",
+ *     allowListType: "IPv4",
+ *     allowLists: [
+ *         "192.168.0.0/24",
+ *         "192.168.1.0/24",
+ *     ],
+ * });
+ * // associate postgresql allow list to postgresql instance
+ * const fooAllowlistAssociate = new volcengine.rds_postgresql.AllowlistAssociate("fooAllowlistAssociate", {
+ *     instanceId: fooInstance.id,
+ *     allowListId: fooAllowlist.id,
+ * });
+ * // create postgresql database
+ * const fooDatabase = new volcengine.rds_postgresql.Database("fooDatabase", {
+ *     dbName: "acc-test-database",
+ *     instanceId: fooInstance.id,
+ *     cType: "C",
+ *     collate: "zh_CN.utf8",
+ * });
+ * // create postgresql account
+ * const fooAccount = new volcengine.rds_postgresql.Account("fooAccount", {
+ *     accountName: "acc-test-account",
+ *     accountPassword: "9wc@********12",
+ *     accountType: "Normal",
+ *     instanceId: fooInstance.id,
+ *     accountPrivileges: "Inherit,Login,CreateRole,CreateDB",
+ * });
+ * // create postgresql schema
+ * const fooSchema = new volcengine.rds_postgresql.Schema("fooSchema", {
+ *     dbName: fooDatabase.dbName,
+ *     instanceId: fooInstance.id,
+ *     owner: fooAccount.accountName,
+ *     schemaName: "acc-test-schema",
  * });
  * ```
  *

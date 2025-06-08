@@ -32,24 +32,31 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// create vpc
 //			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
 //				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// create subnet
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
-//				SubnetName:  pulumi.String("acc-test-subnet"),
-//				Description: pulumi.String("tfdesc"),
-//				CidrBlock:   pulumi.String("172.16.0.0/24"),
-//				ZoneId:      pulumi.String(fooZones.Zones[0].Id),
-//				VpcId:       fooVpc.ID(),
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = escloud_v2.NewEscloudInstanceV2(ctx, "fooEscloudInstanceV2", &escloud_v2.EscloudInstanceV2Args{
+//			// create escloud instance
+//			fooEscloudInstanceV2, err := escloud_v2.NewEscloudInstanceV2(ctx, "fooEscloudInstanceV2", &escloud_v2.EscloudInstanceV2Args{
 //				InstanceName: pulumi.String("acc-test-escloud-instance"),
 //				Version:      pulumi.String("V7_10"),
 //				ZoneIds: pulumi.StringArray{
@@ -112,6 +119,20 @@ import (
 //						Key:   pulumi.String("k1"),
 //						Value: pulumi.String("v1"),
 //					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// create escloud ip white list
+//			_, err = escloud_v2.NewEscloudIpWhiteList(ctx, "fooEscloudIpWhiteList", &escloud_v2.EscloudIpWhiteListArgs{
+//				InstanceId: fooEscloudInstanceV2.ID(),
+//				Type:       pulumi.String("public"),
+//				Component:  pulumi.String("es"),
+//				IpLists: pulumi.StringArray{
+//					pulumi.String("172.16.0.10"),
+//					pulumi.String("172.16.0.11"),
+//					pulumi.String("172.16.0.12"),
 //				},
 //			})
 //			if err != nil {

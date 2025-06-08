@@ -12,7 +12,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.dns.Backup("foo", {zid: 58846});
+ * const fooZone = new volcengine.dns.Zone("fooZone", {
+ *     zoneName: "xxxx.com",
+ *     tags: [{
+ *         key: "xx",
+ *         value: "xx",
+ *     }],
+ *     projectName: "default",
+ *     remark: "xxx",
+ * });
+ * const fooBackup = new volcengine.dns.Backup("fooBackup", {zid: fooZone.id});
  * ```
  *
  * ## Import

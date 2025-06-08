@@ -60,6 +60,11 @@ export const getNodes: typeof import("./getNodes").getNodes = null as any;
 export const getNodesOutput: typeof import("./getNodes").getNodesOutput = null as any;
 utilities.lazyLoad(exports, ["getNodes","getNodesOutput"], () => require("./getNodes"));
 
+export { GetPermissionsArgs, GetPermissionsResult, GetPermissionsOutputArgs } from "./getPermissions";
+export const getPermissions: typeof import("./getPermissions").getPermissions = null as any;
+export const getPermissionsOutput: typeof import("./getPermissions").getPermissionsOutput = null as any;
+utilities.lazyLoad(exports, ["getPermissions","getPermissionsOutput"], () => require("./getPermissions"));
+
 export { GetSupportAddonsArgs, GetSupportAddonsResult, GetSupportAddonsOutputArgs } from "./getSupportAddons";
 export const getSupportAddons: typeof import("./getSupportAddons").getSupportAddons = null as any;
 export const getSupportAddonsOutput: typeof import("./getSupportAddons").getSupportAddonsOutput = null as any;
@@ -100,6 +105,16 @@ export const nodes: typeof import("./nodes").nodes = null as any;
 export const nodesOutput: typeof import("./nodes").nodesOutput = null as any;
 utilities.lazyLoad(exports, ["nodes","nodesOutput"], () => require("./nodes"));
 
+export { PermissionArgs, PermissionState } from "./permission";
+export type Permission = import("./permission").Permission;
+export const Permission: typeof import("./permission").Permission = null as any;
+utilities.lazyLoad(exports, ["Permission"], () => require("./permission"));
+
+export { PermissionsArgs, PermissionsResult, PermissionsOutputArgs } from "./permissions";
+export const permissions: typeof import("./permissions").permissions = null as any;
+export const permissionsOutput: typeof import("./permissions").permissionsOutput = null as any;
+utilities.lazyLoad(exports, ["permissions","permissionsOutput"], () => require("./permissions"));
+
 export { SupportAddonsArgs, SupportAddonsResult, SupportAddonsOutputArgs } from "./supportAddons";
 export const supportAddons: typeof import("./supportAddons").supportAddons = null as any;
 export const supportAddonsOutput: typeof import("./supportAddons").supportAddonsOutput = null as any;
@@ -129,6 +144,8 @@ const _module = {
                 return new Node(name, <any>undefined, { urn })
             case "volcengine:vke/nodePool:NodePool":
                 return new NodePool(name, <any>undefined, { urn })
+            case "volcengine:vke/permission:Permission":
+                return new Permission(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -141,3 +158,4 @@ pulumi.runtime.registerResourceModule("volcengine", "vke/defaultNodePoolBatchAtt
 pulumi.runtime.registerResourceModule("volcengine", "vke/kubeconfig", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vke/node", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vke/nodePool", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vke/permission", _module)
