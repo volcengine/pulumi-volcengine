@@ -37,7 +37,11 @@ import * as utilities from "../utilities";
  *             subnetId: "subnet-mj2o4co2m2v45smt1bx1****",
  *         },
  *     ],
- *     securityGroupId: "sg-mj2nsckay29s5smt1b0d****",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     vpcId: "vpc-13f9uuuqfdjb43n6nu5p1****",
  *     vpcRegion: "cn-beijing",
  * });
@@ -92,9 +96,17 @@ export class ResolverEndpoint extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The project name of the private zone resolver endpoint.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The security group ID of the endpoint.
      */
     public readonly securityGroupId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.private_zone.ResolverEndpointTag[] | undefined>;
     /**
      * The VPC ID of the endpoint.
      */
@@ -103,6 +115,11 @@ export class ResolverEndpoint extends pulumi.CustomResource {
      * The VPC region of the endpoint.
      */
     public readonly vpcRegion!: pulumi.Output<string>;
+    /**
+     * The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly vpcTrns!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ResolverEndpoint resource with the given unique name, arguments, and options.
@@ -120,16 +137,16 @@ export class ResolverEndpoint extends pulumi.CustomResource {
             resourceInputs["direction"] = state ? state.direction : undefined;
             resourceInputs["ipConfigs"] = state ? state.ipConfigs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["vpcRegion"] = state ? state.vpcRegion : undefined;
+            resourceInputs["vpcTrns"] = state ? state.vpcTrns : undefined;
         } else {
             const args = argsOrState as ResolverEndpointArgs | undefined;
             if ((!args || args.ipConfigs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ipConfigs'");
-            }
-            if ((!args || args.securityGroupId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'securityGroupId'");
             }
             if ((!args || args.vpcId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vpcId'");
@@ -140,9 +157,12 @@ export class ResolverEndpoint extends pulumi.CustomResource {
             resourceInputs["direction"] = args ? args.direction : undefined;
             resourceInputs["ipConfigs"] = args ? args.ipConfigs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["vpcRegion"] = args ? args.vpcRegion : undefined;
+            resourceInputs["vpcTrns"] = args ? args.vpcTrns : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ResolverEndpoint.__pulumiType, name, resourceInputs, opts);
@@ -166,9 +186,17 @@ export interface ResolverEndpointState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The project name of the private zone resolver endpoint.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The security group ID of the endpoint.
      */
     securityGroupId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverEndpointTag>[]>;
     /**
      * The VPC ID of the endpoint.
      */
@@ -177,6 +205,11 @@ export interface ResolverEndpointState {
      * The VPC region of the endpoint.
      */
     vpcRegion?: pulumi.Input<string>;
+    /**
+     * The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    vpcTrns?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -196,9 +229,17 @@ export interface ResolverEndpointArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The project name of the private zone resolver endpoint.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The security group ID of the endpoint.
      */
-    securityGroupId: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverEndpointTag>[]>;
     /**
      * The VPC ID of the endpoint.
      */
@@ -207,4 +248,9 @@ export interface ResolverEndpointArgs {
      * The VPC region of the endpoint.
      */
     vpcRegion: pulumi.Input<string>;
+    /**
+     * The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    vpcTrns?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -32,6 +32,15 @@ namespace Pulumi.Volcengine.Private_zone
     ///                 Port = 33,
     ///             },
     ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Private_zone.Inputs.ResolverRuleTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///         Type = "OUTBOUND",
     ///         Vpcs = new[]
     ///         {
@@ -68,6 +77,13 @@ namespace Pulumi.Volcengine.Private_zone
         public Output<int?> EndpointId { get; private set; } = null!;
 
         /// <summary>
+        /// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("endpointTrn")]
+        public Output<string?> EndpointTrn { get; private set; } = null!;
+
+        /// <summary>
         /// IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
         /// </summary>
         [Output("forwardIps")]
@@ -77,7 +93,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         /// </summary>
         [Output("line")]
-        public Output<int?> Line { get; private set; } = null!;
+        public Output<string?> Line { get; private set; } = null!;
 
         /// <summary>
         /// The name of the rule.
@@ -86,10 +102,29 @@ namespace Pulumi.Volcengine.Private_zone
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the private zone resolver rule.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ResolverRuleTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
+
+        /// <summary>
+        /// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("vpcTrns")]
+        public Output<ImmutableArray<string>> VpcTrns { get; private set; } = null!;
 
         /// <summary>
         /// The parameter name &lt;region&gt; is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
@@ -156,6 +191,13 @@ namespace Pulumi.Volcengine.Private_zone
         [Input("endpointId")]
         public Input<int>? EndpointId { get; set; }
 
+        /// <summary>
+        /// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("endpointTrn")]
+        public Input<string>? EndpointTrn { get; set; }
+
         [Input("forwardIps")]
         private InputList<Inputs.ResolverRuleForwardIpArgs>? _forwardIps;
 
@@ -172,7 +214,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         /// </summary>
         [Input("line")]
-        public Input<int>? Line { get; set; }
+        public Input<string>? Line { get; set; }
 
         /// <summary>
         /// The name of the rule.
@@ -181,10 +223,41 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver rule.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ResolverRuleTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ResolverRuleTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ResolverRuleTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        [Input("vpcTrns")]
+        private InputList<string>? _vpcTrns;
+
+        /// <summary>
+        /// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<string> VpcTrns
+        {
+            get => _vpcTrns ?? (_vpcTrns = new InputList<string>());
+            set => _vpcTrns = value;
+        }
 
         [Input("vpcs", required: true)]
         private InputList<Inputs.ResolverRuleVpcArgs>? _vpcs;
@@ -224,6 +297,13 @@ namespace Pulumi.Volcengine.Private_zone
         [Input("endpointId")]
         public Input<int>? EndpointId { get; set; }
 
+        /// <summary>
+        /// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("endpointTrn")]
+        public Input<string>? EndpointTrn { get; set; }
+
         [Input("forwardIps")]
         private InputList<Inputs.ResolverRuleForwardIpGetArgs>? _forwardIps;
 
@@ -240,7 +320,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         /// </summary>
         [Input("line")]
-        public Input<int>? Line { get; set; }
+        public Input<string>? Line { get; set; }
 
         /// <summary>
         /// The name of the rule.
@@ -249,10 +329,41 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver rule.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ResolverRuleTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ResolverRuleTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ResolverRuleTagGetArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        [Input("vpcTrns")]
+        private InputList<string>? _vpcTrns;
+
+        /// <summary>
+        /// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<string> VpcTrns
+        {
+            get => _vpcTrns ?? (_vpcTrns = new InputList<string>());
+            set => _vpcTrns = value;
+        }
 
         [Input("vpcs")]
         private InputList<Inputs.ResolverRuleVpcGetArgs>? _vpcs;

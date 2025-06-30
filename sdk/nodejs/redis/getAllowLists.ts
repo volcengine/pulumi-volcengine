@@ -62,8 +62,12 @@ export function getAllowLists(args: GetAllowListsArgs, opts?: pulumi.InvokeOptio
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/getAllowLists:getAllowLists", {
         "instanceId": args.instanceId,
+        "ipAddress": args.ipAddress,
+        "ipSegment": args.ipSegment,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "queryDefault": args.queryDefault,
         "regionId": args.regionId,
     }, opts);
 }
@@ -77,6 +81,14 @@ export interface GetAllowListsArgs {
      */
     instanceId?: string;
     /**
+     * Filter out the whitelist that meets the conditions based on the IP address. When using IPAddress query, it will precisely match this IP address and filter the IP address segments containing this IP address.
+     */
+    ipAddress?: string;
+    /**
+     * Screen out the whitelist that meets the conditions based on the IP address segment. When using IPSegment queries, the IP address segment will be precisely matched for filtering.
+     */
+    ipSegment?: string;
+    /**
      * A Name Regex of Allow List.
      */
     nameRegex?: string;
@@ -84,6 +96,14 @@ export interface GetAllowListsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The name of the project to which the white list belongs.
+     */
+    projectName?: string;
+    /**
+     * Filter whether to query only the default whitelist based on the type of whitelist.
+     */
+    queryDefault?: boolean;
     /**
      * The Id of region.
      */
@@ -106,8 +126,15 @@ export interface GetAllowListsResult {
      * Id of instance.
      */
     readonly instanceId?: string;
+    readonly ipAddress?: string;
+    readonly ipSegment?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The name of the project to which the white list belongs.
+     */
+    readonly projectName?: string;
+    readonly queryDefault?: boolean;
     readonly regionId: string;
     /**
      * The total count of allow list query.
@@ -178,6 +205,14 @@ export interface GetAllowListsOutputArgs {
      */
     instanceId?: pulumi.Input<string>;
     /**
+     * Filter out the whitelist that meets the conditions based on the IP address. When using IPAddress query, it will precisely match this IP address and filter the IP address segments containing this IP address.
+     */
+    ipAddress?: pulumi.Input<string>;
+    /**
+     * Screen out the whitelist that meets the conditions based on the IP address segment. When using IPSegment queries, the IP address segment will be precisely matched for filtering.
+     */
+    ipSegment?: pulumi.Input<string>;
+    /**
      * A Name Regex of Allow List.
      */
     nameRegex?: pulumi.Input<string>;
@@ -185,6 +220,14 @@ export interface GetAllowListsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The name of the project to which the white list belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Filter whether to query only the default whitelist based on the type of whitelist.
+     */
+    queryDefault?: pulumi.Input<boolean>;
     /**
      * The Id of region.
      */

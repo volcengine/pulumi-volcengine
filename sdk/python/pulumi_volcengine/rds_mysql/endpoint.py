@@ -20,6 +20,7 @@ class EndpointArgs:
                  nodes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  auto_add_new_nodes: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dns_visibility: Optional[pulumi.Input[bool]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
@@ -37,18 +38,18 @@ class EndpointArgs:
                true: Automatically add.
                false: Do not automatically add (default).
         :param pulumi.Input[str] description: The description of the endpoint.
+        :param pulumi.Input[bool] dns_visibility: Values:
+               false: Volcano Engine private network resolution (default).
+               true: Volcano Engine private and public network resolution.
         :param pulumi.Input[str] domain: Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
         :param pulumi.Input[str] endpoint_name: The name of the endpoint.
         :param pulumi.Input[int] port: The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
-        :param pulumi.Input[str] read_only_node_distribution_type: Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-               Default: Automatically allocate weights based on specifications (default).
-               Custom: Custom weight allocation.
+        :param pulumi.Input[str] read_only_node_distribution_type: Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         :param pulumi.Input[int] read_only_node_max_delay_time: The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
         :param pulumi.Input[Sequence[pulumi.Input['EndpointReadOnlyNodeWeightArgs']]] read_only_node_weights: Customize read weight distribution, that is, pass in the read request weight of the master node and read-only nodes. It increases by 100 and the maximum value is 10000. When the ReadOnlyNodeDistributionType value is Custom, this parameter needs to be passed in.
         :param pulumi.Input[str] read_write_mode: Reading and writing mode: ReadWrite, ReadOnly(Default).
-        :param pulumi.Input[bool] read_write_spliting: Enable read-write separation. Possible values: TRUE, FALSE.
-               This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        :param pulumi.Input[bool] read_write_spliting: Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "nodes", nodes)
@@ -56,6 +57,8 @@ class EndpointArgs:
             pulumi.set(__self__, "auto_add_new_nodes", auto_add_new_nodes)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if dns_visibility is not None:
+            pulumi.set(__self__, "dns_visibility", dns_visibility)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
         if endpoint_id is not None:
@@ -126,6 +129,20 @@ class EndpointArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="dnsVisibility")
+    def dns_visibility(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Values:
+        false: Volcano Engine private network resolution (default).
+        true: Volcano Engine private and public network resolution.
+        """
+        return pulumi.get(self, "dns_visibility")
+
+    @dns_visibility.setter
+    def dns_visibility(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dns_visibility", value)
+
+    @property
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
@@ -177,9 +194,7 @@ class EndpointArgs:
     @pulumi.getter(name="readOnlyNodeDistributionType")
     def read_only_node_distribution_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-        Default: Automatically allocate weights based on specifications (default).
-        Custom: Custom weight allocation.
+        Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         """
         return pulumi.get(self, "read_only_node_distribution_type")
 
@@ -227,8 +242,7 @@ class EndpointArgs:
     @pulumi.getter(name="readWriteSpliting")
     def read_write_spliting(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable read-write separation. Possible values: TRUE, FALSE.
-        This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         return pulumi.get(self, "read_write_spliting")
 
@@ -242,6 +256,7 @@ class _EndpointState:
     def __init__(__self__, *,
                  auto_add_new_nodes: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dns_visibility: Optional[pulumi.Input[bool]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
@@ -259,25 +274,27 @@ class _EndpointState:
                true: Automatically add.
                false: Do not automatically add (default).
         :param pulumi.Input[str] description: The description of the endpoint.
+        :param pulumi.Input[bool] dns_visibility: Values:
+               false: Volcano Engine private network resolution (default).
+               true: Volcano Engine private and public network resolution.
         :param pulumi.Input[str] domain: Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
         :param pulumi.Input[str] endpoint_name: The name of the endpoint.
         :param pulumi.Input[str] instance_id: The id of the mysql instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nodes: List of node IDs configured for the endpoint. Required when EndpointType is Custom. To add a master node to the terminal, there is no need to fill in the master node ID, just fill in `Primary`.
         :param pulumi.Input[int] port: The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
-        :param pulumi.Input[str] read_only_node_distribution_type: Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-               Default: Automatically allocate weights based on specifications (default).
-               Custom: Custom weight allocation.
+        :param pulumi.Input[str] read_only_node_distribution_type: Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         :param pulumi.Input[int] read_only_node_max_delay_time: The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
         :param pulumi.Input[Sequence[pulumi.Input['EndpointReadOnlyNodeWeightArgs']]] read_only_node_weights: Customize read weight distribution, that is, pass in the read request weight of the master node and read-only nodes. It increases by 100 and the maximum value is 10000. When the ReadOnlyNodeDistributionType value is Custom, this parameter needs to be passed in.
         :param pulumi.Input[str] read_write_mode: Reading and writing mode: ReadWrite, ReadOnly(Default).
-        :param pulumi.Input[bool] read_write_spliting: Enable read-write separation. Possible values: TRUE, FALSE.
-               This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        :param pulumi.Input[bool] read_write_spliting: Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         if auto_add_new_nodes is not None:
             pulumi.set(__self__, "auto_add_new_nodes", auto_add_new_nodes)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if dns_visibility is not None:
+            pulumi.set(__self__, "dns_visibility", dns_visibility)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
         if endpoint_id is not None:
@@ -326,6 +343,20 @@ class _EndpointState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="dnsVisibility")
+    def dns_visibility(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Values:
+        false: Volcano Engine private network resolution (default).
+        true: Volcano Engine private and public network resolution.
+        """
+        return pulumi.get(self, "dns_visibility")
+
+    @dns_visibility.setter
+    def dns_visibility(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dns_visibility", value)
 
     @property
     @pulumi.getter
@@ -403,9 +434,7 @@ class _EndpointState:
     @pulumi.getter(name="readOnlyNodeDistributionType")
     def read_only_node_distribution_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-        Default: Automatically allocate weights based on specifications (default).
-        Custom: Custom weight allocation.
+        Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         """
         return pulumi.get(self, "read_only_node_distribution_type")
 
@@ -453,8 +482,7 @@ class _EndpointState:
     @pulumi.getter(name="readWriteSpliting")
     def read_write_spliting(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable read-write separation. Possible values: TRUE, FALSE.
-        This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         return pulumi.get(self, "read_write_spliting")
 
@@ -470,6 +498,7 @@ class Endpoint(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_add_new_nodes: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dns_visibility: Optional[pulumi.Input[bool]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
@@ -493,27 +522,16 @@ class Endpoint(pulumi.CustomResource):
         foo = volcengine.rds_mysql.Endpoint("foo",
             auto_add_new_nodes=True,
             description="tf-test-1",
-            domain="mysql-38c3d4f05f6e-te-8c00-private.rds.ivolces.com",
+            dns_visibility=False,
             endpoint_name="tf-test-1",
-            instance_id="mysql-38c3d4f05f6e",
-            nodes=[
-                "Primary",
-                "mysql-38c3d4f05f6e-r3b0d",
-            ],
-            port=3306,
-            read_only_node_distribution_type="Custom",
+            instance_id="mysql-b51d37110dd1",
+            nodes=["Primary"],
+            read_only_node_distribution_type="RoundRobinAuto",
             read_only_node_max_delay_time=30,
-            read_only_node_weights=[
-                volcengine.rds_mysql.EndpointReadOnlyNodeWeightArgs(
-                    node_id="mysql-38c3d4f05f6e-r3b0d",
-                    node_type="ReadOnly",
-                    weight=0,
-                ),
-                volcengine.rds_mysql.EndpointReadOnlyNodeWeightArgs(
-                    node_type="Primary",
-                    weight=100,
-                ),
-            ],
+            read_only_node_weights=[volcengine.rds_mysql.EndpointReadOnlyNodeWeightArgs(
+                node_type="Primary",
+                weight=100,
+            )],
             read_write_mode="ReadWrite",
             read_write_spliting=True)
         ```
@@ -532,20 +550,20 @@ class Endpoint(pulumi.CustomResource):
                true: Automatically add.
                false: Do not automatically add (default).
         :param pulumi.Input[str] description: The description of the endpoint.
+        :param pulumi.Input[bool] dns_visibility: Values:
+               false: Volcano Engine private network resolution (default).
+               true: Volcano Engine private and public network resolution.
         :param pulumi.Input[str] domain: Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
         :param pulumi.Input[str] endpoint_name: The name of the endpoint.
         :param pulumi.Input[str] instance_id: The id of the mysql instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nodes: List of node IDs configured for the endpoint. Required when EndpointType is Custom. To add a master node to the terminal, there is no need to fill in the master node ID, just fill in `Primary`.
         :param pulumi.Input[int] port: The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
-        :param pulumi.Input[str] read_only_node_distribution_type: Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-               Default: Automatically allocate weights based on specifications (default).
-               Custom: Custom weight allocation.
+        :param pulumi.Input[str] read_only_node_distribution_type: Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         :param pulumi.Input[int] read_only_node_max_delay_time: The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointReadOnlyNodeWeightArgs']]]] read_only_node_weights: Customize read weight distribution, that is, pass in the read request weight of the master node and read-only nodes. It increases by 100 and the maximum value is 10000. When the ReadOnlyNodeDistributionType value is Custom, this parameter needs to be passed in.
         :param pulumi.Input[str] read_write_mode: Reading and writing mode: ReadWrite, ReadOnly(Default).
-        :param pulumi.Input[bool] read_write_spliting: Enable read-write separation. Possible values: TRUE, FALSE.
-               This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        :param pulumi.Input[bool] read_write_spliting: Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         ...
     @overload
@@ -564,27 +582,16 @@ class Endpoint(pulumi.CustomResource):
         foo = volcengine.rds_mysql.Endpoint("foo",
             auto_add_new_nodes=True,
             description="tf-test-1",
-            domain="mysql-38c3d4f05f6e-te-8c00-private.rds.ivolces.com",
+            dns_visibility=False,
             endpoint_name="tf-test-1",
-            instance_id="mysql-38c3d4f05f6e",
-            nodes=[
-                "Primary",
-                "mysql-38c3d4f05f6e-r3b0d",
-            ],
-            port=3306,
-            read_only_node_distribution_type="Custom",
+            instance_id="mysql-b51d37110dd1",
+            nodes=["Primary"],
+            read_only_node_distribution_type="RoundRobinAuto",
             read_only_node_max_delay_time=30,
-            read_only_node_weights=[
-                volcengine.rds_mysql.EndpointReadOnlyNodeWeightArgs(
-                    node_id="mysql-38c3d4f05f6e-r3b0d",
-                    node_type="ReadOnly",
-                    weight=0,
-                ),
-                volcengine.rds_mysql.EndpointReadOnlyNodeWeightArgs(
-                    node_type="Primary",
-                    weight=100,
-                ),
-            ],
+            read_only_node_weights=[volcengine.rds_mysql.EndpointReadOnlyNodeWeightArgs(
+                node_type="Primary",
+                weight=100,
+            )],
             read_write_mode="ReadWrite",
             read_write_spliting=True)
         ```
@@ -614,6 +621,7 @@ class Endpoint(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_add_new_nodes: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dns_visibility: Optional[pulumi.Input[bool]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
@@ -636,6 +644,7 @@ class Endpoint(pulumi.CustomResource):
 
             __props__.__dict__["auto_add_new_nodes"] = auto_add_new_nodes
             __props__.__dict__["description"] = description
+            __props__.__dict__["dns_visibility"] = dns_visibility
             __props__.__dict__["domain"] = domain
             __props__.__dict__["endpoint_id"] = endpoint_id
             __props__.__dict__["endpoint_name"] = endpoint_name
@@ -663,6 +672,7 @@ class Endpoint(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_add_new_nodes: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            dns_visibility: Optional[pulumi.Input[bool]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             endpoint_id: Optional[pulumi.Input[str]] = None,
             endpoint_name: Optional[pulumi.Input[str]] = None,
@@ -685,20 +695,20 @@ class Endpoint(pulumi.CustomResource):
                true: Automatically add.
                false: Do not automatically add (default).
         :param pulumi.Input[str] description: The description of the endpoint.
+        :param pulumi.Input[bool] dns_visibility: Values:
+               false: Volcano Engine private network resolution (default).
+               true: Volcano Engine private and public network resolution.
         :param pulumi.Input[str] domain: Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
         :param pulumi.Input[str] endpoint_name: The name of the endpoint.
         :param pulumi.Input[str] instance_id: The id of the mysql instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nodes: List of node IDs configured for the endpoint. Required when EndpointType is Custom. To add a master node to the terminal, there is no need to fill in the master node ID, just fill in `Primary`.
         :param pulumi.Input[int] port: The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
-        :param pulumi.Input[str] read_only_node_distribution_type: Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-               Default: Automatically allocate weights based on specifications (default).
-               Custom: Custom weight allocation.
+        :param pulumi.Input[str] read_only_node_distribution_type: Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         :param pulumi.Input[int] read_only_node_max_delay_time: The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointReadOnlyNodeWeightArgs']]]] read_only_node_weights: Customize read weight distribution, that is, pass in the read request weight of the master node and read-only nodes. It increases by 100 and the maximum value is 10000. When the ReadOnlyNodeDistributionType value is Custom, this parameter needs to be passed in.
         :param pulumi.Input[str] read_write_mode: Reading and writing mode: ReadWrite, ReadOnly(Default).
-        :param pulumi.Input[bool] read_write_spliting: Enable read-write separation. Possible values: TRUE, FALSE.
-               This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        :param pulumi.Input[bool] read_write_spliting: Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -706,6 +716,7 @@ class Endpoint(pulumi.CustomResource):
 
         __props__.__dict__["auto_add_new_nodes"] = auto_add_new_nodes
         __props__.__dict__["description"] = description
+        __props__.__dict__["dns_visibility"] = dns_visibility
         __props__.__dict__["domain"] = domain
         __props__.__dict__["endpoint_id"] = endpoint_id
         __props__.__dict__["endpoint_name"] = endpoint_name
@@ -736,6 +747,16 @@ class Endpoint(pulumi.CustomResource):
         The description of the endpoint.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dnsVisibility")
+    def dns_visibility(self) -> pulumi.Output[bool]:
+        """
+        Values:
+        false: Volcano Engine private network resolution (default).
+        true: Volcano Engine private and public network resolution.
+        """
+        return pulumi.get(self, "dns_visibility")
 
     @property
     @pulumi.getter
@@ -789,9 +810,7 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="readOnlyNodeDistributionType")
     def read_only_node_distribution_type(self) -> pulumi.Output[str]:
         """
-        Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-        Default: Automatically allocate weights based on specifications (default).
-        Custom: Custom weight allocation.
+        Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         """
         return pulumi.get(self, "read_only_node_distribution_type")
 
@@ -823,8 +842,7 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="readWriteSpliting")
     def read_write_spliting(self) -> pulumi.Output[bool]:
         """
-        Enable read-write separation. Possible values: TRUE, FALSE.
-        This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         """
         return pulumi.get(self, "read_write_spliting")
 

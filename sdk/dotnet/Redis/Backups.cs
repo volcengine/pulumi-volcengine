@@ -78,7 +78,7 @@ namespace Pulumi.Volcengine.Redis
         /// });
         /// ```
         /// </summary>
-        public static Task<BackupsResult> InvokeAsync(BackupsArgs args, InvokeOptions? options = null)
+        public static Task<BackupsResult> InvokeAsync(BackupsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsArgs(), options.WithDefaults());
 
         /// <summary>
@@ -147,13 +147,25 @@ namespace Pulumi.Volcengine.Redis
         /// });
         /// ```
         /// </summary>
-        public static Output<BackupsResult> Invoke(BackupsInvokeArgs args, InvokeOptions? options = null)
+        public static Output<BackupsResult> Invoke(BackupsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class BackupsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The id of backup point.
+        /// </summary>
+        [Input("backupPointId")]
+        public string? BackupPointId { get; set; }
+
+        /// <summary>
+        /// Backup name, supporting fuzzy query.
+        /// </summary>
+        [Input("backupPointName")]
+        public string? BackupPointName { get; set; }
+
         [Input("backupStrategyLists")]
         private List<string>? _backupStrategyLists;
 
@@ -175,14 +187,26 @@ namespace Pulumi.Volcengine.Redis
         /// <summary>
         /// Id of instance.
         /// </summary>
-        [Input("instanceId", required: true)]
-        public string InstanceId { get; set; } = null!;
+        [Input("instanceId")]
+        public string? InstanceId { get; set; }
 
         /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// Back up the project to which it belongs.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// The query scope of the backup.
+        /// </summary>
+        [Input("scope")]
+        public string? Scope { get; set; }
 
         /// <summary>
         /// Query start time.
@@ -198,6 +222,18 @@ namespace Pulumi.Volcengine.Redis
 
     public sealed class BackupsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The id of backup point.
+        /// </summary>
+        [Input("backupPointId")]
+        public Input<string>? BackupPointId { get; set; }
+
+        /// <summary>
+        /// Backup name, supporting fuzzy query.
+        /// </summary>
+        [Input("backupPointName")]
+        public Input<string>? BackupPointName { get; set; }
+
         [Input("backupStrategyLists")]
         private InputList<string>? _backupStrategyLists;
 
@@ -219,14 +255,26 @@ namespace Pulumi.Volcengine.Redis
         /// <summary>
         /// Id of instance.
         /// </summary>
-        [Input("instanceId", required: true)]
-        public Input<string> InstanceId { get; set; } = null!;
+        [Input("instanceId")]
+        public Input<string>? InstanceId { get; set; }
 
         /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// Back up the project to which it belongs.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The query scope of the backup.
+        /// </summary>
+        [Input("scope")]
+        public Input<string>? Scope { get; set; }
 
         /// <summary>
         /// Query start time.
@@ -244,6 +292,11 @@ namespace Pulumi.Volcengine.Redis
     [OutputType]
     public sealed class BackupsResult
     {
+        /// <summary>
+        /// The id of backup point.
+        /// </summary>
+        public readonly string? BackupPointId;
+        public readonly string? BackupPointName;
         public readonly ImmutableArray<string> BackupStrategyLists;
         /// <summary>
         /// Information of backups.
@@ -260,8 +313,13 @@ namespace Pulumi.Volcengine.Redis
         /// <summary>
         /// Id of instance.
         /// </summary>
-        public readonly string InstanceId;
+        public readonly string? InstanceId;
         public readonly string? OutputFile;
+        /// <summary>
+        /// Project name of instance.
+        /// </summary>
+        public readonly string? ProjectName;
+        public readonly string? Scope;
         /// <summary>
         /// Start time of backup.
         /// </summary>
@@ -273,6 +331,10 @@ namespace Pulumi.Volcengine.Redis
 
         [OutputConstructor]
         private BackupsResult(
+            string? backupPointId,
+
+            string? backupPointName,
+
             ImmutableArray<string> backupStrategyLists,
 
             ImmutableArray<Outputs.BackupsBackupResult> backups,
@@ -281,20 +343,28 @@ namespace Pulumi.Volcengine.Redis
 
             string id,
 
-            string instanceId,
+            string? instanceId,
 
             string? outputFile,
+
+            string? projectName,
+
+            string? scope,
 
             string? startTime,
 
             int totalCount)
         {
+            BackupPointId = backupPointId;
+            BackupPointName = backupPointName;
             BackupStrategyLists = backupStrategyLists;
             Backups = backups;
             EndTime = endTime;
             Id = id;
             InstanceId = instanceId;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Scope = scope;
             StartTime = startTime;
             TotalCount = totalCount;
         }

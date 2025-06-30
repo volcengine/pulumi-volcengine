@@ -17,28 +17,42 @@ __all__ = ['ResolverEndpointArgs', 'ResolverEndpoint']
 class ResolverEndpointArgs:
     def __init__(__self__, *,
                  ip_configs: pulumi.Input[Sequence[pulumi.Input['ResolverEndpointIpConfigArgs']]],
-                 security_group_id: pulumi.Input[str],
                  vpc_id: pulumi.Input[str],
                  vpc_region: pulumi.Input[str],
                  direction: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 security_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ResolverEndpoint resource.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverEndpointIpConfigArgs']]] ip_configs: Availability zones, subnets, and IP configurations of terminal nodes.
-        :param pulumi.Input[str] security_group_id: The security group ID of the endpoint.
         :param pulumi.Input[str] vpc_id: The VPC ID of the endpoint.
         :param pulumi.Input[str] vpc_region: The VPC region of the endpoint.
         :param pulumi.Input[str] direction: DNS request forwarding direction for terminal nodes. OUTBOUND: (default) Outbound terminal nodes forward DNS query requests from within the VPC to external DNS servers. INBOUND: Inbound terminal nodes forward DNS query requests from external sources to resolvers.
         :param pulumi.Input[str] name: The name of the private zone resolver endpoint.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver endpoint.
+        :param pulumi.Input[str] security_group_id: The security group ID of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         pulumi.set(__self__, "ip_configs", ip_configs)
-        pulumi.set(__self__, "security_group_id", security_group_id)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "vpc_region", vpc_region)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vpc_trns is not None:
+            pulumi.set(__self__, "vpc_trns", vpc_trns)
 
     @property
     @pulumi.getter(name="ipConfigs")
@@ -51,18 +65,6 @@ class ResolverEndpointArgs:
     @ip_configs.setter
     def ip_configs(self, value: pulumi.Input[Sequence[pulumi.Input['ResolverEndpointIpConfigArgs']]]):
         pulumi.set(self, "ip_configs", value)
-
-    @property
-    @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> pulumi.Input[str]:
-        """
-        The security group ID of the endpoint.
-        """
-        return pulumi.get(self, "security_group_id")
-
-    @security_group_id.setter
-    def security_group_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "security_group_id", value)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -112,6 +114,55 @@ class ResolverEndpointArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the private zone resolver endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The security group ID of the endpoint.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_group_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
+
+    @vpc_trns.setter
+    def vpc_trns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "vpc_trns", value)
+
 
 @pulumi.input_type
 class _ResolverEndpointState:
@@ -119,17 +170,24 @@ class _ResolverEndpointState:
                  direction: Optional[pulumi.Input[str]] = None,
                  ip_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointIpConfigArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
-                 vpc_region: Optional[pulumi.Input[str]] = None):
+                 vpc_region: Optional[pulumi.Input[str]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ResolverEndpoint resources.
         :param pulumi.Input[str] direction: DNS request forwarding direction for terminal nodes. OUTBOUND: (default) Outbound terminal nodes forward DNS query requests from within the VPC to external DNS servers. INBOUND: Inbound terminal nodes forward DNS query requests from external sources to resolvers.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverEndpointIpConfigArgs']]] ip_configs: Availability zones, subnets, and IP configurations of terminal nodes.
         :param pulumi.Input[str] name: The name of the private zone resolver endpoint.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver endpoint.
         :param pulumi.Input[str] security_group_id: The security group ID of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The VPC ID of the endpoint.
         :param pulumi.Input[str] vpc_region: The VPC region of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -137,12 +195,18 @@ class _ResolverEndpointState:
             pulumi.set(__self__, "ip_configs", ip_configs)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_region is not None:
             pulumi.set(__self__, "vpc_region", vpc_region)
+        if vpc_trns is not None:
+            pulumi.set(__self__, "vpc_trns", vpc_trns)
 
     @property
     @pulumi.getter
@@ -181,6 +245,18 @@ class _ResolverEndpointState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the private zone resolver endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -191,6 +267,18 @@ class _ResolverEndpointState:
     @security_group_id.setter
     def security_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "security_group_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverEndpointTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -216,6 +304,19 @@ class _ResolverEndpointState:
     def vpc_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_region", value)
 
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
+
+    @vpc_trns.setter
+    def vpc_trns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "vpc_trns", value)
+
 
 class ResolverEndpoint(pulumi.CustomResource):
     @overload
@@ -225,9 +326,12 @@ class ResolverEndpoint(pulumi.CustomResource):
                  direction: Optional[pulumi.Input[str]] = None,
                  ip_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointIpConfigArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  vpc_region: Optional[pulumi.Input[str]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage private zone resolver endpoint
@@ -260,7 +364,11 @@ class ResolverEndpoint(pulumi.CustomResource):
                     subnet_id="subnet-mj2o4co2m2v45smt1bx1****",
                 ),
             ],
-            security_group_id="sg-mj2nsckay29s5smt1b0d****",
+            project_name="default",
+            tags=[volcengine.private_zone.ResolverEndpointTagArgs(
+                key="k1",
+                value="v1",
+            )],
             vpc_id="vpc-13f9uuuqfdjb43n6nu5p1****",
             vpc_region="cn-beijing")
         ```
@@ -278,9 +386,13 @@ class ResolverEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] direction: DNS request forwarding direction for terminal nodes. OUTBOUND: (default) Outbound terminal nodes forward DNS query requests from within the VPC to external DNS servers. INBOUND: Inbound terminal nodes forward DNS query requests from external sources to resolvers.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointIpConfigArgs']]]] ip_configs: Availability zones, subnets, and IP configurations of terminal nodes.
         :param pulumi.Input[str] name: The name of the private zone resolver endpoint.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver endpoint.
         :param pulumi.Input[str] security_group_id: The security group ID of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The VPC ID of the endpoint.
         :param pulumi.Input[str] vpc_region: The VPC region of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         ...
     @overload
@@ -319,7 +431,11 @@ class ResolverEndpoint(pulumi.CustomResource):
                     subnet_id="subnet-mj2o4co2m2v45smt1bx1****",
                 ),
             ],
-            security_group_id="sg-mj2nsckay29s5smt1b0d****",
+            project_name="default",
+            tags=[volcengine.private_zone.ResolverEndpointTagArgs(
+                key="k1",
+                value="v1",
+            )],
             vpc_id="vpc-13f9uuuqfdjb43n6nu5p1****",
             vpc_region="cn-beijing")
         ```
@@ -350,9 +466,12 @@ class ResolverEndpoint(pulumi.CustomResource):
                  direction: Optional[pulumi.Input[str]] = None,
                  ip_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointIpConfigArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  vpc_region: Optional[pulumi.Input[str]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -367,15 +486,16 @@ class ResolverEndpoint(pulumi.CustomResource):
                 raise TypeError("Missing required property 'ip_configs'")
             __props__.__dict__["ip_configs"] = ip_configs
             __props__.__dict__["name"] = name
-            if security_group_id is None and not opts.urn:
-                raise TypeError("Missing required property 'security_group_id'")
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["security_group_id"] = security_group_id
+            __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
             if vpc_region is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_region'")
             __props__.__dict__["vpc_region"] = vpc_region
+            __props__.__dict__["vpc_trns"] = vpc_trns
         super(ResolverEndpoint, __self__).__init__(
             'volcengine:private_zone/resolverEndpoint:ResolverEndpoint',
             resource_name,
@@ -389,9 +509,12 @@ class ResolverEndpoint(pulumi.CustomResource):
             direction: Optional[pulumi.Input[str]] = None,
             ip_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointIpConfigArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             security_group_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointTagArgs']]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
-            vpc_region: Optional[pulumi.Input[str]] = None) -> 'ResolverEndpoint':
+            vpc_region: Optional[pulumi.Input[str]] = None,
+            vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ResolverEndpoint':
         """
         Get an existing ResolverEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -402,9 +525,13 @@ class ResolverEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] direction: DNS request forwarding direction for terminal nodes. OUTBOUND: (default) Outbound terminal nodes forward DNS query requests from within the VPC to external DNS servers. INBOUND: Inbound terminal nodes forward DNS query requests from external sources to resolvers.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointIpConfigArgs']]]] ip_configs: Availability zones, subnets, and IP configurations of terminal nodes.
         :param pulumi.Input[str] name: The name of the private zone resolver endpoint.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver endpoint.
         :param pulumi.Input[str] security_group_id: The security group ID of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverEndpointTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The VPC ID of the endpoint.
         :param pulumi.Input[str] vpc_region: The VPC region of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -413,9 +540,12 @@ class ResolverEndpoint(pulumi.CustomResource):
         __props__.__dict__["direction"] = direction
         __props__.__dict__["ip_configs"] = ip_configs
         __props__.__dict__["name"] = name
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["security_group_id"] = security_group_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["vpc_region"] = vpc_region
+        __props__.__dict__["vpc_trns"] = vpc_trns
         return ResolverEndpoint(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -443,12 +573,28 @@ class ResolverEndpoint(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the private zone resolver endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[str]:
         """
         The security group ID of the endpoint.
         """
         return pulumi.get(self, "security_group_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ResolverEndpointTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -465,4 +611,13 @@ class ResolverEndpoint(pulumi.CustomResource):
         The VPC region of the endpoint.
         """
         return pulumi.get(self, "vpc_region")
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
 

@@ -58,6 +58,8 @@ type NamespacesArgs struct {
 	Names []string `pulumi:"names"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The list of project names to query.
+	Projects []string `pulumi:"projects"`
 	// The target cr instance name.
 	Registry string `pulumi:"registry"`
 }
@@ -70,6 +72,7 @@ type NamespacesResult struct {
 	// The collection of namespaces query.
 	Namespaces []NamespacesNamespace `pulumi:"namespaces"`
 	OutputFile *string               `pulumi:"outputFile"`
+	Projects   []string              `pulumi:"projects"`
 	Registry   string                `pulumi:"registry"`
 	// The total count of instance query.
 	TotalCount int `pulumi:"totalCount"`
@@ -94,6 +97,8 @@ type NamespacesOutputArgs struct {
 	Names pulumi.StringArrayInput `pulumi:"names"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The list of project names to query.
+	Projects pulumi.StringArrayInput `pulumi:"projects"`
 	// The target cr instance name.
 	Registry pulumi.StringInput `pulumi:"registry"`
 }
@@ -133,6 +138,10 @@ func (o NamespacesResultOutput) Namespaces() NamespacesNamespaceArrayOutput {
 
 func (o NamespacesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NamespacesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+func (o NamespacesResultOutput) Projects() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespacesResult) []string { return v.Projects }).(pulumi.StringArrayOutput)
 }
 
 func (o NamespacesResultOutput) Registry() pulumi.StringOutput {

@@ -34,6 +34,10 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
         /// </summary>
         public readonly int LineMode;
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The record count of the private zone.
         /// </summary>
         public readonly int RecordCount;
@@ -49,6 +53,10 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
         /// The remark of the private zone.
         /// </summary>
         public readonly string Remark;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetPrivateZonesPrivateZoneTagResult> Tags;
         /// <summary>
         /// The updated time of the private zone.
         /// </summary>
@@ -74,6 +82,8 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
 
             int lineMode,
 
+            string projectName,
+
             int recordCount,
 
             bool recursionMode,
@@ -81,6 +91,8 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
             ImmutableArray<string> regions,
 
             string remark,
+
+            ImmutableArray<Outputs.GetPrivateZonesPrivateZoneTagResult> tags,
 
             string updatedAt,
 
@@ -93,10 +105,12 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
             Id = id;
             LastOperator = lastOperator;
             LineMode = lineMode;
+            ProjectName = projectName;
             RecordCount = recordCount;
             RecursionMode = recursionMode;
             Regions = regions;
             Remark = remark;
+            Tags = tags;
             UpdatedAt = updatedAt;
             Zid = zid;
             ZoneName = zoneName;

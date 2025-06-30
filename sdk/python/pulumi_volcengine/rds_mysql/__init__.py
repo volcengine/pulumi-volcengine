@@ -6,6 +6,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .account import *
+from .account_table_column_infos import *
 from .accounts import *
 from .allowlist import *
 from .allowlist_associate import *
@@ -18,6 +19,7 @@ from .databases import *
 from .endpoint import *
 from .endpoint_public_address import *
 from .endpoints import *
+from .get_account_table_column_infos import *
 from .get_accounts import *
 from .get_allowlists import *
 from .get_backups import *
@@ -26,7 +28,9 @@ from .get_endpoints import *
 from .get_instance_specs import *
 from .get_instances import *
 from .get_parameter_templates import *
+from .get_planned_events import *
 from .get_regions import *
+from .get_tasks import *
 from .get_zones import *
 from .instance import *
 from .instance_readonly_node import *
@@ -34,7 +38,9 @@ from .instance_specs import *
 from .instances import *
 from .parameter_template import *
 from .parameter_templates import *
+from .planned_events import *
 from .regions import *
+from .tasks import *
 from .zones import *
 from ._inputs import *
 from . import outputs

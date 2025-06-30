@@ -471,6 +471,8 @@ type NamespacesNamespace struct {
 	Name string `pulumi:"name"`
 	// The ProjectName of the CrNamespace.
 	Project string `pulumi:"project"`
+	// The default access level of repository. Valid values: `Private`, `Public`.
+	RepositoryDefaultAccessLevel string `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 // NamespacesNamespaceInput is an input type that accepts NamespacesNamespaceArgs and NamespacesNamespaceOutput values.
@@ -491,6 +493,8 @@ type NamespacesNamespaceArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ProjectName of the CrNamespace.
 	Project pulumi.StringInput `pulumi:"project"`
+	// The default access level of repository. Valid values: `Private`, `Public`.
+	RepositoryDefaultAccessLevel pulumi.StringInput `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 func (NamespacesNamespaceArgs) ElementType() reflect.Type {
@@ -559,6 +563,11 @@ func (o NamespacesNamespaceOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v NamespacesNamespace) string { return v.Project }).(pulumi.StringOutput)
 }
 
+// The default access level of repository. Valid values: `Private`, `Public`.
+func (o NamespacesNamespaceOutput) RepositoryDefaultAccessLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v NamespacesNamespace) string { return v.RepositoryDefaultAccessLevel }).(pulumi.StringOutput)
+}
+
 type NamespacesNamespaceArrayOutput struct{ *pulumi.OutputState }
 
 func (NamespacesNamespaceArrayOutput) ElementType() reflect.Type {
@@ -590,6 +599,10 @@ type RegistriesRegistry struct {
 	Name string `pulumi:"name"`
 	// The ProjectName of the cr registry.
 	Project string `pulumi:"project"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled bool `pulumi:"proxyCacheEnabled"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCaches []RegistriesRegistryProxyCach `pulumi:"proxyCaches"`
 	// The tags of cr registry.
 	ResourceTags []RegistriesRegistryResourceTag `pulumi:"resourceTags"`
 	// The status of registry.
@@ -624,6 +637,10 @@ type RegistriesRegistryArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ProjectName of the cr registry.
 	Project pulumi.StringInput `pulumi:"project"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled pulumi.BoolInput `pulumi:"proxyCacheEnabled"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCaches RegistriesRegistryProxyCachArrayInput `pulumi:"proxyCaches"`
 	// The tags of cr registry.
 	ResourceTags RegistriesRegistryResourceTagArrayInput `pulumi:"resourceTags"`
 	// The status of registry.
@@ -710,6 +727,16 @@ func (o RegistriesRegistryOutput) Name() pulumi.StringOutput {
 // The ProjectName of the cr registry.
 func (o RegistriesRegistryOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistriesRegistry) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// Whether to enable proxy cache.
+func (o RegistriesRegistryOutput) ProxyCacheEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v RegistriesRegistry) bool { return v.ProxyCacheEnabled }).(pulumi.BoolOutput)
+}
+
+// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+func (o RegistriesRegistryOutput) ProxyCaches() RegistriesRegistryProxyCachArrayOutput {
+	return o.ApplyT(func(v RegistriesRegistry) []RegistriesRegistryProxyCach { return v.ProxyCaches }).(RegistriesRegistryProxyCachArrayOutput)
 }
 
 // The tags of cr registry.
@@ -861,6 +888,130 @@ func (o RegistriesRegistryDomainArrayOutput) Index(i pulumi.IntInput) Registries
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistriesRegistryDomain {
 		return vs[0].([]RegistriesRegistryDomain)[vs[1].(int)]
 	}).(RegistriesRegistryDomainOutput)
+}
+
+type RegistriesRegistryProxyCach struct {
+	// The endpoint of proxy cache.
+	Endpoint string `pulumi:"endpoint"`
+	// Whether to skip ssl verify.
+	SkipSslVerify bool `pulumi:"skipSslVerify"`
+	// The type of registry.
+	Type string `pulumi:"type"`
+	// The username of cr instance.
+	Username string `pulumi:"username"`
+}
+
+// RegistriesRegistryProxyCachInput is an input type that accepts RegistriesRegistryProxyCachArgs and RegistriesRegistryProxyCachOutput values.
+// You can construct a concrete instance of `RegistriesRegistryProxyCachInput` via:
+//
+//	RegistriesRegistryProxyCachArgs{...}
+type RegistriesRegistryProxyCachInput interface {
+	pulumi.Input
+
+	ToRegistriesRegistryProxyCachOutput() RegistriesRegistryProxyCachOutput
+	ToRegistriesRegistryProxyCachOutputWithContext(context.Context) RegistriesRegistryProxyCachOutput
+}
+
+type RegistriesRegistryProxyCachArgs struct {
+	// The endpoint of proxy cache.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Whether to skip ssl verify.
+	SkipSslVerify pulumi.BoolInput `pulumi:"skipSslVerify"`
+	// The type of registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The username of cr instance.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (RegistriesRegistryProxyCachArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (i RegistriesRegistryProxyCachArgs) ToRegistriesRegistryProxyCachOutput() RegistriesRegistryProxyCachOutput {
+	return i.ToRegistriesRegistryProxyCachOutputWithContext(context.Background())
+}
+
+func (i RegistriesRegistryProxyCachArgs) ToRegistriesRegistryProxyCachOutputWithContext(ctx context.Context) RegistriesRegistryProxyCachOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistriesRegistryProxyCachOutput)
+}
+
+// RegistriesRegistryProxyCachArrayInput is an input type that accepts RegistriesRegistryProxyCachArray and RegistriesRegistryProxyCachArrayOutput values.
+// You can construct a concrete instance of `RegistriesRegistryProxyCachArrayInput` via:
+//
+//	RegistriesRegistryProxyCachArray{ RegistriesRegistryProxyCachArgs{...} }
+type RegistriesRegistryProxyCachArrayInput interface {
+	pulumi.Input
+
+	ToRegistriesRegistryProxyCachArrayOutput() RegistriesRegistryProxyCachArrayOutput
+	ToRegistriesRegistryProxyCachArrayOutputWithContext(context.Context) RegistriesRegistryProxyCachArrayOutput
+}
+
+type RegistriesRegistryProxyCachArray []RegistriesRegistryProxyCachInput
+
+func (RegistriesRegistryProxyCachArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (i RegistriesRegistryProxyCachArray) ToRegistriesRegistryProxyCachArrayOutput() RegistriesRegistryProxyCachArrayOutput {
+	return i.ToRegistriesRegistryProxyCachArrayOutputWithContext(context.Background())
+}
+
+func (i RegistriesRegistryProxyCachArray) ToRegistriesRegistryProxyCachArrayOutputWithContext(ctx context.Context) RegistriesRegistryProxyCachArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistriesRegistryProxyCachArrayOutput)
+}
+
+type RegistriesRegistryProxyCachOutput struct{ *pulumi.OutputState }
+
+func (RegistriesRegistryProxyCachOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (o RegistriesRegistryProxyCachOutput) ToRegistriesRegistryProxyCachOutput() RegistriesRegistryProxyCachOutput {
+	return o
+}
+
+func (o RegistriesRegistryProxyCachOutput) ToRegistriesRegistryProxyCachOutputWithContext(ctx context.Context) RegistriesRegistryProxyCachOutput {
+	return o
+}
+
+// The endpoint of proxy cache.
+func (o RegistriesRegistryProxyCachOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesRegistryProxyCach) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Whether to skip ssl verify.
+func (o RegistriesRegistryProxyCachOutput) SkipSslVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v RegistriesRegistryProxyCach) bool { return v.SkipSslVerify }).(pulumi.BoolOutput)
+}
+
+// The type of registry.
+func (o RegistriesRegistryProxyCachOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesRegistryProxyCach) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The username of cr instance.
+func (o RegistriesRegistryProxyCachOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistriesRegistryProxyCach) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type RegistriesRegistryProxyCachArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistriesRegistryProxyCachArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (o RegistriesRegistryProxyCachArrayOutput) ToRegistriesRegistryProxyCachArrayOutput() RegistriesRegistryProxyCachArrayOutput {
+	return o
+}
+
+func (o RegistriesRegistryProxyCachArrayOutput) ToRegistriesRegistryProxyCachArrayOutputWithContext(ctx context.Context) RegistriesRegistryProxyCachArrayOutput {
+	return o
+}
+
+func (o RegistriesRegistryProxyCachArrayOutput) Index(i pulumi.IntInput) RegistriesRegistryProxyCachOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistriesRegistryProxyCach {
+		return vs[0].([]RegistriesRegistryProxyCach)[vs[1].(int)]
+	}).(RegistriesRegistryProxyCachOutput)
 }
 
 type RegistriesRegistryResourceTag struct {
@@ -1245,7 +1396,7 @@ func (o RegistriesStatusArrayOutput) Index(i pulumi.IntInput) RegistriesStatusOu
 type RegistryDomain struct {
 	// The domain of registry.
 	Domain *string `pulumi:"domain"`
-	// The type of registry.
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 	Type *string `pulumi:"type"`
 }
 
@@ -1263,7 +1414,7 @@ type RegistryDomainInput interface {
 type RegistryDomainArgs struct {
 	// The domain of registry.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// The type of registry.
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -1323,7 +1474,7 @@ func (o RegistryDomainOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RegistryDomain) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-// The type of registry.
+// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 func (o RegistryDomainOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RegistryDomain) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -1348,11 +1499,224 @@ func (o RegistryDomainArrayOutput) Index(i pulumi.IntInput) RegistryDomainOutput
 	}).(RegistryDomainOutput)
 }
 
+type RegistryProxyCache struct {
+	// The endpoint of proxy cache.
+	Endpoint *string `pulumi:"endpoint"`
+	// The password of proxy cache.
+	Password *string `pulumi:"password"`
+	// Whether to skip ssl verify.
+	SkipSslVerify *bool `pulumi:"skipSslVerify"`
+	// The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+	Type string `pulumi:"type"`
+	// The username of proxy cache.
+	Username *string `pulumi:"username"`
+}
+
+// RegistryProxyCacheInput is an input type that accepts RegistryProxyCacheArgs and RegistryProxyCacheOutput values.
+// You can construct a concrete instance of `RegistryProxyCacheInput` via:
+//
+//	RegistryProxyCacheArgs{...}
+type RegistryProxyCacheInput interface {
+	pulumi.Input
+
+	ToRegistryProxyCacheOutput() RegistryProxyCacheOutput
+	ToRegistryProxyCacheOutputWithContext(context.Context) RegistryProxyCacheOutput
+}
+
+type RegistryProxyCacheArgs struct {
+	// The endpoint of proxy cache.
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// The password of proxy cache.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Whether to skip ssl verify.
+	SkipSslVerify pulumi.BoolPtrInput `pulumi:"skipSslVerify"`
+	// The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The username of proxy cache.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (RegistryProxyCacheArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryProxyCache)(nil)).Elem()
+}
+
+func (i RegistryProxyCacheArgs) ToRegistryProxyCacheOutput() RegistryProxyCacheOutput {
+	return i.ToRegistryProxyCacheOutputWithContext(context.Background())
+}
+
+func (i RegistryProxyCacheArgs) ToRegistryProxyCacheOutputWithContext(ctx context.Context) RegistryProxyCacheOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryProxyCacheOutput)
+}
+
+func (i RegistryProxyCacheArgs) ToRegistryProxyCachePtrOutput() RegistryProxyCachePtrOutput {
+	return i.ToRegistryProxyCachePtrOutputWithContext(context.Background())
+}
+
+func (i RegistryProxyCacheArgs) ToRegistryProxyCachePtrOutputWithContext(ctx context.Context) RegistryProxyCachePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryProxyCacheOutput).ToRegistryProxyCachePtrOutputWithContext(ctx)
+}
+
+// RegistryProxyCachePtrInput is an input type that accepts RegistryProxyCacheArgs, RegistryProxyCachePtr and RegistryProxyCachePtrOutput values.
+// You can construct a concrete instance of `RegistryProxyCachePtrInput` via:
+//
+//	        RegistryProxyCacheArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryProxyCachePtrInput interface {
+	pulumi.Input
+
+	ToRegistryProxyCachePtrOutput() RegistryProxyCachePtrOutput
+	ToRegistryProxyCachePtrOutputWithContext(context.Context) RegistryProxyCachePtrOutput
+}
+
+type registryProxyCachePtrType RegistryProxyCacheArgs
+
+func RegistryProxyCachePtr(v *RegistryProxyCacheArgs) RegistryProxyCachePtrInput {
+	return (*registryProxyCachePtrType)(v)
+}
+
+func (*registryProxyCachePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryProxyCache)(nil)).Elem()
+}
+
+func (i *registryProxyCachePtrType) ToRegistryProxyCachePtrOutput() RegistryProxyCachePtrOutput {
+	return i.ToRegistryProxyCachePtrOutputWithContext(context.Background())
+}
+
+func (i *registryProxyCachePtrType) ToRegistryProxyCachePtrOutputWithContext(ctx context.Context) RegistryProxyCachePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryProxyCachePtrOutput)
+}
+
+type RegistryProxyCacheOutput struct{ *pulumi.OutputState }
+
+func (RegistryProxyCacheOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryProxyCache)(nil)).Elem()
+}
+
+func (o RegistryProxyCacheOutput) ToRegistryProxyCacheOutput() RegistryProxyCacheOutput {
+	return o
+}
+
+func (o RegistryProxyCacheOutput) ToRegistryProxyCacheOutputWithContext(ctx context.Context) RegistryProxyCacheOutput {
+	return o
+}
+
+func (o RegistryProxyCacheOutput) ToRegistryProxyCachePtrOutput() RegistryProxyCachePtrOutput {
+	return o.ToRegistryProxyCachePtrOutputWithContext(context.Background())
+}
+
+func (o RegistryProxyCacheOutput) ToRegistryProxyCachePtrOutputWithContext(ctx context.Context) RegistryProxyCachePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryProxyCache) *RegistryProxyCache {
+		return &v
+	}).(RegistryProxyCachePtrOutput)
+}
+
+// The endpoint of proxy cache.
+func (o RegistryProxyCacheOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistryProxyCache) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// The password of proxy cache.
+func (o RegistryProxyCacheOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistryProxyCache) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Whether to skip ssl verify.
+func (o RegistryProxyCacheOutput) SkipSslVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RegistryProxyCache) *bool { return v.SkipSslVerify }).(pulumi.BoolPtrOutput)
+}
+
+// The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+func (o RegistryProxyCacheOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryProxyCache) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The username of proxy cache.
+func (o RegistryProxyCacheOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistryProxyCache) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type RegistryProxyCachePtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryProxyCachePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryProxyCache)(nil)).Elem()
+}
+
+func (o RegistryProxyCachePtrOutput) ToRegistryProxyCachePtrOutput() RegistryProxyCachePtrOutput {
+	return o
+}
+
+func (o RegistryProxyCachePtrOutput) ToRegistryProxyCachePtrOutputWithContext(ctx context.Context) RegistryProxyCachePtrOutput {
+	return o
+}
+
+func (o RegistryProxyCachePtrOutput) Elem() RegistryProxyCacheOutput {
+	return o.ApplyT(func(v *RegistryProxyCache) RegistryProxyCache {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryProxyCache
+		return ret
+	}).(RegistryProxyCacheOutput)
+}
+
+// The endpoint of proxy cache.
+func (o RegistryProxyCachePtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryProxyCache) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// The password of proxy cache.
+func (o RegistryProxyCachePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryProxyCache) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to skip ssl verify.
+func (o RegistryProxyCachePtrOutput) SkipSslVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RegistryProxyCache) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipSslVerify
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+func (o RegistryProxyCachePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryProxyCache) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// The username of proxy cache.
+func (o RegistryProxyCachePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryProxyCache) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type RegistryResourceTag struct {
 	// The Key of Tags.
-	Key *string `pulumi:"key"`
+	Key string `pulumi:"key"`
 	// The Value of Tags.
-	Value *string `pulumi:"value"`
+	Value string `pulumi:"value"`
 }
 
 // RegistryResourceTagInput is an input type that accepts RegistryResourceTagArgs and RegistryResourceTagOutput values.
@@ -1368,9 +1732,9 @@ type RegistryResourceTagInput interface {
 
 type RegistryResourceTagArgs struct {
 	// The Key of Tags.
-	Key pulumi.StringPtrInput `pulumi:"key"`
+	Key pulumi.StringInput `pulumi:"key"`
 	// The Value of Tags.
-	Value pulumi.StringPtrInput `pulumi:"value"`
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (RegistryResourceTagArgs) ElementType() reflect.Type {
@@ -1425,13 +1789,13 @@ func (o RegistryResourceTagOutput) ToRegistryResourceTagOutputWithContext(ctx co
 }
 
 // The Key of Tags.
-func (o RegistryResourceTagOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v RegistryResourceTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+func (o RegistryResourceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryResourceTag) string { return v.Key }).(pulumi.StringOutput)
 }
 
 // The Value of Tags.
-func (o RegistryResourceTagOutput) Value() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v RegistryResourceTag) *string { return v.Value }).(pulumi.StringPtrOutput)
+func (o RegistryResourceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryResourceTag) string { return v.Value }).(pulumi.StringOutput)
 }
 
 type RegistryResourceTagArrayOutput struct{ *pulumi.OutputState }
@@ -3166,6 +3530,8 @@ type GetNamespacesNamespace struct {
 	Name string `pulumi:"name"`
 	// The ProjectName of the CrNamespace.
 	Project string `pulumi:"project"`
+	// The default access level of repository. Valid values: `Private`, `Public`.
+	RepositoryDefaultAccessLevel string `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 // GetNamespacesNamespaceInput is an input type that accepts GetNamespacesNamespaceArgs and GetNamespacesNamespaceOutput values.
@@ -3186,6 +3552,8 @@ type GetNamespacesNamespaceArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ProjectName of the CrNamespace.
 	Project pulumi.StringInput `pulumi:"project"`
+	// The default access level of repository. Valid values: `Private`, `Public`.
+	RepositoryDefaultAccessLevel pulumi.StringInput `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 func (GetNamespacesNamespaceArgs) ElementType() reflect.Type {
@@ -3254,6 +3622,11 @@ func (o GetNamespacesNamespaceOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.Project }).(pulumi.StringOutput)
 }
 
+// The default access level of repository. Valid values: `Private`, `Public`.
+func (o GetNamespacesNamespaceOutput) RepositoryDefaultAccessLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesNamespace) string { return v.RepositoryDefaultAccessLevel }).(pulumi.StringOutput)
+}
+
 type GetNamespacesNamespaceArrayOutput struct{ *pulumi.OutputState }
 
 func (GetNamespacesNamespaceArrayOutput) ElementType() reflect.Type {
@@ -3285,6 +3658,10 @@ type GetRegistriesRegistry struct {
 	Name string `pulumi:"name"`
 	// The ProjectName of the cr registry.
 	Project string `pulumi:"project"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled bool `pulumi:"proxyCacheEnabled"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCaches []GetRegistriesRegistryProxyCach `pulumi:"proxyCaches"`
 	// The tags of cr registry.
 	ResourceTags []GetRegistriesRegistryResourceTag `pulumi:"resourceTags"`
 	// The status of registry.
@@ -3319,6 +3696,10 @@ type GetRegistriesRegistryArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ProjectName of the cr registry.
 	Project pulumi.StringInput `pulumi:"project"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled pulumi.BoolInput `pulumi:"proxyCacheEnabled"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCaches GetRegistriesRegistryProxyCachArrayInput `pulumi:"proxyCaches"`
 	// The tags of cr registry.
 	ResourceTags GetRegistriesRegistryResourceTagArrayInput `pulumi:"resourceTags"`
 	// The status of registry.
@@ -3405,6 +3786,16 @@ func (o GetRegistriesRegistryOutput) Name() pulumi.StringOutput {
 // The ProjectName of the cr registry.
 func (o GetRegistriesRegistryOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistriesRegistry) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// Whether to enable proxy cache.
+func (o GetRegistriesRegistryOutput) ProxyCacheEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) bool { return v.ProxyCacheEnabled }).(pulumi.BoolOutput)
+}
+
+// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+func (o GetRegistriesRegistryOutput) ProxyCaches() GetRegistriesRegistryProxyCachArrayOutput {
+	return o.ApplyT(func(v GetRegistriesRegistry) []GetRegistriesRegistryProxyCach { return v.ProxyCaches }).(GetRegistriesRegistryProxyCachArrayOutput)
 }
 
 // The tags of cr registry.
@@ -3556,6 +3947,130 @@ func (o GetRegistriesRegistryDomainArrayOutput) Index(i pulumi.IntInput) GetRegi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesRegistryDomain {
 		return vs[0].([]GetRegistriesRegistryDomain)[vs[1].(int)]
 	}).(GetRegistriesRegistryDomainOutput)
+}
+
+type GetRegistriesRegistryProxyCach struct {
+	// The endpoint of proxy cache.
+	Endpoint string `pulumi:"endpoint"`
+	// Whether to skip ssl verify.
+	SkipSslVerify bool `pulumi:"skipSslVerify"`
+	// The type of registry.
+	Type string `pulumi:"type"`
+	// The username of cr instance.
+	Username string `pulumi:"username"`
+}
+
+// GetRegistriesRegistryProxyCachInput is an input type that accepts GetRegistriesRegistryProxyCachArgs and GetRegistriesRegistryProxyCachOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryProxyCachInput` via:
+//
+//	GetRegistriesRegistryProxyCachArgs{...}
+type GetRegistriesRegistryProxyCachInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryProxyCachOutput() GetRegistriesRegistryProxyCachOutput
+	ToGetRegistriesRegistryProxyCachOutputWithContext(context.Context) GetRegistriesRegistryProxyCachOutput
+}
+
+type GetRegistriesRegistryProxyCachArgs struct {
+	// The endpoint of proxy cache.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Whether to skip ssl verify.
+	SkipSslVerify pulumi.BoolInput `pulumi:"skipSslVerify"`
+	// The type of registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The username of cr instance.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetRegistriesRegistryProxyCachArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryProxyCachArgs) ToGetRegistriesRegistryProxyCachOutput() GetRegistriesRegistryProxyCachOutput {
+	return i.ToGetRegistriesRegistryProxyCachOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryProxyCachArgs) ToGetRegistriesRegistryProxyCachOutputWithContext(ctx context.Context) GetRegistriesRegistryProxyCachOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryProxyCachOutput)
+}
+
+// GetRegistriesRegistryProxyCachArrayInput is an input type that accepts GetRegistriesRegistryProxyCachArray and GetRegistriesRegistryProxyCachArrayOutput values.
+// You can construct a concrete instance of `GetRegistriesRegistryProxyCachArrayInput` via:
+//
+//	GetRegistriesRegistryProxyCachArray{ GetRegistriesRegistryProxyCachArgs{...} }
+type GetRegistriesRegistryProxyCachArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistriesRegistryProxyCachArrayOutput() GetRegistriesRegistryProxyCachArrayOutput
+	ToGetRegistriesRegistryProxyCachArrayOutputWithContext(context.Context) GetRegistriesRegistryProxyCachArrayOutput
+}
+
+type GetRegistriesRegistryProxyCachArray []GetRegistriesRegistryProxyCachInput
+
+func (GetRegistriesRegistryProxyCachArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (i GetRegistriesRegistryProxyCachArray) ToGetRegistriesRegistryProxyCachArrayOutput() GetRegistriesRegistryProxyCachArrayOutput {
+	return i.ToGetRegistriesRegistryProxyCachArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistriesRegistryProxyCachArray) ToGetRegistriesRegistryProxyCachArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryProxyCachArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistriesRegistryProxyCachArrayOutput)
+}
+
+type GetRegistriesRegistryProxyCachOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryProxyCachOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryProxyCachOutput) ToGetRegistriesRegistryProxyCachOutput() GetRegistriesRegistryProxyCachOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryProxyCachOutput) ToGetRegistriesRegistryProxyCachOutputWithContext(ctx context.Context) GetRegistriesRegistryProxyCachOutput {
+	return o
+}
+
+// The endpoint of proxy cache.
+func (o GetRegistriesRegistryProxyCachOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryProxyCach) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Whether to skip ssl verify.
+func (o GetRegistriesRegistryProxyCachOutput) SkipSslVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryProxyCach) bool { return v.SkipSslVerify }).(pulumi.BoolOutput)
+}
+
+// The type of registry.
+func (o GetRegistriesRegistryProxyCachOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryProxyCach) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The username of cr instance.
+func (o GetRegistriesRegistryProxyCachOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistriesRegistryProxyCach) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetRegistriesRegistryProxyCachArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistriesRegistryProxyCachArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistriesRegistryProxyCach)(nil)).Elem()
+}
+
+func (o GetRegistriesRegistryProxyCachArrayOutput) ToGetRegistriesRegistryProxyCachArrayOutput() GetRegistriesRegistryProxyCachArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryProxyCachArrayOutput) ToGetRegistriesRegistryProxyCachArrayOutputWithContext(ctx context.Context) GetRegistriesRegistryProxyCachArrayOutput {
+	return o
+}
+
+func (o GetRegistriesRegistryProxyCachArrayOutput) Index(i pulumi.IntInput) GetRegistriesRegistryProxyCachOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistriesRegistryProxyCach {
+		return vs[0].([]GetRegistriesRegistryProxyCach)[vs[1].(int)]
+	}).(GetRegistriesRegistryProxyCachOutput)
 }
 
 type GetRegistriesRegistryResourceTag struct {
@@ -4696,6 +5211,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryArrayInput)(nil)).Elem(), RegistriesRegistryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryDomainInput)(nil)).Elem(), RegistriesRegistryDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryDomainArrayInput)(nil)).Elem(), RegistriesRegistryDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryProxyCachInput)(nil)).Elem(), RegistriesRegistryProxyCachArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryProxyCachArrayInput)(nil)).Elem(), RegistriesRegistryProxyCachArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryResourceTagInput)(nil)).Elem(), RegistriesRegistryResourceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryResourceTagArrayInput)(nil)).Elem(), RegistriesRegistryResourceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesRegistryStatusInput)(nil)).Elem(), RegistriesRegistryStatusArgs{})
@@ -4705,6 +5222,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistriesStatusArrayInput)(nil)).Elem(), RegistriesStatusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryDomainInput)(nil)).Elem(), RegistryDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryDomainArrayInput)(nil)).Elem(), RegistryDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryProxyCacheInput)(nil)).Elem(), RegistryProxyCacheArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryProxyCachePtrInput)(nil)).Elem(), RegistryProxyCacheArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryResourceTagInput)(nil)).Elem(), RegistryResourceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryResourceTagArrayInput)(nil)).Elem(), RegistryResourceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryStatusInput)(nil)).Elem(), RegistryStatusArgs{})
@@ -4740,6 +5259,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryArrayInput)(nil)).Elem(), GetRegistriesRegistryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryDomainInput)(nil)).Elem(), GetRegistriesRegistryDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryDomainArrayInput)(nil)).Elem(), GetRegistriesRegistryDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryProxyCachInput)(nil)).Elem(), GetRegistriesRegistryProxyCachArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryProxyCachArrayInput)(nil)).Elem(), GetRegistriesRegistryProxyCachArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryResourceTagInput)(nil)).Elem(), GetRegistriesRegistryResourceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryResourceTagArrayInput)(nil)).Elem(), GetRegistriesRegistryResourceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistriesRegistryStatusInput)(nil)).Elem(), GetRegistriesRegistryStatusArgs{})
@@ -4772,6 +5293,8 @@ func init() {
 	pulumi.RegisterOutputType(RegistriesRegistryArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryDomainOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryDomainArrayOutput{})
+	pulumi.RegisterOutputType(RegistriesRegistryProxyCachOutput{})
+	pulumi.RegisterOutputType(RegistriesRegistryProxyCachArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryResourceTagOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryResourceTagArrayOutput{})
 	pulumi.RegisterOutputType(RegistriesRegistryStatusOutput{})
@@ -4781,6 +5304,8 @@ func init() {
 	pulumi.RegisterOutputType(RegistriesStatusArrayOutput{})
 	pulumi.RegisterOutputType(RegistryDomainOutput{})
 	pulumi.RegisterOutputType(RegistryDomainArrayOutput{})
+	pulumi.RegisterOutputType(RegistryProxyCacheOutput{})
+	pulumi.RegisterOutputType(RegistryProxyCachePtrOutput{})
 	pulumi.RegisterOutputType(RegistryResourceTagOutput{})
 	pulumi.RegisterOutputType(RegistryResourceTagArrayOutput{})
 	pulumi.RegisterOutputType(RegistryStatusOutput{})
@@ -4816,6 +5341,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRegistriesRegistryArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistriesRegistryDomainOutput{})
 	pulumi.RegisterOutputType(GetRegistriesRegistryDomainArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryProxyCachOutput{})
+	pulumi.RegisterOutputType(GetRegistriesRegistryProxyCachArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistriesRegistryResourceTagOutput{})
 	pulumi.RegisterOutputType(GetRegistriesRegistryResourceTagArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistriesRegistryStatusOutput{})

@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Cen.Outputs
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
-        /// The cen ID of the cen inter region bandwidth.
+        /// The ID of the cen.
         /// </summary>
         public readonly string CenId;
         /// <summary>

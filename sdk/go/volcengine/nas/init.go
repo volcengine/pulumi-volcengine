@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:nas/autoSnapshotPolicy:AutoSnapshotPolicy":
+		r = &AutoSnapshotPolicy{}
+	case "volcengine:nas/autoSnapshotPolicyApply:AutoSnapshotPolicyApply":
+		r = &AutoSnapshotPolicyApply{}
 	case "volcengine:nas/fileSystem:FileSystem":
 		r = &FileSystem{}
 	case "volcengine:nas/mountPoint:MountPoint":
@@ -42,6 +46,16 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"nas/autoSnapshotPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"nas/autoSnapshotPolicyApply",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"nas/fileSystem",

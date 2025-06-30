@@ -29,6 +29,7 @@ export function getRegistries(args?: GetRegistriesArgs, opts?: pulumi.InvokeOpti
     return pulumi.runtime.invoke("volcengine:cr/getRegistries:getRegistries", {
         "names": args.names,
         "outputFile": args.outputFile,
+        "projects": args.projects,
         "resourceTags": args.resourceTags,
         "statuses": args.statuses,
         "types": args.types,
@@ -47,6 +48,10 @@ export interface GetRegistriesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The list of project names to query.
+     */
+    projects?: string[];
     /**
      * The tags of cr registry.
      */
@@ -71,6 +76,7 @@ export interface GetRegistriesResult {
     readonly id: string;
     readonly names?: string[];
     readonly outputFile?: string;
+    readonly projects?: string[];
     /**
      * The collection of registry query.
      */
@@ -118,6 +124,10 @@ export interface GetRegistriesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The list of project names to query.
+     */
+    projects?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags of cr registry.
      */

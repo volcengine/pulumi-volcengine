@@ -20,7 +20,10 @@ class AccountArgs:
                  account_password: pulumi.Input[str],
                  account_type: pulumi.Input[str],
                  instance_id: pulumi.Input[str],
-                 account_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]]] = None):
+                 account_desc: Optional[pulumi.Input[str]] = None,
+                 account_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 table_column_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]]] = None):
         """
         The set of arguments for constructing a Account resource.
         :param pulumi.Input[str] account_name: Database account name. The rules are as follows:
@@ -39,14 +42,23 @@ class AccountArgs:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
-        :param pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]] account_privileges: The privilege information of account.
+        :param pulumi.Input[str] account_desc: Account information description. The length should not exceed 256 characters.
+        :param pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]] account_privileges: The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
+        :param pulumi.Input[str] host: Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        :param pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]] table_column_privileges: Settings for table column permissions of the account.
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_password", account_password)
         pulumi.set(__self__, "account_type", account_type)
         pulumi.set(__self__, "instance_id", instance_id)
+        if account_desc is not None:
+            pulumi.set(__self__, "account_desc", account_desc)
         if account_privileges is not None:
             pulumi.set(__self__, "account_privileges", account_privileges)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if table_column_privileges is not None:
+            pulumi.set(__self__, "table_column_privileges", table_column_privileges)
 
     @property
     @pulumi.getter(name="accountName")
@@ -109,10 +121,22 @@ class AccountArgs:
         pulumi.set(self, "instance_id", value)
 
     @property
+    @pulumi.getter(name="accountDesc")
+    def account_desc(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account information description. The length should not exceed 256 characters.
+        """
+        return pulumi.get(self, "account_desc")
+
+    @account_desc.setter
+    def account_desc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_desc", value)
+
+    @property
     @pulumi.getter(name="accountPrivileges")
     def account_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]]]:
         """
-        The privilege information of account.
+        The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         """
         return pulumi.get(self, "account_privileges")
 
@@ -120,17 +144,45 @@ class AccountArgs:
     def account_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]]]):
         pulumi.set(self, "account_privileges", value)
 
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="tableColumnPrivileges")
+    def table_column_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]]]:
+        """
+        Settings for table column permissions of the account.
+        """
+        return pulumi.get(self, "table_column_privileges")
+
+    @table_column_privileges.setter
+    def table_column_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]]]):
+        pulumi.set(self, "table_column_privileges", value)
+
 
 @pulumi.input_type
 class _AccountState:
     def __init__(__self__, *,
+                 account_desc: Optional[pulumi.Input[str]] = None,
                  account_name: Optional[pulumi.Input[str]] = None,
                  account_password: Optional[pulumi.Input[str]] = None,
                  account_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]]] = None,
                  account_type: Optional[pulumi.Input[str]] = None,
-                 instance_id: Optional[pulumi.Input[str]] = None):
+                 host: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 table_column_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]]] = None):
         """
         Input properties used for looking up and filtering Account resources.
+        :param pulumi.Input[str] account_desc: Account information description. The length should not exceed 256 characters.
         :param pulumi.Input[str] account_name: Database account name. The rules are as follows:
                Unique name.
                Start with a letter and end with a letter or number.
@@ -143,12 +195,16 @@ class _AccountState:
                The length is 8~32 characters.
                It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
                The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]] account_privileges: The privilege information of account.
+        :param pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]] account_privileges: The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         :param pulumi.Input[str] account_type: Database account type, value:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
+        :param pulumi.Input[str] host: Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]] table_column_privileges: Settings for table column permissions of the account.
         """
+        if account_desc is not None:
+            pulumi.set(__self__, "account_desc", account_desc)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
         if account_password is not None:
@@ -157,8 +213,24 @@ class _AccountState:
             pulumi.set(__self__, "account_privileges", account_privileges)
         if account_type is not None:
             pulumi.set(__self__, "account_type", account_type)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if table_column_privileges is not None:
+            pulumi.set(__self__, "table_column_privileges", table_column_privileges)
+
+    @property
+    @pulumi.getter(name="accountDesc")
+    def account_desc(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account information description. The length should not exceed 256 characters.
+        """
+        return pulumi.get(self, "account_desc")
+
+    @account_desc.setter
+    def account_desc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_desc", value)
 
     @property
     @pulumi.getter(name="accountName")
@@ -198,7 +270,7 @@ class _AccountState:
     @pulumi.getter(name="accountPrivileges")
     def account_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccountAccountPrivilegeArgs']]]]:
         """
-        The privilege information of account.
+        The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         """
         return pulumi.get(self, "account_privileges")
 
@@ -221,6 +293,18 @@ class _AccountState:
         pulumi.set(self, "account_type", value)
 
     @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -232,17 +316,32 @@ class _AccountState:
     def instance_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_id", value)
 
+    @property
+    @pulumi.getter(name="tableColumnPrivileges")
+    def table_column_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]]]:
+        """
+        Settings for table column permissions of the account.
+        """
+        return pulumi.get(self, "table_column_privileges")
+
+    @table_column_privileges.setter
+    def table_column_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeArgs']]]]):
+        pulumi.set(self, "table_column_privileges", value)
+
 
 class Account(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_desc: Optional[pulumi.Input[str]] = None,
                  account_name: Optional[pulumi.Input[str]] = None,
                  account_password: Optional[pulumi.Input[str]] = None,
                  account_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]]] = None,
                  account_type: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 table_column_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTableColumnPrivilegeArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds mysql account
@@ -286,6 +385,7 @@ class Account(pulumi.CustomResource):
         foo1 = volcengine.rds_mysql.Database("foo1",
             db_name="acc-test-db1",
             instance_id=foo_instance.id)
+        #instance_id = "mysql-b51d37110dd1"
         foo_database = volcengine.rds_mysql.Database("fooDatabase",
             db_name="acc-test-db",
             instance_id=foo_instance.id)
@@ -304,7 +404,20 @@ class Account(pulumi.CustomResource):
                     db_name=foo1.db_name,
                     account_privilege="DDLOnly",
                 ),
-            ])
+            ],
+            host="192.10.10.%")
+        #     table_column_privileges {
+        #          db_name = volcengine_rds_mysql_database.foo.db_name
+        #          table_privileges {
+        #               table_name = "test"
+        #               account_privilege_detail = "SELECT,INSERT,UPDATE"
+        #          }
+        #          column_privileges {
+        #               table_name = "test"
+        #               column_name = "test"
+        #               account_privilege_detail = "SELECT,INSERT,UPDATE"
+        #          }
+        #     }
         ```
 
         ## Import
@@ -317,6 +430,7 @@ class Account(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] account_desc: Account information description. The length should not exceed 256 characters.
         :param pulumi.Input[str] account_name: Database account name. The rules are as follows:
                Unique name.
                Start with a letter and end with a letter or number.
@@ -329,11 +443,13 @@ class Account(pulumi.CustomResource):
                The length is 8~32 characters.
                It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
                The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]] account_privileges: The privilege information of account.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]] account_privileges: The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         :param pulumi.Input[str] account_type: Database account type, value:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
+        :param pulumi.Input[str] host: Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTableColumnPrivilegeArgs']]]] table_column_privileges: Settings for table column permissions of the account.
         """
         ...
     @overload
@@ -383,6 +499,7 @@ class Account(pulumi.CustomResource):
         foo1 = volcengine.rds_mysql.Database("foo1",
             db_name="acc-test-db1",
             instance_id=foo_instance.id)
+        #instance_id = "mysql-b51d37110dd1"
         foo_database = volcengine.rds_mysql.Database("fooDatabase",
             db_name="acc-test-db",
             instance_id=foo_instance.id)
@@ -401,7 +518,20 @@ class Account(pulumi.CustomResource):
                     db_name=foo1.db_name,
                     account_privilege="DDLOnly",
                 ),
-            ])
+            ],
+            host="192.10.10.%")
+        #     table_column_privileges {
+        #          db_name = volcengine_rds_mysql_database.foo.db_name
+        #          table_privileges {
+        #               table_name = "test"
+        #               account_privilege_detail = "SELECT,INSERT,UPDATE"
+        #          }
+        #          column_privileges {
+        #               table_name = "test"
+        #               column_name = "test"
+        #               account_privilege_detail = "SELECT,INSERT,UPDATE"
+        #          }
+        #     }
         ```
 
         ## Import
@@ -427,11 +557,14 @@ class Account(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_desc: Optional[pulumi.Input[str]] = None,
                  account_name: Optional[pulumi.Input[str]] = None,
                  account_password: Optional[pulumi.Input[str]] = None,
                  account_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]]] = None,
                  account_type: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 table_column_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTableColumnPrivilegeArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -441,6 +574,7 @@ class Account(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AccountArgs.__new__(AccountArgs)
 
+            __props__.__dict__["account_desc"] = account_desc
             if account_name is None and not opts.urn:
                 raise TypeError("Missing required property 'account_name'")
             __props__.__dict__["account_name"] = account_name
@@ -451,9 +585,11 @@ class Account(pulumi.CustomResource):
             if account_type is None and not opts.urn:
                 raise TypeError("Missing required property 'account_type'")
             __props__.__dict__["account_type"] = account_type
+            __props__.__dict__["host"] = host
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["table_column_privileges"] = table_column_privileges
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accountPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Account, __self__).__init__(
@@ -466,11 +602,14 @@ class Account(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_desc: Optional[pulumi.Input[str]] = None,
             account_name: Optional[pulumi.Input[str]] = None,
             account_password: Optional[pulumi.Input[str]] = None,
             account_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]]] = None,
             account_type: Optional[pulumi.Input[str]] = None,
-            instance_id: Optional[pulumi.Input[str]] = None) -> 'Account':
+            host: Optional[pulumi.Input[str]] = None,
+            instance_id: Optional[pulumi.Input[str]] = None,
+            table_column_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTableColumnPrivilegeArgs']]]]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -478,6 +617,7 @@ class Account(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] account_desc: Account information description. The length should not exceed 256 characters.
         :param pulumi.Input[str] account_name: Database account name. The rules are as follows:
                Unique name.
                Start with a letter and end with a letter or number.
@@ -490,22 +630,35 @@ class Account(pulumi.CustomResource):
                The length is 8~32 characters.
                It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
                The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]] account_privileges: The privilege information of account.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountAccountPrivilegeArgs']]]] account_privileges: The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         :param pulumi.Input[str] account_type: Database account type, value:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
+        :param pulumi.Input[str] host: Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTableColumnPrivilegeArgs']]]] table_column_privileges: Settings for table column permissions of the account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountState.__new__(_AccountState)
 
+        __props__.__dict__["account_desc"] = account_desc
         __props__.__dict__["account_name"] = account_name
         __props__.__dict__["account_password"] = account_password
         __props__.__dict__["account_privileges"] = account_privileges
         __props__.__dict__["account_type"] = account_type
+        __props__.__dict__["host"] = host
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["table_column_privileges"] = table_column_privileges
         return Account(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountDesc")
+    def account_desc(self) -> pulumi.Output[Optional[str]]:
+        """
+        Account information description. The length should not exceed 256 characters.
+        """
+        return pulumi.get(self, "account_desc")
 
     @property
     @pulumi.getter(name="accountName")
@@ -537,7 +690,7 @@ class Account(pulumi.CustomResource):
     @pulumi.getter(name="accountPrivileges")
     def account_privileges(self) -> pulumi.Output[Optional[Sequence['outputs.AccountAccountPrivilege']]]:
         """
-        The privilege information of account.
+        The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         """
         return pulumi.get(self, "account_privileges")
 
@@ -552,10 +705,26 @@ class Account(pulumi.CustomResource):
         return pulumi.get(self, "account_type")
 
     @property
+    @pulumi.getter
+    def host(self) -> pulumi.Output[str]:
+        """
+        Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        """
+        return pulumi.get(self, "host")
+
+    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
         The ID of the RDS instance.
         """
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="tableColumnPrivileges")
+    def table_column_privileges(self) -> pulumi.Output[Optional[Sequence['outputs.AccountTableColumnPrivilege']]]:
+        """
+        Settings for table column permissions of the account.
+        """
+        return pulumi.get(self, "table_column_privileges")
 

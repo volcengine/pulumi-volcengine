@@ -64,6 +64,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetBackupsBackupDbTableInfoResult> DbTableInfos;
         /// <summary>
+        /// The decryption key of the backup.
+        /// </summary>
+        public readonly string DecryptionKey;
+        /// <summary>
         /// Download status. Values:
         /// NotDownload: Not downloaded.
         /// Success: Downloaded.
@@ -95,6 +99,14 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// false: Not expired.
         /// </summary>
         public readonly bool IsExpired;
+        /// <summary>
+        /// Initialization Vector.
+        /// </summary>
+        public readonly string Iv;
+        /// <summary>
+        /// Statistics information about the storage space usage of backups.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetBackupsBackupUsageStatResult> UsageStats;
 
         [OutputConstructor]
         private GetBackupsBackupResult(
@@ -122,6 +134,8 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             ImmutableArray<Outputs.GetBackupsBackupDbTableInfoResult> dbTableInfos,
 
+            string decryptionKey,
+
             string downloadStatus,
 
             string errorMessage,
@@ -132,7 +146,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             bool isEncrypted,
 
-            bool isExpired)
+            bool isExpired,
+
+            string iv,
+
+            ImmutableArray<Outputs.GetBackupsBackupUsageStatResult> usageStats)
         {
             BackupEndTime = backupEndTime;
             BackupFileName = backupFileName;
@@ -146,12 +164,15 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             ConsistentTime = consistentTime;
             CreateType = createType;
             DbTableInfos = dbTableInfos;
+            DecryptionKey = decryptionKey;
             DownloadStatus = downloadStatus;
             ErrorMessage = errorMessage;
             ExpiredTime = expiredTime;
             Id = id;
             IsEncrypted = isEncrypted;
             IsExpired = isExpired;
+            Iv = iv;
+            UsageStats = usageStats;
         }
     }
 }

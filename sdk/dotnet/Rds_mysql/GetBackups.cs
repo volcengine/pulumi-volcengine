@@ -25,14 +25,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// {
         ///     var foo = Volcengine.Rds_mysql.GetBackups.Invoke(new()
         ///     {
-        ///         BackupEndTime = "",
-        ///         BackupId = "",
-        ///         BackupMethod = "",
-        ///         BackupStartTime = "",
-        ///         BackupStatus = "",
-        ///         BackupType = "",
-        ///         CreateType = "",
-        ///         InstanceId = "",
+        ///         InstanceId = "mysql-b51d37110dd1",
         ///     });
         /// 
         /// });
@@ -55,14 +48,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// {
         ///     var foo = Volcengine.Rds_mysql.GetBackups.Invoke(new()
         ///     {
-        ///         BackupEndTime = "",
-        ///         BackupId = "",
-        ///         BackupMethod = "",
-        ///         BackupStartTime = "",
-        ///         BackupStatus = "",
-        ///         BackupType = "",
-        ///         CreateType = "",
-        ///         InstanceId = "",
+        ///         InstanceId = "mysql-b51d37110dd1",
         ///     });
         /// 
         /// });

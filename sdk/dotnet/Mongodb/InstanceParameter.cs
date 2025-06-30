@@ -75,7 +75,7 @@ namespace Pulumi.Volcengine.Mongodb
     /// 
     /// ## Import
     /// 
-    /// mongodb parameter can be imported using the param:instanceId:parameterName, e.g.
+    /// mongodb parameter can be imported using the param:instanceId:parameterName:parameterRole, e.g.
     /// 
     /// ```sh
     /// $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost

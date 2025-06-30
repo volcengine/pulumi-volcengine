@@ -77,7 +77,7 @@ namespace Pulumi.Volcengine.Private_zone
         public string? LastOperator { get; set; }
 
         /// <summary>
-        /// The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+        /// The subnet id of Private Zone Record.
         /// </summary>
         [Input("line")]
         public string? Line { get; set; }
@@ -95,10 +95,22 @@ namespace Pulumi.Volcengine.Private_zone
         public string? OutputFile { get; set; }
 
         /// <summary>
-        /// The id of Private Zone Record.
+        /// This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         /// </summary>
         [Input("recordId")]
         public string? RecordId { get; set; }
+
+        [Input("recordIds")]
+        private List<string>? _recordIds;
+
+        /// <summary>
+        /// The ids of Private Zone Record.
+        /// </summary>
+        public List<string> RecordIds
+        {
+            get => _recordIds ?? (_recordIds = new List<string>());
+            set => _recordIds = value;
+        }
 
         /// <summary>
         /// The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
@@ -145,7 +157,7 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? LastOperator { get; set; }
 
         /// <summary>
-        /// The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+        /// The subnet id of Private Zone Record.
         /// </summary>
         [Input("line")]
         public Input<string>? Line { get; set; }
@@ -163,10 +175,22 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
-        /// The id of Private Zone Record.
+        /// This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         /// </summary>
         [Input("recordId")]
         public Input<string>? RecordId { get; set; }
+
+        [Input("recordIds")]
+        private InputList<string>? _recordIds;
+
+        /// <summary>
+        /// The ids of Private Zone Record.
+        /// </summary>
+        public InputList<string> RecordIds
+        {
+            get => _recordIds ?? (_recordIds = new InputList<string>());
+            set => _recordIds = value;
+        }
 
         /// <summary>
         /// The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
@@ -224,6 +248,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// The id of the private zone record.
         /// </summary>
         public readonly string? RecordId;
+        public readonly ImmutableArray<string> RecordIds;
         /// <summary>
         /// The collection of query.
         /// </summary>
@@ -262,6 +287,8 @@ namespace Pulumi.Volcengine.Private_zone
 
             string? recordId,
 
+            ImmutableArray<string> recordIds,
+
             ImmutableArray<Outputs.RecordsRecordResult> records,
 
             string? searchMode,
@@ -281,6 +308,7 @@ namespace Pulumi.Volcengine.Private_zone
             Name = name;
             OutputFile = outputFile;
             RecordId = recordId;
+            RecordIds = recordIds;
             Records = records;
             SearchMode = searchMode;
             TotalCount = totalCount;

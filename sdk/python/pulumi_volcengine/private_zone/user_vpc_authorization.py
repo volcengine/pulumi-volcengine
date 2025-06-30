@@ -14,12 +14,20 @@ __all__ = ['UserVpcAuthorizationArgs', 'UserVpcAuthorization']
 @pulumi.input_type
 class UserVpcAuthorizationArgs:
     def __init__(__self__, *,
-                 account_id: pulumi.Input[str]):
+                 account_id: pulumi.Input[str],
+                 auth_type: Optional[pulumi.Input[int]] = None,
+                 verify_code: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a UserVpcAuthorization resource.
         :param pulumi.Input[str] account_id: The account Id which authorizes the private zone resource.
+        :param pulumi.Input[int] auth_type: The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        :param pulumi.Input[str] verify_code: The verify code of the private zone resource. This field is required when the auth_type is 1.
         """
         pulumi.set(__self__, "account_id", account_id)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if verify_code is not None:
+            pulumi.set(__self__, "verify_code", verify_code)
 
     @property
     @pulumi.getter(name="accountId")
@@ -33,17 +41,49 @@ class UserVpcAuthorizationArgs:
     def account_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "account_id", value)
 
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[pulumi.Input[int]]:
+        """
+        The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter(name="verifyCode")
+    def verify_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The verify code of the private zone resource. This field is required when the auth_type is 1.
+        """
+        return pulumi.get(self, "verify_code")
+
+    @verify_code.setter
+    def verify_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify_code", value)
+
 
 @pulumi.input_type
 class _UserVpcAuthorizationState:
     def __init__(__self__, *,
-                 account_id: Optional[pulumi.Input[str]] = None):
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 auth_type: Optional[pulumi.Input[int]] = None,
+                 verify_code: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UserVpcAuthorization resources.
         :param pulumi.Input[str] account_id: The account Id which authorizes the private zone resource.
+        :param pulumi.Input[int] auth_type: The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        :param pulumi.Input[str] verify_code: The verify code of the private zone resource. This field is required when the auth_type is 1.
         """
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if verify_code is not None:
+            pulumi.set(__self__, "verify_code", verify_code)
 
     @property
     @pulumi.getter(name="accountId")
@@ -57,6 +97,30 @@ class _UserVpcAuthorizationState:
     def account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_id", value)
 
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[pulumi.Input[int]]:
+        """
+        The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter(name="verifyCode")
+    def verify_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The verify code of the private zone resource. This field is required when the auth_type is 1.
+        """
+        return pulumi.get(self, "verify_code")
+
+    @verify_code.setter
+    def verify_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify_code", value)
+
 
 class UserVpcAuthorization(pulumi.CustomResource):
     @overload
@@ -64,6 +128,8 @@ class UserVpcAuthorization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 auth_type: Optional[pulumi.Input[int]] = None,
+                 verify_code: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage private zone user vpc authorization
@@ -87,6 +153,8 @@ class UserVpcAuthorization(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account Id which authorizes the private zone resource.
+        :param pulumi.Input[int] auth_type: The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        :param pulumi.Input[str] verify_code: The verify code of the private zone resource. This field is required when the auth_type is 1.
         """
         ...
     @overload
@@ -129,6 +197,8 @@ class UserVpcAuthorization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 auth_type: Optional[pulumi.Input[int]] = None,
+                 verify_code: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -141,6 +211,8 @@ class UserVpcAuthorization(pulumi.CustomResource):
             if account_id is None and not opts.urn:
                 raise TypeError("Missing required property 'account_id'")
             __props__.__dict__["account_id"] = account_id
+            __props__.__dict__["auth_type"] = auth_type
+            __props__.__dict__["verify_code"] = verify_code
         super(UserVpcAuthorization, __self__).__init__(
             'volcengine:private_zone/userVpcAuthorization:UserVpcAuthorization',
             resource_name,
@@ -151,7 +223,9 @@ class UserVpcAuthorization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            account_id: Optional[pulumi.Input[str]] = None) -> 'UserVpcAuthorization':
+            account_id: Optional[pulumi.Input[str]] = None,
+            auth_type: Optional[pulumi.Input[int]] = None,
+            verify_code: Optional[pulumi.Input[str]] = None) -> 'UserVpcAuthorization':
         """
         Get an existing UserVpcAuthorization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -160,12 +234,16 @@ class UserVpcAuthorization(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account Id which authorizes the private zone resource.
+        :param pulumi.Input[int] auth_type: The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        :param pulumi.Input[str] verify_code: The verify code of the private zone resource. This field is required when the auth_type is 1.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _UserVpcAuthorizationState.__new__(_UserVpcAuthorizationState)
 
         __props__.__dict__["account_id"] = account_id
+        __props__.__dict__["auth_type"] = auth_type
+        __props__.__dict__["verify_code"] = verify_code
         return UserVpcAuthorization(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -175,4 +253,20 @@ class UserVpcAuthorization(pulumi.CustomResource):
         The account Id which authorizes the private zone resource.
         """
         return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Output[Optional[int]]:
+        """
+        The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @property
+    @pulumi.getter(name="verifyCode")
+    def verify_code(self) -> pulumi.Output[Optional[str]]:
+        """
+        The verify code of the private zone resource. This field is required when the auth_type is 1.
+        """
+        return pulumi.get(self, "verify_code")
 

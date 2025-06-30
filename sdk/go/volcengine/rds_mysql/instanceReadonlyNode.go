@@ -99,6 +99,8 @@ import (
 type InstanceReadonlyNode struct {
 	pulumi.CustomResourceState
 
+	// The delay time of the readonly node.
+	DelayReplicationTime pulumi.IntOutput `pulumi:"delayReplicationTime"`
 	// The RDS mysql instance id of the readonly node.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The id of the readonly node.
@@ -148,6 +150,8 @@ func GetInstanceReadonlyNode(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceReadonlyNode resources.
 type instanceReadonlyNodeState struct {
+	// The delay time of the readonly node.
+	DelayReplicationTime *int `pulumi:"delayReplicationTime"`
 	// The RDS mysql instance id of the readonly node.
 	InstanceId *string `pulumi:"instanceId"`
 	// The id of the readonly node.
@@ -159,6 +163,8 @@ type instanceReadonlyNodeState struct {
 }
 
 type InstanceReadonlyNodeState struct {
+	// The delay time of the readonly node.
+	DelayReplicationTime pulumi.IntPtrInput
 	// The RDS mysql instance id of the readonly node.
 	InstanceId pulumi.StringPtrInput
 	// The id of the readonly node.
@@ -277,6 +283,11 @@ func (o InstanceReadonlyNodeOutput) ToInstanceReadonlyNodeOutput() InstanceReado
 
 func (o InstanceReadonlyNodeOutput) ToInstanceReadonlyNodeOutputWithContext(ctx context.Context) InstanceReadonlyNodeOutput {
 	return o
+}
+
+// The delay time of the readonly node.
+func (o InstanceReadonlyNodeOutput) DelayReplicationTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *InstanceReadonlyNode) pulumi.IntOutput { return v.DelayReplicationTime }).(pulumi.IntOutput)
 }
 
 // The RDS mysql instance id of the readonly node.

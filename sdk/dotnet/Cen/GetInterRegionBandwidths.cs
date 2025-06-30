@@ -179,6 +179,12 @@ namespace Pulumi.Volcengine.Cen
 
     public sealed class GetInterRegionBandwidthsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the cen.
+        /// </summary>
+        [Input("cenId")]
+        public string? CenId { get; set; }
+
         [Input("ids")]
         private List<string>? _ids;
 
@@ -205,6 +211,12 @@ namespace Pulumi.Volcengine.Cen
 
     public sealed class GetInterRegionBandwidthsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the cen.
+        /// </summary>
+        [Input("cenId")]
+        public Input<string>? CenId { get; set; }
+
         [Input("ids")]
         private InputList<string>? _ids;
 
@@ -234,6 +246,10 @@ namespace Pulumi.Volcengine.Cen
     public sealed class GetInterRegionBandwidthsResult
     {
         /// <summary>
+        /// The cen ID of the cen inter region bandwidth.
+        /// </summary>
+        public readonly string? CenId;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -250,6 +266,8 @@ namespace Pulumi.Volcengine.Cen
 
         [OutputConstructor]
         private GetInterRegionBandwidthsResult(
+            string? cenId,
+
             string id,
 
             ImmutableArray<string> ids,
@@ -260,6 +278,7 @@ namespace Pulumi.Volcengine.Cen
 
             int totalCount)
         {
+            CenId = cenId;
             Id = id;
             Ids = ids;
             InterRegionBandwidths = interRegionBandwidths;

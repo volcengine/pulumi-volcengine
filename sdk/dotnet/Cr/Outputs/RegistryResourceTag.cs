@@ -16,17 +16,17 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// <summary>
         /// The Key of Tags.
         /// </summary>
-        public readonly string? Key;
+        public readonly string Key;
         /// <summary>
         /// The Value of Tags.
         /// </summary>
-        public readonly string? Value;
+        public readonly string Value;
 
         [OutputConstructor]
         private RegistryResourceTag(
-            string? key,
+            string key,
 
-            string? value)
+            string value)
         {
             Key = key;
             Value = value;

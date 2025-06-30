@@ -13,6 +13,263 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AllowListsAllowList struct {
+	// The description of the allow list.
+	AllowListDesc string `pulumi:"allowListDesc"`
+	// The id of the allow list.
+	AllowListId string `pulumi:"allowListId"`
+	// The number of rules specified in the whitelist.
+	AllowListIpNum int `pulumi:"allowListIpNum"`
+	// The name of the allow list.
+	AllowListName string `pulumi:"allowListName"`
+	// Whitelist rule list.
+	AllowLists []string `pulumi:"allowLists"`
+	// The number of instances bound to the whitelist.
+	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances []AllowListsAllowListAssociatedInstance `pulumi:"associatedInstances"`
+}
+
+// AllowListsAllowListInput is an input type that accepts AllowListsAllowListArgs and AllowListsAllowListOutput values.
+// You can construct a concrete instance of `AllowListsAllowListInput` via:
+//
+//	AllowListsAllowListArgs{...}
+type AllowListsAllowListInput interface {
+	pulumi.Input
+
+	ToAllowListsAllowListOutput() AllowListsAllowListOutput
+	ToAllowListsAllowListOutputWithContext(context.Context) AllowListsAllowListOutput
+}
+
+type AllowListsAllowListArgs struct {
+	// The description of the allow list.
+	AllowListDesc pulumi.StringInput `pulumi:"allowListDesc"`
+	// The id of the allow list.
+	AllowListId pulumi.StringInput `pulumi:"allowListId"`
+	// The number of rules specified in the whitelist.
+	AllowListIpNum pulumi.IntInput `pulumi:"allowListIpNum"`
+	// The name of the allow list.
+	AllowListName pulumi.StringInput `pulumi:"allowListName"`
+	// Whitelist rule list.
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// The number of instances bound to the whitelist.
+	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances AllowListsAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+}
+
+func (AllowListsAllowListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowListsAllowList)(nil)).Elem()
+}
+
+func (i AllowListsAllowListArgs) ToAllowListsAllowListOutput() AllowListsAllowListOutput {
+	return i.ToAllowListsAllowListOutputWithContext(context.Background())
+}
+
+func (i AllowListsAllowListArgs) ToAllowListsAllowListOutputWithContext(ctx context.Context) AllowListsAllowListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowListsAllowListOutput)
+}
+
+// AllowListsAllowListArrayInput is an input type that accepts AllowListsAllowListArray and AllowListsAllowListArrayOutput values.
+// You can construct a concrete instance of `AllowListsAllowListArrayInput` via:
+//
+//	AllowListsAllowListArray{ AllowListsAllowListArgs{...} }
+type AllowListsAllowListArrayInput interface {
+	pulumi.Input
+
+	ToAllowListsAllowListArrayOutput() AllowListsAllowListArrayOutput
+	ToAllowListsAllowListArrayOutputWithContext(context.Context) AllowListsAllowListArrayOutput
+}
+
+type AllowListsAllowListArray []AllowListsAllowListInput
+
+func (AllowListsAllowListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowListsAllowList)(nil)).Elem()
+}
+
+func (i AllowListsAllowListArray) ToAllowListsAllowListArrayOutput() AllowListsAllowListArrayOutput {
+	return i.ToAllowListsAllowListArrayOutputWithContext(context.Background())
+}
+
+func (i AllowListsAllowListArray) ToAllowListsAllowListArrayOutputWithContext(ctx context.Context) AllowListsAllowListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowListsAllowListArrayOutput)
+}
+
+type AllowListsAllowListOutput struct{ *pulumi.OutputState }
+
+func (AllowListsAllowListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowListsAllowList)(nil)).Elem()
+}
+
+func (o AllowListsAllowListOutput) ToAllowListsAllowListOutput() AllowListsAllowListOutput {
+	return o
+}
+
+func (o AllowListsAllowListOutput) ToAllowListsAllowListOutputWithContext(ctx context.Context) AllowListsAllowListOutput {
+	return o
+}
+
+// The description of the allow list.
+func (o AllowListsAllowListOutput) AllowListDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowListsAllowList) string { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The id of the allow list.
+func (o AllowListsAllowListOutput) AllowListId() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowListsAllowList) string { return v.AllowListId }).(pulumi.StringOutput)
+}
+
+// The number of rules specified in the whitelist.
+func (o AllowListsAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v AllowListsAllowList) int { return v.AllowListIpNum }).(pulumi.IntOutput)
+}
+
+// The name of the allow list.
+func (o AllowListsAllowListOutput) AllowListName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowListsAllowList) string { return v.AllowListName }).(pulumi.StringOutput)
+}
+
+// Whitelist rule list.
+func (o AllowListsAllowListOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AllowListsAllowList) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+// The number of instances bound to the whitelist.
+func (o AllowListsAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v AllowListsAllowList) int { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The list of associated instances.
+func (o AllowListsAllowListOutput) AssociatedInstances() AllowListsAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v AllowListsAllowList) []AllowListsAllowListAssociatedInstance { return v.AssociatedInstances }).(AllowListsAllowListAssociatedInstanceArrayOutput)
+}
+
+type AllowListsAllowListArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowListsAllowListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowListsAllowList)(nil)).Elem()
+}
+
+func (o AllowListsAllowListArrayOutput) ToAllowListsAllowListArrayOutput() AllowListsAllowListArrayOutput {
+	return o
+}
+
+func (o AllowListsAllowListArrayOutput) ToAllowListsAllowListArrayOutputWithContext(ctx context.Context) AllowListsAllowListArrayOutput {
+	return o
+}
+
+func (o AllowListsAllowListArrayOutput) Index(i pulumi.IntInput) AllowListsAllowListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowListsAllowList {
+		return vs[0].([]AllowListsAllowList)[vs[1].(int)]
+	}).(AllowListsAllowListOutput)
+}
+
+type AllowListsAllowListAssociatedInstance struct {
+	// The instance ID to query.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName string `pulumi:"instanceName"`
+}
+
+// AllowListsAllowListAssociatedInstanceInput is an input type that accepts AllowListsAllowListAssociatedInstanceArgs and AllowListsAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `AllowListsAllowListAssociatedInstanceInput` via:
+//
+//	AllowListsAllowListAssociatedInstanceArgs{...}
+type AllowListsAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToAllowListsAllowListAssociatedInstanceOutput() AllowListsAllowListAssociatedInstanceOutput
+	ToAllowListsAllowListAssociatedInstanceOutputWithContext(context.Context) AllowListsAllowListAssociatedInstanceOutput
+}
+
+type AllowListsAllowListAssociatedInstanceArgs struct {
+	// The instance ID to query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+}
+
+func (AllowListsAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i AllowListsAllowListAssociatedInstanceArgs) ToAllowListsAllowListAssociatedInstanceOutput() AllowListsAllowListAssociatedInstanceOutput {
+	return i.ToAllowListsAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i AllowListsAllowListAssociatedInstanceArgs) ToAllowListsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) AllowListsAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowListsAllowListAssociatedInstanceOutput)
+}
+
+// AllowListsAllowListAssociatedInstanceArrayInput is an input type that accepts AllowListsAllowListAssociatedInstanceArray and AllowListsAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `AllowListsAllowListAssociatedInstanceArrayInput` via:
+//
+//	AllowListsAllowListAssociatedInstanceArray{ AllowListsAllowListAssociatedInstanceArgs{...} }
+type AllowListsAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToAllowListsAllowListAssociatedInstanceArrayOutput() AllowListsAllowListAssociatedInstanceArrayOutput
+	ToAllowListsAllowListAssociatedInstanceArrayOutputWithContext(context.Context) AllowListsAllowListAssociatedInstanceArrayOutput
+}
+
+type AllowListsAllowListAssociatedInstanceArray []AllowListsAllowListAssociatedInstanceInput
+
+func (AllowListsAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i AllowListsAllowListAssociatedInstanceArray) ToAllowListsAllowListAssociatedInstanceArrayOutput() AllowListsAllowListAssociatedInstanceArrayOutput {
+	return i.ToAllowListsAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i AllowListsAllowListAssociatedInstanceArray) ToAllowListsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) AllowListsAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowListsAllowListAssociatedInstanceArrayOutput)
+}
+
+type AllowListsAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (AllowListsAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o AllowListsAllowListAssociatedInstanceOutput) ToAllowListsAllowListAssociatedInstanceOutput() AllowListsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o AllowListsAllowListAssociatedInstanceOutput) ToAllowListsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) AllowListsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// The instance ID to query.
+func (o AllowListsAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowListsAllowListAssociatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the instance.
+func (o AllowListsAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowListsAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+type AllowListsAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowListsAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o AllowListsAllowListAssociatedInstanceArrayOutput) ToAllowListsAllowListAssociatedInstanceArrayOutput() AllowListsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o AllowListsAllowListAssociatedInstanceArrayOutput) ToAllowListsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) AllowListsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o AllowListsAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) AllowListsAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowListsAllowListAssociatedInstance {
+		return vs[0].([]AllowListsAllowListAssociatedInstance)[vs[1].(int)]
+	}).(AllowListsAllowListAssociatedInstanceOutput)
+}
+
 type ConsumedPartitionsConsumedPartition struct {
 	// The total amount of message accumulation in this topic partition for the consumer group.
 	Accumulation int `pulumi:"accumulation"`
@@ -2591,6 +2848,265 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 	}).(ZonesZoneOutput)
 }
 
+type GetAllowListsAllowList struct {
+	// The description of the allow list.
+	AllowListDesc string `pulumi:"allowListDesc"`
+	// The id of the allow list.
+	AllowListId string `pulumi:"allowListId"`
+	// The number of rules specified in the whitelist.
+	AllowListIpNum int `pulumi:"allowListIpNum"`
+	// The name of the allow list.
+	AllowListName string `pulumi:"allowListName"`
+	// Whitelist rule list.
+	AllowLists []string `pulumi:"allowLists"`
+	// The number of instances bound to the whitelist.
+	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances []GetAllowListsAllowListAssociatedInstance `pulumi:"associatedInstances"`
+}
+
+// GetAllowListsAllowListInput is an input type that accepts GetAllowListsAllowListArgs and GetAllowListsAllowListOutput values.
+// You can construct a concrete instance of `GetAllowListsAllowListInput` via:
+//
+//	GetAllowListsAllowListArgs{...}
+type GetAllowListsAllowListInput interface {
+	pulumi.Input
+
+	ToGetAllowListsAllowListOutput() GetAllowListsAllowListOutput
+	ToGetAllowListsAllowListOutputWithContext(context.Context) GetAllowListsAllowListOutput
+}
+
+type GetAllowListsAllowListArgs struct {
+	// The description of the allow list.
+	AllowListDesc pulumi.StringInput `pulumi:"allowListDesc"`
+	// The id of the allow list.
+	AllowListId pulumi.StringInput `pulumi:"allowListId"`
+	// The number of rules specified in the whitelist.
+	AllowListIpNum pulumi.IntInput `pulumi:"allowListIpNum"`
+	// The name of the allow list.
+	AllowListName pulumi.StringInput `pulumi:"allowListName"`
+	// Whitelist rule list.
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// The number of instances bound to the whitelist.
+	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
+	// The list of associated instances.
+	AssociatedInstances GetAllowListsAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+}
+
+func (GetAllowListsAllowListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsAllowList)(nil)).Elem()
+}
+
+func (i GetAllowListsAllowListArgs) ToGetAllowListsAllowListOutput() GetAllowListsAllowListOutput {
+	return i.ToGetAllowListsAllowListOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsAllowListArgs) ToGetAllowListsAllowListOutputWithContext(ctx context.Context) GetAllowListsAllowListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsAllowListOutput)
+}
+
+// GetAllowListsAllowListArrayInput is an input type that accepts GetAllowListsAllowListArray and GetAllowListsAllowListArrayOutput values.
+// You can construct a concrete instance of `GetAllowListsAllowListArrayInput` via:
+//
+//	GetAllowListsAllowListArray{ GetAllowListsAllowListArgs{...} }
+type GetAllowListsAllowListArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowListsAllowListArrayOutput() GetAllowListsAllowListArrayOutput
+	ToGetAllowListsAllowListArrayOutputWithContext(context.Context) GetAllowListsAllowListArrayOutput
+}
+
+type GetAllowListsAllowListArray []GetAllowListsAllowListInput
+
+func (GetAllowListsAllowListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsAllowList)(nil)).Elem()
+}
+
+func (i GetAllowListsAllowListArray) ToGetAllowListsAllowListArrayOutput() GetAllowListsAllowListArrayOutput {
+	return i.ToGetAllowListsAllowListArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsAllowListArray) ToGetAllowListsAllowListArrayOutputWithContext(ctx context.Context) GetAllowListsAllowListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsAllowListArrayOutput)
+}
+
+type GetAllowListsAllowListOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsAllowListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsAllowList)(nil)).Elem()
+}
+
+func (o GetAllowListsAllowListOutput) ToGetAllowListsAllowListOutput() GetAllowListsAllowListOutput {
+	return o
+}
+
+func (o GetAllowListsAllowListOutput) ToGetAllowListsAllowListOutputWithContext(ctx context.Context) GetAllowListsAllowListOutput {
+	return o
+}
+
+// The description of the allow list.
+func (o GetAllowListsAllowListOutput) AllowListDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) string { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The id of the allow list.
+func (o GetAllowListsAllowListOutput) AllowListId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) string { return v.AllowListId }).(pulumi.StringOutput)
+}
+
+// The number of rules specified in the whitelist.
+func (o GetAllowListsAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) int { return v.AllowListIpNum }).(pulumi.IntOutput)
+}
+
+// The name of the allow list.
+func (o GetAllowListsAllowListOutput) AllowListName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) string { return v.AllowListName }).(pulumi.StringOutput)
+}
+
+// Whitelist rule list.
+func (o GetAllowListsAllowListOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+// The number of instances bound to the whitelist.
+func (o GetAllowListsAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) int { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The list of associated instances.
+func (o GetAllowListsAllowListOutput) AssociatedInstances() GetAllowListsAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v GetAllowListsAllowList) []GetAllowListsAllowListAssociatedInstance {
+		return v.AssociatedInstances
+	}).(GetAllowListsAllowListAssociatedInstanceArrayOutput)
+}
+
+type GetAllowListsAllowListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsAllowListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsAllowList)(nil)).Elem()
+}
+
+func (o GetAllowListsAllowListArrayOutput) ToGetAllowListsAllowListArrayOutput() GetAllowListsAllowListArrayOutput {
+	return o
+}
+
+func (o GetAllowListsAllowListArrayOutput) ToGetAllowListsAllowListArrayOutputWithContext(ctx context.Context) GetAllowListsAllowListArrayOutput {
+	return o
+}
+
+func (o GetAllowListsAllowListArrayOutput) Index(i pulumi.IntInput) GetAllowListsAllowListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowListsAllowList {
+		return vs[0].([]GetAllowListsAllowList)[vs[1].(int)]
+	}).(GetAllowListsAllowListOutput)
+}
+
+type GetAllowListsAllowListAssociatedInstance struct {
+	// The instance ID to query.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName string `pulumi:"instanceName"`
+}
+
+// GetAllowListsAllowListAssociatedInstanceInput is an input type that accepts GetAllowListsAllowListAssociatedInstanceArgs and GetAllowListsAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `GetAllowListsAllowListAssociatedInstanceInput` via:
+//
+//	GetAllowListsAllowListAssociatedInstanceArgs{...}
+type GetAllowListsAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToGetAllowListsAllowListAssociatedInstanceOutput() GetAllowListsAllowListAssociatedInstanceOutput
+	ToGetAllowListsAllowListAssociatedInstanceOutputWithContext(context.Context) GetAllowListsAllowListAssociatedInstanceOutput
+}
+
+type GetAllowListsAllowListAssociatedInstanceArgs struct {
+	// The instance ID to query.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+}
+
+func (GetAllowListsAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetAllowListsAllowListAssociatedInstanceArgs) ToGetAllowListsAllowListAssociatedInstanceOutput() GetAllowListsAllowListAssociatedInstanceOutput {
+	return i.ToGetAllowListsAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsAllowListAssociatedInstanceArgs) ToGetAllowListsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetAllowListsAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsAllowListAssociatedInstanceOutput)
+}
+
+// GetAllowListsAllowListAssociatedInstanceArrayInput is an input type that accepts GetAllowListsAllowListAssociatedInstanceArray and GetAllowListsAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `GetAllowListsAllowListAssociatedInstanceArrayInput` via:
+//
+//	GetAllowListsAllowListAssociatedInstanceArray{ GetAllowListsAllowListAssociatedInstanceArgs{...} }
+type GetAllowListsAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowListsAllowListAssociatedInstanceArrayOutput() GetAllowListsAllowListAssociatedInstanceArrayOutput
+	ToGetAllowListsAllowListAssociatedInstanceArrayOutputWithContext(context.Context) GetAllowListsAllowListAssociatedInstanceArrayOutput
+}
+
+type GetAllowListsAllowListAssociatedInstanceArray []GetAllowListsAllowListAssociatedInstanceInput
+
+func (GetAllowListsAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i GetAllowListsAllowListAssociatedInstanceArray) ToGetAllowListsAllowListAssociatedInstanceArrayOutput() GetAllowListsAllowListAssociatedInstanceArrayOutput {
+	return i.ToGetAllowListsAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowListsAllowListAssociatedInstanceArray) ToGetAllowListsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetAllowListsAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowListsAllowListAssociatedInstanceArrayOutput)
+}
+
+type GetAllowListsAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetAllowListsAllowListAssociatedInstanceOutput) ToGetAllowListsAllowListAssociatedInstanceOutput() GetAllowListsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o GetAllowListsAllowListAssociatedInstanceOutput) ToGetAllowListsAllowListAssociatedInstanceOutputWithContext(ctx context.Context) GetAllowListsAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// The instance ID to query.
+func (o GetAllowListsAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsAllowListAssociatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the instance.
+func (o GetAllowListsAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowListsAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+type GetAllowListsAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowListsAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowListsAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o GetAllowListsAllowListAssociatedInstanceArrayOutput) ToGetAllowListsAllowListAssociatedInstanceArrayOutput() GetAllowListsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetAllowListsAllowListAssociatedInstanceArrayOutput) ToGetAllowListsAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) GetAllowListsAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o GetAllowListsAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) GetAllowListsAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowListsAllowListAssociatedInstance {
+		return vs[0].([]GetAllowListsAllowListAssociatedInstance)[vs[1].(int)]
+	}).(GetAllowListsAllowListAssociatedInstanceOutput)
+}
+
 type GetConsumedPartitionsConsumedPartition struct {
 	// The total amount of message accumulation in this topic partition for the consumer group.
 	Accumulation int `pulumi:"accumulation"`
@@ -4677,6 +5193,10 @@ func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowListsAllowListInput)(nil)).Elem(), AllowListsAllowListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowListsAllowListArrayInput)(nil)).Elem(), AllowListsAllowListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowListsAllowListAssociatedInstanceInput)(nil)).Elem(), AllowListsAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowListsAllowListAssociatedInstanceArrayInput)(nil)).Elem(), AllowListsAllowListAssociatedInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedPartitionsConsumedPartitionInput)(nil)).Elem(), ConsumedPartitionsConsumedPartitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedPartitionsConsumedPartitionArrayInput)(nil)).Elem(), ConsumedPartitionsConsumedPartitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedTopicsConsumedTopicInput)(nil)).Elem(), ConsumedTopicsConsumedTopicArgs{})
@@ -4714,6 +5234,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicParametersInput)(nil)).Elem(), TopicsTopicParametersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsAllowListInput)(nil)).Elem(), GetAllowListsAllowListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsAllowListArrayInput)(nil)).Elem(), GetAllowListsAllowListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsAllowListAssociatedInstanceInput)(nil)).Elem(), GetAllowListsAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsAllowListAssociatedInstanceArrayInput)(nil)).Elem(), GetAllowListsAllowListAssociatedInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedPartitionsConsumedPartitionInput)(nil)).Elem(), GetConsumedPartitionsConsumedPartitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedPartitionsConsumedPartitionArrayInput)(nil)).Elem(), GetConsumedPartitionsConsumedPartitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedTopicsConsumedTopicInput)(nil)).Elem(), GetConsumedTopicsConsumedTopicArgs{})
@@ -4743,6 +5267,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicParametersInput)(nil)).Elem(), GetTopicsTopicParametersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
+	pulumi.RegisterOutputType(AllowListsAllowListOutput{})
+	pulumi.RegisterOutputType(AllowListsAllowListArrayOutput{})
+	pulumi.RegisterOutputType(AllowListsAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(AllowListsAllowListAssociatedInstanceArrayOutput{})
 	pulumi.RegisterOutputType(ConsumedPartitionsConsumedPartitionOutput{})
 	pulumi.RegisterOutputType(ConsumedPartitionsConsumedPartitionArrayOutput{})
 	pulumi.RegisterOutputType(ConsumedTopicsConsumedTopicOutput{})
@@ -4780,6 +5308,10 @@ func init() {
 	pulumi.RegisterOutputType(TopicsTopicParametersOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowListsAllowListOutput{})
+	pulumi.RegisterOutputType(GetAllowListsAllowListArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowListsAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(GetAllowListsAllowListAssociatedInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetConsumedPartitionsConsumedPartitionOutput{})
 	pulumi.RegisterOutputType(GetConsumedPartitionsConsumedPartitionArrayOutput{})
 	pulumi.RegisterOutputType(GetConsumedTopicsConsumedTopicOutput{})

@@ -74,6 +74,10 @@ export class Namespace extends pulumi.CustomResource {
      * The registry name.
      */
     public readonly registry!: pulumi.Output<string>;
+    /**
+     * The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+     */
+    public readonly repositoryDefaultAccessLevel!: pulumi.Output<string>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -92,6 +96,7 @@ export class Namespace extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["registry"] = state ? state.registry : undefined;
+            resourceInputs["repositoryDefaultAccessLevel"] = state ? state.repositoryDefaultAccessLevel : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
             if ((!args || args.registry === undefined) && !opts.urn) {
@@ -100,6 +105,7 @@ export class Namespace extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["registry"] = args ? args.registry : undefined;
+            resourceInputs["repositoryDefaultAccessLevel"] = args ? args.repositoryDefaultAccessLevel : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -127,6 +133,10 @@ export interface NamespaceState {
      * The registry name.
      */
     registry?: pulumi.Input<string>;
+    /**
+     * The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+     */
+    repositoryDefaultAccessLevel?: pulumi.Input<string>;
 }
 
 /**
@@ -145,4 +155,8 @@ export interface NamespaceArgs {
      * The registry name.
      */
     registry: pulumi.Input<string>;
+    /**
+     * The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+     */
+    repositoryDefaultAccessLevel?: pulumi.Input<string>;
 }

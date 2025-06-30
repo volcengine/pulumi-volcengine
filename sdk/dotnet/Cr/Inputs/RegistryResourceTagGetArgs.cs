@@ -15,14 +15,14 @@ namespace Pulumi.Volcengine.Cr.Inputs
         /// <summary>
         /// The Key of Tags.
         /// </summary>
-        [Input("key")]
-        public Input<string>? Key { get; set; }
+        [Input("key", required: true)]
+        public Input<string> Key { get; set; } = null!;
 
         /// <summary>
         /// The Value of Tags.
         /// </summary>
-        [Input("value")]
-        public Input<string>? Value { get; set; }
+        [Input("value", required: true)]
+        public Input<string> Value { get; set; } = null!;
 
         public RegistryResourceTagGetArgs()
         {

@@ -22,9 +22,17 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.DatabasesDatabaseDatabasePrivilegeResult> DatabasePrivileges;
         /// <summary>
+        /// The description information of the RDS database.
+        /// </summary>
+        public readonly string DbDesc;
+        /// <summary>
         /// The name of the RDS database.
         /// </summary>
         public readonly string DbName;
+        /// <summary>
+        /// The status of the RDS database.
+        /// </summary>
+        public readonly string DbStatus;
 
         [OutputConstructor]
         private DatabasesDatabaseResult(
@@ -32,11 +40,17 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             ImmutableArray<Outputs.DatabasesDatabaseDatabasePrivilegeResult> databasePrivileges,
 
-            string dbName)
+            string dbDesc,
+
+            string dbName,
+
+            string dbStatus)
         {
             CharacterSetName = characterSetName;
             DatabasePrivileges = databasePrivileges;
+            DbDesc = dbDesc;
             DbName = dbName;
+            DbStatus = dbStatus;
         }
     }
 }

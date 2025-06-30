@@ -92,7 +92,7 @@ export class RouteEntry extends pulumi.CustomResource {
      */
     public readonly nextHopId!: pulumi.Output<string>;
     /**
-     * The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+     * The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
      */
     public readonly nextHopType!: pulumi.Output<string>;
     /**
@@ -178,7 +178,7 @@ export interface RouteEntryState {
      */
     nextHopId?: pulumi.Input<string>;
     /**
-     * The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+     * The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
      */
     nextHopType?: pulumi.Input<string>;
     /**
@@ -216,7 +216,7 @@ export interface RouteEntryArgs {
      */
     nextHopId: pulumi.Input<string>;
     /**
-     * The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+     * The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
      */
     nextHopType: pulumi.Input<string>;
     /**

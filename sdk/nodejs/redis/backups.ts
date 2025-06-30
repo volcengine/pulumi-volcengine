@@ -52,15 +52,20 @@ import * as utilities from "../utilities";
  * ```
  */
 /** @deprecated volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups */
-export function backups(args: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
+export function backups(args?: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
     pulumi.log.warn("backups is deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups")
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/backups:Backups", {
+        "backupPointId": args.backupPointId,
+        "backupPointName": args.backupPointName,
         "backupStrategyLists": args.backupStrategyLists,
         "endTime": args.endTime,
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "scope": args.scope,
         "startTime": args.startTime,
     }, opts);
 }
@@ -69,6 +74,14 @@ export function backups(args: BackupsArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking Backups.
  */
 export interface BackupsArgs {
+    /**
+     * The id of backup point.
+     */
+    backupPointId?: string;
+    /**
+     * Backup name, supporting fuzzy query.
+     */
+    backupPointName?: string;
     /**
      * The list of backup strategy, support AutomatedBackup and ManualBackup.
      */
@@ -80,11 +93,19 @@ export interface BackupsArgs {
     /**
      * Id of instance.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Back up the project to which it belongs.
+     */
+    projectName?: string;
+    /**
+     * The query scope of the backup.
+     */
+    scope?: string;
     /**
      * Query start time.
      */
@@ -95,6 +116,11 @@ export interface BackupsArgs {
  * A collection of values returned by Backups.
  */
 export interface BackupsResult {
+    /**
+     * The id of backup point.
+     */
+    readonly backupPointId?: string;
+    readonly backupPointName?: string;
     readonly backupStrategyLists?: string[];
     /**
      * Information of backups.
@@ -111,8 +137,13 @@ export interface BackupsResult {
     /**
      * Id of instance.
      */
-    readonly instanceId: string;
+    readonly instanceId?: string;
     readonly outputFile?: string;
+    /**
+     * Project name of instance.
+     */
+    readonly projectName?: string;
+    readonly scope?: string;
     /**
      * Start time of backup.
      */
@@ -168,7 +199,7 @@ export interface BackupsResult {
  * ```
  */
 /** @deprecated volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups */
-export function backupsOutput(args: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
+export function backupsOutput(args?: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
     return pulumi.output(args).apply((a: any) => backups(a, opts))
 }
 
@@ -176,6 +207,14 @@ export function backupsOutput(args: BackupsOutputArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking Backups.
  */
 export interface BackupsOutputArgs {
+    /**
+     * The id of backup point.
+     */
+    backupPointId?: pulumi.Input<string>;
+    /**
+     * Backup name, supporting fuzzy query.
+     */
+    backupPointName?: pulumi.Input<string>;
     /**
      * The list of backup strategy, support AutomatedBackup and ManualBackup.
      */
@@ -187,11 +226,19 @@ export interface BackupsOutputArgs {
     /**
      * Id of instance.
      */
-    instanceId: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string>;
     /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Back up the project to which it belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The query scope of the backup.
+     */
+    scope?: pulumi.Input<string>;
     /**
      * Query start time.
      */

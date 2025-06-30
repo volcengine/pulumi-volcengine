@@ -59,7 +59,7 @@ import (
 //			// create mysql instance
 //			fooInstance, err := rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
-//				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
+//				NodeSpec:            pulumi.String("rds.mysql.2c4g"),
 //				PrimaryZoneId:       pulumi.String(fooZones.Zones[0].Id),
 //				SecondaryZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
@@ -85,6 +85,13 @@ import (
 //						ParameterName:  pulumi.String("auto_increment_offset"),
 //						ParameterValue: pulumi.String("5"),
 //					},
+//				},
+//				DeletionProtection: pulumi.String("Disabled"),
+//				DataSyncMode:       pulumi.String("SemiSync"),
+//				AutoStorageScalingConfig: &rds_mysql.InstanceAutoStorageScalingConfigArgs{
+//					EnableStorageAutoScale: pulumi.Bool(true),
+//					StorageThreshold:       pulumi.Int(40),
+//					StorageUpperBound:      pulumi.Int(110),
 //				},
 //			})
 //			if err != nil {
@@ -148,6 +155,12 @@ type Instance struct {
 	AllowListIds pulumi.StringArrayOutput `pulumi:"allowListIds"`
 	// The version of allow list.
 	AllowListVersion pulumi.StringOutput `pulumi:"allowListVersion"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfig InstanceAutoStorageScalingConfigOutput `pulumi:"autoStorageScalingConfig"`
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion pulumi.StringOutput `pulumi:"autoUpgradeMinorVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntOutput `pulumi:"backupUse"`
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -164,8 +177,10 @@ type Instance struct {
 	ConnectionPoolType pulumi.StringOutput `pulumi:"connectionPoolType"`
 	// Node creation local time.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
-	// Data synchronization mode.
-	DataSyncMode pulumi.StringOutput `pulumi:"dataSyncMode"`
+	// Data synchronization methods:
+	// SemiSync: Semi - synchronous(Default).
+	// Async: Asynchronous.
+	DataSyncMode pulumi.StringPtrOutput `pulumi:"dataSyncMode"`
 	// Instance type. Value:
 	// MySQL_5_7
 	// MySQL_8_0.
@@ -178,14 +193,24 @@ type Instance struct {
 	DbProxyStatus pulumi.StringOutput `pulumi:"dbProxyStatus"`
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone pulumi.StringOutput `pulumi:"dbTimeZone"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection pulumi.StringOutput `pulumi:"deletionProtection"`
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId pulumi.StringOutput `pulumi:"drDtsTaskId"`
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName pulumi.StringOutput `pulumi:"drDtsTaskName"`
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus pulumi.StringOutput `pulumi:"drDtsTaskStatus"`
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster pulumi.IntOutput `pulumi:"drSecondsBehindMaster"`
 	// The endpoint info of the RDS instance.
 	Endpoints InstanceEndpointArrayOutput `pulumi:"endpoints"`
 	// Feature status.
 	FeatureStates InstanceFeatureStateArrayOutput `pulumi:"featureStates"`
-	// Whether to enable global read-only.
-	// true: Yes.
-	// false: No.
-	GlobalReadOnly pulumi.BoolOutput `pulumi:"globalReadOnly"`
+	// Whether to enable global read-only for the instance.
+	GlobalReadOnly pulumi.BoolPtrOutput `pulumi:"globalReadOnly"`
 	// Instance ID.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Instance name. Cannot start with a number or a dash
@@ -194,13 +219,21 @@ type Instance struct {
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus pulumi.StringOutput `pulumi:"instanceStatus"`
+	// The current kernel version of the RDS instance.
+	KernelVersion pulumi.StringOutput `pulumi:"kernelVersion"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
 	// 1: Table names will be stored in lowercase and table names are not case sensitive.
-	LowerCaseTableNames pulumi.StringPtrOutput `pulumi:"lowerCaseTableNames"`
+	LowerCaseTableNames pulumi.StringOutput `pulumi:"lowerCaseTableNames"`
 	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
 	MaintenanceWindow InstanceMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId pulumi.StringOutput `pulumi:"masterInstanceId"`
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName pulumi.StringOutput `pulumi:"masterInstanceName"`
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion pulumi.StringOutput `pulumi:"masterRegion"`
 	// Memory size in GB.
 	Memory pulumi.IntOutput `pulumi:"memory"`
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -225,6 +258,14 @@ type Instance struct {
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// The available zone of secondary node.
 	SecondaryZoneId pulumi.StringOutput `pulumi:"secondaryZoneId"`
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity pulumi.IntOutput `pulumi:"storageMaxCapacity"`
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold pulumi.IntOutput `pulumi:"storageMaxTriggerThreshold"`
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity pulumi.IntOutput `pulumi:"storageMinCapacity"`
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold pulumi.IntOutput `pulumi:"storageMinTriggerThreshold"`
 	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
 	StorageSpace pulumi.IntPtrOutput `pulumi:"storageSpace"`
 	// Instance storage type.
@@ -301,6 +342,12 @@ type instanceState struct {
 	AllowListIds []string `pulumi:"allowListIds"`
 	// The version of allow list.
 	AllowListVersion *string `pulumi:"allowListVersion"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfig *InstanceAutoStorageScalingConfig `pulumi:"autoStorageScalingConfig"`
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion *string `pulumi:"autoUpgradeMinorVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse *int `pulumi:"backupUse"`
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -317,7 +364,9 @@ type instanceState struct {
 	ConnectionPoolType *string `pulumi:"connectionPoolType"`
 	// Node creation local time.
 	CreateTime *string `pulumi:"createTime"`
-	// Data synchronization mode.
+	// Data synchronization methods:
+	// SemiSync: Semi - synchronous(Default).
+	// Async: Asynchronous.
 	DataSyncMode *string `pulumi:"dataSyncMode"`
 	// Instance type. Value:
 	// MySQL_5_7
@@ -331,13 +380,23 @@ type instanceState struct {
 	DbProxyStatus *string `pulumi:"dbProxyStatus"`
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone *string `pulumi:"dbTimeZone"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection *string `pulumi:"deletionProtection"`
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId *string `pulumi:"drDtsTaskId"`
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName *string `pulumi:"drDtsTaskName"`
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus *string `pulumi:"drDtsTaskStatus"`
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster *int `pulumi:"drSecondsBehindMaster"`
 	// The endpoint info of the RDS instance.
 	Endpoints []InstanceEndpoint `pulumi:"endpoints"`
 	// Feature status.
 	FeatureStates []InstanceFeatureState `pulumi:"featureStates"`
-	// Whether to enable global read-only.
-	// true: Yes.
-	// false: No.
+	// Whether to enable global read-only for the instance.
 	GlobalReadOnly *bool `pulumi:"globalReadOnly"`
 	// Instance ID.
 	InstanceId *string `pulumi:"instanceId"`
@@ -347,6 +406,8 @@ type instanceState struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus *string `pulumi:"instanceStatus"`
+	// The current kernel version of the RDS instance.
+	KernelVersion *string `pulumi:"kernelVersion"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -354,6 +415,12 @@ type instanceState struct {
 	LowerCaseTableNames *string `pulumi:"lowerCaseTableNames"`
 	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
 	MaintenanceWindow *InstanceMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId *string `pulumi:"masterInstanceId"`
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName *string `pulumi:"masterInstanceName"`
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion *string `pulumi:"masterRegion"`
 	// Memory size in GB.
 	Memory *int `pulumi:"memory"`
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -378,6 +445,14 @@ type instanceState struct {
 	RegionId *string `pulumi:"regionId"`
 	// The available zone of secondary node.
 	SecondaryZoneId *string `pulumi:"secondaryZoneId"`
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity *int `pulumi:"storageMaxCapacity"`
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold *int `pulumi:"storageMaxTriggerThreshold"`
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity *int `pulumi:"storageMinCapacity"`
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold *int `pulumi:"storageMinTriggerThreshold"`
 	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
 	StorageSpace *int `pulumi:"storageSpace"`
 	// Instance storage type.
@@ -407,6 +482,12 @@ type InstanceState struct {
 	AllowListIds pulumi.StringArrayInput
 	// The version of allow list.
 	AllowListVersion pulumi.StringPtrInput
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfig InstanceAutoStorageScalingConfigPtrInput
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion pulumi.StringPtrInput
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntPtrInput
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -423,7 +504,9 @@ type InstanceState struct {
 	ConnectionPoolType pulumi.StringPtrInput
 	// Node creation local time.
 	CreateTime pulumi.StringPtrInput
-	// Data synchronization mode.
+	// Data synchronization methods:
+	// SemiSync: Semi - synchronous(Default).
+	// Async: Asynchronous.
 	DataSyncMode pulumi.StringPtrInput
 	// Instance type. Value:
 	// MySQL_5_7
@@ -437,13 +520,23 @@ type InstanceState struct {
 	DbProxyStatus pulumi.StringPtrInput
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone pulumi.StringPtrInput
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection pulumi.StringPtrInput
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId pulumi.StringPtrInput
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName pulumi.StringPtrInput
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus pulumi.StringPtrInput
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster pulumi.IntPtrInput
 	// The endpoint info of the RDS instance.
 	Endpoints InstanceEndpointArrayInput
 	// Feature status.
 	FeatureStates InstanceFeatureStateArrayInput
-	// Whether to enable global read-only.
-	// true: Yes.
-	// false: No.
+	// Whether to enable global read-only for the instance.
 	GlobalReadOnly pulumi.BoolPtrInput
 	// Instance ID.
 	InstanceId pulumi.StringPtrInput
@@ -453,6 +546,8 @@ type InstanceState struct {
 	InstanceName pulumi.StringPtrInput
 	// The status of the RDS instance.
 	InstanceStatus pulumi.StringPtrInput
+	// The current kernel version of the RDS instance.
+	KernelVersion pulumi.StringPtrInput
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -460,6 +555,12 @@ type InstanceState struct {
 	LowerCaseTableNames pulumi.StringPtrInput
 	// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
 	MaintenanceWindow InstanceMaintenanceWindowPtrInput
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId pulumi.StringPtrInput
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName pulumi.StringPtrInput
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion pulumi.StringPtrInput
 	// Memory size in GB.
 	Memory pulumi.IntPtrInput
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -484,6 +585,14 @@ type InstanceState struct {
 	RegionId pulumi.StringPtrInput
 	// The available zone of secondary node.
 	SecondaryZoneId pulumi.StringPtrInput
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity pulumi.IntPtrInput
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold pulumi.IntPtrInput
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity pulumi.IntPtrInput
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold pulumi.IntPtrInput
 	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
 	StorageSpace pulumi.IntPtrInput
 	// Instance storage type.
@@ -515,18 +624,30 @@ func (InstanceState) ElementType() reflect.Type {
 type instanceArgs struct {
 	// Allow list Ids of the RDS instance.
 	AllowListIds []string `pulumi:"allowListIds"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfig *InstanceAutoStorageScalingConfig `pulumi:"autoStorageScalingConfig"`
 	// Payment methods.
 	ChargeInfo InstanceChargeInfo `pulumi:"chargeInfo"`
 	// Connection pool type. Value range:
 	// Direct: Direct connection mode.
 	// Transaction: Transaction-level connection pool (default).
 	ConnectionPoolType *string `pulumi:"connectionPoolType"`
+	// Data synchronization methods:
+	// SemiSync: Semi - synchronous(Default).
+	// Async: Asynchronous.
+	DataSyncMode *string `pulumi:"dataSyncMode"`
 	// Instance type. Value:
 	// MySQL_5_7
 	// MySQL_8_0.
 	DbEngineVersion string `pulumi:"dbEngineVersion"`
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone *string `pulumi:"dbTimeZone"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection *string `pulumi:"deletionProtection"`
+	// Whether to enable global read-only for the instance.
+	GlobalReadOnly *bool `pulumi:"globalReadOnly"`
 	// Instance name. Cannot start with a number or a dash
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
@@ -560,18 +681,30 @@ type instanceArgs struct {
 type InstanceArgs struct {
 	// Allow list Ids of the RDS instance.
 	AllowListIds pulumi.StringArrayInput
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfig InstanceAutoStorageScalingConfigPtrInput
 	// Payment methods.
 	ChargeInfo InstanceChargeInfoInput
 	// Connection pool type. Value range:
 	// Direct: Direct connection mode.
 	// Transaction: Transaction-level connection pool (default).
 	ConnectionPoolType pulumi.StringPtrInput
+	// Data synchronization methods:
+	// SemiSync: Semi - synchronous(Default).
+	// Async: Asynchronous.
+	DataSyncMode pulumi.StringPtrInput
 	// Instance type. Value:
 	// MySQL_5_7
 	// MySQL_8_0.
 	DbEngineVersion pulumi.StringInput
 	// Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	DbTimeZone pulumi.StringPtrInput
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection pulumi.StringPtrInput
+	// Whether to enable global read-only for the instance.
+	GlobalReadOnly pulumi.BoolPtrInput
 	// Instance name. Cannot start with a number or a dash
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
@@ -698,6 +831,18 @@ func (o InstanceOutput) AllowListVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.AllowListVersion }).(pulumi.StringOutput)
 }
 
+// Auto - storage scaling configuration.
+func (o InstanceOutput) AutoStorageScalingConfig() InstanceAutoStorageScalingConfigOutput {
+	return o.ApplyT(func(v *Instance) InstanceAutoStorageScalingConfigOutput { return v.AutoStorageScalingConfig }).(InstanceAutoStorageScalingConfigOutput)
+}
+
+// The upgrade strategy for the minor version of the instance kernel. Values:
+// Auto: Auto upgrade.
+// Manual: Manual upgrade.
+func (o InstanceOutput) AutoUpgradeMinorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.AutoUpgradeMinorVersion }).(pulumi.StringOutput)
+}
+
 // The instance has used backup space. Unit: GB.
 func (o InstanceOutput) BackupUse() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.BackupUse }).(pulumi.IntOutput)
@@ -732,9 +877,11 @@ func (o InstanceOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
-// Data synchronization mode.
-func (o InstanceOutput) DataSyncMode() pulumi.StringOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DataSyncMode }).(pulumi.StringOutput)
+// Data synchronization methods:
+// SemiSync: Semi - synchronous(Default).
+// Async: Asynchronous.
+func (o InstanceOutput) DataSyncMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.DataSyncMode }).(pulumi.StringPtrOutput)
 }
 
 // Instance type. Value:
@@ -758,6 +905,33 @@ func (o InstanceOutput) DbTimeZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbTimeZone }).(pulumi.StringOutput)
 }
 
+// Whether to enable the deletion protection function. Values:
+// Enabled: Yes.
+// Disabled: No.
+func (o InstanceOutput) DeletionProtection() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DeletionProtection }).(pulumi.StringOutput)
+}
+
+// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o InstanceOutput) DrDtsTaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DrDtsTaskId }).(pulumi.StringOutput)
+}
+
+// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o InstanceOutput) DrDtsTaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DrDtsTaskName }).(pulumi.StringOutput)
+}
+
+// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o InstanceOutput) DrDtsTaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DrDtsTaskStatus }).(pulumi.StringOutput)
+}
+
+// The number of seconds that the disaster recovery instance is behind the primary instance.
+func (o InstanceOutput) DrSecondsBehindMaster() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.DrSecondsBehindMaster }).(pulumi.IntOutput)
+}
+
 // The endpoint info of the RDS instance.
 func (o InstanceOutput) Endpoints() InstanceEndpointArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceEndpointArrayOutput { return v.Endpoints }).(InstanceEndpointArrayOutput)
@@ -768,11 +942,9 @@ func (o InstanceOutput) FeatureStates() InstanceFeatureStateArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceFeatureStateArrayOutput { return v.FeatureStates }).(InstanceFeatureStateArrayOutput)
 }
 
-// Whether to enable global read-only.
-// true: Yes.
-// false: No.
-func (o InstanceOutput) GlobalReadOnly() pulumi.BoolOutput {
-	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.GlobalReadOnly }).(pulumi.BoolOutput)
+// Whether to enable global read-only for the instance.
+func (o InstanceOutput) GlobalReadOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.GlobalReadOnly }).(pulumi.BoolPtrOutput)
 }
 
 // Instance ID.
@@ -792,17 +964,37 @@ func (o InstanceOutput) InstanceStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceStatus }).(pulumi.StringOutput)
 }
 
+// The current kernel version of the RDS instance.
+func (o InstanceOutput) KernelVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.KernelVersion }).(pulumi.StringOutput)
+}
+
 // Whether the table name is case sensitive, the default value is 1.
 // Ranges:
 // 0: Table names are stored as fixed and table names are case-sensitive.
 // 1: Table names will be stored in lowercase and table names are not case sensitive.
-func (o InstanceOutput) LowerCaseTableNames() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.LowerCaseTableNames }).(pulumi.StringPtrOutput)
+func (o InstanceOutput) LowerCaseTableNames() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.LowerCaseTableNames }).(pulumi.StringOutput)
 }
 
 // Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
 func (o InstanceOutput) MaintenanceWindow() InstanceMaintenanceWindowOutput {
 	return o.ApplyT(func(v *Instance) InstanceMaintenanceWindowOutput { return v.MaintenanceWindow }).(InstanceMaintenanceWindowOutput)
+}
+
+// The ID of the primary instance of the disaster recovery instance.
+func (o InstanceOutput) MasterInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.MasterInstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the primary instance of the disaster recovery instance.
+func (o InstanceOutput) MasterInstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.MasterInstanceName }).(pulumi.StringOutput)
+}
+
+// The region where the primary instance of the disaster recovery instance is located.
+func (o InstanceOutput) MasterRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.MasterRegion }).(pulumi.StringOutput)
 }
 
 // Memory size in GB.
@@ -863,6 +1055,26 @@ func (o InstanceOutput) RegionId() pulumi.StringOutput {
 // The available zone of secondary node.
 func (o InstanceOutput) SecondaryZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SecondaryZoneId }).(pulumi.StringOutput)
+}
+
+// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+func (o InstanceOutput) StorageMaxCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageMaxCapacity }).(pulumi.IntOutput)
+}
+
+// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+func (o InstanceOutput) StorageMaxTriggerThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageMaxTriggerThreshold }).(pulumi.IntOutput)
+}
+
+// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+func (o InstanceOutput) StorageMinCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageMinCapacity }).(pulumi.IntOutput)
+}
+
+// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+func (o InstanceOutput) StorageMinTriggerThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageMinTriggerThreshold }).(pulumi.IntOutput)
 }
 
 // Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.

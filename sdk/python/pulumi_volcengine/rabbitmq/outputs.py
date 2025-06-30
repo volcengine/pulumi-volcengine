@@ -20,12 +20,16 @@ __all__ = [
     'InstancesRabbitmqInstanceEndpointResult',
     'InstancesRabbitmqInstanceTagResult',
     'InstancesTagResult',
+    'RegionsRegionResult',
+    'ZonesZoneResult',
     'GetInstancePluginsPluginResult',
     'GetInstancesRabbitmqInstanceResult',
     'GetInstancesRabbitmqInstanceChargeDetailResult',
     'GetInstancesRabbitmqInstanceEndpointResult',
     'GetInstancesRabbitmqInstanceTagResult',
     'GetInstancesTagResult',
+    'GetRegionsRegionResult',
+    'GetZonesZoneResult',
 ]
 
 @pulumi.output_type
@@ -792,6 +796,108 @@ class InstancesTagResult(dict):
 
 
 @pulumi.output_type
+class RegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 region_id: str,
+                 region_name: str,
+                 status: str):
+        """
+        :param str description: The description of region.
+        :param str region_id: The ID of region.
+        :param str region_name: The name of region.
+        :param str status: The status of region.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of region.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The ID of region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        The name of region.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of region.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 status: str,
+                 zone_id: str,
+                 zone_name: str):
+        """
+        :param str description: The description of zone.
+        :param str status: The status of zone.
+        :param str zone_id: The ID of zone.
+        :param str zone_name: The name of zone.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of zone.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of zone.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The ID of zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of zone.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
 class GetInstancePluginsPluginResult(dict):
     def __init__(__self__, *,
                  description: str,
@@ -1370,5 +1476,107 @@ class GetInstancesTagResult(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 region_id: str,
+                 region_name: str,
+                 status: str):
+        """
+        :param str description: The description of region.
+        :param str region_id: The ID of region.
+        :param str region_name: The name of region.
+        :param str status: The status of region.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of region.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The ID of region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        The name of region.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of region.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 status: str,
+                 zone_id: str,
+                 zone_name: str):
+        """
+        :param str description: The description of zone.
+        :param str status: The status of zone.
+        :param str zone_id: The ID of zone.
+        :param str zone_name: The name of zone.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of zone.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of zone.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The ID of zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of zone.
+        """
+        return pulumi.get(self, "zone_name")
 
 

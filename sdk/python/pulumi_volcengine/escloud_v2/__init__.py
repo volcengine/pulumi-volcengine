@@ -8,6 +8,10 @@ import typing
 from .escloud_instance_v2 import *
 from .escloud_instances_v2 import *
 from .escloud_ip_white_list import *
+from .escloud_node_available_specs import *
+from .escloud_zones_v2 import *
 from .get_escloud_instances_v2 import *
+from .get_escloud_node_available_specs import *
+from .get_escloud_zones_v2 import *
 from ._inputs import *
 from . import outputs

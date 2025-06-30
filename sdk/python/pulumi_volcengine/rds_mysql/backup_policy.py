@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['BackupPolicyArgs', 'BackupPolicy']
 
@@ -23,6 +25,7 @@ class BackupPolicyArgs:
                  binlog_local_retention_hour: Optional[pulumi.Input[int]] = None,
                  binlog_space_limit_enable: Optional[pulumi.Input[bool]] = None,
                  binlog_storage_percentage: Optional[pulumi.Input[int]] = None,
+                 cross_backup_policy: Optional[pulumi.Input['BackupPolicyCrossBackupPolicyArgs']] = None,
                  data_backup_all_retention: Optional[pulumi.Input[bool]] = None,
                  data_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
                  data_backup_retention_day: Optional[pulumi.Input[int]] = None,
@@ -54,6 +57,7 @@ class BackupPolicyArgs:
         :param pulumi.Input[int] binlog_local_retention_hour: Local Binlog retention duration, with a value ranging from 0 to 168, in hours. Local logs exceeding the retention duration will be automatically deleted. When set to 0, local logs will not be automatically deleted. Note: When modifying the log backup policy, this parameter needs to be passed.
         :param pulumi.Input[bool] binlog_space_limit_enable: Whether to enable automatic cleanup of Binlog when space is too large. When the total storage space occupancy rate of the instance exceeds 80% or the remaining space is less than 5GB, the system will automatically start cleaning up the earliest local Binlog until the total space occupancy rate is lower than 80% and the remaining space is greater than 5GB. true: Enabled. false: Disabled. Description: This parameter needs to be passed in when modifying the log backup policy.
         :param pulumi.Input[int] binlog_storage_percentage: Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
+        :param pulumi.Input['BackupPolicyCrossBackupPolicyArgs'] cross_backup_policy: Cross - region backup strategy.
         :param pulumi.Input[bool] data_backup_all_retention: Whether to retain all data backups before releasing the instance. Values:
                true: Yes.
                false: No.
@@ -93,6 +97,8 @@ class BackupPolicyArgs:
             pulumi.set(__self__, "binlog_space_limit_enable", binlog_space_limit_enable)
         if binlog_storage_percentage is not None:
             pulumi.set(__self__, "binlog_storage_percentage", binlog_storage_percentage)
+        if cross_backup_policy is not None:
+            pulumi.set(__self__, "cross_backup_policy", cross_backup_policy)
         if data_backup_all_retention is not None:
             pulumi.set(__self__, "data_backup_all_retention", data_backup_all_retention)
         if data_backup_encryption_enabled is not None:
@@ -235,6 +241,18 @@ class BackupPolicyArgs:
     @binlog_storage_percentage.setter
     def binlog_storage_percentage(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "binlog_storage_percentage", value)
+
+    @property
+    @pulumi.getter(name="crossBackupPolicy")
+    def cross_backup_policy(self) -> Optional[pulumi.Input['BackupPolicyCrossBackupPolicyArgs']]:
+        """
+        Cross - region backup strategy.
+        """
+        return pulumi.get(self, "cross_backup_policy")
+
+    @cross_backup_policy.setter
+    def cross_backup_policy(self, value: Optional[pulumi.Input['BackupPolicyCrossBackupPolicyArgs']]):
+        pulumi.set(self, "cross_backup_policy", value)
 
     @property
     @pulumi.getter(name="dataBackupAllRetention")
@@ -415,6 +433,7 @@ class BackupPolicyArgs:
 @pulumi.input_type
 class _BackupPolicyState:
     def __init__(__self__, *,
+                 available_cross_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  binlog_backup_all_retention: Optional[pulumi.Input[bool]] = None,
                  binlog_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  binlog_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
@@ -423,6 +442,7 @@ class _BackupPolicyState:
                  binlog_local_retention_hour: Optional[pulumi.Input[int]] = None,
                  binlog_space_limit_enable: Optional[pulumi.Input[bool]] = None,
                  binlog_storage_percentage: Optional[pulumi.Input[int]] = None,
+                 cross_backup_policy: Optional[pulumi.Input['BackupPolicyCrossBackupPolicyArgs']] = None,
                  data_backup_all_retention: Optional[pulumi.Input[bool]] = None,
                  data_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
                  data_backup_retention_day: Optional[pulumi.Input[int]] = None,
@@ -440,6 +460,7 @@ class _BackupPolicyState:
                  retention_policy_synced: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering BackupPolicy resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] available_cross_regions: List of destination regions for cross - region backup.
         :param pulumi.Input[bool] binlog_backup_all_retention: Whether to retain all log backups before releasing an instance. Values:
                true: Yes.
                false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -454,6 +475,7 @@ class _BackupPolicyState:
         :param pulumi.Input[int] binlog_local_retention_hour: Local Binlog retention duration, with a value ranging from 0 to 168, in hours. Local logs exceeding the retention duration will be automatically deleted. When set to 0, local logs will not be automatically deleted. Note: When modifying the log backup policy, this parameter needs to be passed.
         :param pulumi.Input[bool] binlog_space_limit_enable: Whether to enable automatic cleanup of Binlog when space is too large. When the total storage space occupancy rate of the instance exceeds 80% or the remaining space is less than 5GB, the system will automatically start cleaning up the earliest local Binlog until the total space occupancy rate is lower than 80% and the remaining space is greater than 5GB. true: Enabled. false: Disabled. Description: This parameter needs to be passed in when modifying the log backup policy.
         :param pulumi.Input[int] binlog_storage_percentage: Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
+        :param pulumi.Input['BackupPolicyCrossBackupPolicyArgs'] cross_backup_policy: Cross - region backup strategy.
         :param pulumi.Input[bool] data_backup_all_retention: Whether to retain all data backups before releasing the instance. Values:
                true: Yes.
                false: No.
@@ -477,6 +499,8 @@ class _BackupPolicyState:
         :param pulumi.Input[bool] retention_policy_synced: Is the retention policy for log backups the same as that for data backups?
                Explanation: When the value is true, LogBackupRetentionDay and BinlogBackupAllRetention are ignored.
         """
+        if available_cross_regions is not None:
+            pulumi.set(__self__, "available_cross_regions", available_cross_regions)
         if binlog_backup_all_retention is not None:
             pulumi.set(__self__, "binlog_backup_all_retention", binlog_backup_all_retention)
         if binlog_backup_enabled is not None:
@@ -493,6 +517,8 @@ class _BackupPolicyState:
             pulumi.set(__self__, "binlog_space_limit_enable", binlog_space_limit_enable)
         if binlog_storage_percentage is not None:
             pulumi.set(__self__, "binlog_storage_percentage", binlog_storage_percentage)
+        if cross_backup_policy is not None:
+            pulumi.set(__self__, "cross_backup_policy", cross_backup_policy)
         if data_backup_all_retention is not None:
             pulumi.set(__self__, "data_backup_all_retention", data_backup_all_retention)
         if data_backup_encryption_enabled is not None:
@@ -523,6 +549,18 @@ class _BackupPolicyState:
             pulumi.set(__self__, "log_backup_retention_day", log_backup_retention_day)
         if retention_policy_synced is not None:
             pulumi.set(__self__, "retention_policy_synced", retention_policy_synced)
+
+    @property
+    @pulumi.getter(name="availableCrossRegions")
+    def available_cross_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of destination regions for cross - region backup.
+        """
+        return pulumi.get(self, "available_cross_regions")
+
+    @available_cross_regions.setter
+    def available_cross_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "available_cross_regions", value)
 
     @property
     @pulumi.getter(name="binlogBackupAllRetention")
@@ -625,6 +663,18 @@ class _BackupPolicyState:
     @binlog_storage_percentage.setter
     def binlog_storage_percentage(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "binlog_storage_percentage", value)
+
+    @property
+    @pulumi.getter(name="crossBackupPolicy")
+    def cross_backup_policy(self) -> Optional[pulumi.Input['BackupPolicyCrossBackupPolicyArgs']]:
+        """
+        Cross - region backup strategy.
+        """
+        return pulumi.get(self, "cross_backup_policy")
+
+    @cross_backup_policy.setter
+    def cross_backup_policy(self, value: Optional[pulumi.Input['BackupPolicyCrossBackupPolicyArgs']]):
+        pulumi.set(self, "cross_backup_policy", value)
 
     @property
     @pulumi.getter(name="dataBackupAllRetention")
@@ -827,6 +877,7 @@ class BackupPolicy(pulumi.CustomResource):
                  binlog_local_retention_hour: Optional[pulumi.Input[int]] = None,
                  binlog_space_limit_enable: Optional[pulumi.Input[bool]] = None,
                  binlog_storage_percentage: Optional[pulumi.Input[int]] = None,
+                 cross_backup_policy: Optional[pulumi.Input[pulumi.InputType['BackupPolicyCrossBackupPolicyArgs']]] = None,
                  data_backup_all_retention: Optional[pulumi.Input[bool]] = None,
                  data_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
                  data_backup_retention_day: Optional[pulumi.Input[int]] = None,
@@ -854,11 +905,18 @@ class BackupPolicy(pulumi.CustomResource):
         foo = volcengine.rds_mysql.BackupPolicy("foo",
             binlog_file_counts_enable=True,
             binlog_space_limit_enable=True,
+            cross_backup_policy=volcengine.rds_mysql.BackupPolicyCrossBackupPolicyArgs(
+                backup_enabled=True,
+                cross_backup_region="cn-chongqing-sdv",
+                log_backup_enabled=True,
+                retention=10,
+            ),
             data_full_backup_periods=[
                 "Monday",
                 "Sunday",
+                "Tuesday",
             ],
-            instance_id="mysql-c8c3f45c4b07",
+            instance_id="mysql-b51d37110dd1",
             lock_ddl_time=80)
         ```
 
@@ -887,6 +945,7 @@ class BackupPolicy(pulumi.CustomResource):
         :param pulumi.Input[int] binlog_local_retention_hour: Local Binlog retention duration, with a value ranging from 0 to 168, in hours. Local logs exceeding the retention duration will be automatically deleted. When set to 0, local logs will not be automatically deleted. Note: When modifying the log backup policy, this parameter needs to be passed.
         :param pulumi.Input[bool] binlog_space_limit_enable: Whether to enable automatic cleanup of Binlog when space is too large. When the total storage space occupancy rate of the instance exceeds 80% or the remaining space is less than 5GB, the system will automatically start cleaning up the earliest local Binlog until the total space occupancy rate is lower than 80% and the remaining space is greater than 5GB. true: Enabled. false: Disabled. Description: This parameter needs to be passed in when modifying the log backup policy.
         :param pulumi.Input[int] binlog_storage_percentage: Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
+        :param pulumi.Input[pulumi.InputType['BackupPolicyCrossBackupPolicyArgs']] cross_backup_policy: Cross - region backup strategy.
         :param pulumi.Input[bool] data_backup_all_retention: Whether to retain all data backups before releasing the instance. Values:
                true: Yes.
                false: No.
@@ -927,11 +986,18 @@ class BackupPolicy(pulumi.CustomResource):
         foo = volcengine.rds_mysql.BackupPolicy("foo",
             binlog_file_counts_enable=True,
             binlog_space_limit_enable=True,
+            cross_backup_policy=volcengine.rds_mysql.BackupPolicyCrossBackupPolicyArgs(
+                backup_enabled=True,
+                cross_backup_region="cn-chongqing-sdv",
+                log_backup_enabled=True,
+                retention=10,
+            ),
             data_full_backup_periods=[
                 "Monday",
                 "Sunday",
+                "Tuesday",
             ],
-            instance_id="mysql-c8c3f45c4b07",
+            instance_id="mysql-b51d37110dd1",
             lock_ddl_time=80)
         ```
 
@@ -967,6 +1033,7 @@ class BackupPolicy(pulumi.CustomResource):
                  binlog_local_retention_hour: Optional[pulumi.Input[int]] = None,
                  binlog_space_limit_enable: Optional[pulumi.Input[bool]] = None,
                  binlog_storage_percentage: Optional[pulumi.Input[int]] = None,
+                 cross_backup_policy: Optional[pulumi.Input[pulumi.InputType['BackupPolicyCrossBackupPolicyArgs']]] = None,
                  data_backup_all_retention: Optional[pulumi.Input[bool]] = None,
                  data_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
                  data_backup_retention_day: Optional[pulumi.Input[int]] = None,
@@ -999,6 +1066,7 @@ class BackupPolicy(pulumi.CustomResource):
             __props__.__dict__["binlog_local_retention_hour"] = binlog_local_retention_hour
             __props__.__dict__["binlog_space_limit_enable"] = binlog_space_limit_enable
             __props__.__dict__["binlog_storage_percentage"] = binlog_storage_percentage
+            __props__.__dict__["cross_backup_policy"] = cross_backup_policy
             __props__.__dict__["data_backup_all_retention"] = data_backup_all_retention
             __props__.__dict__["data_backup_encryption_enabled"] = data_backup_encryption_enabled
             __props__.__dict__["data_backup_retention_day"] = data_backup_retention_day
@@ -1016,6 +1084,7 @@ class BackupPolicy(pulumi.CustomResource):
             __props__.__dict__["lock_ddl_time"] = lock_ddl_time
             __props__.__dict__["log_backup_retention_day"] = log_backup_retention_day
             __props__.__dict__["retention_policy_synced"] = retention_policy_synced
+            __props__.__dict__["available_cross_regions"] = None
         super(BackupPolicy, __self__).__init__(
             'volcengine:rds_mysql/backupPolicy:BackupPolicy',
             resource_name,
@@ -1026,6 +1095,7 @@ class BackupPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            available_cross_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             binlog_backup_all_retention: Optional[pulumi.Input[bool]] = None,
             binlog_backup_enabled: Optional[pulumi.Input[bool]] = None,
             binlog_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1034,6 +1104,7 @@ class BackupPolicy(pulumi.CustomResource):
             binlog_local_retention_hour: Optional[pulumi.Input[int]] = None,
             binlog_space_limit_enable: Optional[pulumi.Input[bool]] = None,
             binlog_storage_percentage: Optional[pulumi.Input[int]] = None,
+            cross_backup_policy: Optional[pulumi.Input[pulumi.InputType['BackupPolicyCrossBackupPolicyArgs']]] = None,
             data_backup_all_retention: Optional[pulumi.Input[bool]] = None,
             data_backup_encryption_enabled: Optional[pulumi.Input[bool]] = None,
             data_backup_retention_day: Optional[pulumi.Input[int]] = None,
@@ -1056,6 +1127,7 @@ class BackupPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] available_cross_regions: List of destination regions for cross - region backup.
         :param pulumi.Input[bool] binlog_backup_all_retention: Whether to retain all log backups before releasing an instance. Values:
                true: Yes.
                false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -1070,6 +1142,7 @@ class BackupPolicy(pulumi.CustomResource):
         :param pulumi.Input[int] binlog_local_retention_hour: Local Binlog retention duration, with a value ranging from 0 to 168, in hours. Local logs exceeding the retention duration will be automatically deleted. When set to 0, local logs will not be automatically deleted. Note: When modifying the log backup policy, this parameter needs to be passed.
         :param pulumi.Input[bool] binlog_space_limit_enable: Whether to enable automatic cleanup of Binlog when space is too large. When the total storage space occupancy rate of the instance exceeds 80% or the remaining space is less than 5GB, the system will automatically start cleaning up the earliest local Binlog until the total space occupancy rate is lower than 80% and the remaining space is greater than 5GB. true: Enabled. false: Disabled. Description: This parameter needs to be passed in when modifying the log backup policy.
         :param pulumi.Input[int] binlog_storage_percentage: Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
+        :param pulumi.Input[pulumi.InputType['BackupPolicyCrossBackupPolicyArgs']] cross_backup_policy: Cross - region backup strategy.
         :param pulumi.Input[bool] data_backup_all_retention: Whether to retain all data backups before releasing the instance. Values:
                true: Yes.
                false: No.
@@ -1097,6 +1170,7 @@ class BackupPolicy(pulumi.CustomResource):
 
         __props__ = _BackupPolicyState.__new__(_BackupPolicyState)
 
+        __props__.__dict__["available_cross_regions"] = available_cross_regions
         __props__.__dict__["binlog_backup_all_retention"] = binlog_backup_all_retention
         __props__.__dict__["binlog_backup_enabled"] = binlog_backup_enabled
         __props__.__dict__["binlog_backup_encryption_enabled"] = binlog_backup_encryption_enabled
@@ -1105,6 +1179,7 @@ class BackupPolicy(pulumi.CustomResource):
         __props__.__dict__["binlog_local_retention_hour"] = binlog_local_retention_hour
         __props__.__dict__["binlog_space_limit_enable"] = binlog_space_limit_enable
         __props__.__dict__["binlog_storage_percentage"] = binlog_storage_percentage
+        __props__.__dict__["cross_backup_policy"] = cross_backup_policy
         __props__.__dict__["data_backup_all_retention"] = data_backup_all_retention
         __props__.__dict__["data_backup_encryption_enabled"] = data_backup_encryption_enabled
         __props__.__dict__["data_backup_retention_day"] = data_backup_retention_day
@@ -1121,6 +1196,14 @@ class BackupPolicy(pulumi.CustomResource):
         __props__.__dict__["log_backup_retention_day"] = log_backup_retention_day
         __props__.__dict__["retention_policy_synced"] = retention_policy_synced
         return BackupPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="availableCrossRegions")
+    def available_cross_regions(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of destination regions for cross - region backup.
+        """
+        return pulumi.get(self, "available_cross_regions")
 
     @property
     @pulumi.getter(name="binlogBackupAllRetention")
@@ -1191,6 +1274,14 @@ class BackupPolicy(pulumi.CustomResource):
         Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
         """
         return pulumi.get(self, "binlog_storage_percentage")
+
+    @property
+    @pulumi.getter(name="crossBackupPolicy")
+    def cross_backup_policy(self) -> pulumi.Output['outputs.BackupPolicyCrossBackupPolicy']:
+        """
+        Cross - region backup strategy.
+        """
+        return pulumi.get(self, "cross_backup_policy")
 
     @property
     @pulumi.getter(name="dataBackupAllRetention")

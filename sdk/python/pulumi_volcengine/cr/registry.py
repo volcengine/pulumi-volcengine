@@ -19,13 +19,21 @@ class RegistryArgs:
                  delete_immediately: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 project: Optional[pulumi.Input[str]] = None):
+                 project: Optional[pulumi.Input[str]] = None,
+                 proxy_cache: Optional[pulumi.Input['RegistryProxyCacheArgs']] = None,
+                 proxy_cache_enabled: Optional[pulumi.Input[bool]] = None,
+                 resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Registry resource.
         :param pulumi.Input[bool] delete_immediately: Whether delete registry immediately. Only effected in delete action.
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
         :param pulumi.Input[str] project: The ProjectName of the cr registry.
+        :param pulumi.Input['RegistryProxyCacheArgs'] proxy_cache: The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        :param pulumi.Input[bool] proxy_cache_enabled: Whether to enable proxy cache.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]] resource_tags: Tags.
+        :param pulumi.Input[str] type: The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         if delete_immediately is not None:
             pulumi.set(__self__, "delete_immediately", delete_immediately)
@@ -35,6 +43,14 @@ class RegistryArgs:
             pulumi.set(__self__, "password", password)
         if project is not None:
             pulumi.set(__self__, "project", project)
+        if proxy_cache is not None:
+            pulumi.set(__self__, "proxy_cache", proxy_cache)
+        if proxy_cache_enabled is not None:
+            pulumi.set(__self__, "proxy_cache_enabled", proxy_cache_enabled)
+        if resource_tags is not None:
+            pulumi.set(__self__, "resource_tags", resource_tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="deleteImmediately")
@@ -84,6 +100,54 @@ class RegistryArgs:
     def project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project", value)
 
+    @property
+    @pulumi.getter(name="proxyCache")
+    def proxy_cache(self) -> Optional[pulumi.Input['RegistryProxyCacheArgs']]:
+        """
+        The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        """
+        return pulumi.get(self, "proxy_cache")
+
+    @proxy_cache.setter
+    def proxy_cache(self, value: Optional[pulumi.Input['RegistryProxyCacheArgs']]):
+        pulumi.set(self, "proxy_cache", value)
+
+    @property
+    @pulumi.getter(name="proxyCacheEnabled")
+    def proxy_cache_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable proxy cache.
+        """
+        return pulumi.get(self, "proxy_cache_enabled")
+
+    @proxy_cache_enabled.setter
+    def proxy_cache_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "proxy_cache_enabled", value)
+
+    @property
+    @pulumi.getter(name="resourceTags")
+    def resource_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "resource_tags")
+
+    @resource_tags.setter
+    def resource_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]]):
+        pulumi.set(self, "resource_tags", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class _RegistryState:
@@ -95,6 +159,8 @@ class _RegistryState:
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
+                 proxy_cache: Optional[pulumi.Input['RegistryProxyCacheArgs']] = None,
+                 proxy_cache_enabled: Optional[pulumi.Input[bool]] = None,
                  resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]] = None,
                  statuses: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryStatusArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -109,9 +175,11 @@ class _RegistryState:
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
         :param pulumi.Input[str] project: The ProjectName of the cr registry.
+        :param pulumi.Input['RegistryProxyCacheArgs'] proxy_cache: The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        :param pulumi.Input[bool] proxy_cache_enabled: Whether to enable proxy cache.
         :param pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]] resource_tags: Tags.
         :param pulumi.Input[Sequence[pulumi.Input['RegistryStatusArgs']]] statuses: The status of registry.
-        :param pulumi.Input[str] type: The type of registry.
+        :param pulumi.Input[str] type: The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         :param pulumi.Input[str] user_status: The status of user.
         :param pulumi.Input[str] username: The username of cr instance.
         """
@@ -129,6 +197,10 @@ class _RegistryState:
             pulumi.set(__self__, "password", password)
         if project is not None:
             pulumi.set(__self__, "project", project)
+        if proxy_cache is not None:
+            pulumi.set(__self__, "proxy_cache", proxy_cache)
+        if proxy_cache_enabled is not None:
+            pulumi.set(__self__, "proxy_cache_enabled", proxy_cache_enabled)
         if resource_tags is not None:
             pulumi.set(__self__, "resource_tags", resource_tags)
         if statuses is not None:
@@ -225,6 +297,30 @@ class _RegistryState:
         pulumi.set(self, "project", value)
 
     @property
+    @pulumi.getter(name="proxyCache")
+    def proxy_cache(self) -> Optional[pulumi.Input['RegistryProxyCacheArgs']]:
+        """
+        The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        """
+        return pulumi.get(self, "proxy_cache")
+
+    @proxy_cache.setter
+    def proxy_cache(self, value: Optional[pulumi.Input['RegistryProxyCacheArgs']]):
+        pulumi.set(self, "proxy_cache", value)
+
+    @property
+    @pulumi.getter(name="proxyCacheEnabled")
+    def proxy_cache_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable proxy cache.
+        """
+        return pulumi.get(self, "proxy_cache_enabled")
+
+    @proxy_cache_enabled.setter
+    def proxy_cache_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "proxy_cache_enabled", value)
+
+    @property
     @pulumi.getter(name="resourceTags")
     def resource_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryResourceTagArgs']]]]:
         """
@@ -252,7 +348,7 @@ class _RegistryState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of registry.
+        The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         return pulumi.get(self, "type")
 
@@ -294,6 +390,10 @@ class Registry(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
+                 proxy_cache: Optional[pulumi.Input[pulumi.InputType['RegistryProxyCacheArgs']]] = None,
+                 proxy_cache_enabled: Optional[pulumi.Input[bool]] = None,
+                 resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage cr registry
@@ -334,6 +434,10 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
         :param pulumi.Input[str] project: The ProjectName of the cr registry.
+        :param pulumi.Input[pulumi.InputType['RegistryProxyCacheArgs']] proxy_cache: The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        :param pulumi.Input[bool] proxy_cache_enabled: Whether to enable proxy cache.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]] resource_tags: Tags.
+        :param pulumi.Input[str] type: The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         ...
     @overload
@@ -393,6 +497,10 @@ class Registry(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
+                 proxy_cache: Optional[pulumi.Input[pulumi.InputType['RegistryProxyCacheArgs']]] = None,
+                 proxy_cache_enabled: Optional[pulumi.Input[bool]] = None,
+                 resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -406,12 +514,14 @@ class Registry(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["project"] = project
+            __props__.__dict__["proxy_cache"] = proxy_cache
+            __props__.__dict__["proxy_cache_enabled"] = proxy_cache_enabled
+            __props__.__dict__["resource_tags"] = resource_tags
+            __props__.__dict__["type"] = type
             __props__.__dict__["charge_type"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["domains"] = None
-            __props__.__dict__["resource_tags"] = None
             __props__.__dict__["statuses"] = None
-            __props__.__dict__["type"] = None
             __props__.__dict__["user_status"] = None
             __props__.__dict__["username"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
@@ -433,6 +543,8 @@ class Registry(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
+            proxy_cache: Optional[pulumi.Input[pulumi.InputType['RegistryProxyCacheArgs']]] = None,
+            proxy_cache_enabled: Optional[pulumi.Input[bool]] = None,
             resource_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]]] = None,
             statuses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryStatusArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -452,9 +564,11 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of registry.
         :param pulumi.Input[str] password: The password of registry user.
         :param pulumi.Input[str] project: The ProjectName of the cr registry.
+        :param pulumi.Input[pulumi.InputType['RegistryProxyCacheArgs']] proxy_cache: The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        :param pulumi.Input[bool] proxy_cache_enabled: Whether to enable proxy cache.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryResourceTagArgs']]]] resource_tags: Tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryStatusArgs']]]] statuses: The status of registry.
-        :param pulumi.Input[str] type: The type of registry.
+        :param pulumi.Input[str] type: The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         :param pulumi.Input[str] user_status: The status of user.
         :param pulumi.Input[str] username: The username of cr instance.
         """
@@ -469,6 +583,8 @@ class Registry(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
         __props__.__dict__["project"] = project
+        __props__.__dict__["proxy_cache"] = proxy_cache
+        __props__.__dict__["proxy_cache_enabled"] = proxy_cache_enabled
         __props__.__dict__["resource_tags"] = resource_tags
         __props__.__dict__["statuses"] = statuses
         __props__.__dict__["type"] = type
@@ -533,8 +649,24 @@ class Registry(pulumi.CustomResource):
         return pulumi.get(self, "project")
 
     @property
+    @pulumi.getter(name="proxyCache")
+    def proxy_cache(self) -> pulumi.Output[Optional['outputs.RegistryProxyCache']]:
+        """
+        The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        """
+        return pulumi.get(self, "proxy_cache")
+
+    @property
+    @pulumi.getter(name="proxyCacheEnabled")
+    def proxy_cache_enabled(self) -> pulumi.Output[bool]:
+        """
+        Whether to enable proxy cache.
+        """
+        return pulumi.get(self, "proxy_cache_enabled")
+
+    @property
     @pulumi.getter(name="resourceTags")
-    def resource_tags(self) -> pulumi.Output[Sequence['outputs.RegistryResourceTag']]:
+    def resource_tags(self) -> pulumi.Output[Optional[Sequence['outputs.RegistryResourceTag']]]:
         """
         Tags.
         """
@@ -552,7 +684,7 @@ class Registry(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of registry.
+        The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         return pulumi.get(self, "type")
 

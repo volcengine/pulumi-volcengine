@@ -25,6 +25,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// The name of the zone.
         /// </summary>
         public readonly string ZoneName;
+        /// <summary>
+        /// The status of the zone.
+        /// </summary>
+        public readonly int ZoneStatus;
 
         [OutputConstructor]
         private ZonesZoneResult(
@@ -32,11 +36,14 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string zoneId,
 
-            string zoneName)
+            string zoneName,
+
+            int zoneStatus)
         {
             Id = id;
             ZoneId = zoneId;
             ZoneName = zoneName;
+            ZoneStatus = zoneStatus;
         }
     }
 }

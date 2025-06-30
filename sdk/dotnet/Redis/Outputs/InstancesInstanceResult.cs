@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
     public sealed class InstancesInstanceResult
     {
         /// <summary>
+        /// The additional bandwidth of a single shard, that is, the extra bandwidth that needs to be added on top of the default bandwidth, unit: MB/s.
+        /// </summary>
+        public readonly int AdditionalBandwidthPerShard;
+        /// <summary>
         /// The list of backup plans.
         /// </summary>
         public readonly Outputs.InstancesInstanceBackupPlanResult BackupPlan;
@@ -34,6 +38,14 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string CreateTime;
         /// <summary>
+        /// The data storage form of the instance.
+        /// </summary>
+        public readonly string DataLayout;
+        /// <summary>
+        /// The default bandwidth of a single shard in the instance. Both the read bandwidth (i.e., the downlink bandwidth) and the write bandwidth (i.e., the uplink bandwidth) are of this value. Unit: MB/s.
+        /// </summary>
+        public readonly int DefaultBandwidthPerShard;
+        /// <summary>
         /// whether enable deletion protection.
         /// </summary>
         public readonly string DeletionProtection;
@@ -50,6 +62,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The type of the instance.
+        /// </summary>
+        public readonly string InstanceClass;
+        /// <summary>
         /// The id of redis instance to query. This field supports fuzzy queries.
         /// </summary>
         public readonly string InstanceId;
@@ -58,9 +74,17 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
+        /// A detailed list of all Shard shards in the instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesInstanceInstanceShardResult> InstanceShards;
+        /// <summary>
         /// The maintainable time of the redis instance.
         /// </summary>
         public readonly string MaintenanceTime;
+        /// <summary>
+        /// The current maximum number of connections in a single shard for the instance of the instance.
+        /// </summary>
+        public readonly int MaxConnections;
         /// <summary>
         /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
         /// disabled: Single availability zone deployment scheme.
@@ -90,9 +114,21 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string RegionId;
         /// <summary>
-        /// The memory capacity of each shard. Unit: GiB.
+        /// A detailed list of all Server nodes in the shard.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesInstanceServerNodeResult> ServerNodes;
+        /// <summary>
+        /// (**Deprecated**) Replaced by shard_capacity_v2. The memory capacity of each shard. Unit: GiB.
         /// </summary>
         public readonly double ShardCapacity;
+        /// <summary>
+        /// The memory capacity of each shard in the instance.
+        /// </summary>
+        public readonly int ShardCapacityV2;
+        /// <summary>
+        /// The ID of the shard.
+        /// </summary>
+        public readonly string ShardId;
         /// <summary>
         /// The number of shards in the redis instance.
         /// </summary>
@@ -132,6 +168,8 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
         [OutputConstructor]
         private InstancesInstanceResult(
+            int additionalBandwidthPerShard,
+
             Outputs.InstancesInstanceBackupPlanResult backupPlan,
 
             Outputs.InstancesInstanceCapacityResult capacity,
@@ -142,6 +180,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string createTime,
 
+            string dataLayout,
+
+            int defaultBandwidthPerShard,
+
             string deletionProtection,
 
             string engineVersion,
@@ -150,11 +192,17 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string id,
 
+            string instanceClass,
+
             string instanceId,
 
             string instanceName,
 
+            ImmutableArray<Outputs.InstancesInstanceInstanceShardResult> instanceShards,
+
             string maintenanceTime,
+
+            int maxConnections,
 
             string multiAz,
 
@@ -168,7 +216,13 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string regionId,
 
+            ImmutableArray<Outputs.InstancesInstanceServerNodeResult> serverNodes,
+
             double shardCapacity,
+
+            int shardCapacityV2,
+
+            string shardId,
 
             int shardNumber,
 
@@ -188,25 +242,34 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             ImmutableArray<string> zoneIds)
         {
+            AdditionalBandwidthPerShard = additionalBandwidthPerShard;
             BackupPlan = backupPlan;
             Capacity = capacity;
             ChargeType = chargeType;
             ConfigureNodes = configureNodes;
             CreateTime = createTime;
+            DataLayout = dataLayout;
+            DefaultBandwidthPerShard = defaultBandwidthPerShard;
             DeletionProtection = deletionProtection;
             EngineVersion = engineVersion;
             ExpiredTime = expiredTime;
             Id = id;
+            InstanceClass = instanceClass;
             InstanceId = instanceId;
             InstanceName = instanceName;
+            InstanceShards = instanceShards;
             MaintenanceTime = maintenanceTime;
+            MaxConnections = maxConnections;
             MultiAz = multiAz;
             NodeIds = nodeIds;
             NodeNumber = nodeNumber;
             Params = @params;
             ProjectName = projectName;
             RegionId = regionId;
+            ServerNodes = serverNodes;
             ShardCapacity = shardCapacity;
+            ShardCapacityV2 = shardCapacityV2;
+            ShardId = shardId;
             ShardNumber = shardNumber;
             ShardedCluster = shardedCluster;
             Status = status;

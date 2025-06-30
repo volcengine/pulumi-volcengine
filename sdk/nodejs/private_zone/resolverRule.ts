@@ -20,6 +20,11 @@ import * as utilities from "../utilities";
  *         ip: "10.199.38.19",
  *         port: 33,
  *     }],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     type: "OUTBOUND",
  *     vpcs: [{
  *         region: "cn-beijing",
@@ -70,21 +75,39 @@ export class ResolverRule extends pulumi.CustomResource {
      */
     public readonly endpointId!: pulumi.Output<number | undefined>;
     /**
+     * The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly endpointTrn!: pulumi.Output<string | undefined>;
+    /**
      * IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
      */
     public readonly forwardIps!: pulumi.Output<outputs.private_zone.ResolverRuleForwardIp[] | undefined>;
     /**
      * The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
      */
-    public readonly line!: pulumi.Output<number | undefined>;
+    public readonly line!: pulumi.Output<string | undefined>;
     /**
      * The name of the rule.
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The project name of the private zone resolver rule.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.private_zone.ResolverRuleTag[] | undefined>;
+    /**
      * Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
      */
     public readonly type!: pulumi.Output<string>;
+    /**
+     * The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly vpcTrns!: pulumi.Output<string[] | undefined>;
     /**
      * The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
      */
@@ -108,10 +131,14 @@ export class ResolverRule extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ResolverRuleState | undefined;
             resourceInputs["endpointId"] = state ? state.endpointId : undefined;
+            resourceInputs["endpointTrn"] = state ? state.endpointTrn : undefined;
             resourceInputs["forwardIps"] = state ? state.forwardIps : undefined;
             resourceInputs["line"] = state ? state.line : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vpcTrns"] = state ? state.vpcTrns : undefined;
             resourceInputs["vpcs"] = state ? state.vpcs : undefined;
             resourceInputs["zoneNames"] = state ? state.zoneNames : undefined;
         } else {
@@ -123,10 +150,14 @@ export class ResolverRule extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vpcs'");
             }
             resourceInputs["endpointId"] = args ? args.endpointId : undefined;
+            resourceInputs["endpointTrn"] = args ? args.endpointTrn : undefined;
             resourceInputs["forwardIps"] = args ? args.forwardIps : undefined;
             resourceInputs["line"] = args ? args.line : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vpcTrns"] = args ? args.vpcTrns : undefined;
             resourceInputs["vpcs"] = args ? args.vpcs : undefined;
             resourceInputs["zoneNames"] = args ? args.zoneNames : undefined;
         }
@@ -144,21 +175,39 @@ export interface ResolverRuleState {
      */
     endpointId?: pulumi.Input<number>;
     /**
+     * The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    endpointTrn?: pulumi.Input<string>;
+    /**
      * IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
      */
     forwardIps?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverRuleForwardIp>[]>;
     /**
      * The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
      */
-    line?: pulumi.Input<number>;
+    line?: pulumi.Input<string>;
     /**
      * The name of the rule.
      */
     name?: pulumi.Input<string>;
     /**
+     * The project name of the private zone resolver rule.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverRuleTag>[]>;
+    /**
      * Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
      */
     type?: pulumi.Input<string>;
+    /**
+     * The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    vpcTrns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
      */
@@ -178,21 +227,39 @@ export interface ResolverRuleArgs {
      */
     endpointId?: pulumi.Input<number>;
     /**
+     * The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    endpointTrn?: pulumi.Input<string>;
+    /**
      * IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
      */
     forwardIps?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverRuleForwardIp>[]>;
     /**
      * The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
      */
-    line?: pulumi.Input<number>;
+    line?: pulumi.Input<string>;
     /**
      * The name of the rule.
      */
     name?: pulumi.Input<string>;
     /**
+     * The project name of the private zone resolver rule.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverRuleTag>[]>;
+    /**
      * Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
      */
     type: pulumi.Input<string>;
+    /**
+     * The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    vpcTrns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
      */

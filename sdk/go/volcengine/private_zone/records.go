@@ -56,14 +56,18 @@ type RecordsArgs struct {
 	Host *string `pulumi:"host"`
 	// The last operator account id of Private Zone Record.
 	LastOperator *string `pulumi:"lastOperator"`
-	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	// The subnet id of Private Zone Record.
 	Line *string `pulumi:"line"`
 	// The domain name of Private Zone Record.
 	Name *string `pulumi:"name"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// The id of Private Zone Record.
+	// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
+	//
+	// Deprecated: This field is deprecated, please use `recordIds` instead.
 	RecordId *string `pulumi:"recordId"`
+	// The ids of Private Zone Record.
+	RecordIds []string `pulumi:"recordIds"`
 	// The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
 	SearchMode *string `pulumi:"searchMode"`
 	// The type of Private Zone Record.
@@ -87,7 +91,10 @@ type RecordsResult struct {
 	Name       *string `pulumi:"name"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The id of the private zone record.
-	RecordId *string `pulumi:"recordId"`
+	//
+	// Deprecated: This field is deprecated, please use `recordIds` instead.
+	RecordId  *string  `pulumi:"recordId"`
+	RecordIds []string `pulumi:"recordIds"`
 	// The collection of query.
 	Records    []RecordsRecord `pulumi:"records"`
 	SearchMode *string         `pulumi:"searchMode"`
@@ -120,14 +127,18 @@ type RecordsOutputArgs struct {
 	Host pulumi.StringPtrInput `pulumi:"host"`
 	// The last operator account id of Private Zone Record.
 	LastOperator pulumi.StringPtrInput `pulumi:"lastOperator"`
-	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	// The subnet id of Private Zone Record.
 	Line pulumi.StringPtrInput `pulumi:"line"`
 	// The domain name of Private Zone Record.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// The id of Private Zone Record.
+	// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
+	//
+	// Deprecated: This field is deprecated, please use `recordIds` instead.
 	RecordId pulumi.StringPtrInput `pulumi:"recordId"`
+	// The ids of Private Zone Record.
+	RecordIds pulumi.StringArrayInput `pulumi:"recordIds"`
 	// The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
 	SearchMode pulumi.StringPtrInput `pulumi:"searchMode"`
 	// The type of Private Zone Record.
@@ -186,8 +197,14 @@ func (o RecordsResultOutput) OutputFile() pulumi.StringPtrOutput {
 }
 
 // The id of the private zone record.
+//
+// Deprecated: This field is deprecated, please use `recordIds` instead.
 func (o RecordsResultOutput) RecordId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RecordsResult) *string { return v.RecordId }).(pulumi.StringPtrOutput)
+}
+
+func (o RecordsResultOutput) RecordIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RecordsResult) []string { return v.RecordIds }).(pulumi.StringArrayOutput)
 }
 
 // The collection of query.

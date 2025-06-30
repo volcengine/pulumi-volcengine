@@ -18,6 +18,16 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string AllowListVersion;
         /// <summary>
+        /// Auto - storage scaling configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceAutoStorageScalingConfigResult> AutoStorageScalingConfigs;
+        /// <summary>
+        /// The upgrade strategy for the minor version of the instance kernel. Values:
+        /// Auto: Auto upgrade.
+        /// Manual: Manual upgrade.
+        /// </summary>
+        public readonly string AutoUpgradeMinorVersion;
+        /// <summary>
         /// The instance has used backup space. Unit: GB.
         /// </summary>
         public readonly int BackupUse;
@@ -56,6 +66,28 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string DbProxyStatus;
         /// <summary>
+        /// Whether to enable the deletion protection function. Values:
+        /// Enabled: Yes.
+        /// Disabled: No.
+        /// </summary>
+        public readonly string DeletionProtection;
+        /// <summary>
+        /// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        public readonly string DrDtsTaskId;
+        /// <summary>
+        /// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        public readonly string DrDtsTaskName;
+        /// <summary>
+        /// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        public readonly string DrDtsTaskStatus;
+        /// <summary>
+        /// The number of seconds that the disaster recovery instance is behind the primary instance.
+        /// </summary>
+        public readonly int DrSecondsBehindMaster;
+        /// <summary>
         /// The endpoint info of the RDS instance.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceEndpointResult> Endpoints;
@@ -86,6 +118,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string InstanceStatus;
         /// <summary>
+        /// The kernel version of the instance.
+        /// </summary>
+        public readonly string KernelVersion;
+        /// <summary>
         /// Whether the table name is case sensitive, the default value is 1.
         /// Ranges:
         /// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -96,6 +132,18 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// Maintenance Window.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceMaintenanceWindowResult> MaintenanceWindows;
+        /// <summary>
+        /// The ID of the primary instance of the disaster recovery instance.
+        /// </summary>
+        public readonly string MasterInstanceId;
+        /// <summary>
+        /// The name of the primary instance of the disaster recovery instance.
+        /// </summary>
+        public readonly string MasterInstanceName;
+        /// <summary>
+        /// The region where the primary instance of the disaster recovery instance is located.
+        /// </summary>
+        public readonly string MasterRegion;
         /// <summary>
         /// Memory size in GB.
         /// </summary>
@@ -117,7 +165,7 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly double NodeSpaceUsedPercentage;
         /// <summary>
-        /// General instance type, different from Custom instance type.
+        /// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         /// </summary>
         public readonly string NodeSpec;
         /// <summary>
@@ -133,11 +181,27 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string RegionId;
         /// <summary>
+        /// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        /// </summary>
+        public readonly int StorageMaxCapacity;
+        /// <summary>
+        /// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        /// </summary>
+        public readonly int StorageMaxTriggerThreshold;
+        /// <summary>
+        /// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        /// </summary>
+        public readonly int StorageMinCapacity;
+        /// <summary>
+        /// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        /// </summary>
+        public readonly int StorageMinTriggerThreshold;
+        /// <summary>
         /// Total instance storage space. Unit: GB.
         /// </summary>
         public readonly int StorageSpace;
         /// <summary>
-        /// Instance storage type.
+        /// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
         /// </summary>
         public readonly string StorageType;
         /// <summary>
@@ -181,6 +245,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         private GetInstancesRdsMysqlInstanceResult(
             string allowListVersion,
 
+            ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceAutoStorageScalingConfigResult> autoStorageScalingConfigs,
+
+            string autoUpgradeMinorVersion,
+
             int backupUse,
 
             bool binlogDump,
@@ -197,6 +265,16 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             string dbProxyStatus,
 
+            string deletionProtection,
+
+            string drDtsTaskId,
+
+            string drDtsTaskName,
+
+            string drDtsTaskStatus,
+
+            int drSecondsBehindMaster,
+
             ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceEndpointResult> endpoints,
 
             ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceFeatureStateResult> featureStates,
@@ -211,9 +289,17 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
 
             string instanceStatus,
 
+            string kernelVersion,
+
             string lowerCaseTableNames,
 
             ImmutableArray<Outputs.GetInstancesRdsMysqlInstanceMaintenanceWindowResult> maintenanceWindows,
+
+            string masterInstanceId,
+
+            string masterInstanceName,
+
+            string masterRegion,
 
             int memory,
 
@@ -232,6 +318,14 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             string projectName,
 
             string regionId,
+
+            int storageMaxCapacity,
+
+            int storageMaxTriggerThreshold,
+
+            int storageMinCapacity,
+
+            int storageMinTriggerThreshold,
 
             int storageSpace,
 
@@ -256,6 +350,8 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             ImmutableArray<string> zoneIds)
         {
             AllowListVersion = allowListVersion;
+            AutoStorageScalingConfigs = autoStorageScalingConfigs;
+            AutoUpgradeMinorVersion = autoUpgradeMinorVersion;
             BackupUse = backupUse;
             BinlogDump = binlogDump;
             ChargeDetail = chargeDetail;
@@ -264,6 +360,11 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             DataSyncMode = dataSyncMode;
             DbEngineVersion = dbEngineVersion;
             DbProxyStatus = dbProxyStatus;
+            DeletionProtection = deletionProtection;
+            DrDtsTaskId = drDtsTaskId;
+            DrDtsTaskName = drDtsTaskName;
+            DrDtsTaskStatus = drDtsTaskStatus;
+            DrSecondsBehindMaster = drSecondsBehindMaster;
             Endpoints = endpoints;
             FeatureStates = featureStates;
             GlobalReadOnly = globalReadOnly;
@@ -271,8 +372,12 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             InstanceId = instanceId;
             InstanceName = instanceName;
             InstanceStatus = instanceStatus;
+            KernelVersion = kernelVersion;
             LowerCaseTableNames = lowerCaseTableNames;
             MaintenanceWindows = maintenanceWindows;
+            MasterInstanceId = masterInstanceId;
+            MasterInstanceName = masterInstanceName;
+            MasterRegion = masterRegion;
             Memory = memory;
             NodeCpuUsedPercentage = nodeCpuUsedPercentage;
             NodeMemoryUsedPercentage = nodeMemoryUsedPercentage;
@@ -282,6 +387,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
             Nodes = nodes;
             ProjectName = projectName;
             RegionId = regionId;
+            StorageMaxCapacity = storageMaxCapacity;
+            StorageMaxTriggerThreshold = storageMaxTriggerThreshold;
+            StorageMinCapacity = storageMinCapacity;
+            StorageMinTriggerThreshold = storageMinTriggerThreshold;
             StorageSpace = storageSpace;
             StorageType = storageType;
             StorageUse = storageUse;

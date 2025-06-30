@@ -103,20 +103,31 @@ func Backups(ctx *pulumi.Context, args *BackupsArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking Backups.
 type BackupsArgs struct {
+	// The id of backup point.
+	BackupPointId *string `pulumi:"backupPointId"`
+	// Backup name, supporting fuzzy query.
+	BackupPointName *string `pulumi:"backupPointName"`
 	// The list of backup strategy, support AutomatedBackup and ManualBackup.
 	BackupStrategyLists []string `pulumi:"backupStrategyLists"`
 	// Query end time.
 	EndTime *string `pulumi:"endTime"`
 	// Id of instance.
-	InstanceId string `pulumi:"instanceId"`
+	InstanceId *string `pulumi:"instanceId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Back up the project to which it belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// The query scope of the backup.
+	Scope *string `pulumi:"scope"`
 	// Query start time.
 	StartTime *string `pulumi:"startTime"`
 }
 
 // A collection of values returned by Backups.
 type BackupsResult struct {
+	// The id of backup point.
+	BackupPointId       *string  `pulumi:"backupPointId"`
+	BackupPointName     *string  `pulumi:"backupPointName"`
 	BackupStrategyLists []string `pulumi:"backupStrategyLists"`
 	// Information of backups.
 	Backups []BackupsBackup `pulumi:"backups"`
@@ -125,8 +136,11 @@ type BackupsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Id of instance.
-	InstanceId string  `pulumi:"instanceId"`
+	InstanceId *string `pulumi:"instanceId"`
 	OutputFile *string `pulumi:"outputFile"`
+	// Project name of instance.
+	ProjectName *string `pulumi:"projectName"`
+	Scope       *string `pulumi:"scope"`
 	// Start time of backup.
 	StartTime *string `pulumi:"startTime"`
 	// The total count of backup query.
@@ -148,14 +162,22 @@ func BackupsOutput(ctx *pulumi.Context, args BackupsOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking Backups.
 type BackupsOutputArgs struct {
+	// The id of backup point.
+	BackupPointId pulumi.StringPtrInput `pulumi:"backupPointId"`
+	// Backup name, supporting fuzzy query.
+	BackupPointName pulumi.StringPtrInput `pulumi:"backupPointName"`
 	// The list of backup strategy, support AutomatedBackup and ManualBackup.
 	BackupStrategyLists pulumi.StringArrayInput `pulumi:"backupStrategyLists"`
 	// Query end time.
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
 	// Id of instance.
-	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Back up the project to which it belongs.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The query scope of the backup.
+	Scope pulumi.StringPtrInput `pulumi:"scope"`
 	// Query start time.
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
 }
@@ -179,6 +201,15 @@ func (o BackupsResultOutput) ToBackupsResultOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The id of backup point.
+func (o BackupsResultOutput) BackupPointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupsResult) *string { return v.BackupPointId }).(pulumi.StringPtrOutput)
+}
+
+func (o BackupsResultOutput) BackupPointName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupsResult) *string { return v.BackupPointName }).(pulumi.StringPtrOutput)
+}
+
 func (o BackupsResultOutput) BackupStrategyLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v BackupsResult) []string { return v.BackupStrategyLists }).(pulumi.StringArrayOutput)
 }
@@ -199,12 +230,21 @@ func (o BackupsResultOutput) Id() pulumi.StringOutput {
 }
 
 // Id of instance.
-func (o BackupsResultOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v BackupsResult) string { return v.InstanceId }).(pulumi.StringOutput)
+func (o BackupsResultOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupsResult) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
 }
 
 func (o BackupsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// Project name of instance.
+func (o BackupsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+func (o BackupsResultOutput) Scope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupsResult) *string { return v.Scope }).(pulumi.StringPtrOutput)
 }
 
 // Start time of backup.

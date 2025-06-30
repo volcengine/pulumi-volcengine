@@ -16,12 +16,16 @@ __all__ = ['BackupArgs', 'Backup']
 @pulumi.input_type
 class BackupArgs:
     def __init__(__self__, *,
-                 instance_id: pulumi.Input[str]):
+                 instance_id: pulumi.Input[str],
+                 backup_point_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Backup resource.
         :param pulumi.Input[str] instance_id: Id of instance to create backup.
+        :param pulumi.Input[str] backup_point_name: Set the backup name for the manually created backup.
         """
         pulumi.set(__self__, "instance_id", instance_id)
+        if backup_point_name is not None:
+            pulumi.set(__self__, "backup_point_name", backup_point_name)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -35,49 +39,89 @@ class BackupArgs:
     def instance_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "instance_id", value)
 
+    @property
+    @pulumi.getter(name="backupPointName")
+    def backup_point_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the backup name for the manually created backup.
+        """
+        return pulumi.get(self, "backup_point_name")
+
+    @backup_point_name.setter
+    def backup_point_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_point_name", value)
+
 
 @pulumi.input_type
 class _BackupState:
     def __init__(__self__, *,
+                 backup_point_download_urls: Optional[pulumi.Input[Sequence[pulumi.Input['BackupBackupPointDownloadUrlArgs']]]] = None,
                  backup_point_id: Optional[pulumi.Input[str]] = None,
+                 backup_point_name: Optional[pulumi.Input[str]] = None,
                  backup_strategy: Optional[pulumi.Input[str]] = None,
                  backup_type: Optional[pulumi.Input[str]] = None,
                  end_time: Optional[pulumi.Input[str]] = None,
-                 instance_details: Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailArgs']]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 instance_infos: Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceInfoArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  start_time: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 status: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Backup resources.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupBackupPointDownloadUrlArgs']]] backup_point_download_urls: The download address information of the backup file to which the current backup point belongs.
         :param pulumi.Input[str] backup_point_id: The id of backup point.
+        :param pulumi.Input[str] backup_point_name: Set the backup name for the manually created backup.
         :param pulumi.Input[str] backup_strategy: Backup strategy.
         :param pulumi.Input[str] backup_type: Backup type.
         :param pulumi.Input[str] end_time: End time of backup.
-        :param pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailArgs']]] instance_details: Information of instance.
         :param pulumi.Input[str] instance_id: Id of instance to create backup.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupInstanceInfoArgs']]] instance_infos: Information of instance.
+        :param pulumi.Input[str] project_name: Project name of instance.
         :param pulumi.Input[int] size: Size in MiB.
         :param pulumi.Input[str] start_time: Start time of backup.
         :param pulumi.Input[str] status: Status of backup (Creating/Available/Unavailable/Deleting).
+        :param pulumi.Input[int] ttl: Backup retention days.
         """
+        if backup_point_download_urls is not None:
+            pulumi.set(__self__, "backup_point_download_urls", backup_point_download_urls)
         if backup_point_id is not None:
             pulumi.set(__self__, "backup_point_id", backup_point_id)
+        if backup_point_name is not None:
+            pulumi.set(__self__, "backup_point_name", backup_point_name)
         if backup_strategy is not None:
             pulumi.set(__self__, "backup_strategy", backup_strategy)
         if backup_type is not None:
             pulumi.set(__self__, "backup_type", backup_type)
         if end_time is not None:
             pulumi.set(__self__, "end_time", end_time)
-        if instance_details is not None:
-            pulumi.set(__self__, "instance_details", instance_details)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if instance_infos is not None:
+            pulumi.set(__self__, "instance_infos", instance_infos)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if start_time is not None:
             pulumi.set(__self__, "start_time", start_time)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="backupPointDownloadUrls")
+    def backup_point_download_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupBackupPointDownloadUrlArgs']]]]:
+        """
+        The download address information of the backup file to which the current backup point belongs.
+        """
+        return pulumi.get(self, "backup_point_download_urls")
+
+    @backup_point_download_urls.setter
+    def backup_point_download_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupBackupPointDownloadUrlArgs']]]]):
+        pulumi.set(self, "backup_point_download_urls", value)
 
     @property
     @pulumi.getter(name="backupPointId")
@@ -90,6 +134,18 @@ class _BackupState:
     @backup_point_id.setter
     def backup_point_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backup_point_id", value)
+
+    @property
+    @pulumi.getter(name="backupPointName")
+    def backup_point_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the backup name for the manually created backup.
+        """
+        return pulumi.get(self, "backup_point_name")
+
+    @backup_point_name.setter
+    def backup_point_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_point_name", value)
 
     @property
     @pulumi.getter(name="backupStrategy")
@@ -128,18 +184,6 @@ class _BackupState:
         pulumi.set(self, "end_time", value)
 
     @property
-    @pulumi.getter(name="instanceDetails")
-    def instance_details(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailArgs']]]]:
-        """
-        Information of instance.
-        """
-        return pulumi.get(self, "instance_details")
-
-    @instance_details.setter
-    def instance_details(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailArgs']]]]):
-        pulumi.set(self, "instance_details", value)
-
-    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -150,6 +194,30 @@ class _BackupState:
     @instance_id.setter
     def instance_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="instanceInfos")
+    def instance_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceInfoArgs']]]]:
+        """
+        Information of instance.
+        """
+        return pulumi.get(self, "instance_infos")
+
+    @instance_infos.setter
+    def instance_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceInfoArgs']]]]):
+        pulumi.set(self, "instance_infos", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Project name of instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter
@@ -187,12 +255,25 @@ class _BackupState:
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
 
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Backup retention days.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
 
 class Backup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup_point_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -227,7 +308,9 @@ class Backup(pulumi.CustomResource):
             charge_type="PostPaid",
             port=6381,
             project_name="default")
-        foo_backup = volcengine.redis.Backup("fooBackup", instance_id=foo_instance.id)
+        foo_backup = volcengine.redis.Backup("fooBackup",
+            instance_id=foo_instance.id,
+            backup_point_name="acc-test-tf-redis-backup")
         ```
 
         ## Import
@@ -240,6 +323,7 @@ class Backup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] backup_point_name: Set the backup name for the manually created backup.
         :param pulumi.Input[str] instance_id: Id of instance to create backup.
         """
         ...
@@ -280,7 +364,9 @@ class Backup(pulumi.CustomResource):
             charge_type="PostPaid",
             port=6381,
             project_name="default")
-        foo_backup = volcengine.redis.Backup("fooBackup", instance_id=foo_instance.id)
+        foo_backup = volcengine.redis.Backup("fooBackup",
+            instance_id=foo_instance.id,
+            backup_point_name="acc-test-tf-redis-backup")
         ```
 
         ## Import
@@ -306,6 +392,7 @@ class Backup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup_point_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -316,17 +403,21 @@ class Backup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BackupArgs.__new__(BackupArgs)
 
+            __props__.__dict__["backup_point_name"] = backup_point_name
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["backup_point_download_urls"] = None
             __props__.__dict__["backup_point_id"] = None
             __props__.__dict__["backup_strategy"] = None
             __props__.__dict__["backup_type"] = None
             __props__.__dict__["end_time"] = None
-            __props__.__dict__["instance_details"] = None
+            __props__.__dict__["instance_infos"] = None
+            __props__.__dict__["project_name"] = None
             __props__.__dict__["size"] = None
             __props__.__dict__["start_time"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["ttl"] = None
         super(Backup, __self__).__init__(
             'volcengine:redis/backup:Backup',
             resource_name,
@@ -337,15 +428,19 @@ class Backup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            backup_point_download_urls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupBackupPointDownloadUrlArgs']]]]] = None,
             backup_point_id: Optional[pulumi.Input[str]] = None,
+            backup_point_name: Optional[pulumi.Input[str]] = None,
             backup_strategy: Optional[pulumi.Input[str]] = None,
             backup_type: Optional[pulumi.Input[str]] = None,
             end_time: Optional[pulumi.Input[str]] = None,
-            instance_details: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupInstanceDetailArgs']]]]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
+            instance_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupInstanceInfoArgs']]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             start_time: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'Backup':
+            status: Optional[pulumi.Input[str]] = None,
+            ttl: Optional[pulumi.Input[int]] = None) -> 'Backup':
         """
         Get an existing Backup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -353,30 +448,46 @@ class Backup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupBackupPointDownloadUrlArgs']]]] backup_point_download_urls: The download address information of the backup file to which the current backup point belongs.
         :param pulumi.Input[str] backup_point_id: The id of backup point.
+        :param pulumi.Input[str] backup_point_name: Set the backup name for the manually created backup.
         :param pulumi.Input[str] backup_strategy: Backup strategy.
         :param pulumi.Input[str] backup_type: Backup type.
         :param pulumi.Input[str] end_time: End time of backup.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupInstanceDetailArgs']]]] instance_details: Information of instance.
         :param pulumi.Input[str] instance_id: Id of instance to create backup.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupInstanceInfoArgs']]]] instance_infos: Information of instance.
+        :param pulumi.Input[str] project_name: Project name of instance.
         :param pulumi.Input[int] size: Size in MiB.
         :param pulumi.Input[str] start_time: Start time of backup.
         :param pulumi.Input[str] status: Status of backup (Creating/Available/Unavailable/Deleting).
+        :param pulumi.Input[int] ttl: Backup retention days.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _BackupState.__new__(_BackupState)
 
+        __props__.__dict__["backup_point_download_urls"] = backup_point_download_urls
         __props__.__dict__["backup_point_id"] = backup_point_id
+        __props__.__dict__["backup_point_name"] = backup_point_name
         __props__.__dict__["backup_strategy"] = backup_strategy
         __props__.__dict__["backup_type"] = backup_type
         __props__.__dict__["end_time"] = end_time
-        __props__.__dict__["instance_details"] = instance_details
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["instance_infos"] = instance_infos
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["size"] = size
         __props__.__dict__["start_time"] = start_time
         __props__.__dict__["status"] = status
+        __props__.__dict__["ttl"] = ttl
         return Backup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="backupPointDownloadUrls")
+    def backup_point_download_urls(self) -> pulumi.Output[Sequence['outputs.BackupBackupPointDownloadUrl']]:
+        """
+        The download address information of the backup file to which the current backup point belongs.
+        """
+        return pulumi.get(self, "backup_point_download_urls")
 
     @property
     @pulumi.getter(name="backupPointId")
@@ -385,6 +496,14 @@ class Backup(pulumi.CustomResource):
         The id of backup point.
         """
         return pulumi.get(self, "backup_point_id")
+
+    @property
+    @pulumi.getter(name="backupPointName")
+    def backup_point_name(self) -> pulumi.Output[str]:
+        """
+        Set the backup name for the manually created backup.
+        """
+        return pulumi.get(self, "backup_point_name")
 
     @property
     @pulumi.getter(name="backupStrategy")
@@ -411,20 +530,28 @@ class Backup(pulumi.CustomResource):
         return pulumi.get(self, "end_time")
 
     @property
-    @pulumi.getter(name="instanceDetails")
-    def instance_details(self) -> pulumi.Output[Sequence['outputs.BackupInstanceDetail']]:
-        """
-        Information of instance.
-        """
-        return pulumi.get(self, "instance_details")
-
-    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
         Id of instance to create backup.
         """
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceInfos")
+    def instance_infos(self) -> pulumi.Output[Sequence['outputs.BackupInstanceInfo']]:
+        """
+        Information of instance.
+        """
+        return pulumi.get(self, "instance_infos")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        Project name of instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -449,4 +576,12 @@ class Backup(pulumi.CustomResource):
         Status of backup (Creating/Available/Unavailable/Deleting).
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[int]:
+        """
+        Backup retention days.
+        """
+        return pulumi.get(self, "ttl")
 

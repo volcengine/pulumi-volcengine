@@ -81,10 +81,28 @@ namespace Pulumi.Volcengine.Private_zone
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver endpoint.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The status of the private zone resolver endpoint.
         /// </summary>
         [Input("status")]
         public string? Status { get; set; }
+
+        [Input("tagFilters")]
+        private List<Inputs.ResolverEndpointsTagFilterArgs>? _tagFilters;
+
+        /// <summary>
+        /// List of tag filters.
+        /// </summary>
+        public List<Inputs.ResolverEndpointsTagFilterArgs> TagFilters
+        {
+            get => _tagFilters ?? (_tagFilters = new List<Inputs.ResolverEndpointsTagFilterArgs>());
+            set => _tagFilters = value;
+        }
 
         /// <summary>
         /// The vpc ID of the private zone resolver endpoint.
@@ -125,10 +143,28 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver endpoint.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The status of the private zone resolver endpoint.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tagFilters")]
+        private InputList<Inputs.ResolverEndpointsTagFilterInputArgs>? _tagFilters;
+
+        /// <summary>
+        /// List of tag filters.
+        /// </summary>
+        public InputList<Inputs.ResolverEndpointsTagFilterInputArgs> TagFilters
+        {
+            get => _tagFilters ?? (_tagFilters = new InputList<Inputs.ResolverEndpointsTagFilterInputArgs>());
+            set => _tagFilters = value;
+        }
 
         /// <summary>
         /// The vpc ID of the private zone resolver endpoint.
@@ -165,9 +201,14 @@ namespace Pulumi.Volcengine.Private_zone
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the endpoint.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The status of the endpoint.
         /// </summary>
         public readonly string? Status;
+        public readonly ImmutableArray<Outputs.ResolverEndpointsTagFilterResult> TagFilters;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -191,7 +232,11 @@ namespace Pulumi.Volcengine.Private_zone
 
             string? outputFile,
 
+            string? projectName,
+
             string? status,
+
+            ImmutableArray<Outputs.ResolverEndpointsTagFilterResult> tagFilters,
 
             int totalCount,
 
@@ -203,7 +248,9 @@ namespace Pulumi.Volcengine.Private_zone
             Name = name;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             Status = status;
+            TagFilters = tagFilters;
             TotalCount = totalCount;
             VpcId = vpcId;
         }

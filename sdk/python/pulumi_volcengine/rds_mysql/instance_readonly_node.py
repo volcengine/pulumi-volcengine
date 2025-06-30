@@ -67,17 +67,21 @@ class InstanceReadonlyNodeArgs:
 @pulumi.input_type
 class _InstanceReadonlyNodeState:
     def __init__(__self__, *,
+                 delay_replication_time: Optional[pulumi.Input[int]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  node_id: Optional[pulumi.Input[str]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceReadonlyNode resources.
+        :param pulumi.Input[int] delay_replication_time: The delay time of the readonly node.
         :param pulumi.Input[str] instance_id: The RDS mysql instance id of the readonly node.
         :param pulumi.Input[str] node_id: The id of the readonly node.
         :param pulumi.Input[str] node_spec: The specification of readonly node.
         :param pulumi.Input[str] zone_id: The available zone of readonly node.
         """
+        if delay_replication_time is not None:
+            pulumi.set(__self__, "delay_replication_time", delay_replication_time)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if node_id is not None:
@@ -86,6 +90,18 @@ class _InstanceReadonlyNodeState:
             pulumi.set(__self__, "node_spec", node_spec)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="delayReplicationTime")
+    def delay_replication_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        The delay time of the readonly node.
+        """
+        return pulumi.get(self, "delay_replication_time")
+
+    @delay_replication_time.setter
+    def delay_replication_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "delay_replication_time", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -299,6 +315,7 @@ class InstanceReadonlyNode(pulumi.CustomResource):
             if zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'zone_id'")
             __props__.__dict__["zone_id"] = zone_id
+            __props__.__dict__["delay_replication_time"] = None
             __props__.__dict__["node_id"] = None
         super(InstanceReadonlyNode, __self__).__init__(
             'volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode',
@@ -310,6 +327,7 @@ class InstanceReadonlyNode(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            delay_replication_time: Optional[pulumi.Input[int]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             node_id: Optional[pulumi.Input[str]] = None,
             node_spec: Optional[pulumi.Input[str]] = None,
@@ -321,6 +339,7 @@ class InstanceReadonlyNode(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] delay_replication_time: The delay time of the readonly node.
         :param pulumi.Input[str] instance_id: The RDS mysql instance id of the readonly node.
         :param pulumi.Input[str] node_id: The id of the readonly node.
         :param pulumi.Input[str] node_spec: The specification of readonly node.
@@ -330,11 +349,20 @@ class InstanceReadonlyNode(pulumi.CustomResource):
 
         __props__ = _InstanceReadonlyNodeState.__new__(_InstanceReadonlyNodeState)
 
+        __props__.__dict__["delay_replication_time"] = delay_replication_time
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["node_id"] = node_id
         __props__.__dict__["node_spec"] = node_spec
         __props__.__dict__["zone_id"] = zone_id
         return InstanceReadonlyNode(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="delayReplicationTime")
+    def delay_replication_time(self) -> pulumi.Output[int]:
+        """
+        The delay time of the readonly node.
+        """
+        return pulumi.get(self, "delay_replication_time")
 
     @property
     @pulumi.getter(name="instanceId")

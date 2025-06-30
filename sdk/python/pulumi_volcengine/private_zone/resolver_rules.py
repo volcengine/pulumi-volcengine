@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ResolverRulesResult',
@@ -24,7 +25,7 @@ class ResolverRulesResult:
     """
     A collection of values returned by ResolverRules.
     """
-    def __init__(__self__, endpoint_id=None, id=None, name=None, name_regex=None, output_file=None, rules=None, total_count=None, zone_name=None):
+    def __init__(__self__, endpoint_id=None, id=None, name=None, name_regex=None, output_file=None, project_name=None, rules=None, tag_filters=None, total_count=None, zone_name=None):
         if endpoint_id and not isinstance(endpoint_id, int):
             raise TypeError("Expected argument 'endpoint_id' to be a int")
         pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -40,9 +41,15 @@ class ResolverRulesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if rules and not isinstance(rules, list):
             raise TypeError("Expected argument 'rules' to be a list")
         pulumi.set(__self__, "rules", rules)
+        if tag_filters and not isinstance(tag_filters, list):
+            raise TypeError("Expected argument 'tag_filters' to be a list")
+        pulumi.set(__self__, "tag_filters", tag_filters)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -85,12 +92,25 @@ class ResolverRulesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the rule.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def rules(self) -> Sequence['outputs.ResolverRulesRuleResult']:
         """
         The collection of query.
         """
         return pulumi.get(self, "rules")
+
+    @property
+    @pulumi.getter(name="tagFilters")
+    def tag_filters(self) -> Optional[Sequence['outputs.ResolverRulesTagFilterResult']]:
+        return pulumi.get(self, "tag_filters")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -120,7 +140,9 @@ class AwaitableResolverRulesResult(ResolverRulesResult):
             name=self.name,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             rules=self.rules,
+            tag_filters=self.tag_filters,
             total_count=self.total_count,
             zone_name=self.zone_name)
 
@@ -129,6 +151,8 @@ def resolver_rules(endpoint_id: Optional[int] = None,
                    name: Optional[str] = None,
                    name_regex: Optional[str] = None,
                    output_file: Optional[str] = None,
+                   project_name: Optional[str] = None,
+                   tag_filters: Optional[Sequence[pulumi.InputType['ResolverRulesTagFilterArgs']]] = None,
                    zone_name: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableResolverRulesResult:
     """
@@ -147,6 +171,8 @@ def resolver_rules(endpoint_id: Optional[int] = None,
     :param str name: The name of the rule.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the private zone resolver rule.
+    :param Sequence[pulumi.InputType['ResolverRulesTagFilterArgs']] tag_filters: List of tag filters.
     :param str zone_name: The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
     """
     pulumi.log.warn("""resolver_rules is deprecated: volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules""")
@@ -155,6 +181,8 @@ def resolver_rules(endpoint_id: Optional[int] = None,
     __args__['name'] = name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tagFilters'] = tag_filters
     __args__['zoneName'] = zone_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:private_zone/resolverRules:ResolverRules', __args__, opts=opts, typ=ResolverRulesResult).value
@@ -165,7 +193,9 @@ def resolver_rules(endpoint_id: Optional[int] = None,
         name=pulumi.get(__ret__, 'name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         rules=pulumi.get(__ret__, 'rules'),
+        tag_filters=pulumi.get(__ret__, 'tag_filters'),
         total_count=pulumi.get(__ret__, 'total_count'),
         zone_name=pulumi.get(__ret__, 'zone_name'))
 
@@ -175,6 +205,8 @@ def resolver_rules_output(endpoint_id: Optional[pulumi.Input[Optional[int]]] = N
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                          project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                          tag_filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ResolverRulesTagFilterArgs']]]]] = None,
                           zone_name: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ResolverRulesResult]:
     """
@@ -193,6 +225,8 @@ def resolver_rules_output(endpoint_id: Optional[pulumi.Input[Optional[int]]] = N
     :param str name: The name of the rule.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the private zone resolver rule.
+    :param Sequence[pulumi.InputType['ResolverRulesTagFilterArgs']] tag_filters: List of tag filters.
     :param str zone_name: The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
     """
     pulumi.log.warn("""resolver_rules is deprecated: volcengine.private_zone.ResolverRules has been deprecated in favor of volcengine.private_zone.getResolverRules""")

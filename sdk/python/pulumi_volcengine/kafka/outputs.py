@@ -11,6 +11,8 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AllowListsAllowListResult',
+    'AllowListsAllowListAssociatedInstanceResult',
     'ConsumedPartitionsConsumedPartitionResult',
     'ConsumedTopicsConsumedTopicResult',
     'GroupsGroupResult',
@@ -30,6 +32,8 @@ __all__ = [
     'TopicsTopicAccessPolicyResult',
     'TopicsTopicParametersResult',
     'ZonesZoneResult',
+    'GetAllowListsAllowListResult',
+    'GetAllowListsAllowListAssociatedInstanceResult',
     'GetConsumedPartitionsConsumedPartitionResult',
     'GetConsumedTopicsConsumedTopicResult',
     'GetGroupsGroupResult',
@@ -46,6 +50,119 @@ __all__ = [
     'GetTopicsTopicParametersResult',
     'GetZonesZoneResult',
 ]
+
+@pulumi.output_type
+class AllowListsAllowListResult(dict):
+    def __init__(__self__, *,
+                 allow_list_desc: str,
+                 allow_list_id: str,
+                 allow_list_ip_num: int,
+                 allow_list_name: str,
+                 allow_lists: Sequence[str],
+                 associated_instance_num: int,
+                 associated_instances: Sequence['outputs.AllowListsAllowListAssociatedInstanceResult']):
+        """
+        :param str allow_list_desc: The description of the allow list.
+        :param str allow_list_id: The id of the allow list.
+        :param int allow_list_ip_num: The number of rules specified in the whitelist.
+        :param str allow_list_name: The name of the allow list.
+        :param Sequence[str] allow_lists: Whitelist rule list.
+        :param int associated_instance_num: The number of instances bound to the whitelist.
+        :param Sequence['AllowListsAllowListAssociatedInstanceArgs'] associated_instances: The list of associated instances.
+        """
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        pulumi.set(__self__, "associated_instances", associated_instances)
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> str:
+        """
+        The description of the allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> str:
+        """
+        The id of the allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> int:
+        """
+        The number of rules specified in the whitelist.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> str:
+        """
+        The name of the allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        Whitelist rule list.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> int:
+        """
+        The number of instances bound to the whitelist.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Sequence['outputs.AllowListsAllowListAssociatedInstanceResult']:
+        """
+        The list of associated instances.
+        """
+        return pulumi.get(self, "associated_instances")
+
+
+@pulumi.output_type
+class AllowListsAllowListAssociatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_name: str):
+        """
+        :param str instance_id: The instance ID to query.
+        :param str instance_name: The name of the instance.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance ID to query.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
 
 @pulumi.output_type
 class ConsumedPartitionsConsumedPartitionResult(dict):
@@ -1329,6 +1446,119 @@ class ZonesZoneResult(dict):
         The name of the zone.
         """
         return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
+class GetAllowListsAllowListResult(dict):
+    def __init__(__self__, *,
+                 allow_list_desc: str,
+                 allow_list_id: str,
+                 allow_list_ip_num: int,
+                 allow_list_name: str,
+                 allow_lists: Sequence[str],
+                 associated_instance_num: int,
+                 associated_instances: Sequence['outputs.GetAllowListsAllowListAssociatedInstanceResult']):
+        """
+        :param str allow_list_desc: The description of the allow list.
+        :param str allow_list_id: The id of the allow list.
+        :param int allow_list_ip_num: The number of rules specified in the whitelist.
+        :param str allow_list_name: The name of the allow list.
+        :param Sequence[str] allow_lists: Whitelist rule list.
+        :param int associated_instance_num: The number of instances bound to the whitelist.
+        :param Sequence['GetAllowListsAllowListAssociatedInstanceArgs'] associated_instances: The list of associated instances.
+        """
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        pulumi.set(__self__, "associated_instances", associated_instances)
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> str:
+        """
+        The description of the allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> str:
+        """
+        The id of the allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> int:
+        """
+        The number of rules specified in the whitelist.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> str:
+        """
+        The name of the allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        Whitelist rule list.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> int:
+        """
+        The number of instances bound to the whitelist.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Sequence['outputs.GetAllowListsAllowListAssociatedInstanceResult']:
+        """
+        The list of associated instances.
+        """
+        return pulumi.get(self, "associated_instances")
+
+
+@pulumi.output_type
+class GetAllowListsAllowListAssociatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_name: str):
+        """
+        :param str instance_id: The instance ID to query.
+        :param str instance_name: The name of the instance.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance ID to query.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
 
 
 @pulumi.output_type

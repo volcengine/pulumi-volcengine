@@ -7,10 +7,14 @@ import typing
 # Export this package's modules as members:
 from .get_instance_plugins import *
 from .get_instances import *
+from .get_regions import *
+from .get_zones import *
 from .instance import *
 from .instance_plugin import *
 from .instance_plugins import *
 from .instances import *
 from .public_address import *
+from .regions import *
+from .zones import *
 from ._inputs import *
 from . import outputs

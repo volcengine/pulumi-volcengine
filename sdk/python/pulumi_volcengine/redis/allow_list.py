@@ -70,6 +70,7 @@ class AllowListArgs:
 @pulumi.input_type
 class _AllowListState:
     def __init__(__self__, *,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_id: Optional[pulumi.Input[str]] = None,
                  allow_list_ip_num: Optional[pulumi.Input[int]] = None,
@@ -77,9 +78,12 @@ class _AllowListState:
                  allow_list_type: Optional[pulumi.Input[str]] = None,
                  allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  associated_instance_num: Optional[pulumi.Input[int]] = None,
-                 associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input['AllowListAssociatedInstanceArgs']]]] = None):
+                 associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input['AllowListAssociatedInstanceArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input['AllowListSecurityGroupBindInfoArgs']]]] = None):
         """
         Input properties used for looking up and filtering AllowList resources.
+        :param pulumi.Input[str] allow_list_category: The type of the whitelist.
         :param pulumi.Input[str] allow_list_desc: Description of allow list.
         :param pulumi.Input[str] allow_list_id: Id of allow list.
         :param pulumi.Input[int] allow_list_ip_num: The IP number of allow list.
@@ -88,7 +92,11 @@ class _AllowListState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Ip list of allow list.
         :param pulumi.Input[int] associated_instance_num: The number of instance that associated to allow list.
         :param pulumi.Input[Sequence[pulumi.Input['AllowListAssociatedInstanceArgs']]] associated_instances: Instances associated by this allow list.
+        :param pulumi.Input[str] project_name: The name of the project to which the white list belongs.
+        :param pulumi.Input[Sequence[pulumi.Input['AllowListSecurityGroupBindInfoArgs']]] security_group_bind_infos: The current whitelist is the list of security group information that has been associated.
         """
+        if allow_list_category is not None:
+            pulumi.set(__self__, "allow_list_category", allow_list_category)
         if allow_list_desc is not None:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_id is not None:
@@ -105,6 +113,22 @@ class _AllowListState:
             pulumi.set(__self__, "associated_instance_num", associated_instance_num)
         if associated_instances is not None:
             pulumi.set(__self__, "associated_instances", associated_instances)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if security_group_bind_infos is not None:
+            pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the whitelist.
+        """
+        return pulumi.get(self, "allow_list_category")
+
+    @allow_list_category.setter
+    def allow_list_category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allow_list_category", value)
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -201,6 +225,30 @@ class _AllowListState:
     @associated_instances.setter
     def associated_instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowListAssociatedInstanceArgs']]]]):
         pulumi.set(self, "associated_instances", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the project to which the white list belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AllowListSecurityGroupBindInfoArgs']]]]:
+        """
+        The current whitelist is the list of security group information that has been associated.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @security_group_bind_infos.setter
+    def security_group_bind_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowListSecurityGroupBindInfoArgs']]]]):
+        pulumi.set(self, "security_group_bind_infos", value)
 
 
 class AllowList(pulumi.CustomResource):
@@ -312,11 +360,14 @@ class AllowList(pulumi.CustomResource):
             if allow_lists is None and not opts.urn:
                 raise TypeError("Missing required property 'allow_lists'")
             __props__.__dict__["allow_lists"] = allow_lists
+            __props__.__dict__["allow_list_category"] = None
             __props__.__dict__["allow_list_id"] = None
             __props__.__dict__["allow_list_ip_num"] = None
             __props__.__dict__["allow_list_type"] = None
             __props__.__dict__["associated_instance_num"] = None
             __props__.__dict__["associated_instances"] = None
+            __props__.__dict__["project_name"] = None
+            __props__.__dict__["security_group_bind_infos"] = None
         super(AllowList, __self__).__init__(
             'volcengine:redis/allowList:AllowList',
             resource_name,
@@ -327,6 +378,7 @@ class AllowList(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_list_category: Optional[pulumi.Input[str]] = None,
             allow_list_desc: Optional[pulumi.Input[str]] = None,
             allow_list_id: Optional[pulumi.Input[str]] = None,
             allow_list_ip_num: Optional[pulumi.Input[int]] = None,
@@ -334,7 +386,9 @@ class AllowList(pulumi.CustomResource):
             allow_list_type: Optional[pulumi.Input[str]] = None,
             allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             associated_instance_num: Optional[pulumi.Input[int]] = None,
-            associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowListAssociatedInstanceArgs']]]]] = None) -> 'AllowList':
+            associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowListAssociatedInstanceArgs']]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
+            security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowListSecurityGroupBindInfoArgs']]]]] = None) -> 'AllowList':
         """
         Get an existing AllowList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -342,6 +396,7 @@ class AllowList(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allow_list_category: The type of the whitelist.
         :param pulumi.Input[str] allow_list_desc: Description of allow list.
         :param pulumi.Input[str] allow_list_id: Id of allow list.
         :param pulumi.Input[int] allow_list_ip_num: The IP number of allow list.
@@ -350,11 +405,14 @@ class AllowList(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Ip list of allow list.
         :param pulumi.Input[int] associated_instance_num: The number of instance that associated to allow list.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowListAssociatedInstanceArgs']]]] associated_instances: Instances associated by this allow list.
+        :param pulumi.Input[str] project_name: The name of the project to which the white list belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowListSecurityGroupBindInfoArgs']]]] security_group_bind_infos: The current whitelist is the list of security group information that has been associated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AllowListState.__new__(_AllowListState)
 
+        __props__.__dict__["allow_list_category"] = allow_list_category
         __props__.__dict__["allow_list_desc"] = allow_list_desc
         __props__.__dict__["allow_list_id"] = allow_list_id
         __props__.__dict__["allow_list_ip_num"] = allow_list_ip_num
@@ -363,7 +421,17 @@ class AllowList(pulumi.CustomResource):
         __props__.__dict__["allow_lists"] = allow_lists
         __props__.__dict__["associated_instance_num"] = associated_instance_num
         __props__.__dict__["associated_instances"] = associated_instances
+        __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["security_group_bind_infos"] = security_group_bind_infos
         return AllowList(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> pulumi.Output[str]:
+        """
+        The type of the whitelist.
+        """
+        return pulumi.get(self, "allow_list_category")
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -428,4 +496,20 @@ class AllowList(pulumi.CustomResource):
         Instances associated by this allow list.
         """
         return pulumi.get(self, "associated_instances")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The name of the project to which the white list belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> pulumi.Output[Sequence['outputs.AllowListSecurityGroupBindInfo']]:
+        """
+        The current whitelist is the list of security group information that has been associated.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
 

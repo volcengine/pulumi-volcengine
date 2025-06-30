@@ -80,6 +80,24 @@ namespace Pulumi.Volcengine.Private_zone
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver rule.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tagFilters")]
+        private List<Inputs.GetResolverRulesTagFilterArgs>? _tagFilters;
+
+        /// <summary>
+        /// List of tag filters.
+        /// </summary>
+        public List<Inputs.GetResolverRulesTagFilterArgs> TagFilters
+        {
+            get => _tagFilters ?? (_tagFilters = new List<Inputs.GetResolverRulesTagFilterArgs>());
+            set => _tagFilters = value;
+        }
+
+        /// <summary>
         /// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
         /// </summary>
         [Input("zoneName")]
@@ -118,6 +136,24 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver rule.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tagFilters")]
+        private InputList<Inputs.GetResolverRulesTagFilterInputArgs>? _tagFilters;
+
+        /// <summary>
+        /// List of tag filters.
+        /// </summary>
+        public InputList<Inputs.GetResolverRulesTagFilterInputArgs> TagFilters
+        {
+            get => _tagFilters ?? (_tagFilters = new InputList<Inputs.GetResolverRulesTagFilterInputArgs>());
+            set => _tagFilters = value;
+        }
+
+        /// <summary>
         /// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
         /// </summary>
         [Input("zoneName")]
@@ -148,9 +184,14 @@ namespace Pulumi.Volcengine.Private_zone
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the rule.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The collection of query.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetResolverRulesRuleResult> Rules;
+        public readonly ImmutableArray<Outputs.GetResolverRulesTagFilterResult> TagFilters;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -172,7 +213,11 @@ namespace Pulumi.Volcengine.Private_zone
 
             string? outputFile,
 
+            string? projectName,
+
             ImmutableArray<Outputs.GetResolverRulesRuleResult> rules,
+
+            ImmutableArray<Outputs.GetResolverRulesTagFilterResult> tagFilters,
 
             int totalCount,
 
@@ -183,7 +228,9 @@ namespace Pulumi.Volcengine.Private_zone
             Name = name;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             Rules = rules;
+            TagFilters = tagFilters;
             TotalCount = totalCount;
             ZoneName = zoneName;
         }

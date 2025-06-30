@@ -50,9 +50,15 @@ import (
 //						SubnetId: pulumi.String("subnet-mj2o4co2m2v45smt1bx1****"),
 //					},
 //				},
-//				SecurityGroupId: pulumi.String("sg-mj2nsckay29s5smt1b0d****"),
-//				VpcId:           pulumi.String("vpc-13f9uuuqfdjb43n6nu5p1****"),
-//				VpcRegion:       pulumi.String("cn-beijing"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: private_zone.ResolverEndpointTagArray{
+//					&private_zone.ResolverEndpointTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//				VpcId:     pulumi.String("vpc-13f9uuuqfdjb43n6nu5p1****"),
+//				VpcRegion: pulumi.String("cn-beijing"),
 //			})
 //			if err != nil {
 //				return err
@@ -79,12 +85,19 @@ type ResolverEndpoint struct {
 	IpConfigs ResolverEndpointIpConfigArrayOutput `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The security group ID of the endpoint.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
+	// Tags.
+	Tags ResolverEndpointTagArrayOutput `pulumi:"tags"`
 	// The VPC ID of the endpoint.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 	// The VPC region of the endpoint.
 	VpcRegion pulumi.StringOutput `pulumi:"vpcRegion"`
+	// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayOutput `pulumi:"vpcTrns"`
 }
 
 // NewResolverEndpoint registers a new resource with the given unique name, arguments, and options.
@@ -96,9 +109,6 @@ func NewResolverEndpoint(ctx *pulumi.Context,
 
 	if args.IpConfigs == nil {
 		return nil, errors.New("invalid value for required argument 'IpConfigs'")
-	}
-	if args.SecurityGroupId == nil {
-		return nil, errors.New("invalid value for required argument 'SecurityGroupId'")
 	}
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
@@ -135,12 +145,19 @@ type resolverEndpointState struct {
 	IpConfigs []ResolverEndpointIpConfig `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name *string `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName *string `pulumi:"projectName"`
 	// The security group ID of the endpoint.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
+	// Tags.
+	Tags []ResolverEndpointTag `pulumi:"tags"`
 	// The VPC ID of the endpoint.
 	VpcId *string `pulumi:"vpcId"`
 	// The VPC region of the endpoint.
 	VpcRegion *string `pulumi:"vpcRegion"`
+	// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns []string `pulumi:"vpcTrns"`
 }
 
 type ResolverEndpointState struct {
@@ -150,12 +167,19 @@ type ResolverEndpointState struct {
 	IpConfigs ResolverEndpointIpConfigArrayInput
 	// The name of the private zone resolver endpoint.
 	Name pulumi.StringPtrInput
+	// The project name of the private zone resolver endpoint.
+	ProjectName pulumi.StringPtrInput
 	// The security group ID of the endpoint.
 	SecurityGroupId pulumi.StringPtrInput
+	// Tags.
+	Tags ResolverEndpointTagArrayInput
 	// The VPC ID of the endpoint.
 	VpcId pulumi.StringPtrInput
 	// The VPC region of the endpoint.
 	VpcRegion pulumi.StringPtrInput
+	// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayInput
 }
 
 func (ResolverEndpointState) ElementType() reflect.Type {
@@ -169,12 +193,19 @@ type resolverEndpointArgs struct {
 	IpConfigs []ResolverEndpointIpConfig `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name *string `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName *string `pulumi:"projectName"`
 	// The security group ID of the endpoint.
-	SecurityGroupId string `pulumi:"securityGroupId"`
+	SecurityGroupId *string `pulumi:"securityGroupId"`
+	// Tags.
+	Tags []ResolverEndpointTag `pulumi:"tags"`
 	// The VPC ID of the endpoint.
 	VpcId string `pulumi:"vpcId"`
 	// The VPC region of the endpoint.
 	VpcRegion string `pulumi:"vpcRegion"`
+	// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns []string `pulumi:"vpcTrns"`
 }
 
 // The set of arguments for constructing a ResolverEndpoint resource.
@@ -185,12 +216,19 @@ type ResolverEndpointArgs struct {
 	IpConfigs ResolverEndpointIpConfigArrayInput
 	// The name of the private zone resolver endpoint.
 	Name pulumi.StringPtrInput
+	// The project name of the private zone resolver endpoint.
+	ProjectName pulumi.StringPtrInput
 	// The security group ID of the endpoint.
-	SecurityGroupId pulumi.StringInput
+	SecurityGroupId pulumi.StringPtrInput
+	// Tags.
+	Tags ResolverEndpointTagArrayInput
 	// The VPC ID of the endpoint.
 	VpcId pulumi.StringInput
 	// The VPC region of the endpoint.
 	VpcRegion pulumi.StringInput
+	// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayInput
 }
 
 func (ResolverEndpointArgs) ElementType() reflect.Type {
@@ -295,9 +333,19 @@ func (o ResolverEndpointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResolverEndpoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the private zone resolver endpoint.
+func (o ResolverEndpointOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ResolverEndpoint) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The security group ID of the endpoint.
 func (o ResolverEndpointOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResolverEndpoint) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ResolverEndpointOutput) Tags() ResolverEndpointTagArrayOutput {
+	return o.ApplyT(func(v *ResolverEndpoint) ResolverEndpointTagArrayOutput { return v.Tags }).(ResolverEndpointTagArrayOutput)
 }
 
 // The VPC ID of the endpoint.
@@ -308,6 +356,12 @@ func (o ResolverEndpointOutput) VpcId() pulumi.StringOutput {
 // The VPC region of the endpoint.
 func (o ResolverEndpointOutput) VpcRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResolverEndpoint) pulumi.StringOutput { return v.VpcRegion }).(pulumi.StringOutput)
+}
+
+// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o ResolverEndpointOutput) VpcTrns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ResolverEndpoint) pulumi.StringArrayOutput { return v.VpcTrns }).(pulumi.StringArrayOutput)
 }
 
 type ResolverEndpointArrayOutput struct{ *pulumi.OutputState }

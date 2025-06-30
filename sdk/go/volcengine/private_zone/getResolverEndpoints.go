@@ -55,8 +55,12 @@ type GetResolverEndpointsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of the private zone resolver endpoint.
 	Status *string `pulumi:"status"`
+	// List of tag filters.
+	TagFilters []GetResolverEndpointsTagFilter `pulumi:"tagFilters"`
 	// The vpc ID of the private zone resolver endpoint.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -73,8 +77,11 @@ type GetResolverEndpointsResult struct {
 	Name       *string `pulumi:"name"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the endpoint.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of the endpoint.
-	Status *string `pulumi:"status"`
+	Status     *string                         `pulumi:"status"`
+	TagFilters []GetResolverEndpointsTagFilter `pulumi:"tagFilters"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The vpc id of the endpoint.
@@ -104,8 +111,12 @@ type GetResolverEndpointsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The status of the private zone resolver endpoint.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// List of tag filters.
+	TagFilters GetResolverEndpointsTagFilterArrayInput `pulumi:"tagFilters"`
 	// The vpc ID of the private zone resolver endpoint.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -157,9 +168,18 @@ func (o GetResolverEndpointsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetResolverEndpointsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the endpoint.
+func (o GetResolverEndpointsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetResolverEndpointsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The status of the endpoint.
 func (o GetResolverEndpointsResultOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetResolverEndpointsResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o GetResolverEndpointsResultOutput) TagFilters() GetResolverEndpointsTagFilterArrayOutput {
+	return o.ApplyT(func(v GetResolverEndpointsResult) []GetResolverEndpointsTagFilter { return v.TagFilters }).(GetResolverEndpointsTagFilterArrayOutput)
 }
 
 // The total count of query.

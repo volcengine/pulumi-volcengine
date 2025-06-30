@@ -8,6 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of ebs max extra performances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.ebs.getMaxExtraPerformances({
+ *     size: 60,
+ *     volumeType: "TSSD_TL0",
+ * });
+ * ```
  */
 /** @deprecated volcengine.ebs.MaxExtraPerformances has been deprecated in favor of volcengine.ebs.getMaxExtraPerformances */
 export function maxExtraPerformances(args?: MaxExtraPerformancesArgs, opts?: pulumi.InvokeOptions): Promise<MaxExtraPerformancesResult> {
@@ -74,6 +85,17 @@ export interface MaxExtraPerformancesResult {
 }
 /**
  * Use this data source to query detailed information of ebs max extra performances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.ebs.getMaxExtraPerformances({
+ *     size: 60,
+ *     volumeType: "TSSD_TL0",
+ * });
+ * ```
  */
 /** @deprecated volcengine.ebs.MaxExtraPerformances has been deprecated in favor of volcengine.ebs.getMaxExtraPerformances */
 export function maxExtraPerformancesOutput(args?: MaxExtraPerformancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<MaxExtraPerformancesResult> {

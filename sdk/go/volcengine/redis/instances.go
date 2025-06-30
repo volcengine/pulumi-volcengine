@@ -144,7 +144,8 @@ type InstancesResult struct {
 	// The total count of redis instances query.
 	TotalCount int `pulumi:"totalCount"`
 	// The vpc ID of the redis instance.
-	VpcId  *string `pulumi:"vpcId"`
+	VpcId *string `pulumi:"vpcId"`
+	// The availability zone where the node is located.
 	ZoneId *string `pulumi:"zoneId"`
 }
 
@@ -276,6 +277,7 @@ func (o InstancesResultOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
+// The availability zone where the node is located.
 func (o InstancesResultOutput) ZoneId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.ZoneId }).(pulumi.StringPtrOutput)
 }

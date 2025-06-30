@@ -25,10 +25,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Alarm{}
 	case "volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup":
 		r = &AlarmNotifyGroup{}
+	case "volcengine:tls/consumerGroup:ConsumerGroup":
+		r = &ConsumerGroup{}
+	case "volcengine:tls/etlTask:EtlTask":
+		r = &EtlTask{}
 	case "volcengine:tls/host:Host":
 		r = &Host{}
 	case "volcengine:tls/hostGroup:HostGroup":
 		r = &HostGroup{}
+	case "volcengine:tls/importTask:ImportTask":
+		r = &ImportTask{}
 	case "volcengine:tls/index:Index":
 		r = &Index{}
 	case "volcengine:tls/kafkaConsumer:KafkaConsumer":
@@ -39,6 +45,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Rule{}
 	case "volcengine:tls/ruleApplier:RuleApplier":
 		r = &RuleApplier{}
+	case "volcengine:tls/scheduleSqlTask:ScheduleSqlTask":
+		r = &ScheduleSqlTask{}
+	case "volcengine:tls/shipper:Shipper":
+		r = &Shipper{}
 	case "volcengine:tls/topic:Topic":
 		r = &Topic{}
 	default:
@@ -66,12 +76,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tls/consumerGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/etlTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tls/host",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"tls/hostGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/importTask",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -97,6 +122,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"tls/ruleApplier",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/scheduleSqlTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/shipper",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

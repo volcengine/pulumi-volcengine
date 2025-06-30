@@ -28,6 +28,8 @@ export function resolverRules(args?: ResolverRulesArgs, opts?: pulumi.InvokeOpti
         "name": args.name,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tagFilters": args.tagFilters,
         "zoneName": args.zoneName,
     }, opts);
 }
@@ -53,6 +55,14 @@ export interface ResolverRulesArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the private zone resolver rule.
+     */
+    projectName?: string;
+    /**
+     * List of tag filters.
+     */
+    tagFilters?: inputs.private_zone.ResolverRulesTagFilter[];
+    /**
      * The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
      */
     zoneName?: string;
@@ -77,9 +87,14 @@ export interface ResolverRulesResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The project name of the rule.
+     */
+    readonly projectName?: string;
+    /**
      * The collection of query.
      */
     readonly rules: outputs.private_zone.ResolverRulesRule[];
+    readonly tagFilters?: outputs.private_zone.ResolverRulesTagFilter[];
     /**
      * The total count of query.
      */
@@ -125,6 +140,14 @@ export interface ResolverRulesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the private zone resolver rule.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * List of tag filters.
+     */
+    tagFilters?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverRulesTagFilterArgs>[]>;
     /**
      * The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
      */

@@ -128,15 +128,588 @@ func (o AccountAccountPrivilegeArrayOutput) Index(i pulumi.IntInput) AccountAcco
 	}).(AccountAccountPrivilegeOutput)
 }
 
+type AccountTableColumnInfosTableInfo struct {
+	// The column privileges of the account.
+	AccountPrivileges []string `pulumi:"accountPrivileges"`
+	// The column permission information of the account.
+	ColumnInfos []AccountTableColumnInfosTableInfoColumnInfo `pulumi:"columnInfos"`
+	// The name of the table.
+	TableName string `pulumi:"tableName"`
+}
+
+// AccountTableColumnInfosTableInfoInput is an input type that accepts AccountTableColumnInfosTableInfoArgs and AccountTableColumnInfosTableInfoOutput values.
+// You can construct a concrete instance of `AccountTableColumnInfosTableInfoInput` via:
+//
+//	AccountTableColumnInfosTableInfoArgs{...}
+type AccountTableColumnInfosTableInfoInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnInfosTableInfoOutput() AccountTableColumnInfosTableInfoOutput
+	ToAccountTableColumnInfosTableInfoOutputWithContext(context.Context) AccountTableColumnInfosTableInfoOutput
+}
+
+type AccountTableColumnInfosTableInfoArgs struct {
+	// The column privileges of the account.
+	AccountPrivileges pulumi.StringArrayInput `pulumi:"accountPrivileges"`
+	// The column permission information of the account.
+	ColumnInfos AccountTableColumnInfosTableInfoColumnInfoArrayInput `pulumi:"columnInfos"`
+	// The name of the table.
+	TableName pulumi.StringInput `pulumi:"tableName"`
+}
+
+func (AccountTableColumnInfosTableInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (i AccountTableColumnInfosTableInfoArgs) ToAccountTableColumnInfosTableInfoOutput() AccountTableColumnInfosTableInfoOutput {
+	return i.ToAccountTableColumnInfosTableInfoOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnInfosTableInfoArgs) ToAccountTableColumnInfosTableInfoOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnInfosTableInfoOutput)
+}
+
+// AccountTableColumnInfosTableInfoArrayInput is an input type that accepts AccountTableColumnInfosTableInfoArray and AccountTableColumnInfosTableInfoArrayOutput values.
+// You can construct a concrete instance of `AccountTableColumnInfosTableInfoArrayInput` via:
+//
+//	AccountTableColumnInfosTableInfoArray{ AccountTableColumnInfosTableInfoArgs{...} }
+type AccountTableColumnInfosTableInfoArrayInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnInfosTableInfoArrayOutput() AccountTableColumnInfosTableInfoArrayOutput
+	ToAccountTableColumnInfosTableInfoArrayOutputWithContext(context.Context) AccountTableColumnInfosTableInfoArrayOutput
+}
+
+type AccountTableColumnInfosTableInfoArray []AccountTableColumnInfosTableInfoInput
+
+func (AccountTableColumnInfosTableInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (i AccountTableColumnInfosTableInfoArray) ToAccountTableColumnInfosTableInfoArrayOutput() AccountTableColumnInfosTableInfoArrayOutput {
+	return i.ToAccountTableColumnInfosTableInfoArrayOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnInfosTableInfoArray) ToAccountTableColumnInfosTableInfoArrayOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnInfosTableInfoArrayOutput)
+}
+
+type AccountTableColumnInfosTableInfoOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnInfosTableInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (o AccountTableColumnInfosTableInfoOutput) ToAccountTableColumnInfosTableInfoOutput() AccountTableColumnInfosTableInfoOutput {
+	return o
+}
+
+func (o AccountTableColumnInfosTableInfoOutput) ToAccountTableColumnInfosTableInfoOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoOutput {
+	return o
+}
+
+// The column privileges of the account.
+func (o AccountTableColumnInfosTableInfoOutput) AccountPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AccountTableColumnInfosTableInfo) []string { return v.AccountPrivileges }).(pulumi.StringArrayOutput)
+}
+
+// The column permission information of the account.
+func (o AccountTableColumnInfosTableInfoOutput) ColumnInfos() AccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return o.ApplyT(func(v AccountTableColumnInfosTableInfo) []AccountTableColumnInfosTableInfoColumnInfo {
+		return v.ColumnInfos
+	}).(AccountTableColumnInfosTableInfoColumnInfoArrayOutput)
+}
+
+// The name of the table.
+func (o AccountTableColumnInfosTableInfoOutput) TableName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountTableColumnInfosTableInfo) string { return v.TableName }).(pulumi.StringOutput)
+}
+
+type AccountTableColumnInfosTableInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnInfosTableInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (o AccountTableColumnInfosTableInfoArrayOutput) ToAccountTableColumnInfosTableInfoArrayOutput() AccountTableColumnInfosTableInfoArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnInfosTableInfoArrayOutput) ToAccountTableColumnInfosTableInfoArrayOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnInfosTableInfoArrayOutput) Index(i pulumi.IntInput) AccountTableColumnInfosTableInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountTableColumnInfosTableInfo {
+		return vs[0].([]AccountTableColumnInfosTableInfo)[vs[1].(int)]
+	}).(AccountTableColumnInfosTableInfoOutput)
+}
+
+type AccountTableColumnInfosTableInfoColumnInfo struct {
+	// The column privileges of the account.
+	AccountPrivileges []string `pulumi:"accountPrivileges"`
+	// The name of the column.
+	ColumnName string `pulumi:"columnName"`
+}
+
+// AccountTableColumnInfosTableInfoColumnInfoInput is an input type that accepts AccountTableColumnInfosTableInfoColumnInfoArgs and AccountTableColumnInfosTableInfoColumnInfoOutput values.
+// You can construct a concrete instance of `AccountTableColumnInfosTableInfoColumnInfoInput` via:
+//
+//	AccountTableColumnInfosTableInfoColumnInfoArgs{...}
+type AccountTableColumnInfosTableInfoColumnInfoInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnInfosTableInfoColumnInfoOutput() AccountTableColumnInfosTableInfoColumnInfoOutput
+	ToAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(context.Context) AccountTableColumnInfosTableInfoColumnInfoOutput
+}
+
+type AccountTableColumnInfosTableInfoColumnInfoArgs struct {
+	// The column privileges of the account.
+	AccountPrivileges pulumi.StringArrayInput `pulumi:"accountPrivileges"`
+	// The name of the column.
+	ColumnName pulumi.StringInput `pulumi:"columnName"`
+}
+
+func (AccountTableColumnInfosTableInfoColumnInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (i AccountTableColumnInfosTableInfoColumnInfoArgs) ToAccountTableColumnInfosTableInfoColumnInfoOutput() AccountTableColumnInfosTableInfoColumnInfoOutput {
+	return i.ToAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnInfosTableInfoColumnInfoArgs) ToAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoColumnInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnInfosTableInfoColumnInfoOutput)
+}
+
+// AccountTableColumnInfosTableInfoColumnInfoArrayInput is an input type that accepts AccountTableColumnInfosTableInfoColumnInfoArray and AccountTableColumnInfosTableInfoColumnInfoArrayOutput values.
+// You can construct a concrete instance of `AccountTableColumnInfosTableInfoColumnInfoArrayInput` via:
+//
+//	AccountTableColumnInfosTableInfoColumnInfoArray{ AccountTableColumnInfosTableInfoColumnInfoArgs{...} }
+type AccountTableColumnInfosTableInfoColumnInfoArrayInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnInfosTableInfoColumnInfoArrayOutput() AccountTableColumnInfosTableInfoColumnInfoArrayOutput
+	ToAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(context.Context) AccountTableColumnInfosTableInfoColumnInfoArrayOutput
+}
+
+type AccountTableColumnInfosTableInfoColumnInfoArray []AccountTableColumnInfosTableInfoColumnInfoInput
+
+func (AccountTableColumnInfosTableInfoColumnInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (i AccountTableColumnInfosTableInfoColumnInfoArray) ToAccountTableColumnInfosTableInfoColumnInfoArrayOutput() AccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return i.ToAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnInfosTableInfoColumnInfoArray) ToAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnInfosTableInfoColumnInfoArrayOutput)
+}
+
+type AccountTableColumnInfosTableInfoColumnInfoOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnInfosTableInfoColumnInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (o AccountTableColumnInfosTableInfoColumnInfoOutput) ToAccountTableColumnInfosTableInfoColumnInfoOutput() AccountTableColumnInfosTableInfoColumnInfoOutput {
+	return o
+}
+
+func (o AccountTableColumnInfosTableInfoColumnInfoOutput) ToAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoColumnInfoOutput {
+	return o
+}
+
+// The column privileges of the account.
+func (o AccountTableColumnInfosTableInfoColumnInfoOutput) AccountPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AccountTableColumnInfosTableInfoColumnInfo) []string { return v.AccountPrivileges }).(pulumi.StringArrayOutput)
+}
+
+// The name of the column.
+func (o AccountTableColumnInfosTableInfoColumnInfoOutput) ColumnName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountTableColumnInfosTableInfoColumnInfo) string { return v.ColumnName }).(pulumi.StringOutput)
+}
+
+type AccountTableColumnInfosTableInfoColumnInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnInfosTableInfoColumnInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (o AccountTableColumnInfosTableInfoColumnInfoArrayOutput) ToAccountTableColumnInfosTableInfoColumnInfoArrayOutput() AccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnInfosTableInfoColumnInfoArrayOutput) ToAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(ctx context.Context) AccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnInfosTableInfoColumnInfoArrayOutput) Index(i pulumi.IntInput) AccountTableColumnInfosTableInfoColumnInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountTableColumnInfosTableInfoColumnInfo {
+		return vs[0].([]AccountTableColumnInfosTableInfoColumnInfo)[vs[1].(int)]
+	}).(AccountTableColumnInfosTableInfoColumnInfoOutput)
+}
+
+type AccountTableColumnPrivilege struct {
+	// Column permission information of the account.
+	ColumnPrivileges []AccountTableColumnPrivilegeColumnPrivilege `pulumi:"columnPrivileges"`
+	// Settings for table column permissions of the account.
+	DbName string `pulumi:"dbName"`
+	// Table permission information of the account.
+	TablePrivileges []AccountTableColumnPrivilegeTablePrivilege `pulumi:"tablePrivileges"`
+}
+
+// AccountTableColumnPrivilegeInput is an input type that accepts AccountTableColumnPrivilegeArgs and AccountTableColumnPrivilegeOutput values.
+// You can construct a concrete instance of `AccountTableColumnPrivilegeInput` via:
+//
+//	AccountTableColumnPrivilegeArgs{...}
+type AccountTableColumnPrivilegeInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnPrivilegeOutput() AccountTableColumnPrivilegeOutput
+	ToAccountTableColumnPrivilegeOutputWithContext(context.Context) AccountTableColumnPrivilegeOutput
+}
+
+type AccountTableColumnPrivilegeArgs struct {
+	// Column permission information of the account.
+	ColumnPrivileges AccountTableColumnPrivilegeColumnPrivilegeArrayInput `pulumi:"columnPrivileges"`
+	// Settings for table column permissions of the account.
+	DbName pulumi.StringInput `pulumi:"dbName"`
+	// Table permission information of the account.
+	TablePrivileges AccountTableColumnPrivilegeTablePrivilegeArrayInput `pulumi:"tablePrivileges"`
+}
+
+func (AccountTableColumnPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnPrivilege)(nil)).Elem()
+}
+
+func (i AccountTableColumnPrivilegeArgs) ToAccountTableColumnPrivilegeOutput() AccountTableColumnPrivilegeOutput {
+	return i.ToAccountTableColumnPrivilegeOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnPrivilegeArgs) ToAccountTableColumnPrivilegeOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnPrivilegeOutput)
+}
+
+// AccountTableColumnPrivilegeArrayInput is an input type that accepts AccountTableColumnPrivilegeArray and AccountTableColumnPrivilegeArrayOutput values.
+// You can construct a concrete instance of `AccountTableColumnPrivilegeArrayInput` via:
+//
+//	AccountTableColumnPrivilegeArray{ AccountTableColumnPrivilegeArgs{...} }
+type AccountTableColumnPrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnPrivilegeArrayOutput() AccountTableColumnPrivilegeArrayOutput
+	ToAccountTableColumnPrivilegeArrayOutputWithContext(context.Context) AccountTableColumnPrivilegeArrayOutput
+}
+
+type AccountTableColumnPrivilegeArray []AccountTableColumnPrivilegeInput
+
+func (AccountTableColumnPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnPrivilege)(nil)).Elem()
+}
+
+func (i AccountTableColumnPrivilegeArray) ToAccountTableColumnPrivilegeArrayOutput() AccountTableColumnPrivilegeArrayOutput {
+	return i.ToAccountTableColumnPrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnPrivilegeArray) ToAccountTableColumnPrivilegeArrayOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnPrivilegeArrayOutput)
+}
+
+type AccountTableColumnPrivilegeOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnPrivilege)(nil)).Elem()
+}
+
+func (o AccountTableColumnPrivilegeOutput) ToAccountTableColumnPrivilegeOutput() AccountTableColumnPrivilegeOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeOutput) ToAccountTableColumnPrivilegeOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeOutput {
+	return o
+}
+
+// Column permission information of the account.
+func (o AccountTableColumnPrivilegeOutput) ColumnPrivileges() AccountTableColumnPrivilegeColumnPrivilegeArrayOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilege) []AccountTableColumnPrivilegeColumnPrivilege {
+		return v.ColumnPrivileges
+	}).(AccountTableColumnPrivilegeColumnPrivilegeArrayOutput)
+}
+
+// Settings for table column permissions of the account.
+func (o AccountTableColumnPrivilegeOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilege) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// Table permission information of the account.
+func (o AccountTableColumnPrivilegeOutput) TablePrivileges() AccountTableColumnPrivilegeTablePrivilegeArrayOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilege) []AccountTableColumnPrivilegeTablePrivilege {
+		return v.TablePrivileges
+	}).(AccountTableColumnPrivilegeTablePrivilegeArrayOutput)
+}
+
+type AccountTableColumnPrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnPrivilege)(nil)).Elem()
+}
+
+func (o AccountTableColumnPrivilegeArrayOutput) ToAccountTableColumnPrivilegeArrayOutput() AccountTableColumnPrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeArrayOutput) ToAccountTableColumnPrivilegeArrayOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeArrayOutput) Index(i pulumi.IntInput) AccountTableColumnPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountTableColumnPrivilege {
+		return vs[0].([]AccountTableColumnPrivilege)[vs[1].(int)]
+	}).(AccountTableColumnPrivilegeOutput)
+}
+
+type AccountTableColumnPrivilegeColumnPrivilege struct {
+	// Table privileges of the account.
+	AccountPrivilegeDetail *string `pulumi:"accountPrivilegeDetail"`
+	// The name of the column for setting permissions on the account.
+	ColumnName string `pulumi:"columnName"`
+	// The name of the table for setting permissions on the account.
+	TableName string `pulumi:"tableName"`
+}
+
+// AccountTableColumnPrivilegeColumnPrivilegeInput is an input type that accepts AccountTableColumnPrivilegeColumnPrivilegeArgs and AccountTableColumnPrivilegeColumnPrivilegeOutput values.
+// You can construct a concrete instance of `AccountTableColumnPrivilegeColumnPrivilegeInput` via:
+//
+//	AccountTableColumnPrivilegeColumnPrivilegeArgs{...}
+type AccountTableColumnPrivilegeColumnPrivilegeInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnPrivilegeColumnPrivilegeOutput() AccountTableColumnPrivilegeColumnPrivilegeOutput
+	ToAccountTableColumnPrivilegeColumnPrivilegeOutputWithContext(context.Context) AccountTableColumnPrivilegeColumnPrivilegeOutput
+}
+
+type AccountTableColumnPrivilegeColumnPrivilegeArgs struct {
+	// Table privileges of the account.
+	AccountPrivilegeDetail pulumi.StringPtrInput `pulumi:"accountPrivilegeDetail"`
+	// The name of the column for setting permissions on the account.
+	ColumnName pulumi.StringInput `pulumi:"columnName"`
+	// The name of the table for setting permissions on the account.
+	TableName pulumi.StringInput `pulumi:"tableName"`
+}
+
+func (AccountTableColumnPrivilegeColumnPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnPrivilegeColumnPrivilege)(nil)).Elem()
+}
+
+func (i AccountTableColumnPrivilegeColumnPrivilegeArgs) ToAccountTableColumnPrivilegeColumnPrivilegeOutput() AccountTableColumnPrivilegeColumnPrivilegeOutput {
+	return i.ToAccountTableColumnPrivilegeColumnPrivilegeOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnPrivilegeColumnPrivilegeArgs) ToAccountTableColumnPrivilegeColumnPrivilegeOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeColumnPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnPrivilegeColumnPrivilegeOutput)
+}
+
+// AccountTableColumnPrivilegeColumnPrivilegeArrayInput is an input type that accepts AccountTableColumnPrivilegeColumnPrivilegeArray and AccountTableColumnPrivilegeColumnPrivilegeArrayOutput values.
+// You can construct a concrete instance of `AccountTableColumnPrivilegeColumnPrivilegeArrayInput` via:
+//
+//	AccountTableColumnPrivilegeColumnPrivilegeArray{ AccountTableColumnPrivilegeColumnPrivilegeArgs{...} }
+type AccountTableColumnPrivilegeColumnPrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutput() AccountTableColumnPrivilegeColumnPrivilegeArrayOutput
+	ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutputWithContext(context.Context) AccountTableColumnPrivilegeColumnPrivilegeArrayOutput
+}
+
+type AccountTableColumnPrivilegeColumnPrivilegeArray []AccountTableColumnPrivilegeColumnPrivilegeInput
+
+func (AccountTableColumnPrivilegeColumnPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnPrivilegeColumnPrivilege)(nil)).Elem()
+}
+
+func (i AccountTableColumnPrivilegeColumnPrivilegeArray) ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutput() AccountTableColumnPrivilegeColumnPrivilegeArrayOutput {
+	return i.ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnPrivilegeColumnPrivilegeArray) ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeColumnPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnPrivilegeColumnPrivilegeArrayOutput)
+}
+
+type AccountTableColumnPrivilegeColumnPrivilegeOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnPrivilegeColumnPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnPrivilegeColumnPrivilege)(nil)).Elem()
+}
+
+func (o AccountTableColumnPrivilegeColumnPrivilegeOutput) ToAccountTableColumnPrivilegeColumnPrivilegeOutput() AccountTableColumnPrivilegeColumnPrivilegeOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeColumnPrivilegeOutput) ToAccountTableColumnPrivilegeColumnPrivilegeOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeColumnPrivilegeOutput {
+	return o
+}
+
+// Table privileges of the account.
+func (o AccountTableColumnPrivilegeColumnPrivilegeOutput) AccountPrivilegeDetail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilegeColumnPrivilege) *string { return v.AccountPrivilegeDetail }).(pulumi.StringPtrOutput)
+}
+
+// The name of the column for setting permissions on the account.
+func (o AccountTableColumnPrivilegeColumnPrivilegeOutput) ColumnName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilegeColumnPrivilege) string { return v.ColumnName }).(pulumi.StringOutput)
+}
+
+// The name of the table for setting permissions on the account.
+func (o AccountTableColumnPrivilegeColumnPrivilegeOutput) TableName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilegeColumnPrivilege) string { return v.TableName }).(pulumi.StringOutput)
+}
+
+type AccountTableColumnPrivilegeColumnPrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnPrivilegeColumnPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnPrivilegeColumnPrivilege)(nil)).Elem()
+}
+
+func (o AccountTableColumnPrivilegeColumnPrivilegeArrayOutput) ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutput() AccountTableColumnPrivilegeColumnPrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeColumnPrivilegeArrayOutput) ToAccountTableColumnPrivilegeColumnPrivilegeArrayOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeColumnPrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeColumnPrivilegeArrayOutput) Index(i pulumi.IntInput) AccountTableColumnPrivilegeColumnPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountTableColumnPrivilegeColumnPrivilege {
+		return vs[0].([]AccountTableColumnPrivilegeColumnPrivilege)[vs[1].(int)]
+	}).(AccountTableColumnPrivilegeColumnPrivilegeOutput)
+}
+
+type AccountTableColumnPrivilegeTablePrivilege struct {
+	// Table privileges of the account.
+	AccountPrivilegeDetail *string `pulumi:"accountPrivilegeDetail"`
+	// The name of the table for setting permissions on the account.
+	TableName string `pulumi:"tableName"`
+}
+
+// AccountTableColumnPrivilegeTablePrivilegeInput is an input type that accepts AccountTableColumnPrivilegeTablePrivilegeArgs and AccountTableColumnPrivilegeTablePrivilegeOutput values.
+// You can construct a concrete instance of `AccountTableColumnPrivilegeTablePrivilegeInput` via:
+//
+//	AccountTableColumnPrivilegeTablePrivilegeArgs{...}
+type AccountTableColumnPrivilegeTablePrivilegeInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnPrivilegeTablePrivilegeOutput() AccountTableColumnPrivilegeTablePrivilegeOutput
+	ToAccountTableColumnPrivilegeTablePrivilegeOutputWithContext(context.Context) AccountTableColumnPrivilegeTablePrivilegeOutput
+}
+
+type AccountTableColumnPrivilegeTablePrivilegeArgs struct {
+	// Table privileges of the account.
+	AccountPrivilegeDetail pulumi.StringPtrInput `pulumi:"accountPrivilegeDetail"`
+	// The name of the table for setting permissions on the account.
+	TableName pulumi.StringInput `pulumi:"tableName"`
+}
+
+func (AccountTableColumnPrivilegeTablePrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnPrivilegeTablePrivilege)(nil)).Elem()
+}
+
+func (i AccountTableColumnPrivilegeTablePrivilegeArgs) ToAccountTableColumnPrivilegeTablePrivilegeOutput() AccountTableColumnPrivilegeTablePrivilegeOutput {
+	return i.ToAccountTableColumnPrivilegeTablePrivilegeOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnPrivilegeTablePrivilegeArgs) ToAccountTableColumnPrivilegeTablePrivilegeOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeTablePrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnPrivilegeTablePrivilegeOutput)
+}
+
+// AccountTableColumnPrivilegeTablePrivilegeArrayInput is an input type that accepts AccountTableColumnPrivilegeTablePrivilegeArray and AccountTableColumnPrivilegeTablePrivilegeArrayOutput values.
+// You can construct a concrete instance of `AccountTableColumnPrivilegeTablePrivilegeArrayInput` via:
+//
+//	AccountTableColumnPrivilegeTablePrivilegeArray{ AccountTableColumnPrivilegeTablePrivilegeArgs{...} }
+type AccountTableColumnPrivilegeTablePrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToAccountTableColumnPrivilegeTablePrivilegeArrayOutput() AccountTableColumnPrivilegeTablePrivilegeArrayOutput
+	ToAccountTableColumnPrivilegeTablePrivilegeArrayOutputWithContext(context.Context) AccountTableColumnPrivilegeTablePrivilegeArrayOutput
+}
+
+type AccountTableColumnPrivilegeTablePrivilegeArray []AccountTableColumnPrivilegeTablePrivilegeInput
+
+func (AccountTableColumnPrivilegeTablePrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnPrivilegeTablePrivilege)(nil)).Elem()
+}
+
+func (i AccountTableColumnPrivilegeTablePrivilegeArray) ToAccountTableColumnPrivilegeTablePrivilegeArrayOutput() AccountTableColumnPrivilegeTablePrivilegeArrayOutput {
+	return i.ToAccountTableColumnPrivilegeTablePrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i AccountTableColumnPrivilegeTablePrivilegeArray) ToAccountTableColumnPrivilegeTablePrivilegeArrayOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeTablePrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountTableColumnPrivilegeTablePrivilegeArrayOutput)
+}
+
+type AccountTableColumnPrivilegeTablePrivilegeOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnPrivilegeTablePrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountTableColumnPrivilegeTablePrivilege)(nil)).Elem()
+}
+
+func (o AccountTableColumnPrivilegeTablePrivilegeOutput) ToAccountTableColumnPrivilegeTablePrivilegeOutput() AccountTableColumnPrivilegeTablePrivilegeOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeTablePrivilegeOutput) ToAccountTableColumnPrivilegeTablePrivilegeOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeTablePrivilegeOutput {
+	return o
+}
+
+// Table privileges of the account.
+func (o AccountTableColumnPrivilegeTablePrivilegeOutput) AccountPrivilegeDetail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilegeTablePrivilege) *string { return v.AccountPrivilegeDetail }).(pulumi.StringPtrOutput)
+}
+
+// The name of the table for setting permissions on the account.
+func (o AccountTableColumnPrivilegeTablePrivilegeOutput) TableName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountTableColumnPrivilegeTablePrivilege) string { return v.TableName }).(pulumi.StringOutput)
+}
+
+type AccountTableColumnPrivilegeTablePrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountTableColumnPrivilegeTablePrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountTableColumnPrivilegeTablePrivilege)(nil)).Elem()
+}
+
+func (o AccountTableColumnPrivilegeTablePrivilegeArrayOutput) ToAccountTableColumnPrivilegeTablePrivilegeArrayOutput() AccountTableColumnPrivilegeTablePrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeTablePrivilegeArrayOutput) ToAccountTableColumnPrivilegeTablePrivilegeArrayOutputWithContext(ctx context.Context) AccountTableColumnPrivilegeTablePrivilegeArrayOutput {
+	return o
+}
+
+func (o AccountTableColumnPrivilegeTablePrivilegeArrayOutput) Index(i pulumi.IntInput) AccountTableColumnPrivilegeTablePrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountTableColumnPrivilegeTablePrivilege {
+		return vs[0].([]AccountTableColumnPrivilegeTablePrivilege)[vs[1].(int)]
+	}).(AccountTableColumnPrivilegeTablePrivilegeOutput)
+}
+
 type AccountsAccount struct {
+	// The description information of the account.
+	AccountDesc string `pulumi:"accountDesc"`
 	// The name of the database account. This field supports fuzzy query.
 	AccountName string `pulumi:"accountName"`
 	// The privilege detail list of RDS mysql instance account.
 	AccountPrivileges []AccountsAccountAccountPrivilege `pulumi:"accountPrivileges"`
+	// The SQL statement of the account privileges.
+	AccountPrivilegesSqls []string `pulumi:"accountPrivilegesSqls"`
 	// The status of the database account.
 	AccountStatus string `pulumi:"accountStatus"`
 	// The type of the database account.
 	AccountType string `pulumi:"accountType"`
+	// The global privileges of the account.
+	GlobalAccountPrivileges []string `pulumi:"globalAccountPrivileges"`
+	// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+	HasTableColumnPrivilegeDbNames []string `pulumi:"hasTableColumnPrivilegeDbNames"`
+	// The host of the account.
+	Host string `pulumi:"host"`
 }
 
 // AccountsAccountInput is an input type that accepts AccountsAccountArgs and AccountsAccountOutput values.
@@ -151,14 +724,24 @@ type AccountsAccountInput interface {
 }
 
 type AccountsAccountArgs struct {
+	// The description information of the account.
+	AccountDesc pulumi.StringInput `pulumi:"accountDesc"`
 	// The name of the database account. This field supports fuzzy query.
 	AccountName pulumi.StringInput `pulumi:"accountName"`
 	// The privilege detail list of RDS mysql instance account.
 	AccountPrivileges AccountsAccountAccountPrivilegeArrayInput `pulumi:"accountPrivileges"`
+	// The SQL statement of the account privileges.
+	AccountPrivilegesSqls pulumi.StringArrayInput `pulumi:"accountPrivilegesSqls"`
 	// The status of the database account.
 	AccountStatus pulumi.StringInput `pulumi:"accountStatus"`
 	// The type of the database account.
 	AccountType pulumi.StringInput `pulumi:"accountType"`
+	// The global privileges of the account.
+	GlobalAccountPrivileges pulumi.StringArrayInput `pulumi:"globalAccountPrivileges"`
+	// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+	HasTableColumnPrivilegeDbNames pulumi.StringArrayInput `pulumi:"hasTableColumnPrivilegeDbNames"`
+	// The host of the account.
+	Host pulumi.StringInput `pulumi:"host"`
 }
 
 func (AccountsAccountArgs) ElementType() reflect.Type {
@@ -212,6 +795,11 @@ func (o AccountsAccountOutput) ToAccountsAccountOutputWithContext(ctx context.Co
 	return o
 }
 
+// The description information of the account.
+func (o AccountsAccountOutput) AccountDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountsAccount) string { return v.AccountDesc }).(pulumi.StringOutput)
+}
+
 // The name of the database account. This field supports fuzzy query.
 func (o AccountsAccountOutput) AccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v AccountsAccount) string { return v.AccountName }).(pulumi.StringOutput)
@@ -222,6 +810,11 @@ func (o AccountsAccountOutput) AccountPrivileges() AccountsAccountAccountPrivile
 	return o.ApplyT(func(v AccountsAccount) []AccountsAccountAccountPrivilege { return v.AccountPrivileges }).(AccountsAccountAccountPrivilegeArrayOutput)
 }
 
+// The SQL statement of the account privileges.
+func (o AccountsAccountOutput) AccountPrivilegesSqls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AccountsAccount) []string { return v.AccountPrivilegesSqls }).(pulumi.StringArrayOutput)
+}
+
 // The status of the database account.
 func (o AccountsAccountOutput) AccountStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v AccountsAccount) string { return v.AccountStatus }).(pulumi.StringOutput)
@@ -230,6 +823,21 @@ func (o AccountsAccountOutput) AccountStatus() pulumi.StringOutput {
 // The type of the database account.
 func (o AccountsAccountOutput) AccountType() pulumi.StringOutput {
 	return o.ApplyT(func(v AccountsAccount) string { return v.AccountType }).(pulumi.StringOutput)
+}
+
+// The global privileges of the account.
+func (o AccountsAccountOutput) GlobalAccountPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AccountsAccount) []string { return v.GlobalAccountPrivileges }).(pulumi.StringArrayOutput)
+}
+
+// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+func (o AccountsAccountOutput) HasTableColumnPrivilegeDbNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AccountsAccount) []string { return v.HasTableColumnPrivilegeDbNames }).(pulumi.StringArrayOutput)
+}
+
+// The host of the account.
+func (o AccountsAccountOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v AccountsAccount) string { return v.Host }).(pulumi.StringOutput)
 }
 
 type AccountsAccountArrayOutput struct{ *pulumi.OutputState }
@@ -1028,6 +1636,208 @@ func (o BackupBackupMetaArrayOutput) Index(i pulumi.IntInput) BackupBackupMetaOu
 	}).(BackupBackupMetaOutput)
 }
 
+type BackupPolicyCrossBackupPolicy struct {
+	// Whether to enable cross-region backup.
+	// true: Enable.
+	// false: Disable. Default value.
+	BackupEnabled *bool `pulumi:"backupEnabled"`
+	// The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+	CrossBackupRegion *string `pulumi:"crossBackupRegion"`
+	// Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+	LogBackupEnabled *bool `pulumi:"logBackupEnabled"`
+	// The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+	Retention *int `pulumi:"retention"`
+}
+
+// BackupPolicyCrossBackupPolicyInput is an input type that accepts BackupPolicyCrossBackupPolicyArgs and BackupPolicyCrossBackupPolicyOutput values.
+// You can construct a concrete instance of `BackupPolicyCrossBackupPolicyInput` via:
+//
+//	BackupPolicyCrossBackupPolicyArgs{...}
+type BackupPolicyCrossBackupPolicyInput interface {
+	pulumi.Input
+
+	ToBackupPolicyCrossBackupPolicyOutput() BackupPolicyCrossBackupPolicyOutput
+	ToBackupPolicyCrossBackupPolicyOutputWithContext(context.Context) BackupPolicyCrossBackupPolicyOutput
+}
+
+type BackupPolicyCrossBackupPolicyArgs struct {
+	// Whether to enable cross-region backup.
+	// true: Enable.
+	// false: Disable. Default value.
+	BackupEnabled pulumi.BoolPtrInput `pulumi:"backupEnabled"`
+	// The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+	CrossBackupRegion pulumi.StringPtrInput `pulumi:"crossBackupRegion"`
+	// Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+	LogBackupEnabled pulumi.BoolPtrInput `pulumi:"logBackupEnabled"`
+	// The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+	Retention pulumi.IntPtrInput `pulumi:"retention"`
+}
+
+func (BackupPolicyCrossBackupPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupPolicyCrossBackupPolicy)(nil)).Elem()
+}
+
+func (i BackupPolicyCrossBackupPolicyArgs) ToBackupPolicyCrossBackupPolicyOutput() BackupPolicyCrossBackupPolicyOutput {
+	return i.ToBackupPolicyCrossBackupPolicyOutputWithContext(context.Background())
+}
+
+func (i BackupPolicyCrossBackupPolicyArgs) ToBackupPolicyCrossBackupPolicyOutputWithContext(ctx context.Context) BackupPolicyCrossBackupPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupPolicyCrossBackupPolicyOutput)
+}
+
+func (i BackupPolicyCrossBackupPolicyArgs) ToBackupPolicyCrossBackupPolicyPtrOutput() BackupPolicyCrossBackupPolicyPtrOutput {
+	return i.ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i BackupPolicyCrossBackupPolicyArgs) ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(ctx context.Context) BackupPolicyCrossBackupPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupPolicyCrossBackupPolicyOutput).ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(ctx)
+}
+
+// BackupPolicyCrossBackupPolicyPtrInput is an input type that accepts BackupPolicyCrossBackupPolicyArgs, BackupPolicyCrossBackupPolicyPtr and BackupPolicyCrossBackupPolicyPtrOutput values.
+// You can construct a concrete instance of `BackupPolicyCrossBackupPolicyPtrInput` via:
+//
+//	        BackupPolicyCrossBackupPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackupPolicyCrossBackupPolicyPtrInput interface {
+	pulumi.Input
+
+	ToBackupPolicyCrossBackupPolicyPtrOutput() BackupPolicyCrossBackupPolicyPtrOutput
+	ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(context.Context) BackupPolicyCrossBackupPolicyPtrOutput
+}
+
+type backupPolicyCrossBackupPolicyPtrType BackupPolicyCrossBackupPolicyArgs
+
+func BackupPolicyCrossBackupPolicyPtr(v *BackupPolicyCrossBackupPolicyArgs) BackupPolicyCrossBackupPolicyPtrInput {
+	return (*backupPolicyCrossBackupPolicyPtrType)(v)
+}
+
+func (*backupPolicyCrossBackupPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupPolicyCrossBackupPolicy)(nil)).Elem()
+}
+
+func (i *backupPolicyCrossBackupPolicyPtrType) ToBackupPolicyCrossBackupPolicyPtrOutput() BackupPolicyCrossBackupPolicyPtrOutput {
+	return i.ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *backupPolicyCrossBackupPolicyPtrType) ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(ctx context.Context) BackupPolicyCrossBackupPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupPolicyCrossBackupPolicyPtrOutput)
+}
+
+type BackupPolicyCrossBackupPolicyOutput struct{ *pulumi.OutputState }
+
+func (BackupPolicyCrossBackupPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupPolicyCrossBackupPolicy)(nil)).Elem()
+}
+
+func (o BackupPolicyCrossBackupPolicyOutput) ToBackupPolicyCrossBackupPolicyOutput() BackupPolicyCrossBackupPolicyOutput {
+	return o
+}
+
+func (o BackupPolicyCrossBackupPolicyOutput) ToBackupPolicyCrossBackupPolicyOutputWithContext(ctx context.Context) BackupPolicyCrossBackupPolicyOutput {
+	return o
+}
+
+func (o BackupPolicyCrossBackupPolicyOutput) ToBackupPolicyCrossBackupPolicyPtrOutput() BackupPolicyCrossBackupPolicyPtrOutput {
+	return o.ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o BackupPolicyCrossBackupPolicyOutput) ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(ctx context.Context) BackupPolicyCrossBackupPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackupPolicyCrossBackupPolicy) *BackupPolicyCrossBackupPolicy {
+		return &v
+	}).(BackupPolicyCrossBackupPolicyPtrOutput)
+}
+
+// Whether to enable cross-region backup.
+// true: Enable.
+// false: Disable. Default value.
+func (o BackupPolicyCrossBackupPolicyOutput) BackupEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BackupPolicyCrossBackupPolicy) *bool { return v.BackupEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+func (o BackupPolicyCrossBackupPolicyOutput) CrossBackupRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupPolicyCrossBackupPolicy) *string { return v.CrossBackupRegion }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+func (o BackupPolicyCrossBackupPolicyOutput) LogBackupEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BackupPolicyCrossBackupPolicy) *bool { return v.LogBackupEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+func (o BackupPolicyCrossBackupPolicyOutput) Retention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BackupPolicyCrossBackupPolicy) *int { return v.Retention }).(pulumi.IntPtrOutput)
+}
+
+type BackupPolicyCrossBackupPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (BackupPolicyCrossBackupPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupPolicyCrossBackupPolicy)(nil)).Elem()
+}
+
+func (o BackupPolicyCrossBackupPolicyPtrOutput) ToBackupPolicyCrossBackupPolicyPtrOutput() BackupPolicyCrossBackupPolicyPtrOutput {
+	return o
+}
+
+func (o BackupPolicyCrossBackupPolicyPtrOutput) ToBackupPolicyCrossBackupPolicyPtrOutputWithContext(ctx context.Context) BackupPolicyCrossBackupPolicyPtrOutput {
+	return o
+}
+
+func (o BackupPolicyCrossBackupPolicyPtrOutput) Elem() BackupPolicyCrossBackupPolicyOutput {
+	return o.ApplyT(func(v *BackupPolicyCrossBackupPolicy) BackupPolicyCrossBackupPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret BackupPolicyCrossBackupPolicy
+		return ret
+	}).(BackupPolicyCrossBackupPolicyOutput)
+}
+
+// Whether to enable cross-region backup.
+// true: Enable.
+// false: Disable. Default value.
+func (o BackupPolicyCrossBackupPolicyPtrOutput) BackupEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackupPolicyCrossBackupPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.BackupEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+func (o BackupPolicyCrossBackupPolicyPtrOutput) CrossBackupRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupPolicyCrossBackupPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CrossBackupRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+func (o BackupPolicyCrossBackupPolicyPtrOutput) LogBackupEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackupPolicyCrossBackupPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogBackupEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+func (o BackupPolicyCrossBackupPolicyPtrOutput) Retention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupPolicyCrossBackupPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retention
+	}).(pulumi.IntPtrOutput)
+}
+
 type BackupsBackup struct {
 	// The end time of the backup.
 	BackupEndTime string `pulumi:"backupEndTime"`
@@ -1055,6 +1865,8 @@ type BackupsBackup struct {
 	// Explanation:
 	// When the database is empty, this field is not returned.
 	DbTableInfos []BackupsBackupDbTableInfo `pulumi:"dbTableInfos"`
+	// The decryption key of the backup.
+	DecryptionKey string `pulumi:"decryptionKey"`
 	// Download status. Values:
 	// NotDownload: Not downloaded.
 	// Success: Downloaded.
@@ -1075,6 +1887,10 @@ type BackupsBackup struct {
 	// true: Expired.
 	// false: Not expired.
 	IsExpired bool `pulumi:"isExpired"`
+	// Initialization Vector.
+	Iv string `pulumi:"iv"`
+	// Statistics information about the storage space usage of backups.
+	UsageStats []BackupsBackupUsageStat `pulumi:"usageStats"`
 }
 
 // BackupsBackupInput is an input type that accepts BackupsBackupArgs and BackupsBackupOutput values.
@@ -1115,6 +1931,8 @@ type BackupsBackupArgs struct {
 	// Explanation:
 	// When the database is empty, this field is not returned.
 	DbTableInfos BackupsBackupDbTableInfoArrayInput `pulumi:"dbTableInfos"`
+	// The decryption key of the backup.
+	DecryptionKey pulumi.StringInput `pulumi:"decryptionKey"`
 	// Download status. Values:
 	// NotDownload: Not downloaded.
 	// Success: Downloaded.
@@ -1135,6 +1953,10 @@ type BackupsBackupArgs struct {
 	// true: Expired.
 	// false: Not expired.
 	IsExpired pulumi.BoolInput `pulumi:"isExpired"`
+	// Initialization Vector.
+	Iv pulumi.StringInput `pulumi:"iv"`
+	// Statistics information about the storage space usage of backups.
+	UsageStats BackupsBackupUsageStatArrayInput `pulumi:"usageStats"`
 }
 
 func (BackupsBackupArgs) ElementType() reflect.Type {
@@ -1250,6 +2072,11 @@ func (o BackupsBackupOutput) DbTableInfos() BackupsBackupDbTableInfoArrayOutput 
 	return o.ApplyT(func(v BackupsBackup) []BackupsBackupDbTableInfo { return v.DbTableInfos }).(BackupsBackupDbTableInfoArrayOutput)
 }
 
+// The decryption key of the backup.
+func (o BackupsBackupOutput) DecryptionKey() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupsBackup) string { return v.DecryptionKey }).(pulumi.StringOutput)
+}
+
 // Download status. Values:
 // NotDownload: Not downloaded.
 // Success: Downloaded.
@@ -1286,6 +2113,16 @@ func (o BackupsBackupOutput) IsEncrypted() pulumi.BoolOutput {
 // false: Not expired.
 func (o BackupsBackupOutput) IsExpired() pulumi.BoolOutput {
 	return o.ApplyT(func(v BackupsBackup) bool { return v.IsExpired }).(pulumi.BoolOutput)
+}
+
+// Initialization Vector.
+func (o BackupsBackupOutput) Iv() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupsBackup) string { return v.Iv }).(pulumi.StringOutput)
+}
+
+// Statistics information about the storage space usage of backups.
+func (o BackupsBackupOutput) UsageStats() BackupsBackupUsageStatArrayOutput {
+	return o.ApplyT(func(v BackupsBackup) []BackupsBackupUsageStat { return v.UsageStats }).(BackupsBackupUsageStatArrayOutput)
 }
 
 type BackupsBackupArrayOutput struct{ *pulumi.OutputState }
@@ -1414,13 +2251,132 @@ func (o BackupsBackupDbTableInfoArrayOutput) Index(i pulumi.IntInput) BackupsBac
 	}).(BackupsBackupDbTableInfoOutput)
 }
 
+type BackupsBackupUsageStat struct {
+	// Backup size, in bytes.
+	Quantity int `pulumi:"quantity"`
+	// Statistical time.
+	StartTime string `pulumi:"startTime"`
+	// Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+	StatItem string `pulumi:"statItem"`
+}
+
+// BackupsBackupUsageStatInput is an input type that accepts BackupsBackupUsageStatArgs and BackupsBackupUsageStatOutput values.
+// You can construct a concrete instance of `BackupsBackupUsageStatInput` via:
+//
+//	BackupsBackupUsageStatArgs{...}
+type BackupsBackupUsageStatInput interface {
+	pulumi.Input
+
+	ToBackupsBackupUsageStatOutput() BackupsBackupUsageStatOutput
+	ToBackupsBackupUsageStatOutputWithContext(context.Context) BackupsBackupUsageStatOutput
+}
+
+type BackupsBackupUsageStatArgs struct {
+	// Backup size, in bytes.
+	Quantity pulumi.IntInput `pulumi:"quantity"`
+	// Statistical time.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+	StatItem pulumi.StringInput `pulumi:"statItem"`
+}
+
+func (BackupsBackupUsageStatArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (i BackupsBackupUsageStatArgs) ToBackupsBackupUsageStatOutput() BackupsBackupUsageStatOutput {
+	return i.ToBackupsBackupUsageStatOutputWithContext(context.Background())
+}
+
+func (i BackupsBackupUsageStatArgs) ToBackupsBackupUsageStatOutputWithContext(ctx context.Context) BackupsBackupUsageStatOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupsBackupUsageStatOutput)
+}
+
+// BackupsBackupUsageStatArrayInput is an input type that accepts BackupsBackupUsageStatArray and BackupsBackupUsageStatArrayOutput values.
+// You can construct a concrete instance of `BackupsBackupUsageStatArrayInput` via:
+//
+//	BackupsBackupUsageStatArray{ BackupsBackupUsageStatArgs{...} }
+type BackupsBackupUsageStatArrayInput interface {
+	pulumi.Input
+
+	ToBackupsBackupUsageStatArrayOutput() BackupsBackupUsageStatArrayOutput
+	ToBackupsBackupUsageStatArrayOutputWithContext(context.Context) BackupsBackupUsageStatArrayOutput
+}
+
+type BackupsBackupUsageStatArray []BackupsBackupUsageStatInput
+
+func (BackupsBackupUsageStatArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (i BackupsBackupUsageStatArray) ToBackupsBackupUsageStatArrayOutput() BackupsBackupUsageStatArrayOutput {
+	return i.ToBackupsBackupUsageStatArrayOutputWithContext(context.Background())
+}
+
+func (i BackupsBackupUsageStatArray) ToBackupsBackupUsageStatArrayOutputWithContext(ctx context.Context) BackupsBackupUsageStatArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupsBackupUsageStatArrayOutput)
+}
+
+type BackupsBackupUsageStatOutput struct{ *pulumi.OutputState }
+
+func (BackupsBackupUsageStatOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (o BackupsBackupUsageStatOutput) ToBackupsBackupUsageStatOutput() BackupsBackupUsageStatOutput {
+	return o
+}
+
+func (o BackupsBackupUsageStatOutput) ToBackupsBackupUsageStatOutputWithContext(ctx context.Context) BackupsBackupUsageStatOutput {
+	return o
+}
+
+// Backup size, in bytes.
+func (o BackupsBackupUsageStatOutput) Quantity() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupsBackupUsageStat) int { return v.Quantity }).(pulumi.IntOutput)
+}
+
+// Statistical time.
+func (o BackupsBackupUsageStatOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupsBackupUsageStat) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+func (o BackupsBackupUsageStatOutput) StatItem() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupsBackupUsageStat) string { return v.StatItem }).(pulumi.StringOutput)
+}
+
+type BackupsBackupUsageStatArrayOutput struct{ *pulumi.OutputState }
+
+func (BackupsBackupUsageStatArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (o BackupsBackupUsageStatArrayOutput) ToBackupsBackupUsageStatArrayOutput() BackupsBackupUsageStatArrayOutput {
+	return o
+}
+
+func (o BackupsBackupUsageStatArrayOutput) ToBackupsBackupUsageStatArrayOutputWithContext(ctx context.Context) BackupsBackupUsageStatArrayOutput {
+	return o
+}
+
+func (o BackupsBackupUsageStatArrayOutput) Index(i pulumi.IntInput) BackupsBackupUsageStatOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackupsBackupUsageStat {
+		return vs[0].([]BackupsBackupUsageStat)[vs[1].(int)]
+	}).(BackupsBackupUsageStatOutput)
+}
+
 type DatabasesDatabase struct {
 	// The character set of the RDS database.
 	CharacterSetName string `pulumi:"characterSetName"`
 	// The privilege detail list of RDS mysql instance database.
 	DatabasePrivileges []DatabasesDatabaseDatabasePrivilege `pulumi:"databasePrivileges"`
+	// The description information of the RDS database.
+	DbDesc string `pulumi:"dbDesc"`
 	// The name of the RDS database.
 	DbName string `pulumi:"dbName"`
+	// The status of the RDS database.
+	DbStatus string `pulumi:"dbStatus"`
 }
 
 // DatabasesDatabaseInput is an input type that accepts DatabasesDatabaseArgs and DatabasesDatabaseOutput values.
@@ -1439,8 +2395,12 @@ type DatabasesDatabaseArgs struct {
 	CharacterSetName pulumi.StringInput `pulumi:"characterSetName"`
 	// The privilege detail list of RDS mysql instance database.
 	DatabasePrivileges DatabasesDatabaseDatabasePrivilegeArrayInput `pulumi:"databasePrivileges"`
+	// The description information of the RDS database.
+	DbDesc pulumi.StringInput `pulumi:"dbDesc"`
 	// The name of the RDS database.
 	DbName pulumi.StringInput `pulumi:"dbName"`
+	// The status of the RDS database.
+	DbStatus pulumi.StringInput `pulumi:"dbStatus"`
 }
 
 func (DatabasesDatabaseArgs) ElementType() reflect.Type {
@@ -1504,9 +2464,19 @@ func (o DatabasesDatabaseOutput) DatabasePrivileges() DatabasesDatabaseDatabaseP
 	return o.ApplyT(func(v DatabasesDatabase) []DatabasesDatabaseDatabasePrivilege { return v.DatabasePrivileges }).(DatabasesDatabaseDatabasePrivilegeArrayOutput)
 }
 
+// The description information of the RDS database.
+func (o DatabasesDatabaseOutput) DbDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v DatabasesDatabase) string { return v.DbDesc }).(pulumi.StringOutput)
+}
+
 // The name of the RDS database.
 func (o DatabasesDatabaseOutput) DbName() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabasesDatabase) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The status of the RDS database.
+func (o DatabasesDatabaseOutput) DbStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v DatabasesDatabase) string { return v.DbStatus }).(pulumi.StringOutput)
 }
 
 type DatabasesDatabaseArrayOutput struct{ *pulumi.OutputState }
@@ -2210,6 +3180,189 @@ func (o EndpointsEndpointReadOnlyNodeWeightArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointsEndpointReadOnlyNodeWeight {
 		return vs[0].([]EndpointsEndpointReadOnlyNodeWeight)[vs[1].(int)]
 	}).(EndpointsEndpointReadOnlyNodeWeightOutput)
+}
+
+type InstanceAutoStorageScalingConfig struct {
+	// Whether to enable the instance's auto - scaling function. Values:
+	// true: Yes.
+	// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+	EnableStorageAutoScale bool `pulumi:"enableStorageAutoScale"`
+	// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+	StorageThreshold *int `pulumi:"storageThreshold"`
+	// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+	StorageUpperBound *int `pulumi:"storageUpperBound"`
+}
+
+// InstanceAutoStorageScalingConfigInput is an input type that accepts InstanceAutoStorageScalingConfigArgs and InstanceAutoStorageScalingConfigOutput values.
+// You can construct a concrete instance of `InstanceAutoStorageScalingConfigInput` via:
+//
+//	InstanceAutoStorageScalingConfigArgs{...}
+type InstanceAutoStorageScalingConfigInput interface {
+	pulumi.Input
+
+	ToInstanceAutoStorageScalingConfigOutput() InstanceAutoStorageScalingConfigOutput
+	ToInstanceAutoStorageScalingConfigOutputWithContext(context.Context) InstanceAutoStorageScalingConfigOutput
+}
+
+type InstanceAutoStorageScalingConfigArgs struct {
+	// Whether to enable the instance's auto - scaling function. Values:
+	// true: Yes.
+	// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+	EnableStorageAutoScale pulumi.BoolInput `pulumi:"enableStorageAutoScale"`
+	// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+	StorageThreshold pulumi.IntPtrInput `pulumi:"storageThreshold"`
+	// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+	StorageUpperBound pulumi.IntPtrInput `pulumi:"storageUpperBound"`
+}
+
+func (InstanceAutoStorageScalingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (i InstanceAutoStorageScalingConfigArgs) ToInstanceAutoStorageScalingConfigOutput() InstanceAutoStorageScalingConfigOutput {
+	return i.ToInstanceAutoStorageScalingConfigOutputWithContext(context.Background())
+}
+
+func (i InstanceAutoStorageScalingConfigArgs) ToInstanceAutoStorageScalingConfigOutputWithContext(ctx context.Context) InstanceAutoStorageScalingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceAutoStorageScalingConfigOutput)
+}
+
+func (i InstanceAutoStorageScalingConfigArgs) ToInstanceAutoStorageScalingConfigPtrOutput() InstanceAutoStorageScalingConfigPtrOutput {
+	return i.ToInstanceAutoStorageScalingConfigPtrOutputWithContext(context.Background())
+}
+
+func (i InstanceAutoStorageScalingConfigArgs) ToInstanceAutoStorageScalingConfigPtrOutputWithContext(ctx context.Context) InstanceAutoStorageScalingConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceAutoStorageScalingConfigOutput).ToInstanceAutoStorageScalingConfigPtrOutputWithContext(ctx)
+}
+
+// InstanceAutoStorageScalingConfigPtrInput is an input type that accepts InstanceAutoStorageScalingConfigArgs, InstanceAutoStorageScalingConfigPtr and InstanceAutoStorageScalingConfigPtrOutput values.
+// You can construct a concrete instance of `InstanceAutoStorageScalingConfigPtrInput` via:
+//
+//	        InstanceAutoStorageScalingConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type InstanceAutoStorageScalingConfigPtrInput interface {
+	pulumi.Input
+
+	ToInstanceAutoStorageScalingConfigPtrOutput() InstanceAutoStorageScalingConfigPtrOutput
+	ToInstanceAutoStorageScalingConfigPtrOutputWithContext(context.Context) InstanceAutoStorageScalingConfigPtrOutput
+}
+
+type instanceAutoStorageScalingConfigPtrType InstanceAutoStorageScalingConfigArgs
+
+func InstanceAutoStorageScalingConfigPtr(v *InstanceAutoStorageScalingConfigArgs) InstanceAutoStorageScalingConfigPtrInput {
+	return (*instanceAutoStorageScalingConfigPtrType)(v)
+}
+
+func (*instanceAutoStorageScalingConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (i *instanceAutoStorageScalingConfigPtrType) ToInstanceAutoStorageScalingConfigPtrOutput() InstanceAutoStorageScalingConfigPtrOutput {
+	return i.ToInstanceAutoStorageScalingConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *instanceAutoStorageScalingConfigPtrType) ToInstanceAutoStorageScalingConfigPtrOutputWithContext(ctx context.Context) InstanceAutoStorageScalingConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceAutoStorageScalingConfigPtrOutput)
+}
+
+type InstanceAutoStorageScalingConfigOutput struct{ *pulumi.OutputState }
+
+func (InstanceAutoStorageScalingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (o InstanceAutoStorageScalingConfigOutput) ToInstanceAutoStorageScalingConfigOutput() InstanceAutoStorageScalingConfigOutput {
+	return o
+}
+
+func (o InstanceAutoStorageScalingConfigOutput) ToInstanceAutoStorageScalingConfigOutputWithContext(ctx context.Context) InstanceAutoStorageScalingConfigOutput {
+	return o
+}
+
+func (o InstanceAutoStorageScalingConfigOutput) ToInstanceAutoStorageScalingConfigPtrOutput() InstanceAutoStorageScalingConfigPtrOutput {
+	return o.ToInstanceAutoStorageScalingConfigPtrOutputWithContext(context.Background())
+}
+
+func (o InstanceAutoStorageScalingConfigOutput) ToInstanceAutoStorageScalingConfigPtrOutputWithContext(ctx context.Context) InstanceAutoStorageScalingConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InstanceAutoStorageScalingConfig) *InstanceAutoStorageScalingConfig {
+		return &v
+	}).(InstanceAutoStorageScalingConfigPtrOutput)
+}
+
+// Whether to enable the instance's auto - scaling function. Values:
+// true: Yes.
+// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+func (o InstanceAutoStorageScalingConfigOutput) EnableStorageAutoScale() pulumi.BoolOutput {
+	return o.ApplyT(func(v InstanceAutoStorageScalingConfig) bool { return v.EnableStorageAutoScale }).(pulumi.BoolOutput)
+}
+
+// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+func (o InstanceAutoStorageScalingConfigOutput) StorageThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceAutoStorageScalingConfig) *int { return v.StorageThreshold }).(pulumi.IntPtrOutput)
+}
+
+// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+func (o InstanceAutoStorageScalingConfigOutput) StorageUpperBound() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceAutoStorageScalingConfig) *int { return v.StorageUpperBound }).(pulumi.IntPtrOutput)
+}
+
+type InstanceAutoStorageScalingConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (InstanceAutoStorageScalingConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (o InstanceAutoStorageScalingConfigPtrOutput) ToInstanceAutoStorageScalingConfigPtrOutput() InstanceAutoStorageScalingConfigPtrOutput {
+	return o
+}
+
+func (o InstanceAutoStorageScalingConfigPtrOutput) ToInstanceAutoStorageScalingConfigPtrOutputWithContext(ctx context.Context) InstanceAutoStorageScalingConfigPtrOutput {
+	return o
+}
+
+func (o InstanceAutoStorageScalingConfigPtrOutput) Elem() InstanceAutoStorageScalingConfigOutput {
+	return o.ApplyT(func(v *InstanceAutoStorageScalingConfig) InstanceAutoStorageScalingConfig {
+		if v != nil {
+			return *v
+		}
+		var ret InstanceAutoStorageScalingConfig
+		return ret
+	}).(InstanceAutoStorageScalingConfigOutput)
+}
+
+// Whether to enable the instance's auto - scaling function. Values:
+// true: Yes.
+// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+func (o InstanceAutoStorageScalingConfigPtrOutput) EnableStorageAutoScale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InstanceAutoStorageScalingConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.EnableStorageAutoScale
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+func (o InstanceAutoStorageScalingConfigPtrOutput) StorageThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceAutoStorageScalingConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StorageThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+func (o InstanceAutoStorageScalingConfigPtrOutput) StorageUpperBound() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceAutoStorageScalingConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StorageUpperBound
+	}).(pulumi.IntPtrOutput)
 }
 
 type InstanceChargeDetail struct {
@@ -4067,6 +5220,12 @@ func (o InstanceTagArrayOutput) Index(i pulumi.IntInput) InstanceTagOutput {
 type InstancesRdsMysqlInstance struct {
 	// The version of allow list.
 	AllowListVersion string `pulumi:"allowListVersion"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfigs []InstancesRdsMysqlInstanceAutoStorageScalingConfig `pulumi:"autoStorageScalingConfigs"`
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion string `pulumi:"autoUpgradeMinorVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse int `pulumi:"backupUse"`
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -4089,6 +5248,18 @@ type InstancesRdsMysqlInstance struct {
 	// Shutdown: The proxy is closed.
 	// Deleting: The proxy is being closed.
 	DbProxyStatus string `pulumi:"dbProxyStatus"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection string `pulumi:"deletionProtection"`
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId string `pulumi:"drDtsTaskId"`
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName string `pulumi:"drDtsTaskName"`
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus string `pulumi:"drDtsTaskStatus"`
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster int `pulumi:"drSecondsBehindMaster"`
 	// The endpoint info of the RDS instance.
 	Endpoints []InstancesRdsMysqlInstanceEndpoint `pulumi:"endpoints"`
 	// Feature status.
@@ -4105,6 +5276,8 @@ type InstancesRdsMysqlInstance struct {
 	InstanceName string `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus string `pulumi:"instanceStatus"`
+	// The kernel version of the instance.
+	KernelVersion string `pulumi:"kernelVersion"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -4112,6 +5285,12 @@ type InstancesRdsMysqlInstance struct {
 	LowerCaseTableNames string `pulumi:"lowerCaseTableNames"`
 	// Maintenance Window.
 	MaintenanceWindows []InstancesRdsMysqlInstanceMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId string `pulumi:"masterInstanceId"`
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName string `pulumi:"masterInstanceName"`
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion string `pulumi:"masterRegion"`
 	// Memory size in GB.
 	Memory int `pulumi:"memory"`
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -4122,7 +5301,7 @@ type InstancesRdsMysqlInstance struct {
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Average disk usage of the instance master node in nearly one minute.
 	NodeSpaceUsedPercentage float64 `pulumi:"nodeSpaceUsedPercentage"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Instance node information.
 	Nodes []InstancesRdsMysqlInstanceNode `pulumi:"nodes"`
@@ -4130,9 +5309,17 @@ type InstancesRdsMysqlInstance struct {
 	ProjectName string `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId string `pulumi:"regionId"`
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity int `pulumi:"storageMaxCapacity"`
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold int `pulumi:"storageMaxTriggerThreshold"`
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity int `pulumi:"storageMinCapacity"`
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold int `pulumi:"storageMinTriggerThreshold"`
 	// Total instance storage space. Unit: GB.
 	StorageSpace int `pulumi:"storageSpace"`
-	// Instance storage type.
+	// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
 	StorageType string `pulumi:"storageType"`
 	// The instance has used storage space. Unit: GB.
 	StorageUse int `pulumi:"storageUse"`
@@ -4168,6 +5355,12 @@ type InstancesRdsMysqlInstanceInput interface {
 type InstancesRdsMysqlInstanceArgs struct {
 	// The version of allow list.
 	AllowListVersion pulumi.StringInput `pulumi:"allowListVersion"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfigs InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput `pulumi:"autoStorageScalingConfigs"`
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion pulumi.StringInput `pulumi:"autoUpgradeMinorVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntInput `pulumi:"backupUse"`
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -4190,6 +5383,18 @@ type InstancesRdsMysqlInstanceArgs struct {
 	// Shutdown: The proxy is closed.
 	// Deleting: The proxy is being closed.
 	DbProxyStatus pulumi.StringInput `pulumi:"dbProxyStatus"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection pulumi.StringInput `pulumi:"deletionProtection"`
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId pulumi.StringInput `pulumi:"drDtsTaskId"`
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName pulumi.StringInput `pulumi:"drDtsTaskName"`
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus pulumi.StringInput `pulumi:"drDtsTaskStatus"`
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster pulumi.IntInput `pulumi:"drSecondsBehindMaster"`
 	// The endpoint info of the RDS instance.
 	Endpoints InstancesRdsMysqlInstanceEndpointArrayInput `pulumi:"endpoints"`
 	// Feature status.
@@ -4206,6 +5411,8 @@ type InstancesRdsMysqlInstanceArgs struct {
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The kernel version of the instance.
+	KernelVersion pulumi.StringInput `pulumi:"kernelVersion"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -4213,6 +5420,12 @@ type InstancesRdsMysqlInstanceArgs struct {
 	LowerCaseTableNames pulumi.StringInput `pulumi:"lowerCaseTableNames"`
 	// Maintenance Window.
 	MaintenanceWindows InstancesRdsMysqlInstanceMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId pulumi.StringInput `pulumi:"masterInstanceId"`
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName pulumi.StringInput `pulumi:"masterInstanceName"`
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion pulumi.StringInput `pulumi:"masterRegion"`
 	// Memory size in GB.
 	Memory pulumi.IntInput `pulumi:"memory"`
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -4223,7 +5436,7 @@ type InstancesRdsMysqlInstanceArgs struct {
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Average disk usage of the instance master node in nearly one minute.
 	NodeSpaceUsedPercentage pulumi.Float64Input `pulumi:"nodeSpaceUsedPercentage"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
 	// Instance node information.
 	Nodes InstancesRdsMysqlInstanceNodeArrayInput `pulumi:"nodes"`
@@ -4231,9 +5444,17 @@ type InstancesRdsMysqlInstanceArgs struct {
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity pulumi.IntInput `pulumi:"storageMaxCapacity"`
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold pulumi.IntInput `pulumi:"storageMaxTriggerThreshold"`
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity pulumi.IntInput `pulumi:"storageMinCapacity"`
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold pulumi.IntInput `pulumi:"storageMinTriggerThreshold"`
 	// Total instance storage space. Unit: GB.
 	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
-	// Instance storage type.
+	// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
 	StorageType pulumi.StringInput `pulumi:"storageType"`
 	// The instance has used storage space. Unit: GB.
 	StorageUse pulumi.IntInput `pulumi:"storageUse"`
@@ -4311,6 +5532,20 @@ func (o InstancesRdsMysqlInstanceOutput) AllowListVersion() pulumi.StringOutput 
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.AllowListVersion }).(pulumi.StringOutput)
 }
 
+// Auto - storage scaling configuration.
+func (o InstancesRdsMysqlInstanceOutput) AutoStorageScalingConfigs() InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) []InstancesRdsMysqlInstanceAutoStorageScalingConfig {
+		return v.AutoStorageScalingConfigs
+	}).(InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput)
+}
+
+// The upgrade strategy for the minor version of the instance kernel. Values:
+// Auto: Auto upgrade.
+// Manual: Manual upgrade.
+func (o InstancesRdsMysqlInstanceOutput) AutoUpgradeMinorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.AutoUpgradeMinorVersion }).(pulumi.StringOutput)
+}
+
 // The instance has used backup space. Unit: GB.
 func (o InstancesRdsMysqlInstanceOutput) BackupUse() pulumi.IntOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.BackupUse }).(pulumi.IntOutput)
@@ -4357,6 +5592,33 @@ func (o InstancesRdsMysqlInstanceOutput) DbProxyStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.DbProxyStatus }).(pulumi.StringOutput)
 }
 
+// Whether to enable the deletion protection function. Values:
+// Enabled: Yes.
+// Disabled: No.
+func (o InstancesRdsMysqlInstanceOutput) DeletionProtection() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.DeletionProtection }).(pulumi.StringOutput)
+}
+
+// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o InstancesRdsMysqlInstanceOutput) DrDtsTaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.DrDtsTaskId }).(pulumi.StringOutput)
+}
+
+// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o InstancesRdsMysqlInstanceOutput) DrDtsTaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.DrDtsTaskName }).(pulumi.StringOutput)
+}
+
+// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o InstancesRdsMysqlInstanceOutput) DrDtsTaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.DrDtsTaskStatus }).(pulumi.StringOutput)
+}
+
+// The number of seconds that the disaster recovery instance is behind the primary instance.
+func (o InstancesRdsMysqlInstanceOutput) DrSecondsBehindMaster() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.DrSecondsBehindMaster }).(pulumi.IntOutput)
+}
+
 // The endpoint info of the RDS instance.
 func (o InstancesRdsMysqlInstanceOutput) Endpoints() InstancesRdsMysqlInstanceEndpointArrayOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) []InstancesRdsMysqlInstanceEndpoint { return v.Endpoints }).(InstancesRdsMysqlInstanceEndpointArrayOutput)
@@ -4394,6 +5656,11 @@ func (o InstancesRdsMysqlInstanceOutput) InstanceStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
 }
 
+// The kernel version of the instance.
+func (o InstancesRdsMysqlInstanceOutput) KernelVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.KernelVersion }).(pulumi.StringOutput)
+}
+
 // Whether the table name is case sensitive, the default value is 1.
 // Ranges:
 // 0: Table names are stored as fixed and table names are case-sensitive.
@@ -4407,6 +5674,21 @@ func (o InstancesRdsMysqlInstanceOutput) MaintenanceWindows() InstancesRdsMysqlI
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) []InstancesRdsMysqlInstanceMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(InstancesRdsMysqlInstanceMaintenanceWindowArrayOutput)
+}
+
+// The ID of the primary instance of the disaster recovery instance.
+func (o InstancesRdsMysqlInstanceOutput) MasterInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.MasterInstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the primary instance of the disaster recovery instance.
+func (o InstancesRdsMysqlInstanceOutput) MasterInstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.MasterInstanceName }).(pulumi.StringOutput)
+}
+
+// The region where the primary instance of the disaster recovery instance is located.
+func (o InstancesRdsMysqlInstanceOutput) MasterRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.MasterRegion }).(pulumi.StringOutput)
 }
 
 // Memory size in GB.
@@ -4434,7 +5716,7 @@ func (o InstancesRdsMysqlInstanceOutput) NodeSpaceUsedPercentage() pulumi.Float6
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) float64 { return v.NodeSpaceUsedPercentage }).(pulumi.Float64Output)
 }
 
-// General instance type, different from Custom instance type.
+// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 func (o InstancesRdsMysqlInstanceOutput) NodeSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.NodeSpec }).(pulumi.StringOutput)
 }
@@ -4454,12 +5736,32 @@ func (o InstancesRdsMysqlInstanceOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.RegionId }).(pulumi.StringOutput)
 }
 
+// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+func (o InstancesRdsMysqlInstanceOutput) StorageMaxCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.StorageMaxCapacity }).(pulumi.IntOutput)
+}
+
+// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+func (o InstancesRdsMysqlInstanceOutput) StorageMaxTriggerThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.StorageMaxTriggerThreshold }).(pulumi.IntOutput)
+}
+
+// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+func (o InstancesRdsMysqlInstanceOutput) StorageMinCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.StorageMinCapacity }).(pulumi.IntOutput)
+}
+
+// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+func (o InstancesRdsMysqlInstanceOutput) StorageMinTriggerThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.StorageMinTriggerThreshold }).(pulumi.IntOutput)
+}
+
 // Total instance storage space. Unit: GB.
 func (o InstancesRdsMysqlInstanceOutput) StorageSpace() pulumi.IntOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
 }
 
-// Instance storage type.
+// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
 func (o InstancesRdsMysqlInstanceOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.StorageType }).(pulumi.StringOutput)
 }
@@ -4527,6 +5829,127 @@ func (o InstancesRdsMysqlInstanceArrayOutput) Index(i pulumi.IntInput) Instances
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesRdsMysqlInstance {
 		return vs[0].([]InstancesRdsMysqlInstance)[vs[1].(int)]
 	}).(InstancesRdsMysqlInstanceOutput)
+}
+
+type InstancesRdsMysqlInstanceAutoStorageScalingConfig struct {
+	// Whether to enable the instance's auto - scaling function. Values:
+	// true: Yes.
+	// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+	EnableStorageAutoScale bool `pulumi:"enableStorageAutoScale"`
+	// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+	StorageThreshold int `pulumi:"storageThreshold"`
+	// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+	StorageUpperBound int `pulumi:"storageUpperBound"`
+}
+
+// InstancesRdsMysqlInstanceAutoStorageScalingConfigInput is an input type that accepts InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs and InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput values.
+// You can construct a concrete instance of `InstancesRdsMysqlInstanceAutoStorageScalingConfigInput` via:
+//
+//	InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs{...}
+type InstancesRdsMysqlInstanceAutoStorageScalingConfigInput interface {
+	pulumi.Input
+
+	ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput() InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput
+	ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(context.Context) InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput
+}
+
+type InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs struct {
+	// Whether to enable the instance's auto - scaling function. Values:
+	// true: Yes.
+	// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+	EnableStorageAutoScale pulumi.BoolInput `pulumi:"enableStorageAutoScale"`
+	// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+	StorageThreshold pulumi.IntInput `pulumi:"storageThreshold"`
+	// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+	StorageUpperBound pulumi.IntInput `pulumi:"storageUpperBound"`
+}
+
+func (InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (i InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput() InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return i.ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(context.Background())
+}
+
+func (i InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput)
+}
+
+// InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput is an input type that accepts InstancesRdsMysqlInstanceAutoStorageScalingConfigArray and InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput values.
+// You can construct a concrete instance of `InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput` via:
+//
+//	InstancesRdsMysqlInstanceAutoStorageScalingConfigArray{ InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs{...} }
+type InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput interface {
+	pulumi.Input
+
+	ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput() InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput
+	ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(context.Context) InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput
+}
+
+type InstancesRdsMysqlInstanceAutoStorageScalingConfigArray []InstancesRdsMysqlInstanceAutoStorageScalingConfigInput
+
+func (InstancesRdsMysqlInstanceAutoStorageScalingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (i InstancesRdsMysqlInstanceAutoStorageScalingConfigArray) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput() InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return i.ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i InstancesRdsMysqlInstanceAutoStorageScalingConfigArray) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput)
+}
+
+type InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput struct{ *pulumi.OutputState }
+
+func (InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput() InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return o
+}
+
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return o
+}
+
+// Whether to enable the instance's auto - scaling function. Values:
+// true: Yes.
+// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) EnableStorageAutoScale() pulumi.BoolOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstanceAutoStorageScalingConfig) bool { return v.EnableStorageAutoScale }).(pulumi.BoolOutput)
+}
+
+// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) StorageThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstanceAutoStorageScalingConfig) int { return v.StorageThreshold }).(pulumi.IntOutput)
+}
+
+// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) StorageUpperBound() pulumi.IntOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstanceAutoStorageScalingConfig) int { return v.StorageUpperBound }).(pulumi.IntOutput)
+}
+
+type InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput() InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return o
+}
+
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) ToInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return o
+}
+
+func (o InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) Index(i pulumi.IntInput) InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesRdsMysqlInstanceAutoStorageScalingConfig {
+		return vs[0].([]InstancesRdsMysqlInstanceAutoStorageScalingConfig)[vs[1].(int)]
+	}).(InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput)
 }
 
 type InstancesRdsMysqlInstanceChargeDetail struct {
@@ -5436,7 +6859,7 @@ type InstancesRdsMysqlInstanceNode struct {
 	Memory int `pulumi:"memory"`
 	// Node ID.
 	NodeId string `pulumi:"nodeId"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Node state, value: aligned with instance state.
 	NodeStatus string `pulumi:"nodeStatus"`
@@ -5474,7 +6897,7 @@ type InstancesRdsMysqlInstanceNodeArgs struct {
 	Memory pulumi.IntInput `pulumi:"memory"`
 	// Node ID.
 	NodeId pulumi.StringInput `pulumi:"nodeId"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
 	// Node state, value: aligned with instance state.
 	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
@@ -5563,7 +6986,7 @@ func (o InstancesRdsMysqlInstanceNodeOutput) NodeId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstanceNode) string { return v.NodeId }).(pulumi.StringOutput)
 }
 
-// General instance type, different from Custom instance type.
+// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 func (o InstancesRdsMysqlInstanceNodeOutput) NodeSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstanceNode) string { return v.NodeSpec }).(pulumi.StringOutput)
 }
@@ -6312,6 +7735,256 @@ func (o ParameterTemplatesTemplateTemplateParamArrayOutput) Index(i pulumi.IntIn
 	}).(ParameterTemplatesTemplateTemplateParamOutput)
 }
 
+type PlannedEventsPlannedEvent struct {
+	// The business impact of the planned event.
+	BusinessImpact string `pulumi:"businessImpact"`
+	// The database engine of the planned event.
+	DbEngine string `pulumi:"dbEngine"`
+	// The action of the planned event.
+	EventAction string `pulumi:"eventAction"`
+	// The id of the planned event.
+	EventId string `pulumi:"eventId"`
+	// The name of the planned event.
+	EventName string `pulumi:"eventName"`
+	// The type of the planned event.
+	EventType string `pulumi:"eventType"`
+	// The id of the instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	MaxDelayTime string `pulumi:"maxDelayTime"`
+	// The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	OriginBeginTime string `pulumi:"originBeginTime"`
+	// The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedBeginTime string `pulumi:"plannedBeginTime"`
+	// The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedEndTime string `pulumi:"plannedEndTime"`
+	// Description information of the operation and maintenance event.
+	PlannedEventDescription string `pulumi:"plannedEventDescription"`
+	// The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+	PlannedEventReason string `pulumi:"plannedEventReason"`
+	// The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchBeginTime string `pulumi:"plannedSwitchBeginTime"`
+	// The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchEndTime string `pulumi:"plannedSwitchEndTime"`
+	// The region.
+	Region string `pulumi:"region"`
+	// The status of the planned event.
+	Status string `pulumi:"status"`
+}
+
+// PlannedEventsPlannedEventInput is an input type that accepts PlannedEventsPlannedEventArgs and PlannedEventsPlannedEventOutput values.
+// You can construct a concrete instance of `PlannedEventsPlannedEventInput` via:
+//
+//	PlannedEventsPlannedEventArgs{...}
+type PlannedEventsPlannedEventInput interface {
+	pulumi.Input
+
+	ToPlannedEventsPlannedEventOutput() PlannedEventsPlannedEventOutput
+	ToPlannedEventsPlannedEventOutputWithContext(context.Context) PlannedEventsPlannedEventOutput
+}
+
+type PlannedEventsPlannedEventArgs struct {
+	// The business impact of the planned event.
+	BusinessImpact pulumi.StringInput `pulumi:"businessImpact"`
+	// The database engine of the planned event.
+	DbEngine pulumi.StringInput `pulumi:"dbEngine"`
+	// The action of the planned event.
+	EventAction pulumi.StringInput `pulumi:"eventAction"`
+	// The id of the planned event.
+	EventId pulumi.StringInput `pulumi:"eventId"`
+	// The name of the planned event.
+	EventName pulumi.StringInput `pulumi:"eventName"`
+	// The type of the planned event.
+	EventType pulumi.StringInput `pulumi:"eventType"`
+	// The id of the instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	MaxDelayTime pulumi.StringInput `pulumi:"maxDelayTime"`
+	// The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	OriginBeginTime pulumi.StringInput `pulumi:"originBeginTime"`
+	// The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedBeginTime pulumi.StringInput `pulumi:"plannedBeginTime"`
+	// The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedEndTime pulumi.StringInput `pulumi:"plannedEndTime"`
+	// Description information of the operation and maintenance event.
+	PlannedEventDescription pulumi.StringInput `pulumi:"plannedEventDescription"`
+	// The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+	PlannedEventReason pulumi.StringInput `pulumi:"plannedEventReason"`
+	// The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchBeginTime pulumi.StringInput `pulumi:"plannedSwitchBeginTime"`
+	// The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchEndTime pulumi.StringInput `pulumi:"plannedSwitchEndTime"`
+	// The region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The status of the planned event.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (PlannedEventsPlannedEventArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (i PlannedEventsPlannedEventArgs) ToPlannedEventsPlannedEventOutput() PlannedEventsPlannedEventOutput {
+	return i.ToPlannedEventsPlannedEventOutputWithContext(context.Background())
+}
+
+func (i PlannedEventsPlannedEventArgs) ToPlannedEventsPlannedEventOutputWithContext(ctx context.Context) PlannedEventsPlannedEventOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PlannedEventsPlannedEventOutput)
+}
+
+// PlannedEventsPlannedEventArrayInput is an input type that accepts PlannedEventsPlannedEventArray and PlannedEventsPlannedEventArrayOutput values.
+// You can construct a concrete instance of `PlannedEventsPlannedEventArrayInput` via:
+//
+//	PlannedEventsPlannedEventArray{ PlannedEventsPlannedEventArgs{...} }
+type PlannedEventsPlannedEventArrayInput interface {
+	pulumi.Input
+
+	ToPlannedEventsPlannedEventArrayOutput() PlannedEventsPlannedEventArrayOutput
+	ToPlannedEventsPlannedEventArrayOutputWithContext(context.Context) PlannedEventsPlannedEventArrayOutput
+}
+
+type PlannedEventsPlannedEventArray []PlannedEventsPlannedEventInput
+
+func (PlannedEventsPlannedEventArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (i PlannedEventsPlannedEventArray) ToPlannedEventsPlannedEventArrayOutput() PlannedEventsPlannedEventArrayOutput {
+	return i.ToPlannedEventsPlannedEventArrayOutputWithContext(context.Background())
+}
+
+func (i PlannedEventsPlannedEventArray) ToPlannedEventsPlannedEventArrayOutputWithContext(ctx context.Context) PlannedEventsPlannedEventArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PlannedEventsPlannedEventArrayOutput)
+}
+
+type PlannedEventsPlannedEventOutput struct{ *pulumi.OutputState }
+
+func (PlannedEventsPlannedEventOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (o PlannedEventsPlannedEventOutput) ToPlannedEventsPlannedEventOutput() PlannedEventsPlannedEventOutput {
+	return o
+}
+
+func (o PlannedEventsPlannedEventOutput) ToPlannedEventsPlannedEventOutputWithContext(ctx context.Context) PlannedEventsPlannedEventOutput {
+	return o
+}
+
+// The business impact of the planned event.
+func (o PlannedEventsPlannedEventOutput) BusinessImpact() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.BusinessImpact }).(pulumi.StringOutput)
+}
+
+// The database engine of the planned event.
+func (o PlannedEventsPlannedEventOutput) DbEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.DbEngine }).(pulumi.StringOutput)
+}
+
+// The action of the planned event.
+func (o PlannedEventsPlannedEventOutput) EventAction() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.EventAction }).(pulumi.StringOutput)
+}
+
+// The id of the planned event.
+func (o PlannedEventsPlannedEventOutput) EventId() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.EventId }).(pulumi.StringOutput)
+}
+
+// The name of the planned event.
+func (o PlannedEventsPlannedEventOutput) EventName() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.EventName }).(pulumi.StringOutput)
+}
+
+// The type of the planned event.
+func (o PlannedEventsPlannedEventOutput) EventType() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.EventType }).(pulumi.StringOutput)
+}
+
+// The id of the instance.
+func (o PlannedEventsPlannedEventOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the instance.
+func (o PlannedEventsPlannedEventOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o PlannedEventsPlannedEventOutput) MaxDelayTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.MaxDelayTime }).(pulumi.StringOutput)
+}
+
+// The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o PlannedEventsPlannedEventOutput) OriginBeginTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.OriginBeginTime }).(pulumi.StringOutput)
+}
+
+// The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o PlannedEventsPlannedEventOutput) PlannedBeginTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.PlannedBeginTime }).(pulumi.StringOutput)
+}
+
+// The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o PlannedEventsPlannedEventOutput) PlannedEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.PlannedEndTime }).(pulumi.StringOutput)
+}
+
+// Description information of the operation and maintenance event.
+func (o PlannedEventsPlannedEventOutput) PlannedEventDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.PlannedEventDescription }).(pulumi.StringOutput)
+}
+
+// The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+func (o PlannedEventsPlannedEventOutput) PlannedEventReason() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.PlannedEventReason }).(pulumi.StringOutput)
+}
+
+// The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o PlannedEventsPlannedEventOutput) PlannedSwitchBeginTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.PlannedSwitchBeginTime }).(pulumi.StringOutput)
+}
+
+// The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o PlannedEventsPlannedEventOutput) PlannedSwitchEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.PlannedSwitchEndTime }).(pulumi.StringOutput)
+}
+
+// The region.
+func (o PlannedEventsPlannedEventOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The status of the planned event.
+func (o PlannedEventsPlannedEventOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v PlannedEventsPlannedEvent) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type PlannedEventsPlannedEventArrayOutput struct{ *pulumi.OutputState }
+
+func (PlannedEventsPlannedEventArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (o PlannedEventsPlannedEventArrayOutput) ToPlannedEventsPlannedEventArrayOutput() PlannedEventsPlannedEventArrayOutput {
+	return o
+}
+
+func (o PlannedEventsPlannedEventArrayOutput) ToPlannedEventsPlannedEventArrayOutputWithContext(ctx context.Context) PlannedEventsPlannedEventArrayOutput {
+	return o
+}
+
+func (o PlannedEventsPlannedEventArrayOutput) Index(i pulumi.IntInput) PlannedEventsPlannedEventOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PlannedEventsPlannedEvent {
+		return vs[0].([]PlannedEventsPlannedEvent)[vs[1].(int)]
+	}).(PlannedEventsPlannedEventOutput)
+}
+
 type RegionsRegion struct {
 	// The id of the region.
 	RegionId string `pulumi:"regionId"`
@@ -6416,6 +8089,1084 @@ func (o RegionsRegionArrayOutput) Index(i pulumi.IntInput) RegionsRegionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegionsRegion {
 		return vs[0].([]RegionsRegion)[vs[1].(int)]
 	}).(RegionsRegionOutput)
+}
+
+type TasksData struct {
+	// The creation time of the task.
+	CreateTime string `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime string `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress int `pulumi:"progress"`
+	// The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledExecuteEndTime string `pulumi:"scheduledExecuteEndTime"`
+	// The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledSwitchEndTime string `pulumi:"scheduledSwitchEndTime"`
+	// The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+	ScheduledSwitchStartTime string `pulumi:"scheduledSwitchStartTime"`
+	// The start time of the task.
+	StartTime string `pulumi:"startTime"`
+	// Task name.
+	TaskAction string `pulumi:"taskAction"`
+	// Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+	TaskCategory string `pulumi:"taskCategory"`
+	// The description of the task.
+	TaskDesc string `pulumi:"taskDesc"`
+	// Detailed information of the task.
+	TaskDetails []TasksDataTaskDetail `pulumi:"taskDetails"`
+	// Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+	TaskId string `pulumi:"taskId"`
+	// Task parameters.
+	TaskParams string `pulumi:"taskParams"`
+	// Progress details.
+	TaskProgresses []TasksDataTaskProgress `pulumi:"taskProgresses"`
+	// Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+	TaskStatus string `pulumi:"taskStatus"`
+}
+
+// TasksDataInput is an input type that accepts TasksDataArgs and TasksDataOutput values.
+// You can construct a concrete instance of `TasksDataInput` via:
+//
+//	TasksDataArgs{...}
+type TasksDataInput interface {
+	pulumi.Input
+
+	ToTasksDataOutput() TasksDataOutput
+	ToTasksDataOutputWithContext(context.Context) TasksDataOutput
+}
+
+type TasksDataArgs struct {
+	// The creation time of the task.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime pulumi.StringInput `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress pulumi.IntInput `pulumi:"progress"`
+	// The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledExecuteEndTime pulumi.StringInput `pulumi:"scheduledExecuteEndTime"`
+	// The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledSwitchEndTime pulumi.StringInput `pulumi:"scheduledSwitchEndTime"`
+	// The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+	ScheduledSwitchStartTime pulumi.StringInput `pulumi:"scheduledSwitchStartTime"`
+	// The start time of the task.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Task name.
+	TaskAction pulumi.StringInput `pulumi:"taskAction"`
+	// Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+	TaskCategory pulumi.StringInput `pulumi:"taskCategory"`
+	// The description of the task.
+	TaskDesc pulumi.StringInput `pulumi:"taskDesc"`
+	// Detailed information of the task.
+	TaskDetails TasksDataTaskDetailArrayInput `pulumi:"taskDetails"`
+	// Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// Task parameters.
+	TaskParams pulumi.StringInput `pulumi:"taskParams"`
+	// Progress details.
+	TaskProgresses TasksDataTaskProgressArrayInput `pulumi:"taskProgresses"`
+	// Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+	TaskStatus pulumi.StringInput `pulumi:"taskStatus"`
+}
+
+func (TasksDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksData)(nil)).Elem()
+}
+
+func (i TasksDataArgs) ToTasksDataOutput() TasksDataOutput {
+	return i.ToTasksDataOutputWithContext(context.Background())
+}
+
+func (i TasksDataArgs) ToTasksDataOutputWithContext(ctx context.Context) TasksDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataOutput)
+}
+
+// TasksDataArrayInput is an input type that accepts TasksDataArray and TasksDataArrayOutput values.
+// You can construct a concrete instance of `TasksDataArrayInput` via:
+//
+//	TasksDataArray{ TasksDataArgs{...} }
+type TasksDataArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataArrayOutput() TasksDataArrayOutput
+	ToTasksDataArrayOutputWithContext(context.Context) TasksDataArrayOutput
+}
+
+type TasksDataArray []TasksDataInput
+
+func (TasksDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksData)(nil)).Elem()
+}
+
+func (i TasksDataArray) ToTasksDataArrayOutput() TasksDataArrayOutput {
+	return i.ToTasksDataArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataArray) ToTasksDataArrayOutputWithContext(ctx context.Context) TasksDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataArrayOutput)
+}
+
+type TasksDataOutput struct{ *pulumi.OutputState }
+
+func (TasksDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksData)(nil)).Elem()
+}
+
+func (o TasksDataOutput) ToTasksDataOutput() TasksDataOutput {
+	return o
+}
+
+func (o TasksDataOutput) ToTasksDataOutputWithContext(ctx context.Context) TasksDataOutput {
+	return o
+}
+
+// The creation time of the task.
+func (o TasksDataOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The completion time of the task.
+func (o TasksDataOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+func (o TasksDataOutput) Progress() pulumi.IntOutput {
+	return o.ApplyT(func(v TasksData) int { return v.Progress }).(pulumi.IntOutput)
+}
+
+// The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+func (o TasksDataOutput) ScheduledExecuteEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.ScheduledExecuteEndTime }).(pulumi.StringOutput)
+}
+
+// The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+func (o TasksDataOutput) ScheduledSwitchEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.ScheduledSwitchEndTime }).(pulumi.StringOutput)
+}
+
+// The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+func (o TasksDataOutput) ScheduledSwitchStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.ScheduledSwitchStartTime }).(pulumi.StringOutput)
+}
+
+// The start time of the task.
+func (o TasksDataOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Task name.
+func (o TasksDataOutput) TaskAction() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.TaskAction }).(pulumi.StringOutput)
+}
+
+// Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+func (o TasksDataOutput) TaskCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.TaskCategory }).(pulumi.StringOutput)
+}
+
+// The description of the task.
+func (o TasksDataOutput) TaskDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.TaskDesc }).(pulumi.StringOutput)
+}
+
+// Detailed information of the task.
+func (o TasksDataOutput) TaskDetails() TasksDataTaskDetailArrayOutput {
+	return o.ApplyT(func(v TasksData) []TasksDataTaskDetail { return v.TaskDetails }).(TasksDataTaskDetailArrayOutput)
+}
+
+// Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+func (o TasksDataOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// Task parameters.
+func (o TasksDataOutput) TaskParams() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.TaskParams }).(pulumi.StringOutput)
+}
+
+// Progress details.
+func (o TasksDataOutput) TaskProgresses() TasksDataTaskProgressArrayOutput {
+	return o.ApplyT(func(v TasksData) []TasksDataTaskProgress { return v.TaskProgresses }).(TasksDataTaskProgressArrayOutput)
+}
+
+// Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+func (o TasksDataOutput) TaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksData) string { return v.TaskStatus }).(pulumi.StringOutput)
+}
+
+type TasksDataArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksData)(nil)).Elem()
+}
+
+func (o TasksDataArrayOutput) ToTasksDataArrayOutput() TasksDataArrayOutput {
+	return o
+}
+
+func (o TasksDataArrayOutput) ToTasksDataArrayOutputWithContext(ctx context.Context) TasksDataArrayOutput {
+	return o
+}
+
+func (o TasksDataArrayOutput) Index(i pulumi.IntInput) TasksDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksData {
+		return vs[0].([]TasksData)[vs[1].(int)]
+	}).(TasksDataOutput)
+}
+
+type TasksDataTaskDetail struct {
+	// The log of inspection items for the instance major version upgrade.
+	CheckItemLog string `pulumi:"checkItemLog"`
+	// Check results for major version upgrade.
+	CheckItems []TasksDataTaskDetailCheckItem `pulumi:"checkItems"`
+	// Details of the task.
+	TaskInfos []TasksDataTaskDetailTaskInfo `pulumi:"taskInfos"`
+}
+
+// TasksDataTaskDetailInput is an input type that accepts TasksDataTaskDetailArgs and TasksDataTaskDetailOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailInput` via:
+//
+//	TasksDataTaskDetailArgs{...}
+type TasksDataTaskDetailInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailOutput() TasksDataTaskDetailOutput
+	ToTasksDataTaskDetailOutputWithContext(context.Context) TasksDataTaskDetailOutput
+}
+
+type TasksDataTaskDetailArgs struct {
+	// The log of inspection items for the instance major version upgrade.
+	CheckItemLog pulumi.StringInput `pulumi:"checkItemLog"`
+	// Check results for major version upgrade.
+	CheckItems TasksDataTaskDetailCheckItemArrayInput `pulumi:"checkItems"`
+	// Details of the task.
+	TaskInfos TasksDataTaskDetailTaskInfoArrayInput `pulumi:"taskInfos"`
+}
+
+func (TasksDataTaskDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetail)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailArgs) ToTasksDataTaskDetailOutput() TasksDataTaskDetailOutput {
+	return i.ToTasksDataTaskDetailOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailArgs) ToTasksDataTaskDetailOutputWithContext(ctx context.Context) TasksDataTaskDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailOutput)
+}
+
+// TasksDataTaskDetailArrayInput is an input type that accepts TasksDataTaskDetailArray and TasksDataTaskDetailArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailArrayInput` via:
+//
+//	TasksDataTaskDetailArray{ TasksDataTaskDetailArgs{...} }
+type TasksDataTaskDetailArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailArrayOutput() TasksDataTaskDetailArrayOutput
+	ToTasksDataTaskDetailArrayOutputWithContext(context.Context) TasksDataTaskDetailArrayOutput
+}
+
+type TasksDataTaskDetailArray []TasksDataTaskDetailInput
+
+func (TasksDataTaskDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetail)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailArray) ToTasksDataTaskDetailArrayOutput() TasksDataTaskDetailArrayOutput {
+	return i.ToTasksDataTaskDetailArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailArray) ToTasksDataTaskDetailArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailArrayOutput)
+}
+
+type TasksDataTaskDetailOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetail)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailOutput) ToTasksDataTaskDetailOutput() TasksDataTaskDetailOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailOutput) ToTasksDataTaskDetailOutputWithContext(ctx context.Context) TasksDataTaskDetailOutput {
+	return o
+}
+
+// The log of inspection items for the instance major version upgrade.
+func (o TasksDataTaskDetailOutput) CheckItemLog() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetail) string { return v.CheckItemLog }).(pulumi.StringOutput)
+}
+
+// Check results for major version upgrade.
+func (o TasksDataTaskDetailOutput) CheckItems() TasksDataTaskDetailCheckItemArrayOutput {
+	return o.ApplyT(func(v TasksDataTaskDetail) []TasksDataTaskDetailCheckItem { return v.CheckItems }).(TasksDataTaskDetailCheckItemArrayOutput)
+}
+
+// Details of the task.
+func (o TasksDataTaskDetailOutput) TaskInfos() TasksDataTaskDetailTaskInfoArrayOutput {
+	return o.ApplyT(func(v TasksDataTaskDetail) []TasksDataTaskDetailTaskInfo { return v.TaskInfos }).(TasksDataTaskDetailTaskInfoArrayOutput)
+}
+
+type TasksDataTaskDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetail)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailArrayOutput) ToTasksDataTaskDetailArrayOutput() TasksDataTaskDetailArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailArrayOutput) ToTasksDataTaskDetailArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailArrayOutput) Index(i pulumi.IntInput) TasksDataTaskDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskDetail {
+		return vs[0].([]TasksDataTaskDetail)[vs[1].(int)]
+	}).(TasksDataTaskDetailOutput)
+}
+
+type TasksDataTaskDetailCheckItem struct {
+	// Details of the failed check items.
+	CheckDetails []TasksDataTaskDetailCheckItemCheckDetail `pulumi:"checkDetails"`
+	// The description of the check item.
+	Description string `pulumi:"description"`
+	// The name of the check item.
+	ItemName string `pulumi:"itemName"`
+	// The risk level of the failed check items. Values:
+	// Notice: Attention.
+	// Warning: Warning.
+	// Error: Error.
+	RiskLevel string `pulumi:"riskLevel"`
+}
+
+// TasksDataTaskDetailCheckItemInput is an input type that accepts TasksDataTaskDetailCheckItemArgs and TasksDataTaskDetailCheckItemOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailCheckItemInput` via:
+//
+//	TasksDataTaskDetailCheckItemArgs{...}
+type TasksDataTaskDetailCheckItemInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailCheckItemOutput() TasksDataTaskDetailCheckItemOutput
+	ToTasksDataTaskDetailCheckItemOutputWithContext(context.Context) TasksDataTaskDetailCheckItemOutput
+}
+
+type TasksDataTaskDetailCheckItemArgs struct {
+	// Details of the failed check items.
+	CheckDetails TasksDataTaskDetailCheckItemCheckDetailArrayInput `pulumi:"checkDetails"`
+	// The description of the check item.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of the check item.
+	ItemName pulumi.StringInput `pulumi:"itemName"`
+	// The risk level of the failed check items. Values:
+	// Notice: Attention.
+	// Warning: Warning.
+	// Error: Error.
+	RiskLevel pulumi.StringInput `pulumi:"riskLevel"`
+}
+
+func (TasksDataTaskDetailCheckItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailCheckItemArgs) ToTasksDataTaskDetailCheckItemOutput() TasksDataTaskDetailCheckItemOutput {
+	return i.ToTasksDataTaskDetailCheckItemOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailCheckItemArgs) ToTasksDataTaskDetailCheckItemOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailCheckItemOutput)
+}
+
+// TasksDataTaskDetailCheckItemArrayInput is an input type that accepts TasksDataTaskDetailCheckItemArray and TasksDataTaskDetailCheckItemArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailCheckItemArrayInput` via:
+//
+//	TasksDataTaskDetailCheckItemArray{ TasksDataTaskDetailCheckItemArgs{...} }
+type TasksDataTaskDetailCheckItemArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailCheckItemArrayOutput() TasksDataTaskDetailCheckItemArrayOutput
+	ToTasksDataTaskDetailCheckItemArrayOutputWithContext(context.Context) TasksDataTaskDetailCheckItemArrayOutput
+}
+
+type TasksDataTaskDetailCheckItemArray []TasksDataTaskDetailCheckItemInput
+
+func (TasksDataTaskDetailCheckItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailCheckItemArray) ToTasksDataTaskDetailCheckItemArrayOutput() TasksDataTaskDetailCheckItemArrayOutput {
+	return i.ToTasksDataTaskDetailCheckItemArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailCheckItemArray) ToTasksDataTaskDetailCheckItemArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailCheckItemArrayOutput)
+}
+
+type TasksDataTaskDetailCheckItemOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailCheckItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailCheckItemOutput) ToTasksDataTaskDetailCheckItemOutput() TasksDataTaskDetailCheckItemOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailCheckItemOutput) ToTasksDataTaskDetailCheckItemOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemOutput {
+	return o
+}
+
+// Details of the failed check items.
+func (o TasksDataTaskDetailCheckItemOutput) CheckDetails() TasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailCheckItem) []TasksDataTaskDetailCheckItemCheckDetail { return v.CheckDetails }).(TasksDataTaskDetailCheckItemCheckDetailArrayOutput)
+}
+
+// The description of the check item.
+func (o TasksDataTaskDetailCheckItemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailCheckItem) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of the check item.
+func (o TasksDataTaskDetailCheckItemOutput) ItemName() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailCheckItem) string { return v.ItemName }).(pulumi.StringOutput)
+}
+
+// The risk level of the failed check items. Values:
+// Notice: Attention.
+// Warning: Warning.
+// Error: Error.
+func (o TasksDataTaskDetailCheckItemOutput) RiskLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailCheckItem) string { return v.RiskLevel }).(pulumi.StringOutput)
+}
+
+type TasksDataTaskDetailCheckItemArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailCheckItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailCheckItemArrayOutput) ToTasksDataTaskDetailCheckItemArrayOutput() TasksDataTaskDetailCheckItemArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailCheckItemArrayOutput) ToTasksDataTaskDetailCheckItemArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailCheckItemArrayOutput) Index(i pulumi.IntInput) TasksDataTaskDetailCheckItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskDetailCheckItem {
+		return vs[0].([]TasksDataTaskDetailCheckItem)[vs[1].(int)]
+	}).(TasksDataTaskDetailCheckItemOutput)
+}
+
+type TasksDataTaskDetailCheckItemCheckDetail struct {
+	// The impact of the issue that caused the failure of the check item after the upgrade.
+	Impact string `pulumi:"impact"`
+	// Problems that caused the failure to pass the check items.
+	Issue string `pulumi:"issue"`
+}
+
+// TasksDataTaskDetailCheckItemCheckDetailInput is an input type that accepts TasksDataTaskDetailCheckItemCheckDetailArgs and TasksDataTaskDetailCheckItemCheckDetailOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailCheckItemCheckDetailInput` via:
+//
+//	TasksDataTaskDetailCheckItemCheckDetailArgs{...}
+type TasksDataTaskDetailCheckItemCheckDetailInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailCheckItemCheckDetailOutput() TasksDataTaskDetailCheckItemCheckDetailOutput
+	ToTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(context.Context) TasksDataTaskDetailCheckItemCheckDetailOutput
+}
+
+type TasksDataTaskDetailCheckItemCheckDetailArgs struct {
+	// The impact of the issue that caused the failure of the check item after the upgrade.
+	Impact pulumi.StringInput `pulumi:"impact"`
+	// Problems that caused the failure to pass the check items.
+	Issue pulumi.StringInput `pulumi:"issue"`
+}
+
+func (TasksDataTaskDetailCheckItemCheckDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailCheckItemCheckDetailArgs) ToTasksDataTaskDetailCheckItemCheckDetailOutput() TasksDataTaskDetailCheckItemCheckDetailOutput {
+	return i.ToTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailCheckItemCheckDetailArgs) ToTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemCheckDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailCheckItemCheckDetailOutput)
+}
+
+// TasksDataTaskDetailCheckItemCheckDetailArrayInput is an input type that accepts TasksDataTaskDetailCheckItemCheckDetailArray and TasksDataTaskDetailCheckItemCheckDetailArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailCheckItemCheckDetailArrayInput` via:
+//
+//	TasksDataTaskDetailCheckItemCheckDetailArray{ TasksDataTaskDetailCheckItemCheckDetailArgs{...} }
+type TasksDataTaskDetailCheckItemCheckDetailArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailCheckItemCheckDetailArrayOutput() TasksDataTaskDetailCheckItemCheckDetailArrayOutput
+	ToTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(context.Context) TasksDataTaskDetailCheckItemCheckDetailArrayOutput
+}
+
+type TasksDataTaskDetailCheckItemCheckDetailArray []TasksDataTaskDetailCheckItemCheckDetailInput
+
+func (TasksDataTaskDetailCheckItemCheckDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailCheckItemCheckDetailArray) ToTasksDataTaskDetailCheckItemCheckDetailArrayOutput() TasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return i.ToTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailCheckItemCheckDetailArray) ToTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailCheckItemCheckDetailArrayOutput)
+}
+
+type TasksDataTaskDetailCheckItemCheckDetailOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailCheckItemCheckDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailCheckItemCheckDetailOutput) ToTasksDataTaskDetailCheckItemCheckDetailOutput() TasksDataTaskDetailCheckItemCheckDetailOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailCheckItemCheckDetailOutput) ToTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemCheckDetailOutput {
+	return o
+}
+
+// The impact of the issue that caused the failure of the check item after the upgrade.
+func (o TasksDataTaskDetailCheckItemCheckDetailOutput) Impact() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailCheckItemCheckDetail) string { return v.Impact }).(pulumi.StringOutput)
+}
+
+// Problems that caused the failure to pass the check items.
+func (o TasksDataTaskDetailCheckItemCheckDetailOutput) Issue() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailCheckItemCheckDetail) string { return v.Issue }).(pulumi.StringOutput)
+}
+
+type TasksDataTaskDetailCheckItemCheckDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailCheckItemCheckDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailCheckItemCheckDetailArrayOutput) ToTasksDataTaskDetailCheckItemCheckDetailArrayOutput() TasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailCheckItemCheckDetailArrayOutput) ToTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailCheckItemCheckDetailArrayOutput) Index(i pulumi.IntInput) TasksDataTaskDetailCheckItemCheckDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskDetailCheckItemCheckDetail {
+		return vs[0].([]TasksDataTaskDetailCheckItemCheckDetail)[vs[1].(int)]
+	}).(TasksDataTaskDetailCheckItemCheckDetailOutput)
+}
+
+type TasksDataTaskDetailTaskInfo struct {
+	// The creation time of the task.
+	CreateTime string `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime string `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress int `pulumi:"progress"`
+	// Instances related to the task.
+	RelatedInstanceInfos []TasksDataTaskDetailTaskInfoRelatedInstanceInfo `pulumi:"relatedInstanceInfos"`
+}
+
+// TasksDataTaskDetailTaskInfoInput is an input type that accepts TasksDataTaskDetailTaskInfoArgs and TasksDataTaskDetailTaskInfoOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailTaskInfoInput` via:
+//
+//	TasksDataTaskDetailTaskInfoArgs{...}
+type TasksDataTaskDetailTaskInfoInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailTaskInfoOutput() TasksDataTaskDetailTaskInfoOutput
+	ToTasksDataTaskDetailTaskInfoOutputWithContext(context.Context) TasksDataTaskDetailTaskInfoOutput
+}
+
+type TasksDataTaskDetailTaskInfoArgs struct {
+	// The creation time of the task.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime pulumi.StringInput `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress pulumi.IntInput `pulumi:"progress"`
+	// Instances related to the task.
+	RelatedInstanceInfos TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput `pulumi:"relatedInstanceInfos"`
+}
+
+func (TasksDataTaskDetailTaskInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailTaskInfoArgs) ToTasksDataTaskDetailTaskInfoOutput() TasksDataTaskDetailTaskInfoOutput {
+	return i.ToTasksDataTaskDetailTaskInfoOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailTaskInfoArgs) ToTasksDataTaskDetailTaskInfoOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailTaskInfoOutput)
+}
+
+// TasksDataTaskDetailTaskInfoArrayInput is an input type that accepts TasksDataTaskDetailTaskInfoArray and TasksDataTaskDetailTaskInfoArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailTaskInfoArrayInput` via:
+//
+//	TasksDataTaskDetailTaskInfoArray{ TasksDataTaskDetailTaskInfoArgs{...} }
+type TasksDataTaskDetailTaskInfoArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailTaskInfoArrayOutput() TasksDataTaskDetailTaskInfoArrayOutput
+	ToTasksDataTaskDetailTaskInfoArrayOutputWithContext(context.Context) TasksDataTaskDetailTaskInfoArrayOutput
+}
+
+type TasksDataTaskDetailTaskInfoArray []TasksDataTaskDetailTaskInfoInput
+
+func (TasksDataTaskDetailTaskInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailTaskInfoArray) ToTasksDataTaskDetailTaskInfoArrayOutput() TasksDataTaskDetailTaskInfoArrayOutput {
+	return i.ToTasksDataTaskDetailTaskInfoArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailTaskInfoArray) ToTasksDataTaskDetailTaskInfoArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailTaskInfoArrayOutput)
+}
+
+type TasksDataTaskDetailTaskInfoOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailTaskInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailTaskInfoOutput) ToTasksDataTaskDetailTaskInfoOutput() TasksDataTaskDetailTaskInfoOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailTaskInfoOutput) ToTasksDataTaskDetailTaskInfoOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoOutput {
+	return o
+}
+
+// The creation time of the task.
+func (o TasksDataTaskDetailTaskInfoOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailTaskInfo) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The completion time of the task.
+func (o TasksDataTaskDetailTaskInfoOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailTaskInfo) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+func (o TasksDataTaskDetailTaskInfoOutput) Progress() pulumi.IntOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailTaskInfo) int { return v.Progress }).(pulumi.IntOutput)
+}
+
+// Instances related to the task.
+func (o TasksDataTaskDetailTaskInfoOutput) RelatedInstanceInfos() TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailTaskInfo) []TasksDataTaskDetailTaskInfoRelatedInstanceInfo {
+		return v.RelatedInstanceInfos
+	}).(TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput)
+}
+
+type TasksDataTaskDetailTaskInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailTaskInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailTaskInfoArrayOutput) ToTasksDataTaskDetailTaskInfoArrayOutput() TasksDataTaskDetailTaskInfoArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailTaskInfoArrayOutput) ToTasksDataTaskDetailTaskInfoArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailTaskInfoArrayOutput) Index(i pulumi.IntInput) TasksDataTaskDetailTaskInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskDetailTaskInfo {
+		return vs[0].([]TasksDataTaskDetailTaskInfo)[vs[1].(int)]
+	}).(TasksDataTaskDetailTaskInfoOutput)
+}
+
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfo struct {
+	// Instance ID.
+	InstanceId string `pulumi:"instanceId"`
+}
+
+// TasksDataTaskDetailTaskInfoRelatedInstanceInfoInput is an input type that accepts TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs and TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailTaskInfoRelatedInstanceInfoInput` via:
+//
+//	TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs{...}
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfoInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput() TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput
+	ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(context.Context) TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput
+}
+
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs struct {
+	// Instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+}
+
+func (TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput() TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return i.ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput)
+}
+
+// TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput is an input type that accepts TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray and TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput` via:
+//
+//	TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray{ TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs{...} }
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput() TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput
+	ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(context.Context) TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput
+}
+
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray []TasksDataTaskDetailTaskInfoRelatedInstanceInfoInput
+
+func (TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (i TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput() TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return i.ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput)
+}
+
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput() TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return o
+}
+
+// Instance ID.
+func (o TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskDetailTaskInfoRelatedInstanceInfo) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+type TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (o TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput() TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) ToTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(ctx context.Context) TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) Index(i pulumi.IntInput) TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskDetailTaskInfoRelatedInstanceInfo {
+		return vs[0].([]TasksDataTaskDetailTaskInfoRelatedInstanceInfo)[vs[1].(int)]
+	}).(TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput)
+}
+
+type TasksDataTaskProgress struct {
+	// Step Name. Values:
+	// InstanceInitialization: Task initialization.
+	// InstanceRecoveryPreparation Instance recovery preparation.
+	// DataBackupImport: Cold backup import.
+	// LogBackupBinlogAdd: Binlog playback.
+	// TaskSuccessful: Task success.
+	Name string `pulumi:"name"`
+	// Specific information of the step.
+	StepExtraInfos []TasksDataTaskProgressStepExtraInfo `pulumi:"stepExtraInfos"`
+	// Step status. Values:
+	// Running: In progress.
+	// Success: Successful.
+	// Failed: Failed.
+	// Unexecuted: Not executed.
+	StepStatus string `pulumi:"stepStatus"`
+}
+
+// TasksDataTaskProgressInput is an input type that accepts TasksDataTaskProgressArgs and TasksDataTaskProgressOutput values.
+// You can construct a concrete instance of `TasksDataTaskProgressInput` via:
+//
+//	TasksDataTaskProgressArgs{...}
+type TasksDataTaskProgressInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskProgressOutput() TasksDataTaskProgressOutput
+	ToTasksDataTaskProgressOutputWithContext(context.Context) TasksDataTaskProgressOutput
+}
+
+type TasksDataTaskProgressArgs struct {
+	// Step Name. Values:
+	// InstanceInitialization: Task initialization.
+	// InstanceRecoveryPreparation Instance recovery preparation.
+	// DataBackupImport: Cold backup import.
+	// LogBackupBinlogAdd: Binlog playback.
+	// TaskSuccessful: Task success.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specific information of the step.
+	StepExtraInfos TasksDataTaskProgressStepExtraInfoArrayInput `pulumi:"stepExtraInfos"`
+	// Step status. Values:
+	// Running: In progress.
+	// Success: Successful.
+	// Failed: Failed.
+	// Unexecuted: Not executed.
+	StepStatus pulumi.StringInput `pulumi:"stepStatus"`
+}
+
+func (TasksDataTaskProgressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskProgress)(nil)).Elem()
+}
+
+func (i TasksDataTaskProgressArgs) ToTasksDataTaskProgressOutput() TasksDataTaskProgressOutput {
+	return i.ToTasksDataTaskProgressOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskProgressArgs) ToTasksDataTaskProgressOutputWithContext(ctx context.Context) TasksDataTaskProgressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskProgressOutput)
+}
+
+// TasksDataTaskProgressArrayInput is an input type that accepts TasksDataTaskProgressArray and TasksDataTaskProgressArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskProgressArrayInput` via:
+//
+//	TasksDataTaskProgressArray{ TasksDataTaskProgressArgs{...} }
+type TasksDataTaskProgressArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskProgressArrayOutput() TasksDataTaskProgressArrayOutput
+	ToTasksDataTaskProgressArrayOutputWithContext(context.Context) TasksDataTaskProgressArrayOutput
+}
+
+type TasksDataTaskProgressArray []TasksDataTaskProgressInput
+
+func (TasksDataTaskProgressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskProgress)(nil)).Elem()
+}
+
+func (i TasksDataTaskProgressArray) ToTasksDataTaskProgressArrayOutput() TasksDataTaskProgressArrayOutput {
+	return i.ToTasksDataTaskProgressArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskProgressArray) ToTasksDataTaskProgressArrayOutputWithContext(ctx context.Context) TasksDataTaskProgressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskProgressArrayOutput)
+}
+
+type TasksDataTaskProgressOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskProgressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskProgress)(nil)).Elem()
+}
+
+func (o TasksDataTaskProgressOutput) ToTasksDataTaskProgressOutput() TasksDataTaskProgressOutput {
+	return o
+}
+
+func (o TasksDataTaskProgressOutput) ToTasksDataTaskProgressOutputWithContext(ctx context.Context) TasksDataTaskProgressOutput {
+	return o
+}
+
+// Step Name. Values:
+// InstanceInitialization: Task initialization.
+// InstanceRecoveryPreparation Instance recovery preparation.
+// DataBackupImport: Cold backup import.
+// LogBackupBinlogAdd: Binlog playback.
+// TaskSuccessful: Task success.
+func (o TasksDataTaskProgressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskProgress) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specific information of the step.
+func (o TasksDataTaskProgressOutput) StepExtraInfos() TasksDataTaskProgressStepExtraInfoArrayOutput {
+	return o.ApplyT(func(v TasksDataTaskProgress) []TasksDataTaskProgressStepExtraInfo { return v.StepExtraInfos }).(TasksDataTaskProgressStepExtraInfoArrayOutput)
+}
+
+// Step status. Values:
+// Running: In progress.
+// Success: Successful.
+// Failed: Failed.
+// Unexecuted: Not executed.
+func (o TasksDataTaskProgressOutput) StepStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskProgress) string { return v.StepStatus }).(pulumi.StringOutput)
+}
+
+type TasksDataTaskProgressArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskProgressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskProgress)(nil)).Elem()
+}
+
+func (o TasksDataTaskProgressArrayOutput) ToTasksDataTaskProgressArrayOutput() TasksDataTaskProgressArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskProgressArrayOutput) ToTasksDataTaskProgressArrayOutputWithContext(ctx context.Context) TasksDataTaskProgressArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskProgressArrayOutput) Index(i pulumi.IntInput) TasksDataTaskProgressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskProgress {
+		return vs[0].([]TasksDataTaskProgress)[vs[1].(int)]
+	}).(TasksDataTaskProgressOutput)
+}
+
+type TasksDataTaskProgressStepExtraInfo struct {
+	// Current stage. CostTime: The time taken for the current stage.
+	// CurDataSize: The amount of data imported currently.
+	// CurBinlog: The number of Binlog files being replayed currently.
+	// RemainCostTime: The remaining time taken.
+	// RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+	Type string `pulumi:"type"`
+	// Unit. Values:
+	// MS: Milliseconds.
+	// Bytes: Bytes.
+	// Files: Number of (files).
+	Unit string `pulumi:"unit"`
+	// The specific value corresponding to the Type field.
+	Value float64 `pulumi:"value"`
+}
+
+// TasksDataTaskProgressStepExtraInfoInput is an input type that accepts TasksDataTaskProgressStepExtraInfoArgs and TasksDataTaskProgressStepExtraInfoOutput values.
+// You can construct a concrete instance of `TasksDataTaskProgressStepExtraInfoInput` via:
+//
+//	TasksDataTaskProgressStepExtraInfoArgs{...}
+type TasksDataTaskProgressStepExtraInfoInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskProgressStepExtraInfoOutput() TasksDataTaskProgressStepExtraInfoOutput
+	ToTasksDataTaskProgressStepExtraInfoOutputWithContext(context.Context) TasksDataTaskProgressStepExtraInfoOutput
+}
+
+type TasksDataTaskProgressStepExtraInfoArgs struct {
+	// Current stage. CostTime: The time taken for the current stage.
+	// CurDataSize: The amount of data imported currently.
+	// CurBinlog: The number of Binlog files being replayed currently.
+	// RemainCostTime: The remaining time taken.
+	// RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Unit. Values:
+	// MS: Milliseconds.
+	// Bytes: Bytes.
+	// Files: Number of (files).
+	Unit pulumi.StringInput `pulumi:"unit"`
+	// The specific value corresponding to the Type field.
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (TasksDataTaskProgressStepExtraInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (i TasksDataTaskProgressStepExtraInfoArgs) ToTasksDataTaskProgressStepExtraInfoOutput() TasksDataTaskProgressStepExtraInfoOutput {
+	return i.ToTasksDataTaskProgressStepExtraInfoOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskProgressStepExtraInfoArgs) ToTasksDataTaskProgressStepExtraInfoOutputWithContext(ctx context.Context) TasksDataTaskProgressStepExtraInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskProgressStepExtraInfoOutput)
+}
+
+// TasksDataTaskProgressStepExtraInfoArrayInput is an input type that accepts TasksDataTaskProgressStepExtraInfoArray and TasksDataTaskProgressStepExtraInfoArrayOutput values.
+// You can construct a concrete instance of `TasksDataTaskProgressStepExtraInfoArrayInput` via:
+//
+//	TasksDataTaskProgressStepExtraInfoArray{ TasksDataTaskProgressStepExtraInfoArgs{...} }
+type TasksDataTaskProgressStepExtraInfoArrayInput interface {
+	pulumi.Input
+
+	ToTasksDataTaskProgressStepExtraInfoArrayOutput() TasksDataTaskProgressStepExtraInfoArrayOutput
+	ToTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(context.Context) TasksDataTaskProgressStepExtraInfoArrayOutput
+}
+
+type TasksDataTaskProgressStepExtraInfoArray []TasksDataTaskProgressStepExtraInfoInput
+
+func (TasksDataTaskProgressStepExtraInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (i TasksDataTaskProgressStepExtraInfoArray) ToTasksDataTaskProgressStepExtraInfoArrayOutput() TasksDataTaskProgressStepExtraInfoArrayOutput {
+	return i.ToTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(context.Background())
+}
+
+func (i TasksDataTaskProgressStepExtraInfoArray) ToTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(ctx context.Context) TasksDataTaskProgressStepExtraInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TasksDataTaskProgressStepExtraInfoArrayOutput)
+}
+
+type TasksDataTaskProgressStepExtraInfoOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskProgressStepExtraInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (o TasksDataTaskProgressStepExtraInfoOutput) ToTasksDataTaskProgressStepExtraInfoOutput() TasksDataTaskProgressStepExtraInfoOutput {
+	return o
+}
+
+func (o TasksDataTaskProgressStepExtraInfoOutput) ToTasksDataTaskProgressStepExtraInfoOutputWithContext(ctx context.Context) TasksDataTaskProgressStepExtraInfoOutput {
+	return o
+}
+
+// Current stage. CostTime: The time taken for the current stage.
+// CurDataSize: The amount of data imported currently.
+// CurBinlog: The number of Binlog files being replayed currently.
+// RemainCostTime: The remaining time taken.
+// RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+func (o TasksDataTaskProgressStepExtraInfoOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskProgressStepExtraInfo) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Unit. Values:
+// MS: Milliseconds.
+// Bytes: Bytes.
+// Files: Number of (files).
+func (o TasksDataTaskProgressStepExtraInfoOutput) Unit() pulumi.StringOutput {
+	return o.ApplyT(func(v TasksDataTaskProgressStepExtraInfo) string { return v.Unit }).(pulumi.StringOutput)
+}
+
+// The specific value corresponding to the Type field.
+func (o TasksDataTaskProgressStepExtraInfoOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v TasksDataTaskProgressStepExtraInfo) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type TasksDataTaskProgressStepExtraInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (TasksDataTaskProgressStepExtraInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (o TasksDataTaskProgressStepExtraInfoArrayOutput) ToTasksDataTaskProgressStepExtraInfoArrayOutput() TasksDataTaskProgressStepExtraInfoArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskProgressStepExtraInfoArrayOutput) ToTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(ctx context.Context) TasksDataTaskProgressStepExtraInfoArrayOutput {
+	return o
+}
+
+func (o TasksDataTaskProgressStepExtraInfoArrayOutput) Index(i pulumi.IntInput) TasksDataTaskProgressStepExtraInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TasksDataTaskProgressStepExtraInfo {
+		return vs[0].([]TasksDataTaskProgressStepExtraInfo)[vs[1].(int)]
+	}).(TasksDataTaskProgressStepExtraInfoOutput)
 }
 
 type ZonesZone struct {
@@ -6542,15 +9293,248 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 	}).(ZonesZoneOutput)
 }
 
+type GetAccountTableColumnInfosTableInfo struct {
+	// The column privileges of the account.
+	AccountPrivileges []string `pulumi:"accountPrivileges"`
+	// The column permission information of the account.
+	ColumnInfos []GetAccountTableColumnInfosTableInfoColumnInfo `pulumi:"columnInfos"`
+	// The name of the table.
+	TableName string `pulumi:"tableName"`
+}
+
+// GetAccountTableColumnInfosTableInfoInput is an input type that accepts GetAccountTableColumnInfosTableInfoArgs and GetAccountTableColumnInfosTableInfoOutput values.
+// You can construct a concrete instance of `GetAccountTableColumnInfosTableInfoInput` via:
+//
+//	GetAccountTableColumnInfosTableInfoArgs{...}
+type GetAccountTableColumnInfosTableInfoInput interface {
+	pulumi.Input
+
+	ToGetAccountTableColumnInfosTableInfoOutput() GetAccountTableColumnInfosTableInfoOutput
+	ToGetAccountTableColumnInfosTableInfoOutputWithContext(context.Context) GetAccountTableColumnInfosTableInfoOutput
+}
+
+type GetAccountTableColumnInfosTableInfoArgs struct {
+	// The column privileges of the account.
+	AccountPrivileges pulumi.StringArrayInput `pulumi:"accountPrivileges"`
+	// The column permission information of the account.
+	ColumnInfos GetAccountTableColumnInfosTableInfoColumnInfoArrayInput `pulumi:"columnInfos"`
+	// The name of the table.
+	TableName pulumi.StringInput `pulumi:"tableName"`
+}
+
+func (GetAccountTableColumnInfosTableInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (i GetAccountTableColumnInfosTableInfoArgs) ToGetAccountTableColumnInfosTableInfoOutput() GetAccountTableColumnInfosTableInfoOutput {
+	return i.ToGetAccountTableColumnInfosTableInfoOutputWithContext(context.Background())
+}
+
+func (i GetAccountTableColumnInfosTableInfoArgs) ToGetAccountTableColumnInfosTableInfoOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountTableColumnInfosTableInfoOutput)
+}
+
+// GetAccountTableColumnInfosTableInfoArrayInput is an input type that accepts GetAccountTableColumnInfosTableInfoArray and GetAccountTableColumnInfosTableInfoArrayOutput values.
+// You can construct a concrete instance of `GetAccountTableColumnInfosTableInfoArrayInput` via:
+//
+//	GetAccountTableColumnInfosTableInfoArray{ GetAccountTableColumnInfosTableInfoArgs{...} }
+type GetAccountTableColumnInfosTableInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountTableColumnInfosTableInfoArrayOutput() GetAccountTableColumnInfosTableInfoArrayOutput
+	ToGetAccountTableColumnInfosTableInfoArrayOutputWithContext(context.Context) GetAccountTableColumnInfosTableInfoArrayOutput
+}
+
+type GetAccountTableColumnInfosTableInfoArray []GetAccountTableColumnInfosTableInfoInput
+
+func (GetAccountTableColumnInfosTableInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (i GetAccountTableColumnInfosTableInfoArray) ToGetAccountTableColumnInfosTableInfoArrayOutput() GetAccountTableColumnInfosTableInfoArrayOutput {
+	return i.ToGetAccountTableColumnInfosTableInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountTableColumnInfosTableInfoArray) ToGetAccountTableColumnInfosTableInfoArrayOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountTableColumnInfosTableInfoArrayOutput)
+}
+
+type GetAccountTableColumnInfosTableInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAccountTableColumnInfosTableInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (o GetAccountTableColumnInfosTableInfoOutput) ToGetAccountTableColumnInfosTableInfoOutput() GetAccountTableColumnInfosTableInfoOutput {
+	return o
+}
+
+func (o GetAccountTableColumnInfosTableInfoOutput) ToGetAccountTableColumnInfosTableInfoOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoOutput {
+	return o
+}
+
+// The column privileges of the account.
+func (o GetAccountTableColumnInfosTableInfoOutput) AccountPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountTableColumnInfosTableInfo) []string { return v.AccountPrivileges }).(pulumi.StringArrayOutput)
+}
+
+// The column permission information of the account.
+func (o GetAccountTableColumnInfosTableInfoOutput) ColumnInfos() GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return o.ApplyT(func(v GetAccountTableColumnInfosTableInfo) []GetAccountTableColumnInfosTableInfoColumnInfo {
+		return v.ColumnInfos
+	}).(GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput)
+}
+
+// The name of the table.
+func (o GetAccountTableColumnInfosTableInfoOutput) TableName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountTableColumnInfosTableInfo) string { return v.TableName }).(pulumi.StringOutput)
+}
+
+type GetAccountTableColumnInfosTableInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountTableColumnInfosTableInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountTableColumnInfosTableInfo)(nil)).Elem()
+}
+
+func (o GetAccountTableColumnInfosTableInfoArrayOutput) ToGetAccountTableColumnInfosTableInfoArrayOutput() GetAccountTableColumnInfosTableInfoArrayOutput {
+	return o
+}
+
+func (o GetAccountTableColumnInfosTableInfoArrayOutput) ToGetAccountTableColumnInfosTableInfoArrayOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoArrayOutput {
+	return o
+}
+
+func (o GetAccountTableColumnInfosTableInfoArrayOutput) Index(i pulumi.IntInput) GetAccountTableColumnInfosTableInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountTableColumnInfosTableInfo {
+		return vs[0].([]GetAccountTableColumnInfosTableInfo)[vs[1].(int)]
+	}).(GetAccountTableColumnInfosTableInfoOutput)
+}
+
+type GetAccountTableColumnInfosTableInfoColumnInfo struct {
+	// The column privileges of the account.
+	AccountPrivileges []string `pulumi:"accountPrivileges"`
+	// The name of the column.
+	ColumnName string `pulumi:"columnName"`
+}
+
+// GetAccountTableColumnInfosTableInfoColumnInfoInput is an input type that accepts GetAccountTableColumnInfosTableInfoColumnInfoArgs and GetAccountTableColumnInfosTableInfoColumnInfoOutput values.
+// You can construct a concrete instance of `GetAccountTableColumnInfosTableInfoColumnInfoInput` via:
+//
+//	GetAccountTableColumnInfosTableInfoColumnInfoArgs{...}
+type GetAccountTableColumnInfosTableInfoColumnInfoInput interface {
+	pulumi.Input
+
+	ToGetAccountTableColumnInfosTableInfoColumnInfoOutput() GetAccountTableColumnInfosTableInfoColumnInfoOutput
+	ToGetAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(context.Context) GetAccountTableColumnInfosTableInfoColumnInfoOutput
+}
+
+type GetAccountTableColumnInfosTableInfoColumnInfoArgs struct {
+	// The column privileges of the account.
+	AccountPrivileges pulumi.StringArrayInput `pulumi:"accountPrivileges"`
+	// The name of the column.
+	ColumnName pulumi.StringInput `pulumi:"columnName"`
+}
+
+func (GetAccountTableColumnInfosTableInfoColumnInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (i GetAccountTableColumnInfosTableInfoColumnInfoArgs) ToGetAccountTableColumnInfosTableInfoColumnInfoOutput() GetAccountTableColumnInfosTableInfoColumnInfoOutput {
+	return i.ToGetAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(context.Background())
+}
+
+func (i GetAccountTableColumnInfosTableInfoColumnInfoArgs) ToGetAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoColumnInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountTableColumnInfosTableInfoColumnInfoOutput)
+}
+
+// GetAccountTableColumnInfosTableInfoColumnInfoArrayInput is an input type that accepts GetAccountTableColumnInfosTableInfoColumnInfoArray and GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput values.
+// You can construct a concrete instance of `GetAccountTableColumnInfosTableInfoColumnInfoArrayInput` via:
+//
+//	GetAccountTableColumnInfosTableInfoColumnInfoArray{ GetAccountTableColumnInfosTableInfoColumnInfoArgs{...} }
+type GetAccountTableColumnInfosTableInfoColumnInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutput() GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput
+	ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(context.Context) GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput
+}
+
+type GetAccountTableColumnInfosTableInfoColumnInfoArray []GetAccountTableColumnInfosTableInfoColumnInfoInput
+
+func (GetAccountTableColumnInfosTableInfoColumnInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (i GetAccountTableColumnInfosTableInfoColumnInfoArray) ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutput() GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return i.ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountTableColumnInfosTableInfoColumnInfoArray) ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput)
+}
+
+type GetAccountTableColumnInfosTableInfoColumnInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAccountTableColumnInfosTableInfoColumnInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (o GetAccountTableColumnInfosTableInfoColumnInfoOutput) ToGetAccountTableColumnInfosTableInfoColumnInfoOutput() GetAccountTableColumnInfosTableInfoColumnInfoOutput {
+	return o
+}
+
+func (o GetAccountTableColumnInfosTableInfoColumnInfoOutput) ToGetAccountTableColumnInfosTableInfoColumnInfoOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoColumnInfoOutput {
+	return o
+}
+
+// The column privileges of the account.
+func (o GetAccountTableColumnInfosTableInfoColumnInfoOutput) AccountPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountTableColumnInfosTableInfoColumnInfo) []string { return v.AccountPrivileges }).(pulumi.StringArrayOutput)
+}
+
+// The name of the column.
+func (o GetAccountTableColumnInfosTableInfoColumnInfoOutput) ColumnName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountTableColumnInfosTableInfoColumnInfo) string { return v.ColumnName }).(pulumi.StringOutput)
+}
+
+type GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountTableColumnInfosTableInfoColumnInfo)(nil)).Elem()
+}
+
+func (o GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput) ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutput() GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return o
+}
+
+func (o GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput) ToGetAccountTableColumnInfosTableInfoColumnInfoArrayOutputWithContext(ctx context.Context) GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput {
+	return o
+}
+
+func (o GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput) Index(i pulumi.IntInput) GetAccountTableColumnInfosTableInfoColumnInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountTableColumnInfosTableInfoColumnInfo {
+		return vs[0].([]GetAccountTableColumnInfosTableInfoColumnInfo)[vs[1].(int)]
+	}).(GetAccountTableColumnInfosTableInfoColumnInfoOutput)
+}
+
 type GetAccountsAccount struct {
+	// The description information of the account.
+	AccountDesc string `pulumi:"accountDesc"`
 	// The name of the database account. This field supports fuzzy query.
 	AccountName string `pulumi:"accountName"`
 	// The privilege detail list of RDS mysql instance account.
 	AccountPrivileges []GetAccountsAccountAccountPrivilege `pulumi:"accountPrivileges"`
+	// The SQL statement of the account privileges.
+	AccountPrivilegesSqls []string `pulumi:"accountPrivilegesSqls"`
 	// The status of the database account.
 	AccountStatus string `pulumi:"accountStatus"`
 	// The type of the database account.
 	AccountType string `pulumi:"accountType"`
+	// The global privileges of the account.
+	GlobalAccountPrivileges []string `pulumi:"globalAccountPrivileges"`
+	// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+	HasTableColumnPrivilegeDbNames []string `pulumi:"hasTableColumnPrivilegeDbNames"`
+	// The host of the account.
+	Host string `pulumi:"host"`
 }
 
 // GetAccountsAccountInput is an input type that accepts GetAccountsAccountArgs and GetAccountsAccountOutput values.
@@ -6565,14 +9549,24 @@ type GetAccountsAccountInput interface {
 }
 
 type GetAccountsAccountArgs struct {
+	// The description information of the account.
+	AccountDesc pulumi.StringInput `pulumi:"accountDesc"`
 	// The name of the database account. This field supports fuzzy query.
 	AccountName pulumi.StringInput `pulumi:"accountName"`
 	// The privilege detail list of RDS mysql instance account.
 	AccountPrivileges GetAccountsAccountAccountPrivilegeArrayInput `pulumi:"accountPrivileges"`
+	// The SQL statement of the account privileges.
+	AccountPrivilegesSqls pulumi.StringArrayInput `pulumi:"accountPrivilegesSqls"`
 	// The status of the database account.
 	AccountStatus pulumi.StringInput `pulumi:"accountStatus"`
 	// The type of the database account.
 	AccountType pulumi.StringInput `pulumi:"accountType"`
+	// The global privileges of the account.
+	GlobalAccountPrivileges pulumi.StringArrayInput `pulumi:"globalAccountPrivileges"`
+	// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+	HasTableColumnPrivilegeDbNames pulumi.StringArrayInput `pulumi:"hasTableColumnPrivilegeDbNames"`
+	// The host of the account.
+	Host pulumi.StringInput `pulumi:"host"`
 }
 
 func (GetAccountsAccountArgs) ElementType() reflect.Type {
@@ -6626,6 +9620,11 @@ func (o GetAccountsAccountOutput) ToGetAccountsAccountOutputWithContext(ctx cont
 	return o
 }
 
+// The description information of the account.
+func (o GetAccountsAccountOutput) AccountDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountDesc }).(pulumi.StringOutput)
+}
+
 // The name of the database account. This field supports fuzzy query.
 func (o GetAccountsAccountOutput) AccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountName }).(pulumi.StringOutput)
@@ -6636,6 +9635,11 @@ func (o GetAccountsAccountOutput) AccountPrivileges() GetAccountsAccountAccountP
 	return o.ApplyT(func(v GetAccountsAccount) []GetAccountsAccountAccountPrivilege { return v.AccountPrivileges }).(GetAccountsAccountAccountPrivilegeArrayOutput)
 }
 
+// The SQL statement of the account privileges.
+func (o GetAccountsAccountOutput) AccountPrivilegesSqls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountsAccount) []string { return v.AccountPrivilegesSqls }).(pulumi.StringArrayOutput)
+}
+
 // The status of the database account.
 func (o GetAccountsAccountOutput) AccountStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountStatus }).(pulumi.StringOutput)
@@ -6644,6 +9648,21 @@ func (o GetAccountsAccountOutput) AccountStatus() pulumi.StringOutput {
 // The type of the database account.
 func (o GetAccountsAccountOutput) AccountType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountsAccount) string { return v.AccountType }).(pulumi.StringOutput)
+}
+
+// The global privileges of the account.
+func (o GetAccountsAccountOutput) GlobalAccountPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountsAccount) []string { return v.GlobalAccountPrivileges }).(pulumi.StringArrayOutput)
+}
+
+// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+func (o GetAccountsAccountOutput) HasTableColumnPrivilegeDbNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountsAccount) []string { return v.HasTableColumnPrivilegeDbNames }).(pulumi.StringArrayOutput)
+}
+
+// The host of the account.
+func (o GetAccountsAccountOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountsAccount) string { return v.Host }).(pulumi.StringOutput)
 }
 
 type GetAccountsAccountArrayOutput struct{ *pulumi.OutputState }
@@ -7250,6 +10269,8 @@ type GetBackupsBackup struct {
 	// Explanation:
 	// When the database is empty, this field is not returned.
 	DbTableInfos []GetBackupsBackupDbTableInfo `pulumi:"dbTableInfos"`
+	// The decryption key of the backup.
+	DecryptionKey string `pulumi:"decryptionKey"`
 	// Download status. Values:
 	// NotDownload: Not downloaded.
 	// Success: Downloaded.
@@ -7270,6 +10291,10 @@ type GetBackupsBackup struct {
 	// true: Expired.
 	// false: Not expired.
 	IsExpired bool `pulumi:"isExpired"`
+	// Initialization Vector.
+	Iv string `pulumi:"iv"`
+	// Statistics information about the storage space usage of backups.
+	UsageStats []GetBackupsBackupUsageStat `pulumi:"usageStats"`
 }
 
 // GetBackupsBackupInput is an input type that accepts GetBackupsBackupArgs and GetBackupsBackupOutput values.
@@ -7310,6 +10335,8 @@ type GetBackupsBackupArgs struct {
 	// Explanation:
 	// When the database is empty, this field is not returned.
 	DbTableInfos GetBackupsBackupDbTableInfoArrayInput `pulumi:"dbTableInfos"`
+	// The decryption key of the backup.
+	DecryptionKey pulumi.StringInput `pulumi:"decryptionKey"`
 	// Download status. Values:
 	// NotDownload: Not downloaded.
 	// Success: Downloaded.
@@ -7330,6 +10357,10 @@ type GetBackupsBackupArgs struct {
 	// true: Expired.
 	// false: Not expired.
 	IsExpired pulumi.BoolInput `pulumi:"isExpired"`
+	// Initialization Vector.
+	Iv pulumi.StringInput `pulumi:"iv"`
+	// Statistics information about the storage space usage of backups.
+	UsageStats GetBackupsBackupUsageStatArrayInput `pulumi:"usageStats"`
 }
 
 func (GetBackupsBackupArgs) ElementType() reflect.Type {
@@ -7445,6 +10476,11 @@ func (o GetBackupsBackupOutput) DbTableInfos() GetBackupsBackupDbTableInfoArrayO
 	return o.ApplyT(func(v GetBackupsBackup) []GetBackupsBackupDbTableInfo { return v.DbTableInfos }).(GetBackupsBackupDbTableInfoArrayOutput)
 }
 
+// The decryption key of the backup.
+func (o GetBackupsBackupOutput) DecryptionKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.DecryptionKey }).(pulumi.StringOutput)
+}
+
 // Download status. Values:
 // NotDownload: Not downloaded.
 // Success: Downloaded.
@@ -7481,6 +10517,16 @@ func (o GetBackupsBackupOutput) IsEncrypted() pulumi.BoolOutput {
 // false: Not expired.
 func (o GetBackupsBackupOutput) IsExpired() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetBackupsBackup) bool { return v.IsExpired }).(pulumi.BoolOutput)
+}
+
+// Initialization Vector.
+func (o GetBackupsBackupOutput) Iv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackup) string { return v.Iv }).(pulumi.StringOutput)
+}
+
+// Statistics information about the storage space usage of backups.
+func (o GetBackupsBackupOutput) UsageStats() GetBackupsBackupUsageStatArrayOutput {
+	return o.ApplyT(func(v GetBackupsBackup) []GetBackupsBackupUsageStat { return v.UsageStats }).(GetBackupsBackupUsageStatArrayOutput)
 }
 
 type GetBackupsBackupArrayOutput struct{ *pulumi.OutputState }
@@ -7609,13 +10655,132 @@ func (o GetBackupsBackupDbTableInfoArrayOutput) Index(i pulumi.IntInput) GetBack
 	}).(GetBackupsBackupDbTableInfoOutput)
 }
 
+type GetBackupsBackupUsageStat struct {
+	// Backup size, in bytes.
+	Quantity int `pulumi:"quantity"`
+	// Statistical time.
+	StartTime string `pulumi:"startTime"`
+	// Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+	StatItem string `pulumi:"statItem"`
+}
+
+// GetBackupsBackupUsageStatInput is an input type that accepts GetBackupsBackupUsageStatArgs and GetBackupsBackupUsageStatOutput values.
+// You can construct a concrete instance of `GetBackupsBackupUsageStatInput` via:
+//
+//	GetBackupsBackupUsageStatArgs{...}
+type GetBackupsBackupUsageStatInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupUsageStatOutput() GetBackupsBackupUsageStatOutput
+	ToGetBackupsBackupUsageStatOutputWithContext(context.Context) GetBackupsBackupUsageStatOutput
+}
+
+type GetBackupsBackupUsageStatArgs struct {
+	// Backup size, in bytes.
+	Quantity pulumi.IntInput `pulumi:"quantity"`
+	// Statistical time.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+	StatItem pulumi.StringInput `pulumi:"statItem"`
+}
+
+func (GetBackupsBackupUsageStatArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (i GetBackupsBackupUsageStatArgs) ToGetBackupsBackupUsageStatOutput() GetBackupsBackupUsageStatOutput {
+	return i.ToGetBackupsBackupUsageStatOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupUsageStatArgs) ToGetBackupsBackupUsageStatOutputWithContext(ctx context.Context) GetBackupsBackupUsageStatOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupUsageStatOutput)
+}
+
+// GetBackupsBackupUsageStatArrayInput is an input type that accepts GetBackupsBackupUsageStatArray and GetBackupsBackupUsageStatArrayOutput values.
+// You can construct a concrete instance of `GetBackupsBackupUsageStatArrayInput` via:
+//
+//	GetBackupsBackupUsageStatArray{ GetBackupsBackupUsageStatArgs{...} }
+type GetBackupsBackupUsageStatArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupsBackupUsageStatArrayOutput() GetBackupsBackupUsageStatArrayOutput
+	ToGetBackupsBackupUsageStatArrayOutputWithContext(context.Context) GetBackupsBackupUsageStatArrayOutput
+}
+
+type GetBackupsBackupUsageStatArray []GetBackupsBackupUsageStatInput
+
+func (GetBackupsBackupUsageStatArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (i GetBackupsBackupUsageStatArray) ToGetBackupsBackupUsageStatArrayOutput() GetBackupsBackupUsageStatArrayOutput {
+	return i.ToGetBackupsBackupUsageStatArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupsBackupUsageStatArray) ToGetBackupsBackupUsageStatArrayOutputWithContext(ctx context.Context) GetBackupsBackupUsageStatArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupsBackupUsageStatArrayOutput)
+}
+
+type GetBackupsBackupUsageStatOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupUsageStatOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (o GetBackupsBackupUsageStatOutput) ToGetBackupsBackupUsageStatOutput() GetBackupsBackupUsageStatOutput {
+	return o
+}
+
+func (o GetBackupsBackupUsageStatOutput) ToGetBackupsBackupUsageStatOutputWithContext(ctx context.Context) GetBackupsBackupUsageStatOutput {
+	return o
+}
+
+// Backup size, in bytes.
+func (o GetBackupsBackupUsageStatOutput) Quantity() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupsBackupUsageStat) int { return v.Quantity }).(pulumi.IntOutput)
+}
+
+// Statistical time.
+func (o GetBackupsBackupUsageStatOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackupUsageStat) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+func (o GetBackupsBackupUsageStatOutput) StatItem() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupsBackupUsageStat) string { return v.StatItem }).(pulumi.StringOutput)
+}
+
+type GetBackupsBackupUsageStatArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupsBackupUsageStatArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupsBackupUsageStat)(nil)).Elem()
+}
+
+func (o GetBackupsBackupUsageStatArrayOutput) ToGetBackupsBackupUsageStatArrayOutput() GetBackupsBackupUsageStatArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupUsageStatArrayOutput) ToGetBackupsBackupUsageStatArrayOutputWithContext(ctx context.Context) GetBackupsBackupUsageStatArrayOutput {
+	return o
+}
+
+func (o GetBackupsBackupUsageStatArrayOutput) Index(i pulumi.IntInput) GetBackupsBackupUsageStatOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupsBackupUsageStat {
+		return vs[0].([]GetBackupsBackupUsageStat)[vs[1].(int)]
+	}).(GetBackupsBackupUsageStatOutput)
+}
+
 type GetDatabasesDatabase struct {
 	// The character set of the RDS database.
 	CharacterSetName string `pulumi:"characterSetName"`
 	// The privilege detail list of RDS mysql instance database.
 	DatabasePrivileges []GetDatabasesDatabaseDatabasePrivilege `pulumi:"databasePrivileges"`
+	// The description information of the RDS database.
+	DbDesc string `pulumi:"dbDesc"`
 	// The name of the RDS database.
 	DbName string `pulumi:"dbName"`
+	// The status of the RDS database.
+	DbStatus string `pulumi:"dbStatus"`
 }
 
 // GetDatabasesDatabaseInput is an input type that accepts GetDatabasesDatabaseArgs and GetDatabasesDatabaseOutput values.
@@ -7634,8 +10799,12 @@ type GetDatabasesDatabaseArgs struct {
 	CharacterSetName pulumi.StringInput `pulumi:"characterSetName"`
 	// The privilege detail list of RDS mysql instance database.
 	DatabasePrivileges GetDatabasesDatabaseDatabasePrivilegeArrayInput `pulumi:"databasePrivileges"`
+	// The description information of the RDS database.
+	DbDesc pulumi.StringInput `pulumi:"dbDesc"`
 	// The name of the RDS database.
 	DbName pulumi.StringInput `pulumi:"dbName"`
+	// The status of the RDS database.
+	DbStatus pulumi.StringInput `pulumi:"dbStatus"`
 }
 
 func (GetDatabasesDatabaseArgs) ElementType() reflect.Type {
@@ -7699,9 +10868,19 @@ func (o GetDatabasesDatabaseOutput) DatabasePrivileges() GetDatabasesDatabaseDat
 	return o.ApplyT(func(v GetDatabasesDatabase) []GetDatabasesDatabaseDatabasePrivilege { return v.DatabasePrivileges }).(GetDatabasesDatabaseDatabasePrivilegeArrayOutput)
 }
 
+// The description information of the RDS database.
+func (o GetDatabasesDatabaseOutput) DbDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabase) string { return v.DbDesc }).(pulumi.StringOutput)
+}
+
 // The name of the RDS database.
 func (o GetDatabasesDatabaseOutput) DbName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabasesDatabase) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The status of the RDS database.
+func (o GetDatabasesDatabaseOutput) DbStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabase) string { return v.DbStatus }).(pulumi.StringOutput)
 }
 
 type GetDatabasesDatabaseArrayOutput struct{ *pulumi.OutputState }
@@ -8536,6 +11715,12 @@ func (o GetInstanceSpecsInstanceSpecArrayOutput) Index(i pulumi.IntInput) GetIns
 type GetInstancesRdsMysqlInstance struct {
 	// The version of allow list.
 	AllowListVersion string `pulumi:"allowListVersion"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfigs []GetInstancesRdsMysqlInstanceAutoStorageScalingConfig `pulumi:"autoStorageScalingConfigs"`
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion string `pulumi:"autoUpgradeMinorVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse int `pulumi:"backupUse"`
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -8558,6 +11743,18 @@ type GetInstancesRdsMysqlInstance struct {
 	// Shutdown: The proxy is closed.
 	// Deleting: The proxy is being closed.
 	DbProxyStatus string `pulumi:"dbProxyStatus"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection string `pulumi:"deletionProtection"`
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId string `pulumi:"drDtsTaskId"`
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName string `pulumi:"drDtsTaskName"`
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus string `pulumi:"drDtsTaskStatus"`
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster int `pulumi:"drSecondsBehindMaster"`
 	// The endpoint info of the RDS instance.
 	Endpoints []GetInstancesRdsMysqlInstanceEndpoint `pulumi:"endpoints"`
 	// Feature status.
@@ -8574,6 +11771,8 @@ type GetInstancesRdsMysqlInstance struct {
 	InstanceName string `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus string `pulumi:"instanceStatus"`
+	// The kernel version of the instance.
+	KernelVersion string `pulumi:"kernelVersion"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -8581,6 +11780,12 @@ type GetInstancesRdsMysqlInstance struct {
 	LowerCaseTableNames string `pulumi:"lowerCaseTableNames"`
 	// Maintenance Window.
 	MaintenanceWindows []GetInstancesRdsMysqlInstanceMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId string `pulumi:"masterInstanceId"`
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName string `pulumi:"masterInstanceName"`
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion string `pulumi:"masterRegion"`
 	// Memory size in GB.
 	Memory int `pulumi:"memory"`
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -8591,7 +11796,7 @@ type GetInstancesRdsMysqlInstance struct {
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Average disk usage of the instance master node in nearly one minute.
 	NodeSpaceUsedPercentage float64 `pulumi:"nodeSpaceUsedPercentage"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Instance node information.
 	Nodes []GetInstancesRdsMysqlInstanceNode `pulumi:"nodes"`
@@ -8599,9 +11804,17 @@ type GetInstancesRdsMysqlInstance struct {
 	ProjectName string `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId string `pulumi:"regionId"`
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity int `pulumi:"storageMaxCapacity"`
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold int `pulumi:"storageMaxTriggerThreshold"`
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity int `pulumi:"storageMinCapacity"`
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold int `pulumi:"storageMinTriggerThreshold"`
 	// Total instance storage space. Unit: GB.
 	StorageSpace int `pulumi:"storageSpace"`
-	// Instance storage type.
+	// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
 	StorageType string `pulumi:"storageType"`
 	// The instance has used storage space. Unit: GB.
 	StorageUse int `pulumi:"storageUse"`
@@ -8637,6 +11850,12 @@ type GetInstancesRdsMysqlInstanceInput interface {
 type GetInstancesRdsMysqlInstanceArgs struct {
 	// The version of allow list.
 	AllowListVersion pulumi.StringInput `pulumi:"allowListVersion"`
+	// Auto - storage scaling configuration.
+	AutoStorageScalingConfigs GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput `pulumi:"autoStorageScalingConfigs"`
+	// The upgrade strategy for the minor version of the instance kernel. Values:
+	// Auto: Auto upgrade.
+	// Manual: Manual upgrade.
+	AutoUpgradeMinorVersion pulumi.StringInput `pulumi:"autoUpgradeMinorVersion"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntInput `pulumi:"backupUse"`
 	// Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
@@ -8659,6 +11878,18 @@ type GetInstancesRdsMysqlInstanceArgs struct {
 	// Shutdown: The proxy is closed.
 	// Deleting: The proxy is being closed.
 	DbProxyStatus pulumi.StringInput `pulumi:"dbProxyStatus"`
+	// Whether to enable the deletion protection function. Values:
+	// Enabled: Yes.
+	// Disabled: No.
+	DeletionProtection pulumi.StringInput `pulumi:"deletionProtection"`
+	// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskId pulumi.StringInput `pulumi:"drDtsTaskId"`
+	// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskName pulumi.StringInput `pulumi:"drDtsTaskName"`
+	// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+	DrDtsTaskStatus pulumi.StringInput `pulumi:"drDtsTaskStatus"`
+	// The number of seconds that the disaster recovery instance is behind the primary instance.
+	DrSecondsBehindMaster pulumi.IntInput `pulumi:"drSecondsBehindMaster"`
 	// The endpoint info of the RDS instance.
 	Endpoints GetInstancesRdsMysqlInstanceEndpointArrayInput `pulumi:"endpoints"`
 	// Feature status.
@@ -8675,6 +11906,8 @@ type GetInstancesRdsMysqlInstanceArgs struct {
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus pulumi.StringInput `pulumi:"instanceStatus"`
+	// The kernel version of the instance.
+	KernelVersion pulumi.StringInput `pulumi:"kernelVersion"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -8682,6 +11915,12 @@ type GetInstancesRdsMysqlInstanceArgs struct {
 	LowerCaseTableNames pulumi.StringInput `pulumi:"lowerCaseTableNames"`
 	// Maintenance Window.
 	MaintenanceWindows GetInstancesRdsMysqlInstanceMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
+	// The ID of the primary instance of the disaster recovery instance.
+	MasterInstanceId pulumi.StringInput `pulumi:"masterInstanceId"`
+	// The name of the primary instance of the disaster recovery instance.
+	MasterInstanceName pulumi.StringInput `pulumi:"masterInstanceName"`
+	// The region where the primary instance of the disaster recovery instance is located.
+	MasterRegion pulumi.StringInput `pulumi:"masterRegion"`
 	// Memory size in GB.
 	Memory pulumi.IntInput `pulumi:"memory"`
 	// Average CPU usage of the instance master node in nearly one minute.
@@ -8692,7 +11931,7 @@ type GetInstancesRdsMysqlInstanceArgs struct {
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Average disk usage of the instance master node in nearly one minute.
 	NodeSpaceUsedPercentage pulumi.Float64Input `pulumi:"nodeSpaceUsedPercentage"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
 	// Instance node information.
 	Nodes GetInstancesRdsMysqlInstanceNodeArrayInput `pulumi:"nodes"`
@@ -8700,9 +11939,17 @@ type GetInstancesRdsMysqlInstanceArgs struct {
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMaxCapacity pulumi.IntInput `pulumi:"storageMaxCapacity"`
+	// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+	StorageMaxTriggerThreshold pulumi.IntInput `pulumi:"storageMaxTriggerThreshold"`
+	// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+	StorageMinCapacity pulumi.IntInput `pulumi:"storageMinCapacity"`
+	// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+	StorageMinTriggerThreshold pulumi.IntInput `pulumi:"storageMinTriggerThreshold"`
 	// Total instance storage space. Unit: GB.
 	StorageSpace pulumi.IntInput `pulumi:"storageSpace"`
-	// Instance storage type.
+	// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
 	StorageType pulumi.StringInput `pulumi:"storageType"`
 	// The instance has used storage space. Unit: GB.
 	StorageUse pulumi.IntInput `pulumi:"storageUse"`
@@ -8780,6 +12027,20 @@ func (o GetInstancesRdsMysqlInstanceOutput) AllowListVersion() pulumi.StringOutp
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.AllowListVersion }).(pulumi.StringOutput)
 }
 
+// Auto - storage scaling configuration.
+func (o GetInstancesRdsMysqlInstanceOutput) AutoStorageScalingConfigs() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceAutoStorageScalingConfig {
+		return v.AutoStorageScalingConfigs
+	}).(GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput)
+}
+
+// The upgrade strategy for the minor version of the instance kernel. Values:
+// Auto: Auto upgrade.
+// Manual: Manual upgrade.
+func (o GetInstancesRdsMysqlInstanceOutput) AutoUpgradeMinorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.AutoUpgradeMinorVersion }).(pulumi.StringOutput)
+}
+
 // The instance has used backup space. Unit: GB.
 func (o GetInstancesRdsMysqlInstanceOutput) BackupUse() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.BackupUse }).(pulumi.IntOutput)
@@ -8826,6 +12087,33 @@ func (o GetInstancesRdsMysqlInstanceOutput) DbProxyStatus() pulumi.StringOutput 
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DbProxyStatus }).(pulumi.StringOutput)
 }
 
+// Whether to enable the deletion protection function. Values:
+// Enabled: Yes.
+// Disabled: No.
+func (o GetInstancesRdsMysqlInstanceOutput) DeletionProtection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DeletionProtection }).(pulumi.StringOutput)
+}
+
+// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o GetInstancesRdsMysqlInstanceOutput) DrDtsTaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DrDtsTaskId }).(pulumi.StringOutput)
+}
+
+// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o GetInstancesRdsMysqlInstanceOutput) DrDtsTaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DrDtsTaskName }).(pulumi.StringOutput)
+}
+
+// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+func (o GetInstancesRdsMysqlInstanceOutput) DrDtsTaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.DrDtsTaskStatus }).(pulumi.StringOutput)
+}
+
+// The number of seconds that the disaster recovery instance is behind the primary instance.
+func (o GetInstancesRdsMysqlInstanceOutput) DrSecondsBehindMaster() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.DrSecondsBehindMaster }).(pulumi.IntOutput)
+}
+
 // The endpoint info of the RDS instance.
 func (o GetInstancesRdsMysqlInstanceOutput) Endpoints() GetInstancesRdsMysqlInstanceEndpointArrayOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceEndpoint { return v.Endpoints }).(GetInstancesRdsMysqlInstanceEndpointArrayOutput)
@@ -8865,6 +12153,11 @@ func (o GetInstancesRdsMysqlInstanceOutput) InstanceStatus() pulumi.StringOutput
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.InstanceStatus }).(pulumi.StringOutput)
 }
 
+// The kernel version of the instance.
+func (o GetInstancesRdsMysqlInstanceOutput) KernelVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.KernelVersion }).(pulumi.StringOutput)
+}
+
 // Whether the table name is case sensitive, the default value is 1.
 // Ranges:
 // 0: Table names are stored as fixed and table names are case-sensitive.
@@ -8878,6 +12171,21 @@ func (o GetInstancesRdsMysqlInstanceOutput) MaintenanceWindows() GetInstancesRds
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) []GetInstancesRdsMysqlInstanceMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(GetInstancesRdsMysqlInstanceMaintenanceWindowArrayOutput)
+}
+
+// The ID of the primary instance of the disaster recovery instance.
+func (o GetInstancesRdsMysqlInstanceOutput) MasterInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.MasterInstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the primary instance of the disaster recovery instance.
+func (o GetInstancesRdsMysqlInstanceOutput) MasterInstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.MasterInstanceName }).(pulumi.StringOutput)
+}
+
+// The region where the primary instance of the disaster recovery instance is located.
+func (o GetInstancesRdsMysqlInstanceOutput) MasterRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.MasterRegion }).(pulumi.StringOutput)
 }
 
 // Memory size in GB.
@@ -8905,7 +12213,7 @@ func (o GetInstancesRdsMysqlInstanceOutput) NodeSpaceUsedPercentage() pulumi.Flo
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) float64 { return v.NodeSpaceUsedPercentage }).(pulumi.Float64Output)
 }
 
-// General instance type, different from Custom instance type.
+// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 func (o GetInstancesRdsMysqlInstanceOutput) NodeSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.NodeSpec }).(pulumi.StringOutput)
 }
@@ -8925,12 +12233,32 @@ func (o GetInstancesRdsMysqlInstanceOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.RegionId }).(pulumi.StringOutput)
 }
 
+// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageMaxCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageMaxCapacity }).(pulumi.IntOutput)
+}
+
+// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageMaxTriggerThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageMaxTriggerThreshold }).(pulumi.IntOutput)
+}
+
+// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageMinCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageMinCapacity }).(pulumi.IntOutput)
+}
+
+// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+func (o GetInstancesRdsMysqlInstanceOutput) StorageMinTriggerThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageMinTriggerThreshold }).(pulumi.IntOutput)
+}
+
 // Total instance storage space. Unit: GB.
 func (o GetInstancesRdsMysqlInstanceOutput) StorageSpace() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) int { return v.StorageSpace }).(pulumi.IntOutput)
 }
 
-// Instance storage type.
+// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
 func (o GetInstancesRdsMysqlInstanceOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstance) string { return v.StorageType }).(pulumi.StringOutput)
 }
@@ -8998,6 +12326,127 @@ func (o GetInstancesRdsMysqlInstanceArrayOutput) Index(i pulumi.IntInput) GetIns
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstance {
 		return vs[0].([]GetInstancesRdsMysqlInstance)[vs[1].(int)]
 	}).(GetInstancesRdsMysqlInstanceOutput)
+}
+
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfig struct {
+	// Whether to enable the instance's auto - scaling function. Values:
+	// true: Yes.
+	// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+	EnableStorageAutoScale bool `pulumi:"enableStorageAutoScale"`
+	// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+	StorageThreshold int `pulumi:"storageThreshold"`
+	// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+	StorageUpperBound int `pulumi:"storageUpperBound"`
+}
+
+// GetInstancesRdsMysqlInstanceAutoStorageScalingConfigInput is an input type that accepts GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs and GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceAutoStorageScalingConfigInput` via:
+//
+//	GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs{...}
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfigInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput
+	ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput
+}
+
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs struct {
+	// Whether to enable the instance's auto - scaling function. Values:
+	// true: Yes.
+	// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+	EnableStorageAutoScale pulumi.BoolInput `pulumi:"enableStorageAutoScale"`
+	// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+	StorageThreshold pulumi.IntInput `pulumi:"storageThreshold"`
+	// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+	StorageUpperBound pulumi.IntInput `pulumi:"storageUpperBound"`
+}
+
+func (GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return i.ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput)
+}
+
+// GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput is an input type that accepts GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray and GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput values.
+// You can construct a concrete instance of `GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput` via:
+//
+//	GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray{ GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs{...} }
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput
+	ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(context.Context) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput
+}
+
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray []GetInstancesRdsMysqlInstanceAutoStorageScalingConfigInput
+
+func (GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (i GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return i.ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput)
+}
+
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return o
+}
+
+// Whether to enable the instance's auto - scaling function. Values:
+// true: Yes.
+// false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) EnableStorageAutoScale() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceAutoStorageScalingConfig) bool { return v.EnableStorageAutoScale }).(pulumi.BoolOutput)
+}
+
+// The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) StorageThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceAutoStorageScalingConfig) int { return v.StorageThreshold }).(pulumi.IntOutput)
+}
+
+// The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput) StorageUpperBound() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceAutoStorageScalingConfig) int { return v.StorageUpperBound }).(pulumi.IntOutput)
+}
+
+type GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesRdsMysqlInstanceAutoStorageScalingConfig)(nil)).Elem()
+}
+
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput() GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) ToGetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutputWithContext(ctx context.Context) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput {
+	return o
+}
+
+func (o GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput) Index(i pulumi.IntInput) GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesRdsMysqlInstanceAutoStorageScalingConfig {
+		return vs[0].([]GetInstancesRdsMysqlInstanceAutoStorageScalingConfig)[vs[1].(int)]
+	}).(GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput)
 }
 
 type GetInstancesRdsMysqlInstanceChargeDetail struct {
@@ -9907,7 +13356,7 @@ type GetInstancesRdsMysqlInstanceNode struct {
 	Memory int `pulumi:"memory"`
 	// Node ID.
 	NodeId string `pulumi:"nodeId"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Node state, value: aligned with instance state.
 	NodeStatus string `pulumi:"nodeStatus"`
@@ -9945,7 +13394,7 @@ type GetInstancesRdsMysqlInstanceNodeArgs struct {
 	Memory pulumi.IntInput `pulumi:"memory"`
 	// Node ID.
 	NodeId pulumi.StringInput `pulumi:"nodeId"`
-	// General instance type, different from Custom instance type.
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
 	// Node state, value: aligned with instance state.
 	NodeStatus pulumi.StringInput `pulumi:"nodeStatus"`
@@ -10034,7 +13483,7 @@ func (o GetInstancesRdsMysqlInstanceNodeOutput) NodeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.NodeId }).(pulumi.StringOutput)
 }
 
-// General instance type, different from Custom instance type.
+// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
 func (o GetInstancesRdsMysqlInstanceNodeOutput) NodeSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesRdsMysqlInstanceNode) string { return v.NodeSpec }).(pulumi.StringOutput)
 }
@@ -10673,6 +14122,256 @@ func (o GetParameterTemplatesTemplateTemplateParamArrayOutput) Index(i pulumi.In
 	}).(GetParameterTemplatesTemplateTemplateParamOutput)
 }
 
+type GetPlannedEventsPlannedEvent struct {
+	// The business impact of the planned event.
+	BusinessImpact string `pulumi:"businessImpact"`
+	// The database engine of the planned event.
+	DbEngine string `pulumi:"dbEngine"`
+	// The action of the planned event.
+	EventAction string `pulumi:"eventAction"`
+	// The id of the planned event.
+	EventId string `pulumi:"eventId"`
+	// The name of the planned event.
+	EventName string `pulumi:"eventName"`
+	// The type of the planned event.
+	EventType string `pulumi:"eventType"`
+	// The id of the instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	MaxDelayTime string `pulumi:"maxDelayTime"`
+	// The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	OriginBeginTime string `pulumi:"originBeginTime"`
+	// The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedBeginTime string `pulumi:"plannedBeginTime"`
+	// The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedEndTime string `pulumi:"plannedEndTime"`
+	// Description information of the operation and maintenance event.
+	PlannedEventDescription string `pulumi:"plannedEventDescription"`
+	// The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+	PlannedEventReason string `pulumi:"plannedEventReason"`
+	// The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchBeginTime string `pulumi:"plannedSwitchBeginTime"`
+	// The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchEndTime string `pulumi:"plannedSwitchEndTime"`
+	// The region.
+	Region string `pulumi:"region"`
+	// The status of the planned event.
+	Status string `pulumi:"status"`
+}
+
+// GetPlannedEventsPlannedEventInput is an input type that accepts GetPlannedEventsPlannedEventArgs and GetPlannedEventsPlannedEventOutput values.
+// You can construct a concrete instance of `GetPlannedEventsPlannedEventInput` via:
+//
+//	GetPlannedEventsPlannedEventArgs{...}
+type GetPlannedEventsPlannedEventInput interface {
+	pulumi.Input
+
+	ToGetPlannedEventsPlannedEventOutput() GetPlannedEventsPlannedEventOutput
+	ToGetPlannedEventsPlannedEventOutputWithContext(context.Context) GetPlannedEventsPlannedEventOutput
+}
+
+type GetPlannedEventsPlannedEventArgs struct {
+	// The business impact of the planned event.
+	BusinessImpact pulumi.StringInput `pulumi:"businessImpact"`
+	// The database engine of the planned event.
+	DbEngine pulumi.StringInput `pulumi:"dbEngine"`
+	// The action of the planned event.
+	EventAction pulumi.StringInput `pulumi:"eventAction"`
+	// The id of the planned event.
+	EventId pulumi.StringInput `pulumi:"eventId"`
+	// The name of the planned event.
+	EventName pulumi.StringInput `pulumi:"eventName"`
+	// The type of the planned event.
+	EventType pulumi.StringInput `pulumi:"eventType"`
+	// The id of the instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	MaxDelayTime pulumi.StringInput `pulumi:"maxDelayTime"`
+	// The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	OriginBeginTime pulumi.StringInput `pulumi:"originBeginTime"`
+	// The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedBeginTime pulumi.StringInput `pulumi:"plannedBeginTime"`
+	// The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedEndTime pulumi.StringInput `pulumi:"plannedEndTime"`
+	// Description information of the operation and maintenance event.
+	PlannedEventDescription pulumi.StringInput `pulumi:"plannedEventDescription"`
+	// The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+	PlannedEventReason pulumi.StringInput `pulumi:"plannedEventReason"`
+	// The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchBeginTime pulumi.StringInput `pulumi:"plannedSwitchBeginTime"`
+	// The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+	PlannedSwitchEndTime pulumi.StringInput `pulumi:"plannedSwitchEndTime"`
+	// The region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The status of the planned event.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetPlannedEventsPlannedEventArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (i GetPlannedEventsPlannedEventArgs) ToGetPlannedEventsPlannedEventOutput() GetPlannedEventsPlannedEventOutput {
+	return i.ToGetPlannedEventsPlannedEventOutputWithContext(context.Background())
+}
+
+func (i GetPlannedEventsPlannedEventArgs) ToGetPlannedEventsPlannedEventOutputWithContext(ctx context.Context) GetPlannedEventsPlannedEventOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPlannedEventsPlannedEventOutput)
+}
+
+// GetPlannedEventsPlannedEventArrayInput is an input type that accepts GetPlannedEventsPlannedEventArray and GetPlannedEventsPlannedEventArrayOutput values.
+// You can construct a concrete instance of `GetPlannedEventsPlannedEventArrayInput` via:
+//
+//	GetPlannedEventsPlannedEventArray{ GetPlannedEventsPlannedEventArgs{...} }
+type GetPlannedEventsPlannedEventArrayInput interface {
+	pulumi.Input
+
+	ToGetPlannedEventsPlannedEventArrayOutput() GetPlannedEventsPlannedEventArrayOutput
+	ToGetPlannedEventsPlannedEventArrayOutputWithContext(context.Context) GetPlannedEventsPlannedEventArrayOutput
+}
+
+type GetPlannedEventsPlannedEventArray []GetPlannedEventsPlannedEventInput
+
+func (GetPlannedEventsPlannedEventArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (i GetPlannedEventsPlannedEventArray) ToGetPlannedEventsPlannedEventArrayOutput() GetPlannedEventsPlannedEventArrayOutput {
+	return i.ToGetPlannedEventsPlannedEventArrayOutputWithContext(context.Background())
+}
+
+func (i GetPlannedEventsPlannedEventArray) ToGetPlannedEventsPlannedEventArrayOutputWithContext(ctx context.Context) GetPlannedEventsPlannedEventArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPlannedEventsPlannedEventArrayOutput)
+}
+
+type GetPlannedEventsPlannedEventOutput struct{ *pulumi.OutputState }
+
+func (GetPlannedEventsPlannedEventOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (o GetPlannedEventsPlannedEventOutput) ToGetPlannedEventsPlannedEventOutput() GetPlannedEventsPlannedEventOutput {
+	return o
+}
+
+func (o GetPlannedEventsPlannedEventOutput) ToGetPlannedEventsPlannedEventOutputWithContext(ctx context.Context) GetPlannedEventsPlannedEventOutput {
+	return o
+}
+
+// The business impact of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) BusinessImpact() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.BusinessImpact }).(pulumi.StringOutput)
+}
+
+// The database engine of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) DbEngine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.DbEngine }).(pulumi.StringOutput)
+}
+
+// The action of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) EventAction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.EventAction }).(pulumi.StringOutput)
+}
+
+// The id of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) EventId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.EventId }).(pulumi.StringOutput)
+}
+
+// The name of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) EventName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.EventName }).(pulumi.StringOutput)
+}
+
+// The type of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) EventType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.EventType }).(pulumi.StringOutput)
+}
+
+// The id of the instance.
+func (o GetPlannedEventsPlannedEventOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the instance.
+func (o GetPlannedEventsPlannedEventOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o GetPlannedEventsPlannedEventOutput) MaxDelayTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.MaxDelayTime }).(pulumi.StringOutput)
+}
+
+// The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o GetPlannedEventsPlannedEventOutput) OriginBeginTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.OriginBeginTime }).(pulumi.StringOutput)
+}
+
+// The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o GetPlannedEventsPlannedEventOutput) PlannedBeginTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.PlannedBeginTime }).(pulumi.StringOutput)
+}
+
+// The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o GetPlannedEventsPlannedEventOutput) PlannedEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.PlannedEndTime }).(pulumi.StringOutput)
+}
+
+// Description information of the operation and maintenance event.
+func (o GetPlannedEventsPlannedEventOutput) PlannedEventDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.PlannedEventDescription }).(pulumi.StringOutput)
+}
+
+// The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+func (o GetPlannedEventsPlannedEventOutput) PlannedEventReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.PlannedEventReason }).(pulumi.StringOutput)
+}
+
+// The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o GetPlannedEventsPlannedEventOutput) PlannedSwitchBeginTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.PlannedSwitchBeginTime }).(pulumi.StringOutput)
+}
+
+// The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+func (o GetPlannedEventsPlannedEventOutput) PlannedSwitchEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.PlannedSwitchEndTime }).(pulumi.StringOutput)
+}
+
+// The region.
+func (o GetPlannedEventsPlannedEventOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The status of the planned event.
+func (o GetPlannedEventsPlannedEventOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlannedEventsPlannedEvent) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetPlannedEventsPlannedEventArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPlannedEventsPlannedEventArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPlannedEventsPlannedEvent)(nil)).Elem()
+}
+
+func (o GetPlannedEventsPlannedEventArrayOutput) ToGetPlannedEventsPlannedEventArrayOutput() GetPlannedEventsPlannedEventArrayOutput {
+	return o
+}
+
+func (o GetPlannedEventsPlannedEventArrayOutput) ToGetPlannedEventsPlannedEventArrayOutputWithContext(ctx context.Context) GetPlannedEventsPlannedEventArrayOutput {
+	return o
+}
+
+func (o GetPlannedEventsPlannedEventArrayOutput) Index(i pulumi.IntInput) GetPlannedEventsPlannedEventOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPlannedEventsPlannedEvent {
+		return vs[0].([]GetPlannedEventsPlannedEvent)[vs[1].(int)]
+	}).(GetPlannedEventsPlannedEventOutput)
+}
+
 type GetRegionsRegion struct {
 	// The id of the region.
 	RegionId string `pulumi:"regionId"`
@@ -10777,6 +14476,1086 @@ func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
 		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
 	}).(GetRegionsRegionOutput)
+}
+
+type GetTasksData struct {
+	// The creation time of the task.
+	CreateTime string `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime string `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress int `pulumi:"progress"`
+	// The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledExecuteEndTime string `pulumi:"scheduledExecuteEndTime"`
+	// The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledSwitchEndTime string `pulumi:"scheduledSwitchEndTime"`
+	// The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+	ScheduledSwitchStartTime string `pulumi:"scheduledSwitchStartTime"`
+	// The start time of the task.
+	StartTime string `pulumi:"startTime"`
+	// Task name.
+	TaskAction string `pulumi:"taskAction"`
+	// Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+	TaskCategory string `pulumi:"taskCategory"`
+	// The description of the task.
+	TaskDesc string `pulumi:"taskDesc"`
+	// Detailed information of the task.
+	TaskDetails []GetTasksDataTaskDetail `pulumi:"taskDetails"`
+	// Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+	TaskId string `pulumi:"taskId"`
+	// Task parameters.
+	TaskParams string `pulumi:"taskParams"`
+	// Progress details.
+	TaskProgresses []GetTasksDataTaskProgress `pulumi:"taskProgresses"`
+	// Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+	TaskStatus string `pulumi:"taskStatus"`
+}
+
+// GetTasksDataInput is an input type that accepts GetTasksDataArgs and GetTasksDataOutput values.
+// You can construct a concrete instance of `GetTasksDataInput` via:
+//
+//	GetTasksDataArgs{...}
+type GetTasksDataInput interface {
+	pulumi.Input
+
+	ToGetTasksDataOutput() GetTasksDataOutput
+	ToGetTasksDataOutputWithContext(context.Context) GetTasksDataOutput
+}
+
+type GetTasksDataArgs struct {
+	// The creation time of the task.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime pulumi.StringInput `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress pulumi.IntInput `pulumi:"progress"`
+	// The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledExecuteEndTime pulumi.StringInput `pulumi:"scheduledExecuteEndTime"`
+	// The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+	ScheduledSwitchEndTime pulumi.StringInput `pulumi:"scheduledSwitchEndTime"`
+	// The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+	ScheduledSwitchStartTime pulumi.StringInput `pulumi:"scheduledSwitchStartTime"`
+	// The start time of the task.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Task name.
+	TaskAction pulumi.StringInput `pulumi:"taskAction"`
+	// Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+	TaskCategory pulumi.StringInput `pulumi:"taskCategory"`
+	// The description of the task.
+	TaskDesc pulumi.StringInput `pulumi:"taskDesc"`
+	// Detailed information of the task.
+	TaskDetails GetTasksDataTaskDetailArrayInput `pulumi:"taskDetails"`
+	// Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// Task parameters.
+	TaskParams pulumi.StringInput `pulumi:"taskParams"`
+	// Progress details.
+	TaskProgresses GetTasksDataTaskProgressArrayInput `pulumi:"taskProgresses"`
+	// Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+	TaskStatus pulumi.StringInput `pulumi:"taskStatus"`
+}
+
+func (GetTasksDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksData)(nil)).Elem()
+}
+
+func (i GetTasksDataArgs) ToGetTasksDataOutput() GetTasksDataOutput {
+	return i.ToGetTasksDataOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataArgs) ToGetTasksDataOutputWithContext(ctx context.Context) GetTasksDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataOutput)
+}
+
+// GetTasksDataArrayInput is an input type that accepts GetTasksDataArray and GetTasksDataArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataArrayInput` via:
+//
+//	GetTasksDataArray{ GetTasksDataArgs{...} }
+type GetTasksDataArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataArrayOutput() GetTasksDataArrayOutput
+	ToGetTasksDataArrayOutputWithContext(context.Context) GetTasksDataArrayOutput
+}
+
+type GetTasksDataArray []GetTasksDataInput
+
+func (GetTasksDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksData)(nil)).Elem()
+}
+
+func (i GetTasksDataArray) ToGetTasksDataArrayOutput() GetTasksDataArrayOutput {
+	return i.ToGetTasksDataArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataArray) ToGetTasksDataArrayOutputWithContext(ctx context.Context) GetTasksDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataArrayOutput)
+}
+
+type GetTasksDataOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksData)(nil)).Elem()
+}
+
+func (o GetTasksDataOutput) ToGetTasksDataOutput() GetTasksDataOutput {
+	return o
+}
+
+func (o GetTasksDataOutput) ToGetTasksDataOutputWithContext(ctx context.Context) GetTasksDataOutput {
+	return o
+}
+
+// The creation time of the task.
+func (o GetTasksDataOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The completion time of the task.
+func (o GetTasksDataOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+func (o GetTasksDataOutput) Progress() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTasksData) int { return v.Progress }).(pulumi.IntOutput)
+}
+
+// The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+func (o GetTasksDataOutput) ScheduledExecuteEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.ScheduledExecuteEndTime }).(pulumi.StringOutput)
+}
+
+// The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+func (o GetTasksDataOutput) ScheduledSwitchEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.ScheduledSwitchEndTime }).(pulumi.StringOutput)
+}
+
+// The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+func (o GetTasksDataOutput) ScheduledSwitchStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.ScheduledSwitchStartTime }).(pulumi.StringOutput)
+}
+
+// The start time of the task.
+func (o GetTasksDataOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Task name.
+func (o GetTasksDataOutput) TaskAction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.TaskAction }).(pulumi.StringOutput)
+}
+
+// Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+func (o GetTasksDataOutput) TaskCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.TaskCategory }).(pulumi.StringOutput)
+}
+
+// The description of the task.
+func (o GetTasksDataOutput) TaskDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.TaskDesc }).(pulumi.StringOutput)
+}
+
+// Detailed information of the task.
+func (o GetTasksDataOutput) TaskDetails() GetTasksDataTaskDetailArrayOutput {
+	return o.ApplyT(func(v GetTasksData) []GetTasksDataTaskDetail { return v.TaskDetails }).(GetTasksDataTaskDetailArrayOutput)
+}
+
+// Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+func (o GetTasksDataOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// Task parameters.
+func (o GetTasksDataOutput) TaskParams() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.TaskParams }).(pulumi.StringOutput)
+}
+
+// Progress details.
+func (o GetTasksDataOutput) TaskProgresses() GetTasksDataTaskProgressArrayOutput {
+	return o.ApplyT(func(v GetTasksData) []GetTasksDataTaskProgress { return v.TaskProgresses }).(GetTasksDataTaskProgressArrayOutput)
+}
+
+// Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+func (o GetTasksDataOutput) TaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksData) string { return v.TaskStatus }).(pulumi.StringOutput)
+}
+
+type GetTasksDataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksData)(nil)).Elem()
+}
+
+func (o GetTasksDataArrayOutput) ToGetTasksDataArrayOutput() GetTasksDataArrayOutput {
+	return o
+}
+
+func (o GetTasksDataArrayOutput) ToGetTasksDataArrayOutputWithContext(ctx context.Context) GetTasksDataArrayOutput {
+	return o
+}
+
+func (o GetTasksDataArrayOutput) Index(i pulumi.IntInput) GetTasksDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksData {
+		return vs[0].([]GetTasksData)[vs[1].(int)]
+	}).(GetTasksDataOutput)
+}
+
+type GetTasksDataTaskDetail struct {
+	// The log of inspection items for the instance major version upgrade.
+	CheckItemLog string `pulumi:"checkItemLog"`
+	// Check results for major version upgrade.
+	CheckItems []GetTasksDataTaskDetailCheckItem `pulumi:"checkItems"`
+	// Details of the task.
+	TaskInfos []GetTasksDataTaskDetailTaskInfo `pulumi:"taskInfos"`
+}
+
+// GetTasksDataTaskDetailInput is an input type that accepts GetTasksDataTaskDetailArgs and GetTasksDataTaskDetailOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailInput` via:
+//
+//	GetTasksDataTaskDetailArgs{...}
+type GetTasksDataTaskDetailInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailOutput() GetTasksDataTaskDetailOutput
+	ToGetTasksDataTaskDetailOutputWithContext(context.Context) GetTasksDataTaskDetailOutput
+}
+
+type GetTasksDataTaskDetailArgs struct {
+	// The log of inspection items for the instance major version upgrade.
+	CheckItemLog pulumi.StringInput `pulumi:"checkItemLog"`
+	// Check results for major version upgrade.
+	CheckItems GetTasksDataTaskDetailCheckItemArrayInput `pulumi:"checkItems"`
+	// Details of the task.
+	TaskInfos GetTasksDataTaskDetailTaskInfoArrayInput `pulumi:"taskInfos"`
+}
+
+func (GetTasksDataTaskDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetail)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailArgs) ToGetTasksDataTaskDetailOutput() GetTasksDataTaskDetailOutput {
+	return i.ToGetTasksDataTaskDetailOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailArgs) ToGetTasksDataTaskDetailOutputWithContext(ctx context.Context) GetTasksDataTaskDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailOutput)
+}
+
+// GetTasksDataTaskDetailArrayInput is an input type that accepts GetTasksDataTaskDetailArray and GetTasksDataTaskDetailArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailArrayInput` via:
+//
+//	GetTasksDataTaskDetailArray{ GetTasksDataTaskDetailArgs{...} }
+type GetTasksDataTaskDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailArrayOutput() GetTasksDataTaskDetailArrayOutput
+	ToGetTasksDataTaskDetailArrayOutputWithContext(context.Context) GetTasksDataTaskDetailArrayOutput
+}
+
+type GetTasksDataTaskDetailArray []GetTasksDataTaskDetailInput
+
+func (GetTasksDataTaskDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetail)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailArray) ToGetTasksDataTaskDetailArrayOutput() GetTasksDataTaskDetailArrayOutput {
+	return i.ToGetTasksDataTaskDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailArray) ToGetTasksDataTaskDetailArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailArrayOutput)
+}
+
+type GetTasksDataTaskDetailOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetail)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailOutput) ToGetTasksDataTaskDetailOutput() GetTasksDataTaskDetailOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailOutput) ToGetTasksDataTaskDetailOutputWithContext(ctx context.Context) GetTasksDataTaskDetailOutput {
+	return o
+}
+
+// The log of inspection items for the instance major version upgrade.
+func (o GetTasksDataTaskDetailOutput) CheckItemLog() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetail) string { return v.CheckItemLog }).(pulumi.StringOutput)
+}
+
+// Check results for major version upgrade.
+func (o GetTasksDataTaskDetailOutput) CheckItems() GetTasksDataTaskDetailCheckItemArrayOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetail) []GetTasksDataTaskDetailCheckItem { return v.CheckItems }).(GetTasksDataTaskDetailCheckItemArrayOutput)
+}
+
+// Details of the task.
+func (o GetTasksDataTaskDetailOutput) TaskInfos() GetTasksDataTaskDetailTaskInfoArrayOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetail) []GetTasksDataTaskDetailTaskInfo { return v.TaskInfos }).(GetTasksDataTaskDetailTaskInfoArrayOutput)
+}
+
+type GetTasksDataTaskDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetail)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailArrayOutput) ToGetTasksDataTaskDetailArrayOutput() GetTasksDataTaskDetailArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailArrayOutput) ToGetTasksDataTaskDetailArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskDetail {
+		return vs[0].([]GetTasksDataTaskDetail)[vs[1].(int)]
+	}).(GetTasksDataTaskDetailOutput)
+}
+
+type GetTasksDataTaskDetailCheckItem struct {
+	// Details of the failed check items.
+	CheckDetails []GetTasksDataTaskDetailCheckItemCheckDetail `pulumi:"checkDetails"`
+	// The description of the check item.
+	Description string `pulumi:"description"`
+	// The name of the check item.
+	ItemName string `pulumi:"itemName"`
+	// The risk level of the failed check items. Values:
+	// Notice: Attention.
+	// Warning: Warning.
+	// Error: Error.
+	RiskLevel string `pulumi:"riskLevel"`
+}
+
+// GetTasksDataTaskDetailCheckItemInput is an input type that accepts GetTasksDataTaskDetailCheckItemArgs and GetTasksDataTaskDetailCheckItemOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailCheckItemInput` via:
+//
+//	GetTasksDataTaskDetailCheckItemArgs{...}
+type GetTasksDataTaskDetailCheckItemInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailCheckItemOutput() GetTasksDataTaskDetailCheckItemOutput
+	ToGetTasksDataTaskDetailCheckItemOutputWithContext(context.Context) GetTasksDataTaskDetailCheckItemOutput
+}
+
+type GetTasksDataTaskDetailCheckItemArgs struct {
+	// Details of the failed check items.
+	CheckDetails GetTasksDataTaskDetailCheckItemCheckDetailArrayInput `pulumi:"checkDetails"`
+	// The description of the check item.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of the check item.
+	ItemName pulumi.StringInput `pulumi:"itemName"`
+	// The risk level of the failed check items. Values:
+	// Notice: Attention.
+	// Warning: Warning.
+	// Error: Error.
+	RiskLevel pulumi.StringInput `pulumi:"riskLevel"`
+}
+
+func (GetTasksDataTaskDetailCheckItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailCheckItemArgs) ToGetTasksDataTaskDetailCheckItemOutput() GetTasksDataTaskDetailCheckItemOutput {
+	return i.ToGetTasksDataTaskDetailCheckItemOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailCheckItemArgs) ToGetTasksDataTaskDetailCheckItemOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailCheckItemOutput)
+}
+
+// GetTasksDataTaskDetailCheckItemArrayInput is an input type that accepts GetTasksDataTaskDetailCheckItemArray and GetTasksDataTaskDetailCheckItemArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailCheckItemArrayInput` via:
+//
+//	GetTasksDataTaskDetailCheckItemArray{ GetTasksDataTaskDetailCheckItemArgs{...} }
+type GetTasksDataTaskDetailCheckItemArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailCheckItemArrayOutput() GetTasksDataTaskDetailCheckItemArrayOutput
+	ToGetTasksDataTaskDetailCheckItemArrayOutputWithContext(context.Context) GetTasksDataTaskDetailCheckItemArrayOutput
+}
+
+type GetTasksDataTaskDetailCheckItemArray []GetTasksDataTaskDetailCheckItemInput
+
+func (GetTasksDataTaskDetailCheckItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailCheckItemArray) ToGetTasksDataTaskDetailCheckItemArrayOutput() GetTasksDataTaskDetailCheckItemArrayOutput {
+	return i.ToGetTasksDataTaskDetailCheckItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailCheckItemArray) ToGetTasksDataTaskDetailCheckItemArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailCheckItemArrayOutput)
+}
+
+type GetTasksDataTaskDetailCheckItemOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailCheckItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailCheckItemOutput) ToGetTasksDataTaskDetailCheckItemOutput() GetTasksDataTaskDetailCheckItemOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailCheckItemOutput) ToGetTasksDataTaskDetailCheckItemOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemOutput {
+	return o
+}
+
+// Details of the failed check items.
+func (o GetTasksDataTaskDetailCheckItemOutput) CheckDetails() GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailCheckItem) []GetTasksDataTaskDetailCheckItemCheckDetail {
+		return v.CheckDetails
+	}).(GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput)
+}
+
+// The description of the check item.
+func (o GetTasksDataTaskDetailCheckItemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailCheckItem) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of the check item.
+func (o GetTasksDataTaskDetailCheckItemOutput) ItemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailCheckItem) string { return v.ItemName }).(pulumi.StringOutput)
+}
+
+// The risk level of the failed check items. Values:
+// Notice: Attention.
+// Warning: Warning.
+// Error: Error.
+func (o GetTasksDataTaskDetailCheckItemOutput) RiskLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailCheckItem) string { return v.RiskLevel }).(pulumi.StringOutput)
+}
+
+type GetTasksDataTaskDetailCheckItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailCheckItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailCheckItem)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailCheckItemArrayOutput) ToGetTasksDataTaskDetailCheckItemArrayOutput() GetTasksDataTaskDetailCheckItemArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailCheckItemArrayOutput) ToGetTasksDataTaskDetailCheckItemArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailCheckItemArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskDetailCheckItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskDetailCheckItem {
+		return vs[0].([]GetTasksDataTaskDetailCheckItem)[vs[1].(int)]
+	}).(GetTasksDataTaskDetailCheckItemOutput)
+}
+
+type GetTasksDataTaskDetailCheckItemCheckDetail struct {
+	// The impact of the issue that caused the failure of the check item after the upgrade.
+	Impact string `pulumi:"impact"`
+	// Problems that caused the failure to pass the check items.
+	Issue string `pulumi:"issue"`
+}
+
+// GetTasksDataTaskDetailCheckItemCheckDetailInput is an input type that accepts GetTasksDataTaskDetailCheckItemCheckDetailArgs and GetTasksDataTaskDetailCheckItemCheckDetailOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailCheckItemCheckDetailInput` via:
+//
+//	GetTasksDataTaskDetailCheckItemCheckDetailArgs{...}
+type GetTasksDataTaskDetailCheckItemCheckDetailInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailCheckItemCheckDetailOutput() GetTasksDataTaskDetailCheckItemCheckDetailOutput
+	ToGetTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(context.Context) GetTasksDataTaskDetailCheckItemCheckDetailOutput
+}
+
+type GetTasksDataTaskDetailCheckItemCheckDetailArgs struct {
+	// The impact of the issue that caused the failure of the check item after the upgrade.
+	Impact pulumi.StringInput `pulumi:"impact"`
+	// Problems that caused the failure to pass the check items.
+	Issue pulumi.StringInput `pulumi:"issue"`
+}
+
+func (GetTasksDataTaskDetailCheckItemCheckDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailCheckItemCheckDetailArgs) ToGetTasksDataTaskDetailCheckItemCheckDetailOutput() GetTasksDataTaskDetailCheckItemCheckDetailOutput {
+	return i.ToGetTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailCheckItemCheckDetailArgs) ToGetTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemCheckDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailCheckItemCheckDetailOutput)
+}
+
+// GetTasksDataTaskDetailCheckItemCheckDetailArrayInput is an input type that accepts GetTasksDataTaskDetailCheckItemCheckDetailArray and GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailCheckItemCheckDetailArrayInput` via:
+//
+//	GetTasksDataTaskDetailCheckItemCheckDetailArray{ GetTasksDataTaskDetailCheckItemCheckDetailArgs{...} }
+type GetTasksDataTaskDetailCheckItemCheckDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutput() GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput
+	ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(context.Context) GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput
+}
+
+type GetTasksDataTaskDetailCheckItemCheckDetailArray []GetTasksDataTaskDetailCheckItemCheckDetailInput
+
+func (GetTasksDataTaskDetailCheckItemCheckDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailCheckItemCheckDetailArray) ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutput() GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return i.ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailCheckItemCheckDetailArray) ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput)
+}
+
+type GetTasksDataTaskDetailCheckItemCheckDetailOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailCheckItemCheckDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailCheckItemCheckDetailOutput) ToGetTasksDataTaskDetailCheckItemCheckDetailOutput() GetTasksDataTaskDetailCheckItemCheckDetailOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailCheckItemCheckDetailOutput) ToGetTasksDataTaskDetailCheckItemCheckDetailOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemCheckDetailOutput {
+	return o
+}
+
+// The impact of the issue that caused the failure of the check item after the upgrade.
+func (o GetTasksDataTaskDetailCheckItemCheckDetailOutput) Impact() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailCheckItemCheckDetail) string { return v.Impact }).(pulumi.StringOutput)
+}
+
+// Problems that caused the failure to pass the check items.
+func (o GetTasksDataTaskDetailCheckItemCheckDetailOutput) Issue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailCheckItemCheckDetail) string { return v.Issue }).(pulumi.StringOutput)
+}
+
+type GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailCheckItemCheckDetail)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput) ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutput() GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput) ToGetTasksDataTaskDetailCheckItemCheckDetailArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskDetailCheckItemCheckDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskDetailCheckItemCheckDetail {
+		return vs[0].([]GetTasksDataTaskDetailCheckItemCheckDetail)[vs[1].(int)]
+	}).(GetTasksDataTaskDetailCheckItemCheckDetailOutput)
+}
+
+type GetTasksDataTaskDetailTaskInfo struct {
+	// The creation time of the task.
+	CreateTime string `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime string `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress int `pulumi:"progress"`
+	// Instances related to the task.
+	RelatedInstanceInfos []GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo `pulumi:"relatedInstanceInfos"`
+}
+
+// GetTasksDataTaskDetailTaskInfoInput is an input type that accepts GetTasksDataTaskDetailTaskInfoArgs and GetTasksDataTaskDetailTaskInfoOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailTaskInfoInput` via:
+//
+//	GetTasksDataTaskDetailTaskInfoArgs{...}
+type GetTasksDataTaskDetailTaskInfoInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailTaskInfoOutput() GetTasksDataTaskDetailTaskInfoOutput
+	ToGetTasksDataTaskDetailTaskInfoOutputWithContext(context.Context) GetTasksDataTaskDetailTaskInfoOutput
+}
+
+type GetTasksDataTaskDetailTaskInfoArgs struct {
+	// The creation time of the task.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The completion time of the task.
+	FinishTime pulumi.StringInput `pulumi:"finishTime"`
+	// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+	Progress pulumi.IntInput `pulumi:"progress"`
+	// Instances related to the task.
+	RelatedInstanceInfos GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput `pulumi:"relatedInstanceInfos"`
+}
+
+func (GetTasksDataTaskDetailTaskInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailTaskInfoArgs) ToGetTasksDataTaskDetailTaskInfoOutput() GetTasksDataTaskDetailTaskInfoOutput {
+	return i.ToGetTasksDataTaskDetailTaskInfoOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailTaskInfoArgs) ToGetTasksDataTaskDetailTaskInfoOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailTaskInfoOutput)
+}
+
+// GetTasksDataTaskDetailTaskInfoArrayInput is an input type that accepts GetTasksDataTaskDetailTaskInfoArray and GetTasksDataTaskDetailTaskInfoArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailTaskInfoArrayInput` via:
+//
+//	GetTasksDataTaskDetailTaskInfoArray{ GetTasksDataTaskDetailTaskInfoArgs{...} }
+type GetTasksDataTaskDetailTaskInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailTaskInfoArrayOutput() GetTasksDataTaskDetailTaskInfoArrayOutput
+	ToGetTasksDataTaskDetailTaskInfoArrayOutputWithContext(context.Context) GetTasksDataTaskDetailTaskInfoArrayOutput
+}
+
+type GetTasksDataTaskDetailTaskInfoArray []GetTasksDataTaskDetailTaskInfoInput
+
+func (GetTasksDataTaskDetailTaskInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailTaskInfoArray) ToGetTasksDataTaskDetailTaskInfoArrayOutput() GetTasksDataTaskDetailTaskInfoArrayOutput {
+	return i.ToGetTasksDataTaskDetailTaskInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailTaskInfoArray) ToGetTasksDataTaskDetailTaskInfoArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailTaskInfoArrayOutput)
+}
+
+type GetTasksDataTaskDetailTaskInfoOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailTaskInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailTaskInfoOutput) ToGetTasksDataTaskDetailTaskInfoOutput() GetTasksDataTaskDetailTaskInfoOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailTaskInfoOutput) ToGetTasksDataTaskDetailTaskInfoOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoOutput {
+	return o
+}
+
+// The creation time of the task.
+func (o GetTasksDataTaskDetailTaskInfoOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailTaskInfo) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The completion time of the task.
+func (o GetTasksDataTaskDetailTaskInfoOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailTaskInfo) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+// Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+func (o GetTasksDataTaskDetailTaskInfoOutput) Progress() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailTaskInfo) int { return v.Progress }).(pulumi.IntOutput)
+}
+
+// Instances related to the task.
+func (o GetTasksDataTaskDetailTaskInfoOutput) RelatedInstanceInfos() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailTaskInfo) []GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo {
+		return v.RelatedInstanceInfos
+	}).(GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput)
+}
+
+type GetTasksDataTaskDetailTaskInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailTaskInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailTaskInfo)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailTaskInfoArrayOutput) ToGetTasksDataTaskDetailTaskInfoArrayOutput() GetTasksDataTaskDetailTaskInfoArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailTaskInfoArrayOutput) ToGetTasksDataTaskDetailTaskInfoArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailTaskInfoArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskDetailTaskInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskDetailTaskInfo {
+		return vs[0].([]GetTasksDataTaskDetailTaskInfo)[vs[1].(int)]
+	}).(GetTasksDataTaskDetailTaskInfoOutput)
+}
+
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo struct {
+	// Instance ID.
+	InstanceId string `pulumi:"instanceId"`
+}
+
+// GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoInput is an input type that accepts GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs and GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoInput` via:
+//
+//	GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs{...}
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput
+	ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(context.Context) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput
+}
+
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs struct {
+	// Instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+}
+
+func (GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return i.ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput)
+}
+
+// GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput is an input type that accepts GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray and GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput` via:
+//
+//	GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray{ GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs{...} }
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput
+	ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(context.Context) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput
+}
+
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray []GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoInput
+
+func (GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return i.ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput)
+}
+
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return o
+}
+
+// Instance ID.
+func (o GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+type GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput() GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) ToGetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutputWithContext(ctx context.Context) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo {
+		return vs[0].([]GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo)[vs[1].(int)]
+	}).(GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput)
+}
+
+type GetTasksDataTaskProgress struct {
+	// Step Name. Values:
+	// InstanceInitialization: Task initialization.
+	// InstanceRecoveryPreparation Instance recovery preparation.
+	// DataBackupImport: Cold backup import.
+	// LogBackupBinlogAdd: Binlog playback.
+	// TaskSuccessful: Task success.
+	Name string `pulumi:"name"`
+	// Specific information of the step.
+	StepExtraInfos []GetTasksDataTaskProgressStepExtraInfo `pulumi:"stepExtraInfos"`
+	// Step status. Values:
+	// Running: In progress.
+	// Success: Successful.
+	// Failed: Failed.
+	// Unexecuted: Not executed.
+	StepStatus string `pulumi:"stepStatus"`
+}
+
+// GetTasksDataTaskProgressInput is an input type that accepts GetTasksDataTaskProgressArgs and GetTasksDataTaskProgressOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskProgressInput` via:
+//
+//	GetTasksDataTaskProgressArgs{...}
+type GetTasksDataTaskProgressInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskProgressOutput() GetTasksDataTaskProgressOutput
+	ToGetTasksDataTaskProgressOutputWithContext(context.Context) GetTasksDataTaskProgressOutput
+}
+
+type GetTasksDataTaskProgressArgs struct {
+	// Step Name. Values:
+	// InstanceInitialization: Task initialization.
+	// InstanceRecoveryPreparation Instance recovery preparation.
+	// DataBackupImport: Cold backup import.
+	// LogBackupBinlogAdd: Binlog playback.
+	// TaskSuccessful: Task success.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specific information of the step.
+	StepExtraInfos GetTasksDataTaskProgressStepExtraInfoArrayInput `pulumi:"stepExtraInfos"`
+	// Step status. Values:
+	// Running: In progress.
+	// Success: Successful.
+	// Failed: Failed.
+	// Unexecuted: Not executed.
+	StepStatus pulumi.StringInput `pulumi:"stepStatus"`
+}
+
+func (GetTasksDataTaskProgressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskProgress)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskProgressArgs) ToGetTasksDataTaskProgressOutput() GetTasksDataTaskProgressOutput {
+	return i.ToGetTasksDataTaskProgressOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskProgressArgs) ToGetTasksDataTaskProgressOutputWithContext(ctx context.Context) GetTasksDataTaskProgressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskProgressOutput)
+}
+
+// GetTasksDataTaskProgressArrayInput is an input type that accepts GetTasksDataTaskProgressArray and GetTasksDataTaskProgressArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskProgressArrayInput` via:
+//
+//	GetTasksDataTaskProgressArray{ GetTasksDataTaskProgressArgs{...} }
+type GetTasksDataTaskProgressArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskProgressArrayOutput() GetTasksDataTaskProgressArrayOutput
+	ToGetTasksDataTaskProgressArrayOutputWithContext(context.Context) GetTasksDataTaskProgressArrayOutput
+}
+
+type GetTasksDataTaskProgressArray []GetTasksDataTaskProgressInput
+
+func (GetTasksDataTaskProgressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskProgress)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskProgressArray) ToGetTasksDataTaskProgressArrayOutput() GetTasksDataTaskProgressArrayOutput {
+	return i.ToGetTasksDataTaskProgressArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskProgressArray) ToGetTasksDataTaskProgressArrayOutputWithContext(ctx context.Context) GetTasksDataTaskProgressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskProgressArrayOutput)
+}
+
+type GetTasksDataTaskProgressOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskProgressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskProgress)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskProgressOutput) ToGetTasksDataTaskProgressOutput() GetTasksDataTaskProgressOutput {
+	return o
+}
+
+func (o GetTasksDataTaskProgressOutput) ToGetTasksDataTaskProgressOutputWithContext(ctx context.Context) GetTasksDataTaskProgressOutput {
+	return o
+}
+
+// Step Name. Values:
+// InstanceInitialization: Task initialization.
+// InstanceRecoveryPreparation Instance recovery preparation.
+// DataBackupImport: Cold backup import.
+// LogBackupBinlogAdd: Binlog playback.
+// TaskSuccessful: Task success.
+func (o GetTasksDataTaskProgressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskProgress) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specific information of the step.
+func (o GetTasksDataTaskProgressOutput) StepExtraInfos() GetTasksDataTaskProgressStepExtraInfoArrayOutput {
+	return o.ApplyT(func(v GetTasksDataTaskProgress) []GetTasksDataTaskProgressStepExtraInfo { return v.StepExtraInfos }).(GetTasksDataTaskProgressStepExtraInfoArrayOutput)
+}
+
+// Step status. Values:
+// Running: In progress.
+// Success: Successful.
+// Failed: Failed.
+// Unexecuted: Not executed.
+func (o GetTasksDataTaskProgressOutput) StepStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskProgress) string { return v.StepStatus }).(pulumi.StringOutput)
+}
+
+type GetTasksDataTaskProgressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskProgressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskProgress)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskProgressArrayOutput) ToGetTasksDataTaskProgressArrayOutput() GetTasksDataTaskProgressArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskProgressArrayOutput) ToGetTasksDataTaskProgressArrayOutputWithContext(ctx context.Context) GetTasksDataTaskProgressArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskProgressArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskProgressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskProgress {
+		return vs[0].([]GetTasksDataTaskProgress)[vs[1].(int)]
+	}).(GetTasksDataTaskProgressOutput)
+}
+
+type GetTasksDataTaskProgressStepExtraInfo struct {
+	// Current stage. CostTime: The time taken for the current stage.
+	// CurDataSize: The amount of data imported currently.
+	// CurBinlog: The number of Binlog files being replayed currently.
+	// RemainCostTime: The remaining time taken.
+	// RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+	Type string `pulumi:"type"`
+	// Unit. Values:
+	// MS: Milliseconds.
+	// Bytes: Bytes.
+	// Files: Number of (files).
+	Unit string `pulumi:"unit"`
+	// The specific value corresponding to the Type field.
+	Value float64 `pulumi:"value"`
+}
+
+// GetTasksDataTaskProgressStepExtraInfoInput is an input type that accepts GetTasksDataTaskProgressStepExtraInfoArgs and GetTasksDataTaskProgressStepExtraInfoOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskProgressStepExtraInfoInput` via:
+//
+//	GetTasksDataTaskProgressStepExtraInfoArgs{...}
+type GetTasksDataTaskProgressStepExtraInfoInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskProgressStepExtraInfoOutput() GetTasksDataTaskProgressStepExtraInfoOutput
+	ToGetTasksDataTaskProgressStepExtraInfoOutputWithContext(context.Context) GetTasksDataTaskProgressStepExtraInfoOutput
+}
+
+type GetTasksDataTaskProgressStepExtraInfoArgs struct {
+	// Current stage. CostTime: The time taken for the current stage.
+	// CurDataSize: The amount of data imported currently.
+	// CurBinlog: The number of Binlog files being replayed currently.
+	// RemainCostTime: The remaining time taken.
+	// RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Unit. Values:
+	// MS: Milliseconds.
+	// Bytes: Bytes.
+	// Files: Number of (files).
+	Unit pulumi.StringInput `pulumi:"unit"`
+	// The specific value corresponding to the Type field.
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (GetTasksDataTaskProgressStepExtraInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskProgressStepExtraInfoArgs) ToGetTasksDataTaskProgressStepExtraInfoOutput() GetTasksDataTaskProgressStepExtraInfoOutput {
+	return i.ToGetTasksDataTaskProgressStepExtraInfoOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskProgressStepExtraInfoArgs) ToGetTasksDataTaskProgressStepExtraInfoOutputWithContext(ctx context.Context) GetTasksDataTaskProgressStepExtraInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskProgressStepExtraInfoOutput)
+}
+
+// GetTasksDataTaskProgressStepExtraInfoArrayInput is an input type that accepts GetTasksDataTaskProgressStepExtraInfoArray and GetTasksDataTaskProgressStepExtraInfoArrayOutput values.
+// You can construct a concrete instance of `GetTasksDataTaskProgressStepExtraInfoArrayInput` via:
+//
+//	GetTasksDataTaskProgressStepExtraInfoArray{ GetTasksDataTaskProgressStepExtraInfoArgs{...} }
+type GetTasksDataTaskProgressStepExtraInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetTasksDataTaskProgressStepExtraInfoArrayOutput() GetTasksDataTaskProgressStepExtraInfoArrayOutput
+	ToGetTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(context.Context) GetTasksDataTaskProgressStepExtraInfoArrayOutput
+}
+
+type GetTasksDataTaskProgressStepExtraInfoArray []GetTasksDataTaskProgressStepExtraInfoInput
+
+func (GetTasksDataTaskProgressStepExtraInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (i GetTasksDataTaskProgressStepExtraInfoArray) ToGetTasksDataTaskProgressStepExtraInfoArrayOutput() GetTasksDataTaskProgressStepExtraInfoArrayOutput {
+	return i.ToGetTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetTasksDataTaskProgressStepExtraInfoArray) ToGetTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(ctx context.Context) GetTasksDataTaskProgressStepExtraInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTasksDataTaskProgressStepExtraInfoArrayOutput)
+}
+
+type GetTasksDataTaskProgressStepExtraInfoOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskProgressStepExtraInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskProgressStepExtraInfoOutput) ToGetTasksDataTaskProgressStepExtraInfoOutput() GetTasksDataTaskProgressStepExtraInfoOutput {
+	return o
+}
+
+func (o GetTasksDataTaskProgressStepExtraInfoOutput) ToGetTasksDataTaskProgressStepExtraInfoOutputWithContext(ctx context.Context) GetTasksDataTaskProgressStepExtraInfoOutput {
+	return o
+}
+
+// Current stage. CostTime: The time taken for the current stage.
+// CurDataSize: The amount of data imported currently.
+// CurBinlog: The number of Binlog files being replayed currently.
+// RemainCostTime: The remaining time taken.
+// RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+func (o GetTasksDataTaskProgressStepExtraInfoOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskProgressStepExtraInfo) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Unit. Values:
+// MS: Milliseconds.
+// Bytes: Bytes.
+// Files: Number of (files).
+func (o GetTasksDataTaskProgressStepExtraInfoOutput) Unit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTasksDataTaskProgressStepExtraInfo) string { return v.Unit }).(pulumi.StringOutput)
+}
+
+// The specific value corresponding to the Type field.
+func (o GetTasksDataTaskProgressStepExtraInfoOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v GetTasksDataTaskProgressStepExtraInfo) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type GetTasksDataTaskProgressStepExtraInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTasksDataTaskProgressStepExtraInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTasksDataTaskProgressStepExtraInfo)(nil)).Elem()
+}
+
+func (o GetTasksDataTaskProgressStepExtraInfoArrayOutput) ToGetTasksDataTaskProgressStepExtraInfoArrayOutput() GetTasksDataTaskProgressStepExtraInfoArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskProgressStepExtraInfoArrayOutput) ToGetTasksDataTaskProgressStepExtraInfoArrayOutputWithContext(ctx context.Context) GetTasksDataTaskProgressStepExtraInfoArrayOutput {
+	return o
+}
+
+func (o GetTasksDataTaskProgressStepExtraInfoArrayOutput) Index(i pulumi.IntInput) GetTasksDataTaskProgressStepExtraInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTasksDataTaskProgressStepExtraInfo {
+		return vs[0].([]GetTasksDataTaskProgressStepExtraInfo)[vs[1].(int)]
+	}).(GetTasksDataTaskProgressStepExtraInfoOutput)
 }
 
 type GetZonesZone struct {
@@ -10906,6 +15685,16 @@ func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeInput)(nil)).Elem(), AccountAccountPrivilegeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeArrayInput)(nil)).Elem(), AccountAccountPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnInfosTableInfoInput)(nil)).Elem(), AccountTableColumnInfosTableInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnInfosTableInfoArrayInput)(nil)).Elem(), AccountTableColumnInfosTableInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnInfosTableInfoColumnInfoInput)(nil)).Elem(), AccountTableColumnInfosTableInfoColumnInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnInfosTableInfoColumnInfoArrayInput)(nil)).Elem(), AccountTableColumnInfosTableInfoColumnInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnPrivilegeInput)(nil)).Elem(), AccountTableColumnPrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnPrivilegeArrayInput)(nil)).Elem(), AccountTableColumnPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnPrivilegeColumnPrivilegeInput)(nil)).Elem(), AccountTableColumnPrivilegeColumnPrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnPrivilegeColumnPrivilegeArrayInput)(nil)).Elem(), AccountTableColumnPrivilegeColumnPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnPrivilegeTablePrivilegeInput)(nil)).Elem(), AccountTableColumnPrivilegeTablePrivilegeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountTableColumnPrivilegeTablePrivilegeArrayInput)(nil)).Elem(), AccountTableColumnPrivilegeTablePrivilegeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountInput)(nil)).Elem(), AccountsAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountArrayInput)(nil)).Elem(), AccountsAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountAccountPrivilegeInput)(nil)).Elem(), AccountsAccountAccountPrivilegeArgs{})
@@ -10920,10 +15709,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistsAllowListSecurityGroupBindInfoArrayInput)(nil)).Elem(), AllowlistsAllowListSecurityGroupBindInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupBackupMetaInput)(nil)).Elem(), BackupBackupMetaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupBackupMetaArrayInput)(nil)).Elem(), BackupBackupMetaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupPolicyCrossBackupPolicyInput)(nil)).Elem(), BackupPolicyCrossBackupPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupPolicyCrossBackupPolicyPtrInput)(nil)).Elem(), BackupPolicyCrossBackupPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupInput)(nil)).Elem(), BackupsBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupArrayInput)(nil)).Elem(), BackupsBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupDbTableInfoInput)(nil)).Elem(), BackupsBackupDbTableInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupDbTableInfoArrayInput)(nil)).Elem(), BackupsBackupDbTableInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupUsageStatInput)(nil)).Elem(), BackupsBackupUsageStatArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupUsageStatArrayInput)(nil)).Elem(), BackupsBackupUsageStatArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabasesDatabaseInput)(nil)).Elem(), DatabasesDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabasesDatabaseArrayInput)(nil)).Elem(), DatabasesDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabasesDatabaseDatabasePrivilegeInput)(nil)).Elem(), DatabasesDatabaseDatabasePrivilegeArgs{})
@@ -10936,6 +15729,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointAddressArrayInput)(nil)).Elem(), EndpointsEndpointAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointReadOnlyNodeWeightInput)(nil)).Elem(), EndpointsEndpointReadOnlyNodeWeightArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EndpointsEndpointReadOnlyNodeWeightArrayInput)(nil)).Elem(), EndpointsEndpointReadOnlyNodeWeightArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceAutoStorageScalingConfigInput)(nil)).Elem(), InstanceAutoStorageScalingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceAutoStorageScalingConfigPtrInput)(nil)).Elem(), InstanceAutoStorageScalingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeDetailInput)(nil)).Elem(), InstanceChargeDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeDetailArrayInput)(nil)).Elem(), InstanceChargeDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeInfoInput)(nil)).Elem(), InstanceChargeInfoArgs{})
@@ -10960,6 +15755,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagArrayInput)(nil)).Elem(), InstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceInput)(nil)).Elem(), InstancesRdsMysqlInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceAutoStorageScalingConfigInput)(nil)).Elem(), InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceAutoStorageScalingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceChargeDetailInput)(nil)).Elem(), InstancesRdsMysqlInstanceChargeDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceEndpointInput)(nil)).Elem(), InstancesRdsMysqlInstanceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceEndpointArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceEndpointArray{})
@@ -10983,10 +15780,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ParameterTemplatesTemplateArrayInput)(nil)).Elem(), ParameterTemplatesTemplateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ParameterTemplatesTemplateTemplateParamInput)(nil)).Elem(), ParameterTemplatesTemplateTemplateParamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ParameterTemplatesTemplateTemplateParamArrayInput)(nil)).Elem(), ParameterTemplatesTemplateTemplateParamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PlannedEventsPlannedEventInput)(nil)).Elem(), PlannedEventsPlannedEventArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PlannedEventsPlannedEventArrayInput)(nil)).Elem(), PlannedEventsPlannedEventArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataInput)(nil)).Elem(), TasksDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataArrayInput)(nil)).Elem(), TasksDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailInput)(nil)).Elem(), TasksDataTaskDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailArrayInput)(nil)).Elem(), TasksDataTaskDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailCheckItemInput)(nil)).Elem(), TasksDataTaskDetailCheckItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailCheckItemArrayInput)(nil)).Elem(), TasksDataTaskDetailCheckItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailCheckItemCheckDetailInput)(nil)).Elem(), TasksDataTaskDetailCheckItemCheckDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailCheckItemCheckDetailArrayInput)(nil)).Elem(), TasksDataTaskDetailCheckItemCheckDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailTaskInfoInput)(nil)).Elem(), TasksDataTaskDetailTaskInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailTaskInfoArrayInput)(nil)).Elem(), TasksDataTaskDetailTaskInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailTaskInfoRelatedInstanceInfoInput)(nil)).Elem(), TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput)(nil)).Elem(), TasksDataTaskDetailTaskInfoRelatedInstanceInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskProgressInput)(nil)).Elem(), TasksDataTaskProgressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskProgressArrayInput)(nil)).Elem(), TasksDataTaskProgressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskProgressStepExtraInfoInput)(nil)).Elem(), TasksDataTaskProgressStepExtraInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TasksDataTaskProgressStepExtraInfoArrayInput)(nil)).Elem(), TasksDataTaskProgressStepExtraInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountTableColumnInfosTableInfoInput)(nil)).Elem(), GetAccountTableColumnInfosTableInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountTableColumnInfosTableInfoArrayInput)(nil)).Elem(), GetAccountTableColumnInfosTableInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountTableColumnInfosTableInfoColumnInfoInput)(nil)).Elem(), GetAccountTableColumnInfosTableInfoColumnInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountTableColumnInfosTableInfoColumnInfoArrayInput)(nil)).Elem(), GetAccountTableColumnInfosTableInfoColumnInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountInput)(nil)).Elem(), GetAccountsAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountArrayInput)(nil)).Elem(), GetAccountsAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountsAccountAccountPrivilegeInput)(nil)).Elem(), GetAccountsAccountAccountPrivilegeArgs{})
@@ -11001,6 +15820,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupArrayInput)(nil)).Elem(), GetBackupsBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupDbTableInfoInput)(nil)).Elem(), GetBackupsBackupDbTableInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupDbTableInfoArrayInput)(nil)).Elem(), GetBackupsBackupDbTableInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupUsageStatInput)(nil)).Elem(), GetBackupsBackupUsageStatArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupsBackupUsageStatArrayInput)(nil)).Elem(), GetBackupsBackupUsageStatArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseInput)(nil)).Elem(), GetDatabasesDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseArrayInput)(nil)).Elem(), GetDatabasesDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseDatabasePrivilegeInput)(nil)).Elem(), GetDatabasesDatabaseDatabasePrivilegeArgs{})
@@ -11015,6 +15836,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSpecsInstanceSpecArrayInput)(nil)).Elem(), GetInstanceSpecsInstanceSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceAutoStorageScalingConfigInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceChargeDetailInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceChargeDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRdsMysqlInstanceEndpointArrayInput)(nil)).Elem(), GetInstancesRdsMysqlInstanceEndpointArray{})
@@ -11036,12 +15859,40 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateArrayInput)(nil)).Elem(), GetParameterTemplatesTemplateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateTemplateParamInput)(nil)).Elem(), GetParameterTemplatesTemplateTemplateParamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetParameterTemplatesTemplateTemplateParamArrayInput)(nil)).Elem(), GetParameterTemplatesTemplateTemplateParamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPlannedEventsPlannedEventInput)(nil)).Elem(), GetPlannedEventsPlannedEventArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPlannedEventsPlannedEventArrayInput)(nil)).Elem(), GetPlannedEventsPlannedEventArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataInput)(nil)).Elem(), GetTasksDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataArrayInput)(nil)).Elem(), GetTasksDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailInput)(nil)).Elem(), GetTasksDataTaskDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailArrayInput)(nil)).Elem(), GetTasksDataTaskDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailCheckItemInput)(nil)).Elem(), GetTasksDataTaskDetailCheckItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailCheckItemArrayInput)(nil)).Elem(), GetTasksDataTaskDetailCheckItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailCheckItemCheckDetailInput)(nil)).Elem(), GetTasksDataTaskDetailCheckItemCheckDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailCheckItemCheckDetailArrayInput)(nil)).Elem(), GetTasksDataTaskDetailCheckItemCheckDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailTaskInfoInput)(nil)).Elem(), GetTasksDataTaskDetailTaskInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailTaskInfoArrayInput)(nil)).Elem(), GetTasksDataTaskDetailTaskInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoInput)(nil)).Elem(), GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayInput)(nil)).Elem(), GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskProgressInput)(nil)).Elem(), GetTasksDataTaskProgressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskProgressArrayInput)(nil)).Elem(), GetTasksDataTaskProgressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskProgressStepExtraInfoInput)(nil)).Elem(), GetTasksDataTaskProgressStepExtraInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTasksDataTaskProgressStepExtraInfoArrayInput)(nil)).Elem(), GetTasksDataTaskProgressStepExtraInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeOutput{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnInfosTableInfoOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnInfosTableInfoArrayOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnInfosTableInfoColumnInfoOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnInfosTableInfoColumnInfoArrayOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnPrivilegeOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnPrivilegeColumnPrivilegeOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnPrivilegeColumnPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnPrivilegeTablePrivilegeOutput{})
+	pulumi.RegisterOutputType(AccountTableColumnPrivilegeTablePrivilegeArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountOutput{})
 	pulumi.RegisterOutputType(AccountsAccountArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountAccountPrivilegeOutput{})
@@ -11056,10 +15907,14 @@ func init() {
 	pulumi.RegisterOutputType(AllowlistsAllowListSecurityGroupBindInfoArrayOutput{})
 	pulumi.RegisterOutputType(BackupBackupMetaOutput{})
 	pulumi.RegisterOutputType(BackupBackupMetaArrayOutput{})
+	pulumi.RegisterOutputType(BackupPolicyCrossBackupPolicyOutput{})
+	pulumi.RegisterOutputType(BackupPolicyCrossBackupPolicyPtrOutput{})
 	pulumi.RegisterOutputType(BackupsBackupOutput{})
 	pulumi.RegisterOutputType(BackupsBackupArrayOutput{})
 	pulumi.RegisterOutputType(BackupsBackupDbTableInfoOutput{})
 	pulumi.RegisterOutputType(BackupsBackupDbTableInfoArrayOutput{})
+	pulumi.RegisterOutputType(BackupsBackupUsageStatOutput{})
+	pulumi.RegisterOutputType(BackupsBackupUsageStatArrayOutput{})
 	pulumi.RegisterOutputType(DatabasesDatabaseOutput{})
 	pulumi.RegisterOutputType(DatabasesDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(DatabasesDatabaseDatabasePrivilegeOutput{})
@@ -11072,6 +15927,8 @@ func init() {
 	pulumi.RegisterOutputType(EndpointsEndpointAddressArrayOutput{})
 	pulumi.RegisterOutputType(EndpointsEndpointReadOnlyNodeWeightOutput{})
 	pulumi.RegisterOutputType(EndpointsEndpointReadOnlyNodeWeightArrayOutput{})
+	pulumi.RegisterOutputType(InstanceAutoStorageScalingConfigOutput{})
+	pulumi.RegisterOutputType(InstanceAutoStorageScalingConfigPtrOutput{})
 	pulumi.RegisterOutputType(InstanceChargeDetailOutput{})
 	pulumi.RegisterOutputType(InstanceChargeDetailArrayOutput{})
 	pulumi.RegisterOutputType(InstanceChargeInfoOutput{})
@@ -11096,6 +15953,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceArrayOutput{})
+	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceAutoStorageScalingConfigOutput{})
+	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceChargeDetailOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceEndpointOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceEndpointArrayOutput{})
@@ -11119,10 +15978,32 @@ func init() {
 	pulumi.RegisterOutputType(ParameterTemplatesTemplateArrayOutput{})
 	pulumi.RegisterOutputType(ParameterTemplatesTemplateTemplateParamOutput{})
 	pulumi.RegisterOutputType(ParameterTemplatesTemplateTemplateParamArrayOutput{})
+	pulumi.RegisterOutputType(PlannedEventsPlannedEventOutput{})
+	pulumi.RegisterOutputType(PlannedEventsPlannedEventArrayOutput{})
 	pulumi.RegisterOutputType(RegionsRegionOutput{})
 	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataOutput{})
+	pulumi.RegisterOutputType(TasksDataArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailCheckItemOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailCheckItemArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailCheckItemCheckDetailOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailCheckItemCheckDetailArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailTaskInfoOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailTaskInfoArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskProgressOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskProgressArrayOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskProgressStepExtraInfoOutput{})
+	pulumi.RegisterOutputType(TasksDataTaskProgressStepExtraInfoArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountTableColumnInfosTableInfoOutput{})
+	pulumi.RegisterOutputType(GetAccountTableColumnInfosTableInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountTableColumnInfosTableInfoColumnInfoOutput{})
+	pulumi.RegisterOutputType(GetAccountTableColumnInfosTableInfoColumnInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountsAccountOutput{})
 	pulumi.RegisterOutputType(GetAccountsAccountArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountsAccountAccountPrivilegeOutput{})
@@ -11137,6 +16018,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBackupsBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetBackupsBackupDbTableInfoOutput{})
 	pulumi.RegisterOutputType(GetBackupsBackupDbTableInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupUsageStatOutput{})
+	pulumi.RegisterOutputType(GetBackupsBackupUsageStatArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabasesDatabaseOutput{})
 	pulumi.RegisterOutputType(GetDatabasesDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabasesDatabaseDatabasePrivilegeOutput{})
@@ -11151,6 +16034,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceSpecsInstanceSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceOutput{})
 	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceAutoStorageScalingConfigOutput{})
+	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceChargeDetailOutput{})
 	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointOutput{})
 	pulumi.RegisterOutputType(GetInstancesRdsMysqlInstanceEndpointArrayOutput{})
@@ -11172,8 +16057,26 @@ func init() {
 	pulumi.RegisterOutputType(GetParameterTemplatesTemplateArrayOutput{})
 	pulumi.RegisterOutputType(GetParameterTemplatesTemplateTemplateParamOutput{})
 	pulumi.RegisterOutputType(GetParameterTemplatesTemplateTemplateParamArrayOutput{})
+	pulumi.RegisterOutputType(GetPlannedEventsPlannedEventOutput{})
+	pulumi.RegisterOutputType(GetPlannedEventsPlannedEventArrayOutput{})
 	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
 	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataOutput{})
+	pulumi.RegisterOutputType(GetTasksDataArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailCheckItemOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailCheckItemArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailCheckItemCheckDetailOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailCheckItemCheckDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailTaskInfoOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailTaskInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskProgressOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskProgressArrayOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskProgressStepExtraInfoOutput{})
+	pulumi.RegisterOutputType(GetTasksDataTaskProgressStepExtraInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetZonesZoneOutput{})
 	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }

@@ -24,7 +24,7 @@ class RouteEntryArgs:
         The set of arguments for constructing a RouteEntry resource.
         :param pulumi.Input[str] destination_cidr_block: The destination CIDR block of the route entry.
         :param pulumi.Input[str] next_hop_id: The id of the next hop.
-        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         :param pulumi.Input[str] route_table_id: The id of the route table.
         :param pulumi.Input[str] description: The description of the route entry.
         :param pulumi.Input[str] route_entry_name: The name of the route entry.
@@ -66,7 +66,7 @@ class RouteEntryArgs:
     @pulumi.getter(name="nextHopType")
     def next_hop_type(self) -> pulumi.Input[str]:
         """
-        The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         """
         return pulumi.get(self, "next_hop_type")
 
@@ -127,7 +127,7 @@ class _RouteEntryState:
         :param pulumi.Input[str] description: The description of the route entry.
         :param pulumi.Input[str] destination_cidr_block: The destination CIDR block of the route entry.
         :param pulumi.Input[str] next_hop_id: The id of the next hop.
-        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         :param pulumi.Input[str] route_entry_id: The id of the route entry.
         :param pulumi.Input[str] route_entry_name: The name of the route entry.
         :param pulumi.Input[str] route_table_id: The id of the route table.
@@ -190,7 +190,7 @@ class _RouteEntryState:
     @pulumi.getter(name="nextHopType")
     def next_hop_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         """
         return pulumi.get(self, "next_hop_type")
 
@@ -305,7 +305,7 @@ class RouteEntry(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the route entry.
         :param pulumi.Input[str] destination_cidr_block: The destination CIDR block of the route entry.
         :param pulumi.Input[str] next_hop_id: The id of the next hop.
-        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         :param pulumi.Input[str] route_entry_name: The name of the route entry.
         :param pulumi.Input[str] route_table_id: The id of the route table.
         """
@@ -430,7 +430,7 @@ class RouteEntry(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the route entry.
         :param pulumi.Input[str] destination_cidr_block: The destination CIDR block of the route entry.
         :param pulumi.Input[str] next_hop_id: The id of the next hop.
-        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        :param pulumi.Input[str] next_hop_type: The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         :param pulumi.Input[str] route_entry_id: The id of the route entry.
         :param pulumi.Input[str] route_entry_name: The name of the route entry.
         :param pulumi.Input[str] route_table_id: The id of the route table.
@@ -478,7 +478,7 @@ class RouteEntry(pulumi.CustomResource):
     @pulumi.getter(name="nextHopType")
     def next_hop_type(self) -> pulumi.Output[str]:
         """
-        The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         """
         return pulumi.get(self, "next_hop_type")
 

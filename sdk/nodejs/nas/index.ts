@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AutoSnapshotPoliciesArgs, AutoSnapshotPoliciesResult, AutoSnapshotPoliciesOutputArgs } from "./autoSnapshotPolicies";
+export const autoSnapshotPolicies: typeof import("./autoSnapshotPolicies").autoSnapshotPolicies = null as any;
+export const autoSnapshotPoliciesOutput: typeof import("./autoSnapshotPolicies").autoSnapshotPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["autoSnapshotPolicies","autoSnapshotPoliciesOutput"], () => require("./autoSnapshotPolicies"));
+
+export { AutoSnapshotPolicyArgs, AutoSnapshotPolicyState } from "./autoSnapshotPolicy";
+export type AutoSnapshotPolicy = import("./autoSnapshotPolicy").AutoSnapshotPolicy;
+export const AutoSnapshotPolicy: typeof import("./autoSnapshotPolicy").AutoSnapshotPolicy = null as any;
+utilities.lazyLoad(exports, ["AutoSnapshotPolicy"], () => require("./autoSnapshotPolicy"));
+
+export { AutoSnapshotPolicyApplyArgs, AutoSnapshotPolicyApplyState } from "./autoSnapshotPolicyApply";
+export type AutoSnapshotPolicyApply = import("./autoSnapshotPolicyApply").AutoSnapshotPolicyApply;
+export const AutoSnapshotPolicyApply: typeof import("./autoSnapshotPolicyApply").AutoSnapshotPolicyApply = null as any;
+utilities.lazyLoad(exports, ["AutoSnapshotPolicyApply"], () => require("./autoSnapshotPolicyApply"));
+
 export { FileSystemArgs, FileSystemState } from "./fileSystem";
 export type FileSystem = import("./fileSystem").FileSystem;
 export const FileSystem: typeof import("./fileSystem").FileSystem = null as any;
@@ -14,6 +29,11 @@ export { FileSystemsArgs, FileSystemsResult, FileSystemsOutputArgs } from "./fil
 export const fileSystems: typeof import("./fileSystems").fileSystems = null as any;
 export const fileSystemsOutput: typeof import("./fileSystems").fileSystemsOutput = null as any;
 utilities.lazyLoad(exports, ["fileSystems","fileSystemsOutput"], () => require("./fileSystems"));
+
+export { GetAutoSnapshotPoliciesArgs, GetAutoSnapshotPoliciesResult, GetAutoSnapshotPoliciesOutputArgs } from "./getAutoSnapshotPolicies";
+export const getAutoSnapshotPolicies: typeof import("./getAutoSnapshotPolicies").getAutoSnapshotPolicies = null as any;
+export const getAutoSnapshotPoliciesOutput: typeof import("./getAutoSnapshotPolicies").getAutoSnapshotPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getAutoSnapshotPolicies","getAutoSnapshotPoliciesOutput"], () => require("./getAutoSnapshotPolicies"));
 
 export { GetFileSystemsArgs, GetFileSystemsResult, GetFileSystemsOutputArgs } from "./getFileSystems";
 export const getFileSystems: typeof import("./getFileSystems").getFileSystems = null as any;
@@ -90,6 +110,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:nas/autoSnapshotPolicy:AutoSnapshotPolicy":
+                return new AutoSnapshotPolicy(name, <any>undefined, { urn })
+            case "volcengine:nas/autoSnapshotPolicyApply:AutoSnapshotPolicyApply":
+                return new AutoSnapshotPolicyApply(name, <any>undefined, { urn })
             case "volcengine:nas/fileSystem:FileSystem":
                 return new FileSystem(name, <any>undefined, { urn })
             case "volcengine:nas/mountPoint:MountPoint":
@@ -103,6 +127,8 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "nas/autoSnapshotPolicy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "nas/autoSnapshotPolicyApply", _module)
 pulumi.runtime.registerResourceModule("volcengine", "nas/fileSystem", _module)
 pulumi.runtime.registerResourceModule("volcengine", "nas/mountPoint", _module)
 pulumi.runtime.registerResourceModule("volcengine", "nas/permissionGroup", _module)

@@ -61,6 +61,7 @@ export function getInterRegionBandwidths(args?: GetInterRegionBandwidthsArgs, op
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/getInterRegionBandwidths:getInterRegionBandwidths", {
+        "cenId": args.cenId,
         "ids": args.ids,
         "outputFile": args.outputFile,
     }, opts);
@@ -70,6 +71,10 @@ export function getInterRegionBandwidths(args?: GetInterRegionBandwidthsArgs, op
  * A collection of arguments for invoking getInterRegionBandwidths.
  */
 export interface GetInterRegionBandwidthsArgs {
+    /**
+     * The ID of the cen.
+     */
+    cenId?: string;
     /**
      * A list of cen inter region bandwidth IDs.
      */
@@ -84,6 +89,10 @@ export interface GetInterRegionBandwidthsArgs {
  * A collection of values returned by getInterRegionBandwidths.
  */
 export interface GetInterRegionBandwidthsResult {
+    /**
+     * The cen ID of the cen inter region bandwidth.
+     */
+    readonly cenId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -157,6 +166,10 @@ export function getInterRegionBandwidthsOutput(args?: GetInterRegionBandwidthsOu
  * A collection of arguments for invoking getInterRegionBandwidths.
  */
 export interface GetInterRegionBandwidthsOutputArgs {
+    /**
+     * The ID of the cen.
+     */
+    cenId?: pulumi.Input<string>;
     /**
      * A list of cen inter region bandwidth IDs.
      */

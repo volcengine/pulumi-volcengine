@@ -30,11 +30,11 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
         /// </summary>
         public readonly string LastOperator;
         /// <summary>
-        /// The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+        /// The subnet id of Private Zone Record.
         /// </summary>
         public readonly string Line;
         /// <summary>
-        /// The id of Private Zone Record.
+        /// This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         /// </summary>
         public readonly string RecordId;
         /// <summary>

@@ -83,11 +83,15 @@ type Registry struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The ProjectName of the cr registry.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCache RegistryProxyCachePtrOutput `pulumi:"proxyCache"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled pulumi.BoolOutput `pulumi:"proxyCacheEnabled"`
 	// Tags.
 	ResourceTags RegistryResourceTagArrayOutput `pulumi:"resourceTags"`
 	// The status of registry.
 	Statuses RegistryStatusArrayOutput `pulumi:"statuses"`
-	// The type of registry.
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The status of user.
 	UserStatus pulumi.StringOutput `pulumi:"userStatus"`
@@ -146,11 +150,15 @@ type registryState struct {
 	Password *string `pulumi:"password"`
 	// The ProjectName of the cr registry.
 	Project *string `pulumi:"project"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCache *RegistryProxyCache `pulumi:"proxyCache"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled *bool `pulumi:"proxyCacheEnabled"`
 	// Tags.
 	ResourceTags []RegistryResourceTag `pulumi:"resourceTags"`
 	// The status of registry.
 	Statuses []RegistryStatus `pulumi:"statuses"`
-	// The type of registry.
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 	Type *string `pulumi:"type"`
 	// The status of user.
 	UserStatus *string `pulumi:"userStatus"`
@@ -173,11 +181,15 @@ type RegistryState struct {
 	Password pulumi.StringPtrInput
 	// The ProjectName of the cr registry.
 	Project pulumi.StringPtrInput
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCache RegistryProxyCachePtrInput
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled pulumi.BoolPtrInput
 	// Tags.
 	ResourceTags RegistryResourceTagArrayInput
 	// The status of registry.
 	Statuses RegistryStatusArrayInput
-	// The type of registry.
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 	Type pulumi.StringPtrInput
 	// The status of user.
 	UserStatus pulumi.StringPtrInput
@@ -198,6 +210,14 @@ type registryArgs struct {
 	Password *string `pulumi:"password"`
 	// The ProjectName of the cr registry.
 	Project *string `pulumi:"project"`
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCache *RegistryProxyCache `pulumi:"proxyCache"`
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled *bool `pulumi:"proxyCacheEnabled"`
+	// Tags.
+	ResourceTags []RegistryResourceTag `pulumi:"resourceTags"`
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
+	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a Registry resource.
@@ -210,6 +230,14 @@ type RegistryArgs struct {
 	Password pulumi.StringPtrInput
 	// The ProjectName of the cr registry.
 	Project pulumi.StringPtrInput
+	// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+	ProxyCache RegistryProxyCachePtrInput
+	// Whether to enable proxy cache.
+	ProxyCacheEnabled pulumi.BoolPtrInput
+	// Tags.
+	ResourceTags RegistryResourceTagArrayInput
+	// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
+	Type pulumi.StringPtrInput
 }
 
 func (RegistryArgs) ElementType() reflect.Type {
@@ -334,6 +362,16 @@ func (o RegistryOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringOutput { return v.Project }).(pulumi.StringOutput)
 }
 
+// The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+func (o RegistryOutput) ProxyCache() RegistryProxyCachePtrOutput {
+	return o.ApplyT(func(v *Registry) RegistryProxyCachePtrOutput { return v.ProxyCache }).(RegistryProxyCachePtrOutput)
+}
+
+// Whether to enable proxy cache.
+func (o RegistryOutput) ProxyCacheEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Registry) pulumi.BoolOutput { return v.ProxyCacheEnabled }).(pulumi.BoolOutput)
+}
+
 // Tags.
 func (o RegistryOutput) ResourceTags() RegistryResourceTagArrayOutput {
 	return o.ApplyT(func(v *Registry) RegistryResourceTagArrayOutput { return v.ResourceTags }).(RegistryResourceTagArrayOutput)
@@ -344,7 +382,7 @@ func (o RegistryOutput) Statuses() RegistryStatusArrayOutput {
 	return o.ApplyT(func(v *Registry) RegistryStatusArrayOutput { return v.Statuses }).(RegistryStatusArrayOutput)
 }
 
-// The type of registry.
+// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
 func (o RegistryOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

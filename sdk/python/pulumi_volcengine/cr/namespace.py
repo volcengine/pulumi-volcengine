@@ -16,18 +16,22 @@ class NamespaceArgs:
     def __init__(__self__, *,
                  registry: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
-                 project: Optional[pulumi.Input[str]] = None):
+                 project: Optional[pulumi.Input[str]] = None,
+                 repository_default_access_level: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
         :param pulumi.Input[str] registry: The registry name.
         :param pulumi.Input[str] name: The name of CrNamespace.
         :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
+        :param pulumi.Input[str] repository_default_access_level: The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
         """
         pulumi.set(__self__, "registry", registry)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project is not None:
             pulumi.set(__self__, "project", project)
+        if repository_default_access_level is not None:
+            pulumi.set(__self__, "repository_default_access_level", repository_default_access_level)
 
     @property
     @pulumi.getter
@@ -65,6 +69,18 @@ class NamespaceArgs:
     def project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project", value)
 
+    @property
+    @pulumi.getter(name="repositoryDefaultAccessLevel")
+    def repository_default_access_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+        """
+        return pulumi.get(self, "repository_default_access_level")
+
+    @repository_default_access_level.setter
+    def repository_default_access_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repository_default_access_level", value)
+
 
 @pulumi.input_type
 class _NamespaceState:
@@ -72,13 +88,15 @@ class _NamespaceState:
                  create_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 registry: Optional[pulumi.Input[str]] = None):
+                 registry: Optional[pulumi.Input[str]] = None,
+                 repository_default_access_level: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
         :param pulumi.Input[str] create_time: The time when namespace created.
         :param pulumi.Input[str] name: The name of CrNamespace.
         :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         :param pulumi.Input[str] registry: The registry name.
+        :param pulumi.Input[str] repository_default_access_level: The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
         """
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
@@ -88,6 +106,8 @@ class _NamespaceState:
             pulumi.set(__self__, "project", project)
         if registry is not None:
             pulumi.set(__self__, "registry", registry)
+        if repository_default_access_level is not None:
+            pulumi.set(__self__, "repository_default_access_level", repository_default_access_level)
 
     @property
     @pulumi.getter(name="createTime")
@@ -137,6 +157,18 @@ class _NamespaceState:
     def registry(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "registry", value)
 
+    @property
+    @pulumi.getter(name="repositoryDefaultAccessLevel")
+    def repository_default_access_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+        """
+        return pulumi.get(self, "repository_default_access_level")
+
+    @repository_default_access_level.setter
+    def repository_default_access_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repository_default_access_level", value)
+
 
 class Namespace(pulumi.CustomResource):
     @overload
@@ -146,6 +178,7 @@ class Namespace(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  registry: Optional[pulumi.Input[str]] = None,
+                 repository_default_access_level: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage cr namespace
@@ -176,6 +209,7 @@ class Namespace(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of CrNamespace.
         :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         :param pulumi.Input[str] registry: The registry name.
+        :param pulumi.Input[str] repository_default_access_level: The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
         """
         ...
     @overload
@@ -225,6 +259,7 @@ class Namespace(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  registry: Optional[pulumi.Input[str]] = None,
+                 repository_default_access_level: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -239,6 +274,7 @@ class Namespace(pulumi.CustomResource):
             if registry is None and not opts.urn:
                 raise TypeError("Missing required property 'registry'")
             __props__.__dict__["registry"] = registry
+            __props__.__dict__["repository_default_access_level"] = repository_default_access_level
             __props__.__dict__["create_time"] = None
         super(Namespace, __self__).__init__(
             'volcengine:cr/namespace:Namespace',
@@ -253,7 +289,8 @@ class Namespace(pulumi.CustomResource):
             create_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            registry: Optional[pulumi.Input[str]] = None) -> 'Namespace':
+            registry: Optional[pulumi.Input[str]] = None,
+            repository_default_access_level: Optional[pulumi.Input[str]] = None) -> 'Namespace':
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -265,6 +302,7 @@ class Namespace(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of CrNamespace.
         :param pulumi.Input[str] project: The ProjectName of the CrNamespace.
         :param pulumi.Input[str] registry: The registry name.
+        :param pulumi.Input[str] repository_default_access_level: The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -274,6 +312,7 @@ class Namespace(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["project"] = project
         __props__.__dict__["registry"] = registry
+        __props__.__dict__["repository_default_access_level"] = repository_default_access_level
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -307,4 +346,12 @@ class Namespace(pulumi.CustomResource):
         The registry name.
         """
         return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter(name="repositoryDefaultAccessLevel")
+    def repository_default_access_level(self) -> pulumi.Output[str]:
+        """
+        The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+        """
+        return pulumi.get(self, "repository_default_access_level")
 

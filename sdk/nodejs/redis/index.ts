@@ -45,6 +45,11 @@ export const backups: typeof import("./backups").backups = null as any;
 export const backupsOutput: typeof import("./backups").backupsOutput = null as any;
 utilities.lazyLoad(exports, ["backups","backupsOutput"], () => require("./backups"));
 
+export { BigKeysArgs, BigKeysResult, BigKeysOutputArgs } from "./bigKeys";
+export const bigKeys: typeof import("./bigKeys").bigKeys = null as any;
+export const bigKeysOutput: typeof import("./bigKeys").bigKeysOutput = null as any;
+utilities.lazyLoad(exports, ["bigKeys","bigKeysOutput"], () => require("./bigKeys"));
+
 export { ContinuousBackupArgs, ContinuousBackupState } from "./continuousBackup";
 export type ContinuousBackup = import("./continuousBackup").ContinuousBackup;
 export const ContinuousBackup: typeof import("./continuousBackup").ContinuousBackup = null as any;
@@ -70,15 +75,35 @@ export const getBackups: typeof import("./getBackups").getBackups = null as any;
 export const getBackupsOutput: typeof import("./getBackups").getBackupsOutput = null as any;
 utilities.lazyLoad(exports, ["getBackups","getBackupsOutput"], () => require("./getBackups"));
 
+export { GetBigKeysArgs, GetBigKeysResult, GetBigKeysOutputArgs } from "./getBigKeys";
+export const getBigKeys: typeof import("./getBigKeys").getBigKeys = null as any;
+export const getBigKeysOutput: typeof import("./getBigKeys").getBigKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getBigKeys","getBigKeysOutput"], () => require("./getBigKeys"));
+
+export { GetInstanceSpecsArgs, GetInstanceSpecsResult, GetInstanceSpecsOutputArgs } from "./getInstanceSpecs";
+export const getInstanceSpecs: typeof import("./getInstanceSpecs").getInstanceSpecs = null as any;
+export const getInstanceSpecsOutput: typeof import("./getInstanceSpecs").getInstanceSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceSpecs","getInstanceSpecsOutput"], () => require("./getInstanceSpecs"));
+
 export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
 export const getInstances: typeof import("./getInstances").getInstances = null as any;
 export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
 
+export { GetParameterGroupsArgs, GetParameterGroupsResult, GetParameterGroupsOutputArgs } from "./getParameterGroups";
+export const getParameterGroups: typeof import("./getParameterGroups").getParameterGroups = null as any;
+export const getParameterGroupsOutput: typeof import("./getParameterGroups").getParameterGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getParameterGroups","getParameterGroupsOutput"], () => require("./getParameterGroups"));
+
 export { GetPitrTimeWindowsArgs, GetPitrTimeWindowsResult, GetPitrTimeWindowsOutputArgs } from "./getPitrTimeWindows";
 export const getPitrTimeWindows: typeof import("./getPitrTimeWindows").getPitrTimeWindows = null as any;
 export const getPitrTimeWindowsOutput: typeof import("./getPitrTimeWindows").getPitrTimeWindowsOutput = null as any;
 utilities.lazyLoad(exports, ["getPitrTimeWindows","getPitrTimeWindowsOutput"], () => require("./getPitrTimeWindows"));
+
+export { GetPlannedEventsArgs, GetPlannedEventsResult, GetPlannedEventsOutputArgs } from "./getPlannedEvents";
+export const getPlannedEvents: typeof import("./getPlannedEvents").getPlannedEvents = null as any;
+export const getPlannedEventsOutput: typeof import("./getPlannedEvents").getPlannedEventsOutput = null as any;
+utilities.lazyLoad(exports, ["getPlannedEvents","getPlannedEventsOutput"], () => require("./getPlannedEvents"));
 
 export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
 export const getRegions: typeof import("./getRegions").getRegions = null as any;
@@ -95,15 +120,35 @@ export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
 utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
 
+export { InstanceSpecsArgs, InstanceSpecsResult, InstanceSpecsOutputArgs } from "./instanceSpecs";
+export const instanceSpecs: typeof import("./instanceSpecs").instanceSpecs = null as any;
+export const instanceSpecsOutput: typeof import("./instanceSpecs").instanceSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceSpecs","instanceSpecsOutput"], () => require("./instanceSpecs"));
+
 export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
 export const instances: typeof import("./instances").instances = null as any;
 export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
 utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
 
+export { ParameterGroupArgs, ParameterGroupState } from "./parameterGroup";
+export type ParameterGroup = import("./parameterGroup").ParameterGroup;
+export const ParameterGroup: typeof import("./parameterGroup").ParameterGroup = null as any;
+utilities.lazyLoad(exports, ["ParameterGroup"], () => require("./parameterGroup"));
+
+export { ParameterGroupsArgs, ParameterGroupsResult, ParameterGroupsOutputArgs } from "./parameterGroups";
+export const parameterGroups: typeof import("./parameterGroups").parameterGroups = null as any;
+export const parameterGroupsOutput: typeof import("./parameterGroups").parameterGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["parameterGroups","parameterGroupsOutput"], () => require("./parameterGroups"));
+
 export { PitrTimeWindowsArgs, PitrTimeWindowsResult, PitrTimeWindowsOutputArgs } from "./pitrTimeWindows";
 export const pitrTimeWindows: typeof import("./pitrTimeWindows").pitrTimeWindows = null as any;
 export const pitrTimeWindowsOutput: typeof import("./pitrTimeWindows").pitrTimeWindowsOutput = null as any;
 utilities.lazyLoad(exports, ["pitrTimeWindows","pitrTimeWindowsOutput"], () => require("./pitrTimeWindows"));
+
+export { PlannedEventsArgs, PlannedEventsResult, PlannedEventsOutputArgs } from "./plannedEvents";
+export const plannedEvents: typeof import("./plannedEvents").plannedEvents = null as any;
+export const plannedEventsOutput: typeof import("./plannedEvents").plannedEventsOutput = null as any;
+utilities.lazyLoad(exports, ["plannedEvents","plannedEventsOutput"], () => require("./plannedEvents"));
 
 export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
 export const regions: typeof import("./regions").regions = null as any;
@@ -141,6 +186,8 @@ const _module = {
                 return new Endpoint(name, <any>undefined, { urn })
             case "volcengine:redis/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
+            case "volcengine:redis/parameterGroup:ParameterGroup":
+                return new ParameterGroup(name, <any>undefined, { urn })
             case "volcengine:redis/state:State":
                 return new State(name, <any>undefined, { urn })
             default:
@@ -156,4 +203,5 @@ pulumi.runtime.registerResourceModule("volcengine", "redis/backupRestore", _modu
 pulumi.runtime.registerResourceModule("volcengine", "redis/continuousBackup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "redis/endpoint", _module)
 pulumi.runtime.registerResourceModule("volcengine", "redis/instance", _module)
+pulumi.runtime.registerResourceModule("volcengine", "redis/parameterGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "redis/state", _module)

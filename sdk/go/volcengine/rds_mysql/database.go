@@ -78,6 +78,7 @@ import (
 //			_, err = rds_mysql.NewDatabase(ctx, "fooDatabase", &rds_mysql.DatabaseArgs{
 //				DbName:     pulumi.String("acc-test"),
 //				InstanceId: fooInstance.ID(),
+//				DbDesc:     pulumi.String("test-update"),
 //			})
 //			if err != nil {
 //				return err
@@ -100,6 +101,8 @@ type Database struct {
 
 	// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
 	CharacterSetName pulumi.StringPtrOutput `pulumi:"characterSetName"`
+	// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+	DbDesc pulumi.StringPtrOutput `pulumi:"dbDesc"`
 	// Name database.
 	// illustrate:
 	// Unique name.
@@ -150,6 +153,8 @@ func GetDatabase(ctx *pulumi.Context,
 type databaseState struct {
 	// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
 	CharacterSetName *string `pulumi:"characterSetName"`
+	// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+	DbDesc *string `pulumi:"dbDesc"`
 	// Name database.
 	// illustrate:
 	// Unique name.
@@ -165,6 +170,8 @@ type databaseState struct {
 type DatabaseState struct {
 	// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
 	CharacterSetName pulumi.StringPtrInput
+	// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+	DbDesc pulumi.StringPtrInput
 	// Name database.
 	// illustrate:
 	// Unique name.
@@ -184,6 +191,8 @@ func (DatabaseState) ElementType() reflect.Type {
 type databaseArgs struct {
 	// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
 	CharacterSetName *string `pulumi:"characterSetName"`
+	// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+	DbDesc *string `pulumi:"dbDesc"`
 	// Name database.
 	// illustrate:
 	// Unique name.
@@ -200,6 +209,8 @@ type databaseArgs struct {
 type DatabaseArgs struct {
 	// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
 	CharacterSetName pulumi.StringPtrInput
+	// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+	DbDesc pulumi.StringPtrInput
 	// Name database.
 	// illustrate:
 	// Unique name.
@@ -302,6 +313,11 @@ func (o DatabaseOutput) ToDatabaseOutputWithContext(ctx context.Context) Databas
 // Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
 func (o DatabaseOutput) CharacterSetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.CharacterSetName }).(pulumi.StringPtrOutput)
+}
+
+// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+func (o DatabaseOutput) DbDesc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.DbDesc }).(pulumi.StringPtrOutput)
 }
 
 // Name database.

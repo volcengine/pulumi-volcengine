@@ -55,6 +55,14 @@ export class UserVpcAuthorization extends pulumi.CustomResource {
      * The account Id which authorizes the private zone resource.
      */
     public readonly accountId!: pulumi.Output<string>;
+    /**
+     * The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+     */
+    public readonly authType!: pulumi.Output<number | undefined>;
+    /**
+     * The verify code of the private zone resource. This field is required when the authType is 1.
+     */
+    public readonly verifyCode!: pulumi.Output<string | undefined>;
 
     /**
      * Create a UserVpcAuthorization resource with the given unique name, arguments, and options.
@@ -70,12 +78,16 @@ export class UserVpcAuthorization extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as UserVpcAuthorizationState | undefined;
             resourceInputs["accountId"] = state ? state.accountId : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["verifyCode"] = state ? state.verifyCode : undefined;
         } else {
             const args = argsOrState as UserVpcAuthorizationArgs | undefined;
             if ((!args || args.accountId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'accountId'");
             }
             resourceInputs["accountId"] = args ? args.accountId : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["verifyCode"] = args ? args.verifyCode : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserVpcAuthorization.__pulumiType, name, resourceInputs, opts);
@@ -90,6 +102,14 @@ export interface UserVpcAuthorizationState {
      * The account Id which authorizes the private zone resource.
      */
     accountId?: pulumi.Input<string>;
+    /**
+     * The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+     */
+    authType?: pulumi.Input<number>;
+    /**
+     * The verify code of the private zone resource. This field is required when the authType is 1.
+     */
+    verifyCode?: pulumi.Input<string>;
 }
 
 /**
@@ -100,4 +120,12 @@ export interface UserVpcAuthorizationArgs {
      * The account Id which authorizes the private zone resource.
      */
     accountId: pulumi.Input<string>;
+    /**
+     * The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+     */
+    authType?: pulumi.Input<number>;
+    /**
+     * The verify code of the private zone resource. This field is required when the authType is 1.
+     */
+    verifyCode?: pulumi.Input<string>;
 }
